@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
@@ -41,6 +43,9 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
+#if NETSTANDARD2_0
+    using System.Data.SqlClient;
+#endif
 #if NETSTANDARD
     using System.Reflection;
 #endif
@@ -57,6 +62,7 @@ namespace NLog.Targets
 #if !NETSTANDARD
     using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using System.Data.SqlClient;
 #endif
 
     /// <summary>
@@ -230,6 +236,14 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets the access token used to connect to the database.
+        ///
+        /// Note: only supported for .NET 4.6 and .NET standard 2.0+
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public Layout DBAccessToken { get; set; }
+
+        /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
@@ -327,10 +341,34 @@ namespace NLog.Targets
             return null;
         }
 
-        internal IDbConnection OpenConnection(string connectionString)
+        internal IDbConnection OpenConnection(string connectionString, string accessToken)
+        {
+            var connection = CreateConnection();
+
+            if (connection == null)
+            {
+                throw new NLogRuntimeException("Creation of connection failed");
+            }
+
+
+
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                var accessTokenProperty = connection.GetType().GetProperty("AccessToken");
+                if (accessTokenProperty != null && accessTokenProperty.CanWrite)
+                {
+                    accessTokenProperty.SetValue(connection, accessToken);
+                }
+            }
+
+            connection.ConnectionString = connectionString;
+            connection.Open();
+            return connection;
+        }
+
+        private IDbConnection CreateConnection()
         {
             IDbConnection connection;
-
 #if !NETSTANDARD
             if (ProviderFactory != null)
             {
@@ -342,13 +380,6 @@ namespace NLog.Targets
                 connection = (IDbConnection)Activator.CreateInstance(ConnectionType);
             }
 
-            if (connection == null)
-            {
-                throw new NLogRuntimeException("Creation of connection failed");
-            }
-
-            connection.ConnectionString = connectionString;
-            connection.Open();
             return connection;
         }
 
@@ -657,7 +688,8 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    string accessToken = GetAccessToken(logEvents.FirstOrDefault().LogEvent);
+                    EnsureConnectionOpen(connectionString, accessToken);
 
                     var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
                     try
@@ -730,7 +762,8 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    string accessToken = GetAccessToken(logEvent);
+                    EnsureConnectionOpen(connectionString, accessToken);
 
                     ExecuteDbCommandWithParameters(logEvent, null);
 
@@ -876,7 +909,7 @@ namespace NLog.Targets
             return value;
         }
 
-        private void EnsureConnectionOpen(string connectionString)
+        private void EnsureConnectionOpen(string connectionString, string accessToken)
         {
             if (_activeConnection != null && _activeConnectionString != connectionString)
             {
@@ -890,7 +923,7 @@ namespace NLog.Targets
             }
 
             InternalLogger.Trace("DatabaseTarget(Name={0}): Open connection.", Name);
-            _activeConnection = OpenConnection(connectionString);
+            _activeConnection = OpenConnection(connectionString, accessToken);
             _activeConnectionString = connectionString;
         }
 
@@ -917,6 +950,7 @@ namespace NLog.Targets
                 foreach (var commandInfo in commands)
                 {
                     var connectionString = GetConnectionStringFromCommand(commandInfo, logEvent);
+                    string accessToken = GetAccessToken(logEvent);
 
                     // Set ConnectionType if it has not been initialized already
                     if (ConnectionType == null)
@@ -924,7 +958,7 @@ namespace NLog.Targets
                         SetConnectionType();
                     }
 
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, accessToken);
 
                     string commandText = RenderLogEvent(commandInfo.Text, logEvent);
 
@@ -984,6 +1018,15 @@ namespace NLog.Targets
             }
 
             return connectionString;
+        }
+
+        private string GetAccessToken(LogEventInfo logEvent)
+        {
+            if (null == DBAccessToken)
+                return null;
+
+            string accessToken = RenderLogEvent(DBAccessToken, logEvent);
+            return accessToken;
         }
 
         /// <summary>
