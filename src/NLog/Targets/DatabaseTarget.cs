@@ -42,9 +42,7 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
-#if NETSTANDARD
     using System.Reflection;
-#endif
     using System.Text;
 #if !NETSTANDARD1_0
     using System.Transactions;
@@ -233,9 +231,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the access token used to connect to the database.
+        /// Gets or sets the AccessToken property on the connection.
         ///
-        /// Note: only supported for .NET 4.6 and .NET standard 2.0+
+        /// Notes:
+        /// - For SQL Server only supported for .NET 4.6 and .NET standard 2.0+
+        /// - If it cannot be set, only a warning will be written to the <see cref="InternalLogger"/>
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public Layout DBAccessToken
