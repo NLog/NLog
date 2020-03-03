@@ -52,7 +52,15 @@ namespace NLog.Internal
             _propertySetter = ReflectionHelpers.CreateLateBoundMethod(property.GetSetMethod());
         }
 
-        public static PropertySetter<T> TryCreate([NotNull] T obj, [NotNull] string propertyName, 
+        /// <summary>
+        /// Try create the property setter. If the property is not found, or not settable, <c>null</c> will be returned
+        /// </summary>
+        /// <param name="obj">The object to get the type for the instance</param>
+        /// <param name="propertyName">The name property to set</param>
+        /// <param name="bindingFlags"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static PropertySetter<T> TryCreate([NotNull] T obj, [NotNull] string propertyName,
             BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase) // note: BindingFlags.Default is not available for .NET Standard 1.3
         {
             if (obj == null)
@@ -81,14 +89,17 @@ namespace NLog.Internal
             return new PropertySetter<T>(property);
         }
 
-        public void SetValue([NotNull] T obj, object value)
+        /// <summary>
+        /// Set the value on the property
+        /// </summary>
+        public void SetValue([NotNull] T obj, [CanBeNull] object value)
         {
             if (obj == null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            _propertySetter.Invoke(obj, new []{value});
+            _propertySetter.Invoke(obj, new[] { value });
         }
     }
 }
