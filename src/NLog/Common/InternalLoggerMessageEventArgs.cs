@@ -37,7 +37,7 @@ using JetBrains.Annotations;
 namespace NLog.Common
 {
     /// <summary>
-    /// Written to the internal logger
+    /// A message has been written to the internal logger
     /// </summary>
     public sealed class InternalLoggerMessageEventArgs : EventArgs
     {
@@ -47,24 +47,26 @@ namespace NLog.Common
         public string Message { get; }
 
         /// <summary>
-        /// The loglevel
+        /// The log level
         /// </summary>
         public LogLevel Level { get; }
 
         /// <summary>
-        /// Optional, the exception
+        /// The exception. Could be null.
         /// </summary>
         [CanBeNull]
         public Exception Exception { get; }
 
         /// <summary>
-        /// Optional, the context-type. Ex. Target-Type
+        /// The type that triggered this internal log event, for example the FileTarget. 
+        /// This property is not always populated. 
         /// </summary>
         [CanBeNull]
         public Type ContextType { get; }
 
         /// <summary>
-        /// Optional, the context-name. Ex. Target-Name
+        /// The context name that triggered this internal log event, for example the name of the Target. 
+        /// This property is not always populated. 
         /// </summary>
         [CanBeNull]
         public string ContextName { get; }
