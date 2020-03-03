@@ -389,14 +389,15 @@ namespace NLog.Targets
 
         private IDbConnection CreateConnection()
         {
-            IDbConnection connection;
+            IDbConnection connection = null;
 #if !NETSTANDARD
             if (ProviderFactory != null)
             {
                 connection = ProviderFactory.CreateConnection();
             }
-            else
+            else 
 #endif
+            if(ConnectionType != null)
             {
                 connection = (IDbConnection)Activator.CreateInstance(ConnectionType);
             }
@@ -1290,7 +1291,7 @@ namespace NLog.Targets
 
             public void SetToken(IDbConnection connection, string accessToken)
             {
-                _accessTokenProperty.SetValue(connection, accessToken);
+                _accessTokenProperty.SetValue(connection, accessToken,null);
             }
         }
     }

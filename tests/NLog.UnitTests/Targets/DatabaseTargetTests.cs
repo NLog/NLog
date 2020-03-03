@@ -1155,7 +1155,7 @@ Dispose()
             dt.CommandText = "Notimportant";
             dt.Initialize(null);
             Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
-            dt.OpenConnection("myConnectionString");
+            dt.OpenConnection("myConnectionString", null);
             Assert.Equal(1, MockDbConnection2.OpenCount);
             Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
@@ -1834,6 +1834,28 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Assert.Equal(expected, result);
         }
 
+        [Fact]
+        public void AccessTokenShouldBeSet()
+        {
+            // Arrange
+            MockDbConnection.ClearLog();
+            var dbAccessToken = "123";
+            var databaseTarget = new DatabaseTarget
+            {
+                DBAccessToken = dbAccessToken,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                CommandText = "command1"
+            };
+            databaseTarget.Initialize(new LoggingConfiguration());
+
+            // Act
+            var connection = databaseTarget.OpenConnection(".", dbAccessToken);
+
+            // Assert
+            var sqlConnection = Assert.IsType<MockDbConnection>(connection);
+            Assert.Equal(dbAccessToken, sqlConnection.AccessToken);
+        }
+
         private static void AssertLog(string expectedLog)
         {
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
@@ -1910,6 +1932,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
 
             public ConnectionState State => throw new NotImplementedException();
+            public string AccessToken { get; set; }
 
             public void Dispose()
             {
