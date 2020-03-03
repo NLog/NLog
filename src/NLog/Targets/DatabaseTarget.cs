@@ -53,8 +53,6 @@ namespace NLog.Targets
     using NLog.Internal;
     using NLog.Layouts;
 
-    using JetBrains.Annotations;
-
 #if !NETSTANDARD
     using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
@@ -249,8 +247,8 @@ namespace NLog.Targets
         }
         private Layout _dbAccessToken;
 
-        private AccessTokenSetter _accessTokenSetter;
-        
+        private PropertySetter<IDbConnection> _accessTokenSetter;
+
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
         /// this value will be used to construct the "Database=" part of the
@@ -378,7 +376,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(accessToken))
             {
-                _accessTokenSetter?.SetToken(connection, accessToken);
+                _accessTokenSetter?.SetValue(connection, accessToken);
             }
 
             connection.ConnectionString = connectionString;
@@ -396,7 +394,7 @@ namespace NLog.Targets
             }
             else 
 #endif
-            if(ConnectionType != null)
+            if (ConnectionType != null)
             {
                 connection = (IDbConnection)Activator.CreateInstance(ConnectionType);
             }
@@ -506,7 +504,7 @@ namespace NLog.Targets
                     InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
                 else
 #endif
-                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
             }
 
             return providerName;
@@ -1253,44 +1251,11 @@ namespace NLog.Targets
             var connection = CreateConnection();
             if (connection != null)
             {
-                _accessTokenSetter = AccessTokenSetter.TryCreate(connection, Name);
+                _accessTokenSetter = PropertySetter<IDbConnection>.TryCreate(connection, "AccessToken");
             }
             else
             {
                 _accessTokenSetter = null;
-            }
-        }
-
-        private class AccessTokenSetter
-        {
-            private readonly PropertyInfo _accessTokenProperty;
-
-            private AccessTokenSetter([NotNull] PropertyInfo accessTokenProperty)
-            {
-                _accessTokenProperty = accessTokenProperty ?? throw new ArgumentNullException(nameof(accessTokenProperty));
-            }
-
-            public static AccessTokenSetter TryCreate(IDbConnection connection, string targetName)
-            {
-                var type = connection.GetType();
-                var accessTokenProperty = type.GetProperty("AccessToken");
-                if (accessTokenProperty == null)
-                {
-                    InternalLogger.Warn("DatabaseTarget(Name={0}), Cannot set AccessToken on type {1}, property not found", targetName, type.FullName);
-                    return null;
-                }
-                if (!accessTokenProperty.CanWrite)
-                {
-                    InternalLogger.Warn("DatabaseTarget(Name={0}), Cannot set AccessToken on type {1}, property not settable", targetName, type.FullName);
-                    return null;
-                }
-
-                return new AccessTokenSetter(accessTokenProperty);
-            }
-
-            public void SetToken(IDbConnection connection, string accessToken)
-            {
-                _accessTokenProperty.SetValue(connection, accessToken,null);
             }
         }
     }
