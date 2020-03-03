@@ -42,7 +42,9 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
+#if NETSTANDARD
     using System.Reflection;
+#endif
     using System.Text;
 #if !NETSTANDARD1_0
     using System.Transactions;
