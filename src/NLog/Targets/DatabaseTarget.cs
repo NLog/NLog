@@ -1044,7 +1044,7 @@ namespace NLog.Targets
 
         private string GetAccessToken(LogEventInfo logEvent)
         {
-            if (null == DBAccessToken)
+            if (DBAccessToken == null)
                 return null;
 
             string accessToken = RenderLogEvent(DBAccessToken, logEvent);
