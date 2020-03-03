@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using System.Reflection;
-using JetBrains.Annotations;
-
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
@@ -42,6 +38,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
 
     using System.Data;
     using System.Data.Common;
@@ -57,6 +54,8 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+
+    using JetBrains.Annotations;
 
 #if !NETSTANDARD
     using System.Configuration;
