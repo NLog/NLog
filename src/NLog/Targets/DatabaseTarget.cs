@@ -1265,7 +1265,7 @@ namespace NLog.Targets
             var connection = CreateConnection();
             if (connection != null)
             {
-                _accessTokenSetter = PropertySetter.TryCreate(connection, "AccessToken");
+                _accessTokenSetter = connection.CreateCompiledPropertySetter("AccessToken");
             }
             else
             {

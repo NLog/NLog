@@ -110,6 +110,14 @@ namespace NLog.Internal
             _propertySetter = ReflectionHelpers.CreateLateBoundMethod(property.GetSetMethod());
         }
 
+        /// <summary>
+        /// Try get the property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="bindingFlags"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
         protected static bool TryGetProperty(T obj, string propertyName, BindingFlags bindingFlags, out PropertyInfo property)
         {
             if (obj == null)
