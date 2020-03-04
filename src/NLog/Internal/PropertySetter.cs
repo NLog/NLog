@@ -38,19 +38,11 @@ using NLog.Common;
 
 namespace NLog.Internal
 {
-    internal class PropertySetter<T>
+    internal class PropertySetter : PropertySetter<object>
     {
-        private readonly ReflectionHelpers.LateBoundMethod _propertySetter;
-        private readonly object[] _arrayWith1Item = new object[1];
-
-        private PropertySetter([NotNull] PropertyInfo property)
+        /// <inheritdoc />
+        private PropertySetter([NotNull] PropertyInfo property) : base(property)
         {
-            if (property == null)
-            {
-                throw new ArgumentNullException(nameof(property));
-            }
-
-            _propertySetter = ReflectionHelpers.CreateLateBoundMethod(property.GetSetMethod());
         }
 
         /// <summary>
@@ -61,8 +53,53 @@ namespace NLog.Internal
         /// <param name="bindingFlags"></param>
         /// <returns></returns>
         [CanBeNull]
-        public static PropertySetter<T> TryCreate([NotNull] T obj, [NotNull] string propertyName,
+        public static PropertySetter TryCreate([NotNull] object obj, [NotNull] string propertyName,
             BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase) // note: BindingFlags.Default is not available for .NET Standard 1.3
+        {
+            if (TryGetProperty(obj, propertyName, bindingFlags, out var property))
+            {
+                return null;
+            }
+
+            return new PropertySetter(property);
+        }
+
+        /// <summary>
+        /// Try create the property setter. If the property is not found, or not settable, <c>null</c> will be returned
+        /// </summary>
+        /// <param name="obj">The object to get the type for the instance</param>
+        /// <param name="propertyName">The name property to set</param>
+        /// <param name="bindingFlags"></param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static PropertySetter<T> TryCreate<T>([NotNull] T obj, [NotNull] string propertyName,
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase) // note: BindingFlags.Default is not available for .NET Standard 1.3
+        {
+            if (PropertySetter<T>.TryGetProperty(obj, propertyName, bindingFlags, out var property))
+            {
+                return null;
+            }
+
+            return new PropertySetter<T>(property);
+        }
+    }
+
+    internal class PropertySetter<T>
+    {
+        private readonly ReflectionHelpers.LateBoundMethod _propertySetter;
+        private readonly object[] _arrayWith1Item = new object[1];
+
+        public PropertySetter([NotNull] PropertyInfo property)
+        {
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+
+            _propertySetter = ReflectionHelpers.CreateLateBoundMethod(property.GetSetMethod());
+        }
+
+        protected static bool TryGetProperty(T obj, string propertyName, BindingFlags bindingFlags, out PropertyInfo property)
         {
             if (obj == null)
             {
@@ -75,19 +112,20 @@ namespace NLog.Internal
             }
 
             var type = obj.GetType();
-            var property = type.GetProperty(propertyName, bindingFlags);
+            property = type.GetProperty(propertyName, bindingFlags);
             if (property == null)
             {
                 InternalLogger.Warn("Cannot set {0} on type {1}, property not found", propertyName, type.FullName);
-                return null;
+                return true;
             }
+
             if (!property.CanWrite)
             {
                 InternalLogger.Warn("Cannot set {0} on type {1}, property not settable", propertyName, type.FullName);
-                return null;
+                return true;
             }
 
-            return new PropertySetter<T>(property);
+            return false;
         }
 
         /// <summary>
