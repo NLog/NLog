@@ -41,6 +41,7 @@ namespace NLog.Internal
     internal class PropertySetter<T>
     {
         private readonly ReflectionHelpers.LateBoundMethod _propertySetter;
+        private readonly object[] _arrayWith1Item = new object[1];
 
         private PropertySetter([NotNull] PropertyInfo property)
         {
@@ -99,7 +100,9 @@ namespace NLog.Internal
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            _propertySetter.Invoke(obj, new[] { value });
+            _arrayWith1Item[0] = value;
+
+            _propertySetter.Invoke(obj, _arrayWith1Item);
         }
     }
 }
