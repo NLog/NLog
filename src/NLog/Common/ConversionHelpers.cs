@@ -64,6 +64,21 @@ namespace NLog.Common
             return true;
         }
 
+        internal static bool TryParseEnum(string value, Type enumType, out object result)
+        {
+            // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
+            try
+            {
+                result = Enum.Parse(enumType, value, true);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                result = null;
+                return false;
+            }
+        }
+
         /// <summary>
         /// Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object. A parameter specifies whether the operation is case-sensitive. The return value indicates whether the conversion succeeded.
         /// </summary>
