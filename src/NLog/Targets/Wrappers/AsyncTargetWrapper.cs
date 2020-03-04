@@ -452,7 +452,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(this))
                 {
                     throw;
                 }
