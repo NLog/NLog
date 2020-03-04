@@ -248,7 +248,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            private static Type TryParseParameterType(string dbTypeString)
+            private Type TryParseParameterType(string dbTypeString)
             {
                 if (dbTypeString.IndexOf("Date", StringComparison.OrdinalIgnoreCase) >= 0)
                     return typeof(DateTime);
