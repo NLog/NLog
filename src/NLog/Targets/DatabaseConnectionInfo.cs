@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -35,62 +35,78 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
+    using System.Globalization;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
     /// Information about database command + parameters.
     /// </summary>
     [NLogConfigurationItem]
-    public class DatabaseCommandInfo
+    public class DatabaseConnectionInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DatabaseCommandInfo"/> class.
+        /// Initializes a new instance of the <see cref="DatabaseConnectionInfo"/> class.
         /// </summary>
-        public DatabaseCommandInfo()
+        public DatabaseConnectionInfo()
         {
-            Parameters = new List<DatabaseParameterInfo>();
-            CommandType = CommandType.Text;
         }
 
         /// <summary>
-        /// Gets or sets the type of the command.
+        /// Gets or sets the DbConnection Property to update
         /// </summary>
-        /// <value>The type of the command.</value>
-        /// <docgen category='Command Options' order='10' />
+        /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
-        [DefaultValue(CommandType.Text)]
-        public CommandType CommandType { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the connection string to run the command against. If not provided, connection string from the target is used.
+        /// Gets or sets the value to assign on DbConnection
         /// </summary>
-        /// <docgen category='Command Options' order='10' />
-        public Layout ConnectionString { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command text.
-        /// </summary>
-        /// <docgen category='Command Options' order='10' />
+        /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
-        public Layout Text { get; set; }
+        public Layout Layout { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to ignore failures.
+        /// Gets or sets the type of the property
         /// </summary>
-        /// <docgen category='Command Options' order='10' />
-        public bool IgnoreFailures { get; set; }
+        /// <docgen category='Connection Options' order='10' />
+        [DefaultValue(typeof(string))]
+        public Type PropertyType { get; set; } = typeof(string);
 
         /// <summary>
-        /// Gets the collection of parameters. Each parameter contains a mapping
-        /// between NLog layout and a database named or positional parameter.
+        /// Gets or sets convert format of the property value .
         /// </summary>
-        /// <docgen category='Command Options' order='10' />
-        [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
-        public IList<DatabaseParameterInfo> Parameters { get; private set; }
+        /// <docgen category='Parameter Options' order='8' />
+        [DefaultValue(null)]
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for parsing property string-value for type-conversion
+        /// </summary>
+        /// <docgen category='Parameter Options' order='9' />
+        [DefaultValue(null)]
+        public CultureInfo Culture { get; set; }
+
+        internal bool SetPropertyValue(IDbConnection dbConnection, object propertyValue)
+        {
+            var dbConnectionType = dbConnection.GetType();
+            var propertySetterCache = _propertySetter;
+            if (propertySetterCache.Key.Key != Name || propertySetterCache.Key.Value != dbConnectionType)
+            {
+                var propertySetter = PropertySetter.GeneratePropertySetter(dbConnectionType, Name);
+                propertySetterCache = new KeyValuePair<KeyValuePair<string, Type>, IPropertySetter>(new KeyValuePair<string, Type>(Name, dbConnectionType), propertySetter);
+                _propertySetter = propertySetterCache;
+            }
+
+            return propertySetterCache.Value?.SetPropertyValue(dbConnection, propertyValue) ?? false;
+        }
+
+        KeyValuePair<KeyValuePair<string, Type>, IPropertySetter> _propertySetter;
     }
 }
 

@@ -265,12 +265,20 @@ namespace NLog.Targets
         public CommandType CommandType { get; set; }
 
         /// <summary>
-        /// Gets the collection of parameters. Each parameter contains a mapping
+        /// Gets the collection of parameters. Each item contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
         /// <docgen category='SQL Statement' order='14' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; } = new List<DatabaseParameterInfo>();
+
+        /// <summary>
+        /// Gets the collection of properties. Each item contains a mapping
+        /// between NLog layout and a property on the DbConnection instance
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        [ArrayParameter(typeof(DatabaseConnectionInfo), "connectionproperty")]
+        public IList<DatabaseConnectionInfo> ConnectionProperties { get; } = new List<DatabaseConnectionInfo>();
 
         /// <summary>
         /// Configures isolated transaction batch writing. If supported by the database, then it will improve insert performance.
@@ -327,7 +335,7 @@ namespace NLog.Targets
             return null;
         }
 
-        internal IDbConnection OpenConnection(string connectionString)
+        internal IDbConnection OpenConnection(string connectionString, LogEventInfo logEventInfo)
         {
             IDbConnection connection;
 
@@ -348,8 +356,35 @@ namespace NLog.Targets
             }
 
             connection.ConnectionString = connectionString;
+            if (ConnectionProperties?.Count > 0)
+            {
+                ApplyConnectionProperties(connection, logEventInfo ?? LogEventInfo.CreateNullEvent());
+            }
+
             connection.Open();
             return connection;
+        }
+
+        private void ApplyConnectionProperties(IDbConnection connection, LogEventInfo logEventInfo)
+        {
+            for (int i = 0; i < ConnectionProperties.Count; ++i)
+            {
+                var propertyInfo = ConnectionProperties[i];
+                try
+                {
+                    var propertyValue = GetDatabaseConnectionValue(logEventInfo, propertyInfo);
+                    if (!propertyInfo.SetPropertyValue(connection, propertyValue))
+                    {
+                        InternalLogger.Warn("DatabaseTarget(Name={0}): Failed to lookup property {1} on {2}", Name, propertyInfo.Name, connection.GetType());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to assign value for property {1} on {2}", Name, propertyInfo.Name, connection.GetType());
+                    if (ex.MustBeRethrown())
+                        throw;
+                }
+            }
         }
 
         /// <summary>
@@ -657,7 +692,7 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, logEvents.Count > 0 ? logEvents[0].LogEvent : null);
 
                     var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
                     try
@@ -730,7 +765,7 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, logEvent);
 
                     ExecuteDbCommandWithParameters(logEvent, null);
 
@@ -876,7 +911,7 @@ namespace NLog.Targets
             return value;
         }
 
-        private void EnsureConnectionOpen(string connectionString)
+        private void EnsureConnectionOpen(string connectionString, LogEventInfo logEventInfo)
         {
             if (_activeConnection != null && _activeConnectionString != connectionString)
             {
@@ -890,7 +925,7 @@ namespace NLog.Targets
             }
 
             InternalLogger.Trace("DatabaseTarget(Name={0}): Open connection.", Name);
-            _activeConnection = OpenConnection(connectionString);
+            _activeConnection = OpenConnection(connectionString, logEventInfo);
             _activeConnectionString = connectionString;
         }
 
@@ -924,7 +959,7 @@ namespace NLog.Targets
                         SetConnectionType();
                     }
 
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, logEvent);
 
                     string commandText = RenderLogEvent(commandInfo.Text, logEvent);
 
@@ -1043,77 +1078,68 @@ namespace NLog.Targets
         /// <param name="parameterInfo">Parameter configuration info.</param>
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
-            Type dbParameterType = parameterInfo.ParameterType;
-            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string))
-            {
-                return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
-            }
-
-            IFormatProvider dbParameterCulture = GetDbParameterCulture(logEvent, parameterInfo);
-
-            if (TryGetConvertedRawValue(logEvent, parameterInfo, dbParameterType, dbParameterCulture, out var value))
-            {
-                return value ?? CreateDefaultValue(dbParameterType);
-            }
-
-            try
-            {
-                InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-                string parameterValue = RenderLogEvent(parameterInfo.Layout, logEvent);
-                if (string.IsNullOrEmpty(parameterValue))
-                {
-                    return CreateDefaultValue(dbParameterType);
-                }
-                return PropertyTypeConverter.Convert(parameterValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-
-                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-
-                if (ex.MustBeRethrown())
-                    throw;
-
-                return CreateDefaultValue(dbParameterType);
-            }
+            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture);
         }
 
-        private bool TryGetConvertedRawValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo, Type dbParameterType,
-            IFormatProvider dbParameterCulture, out object value)
+        private object GetDatabaseConnectionValue(LogEventInfo logEvent, DatabaseConnectionInfo connectionInfo)
         {
-            if (parameterInfo.Layout.TryGetRawValue(logEvent, out var rawValue))
+            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture);
+        }
+
+        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider)
+        {
+            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string))
+            {
+                return RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
+            }
+
+            formatProvider = formatProvider ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
+
+            if (valueLayout.TryGetRawValue(logEvent, out var rawValue))
             {
                 try
                 {
-                    InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}",
-                        parameterInfo.Name, dbParameterType?.Name);
                     if (ReferenceEquals(rawValue, DBNull.Value))
                     {
-                        value = rawValue;
-                        return true;
+                        return rawValue;
                     }
 
-                    value = PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
-                            dbParameterCulture);
-                    return true;
+                    return PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType);
                 }
                 catch (Exception ex)
                 {
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}",
-                        parameterInfo.Name, dbParameterType?.Name);
-
+                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType?.Name);
                     if (ex.MustBeRethrown())
                         throw;
                 }
             }
 
-            value = null;
-            return false;
+            try
+            {
+                InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", propertyName, valueType?.Name);
+                string parameterValue = RenderLogEvent(valueLayout, logEvent);
+                if (string.IsNullOrEmpty(parameterValue))
+                {
+                    return CreateDefaultValue(valueType);
+                }
+
+                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? DBNull.Value;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", propertyName, valueType?.Name);
+
+                if (ex.MustBeRethrown())
+                    throw;
+
+                return CreateDefaultValue(valueType);
+            }
         }
 
         /// <summary>
@@ -1129,11 +1155,6 @@ namespace NLog.Targets
                 return Activator.CreateInstance(dbParameterType);
             else
                 return DBNull.Value;
-        }
-
-        private IFormatProvider GetDbParameterCulture(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
-        {
-            return parameterInfo.Culture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
         }
 
 #if NETSTANDARD1_0
