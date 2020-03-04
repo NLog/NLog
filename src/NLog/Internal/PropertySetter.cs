@@ -95,11 +95,6 @@ namespace NLog.Internal
     {
         private readonly ReflectionHelpers.LateBoundMethod _propertySetter;
 
-        /// <summary>
-        /// array with 1 item. The property will always have one property
-        /// </summary>
-        private readonly object[] _arrayWith1Item = new object[1];
-
         public PropertySetter([NotNull] PropertyInfo property)
         {
             if (property == null)
@@ -157,8 +152,7 @@ namespace NLog.Internal
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            _arrayWith1Item[0] = value;
-            _propertySetter.Invoke(obj, _arrayWith1Item);
+            _propertySetter.Invoke(obj, new[] { value });
         }
     }
 }
