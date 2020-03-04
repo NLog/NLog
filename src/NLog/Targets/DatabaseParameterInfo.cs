@@ -248,7 +248,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            private Type TryParseParameterType(string dbTypeString)
+            private static Type TryParseParameterType(string dbTypeString)
             {
                 if (dbTypeString.IndexOf("Date", StringComparison.OrdinalIgnoreCase) >= 0)
                     return typeof(DateTime);
@@ -305,8 +305,7 @@ namespace NLog.Targets
             {
                 bool IEnumTypeConverter.TryParseEnum(string value, out Enum enumValue)
                 {
-                    TEnum enumValueT;
-                    if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, out enumValueT))
+                    if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, out TEnum enumValueT))
                     {
                         enumValue = enumValueT as Enum;
                         return enumValue != null;

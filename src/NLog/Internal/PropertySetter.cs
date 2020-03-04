@@ -101,7 +101,6 @@ namespace NLog.Internal
             }
 
             _arrayWith1Item[0] = value;
-
             _propertySetter.Invoke(obj, _arrayWith1Item);
         }
     }
