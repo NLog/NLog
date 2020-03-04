@@ -38,6 +38,9 @@ using NLog.Common;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Compiled version for setting a property value.
+    /// </summary>
     internal class PropertySetter : PropertySetter<object>
     {
         /// <inheritdoc />
@@ -84,9 +87,17 @@ namespace NLog.Internal
         }
     }
 
+    /// <summary>
+    /// Compiled version for setting a property value.
+    /// </summary>
+    /// <typeparam name="T">The type of the property. Not used for detection, but only for compile-time safe <see cref="SetValue"/></typeparam>
     internal class PropertySetter<T>
     {
         private readonly ReflectionHelpers.LateBoundMethod _propertySetter;
+
+        /// <summary>
+        /// array with 1 item. The property will always have one property
+        /// </summary>
         private readonly object[] _arrayWith1Item = new object[1];
 
         public PropertySetter([NotNull] PropertyInfo property)
