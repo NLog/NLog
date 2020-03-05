@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
+    using JetBrains.Annotations;
     using NLog.Internal;
     using NLog.Common;
 
@@ -58,6 +57,8 @@ namespace NLog.Config
             set => _localItemFactory = value;
         }
 
+        public ConfigurationItemCreator ConfigurationItemCreator { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceRepository"/> class.
         /// </summary>
@@ -66,59 +67,62 @@ namespace NLog.Config
             if (resetGlobalCache)
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
+            ConfigurationItemCreator = ResolveService;
+
             this.RegisterDefaults();
-            CreateInstance = DefaultResolveInstanceTop;
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
-        public void RegisterType(Type type, [NotNull] ConfigurationItemCreator objectResolver)
+        public void RegisterService(Type type, object instance)
         {
-            _creatorMap[type] = objectResolver ?? throw new ArgumentNullException(nameof(objectResolver));
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
+            if (instance == null)
+                throw new ArgumentNullException(nameof(instance));
+
+            lock (_lockObject)
+            {
+                _creatorMap[type] = new ConfigurationItemCreator(t => instance);
+            }
+
             TypeRegistered?.Invoke(this, new RepositoryUpdateEventArgs(type));
         }
 
         public object ResolveService(Type itemType)
         {
-            var createInstance = CreateInstance;
-            if (createInstance != null)
-            {
-                return createInstance(itemType);
-            }
-
-            return DefaultResolveInstanceTop(itemType);
-        }
-
-        private object DefaultResolveInstanceTop(Type itemType)
-        {
-            lock (_lockObject)
-            {
-                return DefaultResolveInstance(itemType, null);
-            }
+            return DefaultResolveInstance(itemType, null);
         }
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
         {
-            InternalLogger.Trace("Resolve {0}", itemType.FullName);
-            if (_creatorMap.TryGetValue(itemType, out var objectResolver))
-            {
-                InternalLogger.Trace("Resolve {0} done", itemType.FullName);
-                return objectResolver(itemType);
-            }
+            if (itemType == null)
+                throw new ArgumentNullException(nameof(itemType));
 
-            if (_lateBoundMap.TryGetValue(itemType, out var compiledConstructor))
-            {
-                return CreateNewInstance(compiledConstructor, seenTypes);
-            }
+            ConfigurationItemCreator objectResolver = null;
+            CompiledConstructor compiledConstructor = null;
 
-            //todo? lock (_lateBoundMapLock)
+            lock (_lockObject)
             {
-                if (_lateBoundMap.TryGetValue(itemType, out var compiledConstructor1))
+                if (!_creatorMap.TryGetValue(itemType, out objectResolver))
                 {
-                    return CreateNewInstance(compiledConstructor1, seenTypes);
+                    if (_lateBoundMap.TryGetValue(itemType, out compiledConstructor))
+                    {
+                        var constructorParameters = compiledConstructor.Parameters;
+                        if (constructorParameters != null)
+                        {
+                            seenTypes = seenTypes ?? new HashSet<Type>();
+                            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
+                            return compiledConstructor.Ctor(parameterValues);
+                        }
+                    }
+                    else
+                    {
+                        return CreateFromConstructor(itemType, seenTypes);
+                    }
                 }
-
-                return CreateFromConstructor(itemType, seenTypes);
             }
+
+            return objectResolver?.Invoke(itemType) ?? compiledConstructor?.Ctor(null); // Simple instance creation happens outside lock
         }
 
         private object CreateFromConstructor(Type itemType, HashSet<Type> seenTypes)
@@ -145,19 +149,6 @@ namespace NLog.Config
                 InternalLogger.Trace("Resolve {0} done", itemType.FullName);
             }
 
-        }
-
-        private object CreateNewInstance(CompiledConstructor compiledConstructor, HashSet<Type> seenTypes)
-        {
-            var constructorParameters = compiledConstructor.Parameters;
-            if (constructorParameters == null)
-            {
-                return compiledConstructor.Ctor(null);
-            }
-
-            seenTypes = seenTypes ?? new HashSet<Type>();
-            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
-            return compiledConstructor.Ctor(parameterValues);
         }
 
         private object CreateFromDefaultConstructor(Type itemType, ConstructorInfo defaultConstructor)
@@ -220,22 +211,10 @@ namespace NLog.Config
             return parameterValues;
         }
 
-        /// <summary>
-        /// Gets or sets the creator delegate used to instantiate configuration objects.
-        /// </summary>
-        /// <remarks>
-        /// By overriding this property, one can enable dependency injection or interception for created objects.
-        /// </remarks>
-        public ConfigurationItemCreator CreateInstance { get; set; }
-
         private class CompiledConstructor
         {
-
             [NotNull] public ReflectionHelpers.LateBoundConstructor Ctor { get; }
             [CanBeNull] public ParameterInfo[] Parameters { get; }
-
-            public bool ParameterLess => Parameters == null || Parameters.Length == 0;
-
 
             public CompiledConstructor([NotNull] ReflectionHelpers.LateBoundConstructor ctor, ParameterInfo[] parameters = null)
             {

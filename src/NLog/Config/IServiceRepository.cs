@@ -41,20 +41,15 @@ namespace NLog.Config
     public interface IServiceRepository : IServiceResolver
     {
         /// <summary>
-        /// Register a type for NLog to use, along with how to resolve instance
+        /// Registers instance of singleton object for use in NLog
         /// </summary>
-        /// <param name="type">Type of object</param>
-        /// <param name="objectResolver">How to resolve instance of object</param>
-        void RegisterType(Type type, ConfigurationItemCreator objectResolver);
+        /// <param name="type">Type of service</param>
+        /// <param name="instance">Instance of service</param>
+        void RegisterService(Type type, object instance);
 
         /// <summary>
         /// Mapping of symbol name to actual <see cref="System.Type"/>
         /// </summary>
         ConfigurationItemFactory ConfigurationItemFactory { get; }
-
-        /// <summary>
-        /// Called when RegisterType is used
-        /// </summary>
-        event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
     }
 }

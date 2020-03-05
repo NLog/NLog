@@ -49,11 +49,11 @@ namespace NLog.UnitTests.Config
             // Arrange
             var logFactory1 = new LogFactory();
             const string name1 = "name1";
-            logFactory1.ServiceRepository.RegisterType(typeof(IMyPrettyInterface), (t) => new MyPrettyImplementation() { Test = name1 });
+            logFactory1.ServiceRepository.RegisterService(typeof(IMyPrettyInterface), new MyPrettyImplementation() { Test = name1 });
 
             var logFactory2 = new LogFactory();
             const string name2 = "name2";
-            logFactory2.ServiceRepository.RegisterType(typeof(IMyPrettyInterface), (t) => new MyPrettyImplementation { Test = name2 });
+            logFactory2.ServiceRepository.RegisterService(typeof(IMyPrettyInterface), new MyPrettyImplementation { Test = name2 });
 
             // Act
             var logFactoryService1 = logFactory1.ServiceRepository.ResolveService<IMyPrettyInterface>();
@@ -130,7 +130,7 @@ namespace NLog.UnitTests.Config
 
         private static void InitializeLogFactoryJsonConverter(LogFactory logFactory, string testValue, out Logger logger, out DebugTarget target)
         {
-            logFactory.ServiceRepository.RegisterType(typeof(IJsonConverter), (t) => new MySimpleJsonConverter { Test = testValue });
+            logFactory.ServiceRepository.RegisterService(typeof(IJsonConverter), new MySimpleJsonConverter { Test = testValue });
 
             var xmlConfig = @"<nlog><targets><target type='debug' name='test' layout='${event-properties:user:format=@}'/></targets><rules><logger name='*' minLevel='Debug' writeTo='test'/></rules></nlog>";
             logFactory.Configuration = XmlLoggingConfiguration.CreateFromXmlString(xmlConfig, logFactory);

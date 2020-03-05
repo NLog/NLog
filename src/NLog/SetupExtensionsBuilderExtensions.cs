@@ -62,7 +62,7 @@ namespace NLog
         /// </summary>
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, Assembly assembly)
         {
-            ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(assembly);
             return setupBuilder;
         }
 
@@ -72,7 +72,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, string assemblyName)
         {
             Assembly assembly = AssemblyHelpers.LoadFromName(assemblyName);
-            ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(assembly);
             return setupBuilder;
         }
 
@@ -96,7 +96,7 @@ namespace NLog
         /// <param name="name"> Name of the Target.</param>
         public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, string name, Type targetType)
         {
-            ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.Targets.RegisterDefinition(name, targetType);
             return setupBuilder;
         }
 
@@ -121,7 +121,7 @@ namespace NLog
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Type layoutRendererType)
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
             return setupBuilder;
         }
 
@@ -145,7 +145,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod)
         {
             var layoutRenderer = new FuncLayoutRenderer(name, layoutMethod);
-            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
             return setupBuilder;
         }
 
@@ -162,14 +162,14 @@ namespace NLog
             if (!conditionMethod.IsStatic)
                 throw new ArgumentException($"{conditionMethod.Name} must be static", nameof(conditionMethod));
 
-            ConfigurationItemFactory.Default.ConditionMethods.RegisterDefinition(name, conditionMethod);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethods.RegisterDefinition(name, conditionMethod);
             return setupBuilder;
         }
 
 #if !NETSTANDARD1_0
         private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
-            ConfigurationItemFactory.Default.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
             return setupBuilder;
         }
 

@@ -62,7 +62,7 @@ namespace NLog
         /// </remarks>
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
-        private IServiceRepository _serviceRepository = new ServiceRepository();
+        private ServiceRepository _serviceRepository = new ServiceRepository();
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
         internal LogMessageFormatter SingleTargetMessageFormatter;
@@ -289,10 +289,10 @@ namespace NLog
         public IServiceRepository ServiceRepository
         {
             get => _serviceRepository;
-            set
+            internal set
             {
                 _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
-                _serviceRepository = value ?? new ServiceRepository();
+                _serviceRepository = (ServiceRepository)value ?? new ServiceRepository(true);
                 _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             }
         }

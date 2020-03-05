@@ -61,7 +61,7 @@ namespace NLog.Config
         /// <param name="singleton">Singleton object to use for override</param>
         public static IServiceRepository RegisterSingleton<T>(this IServiceRepository serviceRepository, T singleton) where T : class
         {
-            serviceRepository.RegisterType(typeof(T), (t) => singleton);
+            serviceRepository.RegisterService(typeof(T), singleton);
             return serviceRepository;
         }
 

@@ -50,12 +50,12 @@ namespace NLog.Config
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
-        private readonly IServiceResolver _serviceResolver;
+        private readonly ServiceRepository _serviceRepository;
         private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
 
-        internal Factory(IServiceResolver serviceResolver, Factory<TBaseType, TAttributeType> globalDefaultFactory)
+        internal Factory(ServiceRepository serviceRepository, Factory<TBaseType, TAttributeType> globalDefaultFactory)
         {
-            _serviceResolver = serviceResolver;
+            _serviceRepository = serviceRepository;
             _globalDefaultFactory = globalDefaultFactory;
         }
 
@@ -181,15 +181,13 @@ namespace NLog.Config
         /// <returns>True if instance was created successfully, false otherwise.</returns>
         public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
-            Type type;
-
-            if (!TryGetDefinition(itemName, out type))
+            if (!TryGetDefinition(itemName, out var itemType))
             {
                 result = null;
                 return false;
             }
 
-            result = (TBaseType)_serviceResolver.ResolveService(type);
+            result = (TBaseType)_serviceRepository.ConfigurationItemCreator(itemType);
             return true;
         }
 
@@ -225,7 +223,7 @@ namespace NLog.Config
         private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
         private readonly LayoutRendererFactory _globalDefaultFactory;
 
-        public LayoutRendererFactory(IServiceResolver serviceResolver, LayoutRendererFactory globalDefaultFactory) : base(serviceResolver, globalDefaultFactory)
+        public LayoutRendererFactory(ServiceRepository serviceRepository, LayoutRendererFactory globalDefaultFactory) : base(serviceRepository, globalDefaultFactory)
         {
             _globalDefaultFactory = globalDefaultFactory;
         }

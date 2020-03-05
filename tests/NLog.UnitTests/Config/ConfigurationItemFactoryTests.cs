@@ -35,7 +35,6 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Targets;
     using System.Collections.Generic;
     using Xunit;
@@ -45,8 +44,10 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ConfigurationItemFactoryDefaultTest()
         {
-            var serviceRepository = new ServiceRepository();
-            Assert.IsType<DebugTarget>(serviceRepository.CreateInstance(typeof(DebugTarget)));
+            var itemFactory = new ConfigurationItemFactory();
+#pragma warning disable CS0618 // Type or member is obsolete
+            Assert.IsType<DebugTarget>(itemFactory.CreateInstance(typeof(DebugTarget)));
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Fact]
