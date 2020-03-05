@@ -49,13 +49,13 @@ namespace NLog.MessageTemplates
     {
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
-        private readonly IServiceRepository _serviceRepository;
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository.ResolveService<IJsonConverter>());
+        private readonly IServiceResolver _serviceResolver;
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceResolver.ResolveService<IJsonConverter>());
         private IJsonConverter _jsonConverter;
 
-        internal ValueFormatter([NotNull] IServiceRepository serviceRepository)
+        public ValueFormatter([NotNull] IServiceResolver serviceResolver)
         {
-            _serviceRepository = serviceRepository; 
+            _serviceResolver = serviceResolver; 
         }
 
         private const int MaxRecursionDepth = 2;

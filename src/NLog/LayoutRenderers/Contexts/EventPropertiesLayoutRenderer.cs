@@ -50,7 +50,9 @@ namespace NLog.LayoutRenderers
     [MutableUnsafe]
     public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
-        private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceResolver()));
+        private ObjectReflectionCache _objectReflectionCache;
+        private ObjectPropertyPath _objectPropertyPath;
 
         /// <summary>
         /// Gets or sets the name of the item.
@@ -78,8 +80,8 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='20' />
         public string ObjectPath
         {
-            get => _objectPropertyHelper.ObjectPath;
-            set => _objectPropertyHelper.ObjectPath = value;
+            get => _objectPropertyPath.Value;
+            set => _objectPropertyPath.Value = value;
         }
 
         /// <inheritdoc/>
@@ -112,9 +114,9 @@ namespace NLog.LayoutRenderers
             if (!logEvent.Properties.TryGetValue(Item, out value))
                 return false;
 
-            if (ObjectPath != null)
+            if (_objectPropertyPath.PathNames != null)
             {
-                if (_objectPropertyHelper.TryGetObjectProperty(value, out var rawValue))
+                if (ObjectReflectionCache.TryGetObjectProperty(value, _objectPropertyPath.PathNames, out var rawValue))
                 {
                     value = rawValue;
                 }

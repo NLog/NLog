@@ -47,19 +47,14 @@ namespace NLog.Config
         private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
         private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>();
         private readonly Func<Type, IList<KeyValuePair<string, MethodInfo>>> _methodExtractor;
-        private readonly MethodFactory<TClassAttributeType, TMethodAttributeType> _globalDefaultFactory;
-
-        public MethodFactory(MethodFactory<TClassAttributeType, TMethodAttributeType> globalDefaultFactory)
-        {
-            _globalDefaultFactory = globalDefaultFactory;
-        }
+        private readonly MethodFactory _globalDefaultFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodFactory"/> class.
         /// </summary>
-        /// <param name="methodExtractor">Helper method to extract relevant methods from type</param>
-        public MethodFactory(Func<Type, IList<KeyValuePair<string, MethodInfo>>> methodExtractor)
+        public MethodFactory(MethodFactory globalDefaultFactory, Func<Type, IList<KeyValuePair<string, MethodInfo>>> methodExtractor)
         {
+            _globalDefaultFactory = globalDefaultFactory;
             _methodExtractor = methodExtractor;
         }
 
@@ -207,7 +202,7 @@ namespace NLog.Config
                 return true;
             }
 
-            return false;
+            return _globalDefaultFactory?.TryCreateInstance(itemName, out result) ?? false;
         }
 
         /// <summary>

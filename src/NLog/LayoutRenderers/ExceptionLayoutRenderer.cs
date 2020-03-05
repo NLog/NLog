@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
             "TargetSite",// Not available on NETSTANDARD1_0
         });
 
-        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceResolver()));
         private ObjectReflectionCache _objectReflectionCache;
 
         /// <summary>

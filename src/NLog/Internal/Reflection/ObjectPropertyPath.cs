@@ -31,23 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
+namespace NLog.Internal
 {
-    using System;
-
-    /// <summary>
-    /// Interface to instantiate configuration objects.
-    /// </summary>
-    /// <remarks>
-    /// Create own custom implementation to perform dependency injection or custom initialization
-    /// </remarks>
-    public interface IServiceResolver
+    internal struct ObjectPropertyPath
     {
+        public string[] PathNames { get; private set; }
+
         /// <summary>
-        /// Lookup instance of the configuration item (target, layout, layout renderer, etc.) given its type.
+        /// Object Path to check
         /// </summary>
-        /// <param name="itemType">Type of the item.</param>
-        /// <returns>Created object of the specified type.</returns>
-        object ResolveService(Type itemType);
+        public string Value
+        {
+            get => PathNames?.Length > 0 ? string.Join(".", PathNames) : null;
+            set => PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value.SplitAndTrimTokens('.');
+        }
     }
 }

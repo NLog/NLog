@@ -49,8 +49,9 @@ namespace NLog.UnitTests.Targets
 
         public DefaultJsonSerializerLegacyTests()
         {
-            _serializer = DefaultJsonSerializer.Instance;
+            _serializer = new DefaultJsonSerializer(null);
         }
+
         protected override string SerializeObject(object o)
         {
             return _serializer.SerializeObject(o);

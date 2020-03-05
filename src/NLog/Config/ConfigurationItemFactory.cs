@@ -209,19 +209,15 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Gets or sets the custom object-type transformation for use in <see cref="JsonLayout"/>, <see cref="XmlLayout"/> or <see cref="NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper"/>
-        /// </summary>
-        internal IObjectTypeTransformer ObjectTypeTransformer
-        {
-            get => _objectTypeTransformer;
-            set => _objectTypeTransformer = value ?? ObjectReflectionCache.Instance;
-        }
-
-        /// <summary>
         /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/>, <see cref="WebServiceTarget"/> or <see cref="TargetWithContext"/>
         /// </summary>
-        public IPropertyTypeConverter PropertyTypeConverter { get; set; } = new PropertyTypeConverter();
-
+        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IPropertyTypeConverter)). Marked obsolete on NLog 5.0")]
+        public IPropertyTypeConverter PropertyTypeConverter
+        {
+            get => _serviceResolver.ResolveService<IPropertyTypeConverter>();
+            set => _serviceResolver.RegisterPropertyTypeConverter(value);
+        }
+       
         /// <summary>
         /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>

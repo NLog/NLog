@@ -35,8 +35,10 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using NLog.Common;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
 
     /// <summary>
     /// Factory for class-based items.

@@ -46,18 +46,11 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty(nameof(ObjectPath))]
     [ThreadSafe]
     [ThreadAgnostic]
-    public class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
+    public sealed class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
-        private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
-
-        private SimpleLayout _innerAsSimple;
-
-        /// <inheritdoc />
-        public ObjectPathRendererWrapper()
-        {
-            InnerChanged += ObjectPathRendererWrapper_InnerChanged;
-            UpdateInner();
-        }
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceResolver()));
+        private ObjectReflectionCache _objectReflectionCache;
+        private ObjectPropertyPath _objectPropertyPath;
 
         /// <summary>
         /// Gets or sets the object-property-navigation-path for lookup of nested property
@@ -77,8 +70,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Transformation Options" order="10"/>
         public string ObjectPath
         {
-            get => _objectPropertyHelper.ObjectPath;
-            set => _objectPropertyHelper.ObjectPath = value;
+            get => _objectPropertyPath.Value;
+            set => _objectPropertyPath.Value = value;
         }
 
         /// <summary>
@@ -102,26 +95,19 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc />
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (_innerAsSimple != null)
+            if (TryGetRawValue(logEvent, out object rawValue))
             {
-                if (TryGetRawValue(logEvent, out object rawValue))
-                {
-                    var formatProvider = GetFormatProvider(logEvent, Culture);
-                    builder.AppendFormattedValue(rawValue, Format, formatProvider, ValueFormatter);
-                }
-            }
-            else
-            {
-                Inner?.RenderAppendBuilder(logEvent, builder);
+                var formatProvider = GetFormatProvider(logEvent, Culture);
+                builder.AppendFormattedValue(rawValue, Format, formatProvider, ValueFormatter);
             }
         }
 
         /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        private bool TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             if (Inner != null &&
                 Inner.TryGetRawValue(logEvent, out var rawValue) &&
-                _objectPropertyHelper.TryGetObjectProperty(rawValue, out value))
+                ObjectReflectionCache.TryGetObjectProperty(rawValue, _objectPropertyPath.PathNames, out value))
             {
                 return true;
             }
@@ -129,5 +115,7 @@ namespace NLog.LayoutRenderers.Wrappers
             value = null;
             return false;
         }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value) => TryGetRawValue(logEvent, out value);
     }
 }

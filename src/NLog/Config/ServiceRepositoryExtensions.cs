@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -101,12 +101,24 @@ namespace NLog.Config
             return serviceRepository;
         }
 
+        public static IServiceRepository RegisterObjectTypeTransformer(this IServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
+        {
+            if (transformer == null)
+            {
+                throw new ArgumentNullException(nameof(transformer));
+            }
+
+            serviceRepository.RegisterSingleton(transformer);
+            return serviceRepository;
+        }
+
         public static IServiceRepository RegisterDefaults(this IServiceRepository serviceRepository)
         {
             serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
-            serviceRepository.RegisterJsonConverter(DefaultJsonSerializer.Instance);
+            serviceRepository.RegisterJsonConverter(new DefaultJsonSerializer(serviceRepository));
             serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
             serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);
+            serviceRepository.RegisterObjectTypeTransformer(new ObjectReflectionCache(serviceRepository));
             return serviceRepository;
         }
     }
