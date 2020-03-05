@@ -1172,7 +1172,7 @@ Dispose()
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 CommandText = "command1",
             };
-            databaseTarget.ConnectionProperties.Add(new DatabaseConnectionInfo() { Name = "AccessToken", Layout = accessToken });
+            databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = accessToken });
             databaseTarget.Initialize(new LoggingConfiguration());
 
             // Act
@@ -1196,7 +1196,7 @@ Dispose()
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 CommandText = "command1",
             };
-            databaseTarget.ConnectionProperties.Add(new DatabaseConnectionInfo() { Name = "AccessToken", Layout = "abc", PropertyType = typeof(int) });
+            databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = "abc", PropertyType = typeof(int) });
             databaseTarget.Initialize(new LoggingConfiguration());
 
             // Act + Assert

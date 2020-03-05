@@ -277,8 +277,8 @@ namespace NLog.Targets
         /// between NLog layout and a property on the DbConnection instance
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [ArrayParameter(typeof(DatabaseConnectionInfo), "connectionproperty")]
-        public IList<DatabaseConnectionInfo> ConnectionProperties { get; } = new List<DatabaseConnectionInfo>();
+        [ArrayParameter(typeof(DatabaseObjectPropertyInfo), "connectionproperty")]
+        public IList<DatabaseObjectPropertyInfo> ConnectionProperties { get; } = new List<DatabaseObjectPropertyInfo>();
 
         /// <summary>
         /// Configures isolated transaction batch writing. If supported by the database, then it will improve insert performance.
@@ -1081,7 +1081,7 @@ namespace NLog.Targets
             return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture);
         }
 
-        private object GetDatabaseConnectionValue(LogEventInfo logEvent, DatabaseConnectionInfo connectionInfo)
+        private object GetDatabaseConnectionValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
         {
             return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture);
         }

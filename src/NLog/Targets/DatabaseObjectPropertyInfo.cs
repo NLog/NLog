@@ -44,34 +44,34 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Information about database connection property + value
+    /// Information about object-property for the database-connection-object
     /// </summary>
     [NLogConfigurationItem]
-    public class DatabaseConnectionInfo
+    public class DatabaseObjectPropertyInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DatabaseConnectionInfo"/> class.
+        /// Initializes a new instance of the <see cref="DatabaseObjectPropertyInfo"/> class.
         /// </summary>
-        public DatabaseConnectionInfo()
+        public DatabaseObjectPropertyInfo()
         {
         }
 
         /// <summary>
-        /// Gets or sets the property name for the database connection object (Not case-sensitive)
+        /// Gets or sets the name for the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the value to assign on database connection object
+        /// Gets or sets the value to assign on the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 
         /// <summary>
-        /// Gets or sets the type of the database connection property
+        /// Gets or sets the type of the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(typeof(string))]
