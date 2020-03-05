@@ -55,19 +55,17 @@ namespace NLog
     {
         private sealed class ItemRemover : IDisposable
         {
-            private readonly bool _restorePreviousValuesOnDispose;
-
             private readonly string _item1;
-            private readonly object _item1PreviousValue;
 #if NET4_5
             // Optimized for HostingLogScope with 3 properties
             private readonly string _item2;
-            private readonly object _item2PreviousValue;
             private readonly string _item3;
-            private readonly object _item3PreviousValue;
             private readonly string[] _itemArray;
-            private readonly object[] _itemPreviousValuesArray;
 #endif
+            // If it's null then there is no restoration of previous values
+            private readonly KeyValuePair<string, object>[] _itemsToRestore;
+            private bool RestoreValuesOnDispose => _itemsToRestore != null;
+
             //boolean as int to allow the use of Interlocked.Exchange
             private int _disposed;
             private readonly bool _wasEmpty;
@@ -76,22 +74,32 @@ namespace NLog
             {
                 _item1 = item;
                 _wasEmpty = wasEmpty;
-                _restorePreviousValuesOnDispose = false;
-                _item1PreviousValue = null;
+                _itemsToRestore = null;
             }
 
             public ItemRemover(string item, bool wasEmpty, object previousValue)
             {
                 _item1 = item;
                 _wasEmpty = wasEmpty;
-                _restorePreviousValuesOnDispose = true;
-                _item1PreviousValue = previousValue;
+                // Warning: double stack allocation when using ItemRemover even with single Item
+                _itemsToRestore = new [] { new KeyValuePair<string, object>(item, previousValue) };
             }
 
 #if NET4_5
-            public ItemRemover(IReadOnlyList<KeyValuePair<string,object>> items, bool wasEmpty)
+            public ItemRemover(IReadOnlyList<KeyValuePair<string,object>> items, bool wasEmpty, bool restorePreviousValues)
             {
-                _restorePreviousValuesOnDispose = false;
+                if (restorePreviousValues)
+                {
+                    // passed 'items' contains a list of item keys (used) with their new values (not used by the ItemRemover)
+                    _itemsToRestore = items.ToArray();
+                }
+                else
+                {
+                    // passed 'items' contains a list of item keys with their previous values that will be restored on the Dispose!
+                    _itemsToRestore = null;
+                }
+
+                // The rest of the method stays the same as we extract keys and based on them we decide which values to restore on Dispose
                 int itemCount = items.Count;
                 if (itemCount > 2)
                 {
@@ -115,42 +123,6 @@ namespace NLog
                 }
                 _wasEmpty = wasEmpty;
             }
-
-            public ItemRemover(IReadOnlyList<KeyValuePair<string, object>> itemsWithPreviousValues, bool wasEmpty, bool restorePreviousValues)
-            {
-                _restorePreviousValuesOnDispose = true;
-                int itemCount = itemsWithPreviousValues.Count;
-                if (itemCount > 2)
-                {
-                    _item1 = itemsWithPreviousValues[0].Key;
-                    _item1PreviousValue = itemsWithPreviousValues[0].Value;
-                    _item2 = itemsWithPreviousValues[1].Key;
-                    _item2PreviousValue = itemsWithPreviousValues[1].Value;
-                    _item3 = itemsWithPreviousValues[2].Key;
-                    _item3PreviousValue = itemsWithPreviousValues[2].Value;
-
-                    _itemArray = _itemArray ?? new string[itemCount - 3];
-                    _itemPreviousValuesArray = _itemPreviousValuesArray ?? new object[itemCount - 3];
-                    for (int i = 3; i < itemCount; ++i)
-                    {
-                        _itemArray[i - 3] = itemsWithPreviousValues[i].Key;
-                        _itemPreviousValuesArray[i - 3] = itemsWithPreviousValues[i].Value;
-                    }
-                }
-                else if (itemCount > 1)
-                {
-                    _item1 = itemsWithPreviousValues[0].Key;
-                    _item1PreviousValue = itemsWithPreviousValues[0].Value;
-                    _item2 = itemsWithPreviousValues[1].Key;
-                    _item2PreviousValue = itemsWithPreviousValues[1].Value;
-                }
-                else
-                {
-                    _item1 = itemsWithPreviousValues[0].Key;
-                    _item1PreviousValue = itemsWithPreviousValues[0].Value;
-                }
-                _wasEmpty = wasEmpty;
-            }
 #endif
 
             public void Dispose()
@@ -164,22 +136,22 @@ namespace NLog
                     }
 
                     var dictionary = GetLogicalThreadDictionary(true);
-                    if (_restorePreviousValuesOnDispose)
-                        SetItemValue(_item1, _item1PreviousValue, dictionary);
+                    if (RestoreValuesOnDispose)
+                        SetItemValue(_item1, _itemsToRestore[0].Value, dictionary);
                     else
                         dictionary.Remove(_item1);
 
 #if NET4_5
                     if (_item2 != null)
                     {
-                        if (_restorePreviousValuesOnDispose)
-                            SetItemValue(_item2, _item2PreviousValue, dictionary);
+                        if (RestoreValuesOnDispose)
+                            SetItemValue(_item2, _itemsToRestore[1].Value, dictionary);
                         else
                             dictionary.Remove(_item2);
 
                         if (_item3 != null)
-                            if (_restorePreviousValuesOnDispose)
-                                SetItemValue(_item3, _item3PreviousValue, dictionary);
+                            if (RestoreValuesOnDispose)
+                                SetItemValue(_item3, _itemsToRestore[2].Value, dictionary);
                             else
                                 dictionary.Remove(_item3);
 
@@ -188,8 +160,8 @@ namespace NLog
                             for (int i = 0; i < _itemArray.Length; ++i)
                             {
                                 if (_itemArray[i] != null)
-                                    if (_restorePreviousValuesOnDispose)
-                                        SetItemValue(_itemArray[i], _itemPreviousValuesArray[i], dictionary);
+                                    if (RestoreValuesOnDispose)
+                                        SetItemValue(_itemArray[i], _itemsToRestore[3+i].Value, dictionary);
                                     else
                                         dictionary.Remove(_itemArray[i]);
                             }
@@ -389,7 +361,9 @@ namespace NLog
                 IReadOnlyList<KeyValuePair<string, object>> itemsWithPreviousValues = null;
                 if (restorePreviousValueOnDispose)
                 {
-                    itemsWithPreviousValues = items.Select(x => new KeyValuePair<string, object>(x.Key, GetObject(x.Key, logicalContext))).ToArray();
+                    itemsWithPreviousValues = items
+                        .Select(x => new KeyValuePair<string, object>(x.Key, GetObject(x.Key, logicalContext)))
+                        .ToArray();
                 }
 
                 for (int i = 0; i < items.Count; ++i)
@@ -399,7 +373,7 @@ namespace NLog
 
                 return restorePreviousValueOnDispose
                     ? new ItemRemover(itemsWithPreviousValues, wasEmpty, true)
-                    : new ItemRemover(items, wasEmpty);
+                    : new ItemRemover(items, wasEmpty, false);
 
             }
 
