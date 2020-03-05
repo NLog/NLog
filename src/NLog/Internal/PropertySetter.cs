@@ -37,18 +37,13 @@ namespace NLog.Internal
     using System.Reflection;
     using NLog.Common;
 
-    internal interface IPropertySetter
-    {
-        bool SetPropertyValue(object instance, object value);
-    }
-
-    internal class PropertySetter : IPropertySetter
+    internal class PropertySetter
     {
         private readonly Type _objectType;
         private readonly PropertyInfo _propertyInfo;
         private ReflectionHelpers.LateBoundMethod _propertySetter;
 
-        public static IPropertySetter GeneratePropertySetter(Type objectType, string propertyName)
+        public static PropertySetter CreatePropertySetter(Type objectType, string propertyName)
         {
             if (TryGetProperty(objectType, propertyName, out var propertyInfo))
             {
@@ -78,8 +73,9 @@ namespace NLog.Internal
             else
             {
                 // Generate compiled method if setter works without throwing exception
-                _propertyInfo.GetSetMethod().Invoke(instance, new[] { value });
-                _propertySetter = ReflectionHelpers.CreateLateBoundMethod(_propertyInfo.GetSetMethod());
+                var setterMethod = _propertyInfo.GetSetMethod();
+                setterMethod.Invoke(instance, new[] { value });
+                _propertySetter = ReflectionHelpers.CreateLateBoundMethod(setterMethod);
             }
 
             return true;

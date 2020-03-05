@@ -36,7 +36,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
     using System.Globalization;
@@ -45,7 +44,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Information about database command + parameters.
+    /// Information about database connection property + value
     /// </summary>
     [NLogConfigurationItem]
     public class DatabaseConnectionInfo
@@ -58,37 +57,37 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the DbConnection Property to update
+        /// Gets or sets the property name for the database connection object (Not case-sensitive)
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the value to assign on DbConnection
+        /// Gets or sets the value to assign on database connection object
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 
         /// <summary>
-        /// Gets or sets the type of the property
+        /// Gets or sets the type of the database connection property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(typeof(string))]
         public Type PropertyType { get; set; } = typeof(string);
 
         /// <summary>
-        /// Gets or sets convert format of the property value .
+        /// Gets or sets convert format of the property value
         /// </summary>
-        /// <docgen category='Parameter Options' order='8' />
+        /// <docgen category='Connection Options' order='8' />
         [DefaultValue(null)]
         public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing property string-value for type-conversion
         /// </summary>
-        /// <docgen category='Parameter Options' order='9' />
+        /// <docgen category='Connection Options' order='9' />
         [DefaultValue(null)]
         public CultureInfo Culture { get; set; }
 
@@ -96,17 +95,36 @@ namespace NLog.Targets
         {
             var dbConnectionType = dbConnection.GetType();
             var propertySetterCache = _propertySetter;
-            if (propertySetterCache.Key.Key != Name || propertySetterCache.Key.Value != dbConnectionType)
+            if (!propertySetterCache.Equals(Name, dbConnectionType))
             {
-                var propertySetter = PropertySetter.GeneratePropertySetter(dbConnectionType, Name);
-                propertySetterCache = new KeyValuePair<KeyValuePair<string, Type>, IPropertySetter>(new KeyValuePair<string, Type>(Name, dbConnectionType), propertySetter);
+                var propertySetter = PropertySetter.CreatePropertySetter(dbConnectionType, Name);
+                propertySetterCache = new PropertySetterCacheItem(Name, dbConnectionType, propertySetter);
                 _propertySetter = propertySetterCache;
             }
 
-            return propertySetterCache.Value?.SetPropertyValue(dbConnection, propertyValue) ?? false;
+            return propertySetterCache.PropertySetter?.SetPropertyValue(dbConnection, propertyValue) ?? false;
         }
 
-        KeyValuePair<KeyValuePair<string, Type>, IPropertySetter> _propertySetter;
+        private struct PropertySetterCacheItem
+        {
+            public string PropertyName { get; }
+            public Type ObjectType { get; }
+            public PropertySetter PropertySetter { get; }
+
+            public PropertySetterCacheItem(string propertyName, Type objectType, PropertySetter propertySetter)
+            {
+                PropertyName = propertyName;
+                ObjectType = objectType;
+                PropertySetter = propertySetter;
+            }
+
+            public bool Equals(string propertyName, Type objectType)
+            {
+                return PropertyName == propertyName && ObjectType == objectType;
+            }
+        }
+
+        PropertySetterCacheItem _propertySetter;
     }
 }
 

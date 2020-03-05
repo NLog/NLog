@@ -121,7 +121,7 @@ namespace NLog.Targets
         private Type _parameterType;
 
         /// <summary>
-        /// Gets or sets convert format of the database parameter value .
+        /// Gets or sets convert format of the database parameter value.
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />
         [DefaultValue(null)]
