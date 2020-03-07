@@ -90,7 +90,7 @@ namespace NLog.UnitTests.Layouts
         {
             SimpleLayout l = "${mdc:item=AAA\\}\\:}";
             Assert.Equal("${mdc:item=AAA\\}\\:}", l.Text);
-            //Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.NotNull(mdc);
             Assert.Equal("AAA}:", mdc.Item);
@@ -100,7 +100,7 @@ namespace NLog.UnitTests.Layouts
         public void DefaultValueTest()
         {
             SimpleLayout l = "${mdc:BBB}";
-            //Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.NotNull(mdc);
             Assert.Equal("BBB", mdc.Item);

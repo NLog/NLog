@@ -463,7 +463,7 @@ namespace NLog.Targets
                 {
                     var hl = WordHighlightingRules[i];
                     var matches = hl.Matches(message);
-                    if (matches == null)
+                    if (matches == null || matches.Count == 0)
                         continue;
 
                     if (sb != null)
