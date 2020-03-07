@@ -37,13 +37,14 @@ namespace NLog.MessageTemplates
     using System.Collections;
     using System.Collections.Generic;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Parameters extracted from parsing <see cref="LogEventInfo.Message"/> as MessageTemplate
     /// </summary>
     public sealed class MessageTemplateParameters : IEnumerable<MessageTemplateParameter>
     {
-        internal static readonly MessageTemplateParameters Empty = new MessageTemplateParameters(string.Empty, NLog.Internal.ArrayHelper.Empty<object>());
+        internal static readonly MessageTemplateParameters Empty = new MessageTemplateParameters(string.Empty, ArrayHelper.Empty<object>());
 
         private readonly IList<MessageTemplateParameter> _parameters;
 
@@ -79,10 +80,10 @@ namespace NLog.MessageTemplates
         /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
         internal MessageTemplateParameters(string message, object[] parameters)
         {
-            var hasParameters = parameters != null && parameters.Length > 0;
+            var hasParameters = parameters?.Length > 0;
             bool isPositional = hasParameters;
             bool isValidTemplate = !hasParameters;
-            _parameters = hasParameters ? ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate) : Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            _parameters = hasParameters ? ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate) : ArrayHelper.Empty<MessageTemplateParameter>();
             IsPositional = isPositional;
             IsValidTemplate = isValidTemplate;
         }
@@ -92,7 +93,7 @@ namespace NLog.MessageTemplates
         /// </summary>
         internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters, string message, object[] parameters)
         {
-            _parameters = templateParameters ?? Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            _parameters = templateParameters ?? ArrayHelper.Empty<MessageTemplateParameter>();
             if (parameters != null && _parameters.Count != parameters.Length)
             {
                 IsValidTemplate = false;
@@ -102,11 +103,6 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Create MessageTemplateParameter from <paramref name="parameters"/>
         /// </summary>
-        /// <param name="template"></param>
-        /// <param name="parameters"></param>
-        /// <param name="isPositional"></param>
-        /// <param name="isValidTemplate"></param>
-        /// <returns></returns>
         private static IList<MessageTemplateParameter> ParseMessageTemplate(string template, object[] parameters, out bool isPositional, out bool isValidTemplate)
         {
             isPositional = true;
