@@ -1204,6 +1204,32 @@ Dispose()
         }
 
         [Fact]
+        public void CommandTimeoutShouldBeSet()
+        {
+            // Arrange
+            var commandTimeout = "123";
+            MockDbConnection.ClearLog();
+            var databaseTarget = new DatabaseTarget
+            {
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                CommandText = "command1",
+            };
+            databaseTarget.CommandProperties.Add(new DatabaseObjectPropertyInfo() { Name = "CommandTimeout", Layout = commandTimeout, PropertyType = typeof(int) });
+            databaseTarget.Initialize(new LoggingConfiguration());
+
+            // Act
+            var connection = databaseTarget.OpenConnection(".", null);
+            var command1 = databaseTarget.CreateDbCommand(LogEventInfo.CreateNullEvent(), connection);
+            var command2 = databaseTarget.CreateDbCommand(LogEventInfo.CreateNullEvent(), connection);    // Twice because we use compiled method on 2nd attempt
+
+            // Assert
+            var sqlCommand1 = Assert.IsType<MockDbCommand>(command1);
+            Assert.Equal(commandTimeout, sqlCommand1.CommandTimeout.ToString());  // Verify dynamic setter method invoke assigns correctly
+            var sqlCommand2 = Assert.IsType<MockDbCommand>(command2);
+            Assert.Equal(commandTimeout, sqlCommand2.CommandTimeout.ToString());  // Verify compiled method also assigns correctly
+        }
+
+        [Fact]
         public void SqlServerShorthandNotationTest()
         {
             foreach (string provName in new[] { "microsoft", "msde", "mssql", "sqlserver" })

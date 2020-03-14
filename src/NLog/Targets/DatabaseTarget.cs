@@ -281,6 +281,14 @@ namespace NLog.Targets
         public IList<DatabaseObjectPropertyInfo> ConnectionProperties { get; } = new List<DatabaseObjectPropertyInfo>();
 
         /// <summary>
+        /// Gets the collection of properties. Each item contains a mapping
+        /// between NLog layout and a property on the DbCommand instance
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        [ArrayParameter(typeof(DatabaseObjectPropertyInfo), "commandproperty")]
+        public IList<DatabaseObjectPropertyInfo> CommandProperties { get; } = new List<DatabaseObjectPropertyInfo>();
+
+        /// <summary>
         /// Configures isolated transaction batch writing. If supported by the database, then it will improve insert performance.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
@@ -358,29 +366,29 @@ namespace NLog.Targets
             connection.ConnectionString = connectionString;
             if (ConnectionProperties?.Count > 0)
             {
-                ApplyConnectionProperties(connection, logEventInfo ?? LogEventInfo.CreateNullEvent());
+                ApplyDatabaseObjectProperties(connection, ConnectionProperties, logEventInfo ?? LogEventInfo.CreateNullEvent());
             }
 
             connection.Open();
             return connection;
         }
 
-        private void ApplyConnectionProperties(IDbConnection connection, LogEventInfo logEventInfo)
+        private void ApplyDatabaseObjectProperties(object databaseObject, IList<DatabaseObjectPropertyInfo> objectProperties, LogEventInfo logEventInfo)
         {
-            for (int i = 0; i < ConnectionProperties.Count; ++i)
+            for (int i = 0; i < objectProperties.Count; ++i)
             {
-                var propertyInfo = ConnectionProperties[i];
+                var propertyInfo = objectProperties[i];
                 try
                 {
-                    var propertyValue = GetDatabaseConnectionValue(logEventInfo, propertyInfo);
-                    if (!propertyInfo.SetPropertyValue(connection, propertyValue))
+                    var propertyValue = GetDatabaseObjectPropertyValue(logEventInfo, propertyInfo);
+                    if (!propertyInfo.SetPropertyValue(databaseObject, propertyValue))
                     {
-                        InternalLogger.Warn("DatabaseTarget(Name={0}): Failed to lookup property {1} on {2}", Name, propertyInfo.Name, connection.GetType());
+                        InternalLogger.Warn("DatabaseTarget(Name={0}): Failed to lookup property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
                     }
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to assign value for property {1} on {2}", Name, propertyInfo.Name, connection.GetType());
+                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to assign value for property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
                     if (ex.MustBeRethrown())
                         throw;
                 }
@@ -699,7 +707,7 @@ namespace NLog.Targets
                     {
                         for (int i = 0; i < logEvents.Count; ++i)
                         {
-                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, dbTransaction);
+                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, _activeConnection, dbTransaction);
                         }
 
                         dbTransaction?.Commit();
@@ -767,7 +775,7 @@ namespace NLog.Targets
                 {
                     EnsureConnectionOpen(connectionString, logEvent);
 
-                    ExecuteDbCommandWithParameters(logEvent, null);
+                    ExecuteDbCommandWithParameters(logEvent, _activeConnection, null);
 
                     transactionScope.Complete();    //not really needed as there is no transaction at all.
                 }
@@ -790,12 +798,9 @@ namespace NLog.Targets
         /// <summary>
         /// Write logEvent to database
         /// </summary>
-        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbTransaction dbTransaction)
+        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, IDbTransaction dbTransaction)
         {
-            var commandText = RenderLogEvent(CommandText, logEvent);
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, CommandType, commandText);
-
-            using (IDbCommand command = CreateDbCommandWithParameters(logEvent, CommandType, commandText, Parameters))
+            using (IDbCommand command = CreateDbCommand(logEvent, dbConnection))
             {
                 if (dbTransaction != null)
                     command.Transaction = dbTransaction;
@@ -805,11 +810,22 @@ namespace NLog.Targets
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        private IDbCommand CreateDbCommandWithParameters(LogEventInfo logEvent, CommandType commandType, string dbCommandText, IList<DatabaseParameterInfo> databaseParameterInfos)
+        internal IDbCommand CreateDbCommand(LogEventInfo logEvent, IDbConnection dbConnection)
         {
-            var dbCommand = _activeConnection.CreateCommand();
+            var commandText = RenderLogEvent(CommandText, logEvent);
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, CommandType, commandText);
+            return CreateDbCommandWithParameters(logEvent, dbConnection, CommandType, commandText, Parameters);
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
+        private IDbCommand CreateDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, CommandType commandType, string dbCommandText, IList<DatabaseParameterInfo> databaseParameterInfos)
+        {
+            var dbCommand = dbConnection.CreateCommand();
             dbCommand.CommandType = commandType;
+            if (CommandProperties?.Count > 0)
+            {
+                ApplyDatabaseObjectProperties(dbCommand, CommandProperties, logEvent);
+            }
             dbCommand.CommandText = dbCommandText;
 
             for (int i = 0; i < databaseParameterInfos.Count; ++i)
@@ -965,7 +981,7 @@ namespace NLog.Targets
 
                     installationContext.Trace("DatabaseTarget(Name={0}) - Executing {1} '{2}'", Name, commandInfo.CommandType, commandText);
 
-                    using (IDbCommand command = CreateDbCommandWithParameters(logEvent, commandInfo.CommandType, commandText, commandInfo.Parameters))
+                    using (IDbCommand command = CreateDbCommandWithParameters(logEvent, _activeConnection, commandInfo.CommandType, commandText, commandInfo.Parameters))
                     {
                         try
                         {
@@ -1081,7 +1097,7 @@ namespace NLog.Targets
             return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture);
         }
 
-        private object GetDatabaseConnectionValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
+        private object GetDatabaseObjectPropertyValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
         {
             return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture);
         }
@@ -1163,7 +1179,7 @@ namespace NLog.Targets
         /// 
         /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
         /// </summary>
-        private class TransactionScope : IDisposable
+        private sealed class TransactionScope : IDisposable
         {
             private readonly TransactionScopeOption suppress;
 
