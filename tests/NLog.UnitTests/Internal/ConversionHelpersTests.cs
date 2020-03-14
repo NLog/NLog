@@ -208,12 +208,28 @@ namespace NLog.UnitTests.Internal
 
         private static void TestEnumParseCaseIgnoreCaseParam(string value, bool ignoreCase, TestEnum expected, bool expectedReturn)
         {
-            TestEnum result;
+            {
+                var returnResult = ConversionHelpers.TryParseEnum(value, ignoreCase, out TestEnum result);
 
-            var returnResult = ConversionHelpers.TryParseEnum(value, ignoreCase, out result);
+                Assert.Equal(expected, result);
+                Assert.Equal(expectedReturn, returnResult);
+            }
 
-            Assert.Equal(expected, result);
-            Assert.Equal(expectedReturn, returnResult);
+
+            // if true, test also other TryParseEnum
+            if (ignoreCase)
+            {
+                {
+                    var returnResult = ConversionHelpers.TryParseEnum(value, typeof(TestEnum), out var result);
+                    Assert.Equal(expected, result);
+                    Assert.Equal(expectedReturn, returnResult);
+                }
+                {
+                    var returnResult = ConversionHelpers.TryParseEnum<TestEnum>(value, out var result);
+                    Assert.Equal(expected, result);
+                    Assert.Equal(expectedReturn, returnResult);
+                }
+            }
         }
 
         #endregion
