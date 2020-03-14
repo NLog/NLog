@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Internal
     using NLog.Common;
     using Xunit;
 
-    public class EnumHelpersTests : NLogTestBase
+    public class ConversionHelpersTests : NLogTestBase
     {
         enum TestEnum
         {
