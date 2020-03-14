@@ -44,26 +44,32 @@ namespace NLog.Common
         /// <summary>
         /// Converts input string value into <see cref="System.Enum"/>. Parsing is case-insensitive.
         /// </summary>
-        /// <param name="inputValue">Input value</param>
-        /// <param name="resultValue">Output value</param>
+        /// <param name="value">Input value</param>
+        /// <param name="result">Output value</param>
         /// <param name="defaultValue">Default value</param>
-        /// <returns>Returns failure if the input value could not be parsed</returns>
-        public static bool TryParseEnum<TEnum>(string inputValue, out TEnum resultValue, TEnum defaultValue = default(TEnum)) where TEnum : struct
+        /// <returns>Returns <paramref name="defaultValue"/> if the input value could not be parsed</returns>
+        public static bool TryParseEnum<TEnum>(string value, out TEnum result, TEnum defaultValue = default(TEnum)) where TEnum : struct
         {
-            if (string.IsNullOrEmpty(inputValue))
+            if (string.IsNullOrEmpty(value))
             {
-                resultValue = defaultValue;
+                result = defaultValue;
                 return true;
             }
 
-            if (!TryParse(inputValue, true, out resultValue))
+            if (!TryParseEnum(value, true, out result))
             {
-                resultValue = defaultValue;
+                result = defaultValue;
                 return false;
             }
             return true;
         }
 
+        /// <summary>
+        /// Converts input string value into <see cref="System.Enum"/>. Parsing is case-insensitive.
+        /// </summary>
+        /// <param name="value">Input value</param>
+        /// <param name="enumType">The type of the enum</param>
+        /// <param name="result">Output value. Null if parse failed</param>
         internal static bool TryParseEnum(string value, Type enumType, out object result)
         {
             // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
@@ -88,7 +94,7 @@ namespace NLog.Common
         /// <param name="result">When this method returns, result contains an object of type TEnum whose value is represented by value if the parse operation succeeds. If the parse operation fails, result contains the default value of the underlying type of TEnum. Note that this value need not be a member of the TEnum enumeration. This parameter is passed uninitialized.</param>
         /// <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
         /// <remarks>Wrapper because Enum.TryParse is not present in .net 3.5</remarks>
-        internal static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
+        internal static bool TryParseEnum<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
         {
 #if NET3_5
             return TryParseEnum_net3(value, ignoreCase, out result);
