@@ -46,21 +46,34 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     public class ReplaceTests : NLogTestBase
     {
         [Fact]
+        public void ReplaceTestWithoutRegEx()
+        {
+            // Arrange
+            SimpleLayout layout = @"${replace:inner=${message}:searchFor=foo:replaceWith=BAR}";
+
+            // Act
+            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", " foo bar bar foo bar FOO"));
+
+            // Assert
+            Assert.Equal(" BAR bar bar BAR bar FOO", result);
+        }
+
+        [Fact]
         public void ReplaceTestWithSimpleRegEx()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "\r\nfoo\rbar\nbar\tbar bar \n bar");
-            SimpleLayout l = @"${replace:inner=${mdc:foo}:searchFor=\\r\\n|\\s:replaceWith= :regex=true}";
+            // Arrange
+            SimpleLayout layout = @"${replace:inner=${message}:searchFor=\\r\\n|\\s:replaceWith= :regex=true}";
 
-            var result = l.Render(LogEventInfo.CreateNullEvent());
+            // Act
+            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", "\r\nfoo\rbar\nbar\tbar bar \n bar"));
+
+            // Assert
             Assert.Equal(" foo bar bar bar bar   bar", result);
         }
 
         [Fact]
         public void ReplaceTestWithSimpleRegExFromConfig()
         {
-            MappedDiagnosticsContext.Clear();
-
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <targets>
@@ -83,8 +96,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceTestWithSimpleRegExFromConfig2()
         {
-            MappedDiagnosticsContext.Clear();
-
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""whitespace"" value=""\\r\\n|\\s"" />
@@ -109,8 +120,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceTestWithComplexRegEx()
         {
-            MappedDiagnosticsContext.Clear();
-
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""searchExp""
@@ -174,7 +183,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                 var replacement = testCase.Item3;
 
                 var result = regex.Replace(
-                    input, m => ReplaceLayoutRendererWrapper.ReplaceNamedGroup(input, groupName, replacement, m));
+                    input, m => ReplaceLayoutRendererWrapper.ReplaceNamedGroup(groupName, replacement, m));
 
                 Assert.Equal(testCase.Item2, result);
             }

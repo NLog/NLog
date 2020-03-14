@@ -33,10 +33,14 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.ComponentModel;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
+    using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
@@ -50,13 +54,15 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadSafe]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private Regex _regex;
+        private RegexHelper _regexHelper;
+        private MatchEvaluator _groupMatchEvaluator;
 
         /// <summary>
         /// Gets or sets the text to search for.
         /// </summary>
         /// <value>The text search for.</value>
         /// <docgen category='Search/Replace Options' order='10' />
+        [DefaultValue(null)]
         public string SearchFor { get; set; }
 
         /// <summary>
@@ -64,6 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if regular expressions should be used otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
+        [DefaultValue(false)]
         public bool Regex { get; set; }
 
         /// <summary>
@@ -71,6 +78,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The replacement string.</value>
         /// <docgen category='Search/Replace Options' order='10' />
+        [DefaultValue(null)]
         public string ReplaceWith { get; set; }
 
         /// <summary>
@@ -79,6 +87,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The group name.</value>
         /// <docgen category='Search/Replace Options' order='10' />
+        [DefaultValue(null)]
         public string ReplaceGroupName { get; set; }
 
         /// <summary>
@@ -86,6 +95,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if case should be ignored when searching; otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
+        [DefaultValue(false)]
         public bool IgnoreCase { get; set; }
 
         /// <summary>
@@ -93,7 +103,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if whole words should be searched for; otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
+        [DefaultValue(false)]
         public bool WholeWords { get; set; }
+
+        /// <summary>
+        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
+        /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
+        [DefaultValue(false)]
+        public bool CompileRegex { get; set; }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -101,29 +119,22 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            string regexString = SearchFor;
 
-            if (!Regex)
+            _regexHelper = new RegexHelper()
             {
-                regexString = System.Text.RegularExpressions.Regex.Escape(regexString);
-            }
+                IgnoreCase = IgnoreCase,
+                WholeWords = WholeWords,
+                CompileRegex = CompileRegex,
+            };
+            if (Regex)
+                _regexHelper.RegexPattern = SearchFor;
+            else
+                _regexHelper.SearchText = SearchFor;
 
-#if SILVERLIGHT
-            RegexOptions regexOptions = RegexOptions.None;
-#else
-            RegexOptions regexOptions = RegexOptions.Compiled;
-#endif
-            if (IgnoreCase)
+            if (!string.IsNullOrEmpty(ReplaceGroupName) && _regexHelper.Regex?.GetGroupNames()?.Contains(ReplaceGroupName) == false)
             {
-                regexOptions |= RegexOptions.IgnoreCase;
+                InternalLogger.Warn("Replace-LayoutRenderer assigned unknown ReplaceGroupName: {0}", ReplaceGroupName);
             }
-
-            if (WholeWords)
-            {
-                regexString = string.Concat("\\b", regexString, "\\b");
-            }
-
-            _regex = new Regex(regexString, regexOptions);
         }
 
         /// <summary>
@@ -135,12 +146,13 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (string.IsNullOrEmpty(ReplaceGroupName))
             {
-                return _regex.Replace(text, ReplaceWith);
+                return _regexHelper.Replace(text, ReplaceWith);
             }
             else
             {
-                var replacer = new Replacer(text, ReplaceGroupName, ReplaceWith);
-                return _regex.Replace(text, replacer.EvaluateMatch);
+                if (_groupMatchEvaluator == null)
+                    _groupMatchEvaluator = m => ReplaceNamedGroup(ReplaceGroupName, ReplaceWith, m);
+                return _regexHelper.Regex?.Replace(text, _groupMatchEvaluator) ?? text;
             }
         }
 
@@ -148,6 +160,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// This class was created instead of simply using a lambda expression so that the "ThreadAgnosticAttributeTest" will pass
         /// </summary>
         [ThreadAgnostic]
+        [Obsolete("This class should not be used. Marked obsolete on NLog 4.7")]
         public class Replacer
         {
             private readonly string _text;
@@ -163,7 +176,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
             internal string EvaluateMatch(Match match)
             {
-                return ReplaceNamedGroup(_text, _replaceGroupName, _replaceWith, match);
+                return ReplaceNamedGroup(_replaceGroupName, _replaceWith, match);
             }
         }
 
@@ -175,28 +188,28 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="replacement">Replace value.</param>
         /// <param name="match">Match from regex.</param>
         /// <returns>Groups replaced with <paramref name="replacement"/>.</returns>
+        [Obsolete("This method should not be used. Marked obsolete on NLog 4.7")]
         public static string ReplaceNamedGroup(string input, string groupName, string replacement, Match match)
         {
-            var sb = new StringBuilder(input);
-            var matchStart = match.Index;
+            return ReplaceNamedGroup(groupName, replacement, match);
+        }
+
+        internal static string ReplaceNamedGroup(string groupName, string replacement, Match match)
+        {
+            var sb = new StringBuilder(match.Value);
             var matchLength = match.Length;
 
             var captures = match.Groups[groupName].Captures.OfType<Capture>().OrderByDescending(c => c.Index);
             foreach (var capt in captures)
             {
-                if (capt == null)
-                    continue;
-
                 matchLength += replacement.Length - capt.Length;
 
-                sb.Remove(capt.Index, capt.Length);
-                sb.Insert(capt.Index, replacement);
+                sb.Remove(capt.Index - match.Index, capt.Length);
+                sb.Insert(capt.Index - match.Index, replacement);
             }
 
-            var end = matchStart + matchLength;
+            var end = matchLength;
             sb.Remove(end, sb.Length - end);
-            sb.Remove(0, matchStart);
-
             return sb.ToString();
         }
     }
