@@ -91,9 +91,9 @@ namespace NLog.Targets
         [DefaultValue(null)]
         public CultureInfo Culture { get; set; }
 
-        internal bool SetPropertyValue(IDbConnection dbConnection, object propertyValue)
+        internal bool SetPropertyValue(object dbObject, object propertyValue)
         {
-            var dbConnectionType = dbConnection.GetType();
+            var dbConnectionType = dbObject.GetType();
             var propertySetterCache = _propertySetter;
             if (!propertySetterCache.Equals(Name, dbConnectionType))
             {
@@ -102,7 +102,7 @@ namespace NLog.Targets
                 _propertySetter = propertySetterCache;
             }
 
-            return propertySetterCache.PropertySetter?.SetPropertyValue(dbConnection, propertyValue) ?? false;
+            return propertySetterCache.PropertySetter?.SetPropertyValue(dbObject, propertyValue) ?? false;
         }
 
         private struct PropertySetterCacheItem
