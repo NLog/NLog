@@ -41,7 +41,7 @@ namespace NLog
     /// Defines available log levels.
     /// </summary>
     [TypeConverter(typeof(Attributes.LogLevelTypeConverter))]
-    public sealed class LogLevel : IComparable, IEquatable<LogLevel>, IConvertible
+    public sealed class LogLevel : IComparable<LogLevel>, IComparable, IEquatable<LogLevel>, IConvertible
     {
         /// <summary>
         /// Trace log level.
@@ -85,7 +85,6 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off }.AsReadOnly();
 
@@ -103,6 +102,9 @@ namespace NLog
         /// </summary>
         public static IEnumerable<LogLevel> AllLoggingLevels => allLoggingLevels;
 
+        internal static LogLevel MaxLevel => Fatal;
+
+        internal static LogLevel MinLevel => Trace;
 
         private readonly int _ordinal;
         private readonly string _name;
@@ -123,10 +125,6 @@ namespace NLog
         /// </summary>
         public string Name => _name;
 
-        internal static LogLevel MaxLevel => Fatal;
-
-        internal static LogLevel MinLevel => Trace;
-
         /// <summary>
         /// Gets the ordinal of the log level.
         /// </summary>
@@ -142,17 +140,12 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal == level2.Ordinal</c>.</returns>
         public static bool operator ==(LogLevel level1, LogLevel level2)
         {
-            if (ReferenceEquals(level1, null))
-            {
-                return ReferenceEquals(level2, null);
-            }
-
-            if (ReferenceEquals(level2, null))
-            {
+            if (ReferenceEquals(level1, level2))
+                return true;
+            else if (!ReferenceEquals(level1, null))
+                return level1.Equals(level2);
+            else
                 return false;
-            }
-
-            return level1.Ordinal == level2.Ordinal;
         }
 
         /// <summary>
@@ -165,17 +158,12 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal != level2.Ordinal</c>.</returns>
         public static bool operator !=(LogLevel level1, LogLevel level2)
         {
-            if (ReferenceEquals(level1, null))
-            {
-                return !ReferenceEquals(level2, null);
-            }
-
-            if (ReferenceEquals(level2, null))
-            {
+            if (ReferenceEquals(level1, level2))
+                return false;
+            else if (!ReferenceEquals(level1, null))
+                return !level1.Equals(level2);
+            else
                 return true;
-            }
-
-            return level1.Ordinal != level2.Ordinal;
         }
 
         /// <summary>
@@ -188,10 +176,10 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &gt; level2.Ordinal</c>.</returns>
         public static bool operator >(LogLevel level1, LogLevel level2)
         {
-            if (level1 == null) { throw new ArgumentNullException(nameof(level1)); }
-            if (level2 == null) { throw new ArgumentNullException(nameof(level2)); }
-
-            return level1.Ordinal > level2.Ordinal;
+            if (ReferenceEquals(level1, level2))
+                return false;
+            else
+                return (level1 ?? LogLevel.Off).CompareTo(level2) > 0;
         }
 
         /// <summary>
@@ -204,10 +192,10 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &gt;= level2.Ordinal</c>.</returns>
         public static bool operator >=(LogLevel level1, LogLevel level2)
         {
-            if (level1 == null) { throw new ArgumentNullException(nameof(level1)); }
-            if (level2 == null) { throw new ArgumentNullException(nameof(level2)); }
-
-            return level1.Ordinal >= level2.Ordinal;
+            if (ReferenceEquals(level1, level2))
+                return true;
+            else
+                return (level1 ?? LogLevel.Off).CompareTo(level2) >= 0;
         }
 
         /// <summary>
@@ -220,10 +208,10 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &lt; level2.Ordinal</c>.</returns>
         public static bool operator <(LogLevel level1, LogLevel level2)
         {
-            if (level1 == null) { throw new ArgumentNullException(nameof(level1)); }
-            if (level2 == null) { throw new ArgumentNullException(nameof(level2)); }
-
-            return level1.Ordinal < level2.Ordinal;
+            if (ReferenceEquals(level1, level2))
+                return false;
+            else
+                return (level1 ?? LogLevel.Off).CompareTo(level2) < 0;
         }
 
         /// <summary>
@@ -236,10 +224,10 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &lt;= level2.Ordinal</c>.</returns>
         public static bool operator <=(LogLevel level1, LogLevel level2)
         {
-            if (level1 == null) { throw new ArgumentNullException(nameof(level1)); }
-            if (level2 == null) { throw new ArgumentNullException(nameof(level2)); }
-
-            return level1.Ordinal <= level2.Ordinal;
+            if (ReferenceEquals(level1, level2))
+                return true;
+            else
+                return (level1 ?? LogLevel.Off).CompareTo(level2) <= 0;
         }
 
         /// <summary>
@@ -342,7 +330,7 @@ namespace NLog
         /// <returns>Log level name.</returns>
         public override string ToString()
         {
-            return Name;
+            return _name;
         }
 
         /// <summary>
@@ -353,7 +341,7 @@ namespace NLog
         /// </returns>
         public override int GetHashCode()
         {
-            return Ordinal;
+            return _ordinal;
         }
 
         /// <summary>
@@ -364,13 +352,7 @@ namespace NLog
         /// this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
-            LogLevel other = obj as LogLevel;
-            if ((object)other == null)
-            {
-                return false;
-            }
-
-            return Ordinal == other.Ordinal;
+            return Equals(obj as LogLevel);
         }
 
         /// <summary>
@@ -381,15 +363,13 @@ namespace NLog
         /// this instance; otherwise, <c>false</c>.</returns>
         public bool Equals(LogLevel other)
         {
-            return other != null && Ordinal == other.Ordinal;
+            return _ordinal == other?._ordinal;
         }
 
         /// <summary>
         /// Compares the level to the other <see cref="LogLevel"/> object.
         /// </summary>
-        /// <param name="obj">
-        /// The object object.
-        /// </param>
+        /// <param name="obj">The other object.</param>
         /// <returns>
         /// A value less than zero when this logger's <see cref="Ordinal"/> is 
         /// less than the other logger's ordinal, 0 when they are equal and 
@@ -398,17 +378,22 @@ namespace NLog
         /// </returns>
         public int CompareTo(object obj)
         {
-            if (obj == null)
-            {
-                throw new ArgumentNullException(nameof(obj));
-            }
+            return CompareTo((LogLevel)obj);
+        }
 
-            // The code below does NOT account if the casting to LogLevel returns null. This is 
-            // because as this class is sealed and does not provide any public constructors it 
-            // is impossible to create a invalid instance.
-
-            LogLevel level = (LogLevel)obj;
-            return Ordinal - level.Ordinal;
+        /// <summary>
+        /// Compares the level to the other <see cref="LogLevel"/> object.
+        /// </summary>
+        /// <param name="other">The other object.</param>
+        /// <returns>
+        /// A value less than zero when this logger's <see cref="Ordinal"/> is 
+        /// less than the other logger's ordinal, 0 when they are equal and 
+        /// greater than zero when this ordinal is greater than the
+        /// other ordinal.
+        /// </returns>
+        public int CompareTo(LogLevel other)
+        {
+            return _ordinal - (other ?? LogLevel.Off)._ordinal;
         }
 
         #region Implementation of IConvertible
@@ -481,7 +466,7 @@ namespace NLog
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
             if (conversionType == typeof(string))
-                return Name;
+                return _name;
             else
                 return Convert.ChangeType(_ordinal, conversionType, provider);
         }
