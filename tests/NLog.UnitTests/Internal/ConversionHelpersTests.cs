@@ -215,19 +215,25 @@ namespace NLog.UnitTests.Internal
                 Assert.Equal(expectedReturn, returnResult);
             }
 
-
             // if true, test also other TryParseEnum
             if (ignoreCase)
             {
                 {
-                    var returnResult = ConversionHelpers.TryParseEnum(value, typeof(TestEnum), out var result);
+                    var returnResult = ConversionHelpers.TryParseEnum<TestEnum>(value, out var result);
                     Assert.Equal(expected, result);
                     Assert.Equal(expectedReturn, returnResult);
                 }
                 {
-                    var returnResult = ConversionHelpers.TryParseEnum<TestEnum>(value, out var result);
-                    Assert.Equal(expected, result);
+                    var returnResult = ConversionHelpers.TryParseEnum(value, typeof(TestEnum), out var result);
                     Assert.Equal(expectedReturn, returnResult);
+                    if (expectedReturn)
+                    {
+                        Assert.Equal(expected, result);
+                    }
+                    else
+                    {
+                        Assert.Null(result);
+                    }
                 }
             }
         }
