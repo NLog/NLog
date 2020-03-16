@@ -142,10 +142,8 @@ namespace NLog
         {
             if (ReferenceEquals(level1, level2))
                 return true;
-            else if (!ReferenceEquals(level1, null))
-                return level1.Equals(level2);
             else
-                return false;
+                return (level1 ?? LogLevel.Off).Equals(level2);
         }
 
         /// <summary>
@@ -160,10 +158,8 @@ namespace NLog
         {
             if (ReferenceEquals(level1, level2))
                 return false;
-            else if (!ReferenceEquals(level1, null))
-                return !level1.Equals(level2);
             else
-                return true;
+                return !(level1 ?? LogLevel.Off).Equals(level2);
         }
 
         /// <summary>
