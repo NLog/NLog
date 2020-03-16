@@ -190,15 +190,29 @@ namespace NLog.Internal
                 // (Ti)parameters[i]
                 var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
 
-                Type parameterType = paramInfos[i].ParameterType;
-                if (parameterType.IsByRef)
-                    parameterType = parameterType.GetElementType();
-
-                var valueCast = Expression.Convert(valueObj, parameterType);
-
+                var valueCast = CreateParameterExpression(paramInfos[i], valueObj);
                 parameterExpressions.Add(valueCast);
             }
 
+            return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
+        }
+
+
+        private static MethodCallExpression BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression parameterParameter, ParameterExpression instanceParameter)
+        {
+            var parameterExpressions = new List<Expression>();
+            var paramInfos = methodInfo.GetParameters().Single();
+            {
+                // (Ti)parameters[i]
+                var parameterExpression = CreateParameterExpression(paramInfos, parameterParameter);
+                parameterExpressions.Add(parameterExpression);
+            }
+
+            return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
+        }
+        
+        private static MethodCallExpression CreateMethodCallExpression(MethodInfo methodInfo, ParameterExpression instanceParameter, IEnumerable<Expression> parameterExpressions)
+        {
             // non-instance for static method, or ((TInstance)instance)
             var instanceCast = methodInfo.IsStatic ? null : Expression.Convert(instanceParameter, methodInfo.DeclaringType);
 
@@ -206,28 +220,15 @@ namespace NLog.Internal
             var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
             return methodCall;
         }
-        private static MethodCallExpression BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression parameterParameter, ParameterExpression instanceParameter)
+    
+        private static UnaryExpression CreateParameterExpression(ParameterInfo parameterInfo, Expression expression)
         {
-            var parameterExpressions = new List<Expression>();
-            var paramInfos = methodInfo.GetParameters().Single();
-            {
-                // (Ti)parameters[i]
+            Type parameterType = parameterInfo.ParameterType;
+            if (parameterType.IsByRef)
+                parameterType = parameterType.GetElementType();
 
-                Type parameterType = paramInfos.ParameterType;
-                if (parameterType.IsByRef)
-                    parameterType = parameterType.GetElementType();
-
-                var valueCast = Expression.Convert(parameterParameter, parameterType);
-
-                parameterExpressions.Add(valueCast);
-            }
-
-            // non-instance for static method, or ((TInstance)instance)
-            var instanceCast = methodInfo.IsStatic ? null : Expression.Convert(instanceParameter, methodInfo.DeclaringType);
-
-            // static invoke or ((TInstance)instance).Method
-            var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
-            return methodCall;
+            var valueCast = Expression.Convert(expression, parameterType);
+            return valueCast;
         }
 
         public static bool IsEnum(this Type type)
