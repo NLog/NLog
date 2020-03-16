@@ -119,7 +119,7 @@ namespace NLog.Internal
             var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
 
             // build parameter list
-            var methodCall = BuildParameterList(methodInfo, parametersParameter, instanceParameter);
+            var methodCall = BuildParameterList(methodInfo, instanceParameter, parametersParameter);
 
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
@@ -156,7 +156,7 @@ namespace NLog.Internal
             var parametersParameter = Expression.Parameter(typeof(object), "parameters");
 
             // build parameter list
-            var methodCall = BuildParameterListSingle(methodInfo, parametersParameter, instanceParameter);
+            var methodCall = BuildParameterListSingle(methodInfo, instanceParameter, parametersParameter);
 
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
@@ -181,7 +181,7 @@ namespace NLog.Internal
             }
         }
 
-        private static MethodCallExpression BuildParameterList(MethodInfo methodInfo, ParameterExpression parametersParameter, ParameterExpression instanceParameter)
+        private static MethodCallExpression BuildParameterList(MethodInfo methodInfo, ParameterExpression instanceParameter, ParameterExpression parametersParameter)
         {
             var parameterExpressions = new List<Expression>();
             var paramInfos = methodInfo.GetParameters();
@@ -197,8 +197,7 @@ namespace NLog.Internal
             return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
         }
 
-
-        private static MethodCallExpression BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression parameterParameter, ParameterExpression instanceParameter)
+        private static MethodCallExpression BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression instanceParameter, ParameterExpression parameterParameter)
         {
             var parameterExpressions = new List<Expression>();
             var paramInfos = methodInfo.GetParameters().Single();
