@@ -39,6 +39,9 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Outputs alternative layout when the inner layout produces empty result.
     /// </summary>
+    /// <example>
+    /// ${onhasproperties:, Properties\: ${all-event-properties}}
+    /// </example>
     [LayoutRenderer("onhasproperties")]
     [ThreadAgnostic]
     [ThreadSafe]
