@@ -109,18 +109,9 @@ namespace NLog.UnitTests.Internal
         }
 
         [Fact]
-        public void EnumParse_ArgumentException_ignoreCaseFalse()
+        public void EnumParse_wrongInput_ignoreCaseFalse()
         {
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum("not enum", false, out result));
-        }
-
-        [Fact]
-        public void EnumParse_null_ArgumentException_ignoreCaseFalse()
-        {
-            //even with null, first ArgumentException
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum(null, false, out result));
+            TestEnumParseCaseIgnoreCaseParam("not enum", false, TestEnum.Foo, false);
         }
 
         #endregion
@@ -192,14 +183,6 @@ namespace NLog.UnitTests.Internal
         {
             double result;
             Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum("not enum", true, out result));
-        }
-
-        [Fact]
-        public void EnumParse_null_ArgumentException_ignoreCaseTrue()
-        {
-            //even with null, first ArgumentException
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum(null, true, out result));
         }
 
         #endregion

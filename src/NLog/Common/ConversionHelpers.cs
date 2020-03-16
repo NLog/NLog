@@ -47,7 +47,7 @@ namespace NLog.Common
         /// <param name="inputValue">Input value</param>
         /// <param name="resultValue">Output value</param>
         /// <param name="defaultValue">Default value</param>
-        /// <returns>Returns <paramref name="defaultValue"/> if the input value could not be parsed</returns>
+        /// <returns>Returns false if the input value could not be parsed</returns>
         public static bool TryParseEnum<TEnum>(string inputValue, out TEnum resultValue, TEnum defaultValue = default(TEnum)) where TEnum : struct
         {
             if (!TryParseEnum(inputValue, true, out resultValue))
@@ -66,6 +66,11 @@ namespace NLog.Common
         /// <param name="resultValue">Output value. Null if parse failed</param>
         internal static bool TryParseEnum(string inputValue, Type enumType, out object resultValue)
         {
+            if (StringHelpers.IsNullOrWhiteSpace(inputValue))
+            {
+                resultValue = null;
+                return false;
+            }
             // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
             try
             {
@@ -90,6 +95,12 @@ namespace NLog.Common
         /// <remarks>Wrapper because Enum.TryParse is not present in .net 3.5</remarks>
         internal static bool TryParseEnum<TEnum>(string inputValue, bool ignoreCase, out TEnum resultValue) where TEnum : struct
         {
+            if (StringHelpers.IsNullOrWhiteSpace(inputValue))
+            {
+                resultValue = default(TEnum);
+                return false;
+            }
+
 #if NET3_5
             return TryParseEnum_net3(inputValue, ignoreCase, out resultValue);
 #else
