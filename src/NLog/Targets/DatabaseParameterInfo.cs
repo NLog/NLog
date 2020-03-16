@@ -272,9 +272,8 @@ namespace NLog.Targets
                 {
                     if (_dbTypeSetterFast == null && _dbTypeSetter != null && _dbTypeValue != null)
                     {
-                        var dbTypeSetterLambda = ReflectionHelpers.CreateLateBoundMethod(_dbTypeSetter.GetSetMethod());
-                        var dbTypeSetterParams = new object[] { _dbTypeValue };
-                        _dbTypeSetterFast = (p) => dbTypeSetterLambda.Invoke(p, dbTypeSetterParams);
+                        var dbTypeSetterLambda = ReflectionHelpers.CreateLateBoundMethodSingle(_dbTypeSetter.GetSetMethod());
+                        _dbTypeSetterFast = (p) => dbTypeSetterLambda.Invoke(p, _dbTypeValue);
                     }
                     return true;
                 }

@@ -41,7 +41,7 @@ namespace NLog.Internal
     {
         private readonly Type _objectType;
         private readonly PropertyInfo _propertyInfo;
-        private ReflectionHelpers.LateBoundMethod _propertySetter;
+        private ReflectionHelpers.LateBoundMethodSingle _propertySetter;
 
         public static PropertySetter CreatePropertySetter(Type objectType, string propertyName)
         {
@@ -68,14 +68,14 @@ namespace NLog.Internal
 
             if (_propertySetter != null)
             {
-                _propertySetter.Invoke(instance, new[] { value });
+                _propertySetter.Invoke(instance, value);
             }
             else
             {
                 // Generate compiled method if setter works without throwing exception
                 var setterMethod = _propertyInfo.GetSetMethod();
                 setterMethod.Invoke(instance, new[] { value });
-                _propertySetter = ReflectionHelpers.CreateLateBoundMethod(setterMethod);
+                _propertySetter = ReflectionHelpers.CreateLateBoundMethodSingle(setterMethod);
             }
 
             return true;
