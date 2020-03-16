@@ -50,12 +50,6 @@ namespace NLog.Common
         /// <returns>Returns <paramref name="defaultValue"/> if the input value could not be parsed</returns>
         public static bool TryParseEnum<TEnum>(string value, out TEnum result, TEnum defaultValue = default(TEnum)) where TEnum : struct
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                result = defaultValue;
-                return true;
-            }
-
             if (!TryParseEnum(value, true, out result))
             {
                 result = defaultValue;

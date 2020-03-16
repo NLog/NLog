@@ -650,7 +650,7 @@ namespace NLog.Targets
             if (Priority != null)
             {
                 var renderedPriority = Priority.Render(lastEvent);
-                if (ConversionHelpers.TryParseEnum(renderedPriority, out MailPriority mailPriority))
+                if (!string.IsNullOrEmpty(renderedPriority) && ConversionHelpers.TryParseEnum(renderedPriority, out MailPriority mailPriority))
                 {
                     msg.Priority = mailPriority;
                 }
