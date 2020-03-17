@@ -171,44 +171,44 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (logEvent.HasProperties)
+            if (!logEvent.HasProperties)
+                return;
+
+            var formatProvider = GetFormatProvider(logEvent);
+            bool checkForExclude = CheckForExclude(logEvent);
+            bool nonStandardFormat = _beforeKey == null || _afterKey == null || _afterValue == null;
+
+            bool first = true;
+            foreach (var property in logEvent.Properties)
             {
-                var formatProvider = GetFormatProvider(logEvent);
-                bool checkForExclude = CheckForExclude(logEvent);
-                bool nonStandardFormat = _beforeKey == null || _afterKey == null || _afterValue == null;
+                if (!IncludeEmptyValues && IsEmptyPropertyValue(property.Value))
+                    continue;
 
-                bool first = true;
-                foreach (var property in logEvent.Properties)
+                if (checkForExclude && property.Key is string propertyKey && Exclude.Contains(propertyKey))
+                    continue;
+
+                if (!first)
                 {
-                    if (!IncludeEmptyValues && IsEmptyPropertyValue(property.Value))
-                        continue;
+                    builder.Append(Separator);
+                }
 
-                    if (checkForExclude && property.Key is string propertyKey && Exclude.Contains(propertyKey))
-                        continue;
+                first = false;
 
-                    if (!first)
-                    {
-                        builder.Append(Separator);
-                    }
-
-                    first = false;
-
-                    if (nonStandardFormat)
-                    {
-                        var key = Convert.ToString(property.Key, formatProvider);
-                        var value = Convert.ToString(property.Value, formatProvider);
-                        var pair = Format.Replace("[key]", key)
-                                         .Replace("[value]", value);
-                        builder.Append(pair);
-                    }
-                    else
-                    {
-                        builder.Append(_beforeKey);
-                        builder.AppendFormattedValue(property.Key, null, formatProvider);
-                        builder.Append(_afterKey);
-                        builder.AppendFormattedValue(property.Value, null, formatProvider);
-                        builder.Append(_afterValue);
-                    }
+                if (nonStandardFormat)
+                {
+                    var key = Convert.ToString(property.Key, formatProvider);
+                    var value = Convert.ToString(property.Value, formatProvider);
+                    var pair = Format.Replace("[key]", key)
+                                        .Replace("[value]", value);
+                    builder.Append(pair);
+                }
+                else
+                {
+                    builder.Append(_beforeKey);
+                    builder.AppendFormattedValue(property.Key, null, formatProvider);
+                    builder.Append(_afterKey);
+                    builder.AppendFormattedValue(property.Value, null, formatProvider);
+                    builder.Append(_afterValue);
                 }
             }
         }
@@ -223,7 +223,7 @@ namespace NLog.LayoutRenderers
                 checkForExclude = !(logEvent.CallSiteInformation == null && Exclude.Count == CallerInformationAttributeNames.Length && Exclude.Contains(CallerInformationAttributeNames[0]));
             }
 #endif
-            return checkForExclude && logEvent.HasProperties;
+            return checkForExclude;
         }
 
         private static bool IsEmptyPropertyValue(object value)
