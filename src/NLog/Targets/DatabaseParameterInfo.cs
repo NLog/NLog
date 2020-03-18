@@ -173,8 +173,7 @@ namespace NLog.Targets
                         PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                         if (propInfo != null)
                         {
-                            var enumConverter = (IEnumTypeConverter)Activator.CreateInstance(typeof(EnumTypeConverter<>).MakeGenericType(propInfo.PropertyType));
-                            if (enumConverter.TryParseEnum(dbTypeNames[1], out Enum enumType))
+                            if (TryParseEnum(dbTypeNames[1], propInfo.PropertyType, out Enum enumType))
                             {
                                 _dbTypeSetter = propInfo;
                                 _dbTypeValue = enumType;
@@ -295,24 +294,15 @@ namespace NLog.Targets
                 return false;
             }
 
-            interface IEnumTypeConverter
+            private static bool TryParseEnum(string value, Type enumType, out Enum enumValue)
             {
-                bool TryParseEnum(string value, out Enum enumValue);
-            }
-
-            class EnumTypeConverter<TEnum> : IEnumTypeConverter where TEnum : struct
-            {
-                bool IEnumTypeConverter.TryParseEnum(string value, out Enum enumValue)
+                if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, enumType, out var enumValueT))
                 {
-                    TEnum enumValueT;
-                    if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, out enumValueT))
-                    {
-                        enumValue = enumValueT as Enum;
-                        return enumValue != null;
-                    }
-                    enumValue = null;
-                    return false;
+                    enumValue = enumValueT as Enum;
+                    return enumValue != null;
                 }
+                enumValue = null;
+                return false;
             }
         }
     }
