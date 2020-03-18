@@ -170,7 +170,7 @@ namespace NLog.Targets
             get
             {
 #if !__ANDROID__ && !__IOS__ && !NETSTANDARD
-                
+
                 // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
                 // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
                 // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
@@ -650,7 +650,12 @@ namespace NLog.Targets
             if (Priority != null)
             {
                 var renderedPriority = Priority.Render(lastEvent);
-                if (!string.IsNullOrEmpty(renderedPriority) && ConversionHelpers.TryParseEnum(renderedPriority, out MailPriority mailPriority))
+
+                if (string.IsNullOrEmpty(renderedPriority))
+                {
+                    msg.Priority = MailPriority.Normal;
+                }
+                else if (ConversionHelpers.TryParseEnum(renderedPriority, out MailPriority mailPriority))
                 {
                     msg.Priority = mailPriority;
                 }
