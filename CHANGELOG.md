@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7 (2019/03/17)
+### V4.7 (2019/03/18)
 
 #### Features
 - [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
@@ -41,6 +41,7 @@ Date format: (year/month/day)
 - [#3761](https://github.com/NLog/NLog/pull/3761) + [#3784](https://github.com/NLog/NLog/pull/3784) Log4JXml Layout will render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
 - [#3821](https://github.com/NLog/NLog/pull/3821) Logger - Added exception handler for CallSite capture for platform that fails to capture StackTrace (@snakefoot)
 - [#3835](https://github.com/NLog/NLog/pull/3835) StringSplitter - Fixed quote handling when reading elements for config list-properties (@snakefoot)
+- [#3828](https://github.com/NLog/NLog/pull/3828) Utilities: fix ConversionHelpers.TryParseEnum for white space (@304NotModified)
 
 #### Performance
 - [#3683](https://github.com/NLog/NLog/pull/3683) ObjectGraphScanner - Avoid holding list.SyncRoot lock while scanning (@snakefoot)
@@ -56,6 +57,7 @@ Date format: (year/month/day)
 - [#3790](https://github.com/NLog/NLog/pull/3790) AsyncWrapper - Less aggressive with scheduling timer events for background writing (@snakefoot)
 - [#3830](https://github.com/NLog/NLog/pull/3830) Faster assignment of properties accessed through reflection (@304NotModified)
 - [#3832](https://github.com/NLog/NLog/pull/3832) ${replace} - Faster search and replace when not explicitly have requested regex support (@snakefoot)
+- [#3828](https://github.com/NLog/NLog/pull/3828) Skip need for Activator.CreateInstance in DbTypeSetter (@304NotModified)
 
 ### V4.6.8 (2019/11/04)
 

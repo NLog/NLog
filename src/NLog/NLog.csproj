@@ -38,6 +38,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - Log4JXml Layout - Render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
 - Logger - Added exception handler for CallSite capture for platform that fails to capture StackTrace (@snakefoot)
 - StringSplitter - Fixed quote handling when reading elements for config list-properties (@snakefoot)
+- Utilities: fix ConversionHelpers.TryParseEnum for white space (@304NotModified)
 
 ## Features
 - LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
@@ -81,6 +82,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - AsyncWrapper - Less aggressive with scheduling timer events for background writing (@snakefoot)
 - Faster assignment of properties accessed through reflection (@304NotModified)
 - ${replace} - Faster search and replace when not explicitly have requested regex support (@snakefoot)
+- Skip need for Activator.CreateInstance in DbTypeSetter (@304NotModified)
 
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
