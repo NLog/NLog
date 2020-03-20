@@ -555,20 +555,29 @@ namespace NLog.UnitTests
 
             public void Dispose()
             {
+                var logFile = InternalLogger.LogFile;
+
                 InternalLogger.Reset();
+                LogManager.GlobalThreshold = globalThreshold;
+                LogManager.ThrowExceptions = throwExceptions;
+                LogManager.ThrowConfigExceptions = throwConfigExceptions;
 
                 if (ConsoleOutputWriter != null)
                     Console.SetOut(oldConsoleOutputWriter);
                 if (ConsoleErrorWriter != null)
                     Console.SetError(oldConsoleErrorWriter);
 
-                if (File.Exists(InternalLogger.LogFile))
-                    File.Delete(InternalLogger.LogFile);
+                if (!string.IsNullOrEmpty(InternalLogger.LogFile))
+                {
+                    if (File.Exists(InternalLogger.LogFile))
+                        File.Delete(InternalLogger.LogFile);
+                }
 
-                //restore logmanager
-                LogManager.GlobalThreshold = globalThreshold;
-                LogManager.ThrowExceptions = throwExceptions;
-                LogManager.ThrowConfigExceptions = throwConfigExceptions;
+                if (!string.IsNullOrEmpty(logFile) && logFile != InternalLogger.LogFile)
+                {
+                    if (File.Exists(logFile))
+                        File.Delete(logFile);
+                }
             }
         }
 

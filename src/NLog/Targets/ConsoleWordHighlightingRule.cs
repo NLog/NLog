@@ -39,6 +39,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Text.RegularExpressions;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
@@ -46,7 +47,7 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public class ConsoleWordHighlightingRule
     {
-        private Regex _compiledRegex;
+        private readonly RegexHelper _regexHelper = new RegexHelper();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleWordHighlightingRule" /> class.
@@ -65,7 +66,7 @@ namespace NLog.Targets
         /// <param name="backgroundColor">Color of the background.</param>
         public ConsoleWordHighlightingRule(string text, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
-            Text = text;
+            _regexHelper.SearchText = text;
             ForegroundColor = foregroundColor;
             BackgroundColor = backgroundColor;
         }
@@ -74,34 +75,54 @@ namespace NLog.Targets
         /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        public string Regex { get; set; }
+        public string Regex
+        {
+            get => _regexHelper.RegexPattern;
+            set => _regexHelper.RegexPattern = value;
+        }
 
         /// <summary>
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
-        public bool CompileRegex { get; set; }
+        public bool CompileRegex
+        {
+            get => _regexHelper.CompileRegex;
+            set => _regexHelper.CompileRegex = value;
+        }
 
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        public string Text { get; set; }
+        public string Text
+        {
+            get => _regexHelper.SearchText;
+            set => _regexHelper.SearchText = value;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
-        public bool WholeWords { get; set; }
+        public bool WholeWords
+        {
+            get => _regexHelper.WholeWords;
+            set => _regexHelper.WholeWords = value;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
-        public bool IgnoreCase { get; set; }
+        public bool IgnoreCase
+        {
+            get => _regexHelper.IgnoreCase;
+            set => _regexHelper.IgnoreCase = value;
+        }
 
         /// <summary>
         /// Gets or sets the foreground color.
@@ -120,84 +141,11 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the compiled regular expression that matches either Text or Regex property. Only used when <see cref="CompileRegex"/> is <c>true</c>.
         /// </summary>
-        /// <remarks>Access this property will compile the Regex.</remarks>
-        public Regex CompiledRegex
-        {
-            get
-            {
-                //compile regex on first usage.
-                if (_compiledRegex == null)
-                {
-                    var regexpression = GetRegexExpression();
-                    if (regexpression == null)
-                    {
-                        //we can't build an empty regex
-                        return null;
-                    }
-
-                    var regexOptions = GetRegexOptions(RegexOptions.Compiled);
-                    _compiledRegex = new Regex(regexpression, regexOptions);
-                }
-
-                return _compiledRegex;
-            }
-        }
-
-        /// <summary>
-        /// Get regex options. 
-        /// </summary>
-        /// <param name="regexOptions">Default option to start with.</param>
-        /// <returns></returns>
-        private RegexOptions GetRegexOptions(RegexOptions regexOptions)
-        {
-            if (IgnoreCase)
-            {
-                regexOptions |= RegexOptions.IgnoreCase;
-            }
-            return regexOptions;
-        }
-
-        /// <summary>
-        /// Get Expression for a <see cref="Regex"/>.
-        /// </summary>
-        /// <returns></returns>
-        private string GetRegexExpression()
-        {
-            string regexpression = Regex;
-
-            if (regexpression == null && Text != null)
-            {
-                regexpression = System.Text.RegularExpressions.Regex.Escape(Text);
-                if (WholeWords)
-                {
-                    regexpression = string.Concat("\\b", regexpression, "\\b");
-                }
-            }
-            return regexpression;
-        }
+        public Regex CompiledRegex => _regexHelper.Regex;
 
         internal MatchCollection Matches(string message)
         {
-            if (CompileRegex)
-            {
-                var regex = CompiledRegex;
-                if (regex == null)
-                {
-                    //empty regex so we are done
-                    return null;
-                }
-
-                return regex.Matches(message);
-            }
-            //use regex cache
-            var expression = GetRegexExpression();
-            if (expression != null)
-            {
-                RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
-                //the static methods of Regex will cache the regex
-                return System.Text.RegularExpressions.Regex.Matches(message, expression, regexOptions);
-            }
-            return null;
+            return _regexHelper.Matches(message);
         }
     }
 }

@@ -31,54 +31,40 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using JetBrains.Annotations;
-
-namespace NLog.Common
+namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
-    /// <summary>
-    /// A message has been written to the internal logger
-    /// </summary>
-    public sealed class InternalLoggerMessageEventArgs : EventArgs
+    using NLog.Layouts;
+    using Xunit;
+
+    public class OnHasPropertiesTests : NLogTestBase
     {
-        /// <summary>
-        /// The rendered message
-        /// </summary>
-        public string Message { get; }
-
-        /// <summary>
-        /// The log level
-        /// </summary>
-        public LogLevel Level { get; }
-
-        /// <summary>
-        /// The exception. Could be null.
-        /// </summary>
-        [CanBeNull]
-        public Exception Exception { get; }
-
-        /// <summary>
-        /// The type that triggered this internal log event, for example the FileTarget. 
-        /// This property is not always populated. 
-        /// </summary>
-        [CanBeNull]
-        public Type SenderType { get; }
-
-        /// <summary>
-        /// The context name that triggered this internal log event, for example the name of the Target. 
-        /// This property is not always populated. 
-        /// </summary>
-        [CanBeNull]
-        public string SenderName { get; }
-
-        /// <inheritdoc />
-        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
+        [Fact]
+        public void OnHasPropertiesValid()
         {
-            Message = message;
-            Level = level;
-            Exception = exception;
-            SenderType = senderType;
-            SenderName = senderName;
+            // Arrange
+            SimpleLayout l = @"${message:raw=true}${onhasproperties:, Properties\: ${all-event-properties}}";
+            var logevent = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            logevent.Properties["Foo"] = "Bar";
+
+            // Act
+            var result = l.Render(logevent);
+
+            // Assert
+            Assert.Equal("message, Properties: Foo=Bar", result);
+        }
+
+        [Fact]
+        public void OnHasPropertiesEmpty()
+        {
+            // Arrange
+            SimpleLayout l = @"${message:raw=true}${onhasproperties: Properties\:${all-event-properties}}";
+            var logevent = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+
+            // Act
+            var result = l.Render(logevent);
+
+            // Assert
+            Assert.Equal("message", result);
         }
     }
 }

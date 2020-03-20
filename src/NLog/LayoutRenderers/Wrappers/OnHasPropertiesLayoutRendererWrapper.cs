@@ -31,54 +31,35 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using JetBrains.Annotations;
-
-namespace NLog.Common
+namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
+    using NLog.Config;
+
     /// <summary>
-    /// A message has been written to the internal logger
+    /// Outputs alternative layout when the inner layout produces empty result.
     /// </summary>
-    public sealed class InternalLoggerMessageEventArgs : EventArgs
+    /// <example>
+    /// ${onhasproperties:, Properties\: ${all-event-properties}}
+    /// </example>
+    [LayoutRenderer("onhasproperties")]
+    [ThreadAgnostic]
+    [ThreadSafe]
+    public sealed class OnHasPropertiesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        /// <summary>
-        /// The rendered message
-        /// </summary>
-        public string Message { get; }
-
-        /// <summary>
-        /// The log level
-        /// </summary>
-        public LogLevel Level { get; }
-
-        /// <summary>
-        /// The exception. Could be null.
-        /// </summary>
-        [CanBeNull]
-        public Exception Exception { get; }
-
-        /// <summary>
-        /// The type that triggered this internal log event, for example the FileTarget. 
-        /// This property is not always populated. 
-        /// </summary>
-        [CanBeNull]
-        public Type SenderType { get; }
-
-        /// <summary>
-        /// The context name that triggered this internal log event, for example the name of the Target. 
-        /// This property is not always populated. 
-        /// </summary>
-        [CanBeNull]
-        public string SenderName { get; }
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        {
+            if (logEvent.HasProperties)
+            {
+                Inner.RenderAppendBuilder(logEvent, builder);
+            }
+        }
 
         /// <inheritdoc />
-        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
+        protected override string Transform(string text)
         {
-            Message = message;
-            Level = level;
-            Exception = exception;
-            SenderType = senderType;
-            SenderName = senderName;
+            return text;
         }
     }
 }

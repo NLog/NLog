@@ -1155,11 +1155,79 @@ Dispose()
             dt.CommandText = "Notimportant";
             dt.Initialize(null);
             Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
-            dt.OpenConnection("myConnectionString");
+            dt.OpenConnection("myConnectionString", null);
             Assert.Equal(1, MockDbConnection2.OpenCount);
             Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
 #endif
+
+        [Fact]
+        public void AccessTokenShouldBeSet()
+        {
+            // Arrange
+            var accessToken = "123";
+            MockDbConnection.ClearLog();
+            var databaseTarget = new DatabaseTarget
+            {
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                CommandText = "command1",
+            };
+            databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = accessToken });
+            databaseTarget.Initialize(new LoggingConfiguration());
+
+            // Act
+            var connection1 = databaseTarget.OpenConnection(".", null);
+            var connection2 = databaseTarget.OpenConnection(".", null); // Twice because we use compiled method on 2nd attempt
+
+            // Assert
+            var sqlConnection1 = Assert.IsType<MockDbConnection>(connection1);
+            Assert.Equal(accessToken, sqlConnection1.AccessToken);  // Verify dynamic setter method invoke assigns correctly
+            var sqlConnection2 = Assert.IsType<MockDbConnection>(connection2);
+            Assert.Equal(accessToken, sqlConnection2.AccessToken);  // Verify compiled method also assigns correctly
+        }
+
+        [Fact]
+        public void AccessTokenWithInvalidTypeCannotBeSet()
+        {
+            // Arrange
+            MockDbConnection.ClearLog();
+            var databaseTarget = new DatabaseTarget
+            {
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                CommandText = "command1",
+            };
+            databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = "abc", PropertyType = typeof(int) });
+            databaseTarget.Initialize(new LoggingConfiguration());
+
+            // Act + Assert
+            Assert.Throws<FormatException>(() => databaseTarget.OpenConnection(".", null));
+        }
+
+        [Fact]
+        public void CommandTimeoutShouldBeSet()
+        {
+            // Arrange
+            var commandTimeout = "123";
+            MockDbConnection.ClearLog();
+            var databaseTarget = new DatabaseTarget
+            {
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                CommandText = "command1",
+            };
+            databaseTarget.CommandProperties.Add(new DatabaseObjectPropertyInfo() { Name = "CommandTimeout", Layout = commandTimeout, PropertyType = typeof(int) });
+            databaseTarget.Initialize(new LoggingConfiguration());
+
+            // Act
+            var connection = databaseTarget.OpenConnection(".", null);
+            var command1 = databaseTarget.CreateDbCommand(LogEventInfo.CreateNullEvent(), connection);
+            var command2 = databaseTarget.CreateDbCommand(LogEventInfo.CreateNullEvent(), connection);    // Twice because we use compiled method on 2nd attempt
+
+            // Assert
+            var sqlCommand1 = Assert.IsType<MockDbCommand>(command1);
+            Assert.Equal(commandTimeout, sqlCommand1.CommandTimeout.ToString());  // Verify dynamic setter method invoke assigns correctly
+            var sqlCommand2 = Assert.IsType<MockDbCommand>(command2);
+            Assert.Equal(commandTimeout, sqlCommand2.CommandTimeout.ToString());  // Verify compiled method also assigns correctly
+        }
 
         [Fact]
         public void SqlServerShorthandNotationTest()
@@ -1871,6 +1939,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
 
             public ConnectionState State => throw new NotImplementedException();
+
+            public string AccessToken { get; set; }
 
             public void Dispose()
             {

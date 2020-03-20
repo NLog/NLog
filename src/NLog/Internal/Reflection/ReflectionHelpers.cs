@@ -107,6 +107,8 @@ namespace NLog.Internal
         /// <returns></returns>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
+        public delegate object LateBoundMethodSingle(object target, object argument);
+
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
         /// </summary>
@@ -119,28 +121,7 @@ namespace NLog.Internal
             var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
 
             // build parameter list
-            var parameterExpressions = new List<Expression>();
-            var paramInfos = methodInfo.GetParameters();
-            for (int i = 0; i < paramInfos.Length; i++)
-            {
-                // (Ti)parameters[i]
-                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
-
-                Type parameterType = paramInfos[i].ParameterType;
-                if (parameterType.IsByRef)
-                    parameterType = parameterType.GetElementType();
-
-                var valueCast = Expression.Convert(valueObj, parameterType);
-
-                parameterExpressions.Add(valueCast);
-            }
-
-            // non-instance for static method, or ((TInstance)instance)
-            var instanceCast = methodInfo.IsStatic ? null :
-                Expression.Convert(instanceParameter, methodInfo.DeclaringType);
-
-            // static invoke or ((TInstance)instance).Method
-            var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
+            var methodCall = BuildParameterList(methodInfo, instanceParameter, parametersParameter);
 
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
@@ -163,6 +144,92 @@ namespace NLog.Internal
 
                 return lambda.Compile();
             }
+        }
+
+        /// <summary>
+        /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
+        /// </summary>
+        /// <param name="methodInfo">Method to optimize</param>
+        /// <returns>Optimized delegate for invoking the MethodInfo</returns>
+        public static LateBoundMethodSingle CreateLateBoundMethodSingle(MethodInfo methodInfo)
+        {
+            // parameters to execute
+            var instanceParameter = Expression.Parameter(typeof(object), "instance");
+            var parametersParameter = Expression.Parameter(typeof(object), "parameters");
+
+            // build parameter list
+            var methodCall = BuildParameterListSingle(methodInfo, instanceParameter, parametersParameter);
+
+            // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
+            if (methodCall.Type == typeof(void))
+            {
+                var lambda = Expression.Lambda<Action<object, object>>(
+                    methodCall, instanceParameter, parametersParameter);
+
+                Action<object, object> execute = lambda.Compile();
+                return (instance, parameters) =>
+                {
+                    execute(instance, parameters);
+                    return null;    // There is no return-type, so we return null-object
+                };
+            }
+            else
+            {
+                var castMethodCall = Expression.Convert(methodCall, typeof(object));
+                var lambda = Expression.Lambda<LateBoundMethodSingle>(
+                    castMethodCall, instanceParameter, parametersParameter);
+
+                return lambda.Compile();
+            }
+        }
+
+        private static MethodCallExpression BuildParameterList(MethodInfo methodInfo, ParameterExpression instanceParameter, ParameterExpression parametersParameter)
+        {
+            var parameterExpressions = new List<Expression>();
+            var paramInfos = methodInfo.GetParameters();
+            for (int i = 0; i < paramInfos.Length; i++)
+            {
+                // (Ti)parameters[i]
+                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
+
+                var valueCast = CreateParameterExpression(paramInfos[i], valueObj);
+                parameterExpressions.Add(valueCast);
+            }
+
+            return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
+        }
+
+        private static MethodCallExpression BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression instanceParameter, ParameterExpression parameterParameter)
+        {
+            var parameterExpressions = new List<Expression>();
+            var paramInfos = methodInfo.GetParameters().Single();
+            {
+                // (Ti)parameters[i]
+                var parameterExpression = CreateParameterExpression(paramInfos, parameterParameter);
+                parameterExpressions.Add(parameterExpression);
+            }
+
+            return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
+        }
+        
+        private static MethodCallExpression CreateMethodCallExpression(MethodInfo methodInfo, ParameterExpression instanceParameter, IEnumerable<Expression> parameterExpressions)
+        {
+            // non-instance for static method, or ((TInstance)instance)
+            var instanceCast = methodInfo.IsStatic ? null : Expression.Convert(instanceParameter, methodInfo.DeclaringType);
+
+            // static invoke or ((TInstance)instance).Method
+            var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
+            return methodCall;
+        }
+    
+        private static UnaryExpression CreateParameterExpression(ParameterInfo parameterInfo, Expression expression)
+        {
+            Type parameterType = parameterInfo.ParameterType;
+            if (parameterType.IsByRef)
+                parameterType = parameterType.GetElementType();
+
+            var valueCast = Expression.Convert(expression, parameterType);
+            return valueCast;
         }
 
         public static bool IsEnum(this Type type)
@@ -290,7 +357,7 @@ namespace NLog.Internal
 #if NET45
             return p.GetValue(instance);
 #else
-            return p.GetGetMethod().Invoke(instance, null);            
+            return p.GetGetMethod().Invoke(instance, null);
 #endif
         }
     }
