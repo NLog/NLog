@@ -252,12 +252,28 @@ namespace NLog.Targets
         public CommandType CommandType { get; set; }
 
         /// <summary>
-        /// Gets the collection of parameters. Each parameter contains a mapping
+        /// Gets the collection of parameters. Each item contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
         /// <docgen category='SQL Statement' order='14' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; } = new List<DatabaseParameterInfo>();
+
+        /// <summary>
+        /// Gets the collection of properties. Each item contains a mapping
+        /// between NLog layout and a property on the DbConnection instance
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        [ArrayParameter(typeof(DatabaseObjectPropertyInfo), "connectionproperty")]
+        public IList<DatabaseObjectPropertyInfo> ConnectionProperties { get; } = new List<DatabaseObjectPropertyInfo>();
+
+        /// <summary>
+        /// Gets the collection of properties. Each item contains a mapping
+        /// between NLog layout and a property on the DbCommand instance
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        [ArrayParameter(typeof(DatabaseObjectPropertyInfo), "commandproperty")]
+        public IList<DatabaseObjectPropertyInfo> CommandProperties { get; } = new List<DatabaseObjectPropertyInfo>();
 
         /// <summary>
         /// Configures isolated transaction batch writing. If supported by the database, then it will improve insert performance.
@@ -314,7 +330,7 @@ namespace NLog.Targets
             return null;
         }
 
-        internal IDbConnection OpenConnection(string connectionString)
+        internal IDbConnection OpenConnection(string connectionString, LogEventInfo logEventInfo)
         {
             IDbConnection connection;
 
@@ -335,8 +351,35 @@ namespace NLog.Targets
             }
 
             connection.ConnectionString = connectionString;
+            if (ConnectionProperties?.Count > 0)
+            {
+                ApplyDatabaseObjectProperties(connection, ConnectionProperties, logEventInfo ?? LogEventInfo.CreateNullEvent());
+            }
+
             connection.Open();
             return connection;
+        }
+
+        private void ApplyDatabaseObjectProperties(object databaseObject, IList<DatabaseObjectPropertyInfo> objectProperties, LogEventInfo logEventInfo)
+        {
+            for (int i = 0; i < objectProperties.Count; ++i)
+            {
+                var propertyInfo = objectProperties[i];
+                try
+                {
+                    var propertyValue = GetDatabaseObjectPropertyValue(logEventInfo, propertyInfo);
+                    if (!propertyInfo.SetPropertyValue(databaseObject, propertyValue))
+                    {
+                        InternalLogger.Warn("DatabaseTarget(Name={0}): Failed to lookup property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to assign value for property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
+                    if (ex.MustBeRethrown())
+                        throw;
+                }
+            }
         }
 
         /// <summary>
@@ -623,14 +666,14 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, logEvents.Count > 0 ? logEvents[0].LogEvent : null);
 
                     var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
                     try
                     {
                         for (int i = 0; i < logEvents.Count; ++i)
                         {
-                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, dbTransaction);
+                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, _activeConnection, dbTransaction);
                         }
 
                         dbTransaction?.Commit();
@@ -696,9 +739,9 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, logEvent);
 
-                    ExecuteDbCommandWithParameters(logEvent, null);
+                    ExecuteDbCommandWithParameters(logEvent, _activeConnection, null);
 
                     transactionScope.Complete();    //not really needed as there is no transaction at all.
                 }
@@ -721,12 +764,9 @@ namespace NLog.Targets
         /// <summary>
         /// Write logEvent to database
         /// </summary>
-        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbTransaction dbTransaction)
+        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, IDbTransaction dbTransaction)
         {
-            var commandText = RenderLogEvent(CommandText, logEvent);
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, CommandType, commandText);
-
-            using (IDbCommand command = CreateDbCommandWithParameters(logEvent, CommandType, commandText, Parameters))
+            using (IDbCommand command = CreateDbCommand(logEvent, dbConnection))
             {
                 if (dbTransaction != null)
                     command.Transaction = dbTransaction;
@@ -736,11 +776,22 @@ namespace NLog.Targets
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        private IDbCommand CreateDbCommandWithParameters(LogEventInfo logEvent, CommandType commandType, string dbCommandText, IList<DatabaseParameterInfo> databaseParameterInfos)
+        internal IDbCommand CreateDbCommand(LogEventInfo logEvent, IDbConnection dbConnection)
         {
-            var dbCommand = _activeConnection.CreateCommand();
+            var commandText = RenderLogEvent(CommandText, logEvent);
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, CommandType, commandText);
+            return CreateDbCommandWithParameters(logEvent, dbConnection, CommandType, commandText, Parameters);
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
+        private IDbCommand CreateDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, CommandType commandType, string dbCommandText, IList<DatabaseParameterInfo> databaseParameterInfos)
+        {
+            var dbCommand = dbConnection.CreateCommand();
             dbCommand.CommandType = commandType;
+            if (CommandProperties?.Count > 0)
+            {
+                ApplyDatabaseObjectProperties(dbCommand, CommandProperties, logEvent);
+            }
             dbCommand.CommandText = dbCommandText;
 
             for (int i = 0; i < databaseParameterInfos.Count; ++i)
@@ -842,7 +893,7 @@ namespace NLog.Targets
             return value;
         }
 
-        private void EnsureConnectionOpen(string connectionString)
+        private void EnsureConnectionOpen(string connectionString, LogEventInfo logEventInfo)
         {
             if (_activeConnection != null && _activeConnectionString != connectionString)
             {
@@ -856,7 +907,7 @@ namespace NLog.Targets
             }
 
             InternalLogger.Trace("DatabaseTarget(Name={0}): Open connection.", Name);
-            _activeConnection = OpenConnection(connectionString);
+            _activeConnection = OpenConnection(connectionString, logEventInfo);
             _activeConnectionString = connectionString;
         }
 
@@ -890,13 +941,13 @@ namespace NLog.Targets
                         SetConnectionType();
                     }
 
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, logEvent);
 
                     string commandText = RenderLogEvent(commandInfo.Text, logEvent);
 
                     installationContext.Trace("DatabaseTarget(Name={0}) - Executing {1} '{2}'", Name, commandInfo.CommandType, commandText);
 
-                    using (IDbCommand command = CreateDbCommandWithParameters(logEvent, commandInfo.CommandType, commandText, commandInfo.Parameters))
+                    using (IDbCommand command = CreateDbCommandWithParameters(logEvent, _activeConnection, commandInfo.CommandType, commandText, commandInfo.Parameters))
                     {
                         try
                         {
@@ -1009,77 +1060,68 @@ namespace NLog.Targets
         /// <param name="parameterInfo">Parameter configuration info.</param>
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
-            Type dbParameterType = parameterInfo.ParameterType;
-            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string))
-            {
-                return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
-            }
-
-            IFormatProvider dbParameterCulture = GetDbParameterCulture(logEvent, parameterInfo);
-
-            if (TryGetConvertedRawValue(logEvent, parameterInfo, dbParameterType, dbParameterCulture, out var value))
-            {
-                return value ?? CreateDefaultValue(dbParameterType);
-            }
-
-            try
-            {
-                InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-                string parameterValue = RenderLogEvent(parameterInfo.Layout, logEvent);
-                if (string.IsNullOrEmpty(parameterValue))
-                {
-                    return CreateDefaultValue(dbParameterType);
-                }
-                return PropertyTypeConverter.Convert(parameterValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-
-                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-
-                if (ex.MustBeRethrown())
-                    throw;
-
-                return CreateDefaultValue(dbParameterType);
-            }
+            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture);
         }
 
-        private bool TryGetConvertedRawValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo, Type dbParameterType,
-            IFormatProvider dbParameterCulture, out object value)
+        private object GetDatabaseObjectPropertyValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
         {
-            if (parameterInfo.Layout.TryGetRawValue(logEvent, out var rawValue))
+            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture);
+        }
+
+        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider)
+        {
+            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string))
+            {
+                return RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
+            }
+
+            formatProvider = formatProvider ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
+
+            if (valueLayout.TryGetRawValue(logEvent, out var rawValue))
             {
                 try
                 {
-                    InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}",
-                        parameterInfo.Name, dbParameterType?.Name);
                     if (ReferenceEquals(rawValue, DBNull.Value))
                     {
-                        value = rawValue;
-                        return true;
+                        return rawValue;
                     }
 
-                    value = PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
-                            dbParameterCulture);
-                    return true;
+                    return PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType);
                 }
                 catch (Exception ex)
                 {
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}",
-                        parameterInfo.Name, dbParameterType?.Name);
-
+                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
                     if (ex.MustBeRethrown())
                         throw;
                 }
             }
 
-            value = null;
-            return false;
+            try
+            {
+                InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", propertyName, valueType);
+                string parameterValue = RenderLogEvent(valueLayout, logEvent);
+                if (string.IsNullOrEmpty(parameterValue))
+                {
+                    return CreateDefaultValue(valueType);
+                }
+
+                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? DBNull.Value;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", propertyName, valueType);
+
+                if (ex.MustBeRethrown())
+                    throw;
+
+                return CreateDefaultValue(valueType);
+            }
         }
 
         /// <summary>
@@ -1097,18 +1139,13 @@ namespace NLog.Targets
                 return DBNull.Value;
         }
 
-        private IFormatProvider GetDbParameterCulture(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
-        {
-            return parameterInfo.Culture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
-        }
-
 #if NETSTANDARD1_0
         /// <summary>
         /// Fake transaction
         /// 
         /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
         /// </summary>
-        private class TransactionScope : IDisposable
+        private sealed class TransactionScope : IDisposable
         {
             private readonly TransactionScopeOption suppress;
 

@@ -357,12 +357,12 @@ namespace NLog
             return _properties;
         }
 
-        internal bool HasMessageTemplateParameters
+        private bool HasMessageTemplateParameters
         {
             get
             {
                 // Have not yet parsed/rendered the FormattedMessage, so check with ILogMessageFormatter
-                if (_formattedMessage == null)
+                if (_formattedMessage == null && _parameters?.Length > 0)
                 {
                     var logMessageFormatter = _messageFormatter?.Target as ILogMessageFormatter;
                     return logMessageFormatter?.HasProperties(this) ?? false;

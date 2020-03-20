@@ -38,8 +38,8 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Information about database command + parameters.

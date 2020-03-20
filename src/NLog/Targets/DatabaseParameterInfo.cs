@@ -121,7 +121,7 @@ namespace NLog.Targets
         private Type _parameterType;
 
         /// <summary>
-        /// Gets or sets convert format of the database parameter value .
+        /// Gets or sets convert format of the database parameter value.
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />
         [DefaultValue(null)]
@@ -173,8 +173,7 @@ namespace NLog.Targets
                         PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                         if (propInfo != null)
                         {
-                            var enumConverter = (IEnumTypeConverter)Activator.CreateInstance(typeof(EnumTypeConverter<>).MakeGenericType(propInfo.PropertyType));
-                            if (enumConverter.TryParseEnum(dbTypeNames[1], out Enum enumType))
+                            if (TryParseEnum(dbTypeNames[1], propInfo.PropertyType, out Enum enumType))
                             {
                                 _dbTypeSetter = propInfo;
                                 _dbTypeValue = enumType;
@@ -272,9 +271,8 @@ namespace NLog.Targets
                 {
                     if (_dbTypeSetterFast == null && _dbTypeSetter != null && _dbTypeValue != null)
                     {
-                        var dbTypeSetterLambda = ReflectionHelpers.CreateLateBoundMethod(_dbTypeSetter.GetSetMethod());
-                        var dbTypeSetterParams = new object[] { _dbTypeValue };
-                        _dbTypeSetterFast = (p) => dbTypeSetterLambda.Invoke(p, dbTypeSetterParams);
+                        var dbTypeSetterLambda = ReflectionHelpers.CreateLateBoundMethodSingle(_dbTypeSetter.GetSetMethod());
+                        _dbTypeSetterFast = (p) => dbTypeSetterLambda.Invoke(p, _dbTypeValue);
                     }
                     return true;
                 }
@@ -296,24 +294,15 @@ namespace NLog.Targets
                 return false;
             }
 
-            interface IEnumTypeConverter
+            private static bool TryParseEnum(string value, Type enumType, out Enum enumValue)
             {
-                bool TryParseEnum(string value, out Enum enumValue);
-            }
-
-            class EnumTypeConverter<TEnum> : IEnumTypeConverter where TEnum : struct
-            {
-                bool IEnumTypeConverter.TryParseEnum(string value, out Enum enumValue)
+                if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, enumType, out var enumValueT))
                 {
-                    TEnum enumValueT;
-                    if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, out enumValueT))
-                    {
-                        enumValue = enumValueT as Enum;
-                        return enumValue != null;
-                    }
-                    enumValue = null;
-                    return false;
+                    enumValue = enumValueT as Enum;
+                    return enumValue != null;
                 }
+                enumValue = null;
+                return false;
             }
         }
     }

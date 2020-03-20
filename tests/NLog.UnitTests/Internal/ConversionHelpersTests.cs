@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Internal
     using NLog.Common;
     using Xunit;
 
-    public class EnumHelpersTests : NLogTestBase
+    public class ConversionHelpersTests : NLogTestBase
     {
         enum TestEnum
         {
@@ -109,18 +109,9 @@ namespace NLog.UnitTests.Internal
         }
 
         [Fact]
-        public void EnumParse_ArgumentException_ignoreCaseFalse()
+        public void EnumParse_wrongInput_ignoreCaseFalse()
         {
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", false, out result));
-        }
-
-        [Fact]
-        public void EnumParse_null_ArgumentException_ignoreCaseFalse()
-        {
-            //even with null, first ArgumentException
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse(null, false, out result));
+            TestEnumParseCaseIgnoreCaseParam("not enum", false, TestEnum.Foo, false);
         }
 
         #endregion
@@ -191,15 +182,7 @@ namespace NLog.UnitTests.Internal
         public void EnumParse_ArgumentException_ignoreCaseTrue()
         {
             double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", true, out result));
-        }
-
-        [Fact]
-        public void EnumParse_null_ArgumentException_ignoreCaseTrue()
-        {
-            //even with null, first ArgumentException
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse(null, true, out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParseEnum("not enum", true, out result));
         }
 
         #endregion
@@ -208,12 +191,34 @@ namespace NLog.UnitTests.Internal
 
         private static void TestEnumParseCaseIgnoreCaseParam(string value, bool ignoreCase, TestEnum expected, bool expectedReturn)
         {
-            TestEnum result;
+            {
+                var returnResult = ConversionHelpers.TryParseEnum(value, ignoreCase, out TestEnum result);
 
-            var returnResult = ConversionHelpers.TryParse(value, ignoreCase, out result);
+                Assert.Equal(expected, result);
+                Assert.Equal(expectedReturn, returnResult);
+            }
 
-            Assert.Equal(expected, result);
-            Assert.Equal(expectedReturn, returnResult);
+            // if true, test also other TryParseEnum
+            if (ignoreCase)
+            {
+                {
+                    var returnResult = ConversionHelpers.TryParseEnum<TestEnum>(value, out var result);
+                    Assert.Equal(expected, result);
+                    Assert.Equal(expectedReturn, returnResult);
+                }
+                {
+                    var returnResult = ConversionHelpers.TryParseEnum(value, typeof(TestEnum), out var result);
+                    Assert.Equal(expectedReturn, returnResult);
+                    if (expectedReturn)
+                    {
+                        Assert.Equal(expected, result);
+                    }
+                    else
+                    {
+                        Assert.Null(result);
+                    }
+                }
+            }
         }
 
         #endregion

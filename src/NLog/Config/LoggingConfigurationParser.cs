@@ -127,9 +127,7 @@ namespace NLog.Config
                         LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.ThrowExceptions);
                         break;
                     case "THROWCONFIGEXCEPTIONS":
-                        LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(configItem.Value)
-                            ? (bool?)null
-                            : ParseBooleanValue(configItem.Key, configItem.Value, false);
+                        LogFactory.ThrowConfigExceptions = ParseNullableBooleanValue(configItem.Key, configItem.Value, false);
                         break;
                     case "INTERNALLOGLEVEL":
                         InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value, InternalLogger.LogLevel);
@@ -168,14 +166,10 @@ namespace NLog.Config
                         LogFactory.GlobalThreshold = ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
                         break; // expanding variables not possible here, they are created later
                     case "PARSEMESSAGETEMPLATES":
-                        parseMessageTemplates = string.IsNullOrEmpty(configItem.Value)
-                            ? (bool?)null
-                            : ParseBooleanValue(configItem.Key, configItem.Value, true);
+                        parseMessageTemplates = ParseNullableBooleanValue(configItem.Key, configItem.Value, true);
                         break;
                     case "AUTOSHUTDOWN":
-                        LogFactory.AutoShutdown = StringHelpers.IsNullOrWhiteSpace(configItem.Value)
-                                ? true
-                                : ParseBooleanValue(configItem.Key, configItem.Value, true);
+                        LogFactory.AutoShutdown = ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
                     case "AUTORELOAD":
                         break;  // Ignore here, used by other logic
@@ -649,14 +643,13 @@ namespace NLog.Config
 
             var rule = new LoggingRule(ruleName)
             {
-                LoggerNamePattern = namePattern
+                LoggerNamePattern = namePattern,
+                Final = final,
             };
 
             EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
 
             ParseLoggingRuleTargets(writeTargets, rule);
-
-            rule.Final = final;
 
             ParseLoggingRuleChildren(loggerElement, rule);
 
@@ -808,7 +801,7 @@ namespace NLog.Config
 
             foreach (var targetElement in targetsElement.ValidChildren)
             {
-                string targetTypeName = GetConfigItemTypeAttribute(targetElement, null);
+                string targetTypeName = targetElement.GetConfigItemTypeAttribute();
                 string targetValueName = targetElement.GetOptionalValue("name", null);
                 Target newTarget = null;
                 if (!string.IsNullOrEmpty(targetValueName))
@@ -897,7 +890,7 @@ namespace NLog.Config
         private void ParseTargetElement(Target target, ValidatedConfigurationElement targetElement,
             Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null)
         {
-            string targetTypeName = GetConfigItemTypeAttribute(targetElement, "targets");
+            string targetTypeName = targetElement.GetConfigItemTypeAttribute("targets");
             if (typeNameToDefaultTargetParameters != null &&
                 typeNameToDefaultTargetParameters.TryGetValue(targetTypeName, out var defaults))
             {
@@ -950,7 +943,7 @@ namespace NLog.Config
 
             if (IsTargetElement(childElement.Name))
             {
-                string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(wrapper));
+                string targetTypeName = childElement.GetConfigItemTypeAttribute(GetName(wrapper));
 
                 Target newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
@@ -975,12 +968,6 @@ namespace NLog.Config
             }
 
             return false;
-        }
-
-        private static string GetConfigItemTypeAttribute(ValidatedConfigurationElement element, string sectionNameForRequiredValue = null)
-        {
-            var typeAttributeValue = sectionNameForRequiredValue != null ? element.GetRequiredValue("type", sectionNameForRequiredValue) : element.GetOptionalValue("type", null);
-            return StripOptionalNamespacePrefix(typeAttributeValue);
         }
 
         private bool ParseCompoundTarget(
@@ -1015,7 +1002,7 @@ namespace NLog.Config
 
             if (IsTargetElement(childElement.Name))
             {
-                string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(compound));
+                string targetTypeName = childElement.GetConfigItemTypeAttribute(GetName(compound));
 
                 Target newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
@@ -1038,7 +1025,6 @@ namespace NLog.Config
 
             return false;
         }
-
 
         private void ConfigureObjectFromAttributes(object targetObject, ValidatedConfigurationElement element, bool ignoreType)
         {
@@ -1064,7 +1050,6 @@ namespace NLog.Config
                 }
             }
         }
-
 
         private void SetPropertyFromElement(object o, ValidatedConfigurationElement childElement, ILoggingConfigurationElement parentElement)
         {
@@ -1178,7 +1163,7 @@ namespace NLog.Config
                 return null;
 
             // Check if the 'type' attribute has been specified
-            string layoutTypeName = GetConfigItemTypeAttribute(element);
+            string layoutTypeName = element.GetConfigItemTypeAttribute();
             if (layoutTypeName == null)
                 return null;
 
@@ -1240,7 +1225,7 @@ namespace NLog.Config
 
         private Target WrapWithDefaultWrapper(Target target, ValidatedConfigurationElement defaultWrapperElement)
         {
-            string wrapperTypeName = GetConfigItemTypeAttribute(defaultWrapperElement, "targets");
+            string wrapperTypeName = defaultWrapperElement.GetConfigItemTypeAttribute("targets");
             Target wrapperTargetInstance = CreateTargetType(wrapperTypeName);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
@@ -1301,6 +1286,13 @@ namespace NLog.Config
             }
         }
 
+        private bool? ParseNullableBooleanValue(string propertyName, string value, bool defaultValue)
+        {
+            return StringHelpers.IsNullOrWhiteSpace(value)
+                ? (bool?)null
+                : ParseBooleanValue(propertyName, value, defaultValue);
+        }
+
         private bool MustThrowConfigException(NLogConfigurationException configException)
         {
             if (configException.MustBeRethrown())
@@ -1332,34 +1324,11 @@ namespace NLog.Config
                    || name.Equals("compound-target-ref", StringComparison.OrdinalIgnoreCase);
         }
 
-        /// <summary>
-        /// Remove the namespace (before :)
-        /// </summary>
-        /// <example>
-        /// x:a, will be a
-        /// </example>
-        /// <param name="attributeValue"></param>
-        /// <returns></returns>
-        private static string StripOptionalNamespacePrefix(string attributeValue)
-        {
-            if (attributeValue == null)
-            {
-                return null;
-            }
-
-            int p = attributeValue.IndexOf(':');
-            if (p < 0)
-            {
-                return attributeValue;
-            }
-
-            return attributeValue.Substring(p + 1);
-        }
-
         private static string GetName(Target target)
         {
             return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;
         }
+
         /// <summary>
         /// Config element that's validated and having extra context
         /// </summary>
@@ -1473,82 +1442,6 @@ namespace NLog.Config
                     throw new NLogConfigurationException(StringHelpers.Join(Environment.NewLine, warnings));
                 }
                 return valueLookup ?? EmptyDefaultDictionary;
-            }
-        }
-    }
-
-    internal static class LoggingConfigurationSectionExtensions
-    {
-        public static bool MatchesName(this ILoggingConfigurationElement section, string expectedName)
-        {
-            return string.Equals(section?.Name?.Trim(), expectedName, StringComparison.OrdinalIgnoreCase);
-        }
-
-        public static void AssertName(this ILoggingConfigurationElement section, params string[] allowedNames)
-        {
-            foreach (var en in allowedNames)
-            {
-                if (section.MatchesName(en))
-                    return;
-            }
-
-            throw new InvalidOperationException(
-                $"Assertion failed. Expected element name '{string.Join("|", allowedNames)}', actual: '{section?.Name}'.");
-        }
-
-        public static string GetRequiredValue(this ILoggingConfigurationElement element, string attributeName, string section)
-        {
-            string value = element.GetOptionalValue(attributeName, null);
-            if (value == null)
-            {
-                throw new NLogConfigurationException($"Expected {attributeName} on {element.Name} in {section}");
-            }
-
-            if (StringHelpers.IsNullOrWhiteSpace(value))
-            {
-                throw new NLogConfigurationException(
-                    $"Expected non-empty {attributeName} on {element.Name} in {section}");
-            }
-
-            return value;
-        }
-
-        public static string GetOptionalValue(this ILoggingConfigurationElement section, string attributeName, string defaultValue)
-        {
-            return section.Values
-                .Where(configItem => string.Equals(configItem.Key, attributeName, StringComparison.OrdinalIgnoreCase))
-                .Select(configItem => configItem.Value).FirstOrDefault() ?? defaultValue;
-        }
-
-        /// <summary>
-        /// Gets the optional boolean attribute value.
-        /// </summary>
-        /// <param name="section"></param>
-        /// <param name="attributeName">Name of the attribute.</param>
-        /// <param name="defaultValue">Default value to return if the attribute is not found or if there is a parse error</param>
-        /// <returns>Boolean attribute value or default.</returns>
-        public static bool GetOptionalBooleanValue(this ILoggingConfigurationElement section, string attributeName,
-            bool defaultValue)
-        {
-            string value = section.GetOptionalValue(attributeName, null);
-            if (string.IsNullOrEmpty(value))
-            {
-                return defaultValue;
-            }
-
-            try
-            {
-                return Convert.ToBoolean(value.Trim(), CultureInfo.InvariantCulture);
-            }
-            catch (Exception exception)
-            {
-                var configException = new NLogConfigurationException(exception, $"'{attributeName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
-                if (configException.MustBeRethrown())
-                {
-                    throw configException;
-                }
-                InternalLogger.Error(exception, configException.Message);
-                return defaultValue;
             }
         }
     }

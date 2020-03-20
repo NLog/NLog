@@ -64,13 +64,12 @@ namespace NLog.Internal
         /// <returns><c>true</c>if the <paramref name="exception"/> has been logged to the <see cref="InternalLogger"/>.</returns>
         public static bool IsLoggedToInternalLogger(this Exception exception)
         {
-            if (exception != null)
+            if (exception?.Data?.Count > 0)
             {
                 return exception.Data[LoggedKey] as bool? ?? false;
             }
             return false;
         }
-
 
         /// <summary>
         /// Determines whether the exception must be rethrown and logs the error to the <see cref="InternalLogger"/> if <see cref="IsLoggedToInternalLogger"/> is <c>false</c>.
@@ -78,8 +77,9 @@ namespace NLog.Internal
         /// Advised to log first the error to the <see cref="InternalLogger"/> before calling this method.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
+        /// <param name="loggerContext">Target context of the exception.</param>
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
-        public static bool MustBeRethrown(this Exception exception)
+        public static bool MustBeRethrown(this Exception exception, IInternalLoggerContext loggerContext = null)
         {
             if (exception.MustBeRethrownImmediately())
             {
@@ -93,7 +93,10 @@ namespace NLog.Internal
             if (!exception.IsLoggedToInternalLogger())
             {
                 var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
-                InternalLogger.Log(exception, level, "Error has been raised.");
+                if (loggerContext != null)
+                    InternalLogger.Log(exception, level, "{0}: Error has been raised.", loggerContext);
+                else
+                    InternalLogger.Log(exception, level, "Error has been raised.");
             }
 
             //if ThrowConfigExceptions == null, use  ThrowExceptions

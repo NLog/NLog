@@ -36,7 +36,6 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -46,7 +45,7 @@ namespace NLog.Targets
     /// Represents logging target.
     /// </summary>
     [NLogConfigurationItem]
-    public abstract class Target : ISupportsInitialize, IDisposable
+    public abstract class Target : ISupportsInitialize, IInternalLoggerContext, IDisposable
     {
         private List<Layout> _allLayouts;
 
@@ -172,7 +171,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown(this))
                     {
                         throw;
                     }
@@ -311,7 +310,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
+                if (ex.MustBeRethrown(this))
                     throw;
 
                 wrappedLogEvent.Continuation(ex);
@@ -393,7 +392,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(this))
                 {
                     throw;
                 }
@@ -436,7 +435,7 @@ namespace NLog.Targets
 
                         _initializeException = exception;
 
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown(this))
                         {
                             throw;
                         }
@@ -476,7 +475,7 @@ namespace NLog.Targets
                     {
                         InternalLogger.Error(exception, "{0}: Error closing target", this);
 
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown(this))
                         {
                             throw;
                         }
@@ -572,7 +571,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(this))
                 {
                     throw;
                 }

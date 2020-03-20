@@ -35,7 +35,6 @@ using System;
 using System.Linq;
 using NLog.Internal;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
@@ -53,19 +52,17 @@ namespace NLog.UnitTests.Internal
         [InlineData("a;", ';', "a,")]
         [InlineData("a; ", ';', "a, ")]
         [InlineData("   ", ';', "   ")]
-        [InlineData(@"a;b;;c", ';', @"a,b;c")]
-        [InlineData(@"a;b;;;;c", ';', @"a,b;;c")]
-        [InlineData(@"a;;b", ';', @"a;b")]
-        [InlineData(@"a'b'c''d", SingleQuote, @"a,b,c'd")]
+        [InlineData(@"a;b;;c", ';', @"a,b,,c")]
+        [InlineData(@"a;b;;;;c", ';', @"a,b,,,,c")]
+        [InlineData(@"a;;b", ';', @"a,,b")]
+        [InlineData(@"a'b'c''d", SingleQuote, @"a,b,c,,d")]
         [InlineData(@"'a", SingleQuote, @",a")]
-        void SplitStringWithSelfEscape(string input, char splitCharAndEscapeChar, string output)
+        void SplitStringWithSelfEscape(string input, char splitChar, string output)
         {
-            //also test SplitWithSelfEscape
-            var strings = StringSplitter.SplitWithSelfEscape(input, splitCharAndEscapeChar).ToArray();
+            var quoteChar = splitChar == SingleQuote ? '"' : SingleQuote;
+            var strings = StringSplitter.SplitQuoted(input, splitChar, quoteChar, quoteChar).ToArray();
             var result = string.Join(",", strings);
             Assert.Equal(output, result);
-
-            SplitStringWithEscape2(input, splitCharAndEscapeChar, splitCharAndEscapeChar, output);
         }
 
         [Theory]
@@ -82,15 +79,16 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;;b;c;", "a,,b,c,")]
         [InlineData(@"a\b;c", @"a\b,c")]
         [InlineData(@"a;b;c\", @"a,b,c\")]
-        [InlineData(@"a;b;c\;", @"a,b,c;")]
-        [InlineData(@"a;b;c\;;", @"a,b,c;,")]
-        [InlineData(@"a\;b;c", @"a;b,c")]
-        [InlineData(@"a\;b\;c", @"a;b;c")]
-        [InlineData(@"a\;b\;c;d", @"a;b;c,d")]
-        [InlineData(@"a\;b;c\;d", @"a;b,c;d")]
-        [InlineData(@"abc\;", @"abc;")]
+        [InlineData(@"a;b;c\;", @"a,b,c\,")]
+        [InlineData(@"a;b;c\;;", @"a,b,c\,,")]
+        [InlineData(@"a\;b;c", @"a\,b,c")]
+        [InlineData(@"a\;b\;c", @"a\,b\,c")]
+        [InlineData(@"a\;b\;c;d", @"a\,b\,c,d")]
+        [InlineData(@"a\;b;c\;d", @"a\,b,c\,d")]
+        [InlineData(@"abc\;", @"abc\,")]
         void SplitStringWithEscape(string input, string output)
         {
+            // Not possible to escape the splitter without using quotes
             SplitStringWithEscape2(input, ';', Backslash, output);
         }
 
@@ -98,7 +96,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"abc", ';', ',', "abc")]
         void SplitStringWithEscape2(string input, char splitChar, char escapeChar, string output)
         {
-            var strings = StringSplitter.SplitWithEscape(input, splitChar, escapeChar).ToArray();
+            var strings = StringSplitter.SplitQuoted(input, splitChar, SingleQuote, escapeChar).ToArray();
             var result = string.Join(",", strings);
             Assert.Equal(output, result);
         }
@@ -154,9 +152,11 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;b'c;d", "a,b'c,d")]
         [InlineData(@"a;\'b;c", "a,'b,c")]
         [InlineData(@"\b", @"\b")]
-        [InlineData(@"'\'", @"''")]
-        [InlineData(@"'\''", @"''")]   //todo check case
-        [InlineData(@"'\\'", @"'\'")]  //todo check case
+        [InlineData(@"'\'", @"''")]     //todo check case (How to handle escape before last quote?)
+        [InlineData(@"'\\'", @"'\'")]   //todo check case (How to handle escape before last quote?)
+        [InlineData(@"'\\\'", @"'\\'")] //todo check case (How to handle escape before last quote?)
+        [InlineData(@"'\''", @"'")]
+        [InlineData(@"'\\''", @"\'")]
         void SplitStringWithQuotes_escaped(string input, string output)
         {
             SplitStringWithQuotes(input, ';', SingleQuote, Backslash, output);
