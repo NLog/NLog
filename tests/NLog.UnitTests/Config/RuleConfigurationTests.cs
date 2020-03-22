@@ -204,6 +204,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void MultipleRulesSameTargetTest()
         {
+            LogFactory logFactory = new LogFactory();
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
@@ -218,10 +219,10 @@ namespace NLog.UnitTests.Config
                     <logger name='*' level='Warn' writeTo='d2' />
                     <logger name='*' level='Warn' writeTo='d3' />
                 </rules>
-            </nlog>");
+            </nlog>", logFactory);
 
-            LogFactory factory = new LogFactory(c);
-            var loggerConfig = factory.GetConfigurationForLogger("AAA", c);
+            logFactory.Configuration = c;
+            var loggerConfig = logFactory.GetConfigurationForLogger("AAA", c);
             var targets = loggerConfig.GetTargetsForLevel(LogLevel.Warn);
             Assert.Equal("d1", targets.Target.Name);
             Assert.Equal("d2", targets.NextInChain.Target.Name);

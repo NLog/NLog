@@ -196,11 +196,22 @@ namespace NLog.Config
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
-        /// <param name="xml">NLog configuration</param>
+        /// <param name="xml">The XML contents.</param>
         /// <returns></returns>
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
-            return new XmlLoggingConfiguration(xml, string.Empty, LogManager.LogFactory);
+            return CreateFromXmlString(xml, LogManager.LogFactory);
+        }
+
+        /// <summary>
+        /// Parse XML string as NLog configuration
+        /// </summary>
+        /// <param name="xml">The XML contents.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        /// <returns></returns>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, LogFactory logFactory)
+        {
+            return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 #endif
 
