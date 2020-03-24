@@ -944,7 +944,7 @@ namespace NLog.Targets
 
         private bool IsArchivingEnabled => ArchiveAboveSize > ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
 
-        private bool IsSimpleKeepFileOpen => KeepFileOpen && !NetworkWrites && !ReplaceFileContentsOnEachWrite && !ConcurrentWrites;
+        private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !NetworkWrites && !ReplaceFileContentsOnEachWrite;
 
         private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && !PlatformDetector.IsWin32 && IsSimpleKeepFileOpen;
 
@@ -1822,9 +1822,9 @@ namespace NLog.Targets
                         {
                             mutexFileAppender.ArchiveMutex.WaitOne();
                         }
-                        else
+                        else if (!IsSimpleKeepFileOpen)
                         {
-                            InternalLogger.Info("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
+                            InternalLogger.Debug("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
                         }
                     }
                     catch (AbandonedMutexException)
