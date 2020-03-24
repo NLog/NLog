@@ -1118,10 +1118,9 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(_getFullFileNameDelegate);
 
-            using (var reusableStream = (OptimizeBufferReuse && logEvents.Count <= 1000) ? _reusableAsyncFileWriteStream.Allocate() : _reusableAsyncFileWriteStream.None)
-            using (var allocatedStream = reusableStream.Result != null ? null : new MemoryStream())
+            using (var reusableStream = OptimizeBufferReuse ? _reusableAsyncFileWriteStream.Allocate() : _reusableAsyncFileWriteStream.None)
             {
-                var ms = allocatedStream ?? reusableStream.Result;
+                var ms = reusableStream.Result ?? new MemoryStream();
 
                 foreach (var bucket in buckets)
                 {
@@ -1141,55 +1140,67 @@ namespace NLog.Targets
                         continue;
                     }
 
-                    ms.SetLength(0);
-                    ms.Position = 0;
-
-                    WriteToMemoryStream(bucket.Value, ms);
-
-                    Exception lastException;
-                    FlushCurrentFileWrites(fileName, bucket.Value[0].LogEvent, ms, out lastException);
-
-                    for (int i = 0; i < bucketCount; ++i)
+                    int currentIndex = 0;
+                    while (currentIndex < bucket.Value.Count)
                     {
-                        bucket.Value[i].Continuation(lastException);
+                        ms.Position = 0;
+                        ms.SetLength(0);
+
+                        var written = WriteToMemoryStream(bucket.Value, currentIndex, ms);
+                        FlushCurrentFileWrites(fileName, bucket.Value[currentIndex].LogEvent, ms, out var lastException);
+                        for (int i = 0; i < written; ++i)
+                        {
+                            bucket.Value[currentIndex++].Continuation(lastException);
+                        }
                     }
                 }
             }
         }
 
-        private void WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, MemoryStream ms)
+        private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, MemoryStream ms)
         {
-            int bucketCount = logEvents.Count;
-
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
-            using (var targetBuffer = OptimizeBufferReuse ? _reusableEncodingBuffer.Allocate() : _reusableEncodingBuffer.None)
-            using (var targetStream = OptimizeBufferReuse ? _reusableFileWriteStream.Allocate() : _reusableFileWriteStream.None)
+            if (OptimizeBufferReuse)
             {
-                bool bufferReusePossible = targetBuilder.Result != null && targetStream.Result != null;
+                int maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
 
-                for (int i = 0; i < bucketCount; i++)
+                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+                using (var targetStream = _reusableFileWriteStream.Allocate())
                 {
-                    AsyncLogEventInfo ev = logEvents[i];
-                    if (bufferReusePossible)
+                    var formatBuilder = targetBuilder.Result;
+                    var transformBuffer = targetBuffer.Result;
+                    var encodingStream = targetStream.Result;
+
+                    for (int i = startIndex; i < logEvents.Count; ++i)
                     {
                         // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
-                        targetStream.Result.Position = 0;
-                        targetStream.Result.SetLength(0);
-                        targetBuilder.Result.ClearBuilder();
-                        RenderFormattedMessageToStream(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
-                        ms.Write(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length);
-                    }
-                    else
-                    {
-                        byte[] bytes = GetBytesToWrite(ev.LogEvent);
-                        if (ms.Capacity == 0)
-                        {
-                            ms.Capacity = GetMemoryStreamInitialSize(bucketCount, bytes.Length);
-                        }
-                        ms.Write(bytes, 0, bytes.Length);
+                        encodingStream.Position = 0;
+                        encodingStream.SetLength(0);
+                        formatBuilder.ClearBuilder();
+
+                        AsyncLogEventInfo ev = logEvents[i];                       
+                        RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, encodingStream);
+                        ms.Write(encodingStream.GetBuffer(), 0, (int)encodingStream.Length);
+                        if (ms.Length > maxBufferSize && !ReplaceFileContentsOnEachWrite)
+                            return i - startIndex + 1;  // Max Chunk Size Limit to avoid out-of-memory issues
                     }
                 }
             }
+            else
+            {
+                for (int i = startIndex; i < logEvents.Count; ++i)
+                {
+                    AsyncLogEventInfo ev = logEvents[i];
+                    byte[] bytes = GetBytesToWrite(ev.LogEvent);
+                    if (ms.Capacity == 0)
+                    {
+                        ms.Capacity = GetMemoryStreamInitialSize(logEvents.Count, bytes.Length);
+                    }
+                    ms.Write(bytes, 0, bytes.Length);
+                }
+            }
+
+            return logEvents.Count - startIndex;
         }
 
         /// <summary>
@@ -1219,7 +1230,14 @@ namespace NLog.Targets
             if (archiveOccurred)
                 initializedNewFile = InitializeFile(fileName, logEvent) == DateTime.MinValue;
 
-            WriteToFile(fileName, bytesToWrite, initializedNewFile);
+            if (ReplaceFileContentsOnEachWrite)
+            {
+                ReplaceFileContent(fileName, bytesToWrite, true);
+            }
+            else
+            {
+                WriteToFile(fileName, bytesToWrite, initializedNewFile);
+            }
 
             _previousLogFileName = fileName;
             _previousLogEventTimestamp = logEvent.TimeStamp;
@@ -2203,12 +2221,6 @@ namespace NLog.Targets
         /// <param name="initializedNewFile">File has just been opened.</param>
         private void WriteToFile(string fileName, ArraySegment<byte> bytes, bool initializedNewFile)
         {
-            if (ReplaceFileContentsOnEachWrite)
-            {
-                ReplaceFileContent(fileName, bytes, true);
-                return;
-            }
-
             BaseFileAppender appender = _fileAppenderCache.AllocateAppender(fileName);
             try
             {
