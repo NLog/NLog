@@ -1947,6 +1947,8 @@ namespace NLog.Targets
             var fileLength = _fileAppenderCache.GetFileLength(previousFileName);
             if (!fileLength.HasValue)
             {
+                _initializedFiles.Remove(previousFileName);
+
                 if (!string.IsNullOrEmpty(_previousLogFileName) && previousFileName != _previousLogFileName)
                 {
                     upcomingWriteSize = 0;
@@ -2000,6 +2002,8 @@ namespace NLog.Targets
             DateTime? creationTimeSource = TryGetArchiveFileCreationTimeSource(fileName, previousLogEventTimestamp);
             if (!creationTimeSource.HasValue)
             {
+                _initializedFiles.Remove(fileName);
+
                 if (!string.IsNullOrEmpty(_previousLogFileName) && fileName != _previousLogFileName)
                 {
                     return GetArchiveFileNameBasedOnTime(_previousLogFileName, logEvent, previousLogEventTimestamp);
@@ -2034,14 +2038,6 @@ namespace NLog.Targets
             var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, fallbackTimeSourceLinux);
             if (!creationTimeSource.HasValue)
                 return null;
-
-            var fileLength = _fileAppenderCache.GetFileLength(fileName);   // Verifies file-handle by checking FileStream.Length
-            if (!fileLength.HasValue)
-            {
-                InternalLogger.Debug("FileTarget(Name={0}): Cannot get length of file {1} with creation date {2}.", Name, fileName, creationTimeSource.Value);
-                _initializedFiles.Remove(fileName);
-                return null;
-            }
 
             if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
             {
