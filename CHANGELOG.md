@@ -9,7 +9,7 @@ Date format: (year/month/day)
 #### Features
 - [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
 - [#3610](https://github.com/NLog/NLog/pull/3610) LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
-- [#3787](https://github.com/NLog/NLog/pull/3787) LogManager.Setup().SetupSerialization(s => s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
+- [#3787](https://github.com/NLog/NLog/pull/3787) LogManager.Setup().SetupExtensions(s => s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
 - [#3713](https://github.com/NLog/NLog/pull/3713) ${level:format=FullName} will expand Info + Warn to their full name (@snakefoot)
 - [#3714](https://github.com/NLog/NLog/pull/3714) + [#3734](https://github.com/NLog/NLog/pull/3734) FileTarget - Supports MaxArchiveDays for cleanup of old files based on their age (@snakefoot)
 - [#3737](https://github.com/NLog/NLog/pull/3737) + [#3769](https://github.com/NLog/NLog/pull/3769) Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)
