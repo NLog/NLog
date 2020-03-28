@@ -804,10 +804,14 @@ namespace NLog.UnitTests.Common
             {
                 // Arrange
                 var receivedArgs = new List<InternalLoggerMessageEventArgs>();
-                InternalLogger.LogMessageReceived += (sender, e) =>
+                var logFactory = new LogFactory();
+                logFactory.Setup().SetupInternalLogger(s =>
                 {
-                    receivedArgs.Add(e);
-                };
+                    EventHandler<InternalLoggerMessageEventArgs> eventHandler = (sender, e) => receivedArgs.Add(e);
+                    s.AddLogSubscription(eventHandler);
+                    s.RemoveLogSubscription(eventHandler);
+                    s.AddLogSubscription(eventHandler);
+                });
                 var exception = new Exception();
 
                 // Act

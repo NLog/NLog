@@ -88,5 +88,23 @@ namespace NLog
             InternalLogger.LogWriter = writer;
             return setupBuilder;
         }
+
+        /// <summary>
+        /// Configures <see cref="InternalLogger.LogMessageReceived"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder AddLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, System.EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
+        {
+            InternalLogger.LogMessageReceived += eventSubscriber;
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Configures <see cref="InternalLogger.LogMessageReceived"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder RemoveLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, System.EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
+        {
+            InternalLogger.LogMessageReceived -= eventSubscriber;
+            return setupBuilder;
+        }
     }
 }
