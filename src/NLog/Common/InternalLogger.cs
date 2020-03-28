@@ -531,11 +531,12 @@ namespace NLog.Common
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
-                    System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
-                Info("{0}. File version: {1}. Product version: {2}.",
+                System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
+                Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
                     assembly.FullName,
                     fileVersionInfo?.FileVersion,
-                    fileVersionInfo?.ProductVersion);
+                    fileVersionInfo?.ProductVersion,
+                    assembly.GlobalAssemblyCache);
 #endif
             }
             catch (Exception ex)
