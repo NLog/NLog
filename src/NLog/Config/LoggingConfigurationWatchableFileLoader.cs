@@ -54,15 +54,18 @@ namespace NLog.Config
         private bool _isDisposing;
         private LogFactory _logFactory;
 
-        public override LoggingConfiguration Load(LogFactory logFactory)
+        public override LoggingConfiguration Load(LogFactory logFactory, string filename = null)
         {
 #if !NETSTANDARD
-            var config = TryLoadFromAppConfig();
-            if (config != null)
-                return config;
+            if (string.IsNullOrEmpty(filename))
+            {
+                var config = TryLoadFromAppConfig();
+                if (config != null)
+                    return config;
+            }
 #endif
 
-            return base.Load(logFactory);
+            return base.Load(logFactory, filename);
         }
 
         public override void Activated(LogFactory logFactory, LoggingConfiguration config)

@@ -56,7 +56,7 @@ namespace NLog.Config
         private readonly IAppEnvironment _appEnvironment;
 
         public LoggingConfigurationFileLoader()
-            :this(DefaultAppEnvironment)
+            : this(DefaultAppEnvironment)
         {
         }
 
@@ -65,37 +65,23 @@ namespace NLog.Config
             _appEnvironment = appEnvironment;
         }
 
-        public LoggingConfiguration Load(LogFactory logFactory, string filename)
+        public virtual LoggingConfiguration Load(LogFactory logFactory, string filename = null)
         {
-            var configFile = GetConfigFile(filename);
-            return LoadXmlLoggingConfigurationFile(logFactory, configFile);
-        }
+            if (string.IsNullOrEmpty(filename) || FilePathLayout.DetectFilePathKind(filename) == FilePathKind.Relative)
+            {
+                return TryLoadFromFilePaths(logFactory, filename);
+            }
+            else if (TryLoadLoggingConfiguration(logFactory, filename, out var config))
+            {
+                return config;
+            }
 
-        public virtual LoggingConfiguration Load(LogFactory logFactory)
-        {
-            return TryLoadFromFilePaths(logFactory);
+            return null;
         }
 
         public virtual void Activated(LogFactory logFactory, LoggingConfiguration config)
         {
             // Nothing to do
-        }
-
-        internal string GetConfigFile(string configFile)
-        {
-            if (FilePathLayout.DetectFilePathKind(configFile) == FilePathKind.Relative)
-            {
-                foreach (var path in GetDefaultCandidateConfigFilePaths(configFile))
-                {
-                    if (_appEnvironment.FileExists(path))
-                    {
-                        configFile = path;
-                        break;
-                    }
-                }
-            }
-
-            return configFile;
         }
 
 #if __ANDROID__
@@ -125,9 +111,9 @@ namespace NLog.Config
         }
 #endif
 
-        private LoggingConfiguration TryLoadFromFilePaths(LogFactory logFactory)
+        private LoggingConfiguration TryLoadFromFilePaths(LogFactory logFactory, string filename)
         {
-            var configFileNames = logFactory.GetCandidateConfigFilePaths();
+            var configFileNames = logFactory.GetCandidateConfigFilePaths(filename);
             foreach (string configFile in configFileNames)
             {
                 if (TryLoadLoggingConfiguration(logFactory, configFile, out var config))
@@ -273,7 +259,7 @@ namespace NLog.Config
                 }
 
                 if (ScanForBooleanParameter(fileContent, "autoReload", true))
-                { 
+                {
                     autoReload = true;
                 }
 
@@ -293,19 +279,13 @@ namespace NLog.Config
         }
 #endif
 
-        /// <inheritdoc/>
-        public IEnumerable<string> GetDefaultCandidateConfigFilePaths()
-        {
-            return GetDefaultCandidateConfigFilePaths(null);
-        }
-
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files. 
         /// </summary>
-        public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string fileName)
+        public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null)
         {
             // NLog.config from application directory
-            string nlogConfigFile = fileName ?? "NLog.config";
+            string nlogConfigFile = filename ?? "NLog.config";
             string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
             if (!string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nlogConfigFile);
@@ -334,7 +314,7 @@ namespace NLog.Config
                     yield return nLogConfigFileLowerCase;
             }
 
-            if (fileName == null)
+            if (filename == null)
             {
                 // Scan for process specific nlog-files
                 foreach (var filePath in GetAppSpecificNLogLocations(entryAssemblyLocation))
@@ -344,17 +324,23 @@ namespace NLog.Config
             foreach (var filePath in GetPrivateBinPathNLogLocations(baseDirectory, nlogConfigFile, platformFileSystemCaseInsensitive ? nLogConfigFileLowerCase : string.Empty))
                 yield return filePath;
 
+            string nlogAssemblyLocation = filename != null ? null : LookupNLogAssemblyLocation();
+            if (nlogAssemblyLocation != null)
+                yield return nlogAssemblyLocation + ".nlog";
+        }
+
+        private static string LookupNLogAssemblyLocation()
+        {
 #if !SILVERLIGHT && !NETSTANDARD1_0
-            if (fileName == null)
+            // Get path to NLog.dll.nlog only if the assembly is not in the GAC
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            var nlogAssemblyLocation = nlogAssembly?.Location;
+            if (!string.IsNullOrEmpty(nlogAssemblyLocation) && !nlogAssembly.GlobalAssemblyCache)
             {
-                // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-                var nlogAssembly = typeof(LogFactory).GetAssembly();
-                if (!string.IsNullOrEmpty(nlogAssembly?.Location) && !nlogAssembly.GlobalAssemblyCache)
-                {
-                    yield return nlogAssembly.Location + ".nlog";
-                }
+                return nlogAssemblyLocation;
             }
 #endif
+            return null;
         }
 
         /// <summary>

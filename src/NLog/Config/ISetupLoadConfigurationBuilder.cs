@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -33,34 +33,19 @@
 
 namespace NLog.Config
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
-    /// Interface for loading NLog <see cref="LoggingConfiguration"/>
+    /// Interface for fluent setup of LogFactory options
     /// </summary>
-    internal interface ILoggingConfigurationLoader : IDisposable
+    public interface ISetupLoadConfigurationBuilder
     {
         /// <summary>
-        /// Finds and loads the NLog configuration
+        /// LogFactory under configuration
         /// </summary>
-        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
-        /// <param name="filename">Name of NLog.config file (optional)</param>
-        /// <returns>NLog configuration (or null if none found)</returns>
-        LoggingConfiguration Load(LogFactory logFactory, string filename = null);
+        LogFactory LogFactory { get; }
 
         /// <summary>
-        /// Notifies when LoggingConfiguration has been successfully applied
+        /// LoggingConfiguration being built
         /// </summary>
-        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
-        /// <param name="config">NLog Config</param>
-        void Activated(LogFactory logFactory, LoggingConfiguration config);
-
-        /// <summary>
-        /// Get file paths (including filename) for the possible NLog config files. 
-        /// </summary>
-        /// <param name="filename">Name of NLog.config file (optional)</param>
-        /// <returns>The file paths to the possible config file</returns>
-        IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null);
+        LoggingConfiguration Configuration { get; set; }
     }
 }

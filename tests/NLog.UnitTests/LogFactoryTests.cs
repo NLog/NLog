@@ -155,7 +155,7 @@ namespace NLog.UnitTests
                     var ex = Record.Exception(() => logFactory.LoadConfiguration(configFile));
 
                     // Assert
-                    Assert.IsType<IOException>(ex);
+                    Assert.IsType<FileNotFoundException>(ex);
                 }
 
                 // Assert
