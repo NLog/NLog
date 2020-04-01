@@ -106,6 +106,15 @@ namespace NLog.UnitTests.Config
                 Assert.Contains(System.IO.Path.GetTempPath(), InternalLogger.LogFile);
             }
 
+#if !NETSTANDARD1_3
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog internalLogFile='${ProcessDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess()?.MainModule?.FileName), InternalLogger.LogFile);
+            }
+#endif
+
             using (new InternalLoggerScope(true))
             {
                 var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;

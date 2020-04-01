@@ -245,6 +245,10 @@ namespace NLog.Config
                     internalLogFile = internalLogFile.Replace(baseDirToken, LogFactory.CurrentAppDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out string tempDirToken))
                     internalLogFile = internalLogFile.Replace(tempDirToken, System.IO.Path.GetTempPath() + System.IO.Path.DirectorySeparatorChar.ToString());
+#if !NETSTANDARD1_3
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
+                    internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(ProcessIDHelper.Instance.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
+#endif
                 if (internalLogFile.IndexOf("%", StringComparison.OrdinalIgnoreCase) >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
 #endif
