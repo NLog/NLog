@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
 #endif
 
         /// <summary>
-        /// Use base dir of current process.
+        /// Use base dir of current process. Alternative one can just use ${processdir}
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         public bool ProcessDir { get; set; }
