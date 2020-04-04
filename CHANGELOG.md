@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7 (2019/03/20)
+### V4.7 (2020/03/20)
 
 #### Features
 - [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
