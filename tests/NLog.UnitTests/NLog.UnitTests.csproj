@@ -80,7 +80,7 @@
     <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
     <Reference Include="Microsoft.CSharp" />
 
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.1" />
     <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
