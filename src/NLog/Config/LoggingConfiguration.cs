@@ -739,9 +739,7 @@ namespace NLog.Config
 
             _configItems = ObjectGraphScanner.FindReachableObjects<object>(true, roots.ToArray());
 
-            // initialize all config items starting from most nested first
-            // so that whenever the container is initialized its children have already been
-            InternalLogger.Info("Found {0} configuration items", _configItems.Count);
+            InternalLogger.Info("Validating config: {0}", this);
 
             foreach (object o in _configItems)
             {
@@ -753,7 +751,7 @@ namespace NLog.Config
         {
             bool firstInitializeAll = _configItems.Count == 0;
 
-            if (firstInitializeAll && (LogFactory.ThrowExceptions==true || LogManager.ThrowExceptions))
+            if (firstInitializeAll && (LogFactory.ThrowExceptions || LogManager.ThrowExceptions))
             {
                 InternalLogger.Info("LogManager.ThrowExceptions = true can crash the application! Use only for unit-testing and last resort troubleshooting.");
             }
@@ -765,6 +763,8 @@ namespace NLog.Config
                 CheckUnusedTargets();
             }
 
+            // initialize all config items starting from most nested first
+            // so that whenever the container is initialized its children have already been
             var supportsInitializes = GetSupportsInitializes(true);
             foreach (ISupportsInitialize initialize in supportsInitializes)
             {
@@ -892,6 +892,21 @@ namespace NLog.Config
             });
 
             InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var targets = GetAllTargetsToFlush();
+            if (targets.Count == 0)
+                targets = GetAllTargetsThreadSafe();
+            if (targets.Count == 0)
+                targets = AllTargets.ToList();
+
+            if (targets.Count > 0 && targets.Count < 5)
+                return $"TargetNames={string.Join(", ", targets.Select(t => t.Name).Where(n => !string.IsNullOrEmpty(n)).ToArray())}, ConfigItems={_configItems.Count}";
+            else
+                return $"Targets={targets.Count}, ConfigItems={_configItems.Count}";
         }
     }
 }
