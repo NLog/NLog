@@ -69,7 +69,7 @@ namespace NLog.UnitTests
             logger.Factory.Flush(ex => { timeoutException = ex; manualResetEvent.Set(); }, TimeSpan.FromMilliseconds(1));
 
             // Assert
-            Assert.True(manualResetEvent.WaitOne(1000));
+            Assert.True(manualResetEvent.WaitOne(5000));
             Assert.NotNull(timeoutException);
         }
 

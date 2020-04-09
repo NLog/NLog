@@ -944,7 +944,7 @@ namespace NLog.Targets
 
         private bool IsArchivingEnabled => ArchiveAboveSize > ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
 
-        private bool IsSimpleKeepFileOpen => KeepFileOpen && !NetworkWrites && !ReplaceFileContentsOnEachWrite && !ConcurrentWrites;
+        private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !NetworkWrites && !ReplaceFileContentsOnEachWrite;
 
         private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && !PlatformDetector.IsWin32 && IsSimpleKeepFileOpen;
 
@@ -1776,31 +1776,13 @@ namespace NLog.Targets
                 archiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
-                    InternalLogger.Trace("FileTarget(Name={0}): Archive attempt for file '{1}'", Name, archiveFile);
-                    archivedAppender = _fileAppenderCache.InvalidateAppender(fileName);
-                    if (fileName != archiveFile)
-                    {
-                        var fileAppender = _fileAppenderCache.InvalidateAppender(archiveFile);
-                        archivedAppender = archivedAppender ?? fileAppender;
-                    }
-
-                    if (!string.IsNullOrEmpty(_previousLogFileName) && _previousLogFileName != archiveFile && _previousLogFileName != fileName)
-                    {
-                        var fileAppender = _fileAppenderCache.InvalidateAppender(_previousLogFileName);
-                        archivedAppender = archivedAppender ?? fileAppender;
-                    }
+                    archivedAppender = TryCloseFileAppenderBeforeArchive(fileName, archiveFile);
+                }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                    // Closes all file handles if any archive operation has been detected by file-watcher
-                    _fileAppenderCache.InvalidateAppendersForArchivedFiles();
+                // Closes all file handles if any archive operation has been detected by file-watcher
+                _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
-                }
-                else
-                {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                    _fileAppenderCache.InvalidateAppendersForArchivedFiles();
-#endif
-                }
             }
             catch (Exception exception)
             {
@@ -1811,72 +1793,104 @@ namespace NLog.Targets
                 }
             }
 
-            if (!string.IsNullOrEmpty(archiveFile))
+            if (string.IsNullOrEmpty(archiveFile))
+                return false;
+
+            try
             {
+#if SupportsMutex
                 try
                 {
-#if SupportsMutex
-                    try
+                    if (archivedAppender is BaseMutexFileAppender mutexFileAppender && mutexFileAppender.ArchiveMutex != null)
                     {
-                        if (archivedAppender is BaseMutexFileAppender mutexFileAppender && mutexFileAppender.ArchiveMutex != null)
-                        {
-                            mutexFileAppender.ArchiveMutex.WaitOne();
-                        }
-                        else
-                        {
-                            InternalLogger.Info("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
-                        }
+                        mutexFileAppender.ArchiveMutex.WaitOne();
                     }
-                    catch (AbandonedMutexException)
+                    else if (!IsSimpleKeepFileOpen)
                     {
-                        // ignore the exception, another process was killed without properly releasing the mutex
-                        // the mutex has been acquired, so proceed to writing
-                        // See: https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                        InternalLogger.Debug("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
                     }
+                }
+                catch (AbandonedMutexException)
+                {
+                    // ignore the exception, another process was killed without properly releasing the mutex
+                    // the mutex has been acquired, so proceed to writing
+                    // See: https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                }
 #endif
 
-                    // Check again if archive is needed. We could have been raced by another process
-                    var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
-                    if (string.IsNullOrEmpty(validatedArchiveFile))
-                    {
-                        InternalLogger.Trace("FileTarget(Name={0}): Archive already performed for file '{1}'", Name, archiveFile);
-                        if (archiveFile != fileName)
-                            _initializedFiles.Remove(fileName);
-                        _initializedFiles.Remove(archiveFile);
-                    }
-                    else
-                    {
-                        archiveFile = validatedArchiveFile;
-                        DoAutoArchive(archiveFile, ev, previousLogEventTimestamp, initializedNewFile);
-                        _initializedFiles.Remove(archiveFile);
-                    }
-
-                    if (_previousLogFileName == archiveFile)
-                    {
-                        _previousLogFileName = null;
-                        _previousLogEventTimestamp = null;
-                    }
-                    return true;
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "FileTarget(Name={0}): Failed to archive file '{1}'.", Name, archiveFile);
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-                finally
-                {
+                return TryArchiveFileAfterCloseFileAppender(fileName, archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
+            }
+            finally
+            {
 #if SupportsMutex
-                    if (archivedAppender is BaseMutexFileAppender mutexFileAppender)
-                        mutexFileAppender.ArchiveMutex?.ReleaseMutex();
+                if (archivedAppender is BaseMutexFileAppender mutexFileAppender)
+                    mutexFileAppender.ArchiveMutex?.ReleaseMutex();
 #endif
-                    archivedAppender?.Dispose();    // Dispose of Archive Mutex
-                }
+                archivedAppender?.Dispose();    // Dispose of Archive Mutex
+            }
+        }
+
+        /// <summary>
+        /// Closes any active file-appenders that matches the input filenames.
+        /// File-appender is requested to invalidate/close its filehandle, but keeping its archive-mutex alive
+        /// </summary>
+        private BaseFileAppender TryCloseFileAppenderBeforeArchive(string fileName, string archiveFile)
+        {
+            InternalLogger.Trace("FileTarget(Name={0}): Archive attempt for file '{1}'", Name, archiveFile);
+            BaseFileAppender archivedAppender = _fileAppenderCache.InvalidateAppender(fileName);
+            if (fileName != archiveFile)
+            {
+                var fileAppender = _fileAppenderCache.InvalidateAppender(archiveFile);
+                archivedAppender = archivedAppender ?? fileAppender;
             }
 
-            return false;
+            if (!string.IsNullOrEmpty(_previousLogFileName) && _previousLogFileName != archiveFile && _previousLogFileName != fileName)
+            {
+                var fileAppender = _fileAppenderCache.InvalidateAppender(_previousLogFileName);
+                archivedAppender = archivedAppender ?? fileAppender;
+            }
+
+            return archivedAppender;
+        }
+
+        private bool TryArchiveFileAfterCloseFileAppender(string fileName, string archiveFile, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp, bool initializedNewFile)
+        {
+            try
+            {
+                // Check again if archive is needed. We could have been raced by another process
+                var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
+                if (string.IsNullOrEmpty(validatedArchiveFile))
+                {
+                    InternalLogger.Trace("FileTarget(Name={0}): Archive already performed for file '{1}'", Name, archiveFile);
+                    if (archiveFile != fileName)
+                        _initializedFiles.Remove(fileName);
+                    _initializedFiles.Remove(archiveFile);
+                }
+                else
+                {
+                    archiveFile = validatedArchiveFile;
+                    DoAutoArchive(archiveFile, ev, previousLogEventTimestamp, initializedNewFile);
+                    _initializedFiles.Remove(archiveFile);
+                }
+
+                if (_previousLogFileName == archiveFile)
+                {
+                    _previousLogFileName = null;
+                    _previousLogEventTimestamp = null;
+                }
+
+                return true;    // Archive operation has been executed, by this application (or a concurrent one)
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "FileTarget(Name={0}): Failed to archive file '{1}'.", Name, archiveFile);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                return false;
+            }
         }
 
         /// <summary>
@@ -1947,6 +1961,8 @@ namespace NLog.Targets
             var fileLength = _fileAppenderCache.GetFileLength(previousFileName);
             if (!fileLength.HasValue)
             {
+                _initializedFiles.Remove(previousFileName);
+
                 if (!string.IsNullOrEmpty(_previousLogFileName) && previousFileName != _previousLogFileName)
                 {
                     upcomingWriteSize = 0;
@@ -2000,6 +2016,8 @@ namespace NLog.Targets
             DateTime? creationTimeSource = TryGetArchiveFileCreationTimeSource(fileName, previousLogEventTimestamp);
             if (!creationTimeSource.HasValue)
             {
+                _initializedFiles.Remove(fileName);
+
                 if (!string.IsNullOrEmpty(_previousLogFileName) && fileName != _previousLogFileName)
                 {
                     return GetArchiveFileNameBasedOnTime(_previousLogFileName, logEvent, previousLogEventTimestamp);
@@ -2034,14 +2052,6 @@ namespace NLog.Targets
             var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, fallbackTimeSourceLinux);
             if (!creationTimeSource.HasValue)
                 return null;
-
-            var fileLength = _fileAppenderCache.GetFileLength(fileName);   // Verifies file-handle by checking FileStream.Length
-            if (!fileLength.HasValue)
-            {
-                InternalLogger.Debug("FileTarget(Name={0}): Cannot get length of file {1} with creation date {2}.", Name, fileName, creationTimeSource.Value);
-                _initializedFiles.Remove(fileName);
-                return null;
-            }
 
             if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
             {
