@@ -323,38 +323,21 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void test_with_mockLogManager()
         {
-
-            ILogger logger = MyLogManager.Instance.GetLogger("A");
-            logger.Debug("msg");
-            var t1 = _mockConfig.FindTargetByName<DebugTarget>("t1");
-            Assert.NotNull(t1);
-            Assert.NotNull(t1.LastMessage);
-            Assert.Equal("msg|my-mocking-manager", t1.LastMessage);
-        }
-
-
-        private static readonly LoggingConfiguration _mockConfig = new LoggingConfiguration();
-
-        static VariableLayoutRendererTests()
-        {
-            var t1 = new DebugTarget
+            LogFactory logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration();
+            var debugTarget = new DebugTarget
             {
                 Name = "t1",
                 Layout = "${message}|${var:var1:default=x}"
             };
+            logConfig.AddRuleForAllLevels(debugTarget);
+            logConfig.Variables["var1"] = "my-mocking-manager";
+            logFactory.Configuration = logConfig;
 
-            _mockConfig.AddTarget(t1);
-            _mockConfig.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, t1));
-            _mockConfig.Variables["var1"] = "my-mocking-manager";
+            ILogger logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            Assert.Equal("msg|my-mocking-manager", debugTarget.LastMessage);
         }
-
-        class MyLogManager
-        {
-            private static readonly LogFactory _instance = new LogFactory(_mockConfig);
-
-            public static LogFactory Instance => _instance;
-        }
-
 
         private void CreateConfigFromXml()
         {

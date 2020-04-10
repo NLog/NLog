@@ -178,7 +178,7 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="xmlContents">The XML contents.</param>
+        /// <param name="xmlContents">NLog configuration as XML string.</param>
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         internal XmlLoggingConfiguration([NotNull] string xmlContents, [CanBeNull] string fileName, LogFactory logFactory)
@@ -196,11 +196,22 @@ namespace NLog.Config
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
-        /// <param name="xml">NLog configuration</param>
+        /// <param name="xml">NLog configuration as XML string.</param>
         /// <returns></returns>
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
-            return new XmlLoggingConfiguration(xml, string.Empty, LogManager.LogFactory);
+            return CreateFromXmlString(xml, LogManager.LogFactory);
+        }
+
+        /// <summary>
+        /// Parse XML string as NLog configuration
+        /// </summary>
+        /// <param name="xml">NLog configuration as XML string.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        /// <returns></returns>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, LogFactory logFactory)
+        {
+            return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 #endif
 
