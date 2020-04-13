@@ -34,6 +34,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
@@ -70,8 +71,28 @@ namespace NLog.Layouts
 
         static Layout()
         {
-            _typeCode = (default(T) as IConvertible)?.GetTypeCode();
-            _typeNamed = typeof(T).Name;
+            var type = typeof(T);
+            if (IsNullable(type))
+            {
+                var arg = type.GetGenericArguments()[0];
+
+#if !NETSTANDARD1_3 //todo fix
+
+                _typeCode = System.Type.GetTypeCode(arg);
+
+#endif
+            }
+            else
+            {
+                _typeCode = (default(T) as IConvertible)?.GetTypeCode();
+            }
+
+            _typeNamed = type.Name;
+        }
+
+        private static bool IsNullable(Type propertyType)
+        {
+            return propertyType.IsGenericType() && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         /// <summary>

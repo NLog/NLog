@@ -25,6 +25,24 @@ namespace NLog.UnitTests.Layouts.Typed
         }   
         
         [Theory]
+        [InlineData(100)]
+        [InlineData(100d)]
+        [InlineData("100")]
+        [InlineData(" 100 ")]
+        public void TypedNullableIntLayoutDynamicTest(object value)
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<int?>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderableToValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }   
+        
+        [Theory]
         [InlineData(100.5)]
         //[InlineData("100.5")]
         //[InlineData(" 100.5 ")] //todo culture
