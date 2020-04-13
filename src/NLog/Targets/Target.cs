@@ -748,16 +748,13 @@ namespace NLog.Targets
                     return value;
                 }
 
-                return layout.RenderableToValue(logEvent, defaultValue); //todo
-                //using (var localTarget = ReusableLayoutBuilder.Allocate())
-                //{
-                //    return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
-                //}
+                using (var localTarget = ReusableLayoutBuilder.Allocate())
+                {
+                    return layout.RenderToValueInternal(logEvent, localTarget.Result);
+                }
             }
-            else
-            {
-                return layout.RenderableToValue(logEvent, defaultValue);
-            }
+
+            return layout.RenderableToValue(logEvent, defaultValue);
         }
 
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)

@@ -34,6 +34,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
 using NLog.Internal;
@@ -116,6 +117,17 @@ namespace NLog.Layouts
         /// <returns></returns>
         T IRenderable<T>.RenderToValue(LogEventInfo logEvent)
         {
+            return RenderToValueInternal(logEvent, null);
+        }
+
+        /// <summary>
+        /// Render to value
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="reusableBuilder">if null, default layout render will be used</param>
+        /// <returns></returns>
+        internal T RenderToValueInternal(LogEventInfo logEvent, [CanBeNull] StringBuilder reusableBuilder)
+        {
             if (_fixedValue)
             {
                 return _value;
@@ -136,7 +148,7 @@ namespace NLog.Layouts
                 InternalLogger.Warn("rawvalue isn't a {0} ", TypedName);
             }
 
-            var text = _layout.Render(logEvent);
+            var text = reusableBuilder != null ? RenderAllocateBuilder(logEvent, reusableBuilder) : _layout.Render(logEvent);
             if (TryParse(text, out var parsedValue))
             {
                 return parsedValue;
