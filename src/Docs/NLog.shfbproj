@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <PropertyGroup>
     <!-- The configuration and platform will be used to determine which
          assemblies to include from solution and project documentation
@@ -51,13 +51,15 @@
       <DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.xml" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.Web.dll" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.Web.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Targets.AppCenter.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Targets.AppCenter.xml" />
     </DocumentationSources>
-    <HelpTitle>NLog 4.6</HelpTitle>
-    <CopyrightText>Copyright %28c%29 2004-2019 NLog</CopyrightText>
+    <HelpTitle>NLog 4.7</HelpTitle>
+    <CopyrightText>Copyright %28c%29 2004-2020 NLog</CopyrightText>
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
     <CopyrightHref>https://nlog-project.org/</CopyrightHref>
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.5.2</FrameworkVersion>
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
         <component id="Code Block Component">
@@ -79,25 +81,26 @@
     <Preliminary>False</Preliminary>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="NLog" isDocumented="True">Logging interface, context classes</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Internal" isDocumented="False">Components used internally for NLog.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Config" isDocumented="True">Reading XML/API config</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Non-wrapper targets</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Targets which wraps other targets</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Message filters</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">All layouts</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Non-wrapper layout renderers</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">All layout renderers which wraps other layout renderers</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">Conditions used to filter log events.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Web" isDocumented="True">Integration with ASP.NET.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
-<NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Internal.Xamarin" isDocumented="False" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="NLog.Internal" isDocumented="False">Components used internally for NLog.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Config" isDocumented="True">Reading XML/API config</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Non-wrapper targets</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Targets which wraps other targets</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Message filters</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">All layouts</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Non-wrapper layout renderers</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">All layout renderers which wraps other layout renderers</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">Conditions used to filter log events.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Web" isDocumented="True">Integration with ASP.NET.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
+      <NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Internal.Xamarin" isDocumented="False" />
+    </NamespaceSummaries>
     <PlugInConfigurations>
       <PlugInConfig id="Assembly Binding Redirection" enabled="True">
         <configuration useGAC="false">
@@ -145,6 +148,7 @@
       <Argument Key="defaultLanguage" Value="cs" />
       <Argument Key="includeEnumValues" Value="true" />
     </TransformComponentArguments>
+    <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
