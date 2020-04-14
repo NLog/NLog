@@ -363,7 +363,7 @@ namespace NLog.Targets
                 var matchingRule = GetMatchingRowHighlightingRule(logEvent);
                 if (WordHighlightingRules.Count > 0)
                 {
-                    colorMessage = GenerateColorEscapeSequences(message);
+                    colorMessage = GenerateColorEscapeSequences(logEvent, message);
                 }
 
                 newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
@@ -447,7 +447,7 @@ namespace NLog.Targets
             return null;
         }
 
-        private string GenerateColorEscapeSequences(string message)
+        private string GenerateColorEscapeSequences(LogEventInfo logEvent, string message)
         {
             if (string.IsNullOrEmpty(message))
                 return message;
@@ -462,7 +462,7 @@ namespace NLog.Targets
                 for (int i = 0; i < WordHighlightingRules.Count; ++i)
                 {
                     var hl = WordHighlightingRules[i];
-                    var matches = hl.Matches(message);
+                    var matches = hl.Matches(logEvent, message);
                     if (matches == null || matches.Count == 0)
                         continue;
 
