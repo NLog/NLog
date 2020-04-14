@@ -74,13 +74,17 @@ namespace NLog.Config
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
+            var nullableType = Nullable.GetUnderlyingType(propertyType);
+            Type t = nullableType ?? propertyType;
+
+            var newValue = System.Convert.ChangeType(propertyValue, t, formatProvider);
+            return newValue;
         }
 
         private static object ConvertGuid(string format, string propertyString)
         {
 #if NET3_5
-           return new Guid(propertyString);
+            return new Guid(propertyString);
 #else
             return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
 #endif
