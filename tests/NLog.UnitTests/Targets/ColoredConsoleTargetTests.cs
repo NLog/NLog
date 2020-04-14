@@ -58,8 +58,29 @@ namespace NLog.UnitTests.Targets
 
                 });
 
+            AssertOutput(target, "The Cat Sat At The Bar\t\n.\a",
+                new string[] { "The C", "at", " S", "at", " At The Bar", "." });
+        }
+
+        [Fact]
+        public void WordHighlightingTextCondition()
+        {
+            var highlightLogger = "SpecialLogger";
+
+            var target = new ColoredConsoleTarget { Layout = "${logger}${message}" };
+            target.WordHighlightingRules.Add(
+                new ConsoleWordHighlightingRule
+                {
+                    ForegroundColor = ConsoleOutputColor.Red,
+                    Text = "at",
+                    Condition = string.Concat("logger=='", highlightLogger, "'"),
+                });
+
             AssertOutput(target, "The Cat Sat At The Bar.",
-                new string[] { "The C", "at", " S", "at", " At The Bar." });
+                new string[] { "The C", "at", " S", "at", " At The Bar." }, loggerName: highlightLogger);
+
+            AssertOutput(target, "The Cat Sat At The Bar",
+                new string[] { "The Cat Sat At The Bar" }, loggerName: "DefaultLogger");
         }
 
         [Theory]
@@ -80,7 +101,6 @@ namespace NLog.UnitTests.Targets
             AssertOutput(target, "The Cat Sat At The Bar.",
                 new string[] { "The C", "at", " S", "at", " ", "At", " The Bar." });
         }
-
 
         [Theory]
         [InlineData(true)]

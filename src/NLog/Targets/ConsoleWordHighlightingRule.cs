@@ -152,7 +152,7 @@ namespace NLog.Targets
 
         internal MatchCollection Matches(LogEventInfo logEvent, string message)
         {
-            if (Condition != null && !true.Equals(Condition.Evaluate(logEvent)))
+            if (Condition != null && false.Equals(Condition.Evaluate(logEvent)))
             {
                 return null;
             }
