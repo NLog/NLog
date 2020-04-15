@@ -417,7 +417,9 @@ namespace NLog.Targets
 
                 if (!IsInitialized)
                 {
-                    PropertyHelper.CheckRequiredParameters(this);
+                    if (configuration == null)
+                        PropertyHelper.CheckRequiredParameters(this);
+
                     try
                     {
                         InitializeTarget();
