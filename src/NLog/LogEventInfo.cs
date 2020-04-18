@@ -108,9 +108,12 @@ namespace NLog
         public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message, IList<MessageTemplateParameter> messageTemplateParameters)
             : this(level, loggerName, null, message, null, null)
         {
-            if (messageTemplateParameters != null && messageTemplateParameters.Count > 0)
+            if (messageTemplateParameters?.Count > 0)
             {
-                _properties = new PropertiesDictionary(messageTemplateParameters);
+                var messageProperties = new MessageTemplateParameter[messageTemplateParameters.Count];
+                for (int i = 0; i < messageTemplateParameters.Count; ++i)
+                    messageProperties[i] = messageTemplateParameters[i];
+                _properties = new PropertiesDictionary(messageProperties);
             }
         }
 
