@@ -216,7 +216,7 @@ namespace NLog.LayoutRenderers
         private bool CheckForExclude(LogEventInfo logEvent)
         {
             bool checkForExclude = Exclude?.Count > 0;
-#if NET45
+#if NET4_5
             if (checkForExclude)
             {
                 // Skip Exclude check when only to exclude CallSiteInformation, and there is none
