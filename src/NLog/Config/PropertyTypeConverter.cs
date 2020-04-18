@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.Config
 {
     using System;
@@ -48,6 +50,8 @@ namespace NLog.Config
                 return propertyValue;
             }
 
+            bool? isNullable = null;
+            Type nullableType = null;
             if (propertyValue is string propertyString)
             {
                 propertyValue = propertyString = propertyString.Trim();
@@ -68,13 +72,27 @@ namespace NLog.Config
                 {
                     return ConvertGuid(format, propertyString);
                 }
+
+                nullableType = Nullable.GetUnderlyingType(propertyType);
+                isNullable = nullableType != null;
+
+                if (isNullable == true && StringHelpers.IsNullOrWhiteSpace(propertyString))
+                {
+                    return null;
+                }
+
             }
             else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
             {
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            var nullableType = Nullable.GetUnderlyingType(propertyType);
+            if (isNullable == null)
+            {
+                nullableType = Nullable.GetUnderlyingType(propertyType);
+                isNullable = nullableType != null;
+            }
+            
             Type t = nullableType ?? propertyType;
 
             var newValue = System.Convert.ChangeType(propertyValue, t, formatProvider);
