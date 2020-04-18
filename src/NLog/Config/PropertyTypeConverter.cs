@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.Config
 {
     using System;
+    using NLog.Internal;
 
     /// <summary>
     /// Default implementation of <see cref="IPropertyTypeConverter"/>
@@ -89,8 +88,8 @@ namespace NLog.Config
 
             if (isNullable == null)
             {
+                // note: don't lookup GetUnderlyingType if we've done already
                 nullableType = Nullable.GetUnderlyingType(propertyType);
-                isNullable = nullableType != null;
             }
             
             Type t = nullableType ?? propertyType;
