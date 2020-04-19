@@ -195,6 +195,9 @@ namespace NLog.Internal
             if (typeof(Assembly).IsAssignableFrom(objectType))
                 return true;
 
+            if (typeof(Module).IsAssignableFrom(objectType))
+                return true;
+
             return false;
         }
 
