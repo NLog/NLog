@@ -42,7 +42,6 @@ namespace NLog.Targets
     /// Attribute details for <see cref="TargetWithContext"/> 
     /// </summary>
     [NLogConfigurationItem]
-    [ThreadAgnostic]
     public class TargetPropertyWithContext
     {
         /// <summary>

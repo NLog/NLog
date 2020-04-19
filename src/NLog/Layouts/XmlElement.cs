@@ -40,9 +40,6 @@ namespace NLog.Layouts
     /// A XML Element
     /// </summary>
     [NLogConfigurationItem]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
     public class XmlElement : XmlElementBase
     {
         private const string DefaultElementName = "item";

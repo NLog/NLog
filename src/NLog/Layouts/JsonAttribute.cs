@@ -40,9 +40,6 @@ namespace NLog.Layouts
     /// JSON attribute.
     /// </summary>
     [NLogConfigurationItem]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    [AppDomainFixedOutput]
     public class JsonAttribute
     {
         /// <summary>
