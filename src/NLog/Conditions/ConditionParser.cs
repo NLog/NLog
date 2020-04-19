@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Common;
-
 namespace NLog.Conditions
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
@@ -248,7 +247,7 @@ namespace NLog.Conditions
             if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
             {
                 {
-                    expression = new ConditionLiteralExpression(true);
+                    expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
                     return true;
                 }
             }
@@ -256,7 +255,7 @@ namespace NLog.Conditions
             if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
             {
                 {
-                    expression = new ConditionLiteralExpression(false);
+                    expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
                     return true;
                 }
             }

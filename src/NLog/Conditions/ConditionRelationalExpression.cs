@@ -96,7 +96,7 @@ namespace NLog.Conditions
             object v1 = LeftExpression.Evaluate(context);
             object v2 = RightExpression.Evaluate(context);
 
-            return Compare(v1, v2, RelationalOperator);
+            return Compare(v1, v2, RelationalOperator) ? BoxedTrue : BoxedFalse;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace NLog.Conditions
         /// <param name="rightValue">The second value.</param>
         /// <param name="relationalOperator">The relational operator.</param>
         /// <returns>Result of the given relational operator.</returns>
-        private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
+        private static bool Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
 #if !NETSTANDARD1_0
             System.Collections.IComparer comparer = StringComparer.InvariantCulture;
@@ -146,7 +146,7 @@ namespace NLog.Conditions
         /// <param name="rightValue"></param>
         private static void PromoteTypes(ref object leftValue, ref object rightValue)
         {
-            if (leftValue == null || rightValue == null)
+            if (ReferenceEquals(leftValue, rightValue) || leftValue == null || rightValue == null)
             {
                 return;
             }

@@ -47,6 +47,9 @@ namespace NLog.Conditions
     [ThreadSafe]
     public abstract class ConditionExpression
     {
+        internal static readonly object BoxedTrue = true;
+        internal static readonly object BoxedFalse = false;
+
         /// <summary>
         /// Converts condition text to a condition expression tree.
         /// </summary>
