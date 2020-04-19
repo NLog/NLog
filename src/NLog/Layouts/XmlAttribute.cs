@@ -41,9 +41,6 @@ namespace NLog.Layouts
     /// XML attribute.
     /// </summary>
     [NLogConfigurationItem]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
     public class XmlAttribute
     {
         /// <summary>
