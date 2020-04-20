@@ -79,7 +79,6 @@ namespace NLog.Config
                 {
                     return null;
                 }
-
             }
             else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
             {
