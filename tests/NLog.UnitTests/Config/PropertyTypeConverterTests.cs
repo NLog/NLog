@@ -115,7 +115,7 @@ namespace NLog.UnitTests.Config
         public void Convert_EmptyStringToNullableTypeTest(Type type)
         {
             // Act
-            var result = _sut.Convert("",type, null, null);
+            var result = _sut.Convert("", type, null, null);
 
             // Assert
             Assert.Null(result);
@@ -235,6 +235,33 @@ namespace NLog.UnitTests.Config
             // Assert
             var resultTyped = Assert.IsType<string>(result);
             Assert.Equal("0123", resultTyped);
+        }
+
+        [Fact]
+        public void Convert_StringToDatetimeWithFormat()
+        {
+            // Arrange
+
+            // Act
+            var result = _sut.Convert("2019", typeof(DateTime), "yyyy", null);
+
+            // Assert
+            var resultTyped = Assert.IsType<DateTime>(result);
+            Assert.Equal(new DateTime(2019, 1, 1), resultTyped);
+        }
+
+        [Fact]
+        public void Convert_StringToNullableDatetimeWithFormat()
+        {
+            // Arrange
+
+            // Act
+            var result = _sut.Convert("2019", typeof(DateTime?), "yyyy", null);
+
+            // Assert
+            // datetime is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
+            var resultTyped = Assert.IsType<DateTime>(result);
+            Assert.Equal(new DateTime(2019, 1, 1), resultTyped);
         }
     }
 }

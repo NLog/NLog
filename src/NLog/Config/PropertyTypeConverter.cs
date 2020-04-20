@@ -55,29 +55,31 @@ namespace NLog.Config
             {
                 propertyValue = propertyString = propertyString.Trim();
 
-                if (propertyType == typeof(DateTime))
-                {
-                    return ConvertDateTime(format, formatProvider, propertyString);
-                }
-                if (propertyType == typeof(DateTimeOffset))
-                {
-                    return ConvertDateTimeOffset(format, formatProvider, propertyString);
-                }
-                if (propertyType == typeof(TimeSpan))
-                {
-                    return ConvertTimeSpan(format, formatProvider, propertyString);
-                }
-                if (propertyType == typeof(Guid))
-                {
-                    return ConvertGuid(format, propertyString);
-                }
-
                 nullableType = Nullable.GetUnderlyingType(propertyType);
                 isNullable = nullableType != null;
 
                 if (isNullable == true && StringHelpers.IsNullOrWhiteSpace(propertyString))
                 {
                     return null;
+                }
+
+                var type = nullableType ?? propertyType;
+
+                if (type == typeof(DateTime))
+                {
+                    return ConvertDateTime(format, formatProvider, propertyString);
+                }
+                if (type == typeof(DateTimeOffset))
+                {
+                    return ConvertDateTimeOffset(format, formatProvider, propertyString);
+                }
+                if (type == typeof(TimeSpan))
+                {
+                    return ConvertTimeSpan(format, formatProvider, propertyString);
+                }
+                if (type == typeof(Guid))
+                {
+                    return ConvertGuid(format, propertyString);
                 }
             }
             else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
@@ -90,7 +92,7 @@ namespace NLog.Config
                 // note: don't lookup GetUnderlyingType if we've done already
                 nullableType = Nullable.GetUnderlyingType(propertyType);
             }
-            
+
             Type t = nullableType ?? propertyType;
 
             var newValue = System.Convert.ChangeType(propertyValue, t, formatProvider);
