@@ -44,7 +44,7 @@ namespace NLog.Config
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
-            if (propertyType == null || propertyValue == null || propertyValue.GetType() == propertyType || propertyType == typeof(object))
+            if (!NeedToConvert(propertyValue, propertyType))
             {
                 return propertyValue;
             }
@@ -97,6 +97,11 @@ namespace NLog.Config
 
             var newValue = System.Convert.ChangeType(propertyValue, t, formatProvider);
             return newValue;
+        }
+
+        private static bool NeedToConvert(object propertyValue, Type propertyType)
+        {
+            return propertyType != null && propertyValue != null && propertyValue.GetType() != propertyType && propertyType != typeof(object);
         }
 
         private static object ConvertGuid(string format, string propertyString)
