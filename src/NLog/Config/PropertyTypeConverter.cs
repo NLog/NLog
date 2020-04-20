@@ -49,22 +49,17 @@ namespace NLog.Config
                 return propertyValue;
             }
 
-            bool? isNullable = null;
-            Type nullableType = null;
+            var nullableType = Nullable.GetUnderlyingType(propertyType);
+            var type = nullableType ?? propertyType;
             if (propertyValue is string propertyString)
             {
                 propertyValue = propertyString = propertyString.Trim();
 
-                nullableType = Nullable.GetUnderlyingType(propertyType);
-                isNullable = nullableType != null;
-
-                if (isNullable == true && StringHelpers.IsNullOrWhiteSpace(propertyString))
+                if (nullableType != null && StringHelpers.IsNullOrWhiteSpace(propertyString))
                 {
                     return null;
                 }
-
-                var type = nullableType ?? propertyType;
-
+                
                 if (type == typeof(DateTime))
                 {
                     return ConvertDateTime(format, formatProvider, propertyString);
@@ -87,15 +82,7 @@ namespace NLog.Config
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            if (isNullable == null)
-            {
-                // note: don't lookup GetUnderlyingType if we've done already
-                nullableType = Nullable.GetUnderlyingType(propertyType);
-            }
-
-            Type t = nullableType ?? propertyType;
-
-            var newValue = System.Convert.ChangeType(propertyValue, t, formatProvider);
+            var newValue = System.Convert.ChangeType(propertyValue, type, formatProvider);
             return newValue;
         }
 
