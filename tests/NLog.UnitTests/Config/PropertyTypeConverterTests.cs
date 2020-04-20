@@ -150,7 +150,7 @@ namespace NLog.UnitTests.Config
             var result = _sut.Convert("123.2", typeof(decimal?), null, CultureInfo.InvariantCulture);
 
             // Assert
-            // int is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
+            // decimal is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
             var resultTyped = Assert.IsType<decimal>(result);
             Assert.Equal(123.2M, resultTyped);
         }
@@ -184,7 +184,7 @@ namespace NLog.UnitTests.Config
             var result = _sut.Convert("123.2", typeof(double?), null, CultureInfo.InvariantCulture);
 
             // Assert
-            // int is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
+            // double is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
             var resultTyped = Assert.IsType<double>(result);
             Assert.Equal(123.2, resultTyped);
         }
@@ -207,7 +207,7 @@ namespace NLog.UnitTests.Config
             var result = _sut.Convert("123", typeof(short), null, CultureInfo.InvariantCulture);
 
             // Assert
-            // int is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
+            // short is correct here, see https://stackoverflow.com/questions/785358/nullable-type-is-not-a-nullable-type
             var resultTyped = Assert.IsType<short>(result);
             Assert.Equal(123, resultTyped);
         }
