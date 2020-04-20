@@ -107,6 +107,19 @@ namespace NLog.UnitTests.Config
             Assert.Equal(123, resultTyped);
         }
 
+        [Theory]
+        [InlineData(typeof(DateTimeOffset?))]
+        [InlineData(typeof(DateTime?))]
+        [InlineData(typeof(Guid?))]
+        [InlineData(typeof(TimeSpan?))]
+        public void Convert_EmtpyStringToNullableType_CorrectValue(Type type)
+        {
+            // Act
+            var result = _sut.Convert("",type, null, null);
+
+            Assert.Null(result);
+        }
+
         [Fact]
         public void Convert_StringToDecimal_CorrectValue()
         {
