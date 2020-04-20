@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_IntToNullableInt_CorrectValue()
+        public void Convert_IntToNullableIntTest()
         {
             // Act
             var result = _sut.Convert(123, typeof(int?), null, null);
@@ -60,7 +60,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_NullableIntToInt_CorrectValue()
+        public void Convert_NullableIntToIntTest()
         {
             // Act
             var result = _sut.Convert((int?)123, typeof(int), null, null);
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Config
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Convert_EmptyStringToNullableInt_CorrectValue(string value)
+        public void Convert_EmptyStringToNullableIntTest(string value)
         {
             // Act
             var result = _sut.Convert(value, typeof(int?), null, null);
@@ -85,7 +85,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToInt_CorrectValue()
+        public void Convert_StringToIntTest()
         {
             // Act
             var result = _sut.Convert("123", typeof(int), null, null);
@@ -96,7 +96,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToNullableInt_CorrectValue()
+        public void Convert_StringToNullableIntTest()
         {
             // Act
             var result = _sut.Convert("123", typeof(int?), null, null);
@@ -112,16 +112,17 @@ namespace NLog.UnitTests.Config
         [InlineData(typeof(DateTime?))]
         [InlineData(typeof(Guid?))]
         [InlineData(typeof(TimeSpan?))]
-        public void Convert_EmtpyStringToNullableType_CorrectValue(Type type)
+        public void Convert_EmptyStringToNullableTypeTest(Type type)
         {
             // Act
             var result = _sut.Convert("",type, null, null);
 
+            // Assert
             Assert.Null(result);
         }
 
         [Fact]
-        public void Convert_StringToDecimal_CorrectValue()
+        public void Convert_StringToDecimalTest()
         {
             // Act
             var result = _sut.Convert("123.2", typeof(decimal), null, CultureInfo.InvariantCulture);
@@ -132,7 +133,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToDecimalWithCulture_CorrectValue()
+        public void Convert_StringToDecimalWithCultureTest()
         {
             // Act
             var result = _sut.Convert("123,2", typeof(decimal), null, new CultureInfo("NL-nl"));
@@ -143,7 +144,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToNullableDecimal_CorrectValue()
+        public void Convert_StringToNullableDecimalTest()
         {
             // Act
             var result = _sut.Convert("123.2", typeof(decimal?), null, CultureInfo.InvariantCulture);
@@ -155,7 +156,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToDouble_CorrectValue()
+        public void Convert_StringToDoubleTest()
         {
             // Act
             var result = _sut.Convert("123.2", typeof(double), null, CultureInfo.InvariantCulture);
@@ -166,7 +167,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToDoubleWithCulture_CorrectValue()
+        public void Convert_StringToDoubleWithCultureTest()
         {
             // Act
             var result = _sut.Convert("123,2", typeof(double), null, new CultureInfo("NL-nl"));
@@ -177,7 +178,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToNullableDouble_CorrectValue()
+        public void Convert_StringToNullableDoubleTest()
         {
             // Act
             var result = _sut.Convert("123.2", typeof(double?), null, CultureInfo.InvariantCulture);
@@ -189,7 +190,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToShort_CorrectValue()
+        public void Convert_StringToShortTest()
         {
             // Act
             var result = _sut.Convert("123", typeof(short), null, CultureInfo.InvariantCulture);
@@ -200,7 +201,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_StringToNullableShort_CorrectValue()
+        public void Convert_StringToNullableShortTest()
         {
             // Act
             var result = _sut.Convert("123", typeof(short), null, CultureInfo.InvariantCulture);
@@ -212,7 +213,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_FormattableToString_CorrectValue()
+        public void Convert_FormattableToStringTest()
         {
             // Act
             var result = _sut.Convert(123, typeof(string), "D4", null);
@@ -223,7 +224,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Convert_NullableFormattableToString_CorrectValue()
+        public void Convert_NullableFormattableToStringTest()
         {
             // Arrange
             int? nullableInt = 123;
