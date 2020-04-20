@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using NLog.Internal;
 
     /// <summary>
     /// Default implementation of <see cref="IPropertyTypeConverter"/>
@@ -43,28 +44,35 @@ namespace NLog.Config
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
-            if (propertyType == null || propertyValue == null || propertyValue.GetType() == propertyType || propertyType == typeof(object))
+            if (!NeedToConvert(propertyValue, propertyType))
             {
                 return propertyValue;
             }
 
+            var nullableType = Nullable.GetUnderlyingType(propertyType);
+            var type = nullableType ?? propertyType;
             if (propertyValue is string propertyString)
             {
                 propertyValue = propertyString = propertyString.Trim();
 
-                if (propertyType == typeof(DateTime))
+                if (nullableType != null && StringHelpers.IsNullOrWhiteSpace(propertyString))
+                {
+                    return null;
+                }
+                
+                if (type == typeof(DateTime))
                 {
                     return ConvertDateTime(format, formatProvider, propertyString);
                 }
-                if (propertyType == typeof(DateTimeOffset))
+                if (type == typeof(DateTimeOffset))
                 {
                     return ConvertDateTimeOffset(format, formatProvider, propertyString);
                 }
-                if (propertyType == typeof(TimeSpan))
+                if (type == typeof(TimeSpan))
                 {
                     return ConvertTimeSpan(format, formatProvider, propertyString);
                 }
-                if (propertyType == typeof(Guid))
+                if (type == typeof(Guid))
                 {
                     return ConvertGuid(format, propertyString);
                 }
@@ -74,13 +82,19 @@ namespace NLog.Config
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
+            var newValue = System.Convert.ChangeType(propertyValue, type, formatProvider);
+            return newValue;
+        }
+
+        private static bool NeedToConvert(object propertyValue, Type propertyType)
+        {
+            return propertyType != null && propertyValue != null && propertyValue.GetType() != propertyType && propertyType != typeof(object);
         }
 
         private static object ConvertGuid(string format, string propertyString)
         {
 #if NET3_5
-           return new Guid(propertyString);
+            return new Guid(propertyString);
 #else
             return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
 #endif
