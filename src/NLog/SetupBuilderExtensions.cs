@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.Runtime.CompilerServices;
     using NLog.Config;
     using NLog.Internal;
 
@@ -42,6 +43,23 @@ namespace NLog
     /// </summary>
     public static class SetupBuilderExtensions
     {
+        /// <summary>
+        /// Gets the logger with the full name of the current class, so namespace and class name.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger(this ISetupBuilder setupBuilder)
+        {
+            return setupBuilder.LogFactory.GetLogger(StackTraceUsageUtils.GetClassFullName());
+        }
+
+        /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        public static Logger GetLogger(this ISetupBuilder setupBuilder, string name)
+        {
+            return setupBuilder.LogFactory.GetLogger(name);
+        }
+
         /// <summary>
         /// Configures loading of NLog extensions for Targets and LayoutRenderers
         /// </summary>

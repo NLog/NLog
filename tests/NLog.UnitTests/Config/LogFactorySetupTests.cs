@@ -41,6 +41,36 @@ namespace NLog.UnitTests.Config
 {
     public class LogFactorySetupTests
     {
+        [Fact]
+        public void SetupBuilderGetCurrentClassLogger()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            var logger1 = logFactory.Setup().GetCurrentClassLogger();
+            var logger2 = logFactory.GetCurrentClassLogger();
+
+            // Assert
+            Assert.Equal(typeof(LogFactorySetupTests).FullName, logger1.Name);
+            Assert.Same(logger1, logger2);
+        }
+
+        [Fact]
+        public void SetupBuilderGetLogger()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            var logger1 = logFactory.Setup().GetLogger(nameof(SetupBuilderGetCurrentClassLogger));
+            var logger2 = logFactory.GetLogger(nameof(SetupBuilderGetCurrentClassLogger));
+            
+            // Assert
+            Assert.Equal(nameof(SetupBuilderGetCurrentClassLogger), logger1.Name);
+            Assert.Same(logger1, logger2);
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
