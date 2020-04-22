@@ -545,10 +545,10 @@ namespace NLog
         /// Sets the stack trace for the event info.
         /// </summary>
         /// <param name="stackTrace">The stack trace.</param>
-        /// <param name="userStackFrame">Index of the first user stack frame within the stack trace.</param>
+        /// <param name="userStackFrame">Index of the first user stack frame within the stack trace (Negative means NLog should skip stackframes from System-assemblies).</param>
         public void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
-            GetCallSiteInformationInternal().SetStackTrace(stackTrace, userStackFrame, null);
+            GetCallSiteInformationInternal().SetStackTrace(stackTrace, userStackFrame >= 0 ? userStackFrame : (int?)null);
         }
 
         /// <summary>

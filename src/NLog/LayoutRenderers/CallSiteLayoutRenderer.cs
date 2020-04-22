@@ -123,12 +123,23 @@ namespace NLog.LayoutRenderers
 #endif
 
         /// <summary>
+        /// Logger should capture StackTrace, if it was not provided manually
+        /// </summary>
+        [DefaultValue(true)]
+        public bool CaptureStackTrace { get; set; } = true;
+
+        /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
         StackTraceUsage IUsesStackTrace.StackTraceUsage
         {
             get
             {
+                if (!CaptureStackTrace)
+                {
+                    return StackTraceUsage.None;
+                }
+
 #if !SILVERLIGHT
                 if (FileName)
                 {

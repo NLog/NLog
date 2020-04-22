@@ -94,6 +94,47 @@ namespace NLog.UnitTests.LayoutRenderers
             WriteMessages(logger, getLastMessage).Wait();
         }
 
+        [Fact]
+        public void LineNumberNoCaptureStackTraceTest()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+        <nlog>
+            <targets><target name='debug' type='Debug' layout='${callsite-linenumber:captureStackTrace=false} ${message}' /></targets>
+            <rules>
+                <logger name='*' minlevel='Debug' writeTo='debug' />
+            </rules>
+        </nlog>");
+
+            // Act
+            LogManager.GetLogger("A").Debug("msg");
+
+            // Assert
+            AssertDebugLastMessage("debug", " msg");
+        }
+
+        [Fact]
+        public void LineNumberNoCaptureStackTraceWithStackTraceTest()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+        <nlog>
+            <targets><target name='debug' type='Debug' layout='${callsite-linenumber:captureStackTrace=false} ${message}' /></targets>
+            <rules>
+                <logger name='*' minlevel='Debug' writeTo='debug' />
+            </rules>
+        </nlog>");
+
+            // Act
+            var logEvent = new LogEventInfo(LogLevel.Info, null, "msg");
+            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
+            LogManager.GetLogger("A").Log(logEvent);
+
+            // Assert
+            AssertDebugLastMessageContains("debug", " msg");
+            Assert.NotEqual(" msg", GetDebugLastMessage("debug"));
+        }
+
         private static async Task WriteMessages(ILogger logger, Func<string> getLastMessage)
         {
             logger.Info("Line number should be non-zero");

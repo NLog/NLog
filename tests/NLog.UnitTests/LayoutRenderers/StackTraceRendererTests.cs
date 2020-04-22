@@ -56,6 +56,38 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void RenderStackTraceNoCaptureStackTrace()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace:captureStackTrace=false}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            RenderMe("I am:");
+            AssertDebugLastMessage("debug", "I am: ");
+        }
+
+        [Fact]
+        public void RenderStackTraceNoCaptureStackTraceWithStackTrace()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace:captureStackTrace=false}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            var logEvent = new LogEventInfo(LogLevel.Info, null, "I am:");
+            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
+            LogManager.GetCurrentClassLogger().Log(logEvent);
+            AssertDebugLastMessageContains("debug", $" => {nameof(StackTraceRendererTests)}.{nameof(RenderStackTraceNoCaptureStackTraceWithStackTrace)}");
+        }
+
+        [Fact]
         public void RenderStackTrace_topframes()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
