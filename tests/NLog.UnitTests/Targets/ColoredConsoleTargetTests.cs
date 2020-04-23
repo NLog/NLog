@@ -43,6 +43,14 @@ namespace NLog.UnitTests.Targets
 
     public class ColoredConsoleTargetTests : NLogTestBase
     {
+        [Fact]
+        public void RowHighLightNewLineTest()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
+            AssertOutput(target, "Before\a\nAfter\a",
+    new string[] { "Before", "After" });
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]

@@ -341,7 +341,7 @@ namespace NLog.Targets
         {
             try
             {
-                WriteToOutputWithColor(logEvent, message);
+                WriteToOutputWithColor(logEvent, message ?? string.Empty);
             }
             catch (Exception ex) when (ex is OverflowException || ex is IndexOutOfRangeException || ex is ArgumentOutOfRangeException)
             {
@@ -354,7 +354,7 @@ namespace NLog.Targets
 
         private void WriteToOutputWithColor(LogEventInfo logEvent, string message)
         {
-            string colorMessage = message ?? string.Empty;
+            string colorMessage = message;
             ConsoleColor? newForegroundColor = null;
             ConsoleColor? newBackgroundColor = null;
 
@@ -377,7 +377,12 @@ namespace NLog.Targets
             }
             else
             {
-                bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message?.IndexOf('\n') >= 0;
+                bool wordHighlighting = !ReferenceEquals(colorMessage, message);
+                if (!wordHighlighting && message.IndexOf('\n') >= 0)
+                {
+                    wordHighlighting = true;    // Newlines requires additional handling when doing colors
+                    colorMessage = EscapeColorCodes(message);
+                }
                 WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
             }
         }
@@ -452,8 +457,7 @@ namespace NLog.Targets
             if (string.IsNullOrEmpty(message))
                 return message;
 
-            if (message.IndexOf("\a", StringComparison.Ordinal) >= 0)
-                message = message.Replace("\a", "\a\a");
+            message = EscapeColorCodes(message);
 
             using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
@@ -493,6 +497,13 @@ namespace NLog.Targets
                 }
             }
 
+            return message;
+        }
+
+        private static string EscapeColorCodes(string message)
+        {
+            if (message.IndexOf("\a", StringComparison.Ordinal) >= 0)
+                message = message.Replace("\a", "\a\a");
             return message;
         }
 
