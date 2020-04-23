@@ -128,11 +128,11 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-                var tempDir = PathHelpers.TrimDirectorySeparators(Path.GetTempPath());
-                if (!string.IsNullOrEmpty(tempDir) && Path.GetFullPath(baseDir).StartsWith(tempDir, StringComparison.OrdinalIgnoreCase))
+                var tempDir = Path.GetTempPath();
+                if (PathHelpers.IsTempDir(baseDir, tempDir))
                 {
                     var processDir = GetProcessDir();
-                    if (!string.IsNullOrEmpty(processDir) && !Path.GetFullPath(processDir).StartsWith(tempDir, StringComparison.OrdinalIgnoreCase))
+                    if (!string.IsNullOrEmpty(processDir) && !PathHelpers.IsTempDir(processDir, tempDir))
                     {
                         return processDir;
                     }

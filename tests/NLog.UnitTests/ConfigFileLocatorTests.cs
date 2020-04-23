@@ -229,6 +229,34 @@ namespace NLog.UnitTests
             AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Process", result);
         }
 
+        [Fact]
+        public void LoadConfigFile_NetCoreSingleFilePublish_IgnoreTmpDirectory()
+        {
+            // Arrange
+            var tmpDir = "/var/tmp/";
+            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            {
+                AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
+#if NETSTANDARD
+                AppDomainConfigurationFile = string.Empty,                  // NetCore style
+#else
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "ProcessDir", "Process.exe.config"),
+#endif
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),    // NetCore published exe
+                EntryAssemblyLocation = Path.Combine(tmpDir, "TempProcessDir"),
+                UserTempFilePath = "/tmp/",
+                EntryAssemblyFileName = "Entry.dll"
+            };
+
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+
+            // Act
+            var result = fileLoader.GetDefaultCandidateConfigFilePaths().ToList();
+
+            // Assert base-directory + process-directory + nlog-assembly-directory
+            AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Process", result);
+        }
+
         private static void AssertResult(string tmpDir, string appDir, string processDir, string appName, List<string> result)
         {
             if (NLog.Internal.PlatformDetector.IsWin32)

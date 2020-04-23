@@ -444,9 +444,8 @@ namespace NLog.Config
             if (string.IsNullOrEmpty(processDirectory))
                 return false;
 
-            string tempFilePath = PathHelpers.TrimDirectorySeparators(appEnvironment.UserTempFilePath);
-            if (!string.IsNullOrEmpty(tempFilePath) && entryAssemblyLocation.StartsWith(tempFilePath, StringComparison.OrdinalIgnoreCase))
-                return true;   // Hack for .NET Core 3 - Single File Publish that unpacks Entry-Assembly into temp-folder, and process-directory is valid
+            if (PathHelpers.IsTempDir(entryAssemblyLocation, appEnvironment.UserTempFilePath))
+                return true;    // Hack for .NET Core 3 - Single File Publish that unpacks Entry-Assembly into temp-folder, and process-directory is valid
 
             return false;   // NetCore Application is not published and is possible being executed by dotnet-process
         }
