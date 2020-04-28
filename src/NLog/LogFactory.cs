@@ -1157,7 +1157,6 @@ namespace NLog
                 return this;    // Skip optional loading of default config, when config is already loaded
             }
 
-
             var config = _configLoader.Load(this, configFile);
             if (config == null)
             {
