@@ -536,7 +536,6 @@ namespace NLog.UnitTests.Config
 
             // Assert
             var ex = Assert.Throws<FileNotFoundException>(act);
-            Assert.Contains("NLog.UnitTests.dll.nlog", ex.Message);
             Assert.Contains("NLog.dll.nlog", ex.Message);
             Assert.Contains(Directory.GetCurrentDirectory(), ex.Message);
         }
