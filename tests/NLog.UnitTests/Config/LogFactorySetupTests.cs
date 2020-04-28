@@ -509,23 +509,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void SetupBuilderLoadConfigurationFromFileMissingButRequiredTest()
-        {
-            // Arrange
-            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
-            var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
-
-            // Act
-            Action act = () => logFactory.Setup().LoadConfigurationFromFile(optional: false);
-
-            // Assert
-            var ex = Assert.Throws<FileNotFoundException>(act);
-            Assert.Contains("NLog.dll.nlog", ex.Message);
-            Assert.Contains(Directory.GetCurrentDirectory(), ex.Message);
-        }
-
-        [Fact]
         public void SetupBuilderLoadConfigurationFromFileMissingButRequiredTest_IntegrationTest()
         {
             // Arrange
