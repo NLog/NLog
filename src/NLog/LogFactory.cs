@@ -1186,7 +1186,7 @@ namespace NLog
             {
                 // hashset to remove duplicates
                 var triedPaths = new HashSet<string>(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
-                messageBuilder.AppendLine("Searched on the following locations:");
+                messageBuilder.AppendLine(" Searched on the following locations:");
                 foreach (var path in triedPaths)
                 {
                     messageBuilder.Append("- ");
