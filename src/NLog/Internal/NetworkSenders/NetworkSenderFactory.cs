@@ -55,12 +55,18 @@ namespace NLog.Internal.NetworkSenders
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
-                return new HttpNetworkSender(url);
+                return new HttpNetworkSender(url)
+                {
+                    MaxQueueSize = maxQueueSize,
+                };
             }
 
             if (url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
             {
-                return new HttpNetworkSender(url);
+                return new HttpNetworkSender(url)
+                {
+                    MaxQueueSize = maxQueueSize,
+                };
             }
 
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
