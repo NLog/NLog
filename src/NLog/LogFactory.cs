@@ -47,6 +47,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Internal.Fakeables;
     using NLog.Targets;
+    using System.Linq;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -544,7 +545,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            FlushInternal(timeout, asyncContinuation ?? (ex => { }) );
+            FlushInternal(timeout, asyncContinuation ?? (ex => { }));
         }
 
         private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
@@ -1156,6 +1157,7 @@ namespace NLog
                 return this;    // Skip optional loading of default config, when config is already loaded
             }
 
+
             var config = _configLoader.Load(this, configFile);
             if (config == null)
             {
@@ -1164,7 +1166,8 @@ namespace NLog
 #if SILVERLIGHT
                     throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
 #else
-                    throw new System.IO.FileNotFoundException("Failed to load NLog LoggingConfiguration", actualConfigFile);
+                    var message = CreateFileNotFoundMessage(configFile);
+                    throw new System.IO.FileNotFoundException(message, actualConfigFile);
 #endif
                 }
                 else
@@ -1175,6 +1178,23 @@ namespace NLog
 
             Configuration = config;
             return this;
+        }
+
+        private string CreateFileNotFoundMessage(string configFile)
+        {
+            // hashset to remove duplicates
+            var triedPaths = new HashSet<string>(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
+
+            var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration. Searched on the following locations:");
+            messageBuilder.AppendLine();
+            foreach (var path in triedPaths)
+            {
+                messageBuilder.Append("- ");
+                messageBuilder.AppendLine(path);
+            }
+
+            var message = messageBuilder.ToString();
+            return message;
         }
 
         /// <summary>

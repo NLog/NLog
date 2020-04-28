@@ -520,7 +520,25 @@ namespace NLog.UnitTests.Config
             Action act = () => logFactory.Setup().LoadConfigurationFromFile(optional: false);
 
             // Assert
-            Assert.Throws<FileNotFoundException>(act);
+            var ex = Assert.Throws<FileNotFoundException>(act);
+            Assert.Contains("NLog.dll.nlog", ex.Message);
+            Assert.Contains(Directory.GetCurrentDirectory(), ex.Message);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileMissingButRequiredTest_IntegrationTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            Action act = () => logFactory.Setup().LoadConfigurationFromFile(optional: false);
+
+            // Assert
+            var ex = Assert.Throws<FileNotFoundException>(act);
+            Assert.Contains("NLog.UnitTests.dll.nlog", ex.Message);
+            Assert.Contains("NLog.dll.nlog", ex.Message);
+            Assert.Contains(Directory.GetCurrentDirectory(), ex.Message);
         }
 
         [Fact]
