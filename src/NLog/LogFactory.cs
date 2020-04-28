@@ -562,7 +562,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            FlushInternal(timeout, asyncContinuation ?? (ex => { }));
+            FlushInternal(timeout, asyncContinuation ?? (ex => { }) );
         }
 
         private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
@@ -1174,7 +1174,7 @@ namespace NLog
                 return this;    // Skip optional loading of default config, when config is already loaded
             }
 
-            var config = _configLoader.Load(this, configFile);
+            var config = CreateConfig(configFile);
             if (config == null)
             {
                 if (!optional)
@@ -1194,6 +1194,12 @@ namespace NLog
 
             Configuration = config;
             return this;
+        }
+
+        internal LoggingConfiguration CreateConfig(string configFile)
+        {
+            var config = _configLoader.Load(this, configFile);
+            return config;
         }
 
         private string CreateFileNotFoundMessage(string configFile)

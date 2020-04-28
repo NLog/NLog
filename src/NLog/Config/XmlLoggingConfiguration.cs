@@ -272,7 +272,7 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName, LogFactory);
+                return LogFactory.CreateConfig(_originalFileName); //TODO NLog 5: should call LoadConfiguration which set LogFactory.Configuration
             else
                 return base.Reload();
         }

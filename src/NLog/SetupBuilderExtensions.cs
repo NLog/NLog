@@ -92,6 +92,14 @@ namespace NLog
         /// </summary>
         public static ISetupBuilder LoadConfiguration(this ISetupBuilder setupBuilder, Action<ISetupLoadConfigurationBuilder> configBuilder)
         {
+            return LoadConfiguration(setupBuilder, true, configBuilder);
+        }
+
+        /// <summary>
+        /// Loads NLog config created by the method <paramref name="configBuilder"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfiguration(this ISetupBuilder setupBuilder, bool applyOnReload, Action<ISetupLoadConfigurationBuilder> configBuilder)
+        {
             var config = setupBuilder.LogFactory._config;
             var setupConfig = new SetupLoadConfigurationBuilder(setupBuilder.LogFactory, config);
             configBuilder(setupConfig);
@@ -106,6 +114,15 @@ namespace NLog
             {
                 setupBuilder.LogFactory.Configuration = newConfig;
             }
+#if !NETSTANDARD1_3
+            if (applyOnReload)
+            {
+                setupBuilder.LogFactory.ConfigurationChanged += (sender, e) =>
+                {
+                    setupBuilder.LoadConfiguration(false, configBuilder);
+                };
+            }
+#endif
 
             return setupBuilder;
         }
