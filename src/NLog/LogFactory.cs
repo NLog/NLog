@@ -1165,7 +1165,7 @@ namespace NLog
 #if SILVERLIGHT
                     throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
 #else
-                    var message = CreateFileNotFoundMessage(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
+                    var message = CreateFileNotFoundMessage(configFile);
                     throw new System.IO.FileNotFoundException(message, actualConfigFile);
 #endif
                 }
@@ -1179,13 +1179,13 @@ namespace NLog
             return this;
         }
 
-        private static string CreateFileNotFoundMessage(IEnumerable<string> candidateConfigFilePaths)
+        private string CreateFileNotFoundMessage(string configFile)
         {
             var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration.");
             try
             {
                 // hashset to remove duplicates
-                var triedPaths = new HashSet<string>(candidateConfigFilePaths);
+                var triedPaths = new HashSet<string>(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
                 messageBuilder.AppendLine("Searched on the following locations:");
                 foreach (var path in triedPaths)
                 {
