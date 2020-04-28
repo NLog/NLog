@@ -1165,7 +1165,7 @@ namespace NLog
 #if SILVERLIGHT
                     throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
 #else
-                    var message = CreateFileNotFoundMessage(configFile);
+                    var message = CreateFileNotFoundMessage(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
                     throw new System.IO.FileNotFoundException(message, actualConfigFile);
 #endif
                 }
@@ -1179,19 +1179,24 @@ namespace NLog
             return this;
         }
 
-        private string CreateFileNotFoundMessage(string configFile)
+        private static string CreateFileNotFoundMessage(IEnumerable<string> candidateConfigFilePaths)
         {
-            // hashset to remove duplicates
-            var triedPaths = new HashSet<string>(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
-
-            var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration. Searched on the following locations:");
-            messageBuilder.AppendLine();
-            foreach (var path in triedPaths)
+            var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration.");
+            try
             {
-                messageBuilder.Append("- ");
-                messageBuilder.AppendLine(path);
+                // hashset to remove duplicates
+                var triedPaths = new HashSet<string>(candidateConfigFilePaths);
+                messageBuilder.AppendLine("Searched on the following locations:");
+                foreach (var path in triedPaths)
+                {
+                    messageBuilder.Append("- ");
+                    messageBuilder.AppendLine(path);
+                }
             }
-
+            catch (Exception e)
+            {
+                InternalLogger.Debug("Failed to GetDefaultCandidateConfigFilePaths in CreateFileNotFoundMessage: {0}", e);
+            }
             var message = messageBuilder.ToString();
             return message;
         }
