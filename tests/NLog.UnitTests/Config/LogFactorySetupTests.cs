@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Linq;
 using System.IO;
 using NLog.Common;
 using NLog.Config;
@@ -499,7 +500,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile();
@@ -529,7 +530,7 @@ namespace NLog.UnitTests.Config
             // Arrange
             var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile(optional: true);
@@ -545,7 +546,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile("NLog.config", optional: true);
@@ -561,7 +562,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act / Assert
             Assert.Throws<System.IO.FileNotFoundException>(() => logFactory.Setup().LoadConfigurationFromFile("NLog.config", optional: false));
@@ -587,7 +588,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='true'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().
@@ -598,6 +599,117 @@ namespace NLog.UnitTests.Config
             // Assert
             Assert.False(logFactory.AutoShutdown);
             Assert.Single(logFactory.Configuration.Variables);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void SetupBuilderLoadConfigurationApplyOnReloadTest(bool applyOnReload)
+        {
+            // Arrange
+
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f =>
+            {
+                var xmlFile = new System.IO.StringReader(@"
+<nlog>
+    <targets>
+        <target name='target1' type='debug' />
+    </targets>
+</nlog>");
+
+                var xmlReader = System.Xml.XmlReader.Create(xmlFile);
+                return xmlReader;
+            });
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader, appEnv);
+
+            // Act
+            logFactory.Setup().
+                LoadConfigurationFromFile().
+                LoadConfiguration(applyOnReload, b =>
+                {
+                    b.Configuration.AddRuleForAllLevels("target1");
+                });
+
+            logFactory.ReloadConfiguration();
+
+            // Assert
+            var expectedRules = applyOnReload ? 1 : 0;
+            Assert.Equal(expectedRules, logFactory.Configuration.LoggingRules.Count);
+        }
+
+        [Theory]
+        [InlineData(true, true)]
+        [InlineData(false, true)]
+        [InlineData(true, false)]
+        [InlineData(false, false)]
+        public void SetupBuilderMultipleLoadConfigurationApplyOnReloadTest(bool applyOnReload1, bool applyOnReload2)
+        {
+            // Arrange
+
+            var logFactory = ArrangeMultipleLoadConfigurationApplyOnReload(applyOnReload1, applyOnReload2);
+
+            logFactory.ReloadConfiguration();
+
+            // Assert
+            if (!applyOnReload1 && !applyOnReload2)
+            {
+                Assert.Equal(0, logFactory.Configuration.LoggingRules.Count);
+            }
+            else
+            {
+                // Assert content and correct order
+                if (applyOnReload1)
+                {
+                    Assert.Equal("target1", logFactory.Configuration.LoggingRules[0].Targets.Single().Name);
+                }
+                if (applyOnReload2)
+                {
+                    var index = applyOnReload1 ? 1 : 0;
+                    Assert.Equal("target2", logFactory.Configuration.LoggingRules[index].Targets.Single().Name);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(true, true)]
+        [InlineData(false, true)]
+        [InlineData(true, false)]
+        [InlineData(false, false)]
+        public void SetupBuilderMultipleLoadConfigurationApplyOnReload_manualShouldNotCountAsReload(bool applyOnReload1, bool applyOnReload2)
+        {
+            // Arrange
+
+            var logFactory = ArrangeMultipleLoadConfigurationApplyOnReload(applyOnReload1, applyOnReload2);
+
+            logFactory.Configuration = logFactory.Configuration.Reload();
+
+            // Assert
+            Assert.Equal(0, logFactory.Configuration.LoggingRules.Count);
+        }
+
+        private static LogFactory ArrangeMultipleLoadConfigurationApplyOnReload(bool applyOnReload1, bool applyOnReload2)
+        {
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f =>
+            {
+                var xmlFile = new System.IO.StringReader(@"
+<nlog>
+    <targets>
+        <target name='target1' type='debug' />
+        <target name='target2' type='debug' />
+    </targets>
+</nlog>");
+
+                var xmlReader = System.Xml.XmlReader.Create(xmlFile);
+                return xmlReader;
+            });
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader, appEnv);
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromFile().LoadConfiguration(applyOnReload1, b => { b.Configuration.AddRuleForAllLevels("target1"); })
+                .LoadConfiguration(applyOnReload2, b => { b.Configuration.AddRuleForAllLevels("target2"); });
+            return logFactory;
         }
     }
 }

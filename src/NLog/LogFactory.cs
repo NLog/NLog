@@ -823,9 +823,15 @@ namespace NLog
             ConfigurationReloaded?.Invoke(this, e);
         }
 
-        internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
+        /// <summary>
+        /// Notify success or failed, depending of <paramref name="exception"/>
+        /// </summary>
+        /// <param name="exception">success iif this parameter null</param>
+        internal void NotifyConfigurationReloaded(Exception exception = null)
         {
-            OnConfigurationReloaded(eventArgs);
+            var success = exception == null;
+
+            OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(success, exception));
         }
 #endif
 
@@ -1184,6 +1190,18 @@ namespace NLog
         {
             // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
             return LoadConfiguration(configFile, optional: false);
+        }
+
+        /// <summary>
+        /// Reload and apply the current config
+        /// </summary>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public LogFactory ReloadConfiguration()
+        {
+            InternalLogger.Info("Reloading configuration...");
+            Configuration = Configuration.ReloadNewConfig();
+
+            return this;
         }
 
         internal LogFactory LoadConfiguration(string configFile, bool optional)
