@@ -71,7 +71,7 @@ namespace NLog
 
         /// <summary>
         /// Overwrite possible file paths (including filename) for possible NLog config files. 
-        /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths"/> are used.
+        /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths()"/> are used.
         /// </summary>
         private List<string> _candidateConfigFilePaths;
 
@@ -1013,6 +1013,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The file paths to the possible config file</returns>
+        internal IEnumerable<string> GetCandidateConfigFilePaths(string filename)
+        {
+            if (_candidateConfigFilePaths != null)
+                return GetCandidateConfigFilePaths();
+
+            return _configLoader.GetDefaultCandidateConfigFilePaths(string.IsNullOrEmpty(filename) ? null : filename);
+        }
+
+        /// <summary>
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
@@ -1133,10 +1145,35 @@ namespace NLog
         public LogFactory LoadConfiguration(string configFile)
         {
             // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
-            if (_configLoader is LoggingConfigurationFileLoader configFileLoader)
+            return LoadConfiguration(configFile, optional: false);
+        }
+
+        internal LogFactory LoadConfiguration(string configFile, bool optional)
+        {
+            var actualConfigFile = string.IsNullOrEmpty(configFile) ? "NLog.config" : configFile;
+            if (optional && string.Equals(actualConfigFile.Trim(), "NLog.config", StringComparison.OrdinalIgnoreCase) && _config != null)
             {
-                Configuration = configFileLoader.Load(this, configFile);
+                return this;    // Skip optional loading of default config, when config is already loaded
             }
+
+            var config = _configLoader.Load(this, configFile);
+            if (config == null)
+            {
+                if (!optional)
+                {
+#if SILVERLIGHT
+                    throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
+#else
+                    throw new System.IO.FileNotFoundException("Failed to load NLog LoggingConfiguration", actualConfigFile);
+#endif
+                }
+                else
+                {
+                    return this;
+                }
+            }
+
+            Configuration = config;
             return this;
         }
 

@@ -86,5 +86,55 @@ namespace NLog
             serializationBuilder(new SetupSerializationBuilder(setupBuilder.LogFactory));
             return setupBuilder;
         }
+
+        /// <summary>
+        /// Loads NLog config created by the method <paramref name="configBuilder"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfiguration(this ISetupBuilder setupBuilder, Action<ISetupLoadConfigurationBuilder> configBuilder)
+        {
+            var config = setupBuilder.LogFactory._config;
+            var setupConfig = new SetupLoadConfigurationBuilder(setupBuilder.LogFactory, config);
+            configBuilder(setupConfig);
+            var newConfig = setupConfig._configuration;
+            bool configHasChanged = !ReferenceEquals(config, setupBuilder.LogFactory._config);
+
+            if (ReferenceEquals(newConfig, setupBuilder.LogFactory._config))
+            {
+                setupBuilder.LogFactory.ReconfigExistingLoggers();
+            }
+            else if (!configHasChanged || !ReferenceEquals(config, newConfig))
+            {
+                setupBuilder.LogFactory.Configuration = newConfig;
+            }
+
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config provided in <paramref name="loggingConfiguration"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfiguration(this ISetupBuilder setupBuilder, LoggingConfiguration loggingConfiguration)
+        {
+            setupBuilder.LogFactory.Configuration = loggingConfiguration;
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config from filename <paramref name="configFile"/> if provided, else fallback to scanning for NLog.config
+        /// </summary>
+        public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, string configFile = null, bool optional = true)
+        {
+            setupBuilder.LogFactory.LoadConfiguration(configFile, optional);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config from XML in <paramref name="configXml"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfigurationFromXml(this ISetupBuilder setupBuilder, string configXml)
+        {
+            setupBuilder.LogFactory.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml, setupBuilder.LogFactory);
+            return setupBuilder;
+        }
     }
 }

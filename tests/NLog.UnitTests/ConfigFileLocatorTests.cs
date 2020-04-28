@@ -110,14 +110,15 @@ namespace NLog.UnitTests
         public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir)
         {
             // Arrange
-            var appEnvMock = new AppEnvironmentMock(f => f == accepts, f => null) { AppDomainBaseDirectory = baseDir };
+            var appEnvMock = new AppEnvironmentMock(f => f == accepts, f => System.Xml.XmlReader.Create(new StringReader(@"<nlog autoreload=""true""></nlog>"))) { AppDomainBaseDirectory = baseDir };
             var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+            var logFactory = new LogFactory(fileLoader);
 
             // Act
-            var result = fileLoader.GetConfigFile(filename);
+            var result = fileLoader.Load(logFactory, filename);
 
             // Assert
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, result?.FileNamesToWatch.First());
         }
 
         public static IEnumerable<object[]> GetConfigFile_absolutePath_loads_testData()
@@ -127,7 +128,7 @@ namespace NLog.UnitTests
             var dirInBaseDir = $"{baseDir}dir1";
             yield return new object[] { $"{baseDir}configfile", $"{baseDir}configfile", $"{baseDir}configfile", dirInBaseDir };
             yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog.config", $"{baseDir}dir1{d}nlog.config", dirInBaseDir }; //exists
-            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", "nlog.config", dirInBaseDir }; //not existing, fallback
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", null, dirInBaseDir }; //not existing, fallback
         }
 
         [Fact]

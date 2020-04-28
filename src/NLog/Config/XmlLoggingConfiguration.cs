@@ -174,7 +174,6 @@ namespace NLog.Config
             Initialize(reader, fileName, ignoreErrors);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -196,13 +195,21 @@ namespace NLog.Config
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
-        /// <param name="xml">NLog configuration</param>
-        /// <returns></returns>
+        /// <param name="xml">NLog configuration in XML to be parsed</param>
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
-            return new XmlLoggingConfiguration(xml, string.Empty, LogManager.LogFactory);
+            return CreateFromXmlString(xml, LogManager.LogFactory);
         }
-#endif
+
+        /// <summary>
+        /// Parse XML string as NLog configuration
+        /// </summary>
+        /// <param name="xml">NLog configuration in XML to be parsed</param>
+        /// <param name="logFactory">NLog LogFactory</param>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, LogFactory logFactory)
+        {
+            return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
+        }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
@@ -594,7 +601,6 @@ namespace NLog.Config
 
         private static string GetFileLookupKey([NotNull] string fileName)
         {
-
 #if SILVERLIGHT && !WINDOWS_PHONE
             // file names are relative to XAP
             return fileName;
