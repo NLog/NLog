@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.IO;
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
@@ -65,7 +66,7 @@ namespace NLog.UnitTests.Config
             // Act
             var logger1 = logFactory.Setup().GetLogger(nameof(SetupBuilderGetCurrentClassLogger));
             var logger2 = logFactory.GetLogger(nameof(SetupBuilderGetCurrentClassLogger));
-            
+
             // Assert
             Assert.Equal(nameof(SetupBuilderGetCurrentClassLogger), logger1.Name);
             Assert.Same(logger1, logger2);
@@ -505,6 +506,36 @@ namespace NLog.UnitTests.Config
 
             // Assert
             Assert.False(logFactory.AutoShutdown);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileMissingButRequiredTest_IntegrationTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            Action act = () => logFactory.Setup().LoadConfigurationFromFile(optional: false);
+
+            // Assert
+            var ex = Assert.Throws<FileNotFoundException>(act);
+            Assert.Contains("NLog.dll.nlog", ex.Message);
+            Assert.Contains(Directory.GetCurrentDirectory(), ex.Message);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileMissingTest()
+        {
+            // Arrange
+            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromFile(optional: true);
+
+            // Assert
+            // no Exception
         }
 
         [Fact]

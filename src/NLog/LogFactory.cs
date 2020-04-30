@@ -47,6 +47,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Internal.Fakeables;
     using NLog.Targets;
+    using System.Linq;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -544,7 +545,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            FlushInternal(timeout, asyncContinuation ?? (ex => { }) );
+            FlushInternal(timeout, asyncContinuation ?? (ex => { }));
         }
 
         private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
@@ -1164,7 +1165,8 @@ namespace NLog
 #if SILVERLIGHT
                     throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
 #else
-                    throw new System.IO.FileNotFoundException("Failed to load NLog LoggingConfiguration", actualConfigFile);
+                    var message = CreateFileNotFoundMessage(configFile);
+                    throw new System.IO.FileNotFoundException(message, actualConfigFile);
 #endif
                 }
                 else
@@ -1175,6 +1177,28 @@ namespace NLog
 
             Configuration = config;
             return this;
+        }
+
+        private string CreateFileNotFoundMessage(string configFile)
+        {
+            var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration.");
+            try
+            {
+                // hashset to remove duplicates
+                var triedPaths = new HashSet<string>(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
+                messageBuilder.AppendLine(" Searched the following locations:");
+                foreach (var path in triedPaths)
+                {
+                    messageBuilder.Append("- ");
+                    messageBuilder.AppendLine(path);
+                }
+            }
+            catch (Exception e)
+            {
+                InternalLogger.Debug("Failed to GetDefaultCandidateConfigFilePaths in CreateFileNotFoundMessage: {0}", e);
+            }
+            var message = messageBuilder.ToString();
+            return message;
         }
 
         /// <summary>
