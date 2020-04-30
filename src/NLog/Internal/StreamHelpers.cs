@@ -56,10 +56,10 @@ namespace NLog.Internal
             var bomSize = EncodingHelpers.Utf8BOM.Length;
             var bomBuffer = new byte[bomSize];
             var posBefore = input.Position;
-            input.Read(bomBuffer, 0, bomSize);
+            int bytesRead = input.Read(bomBuffer, 0, bomSize);
 
             //TODO support other BOMs, like UTF16
-            if (bomBuffer.SequenceEqual(EncodingHelpers.Utf8BOM))
+            if (bytesRead == bomSize && bomBuffer.SequenceEqual(EncodingHelpers.Utf8BOM))
             {
                 InternalLogger.Debug("input has UTF8 BOM");
                 //already skipped due to read
