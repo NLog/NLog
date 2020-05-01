@@ -898,7 +898,44 @@ namespace NLog.UnitTests.LayoutRenderers
                 string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) +
                 "\r\nXXX" +
                 ex.GetType().FullName);
-    }
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(10)]
+        public void ExceptionWithInnerAndToString(int maxInnerExceptionLevel)
+        {
+            // Arrange
+            var renderer = new ExceptionLayoutRenderer { Format = "ToString", MaxInnerExceptionLevel = maxInnerExceptionLevel };
+            Exception ex = new Exception("outer", new Exception("inner"));
+            var logEventInfo = LogEventInfo.Create(LogLevel.Error, "logger1", ex, null, "message1");
+
+            // Act
+            var result = renderer.Render(logEventInfo);
+
+            //Assert
+            Assert.Equal("System.Exception: outer ---> System.Exception: inner\r\n" +
+                         "   --- End of inner exception stack trace ---", result);
+        }
+
+        [Fact]
+        public void ExceptionWithInnerDataAndToStringAndData()
+        {
+            // Arrange
+            var renderer = new ExceptionLayoutRenderer { Format = "ToString,Data" };
+            var innerException = new Exception("inner") { Data = { { "inner1", "value1" }, { "inner2", "value2" } } };
+            Exception ex = new Exception("outer", innerException) { Data = { { "outer1", "value1b" }, { "outer2", "value2b" } } };
+            var logEventInfo = LogEventInfo.Create(LogLevel.Error, "logger1", ex, null, "message1");
+
+            // Act
+            var result = renderer.Render(logEventInfo);
+
+            //Assert
+            Assert.Equal("System.Exception: outer ---> System.Exception: inner\r\n" +
+                         "   --- End of inner exception stack trace --- outer1: value1b;outer2: value2b\r\n" +
+                         "inner1: value1;inner2: value2", result);
+        }
     }
 
     [LayoutRenderer("exception-custom")]

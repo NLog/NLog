@@ -289,9 +289,20 @@ namespace NLog.LayoutRenderers
 
         private void AppendInnerException(Exception currentException, StringBuilder builder)
         {
-            // separate inner exceptions
+            var formats = InnerFormats;
+            if (formats == null)
+            {
+                //Don't flow toString to inner exceptions if used for out exception
+                formats = new List<ExceptionRenderingFormat>(Formats);
+                formats.Remove(ExceptionRenderingFormat.ToString);
+            }
+
+            if (formats.Count == 0)
+            {
+                return;
+            }
             builder.Append(InnerExceptionSeparator);
-            AppendException(currentException, InnerFormats ?? Formats, builder);
+            AppendException(currentException, formats, builder);
         }
 
         private void AppendException(Exception currentException, List<ExceptionRenderingFormat> renderFormats, StringBuilder builder)
