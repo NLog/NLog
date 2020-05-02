@@ -57,13 +57,14 @@ namespace NLog
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
         private static IAppDomain currentAppDomain;
+        private static AppEnvironmentWrapper defaultAppEnvironment;
 
         /// <remarks>
         /// Internal for unit tests
         /// </remarks>
         internal readonly object _syncRoot = new object();
-
         internal LoggingConfiguration _config;
+        private IAppEnvironment _currentAppEnvironment;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
@@ -108,9 +109,9 @@ namespace NLog
         /// </summary>
         public LogFactory()
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            : this(new LoggingConfigurationWatchableFileLoader())
+            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))
 #else
-            : this(new LoggingConfigurationFileLoader())
+            : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
 #endif
         {
         }
@@ -129,9 +130,11 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="configLoader">The config loader</param>
-        internal LogFactory(ILoggingConfigurationLoader configLoader)
+        /// <param name="appEnvironment">The custom AppEnvironmnet override</param>
+        internal LogFactory(ILoggingConfigurationLoader configLoader, IAppEnvironment appEnvironment = null)
         {
             _configLoader = configLoader;
+            _currentAppEnvironment = appEnvironment;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             LoggerShutdown += OnStopLogging;
 #endif
@@ -142,15 +145,7 @@ namespace NLog
         /// </summary>
         public static IAppDomain CurrentAppDomain
         {
-            get
-            {
-                return currentAppDomain ??
-#if NETSTANDARD1_0
-                    (currentAppDomain = new FakeAppDomain());
-#else
-                    (currentAppDomain = new AppDomainWrapper(AppDomain.CurrentDomain));
-#endif
-            }
+            get => currentAppDomain ?? DefaultAppEnvironment.AppDomain;
             set
             {
                 UnregisterEvents(currentAppDomain);
@@ -158,7 +153,29 @@ namespace NLog
                 UnregisterEvents(value);
                 RegisterEvents(value);
                 currentAppDomain = value;
+                if (value != null && defaultAppEnvironment != null)
+                    defaultAppEnvironment.AppDomain = value;
             }
+        }
+
+        internal static IAppEnvironment DefaultAppEnvironment
+        {
+            get
+            {
+                return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
+#if NETSTANDARD1_0
+                    new FakeAppDomain()
+#else
+                    new AppDomainWrapper(AppDomain.CurrentDomain)
+#endif
+                    )));
+            }
+        }
+
+        internal IAppEnvironment CurrentAppEnvironment
+        {
+            get => _currentAppEnvironment ?? DefaultAppEnvironment;
+            set => _currentAppEnvironment = value;
         }
 
         /// <summary>

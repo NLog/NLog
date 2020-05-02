@@ -52,13 +52,7 @@ namespace NLog.Config
     /// </summary>
     internal class LoggingConfigurationFileLoader : ILoggingConfigurationLoader
     {
-        private static readonly AppEnvironmentWrapper DefaultAppEnvironment = new AppEnvironmentWrapper();
         private readonly IAppEnvironment _appEnvironment;
-
-        public LoggingConfigurationFileLoader()
-            : this(DefaultAppEnvironment)
-        {
-        }
 
         public LoggingConfigurationFileLoader(IAppEnvironment appEnvironment)
         {

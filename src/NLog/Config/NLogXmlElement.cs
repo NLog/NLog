@@ -47,27 +47,13 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogXmlElement"/> class.
         /// </summary>
-        /// <param name="inputUri">The input URI.</param>
-        public NLogXmlElement(string inputUri)
-            : this()
-        {
-            using (var reader = XmlReader.Create(inputUri))
-            {
-                reader.MoveToContent();
-                Parse(reader, true);
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NLogXmlElement"/> class.
-        /// </summary>
         /// <param name="reader">The reader to initialize element from.</param>
         public NLogXmlElement(XmlReader reader)
             : this(reader, false)
         {
         }
 
-        private NLogXmlElement(XmlReader reader, bool nestedElement)
+        public NLogXmlElement(XmlReader reader, bool nestedElement)
             : this()
         {
             Parse(reader, nestedElement);

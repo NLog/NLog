@@ -33,32 +33,54 @@
 
 namespace NLog.Internal.Fakeables
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Xml;
 
     internal class AppEnvironmentWrapper : IAppEnvironment
     {
-        /// <inheritdoc />
-        public string AppDomainBaseDirectory => LogFactory.CurrentAppDomain.BaseDirectory;
-        /// <inheritdoc />
-        public string AppDomainConfigurationFile => LogFactory.CurrentAppDomain.ConfigurationFile;
 #if !NETSTANDARD1_3 && !SILVERLIGHT
+        private const string UnknownProcessName = "<unknown>";
+
+        private string _entryAssemblyLocation;
+        private string _entryAssemblyFileName;
+        private string _currentProcessFilePath;
+        private string _currentProcessBaseName;
+        private int? _currentProcessId;
+
         /// <inheritdoc />
-        public string CurrentProcessFilePath => ProcessIDHelper.Instance.CurrentProcessFilePath;
+        public string EntryAssemblyLocation => _entryAssemblyLocation ?? (_entryAssemblyLocation = LookupEntryAssemblyLocation());
         /// <inheritdoc />
-        public string EntryAssemblyLocation => AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly());
+        public string EntryAssemblyFileName => _entryAssemblyFileName ?? (_entryAssemblyFileName = LookupEntryAssemblyFileName());
         /// <inheritdoc />
-        public string EntryAssemblyFileName => Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location ?? string.Empty);
-        public string UserTempFilePath => Path.GetTempPath();
+        public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePath());
+        /// <inheritdoc />
+        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = string.IsNullOrEmpty(CurrentProcessFilePath) ? UnknownProcessName : Path.GetFileNameWithoutExtension(CurrentProcessFilePath));
+        /// <inheritdoc />
+        public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessId()).Value;
 #endif
         /// <inheritdoc />
-        public IEnumerable<string> PrivateBinPath => LogFactory.CurrentAppDomain.PrivateBinPath;
+        public string AppDomainBaseDirectory => AppDomain.BaseDirectory;
+        /// <inheritdoc />
+        public string AppDomainConfigurationFile => AppDomain.ConfigurationFile;
+        /// <inheritdoc />
+        public IEnumerable<string> PrivateBinPath => AppDomain.PrivateBinPath;
+        /// <inheritdoc />
+        public string UserTempFilePath => Path.GetTempPath();
+        /// <inheritdoc />
+        public IAppDomain AppDomain { get; internal set; }
+
+        public AppEnvironmentWrapper(IAppDomain appDomain)
+        {
+            AppDomain = appDomain;
+        }
 
         /// <inheritdoc />
         public bool FileExists(string path)
         {
-            return System.IO.File.Exists(path);
+            return File.Exists(path);
         }
 
         /// <inheritdoc />
@@ -66,5 +88,59 @@ namespace NLog.Internal.Fakeables
         {
             return XmlReader.Create(path);
         }
+
+#if !NETSTANDARD1_3 && !SILVERLIGHT
+        private static string LookupEntryAssemblyLocation()
+        {
+            return AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly());
+        }
+
+        private static string LookupEntryAssemblyFileName()
+        {
+            try
+            {
+                return Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly()?.Location ?? string.Empty);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return string.Empty;
+            }
+        }
+
+        private static string LookupCurrentProcessFilePath()
+        {
+            try
+            {
+                var currentProcess = Process.GetCurrentProcess();
+                return currentProcess?.MainModule.FileName ?? string.Empty;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return string.Empty;
+            }
+        }
+
+        private static int LookupCurrentProcessId()
+        {
+            try
+            {
+                var currentProcess = Process.GetCurrentProcess();
+                return currentProcess?.Id ?? 0;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return 0;
+            }
+        }
+#endif
     }
 }
