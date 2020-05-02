@@ -44,7 +44,7 @@ namespace NLog.Internal
     internal class PortableProcessIDHelper : ProcessIDHelper
     {
         private readonly int _currentProcessId;
-        private readonly string _currentProcessFilePath = string.Empty;
+        private string _currentProcessFilePath;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PortableProcessIDHelper" /> class.
@@ -55,7 +55,6 @@ namespace NLog.Internal
             {
                 var currentProcess = Process.GetCurrentProcess();
                 _currentProcessId = currentProcess?.Id ?? 0;
-                _currentProcessFilePath = currentProcess?.MainModule.FileName ?? string.Empty;
             }
             catch (Exception ex)
             {
@@ -74,7 +73,17 @@ namespace NLog.Internal
         /// Gets current process name.
         /// </summary>
         /// <value></value>
-        public override string CurrentProcessFilePath => _currentProcessFilePath;
+        public override string CurrentProcessFilePath
+        {
+            get
+            {
+                if (_currentProcessFilePath == null)
+                {
+                    _currentProcessFilePath = Process.GetCurrentProcess()?.MainModule.FileName ?? string.Empty;
+                }
+                return _currentProcessFilePath;
+            }
+        }
     }
 }
 
