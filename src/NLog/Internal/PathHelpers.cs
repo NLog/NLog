@@ -72,5 +72,24 @@ namespace NLog.Internal
         {
             return path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
         }
+
+        public static bool IsTempDir(string directory, string tempDir)
+        {
+            tempDir = TrimDirectorySeparators(tempDir);
+            if (string.IsNullOrEmpty(directory) || string.IsNullOrEmpty(tempDir))
+                return false;
+
+            var fullpath = Path.GetFullPath(directory);
+            if (string.IsNullOrEmpty(fullpath))
+                return false;
+
+            if (fullpath.StartsWith(tempDir, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (tempDir.StartsWith("/tmp") && directory.StartsWith("/var/tmp/"))
+                return true;    // Microsoft has made a funny joke on Linux. Path.GetTempPath() uses /tmp/ as fallback, but single-publish uses /var/tmp/ as first fallback
+
+            return false;
+        }
     }
 }
