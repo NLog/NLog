@@ -49,6 +49,9 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadSafe]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
+        private const string WindowsNewLine = "\r\n";
+        private const string UnixNewLine = "\n";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ReplaceNewLinesLayoutRendererWrapper" /> class.
         /// </summary>
@@ -70,22 +73,17 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner.RenderAppendBuilder(logEvent, builder);
             if (builder.Length > orgLength)
             {
-                string newLine = Environment.NewLine;
-                if (!string.IsNullOrEmpty(newLine) && builder.IndexOf(newLine[newLine.Length - 1], orgLength) >= 0)
+                var containsNewLines = builder.IndexOf('\n', orgLength) >= 0;
+                if (containsNewLines)
                 {
-                    string str = builder.ToString(orgLength, builder.Length - orgLength);
-                    str = str.Replace(newLine, Replacement);
-                    if (newLine != "\n" && !HasUnixNewline(Replacement) && HasUnixNewline(str))
-                        str = str.Replace("\n", Replacement);   // Recognize Unix-Newline on Windows-platform
+                    string str = builder.ToString(orgLength, builder.Length - orgLength)
+                                        .Replace(WindowsNewLine, Replacement)
+                                        .Replace(UnixNewLine, Replacement);
+
                     builder.Length = orgLength;
                     builder.Append(str);
                 }
             }
-        }
-
-        private static bool HasUnixNewline(string str)
-        {
-            return str != null && str.IndexOf('\n') >= 0;
         }
 
         /// <inheritdoc/>
