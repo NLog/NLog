@@ -105,40 +105,55 @@ namespace NLog.Config
             {
                 if (!_creatorMap.TryGetValue(itemType, out objectResolver))
                 {
-                    if (_lateBoundMap.TryGetValue(itemType, out compiledConstructor))
+                    _lateBoundMap.TryGetValue(itemType, out compiledConstructor);
+                }
+            }
+
+            if (objectResolver == null && compiledConstructor == null)
+            {
+                // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
+                var newCompiledConstructor = CreateCompiledConstructor(itemType);
+
+                lock (_lockObject)
+                {
+                    if (!_lateBoundMap.TryGetValue(itemType, out compiledConstructor))
                     {
-                        var constructorParameters = compiledConstructor.Parameters;
-                        if (constructorParameters != null)
-                        {
-                            seenTypes = seenTypes ?? new HashSet<Type>();
-                            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
-                            return compiledConstructor.Ctor(parameterValues);
-                        }
-                    }
-                    else
-                    {
-                        return CreateFromConstructor(itemType, seenTypes);
+                        _lateBoundMap.Add(itemType, newCompiledConstructor);
+                        compiledConstructor = newCompiledConstructor;
                     }
                 }
             }
 
-            return objectResolver?.Invoke(itemType) ?? compiledConstructor?.Ctor(null); // Simple instance creation happens outside lock
+            // Do not hold lock while calling constructor (or resolving parameter values) to avoid deadlock
+            var constructorParameters = compiledConstructor?.Parameters;
+            if (constructorParameters != null)
+            {
+                seenTypes = seenTypes ?? new HashSet<Type>();
+                var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
+                return compiledConstructor.Ctor(parameterValues);
+            }
+
+            return objectResolver?.Invoke(itemType) ?? compiledConstructor?.Ctor(null);
         }
 
-        private object CreateFromConstructor(Type itemType, HashSet<Type> seenTypes)
+        private CompiledConstructor CreateCompiledConstructor(Type itemType)
         {
             try
             {
-                //todo DI find upfront
                 var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
                 if (defaultConstructor != null)
                 {
-                    InternalLogger.Trace("Found public default ctor");
-
-                    return CreateFromDefaultConstructor(itemType, defaultConstructor);
+                    InternalLogger.Trace("Resolves default constructor for {0}", itemType);
+                    var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
+                    return new CompiledConstructor(constructorMethod);
                 }
-
-                return CreateFromParameterizedConstructor(itemType, seenTypes);
+                else
+                {
+                    InternalLogger.Trace("Resolves parameterized constructor for {0}", itemType);
+                    var ctor = GetParameterizedConstructor(itemType);
+                    var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(ctor);
+                    return new CompiledConstructor(constructorMethod, ctor.GetParameters());
+                }
             }
             catch (MissingMethodException exception)
             {
@@ -148,26 +163,6 @@ namespace NLog.Config
             {
                 InternalLogger.Trace("Resolve {0} done", itemType.FullName);
             }
-
-        }
-
-        private object CreateFromDefaultConstructor(Type itemType, ConstructorInfo defaultConstructor)
-        {
-            var compiledCtor = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
-            _lateBoundMap.Add(itemType, new CompiledConstructor(compiledCtor));
-            return compiledCtor(null);
-        }
-
-        private object CreateFromParameterizedConstructor(Type itemType, HashSet<Type> seenTypes)
-        {
-            seenTypes = seenTypes ?? new HashSet<Type>();
-
-            var ctor = GetParameterizedConstructor(itemType);
-            var constructorParameters = ctor.GetParameters();
-            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
-            var compiledParameterizedCtor = ReflectionHelpers.CreateLateBoundConstructor(ctor);
-            _lateBoundMap.Add(itemType, new CompiledConstructor(compiledParameterizedCtor, constructorParameters));
-            return compiledParameterizedCtor.Invoke(parameterValues);
         }
 
         private static ConstructorInfo GetParameterizedConstructor(Type itemType)
