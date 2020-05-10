@@ -49,13 +49,13 @@ namespace NLog.Layouts
     {
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, Resolve<IJsonConverter>()));
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ResolveService<IJsonConverter>()));
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
         private IValueFormatter ValueFormatter
         {
-            get => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
+            get => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
             set => _valueFormatter = value;
         }
         private IValueFormatter _valueFormatter;

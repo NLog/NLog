@@ -47,7 +47,10 @@ namespace NLog.Config
         /// <param name="instance">Instance of service</param>
         public abstract void RegisterService(Type type, object instance);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the service object of the specified type.
+        /// </summary>
+        /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         public abstract object GetService(Type serviceType);
 
         /// <summary>

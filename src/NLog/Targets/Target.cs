@@ -756,11 +756,10 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Resolve from DI
+        /// Resolve from DI <see cref="LogFactory.ServiceRepository"/>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        protected T Resolve<T>() where T : class
+        /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
+        protected T ResolveService<T>() where T : class
         {
             return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
         }
