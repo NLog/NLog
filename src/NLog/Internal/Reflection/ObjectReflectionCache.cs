@@ -49,11 +49,15 @@ namespace NLog.Internal
     /// </summary>
     internal class ObjectReflectionCache : IObjectTypeTransformer
     {
-        readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
-        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = ConfigurationItemFactory.Default.ObjectTypeTransformer);
+        private readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
+        private readonly IServiceProvider _serviceProvider;
+        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceProvider?.ResolveService<IObjectTypeTransformer>() ?? this);
         private IObjectTypeTransformer _objectTypeTransformation;
 
-        public static IObjectTypeTransformer Instance { get; } = new ObjectReflectionCache();
+        public ObjectReflectionCache(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
         object IObjectTypeTransformer.TryTransformObject(object obj)
         {
@@ -67,7 +71,7 @@ namespace NLog.Internal
                 return propertyValues;
             }
 
-            if (!ReferenceEquals(ObjectTypeTransformation, Instance))
+            if (!ReferenceEquals(ObjectTypeTransformation, this))
             {
                 var result = ObjectTypeTransformation.TryTransformObject(value);
                 if (result != null)
@@ -90,6 +94,43 @@ namespace NLog.Internal
             var propertyInfos = BuildObjectPropertyInfos(value, objectType);
             _objectTypeCache.TryAddValue(objectType, propertyInfos);
             return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+        }
+
+        /// <summary>
+        /// Try get value from <paramref name="value"/>, using <paramref name="objectPath"/>, and set into <paramref name="foundValue"/>
+        /// </summary>
+        public bool TryGetObjectProperty(object value, string[] objectPath, out object foundValue)
+        {
+            foundValue = null;
+
+            if (objectPath == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < objectPath.Length; ++i)
+            {
+                if (value == null)
+                {
+                    // Found null
+                    foundValue = null;
+                    return true;
+                }
+
+                var eventProperties = LookupObjectProperties(value);
+                if (eventProperties.TryGetPropertyValue(objectPath[i], out var propertyValue))
+                {
+                    value = propertyValue.Value;
+                }
+                else
+                {
+                    foundValue = null;
+                    return false; //Wrong, but done
+                }
+            }
+
+            foundValue = value;
+            return true;
         }
 
         public bool TryLookupExpandoObject(object value, out ObjectPropertyList objectPropertyList)
@@ -252,7 +293,7 @@ namespace NLog.Internal
 
         private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public;
 
-        public struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
+        internal struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
         {
             internal static readonly StringComparer NameComparer = StringComparer.Ordinal;
             private static readonly FastPropertyLookup[] CreateIDictionaryEnumerator = new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => ((IDictionary<string, object>)o).GetEnumerator()) };
@@ -266,6 +307,7 @@ namespace NLog.Internal
                 public readonly object Value;
                 public TypeCode TypeCode => Value == null ? TypeCode.Empty : _typecode;
                 private readonly TypeCode _typecode;
+                public bool HasNameAndValue => Name != null && Value != null;
 
                 public PropertyValue(string name, object value, TypeCode typeCode)
                 {

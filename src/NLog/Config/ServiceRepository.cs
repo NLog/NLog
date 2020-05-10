@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,51 +31,37 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-
-namespace NLog.MessageTemplates
+namespace NLog.Config
 {
+    using System;
+
     /// <summary>
-    /// Parse templates.
+    /// Interface to register available configuration objects type
     /// </summary>
-    internal static class TemplateParser
+    public abstract class ServiceRepository : IServiceProvider
     {
         /// <summary>
-        /// Parse a template.
+        /// Registers instance of singleton object for use in NLog
         /// </summary>
-        /// <param name="template">Template to be parsed.</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="template"/> is null.</exception>
-        /// <returns>Template, never null</returns>
-        public static Template Parse(string template)
+        /// <param name="type">Type of service</param>
+        /// <param name="instance">Instance of service</param>
+        public abstract void RegisterService(Type type, object instance);
+
+        /// <summary>
+        /// Gets the service object of the specified type.
+        /// </summary>
+        /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
+        public abstract object GetService(Type serviceType);
+
+        /// <summary>
+        /// Mapping of symbol name to actual <see cref="System.Type"/>
+        /// </summary>
+        public abstract ConfigurationItemFactory ConfigurationItemFactory { get; internal set; }
+
+        internal abstract ConfigurationItemCreator ConfigurationItemCreator { get; set; }
+
+        internal ServiceRepository()
         {
-            if (template == null)
-                throw new ArgumentNullException(nameof(template));
-
-            bool isPositional = true;
-            List<Literal> literals = new List<Literal>();
-            List<Hole> holes = new List<Hole>();
-
-            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
-            while (templateEnumerator.MoveNext())
-            {
-                if (templateEnumerator.Current.Literal.Skip == 0)
-                {
-                    literals.Add(templateEnumerator.Current.Literal);
-                }
-                else
-                {
-                    literals.Add(templateEnumerator.Current.Literal);
-                    holes.Add(templateEnumerator.Current.Hole);
-                    if (templateEnumerator.Current.Hole.Index == -1)
-                        isPositional = false;
-                }
-            }
-
-            Debug.Assert(holes.Count == literals.Count(x => x.Skip > 0));
-            return new Template(template, isPositional, literals, holes);
         }
     }
 }

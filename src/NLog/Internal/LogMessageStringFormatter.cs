@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,50 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-
-namespace NLog.UnitTests.Targets
+namespace NLog.Internal
 {
-    using NLog.Targets;
+    using System.Globalization;
+    using System.Text;
 
-    /// <summary>
-    /// Test via <see cref="IJsonConverter"/> path
-    /// </summary>
-    public class DefaultJsonSerializerTests : DefaultJsonSerializerTestsBase
+    internal class LogMessageStringFormatter : ILogMessageFormatter
     {
-        private readonly IJsonConverter _serializer;
+        public static readonly LogMessageStringFormatter Default = new LogMessageStringFormatter();
 
-        public DefaultJsonSerializerTests()
+        private LogMessageStringFormatter()
         {
-            _serializer = new DefaultJsonSerializer(null);
+            MessageFormatter = FormatMessage;
         }
 
-        protected override string SerializeObject(object o)
+        /// <summary>
+        /// The MessageFormatter delegate
+        /// </summary>
+        public LogMessageFormatter MessageFormatter { get; }
+
+        public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
         {
-            var sb = new StringBuilder();
-            _serializer.SerializeObject(o, sb);
-            var result = sb.ToString();
-            return result;
+            builder.Append(logEvent.FormattedMessage);
+        }
+
+        public string FormatMessage(LogEventInfo logEvent)
+        {
+            if (HasParameters(logEvent))
+            {
+                return string.Format(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Message, logEvent.Parameters);
+            }
+
+            return logEvent.Message;
+        }
+
+        internal static bool HasParameters(LogEventInfo logEvent)
+        {
+            //if message is empty, there no parameters
+            //null check cheapest, so in-front
+            return logEvent.Parameters != null && !string.IsNullOrEmpty(logEvent.Message) && logEvent.Parameters.Length > 0;
+        }
+
+        public bool HasProperties(LogEventInfo logEvent)
+        {
+            return false;
         }
     }
 }
-

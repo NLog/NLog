@@ -159,15 +159,15 @@ namespace NLog.LayoutRenderers
                     var key = Convert.ToString(property.Key, formatProvider);
                     var value = Convert.ToString(property.Value, formatProvider);
                     var pair = Format.Replace("[key]", key)
-                                        .Replace("[value]", value);
+                                     .Replace("[value]", value);
                     builder.Append(pair);
                 }
                 else
                 {
                     builder.Append(_beforeKey);
-                    builder.AppendFormattedValue(property.Key, null, formatProvider);
+                    builder.AppendFormattedValue(property.Key, null, formatProvider, ValueFormatter);
                     builder.Append(_afterKey);
-                    builder.AppendFormattedValue(property.Value, null, formatProvider);
+                    builder.AppendFormattedValue(property.Value, null, formatProvider, ValueFormatter);
                     builder.Append(_afterValue);
                 }
             }

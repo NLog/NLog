@@ -53,7 +53,7 @@ namespace NLog.Config
     /// </summary>
     public abstract class LoggingConfigurationParser : LoggingConfiguration
     {
-        private ConfigurationItemFactory _configurationItemFactory;
+        private readonly ServiceRepository _serviceRepository;
 
         /// <summary>
         /// Constructor
@@ -62,6 +62,7 @@ namespace NLog.Config
         protected LoggingConfigurationParser(LogFactory logFactory)
             : base(logFactory)
         {
+            _serviceRepository = logFactory.ServiceRepository;
         }
 
         /// <summary>
@@ -184,8 +185,7 @@ namespace NLog.Config
                 InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
             }
 
-            _configurationItemFactory = ConfigurationItemFactory.Default;
-            _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
+            _serviceRepository.ConfigurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace NLog.Config
         {
             try
             {
-                _configurationItemFactory.RegisterType(Type.GetType(type, true), itemNamePrefix);
+                _serviceRepository.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), itemNamePrefix);
             }
             catch (Exception exception)
             {
@@ -406,7 +406,7 @@ namespace NLog.Config
             try
             {
                 Assembly asm = AssemblyHelpers.LoadFromPath(assemblyFile, baseDirectory);
-                _configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                _serviceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)
             {
@@ -426,7 +426,7 @@ namespace NLog.Config
             try
             {
                 Assembly asm = AssemblyHelpers.LoadFromName(assemblyName);
-                _configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                _serviceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)
             {
@@ -505,7 +505,7 @@ namespace NLog.Config
             if (!AssertNonEmptyValue(timeSourceType, "type", timeElement.Name, string.Empty))
                 return;
 
-            TimeSource newTimeSource = _configurationItemFactory.TimeSources.CreateInstance(timeSourceType);
+            TimeSource newTimeSource = _serviceRepository.ConfigurationItemFactory.TimeSources.CreateInstance(timeSourceType);
             ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
 
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
@@ -701,7 +701,7 @@ namespace NLog.Config
 
         private SimpleLayout ParseLevelLayout(string levelLayout)
         {
-            SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? new SimpleLayout(levelLayout, _configurationItemFactory) : null;
+            SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? new SimpleLayout(levelLayout, _serviceRepository.ConfigurationItemFactory) : null;
             simpleLayout?.Initialize(this);
             return simpleLayout;
         }
@@ -776,14 +776,14 @@ namespace NLog.Config
             if (defaultActionResult != null)
             {
                 PropertyHelper.SetPropertyFromString(rule, nameof(rule.DefaultFilterResult), defaultActionResult,
-                    _configurationItemFactory);
+                    _serviceRepository.ConfigurationItemFactory);
             }
 
             foreach (var filterElement in filtersElement.ValidChildren)
             {
                 string name = filterElement.Name;
 
-                Filter filter = _configurationItemFactory.Filters.CreateInstance(name);
+                Filter filter = _serviceRepository.ConfigurationItemFactory.Filters.CreateInstance(name);
                 ConfigureObjectFromAttributes(filter, filterElement, false);
                 rule.Filters.Add(filter);
             }
@@ -870,7 +870,7 @@ namespace NLog.Config
 
             try
             {
-                newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
+                newTarget = _serviceRepository.ConfigurationItemFactory.Targets.CreateInstance(targetTypeName);
                 if (newTarget == null)
                     throw new NLogConfigurationException($"Factory returned null for target type: {targetTypeName}");
             }
@@ -1041,7 +1041,7 @@ namespace NLog.Config
                 try
                 {
                     PropertyHelper.SetPropertyFromString(targetObject, childName, ExpandSimpleVariables(childValue),
-                        _configurationItemFactory);
+                        _serviceRepository.ConfigurationItemFactory);
                 }
                 catch (Exception ex)
                 {
@@ -1109,7 +1109,7 @@ namespace NLog.Config
             object arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
             if (arrayItem == null)
-                arrayItem = FactoryHelper.CreateInstance(elementType);
+                arrayItem = _serviceRepository.GetService(elementType);
 
             ConfigureObjectFromAttributes(arrayItem, element, true);
             ConfigureObjectFromElement(arrayItem, element);
@@ -1147,12 +1147,12 @@ namespace NLog.Config
 
         private Layout TryCreateLayoutInstance(ValidatedConfigurationElement element, Type type)
         {
-            return TryCreateInstance(element, type, _configurationItemFactory.Layouts);
+            return TryCreateInstance(element, type, _serviceRepository.ConfigurationItemFactory.Layouts);
         }
 
         private Filter TryCreateFilterInstance(ValidatedConfigurationElement element, Type type)
         {
-            return TryCreateInstance(element, type, _configurationItemFactory.Filters);
+            return TryCreateInstance(element, type, _serviceRepository.ConfigurationItemFactory.Filters);
         }
 
         private T TryCreateInstance<T>(ValidatedConfigurationElement element, Type type, INamedItemFactory<T, Type> factory)

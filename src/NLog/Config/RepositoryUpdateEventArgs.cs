@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,27 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
+using System;
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Config
 {
-    using NLog.Targets;
-
     /// <summary>
-    /// Test via <see cref="IJsonConverter"/> path
+    /// Registered type on repository 
     /// </summary>
-    public class DefaultJsonSerializerTests : DefaultJsonSerializerTestsBase
+    public class RepositoryUpdateEventArgs : EventArgs
     {
-        private readonly IJsonConverter _serializer;
-
-        public DefaultJsonSerializerTests()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        public RepositoryUpdateEventArgs(Type type)
         {
-            _serializer = new DefaultJsonSerializer(null);
+            Type = type;
         }
 
-        protected override string SerializeObject(object o)
-        {
-            var sb = new StringBuilder();
-            _serializer.SerializeObject(o, sb);
-            var result = sb.ToString();
-            return result;
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Type Type { get; }
     }
 }
-

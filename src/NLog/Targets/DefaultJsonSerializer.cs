@@ -45,30 +45,30 @@ namespace NLog.Targets
     /// </summary>
     public class DefaultJsonSerializer : IJsonConverter
     {
-        private readonly ObjectReflectionCache _objectReflectionCache = new ObjectReflectionCache();
+        private readonly ObjectReflectionCache _objectReflectionCache;
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
-        private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
-        private readonly JsonSerializeOptions _exceptionSerializeOptions = new JsonSerializeOptions() { SanitizeDictionaryKeys = true };
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxJsonLength = 512 * 1024;
 
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
+        private static JsonSerializeOptions DefaultSerializerOptions = new JsonSerializeOptions();
+        private static JsonSerializeOptions DefaultExceptionSerializerOptions = new JsonSerializeOptions() { SanitizeDictionaryKeys = true };
+
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer();
-
-        static DefaultJsonSerializer()
-        {
-        }
+        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
+        public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer(null);
 
         /// <summary>
         /// Private. Use <see cref="Instance"/>
         /// </summary>
-        internal DefaultJsonSerializer()
-        { }
+        internal DefaultJsonSerializer(IServiceProvider serviceProvider)
+        {
+            _objectReflectionCache = new ObjectReflectionCache(serviceProvider);
+        }
 
         /// <summary>
         /// Returns a serialization of an object into JSON format.
@@ -77,7 +77,7 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, _serializeOptions);
+            return SerializeObject(value, DefaultSerializerOptions);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace NLog.Targets
         /// <returns>Object serialized successfully (true/false).</returns>
         public bool SerializeObject(object value, StringBuilder destination)
         {
-            return SerializeObject(value, destination, _serializeOptions);
+            return SerializeObject(value, destination, DefaultSerializerOptions);
         }
 
         /// <summary>
@@ -425,10 +425,10 @@ namespace NLog.Targets
                 var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
                 if (!objectPropertyList.ConvertToString)
                 {
-                    if (ReferenceEquals(options, Instance._serializeOptions) && value is Exception)
+                    if (ReferenceEquals(options, DefaultSerializerOptions) && value is Exception)
                     {
                         // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
-                        options = Instance._exceptionSerializeOptions;
+                        options = DefaultExceptionSerializerOptions;
                     }
 
                     using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
@@ -743,39 +743,39 @@ namespace NLog.Targets
 
                 try
                 {
-                    if (HasNameAndValue(propertyValue))
+                    if (!propertyValue.HasNameAndValue)
+                        continue;
+
+                    if (!first)
                     {
-                        if (!first)
-                        {
-                            destination.Append(", ");
-                        }
+                        destination.Append(", ");
+                    }
 
-                        if (options.QuoteKeys)
+                    if (options.QuoteKeys)
+                    {
+                        QuoteValue(destination, propertyValue.Name);
+                    }
+                    else
+                    {
+                        destination.Append(propertyValue.Name);
+                    }
+                    destination.Append(':');
+
+                    var objTypeCode = propertyValue.TypeCode;
+                    if (objTypeCode != TypeCode.Object)
+                    {
+                        SerializeSimpleTypeCodeValue((IConvertible)propertyValue.Value, objTypeCode, destination, options);
+                        first = false;
+                    }
+                    else
+                    {
+                        if (!SerializeObject(propertyValue.Value, destination, options, objectsInPath, depth + 1))
                         {
-                            QuoteValue(destination, propertyValue.Name);
+                            destination.Length = originalLength;
                         }
                         else
                         {
-                            destination.Append(propertyValue.Name);
-                        }
-                        destination.Append(':');
-
-                        var objTypeCode = propertyValue.TypeCode;
-                        if (objTypeCode != TypeCode.Object)
-                        {
-                            SerializeSimpleTypeCodeValue((IConvertible)propertyValue.Value, objTypeCode, destination, options);
                             first = false;
-                        }
-                        else
-                        {
-                            if (!SerializeObject(propertyValue.Value, destination, options, objectsInPath, depth + 1))
-                            {
-                                destination.Length = originalLength;
-                            }
-                            else
-                            {
-                                first = false;
-                            }
                         }
                     }
                 }
@@ -788,11 +788,6 @@ namespace NLog.Targets
 
             destination.Append('}');
             return true;
-        }
-
-        private static bool HasNameAndValue(ObjectReflectionCache.ObjectPropertyList.PropertyValue propertyValue)
-        {
-            return propertyValue.Name != null && propertyValue.Value != null;
         }
 
         private bool SerializeObjectAsString(object value, StringBuilder destination, JsonSerializeOptions options)

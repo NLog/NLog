@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-
-namespace NLog.UnitTests.Targets
+namespace NLog.Internal
 {
-    using NLog.Targets;
-
-    /// <summary>
-    /// Test via <see cref="IJsonConverter"/> path
-    /// </summary>
-    public class DefaultJsonSerializerTests : DefaultJsonSerializerTestsBase
+    internal struct ObjectPropertyPath
     {
-        private readonly IJsonConverter _serializer;
+        public string[] PathNames { get; private set; }
 
-        public DefaultJsonSerializerTests()
+        /// <summary>
+        /// Object Path to check
+        /// </summary>
+        public string Value
         {
-            _serializer = new DefaultJsonSerializer(null);
-        }
-
-        protected override string SerializeObject(object o)
-        {
-            var sb = new StringBuilder();
-            _serializer.SerializeObject(o, sb);
-            var result = sb.ToString();
-            return result;
+            get => PathNames?.Length > 0 ? string.Join(".", PathNames) : null;
+            set => PathNames = StringHelpers.IsNullOrWhiteSpace(value) ? null : value.SplitAndTrimTokens('.');
         }
     }
 }
-

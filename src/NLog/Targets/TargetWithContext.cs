@@ -112,7 +112,7 @@ namespace NLog.Targets
 
         private IPropertyTypeConverter PropertyTypeConverter
         {
-            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ResolveService<IPropertyTypeConverter>());
             set => _propertyTypeConverter = value;
         }
         private IPropertyTypeConverter _propertyTypeConverter;

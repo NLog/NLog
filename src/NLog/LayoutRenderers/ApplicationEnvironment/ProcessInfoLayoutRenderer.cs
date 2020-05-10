@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
             if (value != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                builder.AppendFormattedValue(value, Format, formatProvider);
+                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
             }
         }
 

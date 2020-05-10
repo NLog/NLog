@@ -625,12 +625,12 @@ namespace NLog.Targets
 
         private class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
-            private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
-            private IJsonConverter _jsonConverter;
+            private readonly IJsonConverter _jsonConverter;
 
             public HttpPostJsonFormatter(WebServiceTarget target)
                 : base(target)
             {
+                _jsonConverter = target.ResolveService<IJsonConverter>();
             }
 
             protected override string GetContentType(WebServiceTarget target)
@@ -656,7 +656,7 @@ namespace NLog.Targets
                         builder.Append('"');
                         builder.Append(parameter.Name);
                         builder.Append("\":");
-                        JsonConverter.SerializeObject(parameterValues[i], builder);
+                        _jsonConverter.SerializeObject(parameterValues[i], builder);
                         separator = ",";
                     }
                     builder.Append('}');

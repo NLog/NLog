@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,31 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
+using System;
+using System.Linq;
+using JetBrains.Annotations;
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Config
 {
-    using NLog.Targets;
-
     /// <summary>
-    /// Test via <see cref="IJsonConverter"/> path
+    /// Failed to resolve a Type
     /// </summary>
-    public class DefaultJsonSerializerTests : DefaultJsonSerializerTestsBase
+    public sealed class NLogResolveException : Exception
     {
-        private readonly IJsonConverter _serializer;
-
-        public DefaultJsonSerializerTests()
+        /// <summary>
+        /// Typed we tried to resolve
+        /// </summary>
+        [NotNull] public Type TypeToResolve { get; }
+        
+        /// <inheritdoc />
+        public NLogResolveException(string message, [NotNull] Type typeToResolve) : base(CreateFullMessage(typeToResolve, message))
         {
-            _serializer = new DefaultJsonSerializer(null);
+            TypeToResolve = typeToResolve ?? throw new ArgumentNullException(nameof(typeToResolve));
         }
 
-        protected override string SerializeObject(object o)
+        /// <inheritdoc />
+        public NLogResolveException(string message, Exception innerException, [NotNull] Type typeToResolve) : base(CreateFullMessage(typeToResolve, message), innerException)
         {
-            var sb = new StringBuilder();
-            _serializer.SerializeObject(o, sb);
-            var result = sb.ToString();
-            return result;
+            TypeToResolve = typeToResolve ?? throw new ArgumentNullException(nameof(typeToResolve));
         }
+
+        private static string CreateFullMessage(Type typeToResolve, string message) => $"Cannot resolve the type: '{typeToResolve.Name}'. {message}".Trim();
     }
 }
-

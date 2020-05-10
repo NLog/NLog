@@ -206,11 +206,16 @@ namespace NLog.Config
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
-        /// <param name="xml">NLog configuration as XML string.</param>
-        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        /// <param name="xml">NLog configuration</param>
+        /// <param name="logFactory">LogFactory. Not null allowed.</param>
         /// <returns></returns>
-        public static XmlLoggingConfiguration CreateFromXmlString(string xml, LogFactory logFactory)
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, [NotNull] LogFactory logFactory)
         {
+            if (logFactory == null)
+            {
+                throw new ArgumentNullException(nameof(logFactory));
+            }
+
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 #endif

@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         {
             var value = GetValue();
             var formatProvider = GetFormatProvider(logEvent, null);
-            builder.AppendFormattedValue(value, Format, formatProvider);
+            builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
         }
         
         /// <inheritdoc/>

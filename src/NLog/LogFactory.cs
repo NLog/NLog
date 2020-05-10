@@ -61,13 +61,15 @@ namespace NLog
         /// Internal for unit tests
         /// </remarks>
         internal readonly object _syncRoot = new object();
-
+        private readonly LoggerCache _loggerCache = new LoggerCache();
+        private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
         internal LoggingConfiguration _config;
+        internal LogMessageFormatter ActiveMessageFormatter;
+        internal LogMessageFormatter SingleTargetMessageFormatter;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
         private int _logsEnabled;
-        private readonly LoggerCache _loggerCache = new LoggerCache();
 
         /// <summary>
         /// Overwrite possible file paths (including filename) for possible NLog config files. 
@@ -108,6 +110,8 @@ namespace NLog
         public LogFactory()
             : this(new LoggingConfigurationFileLoaderFactory().Create()) // TODO NLog 5 - Decouple with DI
         {
+            _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
+            RefreshMessageFormatter();
         }
 
         /// <summary>
@@ -276,6 +280,42 @@ namespace NLog
                     }
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
+            }
+        }
+
+        /// <summary>
+        /// Repository of interfaces used by NLog to allow override for dependency injection
+        /// </summary>
+        public ServiceRepository ServiceRepository
+        {
+            get => _serviceRepository;
+            internal set
+            {
+                _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
+                _serviceRepository = (value as ServiceRepositoryInternal) ?? new ServiceRepositoryInternal(true);
+                _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
+            }
+        }
+
+        private void ServiceRepository_TypeRegistered(object sender, RepositoryUpdateEventArgs e)
+        {
+            if (e.Type == typeof(ILogMessageFormatter))
+            {
+                RefreshMessageFormatter();
+            }
+        }
+
+        private void RefreshMessageFormatter()
+        {
+            var messageFormatter = _serviceRepository.ResolveService<ILogMessageFormatter>();
+            ActiveMessageFormatter = messageFormatter.FormatMessage;
+            if (messageFormatter is LogMessageTemplateFormatter templateFormatter)
+            {
+                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(_serviceRepository, templateFormatter.ForceTemplateRenderer, true).FormatMessage;
+            }
+            else
+            {
+                SingleTargetMessageFormatter = null;
             }
         }
 
@@ -868,6 +908,8 @@ namespace NLog
 
             _isDisposing = true;
 
+            _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             LoggerShutdown -= OnStopLogging;
             ConfigurationReloaded = null;   // Release event listeners
@@ -1068,7 +1110,7 @@ namespace NLog
             }
             else
             {
-                var instance = FactoryHelper.CreateInstance(customLoggerType);
+                var instance = ServiceRepository.GetService(customLoggerType);
                 var newLogger = instance as Logger;
                 if (newLogger == null)
                 {

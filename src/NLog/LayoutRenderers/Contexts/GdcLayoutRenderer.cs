@@ -64,8 +64,11 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             object value = GetValue();
-            var formatProvider = GetFormatProvider(logEvent, null);
-            builder.AppendFormattedValue(value, Format, formatProvider);
+            if (value != null || !string.IsNullOrEmpty(Format))
+            {
+                var formatProvider = GetFormatProvider(logEvent, null);
+                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+            }
         }
 
         /// <inheritdoc/>

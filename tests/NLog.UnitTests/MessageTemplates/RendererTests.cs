@@ -130,15 +130,10 @@ namespace NLog.UnitTests.MessageTemplates
 
         private static void RenderAndTest(string input, CultureInfo culture, object[] args, string expected)
         {
-            var template = TemplateParser.Parse(input);
-
-            var sb = new System.Text.StringBuilder();
-            template.Render(sb, culture, args);
-            Assert.Equal(expected, sb.ToString());
-
-            sb.Length = 0;
-            TemplateRenderer.Render(input, culture, args, true, sb, out var messageTemplateParameters);
-            Assert.Equal(expected, sb.ToString());
+            var logEventInfoAlways = new LogEventInfo(LogLevel.Info, "Logger", culture, input, args);
+            logEventInfoAlways.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var templateAlways = logEventInfoAlways.MessageTemplateParameters;
+            Assert.Equal(expected, logEventInfoAlways.FormattedMessage);
         }
     }
 }
