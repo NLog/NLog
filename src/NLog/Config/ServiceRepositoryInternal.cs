@@ -43,7 +43,7 @@ namespace NLog.Config
     /// <summary>
     /// Repository of interfaces used by NLog to allow override for dependency injection
     /// </summary>
-    internal sealed class ServiceRepository : IServiceRepository
+    internal sealed class ServiceRepositoryInternal : ServiceRepository
     {
         private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
         private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
@@ -51,29 +51,29 @@ namespace NLog.Config
         private ConfigurationItemFactory _localItemFactory;
         public event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
 
-        public ConfigurationItemFactory ConfigurationItemFactory
+        public override ConfigurationItemFactory ConfigurationItemFactory
         {
             get => _localItemFactory ?? (_localItemFactory = new ConfigurationItemFactory(this, ConfigurationItemFactory.Default, ArrayHelper.Empty<Assembly>()));
-            set => _localItemFactory = value;
+            internal set => _localItemFactory = value;
         }
 
-        public ConfigurationItemCreator ConfigurationItemCreator { get; set; }
+        internal override ConfigurationItemCreator ConfigurationItemCreator { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceRepository"/> class.
+        /// Initializes a new instance of the <see cref="ServiceRepositoryInternal"/> class.
         /// </summary>
-        internal ServiceRepository(bool resetGlobalCache = false)
+        internal ServiceRepositoryInternal(bool resetGlobalCache = false)
         {
             if (resetGlobalCache)
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
-            ConfigurationItemCreator = ResolveService;
+            ConfigurationItemCreator = GetService;
 
             this.RegisterDefaults();
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
-        public void RegisterService(Type type, object instance)
+        public override void RegisterService(Type type, object instance)
         {
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
@@ -88,9 +88,9 @@ namespace NLog.Config
             TypeRegistered?.Invoke(this, new RepositoryUpdateEventArgs(type));
         }
 
-        public object ResolveService(Type itemType)
+        public override object GetService(Type serviceType)
         {
-            return DefaultResolveInstance(itemType, null);
+            return DefaultResolveInstance(serviceType, null);
         }
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)

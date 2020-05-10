@@ -53,7 +53,7 @@ namespace NLog.Config
     /// </summary>
     public abstract class LoggingConfigurationParser : LoggingConfiguration
     {
-        private readonly IServiceRepository _serviceRepository;
+        private readonly ServiceRepository _serviceRepository;
 
         /// <summary>
         /// Constructor
@@ -1109,7 +1109,7 @@ namespace NLog.Config
             object arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
             if (arrayItem == null)
-                arrayItem = _serviceRepository.ResolveService(elementType);
+                arrayItem = _serviceRepository.GetService(elementType);
 
             ConfigureObjectFromAttributes(arrayItem, element, true);
             ConfigureObjectFromElement(arrayItem, element);

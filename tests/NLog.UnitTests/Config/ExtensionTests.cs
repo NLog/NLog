@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest1()
         {
-            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+            LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
 
             Assert.NotNull(typeof(FooLayout));
 
@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest2()
         {
-            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+            LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -162,7 +162,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionWithPrefixTest()
         {
-            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+            LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+            LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -259,7 +259,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+            LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -419,7 +419,7 @@ namespace NLog.UnitTests.Config
             finally
             {
                 ConfigurationItemFactory.Default.Clear();
-                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+                LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
             }
         }
 
@@ -439,7 +439,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+                LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
                 ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
 
                 using(new NoThrowNLogExceptions())
@@ -475,7 +475,7 @@ namespace NLog.UnitTests.Config
                 //cleanup
                 ConfigurationItemFactory.AssemblyLoading -= onAssemblyLoading;
                 ConfigurationItemFactory.Default.Clear();
-                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+                LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
             }
         }
 
@@ -488,7 +488,7 @@ namespace NLog.UnitTests.Config
                 var writer = new StringWriter();
                 InternalLogger.LogWriter = writer;
                 InternalLogger.LogLevel = LogLevel.Debug;
-                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+                LogManager.LogFactory.ServiceRepository = new ServiceRepositoryInternal(true);
 
                 var fact = ConfigurationItemFactory.Default;
 

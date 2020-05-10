@@ -62,7 +62,7 @@ namespace NLog
         /// </remarks>
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
-        private ServiceRepository _serviceRepository = new ServiceRepository();
+        private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
         internal LogMessageFormatter SingleTargetMessageFormatter;
@@ -286,13 +286,13 @@ namespace NLog
         /// <summary>
         /// Repository of interfaces used by NLog to allow override for dependency injection
         /// </summary>
-        public IServiceRepository ServiceRepository
+        public ServiceRepository ServiceRepository
         {
             get => _serviceRepository;
             internal set
             {
                 _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
-                _serviceRepository = (ServiceRepository)value ?? new ServiceRepository(true);
+                _serviceRepository = (value as ServiceRepositoryInternal) ?? new ServiceRepositoryInternal(true);
                 _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             }
         }
@@ -1110,7 +1110,7 @@ namespace NLog
             }
             else
             {
-                var instance = ServiceRepository.ResolveService(customLoggerType);
+                var instance = ServiceRepository.GetService(customLoggerType);
                 var newLogger = instance as Logger;
                 if (newLogger == null)
                 {

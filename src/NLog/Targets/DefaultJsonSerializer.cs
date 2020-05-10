@@ -65,9 +65,9 @@ namespace NLog.Targets
         /// <summary>
         /// Private. Use <see cref="Instance"/>
         /// </summary>
-        internal DefaultJsonSerializer(NLog.Config.IServiceResolver serviceResolver)
+        internal DefaultJsonSerializer(IServiceProvider serviceProvider)
         {
-            _objectReflectionCache = new ObjectReflectionCache(serviceResolver);
+            _objectReflectionCache = new ObjectReflectionCache(serviceProvider);
         }
 
         /// <summary>

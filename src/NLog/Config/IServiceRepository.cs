@@ -38,18 +38,27 @@ namespace NLog.Config
     /// <summary>
     /// Interface to register available configuration objects type
     /// </summary>
-    public interface IServiceRepository : IServiceResolver
+    public abstract class ServiceRepository : IServiceProvider
     {
         /// <summary>
         /// Registers instance of singleton object for use in NLog
         /// </summary>
         /// <param name="type">Type of service</param>
         /// <param name="instance">Instance of service</param>
-        void RegisterService(Type type, object instance);
+        public abstract void RegisterService(Type type, object instance);
+
+        /// <inheritdoc />
+        public abstract object GetService(Type serviceType);
 
         /// <summary>
         /// Mapping of symbol name to actual <see cref="System.Type"/>
         /// </summary>
-        ConfigurationItemFactory ConfigurationItemFactory { get; }
+        public abstract ConfigurationItemFactory ConfigurationItemFactory { get; internal set; }
+
+        internal abstract ConfigurationItemCreator ConfigurationItemCreator { get; set; }
+
+        internal ServiceRepository()
+        {
+        }
     }
 }

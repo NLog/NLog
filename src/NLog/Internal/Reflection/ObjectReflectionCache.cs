@@ -50,13 +50,13 @@ namespace NLog.Internal
     internal class ObjectReflectionCache : IObjectTypeTransformer
     {
         private readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
-        private readonly IServiceResolver _serviceResolver;
-        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceResolver?.ResolveService<IObjectTypeTransformer>() ?? this);
+        private readonly IServiceProvider _serviceProvider;
+        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceProvider?.ResolveService<IObjectTypeTransformer>() ?? this);
         private IObjectTypeTransformer _objectTypeTransformation;
 
-        public ObjectReflectionCache(IServiceResolver serviceResolver)
+        public ObjectReflectionCache(IServiceProvider serviceProvider)
         {
-            _serviceResolver = serviceResolver;
+            _serviceProvider = serviceProvider;
         }
 
         object IObjectTypeTransformer.TryTransformObject(object obj)

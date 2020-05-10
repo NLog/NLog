@@ -44,9 +44,9 @@ namespace NLog.Internal
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly IServiceResolver _serviceResolver;
+        private readonly IServiceProvider _serviceProvider;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _serviceResolver.ResolveService<IValueFormatter>());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _serviceProvider.ResolveService<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>
@@ -58,12 +58,12 @@ namespace NLog.Internal
         /// <summary>
         /// New formatter
         /// </summary>
-        /// <param name="serviceResolver"></param>
+        /// <param name="serviceProvider"></param>
         /// <param name="forceTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
-        public LogMessageTemplateFormatter([NotNull] IServiceResolver serviceResolver, bool forceTemplateRenderer, bool singleTargetOnly)
+        public LogMessageTemplateFormatter([NotNull] IServiceProvider serviceProvider, bool forceTemplateRenderer, bool singleTargetOnly)
         {
-            _serviceResolver = serviceResolver;
+            _serviceProvider = serviceProvider;
             _forceTemplateRenderer = forceTemplateRenderer;
             _singleTargetOnly = singleTargetOnly;
             MessageFormatter = FormatMessage;

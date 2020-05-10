@@ -76,7 +76,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
-            :this(new ServiceRepository(), null, assemblies)
+            :this(new ServiceRepositoryInternal(), null, assemblies)
         {
         }
 
@@ -124,7 +124,7 @@ namespace NLog.Config
                 {
                     value._serviceRepository.ConfigurationItemFactory = null;   // Reset local ServiceRepository-instance
                 }
-                ((ServiceRepository)LogManager.LogFactory.ServiceRepository).ConfigurationItemFactory = null;   // Reset global ServiceRepository-instance
+                LogManager.LogFactory.ServiceRepository.ConfigurationItemFactory = null;   // Reset global ServiceRepository-instance
             }
         }
 
@@ -416,7 +416,7 @@ namespace NLog.Config
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
-            var factory = new ConfigurationItemFactory((ServiceRepository)LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
+            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
             factory.RegisterExternalItems();
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
