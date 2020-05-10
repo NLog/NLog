@@ -1177,7 +1177,7 @@ namespace NLog
             InternalLogger.Info("Reloading configuration...");
             var errorRaised = false;
 
-            if (_config == null)
+            if (_config != null)
             {
                 try
                 {
