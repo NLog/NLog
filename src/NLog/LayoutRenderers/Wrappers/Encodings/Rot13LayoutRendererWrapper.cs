@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Gets or sets the layout to be wrapped.
@@ -86,9 +86,9 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        protected override string Transform(string text)
         {
+            throw new NotSupportedException();
         }
 
         /// <summary>
