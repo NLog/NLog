@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("When")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue
+    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
@@ -84,15 +84,15 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
+        /// <inheritdoc/>
+        protected override string Transform(string text)
+        {
+            throw new NotSupportedException();
+        }
+
         private bool ShouldRenderInner(LogEventInfo logEvent)
         {
             return When == null || true.Equals(When.Evaluate(logEvent));
-        }
-
-        /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
-        {
         }
 
         /// <inheritdoc />

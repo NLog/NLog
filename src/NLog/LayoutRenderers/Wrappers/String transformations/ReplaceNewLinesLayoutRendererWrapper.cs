@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReplaceNewLinesLayoutRendererWrapper" /> class.
@@ -83,15 +83,15 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
+        /// <inheritdoc/>
+        protected override string Transform(string text)
+        {
+            throw new NotSupportedException();
+        }
+
         private static bool HasUnixNewline(string str)
         {
             return str != null && str.IndexOf('\n') >= 0;
-        }
-
-        /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
-        {
         }
     }
 }

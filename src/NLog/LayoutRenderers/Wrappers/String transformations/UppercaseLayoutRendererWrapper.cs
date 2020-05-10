@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
@@ -88,9 +88,9 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        protected override string Transform(string text)
         {
+            throw new NotSupportedException();
         }
 
         private void TransformToUpperCase(StringBuilder target, int startPos)

@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("WhenEmpty")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue, IStringValueRenderer
+    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue, IStringValueRenderer
     {
         private bool _skipStringValueRenderer;
 
@@ -75,6 +75,12 @@ namespace NLog.LayoutRenderers.Wrappers
 
             // render WhenEmpty when the inner layout was empty
             WhenEmpty.RenderAppendBuilder(logEvent, builder);
+        }
+
+        /// <inheritdoc/>
+        protected override string Transform(string text)
+        {
+            throw new NotSupportedException();
         }
 
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
@@ -135,12 +141,6 @@ namespace NLog.LayoutRenderers.Wrappers
 
             // render WhenEmpty when the inner layout was empty
             return WhenEmpty.TryGetRawValue(logEvent, out value);
-        }
-
-        /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
-        {
         }
     }
 }
