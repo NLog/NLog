@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// The executable directory from the <see cref="System.Diagnostics.Process.MainModule"/> FileName,
@@ -51,7 +52,7 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class ProcessDirLayoutRenderer : LayoutRenderer
     {
-        private string _processDir;
+        private readonly string _processDir;
 
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the process directory.
@@ -65,16 +66,27 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Advanced Options' order='10' />
         public string Dir { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessDirLayoutRenderer" /> class.
+        /// </summary>
+        public ProcessDirLayoutRenderer()
+            : this(LogFactory.DefaultAppEnvironment)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessDirLayoutRenderer" /> class.
+        /// </summary>
+        internal ProcessDirLayoutRenderer(IAppEnvironment appEnvironment)
+        {
+            _processDir = Path.GetDirectoryName(appEnvironment.CurrentProcessFilePath);
+        }
+
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(GetProcessDir(), Dir, File);
+            var path = PathHelpers.CombinePaths(_processDir, Dir, File);
             builder.Append(path);
-        }
-
-        private string GetProcessDir()
-        {
-            return _processDir ?? (_processDir = Path.GetDirectoryName(ProcessIDHelper.Instance.CurrentProcessFilePath));
         }
     }
 }

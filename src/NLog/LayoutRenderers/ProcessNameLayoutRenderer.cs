@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
-    using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// The name of the current process.
@@ -49,6 +49,9 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class ProcessNameLayoutRenderer : LayoutRenderer
     {
+        private readonly string _processFilePath;
+        private readonly string _processBaseName;
+
         /// <summary>
         /// Gets or sets a value indicating whether to write the full path to the process executable.
         /// </summary>
@@ -57,13 +60,30 @@ namespace NLog.LayoutRenderers
         public bool FullName { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessNameLayoutRenderer" /> class.
+        /// </summary>
+        public ProcessNameLayoutRenderer()
+            :this(LogFactory.DefaultAppEnvironment)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessNameLayoutRenderer" /> class.
+        /// </summary>
+        internal ProcessNameLayoutRenderer(IAppEnvironment appEnvironment)
+        {
+            _processFilePath = appEnvironment.CurrentProcessFilePath;
+            _processBaseName = appEnvironment.CurrentProcessBaseName;
+        }
+
+        /// <summary>
         /// Renders the current process name (optionally with a full path).
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var output = FullName ? ProcessIDHelper.Instance.CurrentProcessFilePath : ProcessIDHelper.Instance.CurrentProcessBaseName;
+            var output = FullName ? _processFilePath : _processBaseName;
             builder.Append(output);
         }
     }

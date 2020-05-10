@@ -40,6 +40,7 @@ namespace NLog.Config
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// Enables FileWatcher for the currently loaded NLog Configuration File,
@@ -53,6 +54,11 @@ namespace NLog.Config
         private MultiFileWatcher _watcher;
         private bool _isDisposing;
         private LogFactory _logFactory;
+
+        public LoggingConfigurationWatchableFileLoader(IAppEnvironment appEnvironment)
+            :base(appEnvironment)
+        {
+        }
 
         public override LoggingConfiguration Load(LogFactory logFactory, string filename = null)
         {

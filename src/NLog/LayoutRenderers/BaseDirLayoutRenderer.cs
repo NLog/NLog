@@ -56,6 +56,7 @@ namespace NLog.LayoutRenderers
         /// cached
         /// </summary>
         private string _processDir;
+        private readonly IAppEnvironment _appEnvironment;
 #endif
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
+        public BaseDirLayoutRenderer() : this(LogFactory.DefaultAppEnvironment)
         {
         }
 
@@ -83,6 +84,20 @@ namespace NLog.LayoutRenderers
         public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
             _baseDir = appDomain.BaseDirectory;
+#if !SILVERLIGHT && !NETSTANDARD1_3
+            _appEnvironment = LogFactory.DefaultAppEnvironment;
+#endif
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
+        /// </summary>
+        internal BaseDirLayoutRenderer(IAppEnvironment appEnvironment)
+        {
+            _baseDir = appEnvironment.AppDomainBaseDirectory;
+#if !SILVERLIGHT && !NETSTANDARD1_3
+            _appEnvironment = appEnvironment;
+#endif
         }
 
         /// <summary>
@@ -124,11 +139,11 @@ namespace NLog.LayoutRenderers
         }
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
-        private static string GetFixedTempBaseDir(string baseDir)
+        private string GetFixedTempBaseDir(string baseDir)
         {
             try
             {
-                var tempDir = Path.GetTempPath();
+                var tempDir = _appEnvironment.UserTempFilePath;
                 if (PathHelpers.IsTempDir(baseDir, tempDir))
                 {
                     var processDir = GetProcessDir();
@@ -146,9 +161,9 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static string GetProcessDir()
+        private string GetProcessDir()
         {
-            return Path.GetDirectoryName(ProcessIDHelper.Instance.CurrentProcessFilePath);
+            return Path.GetDirectoryName(_appEnvironment.CurrentProcessFilePath);
         }
 #endif
     }

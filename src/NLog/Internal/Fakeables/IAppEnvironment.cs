@@ -40,14 +40,20 @@ namespace NLog.Internal.Fakeables
     /// </summary>
     internal interface IAppEnvironment : IFileSystem
     {
+        IAppDomain AppDomain { get; }
         string AppDomainBaseDirectory { get; }
         string AppDomainConfigurationFile { get; }
 #if !NETSTANDARD1_3 && !SILVERLIGHT
         string CurrentProcessFilePath { get; }
+        /// <summary>
+        /// Gets current process name (excluding filename extension, if any).
+        /// </summary>
+        string CurrentProcessBaseName { get; }
+        int CurrentProcessId { get; }
         string EntryAssemblyLocation { get; }
         string EntryAssemblyFileName { get; }
-        string UserTempFilePath { get; }
 #endif
+        string UserTempFilePath { get; }
         IEnumerable<string> PrivateBinPath { get; }
     }
 }

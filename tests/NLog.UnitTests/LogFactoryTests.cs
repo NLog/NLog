@@ -230,7 +230,7 @@ namespace NLog.UnitTests
                 var loggingConfiguration = new LoggingConfiguration();
                 LogManager.Configuration = loggingConfiguration;
 
-                var configLoader = new LoggingConfigurationWatchableFileLoader();
+                var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
                 var logFactory = new LogFactory(configLoader);
                 logFactory.Configuration = loggingConfiguration;
 
@@ -271,7 +271,7 @@ namespace NLog.UnitTests
         {
             var loggingConfiguration = new ReloadNullConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             logFactory.Configuration = loggingConfiguration;
 

@@ -308,7 +308,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">filepath</param>
         /// <returns>reader or <c>null</c> if filename is empty.</returns>
-        private static XmlReader CreateFileReader(string fileName)
+        private XmlReader CreateFileReader(string fileName)
         {
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -323,7 +323,7 @@ namespace NLog.Config
                     return XmlReader.Create(stream);
                 }
 #endif
-                return XmlReader.Create(fileName);
+                return LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName);
             }
             return null;
         }
@@ -405,7 +405,13 @@ namespace NLog.Config
         private void ConfigureFromFile([NotNull] string fileName, bool autoReloadDefault)
         {
             if (!_fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
-                ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
+            {
+                using (var reader = LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName))
+                {
+                    reader.MoveToContent();
+                    ParseTopLevel(new NLogXmlElement(reader, true), fileName, autoReloadDefault);
+                }
+            }
         }
 
         /// <summary>

@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// The identifier of the current process.
@@ -48,22 +49,35 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class ProcessIdLayoutRenderer : LayoutRenderer, IRawValue
     {
+        private readonly int _processId;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessIdLayoutRenderer" /> class.
+        /// </summary>
+        public ProcessIdLayoutRenderer()
+            : this(LogFactory.DefaultAppEnvironment)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessIdLayoutRenderer" /> class.
+        /// </summary>
+        internal ProcessIdLayoutRenderer(IAppEnvironment appEnvironment)
+        {
+            _processId = appEnvironment.CurrentProcessId;
+        }
+
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.AppendInvariant(GetValue());
+            builder.AppendInvariant(_processId);
         }
 
         /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
-            value = GetValue();
+            value = _processId;
             return true;
-        }
-
-        private int GetValue()
-        {
-            return ProcessIDHelper.Instance.CurrentProcessID;
         }
     }
 }
