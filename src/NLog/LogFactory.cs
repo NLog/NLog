@@ -1175,7 +1175,7 @@ namespace NLog
         public LogFactory ReloadConfiguration()
         {
             InternalLogger.Info("Reloading configuration...");
-            Configuration = Configuration.Reload();
+            Configuration = Configuration.ReloadNewConfig();
 
 
             NotifyConfigurationReloaded();
