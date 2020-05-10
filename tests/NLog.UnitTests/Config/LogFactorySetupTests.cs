@@ -648,34 +648,7 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
 
-            var appEnv = new Mocks.AppEnvironmentMock(f => true, f =>
-            {
-                var xmlFile = new System.IO.StringReader(@"
-<nlog>
-    <targets>
-        <target name='target1' type='debug' />
-        <target name='target2' type='debug' />
-    </targets>
-</nlog>");
-
-                var xmlReader = System.Xml.XmlReader.Create(xmlFile);
-                var x = xmlReader.ReadState;
-                return xmlReader;
-            });
-            var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
-
-            // Act
-            logFactory.Setup().
-                LoadConfigurationFromFile().
-                LoadConfiguration(applyOnReload1, b =>
-                {
-                    b.Configuration.AddRuleForAllLevels("target1");
-                })
-                .LoadConfiguration(applyOnReload2, b =>
-                {
-                    b.Configuration.AddRuleForAllLevels("target2");
-                });
+            var logFactory = ArrangeMultipleLoadConfigurationApplyOnReload(applyOnReload1, applyOnReload2);
 
             logFactory.ReloadConfiguration();
 
@@ -697,6 +670,48 @@ namespace NLog.UnitTests.Config
                     Assert.Equal("target2", logFactory.Configuration.LoggingRules[index].Targets.Single().Name);
                 }
             }
+        }
+
+        [Theory]
+        [InlineData(true, true)]
+        [InlineData(false, true)]
+        [InlineData(true, false)]
+        [InlineData(false, false)]
+        public void SetupBuilderMultipleLoadConfigurationApplyOnReload_manualShouldNotCountAsReload(bool applyOnReload1, bool applyOnReload2)
+        {
+            // Arrange
+
+            var logFactory = ArrangeMultipleLoadConfigurationApplyOnReload(applyOnReload1, applyOnReload2);
+
+            logFactory.Configuration = logFactory.Configuration.Reload();
+
+            // Assert
+            Assert.Equal(0, logFactory.Configuration.LoggingRules.Count);
+        }
+
+        private static LogFactory ArrangeMultipleLoadConfigurationApplyOnReload(bool applyOnReload1, bool applyOnReload2)
+        {
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f =>
+            {
+                var xmlFile = new System.IO.StringReader(@"
+<nlog>
+    <targets>
+        <target name='target1' type='debug' />
+        <target name='target2' type='debug' />
+    </targets>
+</nlog>");
+
+                var xmlReader = System.Xml.XmlReader.Create(xmlFile);
+                var x = xmlReader.ReadState;
+                return xmlReader;
+            });
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromFile().LoadConfiguration(applyOnReload1, b => { b.Configuration.AddRuleForAllLevels("target1"); })
+                .LoadConfiguration(applyOnReload2, b => { b.Configuration.AddRuleForAllLevels("target2"); });
+            return logFactory;
         }
     }
 }
