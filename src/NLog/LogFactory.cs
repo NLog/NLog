@@ -1175,9 +1175,32 @@ namespace NLog
         public LogFactory ReloadConfiguration()
         {
             InternalLogger.Info("Reloading configuration...");
-            Configuration = Configuration?.ReloadNewConfig();
+            var errorRaised = false;
 
-            NotifyConfigurationReloaded();
+            if (_config == null)
+            {
+                try
+                {
+                    Configuration = Configuration.ReloadNewConfig();
+                }
+                catch (Exception e)
+                {
+                    if (e.MustBeRethrownImmediately() || e.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    errorRaised = true;
+                    NotifyConfigurationReloaded(e);
+                }
+
+            }
+
+            if (!errorRaised)
+            {
+                NotifyConfigurationReloaded();
+            }
+            
             return this;
         }
 
