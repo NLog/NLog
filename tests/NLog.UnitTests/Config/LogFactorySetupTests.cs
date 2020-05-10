@@ -632,7 +632,7 @@ namespace NLog.UnitTests.Config
                     b.Configuration.AddRuleForAllLevels("target1");
                 });
 
-            logFactory.Configuration = logFactory.Configuration.Reload(); //todo NLog 5 - assignment to logFactory.Configuration should not be needed
+            logFactory.ReloadConfiguration();
 
             // Assert
             var expectedRules = applyOnReload ? 1 : 0;
@@ -677,7 +677,7 @@ namespace NLog.UnitTests.Config
                     b.Configuration.AddRuleForAllLevels("target2");
                 });
 
-            logFactory.Configuration = logFactory.Configuration.Reload(); //todo NLog 5 - assignment to logFactory.Configuration should not be needed
+            logFactory.ReloadConfiguration();
 
             // Assert
             if (!applyOnReload1 && !applyOnReload2)

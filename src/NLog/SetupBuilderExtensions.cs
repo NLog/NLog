@@ -114,15 +114,13 @@ namespace NLog
             {
                 setupBuilder.LogFactory.Configuration = newConfig;
             }
-#if !NETSTANDARD1_3
             if (applyOnReload)
             {
-                setupBuilder.LogFactory.ConfigurationChanged += (sender, e) =>
+                setupBuilder.LogFactory.ConfigurationReloaded += (sender, e) =>
                 {
                     setupBuilder.LoadConfiguration(false, configBuilder);
                 };
             }
-#endif
 
             return setupBuilder;
         }

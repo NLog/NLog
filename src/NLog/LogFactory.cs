@@ -84,12 +84,10 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
-#endif
 
         private static event EventHandler<EventArgs> LoggerShutdown;
 
@@ -562,7 +560,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            FlushInternal(timeout, asyncContinuation ?? (ex => { }) );
+            FlushInternal(timeout, asyncContinuation ?? (ex => { }));
         }
 
         private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
@@ -794,7 +792,6 @@ namespace NLog
             ConfigurationChanged?.Invoke(this, e);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
@@ -804,11 +801,16 @@ namespace NLog
             ConfigurationReloaded?.Invoke(this, e);
         }
 
-        internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
+        /// <summary>
+        /// Notify success or failed, depending of <paramref name="exception"/>
+        /// </summary>
+        /// <param name="exception">success iif this parameter null</param>
+        internal void NotifyConfigurationReloaded(Exception exception = null)
         {
-            OnConfigurationReloaded(eventArgs);
+            var success = exception == null;
+
+            OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(success, exception));
         }
-#endif
 
         private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
@@ -1166,6 +1168,20 @@ namespace NLog
             return LoadConfiguration(configFile, optional: false);
         }
 
+        /// <summary>
+        /// Reload and apply the current config
+        /// </summary>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public LogFactory ReloadConfiguration()
+        {
+            InternalLogger.Info("Reloading configuration...");
+            Configuration = Configuration.Reload();
+
+
+            NotifyConfigurationReloaded();
+            return this;
+        }
+
         internal LogFactory LoadConfiguration(string configFile, bool optional)
         {
             var actualConfigFile = string.IsNullOrEmpty(configFile) ? "NLog.config" : configFile;
@@ -1423,5 +1439,7 @@ namespace NLog
                 InternalLogger.Error(ex, "Logger failed to shut down properly.");
             }
         }
+
+
     }
 }

@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
 
 namespace NLog.Config
 {
@@ -76,4 +75,3 @@ namespace NLog.Config
     }
 }
 
-#endif

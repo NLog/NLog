@@ -181,7 +181,7 @@ namespace NLog.Config
                     }
 
                     InternalLogger.Warn(exception, "NLog configuration failed to reload");
-                    _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+                    _logFactory?.NotifyConfigurationReloaded(exception);
                     return;
                 }
 
@@ -191,7 +191,7 @@ namespace NLog.Config
 
                     _logFactory.Configuration = newConfig;  // Triggers LogFactory to call Activated(...) that adds file-watch again
 
-                    _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
+                    _logFactory?.NotifyConfigurationReloaded();
                 }
                 catch (Exception exception)
                 {
@@ -202,7 +202,7 @@ namespace NLog.Config
 
                     InternalLogger.Warn(exception, "NLog configuration reloaded, failed to be assigned");
                     _watcher.Watch(oldConfig.FileNamesToWatch);
-                    _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+                    _logFactory?.NotifyConfigurationReloaded(exception);
                 }
             }
         }
