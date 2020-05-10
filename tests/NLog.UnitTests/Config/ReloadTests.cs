@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !MONO
-
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -52,6 +49,9 @@ namespace NLog.UnitTests.Config
                 LogManager.LogFactory.ResetLoggerCache();
             }
         }
+
+#if !MONO
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -600,6 +600,13 @@ namespace NLog.UnitTests.Config
 
             var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
+
+            bool eventRaised = false;
+            logFactory.ConfigurationReloaded += (sender, e) =>
+            {
+                eventRaised = true;
+            };
+
             var configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
             logFactory.Configuration = configuration;
             logFactory.Configuration.Variables["var1"] = "new_value";
@@ -611,6 +618,8 @@ namespace NLog.UnitTests.Config
             logFactory.Configuration = configuration.ReloadNewConfig();
             Assert.Equal("", logFactory.Configuration.Variables["var1"].OriginalText);
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
+
+            Assert.True(eventRaised, "eventRaised");
         }
 
         [Fact]
@@ -619,7 +628,7 @@ namespace NLog.UnitTests.Config
             var called = false;
             LoggingConfigurationReloadedEventArgs arguments = null;
             object calledBy = null;
-            
+
             var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             var loggingConfiguration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, "<nlog></nlog>");
@@ -708,6 +717,63 @@ namespace NLog.UnitTests.Config
             }
         }
 
+
+
+#endif
+
+        [Fact]
+        public void TestKeepVariablesOnReloadManual()
+        {
+            // Arrange
+            string config = @"<nlog autoReload='true' keepVariablesOnReload='true'>
+                                <variable name='var1' value='' />
+                                <variable name='var2' value='keep_value' />
+                            </nlog>";
+
+            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
+            var logFactory = new LogFactory(configLoader);
+
+            bool eventRaised = false;
+            logFactory.ConfigurationReloaded += (sender, e) =>
+            {
+                eventRaised = true;
+            };
+
+            var configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
+            logFactory.Configuration = configuration;
+            logFactory.Configuration.Variables["var1"] = "new_value";
+            logFactory.Configuration.Variables["var3"] = "new_value3";
+
+            // Act
+            logFactory.ReloadConfiguration();
+
+            // Assert
+            Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].OriginalText);
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
+            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].OriginalText);
+            Assert.True(eventRaised, "eventRaised");
+        }
+
+        [Fact]
+        public void NullReloadShouldNotCrashAndRaiseConfigurationReloaded()
+        {
+            // Arrange
+            bool eventRaised = false;
+            var logFactory = new LogFactory();
+            logFactory.ConfigurationReloaded += (sender, e) =>
+            {
+                eventRaised = true;
+            };
+
+            // Act
+            logFactory.ReloadConfiguration();
+
+            // Assert
+            Assert.True(eventRaised, "eventRaised");
+        }
+
+#if! MONO
+
         private static void WriteConfigFile(string configFilePath, string config)
         {
             using (StreamWriter writer = File.CreateText(configFilePath))
@@ -756,8 +822,10 @@ namespace NLog.UnitTests.Config
                 };
             }
         }
-    }
 
+#endif
+    }
+#if !MONO
     /// <summary>
     /// Xml config with reload without file-reads for performance
     /// </summary>
@@ -782,5 +850,5 @@ namespace NLog.UnitTests.Config
             return new XmlLoggingConfigurationMock(logFactory, configXml);
         }
     }
-}
 #endif
+}

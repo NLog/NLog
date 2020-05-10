@@ -173,6 +173,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Reload the current logging configuration and apply it.
+        /// </summary>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public static LogFactory ReloadConfiguration()
+        {
+            return factory.ReloadConfiguration();
+        }
+
+        /// <summary>
         /// Gets or sets the global log threshold. Log events below this threshold are not logged.
         /// </summary>
         public static LogLevel GlobalThreshold
