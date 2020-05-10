@@ -500,7 +500,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile();
@@ -530,7 +530,7 @@ namespace NLog.UnitTests.Config
             // Arrange
             var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile(optional: true);
@@ -546,7 +546,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile("NLog.config", optional: true);
@@ -562,7 +562,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act / Assert
             Assert.Throws<System.IO.FileNotFoundException>(() => logFactory.Setup().LoadConfigurationFromFile("NLog.config", optional: false));
@@ -588,7 +588,7 @@ namespace NLog.UnitTests.Config
             var xmlFile = new System.IO.StringReader("<nlog autoshutdown='true'></nlog>");
             var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().
@@ -618,11 +618,10 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 var xmlReader = System.Xml.XmlReader.Create(xmlFile);
-                var x = xmlReader.ReadState;
                 return xmlReader;
             });
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().
@@ -702,11 +701,10 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 var xmlReader = System.Xml.XmlReader.Create(xmlFile);
-                var x = xmlReader.ReadState;
                 return xmlReader;
             });
             var configLoader = new LoggingConfigurationFileLoader(appEnv);
-            var logFactory = new LogFactory(configLoader);
+            var logFactory = new LogFactory(configLoader, appEnv);
 
             // Act
             logFactory.Setup().LoadConfigurationFromFile().LoadConfiguration(applyOnReload1, b => { b.Configuration.AddRuleForAllLevels("target1"); })
