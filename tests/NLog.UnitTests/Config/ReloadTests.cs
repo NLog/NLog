@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
+
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -771,6 +774,35 @@ namespace NLog.UnitTests.Config
             // Assert
             Assert.True(eventRaised, "eventRaised");
         }
+
+        [Fact]
+        public void CrashWithReloadShouldRaiseConfigurationReloaded()
+        {
+            // Arrange
+            LogManager.ThrowExceptions = false; // for now on LogManager
+
+            LoggingConfigurationReloadedEventArgs reloadedEventArgs = null;
+            var logFactory = new LogFactory();
+            var configurationMock = Substitute.For<LoggingConfiguration>(logFactory);
+            logFactory.Configuration = configurationMock;
+
+            var exception = new Exception("Crash");
+            configurationMock.Reload().Throws(exception);
+
+            logFactory.ConfigurationReloaded += (sender, e) =>
+            {
+                reloadedEventArgs = e;
+            };
+
+            // Act
+            logFactory.ReloadConfiguration();
+
+            // Assert
+            Assert.NotNull(reloadedEventArgs);
+            Assert.Equal(exception, reloadedEventArgs.Exception);
+            Assert.False(reloadedEventArgs.Succeeded);
+        }
+
 
 #if! MONO
 
