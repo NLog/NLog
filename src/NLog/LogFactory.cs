@@ -1175,10 +1175,10 @@ namespace NLog
         public LogFactory ReloadConfiguration()
         {
             InternalLogger.Info("Reloading configuration...");
-            var errorRaised = false;
 
             if (_config != null)
             {
+                var errorRaised = false;
                 try
                 {
                     Configuration = Configuration.ReloadNewConfig();
@@ -1193,14 +1193,14 @@ namespace NLog
                     errorRaised = true;
                     NotifyConfigurationReloaded(e);
                 }
+                
+                if (!errorRaised)
+                {
+                    NotifyConfigurationReloaded();
+                }
 
             }
 
-            if (!errorRaised)
-            {
-                NotifyConfigurationReloaded();
-            }
-            
             return this;
         }
 
