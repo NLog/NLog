@@ -1175,31 +1175,42 @@ namespace NLog
         public LogFactory ReloadConfiguration()
         {
             InternalLogger.Info("Reloading configuration...");
-
-            if (_config != null)
+            try
             {
-                var errorRaised = false;
-                try
+                if (_config == null)
                 {
-                    Configuration = Configuration.ReloadNewConfig();
-                }
-                catch (Exception e)
-                {
-                    if (e.MustBeRethrownImmediately() || e.MustBeRethrown())
+                    // Not loaded yet, so first load is a reload
+                    _config = Configuration;
+                    if (_config != null)
                     {
-                        throw;
+                        NotifyConfigurationReloaded();
                     }
-
-                    errorRaised = true;
-                    NotifyConfigurationReloaded(e);
                 }
-                
-                if (!errorRaised)
+                else
                 {
-                    NotifyConfigurationReloaded();
+                    var newConfig = _config.ReloadNewConfig();
+                    if (newConfig != null)
+                    {
+                        var oldConfig = _config;
+                        Configuration = newConfig;
+                        if (!ReferenceEquals(oldConfig, newConfig))
+                        {
+                            // Avoid applying reload-adjust-methods twice to the same config
+                            NotifyConfigurationReloaded();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                if (e.MustBeRethrownImmediately() || e.MustBeRethrown())
+                {
+                    throw;
                 }
 
+                NotifyConfigurationReloaded(e);
             }
+
 
             return this;
         }
