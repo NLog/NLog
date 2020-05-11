@@ -121,7 +121,7 @@ namespace NLog
         public LogFactory(LoggingConfiguration config)
             : this()
         {
-            Configuration = config;
+            ApplyNewConfig(config);
         }
 
         /// <summary>
@@ -230,71 +230,75 @@ namespace NLog
         /// </summary>
         public LoggingConfiguration Configuration
         {
-            get
+            get => GetOrLoadConfig();
+            set => ApplyNewConfig(value);
+        }
+
+        private void ApplyNewConfig([CanBeNull] LoggingConfiguration value)
+        {
+            lock (_syncRoot)
             {
-                if (_configLoaded)
-                    return _config;
-
-                lock (_syncRoot)
+                LoggingConfiguration oldConfig = _config;
+                if (oldConfig != null)
                 {
-                    if (_configLoaded || _isDisposing)
-                        return _config;
-
-                    var config = _configLoader.Load(this);
-                    if (config != null)
-                    {
-                        try
-                        {
-                            _config = config;
-                            _configLoader.Activated(this, _config);
-                            _config.Dump();
-                            ReconfigExistingLoggers();
-                            LogConfigurationInitialized();
-                        }
-                        finally
-                        {
-                            _configLoaded = true;
-                        }
-                    }
-
-                    return _config;
+                    InternalLogger.Info("Closing old configuration.");
+                    Flush();
+                    oldConfig.Close();
                 }
-            }
 
-            set
-            {
-                lock (_syncRoot)
+                _config = value;
+
+                if (_config == null)
                 {
-                    LoggingConfiguration oldConfig = _config;
-                    if (oldConfig != null)
+                    _configLoaded = false;
+                    _configLoader.Activated(this, _config);
+                }
+                else
+                {
+                    try
                     {
-                        InternalLogger.Info("Closing old configuration.");
-                        Flush();
-                        oldConfig.Close();
-                    }
-
-                    _config = value;
-
-                    if (_config == null)
-                    {
-                        _configLoaded = false;
                         _configLoader.Activated(this, _config);
+                        _config.Dump();
+                        ReconfigExistingLoggers();
                     }
-                    else
+                    finally
                     {
-                        try
-                        {
-                            _configLoader.Activated(this, _config);
-                            _config.Dump();
-                            ReconfigExistingLoggers();
-                        }
-                        finally
-                        {
-                            _configLoaded = true;
-                        }
+                        _configLoaded = true;
                     }
-                    OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
+
+                OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
+            }
+        }
+
+        private LoggingConfiguration GetOrLoadConfig()
+        {
+            if (_configLoaded)
+                return _config;
+
+            lock (_syncRoot)
+            {
+                if (_configLoaded || _isDisposing)
+                    return _config;
+
+                var config = _configLoader.Load(this);
+                if (config != null)
+                {
+                    try
+                    {
+                        _config = config;
+                        _configLoader.Activated(this, _config);
+                        _config.Dump();
+                        ReconfigExistingLoggers();
+                        LogConfigurationInitialized();
+                    }
+                    finally
+                    {
+                        _configLoaded = true;
+                    }
+                }
+
+                return _config;
             }
         }
 
@@ -326,7 +330,7 @@ namespace NLog
         {
             get
             {
-                var configuration = Configuration;
+                var configuration = GetOrLoadConfig();
                 return configuration?.DefaultCultureInfo;
             }
         }
@@ -1010,7 +1014,7 @@ namespace NLog
                     if (_isDisposing || !_configLoaded)
                         return;
 
-                    Configuration = null;
+                    ApplyNewConfig(null);
                     _configLoaded = true;       // Locked disabled state
                     ReconfigExistingLoggers();  // Disable all loggers, so things become quiet
                 }
@@ -1089,7 +1093,8 @@ namespace NLog
                     newLogger = new Logger();
                 }
 
-                newLogger.Initialize(name, GetConfigurationForLogger(name, Configuration), this);
+                var configuration = GetOrLoadConfig();
+                newLogger.Initialize(name, GetConfigurationForLogger(name, configuration), this);
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
@@ -1180,7 +1185,7 @@ namespace NLog
                 if (_config == null)
                 {
                     // Not loaded yet, so first load is a reload
-                    _config = Configuration;
+                    _config = GetOrLoadConfig();
                     if (_config != null)
                     {
                         NotifyConfigurationReloaded();
@@ -1192,7 +1197,7 @@ namespace NLog
                     if (newConfig != null)
                     {
                         var oldConfig = _config;
-                        Configuration = newConfig;
+                        ApplyNewConfig(newConfig);
                         if (!ReferenceEquals(oldConfig, newConfig))
                         {
                             // Avoid applying reload-adjust-methods twice to the same config
@@ -1241,7 +1246,7 @@ namespace NLog
                 }
             }
 
-            Configuration = config;
+            ApplyNewConfig(config);
             return this;
         }
 

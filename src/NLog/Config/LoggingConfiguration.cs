@@ -476,11 +476,13 @@ namespace NLog.Config
         /// <returns>
         /// A new instance of <see cref="LoggingConfiguration"/> that represents the updated configuration.
         /// </returns>
+        [CanBeNull]
         public virtual LoggingConfiguration Reload()
         {
             return this;
         }
 
+        [CanBeNull]
         internal LoggingConfiguration ReloadNewConfig()
         {
             var newConfig = Reload();
