@@ -68,6 +68,8 @@ namespace NLog.Config
         /// </summary>
         public LogFactory LogFactory { get; }
 
+        internal bool IsConfigActivated { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
         /// </summary>

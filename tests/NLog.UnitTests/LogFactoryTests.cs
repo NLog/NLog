@@ -219,6 +219,41 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void LogFactory_ConfigurationLoading_BeforeTargetInitialize()
+        {
+            var logFactory = new LogFactory();
+            try
+            {
+                logFactory.ThrowExceptions = true;
+                logFactory.ThrowConfigExceptions = true;
+                logFactory.ConfigurationLoading += (sender, evt) =>
+                {
+                    if (evt.IsNewConfiguration)
+                    {
+                        evt.ActivatingConfiguration.FindTargetByName<NLog.Targets.MethodCallTarget>("method").ClassName = typeof(LogFactoryTests).AssemblyQualifiedName;
+                    }
+                };
+                var config = new LoggingConfiguration();
+                config.AddRuleForAllLevels(new NLog.Targets.MethodCallTarget("method") { MethodName = nameof(MyCustomMethod) });
+                logFactory.Configuration = config;  // Will throw unless ConfigurationChanging is working
+
+                var logger = logFactory.GetCurrentClassLogger();
+                Assert.Throws<System.Reflection.TargetInvocationException>(() => logger.Info("Hello World"));
+            }
+            finally
+            {
+                logFactory.Dispose();
+            }
+        }
+
+#pragma warning disable xUnit1013 //we need public methods here
+        public static void MyCustomMethod()
+        {
+            throw new System.Reflection.TargetInvocationException("Best day ever", null);
+        }
+#pragma warning restore xUnit1013 // Public method should be marked as test
+
+        [Fact]
         public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
         {
             EventHandler<LoggingConfigurationChangedEventArgs> testChanged = null;
