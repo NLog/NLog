@@ -477,7 +477,7 @@ namespace NLog.Targets
                 {
                     InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in flush async", Name);
 #if !NETSTANDARD
-                    if (exception.MustBeRethrown())
+                    if (ExceptionMustBeRethrown(exception))
                         throw;
 #endif
                     flushContinuation(exception);

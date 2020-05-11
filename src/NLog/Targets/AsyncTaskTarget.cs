@@ -306,7 +306,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }

@@ -389,7 +389,7 @@ namespace NLog.Targets
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to assign value for property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
-                    if (ex.MustBeRethrown())
+                    if (ExceptionMustBeRethrown(ex))
                         throw;
                 }
             }
@@ -684,7 +684,7 @@ namespace NLog.Targets
 
                         logEvents[i].Continuation(exception);
 
-                        if (exception.MustBeRethrown())
+                        if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
                         }
@@ -759,7 +759,7 @@ namespace NLog.Targets
 
                 InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
                 CloseConnection();
-                if (exception.MustBeRethrown())
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -1080,7 +1080,7 @@ namespace NLog.Targets
 
                 InternalLogger.Error(ex, "  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", parameterInfo.Name, parameterInfo.DbType);
 
-                if (ex.MustBeRethrown())
+                if (ExceptionMustBeRethrown(ex))
                     throw;
             }
 
@@ -1128,7 +1128,7 @@ namespace NLog.Targets
                         throw;
 
                     InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
-                    if (ex.MustBeRethrown())
+                    if (ExceptionMustBeRethrown(ex))
                         throw;
                 }
             }
@@ -1151,7 +1151,7 @@ namespace NLog.Targets
 
                 InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", propertyName, valueType);
 
-                if (ex.MustBeRethrown())
+                if (ExceptionMustBeRethrown(ex))
                     throw;
 
                 return CreateDefaultValue(valueType);

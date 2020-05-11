@@ -198,7 +198,7 @@ namespace NLog.Targets
                     throw;
                 }
 
-                if (exception.MustBeRethrown())
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -325,7 +325,7 @@ namespace NLog.Targets
                 {
                     InternalLogger.Error(exception, "PerfCounterTarget(Name={0}): Cannot open performance counter {1}/{2}/{3}.", Name, CategoryName, CounterName, InstanceName);
 
-                    if (exception.MustBeRethrown())
+                    if (ExceptionMustBeRethrown(exception))
                     {
                         throw;
                     }

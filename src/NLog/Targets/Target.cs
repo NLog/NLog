@@ -171,7 +171,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown(this))
+                    if (ExceptionMustBeRethrown(exception))
                     {
                         throw;
                     }
@@ -310,7 +310,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(ex))
                     throw;
 
                 wrappedLogEvent.Continuation(ex);
@@ -392,7 +392,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -437,7 +437,7 @@ namespace NLog.Targets
 
                         _initializeException = exception;
 
-                        if (exception.MustBeRethrown(this))
+                        if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
                         }
@@ -477,7 +477,7 @@ namespace NLog.Targets
                     {
                         InternalLogger.Error(exception, "{0}: Error closing target", this);
 
-                        if (exception.MustBeRethrown(this))
+                        if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
                         }
@@ -567,7 +567,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -789,6 +789,16 @@ namespace NLog.Targets
         {
             ConfigurationItemFactory.Default.Targets
                 .RegisterDefinition(name, targetType);
+        }
+
+        /// <summary>
+        /// Should the exception be rethrown?
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        protected bool ExceptionMustBeRethrown(Exception exception)
+        {
+            return exception.MustBeRethrown(this, LoggingConfiguration?.LogFactory);
         }
     }
 }

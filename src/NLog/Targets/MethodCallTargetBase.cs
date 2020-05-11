@@ -141,7 +141,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(ex))
                 {
                     throw;
                 }
