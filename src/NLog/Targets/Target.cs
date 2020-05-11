@@ -66,7 +66,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
-
+        
         /// <summary>
         /// Target supports reuse of internal buffers, and doesn't have to constantly allocate new buffers
         /// Required for legacy NLog-targets, that expects buffers to remain stable after Write-method exit
@@ -83,6 +83,8 @@ namespace NLog.Targets
         /// Gets the logging configuration this target is part of.
         /// </summary>
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
+
+        LogFactory IInternalLoggerContext.LogFactory => LoggingConfiguration?.LogFactory;
 
         /// <summary>
         /// Gets a value indicating whether the target has been initialized.
@@ -795,10 +797,10 @@ namespace NLog.Targets
         /// Should the exception be rethrown?
         /// </summary>
         /// <param name="exception"></param>
-        /// <returns></returns>
-        protected bool ExceptionMustBeRethrown(Exception exception)
+        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
+        internal bool ExceptionMustBeRethrown(Exception exception)
         {
-            return exception.MustBeRethrown(this, LoggingConfiguration?.LogFactory);
+            return exception.MustBeRethrown(this);
         }
     }
 }
