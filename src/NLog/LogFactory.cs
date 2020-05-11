@@ -80,13 +80,18 @@ namespace NLog
         private readonly ILoggingConfigurationLoader _configLoader;
 
         /// <summary>
-        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// Occurs when logging <see cref="Configuration" /> has changed. After it has loaded and initialized
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
+        /// <summary>
+        /// Occurs when logging <see cref="Configuration" /> is changing. Before it has loaded and initialized
+        /// </summary>
+        public event EventHandler<LoggingConfigurationLoadingEventArgs> ConfigurationLoading;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
-        /// Occurs when logging <see cref="Configuration" /> gets reloaded.
+        /// Occurs when logging <see cref="Configuration" /> gets reloaded. After it has loaded and initialized
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
@@ -268,6 +273,7 @@ namespace NLog
                 lock (_syncRoot)
                 {
                     LoggingConfiguration oldConfig = _config;
+
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
@@ -275,8 +281,9 @@ namespace NLog
                         oldConfig.Close();
                     }
 
-                    _config = value;
+                    var isNewConfiguration = value?.IsConfigActivated == false;
 
+                    _config = value;
                     if (_config == null)
                     {
                         _configLoaded = false;
@@ -286,6 +293,8 @@ namespace NLog
                     {
                         try
                         {
+                            _config.IsConfigActivated = true;
+                            OnConfigurationLoading(new LoggingConfigurationLoadingEventArgs(value, oldConfig) { IsNewConfiguration = isNewConfiguration });
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
@@ -295,7 +304,8 @@ namespace NLog
                             _configLoaded = true;
                         }
                     }
-                    OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
+
+                    OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig) { IsNewConfiguration = isNewConfiguration });
                 }
             }
         }
@@ -786,12 +796,21 @@ namespace NLog
         }
 
         /// <summary>
-        /// Raises the event when the configuration is reloaded. 
+        /// Raises the event when the configuration has been changed, after being initialized
         /// </summary>
         /// <param name="e">Event arguments.</param>
         protected virtual void OnConfigurationChanged(LoggingConfigurationChangedEventArgs e)
         {
             ConfigurationChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Raises the event when the configuration is changing, before being initialized
+        /// </summary>
+        /// <param name="e">Event arguments.</param>
+        internal void OnConfigurationLoading(LoggingConfigurationLoadingEventArgs e)
+        {
+            ConfigurationLoading?.Invoke(this, e);
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
@@ -948,6 +967,7 @@ namespace NLog
             }
 
             ConfigurationChanged = null;    // Release event listeners
+            ConfigurationLoading = null;
         }
 
         private void CloseOldConfig(TimeSpan flushTimeout, LoggingConfiguration oldConfig)

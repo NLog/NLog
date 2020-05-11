@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -36,50 +36,34 @@ namespace NLog.Config
     using System;
 
     /// <summary>
-    /// Arguments for <see cref="LogFactory.ConfigurationChanged"/> events.
+    /// Arguments for <see cref="LogFactory.ConfigurationLoading"/> events.
     /// </summary>
-    public class LoggingConfigurationChangedEventArgs : EventArgs
+    public class LoggingConfigurationLoadingEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingConfigurationChangedEventArgs" /> class.
+        /// Initializes a new instance of the <see cref="LoggingConfigurationLoadingEventArgs" /> class.
         /// </summary>
-        /// <param name="activatedConfiguration">The new configuration.</param>
-        /// <param name="deactivatedConfiguration">The old configuration.</param>
-        public LoggingConfigurationChangedEventArgs(LoggingConfiguration activatedConfiguration, LoggingConfiguration deactivatedConfiguration)
+        /// <param name="activatingConfiguration">The new configuration.</param>
+        /// <param name="deactivatingConfiguration">The old configuration.</param>
+        public LoggingConfigurationLoadingEventArgs(LoggingConfiguration activatingConfiguration, LoggingConfiguration deactivatingConfiguration)
         {
-            ActivatedConfiguration = activatedConfiguration;
-            DeactivatedConfiguration = deactivatedConfiguration;
+            ActivatingConfiguration = activatingConfiguration;
+            DeactivatingConfiguration = deactivatingConfiguration;
         }
 
         /// <summary>
         /// Gets the old configuration.
         /// </summary>
-        /// <value>The old configuration.</value>
-        public LoggingConfiguration DeactivatedConfiguration { get; private set; }
+        public LoggingConfiguration DeactivatingConfiguration { get; private set; }
 
         /// <summary>
         /// Gets the new configuration.
         /// </summary>
-        /// <value>The new configuration.</value>
-        public LoggingConfiguration ActivatedConfiguration { get; private set; }
+        public LoggingConfiguration ActivatingConfiguration { get; private set; }
 
         /// <summary>
-        /// The <see cref="ActivatedConfiguration"/> has been loaded for the first time
+        /// The <see cref="ActivatingConfiguration"/> is being loaded for the first time
         /// </summary>
         public bool IsNewConfiguration { get; internal set; }
-
-        /// <summary>
-        /// Gets the new configuration
-        /// </summary>
-        /// <value>The new configuration.</value>
-        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        public LoggingConfiguration OldConfiguration => ActivatedConfiguration;
-
-        /// <summary>
-        /// Gets the old configuration
-        /// </summary>
-        /// <value>The old configuration.</value>
-        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        public LoggingConfiguration NewConfiguration => DeactivatedConfiguration;
     }
 }
