@@ -66,7 +66,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
-
+        
         /// <summary>
         /// Target supports reuse of internal buffers, and doesn't have to constantly allocate new buffers
         /// Required for legacy NLog-targets, that expects buffers to remain stable after Write-method exit
@@ -83,6 +83,8 @@ namespace NLog.Targets
         /// Gets the logging configuration this target is part of.
         /// </summary>
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
+
+        LogFactory IInternalLoggerContext.LogFactory => LoggingConfiguration?.LogFactory;
 
         /// <summary>
         /// Gets a value indicating whether the target has been initialized.
@@ -171,7 +173,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown(this))
+                    if (ExceptionMustBeRethrown(exception))
                     {
                         throw;
                     }
@@ -310,7 +312,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(ex))
                     throw;
 
                 wrappedLogEvent.Continuation(ex);
@@ -392,7 +394,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -437,7 +439,7 @@ namespace NLog.Targets
 
                         _initializeException = exception;
 
-                        if (exception.MustBeRethrown(this))
+                        if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
                         }
@@ -477,7 +479,7 @@ namespace NLog.Targets
                     {
                         InternalLogger.Error(exception, "{0}: Error closing target", this);
 
-                        if (exception.MustBeRethrown(this))
+                        if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
                         }
@@ -567,7 +569,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(this))
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -789,6 +791,16 @@ namespace NLog.Targets
         {
             ConfigurationItemFactory.Default.Targets
                 .RegisterDefinition(name, targetType);
+        }
+
+        /// <summary>
+        /// Should the exception be rethrown?
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
+        internal bool ExceptionMustBeRethrown(Exception exception)
+        {
+            return exception.MustBeRethrown(this);
         }
     }
 }

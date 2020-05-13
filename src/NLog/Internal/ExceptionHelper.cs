@@ -78,6 +78,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="exception">The exception to check.</param>
         /// <param name="loggerContext">Target context of the exception.</param>
+
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
         public static bool MustBeRethrown(this Exception exception, IInternalLoggerContext loggerContext = null)
         {
@@ -99,8 +100,12 @@ namespace NLog.Internal
                     InternalLogger.Log(exception, level, "Error has been raised.");
             }
 
-            //if ThrowConfigExceptions == null, use  ThrowExceptions
-            var shallRethrow = isConfigError ? (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions) : LogManager.ThrowExceptions;
+            var logFactory = loggerContext?.LogFactory;
+
+            //if ThrowConfigExceptions is null, use ThrowExceptions
+            // TODO NLog 5: use only LogManager if logFactory is null
+            var throwExceptionsAll = logFactory?.ThrowExceptions == true || LogManager.ThrowExceptions;
+            var shallRethrow = isConfigError ? (logFactory?.ThrowConfigExceptions ?? LogManager.ThrowConfigExceptions ?? throwExceptionsAll) : throwExceptionsAll;
             return shallRethrow;
         }
 
