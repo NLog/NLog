@@ -238,7 +238,12 @@ namespace NLog.UnitTests
                 logFactory.Configuration = config;  // Will throw unless ConfigurationChanging is working
 
                 var logger = logFactory.GetCurrentClassLogger();
-                Assert.Throws<System.Reflection.TargetInvocationException>(() => logger.Info("Hello World"));
+                // Act
+                var ex = Assert.Throws<System.Reflection.TargetInvocationException>(() => logger.Info("Hello World"));
+
+                // Assert
+                var innerEx = Assert.IsType<TestException>(ex.InnerException);
+                Assert.Equal("Best day ever", innerEx.Message);
             }
             finally
             {
@@ -246,10 +251,18 @@ namespace NLog.UnitTests
             }
         }
 
+        private class TestException : Exception
+        {
+            /// <inheritdoc />
+            public TestException(string message) : base(message)
+            {
+            }
+        }
+
 #pragma warning disable xUnit1013 //we need public methods here
         public static void MyCustomMethod()
         {
-            throw new System.Reflection.TargetInvocationException("Best day ever", null);
+            throw new TestException("Best day ever");
         }
 #pragma warning restore xUnit1013 // Public method should be marked as test
 
