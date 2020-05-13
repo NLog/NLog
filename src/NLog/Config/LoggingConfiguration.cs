@@ -68,6 +68,9 @@ namespace NLog.Config
         /// </summary>
         public LogFactory LogFactory { get; }
 
+        /// <summary>
+        /// Is this configuration activated (so assigned at least once to a logFactory in the past)
+        /// </summary>
         internal bool IsConfigurationActivated { get; set; }
 
         /// <summary>
