@@ -100,10 +100,12 @@ namespace NLog.Internal
                     InternalLogger.Log(exception, level, "Error has been raised.");
             }
 
-            var logFactory = loggerContext?.LogFactory ?? LogManager.LogFactory;
+            var logFactory = loggerContext?.LogFactory;
 
-            //if ThrowConfigExceptions == null, use  ThrowExceptions
-            var shallRethrow = isConfigError ? (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions) : logFactory.ThrowExceptions;
+            //if ThrowConfigExceptions is null, use ThrowExceptions
+            // TODO NLog 5: use only LogManager if logFactory is null
+            var throwExceptionsAll = logFactory?.ThrowExceptions == true || LogManager.ThrowExceptions;
+            var shallRethrow = isConfigError ? (logFactory?.ThrowConfigExceptions ?? LogManager.ThrowConfigExceptions ?? throwExceptionsAll) : throwExceptionsAll;
             return shallRethrow;
         }
 
