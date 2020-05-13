@@ -105,7 +105,7 @@ namespace NLog
             else if (!configHasChanged || !ReferenceEquals(config, newConfig))
             {
                 if (newConfig != null)
-                    newConfig.IsConfigActivated = true;  // Prepare for applyOnReload, that triggers on IsNewConfiguration = true
+                    newConfig.IsConfigurationActivated = true;  // Prepare for applyOnReload, that triggers on IsNewConfiguration = true
                 setupBuilder.LogFactory.Configuration = newConfig;
             }
 

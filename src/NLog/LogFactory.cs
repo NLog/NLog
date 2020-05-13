@@ -264,7 +264,7 @@ namespace NLog
                         oldConfig.Close();
                     }
 
-                    var isNewConfiguration = value?.IsConfigActivated == false;
+                    var isNewConfiguration = value?.IsConfigurationActivated == false;
 
                     _config = value;
                     if (_config == null)
@@ -276,7 +276,7 @@ namespace NLog
                     {
                         try
                         {
-                            _config.IsConfigActivated = true;
+                            _config.IsConfigurationActivated = true;
                             OnConfigurationLoading(new LoggingConfigurationLoadingEventArgs(value, oldConfig) { IsNewConfiguration = isNewConfiguration });
                             _configLoader.Activated(this, _config);
                             _config.Dump();
