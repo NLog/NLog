@@ -38,13 +38,11 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 
 ## Features
 - LogManager.Setup().LoadConfigurationFromFile(&quot;NLog.config&quot;) added to fluent setup (@snakefoot + @304NotModified)
-- LogManager.Setup().LoadConfiguration() with applyOnReload-option to reapply changes to config after reload (@304NotModified)
 - LogManager.Setup().GetCurrentClassLogger() added to fluent setup (@snakefoot + @304NotModified)
 - LogManager.Setup().SetupInternalLogger(s => s.AddLogSubscription()) added to fluent setup (@snakefoot + @304NotModified)
 - ColoredConsoleTarget - Added Condition option to control when to do word-highlight (@snakefoot)
 - Added new option CaptureStackTrace to ${stacktrace} and ${callsite} to skip implicit capture by Logger (@snakefoot)
 - Exception-LayoutRenderer with new option BaseException for rendering innermost exception (@snakefoot)
-- LogManager.ReloadConfiguration() to make it easy to reload logging configuration (@304NotModified)
 
 ## Improvements
 - FileTarget - Batch write to filestream in max chunksize of 100 times BufferSize (@snakefoot)
