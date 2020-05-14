@@ -4,17 +4,15 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7.1 (2020/05/12)
+### V4.7.1 (2020/05/15)
 
 #### Features
 - [#3871](https://github.com/NLog/NLog/pull/3871) LogManager.Setup().LoadConfigurationFromFile("NLog.config") added to fluent setup (@snakefoot + @304NotModified)
-- [#3929](https://github.com/NLog/NLog/pull/3929) LogManager.Setup().LoadConfiguration() with applyOnReload-option to reapply changes to config after reload (@304NotModified)
 - [#3909](https://github.com/NLog/NLog/pull/3909) LogManager.Setup().GetCurrentClassLogger() added to fluent setup (@snakefoot + @304NotModified)
 - [#3861](https://github.com/NLog/NLog/pull/3861) LogManager.Setup().SetupInternalLogger(s => s.AddLogSubscription()) added to fluent setup (@snakefoot + @304NotModified)
 - [#3891](https://github.com/NLog/NLog/pull/3891) ColoredConsoleTarget - Added Condition option to control when to do word-highlight (@snakefoot)
 - [#3915](https://github.com/NLog/NLog/pull/3915) Added new option CaptureStackTrace to ${stacktrace} and ${callsite} to skip implicit capture by Logger (@snakefoot)
 - [#3940](https://github.com/NLog/NLog/pull/3940) Exception-LayoutRenderer with new option BaseException for rendering innermost exception (@snakefoot)
-- [#3952](https://github.com/NLog/NLog/pull/3952) LogManager.ReloadConfiguration() to make it easy to reload logging configuration (@304NotModified)
 
 #### Improvements
 - [#3857](https://github.com/NLog/NLog/pull/3857) FileTarget - Batch write to filestream in max chunksize of 100 times BufferSize (@snakefoot)
