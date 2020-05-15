@@ -67,7 +67,7 @@ namespace NLog.Targets
     [Target("NLogViewer")]
     public class NLogViewerTarget : NetworkTarget, IIncludeContext
     {
-        private readonly Log4JXmlEventLayout _layout = new Log4JXmlEventLayout();
+        private readonly Log4JXmlEventLayout _log4JLayout = new Log4JXmlEventLayout();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
@@ -233,7 +233,8 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer => _layout.Renderer;
+        [NLogConfigurationIgnoreProperty]
+        public Log4JXmlEventLayoutRenderer Renderer => _log4JLayout.Renderer;
 
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
@@ -243,9 +244,8 @@ namespace NLog.Targets
         {
             get
             {
-                return _layout;
+                return _log4JLayout;
             }
-
             set
             {
                 // Fixed Log4JXmlEventLayout

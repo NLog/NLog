@@ -49,16 +49,13 @@ namespace NLog.Config
         /// </summary>
         /// <param name="reader">The reader to initialize element from.</param>
         public NLogXmlElement(XmlReader reader)
-            : this(reader, true)
+            : this(reader, false)
         {
         }
 
-        private NLogXmlElement(XmlReader reader, bool topElement)
+        public NLogXmlElement(XmlReader reader, bool nestedElement)
         {
-            if (topElement)
-                reader.MoveToContent();
-
-            Parse(reader, topElement, out var attributes, out var children);
+            Parse(reader, nestedElement, out var attributes, out var children);
             AttributeValues = attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
             Children = children ?? ArrayHelper.Empty<NLogXmlElement>();
         }
@@ -186,20 +183,20 @@ namespace NLog.Config
                     if (reader.NodeType == XmlNodeType.Element)
                     {
                         children = children ?? new List<NLogXmlElement>();
-                        children.Add(new NLogXmlElement(reader, false));
+                        children.Add(new NLogXmlElement(reader, true));
                     }
                 }
             }
         }
 
-        private void ParseAttributes(XmlReader reader, bool topElement, out IList<KeyValuePair<string, string>> attributes)
+        private void ParseAttributes(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string, string>> attributes)
         {
             attributes = null;
             if (reader.MoveToFirstAttribute())
             {
                 do
                 {
-                    if (topElement && IsSpecialXmlAttribute(reader))
+                    if (!nestedElement && IsSpecialXmlAttribute(reader))
                     {
                         continue;
                     }

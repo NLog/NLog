@@ -186,6 +186,47 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void MethodNameNoCaptureStackTraceTest()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:captureStackTrace=false} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // Act
+            LogManager.GetLogger("A").Debug("msg");
+
+            // Assert
+            AssertDebugLastMessage("debug", " msg");
+        }
+
+        [Fact]
+        public void MethodNameNoCaptureStackTraceWithStackTraceTest()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:captureStackTrace=false} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+
+            // Act
+            var logEvent = new LogEventInfo(LogLevel.Info, null, "msg");
+            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
+            LogManager.GetLogger("A").Log(logEvent);
+
+            // Assert
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+        }
+
+        [Fact]
         public void ClassNameTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -928,10 +969,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #if !NETSTANDARD1_5
             Type loggerType = typeof(Logger);
             var stacktrace = new System.Diagnostics.StackTrace();
-            var stackFrames = stacktrace.GetFrames();
-            var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
-            int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
-            logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, index, indexLegacy);
+            logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, null, loggerType);
 #endif
             await Task.Delay(0);
             Layout l = "${callsite}";
@@ -1185,10 +1223,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             Type loggerType = typeof(Logger);
             var stacktrace = new System.Diagnostics.StackTrace();
-            var stackFrames = stacktrace.GetFrames();
-            var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
-            int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
-            logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, index, indexLegacy);
+            logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, null, loggerType);
             Layout l = "${callsite}";
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);

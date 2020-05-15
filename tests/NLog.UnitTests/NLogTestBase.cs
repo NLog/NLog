@@ -59,18 +59,9 @@ namespace NLog.UnitTests
         protected NLogTestBase()
         {
             //reset before every test
-            if (LogManager.Configuration != null)
-            {
-                //flush all events if needed.
-                LogManager.Configuration.Close();
-            }
+            LogManager.Configuration = null;    // Will close any existing config
+            LogManager.LogFactory.ResetCandidateConfigFilePath();
 
-            if (LogManager.LogFactory != null)
-            {
-                LogManager.LogFactory.ResetCandidateConfigFilePath();
-            }
-
-            LogManager.Configuration = null;
             InternalLogger.Reset();
             InternalLogger.LogLevel = LogLevel.Off;
             LogManager.ThrowExceptions = true;  // Ensure exceptions are thrown by default during unit-testing

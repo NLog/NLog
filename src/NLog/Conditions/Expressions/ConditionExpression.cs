@@ -31,22 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Common;
-
 namespace NLog.Conditions
 {
     using System;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
     /// </summary>
     [NLogConfigurationItem]
-    [ThreadAgnostic]
-    [ThreadSafe]
     public abstract class ConditionExpression
     {
+        internal static readonly object BoxedTrue = true;
+        internal static readonly object BoxedFalse = false;
+
         /// <summary>
         /// Converts condition text to a condition expression tree.
         /// </summary>

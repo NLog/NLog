@@ -58,24 +58,24 @@ namespace NLog.Targets
                 consoleWriter.Flush();
         }
 
-        public ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor)
+        public ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor, ConsoleColor? oldForegroundColor = null)
         {
-            var oldForegroundColor = Console.ForegroundColor;
-            if (foregroundColor.HasValue && oldForegroundColor != foregroundColor.Value)
+            var previousForegroundColor = oldForegroundColor ?? Console.ForegroundColor;
+            if (foregroundColor.HasValue && previousForegroundColor != foregroundColor.Value)
             {
                 Console.ForegroundColor = foregroundColor.Value;
             }
-            return oldForegroundColor;
+            return previousForegroundColor;
         }
 
-        public ConsoleColor? ChangeBackgroundColor(TextWriter consoleWriter, ConsoleColor? backgroundColor)
+        public ConsoleColor? ChangeBackgroundColor(TextWriter consoleWriter, ConsoleColor? backgroundColor, ConsoleColor? oldBackgroundColor = null)
         {
-            var oldBackgroundColor = Console.BackgroundColor;
-            if (backgroundColor.HasValue && oldBackgroundColor != backgroundColor.Value)
+            var previousBackgroundColor = oldBackgroundColor ?? Console.BackgroundColor;
+            if (backgroundColor.HasValue && previousBackgroundColor != backgroundColor.Value)
             {
                 Console.BackgroundColor = backgroundColor.Value;
             }
-            return oldBackgroundColor;
+            return previousBackgroundColor;
         }
 
         public void ResetDefaultColors(TextWriter consoleWriter, ConsoleColor? foregroundColor, ConsoleColor? backgroundColor)

@@ -147,21 +147,7 @@ namespace NLog.Layouts
 
         private static string ParseLayoutRendererName(SimpleStringReader sr)
         {
-            int ch;
-
-            var nameBuf = new StringBuilder();
-            while ((ch = sr.Peek()) != -1)
-            {
-                if (ch == ':' || ch == '}')
-                {
-                    break;
-                }
-
-                nameBuf.Append((char)ch);
-                sr.Read();
-            }
-
-            return nameBuf.ToString();
+            return sr.ReadUntilMatch(ch => EndOfLayout(ch));
         }
 
         private static string ParseParameterName(SimpleStringReader sr)
@@ -219,12 +205,24 @@ namespace NLog.Layouts
 
         private static string ParseParameterValue(SimpleStringReader sr)
         {
-            int ch;
+            var simpleValue = sr.ReadUntilMatch(ch => EndOfLayout(ch) || ch == '\\');
+            if (sr.Peek() == '\\')
+            {
+                var nameBuf = new StringBuilder();
+                nameBuf.Append(simpleValue);
+                ParseParameterUnicodeValue(sr, nameBuf);
+                return nameBuf.ToString();
+            }
 
-            var nameBuf = new StringBuilder();
+            return simpleValue;
+        }
+
+        private static void ParseParameterUnicodeValue(SimpleStringReader sr, StringBuilder nameBuf)
+        {
+            int ch;
             while ((ch = sr.Peek()) != -1)
             {
-                if (ch == ':' || ch == '}')
+                if (EndOfLayout(ch))
                 {
                     break;
                 }
@@ -308,8 +306,6 @@ namespace NLog.Layouts
                 nameBuf.Append((char)ch);
                 sr.Read();
             }
-
-            return nameBuf.ToString();
         }
 
         private static char GetUnicode(SimpleStringReader sr, int maxDigits)
@@ -343,8 +339,8 @@ namespace NLog.Layouts
             string name = ParseLayoutRendererName(stringReader);
             var layoutRenderer = GetLayoutRenderer(configurationItemFactory, name, throwConfigExceptions);
 
-            var wrappers = new Dictionary<Type, LayoutRenderer>();
-            var orderedWrappers = new List<LayoutRenderer>();
+            Dictionary<Type, LayoutRenderer> wrappers = null;
+            List<LayoutRenderer> orderedWrappers = null;
 
             ch = stringReader.Read();
             while (ch != -1 && ch != '}')
@@ -358,13 +354,11 @@ namespace NLog.Layouts
 
                     if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out propertyInfo))
                     {
-                        Type wrapperType;
-
-                        if (configurationItemFactory.AmbientProperties.TryGetDefinition(parameterName, out wrapperType))
+                        if (configurationItemFactory.AmbientProperties.TryGetDefinition(parameterName, out var wrapperType))
                         {
-                            LayoutRenderer wrapperRenderer;
-
-                            if (!wrappers.TryGetValue(wrapperType, out wrapperRenderer))
+                            wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
+                            orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
+                            if (!wrappers.TryGetValue(wrapperType, out var wrapperRenderer))
                             {
                                 wrapperRenderer = configurationItemFactory.AmbientProperties.CreateInstance(parameterName);
                                 wrappers[wrapperType] = wrapperRenderer;
@@ -384,17 +378,20 @@ namespace NLog.Layouts
 
                     if (propertyInfo == null)
                     {
-                        ParseParameterValue(stringReader);
+                        var value = ParseParameterValue(stringReader);
+                        if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
+                        {
+                            // TODO NLog 5.0 Should throw exception when invalid configuration (Check throwConfigExceptions)
+                            InternalLogger.Warn("Skipping unrecognized property '{0}={1}` for ${{{2}}} ({3})", parameterName, value, name, layoutRenderer?.GetType());
+                        }
                     }
                     else
                     {
                         if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
                         {
-                            var nestedLayout = new SimpleLayout();
-                            string txt;
-                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out txt);
+                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
 
-                            nestedLayout.SetRenderers(renderers, txt);
+                            var nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
                             propertyInfo.SetValue(parameterTarget, nestedLayout, null);
                         }
                         else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
@@ -417,7 +414,10 @@ namespace NLog.Layouts
                 ch = stringReader.Read();
             }
 
-            layoutRenderer = ApplyWrappers(configurationItemFactory, layoutRenderer, orderedWrappers);
+            if (orderedWrappers != null)
+            {
+                layoutRenderer = ApplyWrappers(configurationItemFactory, layoutRenderer, orderedWrappers);
+            }
 
             return layoutRenderer;
         }
@@ -442,27 +442,18 @@ namespace NLog.Layouts
             return layoutRenderer;
         }
 
-        private static void SetDefaultPropertyValue(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, string parameterName)
+        private static void SetDefaultPropertyValue(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, string value)
         {
             // what we've just read is not a parameterName, but a value
             // assign it to a default property (denoted by empty string)
-            PropertyInfo propertyInfo;
-
-            if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out propertyInfo))
+            if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out var propertyInfo))
             {
-                if (typeof(SimpleLayout) == propertyInfo.PropertyType)
-                {
-                    propertyInfo.SetValue(layoutRenderer, new SimpleLayout(parameterName), null);
-                }
-                else
-                {
-                    string value = parameterName;
-                    PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
-                }
+                PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
             }
             else
             {
-                InternalLogger.Warn("{0} has no default property", layoutRenderer.GetType().FullName);
+                // TODO NLog 5.0 Should throw exception when invalid configuration (Check throwConfigExceptions)
+                InternalLogger.Warn("{0} has no default property to assign value {1}", layoutRenderer.GetType(), value);
             }
         }
 
@@ -471,7 +462,7 @@ namespace NLog.Layouts
             for (int i = orderedWrappers.Count - 1; i >= 0; --i)
             {
                 var newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
-                InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
+                InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType(), newRenderer.GetType());
                 if (CanBeConvertedToLiteral(lr))
                 {
                     lr = ConvertToLiteral(lr);
@@ -488,12 +479,13 @@ namespace NLog.Layouts
         {
             foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(true, lr))
             {
-                if (renderable.GetType() == typeof(SimpleLayout))
+                var renderType = renderable.GetType();
+                if (renderType == typeof(SimpleLayout))
                 {
                     continue;
                 }
 
-                if (!renderable.GetType().IsDefined(typeof(AppDomainFixedOutputAttribute), false))
+                if (!renderType.IsDefined(typeof(AppDomainFixedOutputAttribute), false))
                 {
                     return false;
                 }

@@ -236,7 +236,7 @@ namespace NLog.Config
             return sortedList;
         }
 
-        private static string ExpandFilePathVariables(string internalLogFile)
+        private string ExpandFilePathVariables(string internalLogFile)
         {
             try
             {
@@ -244,9 +244,13 @@ namespace NLog.Config
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out string currentDirToken))
                     internalLogFile = internalLogFile.Replace(currentDirToken, System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out string baseDirToken))
-                    internalLogFile = internalLogFile.Replace(baseDirToken, LogFactory.CurrentAppDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
+                    internalLogFile = internalLogFile.Replace(baseDirToken, LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out string tempDirToken))
-                    internalLogFile = internalLogFile.Replace(tempDirToken, System.IO.Path.GetTempPath() + System.IO.Path.DirectorySeparatorChar.ToString());
+                    internalLogFile = internalLogFile.Replace(tempDirToken, LogFactory.CurrentAppEnvironment.UserTempFilePath + System.IO.Path.DirectorySeparatorChar.ToString());
+#if !NETSTANDARD1_3
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
+                    internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
+#endif
                 if (internalLogFile.IndexOf("%", StringComparison.OrdinalIgnoreCase) >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
 #endif

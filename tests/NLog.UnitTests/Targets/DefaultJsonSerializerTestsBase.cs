@@ -283,6 +283,28 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializEmptyExpandoDict_Test()
+        {
+            IDictionary<string, IConvertible> dictionary = new Internal.ExpandoTestDictionary();
+            var actual = SerializeObject(dictionary);
+            Assert.Equal("{}", actual);
+        }
+
+#if NET4_5
+        [Fact]
+        public void SerializeReadOnlyExpandoDict_Test()
+        {
+            var dictionary = new Dictionary<string, object>();
+            dictionary.Add("key 2", 1.3m);
+            dictionary.Add("level", LogLevel.Info);
+
+            var readonlyDictionary = new Internal.ReadOnlyExpandoTestDictionary(dictionary);
+            var actual = SerializeObject(readonlyDictionary);
+            Assert.Equal("{\"key 2\":1.3, \"level\":{\"Name\":\"Info\", \"Ordinal\":2}}", actual);
+        }
+#endif
+
+        [Fact]
         public void SerializeIntegerKeyDict_Test()
         {
             var dictionary = new Dictionary<int, string>();

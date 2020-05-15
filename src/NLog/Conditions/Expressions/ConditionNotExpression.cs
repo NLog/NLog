@@ -71,7 +71,7 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            return !(bool)Expression.Evaluate(context);
+            return (bool)Expression.Evaluate(context) ? BoxedFalse : BoxedTrue;
         }
     }
 }

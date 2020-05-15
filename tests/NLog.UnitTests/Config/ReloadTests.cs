@@ -573,7 +573,7 @@ namespace NLog.UnitTests.Config
                                 <variable name='var2' value='keep_value' />
                             </nlog>";
 
-            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             var configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
             logFactory.Configuration = configuration;
@@ -599,7 +599,7 @@ namespace NLog.UnitTests.Config
                                 <variable name='var2' value='keep_value' />
                             </nlog>";
 
-            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             var configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
             logFactory.Configuration = configuration;
@@ -622,7 +622,7 @@ namespace NLog.UnitTests.Config
             LoggingConfigurationReloadedEventArgs arguments = null;
             object calledBy = null;
             
-            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             var loggingConfiguration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, "<nlog></nlog>");
             logFactory.Configuration = loggingConfiguration;

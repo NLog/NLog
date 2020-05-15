@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,36 +31,64 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
+#if !SILVERLIGHT && !NETSTANDARD1_3
+
+namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
-    /// Interface for loading NLog <see cref="LoggingConfiguration"/>
+    /// The executable directory from the <see cref="System.Diagnostics.Process.MainModule"/> FileName,
+    /// using the current process <see cref="System.Diagnostics.Process.GetCurrentProcess()"/>
     /// </summary>
-    internal interface ILoggingConfigurationLoader : IDisposable
+    [LayoutRenderer("processdir")]
+    [AppDomainFixedOutput]
+    [ThreadAgnostic]
+    [ThreadSafe]
+    public class ProcessDirLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Finds and loads the NLog configuration
-        /// </summary>
-        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
-        /// <param name="filename">Name of NLog.config file (optional)</param>
-        /// <returns>NLog configuration (or null if none found)</returns>
-        LoggingConfiguration Load(LogFactory logFactory, string filename = null);
+        private readonly string _processDir;
 
         /// <summary>
-        /// Notifies when LoggingConfiguration has been successfully applied
+        /// Gets or sets the name of the file to be Path.Combine()'d with with the process directory.
         /// </summary>
-        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
-        /// <param name="config">NLog Config</param>
-        void Activated(LogFactory logFactory, LoggingConfiguration config);
+        /// <docgen category='Advanced Options' order='10' />
+        public string File { get; set; }
 
         /// <summary>
-        /// Get file paths (including filename) for the possible NLog config files. 
+        /// Gets or sets the name of the directory to be Path.Combine()'d with with the process directory.
         /// </summary>
-        /// <param name="filename">Name of NLog.config file (optional)</param>
-        /// <returns>The file paths to the possible config file</returns>
-        IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null);
+        /// <docgen category='Advanced Options' order='10' />
+        public string Dir { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessDirLayoutRenderer" /> class.
+        /// </summary>
+        public ProcessDirLayoutRenderer()
+            : this(LogFactory.DefaultAppEnvironment)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessDirLayoutRenderer" /> class.
+        /// </summary>
+        internal ProcessDirLayoutRenderer(IAppEnvironment appEnvironment)
+        {
+            _processDir = Path.GetDirectoryName(appEnvironment.CurrentProcessFilePath);
+        }
+
+        /// <inheritdoc/>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            var path = PathHelpers.CombinePaths(_processDir, Dir, File);
+            builder.Append(path);
+        }
     }
 }
+
+#endif

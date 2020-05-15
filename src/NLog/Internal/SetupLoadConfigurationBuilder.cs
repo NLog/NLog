@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,49 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-
 namespace NLog.Internal
 {
-    using System;
-    using System.Security;
-    using System.Text;
+    using NLog.Config;
 
-    /// <summary>
-    /// Win32-optimized implementation of <see cref="ProcessIDHelper"/>.
-    /// </summary>
-    [SecuritySafeCritical]
-    internal class Win32ProcessIDHelper : ProcessIDHelper
+    internal class SetupLoadConfigurationBuilder : ISetupLoadConfigurationBuilder
     {
-        private readonly int _currentProcessId;
-        private readonly string _currentProcessFilePath = string.Empty;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Win32ProcessIDHelper" /> class.
-        /// </summary>
-        public Win32ProcessIDHelper()
+        internal SetupLoadConfigurationBuilder(LogFactory logFactory, LoggingConfiguration configuration)
         {
-            _currentProcessId = NativeMethods.GetCurrentProcessId();
-
-            var sb = new StringBuilder(512);
-            if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
-            {
-                throw new InvalidOperationException("Cannot determine program name.");
-            }
-
-            _currentProcessFilePath = sb.ToString();
+            LogFactory = logFactory;
+            Configuration = configuration;
         }
 
-        /// <summary>
-        /// Gets current process ID.
-        /// </summary>
-        public override int CurrentProcessID => _currentProcessId;
+        public LogFactory LogFactory { get; }
 
-        /// <summary>
-        /// Gets current process absolute file path.
-        /// </summary>
-        public override string CurrentProcessFilePath => _currentProcessFilePath;
+        public LoggingConfiguration Configuration
+        {
+            get => _configuration ?? (_configuration = new LoggingConfiguration(LogFactory));
+            set => _configuration = value;
+        }
+
+        internal LoggingConfiguration _configuration;
     }
 }
-
-#endif

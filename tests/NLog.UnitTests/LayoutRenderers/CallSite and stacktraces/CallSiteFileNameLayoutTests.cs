@@ -41,10 +41,10 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class CallSiteFileNameLayoutTests : NLogTestBase
     {
-#if !DEBUG
-        [Fact(Skip = "RELEASE not working, only DEBUG")]
-#else
+#if !MONO
         [Fact]
+#else
+        [Fact(Skip = "MONO is not good with callsite line numbers")]
 #endif
         public void ShowFileNameOnlyTest()
         {
@@ -65,10 +65,61 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg", lastMessageArray[1]);
         }
 
-#if !DEBUG
-        [Fact(Skip = "RELEASE not working, only DEBUG")]
-#else
+#if !MONO
         [Fact]
+#else
+        [Fact(Skip = "MONO is not good with callsite line numbers")]
+#endif
+        public void CallSiteFileNameNoCaptureStackTraceTest()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite-filename:captureStackTrace=False}|${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // Act
+            LogManager.GetLogger("A").Debug("msg");
+
+            // Assert
+            AssertDebugLastMessage("debug", "|msg");
+        }
+
+#if !MONO
+        [Fact]
+#else
+        [Fact(Skip = "MONO is not good with callsite line numbers")]
+#endif
+        public void CallSiteFileNameNoCaptureStackTraceWithStackTraceTest()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite-filename:captureStackTrace=False}|${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // Act
+            var logEvent = new LogEventInfo(LogLevel.Info, null, "msg");
+            logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
+            LogManager.GetLogger("A").Log(logEvent);
+
+            // Assert
+            var lastMessage = GetDebugLastMessage("debug");
+            var lastMessageArray = lastMessage.Split('|');
+            Assert.Contains("CallSiteFileNameLayoutTests.cs", lastMessageArray[0]);
+            Assert.Equal("msg", lastMessageArray[1]);
+        }
+
+#if !MONO
+        [Fact]
+#else
+        [Fact(Skip = "MONO is not good with callsite line numbers")]
 #endif
         public void ShowFullPathTest()
         {

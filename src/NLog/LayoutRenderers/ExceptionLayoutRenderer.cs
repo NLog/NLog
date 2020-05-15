@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers
             "Source",    // Not available on SILVERLIGHT
             nameof(Exception.StackTrace),
             "TargetSite",// Not available on NETSTANDARD1_0
-        });
+        }, StringComparer.Ordinal);
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceResolver()));
         private ObjectReflectionCache _objectReflectionCache;
@@ -180,6 +180,11 @@ namespace NLog.LayoutRenderers
         public string InnerExceptionSeparator { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
+        /// </summary>
+        public bool BaseException { get; set; }
+
+        /// <summary>
         ///  Gets the formats of the output of inner exceptions to be rendered in target.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
@@ -204,14 +209,19 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
-            value = logEvent.Exception;
+            value = GetTopException(logEvent);
             return true;
+        }
+
+        private Exception GetTopException(LogEventInfo logEvent)
+        {
+            return BaseException ? logEvent.Exception?.GetBaseException() : logEvent.Exception;
         }
 
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            Exception primaryException = logEvent.Exception;
+            Exception primaryException = GetTopException(logEvent);
             if (primaryException != null)
             {
                 int currentLevel = 0;
@@ -437,7 +447,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose Data property elements should be appended.</param>
         protected virtual void AppendData(StringBuilder sb, Exception ex)
         {
-            if (ex.Data != null && ex.Data.Count > 0)
+            if (ex.Data?.Count > 0)
             {
                 string separator = string.Empty;
                 foreach (var key in ex.Data.Keys)

@@ -38,9 +38,6 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionOrExpression : ConditionExpression
     {
-        private static readonly object BoxedFalse = false;
-        private static readonly object BoxedTrue = true;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionOrExpression" /> class.
         /// </summary>

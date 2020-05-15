@@ -537,7 +537,7 @@ namespace NLog.Targets
         /// <summary>
         /// The implementation of <see cref="IEventLogWrapper"/>, that uses Windows <see cref="EventLog"/>.
         /// </summary>
-        private sealed class EventLogWrapper : IEventLogWrapper
+        private sealed class EventLogWrapper : IEventLogWrapper, IDisposable
         {
             private EventLog _windowsEventLog;
 
@@ -600,6 +600,12 @@ namespace NLog.Targets
             /// <inheritdoc />
             public void CreateEventSource(EventSourceCreationData sourceData) =>
                 EventLog.CreateEventSource(sourceData);
+
+            public void Dispose()
+            {
+                _windowsEventLog?.Dispose();
+                _windowsEventLog = null;
+            }
 
             #endregion
         }

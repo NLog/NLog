@@ -47,6 +47,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Internal.Fakeables;
     using NLog.Targets;
+    using System.Linq;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -56,6 +57,7 @@ namespace NLog
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
         private static IAppDomain currentAppDomain;
+        private static AppEnvironmentWrapper defaultAppEnvironment;
 
         /// <remarks>
         /// Internal for unit tests
@@ -63,6 +65,7 @@ namespace NLog
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
         private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
+        private IAppEnvironment _currentAppEnvironment;
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
         internal LogMessageFormatter SingleTargetMessageFormatter;
@@ -73,7 +76,7 @@ namespace NLog
 
         /// <summary>
         /// Overwrite possible file paths (including filename) for possible NLog config files. 
-        /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths"/> are used.
+        /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths()"/> are used.
         /// </summary>
         private List<string> _candidateConfigFilePaths;
 
@@ -108,7 +111,11 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-            : this(new LoggingConfigurationFileLoaderFactory().Create()) // TODO NLog 5 - Decouple with DI
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))  // TODO NLog 5 -Move file-watcher logic into XmlLoggingConfiguration
+#else
+            : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
+#endif
         {
             _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             RefreshMessageFormatter();
@@ -129,9 +136,11 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="configLoader">The config loader</param>
-        internal LogFactory(ILoggingConfigurationLoader configLoader)
+        /// <param name="appEnvironment">The custom AppEnvironmnet override</param>
+        internal LogFactory(ILoggingConfigurationLoader configLoader, IAppEnvironment appEnvironment = null)
         {
             _configLoader = configLoader;
+            _currentAppEnvironment = appEnvironment;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             LoggerShutdown += OnStopLogging;
 #endif
@@ -142,15 +151,7 @@ namespace NLog
         /// </summary>
         public static IAppDomain CurrentAppDomain
         {
-            get
-            {
-                return currentAppDomain ??
-#if NETSTANDARD1_0
-                    (currentAppDomain = new FakeAppDomain());
-#else
-                    (currentAppDomain = new AppDomainWrapper(AppDomain.CurrentDomain));
-#endif
-            }
+            get => currentAppDomain ?? DefaultAppEnvironment.AppDomain;
             set
             {
                 UnregisterEvents(currentAppDomain);
@@ -158,7 +159,29 @@ namespace NLog
                 UnregisterEvents(value);
                 RegisterEvents(value);
                 currentAppDomain = value;
+                if (value != null && defaultAppEnvironment != null)
+                    defaultAppEnvironment.AppDomain = value;
             }
+        }
+
+        internal static IAppEnvironment DefaultAppEnvironment
+        {
+            get
+            {
+                return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
+#if NETSTANDARD1_0
+                    new FakeAppDomain()
+#else
+                    new AppDomainWrapper(AppDomain.CurrentDomain)
+#endif
+                    )));
+            }
+        }
+
+        internal IAppEnvironment CurrentAppEnvironment
+        {
+            get => _currentAppEnvironment ?? DefaultAppEnvironment;
+            set => _currentAppEnvironment = value;
         }
 
         /// <summary>
@@ -581,7 +604,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            FlushInternal(timeout, asyncContinuation ?? (ex => { }) );
+            FlushInternal(timeout, asyncContinuation ?? (ex => { }));
         }
 
         private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
@@ -1017,6 +1040,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The file paths to the possible config file</returns>
+        internal IEnumerable<string> GetCandidateConfigFilePaths(string filename)
+        {
+            if (_candidateConfigFilePaths != null)
+                return GetCandidateConfigFilePaths();
+
+            return _configLoader.GetDefaultCandidateConfigFilePaths(string.IsNullOrEmpty(filename) ? null : filename);
+        }
+
+        /// <summary>
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
@@ -1137,11 +1172,59 @@ namespace NLog
         public LogFactory LoadConfiguration(string configFile)
         {
             // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
-            if (_configLoader is LoggingConfigurationFileLoader configFileLoader)
+            return LoadConfiguration(configFile, optional: false);
+        }
+
+        internal LogFactory LoadConfiguration(string configFile, bool optional)
+        {
+            var actualConfigFile = string.IsNullOrEmpty(configFile) ? "NLog.config" : configFile;
+            if (optional && string.Equals(actualConfigFile.Trim(), "NLog.config", StringComparison.OrdinalIgnoreCase) && _config != null)
             {
-                Configuration = configFileLoader.Load(this, configFile);
+                return this;    // Skip optional loading of default config, when config is already loaded
             }
+
+            var config = _configLoader.Load(this, configFile);
+            if (config == null)
+            {
+                if (!optional)
+                {
+#if SILVERLIGHT
+                    throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
+#else
+                    var message = CreateFileNotFoundMessage(configFile);
+                    throw new System.IO.FileNotFoundException(message, actualConfigFile);
+#endif
+                }
+                else
+                {
+                    return this;
+                }
+            }
+
+            Configuration = config;
             return this;
+        }
+
+        private string CreateFileNotFoundMessage(string configFile)
+        {
+            var messageBuilder = new StringBuilder("Failed to load NLog LoggingConfiguration.");
+            try
+            {
+                // hashset to remove duplicates
+                var triedPaths = new HashSet<string>(_configLoader.GetDefaultCandidateConfigFilePaths(configFile));
+                messageBuilder.AppendLine(" Searched the following locations:");
+                foreach (var path in triedPaths)
+                {
+                    messageBuilder.Append("- ");
+                    messageBuilder.AppendLine(path);
+                }
+            }
+            catch (Exception e)
+            {
+                InternalLogger.Debug("Failed to GetDefaultCandidateConfigFilePaths in CreateFileNotFoundMessage: {0}", e);
+            }
+            var message = messageBuilder.ToString();
+            return message;
         }
 
         /// <summary>
