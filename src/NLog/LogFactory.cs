@@ -254,8 +254,19 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-                        Flush();
-                        oldConfig.Close();
+                        if (!FlushAllTargetsSync(oldConfig, DefaultFlushTimeout, ThrowExceptions))
+                        {
+                            var manualResetEvent = new ManualResetEvent(false);
+                            AsyncHelpers.ForEachItemInParallel(new[] { oldConfig }, ex => manualResetEvent.Set(), (old, cont) => { old.Close(); cont(null); });
+                            if (!manualResetEvent.WaitOne(DefaultFlushTimeout))
+                            {
+                                InternalLogger.Info("Timeout closing old configuration.");
+                            }
+                        }
+                        else
+                        {
+                            oldConfig.Close();
+                        }
                     }
 
                     _config = value;

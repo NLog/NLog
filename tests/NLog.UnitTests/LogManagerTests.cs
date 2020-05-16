@@ -520,6 +520,27 @@ namespace NLog.UnitTests
             Assert.False(exceptionThrown);
         }
 
+        [Fact]
+        public void AsyncCloseConfigurationWithExceptions()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfiguration(builder =>
+            {
+                builder.Configuration.AddRuleForAllLevels(new MemoryTarget() { Name = "Good Target" });
+                builder.Configuration.AddRuleForAllLevels(new DisconnectedTimeoutTarget() { Name = "Bad Target" });
+            });
+
+            // Act
+            var task = Task.Run(() =>
+            {
+                logFactory.Configuration = null;
+            });
+
+            // Assert
+            Assert.True(task.Wait(500000), "Failed to Close Configuration");
+        }
+
         /// <summary>
         /// Note: THe problem  can be reproduced when: debugging the unittest + "break when exception is thrown" checked in visual studio.
         /// 
@@ -621,6 +642,19 @@ namespace NLog.UnitTests
 
             Assert.Equal("A | Hello World", targetA.Logs.LastOrDefault());  // Flushed and closed
             Assert.Equal("B | Goodbye World", targetB.Logs.LastOrDefault());
+        }
+
+        public class DisconnectedTimeoutTarget : Target
+        {
+            protected override void FlushAsync(AsyncContinuation asyncContinuation)
+            {
+                asyncContinuation(new TimeoutException("Flush Failed"));
+            }
+
+            protected override void CloseTarget()
+            {
+                throw new TimeoutException("Close Failed");
+            }
         }
     }
 }

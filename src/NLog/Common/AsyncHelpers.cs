@@ -66,7 +66,7 @@ namespace NLog.Common
         internal static void WaitForDelay(TimeSpan delay)
         {
 #if NETSTANDARD1_3
-            System.Threading.Tasks.Task.Delay(delay).Wait();
+            System.Threading.Tasks.Task.Delay(delay).ConfigureAwait(false).GetAwaiter().GetResult();
 #else
             Thread.Sleep(delay);
 #endif
@@ -230,13 +230,16 @@ namespace NLog.Common
                 T itemCopy = item;
                 StartAsyncTask(new AsyncHelpersTask(s =>
                 {
+                    var preventMultipleCalls = PreventMultipleCalls(continuation);
+
                     try
                     {
-                        action(itemCopy, PreventMultipleCalls(continuation));
+                        action(itemCopy, preventMultipleCalls);
                     }
                     catch (Exception ex)
                     {
                         InternalLogger.Error(ex, "ForEachItemInParallel - Unhandled Exception");
+                        preventMultipleCalls(ex);
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)

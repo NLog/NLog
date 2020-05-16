@@ -162,9 +162,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
                     Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
-
-
-
                 }
                 finally
                 {
