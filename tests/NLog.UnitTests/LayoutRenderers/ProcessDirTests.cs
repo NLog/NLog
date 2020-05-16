@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,51 +31,36 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+using System.IO;
+using Xunit;
 
-namespace NLog.Internal
+namespace NLog.UnitTests.LayoutRenderers
 {
-    using System;
-    using System.Diagnostics;
-
-    /// <summary>
-    /// Portable implementation of <see cref="ProcessIDHelper"/>.
-    /// </summary>
-    internal class PortableProcessIDHelper : ProcessIDHelper
+    public class ProcessDirTests : NLogTestBase
     {
-        private readonly int _currentProcessId;
-        private readonly string _currentProcessFilePath = string.Empty;
+        private readonly string _processDir;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PortableProcessIDHelper" /> class.
-        /// </summary>
-        public PortableProcessIDHelper()
+        public ProcessDirTests()
         {
-            try
-            {
-                var currentProcess = Process.GetCurrentProcess();
-                _currentProcessId = currentProcess?.Id ?? 0;
-                _currentProcessFilePath = currentProcess?.MainModule.FileName ?? string.Empty;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-            }
+            _processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
         }
 
-        /// <summary>
-        /// Gets current process ID.
-        /// </summary>
-        /// <value></value>
-        public override int CurrentProcessID => _currentProcessId;
+        [Fact]
+        public void BaseDirCurrentProcessTest()
+        {
+            AssertLayoutRendererOutput("${processdir}", _processDir);
+        }
 
-        /// <summary>
-        /// Gets current process name.
-        /// </summary>
-        /// <value></value>
-        public override string CurrentProcessFilePath => _currentProcessFilePath;
+        [Fact]
+        public void BaseDirCombineTest()
+        {
+            AssertLayoutRendererOutput("${processdir:dir=aaa}", Path.Combine(_processDir, "aaa"));
+        }
+
+        [Fact]
+        public void BaseDirFileCombineTest()
+        {
+            AssertLayoutRendererOutput("${processdir:file=aaa.txt}", Path.Combine(_processDir, "aaa.txt"));
+        }
     }
 }
-
-#endif

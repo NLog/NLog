@@ -40,9 +40,6 @@ namespace NLog.Layouts
     /// A XML Element
     /// </summary>
     [NLogConfigurationItem]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
     public class XmlElement : XmlElementBase
     {
         private const string DefaultElementName = "item";
@@ -74,8 +71,8 @@ namespace NLog.Layouts
         /// <docgen category='Element Options' order='10' />
         public Layout Value
         {
-            get => base.ElementValueInternal;
-            set => base.ElementValueInternal = value;
+            get => base.LayoutWrapper.Inner;
+            set => base.LayoutWrapper.Inner = value;
         }
 
         /// <summary>
@@ -85,8 +82,8 @@ namespace NLog.Layouts
         [DefaultValue(true)]
         public bool Encode
         {
-            get => base.ElementEncodeInternal;
-            set => base.ElementEncodeInternal = value;
+            get => base.LayoutWrapper.XmlEncode;
+            set => base.LayoutWrapper.XmlEncode = value;
         }
     }
 }

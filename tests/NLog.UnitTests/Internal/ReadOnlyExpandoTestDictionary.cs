@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,20 +31,50 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
+#if NET4_5
 
-namespace NLog
+namespace NLog.UnitTests.Internal
 {
-    internal class LoggingConfigurationFileLoaderFactory
-    {
+    using System.Collections;
+    using System.Collections.Generic;
 
-        public ILoggingConfigurationLoader Create()
+    class ReadOnlyExpandoTestDictionary : IReadOnlyDictionary<string, object>
+    {
+        private readonly IReadOnlyDictionary<string, object> _internal;
+
+        public ReadOnlyExpandoTestDictionary(IReadOnlyDictionary<string, object> dictionary)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            return new LoggingConfigurationWatchableFileLoader();
-#else
-            return new LoggingConfigurationFileLoader();
-#endif
+            _internal = dictionary;
+        }
+
+        public object this[string key] => _internal[key];
+
+        public IEnumerable<string> Keys => _internal.Keys;
+
+        public IEnumerable<object> Values => _internal.Values;
+
+        public int Count => _internal.Count;
+
+        public bool ContainsKey(string key)
+        {
+            return _internal.ContainsKey(key);
+        }
+
+        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        {
+            return _internal.GetEnumerator();
+        }
+
+        public bool TryGetValue(string key, out object value)
+        {
+            return _internal.TryGetValue(key, out value);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _internal.GetEnumerator();
         }
     }
 }
+
+#endif

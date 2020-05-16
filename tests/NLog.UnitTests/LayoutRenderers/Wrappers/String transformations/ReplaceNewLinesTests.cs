@@ -35,6 +35,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
     using NLog.Layouts;
+    using System;
     using Xunit;
 
     public class ReplaceNewLinesTests : NLogTestBase
@@ -43,10 +44,40 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         public void ReplaceNewLineWithDefaultTest()
         {
             MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar" + System.Environment.NewLine + "123");
+            MappedDiagnosticsContext.Set("foo", "bar" + Environment.NewLine + "123");
             SimpleLayout l = "${replace-newlines:${mdc:foo}}";
 
             Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        public void ReplaceNewLineWithDefaultTestUnix()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "bar\n123");
+            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+
+            Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        public void ReplaceNewLineWithDefaultTestWindows()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "bar\r\n123");
+            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+
+            Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        public void ReplaceNewLineWithDefaultTestMixed()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "bar\r\n123\nabc");
+            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+
+            Assert.Equal("bar 123 abc", l.Render(LogEventInfo.CreateNullEvent()));
         }
 
         [Fact]

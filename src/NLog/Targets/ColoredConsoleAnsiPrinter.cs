@@ -62,7 +62,7 @@ namespace NLog.Targets
             }
         }
 
-        public ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor)
+        public ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor, ConsoleColor? oldForegroundColor = null)
         {
             if (foregroundColor.HasValue)
             {
@@ -71,7 +71,7 @@ namespace NLog.Targets
             return null;    // There is no "old" console color
         }
 
-        public ConsoleColor? ChangeBackgroundColor(TextWriter consoleWriter, ConsoleColor? backgroundColor)
+        public ConsoleColor? ChangeBackgroundColor(TextWriter consoleWriter, ConsoleColor? backgroundColor, ConsoleColor? oldBackgroundColor = null)
         {
             if (backgroundColor.HasValue)
             {

@@ -86,10 +86,28 @@ namespace NLog.LayoutRenderers
         public string Separator { get; set; }
 
         /// <summary>
+        /// Logger should capture StackTrace, if it was not provided manually
+        /// </summary>
+        [DefaultValue(true)]
+        public bool CaptureStackTrace { get; set; } = true;
+
+        /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
         /// <value></value>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage => (Format == StackTraceFormat.Raw) ? StackTraceUsage.Max : StackTraceUsage.WithStackTrace;
+        StackTraceUsage IUsesStackTrace.StackTraceUsage
+        {
+            get
+            {
+                if (!CaptureStackTrace)
+                    return StackTraceUsage.None;
+
+                if (Format == StackTraceFormat.Raw)
+                    return StackTraceUsage.Max;
+
+                return StackTraceUsage.WithStackTrace;
+            }
+        }
 
         /// <summary>
         /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.

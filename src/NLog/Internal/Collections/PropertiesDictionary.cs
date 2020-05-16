@@ -88,12 +88,9 @@ namespace NLog.Internal
         /// <param name="parameterList">Message-template-parameters</param>
         public PropertiesDictionary(IList<MessageTemplateParameter> parameterList = null)
         {
-            if (parameterList != null && parameterList.Count > 0)
+            if (parameterList?.Count > 0)
             {
-                var messageProperties = new MessageTemplateParameter[parameterList.Count];
-                for (int i = 0; i < parameterList.Count; ++i)
-                    messageProperties[i] = parameterList[i];
-                MessageProperties = messageProperties;
+                MessageProperties = parameterList;
             }
         }
 

@@ -68,16 +68,18 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="consoleWriter">Colored TextWriter</param>
         /// <param name="foregroundColor">New foreground color for the console</param>
+        /// <param name="oldForegroundColor">Old previous backgroundColor color for the console</param>
         /// <returns>Old foreground color for the console</returns>
-        ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor);
+        ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor, ConsoleColor? oldForegroundColor = null);
 
         /// <summary>
         /// Changes backgroundColor color for the Colored TextWriter
         /// </summary>
         /// <param name="consoleWriter">Colored TextWriter</param>
         /// <param name="backgroundColor">New backgroundColor color for the console</param>
+        /// <param name="oldBackgroundColor">Old previous backgroundColor color for the console</param>
         /// <returns>Old backgroundColor color for the console</returns>
-        ConsoleColor? ChangeBackgroundColor(TextWriter consoleWriter, ConsoleColor? backgroundColor);
+        ConsoleColor? ChangeBackgroundColor(TextWriter consoleWriter, ConsoleColor? backgroundColor, ConsoleColor? oldBackgroundColor = null);
 
         /// <summary>
         /// Restores console colors back to their original state

@@ -40,7 +40,6 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Reflection;
     using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
@@ -124,10 +123,8 @@ namespace NLog
                 var stackTrace = new StackTrace(StackTraceSkipMethods, includeSource);
 #endif
 #endif
-                var stackFrames = stackTrace.GetFrames();
-                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+
+                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, null, loggerType);
             }
             catch (Exception ex)
             {
@@ -138,97 +135,6 @@ namespace NLog
             }
         }
 #endif
-
-        /// <summary>
-        ///  Finds first user stack frame in a stack trace
-        /// </summary>
-        /// <param name="stackFrames">The stack trace of the logging method invocation</param>
-        /// <param name="loggerType">Type of the logger or logger wrapper. This is still Logger if it's a subclass of Logger.</param>
-        /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
-        internal static int? FindCallingMethodOnStackTrace(StackFrame[] stackFrames, [NotNull] Type loggerType)
-        {
-            if (stackFrames == null || stackFrames.Length == 0)
-                return null;
-
-            int? firstStackFrameAfterLogger = null;
-            int? firstUserStackFrame = null;
-            for (int i = 0; i < stackFrames.Length; ++i)
-            {
-                var stackFrame = stackFrames[i];
-                if (SkipAssembly(stackFrame))
-                    continue;
-
-                if (!firstUserStackFrame.HasValue)
-                    firstUserStackFrame = i;
-
-                if (IsLoggerType(stackFrame, loggerType))
-                {
-                    firstStackFrameAfterLogger = null;
-                    continue;
-                }
-
-                if (!firstStackFrameAfterLogger.HasValue)
-                    firstStackFrameAfterLogger = i;
-            }
-
-            return firstStackFrameAfterLogger ?? firstUserStackFrame;
-        }
-
-        /// <summary>
-        /// This is only done for legacy reason, as the correct method-name and line-number should be extracted from the MoveNext-StackFrame
-        /// </summary>
-        /// <param name="stackFrames">The stack trace of the logging method invocation</param>
-        /// <param name="firstUserStackFrame">Starting point for skipping async MoveNext-frames</param>
-        internal static int SkipToUserStackFrameLegacy(StackFrame[] stackFrames, int firstUserStackFrame)
-        {
-#if NET4_5
-            for (int i = firstUserStackFrame; i < stackFrames.Length; ++i)
-            {
-                var stackFrame = stackFrames[i];
-                if (SkipAssembly(stackFrame))
-                    continue;
-
-                if (stackFrame.GetMethod()?.Name == "MoveNext" && stackFrames.Length > i)
-                {
-                    var nextStackFrame = stackFrames[i + 1];
-                    var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
-                    if (declaringType?.Namespace == "System.Runtime.CompilerServices" || declaringType == typeof(System.Threading.ExecutionContext))
-                    {
-                        //async, search further
-                        continue;
-                    }
-                }
-
-                return i;
-            }
-#endif
-            return firstUserStackFrame;
-        }
-
-        /// <summary>
-        /// Assembly to skip?
-        /// </summary>
-        /// <param name="frame">Find assembly via this frame. </param>
-        /// <returns><c>true</c>, we should skip.</returns>
-        private static bool SkipAssembly(StackFrame frame)
-        {
-            var assembly = StackTraceUsageUtils.LookupAssemblyFromStackFrame(frame);
-            return assembly == null || LogManager.IsHiddenAssembly(assembly);
-        }
-
-        /// <summary>
-        /// Is this the type of the logger?
-        /// </summary>
-        /// <param name="frame">get type of this logger in this frame.</param>
-        /// <param name="loggerType">Type of the logger.</param>
-        /// <returns></returns>
-        private static bool IsLoggerType(StackFrame frame, Type loggerType)
-        {
-            var method = frame.GetMethod();
-            Type declaringType = method?.DeclaringType;
-            var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
-            return isLoggerType;
-        }
 
         private static bool WriteToTargetWithFilterChain(Targets.Target target, FilterResult result, LogEventInfo logEvent, AsyncContinuation onException)
         {

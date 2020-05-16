@@ -336,7 +336,7 @@ namespace NLog.Layouts
 
         internal void PerformObjectScanning()
         {
-            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(true, this);
+            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<IRenderable>(true, this);
             var objectGraphTypes = new HashSet<Type>(objectGraphScannerList.Select(o => o.GetType()));
             objectGraphTypes.Remove(typeof(SimpleLayout));
             objectGraphTypes.Remove(typeof(NLog.LayoutRenderers.LiteralLayoutRenderer));

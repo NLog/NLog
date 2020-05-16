@@ -385,7 +385,7 @@ namespace NLog.Targets
                     catch (Exception ex2)
                     {
                         InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error starting request", Name);
-                        if (ex2.MustBeRethrown())
+                        if (ExceptionMustBeRethrown(ex2))
                         {
                             throw;
                         }
@@ -435,7 +435,7 @@ namespace NLog.Targets
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting post data", Name);
-                    if (ex.MustBeRethrown())
+                    if (ExceptionMustBeRethrown(ex))
                     {
                         throw;
                     }

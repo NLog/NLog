@@ -55,6 +55,10 @@ namespace NLog.UnitTests.Mocks
 
         public string CurrentProcessFilePath { get; set; } = string.Empty;
 
+        public string CurrentProcessBaseName { get; set; } = string.Empty;
+
+        public int CurrentProcessId { get; set; } = 1;
+
         public string EntryAssemblyLocation { get; set; } = string.Empty;
 
         public string EntryAssemblyFileName { get; set; } = string.Empty;
@@ -62,6 +66,8 @@ namespace NLog.UnitTests.Mocks
         public string UserTempFilePath { get; set; } = string.Empty;
 
         public IEnumerable<string> PrivateBinPath { get; set; } = NLog.Internal.ArrayHelper.Empty<string>();
+
+        public IAppDomain AppDomain { get; set; } = LogFactory.CurrentAppDomain;
 
         public bool FileExists(string path)
         {

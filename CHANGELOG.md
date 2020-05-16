@@ -4,12 +4,51 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7 (2019/03/20)
+### V4.7.1 (2020/05/15)
+
+#### Features
+- [#3871](https://github.com/NLog/NLog/pull/3871) LogManager.Setup().LoadConfigurationFromFile("NLog.config") added to fluent setup (@snakefoot + @304NotModified)
+- [#3909](https://github.com/NLog/NLog/pull/3909) LogManager.Setup().GetCurrentClassLogger() added to fluent setup (@snakefoot + @304NotModified)
+- [#3861](https://github.com/NLog/NLog/pull/3861) LogManager.Setup().SetupInternalLogger(s => s.AddLogSubscription()) added to fluent setup (@snakefoot + @304NotModified)
+- [#3891](https://github.com/NLog/NLog/pull/3891) ColoredConsoleTarget - Added Condition option to control when to do word-highlight (@snakefoot)
+- [#3915](https://github.com/NLog/NLog/pull/3915) Added new option CaptureStackTrace to ${stacktrace} and ${callsite} to skip implicit capture by Logger (@snakefoot)
+- [#3940](https://github.com/NLog/NLog/pull/3940) Exception-LayoutRenderer with new option BaseException for rendering innermost exception (@snakefoot)
+
+#### Improvements
+- [#3857](https://github.com/NLog/NLog/pull/3857) FileTarget - Batch write to filestream in max chunksize of 100 times BufferSize (@snakefoot)
+- [#3867](https://github.com/NLog/NLog/pull/3867) InternalLogger include whether NLog comes from GlobalAssemblyCache when logging NLog version (@snakefoot)
+- [#3862](https://github.com/NLog/NLog/pull/3862) InternalLogger LogToFile now support ${processdir} to improve support for single-file-publish (@snakefoot)
+- [#3877](https://github.com/NLog/NLog/pull/3877) Added ${processdir} that matches ${basedir:processDir=true} for consistency with InternalLogger (@snakefoot)
+- [#3881](https://github.com/NLog/NLog/pull/3881) Object property reflection now support IReadOnlyDictionary as expando object (@snakefoot)
+- [#3884](https://github.com/NLog/NLog/pull/3884) InternalLogger include more details like FilePath when loading NLog.config file (@snakefoot)
+- [#3895](https://github.com/NLog/NLog/pull/3895) Added support for Nullable when doing conversion of property types (@304NotModified)
+- [#3896](https://github.com/NLog/NLog/pull/3896) InternalLogger Warnings when skipping unrecognized LayoutRenderer options (@snakefoot)
+- [#3901](https://github.com/NLog/NLog/pull/3901) MappedDiagnosticsLogicalContext - SetScoped with IReadOnlyList also for Xamarin (@snakefoot)
+- [#3904](https://github.com/NLog/NLog/pull/3904) Object property reflection automatically performs ToString for System.Reflection.Module (@snakefoot)
+- [#3921](https://github.com/NLog/NLog/pull/3921) Improve ${basedir:fixtempdir=true} to work better on Linux when TMPDIR not set (@snakefoot)
+- [#3928](https://github.com/NLog/NLog/pull/3928) NetworkTarget respect MaxQueueSize for http- / https-protocol (@snakefoot)
+- [#3930](https://github.com/NLog/NLog/pull/3930) LogFactory.LoadConfiguration() reports searched paths when throwing FileNotFoundException (@304NotModified)
+- [#3949](https://github.com/NLog/NLog/pull/3949) ReplaceNewLines-LayoutRenderer will also remove windows newlines on the Linux platform (@Silvenga)
+
+#### Bugfixes
+- [#3868](https://github.com/NLog/NLog/pull/3868) SplitGroup Target Wrapper should not skip remaining targets when single target fails (@snakefoot)
+- [#3918](https://github.com/NLog/NLog/pull/3918) ColoredConsoleTarget - Fix bug in handling of newlines without word-highlight (@snakefoot)
+- [#3941](https://github.com/NLog/NLog/pull/3941) ${processid} will no longer fail because unable to lookup ${processdir} on Mono Android (@snakefoot)
+
+#### Performance
+- [#3855](https://github.com/NLog/NLog/pull/3855) FileTarget - Skip checking file-length when only using ArchiveEvery (@snakefoot)
+- [#3898](https://github.com/NLog/NLog/pull/3898) ObjectGraphScanner performs caching of property reflection for NLog config items (@snakefoot)
+- [#3894](https://github.com/NLog/NLog/pull/3894) Condition expressions now handles operator like '==' without memory boxing (@snakefoot)
+- [#3903](https://github.com/NLog/NLog/pull/3903) ObjectGraphScanner should only check for layout-attributes on Layouts and LayoutRenderers (@snakefoot)
+- [#3902](https://github.com/NLog/NLog/pull/3902) MessageTemplate parsing of properties skips unnecessary array allocation (@snakefoot)
+
+
+### V4.7 (2020/03/20)
 
 #### Features
 - [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
 - [#3610](https://github.com/NLog/NLog/pull/3610) LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
-- [#3787](https://github.com/NLog/NLog/pull/3787) LogManager.Setup().SetupSerialization(s => s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
+- [#3787](https://github.com/NLog/NLog/pull/3787) LogManager.Setup().SetupExtensions(s => s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
 - [#3713](https://github.com/NLog/NLog/pull/3713) ${level:format=FullName} will expand Info + Warn to their full name (@snakefoot)
 - [#3714](https://github.com/NLog/NLog/pull/3714) + [#3734](https://github.com/NLog/NLog/pull/3734) FileTarget - Supports MaxArchiveDays for cleanup of old files based on their age (@snakefoot)
 - [#3737](https://github.com/NLog/NLog/pull/3737) + [#3769](https://github.com/NLog/NLog/pull/3769) Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)

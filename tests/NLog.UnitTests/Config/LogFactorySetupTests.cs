@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.IO;
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
@@ -41,6 +42,36 @@ namespace NLog.UnitTests.Config
 {
     public class LogFactorySetupTests
     {
+        [Fact]
+        public void SetupBuilderGetCurrentClassLogger()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            var logger1 = logFactory.Setup().GetCurrentClassLogger();
+            var logger2 = logFactory.GetCurrentClassLogger();
+
+            // Assert
+            Assert.Equal(typeof(LogFactorySetupTests).FullName, logger1.Name);
+            Assert.Same(logger1, logger2);
+        }
+
+        [Fact]
+        public void SetupBuilderGetLogger()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            var logger1 = logFactory.Setup().GetLogger(nameof(SetupBuilderGetCurrentClassLogger));
+            var logger2 = logFactory.GetLogger(nameof(SetupBuilderGetCurrentClassLogger));
+
+            // Assert
+            Assert.Equal(nameof(SetupBuilderGetCurrentClassLogger), logger1.Name);
+            Assert.Same(logger1, logger2);
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -431,6 +462,142 @@ namespace NLog.UnitTests.Config
             {
                 ConfigurationItemFactory.Default = null;    // Restore global default
             }
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+
+            // Act
+            logFactory.Setup().LoadConfiguration(logConfig);
+
+            // Assert
+            Assert.Same(logConfig, logFactory.Configuration);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationBuilderTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            LoggingConfiguration logConfig = null;
+
+            // Act
+            logFactory.Setup().LoadConfiguration(b => logConfig = b.Configuration);
+
+            // Assert
+            Assert.Same(logConfig, logFactory.Configuration);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileTest()
+        {
+            // Arrange
+            var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromFile();
+
+            // Assert
+            Assert.False(logFactory.AutoShutdown);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileMissingButRequiredTest_IntegrationTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            Action act = () => logFactory.Setup().LoadConfigurationFromFile(optional: false);
+
+            // Assert
+            var ex = Assert.Throws<FileNotFoundException>(act);
+            Assert.Contains("NLog.dll.nlog", ex.Message);
+            Assert.Contains(Directory.GetCurrentDirectory(), ex.Message);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileMissingTest()
+        {
+            // Arrange
+            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => null);
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromFile(optional: true);
+
+            // Assert
+            // no Exception
+        }
+
+        [Fact]
+        public void SetupBuilderLoadNLogConfigFromFileNotExistsTest()
+        {
+            // Arrange
+            var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
+            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromFile("NLog.config", optional: true);
+
+            // Assert
+            Assert.Null(logFactory.Configuration);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromFileOptionalFalseTest()
+        {
+            // Arrange
+            var xmlFile = new System.IO.StringReader("<nlog autoshutdown='false'></nlog>");
+            var appEnv = new Mocks.AppEnvironmentMock(f => false, f => System.Xml.XmlReader.Create(xmlFile));
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act / Assert
+            Assert.Throws<System.IO.FileNotFoundException>(() => logFactory.Setup().LoadConfigurationFromFile("NLog.config", optional: false));
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromXmlTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            logFactory.Setup().LoadConfigurationFromXml("<nlog autoshutdown='false'></nlog>");
+
+            // Assert
+            Assert.False(logFactory.AutoShutdown);
+        }
+
+        [Fact]
+        public void SetupBuilderLoadConfigurationFromXmlPatchTest()
+        {
+            // Arrange
+            var xmlFile = new System.IO.StringReader("<nlog autoshutdown='true'></nlog>");
+            var appEnv = new Mocks.AppEnvironmentMock(f => true, f => System.Xml.XmlReader.Create(xmlFile));
+            var configLoader = new LoggingConfigurationFileLoader(appEnv);
+            var logFactory = new LogFactory(configLoader);
+
+            // Act
+            logFactory.Setup().
+                LoadConfigurationFromXml("<nlog autoshutdown='false'></nlog>").
+                LoadConfigurationFromFile().  // No effect, since config already loaded
+                LoadConfiguration(b => { b.Configuration.Variables["Hello"] = "World"; });
+
+            // Assert
+            Assert.False(logFactory.AutoShutdown);
+            Assert.Single(logFactory.Configuration.Variables);
         }
     }
 }

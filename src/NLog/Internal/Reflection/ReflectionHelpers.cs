@@ -376,7 +376,7 @@ namespace NLog.Internal
 
         public static object GetPropertyValue(this PropertyInfo p, object instance)
         {
-#if NET45
+#if NET4_5
             return p.GetValue(instance);
 #else
             return p.GetGetMethod().Invoke(instance, null);

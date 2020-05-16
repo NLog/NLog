@@ -174,7 +174,6 @@ namespace NLog.Config
             Initialize(reader, fileName, ignoreErrors);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -196,8 +195,7 @@ namespace NLog.Config
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
-        /// <param name="xml">NLog configuration as XML string.</param>
-        /// <returns></returns>
+        /// <param name="xml">NLog configuration in XML to be parsed</param>
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
             return CreateFromXmlString(xml, LogManager.LogFactory);
@@ -206,19 +204,12 @@ namespace NLog.Config
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
-        /// <param name="xml">NLog configuration</param>
-        /// <param name="logFactory">LogFactory. Not null allowed.</param>
-        /// <returns></returns>
-        public static XmlLoggingConfiguration CreateFromXmlString(string xml, [NotNull] LogFactory logFactory)
+        /// <param name="xml">NLog configuration in XML to be parsed</param>
+        /// <param name="logFactory">NLog LogFactory</param>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, LogFactory logFactory)
         {
-            if (logFactory == null)
-            {
-                throw new ArgumentNullException(nameof(logFactory));
-            }
-
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
-#endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
@@ -317,7 +308,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">filepath</param>
         /// <returns>reader or <c>null</c> if filename is empty.</returns>
-        private static XmlReader CreateFileReader(string fileName)
+        private XmlReader CreateFileReader(string fileName)
         {
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -332,7 +323,7 @@ namespace NLog.Config
                     return XmlReader.Create(stream);
                 }
 #endif
-                return XmlReader.Create(fileName);
+                return LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName);
             }
             return null;
         }
@@ -349,6 +340,7 @@ namespace NLog.Config
             {
                 InitializeSucceeded = null;
                 _originalFileName = fileName;
+                reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
                 if (!string.IsNullOrEmpty(fileName))
                 {
@@ -386,9 +378,10 @@ namespace NLog.Config
         {
             if (!_fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
             {
-                using (var reader = XmlReader.Create(fileName))
+                using (var reader = LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName))
                 {
-                    ParseTopLevel(new NLogXmlElement(reader), fileName, autoReloadDefault);
+                    reader.MoveToContent();
+                    ParseTopLevel(new NLogXmlElement(reader, true), fileName, autoReloadDefault);
                 }
             }
         }
@@ -586,13 +579,18 @@ namespace NLog.Config
 
         private static string GetFileLookupKey([NotNull] string fileName)
         {
-
 #if SILVERLIGHT && !WINDOWS_PHONE
             // file names are relative to XAP
             return fileName;
 #else
             return Path.GetFullPath(fileName);
 #endif
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{base.ToString()}, FilePath={_originalFileName}";
         }
     }
 }

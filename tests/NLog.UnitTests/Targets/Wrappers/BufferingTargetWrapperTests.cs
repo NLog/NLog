@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics;
-
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -118,7 +116,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     flushHit.Set();
                 });
 
-            flushHit.WaitOne();
+            Assert.True(flushHit.WaitOne(5000), "Wait Flush Timeout");
             Assert.Null(flushException);
 
             // make sure remaining events were written
@@ -145,7 +143,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     flushHit.Set();
                 });
 
-            flushHit.WaitOne();
+            Assert.True(flushHit.WaitOne(5000), "Wait Again Flush Timeout");
             Assert.Equal(19, hitCount);
             Assert.Equal(2, myTarget.BufferedWriteCount);
             Assert.Equal(19, myTarget.BufferedTotalEvents);
@@ -209,79 +207,77 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void BufferingTargetWrapperSyncWithTimedFlushTest()
         {
-            RetryingIntegrationTest(3, () =>
+            var myTarget = new MyTarget();
+            var targetWrapper = new BufferingTargetWrapper
             {
-                var myTarget = new MyTarget();
-                var targetWrapper = new BufferingTargetWrapper
-                {
-                    WrappedTarget = myTarget,
-                    BufferSize = 10,
-                    FlushTimeout = 50,
-                };
+                WrappedTarget = myTarget,
+                BufferSize = 10,
+                FlushTimeout = 50,
+            };
+            var writeHit = new ManualResetEvent(false);
 
-                InitializeTargets(myTarget, targetWrapper);
+            InitializeTargets(myTarget, targetWrapper);
 
-                const int totalEvents = 100;
+            const int totalEvents = 100;
 
-                var continuationHit = new bool[totalEvents];
-                var lastException = new Exception[totalEvents];
-                var continuationThread = new Thread[totalEvents];
-                var hitCount = 0;
+            var continuationHit = new bool[totalEvents];
+            var lastException = new Exception[totalEvents];
+            var continuationThread = new Thread[totalEvents];
+            var hitCount = 0;
 
-                CreateContinuationFunc createAsyncContinuation =
-                    eventNumber =>
-                        ex =>
-                        {
-                            lastException[eventNumber] = ex;
-                            continuationThread[eventNumber] = Thread.CurrentThread;
-                            continuationHit[eventNumber] = true;
-                            Interlocked.Increment(ref hitCount);
-                        };
+            CreateContinuationFunc createAsyncContinuation =
+                eventNumber =>
+                    ex =>
+                    {
+                        lastException[eventNumber] = ex;
+                        continuationThread[eventNumber] = Thread.CurrentThread;
+                        continuationHit[eventNumber] = true;
+                        Interlocked.Increment(ref hitCount);
+                        writeHit.Set();
+                    };
 
-                // write 9 events - they will all be buffered and no final continuation will be reached
-                var eventCounter = 0;
-                for (var i = 0; i < 9; ++i)
-                {
-                    targetWrapper.WriteAsyncLogEvent(
-                        new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-                }
+            // write 9 events - they will all be buffered and no final continuation will be reached
+            var eventCounter = 0;
+            for (var i = 0; i < 9; ++i)
+            {
+                targetWrapper.WriteAsyncLogEvent(
+                    new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            }
 
-                Assert.Equal(0, hitCount);
-                Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(0, hitCount);
+            Assert.Equal(0, myTarget.WriteCount);
 
-                // sleep 100 ms, this will trigger the timer and flush all events
-                Thread.Sleep(100);
-                Assert.Equal(9, hitCount);
-                Assert.Equal(1, myTarget.BufferedWriteCount);
-                Assert.Equal(9, myTarget.BufferedTotalEvents);
-                Assert.Equal(9, myTarget.WriteCount);
-                for (var i = 0; i < hitCount; ++i)
-                {
-                    Assert.NotSame(Thread.CurrentThread, continuationThread[i]);
-                    Assert.Null(lastException[i]);
-                }
+            // sleep and wait for the trigger timer to flush all events
+            Assert.True(writeHit.WaitOne(5000), "Wait Write Timeout");
+            WaitAndAssertExpectedValue(ref hitCount, 9);
 
-                // write 11 more events, 10 will be hit immediately because the buffer will fill up
-                // 1 will be pending
-                for (var i = 0; i < 11; ++i)
-                {
-                    targetWrapper.WriteAsyncLogEvent(
-                        new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-                }
+            Assert.Equal(1, myTarget.BufferedWriteCount);
+            Assert.Equal(9, myTarget.BufferedTotalEvents);
+            Assert.Equal(9, myTarget.WriteCount);
+            for (var i = 0; i < hitCount; ++i)
+            {
+                Assert.NotSame(Thread.CurrentThread, continuationThread[i]);
+                Assert.Null(lastException[i]);
+            }
 
-                Assert.Equal(19, hitCount);
-                Assert.Equal(2, myTarget.BufferedWriteCount);
-                Assert.Equal(19, myTarget.BufferedTotalEvents);
-                Assert.Equal(19, myTarget.WriteCount);
+            // write 11 more events, 10 will be hit immediately because the buffer will fill up
+            // 1 will be pending
+            for (var i = 0; i < 11; ++i)
+            {
+                targetWrapper.WriteAsyncLogEvent(
+                    new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            }
 
-                // sleep 100ms and the last remaining one will be flushed
-                Thread.Sleep(100);
-                Assert.Equal(20, hitCount);
-                Assert.Equal(3, myTarget.BufferedWriteCount);
-                Assert.Equal(20, myTarget.BufferedTotalEvents);
-                Assert.Equal(20, myTarget.WriteCount);
+            Assert.Equal(19, hitCount);
+            Assert.Equal(2, myTarget.BufferedWriteCount);
+            Assert.Equal(19, myTarget.BufferedTotalEvents);
+            Assert.Equal(19, myTarget.WriteCount);
 
-            });
+            // sleep and wait for the remaining one to be flushed
+            WaitAndAssertExpectedValue(ref hitCount, 20);
+            Assert.Equal(3, myTarget.BufferedWriteCount);
+            Assert.Equal(20, myTarget.BufferedTotalEvents);
+            Assert.Equal(20, myTarget.WriteCount);
         }
 
         [Fact]
@@ -295,6 +291,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     WrappedTarget = myTarget,
                     BufferSize = 10,
                 };
+                var writeHit = new ManualResetEvent(false);
 
                 InitializeTargets(myTarget, targetWrapper);
 
@@ -313,6 +310,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                             continuationThread[eventNumber] = Thread.CurrentThread;
                             continuationHit[eventNumber] = true;
                             Interlocked.Increment(ref hitCount);
+                            writeHit.Set();
                         };
 
                 // write 9 events - they will all be buffered and no final continuation will be reached
@@ -329,12 +327,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.WriteAsyncLogEvent(
                     new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
 
-                while (hitCount < 10)
-                {
-                    Thread.Sleep(10);
-                }
-
-                Assert.Equal(10, hitCount);
+                Assert.True(writeHit.WaitOne(5000), "Wait Write Timeout");
+                WaitAndAssertExpectedValue(ref hitCount, 10);
                 Assert.Equal(1, myTarget.BufferedWriteCount);
                 Assert.Equal(10, myTarget.BufferedTotalEvents);
                 for (var i = 0; i < hitCount; ++i)
@@ -365,7 +359,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         flushHit.Set();
                     });
 
-                flushHit.WaitOne();
+                Assert.True(flushHit.WaitOne(5000), "Wait Flush Timeout");
                 Assert.Null(flushException);
 
                 // make sure remaining events were written
@@ -390,14 +384,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                         flushHit.Set();
                     });
 
-                flushHit.WaitOne();
+                Assert.True(flushHit.WaitOne(5000), "Wait Again Flush Timeout");
                 Assert.Equal(19, hitCount);
                 Assert.Equal(2, myTarget.BufferedWriteCount);
                 Assert.Equal(19, myTarget.BufferedTotalEvents);
 
                 targetWrapper.Close();
                 myTarget.Close();
-
             });
         }
 
@@ -449,7 +442,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 targetWrapper.WriteAsyncLogEvent(
                     new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-                Assert.True(resetEvent.WaitOne(5000));
+                Assert.True(resetEvent.WaitOne(5000), "Wait Write Timeout");
 
                 Assert.Equal(2, hitCount);
                 Assert.Equal(2, myTarget.WriteCount);
@@ -467,6 +460,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 BufferSize = 10,
                 FlushTimeout = 400,
             };
+            var writeEvent = new ManualResetEvent(false);
 
             InitializeTargets(myTarget, targetWrapper);
 
@@ -485,6 +479,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationThread[eventNumber] = Thread.CurrentThread;
                         continuationHit[eventNumber] = true;
                         Interlocked.Increment(ref hitCount);
+                        writeEvent.Set();
                     };
 
             var eventCounter = 0;
@@ -500,8 +495,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, hitCount);
             Assert.Equal(0, myTarget.WriteCount);
 
-            Thread.Sleep(600);
-            Assert.Equal(2, hitCount);
+            Assert.True(writeEvent.WaitOne(5000), "Wait Write Timeout");
+            WaitAndAssertExpectedValue(ref hitCount, 2);
             Assert.Equal(2, myTarget.WriteCount);
         }
 
@@ -522,8 +517,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 var flushHit = new ManualResetEvent(false);
                 bufferingTargetWrapper.Flush(ex => flushHit.Set());
-                flushHit.WaitOne();
-
+                Assert.True(flushHit.WaitOne(5000), "Wait Flush Timeout");
                 Assert.Equal(1, myTarget.FlushCount);
             }
         }
@@ -697,5 +691,17 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         private delegate AsyncContinuation CreateContinuationFunc(int eventNumber);
+
+        private static void WaitAndAssertExpectedValue(ref int hitCount, int expectedValue)
+        {
+            for (int i = 0; i < 100; ++i)
+            {
+                if (Thread.VolatileRead(ref hitCount) >= expectedValue)
+                    break;  // Ready to assert
+
+                Thread.Sleep(50);
+            }
+            Assert.Equal(expectedValue, hitCount);
+        }
     }
 }

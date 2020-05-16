@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
 namespace NLog.Internal
 {
+    using System;
+
     /// <summary>
     /// Simple character tokenizer.
     /// </summary>
@@ -122,6 +122,23 @@ namespace NLog.Internal
         internal string Substring(int startIndex, int endIndex)
         {
             return _text.Substring(startIndex, endIndex - startIndex);
+        }
+
+        internal string ReadUntilMatch(Func<int, bool> charFinder)
+        {
+            int ch;
+            int startPosition = Position;
+            while ((ch = Peek()) != -1)
+            {
+                if (charFinder(ch))
+                {
+                    return Substring(startPosition, Position);
+                }
+
+                Read();
+            }
+
+            return Substring(startPosition, Position);
         }
     }
 }

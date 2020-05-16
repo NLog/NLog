@@ -33,16 +33,13 @@
 
 namespace NLog.Targets
 {
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Represents a parameter to a NLogViewer target.
     /// </summary>
     [NLogConfigurationItem]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    [AppDomainFixedOutput]
     public class NLogViewerParameterInfo
     {
         /// <summary>

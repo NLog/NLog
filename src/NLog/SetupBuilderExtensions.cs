@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.Runtime.CompilerServices;
     using NLog.Config;
     using NLog.Internal;
 
@@ -42,6 +43,23 @@ namespace NLog
     /// </summary>
     public static class SetupBuilderExtensions
     {
+        /// <summary>
+        /// Gets the logger with the full name of the current class, so namespace and class name.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger(this ISetupBuilder setupBuilder)
+        {
+            return setupBuilder.LogFactory.GetLogger(StackTraceUsageUtils.GetClassFullName());
+        }
+
+        /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        public static Logger GetLogger(this ISetupBuilder setupBuilder, string name)
+        {
+            return setupBuilder.LogFactory.GetLogger(name);
+        }
+
         /// <summary>
         /// Configures loading of NLog extensions for Targets and LayoutRenderers
         /// </summary>
@@ -66,6 +84,56 @@ namespace NLog
         public static ISetupBuilder SetupSerialization(this ISetupBuilder setupBuilder, Action<ISetupSerializationBuilder> serializationBuilder)
         {
             serializationBuilder(new SetupSerializationBuilder(setupBuilder.LogFactory));
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config created by the method <paramref name="configBuilder"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfiguration(this ISetupBuilder setupBuilder, Action<ISetupLoadConfigurationBuilder> configBuilder)
+        {
+            var config = setupBuilder.LogFactory._config;
+            var setupConfig = new SetupLoadConfigurationBuilder(setupBuilder.LogFactory, config);
+            configBuilder(setupConfig);
+            var newConfig = setupConfig._configuration;
+            bool configHasChanged = !ReferenceEquals(config, setupBuilder.LogFactory._config);
+
+            if (ReferenceEquals(newConfig, setupBuilder.LogFactory._config))
+            {
+                setupBuilder.LogFactory.ReconfigExistingLoggers();
+            }
+            else if (!configHasChanged || !ReferenceEquals(config, newConfig))
+            {
+                setupBuilder.LogFactory.Configuration = newConfig;
+            }
+
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config provided in <paramref name="loggingConfiguration"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfiguration(this ISetupBuilder setupBuilder, LoggingConfiguration loggingConfiguration)
+        {
+            setupBuilder.LogFactory.Configuration = loggingConfiguration;
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config from filename <paramref name="configFile"/> if provided, else fallback to scanning for NLog.config
+        /// </summary>
+        public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, string configFile = null, bool optional = true)
+        {
+            setupBuilder.LogFactory.LoadConfiguration(configFile, optional);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config from XML in <paramref name="configXml"/>
+        /// </summary>
+        public static ISetupBuilder LoadConfigurationFromXml(this ISetupBuilder setupBuilder, string configXml)
+        {
+            setupBuilder.LogFactory.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml, setupBuilder.LogFactory);
             return setupBuilder;
         }
     }

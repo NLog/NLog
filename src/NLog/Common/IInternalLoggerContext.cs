@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Common
 {
     /// <summary>
@@ -42,5 +44,11 @@ namespace NLog.Common
         /// Name of context
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// The current LogFactory next to LogManager
+        /// </summary>
+        [CanBeNull]
+        LogFactory LogFactory { get; } 
     }
 }

@@ -59,7 +59,7 @@ namespace NLog.Layouts
         protected XmlElementBase(string elementName, Layout elementValue)
         {
             ElementNameInternal = elementName;
-            ElementValueInternal = elementValue;
+            LayoutWrapper.Inner = elementValue;
             Attributes = new List<XmlAttribute>();
             Elements = new List<XmlElement>();
             ExcludeProperties = new HashSet<string>();
@@ -78,15 +78,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
         /// <docgen category='XML Options' order='10' />
-        internal Layout ElementValueInternal { get => _elementValueWrapper.Inner; set => _elementValueWrapper.Inner = value; }
-        private readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper _elementValueWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
-
-        /// <summary>
-        /// Xml Encode the value for the XML element
-        /// </summary>
-        /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
-        /// <docgen category='XML Options' order='10' />
-        internal bool ElementEncodeInternal { get => _elementValueWrapper.XmlEncode; set => _elementValueWrapper.XmlEncode = value; }
+        internal readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper LayoutWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
 
         /// <summary>
         /// Auto indent and create new lines
@@ -308,14 +300,7 @@ namespace NLog.Layouts
 
                 if (sb.Length != orgLength)
                 {
-                    bool hasElements =
-                        ElementValueInternal != null ||
-                        Elements.Count > 0 ||
-                        IncludeMdc ||
-#if !SILVERLIGHT
-                        IncludeMdlc ||
-#endif
-                        (IncludeAllProperties && logEvent.HasProperties);
+                    bool hasElements = HasNestedXmlElements(logEvent);
                     if (!hasElements)
                     {
                         sb.Append("/>");
@@ -327,7 +312,7 @@ namespace NLog.Layouts
                     }
                 }
 
-                if (ElementValueInternal != null)
+                if (LayoutWrapper.Inner != null)
                 {
                     int beforeElementLength = sb.Length;
                     if (sb.Length == orgLength)
@@ -335,7 +320,7 @@ namespace NLog.Layouts
                         RenderStartElement(sb, ElementNameInternal);
                     }
                     int beforeValueLength = sb.Length;
-                    _elementValueWrapper.RenderAppendBuilder(logEvent, sb);
+                    LayoutWrapper.RenderAppendBuilder(logEvent, sb);
                     if (beforeValueLength == sb.Length && !IncludeEmptyValue)
                     {
                         sb.Length = beforeElementLength;
@@ -364,6 +349,28 @@ namespace NLog.Layouts
             {
                 EndXmlDocument(sb, ElementNameInternal);
             }
+        }
+
+        private bool HasNestedXmlElements(LogEventInfo logEvent)
+        {
+            if (LayoutWrapper.Inner != null)
+                return true;
+
+            if (Elements.Count > 0)
+                return true;
+
+            if (IncludeMdc)
+                return true;
+
+#if !SILVERLIGHT
+            if (IncludeMdlc)
+                return true;
+#endif
+
+            if (IncludeAllProperties && logEvent.HasProperties)
+                return true;
+
+            return false;
         }
 
         private void AppendLogEventXmlProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)

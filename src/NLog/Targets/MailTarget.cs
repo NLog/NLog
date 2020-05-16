@@ -136,7 +136,7 @@ namespace NLog.Targets
                     {
                         InternalLogger.Warn(ex, "MailTarget(Name={0}): Reading 'From' from .config failed.", Name);
 
-                        if (ex.MustBeRethrown())
+                        if (ExceptionMustBeRethrown(ex))
                         {
                             throw;
                         }
@@ -420,7 +420,7 @@ namespace NLog.Targets
                 //always log
                 InternalLogger.Error(exception, "MailTarget(Name={0}): Error sending mail.", Name);
 
-                if (exception.MustBeRethrown())
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }

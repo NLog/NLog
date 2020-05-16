@@ -38,6 +38,7 @@ namespace NLog.Targets
     using System;
     using System.ComponentModel;
     using System.Text.RegularExpressions;
+    using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
 
@@ -80,6 +81,12 @@ namespace NLog.Targets
             get => _regexHelper.RegexPattern;
             set => _regexHelper.RegexPattern = value;
         }
+
+        /// <summary>
+        /// Gets or sets the condition that must be met before scanning the row for highlight of words
+        /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
+        public ConditionExpression Condition { get; set; }
 
         /// <summary>
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
@@ -143,8 +150,13 @@ namespace NLog.Targets
         /// </summary>
         public Regex CompiledRegex => _regexHelper.Regex;
 
-        internal MatchCollection Matches(string message)
+        internal MatchCollection Matches(LogEventInfo logEvent, string message)
         {
+            if (Condition != null && false.Equals(Condition.Evaluate(logEvent)))
+            {
+                return null;
+            }
+
             return _regexHelper.Matches(message);
         }
     }

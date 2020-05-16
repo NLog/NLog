@@ -178,14 +178,11 @@ namespace NLog.Internal
         {
             foreach (var interfaceType in objectType.GetInterfaces())
             {
-                if (interfaceType.IsGenericType() && interfaceType.GetGenericTypeDefinition() == typeof(IDictionary<,>))
+                if (IsGenericDictionaryEnumeratorType(interfaceType))
                 {
-                    if (interfaceType.GetGenericArguments()[0] == typeof(string))
-                    {
-                        var dictionaryEnumerator = (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(interfaceType.GetGenericArguments()));
-                        propertyInfos = new ObjectPropertyInfos(null, new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
-                        return true;
-                    }
+                    var dictionaryEnumerator = (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(interfaceType.GetGenericArguments()));
+                    propertyInfos = new ObjectPropertyInfos(null, new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
+                    return true;
                 }
             }
 
@@ -236,6 +233,9 @@ namespace NLog.Internal
             if (typeof(Assembly).IsAssignableFrom(objectType))
                 return true;
 
+            if (typeof(Module).IsAssignableFrom(objectType))
+                return true;
+
             return false;
         }
 
@@ -276,6 +276,7 @@ namespace NLog.Internal
             {
                 fastLookup[0] = new FastPropertyLookup("Type", TypeCode.String, (o, p) => o.GetType().ToString());
             }
+
             foreach (var prop in properties)
             {
                 var getterMethod = prop.GetGetMethod();
@@ -586,12 +587,30 @@ namespace NLog.Internal
         }
 #endif
 
+        private static bool IsGenericDictionaryEnumeratorType(Type interfaceType)
+        {
+            if (interfaceType.IsGenericType())
+            {
+                if (interfaceType.GetGenericTypeDefinition() == typeof(IDictionary<,>)
+#if NET4_5
+                 || interfaceType.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)
+#endif
+                   )
+                {
+                    if (interfaceType.GetGenericArguments()[0] == typeof(string))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private interface IDictionaryEnumerator
         {
             IEnumerator<KeyValuePair<string,object>> GetEnumerator(object value);
         }
-
-        private static readonly IDictionary<string, object> EmptyDictionary = new NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
         internal sealed class DictionaryEnumerator<TKey, TValue> : IDictionaryEnumerator
         {
@@ -599,15 +618,52 @@ namespace NLog.Internal
             {
                 if (value is IDictionary<TKey, TValue> dictionary)
                 {
-                    return YieldEnumerator(dictionary);
+                    if (dictionary.Count > 0)
+                        return YieldEnumerator(dictionary);
                 }
-                return EmptyDictionary.GetEnumerator();
+#if NET4_5
+                else if (value is IReadOnlyDictionary<TKey, TValue> readonlyDictionary)
+                {
+                    if (readonlyDictionary.Count > 0)
+                        return YieldEnumerator(readonlyDictionary);
+                }
+#endif
+                return EmptyDictionaryEnumerator.Default;
             }
 
             private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey,TValue> dictionary)
             {
                 foreach (var item in dictionary)
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+            }
+
+#if NET4_5
+            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
+            {
+                foreach (var item in dictionary)
+                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+            }
+#endif
+
+            private sealed class EmptyDictionaryEnumerator : IEnumerator<KeyValuePair<string, object>>
+            {
+                public static readonly EmptyDictionaryEnumerator Default = new EmptyDictionaryEnumerator();
+
+                KeyValuePair<string, object> IEnumerator<KeyValuePair<string, object>>.Current => default(KeyValuePair<string, object>);
+
+                object IEnumerator.Current => default(KeyValuePair<string, object>);
+
+                bool IEnumerator.MoveNext() => false;
+
+                void IDisposable.Dispose()
+                {
+                    // Nothing here on purpose
+                }
+
+                void IEnumerator.Reset()
+                {
+                    // Nothing here on purpose
+                }
             }
         }
     }

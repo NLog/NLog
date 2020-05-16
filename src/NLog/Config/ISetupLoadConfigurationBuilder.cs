@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,61 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
-
-namespace NLog.Internal
+namespace NLog.Config
 {
-    using System.IO;
-
     /// <summary>
-    /// Returns details about current process and thread in a portable manner.
+    /// Interface for fluent setup of LogFactory options
     /// </summary>
-    internal abstract class ProcessIDHelper
+    public interface ISetupLoadConfigurationBuilder
     {
-        private const string UnknownProcessName = "<unknown>";
-
-        private static ProcessIDHelper _threadIDHelper;
-        private string _currentProcessBaseName;
+        /// <summary>
+        /// LogFactory under configuration
+        /// </summary>
+        LogFactory LogFactory { get; }
 
         /// <summary>
-        /// Gets the singleton instance of PortableThreadIDHelper or
-        /// Win32ThreadIDHelper depending on runtime environment.
+        /// LoggingConfiguration being built
         /// </summary>
-        /// <value>The instance.</value>
-        public static ProcessIDHelper Instance => _threadIDHelper ?? (_threadIDHelper = Create());
-
-        /// <summary>
-        /// Gets current process ID.
-        /// </summary>
-        public abstract int CurrentProcessID { get; }
-
-        /// <summary>
-        /// Gets current process absolute file path.
-        /// </summary>
-        public abstract string CurrentProcessFilePath { get; }
-
-        /// <summary>
-        /// Gets current process name (excluding filename extension, if any).
-        /// </summary>
-        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = string.IsNullOrEmpty(CurrentProcessFilePath) ? UnknownProcessName : Path.GetFileNameWithoutExtension(CurrentProcessFilePath));
-
-        /// <summary>
-        /// Initializes the ThreadIDHelper class.
-        /// </summary>
-        private static ProcessIDHelper Create()
-        {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            if (PlatformDetector.IsWin32)
-            {
-                return new Win32ProcessIDHelper();
-            }
-            else
-#endif
-            {
-                return new PortableProcessIDHelper();
-            }
-        }
+        LoggingConfiguration Configuration { get; set; }
     }
 }
-
-#endif

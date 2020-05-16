@@ -69,7 +69,7 @@ namespace NLog.UnitTests
             logger.Factory.Flush(ex => { timeoutException = ex; manualResetEvent.Set(); }, TimeSpan.FromMilliseconds(1));
 
             // Assert
-            Assert.True(manualResetEvent.WaitOne(1000));
+            Assert.True(manualResetEvent.WaitOne(5000));
             Assert.NotNull(timeoutException);
         }
 
@@ -155,7 +155,7 @@ namespace NLog.UnitTests
                     var ex = Record.Exception(() => logFactory.LoadConfiguration(configFile));
 
                     // Assert
-                    Assert.IsType<IOException>(ex);
+                    Assert.IsType<FileNotFoundException>(ex);
                 }
 
                 // Assert
@@ -230,7 +230,7 @@ namespace NLog.UnitTests
                 var loggingConfiguration = new LoggingConfiguration();
                 LogManager.Configuration = loggingConfiguration;
 
-                var configLoader = new LoggingConfigurationWatchableFileLoader();
+                var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
                 var logFactory = new LogFactory(configLoader);
                 logFactory.Configuration = loggingConfiguration;
 
@@ -271,7 +271,7 @@ namespace NLog.UnitTests
         {
             var loggingConfiguration = new ReloadNullConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             logFactory.Configuration = loggingConfiguration;
 

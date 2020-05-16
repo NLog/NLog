@@ -36,8 +36,7 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using Common;
-    using Internal;
+    using NLog.Common;
 
     /// <summary>
     /// Writes log events to all targets.
@@ -94,7 +93,22 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.ForEachItemSequentially(Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            if (Targets.Count == 0)
+            {
+                logEvent.Continuation(null);
+            }
+            else
+            {
+                if (Targets.Count > 1)
+                {
+                    logEvent = logEvent.LogEvent.WithContinuation(CreateCountedContinuation(logEvent.Continuation, Targets.Count));
+                }
+
+                for (int i = 0; i < Targets.Count; ++i)
+                {
+                    Targets[i].WriteAsyncLogEvent(logEvent);
+                }
+            }
         }
 
         /// <summary>
@@ -107,36 +121,48 @@ namespace NLog.Targets.Wrappers
         {
             InternalLogger.Trace("SplitGroup(Name={0}): Writing {1} events", Name, logEvents.Count);
 
-            for (int i = 0; i < logEvents.Count; ++i)
+            if (logEvents.Count == 1)
             {
-                AsyncLogEventInfo ev = logEvents[i];
-                logEvents[i] = new AsyncLogEventInfo(ev.LogEvent, CountedWrap(ev.Continuation, Targets.Count));
+                Write(logEvents[0]);    // Skip array allocation for each destination target
             }
-
-            for (int i = 0; i < Targets.Count; ++i)
+            else if (Targets.Count == 0 || logEvents.Count == 0)
             {
-                InternalLogger.Trace("SplitGroup(Name={0}): Sending {1} events to {2}", Name, logEvents.Count, Targets[i]);
-
-                var targetLogEvents = logEvents;
-                if (i < Targets.Count - 1)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    // OptimizeBufferReuse = true, will change the input-array (so we make clones here)
-                    AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
-                    logEvents.CopyTo(cloneLogEvents, 0);
-                    targetLogEvents = cloneLogEvents;
+                    logEvents[i].Continuation(null);
+                }
+            }
+            else
+            {
+                if (Targets.Count > 1)
+                {
+                    for (int i = 0; i < logEvents.Count; ++i)
+                    {
+                        AsyncLogEventInfo ev = logEvents[i];
+                        logEvents[i] = ev.LogEvent.WithContinuation(CreateCountedContinuation(ev.Continuation, Targets.Count));
+                    }
                 }
 
-                Targets[i].WriteAsyncLogEvents(targetLogEvents);
+                for (int i = 0; i < Targets.Count; ++i)
+                {
+                    InternalLogger.Trace("SplitGroup(Name={0}): Sending {1} events to {2}", Name, logEvents.Count, Targets[i]);
+
+                    var targetLogEvents = logEvents;
+                    if (i < Targets.Count - 1)
+                    {
+                        // OptimizeBufferReuse = true, will change the input-array (so we make clones here)
+                        AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
+                        logEvents.CopyTo(cloneLogEvents, 0);
+                        targetLogEvents = cloneLogEvents;
+                    }
+
+                    Targets[i].WriteAsyncLogEvents(targetLogEvents);
+                }
             }
         }
 
-        private static AsyncContinuation CountedWrap(AsyncContinuation originalContinuation, int counter)
+        private static AsyncContinuation CreateCountedContinuation(AsyncContinuation originalContinuation, int targetCounter)
         {
-            if (counter == 1)
-            {
-                return originalContinuation;
-            }
-
             var exceptions = new List<Exception>();
 
             AsyncContinuation wrapper =
@@ -150,17 +176,17 @@ namespace NLog.Targets.Wrappers
                         }
                     }
 
-                    int c = Interlocked.Decrement(ref counter);
+                    int pendingTargets = Interlocked.Decrement(ref targetCounter);
 
-                    if (c == 0)
+                    if (pendingTargets == 0)
                     {
                         var combinedException = AsyncHelpers.GetCombinedException(exceptions);
-                        InternalLogger.Trace("Combined exception: {0}", combinedException);
+                        InternalLogger.Trace("SplitGroup: Combined exception: {0}", combinedException);
                         originalContinuation(combinedException);
                     }
                     else
                     {
-                        InternalLogger.Trace("{0} remaining.", c);
+                        InternalLogger.Trace("SplitGroup: {0} remaining.", pendingTargets);
                     }
                 };
 
