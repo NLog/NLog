@@ -176,7 +176,7 @@
 
     <xs:attribute name="enabled" type="xs:boolean" default="true">
       <xs:annotation>
-        <xs:documentation>Is this rule enabled?</xs:documentation>
+        <xs:documentation>Enable this rule. Note: disabled rules aren't available from the API.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
 
