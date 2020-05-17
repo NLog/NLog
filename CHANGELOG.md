@@ -4,6 +4,11 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.2 (2020/05/18)
+
+#### Bugfixes
+- [#3967](https://github.com/NLog/NLog/pull/3967) FileTarget - ArchiveOldFileOnStartup not working together with ArchiveAboveSize (@snakefoot)
+
 ### V4.7.1 (2020/05/15)
 
 #### Features
