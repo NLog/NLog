@@ -508,8 +508,6 @@ namespace NLog.Targets
         [Advanced]
         public int ConcurrentWriteAttemptDelay { get; set; }
 
-        private bool? _archiveOldFileOnStartup;
-
         /// <summary>
         /// Gets or sets a value indicating whether to archive old log file on startup.
         /// </summary>
@@ -524,6 +522,7 @@ namespace NLog.Targets
             get => _archiveOldFileOnStartup ?? false;
             set => _archiveOldFileOnStartup = value;
         }
+        private bool? _archiveOldFileOnStartup;
 
         /// <summary>
         /// Gets or sets a value of the file size threshold to archive old log file on startup.
@@ -1791,7 +1790,7 @@ namespace NLog.Targets
 
             try
             {
-                archiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
+                archiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
                     archivedAppender = TryCloseFileAppenderBeforeArchive(fileName, archiveFile);
@@ -1876,7 +1875,7 @@ namespace NLog.Targets
             try
             {
                 // Check again if archive is needed. We could have been raced by another process
-                var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
+                var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
                 if (string.IsNullOrEmpty(validatedArchiveFile))
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Archive already performed for file '{1}'", Name, archiveFile);
@@ -1918,14 +1917,15 @@ namespace NLog.Targets
         /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
+        /// <param name="initializedNewFile">File has just been opened.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string GetArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp)
+        private string GetArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp, bool initializedNewFile)
         {
             fileName = fileName ?? _previousLogFileName;
             if (!string.IsNullOrEmpty(fileName))
             {
-                return GetArchiveFileNameBasedOnFileSize(fileName, upcomingWriteSize) ??
-                       GetArchiveFileNameBasedOnTime(fileName, ev, previousLogEventTimestamp);
+                return GetArchiveFileNameBasedOnFileSize(fileName, upcomingWriteSize, initializedNewFile) ??
+                       GetArchiveFileNameBasedOnTime(fileName, ev, previousLogEventTimestamp, initializedNewFile);
             }
 
             return null;
@@ -1961,30 +1961,30 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
+        /// <param name="initializedNewFile">File has just been opened.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string GetArchiveFileNameBasedOnFileSize(string fileName, int upcomingWriteSize)
+        private string GetArchiveFileNameBasedOnFileSize(string fileName, int upcomingWriteSize, bool initializedNewFile)
         {
             if (ArchiveAboveSize <= ArchiveAboveSizeDisabled)
             {
                 return null;
             }
 
-            var previousFileName = GetPotentialFileForArchiving(fileName);
-            if (string.IsNullOrEmpty(previousFileName))
+            var archiveFileName = GetPotentialFileForArchiving(fileName);
+            if (string.IsNullOrEmpty(archiveFileName))
             {
                 return null;
             }
 
             //this is an expensive call
-            var fileLength = _fileAppenderCache.GetFileLength(previousFileName);
+            var fileLength = _fileAppenderCache.GetFileLength(archiveFileName);
             if (!fileLength.HasValue)
             {
-                _initializedFiles.Remove(previousFileName);
-
-                if (!string.IsNullOrEmpty(_previousLogFileName) && previousFileName != _previousLogFileName)
+                archiveFileName = TryFallbackToPreviousLogFileName(fileName, archiveFileName, initializedNewFile);
+                if (!string.IsNullOrEmpty(archiveFileName))
                 {
                     upcomingWriteSize = 0;
-                    return GetArchiveFileNameBasedOnFileSize(_previousLogFileName, upcomingWriteSize);
+                    return GetArchiveFileNameBasedOnFileSize(archiveFileName, upcomingWriteSize, false);
                 }
                 else
                 {
@@ -1992,23 +1992,34 @@ namespace NLog.Targets
                 }
             }
 
-            if (previousFileName != fileName)
+            if (archiveFileName != fileName)
             {
                 upcomingWriteSize = 0;  // Not going to write to this file
             }
 
-            var shouldArchive = ShouldArchiveOnFileSize(fileLength.Value, upcomingWriteSize);
+            var shouldArchive = (fileLength.Value + upcomingWriteSize) > ArchiveAboveSize;
             if (shouldArchive)
             {
-                return previousFileName;    // Will re-check if archive is still necessary after flush/close file
+                return archiveFileName;    // Will re-check if archive is still necessary after flush/close file
             }
 
             return null;
         }
 
-        private bool ShouldArchiveOnFileSize(long fileLength, int upcomingWriteSize)
+        private string TryFallbackToPreviousLogFileName(string fileName, string archiveFileName, bool initializedNewFile)
         {
-            return fileLength + upcomingWriteSize > ArchiveAboveSize;
+            if (!initializedNewFile || !string.Equals(fileName, archiveFileName, StringComparison.OrdinalIgnoreCase))
+            {
+                // Attempt fallback because FileAppenderCache detected previousFileName no longer exists
+                _initializedFiles.Remove(archiveFileName);
+            }
+
+            if (!string.IsNullOrEmpty(_previousLogFileName) && !string.Equals(archiveFileName, _previousLogFileName, StringComparison.OrdinalIgnoreCase))
+            {
+                return _previousLogFileName;
+            }
+
+            return string.Empty;
         }
 
         /// <summary>
@@ -2017,28 +2028,28 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
+        /// <param name="initializedNewFile">File has just been opened.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string GetArchiveFileNameBasedOnTime(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
+        private string GetArchiveFileNameBasedOnTime(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp, bool initializedNewFile)
         {
             if (ArchiveEvery == FileArchivePeriod.None)
             {
                 return null;
             }
 
-            fileName = GetPotentialFileForArchiving(fileName);
-            if (string.IsNullOrEmpty(fileName))
+            var archiveFileName = GetPotentialFileForArchiving(fileName);
+            if (string.IsNullOrEmpty(archiveFileName))
             {
                 return null;
             }
 
-            DateTime? creationTimeSource = TryGetArchiveFileCreationTimeSource(fileName, previousLogEventTimestamp);
+            DateTime? creationTimeSource = TryGetArchiveFileCreationTimeSource(archiveFileName, previousLogEventTimestamp);
             if (!creationTimeSource.HasValue)
             {
-                _initializedFiles.Remove(fileName);
-
-                if (!string.IsNullOrEmpty(_previousLogFileName) && fileName != _previousLogFileName)
-                {
-                    return GetArchiveFileNameBasedOnTime(_previousLogFileName, logEvent, previousLogEventTimestamp);
+                archiveFileName = TryFallbackToPreviousLogFileName(fileName, archiveFileName, initializedNewFile);
+                if (!string.IsNullOrEmpty(archiveFileName))
+                { 
+                    return GetArchiveFileNameBasedOnTime(archiveFileName, logEvent, previousLogEventTimestamp, false);
                 }
                 else
                 {
@@ -2056,7 +2067,7 @@ namespace NLog.Targets
                 var shouldArchive = fileCreated != logEventRecorded;
                 if (shouldArchive)
                 {
-                    return fileName;    // Will re-check if archive is still necessary after flush/close file
+                    return archiveFileName;    // Will re-check if archive is still necessary after flush/close file
                 }
             }
 
@@ -2271,7 +2282,7 @@ namespace NLog.Targets
             var now = logEvent.TimeStamp;
             if (!_initializedFiles.TryGetValue(fileName, out var lastTime))
             {
-                ProcessOnStartup(fileName, logEvent);
+                PrepareForNewFile(fileName, logEvent);
 
                 _initializedFilesCounter++;
                 if (_initializedFilesCounter >= InitializedFilesCounterMax)
@@ -2352,9 +2363,9 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
+        private void PrepareForNewFile(string fileName, LogEventInfo logEvent)
         {
-            InternalLogger.Debug("FileTarget(Name={0}): Process file '{1}' on startup", Name, fileName);
+            InternalLogger.Debug("FileTarget(Name={0}): Preparing for new file '{1}'", Name, fileName);
             RefreshArchiveFilePatternToWatch(fileName, logEvent);
 
             try
