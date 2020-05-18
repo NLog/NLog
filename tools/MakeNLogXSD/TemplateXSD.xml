@@ -134,7 +134,7 @@
     </xs:choice>
     <xs:attribute name="name" use="optional">
       <xs:annotation>
-        <xs:documentation>Name of the logger. May include  wildcard characters ('*' or '?').</xs:documentation>
+        <xs:documentation>Filter on the name of the logger. May include wildcard characters ('*' or '?').</xs:documentation>
       </xs:annotation>
     </xs:attribute>
 
@@ -171,6 +171,12 @@
     <xs:attribute name="final" type="xs:boolean" default="false">
       <xs:annotation>
         <xs:documentation>Ignore further rules if this one matches.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="enabled" type="xs:boolean" default="true">
+      <xs:annotation>
+        <xs:documentation>Enable this rule. Note: disabled rules aren't available from the API.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
 

@@ -4,6 +4,14 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.2 (2020/05/18)
+
+#### Bugfixes
+- [#3969](https://github.com/NLog/NLog/pull/3969) FileTarget - ArchiveOldFileOnStartup not working together with ArchiveAboveSize (@snakefoot)
+
+#### Improvements
+- [#3962](https://github.com/NLog/NLog/pull/3962) XSD: Added Enabled attribute for <logger> (@304NotModified)
+
 ### V4.7.1 (2020/05/15)
 
 #### Features
