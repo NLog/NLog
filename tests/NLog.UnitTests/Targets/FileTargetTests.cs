@@ -3816,6 +3816,7 @@ namespace NLog.UnitTests.Targets
                     FileName = logfile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
                     ArchiveAboveSize = 100,
+                    ArchiveOldFileOnStartup = true, // Verify ArchiveOldFileOnStartup works together with ArchiveAboveSize
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
                     Layout = "${message}",
