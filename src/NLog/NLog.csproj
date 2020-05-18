@@ -34,6 +34,9 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 ## Bugfixes
 - FileTarget - ArchiveOldFileOnStartup not working together with ArchiveAboveSize (@snakefoot)
 
+#### Improvements
+- XSD: Added Enabled attribute for &lt;logger&gt; (@304NotModified)      
+      
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
 For all config options and platform support, check https://nlog-project.org/config/
