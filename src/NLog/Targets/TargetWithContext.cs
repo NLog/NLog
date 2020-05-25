@@ -696,16 +696,12 @@ namespace NLog.Targets
                 {
                     if (IncludeCallSiteStackTrace)
                     {
-#if !SILVERLIGHT
-                        return StackTraceUsage.WithSource;
-#else
                         return StackTraceUsage.Max;
-#endif
                     }
 
                     if (IncludeCallSite)
                     {
-                        return StackTraceUsage.WithCallSite;
+                        return StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName;
                     }
                     return StackTraceUsage.None;
                 }

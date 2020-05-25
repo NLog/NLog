@@ -134,18 +134,14 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                if (!CaptureStackTrace)
-                {
-                    return StackTraceUsage.None;
-                }
-
                 return StackTraceUsageUtils.GetStackTraceUsage(
 #if !SILVERLIGHT
                     FileName,
 #else
                     false,
 #endif
-                    SkipFrames);
+                    SkipFrames,
+                    CaptureStackTrace) | ((ClassName || IncludeNamespace) ? StackTraceUsage.WithCallSiteClassName : StackTraceUsage.None);
             }
         }
 

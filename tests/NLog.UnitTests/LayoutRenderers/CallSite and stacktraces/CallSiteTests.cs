@@ -1484,11 +1484,13 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Theory]
-        [InlineData(false)]
-        [InlineData(true)]
-        public void CallsiteTargetSkipsStackTraceTest(bool includeLogEventCallSite)
+        [InlineData(true, StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName)]
+        [InlineData(false, StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName)]   // Will capture StackTrace automatically
+        [InlineData(true, StackTraceUsage.WithCallSiteClassName)]
+        [InlineData(false, StackTraceUsage.WithCallSiteClassName)]  // Will NOT capture StackTrace automatically
+        public void CallsiteTargetSkipsStackTraceTest(bool includeLogEventCallSite, StackTraceUsage stackTraceUsage)
         {
-            var target = new MyTarget() { StackTraceUsage = StackTraceUsage.WithCallSite };
+            var target = new MyTarget() { StackTraceUsage = stackTraceUsage };
             SimpleConfigurator.ConfigureForTargetLogging(target);
             var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
             var logEvent = LogEventInfo.Create(LogLevel.Info, logger.Name, "Hello");
@@ -1496,10 +1498,14 @@ namespace NLog.UnitTests.LayoutRenderers
                 logEvent.SetCallerInfo(nameof(CallSiteTests), nameof(CallsiteTargetSkipsStackTraceTest), string.Empty, 0);
             logger.Log(logEvent);
             Assert.NotNull(target.LastEvent);
-            if (includeLogEventCallSite)
+
+            if (includeLogEventCallSite || stackTraceUsage == StackTraceUsage.WithCallSiteClassName)
                 Assert.Null(target.LastEvent.StackTrace);
             else
                 Assert.NotNull(target.LastEvent.StackTrace);
+
+            if (includeLogEventCallSite || stackTraceUsage != StackTraceUsage.WithCallSiteClassName)
+                Assert.Equal(nameof(CallSiteTests), target.LastEvent.GetCallSiteInformationInternal().GetCallerClassName(null, false, true, true));
         }
 
         public class MyTarget : TargetWithLayout, IUsesStackTrace
