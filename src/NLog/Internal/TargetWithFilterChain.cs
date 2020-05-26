@@ -102,7 +102,7 @@ namespace NLog.Internal
 
         internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
         {
-            if ((stackTraceUsage & (StackTraceUsage.WithCallSite | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSite)
+            if ((stackTraceUsage & (StackTraceUsage.WithCallSiteClassName | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSiteClassName)
                 return false;
 
             if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
@@ -119,11 +119,11 @@ namespace NLog.Internal
             if (logEvent.HasStackTrace)
                 return false;
 
-            if ((stackTraceUsage & (StackTraceUsage.WithCallSite | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSite)
+            if ((stackTraceUsage & StackTraceUsage.WithStackTrace) != StackTraceUsage.None)
                 return true;
 
-            if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerMethodName) && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
-                return true;   // We don't have enough CallSiteInformation
+            if ((stackTraceUsage & StackTraceUsage.WithCallSite) != StackTraceUsage.None && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerMethodName) && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
+                return true;    // We don't have enough CallSiteInformation
 
             return false;
         }

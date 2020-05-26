@@ -64,6 +64,11 @@ namespace NLog.Config
         WithCallSite = 4,
 
         /// <summary>
+        /// Capture the class name for location of the call
+        /// </summary>
+        WithCallSiteClassName = 8,
+
+        /// <summary>
         /// Stack trace should be captured. This option won't add the filenames and linenumbers.
         /// </summary>
         [Obsolete("Replace with `WithStackTrace`. Will be removed in NLog 6")]
@@ -83,7 +88,7 @@ namespace NLog.Config
         /// <summary>
         /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
-        Max = WithoutSource,
+        Max = WithStackTrace,
 #endif
     }
 }
