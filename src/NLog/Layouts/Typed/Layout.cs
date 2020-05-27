@@ -38,6 +38,7 @@ using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
+using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.Layouts
@@ -48,7 +49,7 @@ namespace NLog.Layouts
     /// <typeparam name="T"></typeparam>
     public class Layout<T> : Layout, IRenderable<T>
     {
-        private static TypeCode? _typeCode;
+        private static Type _type;
         private static readonly string _typeNamed;
         private readonly Layout _layout;
         private readonly T _value;
@@ -78,13 +79,13 @@ namespace NLog.Layouts
 
 #if !NETSTANDARD1_3 //todo fix
 
-                _typeCode = System.Type.GetTypeCode(arg);
+                _type = arg;
 
 #endif
             }
             else
             {
-                _typeCode = (default(T) as IConvertible)?.GetTypeCode();
+                _type = type;
             }
 
             _typeNamed = type.Name;
@@ -119,13 +120,20 @@ namespace NLog.Layouts
 
         private static bool TryConvertTo(object raw, out T value)
         {
-            if (_typeCode == null)
+            if (_type == null || raw == null)
             {
                 value = default(T);
                 return false;
             }
 
-            return ValueConverter.TryConvertValue(raw, _typeCode.Value, out value);
+            var convertedValue = PropertyTypeConverter.Instance.Convert(raw, _type, null, null);
+            if (convertedValue is T goodValue)
+            {
+                value = goodValue;
+                return true;
+            }
+            value = default(T);
+            return false;
         }
 
         #endregion
