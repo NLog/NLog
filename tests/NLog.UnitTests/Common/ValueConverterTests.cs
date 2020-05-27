@@ -31,20 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
 using System;
 using System.Globalization;
+using NLog.Common;
 using Xunit;
 
-namespace NLog.UnitTests.Config
+namespace NLog.UnitTests.Common
 {
-    public class PropertyTypeConverterTests
+    public class ValueConverterTests
     {
-        private readonly PropertyTypeConverter _sut;
+        private readonly ValueConverter _sut;
 
-        public PropertyTypeConverterTests()
+        public ValueConverterTests()
         {
-            _sut = new PropertyTypeConverter();
+            _sut = new ValueConverter();
         }
 
         [Fact]

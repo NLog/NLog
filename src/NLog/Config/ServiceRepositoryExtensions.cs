@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Config
 {
     using System;
@@ -117,7 +119,7 @@ namespace NLog.Config
             serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
             serviceRepository.RegisterJsonConverter(new DefaultJsonSerializer(serviceRepository));
             serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
-            serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);
+            serviceRepository.RegisterPropertyTypeConverter(ValueConverter.Instance);
             serviceRepository.RegisterObjectTypeTransformer(new ObjectReflectionCache(serviceRepository));
             return serviceRepository;
         }

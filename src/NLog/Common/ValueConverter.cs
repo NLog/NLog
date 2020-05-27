@@ -31,20 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
-{
-    using System;
-    using NLog.Internal;
+using System;
+using NLog.Config;
+using NLog.Internal;
 
+namespace NLog.Common
+{
     /// <summary>
-    /// Default implementation of <see cref="IPropertyTypeConverter"/>
+    /// Convert between types
     /// </summary>
-    internal class PropertyTypeConverter : IPropertyTypeConverter
+    internal class ValueConverter : IPropertyTypeConverter
     {
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
+        public static ValueConverter Instance { get; } = new ValueConverter();
 
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)

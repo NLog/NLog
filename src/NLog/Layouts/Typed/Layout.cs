@@ -126,7 +126,8 @@ namespace NLog.Layouts
                 return false;
             }
 
-            var convertedValue = PropertyTypeConverter.Instance.Convert(raw, _type, null, null);
+            // We don't use DI here because of this will be called before DI setup and performance reasons
+            var convertedValue = ValueConverter.Instance.Convert(raw, _type, null, null);
             if (convertedValue is T goodValue)
             {
                 value = goodValue;
