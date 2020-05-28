@@ -37,7 +37,7 @@ namespace NLog.Layouts
     /// Renderable to a typed value
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRenderable<out T>
+    internal interface IRenderable<out T>
     {
         /// <summary>
         /// Render to value
