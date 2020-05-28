@@ -6,7 +6,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Layouts.Typed
 {
-    public class LayoutTests
+    public class LayoutTests : NLogTestBase
     {
         [Theory]
         [InlineData(100)]
@@ -17,6 +17,21 @@ namespace NLog.UnitTests.Layouts.Typed
         {
             // Arrange
             var layout = CreateLayoutRenderedFromProperty<int>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderableToValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
+
+        [Fact]
+        public void TypedNullableIntToIntLayoutDynamicTest()
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<int>();
+            int? value = 100;
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
@@ -91,6 +106,52 @@ namespace NLog.UnitTests.Layouts.Typed
 
             // Assert
             Assert.True(result);
+        }
+
+
+        [Fact]
+        public void ComplexTypeTest()
+        {
+            // Arrange
+            var value = new TestObject { Value = "123" };
+            var layout = CreateLayoutRenderedFromProperty<TestObject>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderableToValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(value, result);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void WrongValueErrorTest(bool throwsException)
+        {
+            // Arrange
+            LogManager.ThrowExceptions = throwsException; //will be reset by NLogTestBase for every test
+            var value = "12312aa3";
+            var layout = CreateLayoutRenderedFromProperty<int>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            Action action = () => layout.RenderableToValue(logEventInfo);
+
+            // Assert
+            if (throwsException)
+            {
+                Assert.Throws<FormatException>(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        private class TestObject
+        {
+            public string Value { get; set; }
         }
 
         private static Layout<T> CreateLayoutRenderedFromProperty<T>()

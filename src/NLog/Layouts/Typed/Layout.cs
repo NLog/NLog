@@ -129,12 +129,24 @@ namespace NLog.Layouts
 
             // We don't use DI here because of this will be called before DI setup and performance reasons
             var cultureInfo = CultureInfo.CurrentCulture;
-            var convertedValue = ValueConverter.Instance.Convert(raw, _type, null, cultureInfo);
-            if (convertedValue is T goodValue)
+            try
             {
-                value = goodValue;
-                return true;
+                var convertedValue = ValueConverter.Instance.Convert(raw, _type, null, cultureInfo);
+                if (convertedValue is T goodValue)
+                {
+                    value = goodValue;
+                    return true;
+                }
             }
+            catch (Exception e)
+            {
+                InternalLogger.Debug(e, "Conversion to type {0} failed", _type);
+                if (e.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+
             value = default(T);
             return false;
         }
