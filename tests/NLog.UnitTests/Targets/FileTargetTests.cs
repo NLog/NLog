@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -218,16 +220,27 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
             SimpleFileWriteLogTest(logFile);
         }
+        
+        [Fact]
+        public void SimpleFileWithEncodingTest()
+        {
+            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + ".log");
+            SimpleFileWriteLogTest(logFile, Encoding.GetEncoding("Windows-1252"));
+        }
 
-        private void SimpleFileWriteLogTest(string logFile)
+        private void SimpleFileWriteLogTest(string logFile, Encoding encoding = null)
         {
             try
             {
+                encoding = encoding ?? Encoding.UTF8;
                 var fileTarget = WrapFileTarget(new FileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
+                    Header = "header",
+                    Footer = "footer",
+                    Encoding = encoding
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -238,7 +251,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null; // Flush
 
-                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+                AssertFileContents(logFile, "header\nDebug aaa\nInfo bbb\nWarn ccc\nfooter\n", encoding);
             }
             finally
             {
@@ -246,6 +259,7 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
             }
         }
+
 
         [Fact]
         public void SimpleFileTestWriteBom()
@@ -3493,7 +3507,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -3534,7 +3548,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -3635,7 +3649,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -3663,7 +3677,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(Path.Combine(logdir, app1Nm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
