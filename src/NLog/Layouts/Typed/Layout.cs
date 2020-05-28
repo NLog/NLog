@@ -178,31 +178,7 @@ namespace NLog.Layouts
             return _layout.Render(logEvent);
         }
 
-        /// <inheritdoc cref="IRawValue" />
-        internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
-        {
-            if (_fixedValue)
-            {
-                rawValue = _value;
-                return true;
-            }
 
-            if (_layout == null)
-            {
-                rawValue = null;
-                return true;
-            }
-
-            if (_layout.TryGetRawValue(logEvent, out var raw))
-            {
-                var success = TryConvertRawToValue(raw, out var value);
-                rawValue = value;
-                return success;
-            }
-
-            rawValue = null;
-            return false;
-        }
 
         /// <summary>
         /// Render to value
@@ -213,6 +189,14 @@ namespace NLog.Layouts
             return RenderToValueInternal(logEvent, null);
         }
 
+        /// <inheritdoc cref="IRawValue" />
+        internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            var success = TryGetRawValueIntern(logEvent, out var value);
+            rawValue = value;
+            return success;
+        }
+        
         /// <summary>
         /// Render to value
         /// </summary>
@@ -221,24 +205,9 @@ namespace NLog.Layouts
         /// <returns></returns>
         internal T RenderToValueInternal(LogEventInfo logEvent, [CanBeNull] StringBuilder reusableBuilder)
         {
-            if (_fixedValue)
+            if (TryGetRawValueIntern(logEvent, out var rawValue))
             {
-                return _value;
-            }
-
-            if (_layout == null)
-            {
-                return default(T);
-            }
-
-            if (_layout.TryGetRawValue(logEvent, out var raw))
-            {
-                if (TryConvertRawToValue(raw, out var value))
-                {
-                    return value;
-                }
-
-                InternalLogger.Warn("rawvalue isn't a {0} ", _typeNamed);
+                return rawValue;
             }
 
             var text = reusableBuilder != null ? RenderAllocateBuilder(logEvent, reusableBuilder) : _layout.Render(logEvent);
@@ -250,6 +219,37 @@ namespace NLog.Layouts
             InternalLogger.Warn("Parse {0} to {1} failed", text, _typeNamed);
             return default(T);
         }
+
+        private bool TryGetRawValueIntern(LogEventInfo logEvent, out T rawValue)
+        {
+            if (_fixedValue)
+            {
+                rawValue = _value;
+                return true;
+            }
+
+            if (_layout == null)
+            {
+                rawValue = default(T);
+                return true;
+            }
+
+            if (_layout.TryGetRawValue(logEvent, out var raw))
+            {
+                var success = TryConvertRawToValue(raw, out var value);
+                rawValue = value;
+                if (!success)
+                {
+                    InternalLogger.Warn("rawvalue isn't a {0} ", _typeNamed);
+                }
+
+                return success;
+            }
+
+            rawValue = default(T);
+            return false;
+        }
+
 
         private static bool TryConvertRawToValue(object raw, out T value)
         {
