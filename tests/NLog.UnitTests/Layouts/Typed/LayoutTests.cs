@@ -1,5 +1,7 @@
 using NLog.Layouts;
 using System;
+using System.Globalization;
+using System.Threading;
 using Xunit;
 
 namespace NLog.UnitTests.Layouts.Typed
@@ -22,8 +24,8 @@ namespace NLog.UnitTests.Layouts.Typed
 
             // Assert
             Assert.Equal(100, result);
-        }   
-        
+        }
+
         [Theory]
         [InlineData(100)]
         [InlineData(100d)]
@@ -40,26 +42,40 @@ namespace NLog.UnitTests.Layouts.Typed
 
             // Assert
             Assert.Equal(100, result);
-        }   
-        
+        }
+
         [Theory]
         [InlineData(100.5)]
-        //[InlineData("100.5")]
-        //[InlineData(" 100.5 ")] //todo culture
-        public void TypedDecimalLayoutDynamicTest(object value)
+        [InlineData("100.5", "EN-us")]
+        [InlineData("  100.5  ", "EN-us")]
+        public void TypedDecimalLayoutDynamicTest(object value, string culture = null)
         {
             // Arrange
-            var layout = CreateLayoutRenderedFromProperty<decimal>();
-            var logEventInfo = CreateLogEventInfoWithValue(value);
+            var oldCulture = Thread.CurrentThread.CurrentCulture;
 
-            // Act
-            var result = layout.RenderableToValue(logEventInfo);
+            try
+            {
+                if (!string.IsNullOrEmpty(culture))
+                {
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(culture);
+                }
 
-            // Assert
-            decimal expected = 100.5m;
-            Assert.Equal(expected, result);
+                var layout = CreateLayoutRenderedFromProperty<decimal>();
+                var logEventInfo = CreateLogEventInfoWithValue(value);
+
+                // Act
+                var result = layout.RenderableToValue(logEventInfo);
+
+                // Assert
+                decimal expected = 100.5m;
+                Assert.Equal(expected, result);
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
         }
-        
+
         [Theory]
         [InlineData(true)]
         [InlineData("true")]

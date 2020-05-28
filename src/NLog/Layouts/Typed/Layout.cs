@@ -36,6 +36,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using JetBrains.Annotations;
 using NLog.Common;
 using NLog.Config;
@@ -127,7 +128,8 @@ namespace NLog.Layouts
             }
 
             // We don't use DI here because of this will be called before DI setup and performance reasons
-            var convertedValue = ValueConverter.Instance.Convert(raw, _type, null, null);
+            var cultureInfo = CultureInfo.CurrentCulture;
+            var convertedValue = ValueConverter.Instance.Convert(raw, _type, null, cultureInfo);
             if (convertedValue is T goodValue)
             {
                 value = goodValue;
