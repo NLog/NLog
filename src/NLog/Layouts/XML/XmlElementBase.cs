@@ -415,7 +415,7 @@ namespace NLog.Layouts
                 if (string.IsNullOrEmpty(prop.Name))
                     continue;
 
-                var excludeProperties = ExcludeProperties.RenderableToValue(logEventInfo);
+                var excludeProperties = ExcludeProperties.RenderToValueOrDefault(logEventInfo);
                 if (excludeProperties != null && excludeProperties.Contains(prop.Name))
                     continue;
 

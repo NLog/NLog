@@ -20,7 +20,7 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
-            var result = layout.RenderableToValue(logEventInfo);
+            var result = layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
             Assert.Equal(100, result);
@@ -35,7 +35,7 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
-            var result = layout.RenderableToValue(logEventInfo);
+            var result = layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
             Assert.Equal(100, result);
@@ -53,7 +53,7 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
-            var result = layout.RenderableToValue(logEventInfo);
+            var result = layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
             Assert.Equal(100, result);
@@ -79,7 +79,7 @@ namespace NLog.UnitTests.Layouts.Typed
                 var logEventInfo = CreateLogEventInfoWithValue(value);
 
                 // Act
-                var result = layout.RenderableToValue(logEventInfo);
+                var result = layout.RenderToValueOrDefault(logEventInfo);
 
                 // Assert
                 decimal expected = 100.5m;
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
-            var result = layout.RenderableToValue(logEventInfo);
+            var result = layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
             Assert.True(result);
@@ -118,7 +118,7 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
-            var result = layout.RenderableToValue(logEventInfo);
+            var result = layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
             Assert.Equal(value, result);
@@ -136,7 +136,7 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
-            Action action = () => layout.RenderableToValue(logEventInfo);
+            Action action = () => layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
             if (throwsException)

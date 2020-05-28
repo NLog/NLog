@@ -48,9 +48,9 @@ namespace NLog.Layouts
         /// <param name="logEvent">Log event needed for rendering</param>
         /// <param name="defaultValue">The default value when <paramref name="l"/>is <c>null</c></param>
         /// <returns></returns>
-        public static T RenderableToValue<T>(this IRenderable<T> l, AsyncLogEventInfo logEvent, T defaultValue = default(T))
+        public static T RenderToValueOrDefault<T>(this IRenderable<T> l, AsyncLogEventInfo logEvent, T defaultValue = default(T))
         {
-            return RenderableToValue(l, logEvent.LogEvent, defaultValue);
+            return RenderToValueOrDefault(l, logEvent.LogEvent, defaultValue);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace NLog.Layouts
         /// <param name="logEvent">Log event needed for rendering</param>
         /// <param name="defaultValue">The default value when <paramref name="l"/>is <c>null</c></param>
         /// <returns></returns>
-        public static T RenderableToValue<T>(this IRenderable<T> l, LogEventInfo logEvent, T defaultValue = default(T))
+        public static T RenderToValueOrDefault<T>(this IRenderable<T> l, LogEventInfo logEvent, T defaultValue = default(T))
         {
             if (l == null)
             {

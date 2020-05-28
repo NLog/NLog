@@ -740,7 +740,7 @@ namespace NLog.Targets
             {
                 if (layout.IsFixed)
                 {
-                    return layout.RenderableToValue(logEvent, defaultValue);
+                    return layout.RenderToValueOrDefault(logEvent, defaultValue);
                 }
 
                 if (TryGetCachedValue(layout, logEvent, out var value))
@@ -754,7 +754,7 @@ namespace NLog.Targets
                 }
             }
 
-            return layout.RenderableToValue(logEvent, defaultValue);
+            return layout.RenderToValueOrDefault(logEvent, defaultValue);
         }
 
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
