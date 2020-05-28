@@ -60,12 +60,10 @@ namespace NLog.Internal
                 return includeFileName ? StackTraceUsage.Max : StackTraceUsage.WithStackTrace;
             }
 
-#if !SILVERLIGHT
             if (includeFileName)
             {
                 return StackTraceUsage.WithCallSite | StackTraceUsage.WithFileNameAndLineNumber;
             }
-#endif
 
             return StackTraceUsage.WithCallSite;
         }
@@ -167,10 +165,7 @@ namespace NLog.Internal
             int framesToSkip = 2;
 
             string className = string.Empty;
-#if SILVERLIGHT
-            var stackFrame = new StackFrame(framesToSkip);
-            className = GetClassFullName(stackFrame);
-#elif !NETSTANDARD1_0
+#if !NETSTANDARD1_0
             var stackFrame = new StackFrame(framesToSkip, false);
             className = GetClassFullName(stackFrame);
 #else
@@ -212,11 +207,7 @@ namespace NLog.Internal
             string className = LookupClassNameFromStackFrame(stackFrame);
             if (string.IsNullOrEmpty(className))
             {
-#if SILVERLIGHT
-                var stackTrace = new StackTrace();
-#else
                 var stackTrace = new StackTrace(false);
-#endif
                 className = GetClassFullName(stackTrace);
                 if (string.IsNullOrEmpty(className))
                     className = stackFrame.GetMethod()?.Name ?? string.Empty;

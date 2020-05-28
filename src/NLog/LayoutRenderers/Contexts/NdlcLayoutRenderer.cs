@@ -33,7 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-#if !SILVERLIGHT
     using System;
     using System.Text;
     using NLog.Config;
@@ -122,5 +121,4 @@ namespace NLog.LayoutRenderers
             builder.Append(stringValue);
         }
     }
-#endif
 }

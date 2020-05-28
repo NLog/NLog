@@ -99,11 +99,7 @@ namespace NLog.Targets.FileArchiveModes
             if (!directoryInfo.Exists)
                 return existingArchiveFiles;
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var existingFiles = directoryInfo.EnumerateFiles(archiveFileMask);
-#else
             var existingFiles = directoryInfo.GetFiles(archiveFileMask);
-#endif
             foreach (var fileInfo in existingFiles)
             {
                 var archiveFileInfo = GenerateArchiveFileInfo(fileInfo, archiveFileNameTemplate);

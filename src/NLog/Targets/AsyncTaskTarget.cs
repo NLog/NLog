@@ -33,7 +33,7 @@
 
 namespace NLog.Targets
 {
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -540,7 +540,7 @@ namespace NLog.Targets
                     _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
 
                 // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
-#if (SILVERLIGHT && !WINDOWS_PHONE) || NET4_0
+#if NET4_0
                 newTask.ContinueWith(completedTask => TaskCompletion(completedTask, reusableLogEvents));
 #else
                 newTask.ContinueWith(_taskCompletion, reusableLogEvents);

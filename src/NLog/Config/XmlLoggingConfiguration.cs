@@ -42,10 +42,6 @@ namespace NLog.Config
     using NLog.Internal;
     using NLog.Layouts;
     using JetBrains.Annotations;
-#if SILVERLIGHT
-// ReSharper disable once RedundantUsingDirective
-    using System.Windows;
-#endif
 
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
@@ -59,14 +55,6 @@ namespace NLog.Config
     /// </remarks>
     public class XmlLoggingConfiguration : LoggingConfigurationParser, IInitializeSucceeded
     {
-#if __ANDROID__
-
-        /// <summary>
-        /// Prefix for assets in Xamarin Android
-        /// </summary>
-        private const string AssetsPrefix = "assets/";
-#endif
-
         private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string _originalFileName;
@@ -211,7 +199,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !NETSTANDARD
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -313,16 +301,6 @@ namespace NLog.Config
             if (!string.IsNullOrEmpty(fileName))
             {
                 fileName = fileName.Trim();
-#if __ANDROID__
-                //support loading config from special assets folder in nlog.config
-                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    //remove prefix
-                    fileName = fileName.Substring(AssetsPrefix.Length);
-                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
-                    return XmlReader.Create(stream);
-                }
-#endif
                 return LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName);
             }
             return null;
@@ -490,12 +468,7 @@ namespace NLog.Config
                     fullNewFileName = Path.Combine(baseDirectory, newFileName);
                 }
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-                newFileName = newFileName.Replace("\\", "/");
-                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
-#else
                 if (File.Exists(fullNewFileName))
-#endif
                 {
                     InternalLogger.Debug("Including file '{0}'", fullNewFileName);
                     ConfigureFromFile(fullNewFileName, autoReloadDefault);
@@ -565,11 +538,7 @@ namespace NLog.Config
                 fileMask = filename;
             }
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var files = Directory.EnumerateFiles(directory, fileMask);
-#else
             var files = Directory.GetFiles(directory, fileMask);
-#endif
             foreach (var file in files)
             {
                 //note we exclude our self in ConfigureFromFile
@@ -579,12 +548,7 @@ namespace NLog.Config
 
         private static string GetFileLookupKey([NotNull] string fileName)
         {
-#if SILVERLIGHT && !WINDOWS_PHONE
-            // file names are relative to XAP
-            return fileName;
-#else
             return Path.GetFullPath(fileName);
-#endif
         }
 
         /// <inheritdoc />

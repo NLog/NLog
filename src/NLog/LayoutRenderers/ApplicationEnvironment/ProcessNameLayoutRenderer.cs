@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
 {

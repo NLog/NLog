@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_0
 
 namespace NLog.Targets
 {

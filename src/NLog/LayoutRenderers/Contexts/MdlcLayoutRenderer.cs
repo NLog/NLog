@@ -33,7 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-#if !SILVERLIGHT
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -88,5 +87,4 @@ namespace NLog.LayoutRenderers
             return MappedDiagnosticsLogicalContext.GetObject(Item);
         }
     }
-#endif
 }

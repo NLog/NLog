@@ -41,7 +41,7 @@ namespace NLog.Internal.Fakeables
 
     internal class AppEnvironmentWrapper : IAppEnvironment
     {
-#if !NETSTANDARD1_3 && !SILVERLIGHT
+#if !NETSTANDARD1_3
         private const string UnknownProcessName = "<unknown>";
 
         private string _entryAssemblyLocation;
@@ -89,7 +89,7 @@ namespace NLog.Internal.Fakeables
             return XmlReader.Create(path);
         }
 
-#if !NETSTANDARD1_3 && !SILVERLIGHT
+#if !NETSTANDARD1_3
         private static string LookupEntryAssemblyLocation()
         {
             return AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly());

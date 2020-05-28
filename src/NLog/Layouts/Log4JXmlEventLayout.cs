@@ -104,7 +104,6 @@ namespace NLog.Layouts
             set => Renderer.IncludeNdc = value;
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
@@ -124,7 +123,6 @@ namespace NLog.Layouts
             get => Renderer.IncludeNdlc;
             set => Renderer.IncludeNdlc = value;
         }
-#endif
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})

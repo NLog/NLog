@@ -65,9 +65,7 @@ namespace NLog.LayoutRenderers
 
         private readonly NdcLayoutRenderer _ndcLayoutRenderer = new NdcLayoutRenderer() { Separator = " " };
 
-#if !SILVERLIGHT
         private readonly NdlcLayoutRenderer _ndlcLayoutRenderer = new NdlcLayoutRenderer() { Separator = " " };
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
@@ -82,12 +80,8 @@ namespace NLog.LayoutRenderers
         public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
 
-#if SILVERLIGHT
-            AppInfo = "Silverlight Application";
-#elif NETSTANDARD1_3
+#if NETSTANDARD1_3
             AppInfo = "NetCore Application";
-#elif __IOS__
-            AppInfo = "MonoTouch Application";
 #else
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
@@ -173,7 +167,6 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc { get; set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
@@ -191,11 +184,11 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdlcItemSeparator {
+        public string NdlcItemSeparator
+        {
             get => _ndlcLayoutRenderer.Separator;
             set => _ndlcLayoutRenderer.Separator = value;
         }
-#endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -214,7 +207,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdcItemSeparator {
+        public string NdcItemSeparator
+        {
             get => _ndcLayoutRenderer.Separator;
             set => _ndcLayoutRenderer.Separator = value;
         }
@@ -330,7 +324,6 @@ namespace NLog.LayoutRenderers
 
         private void AppendMdlc(XmlWriter xtw)
         {
-#if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
@@ -345,7 +338,6 @@ namespace NLog.LayoutRenderers
                     xtw.WriteEndElement();
                 }
             }
-#endif
         }
 
         private void AppendNdc(XmlWriter xtw, LogEventInfo logEvent)
@@ -356,7 +348,6 @@ namespace NLog.LayoutRenderers
                 ndcContent = _ndcLayoutRenderer.Render(logEvent);
             }
 
-#if !SILVERLIGHT
             if (IncludeNdlc)
             {
                 if (ndcContent != null)
@@ -366,7 +357,6 @@ namespace NLog.LayoutRenderers
                 }
                 ndcContent += _ndlcLayoutRenderer.Render(logEvent);
             }
-#endif
 
             if (ndcContent != null)
             {
@@ -425,13 +415,13 @@ namespace NLog.LayoutRenderers
             }
 
             xtw.WriteAttributeSafeString("method", callerMethodName);
-#if !SILVERLIGHT
+
             if (IncludeSourceInfo)
             {
                 xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
                 xtw.WriteAttributeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
             }
-#endif
+
             xtw.WriteEndElement();
 
             if (IncludeNLogData)

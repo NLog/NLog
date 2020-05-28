@@ -442,7 +442,7 @@ namespace NLog.Internal
         {
             try
             {
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 var converter = TypeDescriptor.GetConverter(type);
                 if (converter.CanConvertFrom(typeof(string)))
                 {

@@ -43,9 +43,7 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal class TcpNetworkSender : QueuedNetworkSender
     {
-#if !SILVERLIGHT
         private static bool? EnableKeepAliveSuccessful;
-#endif
         private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompleted;
         private ISocket _socket;
 
@@ -63,11 +61,9 @@ namespace NLog.Internal.NetworkSenders
 
         internal AddressFamily AddressFamily { get; set; }
 
-#if !SILVERLIGHT
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
 
         internal TimeSpan KeepAliveTime { get; set; }
-#endif
 
         /// <summary>
         /// Creates the socket with given parameters. 
@@ -82,14 +78,12 @@ namespace NLog.Internal.NetworkSenders
         {
             var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
 
-#if !SILVERLIGHT
             if (KeepAliveTime.TotalSeconds >= 1.0 && EnableKeepAliveSuccessful != false)
             {
                 EnableKeepAliveSuccessful = TryEnableKeepAlive(socketProxy.UnderlyingSocket, (int)KeepAliveTime.TotalSeconds);
             }
-#endif
 
-#if !NETSTANDARD1_0 && !SILVERLIGHT
+#if !NETSTANDARD1_0
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
                 return new SslSocketProxy(host, SslProtocols, socketProxy);
@@ -98,7 +92,6 @@ namespace NLog.Internal.NetworkSenders
             return socketProxy;
         }
 
-#if !SILVERLIGHT
         private static bool TryEnableKeepAlive(Socket underlyingSocket, int keepAliveTimeSeconds)
         {
             if (TrySetSocketOption(underlyingSocket, SocketOptionName.KeepAlive, true))
@@ -165,7 +158,6 @@ namespace NLog.Internal.NetworkSenders
                 return false;
             }
         }
-#endif
 
         /// <summary>
         /// Performs sender-specific initialization.

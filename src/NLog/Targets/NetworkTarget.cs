@@ -124,12 +124,12 @@ namespace NLog.Targets
         /// <remarks>
         /// The network address can be:
         /// <ul>
-        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6) (not supported on Windows Phone 7.0)</li>
-        /// <li>tcp4://host:port - force TCP/IPv4 (not supported on Windows Phone 7.0)</li>
-        /// <li>tcp6://host:port - force TCP/IPv6 (not supported on Windows Phone 7.0)</li>
-        /// <li>udp://host:port - UDP (auto select IPv4/IPv6, not supported on Silverlight and on Windows Phone 7.0)</li>
-        /// <li>udp4://host:port - force UDP/IPv4 (not supported on Silverlight and on Windows Phone 7.0)</li>
-        /// <li>udp6://host:port - force UDP/IPv6  (not supported on Silverlight and on Windows Phone 7.0)</li>
+        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6)</li>
+        /// <li>tcp4://host:port - force TCP/IPv4</li>
+        /// <li>tcp6://host:port - force TCP/IPv6</li>
+        /// <li>udp://host:port - UDP (auto select IPv4/IPv6)</li>
+        /// <li>udp4://host:port - force UDP/IPv4</li>
+        /// <li>udp6://host:port - force UDP/IPv6</li>
         /// <li>http://host:port/pageName - HTTP using POST verb</li>
         /// <li>https://host:port/pageName - HTTPS using POST verb</li>
         /// </ul>
@@ -207,7 +207,6 @@ namespace NLog.Targets
         [DefaultValue("utf-8")]
         public Encoding Encoding { get; set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Get or set the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
         /// </summary>
@@ -219,7 +218,6 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public int KeepAliveTimeSeconds { get; set; }
-#endif
 
         internal INetworkSenderFactory SenderFactory { get; set; }
 
@@ -452,26 +450,22 @@ namespace NLog.Targets
         private byte[] GetBytesFromStringBuilder(char[] charBuffer, StringBuilder stringBuilder)
         {
             InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1} chars", Name, stringBuilder.Length);
-#if !SILVERLIGHT
             if (stringBuilder.Length <= charBuffer.Length)
             {
                 stringBuilder.CopyTo(0, charBuffer, 0, stringBuilder.Length);
                 return Encoding.GetBytes(charBuffer, 0, stringBuilder.Length);
             }
-#endif
             return Encoding.GetBytes(stringBuilder.ToString());
         }
 
         private byte[] GetBytesFromString(char[] charBuffer, string layoutMessage)
         {
             InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1}", Name, layoutMessage);
-#if !SILVERLIGHT
             if (layoutMessage.Length <= charBuffer.Length)
             {
                 layoutMessage.CopyTo(0, charBuffer, 0, layoutMessage.Length);
                 return Encoding.GetBytes(charBuffer, 0, layoutMessage.Length);
             }
-#endif
             return Encoding.GetBytes(layoutMessage);
         }
 
@@ -521,11 +515,7 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address)
         {
-#if !SILVERLIGHT
             var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
-#else
-            var sender = SenderFactory.Create(address, MaxQueueSize);
-#endif
             sender.Initialize();
 
             return sender;

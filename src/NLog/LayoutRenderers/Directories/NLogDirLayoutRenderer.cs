@@ -33,7 +33,7 @@
 
 using NLog.Internal;
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
 {

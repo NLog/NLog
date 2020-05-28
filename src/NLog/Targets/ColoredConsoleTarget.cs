@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Targets
 {
@@ -152,7 +152,6 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -168,7 +167,6 @@ namespace NLog.Targets
             }
         }
         private Encoding _encoding;
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
@@ -236,10 +234,8 @@ namespace NLog.Targets
                 }
             }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (_encoding != null)
                 ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
-#endif
 
 #if NET4_5
             if (DetectOutputRedirected)
@@ -276,11 +272,9 @@ namespace NLog.Targets
 
         private static IColoredConsolePrinter CreateConsolePrinter(bool enableAnsiOutput)
         {
-#if !__IOS__ && !__ANDROID__
             if (!enableAnsiOutput)
                 return new ColoredConsoleSystemPrinter();
             else
-#endif
                 return new ColoredConsoleAnsiPrinter();
         }
 

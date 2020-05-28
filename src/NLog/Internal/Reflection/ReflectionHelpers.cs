@@ -59,7 +59,6 @@ namespace NLog.Internal
             {
                 return assembly.GetTypes();
             }
-#if !SILVERLIGHT || WINDOWS_PHONE
             catch (ReflectionTypeLoadException typeLoadException)
             {
                 foreach (var ex in typeLoadException.LoaderExceptions)
@@ -78,7 +77,6 @@ namespace NLog.Internal
 
                 return loadedTypes.ToArray();
             }
-#endif
             catch (Exception ex)
             {
                 InternalLogger.Warn(ex, "Type load exception.");

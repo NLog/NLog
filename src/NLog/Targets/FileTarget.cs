@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#if !NETSTANDARD1_3
 #define SupportsMutex
 #endif
 
@@ -43,9 +42,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-#if !SILVERLIGHT
     using System.IO.Compression;
-#endif
     using System.Text;
     using System.Threading;
     using NLog.Common;
@@ -170,9 +167,7 @@ namespace NLog.Targets
             Encoding = Encoding.UTF8;
             BufferSize = 32768;
             AutoFlush = true;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             FileAttributes = Win32FileAttributes.Normal;
-#endif
             LineEnding = LineEndingMode.Default;
             EnableFileDelete = true;
             OpenFileCacheTimeout = -1;
@@ -343,14 +338,12 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
-#endif
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
@@ -771,7 +764,7 @@ namespace NLog.Targets
                     _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 if (mustWatchArchiving)
                 {
                     string fileNamePattern = GetArchiveFileNamePattern(fileName, logEvent);
@@ -1767,7 +1760,7 @@ namespace NLog.Targets
                     archivedAppender = TryCloseFileAppenderBeforeArchive(fileName, archiveFile);
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 // Closes all file handles if any archive operation has been detected by file-watcher
                 _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif

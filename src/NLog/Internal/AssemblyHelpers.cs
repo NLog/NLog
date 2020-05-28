@@ -38,10 +38,6 @@ namespace NLog.Internal
     using System.Reflection;
     using NLog.Common;
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-using System.Windows;
-#endif
-
     /// <summary>
     /// Helpers for <see cref="Assembly"/>.
     /// </summary>
@@ -71,11 +67,6 @@ using System.Windows;
                 InternalLogger.Warn(ex, "Fallback to AssemblyLoadContext.Default.LoadFromAssemblyPath for file: {0}", fullFileName);
                 return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
             }
-#elif SILVERLIGHT && !WINDOWS_PHONE
-            var stream = Application.GetResourceStream(new Uri(assemblyFileName, UriKind.Relative));
-            var assemblyPart = new AssemblyPart();
-            Assembly assembly = assemblyPart.Load(stream.Stream);
-            return assembly;
 #else
             Assembly asm = Assembly.LoadFrom(fullFileName);
             return asm;
@@ -95,13 +86,6 @@ using System.Windows;
 #if NETSTANDARD1_0 || WINDOWS_PHONE
             var name = new AssemblyName(assemblyName);
             return Assembly.Load(name);
-#elif SILVERLIGHT && !WINDOWS_PHONE
-            //as embedded resource
-            var assemblyFile = assemblyName + ".dll";
-            var stream = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-            var assemblyPart = new AssemblyPart();
-            Assembly assembly = assemblyPart.Load(stream.Stream);
-            return assembly;
 #else
             try
             {
@@ -140,7 +124,7 @@ using System.Windows;
             return correctToken;
         }
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         public static string GetAssemblyFileLocation(Assembly assembly)
         {
             string fullName = string.Empty;

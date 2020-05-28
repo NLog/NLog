@@ -72,7 +72,7 @@ namespace NLog
             remove => factory.ConfigurationChanged -= value;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -272,7 +272,6 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -298,7 +297,6 @@ namespace NLog
         {
             factory.Flush(timeoutMilliseconds);
         }
-#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).

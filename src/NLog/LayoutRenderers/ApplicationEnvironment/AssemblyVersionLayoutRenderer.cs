@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -77,7 +76,6 @@ namespace NLog.LayoutRenderers
         /// <remarks>
         /// Some version type and platform combinations are not fully supported.
         /// - UWP earlier than .NET Standard 1.5: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless the <see cref="Name"/> parameter is specified.
-        /// - Silverlight: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned.
         /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(nameof(AssemblyVersionType.Assembly))]
@@ -157,27 +155,7 @@ namespace NLog.LayoutRenderers
             return version;
         }
 
-#if SILVERLIGHT
-
-        private string GetVersion()
-        {
-            var assemblyName = GetAssemblyName();
-            return assemblyName.Version.ToString();
-        }
-
-        private System.Reflection.AssemblyName GetAssemblyName()
-        {
-            if (string.IsNullOrEmpty(Name))
-            {
-                return new System.Reflection.AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName);
-            }
-            else
-            {
-                return new System.Reflection.AssemblyName(Name);
-            }
-        }
-
-#elif NETSTANDARD1_3
+#if NETSTANDARD1_3
 
         private string GetVersion()
         {

@@ -33,7 +33,7 @@
 
 using JetBrains.Annotations;
 
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_0
 
 namespace NLog.Targets
 {
@@ -49,11 +49,8 @@ namespace NLog.Targets
     using NLog.Internal;
     using NLog.Layouts;
 
-    // For issue #1351 - These are not available for Android or IOS
-#if !__ANDROID__ && !__IOS__ 
     using System.Configuration;
-#endif
-#if !__ANDROID__ && !__IOS__&& !NETSTANDARD
+#if !NETSTANDARD
     using System.Net.Configuration;
 #endif
 
@@ -114,7 +111,7 @@ namespace NLog.Targets
             Timeout = 10000;
         }
 
-#if !__ANDROID__ && !__IOS__ && !NETSTANDARD
+#if !NETSTANDARD
         private SmtpSection _currentailSettings;
 
         /// <summary>
@@ -170,7 +167,7 @@ namespace NLog.Targets
         {
             get
             {
-#if !__ANDROID__ && !__IOS__ && !NETSTANDARD
+#if !NETSTANDARD
 
                 // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
                 // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.

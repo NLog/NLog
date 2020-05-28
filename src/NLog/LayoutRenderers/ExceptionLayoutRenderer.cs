@@ -75,11 +75,11 @@ namespace NLog.LayoutRenderers
         private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
             "Type",
             nameof(Exception.Data),
-            "HelpLink",  // Not available on SILVERLIGHT
+            nameof(Exception.HelpLink),
             "HResult",   // Not available on NET35 + NET40
             nameof(Exception.InnerException),
             nameof(Exception.Message),
-            "Source",    // Not available on SILVERLIGHT
+            nameof(Exception.Source),
             nameof(Exception.StackTrace),
             "TargetSite",// Not available on NETSTANDARD1_0
         }, StringComparer.Ordinal);
@@ -226,7 +226,7 @@ namespace NLog.LayoutRenderers
             {
                 int currentLevel = 0;
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     aggregateException = aggregateException.Flatten();
@@ -253,7 +253,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
         private static Exception GetPrimaryException(AggregateException aggregateException)
         {
             return aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
@@ -351,7 +351,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose method name should be appended.</param>        
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT || NETSTANDARD1_0
+#if NETSTANDARD1_0
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
             sb.Append(ex.TargetSite?.ToString());
@@ -418,9 +418,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose source should be appended.</param>
         protected virtual void AppendSource(StringBuilder sb, Exception ex)
         {
-#if !SILVERLIGHT
             sb.Append(ex.Source);
-#endif
         }
 
         /// <summary>
@@ -516,7 +514,7 @@ namespace NLog.LayoutRenderers
             return formats;
         }
 
-#if SILVERLIGHT || NETSTANDARD1_0
+#if NETSTANDARD1_0
         /// <summary>
         /// Find name of method on stracktrace.
         /// </summary>

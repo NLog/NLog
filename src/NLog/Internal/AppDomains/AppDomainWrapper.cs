@@ -45,9 +45,7 @@ namespace NLog.Internal.Fakeables
     /// </summary>
     internal class AppDomainWrapper : IAppDomain
     {
-#if !SILVERLIGHT
         private readonly AppDomain _currentAppDomain;
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppDomainWrapper"/> class.
@@ -55,9 +53,7 @@ namespace NLog.Internal.Fakeables
         /// <param name="appDomain">The <see cref="AppDomain"/> to wrap.</param>
         public AppDomainWrapper(AppDomain appDomain)
         {
-#if !SILVERLIGHT
             _currentAppDomain = appDomain;
-#endif
             try
             {
                 BaseDirectory = LookupBaseDirectory(appDomain) ?? string.Empty;
@@ -88,24 +84,18 @@ namespace NLog.Internal.Fakeables
                 PrivateBinPath = ArrayHelper.Empty<string>();
             }
 
-#if !SILVERLIGHT
             FriendlyName = appDomain.FriendlyName;
             Id = appDomain.Id;
-#endif
         }
 
         private static string LookupBaseDirectory(AppDomain appDomain)
         {
-#if !SILVERLIGHT
             return appDomain.BaseDirectory;
-#else
-            return string.Empty;
-#endif
         }
 
         private static string LookupConfigurationFile(AppDomain appDomain)
         {
-#if !NETSTANDARD && !SILVERLIGHT
+#if !NETSTANDARD
             return appDomain.SetupInformation.ConfigurationFile;
 #else
             return string.Empty;
@@ -114,7 +104,7 @@ namespace NLog.Internal.Fakeables
 
         private static string[] LookupPrivateBinPath(AppDomain appDomain)
         {
-#if !NETSTANDARD && !SILVERLIGHT
+#if !NETSTANDARD
             string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
             return string.IsNullOrEmpty(privateBinPath)
                                     ? ArrayHelper.Empty<string>()
@@ -160,11 +150,9 @@ namespace NLog.Internal.Fakeables
         /// <returns>A list of assemblies in this application domain.</returns>
         public IEnumerable<Assembly> GetAssemblies()
         {
-#if !SILVERLIGHT
             if (_currentAppDomain != null)
                 return _currentAppDomain.GetAssemblies();
             else
-#endif
                 return Internal.ArrayHelper.Empty<Assembly>();
         }
 
@@ -175,19 +163,15 @@ namespace NLog.Internal.Fakeables
         {
             add
             {
-#if !SILVERLIGHT
                 if (processExitEvent == null && _currentAppDomain != null)
                     _currentAppDomain.ProcessExit += OnProcessExit;
-#endif
                 processExitEvent += value;
             }
             remove
             {
                 processExitEvent -= value;
-#if !SILVERLIGHT
                 if (processExitEvent == null && _currentAppDomain != null)
                     _currentAppDomain.ProcessExit -= OnProcessExit;
-#endif
             }
         }
         private event EventHandler<EventArgs> processExitEvent;
@@ -199,20 +183,16 @@ namespace NLog.Internal.Fakeables
         {
             add
             {
-#if !SILVERLIGHT
                 if (domainUnloadEvent == null && _currentAppDomain != null)
                     _currentAppDomain.DomainUnload += OnDomainUnload;
-#endif
                 domainUnloadEvent += value;
 
             }
             remove
             {
                 domainUnloadEvent -= value;
-#if !SILVERLIGHT
                 if (domainUnloadEvent == null && _currentAppDomain != null)
                     _currentAppDomain.DomainUnload -= OnDomainUnload;
-#endif
             }
         }
         private event EventHandler<EventArgs> domainUnloadEvent;

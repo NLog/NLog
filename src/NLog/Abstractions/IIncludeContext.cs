@@ -56,8 +56,6 @@ namespace NLog
         /// <docgen category='Payload Options' order='10' />
         bool IncludeAllProperties { get; set; }
 
-#if !SILVERLIGHT
-
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
@@ -69,7 +67,5 @@ namespace NLog
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         bool IncludeNdlc { get; set; }
-
-#endif
     }
 }

@@ -75,7 +75,6 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeNdc { get => _contextLayout.IncludeNdc; set => _contextLayout.IncludeNdc = value; }
 
-#if !SILVERLIGHT
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeMdlc { get => _contextLayout.IncludeMdlc; set => _contextLayout.IncludeMdlc = value; }
@@ -83,7 +82,6 @@ namespace NLog.Targets
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeNdlc { get => _contextLayout.IncludeNdlc; set => _contextLayout.IncludeNdlc = value; }
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary
@@ -142,9 +140,7 @@ namespace NLog.Targets
         {
             return IncludeGdc
             || IncludeMdc
-#if !SILVERLIGHT
             || IncludeMdlc
-#endif
             || (IncludeEventProperties && (logEvent?.HasProperties ?? false));
         }
 
@@ -171,12 +167,10 @@ namespace NLog.Targets
                 combinedProperties = CaptureContextProperties(logEvent, combinedProperties);
             }
 
-#if !SILVERLIGHT
             if (IncludeMdlc && !CombineProperties(logEvent, _contextLayout.MdlcLayout, ref combinedProperties))
             {
                 combinedProperties = CaptureContextMdlc(logEvent, combinedProperties);
             }
-#endif
 
             if (IncludeMdc && !CombineProperties(logEvent, _contextLayout.MdcLayout, ref combinedProperties))
             {
@@ -305,7 +299,6 @@ namespace NLog.Targets
             return CaptureContextMdc(logEvent, null);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Returns the captured snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
@@ -319,7 +312,6 @@ namespace NLog.Targets
             }
             return CaptureContextMdlc(logEvent, null);
         }
-#endif
 
         /// <summary>
         /// Returns the captured snapshot of <see cref="NestedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
@@ -335,7 +327,6 @@ namespace NLog.Targets
             return CaptureContextNdc(logEvent);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Returns the captured snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
@@ -349,7 +340,6 @@ namespace NLog.Targets
             }
             return CaptureContextNdlc(logEvent);
         }
-#endif
 
         private IDictionary<string, object> CaptureContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
         {
@@ -491,7 +481,6 @@ namespace NLog.Targets
             return SerializeItemValue(logEvent, name, value, out serializedValue);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Takes snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
@@ -535,7 +524,6 @@ namespace NLog.Targets
 
             return SerializeItemValue(logEvent, name, value, out serializedValue);
         }
-#endif
 
         /// <summary>
         /// Takes snapshot of <see cref="NestedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
@@ -584,7 +572,6 @@ namespace NLog.Targets
             return SerializeItemValue(logEvent, null, value, out serializedValue);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Takes snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
@@ -631,7 +618,6 @@ namespace NLog.Targets
         {
             return SerializeItemValue(logEvent, null, value, out serializedValue);
         }
-#endif
 
         /// <summary>
         /// Take snapshot of a single object value
@@ -671,12 +657,10 @@ namespace NLog.Targets
             internal LayoutContextMdc MdcLayout { get; }
             /// <summary>Internal Layout that allows capture of NDC context</summary>
             internal LayoutContextNdc NdcLayout { get; }
-#if !SILVERLIGHT
             /// <summary>Internal Layout that allows capture of MDLC context</summary>
             internal LayoutContextMdlc MdlcLayout { get; }
             /// <summary>Internal Layout that allows capture of NDLC context</summary>
             internal LayoutContextNdlc NdlcLayout { get; }
-#endif
 
             public bool IncludeAllProperties { get; set; }
             public bool IncludeCallSite { get; set; }
@@ -685,10 +669,8 @@ namespace NLog.Targets
             public bool IncludeMdc { get => MdcLayout.IsActive; set => MdcLayout.IsActive = value; }
             public bool IncludeNdc { get => NdcLayout.IsActive; set => NdcLayout.IsActive = value; }
 
-#if !SILVERLIGHT
             public bool IncludeMdlc { get => MdlcLayout.IsActive; set => MdlcLayout.IsActive = value; }
             public bool IncludeNdlc { get => NdlcLayout.IsActive; set => NdlcLayout.IsActive = value; }
-#endif
 
             StackTraceUsage IUsesStackTrace.StackTraceUsage
             {
@@ -713,10 +695,8 @@ namespace NLog.Targets
 
                 MdcLayout = new LayoutContextMdc(owner);
                 NdcLayout = new LayoutContextNdc(owner);
-#if !SILVERLIGHT
                 MdlcLayout = new LayoutContextMdlc(owner);
                 NdlcLayout = new LayoutContextNdlc(owner);
-#endif
             }
 
             protected override void InitializeLayout()
@@ -724,10 +704,8 @@ namespace NLog.Targets
                 base.InitializeLayout();
                 if (IncludeMdc || IncludeNdc)
                     ThreadAgnostic = false;
-#if !SILVERLIGHT
                 if (IncludeMdlc || IncludeNdlc)
                     ThreadAgnostic = false;
-#endif
                 if (IncludeAllProperties)
                     MutableUnsafe = true;   // TODO Need to convert Properties to an immutable state
             }
@@ -773,12 +751,10 @@ namespace NLog.Targets
                     MdcLayout.Precalculate(logEvent);
                 if (IncludeNdc)
                     NdcLayout.Precalculate(logEvent);
-#if !SILVERLIGHT
                 if (IncludeMdlc)
                     MdlcLayout.Precalculate(logEvent);
                 if (IncludeNdlc)
                     NdlcLayout.Precalculate(logEvent);
-#endif
             }
 
             protected override string GetFormattedMessage(LogEventInfo logEvent)
@@ -824,7 +800,6 @@ namespace NLog.Targets
                 }
             }
 
-#if !SILVERLIGHT
             [ThreadSafe]
             public class LayoutContextMdlc : Layout
             {
@@ -857,7 +832,7 @@ namespace NLog.Targets
                     }
                 }
             }
-#endif
+
             [ThreadSafe]
             public class LayoutContextNdc : Layout
             {
@@ -891,7 +866,6 @@ namespace NLog.Targets
                 }
             }
 
-#if !SILVERLIGHT
             [ThreadSafe]
             public class LayoutContextNdlc : Layout
             {
@@ -924,7 +898,6 @@ namespace NLog.Targets
                     }
                 }
             }
-#endif
         }
     }
 }
