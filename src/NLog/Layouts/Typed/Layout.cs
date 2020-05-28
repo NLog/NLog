@@ -74,27 +74,8 @@ namespace NLog.Layouts
         static Layout()
         {
             var type = typeof(T);
-            if (IsNullable(type))
-            {
-                var arg = type.GetGenericArguments()[0];
-
-#if !NETSTANDARD1_3 //todo fix
-
-                _type = arg;
-
-#endif
-            }
-            else
-            {
-                _type = type;
-            }
-
+            _type = Nullable.GetUnderlyingType(type) ?? type;
             _typeNamed = type.Name;
-        }
-
-        private static bool IsNullable(Type propertyType)
-        {
-            return propertyType.IsGenericType() && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         /// <summary>
@@ -214,8 +195,8 @@ namespace NLog.Layouts
 
             if (_layout.TryGetRawValue(logEvent, out var raw))
             {
-                var success = TryConvertRawToValue(raw, out var i);
-                rawValue = i;
+                var success = TryConvertRawToValue(raw, out var value);
+                rawValue = value;
                 return success;
             }
 
