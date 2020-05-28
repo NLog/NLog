@@ -279,12 +279,13 @@ namespace NLog.Layouts
         {
             if (layout != null && layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
-                if (!TryParse(simpleLayout.FixedText, out value))
+                var success = TryParse(simpleLayout.FixedText, out value);
+                if (!success)
                 {
                     InternalLogger.Warn("layout with text '{0}' isn't an {1}", simpleLayout.FixedText, _typeNamed);
                 }
 
-                return true;
+                return success;
             }
 
             value = default(T);
