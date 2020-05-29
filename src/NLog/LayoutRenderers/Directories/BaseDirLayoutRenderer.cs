@@ -81,17 +81,6 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer(IAppDomain appDomain)
-        {
-            _baseDir = appDomain.BaseDirectory;
-#if !SILVERLIGHT && !NETSTANDARD1_3
-            _appEnvironment = LogFactory.DefaultAppEnvironment;
-#endif
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
-        /// </summary>
         internal BaseDirLayoutRenderer(IAppEnvironment appEnvironment)
         {
             _baseDir = appEnvironment.AppDomainBaseDirectory;
