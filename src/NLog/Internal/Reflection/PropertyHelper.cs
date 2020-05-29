@@ -103,21 +103,31 @@ namespace NLog.Internal
             try
             {
                 Type propertyType = propInfo.PropertyType;
+                var unwrappedType = UnwrapTypedLayout(propertyType);
+                var isTypedLayout = unwrappedType != propertyType;
 
-                if (!TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out var newValue))
+                if (!TryNLogSpecificConversion(unwrappedType, value, configurationItemFactory, out var newValue))
                 {
                     if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                     {
                         throw new NotSupportedException($"Parameter {propertyName} of {objType.Name} is an array and cannot be assigned a scalar value.");
                     }
 
-                    propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
+                    unwrappedType = Nullable.GetUnderlyingType(unwrappedType) ?? unwrappedType;
 
-                    if (!(TryGetEnumValue(propertyType, value, out newValue, true)
-                        || TryImplicitConversion(propertyType, value, out newValue)
-                        || TryFlatListConversion(obj, propInfo, value, configurationItemFactory, out newValue)
-                        || TryTypeConverterConversion(propertyType, value, out newValue)))
-                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                    if (!(TryGetEnumValue(unwrappedType, value, out newValue, true)
+                          || TryImplicitConversion(unwrappedType, value, out newValue)
+                          || TryFlatListConversion(obj, propInfo, value, configurationItemFactory, out newValue)
+                          || TryTypeConverterConversion(unwrappedType, value, out newValue)))
+                    {
+                        newValue = Convert.ChangeType(value, unwrappedType, CultureInfo.InvariantCulture);
+                    }
+                }
+
+                // Wrap value again
+                if (isTypedLayout)
+                {
+                    newValue = WrapIntoTypedLayout(newValue, unwrappedType);
                 }
 
                 propInfo.SetValue(obj, newValue, null);
@@ -137,6 +147,22 @@ namespace NLog.Internal
 
                 throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}' on {objType.Name}", exception);
             }
+        }
+
+        private static Type UnwrapTypedLayout(Type propertyType)
+        {
+            if (propertyType.IsGenericType() && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
+            {
+                propertyType = propertyType.GetGenericArguments()[0];
+            }
+
+            return propertyType;
+        }
+
+        private static object WrapIntoTypedLayout(object value, Type unwrappedType)
+        {
+            var concreteType = typeof(Layout<>).MakeGenericType(unwrappedType);
+            return Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { value }, null);
         }
 
         /// <summary>
