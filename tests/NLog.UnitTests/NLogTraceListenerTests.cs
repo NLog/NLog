@@ -327,7 +327,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets>
-                        <target name='trace' type='Trace' layout='${logger} ${level} ${message}' rawWrite='true' />
+                        <target name='trace' type='Trace' layout='${logger} ${level} ${message}' />
                     </targets>
                     <rules>
                         <logger name='*' minlevel='Trace' writeTo='trace' />
@@ -367,7 +367,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog>
                     <targets>
-                        <target name='trace' type='Trace' layout='${{logger}} ${{level}} ${{message}}' enableTraceFail='{enableTraceFail}' />
+                        <target name='trace' type='Trace' layout='${{logger}} ${{level}} ${{message}}' enableTraceFail='{enableTraceFail}' ForceTraceWriteLine='false' />
                     </targets>
                     <rules>
                         <logger name='*' minlevel='Trace' writeTo='trace' />

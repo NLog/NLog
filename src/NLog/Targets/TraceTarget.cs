@@ -66,8 +66,8 @@ namespace NLog.Targets
         /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
         /// <docgen category='Output Options' order='100' />
-        [DefaultValue(false)]
-        public bool RawWrite { get; set; }
+        [DefaultValue(true)]
+        public bool ForceTraceWriteLine { get; set; } = true;
 
         /// <summary>
         /// Forward <see cref="LogLevel.Fatal" /> to <see cref="Trace.Fail(string)" /> (Instead of <see cref="Trace.TraceError(string)" />)
@@ -105,8 +105,8 @@ namespace NLog.Targets
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
         /// 
-        /// Redirects the log message depending on <see cref="LogLevel"/> and  <see cref="RawWrite"/>. 
-        /// When <see cref="RawWrite"/> is <c>false</c>:
+        /// Redirects the log message depending on <see cref="LogLevel"/> and  <see cref="ForceTraceWriteLine"/>. 
+        /// When <see cref="ForceTraceWriteLine"/> is <c>false</c>:
         ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.TraceError(string)" />
         ///  - <see cref="LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
         ///  - <see cref="LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
@@ -118,7 +118,7 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             string logMessage = RenderLogEvent(Layout, logEvent);
-            if (RawWrite || logEvent.Level <= LogLevel.Debug)
+            if (ForceTraceWriteLine || logEvent.Level <= LogLevel.Debug)
             {
                 Trace.WriteLine(logMessage);
             }
