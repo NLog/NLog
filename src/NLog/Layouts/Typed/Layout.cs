@@ -48,7 +48,7 @@ namespace NLog.Layouts
     /// <typeparam name="T"></typeparam>
     public class Layout<T> : Layout, IRenderable<T>
     {
-        // ReSharper disable StaticMemberInGenericType
+        // ReSharper disable StaticMemberInGenericType - this is safe, static ctor is called for every generic type
         [NotNull] private static readonly Type Type;
         [NotNull] private static readonly string TypeNamed;
         // ReSharper restore StaticMemberInGenericType
@@ -108,7 +108,6 @@ namespace NLog.Layouts
                 return false;
             }
 
-            // We don't use DI here because of this will be called before DI setup and performance reasons
             var cultureInfo = CultureInfo.CurrentCulture;
             try
             {
@@ -169,7 +168,6 @@ namespace NLog.Layouts
                     return null;
                 }
 
-
                 var text = ValueToString(_value, LoggingConfiguration?.DefaultCultureInfo);
                 if (text != null)
                 {
@@ -179,8 +177,6 @@ namespace NLog.Layouts
 
             return _layout?.Render(logEvent);
         }
-
-
 
         /// <summary>
         /// Render to value
