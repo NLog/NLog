@@ -49,11 +49,11 @@ namespace NLog.Layouts
     public class Layout<T> : Layout, IRenderable<T>
     {
         // ReSharper disable StaticMemberInGenericType
-        private static readonly Type Type;
-        private static readonly string TypeNamed;
+        [NotNull] private static readonly Type Type;
+        [NotNull] private static readonly string TypeNamed;
         // ReSharper restore StaticMemberInGenericType
 
-        private readonly Layout _layout;
+        [CanBeNull] private readonly Layout _layout;
         private readonly T _value;
 
         /// <inheritdoc />
@@ -102,7 +102,7 @@ namespace NLog.Layouts
 
         private bool TryConvertTo(object raw, out T value)
         {
-            if (Type == null || raw == null)
+            if (raw == null)
             {
                 value = default(T);
                 return false;
@@ -177,7 +177,7 @@ namespace NLog.Layouts
                 }
             }
 
-            return _layout.Render(logEvent);
+            return _layout?.Render(logEvent);
         }
 
 
@@ -212,7 +212,7 @@ namespace NLog.Layouts
                 return rawValue;
             }
 
-            var text = reusableBuilder != null ? RenderAllocateBuilder(logEvent, reusableBuilder) : _layout.Render(logEvent);
+            var text = reusableBuilder != null ? RenderAllocateBuilder(logEvent, reusableBuilder) : _layout?.Render(logEvent);
             if (TryParse(text, out var parsedValue))
             {
                 return parsedValue;
