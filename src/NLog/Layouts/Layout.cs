@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
 namespace NLog.Layouts
 {
     using System;
@@ -43,6 +41,7 @@ namespace NLog.Layouts
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Abstract interface that layouts must implement.

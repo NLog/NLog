@@ -34,12 +34,9 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Reflection;
 using System.Text;
-using System.Threading;
 using JetBrains.Annotations;
 using NLog.Common;
-using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.Layouts
@@ -50,38 +47,40 @@ namespace NLog.Layouts
     /// <typeparam name="T"></typeparam>
     public class Layout<T> : Layout, IRenderable<T>
     {
-        private static Type _type;
-        private static readonly string _typeNamed;
+        // ReSharper disable StaticMemberInGenericType
+        private static readonly Type Type;
+        private static readonly string TypeNamed;
+        // ReSharper restore StaticMemberInGenericType
+
         private readonly Layout _layout;
         private readonly T _value;
-        private readonly bool _fixedValue;
 
         /// <inheritdoc />
         public Layout(T value)
         {
             _value = value;
-            _fixedValue = true;
+            IsFixed = true;
             _layout = null;
         }
 
         /// <inheritdoc />
         public Layout(Layout layout)
         {
-            _fixedValue = TryGetFixedValue(layout, out _value);
+            IsFixed = TryGetFixedValue(layout, out _value);
             _layout = layout;
         }
 
         static Layout()
         {
             var type = typeof(T);
-            _type = Nullable.GetUnderlyingType(type) ?? type;
-            _typeNamed = type.Name;
+            Type = Nullable.GetUnderlyingType(type) ?? type;
+            TypeNamed = type.Name;
         }
 
         /// <summary>
         /// Is fixed value?
         /// </summary>
-        public bool IsFixed => _fixedValue;
+        public bool IsFixed { get; }
 
         #region Overrides of TypedLayout<T>
 
@@ -102,7 +101,7 @@ namespace NLog.Layouts
 
         private static bool TryConvertTo(object raw, out T value)
         {
-            if (_type == null || raw == null)
+            if (Type == null || raw == null)
             {
                 value = default(T);
                 return false;
@@ -112,7 +111,7 @@ namespace NLog.Layouts
             var cultureInfo = CultureInfo.CurrentCulture;
             try
             {
-                var convertedValue = ValueConverter.Instance.Convert(raw, _type, null, cultureInfo);
+                var convertedValue = ValueConverter.Instance.Convert(raw, Type, null, cultureInfo);
                 if (convertedValue is T goodValue)
                 {
                     value = goodValue;
@@ -121,7 +120,7 @@ namespace NLog.Layouts
             }
             catch (Exception e)
             {
-                InternalLogger.Debug(e, "Conversion to type {0} failed", _type);
+                InternalLogger.Debug(e, "Conversion to type {0} failed", Type);
                 if (e.MustBeRethrown())
                 {
                     throw;
@@ -161,7 +160,7 @@ namespace NLog.Layouts
         /// <inheritdoc />
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            if (_fixedValue)
+            if (IsFixed)
             {
                 if (_value == null)
                 {
@@ -217,13 +216,13 @@ namespace NLog.Layouts
                 return parsedValue;
             }
 
-            InternalLogger.Warn("Parse {0} to {1} failed", text, _typeNamed);
+            InternalLogger.Warn("Parse {0} to {1} failed", text, TypeNamed);
             return default(T);
         }
 
         private bool TryGetRawValueIntern(LogEventInfo logEvent, out T rawValue)
         {
-            if (_fixedValue)
+            if (IsFixed)
             {
                 rawValue = _value;
                 return true;
@@ -241,7 +240,7 @@ namespace NLog.Layouts
                 rawValue = value;
                 if (!success)
                 {
-                    InternalLogger.Warn("rawvalue isn't a {0} ", _typeNamed);
+                    InternalLogger.Warn("rawvalue isn't a {0} ", TypeNamed);
                 }
 
                 return success;
@@ -283,7 +282,7 @@ namespace NLog.Layouts
                 var success = TryParse(simpleLayout.FixedText, out value);
                 if (!success)
                 {
-                    InternalLogger.Warn("layout with text '{0}' isn't an {1}", simpleLayout.FixedText, _typeNamed);
+                    InternalLogger.Warn("layout with text '{0}' isn't an {1}", simpleLayout.FixedText, TypeNamed);
                 }
 
                 return success;
