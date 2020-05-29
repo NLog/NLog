@@ -37,6 +37,7 @@ using System.Globalization;
 using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
+using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.Layouts
@@ -94,12 +95,12 @@ namespace NLog.Layouts
             return value?.ToString();
         }
 
-        private static bool TryParse(string text, out T value)
+        private bool TryParse(string text, out T value)
         {
             return TryConvertTo(text, out value);
         }
 
-        private static bool TryConvertTo(object raw, out T value)
+        private bool TryConvertTo(object raw, out T value)
         {
             if (Type == null || raw == null)
             {
@@ -111,7 +112,8 @@ namespace NLog.Layouts
             var cultureInfo = CultureInfo.CurrentCulture;
             try
             {
-                var convertedValue = ValueConverter.Instance.Convert(raw, Type, null, cultureInfo);
+                var converter = ResolveService<IPropertyTypeConverter>() ?? ValueConverter.Instance;
+                var convertedValue = converter.Convert(raw, Type, null, cultureInfo);
                 if (convertedValue is T goodValue)
                 {
                     value = goodValue;
@@ -166,7 +168,7 @@ namespace NLog.Layouts
                 {
                     return null;
                 }
-                
+
 
                 var text = ValueToString(_value, LoggingConfiguration?.DefaultCultureInfo);
                 if (text != null)
@@ -196,7 +198,7 @@ namespace NLog.Layouts
             rawValue = value;
             return success;
         }
-        
+
         /// <summary>
         /// Render to value
         /// </summary>
@@ -251,7 +253,7 @@ namespace NLog.Layouts
         }
 
 
-        private static bool TryConvertRawToValue(object raw, out T value)
+        private bool TryConvertRawToValue(object raw, out T value)
         {
             if (raw == null)
             {
@@ -275,7 +277,7 @@ namespace NLog.Layouts
             return false;
         }
 
-        private static bool TryGetFixedValue(Layout layout, out T value)
+        private bool TryGetFixedValue(Layout layout, out T value)
         {
             if (layout != null && layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {

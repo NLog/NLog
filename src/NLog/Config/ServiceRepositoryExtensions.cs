@@ -42,11 +42,13 @@ namespace NLog.Config
 
     internal static class ServiceRepositoryExtensions
     {
-        internal static IServiceProvider GetServiceResolver(this LoggingConfiguration loggingConfiguration)
+        [NotNull]
+        internal static IServiceProvider GetServiceResolver([CanBeNull] this LoggingConfiguration loggingConfiguration)
         {
             return loggingConfiguration?.LogFactory?.ServiceRepository ?? LogManager.LogFactory.ServiceRepository;
         }
 
+        [CanBeNull]
         public static T ResolveService<T>(this IServiceProvider serviceProvider) where T : class
         {
             return (serviceProvider ?? LogManager.LogFactory.ServiceRepository)?.GetService(typeof(T)) as T;
