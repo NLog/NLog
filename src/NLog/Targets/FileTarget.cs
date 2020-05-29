@@ -448,12 +448,20 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool NetworkWrites { get; set; }
 
+        private bool? _writeBom;
+
+
         /// <summary>
-        /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files
+        /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
+        ///
+        /// Defaults to true for UTF-16 and UTF-32
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
-        public bool WriteBom { get; set; }
+        public bool WriteBom
+        {
+            get => _writeBom ?? InitialValueBom(Encoding);
+            set => _writeBom = value;
+        }
 
         /// <summary>
         /// Gets or sets the number of times the write is appended on the file before NLog
@@ -1141,7 +1149,7 @@ namespace NLog.Targets
                         encodingStream.SetLength(0);
                         formatBuilder.ClearBuilder();
 
-                        AsyncLogEventInfo ev = logEvents[i];                       
+                        AsyncLogEventInfo ev = logEvents[i];
                         RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, encodingStream);
                         ms.Write(encodingStream.GetBuffer(), 0, (int)encodingStream.Length);
                         if (ms.Length > maxBufferSize && !ReplaceFileContentsOnEachWrite)
@@ -2012,7 +2020,7 @@ namespace NLog.Targets
             {
                 archiveFileName = TryFallbackToPreviousLogFileName(fileName, archiveFileName, initializedNewFile);
                 if (!string.IsNullOrEmpty(archiveFileName))
-                { 
+                {
                     return GetArchiveFileNameBasedOnTime(archiveFileName, logEvent, previousLogEventTimestamp, false);
                 }
                 else
@@ -2307,7 +2315,7 @@ namespace NLog.Targets
                 // explicitly disabled and not the default
                 return false;
             }
-            
+
             var aboveSizeSet = ArchiveOldFileOnStartupAboveSize > 0;
             if (aboveSizeSet)
             {
@@ -2409,6 +2417,15 @@ namespace NLog.Targets
                 //retry.
                 ReplaceFileContent(fileName, bytes, false);
             }
+        }
+
+        private static bool InitialValueBom(Encoding encoding)
+        {
+            // Initial of true for UTF 16 and UTF 32
+            return encoding.CodePage == 1200 // UTF-16
+                   || encoding.CodePage == 1201 // UTF16-BE
+                   || encoding.CodePage == 12000 // UTF-32
+                   || encoding.CodePage == 12001; // UTF-32BE
         }
 
         /// <summary>
