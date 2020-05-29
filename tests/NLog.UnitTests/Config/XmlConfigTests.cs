@@ -217,7 +217,7 @@ namespace NLog.UnitTests.Config
             var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
             Assert.Single(config.AllTargets);
-            Assert.Equal(System.Text.Encoding.UTF8, (config.AllTargets[0] as NLog.Targets.FileTarget)?.Encoding);
+            Assert.Equal(System.Text.Encoding.UTF8, (config.AllTargets[0] as NLog.Targets.FileTarget)?.Encoding.RenderToValueInternal(LogEventInfo.CreateNullEvent(), null));
         }
 
         [Fact]
