@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Layouts
 {
     using System;
@@ -81,6 +83,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
+        [CanBeNull]
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>

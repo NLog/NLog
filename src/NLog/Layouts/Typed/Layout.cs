@@ -167,8 +167,9 @@ namespace NLog.Layouts
                 {
                     return null;
                 }
+                
 
-                var text = ValueToString(_value, LoggingConfiguration.DefaultCultureInfo);
+                var text = ValueToString(_value, LoggingConfiguration?.DefaultCultureInfo);
                 if (text != null)
                 {
                     return text;
