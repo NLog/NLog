@@ -225,7 +225,7 @@ namespace NLog.UnitTests.Targets
         public void SimpleFileWithEncodingTest()
         {
             var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + ".log");
-            SimpleFileWriteLogTest(logFile, Encoding.GetEncoding("Windows-1252"));
+            SimpleFileWriteLogTest(logFile, Encoding.UTF32);
         }
 
         private void SimpleFileWriteLogTest(string logFile, Encoding encoding = null)
