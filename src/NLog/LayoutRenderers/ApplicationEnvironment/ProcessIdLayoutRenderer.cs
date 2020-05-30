@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers
     /// The identifier of the current process.
     /// </summary>
     [LayoutRenderer("processid")]
-    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public class ProcessIdLayoutRenderer : LayoutRenderer, IRawValue

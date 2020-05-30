@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("dir-separator")]
     [ThreadAgnostic]
     [ThreadSafe]
-    [AppDomainFixedOutput]
     public class DirectorySeparatorLayoutRenderer : LayoutRenderer, IRawValue
     {
         private static readonly char SeparatorChar;

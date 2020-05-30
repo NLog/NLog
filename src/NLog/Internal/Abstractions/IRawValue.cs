@@ -36,6 +36,7 @@ namespace NLog.Internal
     /// <summary>
     /// Get the Raw, unformatted and unstrinyfied, value
     /// </summary>
+    /// <remarks>Don't combine with [AppDomainFixedOutput]</remarks>
     internal interface IRawValue
     {
         /// <summary>
