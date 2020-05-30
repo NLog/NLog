@@ -34,6 +34,7 @@
 using NLog.LayoutRenderers;
 using System;
 using System.IO;
+using NLog.Internal;
 using Xunit;
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -59,7 +60,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void GetRawValueTest1()
         {
             // Arrange
-            var renderer = new DirectorySeparatorLayoutRenderer();
+            IRawValue renderer = new DirectorySeparatorLayoutRenderer();
             var expected = Path.DirectorySeparatorChar;
 
             // Act

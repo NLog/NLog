@@ -61,7 +61,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = SeparatorChar;
             return true;
