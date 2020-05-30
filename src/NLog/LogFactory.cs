@@ -455,7 +455,7 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public T GetCurrentClassLogger<T>() where T : Logger
+        public T GetCurrentClassLogger<T>() where T : Logger, new()
         {
 #if NETSTANDARD1_0
             var className = StackTraceUsageUtils.GetClassFullName();
@@ -509,7 +509,7 @@ namespace NLog
         /// <typeparam name="T">Type of the logger</typeparam>
         /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
         /// are not guaranteed to return the same logger reference.</returns>
-        public T GetLogger<T>(string name) where T : Logger
+        public T GetLogger<T>(string name) where T : Logger, new()
         {
             return (T)GetLoggerThreadSafe(name, typeof(T));
         }
