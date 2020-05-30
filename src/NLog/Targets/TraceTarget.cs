@@ -37,6 +37,7 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.ComponentModel;
     using System.Diagnostics;
 
@@ -62,6 +63,18 @@ namespace NLog.Targets
     [Target("Trace")]
     public sealed class TraceTarget : TargetWithLayout
     {
+        /// <summary>
+        /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
+        /// </summary>
+        /// <docgen category='Output Options' order='100' />
+        [DefaultValue(true)]
+        [Obsolete("Replaced with `ForceTraceWriteLine` since NLog 5. Will be removed in NLog 6.")]
+        public bool RawWrite
+        {
+            get => ForceTraceWriteLine;
+            set => ForceTraceWriteLine = value;
+        }
+
         /// <summary>
         /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
@@ -143,7 +156,7 @@ namespace NLog.Targets
             }
             else
             {
-                Trace.WriteLine(logMessage);                
+                Trace.WriteLine(logMessage);
             }
         }
     }
