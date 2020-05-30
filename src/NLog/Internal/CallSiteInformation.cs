@@ -151,12 +151,8 @@ namespace NLog.Internal
             if (!string.IsNullOrEmpty(CallerFilePath))
                 return CallerFilePath;
 
-#if !SILVERLIGHT
             StackFrame frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
             return frame?.GetFileName() ?? string.Empty;
-#else
-            return string.Empty;
-#endif
         }
 
         public int GetCallerLineNumber(int skipFrames)

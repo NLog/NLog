@@ -131,11 +131,7 @@ namespace NLog.Targets.Wrappers
                         if (ReturnToFirstOnSuccess)
                         {
 #pragma warning disable S1066 // Collapsible "if" statements should be merged
-#if !SILVERLIGHT || WINDOWS_PHONE
                             if (Interlocked.Read(ref _currentTarget) != 0)
-#else
-                            if (Interlocked.CompareExchange(ref _currentTarget, 0, 0) != 0)
-#endif
 #pragma warning restore S1066 // Collapsible "if" statements should be merged
                             {
                                 InternalLogger.Debug("FallbackGroup(Name={0}): Target '{1}' succeeded. Returning to the first one.", Name, Targets[targetToInvoke]);
@@ -173,11 +169,7 @@ namespace NLog.Targets.Wrappers
                     }
                 };
 
-#if !SILVERLIGHT || WINDOWS_PHONE
             targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
-#else
-            targetToInvoke = (int)Interlocked.CompareExchange(ref _currentTarget, 0, 0);
-#endif
 
             for (int i = 0; i < Targets.Count; ++i)
             {

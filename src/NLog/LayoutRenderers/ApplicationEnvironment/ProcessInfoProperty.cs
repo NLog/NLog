@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.LayoutRenderers
 {
     /// <summary>
@@ -236,5 +234,3 @@ namespace NLog.LayoutRenderers
         WorkingSet64,
     }
 }
-
-#endif

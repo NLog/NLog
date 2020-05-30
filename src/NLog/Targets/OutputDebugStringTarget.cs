@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT || __IOS__ || __ANDROID__ || MONO || NETSTANDARD
+#if MONO || NETSTANDARD
 #define DEBUG   // System.Diagnostics.Debug.WriteLine
 #endif
 
@@ -90,7 +90,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-#if SILVERLIGHT || __IOS__ || __ANDROID__ || MONO || NETSTANDARD
+#if MONO || NETSTANDARD
             System.Diagnostics.Debug.WriteLine(RenderLogEvent(Layout, logEvent));
 #else
             NativeMethods.OutputDebugString(RenderLogEvent(Layout, logEvent));

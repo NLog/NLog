@@ -45,13 +45,8 @@ namespace NLog.Internal.NetworkSenders
     {
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
-#if !SILVERLIGHT
         /// <inheritdoc />
         public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
-#else
-        /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize)
-#endif
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
@@ -74,10 +69,8 @@ namespace NLog.Internal.NetworkSenders
                 return new TcpNetworkSender(url, AddressFamily.Unspecified)
                 {
                     MaxQueueSize = maxQueueSize,
-#if !SILVERLIGHT
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
-#endif
                 };
             }
 
@@ -86,10 +79,8 @@ namespace NLog.Internal.NetworkSenders
                 return new TcpNetworkSender(url, AddressFamily.InterNetwork)
                 {
                     MaxQueueSize = maxQueueSize,
-#if !SILVERLIGHT
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
-#endif
                 };
             }
 
@@ -98,14 +89,11 @@ namespace NLog.Internal.NetworkSenders
                 return new TcpNetworkSender(url, AddressFamily.InterNetworkV6)
                 {
                     MaxQueueSize = maxQueueSize,
-#if !SILVERLIGHT
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
-#endif
                 };
             }
 
-#if !SILVERLIGHT
             if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new UdpNetworkSender(url, AddressFamily.Unspecified);
@@ -120,8 +108,6 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new UdpNetworkSender(url, AddressFamily.InterNetworkV6);
             }
-#endif
-
             throw new ArgumentException("Unrecognized network address", nameof(url));
         }
     }

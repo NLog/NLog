@@ -128,7 +128,7 @@ namespace NLog.Targets.Wrappers
             if (wrappedTarget is BufferingTargetWrapper)
                 return false;
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
             if (wrappedTarget is AsyncTaskTarget)
                 return false;
 #endif

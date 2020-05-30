@@ -34,7 +34,7 @@
 
 namespace NLog.Internal
 {
-#if !NET4_6 && !NETSTANDARD && !SILVERLIGHT
+#if !NET4_6 && !NETSTANDARD
     using System;
     using System.Runtime.Serialization;
     using NLog.Common;

@@ -66,8 +66,6 @@ namespace NLog
         {
 #if NETSTANDARD1_0
             var className = Internal.StackTraceUsageUtils.GetClassFullName();
-#elif SILVERLIGHT
-            var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
             var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif

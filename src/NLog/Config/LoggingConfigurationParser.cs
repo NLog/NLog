@@ -155,11 +155,9 @@ namespace NLog.Config
                             InternalLogger.LogFile = internalLogFile;
                         }
                         break;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     case "INTERNALLOGTOTRACE":
                         InternalLogger.LogToTrace = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
                         break;
-#endif
                     case "INTERNALLOGINCLUDETIMESTAMP":
                         InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.IncludeTimestamp);
                         break;
@@ -240,7 +238,6 @@ namespace NLog.Config
         {
             try
             {
-#if !SILVERLIGHT
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out string currentDirToken))
                     internalLogFile = internalLogFile.Replace(currentDirToken, System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out string baseDirToken))
@@ -253,7 +250,6 @@ namespace NLog.Config
 #endif
                 if (internalLogFile.IndexOf("%", StringComparison.OrdinalIgnoreCase) >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
-#endif
                 return internalLogFile;
             }
             catch
@@ -1209,7 +1205,7 @@ namespace NLog.Config
             "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
             if (target is AsyncTaskTarget)
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
@@ -1248,7 +1244,7 @@ namespace NLog.Config
                 }
             }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5
             if (target is AsyncTaskTarget && wrapperTargetInstance is AsyncTargetWrapper && ReferenceEquals(wrapperTargetInstance, wtb))
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);

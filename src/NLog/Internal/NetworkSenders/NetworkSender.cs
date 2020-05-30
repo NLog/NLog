@@ -159,9 +159,6 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Parsed endpoint.</returns>
         protected virtual EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
         {
-#if SILVERLIGHT
-            return new DnsEndPoint(uri.Host, uri.Port, addressFamily);
-#else
             switch (uri.HostNameType)
             {
                 case UriHostNameType.IPv4:
@@ -186,7 +183,6 @@ namespace NLog.Internal.NetworkSenders
                         throw new IOException($"Cannot resolve '{uri.Host}' to an address in '{addressFamily}'");
                     }
             }
-#endif
         }
 
         public virtual void CheckSocket()

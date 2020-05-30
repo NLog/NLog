@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#if !NETSTANDARD1_3
 #define SupportsMutex
 #endif
 
@@ -51,7 +50,7 @@ namespace NLog.Internal.FileAppenders
         private readonly BaseFileAppender[] _appenders;
         private Timer _autoClosingTimer;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         private string _archiveFilePatternToWatch;
         private readonly MultiFileWatcher _externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.DirectoryName | NotifyFilters.FileName);
         private bool _logFileWasArchived;
@@ -88,12 +87,12 @@ namespace NLog.Internal.FileAppenders
 
             _autoClosingTimer = new Timer(AutoClosingTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             _externalFileArchivingWatcher.FileChanged += ExternalFileArchivingWatcher_OnFileChanged;
 #endif
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         private void ExternalFileArchivingWatcher_OnFileChanged(object sender, FileSystemEventArgs e)
         {
             if (_logFileWasArchived || CheckCloseAppenders == null || _autoClosingTimer == null)
@@ -296,7 +295,7 @@ namespace NLog.Internal.FileAppenders
 
                 if (CheckCloseAppenders != null)
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                     if (freeSpot == 0)
                         _logFileWasArchived = false;
                     if (!string.IsNullOrEmpty(_archiveFilePatternToWatch))
@@ -344,7 +343,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="expireTime">The time which prior the appenders considered expired</param>
         public void CloseAppenders(DateTime expireTime)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             if (_logFileWasArchived)
             {
                 _logFileWasArchived = false;
@@ -553,7 +552,7 @@ namespace NLog.Internal.FileAppenders
                 // No active appenders, deactivate background tasks
                 _autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 _externalFileArchivingWatcher.StopWatching();
                 _logFileWasArchived = false;
             }
@@ -570,7 +569,7 @@ namespace NLog.Internal.FileAppenders
         {
             CheckCloseAppenders = null;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             _externalFileArchivingWatcher.Dispose();
             _logFileWasArchived = false;
 #endif

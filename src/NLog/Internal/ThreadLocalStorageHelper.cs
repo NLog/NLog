@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT
-#define TLS_WORKAROUND
-#endif
-
 namespace NLog.Internal
 {
     using System;
@@ -46,10 +42,6 @@ namespace NLog.Internal
     /// </summary>
     internal static class ThreadLocalStorageHelper
     {
-#if TLS_WORKAROUND
-        private static int nextSlotNumber;
-        private static WeakThreadReferenceWithData threadData;
-#endif
 
         /// <summary>
         /// Allocates the data slot for storing thread-local information.
@@ -57,9 +49,7 @@ namespace NLog.Internal
         /// <returns>Allocated slot key.</returns>
         public static object AllocateDataSlot()
         {
-#if TLS_WORKAROUND
-            return Interlocked.Increment(ref nextSlotNumber);
-#elif NETSTANDARD || NET4_6
+#if NETSTANDARD || NET4_6
             return new System.Threading.ThreadLocal<object>();
 #else
             return Thread.AllocateDataSlot();
@@ -78,20 +68,7 @@ namespace NLog.Internal
         public static T GetDataForSlot<T>(object slot, bool create = true)
             where T : class, new()
         {
-#if TLS_WORKAROUND
-            IDictionary<int, object> dict = GetThreadDataDictionary(Thread.CurrentThread);
-            int slotNumber = (int)slot;
-            object v;
-            if (!dict.TryGetValue(slotNumber, out v))
-            {
-                if (!create)
-                    return null;
-
-                v = new T();
-                dict.Add(slotNumber, v);
-            }
-            return (T)v;
-#elif NETSTANDARD || NET4_6
+#if NETSTANDARD || NET4_6
             var thread = slot as ThreadLocal<object>;
             if (thread == null)
                 throw new InvalidOperationException($"Expected ThreadLocal object. Received {slot?.GetType()}.");
@@ -118,44 +95,5 @@ namespace NLog.Internal
             return (T)v;
 #endif
         }
-
-#if TLS_WORKAROUND
-        private static IDictionary<int, object> GetThreadDataDictionary(Thread thread)
-        {
-            for (var trd = threadData; trd != null; trd = trd.Next)
-            {
-                var t = trd.ThreadReference.Target as Thread;
-                if (t == thread)
-                {
-                    return trd.Data;
-                }
-            }
-
-            var data = new Dictionary<int, object>();
-            var wtr = new WeakThreadReferenceWithData();
-            wtr.ThreadReference = new WeakReference(thread);
-            wtr.Data = data;
-
-            WeakThreadReferenceWithData oldThreadData;
-
-            do
-            {
-                oldThreadData = threadData;
-                wtr.Next = oldThreadData;
-            }
-            while (Interlocked.CompareExchange(ref threadData, wtr, oldThreadData) != oldThreadData);
-
-            return data;
-        }
-
-        internal class WeakThreadReferenceWithData
-        {
-            internal WeakReference ThreadReference { get; set; }
-
-            internal IDictionary<int, object> Data { get; set; }
-
-            internal WeakThreadReferenceWithData Next { get; set; }
-        }
-#endif
     }
 }

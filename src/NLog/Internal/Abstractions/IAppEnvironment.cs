@@ -43,7 +43,7 @@ namespace NLog.Internal.Fakeables
         IAppDomain AppDomain { get; }
         string AppDomainBaseDirectory { get; }
         string AppDomainConfigurationFile { get; }
-#if !NETSTANDARD1_3 && !SILVERLIGHT
+#if !NETSTANDARD1_3
         string CurrentProcessFilePath { get; }
         /// <summary>
         /// Gets current process name (excluding filename extension, if any).

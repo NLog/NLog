@@ -51,12 +51,10 @@ namespace NLog.Config
         /// </summary>
         WithStackTrace = 1,
 
-#if !SILVERLIGHT
         /// <summary>
         /// Capture also filenames and linenumbers
         /// </summary>
         WithFileNameAndLineNumber = 2,
-#endif
 
         /// <summary>
         /// Capture the location of the call
@@ -74,7 +72,6 @@ namespace NLog.Config
         [Obsolete("Replace with `WithStackTrace`. Will be removed in NLog 6")]
         WithoutSource = WithStackTrace,
 
-#if !SILVERLIGHT
         /// <summary>
         /// Stack trace should be captured including filenames and linenumbers.
         /// </summary>
@@ -84,11 +81,5 @@ namespace NLog.Config
         /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
         Max = WithSource,
-#else
-        /// <summary>
-        /// Capture maximum amount of the stack trace information supported on the platform.
-        /// </summary>
-        Max = WithStackTrace,
-#endif
     }
 }

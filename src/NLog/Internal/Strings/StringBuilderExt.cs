@@ -193,7 +193,7 @@ namespace NLog.Internal
         /// <param name="builder"></param>
         public static void ClearBuilder(this StringBuilder builder)
         {
-#if !SILVERLIGHT && !NET3_5
+#if !NET3_5
             builder.Clear();
 #else
             builder.Length = 0;
@@ -209,7 +209,6 @@ namespace NLog.Internal
         /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
         public static void CopyToStream(this StringBuilder builder, MemoryStream ms, Encoding encoding, char[] transformBuffer)
         {
-#if !SILVERLIGHT || WINDOWS_PHONE
             if (transformBuffer != null)
             {
                 int charCount;
@@ -228,7 +227,6 @@ namespace NLog.Internal
                 }
             }
             else
-#endif
             {
                 // Faster than MemoryStream, but generates garbage
                 var str = builder.ToString();
@@ -239,11 +237,7 @@ namespace NLog.Internal
 
         public static void CopyToBuffer(this StringBuilder builder, char[] destination, int destinationIndex)
         {
-#if !SILVERLIGHT || WINDOWS_PHONE
             builder.CopyTo(0, destination, destinationIndex, builder.Length);
-#else
-            builder.ToString().CopyTo(0, destination, destinationIndex, builder.Length);
-#endif
         }
 
         /// <summary>
@@ -270,7 +264,6 @@ namespace NLog.Internal
                 }
                 else
                 {
-#if !SILVERLIGHT || WINDOWS_PHONE
                     // Reuse single char-buffer allocation for large StringBuilders
                     char[] buffer = new char[256];
                     for (int i = 0; i < sourceLength; i += buffer.Length)
@@ -279,9 +272,6 @@ namespace NLog.Internal
                         builder.CopyTo(i, buffer, 0, charCount);
                         destination.Append(buffer, 0, charCount);
                     }
-#else
-                    destination.Append(builder.ToString());
-#endif
                 }
             }
         }

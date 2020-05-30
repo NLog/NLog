@@ -56,10 +56,8 @@ namespace NLog.LayoutRenderers
             ClassName = true;
             MethodName = true;
             IncludeNamespace = true;
-#if !SILVERLIGHT
             FileName = false;
             IncludeSourcePath = true;
-#endif
         }
 
         /// <summary>
@@ -105,7 +103,6 @@ namespace NLog.LayoutRenderers
         [DefaultValue(0)]
         public int SkipFrames { get; set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to render the source file name and line number.
         /// </summary>
@@ -119,7 +116,6 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool IncludeSourcePath { get; set; }
-#endif
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
@@ -135,11 +131,7 @@ namespace NLog.LayoutRenderers
             get
             {
                 return StackTraceUsageUtils.GetStackTraceUsage(
-#if !SILVERLIGHT
                     FileName,
-#else
-                    false,
-#endif
                     SkipFrames,
                     CaptureStackTrace) | ((ClassName || IncludeNamespace) ? StackTraceUsage.WithCallSiteClassName : StackTraceUsage.None);
             }
@@ -178,7 +170,6 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
-#if !SILVERLIGHT
                 if (FileName)
                 {
                     string fileName = logEvent.CallSiteInformation.GetCallerFilePath(SkipFrames);
@@ -188,11 +179,9 @@ namespace NLog.LayoutRenderers
                         AppendFileName(builder, fileName, lineNumber);
                     }
                 }
-#endif
             }
         }
 
-#if !SILVERLIGHT
         private void AppendFileName(StringBuilder builder, string fileName, int lineNumber)
         {
             builder.Append("(");
@@ -209,6 +198,5 @@ namespace NLog.LayoutRenderers
             builder.AppendInvariant(lineNumber);
             builder.Append(")");
         }
-#endif
     }
 }

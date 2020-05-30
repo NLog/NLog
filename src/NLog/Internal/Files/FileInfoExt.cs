@@ -40,19 +40,11 @@ namespace NLog.Internal
     {
         public static DateTime GetLastWriteTimeUtc(this FileInfo fileInfo)
         {
-#if !SILVERLIGHT
             return fileInfo.LastWriteTimeUtc;
-#else
-            return fileInfo.LastWriteTime;
-#endif
         }
         public static DateTime GetCreationTimeUtc(this FileInfo fileInfo)
         {
-#if !SILVERLIGHT
             return fileInfo.CreationTimeUtc;
-#else
-            return fileInfo.CreationTime;
-#endif
         }
 
         public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)

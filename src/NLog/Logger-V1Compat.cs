@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog
 {
     using System;
@@ -3319,5 +3317,3 @@ namespace NLog
         // end of generated code
     }
 }
-
-#endif
