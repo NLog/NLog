@@ -86,7 +86,7 @@ namespace NLog.Layouts
 
                     if (EndOfLayout(ch))
                     {
-                        //end of innerlayout. 
+                        //end of inner layout. 
                         // `}` is when double nested inner layout. 
                         // `:` when single nested layout
                         break;
@@ -280,20 +280,26 @@ namespace NLog.Layouts
                             nameBuf.Append('\t');
                             break;
                         case 'u':
-                            sr.Read();
-                            var uChar = GetUnicode(sr, 4); // 4 digits
-                            nameBuf.Append(uChar);
-                            break;
+                            {
+                                sr.Read();
+                                var uChar = GetUnicode(sr, 4); // 4 digits
+                                nameBuf.Append(uChar);
+                                break;
+                            }
                         case 'U':
-                            sr.Read();
-                            var UChar = GetUnicode(sr, 8); // 8 digits
-                            nameBuf.Append(UChar);
-                            break;
+                            {
+                                sr.Read();
+                                var uChar = GetUnicode(sr, 8); // 8 digits
+                                nameBuf.Append(uChar);
+                                break;
+                            }
                         case 'x':
-                            sr.Read();
-                            var xChar = GetUnicode(sr, 4); // 1-4 digits
-                            nameBuf.Append(xChar);
-                            break;
+                            {
+                                sr.Read();
+                                var xChar = GetUnicode(sr, 4); // 1-4 digits
+                                nameBuf.Append(xChar);
+                                break;
+                            }
                         case 'v':
                             sr.Read();
                             nameBuf.Append('\v');
@@ -349,10 +355,9 @@ namespace NLog.Layouts
                 if (stringReader.Peek() == '=')
                 {
                     stringReader.Read(); // skip the '='
-                    PropertyInfo propertyInfo;
                     LayoutRenderer parameterTarget = layoutRenderer;
 
-                    if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out propertyInfo))
+                    if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out var propertyInfo))
                     {
                         if (configurationItemFactory.AmbientProperties.TryGetDefinition(parameterName, out var wrapperType))
                         {
@@ -494,13 +499,11 @@ namespace NLog.Layouts
             return true;
         }
 
-        private static void MergeLiterals(List<LayoutRenderer> list)
+        private static void MergeLiterals(IList<LayoutRenderer> list)
         {
             for (int i = 0; i + 1 < list.Count;)
             {
-                var lr1 = list[i] as LiteralLayoutRenderer;
-                var lr2 = list[i + 1] as LiteralLayoutRenderer;
-                if (lr1 != null && lr2 != null)
+                if (list[i] is LiteralLayoutRenderer lr1 && list[i + 1] is LiteralLayoutRenderer lr2)
                 {
                     lr1.Text += lr2.Text;
                     list.RemoveAt(i + 1);
@@ -512,9 +515,17 @@ namespace NLog.Layouts
             }
         }
 
-        private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
+        private static LayoutRenderer ConvertToLiteral(IRenderable renderer)
         {
-            return new LiteralLayoutRenderer(renderer.Render(LogEventInfo.CreateNullEvent()));
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            var text = renderer.Render(logEventInfo);
+            if (renderer is IRawValue rawValueRender)
+            {
+                var success = rawValueRender.TryGetRawValue(logEventInfo, out var rawValue);
+                return new LiteralWithRawValueLayoutRenderer(text, success, rawValue);
+            }
+
+            return new LiteralLayoutRenderer(text);
         }
     }
 }
