@@ -83,7 +83,7 @@ namespace NLog.Internal
         {
             InternalLogger.Info("Loading assembly: {0}", assemblyName);
 
-#if NETSTANDARD1_0 || WINDOWS_PHONE
+#if NETSTANDARD1_0
             var name = new AssemblyName(assemblyName);
             return Assembly.Load(name);
 #else
