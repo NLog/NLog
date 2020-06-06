@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [ThreadAgnostic]
     [ThreadSafe]
-    internal class LiteralWithRawValueLayoutRenderer : LayoutRenderer, IRawValue
+    internal class LiteralWithRawValueLayoutRenderer : LiteralLayoutRenderer, IRawValue
     {
         private readonly bool _rawValueSuccess;
         private readonly object _rawValue;
@@ -60,22 +60,6 @@ namespace NLog.LayoutRenderers
             _rawValueSuccess = rawValueSuccess;
             _rawValue = rawValue;
             Text = text;
-        }
-
-        /// <summary>
-        /// Gets or sets the literal text.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        public string Text { get; }
-
-        /// <summary>
-        /// Renders the specified string literal and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            builder.Append(Text);
         }
 
         /// <inheritdoc />
