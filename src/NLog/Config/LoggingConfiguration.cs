@@ -291,7 +291,7 @@ namespace NLog.Config
             var target = FindTargetByName(targetName);
             if (target == null)
             {
-                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);   // TODO NLog 5 - Change to NLogConfigurationException
             }
 
             AddRule(minLevel, maxLevel, target, loggerNamePattern, false);
@@ -380,7 +380,7 @@ namespace NLog.Config
             var target = FindTargetByName(targetName);
             if (target == null)
             {
-                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);   // TODO NLog 5 - Change to NLogConfigurationException
             }
 
             AddRuleForAllLevels(target, loggerNamePattern, false);
@@ -393,7 +393,6 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*")
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
             AddRuleForAllLevels(target, loggerNamePattern, false);
         }
 
@@ -405,11 +404,30 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern, bool final)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
-            var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
-            loggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+            AddRule(LogLevel.MinLevel, LogLevel.MaxLevel, target, loggerNamePattern, final);
+        }
+
+        /// <summary>
+        /// Suppress logging from loggers matching the name pattern
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule (Defaults to LogLevel.Trace unless specified)</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule (Defaults to LogLevel.Fatal unless specified)</param>
+        public void AddRuleForBlackHole(string loggerNamePattern, LogLevel minLevel = null, LogLevel maxLevel = null)
+        {
+            if (string.IsNullOrEmpty(loggerNamePattern))
+            {
+                throw new ArgumentNullException(nameof(loggerNamePattern));
+            }
+
+            minLevel = minLevel ?? LogLevel.MinLevel;
+            maxLevel = maxLevel ?? LogLevel.MaxLevel;
+
+            var loggingRule = new LoggingRule();
+            loggingRule.LoggerNamePattern = loggerNamePattern;
+            loggingRule.EnableLoggingForLevels(minLevel, maxLevel);
+            loggingRule.Final = true;
             AddLoggingRulesThreadSafe(loggingRule);
-            AddTargetThreadSafe(target.Name, target, false);
         }
 
         /// <summary>

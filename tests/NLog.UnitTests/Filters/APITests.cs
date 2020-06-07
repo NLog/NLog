@@ -87,5 +87,27 @@ namespace NLog.UnitTests.Filters
             logger2.Info("Goodbye World");
             Assert.Equal("Goodbye World", target.LastMessage);
         }
+
+        [Fact]
+        public void AddRuleForBlackHoleTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            var logger1 = logFactory.GetLogger("Hello");
+            var logger2 = logFactory.GetLogger("Goodbye");
+            var config = new LoggingConfiguration(logFactory);
+            var target = new NLog.Targets.DebugTarget() { Layout = "${message}" };
+            config.AddRuleForBlackHole(logger1.Name);
+            config.AddRuleForAllLevels(target);
+            logFactory.Configuration = config;
+
+            // Act 1
+            logger1.Info("Hello World");
+            Assert.Empty(target.LastMessage);
+
+            // Act 2
+            logger2.Info("Goodbye World");
+            Assert.Equal("Goodbye World", target.LastMessage);
+        }
     }
 }
