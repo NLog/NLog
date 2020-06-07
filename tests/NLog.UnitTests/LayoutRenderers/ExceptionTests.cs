@@ -626,6 +626,72 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", "Test Inner 1");
             AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
+        public void AggregateExceptionWithExceptionDataMultiTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,data,message:maxInnerExceptionLevel=5}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionData1Key = "ex1Key";
+            string exceptionData1Value = "ex1Value";
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                var ex1 = new Exception("Test exception 1", new Exception("Test Inner 1"));
+                ex1.Data.Add(exceptionData1Key, exceptionData1Value);
+                throw ex1;
+            },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+
+            string exceptionData2Key = "ex2Key";
+            string exceptionData2Value = "ex2Value";
+            var task2 = System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                var ex2 = new Exception("Test exception 2", new Exception("Test Inner 2"));
+                ex2.Data.Add(exceptionData2Key, exceptionData2Value);
+                throw ex2;
+            },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+
+            string aggregateExceptionDataKey = "aggreKey";
+            string aggregateExceptionDataValue = "aggreValue";
+            var aggregateExceptionMessage = "nothing thrown!";
+            try
+            {
+                System.Threading.Tasks.Task.WaitAll(new[] { task1, task2 });
+            }
+            catch (AggregateException ex)
+            {
+                ex.Data.Add(aggregateExceptionDataKey, aggregateExceptionDataValue);
+                aggregateExceptionMessage = ex.ToString();
+                logger.Error(ex, "msg");
+            }
+
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test exception 2", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 2", aggregateExceptionMessage);
+
+            AssertDebugLastMessageContains("debug1", "AggregateException");
+            AssertDebugLastMessageContains("debug1", "One or more errors occurred");
+            AssertDebugLastMessageContains("debug1", "Test exception 1");
+            AssertDebugLastMessageContains("debug1", "Test exception 2");
+            AssertDebugLastMessageContains("debug1", "Test Inner 1");
+            AssertDebugLastMessageContains("debug1", "Test Inner 2");
+            AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, exceptionData1Key, exceptionData1Value));
+            AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, exceptionData2Key, exceptionData2Value));
+            AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue));
+        }
 
 #if NET3_5
         [Fact(Skip = "NET3_5 not supporting AggregateException")]
@@ -666,7 +732,57 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.StartsWith("Test exception 1", lastMessage);
             Assert.Contains("Test Inner 1", lastMessage);
         }
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
+        public void AggregateExceptionWithExceptionDataSingleTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=message,data,shorttype:maxInnerExceptionLevel=5}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
 
+            string exceptionDataKey = "ex1Key";
+            string exceptionDataValue = "ex1Value";
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                var ex = new Exception("Test exception 1", new Exception("Test Inner 1"));
+                ex.Data.Add(exceptionDataKey, exceptionDataValue);
+                throw ex;
+            },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+
+            string aggregateExceptionDataKey = "aggreKey";
+            string aggregateExceptionDataValue = "aggreValue";
+            var aggregateExceptionMessage = "nothing thrown!";
+            try
+            {
+                System.Threading.Tasks.Task.WaitAll(new[] { task1 });
+            }
+            catch (AggregateException ex)
+            {
+                ex.Data.Add(aggregateExceptionDataKey, aggregateExceptionDataValue);
+                aggregateExceptionMessage = ex.ToString();
+                logger.Error(ex, "msg");
+            }
+
+            Assert.Contains(typeof(AggregateException).Name, aggregateExceptionMessage);
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+
+            var lastMessage = GetDebugLastMessage("debug1");
+            Assert.StartsWith("Test exception 1", lastMessage);
+            Assert.Contains("Test Inner 1", lastMessage);
+            Assert.Contains(string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue), lastMessage);
+            Assert.Contains(string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue), lastMessage);
+        }
         [Fact]
         public void CustomExceptionProperties_Layout_Test()
         {
