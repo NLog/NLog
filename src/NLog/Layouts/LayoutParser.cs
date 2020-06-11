@@ -506,6 +506,12 @@ namespace NLog.Layouts
                 if (list[i] is LiteralLayoutRenderer lr1 && list[i + 1] is LiteralLayoutRenderer lr2)
                 {
                     lr1.Text += lr2.Text;
+
+                    // Combined literals don't support rawValue
+                    if (lr1 is LiteralWithRawValueLayoutRenderer lr1WithRaw)
+                    {
+                        list[i] = new LiteralLayoutRenderer(lr1WithRaw.Text);
+                    }
                     list.RemoveAt(i + 1);
                 }
                 else

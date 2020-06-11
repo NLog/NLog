@@ -799,12 +799,18 @@ namespace NLog.UnitTests.Layouts
 
 
         }
-        [Fact]
-        public void Parse_MultipleAppDomainFixedOutputWithRawValue_ConvertSingleToLiteral()
-        {
-            // Arrange
-            var input = "${newline}${processid}";
 
+        /// <summary>
+        /// Combined literals should not support rawValue
+        /// </summary>
+        [Theory]
+        [InlineData("${newline}${processid}")]
+        [InlineData("${processid}${processid}")]
+        [InlineData("${processid}${processname}")]
+        [InlineData("${processname}${processid}")]
+        [InlineData("${processname}-${processid}")]
+        public void Parse_Multiple_ConvertSingleToLiteralWithoutRaw(string input)
+        {
             // Act
             var layout = (SimpleLayout)Layout.FromString(input);
 
