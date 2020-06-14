@@ -54,12 +54,12 @@ namespace NLog.Layouts
         // ReSharper restore StaticMemberInGenericType
 
         [CanBeNull] private readonly Layout _layout;
-        private readonly T _value;
+        private readonly T _fixedValue;
 
         /// <inheritdoc />
         public Layout(T value)
         {
-            _value = value;
+            _fixedValue = value;
             IsFixed = true;
             _layout = null;
         }
@@ -67,7 +67,7 @@ namespace NLog.Layouts
         /// <inheritdoc />
         public Layout(Layout layout)
         {
-            IsFixed = TryGetFixedValue(layout, out _value);
+            IsFixed = TryGetFixedValue(layout, out _fixedValue);
             _layout = layout;
         }
 
@@ -163,12 +163,12 @@ namespace NLog.Layouts
         {
             if (IsFixed)
             {
-                if (_value == null)
+                if (_fixedValue == null)
                 {
                     return null;
                 }
 
-                var text = ValueToString(_value, LoggingConfiguration?.DefaultCultureInfo);
+                var text = ValueToString(_fixedValue, LoggingConfiguration?.DefaultCultureInfo);
                 if (text != null)
                 {
                     return text;
@@ -223,7 +223,7 @@ namespace NLog.Layouts
         {
             if (IsFixed)
             {
-                rawValue = _value;
+                rawValue = _fixedValue;
                 return true;
             }
 
@@ -274,6 +274,10 @@ namespace NLog.Layouts
             return false;
         }
 
+        /// <summary>
+        /// Pre compile if is fixed text
+        /// </summary>
+        /// <returns>Is fixed value</returns>
         private bool TryGetFixedValue(Layout layout, out T value)
         {
             if (layout != null && layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
@@ -284,7 +288,7 @@ namespace NLog.Layouts
                     InternalLogger.Warn("layout with text '{0}' isn't an {1}", simpleLayout.FixedText, TypeNamed);
                 }
 
-                return success;
+                return true;
             }
 
             value = default(T);
@@ -297,7 +301,7 @@ namespace NLog.Layouts
         {
             if (IsFixed)
             {
-                return $"Typed Layout with fixed value: {_layout}, Value: {_value}";
+                return $"Typed Layout with fixed value: {_layout}, Value: {_fixedValue}";
             }
 
             return $"Typed Layout with dynamic value: {_layout}";
