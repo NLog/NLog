@@ -292,5 +292,15 @@ namespace NLog.Layouts
             return false;
         }
 
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            if (IsFixed)
+            {
+                return $"Typed Layout with fixed value: {_layout}, Value: {_value}";
+            }
+
+            return $"Typed Layout with dynamic value: {_layout}";
+        }
     }
 }
