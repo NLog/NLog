@@ -32,6 +32,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
@@ -306,5 +307,50 @@ namespace NLog.Layouts
 
             return $"Typed Layout with dynamic value: {_layout}";
         }
+
+        #region Equality members
+
+        /// <summary>
+        /// Equals another layout?
+        /// </summary>
+        protected bool Equals(Layout<T> other)
+        {
+            return IsFixed == other.IsFixed && Equals(_layout, other._layout) && EqualityComparer<T>.Default.Equals(_fixedValue, other._fixedValue);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((Layout<T>) obj);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (_layout != null ? _layout.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ EqualityComparer<T>.Default.GetHashCode(_fixedValue);
+                hashCode = (hashCode * 397) ^ IsFixed.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        #endregion
     }
 }
