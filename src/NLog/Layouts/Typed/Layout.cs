@@ -96,16 +96,16 @@ namespace NLog.Layouts
             return value?.ToString();
         }
 
-        private bool TryParse(string text, out T value)
+        private bool TryParse(string text, out T value, T defaultValue)
         {
-            return TryConvertTo(text, out value);
+            return TryConvertTo(text, out value, defaultValue);
         }
 
-        private bool TryConvertTo(object raw, out T value)
+        private bool TryConvertTo(object raw, out T value, T defaultValue)
         {
             if (raw == null)
             {
-                value = default(T);
+                value = defaultValue;
                 return false;
             }
 
@@ -129,7 +129,7 @@ namespace NLog.Layouts
                 }
             }
 
-            value = default(T);
+            value = defaultValue;
             return false;
         }
 
@@ -191,7 +191,7 @@ namespace NLog.Layouts
         /// <inheritdoc cref="IRawValue" />
         internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
-            var success = TryGetRawValueIntern(logEvent, out var value);
+            var success = TryGetRawValueIntern(logEvent, out var value, default(T));
             rawValue = value;
             return success;
         }
@@ -205,13 +205,13 @@ namespace NLog.Layouts
         /// <returns></returns>
         internal T RenderToValueInternal(LogEventInfo logEvent, [CanBeNull] StringBuilder reusableBuilder, T defaultValue = default(T))
         {
-            if (TryGetRawValueIntern(logEvent, out var rawValue))
+            if (TryGetRawValueIntern(logEvent, out var rawValue, defaultValue))
             {
                 return rawValue;
             }
 
             var text = reusableBuilder != null ? RenderAllocateBuilder(logEvent, reusableBuilder) : _layout?.Render(logEvent);
-            if (TryParse(text, out var parsedValue))
+            if (TryParse(text, out var parsedValue, defaultValue))
             {
                 return parsedValue;
             }
@@ -220,7 +220,7 @@ namespace NLog.Layouts
             return defaultValue;
         }
 
-        private bool TryGetRawValueIntern(LogEventInfo logEvent, out T rawValue)
+        private bool TryGetRawValueIntern(LogEventInfo logEvent, out T rawValue, T defaultValue)
         {
             if (IsFixed)
             {
@@ -236,7 +236,7 @@ namespace NLog.Layouts
 
             if (_layout.TryGetRawValue(logEvent, out var raw))
             {
-                var success = TryConvertRawToValue(raw, out var value);
+                var success = TryConvertRawToValue(raw, defaultValue, out var value);
                 if (success)
                 {
                     rawValue = value;
@@ -251,26 +251,20 @@ namespace NLog.Layouts
         }
 
 
-        private bool TryConvertRawToValue(object raw, out T value)
+        private bool TryConvertRawToValue(object raw, T defaultValue, out T value)
         {
-            if (raw == null)
-            {
-                value = default(T);
-                return true;
-            }
-
             if (raw is T i)
             {
                 value = i;
                 return true;
             }
 
-            if (TryConvertTo(raw, out value))
+            if (TryConvertTo(raw, out value, defaultValue))
             {
                 return true;
             }
 
-            value = default(T);
+            value = defaultValue;
 
             return false;
         }
@@ -283,7 +277,7 @@ namespace NLog.Layouts
         {
             if (layout != null && layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
-                var success = TryParse(simpleLayout.FixedText, out value);
+                var success = TryParse(simpleLayout.FixedText, out value, default(T));
                 if (!success)
                 {
                     InternalLogger.Warn("layout with text '{0}' isn't an {1}", simpleLayout.FixedText, TypeNamed);
