@@ -237,13 +237,13 @@ namespace NLog.Layouts
             if (_layout.TryGetRawValue(logEvent, out var raw))
             {
                 var success = TryConvertRawToValue(raw, out var value);
-                rawValue = value;
-                if (!success)
+                if (success)
                 {
-                    InternalLogger.Warn("rawvalue isn't a {0} ", TypeNamed);
+                    rawValue = value;
+                    return true;
                 }
 
-                return success;
+                InternalLogger.Warn("rawvalue isn't a {0} ", TypeNamed);
             }
 
             rawValue = default(T);
@@ -336,7 +336,7 @@ namespace NLog.Layouts
                 return false;
             }
 
-            return Equals((Layout<T>) obj);
+            return Equals((Layout<T>)obj);
         }
 
         /// <inheritdoc />
