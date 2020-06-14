@@ -592,7 +592,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
-               
+
             });
         }
 
@@ -751,6 +751,74 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, result);
         }
 
+
+        [Fact]
+        public void Parse_AppDomainFixedOutput_ConvertToLiteral()
+        {
+            // Arrange
+            var input = "${newline}";
+
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+
+            // Assert
+            var single = Assert.Single(layout.Renderers);
+            Assert.IsType<LiteralLayoutRenderer>(single);
+        }
+
+        [Fact]
+        public void Parse_MultipleAppDomainFixedOutput_ConvertSingleToLiteral()
+        {
+            // Arrange
+            var input = "${newline}${machinename}";
+
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+
+            // Assert
+            var single = Assert.Single(layout.Renderers);
+            Assert.IsType<LiteralLayoutRenderer>(single);
+        }
+
+        [Fact]
+        public void Parse_AppDomainFixedOutputWithRawValue_ConvertSingleToLiteralAndKeepRawValue()
+        {
+            // Arrange
+            var input = "${processid}";
+
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+
+            // Assert
+            var single = Assert.Single(layout.Renderers);
+            var singleRaw = Assert.IsType<LiteralWithRawValueLayoutRenderer>(single);
+            var succeeded = singleRaw.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var rawValue);
+            Assert.True(succeeded);
+            var rawValueInt = Assert.IsType<int>(rawValue);
+            Assert.True(rawValueInt > 0);
+
+
+        }
+
+        /// <summary>
+        /// Combined literals should not support rawValue
+        /// </summary>
+        [Theory]
+        [InlineData("${newline}${processid}")]
+        [InlineData("${processid}${processid}")]
+        [InlineData("${processid}${processname}")]
+        [InlineData("${processname}${processid}")]
+        [InlineData("${processname}-${processid}")]
+        public void Parse_Multiple_ConvertSingleToLiteralWithoutRaw(string input)
+        {
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+
+            // Assert
+            var single = Assert.Single(layout.Renderers);
+            Assert.IsType<LiteralLayoutRenderer>(single);
+        }
+
         private class LayoutRendererWithListParam : LayoutRenderer
         {
             public List<double> Doubles { get; set; }
@@ -785,7 +853,7 @@ namespace NLog.UnitTests.Layouts
             public HashSet<int> HashSetNumber { get; set; }
 
             public HashSet<string> HashSetString { get; set; }
-            
+
             /// <summary>
             /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
             /// </summary>
@@ -807,7 +875,7 @@ namespace NLog.UnitTests.Layouts
 #if !NET3_5
                 Append(builder, ISetString);
                 AppendFormattable(builder, ISetNumber);
-        
+
 #endif
                 Append(builder, HashSetString);
                 AppendFormattable(builder, HashSetNumber);
