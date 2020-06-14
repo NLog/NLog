@@ -46,7 +46,7 @@ namespace NLog.Layouts
         /// <typeparam name="T"></typeparam>
         /// <param name="l">The item to render the value from</param>
         /// <param name="logEvent">Log event needed for rendering</param>
-        /// <param name="defaultValue">The default value when <paramref name="l"/>is <c>null</c></param>
+        /// <param name="defaultValue">The default value when <paramref name="l"/>is <c>null</c> or if conversion fails</param>
         /// <returns></returns>
         public static T RenderToValueOrDefault<T>(this Layout<T> l, LogEventInfo logEvent, T defaultValue = default(T))
         {
@@ -57,7 +57,7 @@ namespace NLog.Layouts
 
             IRenderable<T> renderable = l;
 
-            return renderable.RenderToValue(logEvent);
+            return renderable.RenderToValue(logEvent, defaultValue);
         }
     }
 }

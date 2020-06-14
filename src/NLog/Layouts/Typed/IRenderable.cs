@@ -37,12 +37,14 @@ namespace NLog.Layouts
     /// Renderable to a typed value
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal interface IRenderable<out T>
+    internal interface IRenderable<T>
     {
         /// <summary>
         /// Render to value
         /// </summary>
+        /// <param name="logEvent">Log event for rendering</param>
+        /// <param name="defaultValue">Default value if conversion fails.</param>
         /// <returns></returns>
-        T RenderToValue(LogEventInfo logEvent);
+        T RenderToValue(LogEventInfo logEvent, T defaultValue);
     }
 }

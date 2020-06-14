@@ -182,9 +182,9 @@ namespace NLog.Layouts
         /// Render to value
         /// </summary>
         /// <returns></returns>
-        T IRenderable<T>.RenderToValue(LogEventInfo logEvent)
+        T IRenderable<T>.RenderToValue(LogEventInfo logEvent, T defaultValue)
         {
-            return RenderToValueInternal(logEvent, null);
+            return RenderToValueInternal(logEvent, null, defaultValue);
         }
 
         /// <inheritdoc cref="IRawValue" />
@@ -200,8 +200,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="logEvent"></param>
         /// <param name="reusableBuilder">if null, default layout render will be used</param>
+        /// <param name="defaultValue">Default value if parse failed</param>
         /// <returns></returns>
-        internal T RenderToValueInternal(LogEventInfo logEvent, [CanBeNull] StringBuilder reusableBuilder)
+        internal T RenderToValueInternal(LogEventInfo logEvent, [CanBeNull] StringBuilder reusableBuilder, T defaultValue = default(T))
         {
             if (TryGetRawValueIntern(logEvent, out var rawValue))
             {
@@ -215,7 +216,7 @@ namespace NLog.Layouts
             }
 
             InternalLogger.Warn("Parse {0} to {1} failed", text, TypeNamed);
-            return default(T);
+            return defaultValue;
         }
 
         private bool TryGetRawValueIntern(LogEventInfo logEvent, out T rawValue)

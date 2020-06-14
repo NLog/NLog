@@ -750,7 +750,7 @@ namespace NLog.Targets
 
                 using (var localTarget = ReusableLayoutBuilder.Allocate())
                 {
-                    return layout.RenderToValueInternal(logEvent, localTarget.Result);
+                    return layout.RenderToValueInternal(logEvent, localTarget.Result, default(T));
                 }
             }
 
