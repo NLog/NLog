@@ -112,7 +112,7 @@ namespace NLog.Layouts
             var cultureInfo = CultureInfo.CurrentCulture;
             try
             {
-                var converter = ResolveService<IPropertyTypeConverter>() ?? ValueConverter.Instance;
+                var converter = ResolveService<IPropertyTypeConverter>() ?? PropertyTypeConverter.Instance;
                 var convertedValue = converter.Convert(raw, Type, null, cultureInfo);
                 if (convertedValue is T goodValue)
                 {
