@@ -521,7 +521,7 @@ namespace NLog.Layouts
             }
         }
 
-        private static LayoutRenderer ConvertToLiteral(IRenderable renderer)
+        private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
         {
             var logEventInfo = LogEventInfo.CreateNullEvent();
             var text = renderer.Render(logEventInfo);
