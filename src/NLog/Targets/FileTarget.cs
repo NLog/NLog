@@ -450,7 +450,6 @@ namespace NLog.Targets
 
         private bool? _writeBom;
 
-
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
         ///
@@ -2422,10 +2421,15 @@ namespace NLog.Targets
         private static bool InitialValueBom(Encoding encoding)
         {
             // Initial of true for UTF 16 and UTF 32
-            return encoding.CodePage == 1200 // UTF-16
-                   || encoding.CodePage == 1201 // UTF16-BE
-                   || encoding.CodePage == 12000 // UTF-32
-                   || encoding.CodePage == 12001; // UTF-32BE
+            const int utf16 = 1200;
+            const int utf16Be = 1201;
+            const int utf32 = 12000;
+            const int urf32Be = 12001;
+
+            return encoding.CodePage == utf16
+                   || encoding.CodePage == utf16Be
+                   || encoding.CodePage == utf32
+                   || encoding.CodePage == urf32Be;
         }
 
         /// <summary>
