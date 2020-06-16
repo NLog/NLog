@@ -141,6 +141,26 @@ namespace NLog.UnitTests.Layouts.Typed
             Assert.True(result);
         }
 
+        /// <remarks>Cache usage, see coverage result</remarks>
+        [Fact]
+        public void SameValueShouldUseCacheAndCorrectResult()
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<bool>();
+            var logEventInfo1 = CreateLogEventInfoWithValue("true");
+            var logEventInfo2 = CreateLogEventInfoWithValue("true");
+            var logEventInfo3 = CreateLogEventInfoWithValue("true");
+
+            // Act
+            var result1 = layout.RenderToValueOrDefault(logEventInfo1);
+            var result2 = layout.RenderToValueOrDefault(logEventInfo2);
+            var result3 = layout.RenderToValueOrDefault(logEventInfo3);
+
+            // Assert
+            Assert.True(result1);
+            Assert.True(result2);
+            Assert.True(result3);
+        }
 
         [Fact]
         public void ComplexTypeTest()
