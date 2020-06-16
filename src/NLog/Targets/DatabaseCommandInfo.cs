@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-
 namespace NLog.Targets
 {
     using System.Collections.Generic;
@@ -93,5 +91,3 @@ namespace NLog.Targets
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
     }
 }
-
-#endif

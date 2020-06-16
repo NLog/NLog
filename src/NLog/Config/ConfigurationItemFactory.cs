@@ -419,7 +419,7 @@ namespace NLog.Config
             var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
             factory.RegisterExternalItems();
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             try
             {
                 var assemblyLocation = string.Empty;
@@ -465,7 +465,7 @@ namespace NLog.Config
             return factory;
         }
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         private static void LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -599,7 +599,7 @@ namespace NLog.Config
         private void RegisterExternalItems()
         {
 
-#if !SILVERLIGHT && !NET3_5 && !NET4_0
+#if !NET3_5 && !NET4_0
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
 #endif
         }

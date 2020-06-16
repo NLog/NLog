@@ -31,35 +31,39 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if (SILVERLIGHT || DOCUMENTATION)
+using System;
+using NLog.Config;
+using Xunit;
 
-namespace NLog.LayoutRenderers
+namespace NLog.UnitTests.Internal.Reflection
 {
-    /// <summary>
-    /// Specifies application information to display in ${sl-appinfo} renderer.
-    /// </summary>
-    public enum SilverlightApplicationInfoOption
+    public class PropertyHelperTests
     {
-        /// <summary>
-        /// URI of the current application XAP file.
-        /// </summary>
-        XapUri,
 
-        /// <summary>
-        /// Whether application is running out-of-browser.
-        /// </summary>
-        IsOutOfBrowser,
+        [Fact]
+        public void AssignArrayPropertyFromStringWillResultInNotSupportedExceptionSomeWhereDeep()
+        {
+            // Arrange
+            var config = @"
+            <nlog>
+                <targets>
+                  <target name='f' type='File' filename='test.log'>
+                    <layout type='CSVLayout' column='a'>
+                    </layout>
+                  </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='f' />
+                </rules>
+            </nlog>";
+            
+            // Act
+            var ex = Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(config));
 
-        /// <summary>
-        /// Installed state of an application.
-        /// </summary>
-        InstallState,
-
-        /// <summary>
-        /// Whether application is running with elevated permissions.
-        /// </summary>
-        HasElevatedPermissions,
+            // Assert
+            Assert.IsType<NLogConfigurationException>(ex.InnerException);
+            Assert.IsType<NotSupportedException>(ex.InnerException.InnerException);
+            Assert.Contains("is an array and cannot be assigned a scalar value.", ex.InnerException.InnerException.Message);
+        }
     }
 }
-
-#endif

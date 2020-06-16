@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog
 {
     using System;
@@ -415,5 +413,3 @@ namespace NLog
         private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
     }
 }
-
-#endif

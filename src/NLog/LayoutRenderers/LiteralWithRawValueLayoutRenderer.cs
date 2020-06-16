@@ -31,31 +31,42 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT
+using NLog.Internal;
 
-namespace System.ComponentModel
+namespace NLog.LayoutRenderers
 {
-    using System;
+    using System.Text;
+    using NLog.Config;
 
     /// <summary>
-    /// Define Localizable attribute for platforms that don't have it.
+    /// A string literal with a fixed raw value
     /// </summary>
-    internal class LocalizableAttribute : Attribute
+    [ThreadAgnostic]
+    [ThreadSafe]
+    internal class LiteralWithRawValueLayoutRenderer : LiteralLayoutRenderer, IRawValue
     {
+        private readonly bool _rawValueSuccess;
+        private readonly object _rawValue;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalizableAttribute"/> class.
+        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
         /// </summary>
-        /// <param name="isLocalizable">Determines whether the target is localizable.</param>
-        public LocalizableAttribute(bool isLocalizable)
+        /// <param name="text">The literal text value.</param>
+        /// <param name="rawValueSuccess"></param>
+        /// <param name="rawValue">Fixed raw value</param>
+        /// <remarks>This is used by the layout compiler.</remarks>
+        public LiteralWithRawValueLayoutRenderer(string text, bool rawValueSuccess, object rawValue)
         {
-            IsLocalizable = isLocalizable;
+            _rawValueSuccess = rawValueSuccess;
+            _rawValue = rawValue;
+            Text = text;
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the target is localizable.
-        /// </summary>
-        public bool IsLocalizable { get; set; }
+        /// <inheritdoc />
+        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = _rawValue;
+            return _rawValueSuccess;
+        }
     }
 }
-
-#endif

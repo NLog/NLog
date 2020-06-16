@@ -45,12 +45,7 @@ namespace NLog.Internal
 		{
             get
             {
-#if !SILVERLIGHT || WINDOWS_PHONE
-                string newline = Environment.NewLine;
-#else
-                string newline = "\r\n";
-#endif
-                return newline;
+                return Environment.NewLine;
             }
         }
 
@@ -58,9 +53,7 @@ namespace NLog.Internal
         {
             try
             {
-#if SILVERLIGHT
-                return "SilverLight";
-#elif NETSTANDARD1_3
+#if NETSTANDARD1_3
                 var machineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
                 if (string.IsNullOrEmpty(machineName))
                     machineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
@@ -77,7 +70,6 @@ namespace NLog.Internal
 
         internal static string GetSafeEnvironmentVariable(string name)
         {
-#if !SILVERLIGHT
             try
             {
                 string s = Environment.GetEnvironmentVariable(name);
@@ -93,9 +85,6 @@ namespace NLog.Internal
             {
                 return null;
             }
-#else
-            return null;
-#endif
         }
     }
 }

@@ -216,7 +216,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__  && !NETSTANDARD
+#if !MONO && !NETSTANDARD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting, int overrideBufferSize)
         {
@@ -271,7 +271,7 @@ namespace NLog.Internal.FileAppenders
         {
             UpdateCreationTime();
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__  && !NETSTANDARD
+#if !MONO && !NETSTANDARD
             try
             {
                 if (!CreateFileParameters.ForceManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
@@ -311,10 +311,8 @@ namespace NLog.Internal.FileAppenders
                 File.Create(FileName).Dispose();
                 CreationTimeUtc = DateTime.UtcNow;
 
-#if !SILVERLIGHT
                 // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
                 File.SetCreationTimeUtc(FileName, CreationTimeUtc);
-#endif
             }
         }
 

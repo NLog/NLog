@@ -34,7 +34,6 @@
 
 namespace NLog
 {
-#if !SILVERLIGHT
     using System;
     using System.Linq;
     using NLog.Internal;
@@ -288,5 +287,4 @@ namespace NLog
         private const string NestedDiagnosticsContextKey = "NLog.AsyncableNestedDiagnosticsContext";
 #endif
     }
-#endif
 }

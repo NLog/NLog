@@ -197,11 +197,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-#if SILVERLIGHT
-                    item.Insert(0, new [] { quoteChar });
-#else
                     item.Insert(0, quoteChar);
-#endif
                 }
             }
 

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && (!NETSTANDARD || WindowsIdentityPackage)
+#if !NETSTANDARD || WindowsIdentityPackage
 
 namespace NLog.LayoutRenderers
 {

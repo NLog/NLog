@@ -134,14 +134,12 @@ namespace NLog.Layouts
         [DefaultValue(false)]
         public bool IncludeMdc { get; set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
         [DefaultValue(false)]
         public bool IncludeMdlc { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -189,12 +187,10 @@ namespace NLog.Layouts
             {
                 ThreadAgnostic = false;
             }
-#if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 ThreadAgnostic = false;
             }
-#endif
             if (IncludeAllProperties)
             {
                 MutableUnsafe = true;
@@ -290,7 +286,6 @@ namespace NLog.Layouts
                 }
             }
 
-#if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
@@ -301,7 +296,6 @@ namespace NLog.Layouts
                     AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }
-#endif
 
             if (IncludeAllProperties && logEvent.HasProperties)
             {

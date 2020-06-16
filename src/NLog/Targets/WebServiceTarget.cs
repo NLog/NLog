@@ -148,7 +148,6 @@ namespace NLog.Targets
         }
         private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol;
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets the proxy configuration when calling web service
         /// </summary>
@@ -160,7 +159,6 @@ namespace NLog.Targets
             set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
         }
         private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy;
-#endif
 
         /// <summary>
         /// Gets or sets the custom proxy address, include port separated by a colon
@@ -220,13 +218,11 @@ namespace NLog.Targets
         [ArrayParameter(typeof(MethodCallParameter), "header")]
         public IList<MethodCallParameter> Headers { get; private set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
         /// </summary>
         /// <docgen category='Web Service Options' order='100' />
         public bool PreAuthenticate { get; set; }
-#endif
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
@@ -280,7 +276,6 @@ namespace NLog.Targets
             Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
 
-#if !SILVERLIGHT
             switch (ProxyType)
             {
                 case WebServiceProxyType.DefaultWebProxy:
@@ -311,9 +306,8 @@ namespace NLog.Targets
                     webRequest.Proxy = null;
                     break;
             }
-#endif
 
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_0
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 webRequest.PreAuthenticate = true;

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -50,6 +48,8 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using NLog.Time;
+    using JetBrains.Annotations;
+    using NSubstitute.Core;
 
     public abstract class FileTargetTests : NLogTestBase
     {
@@ -3938,6 +3938,25 @@ namespace NLog.UnitTests.Targets
         protected override Target WrapFileTarget(FileTarget target)
         {
             return target;
+        }
+
+        [Theory]
+        [InlineData("UTF-16", true)]
+        [InlineData("UTF-16BE", true)]
+        [InlineData("UTF-32", true)]
+        [InlineData("UTF-32BE", true)]
+        [InlineData("UTF-7", false)]
+        [InlineData("UTF-8", false)]
+        [InlineData("ASCII", false)]
+        public void TestInitialBomValue(string encodingName, bool expected)
+        {
+            var fileTarget = new FileTarget();
+
+            // Act
+            fileTarget.Encoding = Encoding.GetEncoding(encodingName);
+
+            // Assert
+            Assert.Equal(expected, fileTarget.WriteBom);
         }
 
         [Fact]

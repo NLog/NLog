@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Targets
 {
     using System.ComponentModel;
@@ -116,5 +114,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif

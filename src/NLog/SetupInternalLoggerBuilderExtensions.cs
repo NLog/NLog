@@ -69,7 +69,7 @@ namespace NLog
             return setupBuilder;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
         /// Configures <see cref="InternalLogger.LogToTrace"/>
         /// </summary>

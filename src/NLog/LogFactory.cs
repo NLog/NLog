@@ -87,7 +87,7 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -96,7 +96,7 @@ namespace NLog
 
         private static event EventHandler<EventArgs> LoggerShutdown;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -111,7 +111,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))  // TODO NLog 5 -Move file-watcher logic into XmlLoggingConfiguration
 #else
             : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
@@ -141,7 +141,7 @@ namespace NLog
         {
             _configLoader = configLoader;
             _currentAppEnvironment = appEnvironment;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             LoggerShutdown += OnStopLogging;
 #endif
         }
@@ -221,7 +221,7 @@ namespace NLog
                 if (value != _autoShutdown)
                 {
                     _autoShutdown = value;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                     LoggerShutdown -= OnStopLogging;
                     if (value)
                         LoggerShutdown += OnStopLogging;
@@ -438,8 +438,6 @@ namespace NLog
         {
 #if NETSTANDARD1_0
             var className = StackTraceUsageUtils.GetClassFullName();
-#elif SILVERLIGHT
-            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
@@ -460,8 +458,6 @@ namespace NLog
         {
 #if NETSTANDARD1_0
             var className = StackTraceUsageUtils.GetClassFullName();
-#elif SILVERLIGHT
-            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
@@ -482,8 +478,6 @@ namespace NLog
         {
 #if NETSTANDARD1_0
             var className = StackTraceUsageUtils.GetClassFullName();
-#elif SILVERLIGHT
-            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
@@ -805,7 +799,7 @@ namespace NLog
             ConfigurationChanged?.Invoke(this, e);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
@@ -934,7 +928,7 @@ namespace NLog
 
             _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
             LoggerShutdown -= OnStopLogging;
             ConfigurationReloaded = null;   // Release event listeners
 #endif
@@ -966,7 +960,7 @@ namespace NLog
             {
                 bool attemptClose = true;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3 && !MONO
+#if !NETSTANDARD1_3 && !MONO
                 if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono && !PlatformDetector.IsUnix)
                 {
                     // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown
@@ -1189,12 +1183,8 @@ namespace NLog
             {
                 if (!optional)
                 {
-#if SILVERLIGHT
-                    throw new System.IO.FileNotFoundException($"Failed to load NLog LoggingConfiguration from file {actualConfigFile}");
-#else
                     var message = CreateFileNotFoundMessage(configFile);
                     throw new System.IO.FileNotFoundException(message, actualConfigFile);
-#endif
                 }
                 else
                 {

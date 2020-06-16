@@ -115,14 +115,12 @@ namespace NLog.Layouts
         [DefaultValue(false)]
         public bool IncludeMdc { get; set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeMdlc { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
@@ -218,12 +216,10 @@ namespace NLog.Layouts
                 ThreadAgnostic = false;
             }
 
-#if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 ThreadAgnostic = false;
             }
-#endif
 
             if (IncludeAllProperties)
             {
@@ -362,10 +358,8 @@ namespace NLog.Layouts
             if (IncludeMdc)
                 return true;
 
-#if !SILVERLIGHT
             if (IncludeMdlc)
                 return true;
-#endif
 
             if (IncludeAllProperties && logEvent.HasProperties)
                 return true;
@@ -387,7 +381,6 @@ namespace NLog.Layouts
                 }
             }
 
-#if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
@@ -399,7 +392,6 @@ namespace NLog.Layouts
                     AppendXmlPropertyValue(key, propertyValue, sb, orgLength);
                 }
             }
-#endif
 
             if (IncludeAllProperties && logEventInfo.HasProperties)
             {

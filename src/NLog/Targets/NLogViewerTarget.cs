@@ -128,7 +128,6 @@ namespace NLog.Targets
             set => Renderer.IncludeCallSite = value;
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
         /// </summary>
@@ -138,7 +137,6 @@ namespace NLog.Targets
             get => Renderer.IncludeSourceInfo;
             set => Renderer.IncludeSourceInfo = value;
         }
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsContext"/> dictionary contents.
@@ -160,7 +158,6 @@ namespace NLog.Targets
             set => Renderer.IncludeNdc = value;
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
@@ -190,7 +187,6 @@ namespace NLog.Targets
             get => Renderer.NdlcItemSeparator;
             set => Renderer.NdlcItemSeparator = value;
         }
-#endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events

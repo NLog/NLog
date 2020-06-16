@@ -145,12 +145,10 @@ namespace NLog.Internal
             {
                 regexOptions |= RegexOptions.IgnoreCase;
             }
-#if !SILVERLIGHT
             if (CompileRegex)
             {
                 regexOptions |= RegexOptions.Compiled;
             }
-#endif
             return regexOptions;
         }
 

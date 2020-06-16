@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
+#if !NETSTANDARD1_3
 #define SupportsMutex
 #endif
 
@@ -43,9 +42,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-#if !SILVERLIGHT
     using System.IO.Compression;
-#endif
     using System.Text;
     using System.Threading;
     using NLog.Common;
@@ -170,9 +167,7 @@ namespace NLog.Targets
             Encoding = System.Text.Encoding.UTF8;
             BufferSize = 32768;
             AutoFlush = true;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             FileAttributes = Win32FileAttributes.Normal;
-#endif
             LineEnding = LineEndingMode.Default;
             EnableFileDelete = true;
             OpenFileCacheTimeout = -1;
@@ -343,14 +338,12 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
-#endif
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
@@ -460,12 +453,19 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool NetworkWrites { get; set; }
 
+        private bool? _writeBom;
+
         /// <summary>
-        /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files
+        /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
+        ///
+        /// Defaults to true for UTF-16 and UTF-32
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
-        public bool WriteBom { get; set; }
+        public bool WriteBom
+        {
+            get => _writeBom ?? InitialValueBom(Encoding);
+            set => _writeBom = value;
+        }
 
         /// <summary>
         /// Gets or sets the number of times the write is appended on the file before NLog
@@ -776,7 +776,7 @@ namespace NLog.Targets
                     _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 if (mustWatchArchiving)
                 {
                     string fileNamePattern = GetArchiveFileNamePattern(fileName, logEvent);
@@ -1779,7 +1779,7 @@ namespace NLog.Targets
                     archivedAppender = TryCloseFileAppenderBeforeArchive(fileName, archiveFile);
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 // Closes all file handles if any archive operation has been detected by file-watcher
                 _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
@@ -2432,6 +2432,20 @@ namespace NLog.Targets
                 //retry.
                 ReplaceFileContent(fileName, bytes, encoding, false);
             }
+        }
+
+        private static bool InitialValueBom(Encoding encoding)
+        {
+            // Initial of true for UTF 16 and UTF 32
+            const int utf16 = 1200;
+            const int utf16Be = 1201;
+            const int utf32 = 12000;
+            const int urf32Be = 12001;
+
+            return encoding.CodePage == utf16
+                   || encoding.CodePage == utf16Be
+                   || encoding.CodePage == utf32
+                   || encoding.CodePage == urf32Be;
         }
 
         /// <summary>

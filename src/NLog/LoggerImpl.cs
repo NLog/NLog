@@ -113,15 +113,11 @@ namespace NLog
         {
             try
             {
-#if SILVERLIGHT
-                var stackTrace = new StackTrace();
-#else
                 bool includeSource = (stackTraceUsage & StackTraceUsage.WithFileNameAndLineNumber) != 0;
 #if NETSTANDARD1_5
                 var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { includeSource });
 #else
                 var stackTrace = new StackTrace(StackTraceSkipMethods, includeSource);
-#endif
 #endif
 
                 logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, null, loggerType);

@@ -84,12 +84,10 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         bool ForceManaged { get; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         Win32FileAttributes FileAttributes { get; }
-#endif
 
         /// <summary>
         /// Should archive mutex be created?

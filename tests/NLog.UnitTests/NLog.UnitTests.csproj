@@ -47,7 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="NSubstitute" Version="4.2.1" />
+    <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" Condition=" '$(monobuild)' == '' " />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
@@ -55,7 +55,7 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.5" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
@@ -80,7 +80,7 @@
     <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
     <Reference Include="Microsoft.CSharp" />
 
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
     <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />

@@ -32,7 +32,7 @@
 // 
 
 
-#if !SILVERLIGHT && (!NETSTANDARD || WindowsEventLogPackage)
+#if !NETSTANDARD || WindowsEventLogPackage
 
 namespace NLog.Targets
 {

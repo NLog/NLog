@@ -79,7 +79,6 @@ namespace NLog.LayoutRenderers
                     value = GC.GetTotalMemory(true);
                     break;
 
-#if !SILVERLIGHT
                 case GarbageCollectorProperty.CollectionCount0:
                     value = GC.CollectionCount(0);
                     break;
@@ -91,7 +90,6 @@ namespace NLog.LayoutRenderers
                 case GarbageCollectorProperty.CollectionCount2:
                     value = GC.CollectionCount(2);
                     break;
-#endif
 
                 case GarbageCollectorProperty.MaxGeneration:
                     value = GC.MaxGeneration;

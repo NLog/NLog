@@ -37,7 +37,6 @@ using System.Text;
 using NLog.Config;
 using NLog.Internal;
 
-#if !SILVERLIGHT
 namespace NLog.LayoutRenderers
 {
     /// <summary>
@@ -96,4 +95,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-#endif
