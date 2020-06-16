@@ -145,7 +145,7 @@ namespace NLog.Layouts
             }
             catch (Exception e)
             {
-                InternalLogger.Debug(e, "Conversion to type {0} failed. Value: {1}", Type, raw.ToString().Left(1000));
+                InternalLogger.Debug(e, "Conversion to type {0} failed. Value: '{1}'", Type, raw.ToString().Left(1000));
                 if (e.MustBeRethrown())
                 {
                     throw;
@@ -267,7 +267,7 @@ namespace NLog.Layouts
                     return true;
                 }
 
-                InternalLogger.Warn("rawvalue isn't a {0} ", TypeNamed);
+                InternalLogger.Warn("rawvalue isn't a {0}. Value: '{1}'", TypeNamed, raw?.ToString().Left(1000));
             }
 
             rawValue = defaultValue;
