@@ -107,7 +107,7 @@ namespace NLog.Layouts
 
         private bool TryCache(object raw)
         {
-            return ReferenceEquals(_cacheKey, raw) || _cacheKey.Equals(raw);
+            return _cacheKey != null && (ReferenceEquals(_cacheKey, raw) || _cacheKey.Equals(raw));
         }
 
         private void UpdateCache(object raw, T value, bool result)
