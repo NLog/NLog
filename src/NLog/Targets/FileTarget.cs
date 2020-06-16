@@ -466,7 +466,7 @@ namespace NLog.Targets
             set;
         }
 
-        private bool ShouldWriteBom(Encoding encoding)
+        internal bool ShouldWriteBom(Encoding encoding)
         {
             return WriteBom ?? InitialValueBom(encoding);
         }

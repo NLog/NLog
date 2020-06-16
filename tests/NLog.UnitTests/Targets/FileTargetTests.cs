@@ -220,15 +220,15 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
             SimpleFileWriteLogTest(logFile);
         }
-        
+
         [Fact]
         public void SimpleFileWithEncodingTest()
         {
             var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + ".log");
-            SimpleFileWriteLogTest(logFile, Encoding.UTF32);
+            SimpleFileWriteLogTest(logFile, true, Encoding.UTF32);
         }
 
-        private void SimpleFileWriteLogTest(string logFile, Encoding encoding = null)
+        private void SimpleFileWriteLogTest(string logFile, bool shouldWriteBom = false, Encoding encoding = null)
         {
             try
             {
@@ -251,7 +251,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null; // Flush
 
-                AssertFileContents(logFile, "header\nDebug aaa\nInfo bbb\nWarn ccc\nfooter\n", encoding);
+                AssertFileContents(logFile, "header\nDebug aaa\nInfo bbb\nWarn ccc\nfooter\n", encoding, shouldWriteBom);
             }
             finally
             {
@@ -3951,12 +3951,13 @@ namespace NLog.UnitTests.Targets
         public void TestInitialBomValue(string encodingName, bool expected)
         {
             var fileTarget = new FileTarget();
+            var encoding = Encoding.GetEncoding(encodingName);
 
             // Act
-            fileTarget.Encoding = Encoding.GetEncoding(encodingName);
+            var result = fileTarget.ShouldWriteBom(encoding);
 
             // Assert
-            Assert.Equal(expected, fileTarget.WriteBom);
+            Assert.Equal(expected, result);
         }
 
         [Fact]
