@@ -254,7 +254,7 @@ namespace NLog.Layouts
 
             if (_layout == null)
             {
-                rawValue = default(T);
+                rawValue = defaultValue;
                 return true;
             }
 
@@ -270,7 +270,7 @@ namespace NLog.Layouts
                 InternalLogger.Warn("rawvalue isn't a {0} ", TypeNamed);
             }
 
-            rawValue = default(T);
+            rawValue = defaultValue;
             return false;
         }
 
