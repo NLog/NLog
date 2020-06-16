@@ -453,7 +453,6 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool NetworkWrites { get; set; }
 
-        private bool? _writeBom;
 
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
@@ -461,10 +460,15 @@ namespace NLog.Targets
         /// Defaults to true for UTF-16 and UTF-32
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        public bool WriteBom
+        public bool? WriteBom
         {
-            get => _writeBom ?? InitialValueBom(Encoding);
-            set => _writeBom = value;
+            get;
+            set;
+        }
+
+        private bool ShouldWriteBom(Encoding encoding)
+        {
+            return WriteBom ?? InitialValueBom(encoding);
         }
 
         /// <summary>
@@ -2456,13 +2460,13 @@ namespace NLog.Targets
         private void WriteHeaderAndBom(BaseFileAppender appender, Encoding encoding)
         {
             //performance: cheap check before checking file info 
-            if (Header == null && !WriteBom) return;
+            if (Header == null && !ShouldWriteBom(encoding)) return;
 
             var length = appender.GetFileLength();
             //  Write header and BOM only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
-                if (WriteBom)
+                if (ShouldWriteBom(encoding))
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Write byte order mark from encoding={1}", Name, Encoding);
                     var preamble = encoding.GetPreamble();
