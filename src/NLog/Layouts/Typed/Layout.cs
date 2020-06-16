@@ -101,12 +101,34 @@ namespace NLog.Layouts
             return TryConvertTo(text, out value, defaultValue);
         }
 
+        private object _cacheKey = null;
+        private T _cacheValue = default(T);
+        private bool _cacheResult = false;
+
+        private bool TryCache(object raw)
+        {
+            return ReferenceEquals(_cacheKey, raw) || _cacheKey.Equals(raw);
+        }
+
+        private void UpdateCache(object raw, T value, bool result)
+        {
+            _cacheKey = raw;
+            _cacheValue = value;
+            _cacheResult = result;
+        }
+
         private bool TryConvertTo(object raw, out T value, T defaultValue)
         {
             if (raw == null)
             {
                 value = defaultValue;
                 return false;
+            }
+
+            if (TryCache(raw))
+            {
+                value = _cacheValue;
+                return _cacheResult;
             }
 
             var cultureInfo = CultureInfo.CurrentCulture;
@@ -117,6 +139,7 @@ namespace NLog.Layouts
                 if (convertedValue is T goodValue)
                 {
                     value = goodValue;
+                    UpdateCache(raw, value, true);
                     return true;
                 }
             }
@@ -130,6 +153,7 @@ namespace NLog.Layouts
             }
 
             value = defaultValue;
+            UpdateCache(raw, value, false);
             return false;
         }
 
