@@ -163,5 +163,21 @@ namespace NLog.Internal
             return string.Join(separator, values.ToArray());
 #endif
         }
+
+        /// <summary>
+        /// Left part, will be truncated if longer
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="maxLength">max length</param>
+        /// <returns></returns>
+        internal static string Left(this string text, int maxLength)
+        {
+            if (text.Length <= maxLength)
+            {
+                return text;
+            }
+
+            return text.Substring(0, maxLength);
+        }
     }
 }

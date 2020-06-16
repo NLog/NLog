@@ -122,7 +122,7 @@ namespace NLog.Layouts
             }
             catch (Exception e)
             {
-                InternalLogger.Debug(e, "Conversion to type {0} failed", Type);
+                InternalLogger.Debug(e, "Conversion to type {0} failed. Value: {1}", Type, raw.ToString().Left(1000));
                 if (e.MustBeRethrown())
                 {
                     throw;

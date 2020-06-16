@@ -103,5 +103,20 @@ namespace NLog.UnitTests.Internal
         {
             Assert.Throws<ArgumentNullException>(() => StringHelpers.Replace(input, search, replace, comparer));
         }
+
+        [Theory]
+        [InlineData("", 0, "")]
+        [InlineData("", 1, "")]
+        [InlineData("a", 1, "a")]
+        [InlineData("aa", 1, "a")]
+        [InlineData("aa", 3, "aa")]
+        public void LeftTest(string input, int maxLength, string expected)
+        {
+            // Act
+            var result = input.Left(maxLength);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
     }
 }
