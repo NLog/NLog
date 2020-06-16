@@ -277,9 +277,9 @@ namespace NLog.Layouts
 
         private bool TryConvertRawToValue(object raw, T defaultValue, out T value)
         {
-            if (raw is T i)
+            if (raw is T tValue)
             {
-                value = i;
+                value = tValue;
                 return true;
             }
 
