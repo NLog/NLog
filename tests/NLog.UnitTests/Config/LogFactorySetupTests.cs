@@ -35,6 +35,8 @@ using System;
 using System.IO;
 using NLog.Common;
 using NLog.Config;
+using NLog.Layouts;
+using NLog.LayoutRenderers;
 using NLog.Targets;
 using Xunit;
 
@@ -250,6 +252,114 @@ namespace NLog.UnitTests.Config
 
                 // Assert
                 Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;    // Restore global default
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsRegisterLayoutMethodThreadUnsafeTest()
+        {
+            try
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.None)));
+                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${mylayout}' />
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='debug'>
+                      </logger>
+                    </rules>
+                </nlog>", null, logFactory);
+                logFactory.GetLogger("Hello").Info("World");
+
+                logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+                var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
+                layout.Render(LogEventInfo.CreateNullEvent());
+
+                // Assert
+                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+                Assert.False(layout.ThreadAgnostic);
+                Assert.False(layout.ThreadSafe);
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;    // Restore global default
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsRegisterLayoutMethodThreadSafeTest()
+        {
+            try
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.ThreadSafe)));
+                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${mylayout}' />
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='debug'>
+                      </logger>
+                    </rules>
+                </nlog>", null, logFactory);
+                logFactory.GetLogger("Hello").Info("World");
+
+                logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+                var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
+                layout.Render(LogEventInfo.CreateNullEvent());
+
+                // Assert
+                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+                Assert.False(layout.ThreadAgnostic);
+                Assert.True(layout.ThreadSafe);
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;    // Restore global default
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsRegisterLayoutMethodThreadAgnosticTest()
+        {
+            try
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.ThreadAgnostic)));
+                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${mylayout}' />
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='debug'>
+                      </logger>
+                    </rules>
+                </nlog>", null, logFactory);
+                logFactory.GetLogger("Hello").Info("World");
+
+                logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+                var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
+                layout.Render(LogEventInfo.CreateNullEvent());
+
+                // Assert
+                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+                Assert.True(layout.ThreadAgnostic);
+                Assert.True(layout.ThreadSafe);
             }
             finally
             {
