@@ -92,6 +92,13 @@ namespace NLog.LayoutRenderers
         public bool CaptureStackTrace { get; set; } = true;
 
         /// <summary>
+        /// Gets or sets whether to render StackFrames in reverse order
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool Reverse { get; set; }
+
+        /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
         /// <value></value>
@@ -126,37 +133,66 @@ namespace NLog.LayoutRenderers
             }
 
             int endingFrame = logEvent.UserStackFrameNumber + SkipFrames;
+            StackFrameList stackFrameList = new StackFrameList(logEvent.StackTrace, startingFrame, endingFrame, Reverse);
+
             switch (Format)
             {
                 case StackTraceFormat.Raw:
-                    AppendRaw(builder, logEvent, startingFrame, endingFrame);
+                    AppendRaw(builder, stackFrameList);
                     break;
 
                 case StackTraceFormat.Flat:
-                    AppendFlat(builder, logEvent, startingFrame, endingFrame);
+                    AppendFlat(builder, stackFrameList);
                     break;
 
                 case StackTraceFormat.DetailedFlat:
-                    AppendDetailedFlat(builder, logEvent, startingFrame, endingFrame);
+                    AppendDetailedFlat(builder, stackFrameList);
                     break;
             }
         }
 
-        private static void AppendRaw(StringBuilder builder, LogEventInfo logEvent, int startingFrame, int endingFrame)
+        private struct StackFrameList
         {
-            for (int i = startingFrame; i >= endingFrame; --i)
+            private readonly StackTrace _stackTrace;
+            private readonly int _startingFrame;
+            private readonly int _endingFrame;
+            private readonly bool _reverse;
+
+            public int Count => _startingFrame - _endingFrame;
+
+            public StackFrame this[int index]
             {
-                StackFrame f = logEvent.StackTrace.GetFrame(i);
+                get
+                {
+                    int orderedIndex = _reverse ? _endingFrame + index + 1 : _startingFrame - index;
+                    return _stackTrace.GetFrame(orderedIndex);
+                }
+            }
+
+            public StackFrameList(StackTrace stackTrace, int startingFrame, int endingFrame, bool reverse)
+            {
+                _stackTrace = stackTrace;
+                _startingFrame = startingFrame;
+                _endingFrame = endingFrame - 1;
+                _reverse = reverse;
+            }
+        }
+
+        private static void AppendRaw(StringBuilder builder, StackFrameList stackFrameList)
+        {
+            for (int i = 0; i < stackFrameList.Count; ++i)
+            {
+                StackFrame f = stackFrameList[i];
                 builder.Append(f.ToString());
             }
         }
 
-        private void AppendFlat(StringBuilder builder, LogEventInfo logEvent, int startingFrame, int endingFrame)
+        private void AppendFlat(StringBuilder builder, StackFrameList stackFrameList)
         {
             bool first = true;
-            for (int i = startingFrame; i >= endingFrame; --i)
+            for (int i = 0; i < stackFrameList.Count; ++i)
             {
-                StackFrame f = logEvent.StackTrace.GetFrame(i);
+                StackFrame f = stackFrameList[i];
                 if (!first)
                 {
                     builder.Append(Separator);
@@ -184,12 +220,12 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendDetailedFlat(StringBuilder builder, LogEventInfo logEvent, int startingFrame, int endingFrame)
+        private void AppendDetailedFlat(StringBuilder builder, StackFrameList stackFrameList)
         {
             bool first = true;
-            for (int i = startingFrame; i >= endingFrame; --i)
+            for (int i = 0; i < stackFrameList.Count; ++i)
             {
-                StackFrame f = logEvent.StackTrace.GetFrame(i);
+                StackFrame f = stackFrameList[i];
                 var method = f.GetMethod();
                 if (method == null)
                 {
