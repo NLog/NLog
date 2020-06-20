@@ -49,7 +49,9 @@ namespace NLog.Internal
     /// </summary>
     internal class ObjectReflectionCache : IObjectTypeTransformer
     {
-        readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
+        private MruCache<Type, ObjectPropertyInfos> ObjectTypeCache => _objectTypeCache ?? System.Threading.Interlocked.CompareExchange(ref _objectTypeCache, new MruCache<Type, ObjectPropertyInfos>(10000), null) ?? _objectTypeCache;
+        private MruCache<Type, ObjectPropertyInfos> _objectTypeCache;
+
         private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = ConfigurationItemFactory.Default.ObjectTypeTransformer);
         private IObjectTypeTransformer _objectTypeTransformation;
 
@@ -88,7 +90,7 @@ namespace NLog.Internal
 
             var objectType = value.GetType();
             var propertyInfos = BuildObjectPropertyInfos(value, objectType);
-            _objectTypeCache.TryAddValue(objectType, propertyInfos);
+            ObjectTypeCache.TryAddValue(objectType, propertyInfos);
             return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
         }
 
@@ -110,13 +112,13 @@ namespace NLog.Internal
 #endif
 
             Type objectType = value.GetType();
-            if (_objectTypeCache.TryGetValue(objectType, out var propertyInfos))
+            if (ObjectTypeCache.TryGetValue(objectType, out var propertyInfos))
             {
                 if (!propertyInfos.HasFastLookup)
                 {
                     var fastLookup = BuildFastLookup(propertyInfos.Properties, false);
                     propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, fastLookup);
-                    _objectTypeCache.TryAddValue(objectType, propertyInfos);
+                    ObjectTypeCache.TryAddValue(objectType, propertyInfos);
                 }
                 objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
                 return true;
@@ -124,7 +126,7 @@ namespace NLog.Internal
 
             if (TryExtractExpandoObject(objectType, out propertyInfos))
             {
-                _objectTypeCache.TryAddValue(objectType, propertyInfos);
+                ObjectTypeCache.TryAddValue(objectType, propertyInfos);
                 objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
                 return true;
             }
