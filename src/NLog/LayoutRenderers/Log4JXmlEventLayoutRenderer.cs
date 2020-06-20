@@ -235,11 +235,6 @@ namespace NLog.LayoutRenderers
 
         internal IList<NLogViewerParameterInfo> Parameters { get; set; }
 
-        internal void AppendToStringBuilder(StringBuilder sb, LogEventInfo logEvent)
-        {
-            Append(sb, logEvent);
-        }
-
         /// <summary>
         /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>

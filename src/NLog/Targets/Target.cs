@@ -765,7 +765,7 @@ namespace NLog.Targets
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         protected T ResolveService<T>() where T : class
         {
-            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
         }
 
         /// <summary>

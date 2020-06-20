@@ -121,6 +121,30 @@ namespace NLog.UnitTests.Config
             AssertCycleException<TargetWithDirectCycleInjection>(logFactory);
         }
 
+        [Fact]
+        public void ResolveWithIndirectCycleShouldThrow()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act & Assert
+            AssertCycleException<TargetWithIndirectCycleInjection>(logFactory);
+        }
+
+        [Fact]
+        public void ResolveShouldCheckExternalServiceProvider()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            logFactory.ServiceRepository.RegisterSingleton<IServiceProvider>(new ExternalServiceRepository(t => t == typeof(IMisingDependencyClass) ? new MisingDependencyClass() : null));
+
+            // Act
+            var missingDependency = logFactory.ServiceRepository.ResolveService<IMisingDependencyClass>(false);
+
+            // Assert
+            Assert.NotNull(missingDependency);
+        }
+
         private static void AssertCycleException<T>(LogFactory logFactory) where T : class
         {
             var ex = Assert.Throws<NLogResolveException>(() => logFactory.ServiceRepository.ResolveService<T>());
@@ -224,6 +248,30 @@ namespace NLog.UnitTests.Config
             public ClassWithInjection(IJsonConverter jsonConverter)
             {
                 JsonConverter = jsonConverter;
+            }
+        }
+        private interface IMisingDependencyClass
+        {
+
+        }
+
+        private class MisingDependencyClass : IMisingDependencyClass
+        {
+
+        }
+
+        private class ExternalServiceRepository : IServiceProvider
+        {
+            Func<Type, object> _serviceResolver;
+
+            public ExternalServiceRepository(Func<Type, object> serviceResolver)
+            {
+                _serviceResolver = serviceResolver;
+            }
+
+            public object GetService(Type serviceType)
+            {
+                return _serviceResolver(serviceType);
             }
         }
     }

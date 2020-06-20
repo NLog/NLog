@@ -330,7 +330,7 @@ namespace NLog
 
         private void RefreshMessageFormatter()
         {
-            var messageFormatter = _serviceRepository.ResolveService<ILogMessageFormatter>();
+            var messageFormatter = _serviceRepository.GetService<ILogMessageFormatter>();
             ActiveMessageFormatter = messageFormatter.FormatMessage;
             if (messageFormatter is LogMessageTemplateFormatter templateFormatter)
             {

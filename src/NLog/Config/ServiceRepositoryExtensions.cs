@@ -40,14 +40,63 @@ namespace NLog.Config
 
     internal static class ServiceRepositoryExtensions
     {
-        internal static IServiceProvider GetServiceResolver(this LoggingConfiguration loggingConfiguration)
+        internal static ServiceRepository GetServiceProvider(this LoggingConfiguration loggingConfiguration)
         {
             return loggingConfiguration?.LogFactory?.ServiceRepository ?? LogManager.LogFactory.ServiceRepository;
         }
 
-        public static T ResolveService<T>(this IServiceProvider serviceProvider) where T : class
+        internal static T ResolveService<T>(this ServiceRepository serviceProvider, bool ignoreExternalProvider = true) where T : class
         {
-            return (serviceProvider ?? LogManager.LogFactory.ServiceRepository)?.GetService(typeof(T)) as T;
+            IServiceProvider externalServiceProvider;
+
+            try
+            {
+                return serviceProvider.GetService<T>();
+            }
+            catch (NLogResolveException)
+            {
+                if (ignoreExternalProvider)
+                    throw;
+
+                externalServiceProvider = serviceProvider.GetService<IServiceProvider>();
+                if (ReferenceEquals(externalServiceProvider, serviceProvider))
+                {
+                    throw;
+                }
+            }
+
+            // External IServiceProvider can be dangerous to use from Logging-library and can lead to deadlock or stackoverflow
+            // But during initialization of Logging-library then use of external IServiceProvider is probably safe
+            var service = externalServiceProvider.GetService<T>();
+            // Cache singleton so also available when logging-library has been fully initialized
+            serviceProvider.RegisterService(typeof(T), service);
+            return service;
+        }
+
+        internal static T GetService<T>(this IServiceProvider serviceProvider) where T : class
+        {
+            try
+            {
+                var service = (serviceProvider ?? LogManager.LogFactory.ServiceRepository).GetService(typeof(T)) as T;
+                if (service != null)
+                    return service;
+                
+                throw new NLogResolveException($"Service type {typeof(T)} cannot be resolved", typeof(T));
+            }
+            catch (NLogResolveException ex)
+            {
+                if (ex.TypeToResolve == typeof(T))
+                    throw;
+
+                throw new NLogResolveException(ex.Message, ex, typeof(T));
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
+                    throw;
+
+                throw new NLogResolveException(ex.Message, ex, typeof(T));
+            }
         }
 
         /// <summary>
@@ -114,6 +163,7 @@ namespace NLog.Config
 
         public static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository)
         {
+            serviceRepository.RegisterSingleton<IServiceProvider>(serviceRepository);
             serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
             serviceRepository.RegisterJsonConverter(new DefaultJsonSerializer(serviceRepository));
             serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
