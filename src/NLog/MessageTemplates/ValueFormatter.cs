@@ -63,7 +63,7 @@ namespace NLog.MessageTemplates
         private const int MaxValueLength = 512 * 1024;
         private const string LiteralFormatSymbol = "l";
 
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
 
         public const string FormatAsJson = "@";
         public const string FormatAsString = "$";

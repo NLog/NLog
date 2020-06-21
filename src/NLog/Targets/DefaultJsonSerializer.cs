@@ -48,7 +48,7 @@ namespace NLog.Targets
 #pragma warning restore 618
     {
         private readonly ObjectReflectionCache _objectReflectionCache = new ObjectReflectionCache();
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
         private readonly JsonSerializeOptions _exceptionSerializeOptions = new JsonSerializeOptions() { SanitizeDictionaryKeys = true };
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
