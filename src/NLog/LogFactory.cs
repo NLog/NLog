@@ -322,6 +322,8 @@ namespace NLog
 
         private void ServiceRepository_TypeRegistered(object sender, RepositoryUpdateEventArgs e)
         {
+            _config?.CheckForMissingServiceTypes(e.Type);
+
             if (e.Type == typeof(ILogMessageFormatter))
             {
                 RefreshMessageFormatter();
