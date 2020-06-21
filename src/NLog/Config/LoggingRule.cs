@@ -114,7 +114,7 @@ namespace NLog.Config
         /// <summary>
         /// Rule identifier to allow rule lookup
         /// </summary>
-        public string RuleName { get; }
+        public string RuleName { get; set; }
 
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
