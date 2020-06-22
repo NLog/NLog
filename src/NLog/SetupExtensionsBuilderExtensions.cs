@@ -37,6 +37,7 @@ namespace NLog
     using System.Reflection;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
     using NLog.LayoutRenderers;
     using NLog.Targets;
 
@@ -144,7 +145,31 @@ namespace NLog
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod)
         {
-            var layoutRenderer = new FuncLayoutRenderer(name, layoutMethod);
+            return RegisterLayoutRenderer(setupBuilder, name, layoutMethod, LayoutRenderOptions.None);
+        }
+
+        /// <summary>
+        /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
+        /// <param name="options">Options of the layout renderer.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options)
+        {
+            return RegisterLayoutRenderer(setupBuilder, name, (info, configuration) => layoutMethod(info), options);
+        }
+
+        /// <summary>
+        /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
+        /// <param name="options">Options of the layout renderer.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options)
+        {
+            FuncLayoutRenderer layoutRenderer = Layout.CreateFuncLayoutRenderer(layoutMethod, options, name);
             setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
             return setupBuilder;
         }
