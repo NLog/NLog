@@ -134,7 +134,7 @@ namespace NLog
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> layoutMethod)
         {
-            return RegisterLayoutRenderer(setupBuilder, name, (info, configuration) => layoutMethod(info), LayoutRenderOptions.None);
+            return RegisterLayoutRenderer(setupBuilder, name, (info, configuration) => layoutMethod(info));
         }
 
         /// <summary>
