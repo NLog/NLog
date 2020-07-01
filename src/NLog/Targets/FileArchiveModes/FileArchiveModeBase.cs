@@ -104,7 +104,14 @@ namespace NLog.Targets.FileArchiveModes
             {
                 var archiveFileInfo = GenerateArchiveFileInfo(fileInfo, archiveFileNameTemplate);
                 if (archiveFileInfo != null)
+                {
+                    InternalLogger.Trace("FileTarget: Found existing archive file: {0} [SeqNo={1} and FileTimeUtc={2:u}]", archiveFileInfo.FileName, archiveFileInfo.Sequence, archiveFileInfo.Date);
                     existingArchiveFiles.Add(archiveFileInfo);
+                }
+                else
+                {
+                    InternalLogger.Trace("FileTarget: Ignored existing archive file: {0}", fileInfo.FullName);
+                }
             }
 
             if (existingArchiveFiles.Count > 1)
