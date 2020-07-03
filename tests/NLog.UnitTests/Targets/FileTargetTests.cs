@@ -43,13 +43,13 @@ namespace NLog.UnitTests.Targets
     using System.Text;
     using System.Threading;
     using Mocks;
-    using NSubstitute;
-    using Xunit;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using NLog.Time;
+    using NSubstitute;
+    using Xunit;
 
     public abstract class FileTargetTests : NLogTestBase
     {
@@ -404,75 +404,125 @@ namespace NLog.UnitTests.Targets
         }
 
 #if !MONO
-        [Fact]
+        [Theory]
 #else
-        [Fact(Skip="Not supported on MONO on Travis, because of File birthtime not working")]
+        [Theory(Skip="Not supported on MONO on Travis, because of File birthtime not working")]
 #endif
-        public void DatedArchiveEveryMonth()
+        [InlineData(false, false, ArchiveNumberingMode.DateAndSequence)]
+        [InlineData(false, true, ArchiveNumberingMode.DateAndSequence)]
+        [InlineData(false, false, ArchiveNumberingMode.Sequence)]
+        [InlineData(false, true, ArchiveNumberingMode.Sequence)]
+        [InlineData(true, false, ArchiveNumberingMode.DateAndSequence)]
+        [InlineData(true, true, ArchiveNumberingMode.DateAndSequence)]
+        [InlineData(true, false, ArchiveNumberingMode.Sequence)]
+        [InlineData(true, true, ArchiveNumberingMode.Sequence)]
+        public void DatedArchiveEveryMonth(bool archiveSubFolder, bool maxArchiveDays, ArchiveNumberingMode archiveNumberingMode)
         {
             if (IsTravis())
             {
-                Console.WriteLine("[SKIP] FileTargetTests.DatedArchiveEveryMonth because we are running in Travis");
+                Console.WriteLine("[SKIP] FileTargetTests.DatedArchiveEveryMonth because SetCreationTime is not working on Travis");
                 return;
             }
 
             var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "AppName.log");
+            var archivePath = archiveSubFolder ? Path.Combine(tempPath, "Archive") : tempPath;
+
+            var defaultTimeSource = TimeSource.Current;
 
             try
             {
-                var fileTarget = WrapFileTarget(new FileTarget
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                if (timeSource.Time.Minute == 59)
                 {
-                    FileName = Path.Combine(tempPath, "AppName.log"),
-                    LineEnding = LineEndingMode.LF,
-                    Layout = "${message}",
-                    ArchiveNumbering = ArchiveNumberingMode.Date,
-                    ArchiveEvery = FileArchivePeriod.Month,
-                    ArchiveDateFormat = "yyyyMMdd",
-                    MaxArchiveFiles = 2,
-                });
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+                TimeSource.Current = timeSource;
 
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-                logger.Debug("aaa");
-
-                // Make the file 2 months old, and lets try again
-                var files = Directory.GetFiles(tempPath);
-                Assert.Single(files);
-                File.SetCreationTime(files[0], DateTime.Now.AddMonths(-2));
-
-                var fileTarget2 = WrapFileTarget(new FileTarget
+                // Generate 4 files with the following contents
+                //  000 - 6 Months Old (Deleted)
+                //  111 - 4 Months Old
+                //  222 - 2 Months Old
+                //  333 - Current
+                List<string> createdFiles = new List<string>();
+                List<string> currentFiles = new List<string>();
+                for (int i = 0; i < 4; ++i)
                 {
-                    FileName = Path.Combine(tempPath, "AppName.log"),
-                    LineEnding = LineEndingMode.LF,
-                    Layout = "${message}",
-                    ArchiveNumbering = ArchiveNumberingMode.Date,
-                    ArchiveEvery = FileArchivePeriod.Month,
-                    ArchiveDateFormat = "yyyyMMdd",
-                    MaxArchiveFiles = 2,
-                });
-
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget2, LogLevel.Debug);
-                logger.Debug("bbb");
-
-                // Verify the old file has been archived, but using the last-modified-time (And not file-creation-time)
-                files = Directory.GetFiles(tempPath);
-                Assert.Equal(2, files.Length);
-                string dateName = string.Empty;
-                foreach (var fileName in files)
-                {
-                    if (string.IsNullOrEmpty(dateName))
+                    if (i != 0)
                     {
-                        dateName = Path.GetFileName(fileName);
-                        dateName = dateName.Replace("AppName.", "");
-                        dateName = dateName.Replace(".log", "");
-                        dateName = dateName.Replace("log", "");
+                        // Make the files 2 months older, and lets try again
+                        for (int x = 0; x < createdFiles.Count; ++x)
+                        {
+                            var existingFile = createdFiles[x];
+                            var monthsOld = x == 0 ? 2 : ((i - x) * 2 + 2);
+                            File.SetCreationTime(existingFile, DateTime.Now.AddDays(-(32 * monthsOld)));
+                        }
+
+                        timeSource.AddToLocalTime(TimeSpan.FromDays(32 * 3));
+                        timeSource.AddToSystemTime(TimeSpan.FromDays(32 * 3));
                     }
+
+                    var fileTarget = WrapFileTarget(new FileTarget
+                    {
+                        FileName = logFile,
+                        LineEnding = LineEndingMode.LF,
+                        Encoding = Encoding.ASCII,
+                        Layout = "${message}",
+                        KeepFileOpen = i % 2 != 0,
+                        ArchiveFileName = archiveSubFolder ? Path.Combine(archivePath, "AppName.{#}.log") : (Layout)null,
+                        ArchiveNumbering = archiveNumberingMode,
+                        ArchiveEvery = FileArchivePeriod.Month,
+                        ArchiveDateFormat = "yyyyMMdd",
+                        MaxArchiveFiles = maxArchiveDays ? 0 : 2,
+                        MaxArchiveDays = maxArchiveDays ? 5 * 30 : 0
+                    });
+
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                    logger.Debug($"{i.ToString()}{i.ToString()}{i.ToString()}");
+                    LogManager.Configuration = null;    // Flush
+
+                    currentFiles = Directory.GetFiles(tempPath).ToList();
+                    if (archiveSubFolder && Directory.Exists(archivePath))
+                        currentFiles.AddRange(Directory.GetFiles(archivePath));
+
+                    string newFile = string.Empty;
+                    foreach (var fileName in currentFiles)
+                    {
+                        if (!createdFiles.Contains(fileName))
+                        {
+                            Assert.Empty(newFile);
+                            newFile = fileName;
+
+                            if (archiveNumberingMode == ArchiveNumberingMode.DateAndSequence && createdFiles.Count > 1)
+                            {
+                                // Verify it used the last-modified-time (And not file-creation-time)
+                                string dateName = string.Empty;
+                                dateName = Path.GetFileName(fileName);
+                                dateName = dateName.Replace("AppName.", "");
+                                dateName = dateName.Replace(".0.log", "");
+                                dateName = dateName.Replace("log", "");
+                                Assert.NotEmpty(dateName);
+                                Assert.Equal(timeSource.Time.Month, DateTime.ParseExact(dateName, "yyyyMMdd", null).Month);
+                            }
+                        }
+                    }
+
+                    Assert.False(string.IsNullOrEmpty(newFile), $"Missing new file. OldFileCount={createdFiles.Count}, NewFileCount={currentFiles.Count}");
+                    createdFiles.Add(newFile);
                 }
 
-                Assert.NotEmpty(dateName);
-                Assert.Equal(DateTime.Now.Month, DateTime.ParseExact(dateName, "yyyyMMdd", null).Month);
+                Assert.Equal(3, currentFiles.Count);
+                AssertFileContents(logFile, "333\n", Encoding.ASCII);
             }
             finally
             {
+                TimeSource.Current = defaultTimeSource;
+
+                if (Directory.Exists(archivePath))
+                    Directory.Delete(archivePath, true);
+
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1951,6 +2001,7 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
+                // Writing 16 times 10 bytes = 160 bytes = 3 files
                 for (var i = 0; i < 16; ++i)
                 {
                     logger.Debug("123456789");
@@ -1964,7 +2015,7 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContentsStartsWith(Path.Combine(archiveFolder, "0001.txt"), header, Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
             }
             finally
             {
@@ -2002,12 +2053,13 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
+                // Writing 16 times 10 bytes = 160 bytes = 3 files
                 for (var i = 0; i < 16; ++i)
                 {
                     logger.Debug("123456789");
                 }
 
-                LogManager.Configuration = null;
+                LogManager.Configuration = null;    // Flush
 
                 string expectedEnding = footer + ft.LineEnding.NewLineCharacters;
                 if (writeFooterOnArchivingOnly)
@@ -2016,7 +2068,7 @@ namespace NLog.UnitTests.Targets
                     AssertFileContentsEndsWith(logFile, expectedEnding, Encoding.UTF8);
                 AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0002.txt"), expectedEnding, Encoding.UTF8);
                 AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0001.txt"), expectedEnding, Encoding.UTF8);
-                Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
             }
             finally
             {
@@ -3420,12 +3472,9 @@ namespace NLog.UnitTests.Targets
                             archiveFileName='" + archivePath + @"/{#}.log' 
                             archiveDateFormat='" + dateFormat + @"' 
                             archiveNumbering='Date'/>
-     
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='fileAll'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='fileAll' />
                     </rules>
                 </nlog>");
 
