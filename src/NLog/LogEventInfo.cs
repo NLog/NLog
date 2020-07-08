@@ -541,12 +541,7 @@ namespace NLog
 
             lock (_layoutCache)
             {
-                if (_layoutCache.Count == 0)
-                {
-                    value = null;
-                    return false;
-                }
-
+                // dictionary is always non-empty when created
                 return _layoutCache.TryGetValue(layout, out value);
             }
         }

@@ -80,7 +80,6 @@ namespace NLog.Internal
         private IList<MessageTemplateParameter> _messageProperties;
         private DictionaryCollection _keyCollection;
         private DictionaryCollection _valueCollection;
-        private IDictionary _eventContextAdapter;
 
         /// <summary>
         /// Injects the list of message-template-parameter into the IDictionary-interface
@@ -95,8 +94,6 @@ namespace NLog.Internal
         }
 
         private bool IsEmpty => (_eventProperties == null || _eventProperties.Count == 0) && (_messageProperties == null || _messageProperties.Count == 0);
-
-        public IDictionary EventContext => _eventContextAdapter ?? (_eventContextAdapter = new DictionaryAdapter<object, object>(this));
 
         private Dictionary<object, PropertyValue> EventProperties
         {
