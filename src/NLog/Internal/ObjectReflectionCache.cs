@@ -189,13 +189,16 @@ namespace NLog.Internal
                 return true;
 
             if (typeof(MemberInfo).IsAssignableFrom(objectType))
-                return true;
+                return true;    // Skip serializing all types in the application
 
             if (typeof(Assembly).IsAssignableFrom(objectType))
-                return true;
+                return true;    // Skip serializing all types in the application
 
             if (typeof(Module).IsAssignableFrom(objectType))
-                return true;
+                return true;    // Skip serializing all types in the application
+
+            if (typeof(System.IO.Stream).IsAssignableFrom(objectType))
+                return true;    // Skip serializing properties that often throws exceptions
 
             return false;
         }
