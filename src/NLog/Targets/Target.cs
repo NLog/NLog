@@ -61,6 +61,8 @@ namespace NLog.Targets
         /// </summary>
         internal StackTraceUsage StackTraceUsage { get; private set; }
 
+        internal Exception InitializeException => _initializeException;
+
         /// <summary>
         /// Gets or sets the name of the target.
         /// </summary>
@@ -433,15 +435,30 @@ namespace NLog.Targets
                             FindAllLayouts();
                         }
                     }
-                    catch (Exception exception)
+                    catch (NLogResolveException exception)
                     {
-                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
-
+                        // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
-
+                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
                         if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        // Target is now in disabled state, and cannot be used for writing LogEvents
+                        _initializeException = exception;
+                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
+                        if (ExceptionMustBeRethrown(exception))
+                        {
+                            throw;
+                        }
+
+                        var logFactory = LoggingConfiguration?.LogFactory ?? LogManager.LogFactory;
+                        if ((logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
+                        {
+                            throw new NLogConfigurationException($"Error during initialization of target {this}", exception);
                         }
                     }
                     finally
@@ -765,7 +782,7 @@ namespace NLog.Targets
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         protected T ResolveService<T>() where T : class
         {
-            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
         }
 
         /// <summary>

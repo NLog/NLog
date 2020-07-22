@@ -199,7 +199,7 @@ namespace NLog.Layouts
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         public int MaxRecursionLimit { get; set; } = 1;
 
-        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceResolver()));
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache _objectReflectionCache;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private const int MaxXmlLength = 512 * 1024;

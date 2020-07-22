@@ -38,6 +38,7 @@ namespace NLog.Config
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
+    using System.Reflection;
     using System.Threading;
     using JetBrains.Annotations;
 
@@ -57,6 +58,8 @@ namespace NLog.Config
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
         private List<object> _configItems = new List<object>();
+
+        private bool _missingServiceTypes;
 
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
@@ -174,30 +177,8 @@ namespace NLog.Config
         {
             get
             {
-                var configTargets = _configItems.OfType<Target>();
-                return configTargets.Concat(GetAllTargetsThreadSafe()).Distinct(TargetNameComparer).ToList().AsReadOnly();
-            }
-        }
-
-        /// <summary>
-        /// Compare <see cref="Target"/> objects based on their name.
-        /// </summary>
-        /// <remarks>This property is use to cache the comparer object.</remarks>
-        private static readonly IEqualityComparer<Target> TargetNameComparer = new TargetNameEqualityComparer();
-
-        /// <summary>
-        /// Defines methods to support the comparison of <see cref="Target"/> objects for equality based on their name.
-        /// </summary>
-        private class TargetNameEqualityComparer : IEqualityComparer<Target>
-        {
-            public bool Equals(Target x, Target y)
-            {
-                return string.Equals(x.Name, y.Name);
-            }
-
-            public int GetHashCode(Target obj)
-            {
-                return (obj.Name != null ? obj.Name.GetHashCode() : 0);
+                var configTargets = new HashSet<Target>(_configItems.OfType<Target>().Concat(GetAllTargetsThreadSafe()), SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
+                return configTargets.ToList().AsReadOnly();
             }
         }
 
@@ -525,8 +506,6 @@ namespace NLog.Config
 
             if (removedTargets.Count > 0)
             {
-                ValidateConfig();   // Refresh internal list of configurable items (_configItems)
-
                 // Refresh active logger-objects, so they stop using the removed target
                 //  - Can be called even if no LoggingConfiguration is loaded (will not trigger a config load)
                 LogFactory.ReconfigExistingLoggers();
@@ -777,13 +756,54 @@ namespace NLog.Config
                     {
                         throw;
                     }
+                }
 
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw new NLogConfigurationException($"Error during initialization of {initialize}", exception);
-                    }
+                if (initialize is Target target && target.InitializeException is NLogResolveException)
+                {
+                    _missingServiceTypes = true;
                 }
             }
+        }
+
+        internal void CheckForMissingServiceTypes(Type serviceType)
+        {
+            if (_missingServiceTypes)
+            {
+                _missingServiceTypes = false;
+
+                var allTargets = AllTargets;
+                foreach (var target in allTargets)
+                {
+                    if (target.InitializeException is NLogResolveException resolveException)
+                    {
+                        _missingServiceTypes = true;
+
+                        if (typeof(IServiceProvider).IsAssignableFrom(serviceType) || IsMissingServiceType(resolveException, serviceType))
+                        {
+                            target.Close();
+                        }
+                    }
+                }
+
+                if (_missingServiceTypes)
+                {
+                    InitializeAll();
+                }
+            }
+        }
+
+        private static bool IsMissingServiceType(NLogResolveException resolveException, Type serviceType)
+        {
+            if (resolveException.TypeToResolve.IsAssignableFrom(serviceType))
+                return true;
+
+            resolveException = resolveException.InnerException as NLogResolveException;
+            if (resolveException != null)
+            {
+                return IsMissingServiceType(resolveException, serviceType);
+            }
+
+            return false;
         }
 
         private List<IInstallable> GetInstallableItems()

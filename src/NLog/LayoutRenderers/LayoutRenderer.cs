@@ -291,7 +291,7 @@ namespace NLog.LayoutRenderers
         /// <returns></returns>
         protected T Resolve<T>() where T : class
         {
-            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(_isInitialized);
         }
     }
 }

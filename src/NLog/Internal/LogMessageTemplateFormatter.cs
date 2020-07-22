@@ -46,7 +46,7 @@ namespace NLog.Internal
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
         private readonly IServiceProvider _serviceProvider;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _serviceProvider.ResolveService<IValueFormatter>());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _serviceProvider.GetService<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>

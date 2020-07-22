@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
-        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceResolver()));
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache _objectReflectionCache;
         private ObjectPropertyPath _objectPropertyPath;
 

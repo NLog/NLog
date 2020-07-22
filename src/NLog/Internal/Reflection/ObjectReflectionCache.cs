@@ -51,7 +51,7 @@ namespace NLog.Internal
     {
         private readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
         private readonly IServiceProvider _serviceProvider;
-        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceProvider?.ResolveService<IObjectTypeTransformer>() ?? this);
+        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = _serviceProvider?.GetService<IObjectTypeTransformer>() ?? this);
         private IObjectTypeTransformer _objectTypeTransformation;
 
         public ObjectReflectionCache(IServiceProvider serviceProvider)

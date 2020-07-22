@@ -111,6 +111,9 @@ namespace NLog.Config
 
             if (objectResolver == null && compiledConstructor == null)
             {
+                if (itemType.IsAbstract())
+                    throw new NLogResolveException("Instance of class must be registered", itemType);
+
                 // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
                 var newCompiledConstructor = CreateCompiledConstructor(itemType);
 
