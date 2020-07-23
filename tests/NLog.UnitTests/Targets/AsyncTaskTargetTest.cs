@@ -53,6 +53,8 @@ namespace NLog.UnitTests.Targets
             internal int WriteTasks => _writeTasks;
             protected int _writeTasks;
 
+            public Type RequiredDependency { get; set; }
+
             public bool WaitForWriteEvent(int timeoutMilliseconds = 1000)
             {
                 if (_writeEvent.WaitOne(TimeSpan.FromMilliseconds(timeoutMilliseconds)))
@@ -61,6 +63,25 @@ namespace NLog.UnitTests.Targets
                     return true;
                 }
                 return false;
+            }
+
+            protected override void InitializeTarget()
+            {
+                base.InitializeTarget();
+
+                if (RequiredDependency != null)
+                {
+                    try
+                    {
+                        var resolveServiceMethod = typeof(Target).GetMethod(nameof(ResolveService), System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                        resolveServiceMethod = resolveServiceMethod.MakeGenericMethod(new[] { RequiredDependency });
+                        resolveServiceMethod.Invoke(this, NLog.Internal.ArrayHelper.Empty<object>());
+                    }
+                    catch (System.Reflection.TargetInvocationException ex)
+                    {
+                        throw ex.InnerException;
+                    }
+                }
             }
 
             protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken token)
@@ -500,6 +521,40 @@ namespace NLog.UnitTests.Targets
             logger.Error("Goodbye World");
             Assert.True(asyncTarget.WaitForWriteEvent());
             Assert.NotEmpty(asyncTarget.Logs);
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_MissingDependency_EnqueueLogEvents()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+                logFactory.ThrowConfigExceptions = true;
+                var logConfig = new LoggingConfiguration(logFactory);
+                var asyncTarget = new AsyncTaskTestTarget() { Name = "asynctarget", RequiredDependency = typeof(IMisingDependencyClass) };
+                logConfig.AddRuleForAllLevels(asyncTarget);
+                logFactory.Configuration = logConfig;
+                var logger = logFactory.GetLogger(nameof(AsyncTaskTarget_MissingDependency_EnqueueLogEvents));
+
+                // Act
+                logger.Info("Hello World");
+                Assert.False(asyncTarget.WaitForWriteEvent(50));
+                logFactory.ServiceRepository.RegisterService(typeof(IMisingDependencyClass), new MisingDependencyClass());
+
+                // Assert
+                Assert.True(asyncTarget.WaitForWriteEvent());
+            }
+        }
+
+        private interface IMisingDependencyClass
+        {
+
+        }
+
+        private class MisingDependencyClass : IMisingDependencyClass
+        {
+
         }
     }
 #endif

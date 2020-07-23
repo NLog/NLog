@@ -769,14 +769,14 @@ namespace NLog.Config
         {
             if (_missingServiceTypes)
             {
-                _missingServiceTypes = false;
+                bool missingServiceTypes = false;
 
                 var allTargets = AllTargets;
                 foreach (var target in allTargets)
                 {
                     if (target.InitializeException is NLogResolveException resolveException)
                     {
-                        _missingServiceTypes = true;
+                        missingServiceTypes = true;
 
                         if (typeof(IServiceProvider).IsAssignableFrom(serviceType) || IsMissingServiceType(resolveException, serviceType))
                         {
@@ -785,7 +785,9 @@ namespace NLog.Config
                     }
                 }
 
-                if (_missingServiceTypes)
+                _missingServiceTypes = missingServiceTypes;
+
+                if (missingServiceTypes)
                 {
                     InitializeAll();
                 }

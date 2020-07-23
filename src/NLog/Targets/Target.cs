@@ -301,7 +301,7 @@ namespace NLog.Targets
             {
                 lock (SyncRoot)
                 {
-                    logEvent.Continuation(CreateInitException());
+                    WriteFailedNotInitialized(logEvent, _initializeException);
                 }
                 return;
             }
@@ -364,7 +364,7 @@ namespace NLog.Targets
                 {
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        logEvents[i].Continuation(CreateInitException());
+                        WriteFailedNotInitialized(logEvents[i], _initializeException);
                     }
                 }
                 return;
@@ -407,6 +407,15 @@ namespace NLog.Targets
                     wrappedEvents[i].Continuation(exception);
                 }
             }
+        }
+
+        /// <summary>
+        /// LogEvent is written to target, but target failed to succesfully initialize
+        /// </summary>
+        protected virtual void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
+        {
+            var initializeFailedException = new NLogRuntimeException($"Target {this} failed to initialize.", initializeException);
+            logEvent.Continuation(initializeFailedException);
         }
 
         /// <summary>
@@ -664,11 +673,6 @@ namespace NLog.Targets
 
                 Write(logEvents);
             }
-        }
-
-        private Exception CreateInitException()
-        {
-            return new NLogRuntimeException($"Target {this} failed to initialize.", _initializeException);
         }
 
         /// <summary>
