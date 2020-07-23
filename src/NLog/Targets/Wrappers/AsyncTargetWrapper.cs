@@ -83,6 +83,7 @@ namespace NLog.Targets.Wrappers
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
         private event EventHandler<LogEventDroppedEventArgs> _logEventDroppedEvent;
         private event EventHandler<LogEventQueueGrowEventArgs> _eventQueueGrowEvent;
+        private bool _missingServiceTypes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -294,6 +295,11 @@ namespace NLog.Targets.Wrappers
             if (BatchSize > QueueLimit && TimeToSleepBetweenBatches <= 1)
             {
                 BatchSize = QueueLimit;     // Avoid too much throttling 
+            }
+
+            if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
+            {
+                _missingServiceTypes = true;
             }
 
             _requestQueue.Clear();
@@ -541,6 +547,17 @@ namespace NLog.Targets.Wrappers
             {
                 InternalLogger.Error("AsyncWrapper(Name={0}): WrappedTarget is NULL", Name);
                 return 0;
+            }
+
+            if (_missingServiceTypes)
+            {
+                if (WrappedTarget.InitializeException is Config.NLogResolveException)
+                {
+                    return 0;
+                }
+
+                _missingServiceTypes = false;
+                InternalLogger.Debug("AsyncWrapper(Name={0}): WrappedTarget has resolved missing dependency", Name);
             }
 
             int count = 0;

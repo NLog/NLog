@@ -51,12 +51,13 @@ namespace NLog.Targets
         private readonly Timer _taskTimeoutTimer;
         private CancellationTokenSource _cancelTokenSource;
         AsyncRequestQueueBase _requestQueue;
-        private readonly Action _taskCancelledToken;
+        private readonly Action _taskCancelledTokenReInit;
         private readonly Action<Task, object> _taskCompletion;
         private Task _previousTask;
         private readonly Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
         private System.Tuple<List<LogEventInfo>, List<AsyncContinuation>> _reusableLogEvents;
+        private bool _missingServiceTypes;
 
         /// <summary>
         /// How many milliseconds to delay the actual write operation to optimize for batching
@@ -138,7 +139,7 @@ namespace NLog.Targets
             RetryDelayMilliseconds = 500;
 
             _taskCompletion = TaskCompletion;
-            _taskCancelledToken = TaskCancelledToken;
+            _taskCancelledTokenReInit = TaskCancelledTokenReInit;
             _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
 
 #if NETSTANDARD2_0
@@ -152,6 +153,8 @@ namespace NLog.Targets
 #endif
 
             _lazyWriterTimer = new Timer((s) => TaskStartNext(null, false), null, Timeout.Infinite, Timeout.Infinite);
+
+            TaskCancelledTokenReInit();
         }
 
         /// <summary>
@@ -159,8 +162,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            _cancelTokenSource = new CancellationTokenSource();
-            _cancelTokenSource.Token.Register(_taskCancelledToken);
+            _missingServiceTypes = false;
+
+            TaskCancelledTokenReInit();
 
             base.InitializeTarget();
 
@@ -257,10 +261,26 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Block for override. Instead override <see cref="WriteAsyncTask(LogEventInfo, CancellationToken)"/>
+        /// </summary>
+        protected override sealed void Write(LogEventInfo logEvent)
+        {
+            base.Write(logEvent);
+        }
+
+        /// <summary>
+        /// Block for override. Instead override <see cref="WriteAsyncTask(IList{LogEventInfo}, CancellationToken)"/>
+        /// </summary>
+        protected override sealed void Write(IList<AsyncLogEventInfo> logEvents)
+        {
+            base.Write(logEvents);
+        }
+
+        /// <summary>
         /// Schedules the LogEventInfo for async writing
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(AsyncLogEventInfo logEvent)
+        protected override sealed void Write(AsyncLogEventInfo logEvent)
         {
             if (_cancelTokenSource.IsCancellationRequested)
             {
@@ -298,7 +318,7 @@ namespace NLog.Targets
         /// Write to queue without locking <see cref="Target.SyncRoot"/> 
         /// </summary>
         /// <param name="logEvent"></param>
-        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        protected override sealed void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             try
             {
@@ -312,6 +332,32 @@ namespace NLog.Targets
                 }
 
                 logEvent.Continuation(exception);
+            }
+        }
+
+        /// <summary>
+        /// Block for override. Instead override <see cref="WriteAsyncTask(IList{LogEventInfo}, CancellationToken)"/>
+        /// </summary>
+        protected override sealed void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            base.WriteAsyncThreadSafe(logEvents);
+        }
+
+        /// <summary>
+        /// LogEvent is written to target, but target failed to succesfully initialize
+        /// 
+        /// Enqueue logevent for later processing when target failed to initialize because of unresolved service dependency.
+        /// </summary>
+        protected override void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
+        {
+            if (initializeException is Config.NLogResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
+            {
+                _missingServiceTypes = true;
+                Write(logEvent);
+            }
+            else
+            {
+                base.WriteFailedNotInitialized(logEvent, initializeException);
             }
         }
 
@@ -375,6 +421,13 @@ namespace NLog.Targets
                     if (CheckOtherTask(previousTask))
                     {
                         break;  // Other Task is already running
+                    }
+
+                    if (_missingServiceTypes)
+                    {
+                        _previousTask = null;
+                        _lazyWriterTimer.Change(50, Timeout.Infinite);
+                        break;  // Throttle using Timer, since we are not ready yet
                     }
 
                     if (!IsInitialized)
@@ -728,10 +781,10 @@ namespace NLog.Targets
             return actualException;
         }
 
-        private void TaskCancelledToken()
+        private void TaskCancelledTokenReInit()
         {
             _cancelTokenSource = new CancellationTokenSource();
-            _cancelTokenSource.Token.Register(_taskCancelledToken);
+            _cancelTokenSource.Token.Register(_taskCancelledTokenReInit);
         }
     }
 #endif
