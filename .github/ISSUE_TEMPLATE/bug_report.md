@@ -4,11 +4,9 @@ about: Create a report to help us improve
 
 ---
 
-Hi! Thanks for reporting this feature/bug/question! 
+Hi! Thanks for reporting this bug! 
 
 Please keep / fill in the relevant info from this template so that we can help you as best as possible.
-
-QUESTIONS are preferred on StackOverflow. You could expect a faster response there (but do include all the info below). Use the tag "nlog" https://stackoverflow.com/questions/ask
 
 For .NET Core users, please check the platform support: https://github.com/NLog/NLog/wiki/platform-support
 
