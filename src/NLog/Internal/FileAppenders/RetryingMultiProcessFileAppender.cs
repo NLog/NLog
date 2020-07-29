@@ -96,7 +96,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-                return fileInfo.GetCreationTimeUtc();
+                return fileInfo.LookupValidFileCreationTimeUtc();
             }
             return null;
         }
