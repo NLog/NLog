@@ -1,6 +1,6 @@
 ---
 name: Question
-about: Logging not working? Unclear stuff? Can't find options?
+about: Logging not working? Unclear stuff? Can't find options? Stackoverflow is recommend! 
 
 ---
 
