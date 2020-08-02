@@ -140,7 +140,7 @@ namespace NLog.MessageTemplates
 
         private void ParseTextPart()
         {
-            _literalLength = (short)SkipUntil(TextDelimiters, required: false);
+            _literalLength = SkipUntil(TextDelimiters, required: false);
         }
 
         private void ParseOpenBracketPart()
@@ -195,7 +195,7 @@ namespace NLog.MessageTemplates
             }
 
             int literalSkip = _position - start + (type == CaptureType.Normal ? 1 : 2);     // Account for skipped '{', '{$' or '{@'
-            _current = new LiteralHole(new Literal { Print = _literalLength, Skip = (short)literalSkip }, new Hole(
+            _current = new LiteralHole(new Literal { Print = _literalLength, Skip = literalSkip }, new Hole(
                 name,
                 format,
                 type,

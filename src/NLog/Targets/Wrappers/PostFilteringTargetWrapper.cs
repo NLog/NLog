@@ -151,7 +151,7 @@ namespace NLog.Targets.Wrappers
             else
             {
                 InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
-                var resultBuffer = logEvents.Filter(resultFilter, ApplyFilter);
+                var resultBuffer = logEvents.Filter(resultFilter, (logEvent, filter) => ApplyFilter(logEvent, filter));
                 InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {

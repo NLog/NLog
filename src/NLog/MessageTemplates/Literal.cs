@@ -43,6 +43,6 @@ namespace NLog.MessageTemplates
         public int Print;
         /// <summary>Number of characters to skip in the original template at the current position.</summary>
         /// <remarks>0 is a special value that mean: 1 escaped char, no hole. It can also happen last when the template ends with a literal.</remarks>
-        public short Skip;
+        public int Skip;
     }
 }
