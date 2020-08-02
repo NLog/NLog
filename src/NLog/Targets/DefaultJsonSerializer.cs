@@ -46,7 +46,7 @@ namespace NLog.Targets
     public class DefaultJsonSerializer : IJsonConverter
     {
         private readonly ObjectReflectionCache _objectReflectionCache;
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxJsonLength = 512 * 1024;

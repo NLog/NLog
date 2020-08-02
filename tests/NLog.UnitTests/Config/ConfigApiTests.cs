@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Config
         public void AddTarget_testname()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget("name1", new FileTarget {Name = "File"});
+            config.AddTarget("name1", new FileTarget { Name = "File" });
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Single(allTargets);
@@ -96,7 +96,7 @@ namespace NLog.UnitTests.Config
         public void AddTarget_testname_param()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget("name1", new FileTarget {Name = "name2"});
+            config.AddTarget("name1", new FileTarget { Name = "name2" });
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Single(allTargets);
@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Config
         public void AddTarget_testname_fromtarget()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget {Name = "name2"});
+            config.AddTarget(new FileTarget { Name = "name2" });
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Single(allTargets);
@@ -122,7 +122,7 @@ namespace NLog.UnitTests.Config
         public void AddRule_min_max()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget {Name = "File"});
+            config.AddTarget(new FileTarget { Name = "File" });
             config.AddRule(LogLevel.Info, LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Config
         public void AddRule_all()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget {Name = "File"});
+            config.AddTarget(new FileTarget { Name = "File" });
             config.AddRuleForAllLevels("File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
@@ -164,7 +164,7 @@ namespace NLog.UnitTests.Config
         public void AddRule_onelevel()
         {
             var config = new LoggingConfiguration();
-            config.AddTarget(new FileTarget {Name = "File"});
+            config.AddTarget(new FileTarget { Name = "File" });
             config.AddRuleForOneLevel(LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
@@ -185,11 +185,11 @@ namespace NLog.UnitTests.Config
         public void AddRule_with_target()
         {
             var config = new LoggingConfiguration();
-            var fileTarget = new FileTarget {Name = "File"};
+            var fileTarget = new FileTarget { Name = "File" };
             config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
-            config.AddTarget(new FileTarget {Name = "File"});
+            config.AddTarget(new FileTarget { Name = "File" });
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
             Assert.Single(allTargets);
@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Config
         public void CheckAllTargets()
         {
             var config = new LoggingConfiguration();
-            var fileTarget = new FileTarget {Name = "File", FileName = "file"};
+            var fileTarget = new FileTarget { Name = "File", FileName = "file" };
             config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
 
             config.AddTarget(fileTarget);
@@ -226,7 +226,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LogRuleToStringTest_min()
         {
-            var target = new FileTarget {Name = "file1"};
+            var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", LogLevel.Error, target);
             var s = loggingRule.ToString();
             Assert.Equal("logNamePattern: (:All) levels: [ Error Fatal ] appendTo: [ file1 ]", s);
@@ -235,7 +235,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LogRuleToStringTest_minAndMax()
         {
-            var target = new FileTarget {Name = "file1"};
+            var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", LogLevel.Debug, LogLevel.Error, target);
             var s = loggingRule.ToString();
             Assert.Equal("logNamePattern: (:All) levels: [ Debug Info Warn Error ] appendTo: [ file1 ]", s);
@@ -244,7 +244,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LogRuleToStringTest_none()
         {
-            var target = new FileTarget {Name = "file1"};
+            var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", target);
             var s = loggingRule.ToString();
             Assert.Equal("logNamePattern: (:All) levels: [ ] appendTo: [ file1 ]", s);
@@ -262,7 +262,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LogRuleToStringTest_filter()
         {
-            var target = new FileTarget {Name = "file1"};
+            var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("namespace.comp1", target);
             var s = loggingRule.ToString();
             Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 ]", s);
@@ -271,8 +271,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LogRuleToStringTest_multiple_targets()
         {
-            var target = new FileTarget {Name = "file1"};
-            var target2 = new FileTarget {Name = "file2"};
+            var target = new FileTarget { Name = "file1" };
+            var target2 = new FileTarget { Name = "file2" };
             var loggingRule = new LoggingRule("namespace.comp1", target);
             loggingRule.Targets.Add(target2);
             var s = loggingRule.ToString();
@@ -330,6 +330,26 @@ namespace NLog.UnitTests.Config
             ruleLookup = config.FindRuleByName("hello");
             Assert.Null(ruleLookup);
             Assert.False(config.RemoveRuleByName("hello"));
+        }
+
+        [Fact]
+        public void FindRuleByName_AfterRename_FindNewOneAndDontFindOld()
+        {
+            // Arrange
+            var config = new LoggingConfiguration();
+            var rule = new LoggingRule("hello");
+            config.LoggingRules.Add(rule);
+
+            // Act
+            var foundRule1 = config.FindRuleByName("hello");
+            foundRule1.RuleName = "world";
+            var foundRule2 = config.FindRuleByName("hello");
+            var foundRule3 = config.FindRuleByName("world");
+
+            // Assert
+            Assert.Null(foundRule2);
+            Assert.NotNull(foundRule1);
+            Assert.Same(foundRule1, foundRule3);
         }
 
         [Fact]

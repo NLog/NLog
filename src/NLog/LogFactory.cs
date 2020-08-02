@@ -1003,7 +1003,10 @@ namespace NLog
             }
         }
 
-        internal void Shutdown()
+        /// <summary>
+        /// Dispose all targets, and shutdown logging.
+        /// </summary>
+        public void Shutdown()
         {
             InternalLogger.Info("Shutdown() called. Logger closing...");
             if (!_isDisposing && _configLoaded)
