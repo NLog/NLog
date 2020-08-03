@@ -1824,7 +1824,7 @@ namespace NLog.Targets
                     }
                     else if (!IsSimpleKeepFileOpen)
                     {
-                        InternalLogger.Debug("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
+                        InternalLogger.Debug("FileTarget(Name={0}): Archive mutex not available for file '{1}'", Name, archiveFile);
                     }
                 }
                 catch (AbandonedMutexException)
@@ -1878,7 +1878,7 @@ namespace NLog.Targets
                 var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
                 if (string.IsNullOrEmpty(validatedArchiveFile))
                 {
-                    InternalLogger.Trace("FileTarget(Name={0}): Archive already performed for file '{1}'", Name, archiveFile);
+                    InternalLogger.Debug("FileTarget(Name={0}): Skip archiving '{1}' because no longer necessary", Name, archiveFile);
                     if (archiveFile != fileName)
                         _initializedFiles.Remove(fileName);
                     _initializedFiles.Remove(archiveFile);
@@ -2000,6 +2000,7 @@ namespace NLog.Targets
             var shouldArchive = (fileLength.Value + upcomingWriteSize) > ArchiveAboveSize;
             if (shouldArchive)
             {
+                InternalLogger.Debug("FileTarget(Name={0}): Start archiving '{1}' because FileSize={2} + {3} is larger than ArchiveAboveSize={4}", Name, archiveFileName, fileLength.Value, upcomingWriteSize, ArchiveAboveSize);
                 return archiveFileName;    // Will re-check if archive is still necessary after flush/close file
             }
 
@@ -2067,6 +2068,7 @@ namespace NLog.Targets
                 var shouldArchive = fileCreated != logEventRecorded;
                 if (shouldArchive)
                 {
+                    InternalLogger.Debug("FileTarget(Name={0}): Start archiving '{1}' because FileCreatedTime='{2}' is older than now '{3}' using ArchiveEvery='{4}'", Name, archiveFileName, fileCreated, logEventRecorded, formatString);
                     return archiveFileName;    // Will re-check if archive is still necessary after flush/close file
                 }
             }
