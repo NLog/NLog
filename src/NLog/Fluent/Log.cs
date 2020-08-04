@@ -30,13 +30,15 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-using System;
-using System.IO;
-using System.Runtime.CompilerServices;
 
 namespace NLog.Fluent
 {
 #if NET4_5
+    using System;
+    using System.IO;
+    using System.Runtime.CompilerServices;
+    using NLog.Common;
+
     /// <summary>
     /// A global logging class using caller info to find the logger.
     /// </summary>
@@ -117,14 +119,26 @@ namespace NLog.Fluent
 
         private static LogBuilder Create(LogLevel logLevel, string callerFilePath)
         {
-            string name = Path.GetFileNameWithoutExtension(callerFilePath ?? string.Empty);
-            var logger = string.IsNullOrWhiteSpace(name) ? _logger : LogManager.GetLogger(name);
-
+            var logger = GetLogger(callerFilePath);
             var builder = new LogBuilder(logger, logLevel);
             if (callerFilePath != null)
                 builder.Property("CallerFilePath", callerFilePath);
 
             return builder;
+        }
+
+        private static ILogger GetLogger(string callerFilePath)
+        {
+            try
+            {
+                string name = Path.GetFileNameWithoutExtension(callerFilePath ?? string.Empty);
+                return string.IsNullOrWhiteSpace(name) ? _logger : LogManager.GetLogger(name);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Error when converting CallerFilePath to logger name.");
+                return _logger;
+            }
         }
     }
 #endif
