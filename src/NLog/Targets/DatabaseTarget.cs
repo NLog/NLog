@@ -1094,19 +1094,19 @@ namespace NLog.Targets
         /// <param name="parameterInfo">Parameter configuration info.</param>
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
-            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture);
+            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture, parameterInfo.AllowDbNull);
         }
 
         private object GetDatabaseObjectPropertyValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
         {
-            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture);
+            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture, false);
         }
 
-        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider)
+        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull)
         {
             if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string))
             {
-                return RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
+                return RenderStringValue(logEvent, valueLayout, allowDbNull);
             }
 
             formatProvider = formatProvider ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
@@ -1120,7 +1120,7 @@ namespace NLog.Targets
                         return rawValue;
                     }
 
-                    return PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType);
+                    return PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
                 }
                 catch (Exception ex)
                 {
@@ -1139,10 +1139,10 @@ namespace NLog.Targets
                 string parameterValue = RenderLogEvent(valueLayout, logEvent);
                 if (string.IsNullOrEmpty(parameterValue))
                 {
-                    return CreateDefaultValue(valueType);
+                    return CreateDefaultValue(valueType, allowDbNull);
                 }
 
-                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? DBNull.Value;
+                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
             }
             catch (Exception ex)
             {
@@ -1154,18 +1154,28 @@ namespace NLog.Targets
                 if (ExceptionMustBeRethrown(ex))
                     throw;
 
-                return CreateDefaultValue(valueType);
+                return CreateDefaultValue(valueType, allowDbNull);
             }
+        }
+
+        private object RenderStringValue(LogEventInfo logEvent, Layout valueLayout, bool allowDbNull)
+        {
+            var parameterValue = RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
+            if (allowDbNull && string.IsNullOrEmpty(parameterValue))
+            {
+                return DBNull.Value;
+            }
+            return parameterValue;
         }
 
         /// <summary>
         /// Create Default Value of Type
         /// </summary>
-        /// <param name="dbParameterType"></param>
-        /// <returns></returns>
-        private static object CreateDefaultValue(Type dbParameterType)
+        private static object CreateDefaultValue(Type dbParameterType, bool allowDbNull)
         {
-            if (dbParameterType == typeof(string))
+            if (allowDbNull)
+                return DBNull.Value;
+            else if (dbParameterType == typeof(string))
                 return string.Empty;
             else if (dbParameterType.IsValueType())
                 return Activator.CreateInstance(dbParameterType);

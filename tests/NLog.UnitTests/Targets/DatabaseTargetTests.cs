@@ -591,7 +591,7 @@ Dispose()
         [InlineData("${counter}", DbType.Int32, 1)]
         [InlineData("${counter}", DbType.Int64, (long)1)]
         [InlineData("${counter:norawvalue=true}", DbType.Int16, (short)1)] //fallback
-        [InlineData("${counter}", DbType.VarNumeric, 1, true)]
+        [InlineData("${counter}", DbType.VarNumeric, 1, false, true)]
         [InlineData("${counter}", DbType.AnsiString, "1")]
         [InlineData("${level}", DbType.AnsiString, "Debug")]
         [InlineData("${level}", DbType.Int32, 1)]
@@ -607,7 +607,13 @@ Dispose()
         [InlineData("${event-properties:almostAsIntProp}", DbType.Int32, 124)]
         [InlineData("${event-properties:almostAsIntProp}", DbType.Int64, (long)124)]
         [InlineData("${event-properties:almostAsIntProp}", DbType.AnsiString, " 124 ")]
-        public void GetParameterValueTest(string layout, DbType dbtype, object expected, bool convertToDecimal = false)
+        [InlineData("${event-properties:NullRawValue}", DbType.AnsiString, "")]
+        [InlineData("${event-properties:NullawValue}", DbType.Int32, 0)]
+        [InlineData("${event-properties:NullRawValue}", DbType.AnsiString, null, true)]
+        [InlineData("${event-properties:NullRawValue}", DbType.Int32, null, true)]
+        [InlineData("", DbType.AnsiString, null, true)]
+        [InlineData("", DbType.Int32, null, true)]
+        public void GetParameterValueTest(string layout, DbType dbtype, object expected, bool allowDbNull = false, bool convertToDecimal = false)
         {
             // Arrange
             var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", "message 2");
@@ -622,6 +628,7 @@ Dispose()
                 DbType = dbtype.ToString(),
                 Layout = layout,
                 Name = parameterName,
+                AllowDbNull = allowDbNull,
             };
             databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
 
@@ -635,7 +642,7 @@ Dispose()
                 expected = (decimal)(int)expected;
             }
 
-            Assert.Equal(expected, result);
+            Assert.Equal(expected ?? DBNull.Value, result);
         }
 
         [Theory]
