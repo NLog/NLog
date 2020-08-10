@@ -70,14 +70,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
+        public Log4JXmlEventLayoutRenderer() : this(LogFactory.DefaultAppEnvironment)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
+        internal Log4JXmlEventLayoutRenderer(IAppEnvironment appEnvironment)
         {
 
 #if NETSTANDARD1_3
@@ -86,8 +86,8 @@ namespace NLog.LayoutRenderers
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})",
-                appDomain.FriendlyName,
-                LogFactory.DefaultAppEnvironment.CurrentProcessId);
+                appEnvironment.AppDomain.FriendlyName,
+                appEnvironment.CurrentProcessId);
 #endif
 
             Parameters = new List<NLogViewerParameterInfo>();
