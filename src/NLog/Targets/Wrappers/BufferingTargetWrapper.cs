@@ -35,7 +35,6 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using System.Runtime.InteropServices;
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
@@ -47,7 +46,6 @@ namespace NLog.Targets.Wrappers
     [Target("BufferingWrapper", IsWrapper = true)]
     public class BufferingTargetWrapper : WrapperTargetBase
     {
-        private const int dequeueAllBatch = -1;
         private AsyncRequestQueue _buffer;
         private Timer _flushTimer;
         private readonly object _lockObject = new object();
@@ -212,7 +210,7 @@ namespace NLog.Targets.Wrappers
         {
             PrecalculateVolatileLayouts(logEvent.LogEvent);
 
-            var firstEventInQueue =_buffer.Enqueue(logEvent);
+            var firstEventInQueue = _buffer.Enqueue(logEvent);
             if (_buffer.RequestCount >= BufferSize)
             {
                 // If the OverflowAction action is set to "Discard", the buffer will automatically
@@ -281,7 +279,7 @@ namespace NLog.Targets.Wrappers
 
             lock (_lockObject)
             {
-                AsyncLogEventInfo[] logEvents = _buffer.DequeueBatch(dequeueAllBatch);
+                AsyncLogEventInfo[] logEvents = _buffer.DequeueBatch(int.MaxValue);
                 if (logEvents.Length > 0)
                 {
                     if (reason != null)
