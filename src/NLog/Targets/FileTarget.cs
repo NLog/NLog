@@ -2063,8 +2063,9 @@ namespace NLog.Targets
             if (fileCreateTime != logEventTime)
             {
                 string formatString = GetArchiveDateFormatString(string.Empty);
+                var validLogEventTime = EnsureValidLogEventTimeStamp(logEvent.TimeStamp, creationTimeSource.Value);
                 string fileCreated = creationTimeSource.Value.ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventRecorded = validLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
                 var shouldArchive = fileCreated != logEventRecorded;
                 if (shouldArchive)
                 {
@@ -2298,10 +2299,31 @@ namespace NLog.Targets
             }
             else if (lastTime != now)
             {
+                now = EnsureValidLogEventTimeStamp(now, lastTime);
                 _initializedFiles[fileName] = now;
             }
 
             return lastTime;
+        }
+
+        DateTime EnsureValidLogEventTimeStamp(DateTime logEventTimeStamp, DateTime previousTimeStamp)
+        {
+            // Truncating using DateTime.Date is "expensive", so first check if it look like it is from the past
+            if (logEventTimeStamp < previousTimeStamp && logEventTimeStamp.Date < previousTimeStamp.Date)
+            {
+                // Received LogEvent from the past when comparing to the previous timestamp
+                var currentTime = TimeSource.Current.Time;
+                if (logEventTimeStamp.Date < currentTime.AddMinutes(-1).Date)
+                {
+                    // It is not because the machine-time has changed. Probably a LogEvent from the past
+                    if (currentTime.Date < previousTimeStamp.Date)
+                        return currentTime; // Previous timestamp is from the future. We choose machine-time
+                    else
+                        return previousTimeStamp;
+                }
+            }
+
+            return logEventTimeStamp;
         }
 
         /// <summary>
