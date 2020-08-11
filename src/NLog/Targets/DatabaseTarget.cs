@@ -1104,33 +1104,28 @@ namespace NLog.Targets
 
         private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull)
         {
-            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string))
+            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string) && !allowDbNull)
             {
-                return RenderStringValue(logEvent, valueLayout, allowDbNull);
+                return RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
             }
 
             formatProvider = formatProvider ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
 
-            if (valueLayout.TryGetRawValue(logEvent, out var rawValue))
+            try
             {
-                try
+                if (TryRenderObjectRawValue(logEvent, valueLayout, valueType, valueFormat, formatProvider, allowDbNull, out var rawValue))
                 {
-                    if (ReferenceEquals(rawValue, DBNull.Value))
-                    {
-                        return rawValue;
-                    }
-
-                    return PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
+                    return rawValue;
                 }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
-                        throw;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
 
-                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
-                    if (ExceptionMustBeRethrown(ex))
-                        throw;
-                }
+                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
+                if (ExceptionMustBeRethrown(ex))
+                    throw;
             }
 
             try
@@ -1158,14 +1153,31 @@ namespace NLog.Targets
             }
         }
 
-        private object RenderStringValue(LogEventInfo logEvent, Layout valueLayout, bool allowDbNull)
+        private bool TryRenderObjectRawValue(LogEventInfo logEvent, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull, out object rawValue)
         {
-            var parameterValue = RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
-            if (allowDbNull && string.IsNullOrEmpty(parameterValue))
+            if (valueLayout.TryGetRawValue(logEvent, out rawValue))
             {
-                return DBNull.Value;
+                if (ReferenceEquals(rawValue, DBNull.Value))
+                {
+                    return true;
+                }
+
+                if (rawValue == null)
+                {
+                    rawValue = CreateDefaultValue(valueType, allowDbNull);
+                    return true;
+                }
+
+                if (valueType == typeof(string))
+                {
+                    return rawValue is string;
+                }
+
+                rawValue = PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
+                return true;
             }
-            return parameterValue;
+
+            return false;
         }
 
         /// <summary>

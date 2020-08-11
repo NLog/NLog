@@ -607,18 +607,23 @@ Dispose()
         [InlineData("${event-properties:almostAsIntProp}", DbType.Int32, 124)]
         [InlineData("${event-properties:almostAsIntProp}", DbType.Int64, (long)124)]
         [InlineData("${event-properties:almostAsIntProp}", DbType.AnsiString, " 124 ")]
+        [InlineData("${event-properties:emptyprop}", DbType.AnsiString, "")]
+        [InlineData("${event-properties:emptyprop}", DbType.AnsiString, "", true)]
         [InlineData("${event-properties:NullRawValue}", DbType.AnsiString, "")]
-        [InlineData("${event-properties:NullawValue}", DbType.Int32, 0)]
+        [InlineData("${event-properties:NullRawValue}", DbType.Int32, 0)]
         [InlineData("${event-properties:NullRawValue}", DbType.AnsiString, null, true)]
         [InlineData("${event-properties:NullRawValue}", DbType.Int32, null, true)]
+        [InlineData("${event-properties:NullRawValue}", DbType.Guid, null, true)]
         [InlineData("", DbType.AnsiString, null, true)]
         [InlineData("", DbType.Int32, null, true)]
+        [InlineData("", DbType.Guid, null, true)]
         public void GetParameterValueTest(string layout, DbType dbtype, object expected, bool allowDbNull = false, bool convertToDecimal = false)
         {
             // Arrange
             var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", "message 2");
             logEventInfo.Properties["intprop"] = 123;
             logEventInfo.Properties["boolprop"] = true;
+            logEventInfo.Properties["emptyprop"] = "";
             logEventInfo.Properties["almostAsIntProp"] = " 124 ";
             logEventInfo.Properties["dateprop"] = new DateTime(2018, 12, 30, 13, 34, 56);
 
@@ -647,7 +652,7 @@ Dispose()
 
         [Theory]
         [MemberData(nameof(ConvertFromStringTestCases))]
-        public void GetParameterValueFromStringTest(string value, DbType dbType, object expected, string format = null, CultureInfo cultureInfo = null)
+        public void GetParameterValueFromStringTest(string value, DbType dbType, object expected, string format = null, CultureInfo cultureInfo = null, bool? allowDbNull = null)
         {
 
             var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -662,6 +667,7 @@ Dispose()
                     Format = format,
                     DbType = dbType.ToString(),
                     Culture = cultureInfo,
+                    AllowDbNull = allowDbNull ?? false,
                 };
                 databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
 
@@ -711,7 +717,10 @@ Dispose()
             yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
             yield return new object[] { "${event-properties:userid}", DbType.Int32, 0 };
             yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", DbType.DateTime, DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified) };
-            yield return new object[] { "${shortdate:universalTime=true}", DbType.DateTime, DateTime.UtcNow.Date };
+            yield return new object[] { "${shortdate:universalTime=true}", DbType.DateTime, DateTime.UtcNow.Date, null, null, true };
+            yield return new object[] { "${shortdate:universalTime=true}", DbType.DateTime, DateTime.UtcNow.Date, null, null, false };
+            yield return new object[] { "${shortdate:universalTime=true}", DbType.String, DateTime.UtcNow.Date.ToString("yyyy-MM-dd"), null, null, true };
+            yield return new object[] { "${shortdate:universalTime=true}", DbType.String, DateTime.UtcNow.Date.ToString("yyyy-MM-dd"), null, null, false };
         }
 
         [Fact]
