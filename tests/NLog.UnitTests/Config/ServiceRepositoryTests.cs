@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using JetBrains.Annotations;
-using NLog.Config;
 
 namespace NLog.UnitTests.Config
 {
+    using System;
     using System.Text;
+    using JetBrains.Annotations;
+    using NLog.Config;
     using NLog.Targets;
     using Xunit;
 
@@ -119,6 +119,74 @@ namespace NLog.UnitTests.Config
 
             // Act & Assert
             AssertCycleException<TargetWithDirectCycleInjection>(logFactory);
+        }
+
+        [Fact]
+        public void ResolveWithIndirectCycleShouldThrow()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act & Assert
+            AssertCycleException<TargetWithIndirectCycleInjection>(logFactory);
+        }
+
+        [Fact]
+        public void HandleDelayedInjectDependenciesFailure()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+                logFactory.ThrowConfigExceptions = true;
+                var logConfig = new LoggingConfiguration(logFactory);
+                var logTarget = new TargetWithMissingDependency() { Name = "NeedDependency" };
+                logConfig.AddRuleForAllLevels(logTarget);
+
+                // Act
+                logFactory.Configuration = logConfig;
+                logFactory.GetLogger("Test").Info("Test");
+
+                // Assert
+                Assert.Null(logTarget.LastLogEvent);
+            }
+        }
+
+        [Fact]
+        public void HandleDelayedInjectDependenciesSuccess()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+                logFactory.ThrowConfigExceptions = true;
+                var logConfig = new LoggingConfiguration(logFactory);
+                var logTarget = new TargetWithMissingDependency() { Name = "NeedDependency" };
+                logConfig.AddRuleForAllLevels(logTarget);
+
+                // Act
+                logFactory.Configuration = logConfig;
+                logFactory.GetLogger("Test").Info("Test");
+                logFactory.ServiceRepository.RegisterSingleton<IMisingDependencyClass>(new MisingDependencyClass());
+                logFactory.GetLogger("Test").Info("Test Again");
+
+                // Assert
+                Assert.NotNull(logTarget.LastLogEvent);
+            }
+        }
+
+        [Fact]
+        public void ResolveShouldCheckExternalServiceProvider()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            logFactory.ServiceRepository.RegisterSingleton<IServiceProvider>(new ExternalServiceRepository(t => t == typeof(IMisingDependencyClass) ? new MisingDependencyClass() : null));
+
+            // Act
+            var missingDependency = logFactory.ServiceRepository.ResolveService<IMisingDependencyClass>(false);
+
+            // Assert
+            Assert.NotNull(missingDependency);
         }
 
         private static void AssertCycleException<T>(LogFactory logFactory) where T : class
@@ -224,6 +292,47 @@ namespace NLog.UnitTests.Config
             public ClassWithInjection(IJsonConverter jsonConverter)
             {
                 JsonConverter = jsonConverter;
+            }
+        }
+
+        private class TargetWithMissingDependency : Target
+        {
+            public LogEventInfo LastLogEvent { get; private set; }
+
+            protected override void InitializeTarget()
+            {
+                var wantedDependency = ResolveService<IMisingDependencyClass>();
+                base.InitializeTarget();
+            }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                LastLogEvent = logEvent;
+            }
+        }
+
+        private interface IMisingDependencyClass
+        {
+
+        }
+
+        private class MisingDependencyClass : IMisingDependencyClass
+        {
+
+        }
+
+        private class ExternalServiceRepository : IServiceProvider
+        {
+            Func<Type, object> _serviceResolver;
+
+            public ExternalServiceRepository(Func<Type, object> serviceResolver)
+            {
+                _serviceResolver = serviceResolver;
+            }
+
+            public object GetService(Type serviceType)
+            {
+                return _serviceResolver(serviceType);
             }
         }
     }

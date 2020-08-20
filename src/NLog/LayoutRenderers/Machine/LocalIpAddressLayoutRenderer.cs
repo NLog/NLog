@@ -163,12 +163,6 @@ namespace NLog.LayoutRenderers
             if (currentScore == 0)
                 return 0;
 
-            if (!networkAddress.IsDnsEligible)
-                currentScore += 1;
-
-            if (networkAddress.PrefixOrigin == PrefixOrigin.Dhcp)
-                currentScore += 1;
-
             var gatewayAddresses = ipProperties.GatewayAddresses;
             if (gatewayAddresses?.Count > 0)
             {
@@ -177,6 +171,19 @@ namespace NLog.LayoutRenderers
                     if (!IsLoopbackAddressValue(gateway.Address))
                     {
                         currentScore += 3;
+                        break;
+                    }
+                }
+            }
+
+            var dnsAddresses = ipProperties.DnsAddresses;
+            if (dnsAddresses?.Count > 0)
+            {
+                foreach (var dns in dnsAddresses)
+                {
+                    if (!IsLoopbackAddressValue(dns))
+                    {
+                        currentScore += 1;
                         break;
                     }
                 }

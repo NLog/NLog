@@ -70,14 +70,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
+        public Log4JXmlEventLayoutRenderer() : this(LogFactory.DefaultAppEnvironment)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
+        internal Log4JXmlEventLayoutRenderer(IAppEnvironment appEnvironment)
         {
 
 #if NETSTANDARD1_3
@@ -86,8 +86,8 @@ namespace NLog.LayoutRenderers
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})",
-                appDomain.FriendlyName,
-                LogFactory.DefaultAppEnvironment.CurrentProcessId);
+                appEnvironment.AppDomain.FriendlyName,
+                appEnvironment.CurrentProcessId);
 #endif
 
             Parameters = new List<NLogViewerParameterInfo>();
@@ -234,11 +234,6 @@ namespace NLog.LayoutRenderers
         StackTraceUsage IUsesStackTrace.StackTraceUsage => (IncludeCallSite || IncludeSourceInfo) ? (StackTraceUsageUtils.GetStackTraceUsage(IncludeSourceInfo, 0, true) | StackTraceUsage.WithCallSiteClassName) : StackTraceUsage.None;
 
         internal IList<NLogViewerParameterInfo> Parameters { get; set; }
-
-        internal void AppendToStringBuilder(StringBuilder sb, LogEventInfo logEvent)
-        {
-            Append(sb, logEvent);
-        }
 
         /// <summary>
         /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.

@@ -63,6 +63,8 @@ namespace NLog.Targets
         /// </summary>
         internal StackTraceUsage StackTraceUsage { get; private set; }
 
+        internal Exception InitializeException => _initializeException;
+
         /// <summary>
         /// Gets or sets the name of the target.
         /// </summary>
@@ -301,7 +303,7 @@ namespace NLog.Targets
             {
                 lock (SyncRoot)
                 {
-                    logEvent.Continuation(CreateInitException());
+                    WriteFailedNotInitialized(logEvent, _initializeException);
                 }
                 return;
             }
@@ -364,7 +366,7 @@ namespace NLog.Targets
                 {
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        logEvents[i].Continuation(CreateInitException());
+                        WriteFailedNotInitialized(logEvents[i], _initializeException);
                     }
                 }
                 return;
@@ -410,6 +412,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// LogEvent is written to target, but target failed to succesfully initialize
+        /// </summary>
+        protected virtual void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
+        {
+            var initializeFailedException = new NLogRuntimeException($"Target {this} failed to initialize.", initializeException);
+            logEvent.Continuation(initializeFailedException);
+        }
+
+        /// <summary>
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
@@ -435,15 +446,30 @@ namespace NLog.Targets
                             FindAllLayouts();
                         }
                     }
-                    catch (Exception exception)
+                    catch (NLogResolveException exception)
                     {
-                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
-
+                        // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
-
+                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
                         if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        // Target is now in disabled state, and cannot be used for writing LogEvents
+                        _initializeException = exception;
+                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
+                        if (ExceptionMustBeRethrown(exception))
+                        {
+                            throw;
+                        }
+
+                        var logFactory = LoggingConfiguration?.LogFactory ?? LogManager.LogFactory;
+                        if ((logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
+                        {
+                            throw new NLogConfigurationException($"Error during initialization of target {this}", exception);
                         }
                     }
                     finally
@@ -651,11 +677,6 @@ namespace NLog.Targets
             }
         }
 
-        private Exception CreateInitException()
-        {
-            return new NLogRuntimeException($"Target {this} failed to initialize.", _initializeException);
-        }
-
         /// <summary>
         /// Merges (copies) the event context properties from any event info object stored in
         /// parameters of the given event info object.
@@ -812,7 +833,7 @@ namespace NLog.Targets
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         protected T ResolveService<T>() where T : class
         {
-            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
         }
 
         /// <summary>

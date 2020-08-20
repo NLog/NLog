@@ -68,7 +68,7 @@ namespace NLog
             if (transformer == null)
                 throw new ArgumentNullException(nameof(transformer));
 
-            var original = setupBuilder.LogFactory.ServiceRepository.ResolveService<IObjectTypeTransformer>();
+            var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
             setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation<T>(transformer, original));
             return setupBuilder;
         }
@@ -83,7 +83,7 @@ namespace NLog
             if (transformer == null)
                 throw new ArgumentNullException(nameof(transformer));
 
-            var original = setupBuilder.LogFactory.ServiceRepository.ResolveService<IObjectTypeTransformer>();
+            var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
             setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation(objectType, transformer, original));
             return setupBuilder;
         }

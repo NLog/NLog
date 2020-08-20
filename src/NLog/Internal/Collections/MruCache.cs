@@ -51,7 +51,7 @@ namespace NLog.Internal
         public MruCache(int maxCapacity)
         {
             _maxCapacity = maxCapacity;
-            _dictionary = new Dictionary<TKey, MruCacheItem>(_maxCapacity);
+            _dictionary = new Dictionary<TKey, MruCacheItem>(_maxCapacity / 4);
             _currentVersion = 1;
         }
 

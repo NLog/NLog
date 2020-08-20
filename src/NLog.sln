@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog", "NLog\NLog.csproj", "{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}"
 EndProject
@@ -32,6 +32,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{194AB4BD-C817-4C59-A86C-49D89B8C3A64}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManuallyLoadedExtension", "..\tests\ManuallyLoadedExtension\ManuallyLoadedExtension.csproj", "{B9714BBB-A9F6-429B-ACC1-961C16643057}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC57BA91-8E5E-4EB6-A218-397AD9CD8B02}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

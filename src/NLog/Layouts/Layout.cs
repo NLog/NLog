@@ -157,18 +157,18 @@ namespace NLog.Layouts
 #else
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
 #endif
-            var layoutRenderer = CreateFuncLayoutRenderer(layoutMethod, options, name);
+            var layoutRenderer = CreateFuncLayoutRenderer((l, c) => layoutMethod(l), options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
         }
 
-        private static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options, string name)
+        internal static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options, string name)
         {
             if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
-                return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, (l, c) => layoutMethod(l));
+                return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, layoutMethod);
             else if ((options & LayoutRenderOptions.ThreadSafe) != 0)
-                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l));
+                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, layoutMethod);
             else
-                return new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
+                return new LayoutRenderers.FuncLayoutRenderer(name, layoutMethod);
         }
 
         /// <summary>
@@ -469,7 +469,7 @@ namespace NLog.Layouts
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur</remarks>
         protected T ResolveService<T>() where T : class
         {
-            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
         }
     }
 }

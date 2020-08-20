@@ -56,6 +56,21 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void RenderStackTraceReversed()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace:reverse=true}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            RenderMe("I am:");
+            AssertDebugLastMessageContains("debug", "StackTraceRendererTests.RenderMe => StackTraceRendererTests.RenderStackTraceReversed => ");
+        }
+
+        [Fact]
         public void RenderStackTraceNoCaptureStackTrace()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -136,6 +151,36 @@ namespace NLog.UnitTests.LayoutRenderers
 #if !MONO
             AssertDebugLastMessageContains("debug", "StackTraceRendererTests.cs");
 #endif
+
+            string debugLastMessage = GetDebugLastMessage("debug");
+            int index0 = debugLastMessage.IndexOf("RenderStackTraceReversed_raw at offset ");
+            int index1 = debugLastMessage.IndexOf("RenderMe at offset ");
+            Assert.True(index0 < index1);
+        }
+
+        [Fact]
+        public void RenderStackTraceReversed_raw()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace:format=Raw:reverse=true}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            RenderMe("I am:");
+
+            AssertDebugLastMessageContains("debug", "RenderMe at offset ");
+            AssertDebugLastMessageContains("debug", "RenderStackTraceReversed_raw at offset ");
+#if !MONO
+            AssertDebugLastMessageContains("debug", "StackTraceRendererTests.cs");
+#endif
+
+            string debugLastMessage = GetDebugLastMessage("debug");
+            int index0 = debugLastMessage.IndexOf("RenderMe at offset ");
+            int index1 = debugLastMessage.IndexOf("RenderStackTraceReversed_raw at offset ");
+            Assert.True(index0 < index1);
         }
 
         [Fact]
@@ -151,6 +196,21 @@ namespace NLog.UnitTests.LayoutRenderers
 
             RenderMe("I am:");
             AssertDebugLastMessageContains("debug", " => [Void RenderStackTrace_DetailedFlat()] => [Void RenderMe(System.String)]");
+        }
+
+        [Fact]
+        public void RenderStackTraceReversed_DetailedFlat()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace:format=DetailedFlat:reverse=true}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            RenderMe("I am:");
+            AssertDebugLastMessageContains("debug", "[Void RenderMe(System.String)] => [Void RenderStackTraceReversed_DetailedFlat()] => ");
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
