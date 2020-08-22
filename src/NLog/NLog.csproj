@@ -13,6 +13,7 @@ NLog supports traditional logging, structured logging and the combination of bot
 Supported platforms:
 
 - .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
+- .NET Core 1, 2 and 3
 - .NET Standard 1.3+ and 2.0+;
 - .NET Framework 4 client profile
 - Xamarin Android, Xamarin iOs
@@ -32,23 +33,14 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 ## Features
-- Allow to change the RuleName of a LoggingRule (#4017) (@304NotModified)
-- logging of  AggregrateException.Data to prevent it from losing it after Flatten call (#3974) (@chaos0307)
+- DatabaseTarget - Added AllowDbNull for easier support for nullable parameters (#4076) (@snakefoot)
 
 ## Bugfixes
-- LocalIpAddressLayoutRenderer - IsDnsEligible and PrefixOrigin throws PlatformNotSupportedException on Linux (#4011) (@snakefoot)
+- Fluent LogBuilder should suppress exception on invalid callerFilePath (#4069) (@snakefoot)
 
 ## Improvements
--  ObjectReflectionCache - Reduce noise from properties that throws exceptions like Stream.ReadTimeout (#4057) (@snakefoot) 
--  MessageTemplates - Changed Literal.Skip to be Int32 to support message templates longer than short.MaxValue (#4053) (@snakefoot) 
--  ObjectReflectionCache - Skip reflection for Stream objects (#4043) (@snakefoot) 
--  LogFactory Shutdown is public so it can be used from NLogLoggerProvider (#3999) (@snakefoot) 
--  Editor config with File header template (#3972) (@304NotModified) 
-
-## Performance
--  FileTarget - Skip delegate capture in GetFileCreationTimeSource. Fallback only necessary when appender has been closed. (#4058) (@snakefoot) 
--  ObjectReflectionCache - Reduce initial memory allocation until needed (#4021) (@snakefoot) 
--  FilteringTargetWrapper - Remove delegate allocation (#3977) (@snakefoot)       
+- FileTarget - Extra validation of the LogEvent-timestamp before checking time to archive (#4073) (@snakefoot)
+- FileTarget - Improve diagnostic logging to see reason for archiving (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
