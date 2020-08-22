@@ -132,6 +132,13 @@ namespace NLog.Targets
         [DefaultValue(null)]
         public CultureInfo Culture { get; set; }
 
+        /// <summary>
+        /// Gets or sets whether empty value should translate into DbNull. Requires database column to allow NULL values.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='8' />
+        [DefaultValue(false)]
+        public bool AllowDbNull { get; set; }
+
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
             if (!string.IsNullOrEmpty(DbType))

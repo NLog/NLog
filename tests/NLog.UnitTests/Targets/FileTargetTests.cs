@@ -4258,6 +4258,55 @@ namespace NLog.UnitTests.Targets
             // Assert
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void ShouldNotArchiveWhenMeetingOldLogEventTimestamps()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                string archiveFolder = Path.Combine(tempPath, "archive");
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = logFile,
+                    ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    Layout = "${message}",
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                var logger = LogManager.GetLogger(nameof(ShouldNotArchiveWhenMeetingOldLogEventTimestamps));
+                logger.Info("123");
+                logger.Info("456");
+                logger.Log(new LogEventInfo(LogLevel.Info, null, "789") { TimeStamp = NLog.Time.TimeSource.Current.Time.AddDays(-2) });
+                logger.Log(new LogEventInfo(LogLevel.Info, null, "123") { TimeStamp = NLog.Time.TimeSource.Current.Time.AddDays(-2) });
+                logger.Info("456");
+                logger.Log(new LogEventInfo(LogLevel.Info, null, "123") { TimeStamp = NLog.Time.TimeSource.Current.Time.AddDays(1) });
+                LogManager.Configuration = null;    // Flush
+
+                AssertFileContents(logFile,
+                    "123\n",
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                   Path.Combine(archiveFolder, "0000.txt"),
+                    "123\n456\n789\n123\n456\n",
+                    Encoding.UTF8);
+
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0001.txt")));
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
     }
 
     public class WrappedFileTargetTests : FileTargetTests
