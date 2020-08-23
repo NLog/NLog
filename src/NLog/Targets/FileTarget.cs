@@ -1795,7 +1795,7 @@ namespace NLog.Targets
                     }
                     else if (!IsSimpleKeepFileOpen)
                     {
-                        InternalLogger.Debug("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
+                        InternalLogger.Debug("FileTarget(Name={0}): Archive mutex not available for file '{1}'", Name, archiveFile);
                     }
                 }
                 catch (AbandonedMutexException)
@@ -1849,7 +1849,7 @@ namespace NLog.Targets
                 var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
                 if (string.IsNullOrEmpty(validatedArchiveFile))
                 {
-                    InternalLogger.Trace("FileTarget(Name={0}): Archive already performed for file '{1}'", Name, archiveFile);
+                    InternalLogger.Debug("FileTarget(Name={0}): Skip archiving '{1}' because no longer necessary", Name, archiveFile);
                     if (archiveFile != fileName)
                         _initializedFiles.Remove(fileName);
                     _initializedFiles.Remove(archiveFile);
@@ -1971,6 +1971,7 @@ namespace NLog.Targets
             var shouldArchive = (fileLength.Value + upcomingWriteSize) > ArchiveAboveSize;
             if (shouldArchive)
             {
+                InternalLogger.Debug("FileTarget(Name={0}): Start archiving '{1}' because FileSize={2} + {3} is larger than ArchiveAboveSize={4}", Name, archiveFileName, fileLength.Value, upcomingWriteSize, ArchiveAboveSize);
                 return archiveFileName;    // Will re-check if archive is still necessary after flush/close file
             }
 
@@ -2033,11 +2034,13 @@ namespace NLog.Targets
             if (fileCreateTime != logEventTime)
             {
                 string formatString = GetArchiveDateFormatString(string.Empty);
+                var validLogEventTime = EnsureValidLogEventTimeStamp(logEvent.TimeStamp, creationTimeSource.Value);
                 string fileCreated = creationTimeSource.Value.ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventRecorded = validLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
                 var shouldArchive = fileCreated != logEventRecorded;
                 if (shouldArchive)
                 {
+                    InternalLogger.Debug("FileTarget(Name={0}): Start archiving '{1}' because FileCreatedTime='{2}' is older than now '{3}' using ArchiveEvery='{4}'", Name, archiveFileName, fileCreated, logEventRecorded, formatString);
                     return archiveFileName;    // Will re-check if archive is still necessary after flush/close file
                 }
             }
@@ -2267,10 +2270,31 @@ namespace NLog.Targets
             }
             else if (lastTime != now)
             {
+                now = EnsureValidLogEventTimeStamp(now, lastTime);
                 _initializedFiles[fileName] = now;
             }
 
             return lastTime;
+        }
+
+        DateTime EnsureValidLogEventTimeStamp(DateTime logEventTimeStamp, DateTime previousTimeStamp)
+        {
+            // Truncating using DateTime.Date is "expensive", so first check if it look like it is from the past
+            if (logEventTimeStamp < previousTimeStamp && logEventTimeStamp.Date < previousTimeStamp.Date)
+            {
+                // Received LogEvent from the past when comparing to the previous timestamp
+                var currentTime = TimeSource.Current.Time;
+                if (logEventTimeStamp.Date < currentTime.AddMinutes(-1).Date)
+                {
+                    // It is not because the machine-time has changed. Probably a LogEvent from the past
+                    if (currentTime.Date < previousTimeStamp.Date)
+                        return currentTime; // Previous timestamp is from the future. We choose machine-time
+                    else
+                        return previousTimeStamp;
+                }
+            }
+
+            return logEventTimeStamp;
         }
 
         /// <summary>

@@ -4,6 +4,18 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.4 (2020/08/22)
+
+#### Features
+- [#4076](https://github.com/NLog/NLog/pull/4076) DatabaseTarget - Added AllowDbNull for easier support for nullable parameters (#4076) (@snakefoot)
+
+#### Bugfixes
+- [#4069](https://github.com/NLog/NLog/pull/4069) Fluent LogBuilder should suppress exception on invalid callerFilePath (#4069) (@snakefoot)
+
+#### Improvements
+- [#4073](https://github.com/NLog/NLog/pull/4073) FileTarget - Extra validation of the LogEvent-timestamp before checking time to archive (#4073) (@snakefoot)
+- [#4068](https://github.com/NLog/NLog/pull/4068) FileTarget - Improve diagnostic logging to see reason for archiving (@snakefoot)
+
 ### V4.7.3 (2020/07/31)
 
 #### Features

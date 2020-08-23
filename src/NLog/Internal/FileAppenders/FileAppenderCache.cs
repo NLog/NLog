@@ -431,7 +431,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = FileInfoHelper.LookupValidFileCreationTimeUtc(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
+                    result = appender.GetFileCreationTimeUtc();
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
@@ -454,7 +454,7 @@ namespace NLog.Internal.FileAppenders
             var fileInfo = new FileInfo(filePath);
             if (fileInfo.Exists)
             {
-                result = fileInfo.LookupValidFileCreationTimeUtc(fallbackTimeSource).Value;
+                result = fileInfo.LookupValidFileCreationTimeUtc(fallbackTimeSource);
                 return Time.TimeSource.Current.FromSystemTime(result.Value);
             }
 

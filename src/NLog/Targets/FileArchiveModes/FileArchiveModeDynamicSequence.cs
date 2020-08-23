@@ -234,7 +234,7 @@ namespace NLog.Targets.FileArchiveModes
             }
 
             int sequenceNumber = ExtractArchiveNumberFromFileName(archiveFile.FullName);
-            var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc().Value;
+            var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc();
             var creationTime = creationTimeUtc > DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(creationTimeUtc) : DateTime.MinValue;
             return new DateAndSequenceArchive(archiveFile.FullName, creationTime, _archiveDateFormat, sequenceNumber > 0 ? sequenceNumber : 0);
         }

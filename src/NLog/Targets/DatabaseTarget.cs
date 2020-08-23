@@ -1059,43 +1059,38 @@ namespace NLog.Targets
         /// <param name="parameterInfo">Parameter configuration info.</param>
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
-            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture);
+            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture, parameterInfo.AllowDbNull);
         }
 
         private object GetDatabaseObjectPropertyValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
         {
-            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture);
+            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture, false);
         }
 
-        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider)
+        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull)
         {
-            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string))
+            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string) && !allowDbNull)
             {
                 return RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
             }
 
             formatProvider = formatProvider ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
 
-            if (valueLayout.TryGetRawValue(logEvent, out var rawValue))
+            try
             {
-                try
+                if (TryRenderObjectRawValue(logEvent, valueLayout, valueType, valueFormat, formatProvider, allowDbNull, out var rawValue))
                 {
-                    if (ReferenceEquals(rawValue, DBNull.Value))
-                    {
-                        return rawValue;
-                    }
-
-                    return PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType);
+                    return rawValue;
                 }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
-                        throw;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
 
-                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
-                    if (ExceptionMustBeRethrown(ex))
-                        throw;
-                }
+                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
+                if (ExceptionMustBeRethrown(ex))
+                    throw;
             }
 
             try
@@ -1104,10 +1099,10 @@ namespace NLog.Targets
                 string parameterValue = RenderLogEvent(valueLayout, logEvent);
                 if (string.IsNullOrEmpty(parameterValue))
                 {
-                    return CreateDefaultValue(valueType);
+                    return CreateDefaultValue(valueType, allowDbNull);
                 }
 
-                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? DBNull.Value;
+                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
             }
             catch (Exception ex)
             {
@@ -1119,18 +1114,45 @@ namespace NLog.Targets
                 if (ExceptionMustBeRethrown(ex))
                     throw;
 
-                return CreateDefaultValue(valueType);
+                return CreateDefaultValue(valueType, allowDbNull);
             }
+        }
+
+        private bool TryRenderObjectRawValue(LogEventInfo logEvent, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull, out object rawValue)
+        {
+            if (valueLayout.TryGetRawValue(logEvent, out rawValue))
+            {
+                if (ReferenceEquals(rawValue, DBNull.Value))
+                {
+                    return true;
+                }
+
+                if (rawValue == null)
+                {
+                    rawValue = CreateDefaultValue(valueType, allowDbNull);
+                    return true;
+                }
+
+                if (valueType == typeof(string))
+                {
+                    return rawValue is string;
+                }
+
+                rawValue = PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
         /// Create Default Value of Type
         /// </summary>
-        /// <param name="dbParameterType"></param>
-        /// <returns></returns>
-        private static object CreateDefaultValue(Type dbParameterType)
+        private static object CreateDefaultValue(Type dbParameterType, bool allowDbNull)
         {
-            if (dbParameterType == typeof(string))
+            if (allowDbNull)
+                return DBNull.Value;
+            else if (dbParameterType == typeof(string))
                 return string.Empty;
             else if (dbParameterType.IsValueType())
                 return Activator.CreateInstance(dbParameterType);

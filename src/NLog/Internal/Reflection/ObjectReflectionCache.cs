@@ -490,7 +490,7 @@ namespace NLog.Internal
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn(ex, "Failed to get property value for object: {0}", _owner);
+                            InternalLogger.Debug(ex, "Failed to get property value for object: {0}", _owner);
                             return default(PropertyValue);
                         }
                     }
