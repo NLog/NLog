@@ -177,6 +177,16 @@ namespace NLog.UnitTests.Targets
         [InlineData((ulong)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
         [InlineData(2776145.7743, "2776145.7743")]
+        [InlineData(0D, "0.0")]
+        [InlineData(0F, "0.0")]
+        [InlineData(1D, "1.0")]
+        [InlineData(1F, "1.0")]
+        [InlineData(-1D, "-1.0")]
+        [InlineData(-1F, "-1.0")]
+        [InlineData(5e30D, "5E+30")]
+        [InlineData(5e30F, "5E+30")]
+        [InlineData(-5e30D, "-5E+30")]
+        [InlineData(-5e30F, "-5E+30")]
         [InlineData(double.NaN, "\"NaN\"")]
         [InlineData(double.PositiveInfinity, "\"Infinity\"")]
         [InlineData(float.NaN, "\"NaN\"")]
@@ -185,9 +195,6 @@ namespace NLog.UnitTests.Targets
         {
             var actual = SerializeObject(o);
             Assert.Equal(expected, actual);
-
-            var result = SerializeObject(o);
-            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -197,6 +204,46 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("true", actual);
             actual = SerializeObject(false);
             Assert.Equal("false", actual);
+        }
+
+        [Fact]
+        public void SerializeNumberDecimal_Test()
+        {
+            var actual = SerializeObject(-1M);
+            Assert.Equal("-1.0", actual);
+
+            actual = SerializeObject(0M);
+            Assert.Equal("0.0", actual);
+
+            actual = SerializeObject(1M);
+            Assert.Equal("1.0", actual);
+
+            actual = SerializeObject(2M);
+            Assert.Equal("2.0", actual);
+
+            actual = SerializeObject(3M);
+            Assert.Equal("3.0", actual);
+
+            actual = SerializeObject(4M);
+            Assert.Equal("4.0", actual);
+
+            actual = SerializeObject(5M);
+            Assert.Equal("5.0", actual);
+
+            actual = SerializeObject(6M);
+            Assert.Equal("6.0", actual);
+
+            actual = SerializeObject(7M);
+            Assert.Equal("7.0", actual);
+
+            actual = SerializeObject(8M);
+            Assert.Equal("8.0", actual);
+
+            actual = SerializeObject(9M);
+            Assert.Equal("9.0", actual);
+
+            actual = SerializeObject(3.14159265M);
+            Assert.Equal("3.14159265", actual);
         }
 
         [Fact]

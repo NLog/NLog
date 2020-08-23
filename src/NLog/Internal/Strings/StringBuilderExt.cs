@@ -385,9 +385,9 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Append a int type (byte, int) as string
+        /// Append a numeric type (byte, int, double, decimal) as string
         /// </summary>
-        internal static void AppendIntegerAsString(this StringBuilder sb, IConvertible value, TypeCode objTypeCode)
+        internal static void AppendNumericInvariant(this StringBuilder sb, IConvertible value, TypeCode objTypeCode)
         {
             switch (objTypeCode)
             {
@@ -415,9 +415,80 @@ namespace NLog.Internal
                             sb.Append(uint64);
                     }
                     break;
+                case TypeCode.Single:
+                    {
+                        float floatValue = value.ToSingle(CultureInfo.InvariantCulture);
+                        AppendFloatInvariant(sb, floatValue);
+                    }
+                    break;
+                case TypeCode.Double:
+                    {
+                        double doubleValue = value.ToDouble(CultureInfo.InvariantCulture);
+                        AppendDoubleInvariant(sb, doubleValue);
+                    }
+                    break;
+                case TypeCode.Decimal:
+                    {
+                        decimal decimalValue = value.ToDecimal(CultureInfo.InvariantCulture);
+                        AppendDecimalInvariant(sb, decimalValue);
+                    }
+                    break;
                 default:
                     sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
                     break;
+            }
+        }
+
+        private static void AppendDecimalInvariant(StringBuilder sb, decimal decimalValue)
+        {
+#if !SILVERLIGHT
+            if (Math.Truncate(decimalValue) == decimalValue && decimalValue > int.MinValue && decimalValue < int.MaxValue)
+            {
+                sb.AppendInvariant(Convert.ToInt32(decimalValue));
+                sb.Append(".0");
+            }
+            else
+#endif
+            {
+                sb.Append(XmlHelper.XmlConvertToString(decimalValue));
+            }
+        }
+
+        private static void AppendDoubleInvariant(StringBuilder sb, double doubleValue)
+        {
+            if (double.IsNaN(doubleValue) || double.IsInfinity(doubleValue))
+            {
+                sb.Append(XmlHelper.XmlConvertToString(doubleValue));
+            }
+#if !SILVERLIGHT
+            else if (Math.Truncate(doubleValue) == doubleValue && doubleValue > int.MinValue && doubleValue < int.MaxValue)
+            {
+                sb.AppendInvariant(Convert.ToInt32(doubleValue));
+                sb.Append(".0");
+            }
+#endif
+            else
+            {
+                sb.Append(XmlHelper.XmlConvertToString(doubleValue));
+            }
+        }
+
+        private static void AppendFloatInvariant(StringBuilder sb, float floatValue)
+        {
+            if (float.IsNaN(floatValue) || float.IsInfinity(floatValue))
+            {
+                sb.Append(XmlHelper.XmlConvertToString(floatValue));
+            }
+#if !SILVERLIGHT
+            else if (Math.Truncate(floatValue) == floatValue && floatValue > int.MinValue && floatValue < int.MaxValue)
+            {
+                sb.AppendInvariant(Convert.ToInt32(floatValue));
+                sb.Append(".0");
+            }
+#endif
+            else
+            {
+                sb.Append(XmlHelper.XmlConvertToString(floatValue));
             }
         }
 

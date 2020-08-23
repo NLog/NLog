@@ -472,7 +472,14 @@ namespace NLog.Targets
         {
             if (IsNumericTypeCode(objTypeCode, false))
             {
-                SerializeSimpleNumericValue(value, objTypeCode, destination, options, forceToString);
+                if (!options.EnumAsInteger && value is Enum enumValue)
+                {
+                    QuoteValue(destination, EnumAsString(enumValue));
+                }
+                else
+                {
+                    SerializeNumericValue(value, objTypeCode, destination, forceToString);
+                }
             }
             else if (objTypeCode == TypeCode.DateTime)
             {
@@ -480,10 +487,14 @@ namespace NLog.Targets
                 destination.AppendXmlDateTimeRoundTrip(value.ToDateTime(CultureInfo.InvariantCulture));
                 destination.Append('"');
             }
+            else if (IsNumericTypeCode(objTypeCode, true) && SkipQuotes(value, objTypeCode))
+            {
+                SerializeNumericValue(value, objTypeCode, destination, forceToString);
+            }
             else
             {
                 string str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
+                if (!forceToString && !string.IsNullOrEmpty(str) && SkipQuotes(value, objTypeCode))
                 {
                     destination.Append(str);
                 }
@@ -494,20 +505,13 @@ namespace NLog.Targets
             }
         }
 
-        private void SerializeSimpleNumericValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString)
+        private void SerializeNumericValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, bool forceToString)
         {
-            if (!options.EnumAsInteger && value is Enum enumValue)
-            {
-                QuoteValue(destination, EnumAsString(enumValue));
-            }
-            else
-            {
-                if (forceToString)
-                    destination.Append('"');
-                destination.AppendIntegerAsString(value, objTypeCode);
-                if (forceToString)
-                    destination.Append('"');
-            }
+            if (forceToString)
+                destination.Append('"');
+            destination.AppendNumericInvariant(value, objTypeCode);
+            if (forceToString)
+                destination.Append('"');
         }
 
         private static CultureInfo CreateFormatProvider()
