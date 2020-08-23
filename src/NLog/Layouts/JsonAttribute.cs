@@ -107,8 +107,11 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// Should forward slashes be escaped? If true, / will be converted to \/
         /// </summary>
+        /// <remarks>
+        /// If not set explicitly then the value of the parent will be used as default.
+        /// </remarks>
         /// <docgen category='JSON Attribute Options' order='100' />
         [DefaultValue(true)] // TODO NLog 5 change to nullable (with default fallback to false)
         public bool EscapeForwardSlash 
