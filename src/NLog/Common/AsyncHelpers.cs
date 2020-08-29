@@ -230,9 +230,10 @@ namespace NLog.Common
                 T itemCopy = item;
                 StartAsyncTask(new AsyncHelpersTask(s =>
                 {
+                    var preventMultipleCalls = PreventMultipleCalls(continuation);
                     try
                     {
-                        action(itemCopy, PreventMultipleCalls(continuation));
+                        action(itemCopy, preventMultipleCalls);
                     }
                     catch (Exception ex)
                     {
@@ -241,6 +242,8 @@ namespace NLog.Common
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
+
+                        preventMultipleCalls.Invoke(ex);
                     }
                 }), null);
             }

@@ -321,8 +321,11 @@ namespace NLog.Layouts
             if (!IsInitialized)
             {
                 LoggingConfiguration = configuration;
+
                 IsInitialized = true;
                 _scannedForObjects = false;
+
+                PropertyHelper.CheckRequiredParameters(this);
 
                 InitializeLayout();
 
