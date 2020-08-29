@@ -743,7 +743,18 @@ namespace NLog.Config
 
             foreach (object o in _configItems)
             {
-                PropertyHelper.CheckRequiredParameters(o);
+                try
+                {
+                    if (o is ISupportsInitialize)
+                        continue;   // Target + Layout + LayoutRenderer validate on Initialize()
+
+                    PropertyHelper.CheckRequiredParameters(o);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrown())
+                        throw;
+                }
             }
         }
 
@@ -776,7 +787,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown(initialize as IInternalLoggerContext))
                     {
                         throw;
                     }

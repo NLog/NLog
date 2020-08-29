@@ -133,6 +133,7 @@ namespace NLog.LayoutRenderers
             if (!_isInitialized)
             {
                 _isInitialized = true;
+                PropertyHelper.CheckRequiredParameters(this);
                 InitializeLayoutRenderer();
             }
         }

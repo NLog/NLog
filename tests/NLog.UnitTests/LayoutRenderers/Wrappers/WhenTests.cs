@@ -101,19 +101,21 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WhenElseCase_empty_when()
         {
-            //else cannot be invoked ambiently. First param is inner
-            SimpleLayout l = @"${when:good:else=better}";
+            using (new NoThrowNLogExceptions())
+            {
+                //else cannot be invoked ambiently. First param is inner
+                SimpleLayout l = @"${when:good:else=better}";
 
-            {
-                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-                Assert.Equal("good", l.Render(le));
-            }
-            {
-                var le = LogEventInfo.Create(LogLevel.Info, "logger1", "message");
-                Assert.Equal("good", l.Render(le));
+                {
+                    var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                    Assert.Equal("good", l.Render(le));
+                }
+                {
+                    var le = LogEventInfo.Create(LogLevel.Info, "logger1", "message");
+                    Assert.Equal("good", l.Render(le));
+                }
             }
         }
-
 
         [Fact]
         public void WhenElseCase_noIf()
