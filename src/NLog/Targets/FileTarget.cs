@@ -1227,7 +1227,7 @@ namespace NLog.Targets
 
             bool archiveOccurred = TryArchiveFile(fileName, logEvent, bytesToWrite.Count, previousLogEventTimestamp, initializedNewFile);
             if (archiveOccurred)
-                initializedNewFile = InitializeFile(fileName, logEvent) == DateTime.MinValue;
+                initializedNewFile = InitializeFile(fileName, logEvent) == DateTime.MinValue || initializedNewFile;
 
             if (ReplaceFileContentsOnEachWrite)
             {
@@ -1834,8 +1834,8 @@ namespace NLog.Targets
                     // See: https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
                 }
 #endif
-
-                return TryArchiveFileAfterCloseFileAppender(fileName, archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
+                ArchiveFileAfterCloseFileAppender(archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp);
+                return true;
             }
             finally
             {
@@ -1870,24 +1870,27 @@ namespace NLog.Targets
             return archivedAppender;
         }
 
-        private bool TryArchiveFileAfterCloseFileAppender(string fileName, string archiveFile, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp, bool initializedNewFile)
+        private void ArchiveFileAfterCloseFileAppender(string archiveFile, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp)
         {
             try
             {
                 // Check again if archive is needed. We could have been raced by another process
-                var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp, initializedNewFile);
+                var validatedArchiveFile = GetArchiveFileName(archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp, false);
                 if (string.IsNullOrEmpty(validatedArchiveFile))
                 {
                     InternalLogger.Debug("FileTarget(Name={0}): Skip archiving '{1}' because no longer necessary", Name, archiveFile);
-                    if (archiveFile != fileName)
-                        _initializedFiles.Remove(fileName);
                     _initializedFiles.Remove(archiveFile);
                 }
                 else
                 {
-                    archiveFile = validatedArchiveFile;
-                    DoAutoArchive(archiveFile, ev, previousLogEventTimestamp, initializedNewFile);
+                    if (archiveFile != validatedArchiveFile)
+                    {
+                        _initializedFiles.Remove(archiveFile);
+                        archiveFile = validatedArchiveFile;
+                    }
                     _initializedFiles.Remove(archiveFile);
+
+                    DoAutoArchive(archiveFile, ev, previousLogEventTimestamp, false);
                 }
 
                 if (_previousLogFileName == archiveFile)
@@ -1895,8 +1898,6 @@ namespace NLog.Targets
                     _previousLogFileName = null;
                     _previousLogEventTimestamp = null;
                 }
-
-                return true;    // Archive operation has been executed, by this application (or a concurrent one)
             }
             catch (Exception exception)
             {
@@ -1905,8 +1906,6 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-
-                return false;
             }
         }
 
@@ -1934,21 +1933,14 @@ namespace NLog.Targets
         /// <summary>
         /// Returns the correct filename to archive
         /// </summary>
-        /// <returns></returns>
         private string GetPotentialFileForArchiving(string fileName)
         {
-            if (string.Equals(fileName, _previousLogFileName, StringComparison.OrdinalIgnoreCase))
-            {
-                //both the same, so don't care
-                return fileName;
-            }
-
-            if (string.IsNullOrEmpty(_previousLogFileName))
+            if (!string.IsNullOrEmpty(fileName))
             {
                 return fileName;
             }
 
-            if (string.IsNullOrEmpty(fileName))
+            if (!string.IsNullOrEmpty(_previousLogFileName))
             {
                 return _previousLogFileName;
             }
@@ -1980,7 +1972,7 @@ namespace NLog.Targets
             var fileLength = _fileAppenderCache.GetFileLength(archiveFileName);
             if (!fileLength.HasValue)
             {
-                archiveFileName = TryFallbackToPreviousLogFileName(fileName, archiveFileName, initializedNewFile);
+                archiveFileName = TryFallbackToPreviousLogFileName(archiveFileName, initializedNewFile);
                 if (!string.IsNullOrEmpty(archiveFileName))
                 {
                     upcomingWriteSize = 0;
@@ -2007,12 +1999,16 @@ namespace NLog.Targets
             return null;
         }
 
-        private string TryFallbackToPreviousLogFileName(string fileName, string archiveFileName, bool initializedNewFile)
+        /// <summary>
+        /// Check if archive operation should check previous filename, because FileAppenderCache tells us current filename no longer exists
+        /// </summary>
+        private string TryFallbackToPreviousLogFileName(string archiveFileName, bool initializedNewFile)
         {
-            if (!initializedNewFile || !string.Equals(fileName, archiveFileName, StringComparison.OrdinalIgnoreCase))
+            if (!initializedNewFile && _initializedFiles.Remove(archiveFileName))
             {
-                // Attempt fallback because FileAppenderCache detected previousFileName no longer exists
-                _initializedFiles.Remove(archiveFileName);
+                // Register current filename needs re-initialization
+                InternalLogger.Debug("FileTarget(Name={0}): Invalidates appender for archive file '{1}' since it no longer exists", Name, archiveFileName);
+                _fileAppenderCache.InvalidateAppender(archiveFileName)?.Dispose();
             }
 
             if (!string.IsNullOrEmpty(_previousLogFileName) && !string.Equals(archiveFileName, _previousLogFileName, StringComparison.OrdinalIgnoreCase))
@@ -2047,7 +2043,7 @@ namespace NLog.Targets
             DateTime? creationTimeSource = TryGetArchiveFileCreationTimeSource(archiveFileName, previousLogEventTimestamp);
             if (!creationTimeSource.HasValue)
             {
-                archiveFileName = TryFallbackToPreviousLogFileName(fileName, archiveFileName, initializedNewFile);
+                archiveFileName = TryFallbackToPreviousLogFileName(archiveFileName, initializedNewFile);
                 if (!string.IsNullOrEmpty(archiveFileName))
                 { 
                     return GetArchiveFileNameBasedOnTime(archiveFileName, logEvent, previousLogEventTimestamp, false);
