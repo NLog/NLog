@@ -530,11 +530,23 @@ namespace NLog.Targets
                 case "SYSTEM.DATA.SQLCLIENT":
                     {
 #if NETSTANDARD
-                        var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+                        Assembly assembly;
+                        string assemblyName;
+                        try
+                        {
+                            assemblyName = "Microsoft.Data.SqlClient";
+                            assembly = Assembly.Load(new AssemblyName(assemblyName));
+                        }
+                        catch (System.IO.IOException)
+                        {
+                            assemblyName = "System.Data.SqlClient";
+                            assembly = Assembly.Load(new AssemblyName(assemblyName));
+                        }
 #else
+                        var assemblyName = "System.Data.SqlClient";
                         var assembly = typeof(IDbConnection).GetAssembly();
 #endif
-                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        ConnectionType = assembly.GetType($"{assemblyName}.SqlConnection", true, true);
                         break;
                     }
 #if !NETSTANDARD
