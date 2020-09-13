@@ -49,7 +49,7 @@ namespace NLog.Internal
         /// </summary>
         public StringBuilder Builder => _builder.Item;
 
-        private readonly StringBuilderPool.ItemHolder _builder;
+        private StringBuilderPool.ItemHolder _builder;
 
         public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
         {
