@@ -31,15 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
 namespace NLog
 {
     using System;
     using System.Collections.Generic;
-
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
@@ -48,8 +45,6 @@ namespace NLog
     public static class MappedDiagnosticsContext
     {
         private static readonly object DataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
-
-        private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
         private sealed class ItemRemover : IDisposable
         {
@@ -78,11 +73,7 @@ namespace NLog
         /// <returns></returns>
         private static IDictionary<string, object> GetThreadDictionary(bool create = true)
         {
-            var dictionary = ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(DataSlot, create);
-            if (dictionary == null && !create)
-                return EmptyDefaultDictionary;
-
-            return dictionary;
+            return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(DataSlot, create);
         }
 
         /// <summary>
@@ -159,12 +150,12 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            object o;
-
-            if (!GetThreadDictionary(false).TryGetValue(item, out o))
-                o = null;
-
-            return o;
+            var dictionary = GetThreadDictionary(false);
+            if (dictionary != null && dictionary.TryGetValue(item, out var o))
+            {
+                return o;
+            }
+            return null;
         }
 
         /// <summary>
@@ -173,7 +164,7 @@ namespace NLog
         /// <returns>A set of the names of all items in current thread-MDC.</returns>
         public static ICollection<string> GetNames()
         {
-            return GetThreadDictionary(false).Keys;
+            return GetThreadDictionary(false)?.Keys ?? ArrayHelper.Empty<string>();
         }
 
         /// <summary>
@@ -183,7 +174,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
-            return GetThreadDictionary(false).ContainsKey(item);
+            return GetThreadDictionary(false)?.ContainsKey(item) == true;
         }
 
         /// <summary>
@@ -200,7 +191,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            GetThreadDictionary(true).Clear();
+            GetThreadDictionary(false)?.Clear();
         }
     }
 }
