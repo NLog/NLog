@@ -49,13 +49,14 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
-    using System.Data.SqlClient;
 
-#if MONO 
+#if MONO
     using Mono.Data.Sqlite;
 #elif NETSTANDARD
+    using Microsoft.Data.SqlClient;
     using Microsoft.Data.Sqlite;
 #else
+    using System.Data.SqlClient;
     using System.Data.SQLite;
 #endif
 
@@ -1259,11 +1260,8 @@ Dispose()
                 };
 
                 dt.Initialize(null);
-#if !NETSTANDARD
+
                 Assert.Equal(typeof(SqlConnection), dt.ConnectionType);
-#else
-                Assert.NotNull(dt.ConnectionType);
-#endif
             }
         }
 
