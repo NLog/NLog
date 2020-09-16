@@ -52,6 +52,7 @@ namespace NLog.UnitTests.Targets
 
 #if MONO
     using Mono.Data.Sqlite;
+    using System.Data.SqlClient;
 #elif NETSTANDARD
     using Microsoft.Data.SqlClient;
     using Microsoft.Data.Sqlite;
