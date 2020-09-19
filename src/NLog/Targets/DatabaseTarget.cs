@@ -523,11 +523,30 @@ namespace NLog.Targets
         {
             switch (DBProvider.ToUpperInvariant())
             {
+                case "MICROSOFT.DATA.SQLCLIENT":
+                    {
+#if NETSTANDARD
+                        var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
+#else
+                        var assembly = typeof(IDbConnection).GetAssembly();
+#endif
+                        ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
+                case "SYSTEM.DATA.SQLCLIENT":
+                    {
+#if NETSTANDARD
+                        var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+#else
+                        var assembly = typeof(IDbConnection).GetAssembly();
+#endif
+                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
                 case "SQLSERVER":
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
-                case "SYSTEM.DATA.SQLCLIENT":
                     {
 #if NETSTANDARD
                         Assembly assembly;
