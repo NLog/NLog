@@ -49,7 +49,7 @@ namespace NLog.Internal
         /// </summary>
         public StringBuilder Builder => _builder.Item;
 
-        private StringBuilderPool.ItemHolder _builder;
+        private StringBuilderPool.ItemHolder _builder;  // Not readonly to avoid struct-copy on Dispose(), and to avoid VerificationException when medium-trust AppDomain
 
         public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
         {

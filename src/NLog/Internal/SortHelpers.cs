@@ -173,7 +173,7 @@ namespace NLog.Internal
         /// <typeparam name="TValue">The type of the value.</typeparam>
         public struct ReadOnlySingleBucketDictionary<TKey, TValue> : IDictionary<TKey, TValue>
         {
-            KeyValuePair<TKey, TValue>? _singleBucket;
+            KeyValuePair<TKey, TValue>? _singleBucket;  // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
             readonly Dictionary<TKey, TValue> _multiBucket;
             readonly IEqualityComparer<TKey> _comparer;
             public IEqualityComparer<TKey> Comparer => _comparer;
@@ -262,7 +262,7 @@ namespace NLog.Internal
             public struct Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>
             {
                 bool _singleBucketFirstRead;
-                KeyValuePair<TKey, TValue> _singleBucket;
+                KeyValuePair<TKey, TValue> _singleBucket;   // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
                 readonly IEnumerator<KeyValuePair<TKey, TValue>> _multiBuckets;
 
                 internal Enumerator(Dictionary<TKey, TValue> multiBucket)

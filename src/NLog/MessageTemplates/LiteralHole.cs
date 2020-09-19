@@ -39,10 +39,10 @@ namespace NLog.MessageTemplates
     internal struct LiteralHole
     {
         /// <summary>Literal</summary>
-        public Literal Literal;
+        public Literal Literal; // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
         /// <summary>Hole</summary>
         /// <remarks>Uninitialized when <see cref="MessageTemplates.Literal.Skip"/> = 0.</remarks>
-        public Hole Hole;
+        public Hole Hole;       // Not readonly to avoid struct-copy, and to avoid VerificationException when medium-trust AppDomain
 
         public LiteralHole(Literal literal, Hole hole)
         {
