@@ -174,7 +174,7 @@ namespace NLog
         /// <summary>
         /// Resets the stack to the original count during <see cref="IDisposable.Dispose"/>.
         /// </summary>
-        private class StackPopper : IDisposable
+        private sealed class StackPopper : IDisposable
         {
             private readonly Stack<object> _stack;
             private readonly int _previousCount;
