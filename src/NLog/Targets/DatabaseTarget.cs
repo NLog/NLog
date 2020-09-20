@@ -39,9 +39,7 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
-#if NETSTANDARD
     using System.Reflection;
-#endif
     using System.Text;
 #if !NETSTANDARD1_0
     using System.Transactions;
@@ -548,12 +546,6 @@ namespace NLog.Targets
                         ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                         break;
                     }
-                case "MICROSOFT.DATA.SQLCLIENT":
-                    {
-                        var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
-                        ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
-                        break;
-                    }
 #else
                 case "SYSTEM.DATA.SQLCLIENT":
                     {
@@ -562,6 +554,12 @@ namespace NLog.Targets
                         break;
                     }
 #endif
+                case "MICROSOFT.DATA.SQLCLIENT":
+                    {
+                        var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
+                        ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
 #if !NETSTANDARD
                 case "OLEDB":
                     {
