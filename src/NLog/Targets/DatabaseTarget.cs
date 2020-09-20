@@ -536,7 +536,7 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): Failed to load assembly 'Microsoft.Data.SqlClient'. Falling back to 'System.Data.SqlClient.'", Name);
+                            InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): Failed to load assembly 'Microsoft.Data.SqlClient'. Falling back to 'System.Data.SqlClient'.", Name);
                             var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
                             ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                         }
