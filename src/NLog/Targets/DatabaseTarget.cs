@@ -523,51 +523,45 @@ namespace NLog.Targets
         {
             switch (DBProvider.ToUpperInvariant())
             {
-                case "MICROSOFT.DATA.SQLCLIENT":
-                    {
-#if NETSTANDARD
-                        var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
-#else
-                        var assembly = typeof(IDbConnection).GetAssembly();
-#endif
-                        ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
-                        break;
-                    }
-                case "SYSTEM.DATA.SQLCLIENT":
-                    {
-#if NETSTANDARD
-                        var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
-#else
-                        var assembly = typeof(IDbConnection).GetAssembly();
-#endif
-                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
-                        break;
-                    }
                 case "SQLSERVER":
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
-                    {
 #if NETSTANDARD
-                        Assembly assembly;
-                        string assemblyName;
+                    {
                         try
                         {
-                            assemblyName = "Microsoft.Data.SqlClient";
-                            assembly = Assembly.Load(new AssemblyName(assemblyName));
+                            var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
+                            ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
                         }
-                        catch (System.IO.IOException)
+                        catch (Exception ex)
                         {
-                            assemblyName = "System.Data.SqlClient";
-                            assembly = Assembly.Load(new AssemblyName(assemblyName));
+                            InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): Failed to load assembly 'Microsoft.Data.SqlClient'. Falling back to 'System.Data.SqlClient.'", Name);
+                            var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+                            ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                         }
-#else
-                        var assemblyName = "System.Data.SqlClient";
-                        var assembly = typeof(IDbConnection).GetAssembly();
-#endif
-                        ConnectionType = assembly.GetType($"{assemblyName}.SqlConnection", true, true);
                         break;
                     }
+                case "SYSTEM.DATA.SQLCLIENT":
+                    {
+                        var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
+                case "MICROSOFT.DATA.SQLCLIENT":
+                    {
+                        var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
+                        ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
+#else
+                case "SYSTEM.DATA.SQLCLIENT":
+                    {
+                        var assembly = typeof(IDbConnection).GetAssembly();
+                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
+#endif
 #if !NETSTANDARD
                 case "OLEDB":
                     {
