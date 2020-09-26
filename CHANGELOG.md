@@ -4,6 +4,22 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.5 (2020/09/27)
+
+#### Bugfixes
+- [#4106](https://github.com/NLog/NLog/pull/4106) FileTarget - New current file should write start header, when archive operation is performed on previous file (#4106) (@snakefoot)
+
+#### Improvements
+- [#4102](https://github.com/NLog/NLog/pull/4102) LoggingConfiguration - ValidateConfig should only throw when enabled (#4102) (@snakefoot)
+- [#4114](https://github.com/NLog/NLog/pull/4114) Fix VerificationException Operation could destabilize the runtime (#4114) (@snakefoot)
+
+#### Performance
+- [#4115](https://github.com/NLog/NLog/pull/4115) Removed EmptyDefaultDictionary from MappedDiagnosticsContext (#4115) (@snakefoot)
+
+#### Other
+- [#4109](https://github.com/NLog/NLog/pull/4109) Fix root .editorconfig to use end_of_line = CRLF. Remove local .editorconfig (#4109) (@snakefoot)
+- [#4097](https://github.com/NLog/NLog/pull/4097) Improve docs (#4097) (@304NotModified)
+
 ### V4.7.4 (2020/08/22)
 
 #### Features
