@@ -196,6 +196,20 @@ namespace NLog.Layouts
         #endregion
 
         /// <inheritdoc />
+        protected override void InitializeLayout()
+        {
+            _layout?.Initialize(LoggingConfiguration);
+            base.InitializeLayout();
+            ThreadAgnostic = _layout?.ThreadAgnostic ?? true;
+            MutableUnsafe = _layout?.MutableUnsafe ?? false;
+        }
+
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            _layout?.PrecalculateBuilder(logEvent, target);
+        }
+
+        /// <inheritdoc />
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             if (IsFixed)
