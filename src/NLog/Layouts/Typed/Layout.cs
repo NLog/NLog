@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Runtime;
 using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
@@ -105,9 +106,20 @@ namespace NLog.Layouts
         private T _cacheValue = default(T);
         private bool _cacheResult = false;
 
-        private bool TryCache(object raw)
+        private bool TryGetCacheValue(object rawValue, out T resultValue, out bool resultValid)
         {
-            return _cacheKey != null && (ReferenceEquals(_cacheKey, raw) || _cacheKey.Equals(raw));
+            var cacheKey = _cacheKey;
+            var cacheValue = _cacheValue;
+            var cacheValid = _cacheResult;
+            if (!ReferenceEquals(cacheKey, null) && (ReferenceEquals(cacheKey, rawValue) || cacheKey.Equals(rawValue)))
+            {
+                resultValue = cacheValue;
+                resultValid = cacheValid;
+                return true;
+            }
+            resultValue = default(T);
+            resultValid = false;
+            return false;
         }
 
         private void UpdateCache(object raw, T value, bool result)
@@ -125,10 +137,10 @@ namespace NLog.Layouts
                 return false;
             }
 
-            if (TryCache(raw))
+            if (TryGetCacheValue(raw, out var resultValue, out var resultValid))
             {
-                value = _cacheValue;
-                return _cacheResult;
+                value = resultValue;
+                return resultValid;
             }
 
             var cultureInfo = CultureInfo.CurrentCulture;
