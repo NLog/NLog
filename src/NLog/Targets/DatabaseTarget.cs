@@ -39,9 +39,7 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
-#if NETSTANDARD
     using System.Reflection;
-#endif
     using System.Text;
 #if !NETSTANDARD1_0
     using System.Transactions;
@@ -527,14 +525,39 @@ namespace NLog.Targets
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
+#if NETSTANDARD
+                    {
+                        try
+                        {
+                            var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
+                            ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): Failed to load assembly 'Microsoft.Data.SqlClient'. Falling back to 'System.Data.SqlClient'.", Name);
+                            var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+                            ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        }
+                        break;
+                    }
                 case "SYSTEM.DATA.SQLCLIENT":
                     {
-#if NETSTANDARD
                         var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
-#else
-                        var assembly = typeof(IDbConnection).GetAssembly();
-#endif
                         ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
+#else
+                case "SYSTEM.DATA.SQLCLIENT":
+                    {
+                        var assembly = typeof(IDbConnection).GetAssembly();
+                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
+#endif
+                case "MICROSOFT.DATA.SQLCLIENT":
+                    {
+                        var assembly = Assembly.Load(new AssemblyName("Microsoft.Data.SqlClient"));
+                        ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
                         break;
                     }
 #if !NETSTANDARD
