@@ -42,7 +42,7 @@ namespace NLog
     /// <remarks>Use this only when a custom Logger type is defined.</remarks>
     /// <typeparam name="T">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
     public class LogFactory<T> : LogFactory 
-        where T : Logger
+        where T : Logger, new()
     {
         /// <summary>
         /// Gets the logger with type <typeparamref name="T"/>.
