@@ -67,6 +67,8 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
         /// </summary>
+        /// <remarks>If not explicitly set, then disabled by default for <see cref="BufferingTargetWrapper"/> and AsyncTaskTarget
+        /// </remarks>
         /// <docgen category='General Options' order='10' />
         public bool AsyncFlush
         {

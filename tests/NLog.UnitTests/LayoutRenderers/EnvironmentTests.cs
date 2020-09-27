@@ -70,8 +70,11 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Environment_empty()
         {
-            AssertLayoutRendererOutput("${environment}", "");
-            AssertLayoutRendererOutput("${environment:noDefault}", "");
+            using (new NoThrowNLogExceptions())
+            {
+                AssertLayoutRendererOutput("${environment}", "");
+                AssertLayoutRendererOutput("${environment:noDefault}", "");
+            }
         }
 
         [Fact]

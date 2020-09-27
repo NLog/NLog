@@ -430,11 +430,10 @@ namespace NLog.Targets
 
                 if (!IsInitialized)
                 {
-                    if (configuration == null)
-                        PropertyHelper.CheckRequiredParameters(this);
-
                     try
                     {
+                        PropertyHelper.CheckRequiredParameters(this);
+
                         InitializeTarget();
                         _initializeException = null;
                         if (!_scannedForLayouts)

@@ -496,7 +496,29 @@ namespace NLog.UnitTests.Config
 
             LogManager.Configuration = configuration;
             LogManager.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+        }
 
+        [Fact]
+        public void DontThrowExceptionsWhenMissingRequiredParameters()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog>
+    <targets>
+        <target type='bufferingwrapper' name='mytarget'>
+            <target type='unknowntargettype' name='badtarget' />
+        </target>
+    </targets>
+    <rules>
+        <logger name='*' writeTo='mytarget'/>
+    </rules>
+</nlog> ");
+
+                LogManager.Configuration = configuration;
+                LogManager.GetLogger(nameof(DontThrowExceptionsWhenMissingRequiredParameters)).Info("Test");
+                LogManager.Configuration = null;
+            }
         }
 
         [Fact]
