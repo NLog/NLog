@@ -64,7 +64,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            WrappedTarget.Flush(asyncContinuation);
+            if (WrappedTarget != null)
+                WrappedTarget.Flush(asyncContinuation);
+            else
+                asyncContinuation(null);
         }
 
         /// <summary>

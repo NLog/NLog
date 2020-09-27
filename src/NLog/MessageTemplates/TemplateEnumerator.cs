@@ -134,7 +134,7 @@ namespace NLog.MessageTemplates
 
         private void AddLiteral()
         {
-            _current = new LiteralHole(new Literal { Print = _literalLength, Skip = Zero }, default(Hole));
+            _current = new LiteralHole(new Literal(_literalLength, Zero), default(Hole));
             _literalLength = 0;
         }
 
@@ -195,7 +195,7 @@ namespace NLog.MessageTemplates
             }
 
             int literalSkip = _position - start + (type == CaptureType.Normal ? 1 : 2);     // Account for skipped '{', '{$' or '{@'
-            _current = new LiteralHole(new Literal { Print = _literalLength, Skip = literalSkip }, new Hole(
+            _current = new LiteralHole(new Literal(_literalLength, literalSkip), new Hole(
                 name,
                 format,
                 type,

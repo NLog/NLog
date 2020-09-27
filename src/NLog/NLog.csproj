@@ -28,6 +28,21 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
+
+## Bugfixes
+- FileTarget - New current file should write start header, when archive operation is performed on previous file (#4106) (@snakefoot)
+
+## Improvements
+- LoggingConfiguration - ValidateConfig should only throw when enabled (#4102) (@snakefoot)
+- Fix VerificationException Operation could destabilize the runtime (#4114) (@snakefoot)
+
+## Performance
+- Removed EmptyDefaultDictionary from MappedDiagnosticsContext (#4115) (@snakefoot)
+
+## Other
+- Fix root .editorconfig to use end_of_line = CRLF. Remove local .editorconfig (#4109) (@snakefoot)
+- Improve docs (#4097) (@304NotModified)
+      
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
 For all config options and platform support, check https://nlog-project.org/config/

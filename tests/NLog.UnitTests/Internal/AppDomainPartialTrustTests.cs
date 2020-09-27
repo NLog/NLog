@@ -169,7 +169,7 @@ namespace NLog.UnitTests.Internal
                     logger.Debug("aaa");
                     logger.Info("bbb");
                     logger.Warn("ccc");
-                    logger.Error("ddd");
+                    logger.Error("{d:l}", "ddd");
                     logger.Fatal("eee");
                 }
             }

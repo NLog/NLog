@@ -31,25 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security;
 
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Common;
-    using System.IO;
-    using System.Text;
+    using System.Collections.Generic;
     using System.Globalization;
-    using NLog.Layouts;
+    using System.Linq;
+    using System.IO;
+    using System.IO.Compression;
+    using System.Runtime.CompilerServices;
+    using System.Text;
+    using NLog.Common;
     using NLog.Config;
+    using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-    using System.Xml.Linq;
-    using System.Xml;
-    using System.IO.Compression;
 #if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
     using Ionic.Zip;
 #endif
@@ -59,6 +56,7 @@ namespace NLog.UnitTests
         protected NLogTestBase()
         {
             //reset before every test
+            LogManager.ThrowExceptions = false; // Ignore any errors triggered by closing existing config
             LogManager.Configuration = null;    // Will close any existing config
             LogManager.LogFactory.ResetCandidateConfigFilePath();
 
