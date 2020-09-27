@@ -99,6 +99,8 @@ A good way to get started (flow)
 1. Check [contributing.md](.github/CONTRIBUTING.md#sync-projects)
 1. Push commits and create a Pull Request (PR) to NLog
 
+Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 5)
+
 
 License
 ---
