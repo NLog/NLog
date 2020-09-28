@@ -1086,7 +1086,7 @@ namespace NLog.Targets
             if (_getFullFileNameDelegate == null)
                 _getFullFileNameDelegate = c => GetFullFileName(c.LogEvent);
 
-            var buckets = logEvents.BucketSort(_getFullFileNameDelegate);
+            var buckets = logEvents.BucketSort(_getFullFileNameDelegate, StringComparer.Ordinal);
 
             using (var reusableStream = OptimizeBufferReuse ? _reusableAsyncFileWriteStream.Allocate() : _reusableAsyncFileWriteStream.None)
             {

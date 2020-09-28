@@ -629,7 +629,7 @@ namespace NLog.Targets
             if (_buildConnectionStringDelegate == null)
                 _buildConnectionStringDelegate = (l) => BuildConnectionString(l.LogEvent);
 
-            var buckets = logEvents.BucketSort(_buildConnectionStringDelegate);
+            var buckets = logEvents.BucketSort(_buildConnectionStringDelegate, StringComparer.Ordinal);
 
             foreach (var kvp in buckets)
             {
