@@ -40,6 +40,24 @@ namespace NLog.UnitTests.LayoutRenderers
     public class NDLCTests : NLogTestBase
     {
         [Fact]
+        public void NdlcGetAllMessages()
+        {
+            object value = 5;
+
+            NestedDiagnosticsLogicalContext.Clear();
+            var popper = NestedDiagnosticsLogicalContext.Push(value);
+
+            string expected = "5";
+            string[] actual = NestedDiagnosticsLogicalContext.GetAllMessages();
+            Assert.Single(actual);
+            Assert.Equal(expected, actual[0]);
+
+            popper.Dispose();
+            actual = NestedDiagnosticsLogicalContext.GetAllMessages();
+            Assert.Empty(actual);
+        }
+
+        [Fact]
         public void NDLCTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -293,6 +311,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 2");
         }
 
+#if !NET3_5 && !NET4_0 && !NET4_5
         [Fact]
         public void NDLCTimingTest()
         {
@@ -368,6 +387,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", "|||||0");
         }
+#endif
 
         [Fact]
         public void NDLCAsyncLogging()
