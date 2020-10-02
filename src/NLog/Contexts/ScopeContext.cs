@@ -149,8 +149,8 @@ namespace NLog
 #if !NET35 && !NET40 && !NET45
             SetThreadLocal(null);
 #else
-            MappedDiagnosticsLogicalContext.ClearDictionary();
-            NestedDiagnosticsLogicalContext.ClearStack();
+            MappedDiagnosticsLogicalContext.ClearMappedContext();
+            NestedDiagnosticsLogicalContext.ClearNestedContext();
 #endif
         }
 

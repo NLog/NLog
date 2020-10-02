@@ -33,6 +33,7 @@
 
 namespace NLog.Layouts
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using NLog.Config;
@@ -75,6 +76,36 @@ namespace NLog.Layouts
         public IList<NLogViewerParameterInfo> Parameters { get => Renderer.Parameters; set => Renderer.Parameters = value;  }
 
         /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeEventProperties
+        {
+            get => Renderer.IncludeEventProperties;
+            set => Renderer.IncludeEventProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties
+        {
+            get => Renderer.IncludeScopeProperties;
+            set => Renderer.IncludeScopeProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="ScopeContext"/> opreation-states-stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeOperationStates
+        {
+            get => Renderer.IncludeScopeOperationStates;
+            set => Renderer.IncludeScopeOperationStates = value;
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
@@ -82,16 +113,6 @@ namespace NLog.Layouts
         {
             get => Renderer.IncludeMdc;
             set => Renderer.IncludeMdc = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the option to include all properties from the log events
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties
-        {
-            get => Renderer.IncludeAllProperties;
-            set => Renderer.IncludeAllProperties = value;
         }
 
         /// <summary>
@@ -105,24 +126,25 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc
-        {
-            get => Renderer.IncludeMdlc;
-            set => Renderer.IncludeMdlc = value;
-        }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => IncludeScopeProperties; set => IncludeScopeProperties = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc
-        {
-            get => Renderer.IncludeNdlc;
-            set => Renderer.IncludeNdlc = value;
-        }
+        [Obsolete("Replaced by IncludeScopeOperationStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => IncludeScopeOperationStates; set => IncludeScopeOperationStates = value; }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})

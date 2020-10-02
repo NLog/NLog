@@ -158,44 +158,54 @@ namespace NLog.Targets
             set => Renderer.IncludeNdc = value;
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc
-        {
-            get => Renderer.IncludeMdlc;
-            set => Renderer.IncludeMdlc = value;
-        }
+        /// <inheritdoc/>
+        /// <docgen category='Layout Options' order='10' />
+        public bool IncludeEventProperties { get => Renderer.IncludeEventProperties; set => Renderer.IncludeEventProperties = value; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc
-        {
-            get => Renderer.IncludeNdlc;
-            set => Renderer.IncludeNdlc = value;
-        }
+        /// <inheritdoc/>
+        /// <docgen category='Layout Options' order='10' />
+        public bool IncludeScopeProperties { get => Renderer.IncludeScopeProperties; set => Renderer.IncludeScopeProperties = value; }
 
-        /// <summary>
-        /// Gets or sets the NDLC item separator.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public string NdlcItemSeparator
-        {
-            get => Renderer.NdlcItemSeparator;
-            set => Renderer.NdlcItemSeparator = value;
-        }
+        /// <inheritdoc/>
+        /// <docgen category='Layout Options' order='10' />
+        public bool IncludeScopeOperationStates { get => Renderer.IncludeScopeOperationStates; set => Renderer.IncludeScopeOperationStates = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => IncludeScopeProperties; set => IncludeScopeProperties = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeOperationStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => IncludeScopeOperationStates; set => IncludeScopeOperationStates = value; }
+
+        /// <summary>
+        /// Gets or sets the NDLC item separator.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by ScopeContextStackSeparator. Marked obsolete on NLog 5.0")]
+        public string NdlcItemSeparator { get => ScopeContextStackSeparator; set => ScopeContextStackSeparator = value; }
+
+        /// <summary>
+        /// Gets or sets the separator for <see cref="ScopeContext"/> operation-states-stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public string ScopeContextStackSeparator
         {
-            get => Renderer.IncludeAllProperties;
-            set => Renderer.IncludeAllProperties = value;
+            get => Renderer.ScopeOperationStatesSeparator;
+            set => Renderer.ScopeOperationStatesSeparator = value;
         }
 
         /// <summary>

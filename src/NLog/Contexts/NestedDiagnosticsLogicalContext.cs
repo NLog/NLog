@@ -128,7 +128,7 @@ namespace NLog
 #if !NET35 && !NET40 && !NET45
             ScopeContext.ClearNestedContextLegacy();
 #else
-            ClearStack();
+            ClearNestedContext();
 #endif
         }
 
@@ -202,7 +202,7 @@ namespace NLog
             return ArrayHelper.Empty<object>();
         }
 
-        internal static void ClearStack()
+        internal static void ClearNestedContext()
         {
             SetThreadLocal(null);
         }

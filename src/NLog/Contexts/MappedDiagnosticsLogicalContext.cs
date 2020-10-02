@@ -228,7 +228,7 @@ namespace NLog
 #if !NET35 && !NET40 && !NET45
             ScopeContext.ClearMappedContextLegacy();
 #else
-            ClearDictionary();
+            ClearMappedContext();
 #endif
         }
 
@@ -273,7 +273,7 @@ namespace NLog
             return false;
         }
 
-        internal static void ClearDictionary()
+        internal static void ClearMappedContext()
         {
             SetThreadLocal(null);
         }
