@@ -348,7 +348,7 @@ namespace NLog.Targets
         /// <param name="logEvents">Array of logging events.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var buckets = logEvents.BucketSort(c => GetSmtpSettingsKey(c.LogEvent), StringComparer.Ordinal);
+            var buckets = logEvents.BucketSort(c => GetSmtpSettingsKey(c.LogEvent));
             foreach (var bucket in buckets)
             {
                 var eventInfos = bucket.Value;
