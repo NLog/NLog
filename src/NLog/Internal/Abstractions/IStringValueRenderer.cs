@@ -36,6 +36,9 @@ namespace NLog.Internal
     /// <summary>
     /// Supports rendering as string value with limited or no allocations (preferred)
     /// </summary>
+    /// <remarks>
+    /// Implementors must have the [AppDomainFixedOutput] attribute
+    /// </remarks>
     interface IStringValueRenderer
     {
         /// <summary>

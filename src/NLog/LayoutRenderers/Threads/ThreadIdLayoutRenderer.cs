@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("threadid")]
     [ThreadSafe]
-    public class ThreadIdLayoutRenderer : LayoutRenderer, IRawValue
+    public class ThreadIdLayoutRenderer : LayoutRenderer
     {
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -56,16 +56,5 @@ namespace NLog.LayoutRenderers
         {
             return AsyncHelpers.GetManagedThreadId();
         }
-
-        #region Implementation of IRawValue
-
-        /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
-        {
-            value = GetValue();
-            return true;
-        }
-
-        #endregion
     }
 }
