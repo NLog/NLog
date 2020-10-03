@@ -31,13 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using NLog.Conditions;
 using NLog.Config;
 using NLog.Internal;
 using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets.Wrappers;
+using NLog.UnitTests.Config;
 using NLog.UnitTests.Targets.Wrappers;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -763,6 +766,159 @@ namespace NLog.UnitTests.Targets
             protected override void InitializeTarget()
             {
                 //base.InitializeTarget() should be called
+            }
+        }
+
+
+        [Fact]
+        public void TypedLayoutTargetTest()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(MyTypedLayoutTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyTypedLayoutTarget' name='myTarget'
+                        byteProperty='42' 
+                        int16Property='43' 
+                        int32Property='44' 
+                        int64Property='45000000000' 
+                        stringProperty='foobar'
+                        boolProperty='true'
+                        doubleProperty='3.14159'
+                        floatProperty='3.24159'
+                        enumProperty='Value3'
+                        flagsEnumProperty='Value1,Value3'
+                        encodingProperty='utf-8'
+                        cultureProperty='en-US'
+                        typeProperty='System.Int32'
+                        uriProperty='https://nlog-project.org'
+                        lineEndingModeProperty='default'
+                        />
+                </targets>
+            </nlog>");
+
+            var nullEvent = LogEventInfo.CreateNullEvent();
+            var myTarget = c.FindTargetByName("myTarget") as MyTypedLayoutTarget;
+            Assert.NotNull(myTarget);
+            Assert.Equal((byte)42, myTarget.ByteProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal((short)43, myTarget.Int16Property.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(44, myTarget.Int32Property.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(45000000000L, myTarget.Int64Property.RenderToValueOrDefault(nullEvent));
+            Assert.Equal("foobar", myTarget.StringProperty.RenderToValueOrDefault(nullEvent));
+            Assert.True(myTarget.BoolProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(3.14159, myTarget.DoubleProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(3.24159f, myTarget.FloatProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(TargetConfigurationTests.MyEnum.Value3, myTarget.EnumProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(TargetConfigurationTests.MyFlagsEnum.Value1 | TargetConfigurationTests.MyFlagsEnum.Value3, myTarget.FlagsEnumProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal("en-US", myTarget.CultureProperty.RenderToValueOrDefault(nullEvent).Name);
+            Assert.Equal(typeof(int), myTarget.TypeProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(new Uri("https://nlog-project.org"), myTarget.UriProperty.RenderToValueOrDefault(nullEvent));
+            Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty.RenderToValueOrDefault(nullEvent));
+        }
+
+        [Fact]
+        public void TypedLayoutTargetAsyncTest()
+        {
+            // Arrange
+            LogFactory logFactory = new LogFactory();
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(MyTypedLayoutTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <variable name='value3' value='Value3' />
+
+                <targets async='true'>
+                    <target type='MyTypedLayoutTarget' name='myTarget'
+                        byteProperty='42' 
+                        int16Property='43' 
+                        int32Property='${threadid}' 
+                        int64Property='${sequenceid}' 
+                        stringProperty='${processname}'
+                        boolProperty='true'
+                        doubleProperty='3.14159'
+                        floatProperty='3.24159'
+                        enumProperty='${var:value3}'
+                        flagsEnumProperty='Value1,Value3'
+                        encodingProperty='utf-8'
+                        cultureProperty='en-US'
+                        typeProperty='System.Int32'
+                        uriProperty='https://nlog-project.org'
+                        lineEndingModeProperty='default'
+                        />
+                </targets>
+
+                <rules>
+                    <logger minlevel='trace' writeTo='myTarget' />
+                </rules>
+            </nlog>", logFactory);
+            logFactory.Configuration = c;
+
+            // Act
+            var logger = logFactory.GetLogger(nameof(TypedLayoutTargetAsyncTest));
+            var logEvent = new LogEventInfo(LogLevel.Info, null, "Hello");
+            logger.Log(logEvent);
+            logFactory.Flush();
+
+            // Assert
+            Assert.Equal(System.Threading.Thread.CurrentThread.ManagedThreadId, logEvent.Properties[nameof(MyTypedLayoutTarget.Int32Property)]);
+        }
+
+        [Target("MyTypedLayoutTarget")]
+        public class MyTypedLayoutTarget : Target
+        {
+            public Layout<byte> ByteProperty { get; set; }
+
+            public Layout<short> Int16Property { get; set; }
+
+            public Layout<int> Int32Property { get; set; }
+
+            public Layout<long> Int64Property { get; set; }
+
+            public Layout<string> StringProperty { get; set; }
+
+            public Layout<bool> BoolProperty { get; set; }
+
+            public Layout<double> DoubleProperty { get; set; }
+
+            public Layout<float> FloatProperty { get; set; }
+
+            public Layout<TargetConfigurationTests.MyEnum> EnumProperty { get; set; }
+
+            public Layout<TargetConfigurationTests.MyFlagsEnum> FlagsEnumProperty { get; set; }
+
+            public Layout<Encoding> EncodingProperty { get; set; }
+
+            public Layout<CultureInfo> CultureProperty { get; set; }
+
+            public Layout<Type> TypeProperty { get; set; }
+
+            public Layout<Uri> UriProperty { get; set; }
+
+            public Layout<LineEndingMode> LineEndingModeProperty { get; set; }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                logEvent.Properties[nameof(ByteProperty)] = RenderLogEvent(ByteProperty, logEvent);
+                logEvent.Properties[nameof(Int16Property)] = RenderLogEvent(Int16Property, logEvent);
+                logEvent.Properties[nameof(Int32Property)] = RenderLogEvent(Int32Property, logEvent);
+                logEvent.Properties[nameof(Int64Property)] = RenderLogEvent(Int64Property, logEvent);
+                logEvent.Properties[nameof(StringProperty)] = RenderLogEvent(StringProperty, logEvent);
+                logEvent.Properties[nameof(BoolProperty)] = RenderLogEvent(BoolProperty, logEvent);
+                logEvent.Properties[nameof(DoubleProperty)] = RenderLogEvent(DoubleProperty, logEvent);
+                logEvent.Properties[nameof(FloatProperty)] = RenderLogEvent(FloatProperty, logEvent);
+                logEvent.Properties[nameof(EnumProperty)] = RenderLogEvent(EnumProperty, logEvent);
+                logEvent.Properties[nameof(FlagsEnumProperty)] = RenderLogEvent(FlagsEnumProperty, logEvent);
+                logEvent.Properties[nameof(EncodingProperty)] = RenderLogEvent(EncodingProperty, logEvent);
+                logEvent.Properties[nameof(CultureProperty)] = RenderLogEvent(CultureProperty, logEvent);
+                logEvent.Properties[nameof(TypeProperty)] = RenderLogEvent(TypeProperty, logEvent);
+                logEvent.Properties[nameof(UriProperty)] = RenderLogEvent(UriProperty, logEvent);
+                logEvent.Properties[nameof(LineEndingModeProperty)] = RenderLogEvent(LineEndingModeProperty, logEvent);
             }
         }
     }
