@@ -46,7 +46,7 @@ namespace NLog
     /// Provides logging interface and utility functions.
     /// </summary>
     [CLSCompliant(true)]
-    public partial class Logger : ILogger
+    public partial class Logger : ILog, ILogger
     {
         internal static readonly Type DefaultLoggerType = typeof(Logger);
         private Logger _contextLogger;
@@ -108,6 +108,8 @@ namespace NLog
 
         /// <summary>
         /// Creates new logger that automatically appends the specified property to all log events (without changing current logger)
+        /// 
+        /// With <see cref="Properties"/> property, all properties can be enumerated. 
         /// </summary>
         /// <param name="propertyKey">Property Name</param>
         /// <param name="propertyValue">Property Value</param>
@@ -128,19 +130,15 @@ namespace NLog
         /// <summary>
         /// Updates the specified context property for the current logger. The logger will append it for all log events.
         ///
-        /// It could be rendered with ${event-properties:YOURNAME}
-        ///
-        /// With <see cref="Properties"/> property, all properties could be changed. 
+        /// With <see cref="Properties"/> property, all properties can be enumerated (or updated). 
         /// </summary>
         /// <remarks>
-        /// Will affect all locations/contexts that makes use of the same named logger object.
+        /// It is highly recommended to ONLY use <see cref="WithProperty(string, object)"/> for modifying context properties.
+        /// This method will affect all locations/contexts that makes use of the same named logger object. And can cause
+        /// unexpected surprises at multiple locations and other thread contexts.
         /// </remarks>
         /// <param name="propertyKey">Property Name</param>
         /// <param name="propertyValue">Property Value</param>
-        /// <remarks>
-        /// It is recommended to use <see cref="WithProperty(string, object)"/> for modifying context properties
-        /// when same named logger is used at multiple locations or shared by different thread contexts.
-        /// </remarks>
         public void SetProperty(string propertyKey, object propertyValue)
         {
             if (string.IsNullOrEmpty(propertyKey))
@@ -211,6 +209,16 @@ namespace NLog
         /// <param name="nestedState">Value to added to the scope stack</param>
         /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
         public IDisposable PushScopeState<T>(T nestedState)
+        {
+            return ScopeContext.PushNestedState(nestedState);
+        }
+
+        /// <summary>
+        /// Pushes new state on the logical context scope stack
+        /// </summary>
+        /// <param name="nestedState">Value to added to the scope stack</param>
+        /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
+        public IDisposable PushScopeState(object nestedState)
         {
             return ScopeContext.PushNestedState(nestedState);
         }
@@ -346,9 +354,9 @@ namespace NLog
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
+        /// <param name="exception">An exception to be logged.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
-        /// <param name="exception">An exception to be logged.</param>
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)
         {
@@ -362,10 +370,10 @@ namespace NLog
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
+        /// <param name="exception">An exception to be logged.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
-        /// <param name="exception">An exception to be logged.</param>
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
@@ -691,7 +699,10 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
             {
-                var logEvent = LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
+                // Translate Exception with missing LogEvent message as log single value (See also ExceptionMessageFormatProvider)
+                var logEvent = message == null && ex != null && !(args?.Length > 0) ? 
+                    LogEventInfo.Create(level, Name, null, ex) :
+                    LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
                 WriteToTargets(logEvent, targetsForLevel);
             }
         }

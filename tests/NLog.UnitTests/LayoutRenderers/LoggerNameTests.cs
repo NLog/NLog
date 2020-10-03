@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "A a");
         }
@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A.B.C");
+            var logger = LogManager.GetLogger("A.B.C");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "C a");
         }
@@ -83,12 +83,10 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("C");
+            var logger = LogManager.GetLogger("C");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "C a");
         }
-
-
 
         [Fact]
         public void LoggerShortNameTest_false()
@@ -101,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A.B.C");
+            var logger = LogManager.GetLogger("A.B.C");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "A.B.C a");
         }    
@@ -120,7 +118,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A.B.C");
+            var logger = LogManager.GetLogger("A.B.C");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "A.B.C a");
         }

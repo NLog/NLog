@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MemoryTarget_LogLevelTest()
         { 
-            ILogger logger = LogManager.GetCurrentClassLogger(); 
+            var logger = LogManager.GetCurrentClassLogger(); 
 
             var memoryTarget = new MemoryTarget
             {
@@ -78,7 +78,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MemoryTarget_ReconfigureTest_SameTarget_ExpectLogsEmptied()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var memoryTarget = new MemoryTarget
             {
@@ -121,7 +121,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MemoryTarget_ClearLogsTest()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var memoryTarget = new MemoryTarget
             {
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MemoryTarget_NullMessageTest()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var memoryTarget = new MemoryTarget
             {
@@ -181,7 +181,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MemoryTarget_EmptyMessageTest()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var memoryTarget = new MemoryTarget
             {

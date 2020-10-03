@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             // Arrange
             var logFactory = CreateConfigFromXml();
-            ILogger logger = logFactory.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             // Act
             logFactory.Configuration.Variables["password"] = "123";
@@ -82,7 +82,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             // Arrange
             var logFactory = CreateConfigFromXml();
-            ILogger logger = logFactory.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             // Act
             logFactory.Configuration.Variables.Clear();
@@ -108,7 +108,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             LogManager.Configuration.Variables["password"] = "123";
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -136,7 +136,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -265,7 +265,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             LogManager.Configuration.Variables["password"] = "123";
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             // LogManager.ReconfigExistingLoggers();
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -287,7 +287,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.Configuration.Variables["user"] = "admin";
             LogManager.Configuration.Variables["password"] = "123";
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -309,7 +309,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -331,7 +331,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             LogManager.Configuration.Variables.Remove("password");
 
@@ -345,7 +345,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             // Arrange
             var logFactory = CreateConfigFromXml();
-            ILogger logger = logFactory.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             // Act
             logFactory.Configuration.Variables["password"] = null;
@@ -360,7 +360,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             // Arrange
             var logFactory = CreateConfigFromXml();
-            ILogger logger = logFactory.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             // Act
             logFactory.Configuration.Variables["password"] = "";
@@ -385,7 +385,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -437,7 +437,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logConfig.Variables["var1"] = "my-mocking-manager";
             logFactory.Configuration = logConfig;
 
-            ILogger logger = logFactory.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
             Assert.Equal("msg|my-mocking-manager", debugTarget.LastMessage);
         }

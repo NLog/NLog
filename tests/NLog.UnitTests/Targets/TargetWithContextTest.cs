@@ -217,7 +217,7 @@ namespace NLog.UnitTests.Targets
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             ScopeContext.Clear();
             logger.Error("log message");
             var target = LogManager.Configuration.FindTargetByName("debug") as CustomTargetWithContext;
@@ -243,7 +243,7 @@ namespace NLog.UnitTests.Targets
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
 
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Error, logger.Name, "Hello");
@@ -285,7 +285,7 @@ namespace NLog.UnitTests.Targets
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             ScopeContext.Clear();
             ScopeContext.PushProperty("TestKey", "Hello Thread World");
@@ -330,7 +330,7 @@ namespace NLog.UnitTests.Targets
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             ScopeContext.Clear();
 
             var logEvent = new LogEventInfo() { Message = "log message" };

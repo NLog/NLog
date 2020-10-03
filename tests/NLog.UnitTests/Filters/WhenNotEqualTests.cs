@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("skipme");
@@ -78,7 +78,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("skipMeToo");

@@ -93,7 +93,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </nlog>");
 
             ScopeContext.PushProperty("A", "Foo.Bar!");
-            ILogger l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
+            var l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
             l.Trace("aaa");
 
             AssertDebugLastMessage("debug", "Sbb.One!");

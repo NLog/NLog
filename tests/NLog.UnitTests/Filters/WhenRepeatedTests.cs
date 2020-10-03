@@ -57,7 +57,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzz");
@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             AssertDebugCounter("debug2", 1);
@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("zzz");
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -191,7 +191,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 0);
                 logger.Debug("zzz");
@@ -239,7 +239,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -303,7 +303,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -360,7 +360,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzz");
@@ -392,7 +392,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzzzzzzzzzzzzzzz");
@@ -428,7 +428,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -485,7 +485,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");

@@ -124,12 +124,10 @@ namespace NLog.UnitTests.Layouts
             LogManager.Configuration = configuration;
 
             var logger = LogManager.GetCurrentClassLogger();
-            logger.Debug()
-                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
-                .Property("Test", "InfoWrite")
-                .Property("coolness", "200%")
-                .Property("a", "not b")
-                .Write();
+            logger.WithProperty("Test", "InfoWrite")
+                .WithProperty("coolness", "200%")
+                .WithProperty("a", "not b")
+                .Debug("This is a test message '{0}'.", DateTime.Now.Ticks);
 
             AssertDebugLastMessage("m", "Test=InfoWrite, coolness=200%, a=not b");
         }
@@ -157,12 +155,10 @@ namespace NLog.UnitTests.Layouts
             LogManager.Configuration = configuration;
 
             var logger = LogManager.GetCurrentClassLogger();
-            logger.Debug()
-                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
-                .Property("Test", "InfoWrite")
-                .Property("coolness", "200%")
-                .Property("a", "not b")
-                .Write();
+            logger.WithProperty("Test", "InfoWrite")
+                .WithProperty("coolness", "200%")
+                .WithProperty("a", "not b")
+                .Debug("This is a test message '{0}'.", DateTime.Now.Ticks);
 
             AssertDebugLastMessageContains("m", nameof(AllEventWithFluent_with_callerInformation));
             AssertDebugLastMessageContains("m", nameof(AllEventPropertiesTests));

@@ -41,6 +41,7 @@ namespace NLog.Fluent
     /// <summary>
     /// A fluent class to build log events for NLog.
     /// </summary>
+    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;
@@ -107,7 +108,7 @@ namespace NLog.Fluent
         /// Sets the logger name of the logging event.
         /// </summary>
         /// <param name="loggerName">The logger name of the logging event.</param>
-            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder LoggerName(string loggerName)
         {
             _logEvent.LoggerName = loggerName;
@@ -118,7 +119,7 @@ namespace NLog.Fluent
         /// Sets the log message on the logging event.
         /// </summary>
         /// <param name="message">The log message for the logging event.</param>
-            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Message(string message)
         {
             _logEvent.Message = message;

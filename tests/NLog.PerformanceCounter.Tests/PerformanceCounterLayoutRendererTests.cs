@@ -57,7 +57,7 @@ namespace NLog.PerformanceCounter.Tests
 
             var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
-            ILogger logger = logFactory.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
             Assert.NotEqual(0, long.Parse(debugTarget.LastMessage));
             logger.Debug("b");

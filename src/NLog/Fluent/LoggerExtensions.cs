@@ -46,18 +46,20 @@ namespace NLog.Fluent
         /// <param name="logLevel">The log level.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Log(this ILogger logger, LogLevel logLevel)
         {
             var builder = new LogBuilder(logger, logLevel);
             return builder;
         }
-        
+
         /// <summary>
         /// Starts building a log event at the <c>Trace</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForTraceEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Trace(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Trace);
@@ -70,6 +72,7 @@ namespace NLog.Fluent
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForDebugEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Debug(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Debug);
@@ -82,6 +85,7 @@ namespace NLog.Fluent
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForInfoEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Info(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Info);
@@ -94,6 +98,7 @@ namespace NLog.Fluent
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForWarnEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Warn(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Warn);
@@ -106,6 +111,7 @@ namespace NLog.Fluent
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForErrorEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Error(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Error);
@@ -118,6 +124,7 @@ namespace NLog.Fluent
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForFatalEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Fatal(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Fatal);

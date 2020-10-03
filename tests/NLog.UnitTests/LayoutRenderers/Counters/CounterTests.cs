@@ -51,7 +51,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             logger.Info("a");
             AssertDebugLastMessage("debug", "a 1 1");
@@ -75,17 +75,15 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
-
-
-            logger.Info().Message("a").Property("context1", "seq1").Write();
+            logger.WithProperty("context1", "seq1").Info("a");
             AssertDebugLastMessage("debug", "a 1 1");
-            logger.Info().Message("a").Property("context1", "seq1").Write();
-            AssertDebugLastMessage("debug", "a 2 2"); 
-            logger.Info().Message("a").Property("context1", "seq2").Write();
+            logger.WithProperty("context1", "seq1").Info("a");
+            AssertDebugLastMessage("debug", "a 2 2");
+            logger.WithProperty("context1", "seq2").Info("a");
             AssertDebugLastMessage("debug", "a 1 3");
-            logger.Info().Message("a").Property("context1", "seq1").Write();
+            logger.WithProperty("context1", "seq1").Info("a");
             AssertDebugLastMessage("debug", "a 3 4");
         }
 
@@ -100,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             logger.Info("a");
             AssertDebugLastMessage("debug", "a 1 1");

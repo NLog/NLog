@@ -48,7 +48,7 @@ namespace NLog.UnitTests
 
             SimpleConfigurator.ConfigureForTargetLogging(debugTarget1, LogLevel.Debug);
 
-            ILogger logger = LogManager.GetLogger(Guid.NewGuid().ToString("N"));
+            var logger = LogManager.GetLogger(Guid.NewGuid().ToString("N"));
 
             logger.Info("foo");
 
