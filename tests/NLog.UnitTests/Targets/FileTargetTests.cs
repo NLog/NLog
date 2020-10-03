@@ -53,7 +53,7 @@ namespace NLog.UnitTests.Targets
 
     public abstract class FileTargetTests : NLogTestBase
     {
-        private readonly ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+        private readonly Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
         public static IEnumerable<object[]> SimpleFileTest_TestParameters
         {
@@ -942,7 +942,7 @@ namespace NLog.UnitTests.Targets
 
                     LogManager.Configuration = config;
 
-                    ILogger logger = LogManager.GetLogger("A");
+                    var logger = LogManager.GetLogger("A");
                     logger.Info("a");
 
                     Assert.Equal(createDirs, Directory.Exists(tempPath));
@@ -3130,7 +3130,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        private void Generate100BytesLog(char c, ILogger logger = null)
+        private void Generate100BytesLog(char c, Logger logger = null)
         {
             logger = logger ?? this.logger;
             for (var i = 0; i < 25; ++i)

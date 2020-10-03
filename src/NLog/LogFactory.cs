@@ -382,7 +382,7 @@ namespace NLog
             InternalLogger.Info("Configuration initialized.");
             try
             {
-                InternalLogger.LogAssemblyVersion(typeof(ILogger).GetAssembly());
+                InternalLogger.LogAssemblyVersion(typeof(LogFactory).GetAssembly());
             }
             catch (SecurityException ex)
             {

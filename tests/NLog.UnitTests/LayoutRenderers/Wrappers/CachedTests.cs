@@ -101,7 +101,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             </nlog>");
             LogManager.Configuration.Variables["var1"] = "a";
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             var s1 = GetDebugLastMessage("debug");
             logger.Debug("msg");

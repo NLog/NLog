@@ -46,7 +46,7 @@ namespace NLog.UnitTests.LayoutRenderers
     {
         const int E_FAIL = 80004005;
 
-        private ILogger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
         private const string ExceptionDataFormat = "{0}: {1}";
 
         [Fact]

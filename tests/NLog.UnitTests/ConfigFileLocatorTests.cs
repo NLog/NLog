@@ -449,7 +449,7 @@ using NLog;
 
 class C1
 {
-    private static ILogger logger = LogManager.GetCurrentClassLogger();
+    private static Logger logger = LogManager.GetCurrentClassLogger();
 
     static void Main(string[] args)
     {
@@ -467,14 +467,14 @@ class C1
             var options = new System.CodeDom.Compiler.CompilerParameters();
             options.OutputAssembly = Path.Combine(_tempDirectory, "ConfigFileLocator.exe");
             options.GenerateExecutable = true;
-            options.ReferencedAssemblies.Add(typeof(ILogger).Assembly.Location);
+            options.ReferencedAssemblies.Add(typeof(LogFactory).Assembly.Location);
             options.IncludeDebugInformation = true;
             if (!File.Exists(options.OutputAssembly))
             {
                 var results = provider.CompileAssemblyFromSource(options, sourceCode);
                 Assert.False(results.Errors.HasWarnings);
                 Assert.False(results.Errors.HasErrors);
-                File.Copy(typeof(ILogger).Assembly.Location, Path.Combine(_tempDirectory, "NLog.dll"));
+                File.Copy(typeof(LogFactory).Assembly.Location, Path.Combine(_tempDirectory, "NLog.dll"));
             }
 
             return RunAndRedirectOutput(options.OutputAssembly);

@@ -50,7 +50,7 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("message");
             AssertDebugCounter("debug", 0);
 
@@ -88,7 +88,7 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Fatal("messageE");
             logger.Error("messageD");

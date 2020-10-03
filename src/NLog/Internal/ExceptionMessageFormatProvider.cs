@@ -46,12 +46,35 @@ namespace NLog.Internal
         {
             if (arg is Exception exception)
             {
+                exception = GetPrimaryException(exception);
                 return $"{exception.GetType().ToString()}: {exception.Message}";
             }
             else
             {
                 return string.Format("{0}", arg);
             }
+        }
+
+        private static Exception GetPrimaryException(Exception exception)
+        {
+#if !NET35
+            if (exception is AggregateException aggregateException)
+            {
+                if (aggregateException.InnerExceptions?.Count == 1)
+                {
+                    var innerException = aggregateException.InnerExceptions[0];
+                    if (!(innerException is AggregateException))
+                        return innerException;  // Skip calling Flatten()
+                }
+
+                aggregateException = aggregateException.Flatten();
+                if (aggregateException.InnerExceptions?.Count == 1)
+                {
+                    return aggregateException.InnerExceptions[0];
+                }
+            }
+#endif
+            return exception;
         }
 
         object IFormatProvider.GetFormat(Type formatType)

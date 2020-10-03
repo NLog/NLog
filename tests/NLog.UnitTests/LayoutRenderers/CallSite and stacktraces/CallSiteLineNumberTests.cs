@@ -55,7 +55,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
 #if DEBUG
 #line 100000
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </rules>
         </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             Func<string> getLastMessage = () => GetDebugLastMessage("debug");
             logger.Debug("msg");
             var lastMessage = getLastMessage();
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.NotEqual(" msg", GetDebugLastMessage("debug"));
         }
 
-        private static async Task WriteMessages(ILogger logger, Func<string> getLastMessage)
+        private static async Task WriteMessages(Logger logger, Func<string> getLastMessage)
         {
             logger.Info("Line number should be non-zero");
             var lastMessage1 = getLastMessage();

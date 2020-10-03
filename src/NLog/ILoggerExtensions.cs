@@ -50,6 +50,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Log(this ILogger logger, LogLevel level, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsEnabled(level))
@@ -65,6 +66,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Trace(this ILogger logger, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsTraceEnabled)
@@ -85,6 +87,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Debug(this ILogger logger, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsDebugEnabled)
@@ -105,6 +108,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Info(this ILogger logger, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsInfoEnabled)
@@ -125,6 +129,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Warn(this ILogger logger, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsWarnEnabled)
@@ -145,6 +150,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Error(this ILogger logger, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsErrorEnabled)
@@ -165,6 +171,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [CLSCompliant(false)]
+        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
         public static void Fatal(this ILogger logger, Exception exception, LogMessageGenerator messageFunc)
         {
             if (logger.IsFatalEnabled)

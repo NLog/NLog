@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestLogging()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget { Layout = "${threadid}|${level}|${message}|${mdlc:item=Test}" };
 
@@ -227,7 +227,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestAsyncException()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -262,7 +262,7 @@ namespace NLog.UnitTests.Targets
         {
             RetryingIntegrationTest(3, () =>
             {
-                ILogger logger = LogManager.GetCurrentClassLogger();
+                var logger = LogManager.GetCurrentClassLogger();
 
                 var asyncTarget = new AsyncTaskTestTarget
                 {
@@ -294,7 +294,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestRetryAsyncException()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -329,7 +329,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestRetryException()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -364,7 +364,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestBatchWriting()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -396,7 +396,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestFakeBatchWriting()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -429,7 +429,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestSlowBatchWriting()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -457,7 +457,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestThrottleOnTaskDelay()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -485,7 +485,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsynTaskTarget_AutoFlushWrapper()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {

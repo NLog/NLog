@@ -133,7 +133,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 #if DEBUG
 #line 100000
 #endif
@@ -159,7 +159,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
@@ -179,7 +179,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg2");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
@@ -237,7 +237,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests msg");
         }
@@ -253,7 +253,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "CallSiteTests msg");
         }
@@ -269,7 +269,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             var logEvent = LogEventInfo.Create(LogLevel.Debug, logger.Name, "msg");
             logEvent.SetCallerInfo("NLog.UnitTests.LayoutRenderers.OverrideClassName", nameof(ClassNameTestWithOverride), null, 0);
             logger.Log(logEvent);
@@ -287,7 +287,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
@@ -304,7 +304,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             var typeName = currentMethod.DeclaringType.FullName;
@@ -322,7 +322,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
@@ -339,7 +339,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             var typeName = currentMethod.DeclaringType.FullName;
@@ -357,7 +357,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
@@ -373,7 +373,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "ftAlignRightTest msg");
         }
@@ -389,7 +389,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
@@ -405,7 +405,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "htAlignRightTest msg");
         }
@@ -421,7 +421,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
@@ -441,7 +441,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             Action action = () => logger.Debug("msg");
             action.Invoke();
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
@@ -458,7 +458,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -491,7 +491,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -525,7 +525,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -558,7 +558,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -592,7 +592,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -653,7 +653,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules msg");
         }
@@ -674,7 +674,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules_chained msg");
         }
@@ -697,7 +697,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForMultipleRules msg");
         }
@@ -1038,21 +1038,21 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public class MyWrapper : BaseWrapper
         {
-            private readonly ILogger wrapperLogger;
+            private readonly ILog _wrapperLogger;
 
             public MyWrapper()
             {
-                wrapperLogger = LogManager.GetLogger("WrappedLogger");
+                _wrapperLogger = LogManager.GetLogger("WrappedLogger");
             }
 
             protected override void InternalLog(Type type, string what) //added type for composition
             {
-                LogEventInfo info = new LogEventInfo(LogLevel.Warn, wrapperLogger.Name, what);
+                LogEventInfo info = new LogEventInfo(LogLevel.Warn, _wrapperLogger.Name, what);
 
                 // Provide BaseWrapper as wrapper type.
                 // Expected: UserStackFrame should point to the method that calls a 
                 // method of BaseWrapper.
-                wrapperLogger.Log(type, info);
+                _wrapperLogger.Log(type, info);
             }
         }
 
@@ -1073,7 +1073,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
+            var logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
 
             Assert.True(logger is MyLogger, "logger isn't MyLogger");
             logger.Debug("msg");

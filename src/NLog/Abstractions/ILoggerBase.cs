@@ -40,6 +40,7 @@ namespace NLog
     /// <summary>
     /// Logger with only generic methods (passing 'LogLevel' to methods) and core properties.
     /// </summary>
+    [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
     public partial interface ILoggerBase
     {
         /// <summary>
@@ -117,6 +118,16 @@ namespace NLog
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete before v4.3.11")]
+        void LogException(LogLevel level, [Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
         /// <param name="exception">An exception to be logged.</param>
         [MessageTemplateFormatMethod("message")]
@@ -158,6 +169,16 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete before v4.3.11")]
+        void Log(LogLevel level, [Localizable(false)] string message, Exception exception);
 
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameter and formatting it with the supplied format provider.

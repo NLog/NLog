@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Targets
 
     public class ConcurrentFileTargetTests : NLogTestBase
     {
-        private ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
+        private Logger _logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
 
         private void ConfigureSharedFile(string mode, string fileName)
         {
@@ -129,7 +129,7 @@ namespace NLog.UnitTests.Targets
 
                     for (int i = 0; i < numLogs; ++i)
                     {
-                        logger.Debug(format, i);
+                        _logger.Debug(format, i);
                     }
 
                     LogManager.Configuration = null;     // Flush + Close

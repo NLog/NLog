@@ -393,7 +393,7 @@ namespace NLog
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
         {
             StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
-            ILogger logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
+            var logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
 
             logLevel = _forceLogLevel ?? logLevel;
             if (!logger.IsEnabled(logLevel))
@@ -431,7 +431,7 @@ namespace NLog
             logger.Log(ev);
         }
 
-        private ILogger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
+        private Logger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
         {
             loggerName = (loggerName ?? Name) ?? string.Empty;
 

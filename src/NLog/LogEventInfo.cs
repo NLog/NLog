@@ -392,7 +392,7 @@ namespace NLog
         /// <returns>Null log event.</returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return new LogEventInfo(LogLevel.Off, string.Empty, string.Empty);
+            return new LogEventInfo(LogLevel.Off, string.Empty, null, string.Empty, null, null);
         }
 
         /// <summary>
@@ -404,7 +404,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message)
         {
-            return new LogEventInfo(logLevel, loggerName, null, message, null);
+            return new LogEventInfo(logLevel, loggerName, null, message, null, null);
         }
 
         /// <summary>
@@ -418,7 +418,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
         {
-            return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
+            return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters, null);
         }
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message)
         {
-            return Create(logLevel, loggerName, exception, formatProvider, message, null);
+            return new LogEventInfo(logLevel, loggerName, formatProvider, message, null, exception);
         }
 
         /// <summary>

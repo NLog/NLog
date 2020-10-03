@@ -72,7 +72,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logEventInfo.LoggerName = logger.Name;
             logger.Log(logEventInfo);
             AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
@@ -109,7 +109,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logEventInfo.LoggerName = logger.Name;
             logger.Log(logEventInfo);
             AssertDebugLastMessage("debug", "{ \"LogMessage\": \"{0:X} - Login request from {1} for {2} with userid {0}\" }");
@@ -145,7 +145,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logEventInfo.LoggerName = logger.Name;
             logger.Log(logEventInfo);
             AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {Application:l}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");

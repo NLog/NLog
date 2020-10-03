@@ -43,15 +43,15 @@ namespace NLog.UnitTests
         [Fact]
         public void GetCurrentClassLoggerTest()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
         [Fact]
         public void GetCurrentClassLoggerLambdaTest()
         {
-            System.Linq.Expressions.Expression<Func<ILogger>> sum = () => LogManager.GetCurrentClassLogger();
-            ILogger logger = sum.Compile().Invoke();
+            System.Linq.Expressions.Expression<Func<Logger>> sum = () => LogManager.GetCurrentClassLogger();
+            var logger = sum.Compile().Invoke();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
@@ -62,9 +62,9 @@ namespace NLog.UnitTests
 
             MyLogger l1 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
             MyLogger l2 = lf.GetLogger<MyLogger>("AAA");
-            ILogger l3 = lf.GetLogger("AAA", typeof(Logger));
-            ILogger l5 = lf.GetLogger("AAA");
-            ILogger l6 = lf.GetLogger("AAA");
+            Logger l3 = lf.GetLogger("AAA", typeof(Logger));
+            Logger l5 = lf.GetLogger("AAA");
+            Logger l6 = lf.GetLogger("AAA");
 
             Assert.Same(l1, l2);
             Assert.Same(l5, l6);
@@ -83,10 +83,10 @@ namespace NLog.UnitTests
 
             MyLogger l1 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
             MyLogger l2 = lf.GetCurrentClassLogger<MyLogger>();
-            ILogger l3 = lf.GetCurrentClassLogger(typeof(Logger));
-     
-            ILogger l5 = lf.GetCurrentClassLogger();
-            ILogger l6 = lf.GetCurrentClassLogger();
+            Logger l3 = lf.GetCurrentClassLogger(typeof(Logger));
+
+            Logger l5 = lf.GetCurrentClassLogger();
+            Logger l6 = lf.GetCurrentClassLogger();
 
             Assert.Same(l1, l2);
             Assert.Same(l5, l6);

@@ -69,7 +69,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("msg");
                 logger.Info("msg2");
                 logger.Warn("Message with, a comma");
@@ -122,7 +122,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("msg");
                 logger.Info("msg2");
                 logger.Warn("Message with, a comma");
@@ -170,7 +170,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("msg");
                 logger.Info("msg2");
                 logger.Warn("Message with, a comma");
