@@ -105,8 +105,21 @@ namespace NLog.Internal
                 Type propertyType = propInfo.PropertyType;
                 var unwrappedType = UnwrapTypedLayout(propertyType);
                 var isTypedLayout = unwrappedType != propertyType;
+                var isDynamicTypedLayout = false;
 
-                if (!TryNLogSpecificConversion(unwrappedType, value, configurationItemFactory, out var newValue))
+                object newValue = null;
+
+                if (isTypedLayout)
+                {
+                    var layout = new SimpleLayout(value);
+                    if (!layout.IsFixedText)
+                    {
+                        isDynamicTypedLayout = true;
+                        newValue = layout;
+                    }
+                }
+
+                if (!isDynamicTypedLayout && !TryNLogSpecificConversion(unwrappedType, value, configurationItemFactory, out newValue))
                 {
                     if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                     {
