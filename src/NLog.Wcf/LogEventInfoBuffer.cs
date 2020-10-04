@@ -38,8 +38,7 @@ namespace NLog.Common
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
-    [Obsolete("Use AsyncRequestQueue instead")]
-    public class LogEventInfoBuffer
+    internal class LogEventInfoBuffer
     {
         private readonly object _lockObject = new object();
         private readonly bool _growAsNeeded;
