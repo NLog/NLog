@@ -29,14 +29,14 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-//
+// 
 
 namespace NLog.Common
 {
     using System;
 
     /// <summary>
-    /// A cyclic buffer of <see cref="LogEventInfo"/> object.s
+    /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
     [Obsolete("Use AsyncRequestQueue instead")]
     public class LogEventInfoBuffer
