@@ -39,12 +39,11 @@ namespace NLog.Targets
     using System.Globalization;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-    using System.Threading;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
     using NLog.LogReceiverService;
+    using LogEventInfoBuffer = Wcf.LogEventInfoBuffer;
 
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).

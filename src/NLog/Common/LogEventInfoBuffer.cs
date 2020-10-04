@@ -29,17 +29,16 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
 
-namespace NLog.Wcf
+namespace NLog.Common
 {
-    using NLog.Common;
     using System;
 
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
-    internal class LogEventInfoBuffer
+    [Obsolete("Use AsyncRequestQueue instead")]
+    public class LogEventInfoBuffer
     {
         private readonly object _lockObject = new object();
         private readonly bool _growAsNeeded;
@@ -132,7 +131,7 @@ namespace NLog.Wcf
             {
                 int cnt = _count;
                 if (cnt == 0)
-                    return new AsyncLogEventInfo[0];
+                    return Internal.ArrayHelper.Empty<AsyncLogEventInfo>();
 
                 var returnValue = new AsyncLogEventInfo[cnt];
 
