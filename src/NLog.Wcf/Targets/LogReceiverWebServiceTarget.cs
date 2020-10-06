@@ -39,12 +39,11 @@ namespace NLog.Targets
     using System.Globalization;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-    using System.Threading;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
     using NLog.LogReceiverService;
+    using LogEventInfoBuffer = Wcf.LogEventInfoBuffer;
 
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).
@@ -53,9 +52,7 @@ namespace NLog.Targets
     [Target("LogReceiverService")]
     public class LogReceiverWebServiceTarget : Target
     {
-        #pragma warning disable CS0618 // Type or member is obsolete
         private readonly LogEventInfoBuffer buffer = new LogEventInfoBuffer(10000, false, 10000);
-        #pragma warning restore CS0618 // Type or member is obsolete
         private bool inCall;
 
         /// <summary>
