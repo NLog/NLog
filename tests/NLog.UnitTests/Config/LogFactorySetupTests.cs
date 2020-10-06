@@ -611,7 +611,7 @@ namespace NLog.UnitTests.Config
             {
                 // Act
                 var logFactory = new LogFactory();
-                logFactory.Setup().LoadConfiguration(builder => builder.UseTimeSource(new NLog.Time.AccurateUtcTimeSource()));
+                logFactory.Setup().LoadConfiguration(builder => builder.SetTimeSource(new NLog.Time.AccurateUtcTimeSource()));
 
                 // Assert
                 Assert.Same(typeof(NLog.Time.AccurateUtcTimeSource), NLog.Time.TimeSource.Current.GetType());
@@ -632,7 +632,7 @@ namespace NLog.UnitTests.Config
             {
                 // Act
                 var logFactory = new LogFactory();
-                logFactory.Setup().LoadConfiguration(builder => builder.AddGlobalContextProperty(nameof(SetupBuilder_GlobalDiagnosticContext), "Yes"));
+                logFactory.Setup().LoadConfiguration(builder => builder.SetGlobalContextProperty(nameof(SetupBuilder_GlobalDiagnosticContext), "Yes"));
 
                 // Assert
                 Assert.Equal("Yes", NLog.GlobalDiagnosticsContext.Get(nameof(SetupBuilder_GlobalDiagnosticContext)));
@@ -669,7 +669,7 @@ namespace NLog.UnitTests.Config
             var logger = logFactory.Setup().LoadConfiguration(c =>
             {
                 c.ForLogger().FilterMinLevel(LogLevel.Info).WriteTo(new DebugTarget() { Layout = "${message}" });
-                c.ForLoggerWriteToNil("*", LogLevel.Info, topRule: true);
+                c.ForLogger("*").TopRule().WriteToNil(LogLevel.Info);
             }).GetCurrentClassLogger();
             var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
             Assert.Single(logFactory.Configuration.AllTargets);

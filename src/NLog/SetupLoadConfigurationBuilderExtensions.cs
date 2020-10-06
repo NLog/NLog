@@ -53,7 +53,7 @@ namespace NLog
         /// <remarks>
         /// Available by default: <see cref="Time.AccurateLocalTimeSource"/>, <see cref="Time.AccurateUtcTimeSource"/>, <see cref="Time.FastLocalTimeSource"/>, <see cref="Time.FastUtcTimeSource"/>
         /// </remarks>
-        public static ISetupLoadConfigurationBuilder UseTimeSource(this ISetupLoadConfigurationBuilder configBuilder, NLog.Time.TimeSource timeSource)
+        public static ISetupLoadConfigurationBuilder SetTimeSource(this ISetupLoadConfigurationBuilder configBuilder, NLog.Time.TimeSource timeSource)
         {
             NLog.Time.TimeSource.Current = timeSource;
             return configBuilder;
@@ -62,7 +62,7 @@ namespace NLog
         /// <summary>
         /// Updates the dictionary <see cref="GlobalDiagnosticsContext"/> ${gdc:item=} with the name-value-pair
         /// </summary>
-        public static ISetupLoadConfigurationBuilder AddGlobalContextProperty(this ISetupLoadConfigurationBuilder configBuilder, string name, string value)
+        public static ISetupLoadConfigurationBuilder SetGlobalContextProperty(this ISetupLoadConfigurationBuilder configBuilder, string name, string value)
         {
             GlobalDiagnosticsContext.Set(name, value);
             return configBuilder;
@@ -79,20 +79,6 @@ namespace NLog
             var ruleBuilder = new SetupConfigurationLoggingRuleBuilder(configBuilder.LogFactory, configBuilder.Configuration, loggerNamePattern, ruleName);
             ruleBuilder.LoggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             return ruleBuilder;
-        }
-
-        /// <summary>
-        /// Defines <see cref="LoggingRule" /> for ignoring output from matching <see cref="Logger"/>
-        /// </summary>
-        /// <param name="configBuilder">Fluent interface parameter.</param>
-        /// <param name="loggerNamePattern">Logger name pattern to check which <see cref="Logger"/> names matches this rule</param>
-        /// <param name="maxLevel">Maximum level that this rule matches</param>
-        /// <param name="ruleName">Rule identifier to allow rule lookup</param>
-        /// <param name="topRule">Move rule to the top, to match before any of the existing rules</param>
-        public static ISetupLoadConfigurationBuilder ForLoggerWriteToNil(this ISetupLoadConfigurationBuilder configBuilder, string loggerNamePattern = "*", LogLevel maxLevel = null, string ruleName = null, bool topRule = false)
-        {
-            configBuilder.ForLogger(loggerNamePattern, ruleName).FilterMaxLevel(maxLevel ?? LogLevel.MaxLevel).FinalRule().TopRule(topRule).WriteTo(null);
-            return configBuilder;
         }
 
         /// <summary>
@@ -225,6 +211,16 @@ namespace NLog
             }
 
             return configBuilder;
+        }
+
+        /// <summary>
+        /// Discard output from any matching <see cref="Logger"/>, so the output will not reach <see cref="LoggingConfiguration.LoggingRules"/> added after this.
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="maxLevel">Maximum level that this rule matches</param>
+        public static void WriteToNil(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel maxLevel = null)
+        {
+            configBuilder.FilterMaxLevel(maxLevel ?? LogLevel.MaxLevel).FinalRule().WriteTo(null);
         }
 
         /// <summary>
