@@ -54,7 +54,7 @@ namespace NLog
         /// Creates logical operation scope that includes provided properties and stack-value
         /// </summary>
         /// <param name="operationState">Value to added to the scope operation stack</param>
-        /// <param name="properties">Properties being added to the scope dictionray</param>
+        /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushOperationProperties(object operationState, IReadOnlyList<KeyValuePair<string, object>> properties)
@@ -87,7 +87,7 @@ namespace NLog
         /// <summary>
         /// Creates logical operation scope that includes provided properties
         /// </summary>
-        /// <param name="properties">Properties being added to the scope dictionray</param>
+        /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushProperties(IReadOnlyList<KeyValuePair<string, object>> properties)
