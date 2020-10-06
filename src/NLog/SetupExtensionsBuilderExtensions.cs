@@ -166,10 +166,9 @@ namespace NLog
             return setupBuilder;
         }
 
-#if !NETSTANDARD1_0
-        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
+        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Delegate conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
-            ConfigurationItemFactory.Default.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
+            ConfigurationItemFactory.Default.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod.GetDelegateInfo(), lateBoundMethod);
             return setupBuilder;
         }
 
@@ -184,7 +183,7 @@ namespace NLog
             if (conditionMethod == null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod((LogEventInfo)args[0]);
-            return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
+            return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
         }
 
         /// <summary>
@@ -198,8 +197,7 @@ namespace NLog
             if (conditionMethod == null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod();
-            return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
+            return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
         }
-#endif
     }
 }

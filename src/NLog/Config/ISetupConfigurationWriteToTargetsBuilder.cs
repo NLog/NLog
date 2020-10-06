@@ -34,18 +34,23 @@
 namespace NLog.Config
 {
     /// <summary>
-    /// Interface for fluent setup of LoggingConfiguration for LogFactory 
+    /// Interface for fluent setup of LoggingRules for LoggingConfiguration
     /// </summary>
-    public interface ISetupLoadConfigurationBuilder
+    public interface ISetupConfigurationWriteToTargetsBuilder
     {
         /// <summary>
-        /// LogFactory under configuration
+        /// LoggingRule being built
         /// </summary>
-        LogFactory LogFactory { get; }
+        LoggingRule LoggingRule { get; }
 
         /// <summary>
         /// LoggingConfiguration being built
         /// </summary>
-        LoggingConfiguration Configuration { get; set; }
+        LoggingConfiguration Configuration { get; }
+
+        /// <summary>
+        /// LogFactory under configuration
+        /// </summary>
+        LogFactory LogFactory { get; }
     }
 }

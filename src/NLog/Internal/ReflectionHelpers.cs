@@ -355,5 +355,14 @@ namespace NLog.Internal
             return p.GetGetMethod().Invoke(instance, null);
 #endif
         }
+
+        public static MethodInfo GetDelegateInfo(this Delegate method)
+        {
+#if NETSTANDARD1_0
+            return System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(method);
+#else
+            return method.Method;
+#endif
+        }
     }
 }
