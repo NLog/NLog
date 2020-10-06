@@ -826,7 +826,7 @@ namespace NLog.UnitTests.Targets
             // Arrange
             LogFactory logFactory = new LogFactory();
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <extensions>
                     <add type='" + typeof(MyTypedLayoutTarget).AssemblyQualifiedName + @"' />
                 </extensions>
