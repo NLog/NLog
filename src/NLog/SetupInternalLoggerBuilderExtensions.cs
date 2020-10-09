@@ -106,5 +106,23 @@ namespace NLog
             InternalLogger.LogMessageReceived -= eventSubscriber;
             return setupBuilder;
         }
+
+        /// <summary>
+        /// Configures from settings
+        /// </summary>
+        /// <param name="setupBuilder"></param>
+        /// <param name="settingsReader"></param>
+        /// <returns></returns>
+        public static ISetupExtensionsBuilder SetupFromSettings(this ISetupExtensionsBuilder setupBuilder,
+            ISettingsReader settingsReader)
+        {
+            InternalLogger.LogToConsole = settingsReader.GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
+            InternalLogger.LogToConsoleError = settingsReader.GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
+            InternalLogger.LogLevel = settingsReader.GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
+            InternalLogger.LogFile = settingsReader.GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+            InternalLogger.LogToTrace = settingsReader.GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
+            InternalLogger.IncludeTimestamp = settingsReader.GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
+            return setupBuilder;
+        }
     }
 }

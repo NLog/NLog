@@ -41,7 +41,6 @@ namespace NLog.Common
     using System.Reflection;
     using NLog.Internal;
     using NLog.Time;
-    using NLog.Targets;
 
     /// <summary>
     /// NLog internal logger.
@@ -70,19 +69,10 @@ namespace NLog.Common
         /// </summary>
         public static void Reset()
         {
-            // TODO: Extract class - InternalLoggerConfigurationReader
-
-            LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
-            LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
-            LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
-            LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-            LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
-            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
-            Info("NLog internal logger initialized.");
-     
             ExceptionThrowWhenWriting = false;
             LogWriter = null;
             LogMessageReceived = null;
+            Info("NLog internal logger initialized.");
         }
 
         /// <summary>
@@ -523,103 +513,6 @@ namespace NLog.Common
             catch (Exception ex)
             {
                 Error(ex, "Error logging version of assembly {0}.", assembly.FullName);
-            }
-        }
-
-        private static string GetAppSettings(string configName)
-        {
-#if !NETSTANDARD
-            try
-            {
-                return System.Configuration.ConfigurationManager.AppSettings[configName];
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-            }
-#endif
-            return null;
-        }
-
-        private static string GetSettingString(string configName, string envName)
-        {
-            try
-            {
-                string settingValue = GetAppSettings(configName);
-                if (settingValue != null)
-                    return settingValue;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-            }
-
-            try
-            {
-                string settingValue = EnvironmentHelper.GetSafeEnvironmentVariable(envName);
-                if (!string.IsNullOrEmpty(settingValue))
-                    return settingValue;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-            }
-
-            return null;
-        }
-
-        private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
-        {
-            string value = GetSettingString(configName, envName);
-            if (value == null)
-            {
-                return defaultValue;
-            }
-
-            try
-            {
-                return LogLevel.FromString(value);
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-
-                return defaultValue;
-            }
-        }
-
-        private static T GetSetting<T>(string configName, string envName, T defaultValue)
-        {
-            string value = GetSettingString(configName, envName);
-            if (value == null)
-            {
-                return defaultValue;
-            }
-
-            try
-            {
-                return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-
-                return defaultValue;
             }
         }
 
