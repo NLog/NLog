@@ -85,7 +85,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
-        /// <param name="loggerName">Logger name.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="message">Log message including parameter placeholders.</param>
         public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message)
             : this(level, loggerName, null, message, null, null)
@@ -96,7 +96,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
-        /// <param name="loggerName">Logger name.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="messageTemplateParameters">Log message including parameter placeholders.</param>
         public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message, IList<MessageTemplateParameter> messageTemplateParameters)
@@ -115,7 +115,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
-        /// <param name="loggerName">Logger name.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
@@ -128,7 +128,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
-        /// <param name="loggerName">Logger name.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
@@ -399,7 +399,7 @@ namespace NLog
         /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="message">The message.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message)
@@ -411,7 +411,7 @@ namespace NLog
         /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="formatProvider">The format provider.</param>
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
@@ -425,7 +425,7 @@ namespace NLog
         /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="formatProvider">The format provider.</param>
         /// <param name="message">The message.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
@@ -447,7 +447,7 @@ namespace NLog
         /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="exception">The exception.</param>
         /// <param name="formatProvider">The format provider.</param>
         /// <param name="message">The message.</param>
@@ -461,7 +461,7 @@ namespace NLog
         /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="exception">The exception.</param>
         /// <param name="formatProvider">The format provider.</param>
         /// <param name="message">The message.</param>
