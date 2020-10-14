@@ -520,21 +520,30 @@ namespace NLog.UnitTests.Layouts
             }
         }
 
-        [Theory]
-        [InlineData(@"aaa ${iDontExist} bbb")]
-        [InlineData(@"${layoutrenderer-with-list:}")]
-        public void InvalidLayoutWillThrowIfExceptionThrowingIsOn(string layout)
+        [Fact]
+        public void InvalidLayoutWillThrowIfExceptionThrowingIsOn()
         {
             LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
-                SimpleLayout l = layout;
+                SimpleLayout l = @"aaa ${iDontExist} bbb";
+            });
+        }
+
+        [Fact]
+        public void InvalidLayoutWithExistingRenderer_WillThrowIfExceptionThrowingIsOn()
+        {
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            LogManager.ThrowConfigExceptions = true;
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                SimpleLayout l = @"${layoutrenderer-with-list:}";
             });
 
         }
 
         [Fact]
-        public void UnknownPropertyInLayoutWillThrowIfExceptionThrowingIsOn()
+        public void UnknownPropertyInLayout_WillThrowIfExceptionThrowingIsOn()
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
             LogManager.ThrowConfigExceptions = true;
