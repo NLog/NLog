@@ -258,9 +258,9 @@ namespace NLog.Targets
                 return true;
             }
 
-            if (value is DateTimeOffset)
+            if (value is DateTimeOffset dateTimeOffset)
             {
-                QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
+                QuoteValue(destination, dateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
                 return true;
             }
 
