@@ -73,7 +73,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             using (new NoThrowNLogExceptions())
             {
-                SimpleLayout l = @"${whenEmpty:whenEmpty=${literal:text=c\:\\logs\\}}api.log";
+                SimpleLayout l = @"${whenEmpty:whenEmpty=${literal:text=c:\logs\}:inner=${environment:LOG_DIR_XXX}}api.log";
                 var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
                 LogManager.ThrowExceptions = true;
                 Assert.Equal("api.log", l.Render(le));
