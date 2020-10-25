@@ -386,9 +386,9 @@ namespace NLog.Layouts
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions == true)
+                            if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
                             {
-                                throw new NLogConfigurationException("Unrecognized property '{0}={1}` for ${{{2}}} ({3})", parameterName, value, name, layoutRenderer?.GetType());
+                                throw new NLogConfigurationException($"Unrecognized property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
                             }
                             InternalLogger.Warn("Skipping unrecognized property '{0}={1}` for ${{{2}}} ({3})", parameterName, value, name, layoutRenderer?.GetType());
                         }
@@ -439,11 +439,12 @@ namespace NLog.Layouts
             }
             catch (Exception ex)
             {
-                if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                var configException = new NLogConfigurationException(ex, $"Error parsing layout {name}");
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
-                    throw new NLogConfigurationException("Error parsing layout {0}", name);
+                    throw configException;
                 }
-                InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
+                InternalLogger.Error(ex, "{0} will be ignored.", configException.Message);
                 // replace with empty values
                 layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
@@ -460,11 +461,12 @@ namespace NLog.Layouts
             }
             else
             {
-                if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions == true)
+                var configException = new NLogConfigurationException($"{layoutRenderer.GetType()} has no default property to assign value {value}");
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
-                    throw new NLogConfigurationException("{0} has no default property to assign value {1}", layoutRenderer.GetType(), value);
+                    throw configException;
                 }
-                InternalLogger.Warn("{0} has no default property to assign value {1}", layoutRenderer.GetType(), value);
+                InternalLogger.Warn(configException.Message);
             }
         }
 
