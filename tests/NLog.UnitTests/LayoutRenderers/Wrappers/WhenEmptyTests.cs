@@ -71,10 +71,13 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WhenEmpty_MissingInner_ShouldNotThrow()
         {
-            LogManager.ThrowExceptions = true;
-            SimpleLayout l = @"${whenEmpty:whenEmpty=${literal:text=c:\logs\}:inner=${environment:LOG_DIR_XXX}}api.log";
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.Equal("api.log", l.Render(le));
+            using (new NoThrowNLogExceptions())
+            {
+                SimpleLayout l = @"${whenEmpty:whenEmpty=${literal:text=c\:\\logs\\}}api.log";
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                LogManager.ThrowExceptions = true;
+                Assert.Equal("api.log", l.Render(le));
+            }
         }
 
         [Fact]
