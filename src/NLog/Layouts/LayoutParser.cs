@@ -386,11 +386,11 @@ namespace NLog.Layouts
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                            var configException = new NLogConfigurationException($"Unrecognized property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
+                            if (throwConfigExceptions ?? configException.MustBeRethrown())
                             {
-                                throw new NLogConfigurationException($"Unrecognized property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
+                                throw configException;
                             }
-                            InternalLogger.Warn("Skipping unrecognized property '{0}={1}` for ${{{2}}} ({3})", parameterName, value, name, layoutRenderer?.GetType());
                         }
                     }
                     else
@@ -444,7 +444,6 @@ namespace NLog.Layouts
                 {
                     throw configException;
                 }
-                InternalLogger.Error(ex, "{0} will be ignored.", configException.Message);
                 // replace with empty values
                 layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
@@ -466,7 +465,6 @@ namespace NLog.Layouts
                 {
                     throw configException;
                 }
-                InternalLogger.Warn(configException.Message);
             }
         }
 
