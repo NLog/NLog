@@ -608,10 +608,8 @@ namespace NLog.Config
                         final = ParseBooleanValue(childProperty.Key, childProperty.Value, false);
                         break;
                     case "LEVEL":
-                        enableLevels = childProperty.Value;
-                        break;
                     case "LEVELS":
-                        enableLevels = StringHelpers.IsNullOrWhiteSpace(childProperty.Value) ? "," : childProperty.Value;
+                        enableLevels = childProperty.Value;
                         break;
                     case "MINLEVEL":
                         minLevel = childProperty.Value;
@@ -668,15 +666,9 @@ namespace NLog.Config
                 }
                 else
                 {
-                    if (enableLevels.IndexOf(',') >= 0)
+                    foreach (var logLevel in enableLevels.SplitAndTrimTokens(','))
                     {
-                        IEnumerable<LogLevel> logLevels = ParseLevels(enableLevels);
-                        foreach (var logLevel in logLevels)
-                            rule.EnableLoggingForLevel(logLevel);
-                    }
-                    else
-                    {
-                        rule.EnableLoggingForLevel(LogLevelFromString(enableLevels));
+                        rule.EnableLoggingForLevel(LogLevelFromString(logLevel));
                     }
                 }
             }
@@ -704,13 +696,6 @@ namespace NLog.Config
             SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? new SimpleLayout(levelLayout, _serviceRepository.ConfigurationItemFactory) : null;
             simpleLayout?.Initialize(this);
             return simpleLayout;
-        }
-
-        private IEnumerable<LogLevel> ParseLevels(string enableLevels)
-        {
-            string[] tokens = enableLevels.SplitAndTrimTokens(',');
-            var logLevels = tokens.Select(LogLevelFromString);
-            return logLevels;
         }
 
         private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
