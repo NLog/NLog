@@ -524,11 +524,34 @@ namespace NLog.UnitTests.Layouts
         public void InvalidLayoutWillThrowIfExceptionThrowingIsOn()
         {
             LogManager.ThrowConfigExceptions = true;
-            Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = @"aaa ${iDontExist} bbb";
             });
+        }
 
+        [Fact]
+        public void InvalidLayoutWithExistingRenderer_WillThrowIfExceptionThrowingIsOn()
+        {
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            LogManager.ThrowConfigExceptions = true;
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                SimpleLayout l = @"${layoutrenderer-with-list:}";
+            });
+
+        }
+
+        [Fact]
+        public void UnknownPropertyInLayout_WillThrowIfExceptionThrowingIsOn()
+        {
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            LogManager.ThrowConfigExceptions = true;
+
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                SimpleLayout l = @"${layoutrenderer-with-list:iDontExist=1}";
+            });
         }
 
         /// <summary>
