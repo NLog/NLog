@@ -211,17 +211,41 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeDateTime_Test2()
         {
-            var val = new DateTime(2016, 12, 31);
-            var actual = SerializeObject(val);
-            Assert.Equal("\"" + "2016-12-31T00:00:00Z" + "\"", actual);
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");    // uses "." instead of ":" for time
+
+                var val = new DateTime(2016, 12, 31);
+                var actual = SerializeObject(val);
+                Assert.Equal("\"" + "2016-12-31T00:00:00Z" + "\"", actual);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         [Fact]
         public void SerializeDateTimeOffset_Test()
         {
-            var val = new DateTimeOffset(new DateTime(2016, 12, 31, 2, 30, 59), new TimeSpan(4, 30, 0));
-            var actual = SerializeObject(val);
-            Assert.Equal("\"" + "2016-12-31 02:30:59 +04:30" + "\"", actual);
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");    // uses "." instead of ":" for time
+
+                var val = new DateTimeOffset(new DateTime(2016, 12, 31, 2, 30, 59), new TimeSpan(4, 30, 0));
+                var actual = SerializeObject(val);
+                Assert.Equal("\"" + "2016-12-31 02:30:59 +04:30" + "\"", actual);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         [Fact]
@@ -241,8 +265,20 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeTime3_Test()
         {
-            var actual = SerializeObject(new TimeSpan(0, 0, 2, 3, 4));
-            Assert.Equal("\"00:02:03.0040000\"", actual);
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");    // uses "." instead of ":" for time
+
+                var actual = SerializeObject(new TimeSpan(0, 0, 2, 3, 4));
+                Assert.Equal("\"00:02:03.0040000\"", actual);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         [Fact]
