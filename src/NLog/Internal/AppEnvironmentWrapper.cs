@@ -57,7 +57,7 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc />
         public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePath());
         /// <inheritdoc />
-        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = string.IsNullOrEmpty(CurrentProcessFilePath) ? UnknownProcessName : Path.GetFileNameWithoutExtension(CurrentProcessFilePath));
+        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessName());
         /// <inheritdoc />
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessId()).Value;
 #endif
@@ -140,6 +140,33 @@ namespace NLog.Internal.Fakeables
 
                 return 0;
             }
+        }
+
+        private static string LookupCurrentProcessName()
+        {
+            try
+            {
+                var currentProcess = Process.GetCurrentProcess();
+                var currentProcessName = currentProcess?.ProcessName;
+                if (!string.IsNullOrEmpty(currentProcessName))
+                    return currentProcessName;
+
+                // This code-path will probably never be exercised, but here for legacy reasons
+                var currentProcessFilePath = LookupCurrentProcessFilePath();
+                if (!string.IsNullOrEmpty(currentProcessFilePath))
+                {
+                    currentProcessName = Path.GetFileNameWithoutExtension(currentProcessFilePath);
+                    if (!string.IsNullOrEmpty(currentProcessName))
+                        return currentProcessName;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+            }
+
+            return UnknownProcessName;
         }
 #endif
     }
