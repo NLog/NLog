@@ -783,6 +783,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains(string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue), lastMessage);
             Assert.Contains(string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue), lastMessage);
         }
+
         [Fact]
         public void CustomExceptionProperties_Layout_Test()
         {
@@ -817,6 +818,40 @@ namespace NLog.UnitTests.LayoutRenderers
             var ex = GetNestedExceptionWithStackTrace("Goodbye World");
             logger.Fatal(ex, "msg");
             AssertDebugLastMessage("debug1", "Goodbye World");
+        }
+
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
+        public void RecursiveAsyncExceptionWithoutFlattenException()
+        {
+            var recursionCount = 3;
+            Func<int> innerAction = () => throw new ApplicationException("Life is hard");
+            var t1 = System.Threading.Tasks.Task<int>.Factory.StartNew(() =>
+            {
+                return NestedFunc(recursionCount, innerAction);
+            });
+
+            try
+            {
+                t1.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                var layoutRenderer = new ExceptionLayoutRenderer() { Format = "ToString", FlattenException = false };
+                var logEvent = LogEventInfo.Create(LogLevel.Error, null, null, (object)ex);
+                var result = layoutRenderer.Render(logEvent);
+                int needleCount = 0;
+                int foundIndex = result.IndexOf(nameof(NestedFunc), 0);
+                while (foundIndex >= 0)
+                {
+                    ++needleCount;
+                    foundIndex = result.IndexOf(nameof(NestedFunc), foundIndex + nameof(NestedFunc).Length);
+                }
+                Assert.True(needleCount >= recursionCount, $"{needleCount} too small");
+            }
         }
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
@@ -882,6 +917,21 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 ex.Data["1Really.Bad-Boy!"] = "Hello World";
                 return ex;
+            }
+        }
+
+        private int NestedFunc(int recursion, Func<int> innerAction)
+        {
+            try
+            {
+                if (recursion-- == 0)
+                    return System.Threading.Tasks.Task<int>.Factory.StartNew(() => innerAction.Invoke())
+                        .Result;
+                return NestedFunc(recursion, innerAction);
+            }
+            catch
+            {
+                throw;  // Just to make the method complex, and avoid inline
             }
         }
 

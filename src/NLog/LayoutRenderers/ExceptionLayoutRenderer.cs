@@ -179,7 +179,20 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
+        [DefaultValue(false)]
         public bool BaseException { get; set; }
+
+#if !NET3_5 && !SILVERLIGHT4
+        /// <summary>
+        /// Gets or sets whether to collapse exception tree using <see cref="AggregateException.Flatten()"/>
+        /// </summary>
+#else
+        /// <summary>
+        /// Gets or sets whether to collapse exception tree using AggregateException.Flatten()
+        /// </summary>
+#endif
+        [DefaultValue(true)]
+        public bool FlattenException { get; set; } = true;
 
         /// <summary>
         ///  Gets the formats of the output of inner exceptions to be rendered in target.
@@ -226,7 +239,7 @@ namespace NLog.LayoutRenderers
 #if !NET3_5 && !SILVERLIGHT4
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
-                    primaryException = GetPrimaryException(aggregateException);
+                    primaryException = FlattenException ? GetPrimaryException(aggregateException) : aggregateException;
                     AppendException(primaryException, Formats, builder, aggregateException);
                     if (currentLevel < MaxInnerExceptionLevel)
                     {
@@ -437,15 +450,17 @@ namespace NLog.LayoutRenderers
             }
 #endif
         }
+
         private void AppendData(StringBuilder builder, Exception ex, Exception aggregateException)
         {
-            if (aggregateException?.Data?.Count > 0)
+            if (aggregateException?.Data?.Count > 0 && !ReferenceEquals(ex, aggregateException))
             {
                 AppendData(builder, aggregateException);
                 builder.Append(Separator);
             }
             AppendData(builder, ex);
         }
+
         /// <summary>
         /// Appends the contents of an Exception's Data property to the specified <see cref="StringBuilder" />.
         /// </summary>
