@@ -41,13 +41,17 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
+        private readonly string _toStringValue;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>
         /// <param name="literalValue">Literal value.</param>
-        public ConditionLiteralExpression(object literalValue)
+        /// <param name="toStringValue">ToString value.</param>
+        public ConditionLiteralExpression(object literalValue, string toStringValue = null)
         {
             LiteralValue = literalValue;
+            _toStringValue = toStringValue;
         }
 
         /// <summary>
@@ -62,6 +66,9 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
+            if (_toStringValue != null)
+                return _toStringValue;
+
             if (LiteralValue == null)
             {
                 return "null";
