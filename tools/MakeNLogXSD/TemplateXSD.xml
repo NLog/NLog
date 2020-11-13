@@ -275,7 +275,7 @@
   <xs:complexType name="WrapperTargetBase" abstract="true">
     <xs:complexContent>
       <xs:extension base="Target">
-        <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:choice minOccurs="0" maxOccurs="1">
           <xs:element name="target" type="Target" minOccurs="1" maxOccurs="1" />
           <xs:element name="wrapper-target" type="WrapperTargetBase" minOccurs="1" maxOccurs="1" />
           <xs:element name="compound-target" type="CompoundTargetBase" minOccurs="1" maxOccurs="1" />
