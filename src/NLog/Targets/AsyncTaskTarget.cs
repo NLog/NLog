@@ -451,7 +451,12 @@ namespace NLog.Targets
         /// </summary>
         internal Task WriteAsyncTaskWithRetry(Task firstTask, IList<LogEventInfo> logEvents, CancellationToken cancellationToken, int retryCount)
         {
-            var tcs = new TaskCompletionSource<object>();
+            var tcs =
+#if NETSTANDARD || NET46
+                new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
+#else
+                new TaskCompletionSource<object>();
+#endif
 
             try
             {
@@ -560,9 +565,9 @@ namespace NLog.Targets
 
                 // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
 #if (SILVERLIGHT && !WINDOWS_PHONE) || NET4_0
-                newTask.ContinueWith(completedTask => TaskCompletion(completedTask, reusableLogEvents));
+                newTask.ContinueWith(completedTask => TaskCompletion(completedTask, reusableLogEvents), TaskScheduler);
 #else
-                newTask.ContinueWith(_taskCompletion, reusableLogEvents);
+                newTask.ContinueWith(_taskCompletion, reusableLogEvents, TaskScheduler);
 #endif
                 return true;
             }
