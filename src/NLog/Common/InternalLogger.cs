@@ -56,16 +56,7 @@ namespace NLog.Common
         private static readonly object LockObject = new object();
         private static string _logFile;
 
-        /// <summary>
-        /// Initializes static members of the InternalLogger class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static InternalLogger()
-        {
-            Reset();
-        }
-
-        /// <summary>
+       /// <summary>
         /// Set the config of the InternalLogger with defaults and config.
         /// </summary>
         public static void Reset()

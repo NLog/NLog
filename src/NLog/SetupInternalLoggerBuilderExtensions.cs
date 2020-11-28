@@ -106,5 +106,33 @@ namespace NLog
             InternalLogger.LogMessageReceived -= eventSubscriber;
             return setupBuilder;
         }
+
+        /// <summary>
+        /// Configure the InternalLogger properties from Environment-variables and App.config using <see cref="InternalLogger.Reset"/>
+        /// </summary>
+        /// <remarks>
+        /// Recognizes the following environment-variables:
+        /// 
+        /// - NLOG_INTERNAL_LOG_LEVEL
+        /// - NLOG_INTERNAL_LOG_FILE
+        /// - NLOG_INTERNAL_LOG_TO_CONSOLE
+        /// - NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR
+        /// - NLOG_INTERNAL_LOG_TO_TRACE
+        /// - NLOG_INTERNAL_INCLUDE_TIMESTAMP
+        /// 
+        /// Legacy .NetFramework platform will also recognizes the following app.config settings:
+        /// 
+        /// - nlog.internalLogLevel
+        /// - nlog.internalLogFile
+        /// - nlog.internalLogToConsole
+        /// - nlog.internalLogToConsoleError
+        /// - nlog.internalLogToTrace
+        /// - nlog.internalLogIncludeTimestamp
+        /// </remarks>
+        public static ISetupInternalLoggerBuilder SetupFromEnvironmentVariables(this ISetupInternalLoggerBuilder setupBuilder)
+        {
+            InternalLogger.Reset();
+            return setupBuilder;
+        }
     }
 }
