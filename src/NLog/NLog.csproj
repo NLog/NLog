@@ -34,18 +34,20 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 
 ## Bugfixes
-- FileTarget - New current file should write start header, when archive operation is performed on previous file (#4106) (@snakefoot)
+- JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
+- AsyncTaskTarget - Flush when buffer is full should not block forever (#4176) (@snakefoot)
+- Failing to lookup ProcessName because of Access Denied should fallback to Win32-API (#4182) (@snakefoot)
+
+## Features
+- ExceptionLayoutRenderer - Added FlattenException option (#4153) (@snakefoot)
 
 ## Improvements
-- LoggingConfiguration - ValidateConfig should only throw when enabled (#4102) (@snakefoot)
-- Fix VerificationException Operation could destabilize the runtime (#4114) (@snakefoot)
+- NetworkTarget - Improve handling of synchronous exceptions from UdpClient.SendAsync (#4141) (@snakefoot)
+- AsyncTaskTarget - Include TaskScheduler in ContinueWith (#4176) (@snakefoot)
 
 ## Performance
-- Removed EmptyDefaultDictionary from MappedDiagnosticsContext (#4115) (@snakefoot)
-
-## Other
-- Fix root .editorconfig to use end_of_line = CRLF. Remove local .editorconfig (#4109) (@snakefoot)
-- Improve docs (#4097) (@304NotModified)
+- Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
+- ConditionLayoutExpression - Skip allocating StringBuilder for every condition check (#4171) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

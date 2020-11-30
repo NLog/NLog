@@ -4,6 +4,24 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.6 (2020/12/05)
+
+#### Bugfixes
+- [#4142](https://github.com/NLog/NLog/pull/4142) JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
+- [#4176](https://github.com/NLog/NLog/pull/4176) AsyncTaskTarget - Flush when buffer is full should not block forever (#4176) (@snakefoot)
+- [#4182](https://github.com/NLog/NLog/pull/4182) Failing to lookup ProcessName because of Access Denied should fallback to Win32-API (#4182) (@snakefoot)
+
+#### Features
+- [#4153](https://github.com/NLog/NLog/pull/4153) ExceptionLayoutRenderer - Added FlattenException option (#4153) (@snakefoot)
+
+#### Improvements
+- [#4141](https://github.com/NLog/NLog/pull/4141) NetworkTarget - Improve handling of synchronous exceptions from UdpClient.SendAsync (#4141) (@snakefoot)
+- [#4176](https://github.com/NLog/NLog/pull/4176) AsyncTaskTarget - Include TaskScheduler in ContinueWith (#4176) (@snakefoot)
+
+#### Performance
+- [#4132](https://github.com/NLog/NLog/pull/4132) Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
+- [#4171](https://github.com/NLog/NLog/pull/4171) ConditionLayoutExpression - Skip allocating StringBuilder for every condition check (#4171) (@snakefoot)
+
 ### V4.7.5 (2020/09/27)
 
 #### Bugfixes
@@ -36,7 +54,7 @@ Date format: (year/month/day)
 
 #### Features
 - [#4017](https://github.com/NLog/NLog/pull/4017) Allow to change the RuleName of a LoggingRule (#4017) (@304NotModified)
-- [#3974](https://github.com/NLog/NLog/pull/3974) logging of  AggregrateException.Data to prevent it from losing it after Flatten call (#3974) (@chaos0307)
+- [#3974](https://github.com/NLog/NLog/pull/3974) logging of AggregrateException.Data to prevent it from losing it after Flatten call (#3974) (@chaos0307)
 
 #### Bugfixes
 - [#4011](https://github.com/NLog/NLog/pull/4011) LocalIpAddressLayoutRenderer - IsDnsEligible and PrefixOrigin throws PlatformNotSupportedException on Linux (#4011) (@snakefoot)
