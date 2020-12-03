@@ -1329,7 +1329,8 @@ namespace NLog.Targets
             else if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("FileTarget(Name={0}): Archiving {1} to compressed {2}", Name, fileName, archiveFileName);
-                FileCompressor.CompressFile(fileName, archiveFileName);
+                string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+                FileCompressor.CompressFile(fileName, entryName, archiveFileName);
                 DeleteAndWaitForFileDelete(fileName);
             }
             else

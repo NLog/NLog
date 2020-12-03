@@ -46,15 +46,15 @@ using System.IO.Compression;
     internal class ZipArchiveFileCompressor : IFileCompressor
     {
         /// <summary>
-        /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
+        /// Implements <see cref="IFileCompressor.CompressFile(string, string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
         /// </summary>
-        public void CompressFile(string fileName, string archiveFileName)
+        public void CompressFile(string fileName, string entryName, string archiveFileName)
         {
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
             {
-                var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                var zipArchiveEntry = archive.CreateEntry(entryName);
                 using (var destination = zipArchiveEntry.Open())
                 {
                     originalFileStream.CopyTo(destination);
