@@ -36,8 +36,10 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 
+    [DebuggerDisplay("Count = {Count}")]
     internal class ThreadSafeDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         private readonly object _lockObject = new object();
