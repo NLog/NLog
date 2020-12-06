@@ -17,6 +17,7 @@ Date format: (year/month/day)
 #### Improvements
 - [#4141](https://github.com/NLog/NLog/pull/4141) NetworkTarget - Improve handling of synchronous exceptions from UdpClient.SendAsync (#4141) (@snakefoot)
 - [#4176](https://github.com/NLog/NLog/pull/4176) AsyncTaskTarget - Include TaskScheduler in ContinueWith (#4176) (@snakefoot)
+- [#4190](https://github.com/NLog/NLog/pull/4190) Improving debugger-display for Logger.Properties and LogEventInfo.Properties (@snakefoot)
 
 #### Performance
 - [#4132](https://github.com/NLog/NLog/pull/4132) Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
