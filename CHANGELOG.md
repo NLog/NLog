@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7.6 (2020/12/05)
+### V4.7.6 (2020/12/06)
 
 #### Bugfixes
 - [#4142](https://github.com/NLog/NLog/pull/4142) JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
