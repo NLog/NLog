@@ -103,8 +103,16 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Send(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            LastSendTime = Interlocked.Increment(ref currentSendTime);
-            DoSend(bytes, offset, length, asyncContinuation);
+            try
+            {
+                LastSendTime = Interlocked.Increment(ref currentSendTime);
+                DoSend(bytes, offset, length, asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "NetworkTarget: Error sending network request");
+                asyncContinuation(ex);
+            }
         }
 
         /// <summary>
