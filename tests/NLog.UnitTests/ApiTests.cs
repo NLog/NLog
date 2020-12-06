@@ -183,7 +183,7 @@ namespace NLog.UnitTests
                 if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface)
                 {
                     var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
-                    Assert.True(ReferenceEquals(appDomainFixedOutputAttribute, null), $"{type.ToString()} cannot implement IStringValueRenderer as it isn't marked as [AppDomainFixedOutput]");
+                    Assert.True(ReferenceEquals(appDomainFixedOutputAttribute, null), $"{type.ToString()} should not implement IStringValueRenderer because it is marked as [AppDomainFixedOutput] [AppDomainFixedOutput]");
                 }
             }
         }
