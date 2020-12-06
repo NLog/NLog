@@ -44,6 +44,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 ## Improvements
 - NetworkTarget - Improve handling of synchronous exceptions from UdpClient.SendAsync (#4141) (@snakefoot)
 - AsyncTaskTarget - Include TaskScheduler in ContinueWith (#4176) (@snakefoot)
+- Improving debugger-display for Logger.Properties and LogEventInfo.Properties (#4190) (@snakefoot)
 
 ## Performance
 - Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
