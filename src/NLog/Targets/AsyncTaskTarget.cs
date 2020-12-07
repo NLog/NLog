@@ -56,7 +56,8 @@ namespace NLog.Targets
         private Task _previousTask;
         private readonly Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
-        private System.Tuple<List<LogEventInfo>, List<AsyncContinuation>> _reusableLogEvents;
+        private Tuple<List<LogEventInfo>, List<AsyncContinuation>> _reusableLogEvents;
+        private AsyncHelpersTask? _flushEventsInQueueDelegate;
         private bool _missingServiceTypes;
 
         /// <summary>
@@ -370,8 +371,26 @@ namespace NLog.Targets
             if (_previousTask?.IsCompleted == false || !_requestQueue.IsEmpty)
             {
                 InternalLogger.Debug("{0} Flushing {1}", Name, _requestQueue.IsEmpty ? "empty queue" : "pending queue items");
-                _requestQueue.Enqueue(new AsyncLogEventInfo(null, asyncContinuation));
-                _lazyWriterTimer.Change(0, Timeout.Infinite);
+                if (_requestQueue.OnOverflow != AsyncTargetWrapperOverflowAction.Block)
+                {
+                    _requestQueue.Enqueue(new AsyncLogEventInfo(null, asyncContinuation));
+                    _lazyWriterTimer.Change(0, Timeout.Infinite);    // Schedule timer to empty queue, and execute asyncContinuation
+                }
+                else
+                {
+                    // We are holding target-SyncRoot, and might get blocked in queue, so need to schedule flush using async-task
+                    if (_flushEventsInQueueDelegate == null)
+                    {
+                        _flushEventsInQueueDelegate = new AsyncHelpersTask(cont =>
+                        {
+                            _requestQueue.Enqueue(new AsyncLogEventInfo(null, (AsyncContinuation)cont));
+                            lock (SyncRoot)
+                                _lazyWriterTimer.Change(0, Timeout.Infinite);    // Schedule timer to empty queue, and execute asyncContinuation
+                        });
+                    }
+                    AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate.Value, asyncContinuation);
+                    _lazyWriterTimer.Change(0, Timeout.Infinite);   // Schedule timer to empty queue, so room for flush-request
+                }
             }
             else
             {
@@ -485,7 +504,12 @@ namespace NLog.Targets
         /// </summary>
         internal Task WriteAsyncTaskWithRetry(Task firstTask, IList<LogEventInfo> logEvents, CancellationToken cancellationToken, int retryCount)
         {
-            var tcs = new TaskCompletionSource<object>();
+            var tcs =
+#if NETSTANDARD || NET46
+                new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
+#else
+                new TaskCompletionSource<object>();
+#endif
 
             try
             {
@@ -594,9 +618,9 @@ namespace NLog.Targets
 
                 // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
 #if NET4_0
-                newTask.ContinueWith(completedTask => TaskCompletion(completedTask, reusableLogEvents));
+                newTask.ContinueWith(completedTask => TaskCompletion(completedTask, reusableLogEvents), TaskScheduler);
 #else
-                newTask.ContinueWith(_taskCompletion, reusableLogEvents);
+                newTask.ContinueWith(_taskCompletion, reusableLogEvents, TaskScheduler);
 #endif
                 return true;
             }
