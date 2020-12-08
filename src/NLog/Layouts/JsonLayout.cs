@@ -151,6 +151,13 @@ namespace NLog.Layouts
         public bool IncludeAllProperties { get; set; }
 
         /// <summary>
+        /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
+        public bool ExcludeEmptyProperties { get; set; }
+
+        /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
@@ -278,6 +285,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = GlobalDiagnosticsContext.GetObject(key);
+
                     AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }
@@ -289,6 +297,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
+
                     AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }
@@ -353,6 +362,11 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
+            if (ExcludeEmptyProperties && propertyValue == null)
+                return;
+
+            var initialLength = sb.Length;
+
             BeginJsonProperty(sb, propName, beginJsonMessage);
             if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
             {
@@ -369,6 +383,11 @@ namespace NLog.Layouts
             else
             {
                 JsonConverter.SerializeObject(propertyValue, sb);
+            }
+
+            if (ExcludeEmptyProperties && (sb[sb.Length-1] == '"' && sb[sb.Length-2] == '"'))
+            {
+                sb.Length = initialLength;
             }
         }
 

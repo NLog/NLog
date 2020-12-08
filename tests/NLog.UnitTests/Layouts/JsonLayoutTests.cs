@@ -45,6 +45,7 @@ namespace NLog.UnitTests.Layouts
     public class JsonLayoutTests : NLogTestBase
     {
         private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"NullProp\": null, \"DateTimeProp\": \"2345-01-23T12:34:56Z\" }";
+        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"DateTimeProp\": \"2345-01-23T12:34:56Z\", \"NoEmptyProp4\": \"hello\" }";
 
         [Fact]
         public void JsonLayoutRendering()
@@ -455,6 +456,28 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void ExcludeEmptyJsonProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeAllProperties = true,
+                ExcludeEmptyProperties = true
+            };
+
+            jsonLayout.ExcludeProperties.Add("Excluded1");
+            jsonLayout.ExcludeProperties.Add("Excluded2");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            logEventInfo.Properties.Add("EmptyProp", "");
+            logEventInfo.Properties.Add("EmptyProp1", null);
+            logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
+            logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+
+            Assert.Equal(ExpectedExcludeEmptyPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
         public void IncludeAllJsonPropertiesMaxRecursionLimit()
         {
             var jsonLayout = new JsonLayout()
@@ -512,6 +535,47 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void IncludeMdcNoEmptyJsonProperties()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeMdc='true' ExcludeProperties='Excluded1,Excluded2' ExcludeEmptyProperties='true'>
+                 </layout>
+                </target>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            logEventInfo.Properties.Add("EmptyProp", "");
+            logEventInfo.Properties.Add("EmptyProp1", null);
+            logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
+            logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+
+            MappedDiagnosticsContext.Clear();
+            foreach (var prop in logEventInfo.Properties)
+                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
+                    MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
+            logEventInfo.Properties.Clear();
+
+
+            logger.Debug(logEventInfo);
+
+            LogManager.Flush();
+
+            AssertDebugLastMessage("debug", ExpectedExcludeEmptyPropertiesWithExcludes);
+        }
+
+        [Fact]
         public void IncludeGdcJsonProperties()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -547,6 +611,46 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void IncludeGdcNoEmptyJsonProperties()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeGdc='true' ExcludeProperties='Excluded1,Excluded2' ExcludeEmptyProperties='true'>
+                 </layout>
+                </target>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            logEventInfo.Properties.Add("EmptyProp", "");
+            logEventInfo.Properties.Add("EmptyProp1", null);
+            logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
+            logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+
+            GlobalDiagnosticsContext.Clear();
+            foreach (var prop in logEventInfo.Properties)
+                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
+                    GlobalDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
+            logEventInfo.Properties.Clear();
+
+            logger.Debug(logEventInfo);
+
+            LogManager.Flush();
+
+            AssertDebugLastMessage("debug", ExpectedExcludeEmptyPropertiesWithExcludes);
+        }
+
+        [Fact]
         public void IncludeMdlcJsonProperties()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -579,6 +683,46 @@ namespace NLog.UnitTests.Layouts
             LogManager.Flush();
 
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }
+
+        [Fact]
+        public void IncludeMdlcNoEmptyJsonProperties()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeMdlc='true' ExcludeProperties='Excluded1,Excluded2' ExcludeEmptyProperties='true'>
+                 </layout>
+                </target>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            logEventInfo.Properties.Add("EmptyProp", "");
+            logEventInfo.Properties.Add("EmptyProp1", null);
+            logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
+            logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+
+            MappedDiagnosticsLogicalContext.Clear();
+            foreach (var prop in logEventInfo.Properties)
+                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
+                    MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
+            logEventInfo.Properties.Clear();
+
+            logger.Debug(logEventInfo);
+
+            LogManager.Flush();
+
+            AssertDebugLastMessage("debug", ExpectedExcludeEmptyPropertiesWithExcludes);
         }
 
         [Fact]
@@ -917,6 +1061,16 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("Excluded1", "ExcludedValue");
             logEventInfo.Properties.Add("Excluded2", "Also excluded");
             return logEventInfo;
+        }
+
+        public class DummyContextLogger
+        {
+            internal string Value { get; set; }
+
+            public override string ToString()
+            {
+                return Value;
+            }
         }
     }
 }
