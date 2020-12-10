@@ -442,6 +442,19 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void PropertyKeyWithQuote()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeAllProperties = true,
+            };
+
+            var logEventInfo = new LogEventInfo();
+            logEventInfo.Properties.Add(@"fo""o", "bar");
+            Assert.Equal(@"{ ""fo\""o"": ""bar"" }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
         public void IncludeAllJsonPropertiesMaxRecursionLimit()
         {
             var jsonLayout = new JsonLayout()

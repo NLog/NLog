@@ -333,7 +333,7 @@ namespace NLog.Layouts
             }
 
             sb.Append('"');
-            sb.Append(propName);
+            Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
             sb.Append('"');
             sb.Append(':');
             if (!SuppressSpaces)
