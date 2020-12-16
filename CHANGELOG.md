@@ -8,7 +8,7 @@ Date format: (year/month/day)
 
 #### Bugfixes
 - [#4142](https://github.com/NLog/NLog/pull/4142) JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
-- [#4176](https://github.com/NLog/NLog/pull/4176) AsyncTaskTarget - Flush when buffer is full should not block forever (#4176) (@snakefoot)
+- [#4172](https://github.com/NLog/NLog/pull/4172) AsyncTaskTarget - Flush when buffer is full should not block forever (#4172) (@snakefoot)
 - [#4182](https://github.com/NLog/NLog/pull/4182) Failing to lookup ProcessName because of Access Denied should fallback to Win32-API (#4182) (@snakefoot)
 
 #### Features
@@ -20,7 +20,7 @@ Date format: (year/month/day)
 - [#4190](https://github.com/NLog/NLog/pull/4190) Improving debugger-display for Logger.Properties and LogEventInfo.Properties (@snakefoot)
 
 #### Performance
-- [#4132](https://github.com/NLog/NLog/pull/4132) Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
+- [#4132](https://github.com/NLog/NLog/pull/4132) Improve thread concurrency when using wrapper cached=true (#4132) (@snakefoot)
 - [#4171](https://github.com/NLog/NLog/pull/4171) ConditionLayoutExpression - Skip allocating StringBuilder for every condition check (#4171) (@snakefoot)
 
 ### V4.7.5 (2020/09/27)
