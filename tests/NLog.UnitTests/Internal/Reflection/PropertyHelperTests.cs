@@ -45,7 +45,7 @@ namespace NLog.UnitTests.Internal.Reflection
         {
             // Arrange
             var config = @"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                   <target name='f' type='File' filename='test.log'>
                     <layout type='CSVLayout' column='a'>
