@@ -171,7 +171,7 @@ namespace NLog
                 objectValue = new ObjectHandleSerializer(objectValue);
             newContext.AddFirst(objectValue);
             SetThreadLocal(newContext);
-            return new NestedScope(oldContext, objectValue);
+            return new ScopeContextOperationState(oldContext, objectValue);
         }
 
         internal static object PeekOperationState()
@@ -207,16 +207,16 @@ namespace NLog
             SetThreadLocal(null);
         }
 
-        private sealed class NestedScope : IDisposable
+        private sealed class ScopeContextOperationState : IDisposable
         {
             private readonly LinkedList<object> _oldContext;
-            private readonly object _value;
+            private readonly object _operationState;
             private bool _diposed;
 
-            public NestedScope(LinkedList<object> oldContext, object value)
+            public ScopeContextOperationState(LinkedList<object> oldContext, object operationState)
             {
                 _oldContext = oldContext;
-                _value = value;
+                _operationState = operationState;
             }
 
             public void Dispose()
@@ -230,7 +230,7 @@ namespace NLog
 
             public override string ToString()
             {
-                return _value?.ToString() ?? "null";
+                return _operationState?.ToString() ?? "null";
             }
         }
 

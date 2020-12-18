@@ -51,7 +51,7 @@ namespace NLog
     {
 #if !NET35 && !NET40
         /// <summary>
-        /// Creates logical operation scope that includes provided properties and stack-value
+        /// Pushes new operation state on the logical context scope operation stack, and includes the provided properties
         /// </summary>
         /// <param name="operationState">Value to added to the scope operation stack</param>
         /// <param name="properties">Properties being added to the scope dictionary</param>
@@ -73,7 +73,7 @@ namespace NLog
             {
                 var mldcScope = MappedDiagnosticsLogicalContext.PushProperties(properties);
                 var ndlcScope = NestedDiagnosticsLogicalContext.PushOperationState(operationState);
-                return new ScopeProperties(ndlcScope, mldcScope);
+                return new ScopeContextOperationProperties(ndlcScope, mldcScope);
             }
             else
             {
@@ -85,7 +85,7 @@ namespace NLog
 
 #if !NET35 && !NET40
         /// <summary>
-        /// Creates logical operation scope that includes provided properties
+        /// Updates the logical scope context with provided properties
         /// </summary>
         /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
@@ -104,7 +104,7 @@ namespace NLog
 #endif
 
         /// <summary>
-        /// Creates logical operation scope that includes provided property
+        /// Updates the logical scope context with provided property
         /// </summary>
         /// <param name="key">Name of property</param>
         /// <param name="value">Value of property</param>
@@ -124,7 +124,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Creates logical operation scope that includes provided state-value
+        /// Pushes new operation state on the logical context scope operation stack
         /// </summary>
         /// <param name="operationState">Value to added to the scope operation stack</param>
         /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
@@ -155,7 +155,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Retrieves all properties stored within the logical operation scopes
+        /// Retrieves all properties stored within the logical context scopes
         /// </summary>
         /// <returns>Collection of all properties</returns>
         public static IEnumerable<KeyValuePair<string, object>> GetAllProperties()
@@ -169,7 +169,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Lookup property key within the logical operation scopes
+        /// Lookup single property stored within the logical context scopes
         /// </summary>
         /// <param name="key">Name of property</param>
         /// <param name="value">When this method returns, contains the value associated with the specified key</param>
@@ -202,7 +202,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Retrieves all operation states stored within the current logical operation scope
+        /// Retrieves all operation states inside the logical context scope operation stack
         /// </summary>
         /// <returns>Array of operation state objects.</returns>
         public static object[] GetAllOperationStates()
@@ -216,7 +216,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Peeks the top value on the stack of operation states within the current logical operation scope
+        /// Peeks the top value from the logical context scope operation stack
         /// </summary>
         /// <returns>Value from the top of the stack.</returns>
         public static object PeekOperationState()
@@ -238,7 +238,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Peeks the inner operation scope, and returns its running duration
+        /// Peeks the inner operation from the logical context scope operation stack, and returns its running duration
         /// </summary>
         /// <returns>Scope Duration Time</returns>
         internal static TimeSpan? PeekInnerOperationDuration()
@@ -263,7 +263,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Peeks the outer operation scope, and returns its running duration
+        /// Peeks the outer operation from the logical context scope operation stack, and returns its running duration
         /// </summary>
         /// <returns>Scope Duration Time</returns>
         internal static TimeSpan? PeekOuterOperationDuration()
@@ -838,12 +838,12 @@ namespace NLog
 #endif
 
 #if NET45
-        private sealed class ScopeProperties : IDisposable
+        private sealed class ScopeContextOperationProperties : IDisposable
         {
             private readonly IDisposable _mldcScope;
             private readonly IDisposable _ndlcScope;
 
-            public ScopeProperties(IDisposable ndlcScope, IDisposable mldcScope)
+            public ScopeContextOperationProperties(IDisposable ndlcScope, IDisposable mldcScope)
             {
                 _ndlcScope = ndlcScope;
                 _mldcScope = mldcScope;

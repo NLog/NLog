@@ -140,7 +140,7 @@ namespace NLog.Layouts
         public bool IncludeMdc { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="ScopeContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeScopeProperties { get; set; }

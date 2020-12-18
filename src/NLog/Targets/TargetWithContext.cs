@@ -175,7 +175,7 @@ namespace NLog.Targets
                 combinedProperties = CaptureContextProperties(logEvent, combinedProperties);
             }
 
-            if (IncludeScopeProperties && !CombineProperties(logEvent, _contextLayout.ScopePropertiesLayout, ref combinedProperties))
+            if (IncludeScopeProperties && !CombineProperties(logEvent, _contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
             {
                 combinedProperties = CaptureScopeContextProperties(logEvent, combinedProperties);
             }
@@ -314,7 +314,7 @@ namespace NLog.Targets
         /// <returns>Dictionary with ScopeContext properties if any, else null</returns>
         protected IDictionary<string, object> GetScopeContextProperties(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopePropertiesLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
             {
                 return value as IDictionary<string, object>;
             }
@@ -329,7 +329,7 @@ namespace NLog.Targets
         [Obsolete("Replaced by GetScopeContextProperties. Marked obsolete on NLog 5.0")]
         protected IDictionary<string, object> GetContextMdlc(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopePropertiesLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
             {
                 return value as IDictionary<string, object>;
             }
@@ -357,7 +357,7 @@ namespace NLog.Targets
         /// <returns>Collection of <see cref="ScopeContext"/> stack items if any, else null</returns>
         protected IList<object> GetScopeOperationStates(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeOperationStatesLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextOperationStatesLayout, out object value))
             {
                 return value as IList<object>;
             }
@@ -372,7 +372,7 @@ namespace NLog.Targets
         [Obsolete("Replaced by GetScopeContextStack. Marked obsolete on NLog 5.0")]
         protected IList<object> GetContextNdlc(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeOperationStatesLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextOperationStatesLayout, out object value))
             {
                 return value as IList<object>;
             }
@@ -751,9 +751,9 @@ namespace NLog.Targets
             /// <summary>Internal Layout that allows capture of NDC context</summary>
             internal LayoutContextNdc NdcLayout { get; }
             /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> properties-dictionary</summary>
-            internal LayoutScopeProperties ScopePropertiesLayout { get; }
-            /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> operation-states-stack</summary>
-            internal LayoutScopeOperationStates ScopeOperationStatesLayout { get; }
+            internal LayoutScopeContextProperties ScopeContextPropertiesLayout { get; }
+            /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> operation-call-stack</summary>
+            internal LayoutScopeContextOperationStates ScopeContextOperationStatesLayout { get; }
 
             public bool IncludeEventProperties { get; set; }
             public bool IncludeCallSite { get; set; }
@@ -762,8 +762,8 @@ namespace NLog.Targets
             public bool IncludeMdc { get => MdcLayout.IsActive; set => MdcLayout.IsActive = value; }
             public bool IncludeNdc { get => NdcLayout.IsActive; set => NdcLayout.IsActive = value; }
 
-            public bool IncludeScopeProperties { get => ScopePropertiesLayout.IsActive; set => ScopePropertiesLayout.IsActive = value; }
-            public bool IncludeScopeOperationStates { get => ScopeOperationStatesLayout.IsActive; set => ScopeOperationStatesLayout.IsActive = value; }
+            public bool IncludeScopeProperties { get => ScopeContextPropertiesLayout.IsActive; set => ScopeContextPropertiesLayout.IsActive = value; }
+            public bool IncludeScopeOperationStates { get => ScopeContextOperationStatesLayout.IsActive; set => ScopeContextOperationStatesLayout.IsActive = value; }
 
             StackTraceUsage IUsesStackTrace.StackTraceUsage
             {
@@ -788,8 +788,8 @@ namespace NLog.Targets
 
                 MdcLayout = new LayoutContextMdc(owner);
                 NdcLayout = new LayoutContextNdc(owner);
-                ScopePropertiesLayout = new LayoutScopeProperties(owner);
-                ScopeOperationStatesLayout = new LayoutScopeOperationStates(owner);
+                ScopeContextPropertiesLayout = new LayoutScopeContextProperties(owner);
+                ScopeContextOperationStatesLayout = new LayoutScopeContextOperationStates(owner);
             }
 
             protected override void InitializeLayout()
@@ -845,9 +845,9 @@ namespace NLog.Targets
                 if (IncludeNdc)
                     NdcLayout.Precalculate(logEvent);
                 if (IncludeScopeProperties)
-                    ScopePropertiesLayout.Precalculate(logEvent);
+                    ScopeContextPropertiesLayout.Precalculate(logEvent);
                 if (IncludeScopeOperationStates)
-                    ScopeOperationStatesLayout.Precalculate(logEvent);
+                    ScopeContextOperationStatesLayout.Precalculate(logEvent);
             }
 
             protected override string GetFormattedMessage(LogEventInfo logEvent)
@@ -894,13 +894,13 @@ namespace NLog.Targets
             }
 
             [ThreadSafe]
-            public class LayoutScopeProperties : Layout
+            public class LayoutScopeContextProperties : Layout
             {
                 private readonly TargetWithContext _owner;
 
                 public bool IsActive { get; set; }
 
-                public LayoutScopeProperties(TargetWithContext owner)
+                public LayoutScopeContextProperties(TargetWithContext owner)
                 {
                     _owner = owner;
                 }
@@ -960,13 +960,13 @@ namespace NLog.Targets
             }
 
             [ThreadSafe]
-            public class LayoutScopeOperationStates : Layout
+            public class LayoutScopeContextOperationStates : Layout
             {
                 private readonly TargetWithContext _owner;
 
                 public bool IsActive { get; set; }
 
-                public LayoutScopeOperationStates(TargetWithContext owner)
+                public LayoutScopeContextOperationStates(TargetWithContext owner)
                 {
                     _owner = owner;
                 }

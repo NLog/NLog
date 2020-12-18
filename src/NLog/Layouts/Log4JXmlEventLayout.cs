@@ -86,7 +86,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeScopeProperties
@@ -96,7 +96,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="ScopeContext"/> opreation-states-stack.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeScopeOperationStates

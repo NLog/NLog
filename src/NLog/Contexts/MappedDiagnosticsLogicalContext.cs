@@ -244,7 +244,7 @@ namespace NLog
                 for (int i = 0; i < properties.Count; ++i)
                     SetItemValue(properties[i].Key, properties[i].Value, newContext);
                 SetThreadLocal(newContext);
-                return new MappedScope(oldContext);
+                return new ScopeContextProperties(oldContext);
             }
             return null;
         }
@@ -256,7 +256,7 @@ namespace NLog
             var newContext = CloneDictionary(oldContext, 1);
             SetItemValue(propertyName, propertyValue, newContext);
             SetThreadLocal(newContext);
-            return new MappedScope(oldContext);
+            return new ScopeContextProperties(oldContext);
         }
 
         internal static bool TryLookupProperty(string propertyName, out object value)
@@ -332,12 +332,12 @@ namespace NLog
                 logicalContext[item] = new ObjectHandleSerializer(objectValue);
         }
 
-        private sealed class MappedScope : IDisposable
+        private sealed class ScopeContextProperties : IDisposable
         {
             private readonly Dictionary<string, object> _oldContext;
             private bool _diposed;
 
-            public MappedScope(Dictionary<string, object> oldContext)
+            public ScopeContextProperties(Dictionary<string, object> oldContext)
             {
                 _oldContext = oldContext;
             }
