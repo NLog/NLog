@@ -109,6 +109,12 @@ namespace NLog.Layouts
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
+        /// Gets or sets the option to include all properties from the log event (as XML)
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        public bool IncludeEventProperties { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
@@ -116,18 +122,26 @@ namespace NLog.Layouts
         public bool IncludeMdc { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
-        public bool IncludeMdlc { get; set; }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => IncludeScopeProperties; set => IncludeScopeProperties = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
-        public bool IncludeAllProperties { get; set; }
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
@@ -216,12 +230,12 @@ namespace NLog.Layouts
                 ThreadAgnostic = false;
             }
 
-            if (IncludeMdlc)
+            if (IncludeScopeProperties)
             {
                 ThreadAgnostic = false;
             }
 
-            if (IncludeAllProperties)
+            if (IncludeEventProperties)
             {
                 MutableUnsafe = true;
             }
@@ -358,10 +372,10 @@ namespace NLog.Layouts
             if (IncludeMdc)
                 return true;
 
-            if (IncludeMdlc)
+            if (IncludeScopeProperties)
                 return true;
 
-            if (IncludeAllProperties && logEvent.HasProperties)
+            if (IncludeEventProperties && logEvent.HasProperties)
                 return true;
 
             return false;
@@ -381,19 +395,22 @@ namespace NLog.Layouts
                 }
             }
 
-            if (IncludeMdlc)
+            if (IncludeScopeProperties)
             {
-                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator(ScopeContext.GetAllProperties()))
                 {
-                    if (string.IsNullOrEmpty(key))
-                        continue;
+                    while (scopeEnumerator.MoveNext())
+                    {
+                        var scopeProperty = scopeEnumerator.Current;
+                        if (string.IsNullOrEmpty(scopeProperty.Key))
+                            continue;
 
-                    object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendXmlPropertyValue(key, propertyValue, sb, orgLength);
+                        AppendXmlPropertyValue(scopeProperty.Key, scopeProperty.Value, sb, orgLength);
+                    }
                 }
             }
 
-            if (IncludeAllProperties && logEventInfo.HasProperties)
+            if (IncludeEventProperties && logEventInfo.HasProperties)
             {
                 AppendLogEventProperties(logEventInfo, sb, orgLength);
             }

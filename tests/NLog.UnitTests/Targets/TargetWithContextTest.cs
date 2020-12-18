@@ -83,11 +83,11 @@ namespace NLog.UnitTests.Targets
         {
             CustomTargetWithContext target = new CustomTargetWithContext();
             target.ContextProperties.Add(new TargetPropertyWithContext("threadid", "${threadid}"));
-            target.IncludeMdlc = true;
+            target.IncludeScopeProperties = true;
             target.IncludeMdc = true;
             target.IncludeGdc = true;
             target.IncludeNdc = true;
-            target.IncludeNdlc = true;
+            target.IncludeScopeOperationStates = true;
             target.IncludeCallSite = true;
 
             AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
@@ -152,7 +152,7 @@ namespace NLog.UnitTests.Targets
             MappedDiagnosticsLogicalContext.Clear();
             MappedDiagnosticsLogicalContext.Set("TestKey", new { a = "b" });
 
-            CustomTargetWithContext target = new CustomTargetWithContext() { IncludeMdlc = true, SkipAssert = true };
+            CustomTargetWithContext target = new CustomTargetWithContext() { IncludeScopeProperties = true, SkipAssert = true };
 
             WriteAndAssertSingleKey(target);
         }

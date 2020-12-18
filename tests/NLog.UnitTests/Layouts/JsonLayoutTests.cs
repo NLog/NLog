@@ -430,7 +430,7 @@ namespace NLog.UnitTests.Layouts
         {
             var jsonLayout = new JsonLayout()
             {
-                IncludeAllProperties = true
+                IncludeEventProperties = true
             };
 
             jsonLayout.ExcludeProperties.Add("Excluded1");
@@ -446,7 +446,7 @@ namespace NLog.UnitTests.Layouts
         {
             var jsonLayout = new JsonLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 MaxRecursionLimit = 1,
             };
 

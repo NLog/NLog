@@ -54,18 +54,18 @@ namespace NLog
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeAllProperties { get; set; }
+        bool IncludeEventProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeMdlc { get; set; }
+        bool IncludeScopeProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeNdlc { get; set; }
+        bool IncludeScopeOperationStates { get; set; }
     }
 }

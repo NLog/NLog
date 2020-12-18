@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using System.Threading;
-
 namespace NLog.UnitTests.Contexts
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Xunit;
 
@@ -133,7 +132,7 @@ namespace NLog.UnitTests.Contexts
         [Fact]
         public void given_no_item_exists_when_getting_items_should_return_empty_collection()
         {
-            Assert.Equal(0,MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.Equal(0, MappedDiagnosticsLogicalContext.GetNames().Count);
         }
 
         [Fact]
@@ -177,7 +176,6 @@ namespace NLog.UnitTests.Contexts
             MappedDiagnosticsLogicalContext.Set(key, "Item");
 
             Assert.True(MappedDiagnosticsLogicalContext.Contains(key));
-
         }
 
         [Fact]
@@ -245,11 +243,11 @@ namespace NLog.UnitTests.Contexts
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            Task.WaitAll();
+            Task.WaitAll(task1, task2, task3);
 
-            Assert.Equal(task1.Result, valueForLogicalThread1);
-            Assert.Equal(task2.Result, valueForLogicalThread2);
-            Assert.Equal(task3.Result, valueForLogicalThread3);
+            Assert.Equal(valueForLogicalThread1, task1.Result);
+            Assert.Equal(valueForLogicalThread2, task2.Result);
+            Assert.Equal(valueForLogicalThread3, task3.Result);
         }
 
         [Fact]
@@ -285,15 +283,18 @@ namespace NLog.UnitTests.Contexts
             });
 
             exitAllTasks.Set();
-            Task.WaitAll();
+            Task.WaitAll(task1, task2);
 
-            Assert.Equal(task1.Result, parentValueForLogicalThread1 + "," + valueForChildThread1);
-            Assert.Equal(task2.Result, parentValueForLogicalThread2 + "," + valueForChildThread2);
-       }
+            Assert.Equal(parentValueForLogicalThread1 + "," + valueForChildThread1, task1.Result);
+            Assert.Equal(parentValueForLogicalThread2 + "," + valueForChildThread2, task2.Result);
+        }
 
         [Fact]
         public void timer_cannot_inherit_mappedcontext()
         {
+            const string parentKey = nameof(timer_cannot_inherit_mappedcontext);
+            const string parentValueForLogicalThread1 = "Parent1";
+
             object getObject = null;
             string getValue = null;
 
@@ -302,16 +303,21 @@ namespace NLog.UnitTests.Contexts
             {
                 try
                 {
-                    getObject = MappedDiagnosticsLogicalContext.GetObject("DoNotExist");
-                    getValue = MappedDiagnosticsLogicalContext.Get("DoNotExistEither");
+                    getObject = MappedDiagnosticsLogicalContext.GetObject(parentKey);
+                    getValue = MappedDiagnosticsLogicalContext.Get(parentKey);
                 }
                 finally
                 {
                     mre.Set();
                 }
             });
+
+            MappedDiagnosticsLogicalContext.Clear(true);
+            MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread1);
+
             thread.Change(0, Timeout.Infinite);
             mre.WaitOne();
+
             Assert.Null(getObject);
             Assert.Empty(getValue);
         }
@@ -362,16 +368,94 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Clear();
             MappedDiagnosticsLogicalContext.Set(itemNotRemovedKey, "itemNotRemoved");
-            using (MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "1"), new KeyValuePair<string, object>(item2Key, "2") }))
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[]
+            {
+                new KeyValuePair<string, object>(item1Key, "1"),
+                new KeyValuePair<string, object>(item2Key, "2")
+            }))
             {
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key });
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
 
-            using (MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "1"), new KeyValuePair<string, object>(item2Key, "2"), new KeyValuePair<string, object>(item3Key, "3"), new KeyValuePair<string, object>(item4Key, "4") }))
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[]
+            {
+                new KeyValuePair<string, object>(item1Key, "1"),
+                new KeyValuePair<string, object>(item2Key, "2"),
+                new KeyValuePair<string, object>(item3Key, "3"),
+                new KeyValuePair<string, object>(item4Key, "4")
+            }))
             {
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key, item3Key, item4Key });
+            }
+
+            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
+        }
+
+        [Fact]
+        public void disposable_multiple_items_with_restore()
+        {
+            const string itemNotRemovedKey = "itemNotRemovedKey";
+            const string item1Key = "item1Key";
+            const string item2Key = "item2Key";
+            const string item3Key = "item3Key";
+            const string item4Key = "item4Key";
+
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set(itemNotRemovedKey, "itemNotRemoved");
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[]
+            {
+                new KeyValuePair<string, object>(item1Key, "1"),
+                new KeyValuePair<string, object>(item2Key, "2")
+            }))
+            {
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key });
+            }
+
+            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
+
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[]
+            {
+                new KeyValuePair<string, object>(item1Key, "1"),
+                new KeyValuePair<string, object>(item2Key, "2"),
+                new KeyValuePair<string, object>(item3Key, "3"),
+                new KeyValuePair<string, object>(item4Key, "4")
+            }))
+            {
+                using (var itemRemover = MappedDiagnosticsLogicalContext.SetScoped(new[]
+                {
+                    new KeyValuePair<string, object>(item1Key, "111")
+                }))
+                {
+                    Assert.Equal("111", MappedDiagnosticsLogicalContext.Get(item1Key));
+                }
+
+                using (MappedDiagnosticsLogicalContext.SetScoped(new[]
+                {
+                    new KeyValuePair<string, object>(item1Key, "01"),
+                    new KeyValuePair<string, object>(item2Key, "02"),
+                    new KeyValuePair<string, object>(item3Key, "03"),
+                    new KeyValuePair<string, object>(item4Key, "04")
+                }))
+                {
+                    Assert.Equal("itemNotRemoved", MappedDiagnosticsLogicalContext.Get(itemNotRemovedKey));
+                    Assert.Equal("01", MappedDiagnosticsLogicalContext.Get(item1Key));
+                    Assert.Equal("02", MappedDiagnosticsLogicalContext.Get(item2Key));
+                    Assert.Equal("03", MappedDiagnosticsLogicalContext.Get(item3Key));
+                    Assert.Equal("04", MappedDiagnosticsLogicalContext.Get(item4Key));
+                }
+
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[]
+                {
+                    itemNotRemovedKey, item1Key, item2Key, item3Key, item4Key
+                });
+
+                Assert.Equal("itemNotRemoved", MappedDiagnosticsLogicalContext.Get(itemNotRemovedKey));
+                Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(item1Key));
+                Assert.Equal("2", MappedDiagnosticsLogicalContext.Get(item2Key));
+                Assert.Equal("3", MappedDiagnosticsLogicalContext.Get(item3Key));
+                Assert.Equal("4", MappedDiagnosticsLogicalContext.Get(item4Key));
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
@@ -386,14 +470,24 @@ namespace NLog.UnitTests.Contexts
             const string item4Key = "item4Key";
 
             MappedDiagnosticsLogicalContext.Clear();
-            using (MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "1"), new KeyValuePair<string, object>(item2Key, "2") }))
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[]
             {
-                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] {  item1Key, item2Key });
+                new KeyValuePair<string, object>(item1Key, "1"),
+                new KeyValuePair<string, object>(item2Key, "2")
+            }))
+            {
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key });
             }
 
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new string[] { });
 
-            using (MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "1"), new KeyValuePair<string, object>(item2Key, "2"), new KeyValuePair<string, object>(item3Key, "3"), new KeyValuePair<string, object>(item4Key, "4") }))
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[]
+            {
+                new KeyValuePair<string, object>(item1Key, "1"),
+                new KeyValuePair<string, object>(item2Key, "2"),
+                new KeyValuePair<string, object>(item3Key, "3"),
+                new KeyValuePair<string, object>(item4Key, "4")
+            }))
             {
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key, item3Key, item4Key });
             }
@@ -401,5 +495,186 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new string[] { });
         }
 #endif
+
+        [Fact]
+        public void given_multiple_set_invocations_mdlc_persists_only_last_value()
+        {
+            const string key = "key";
+
+            MappedDiagnosticsLogicalContext.Set(key, "1");
+
+            Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key));
+
+            MappedDiagnosticsLogicalContext.Set(key, 2);
+            MappedDiagnosticsLogicalContext.Set(key, "3");
+
+            Assert.Equal("3", MappedDiagnosticsLogicalContext.Get(key));
+
+            MappedDiagnosticsLogicalContext.Remove(key);
+
+            Assert.True(string.IsNullOrEmpty(MappedDiagnosticsLogicalContext.Get(key)));
+        }
+
+        [Fact]
+        public void given_multiple_setscoped_with_restore_invocations_mdlc_persists_all_values()
+        {
+            const string key = "key";
+
+            using (MappedDiagnosticsLogicalContext.SetScoped(key, "1"))
+            {
+                Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key));
+
+                using (MappedDiagnosticsLogicalContext.SetScoped(key, 2))
+                {
+                    Assert.Equal(2.ToString(), MappedDiagnosticsLogicalContext.Get(key));
+
+                    using (MappedDiagnosticsLogicalContext.SetScoped(key, null))
+                    {
+                        Assert.True(string.IsNullOrEmpty(MappedDiagnosticsLogicalContext.Get(key)));
+                    }
+
+                    Assert.Equal(2.ToString(), MappedDiagnosticsLogicalContext.Get(key));
+                }
+
+                Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key));
+            }
+
+            Assert.True(string.IsNullOrEmpty(MappedDiagnosticsLogicalContext.Get(key)));
+        }
+
+        [Fact]
+        public void given_multiple_multikey_setscoped_with_restore_invocations_mdlc_persists_all_values()
+        {
+            const string key1 = "key1";
+            const string key2 = "key2";
+            const string key3 = "key3";
+
+            using (MappedDiagnosticsLogicalContext.SetScoped(key1, "1"))
+            {
+                Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key1));
+
+                using (MappedDiagnosticsLogicalContext.SetScoped(key2, 2))
+                {
+                    using (MappedDiagnosticsLogicalContext.SetScoped(key3, 3))
+                    {
+                        using (MappedDiagnosticsLogicalContext.SetScoped(key2, 22))
+                        {
+                            Assert.Equal(22.ToString(), MappedDiagnosticsLogicalContext.Get(key2));
+                        }
+
+                        Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key1));
+                        Assert.Equal(2.ToString(), MappedDiagnosticsLogicalContext.Get(key2));
+                        Assert.Equal(3.ToString(), MappedDiagnosticsLogicalContext.Get(key3));
+                    }
+                }
+
+                Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key1));
+            }
+
+            Assert.True(string.IsNullOrEmpty(MappedDiagnosticsLogicalContext.Get(key1)));
+        }
+
+        [Fact]
+        public void given_multiple_multikey_setscoped_with_restore_invocations_dispose_differs_than_remove()
+        {
+            const string key1 = "key1";
+            const string key2 = "key2";
+            const string key3 = "key3";
+
+            var k1d = MappedDiagnosticsLogicalContext.SetScoped(key1, "1");
+
+            Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key1));
+
+            var k2d = MappedDiagnosticsLogicalContext.SetScoped(key2, 2);
+
+            var k3d = MappedDiagnosticsLogicalContext.SetScoped(key3, 3);
+
+            var k2d2 = MappedDiagnosticsLogicalContext.SetScoped(key2, 22);
+
+            Assert.Equal(22.ToString(), MappedDiagnosticsLogicalContext.Get(key2));
+
+            MappedDiagnosticsLogicalContext.Remove(key2);
+
+            Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key1));
+            Assert.NotEqual(2.ToString(), MappedDiagnosticsLogicalContext.Get(key2));
+            Assert.Equal(3.ToString(), MappedDiagnosticsLogicalContext.Get(key3));
+
+            MappedDiagnosticsLogicalContext.Remove(key3);
+
+            MappedDiagnosticsLogicalContext.Remove(key2);
+
+            Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(key1));
+
+            MappedDiagnosticsLogicalContext.Remove(key1);
+
+            Assert.True(string.IsNullOrEmpty(MappedDiagnosticsLogicalContext.Get(key1)));
+        }
+
+        [Fact]
+        public void given_multiple_setscoped_with_restore_invocations_set_reset_value_stack()
+        {
+            const string key = "key";
+
+            using (MappedDiagnosticsLogicalContext.SetScoped(key, "1"))
+            {
+                using (MappedDiagnosticsLogicalContext.SetScoped(key, 2))
+                {
+                    using (MappedDiagnosticsLogicalContext.SetScoped(key, 3))
+                    {
+                        Assert.Equal(3.ToString(), MappedDiagnosticsLogicalContext.Get(key));
+                    }
+
+                    // 'Set' does not reset that history of 'SetScoped'
+                    MappedDiagnosticsLogicalContext.Set(key, "x");
+
+                    Assert.Equal("x", MappedDiagnosticsLogicalContext.Get(key));
+
+                }
+                // Disposing will bring back previous value despite being overriden by 'Set'
+
+                Assert.Equal(1.ToString(), MappedDiagnosticsLogicalContext.Get(key));
+            }
+
+            Assert.True(string.IsNullOrEmpty(MappedDiagnosticsLogicalContext.Get(key)));
+        }
+
+        [Fact]
+        public void given_multiple_threads_running_asynchronously_when_setting_and_getting_values_setscoped_with_restore_should_return_thread_specific_values()
+        {
+            const string key = "Key";
+            const string initValue = "InitValue";
+            const string valueForLogicalThread1 = "ValueForTask1";
+            const string valueForLogicalThread1Next = "ValueForTask1Next";
+            const string valueForLogicalThread2 = "ValueForTask2";
+            const string valueForLogicalThread3 = "ValueForTask3";
+
+            MappedDiagnosticsLogicalContext.Clear(true);
+
+            MappedDiagnosticsLogicalContext.Set(key, initValue);
+            Assert.Equal(initValue, MappedDiagnosticsLogicalContext.Get(key));
+
+            var task1 = Task.Factory.StartNew(async () => {
+                MappedDiagnosticsLogicalContext.SetScoped(key, valueForLogicalThread1);
+                await Task.Delay(0).ConfigureAwait(false);
+                MappedDiagnosticsLogicalContext.SetScoped(key, valueForLogicalThread1Next);
+                return MappedDiagnosticsLogicalContext.Get(key);
+            });
+
+            var task2 = Task.Factory.StartNew(() => {
+                MappedDiagnosticsLogicalContext.SetScoped(key, valueForLogicalThread2);
+                return MappedDiagnosticsLogicalContext.Get(key);
+            });
+
+            var task3 = Task.Factory.StartNew(() => {
+                MappedDiagnosticsLogicalContext.SetScoped(key, valueForLogicalThread3);
+                return MappedDiagnosticsLogicalContext.Get(key);
+            });
+
+            Task.WaitAll(task1, task2, task3);
+
+            Assert.Equal(valueForLogicalThread1Next, task1.Result.Result);
+            Assert.Equal(valueForLogicalThread2, task2.Result);
+            Assert.Equal(valueForLogicalThread3, task3.Result);
+        }
     }
 }

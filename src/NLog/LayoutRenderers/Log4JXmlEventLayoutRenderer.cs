@@ -171,30 +171,59 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc { get; set; }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => IncludeAllProperties; set => IncludeScopeProperties = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc { get; set; }
+        [Obsolete("Replaced by IncludeScopeOperationStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => IncludeScopeOperationStates; set => IncludeScopeOperationStates = value; }
 
         /// <summary>
-        /// Gets or sets the NDLC item separator.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeOperationStates { get; set; }
+
+        /// <summary>
+        /// Gets or sets the separator for <see cref="ScopeContext"/> Stack items.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdlcItemSeparator
+        public string ScopeOperationStatesSeparator
         {
             get => _ndlcLayoutRenderer.Separator;
             set => _ndlcLayoutRenderer.Separator = value;
         }
 
         /// <summary>
+        /// Gets or sets the NDLC item separator.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [DefaultValue(" ")]
+        [Obsolete("Replaced by ScopeOperationStatesSeparator. Marked obsolete on NLog 5.0")]
+        public string NdlcItemSeparator { get => ScopeOperationStatesSeparator; set => ScopeOperationStatesSeparator = value; }
+
+        /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties { get; set; }
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
@@ -272,7 +301,7 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
-                AppendNdc(xtw, logEvent);
+                AppendScopeContextOperationStates(xtw, logEvent);
 
                 if (includeNLogCallsite)
                 {
@@ -283,9 +312,9 @@ namespace NLog.LayoutRenderers
 
                 AppendMdc(xtw);
 
-                AppendMdlc(xtw);
+                AppendScopeContextProperties(xtw);
 
-                if (IncludeAllProperties)
+                if (IncludeEventProperties)
                 {
                     AppendProperties("log4j", dummyNamespaceRemover, xtw, logEvent);
                 }
@@ -317,25 +346,32 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendMdlc(XmlWriter xtw)
+        private void AppendScopeContextProperties(XmlWriter xtw)
         {
-            if (IncludeMdlc)
+            if (IncludeScopeProperties)
             {
-                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator(ScopeContext.GetAllProperties()))
                 {
-                    string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
-                    if (propertyValue == null)
-                        continue;
+                    while (scopeEnumerator.MoveNext())
+                    {
+                        var scopeProperty = scopeEnumerator.Current;
+                        if (string.IsNullOrEmpty(scopeProperty.Key))
+                            continue;
 
-                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", key);
-                    xtw.WriteAttributeSafeString("value", propertyValue);
-                    xtw.WriteEndElement();
+                        string propertyValue = XmlHelper.XmlConvertToString(scopeProperty.Value);
+                        if (propertyValue == null)
+                            continue;
+
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeSafeString("name", scopeProperty.Key);
+                        xtw.WriteAttributeSafeString("value", propertyValue);
+                        xtw.WriteEndElement();
+                    }
                 }
             }
         }
 
-        private void AppendNdc(XmlWriter xtw, LogEventInfo logEvent)
+        private void AppendScopeContextOperationStates(XmlWriter xtw, LogEventInfo logEvent)
         {
             string ndcContent = null;
             if (IncludeNdc)
@@ -343,7 +379,7 @@ namespace NLog.LayoutRenderers
                 ndcContent = _ndcLayoutRenderer.Render(logEvent);
             }
 
-            if (IncludeNdlc)
+            if (IncludeScopeOperationStates)
             {
                 if (ndcContent != null)
                 {

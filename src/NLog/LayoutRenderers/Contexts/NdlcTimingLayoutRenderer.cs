@@ -69,25 +69,25 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            DateTime scopeBegin = CurrentScope ? NestedDiagnosticsLogicalContext.PeekTopScopeBeginTime() : NestedDiagnosticsLogicalContext.PeekBottomScopeBeginTime();
-            if (scopeBegin != DateTime.MinValue)
+            TimeSpan? scopeDuration = CurrentScope ? ScopeContext.PeekInnerOperationDuration() : ScopeContext.PeekOuterOperationDuration();
+            if (scopeDuration.HasValue)
             {
+                if (scopeDuration.Value < TimeSpan.Zero)
+                    scopeDuration = TimeSpan.Zero;
+
                 if (ScopeBeginTime)
                 {
                     var formatProvider = GetFormatProvider(logEvent, null);
-                    scopeBegin = Time.TimeSource.Current.FromSystemTime(scopeBegin);
+                    var scopeBegin = Time.TimeSource.Current.Time.Subtract(scopeDuration.Value);
                     builder.Append(scopeBegin.ToString(Format, formatProvider));
                 }
                 else
                 {
-                    TimeSpan duration = scopeBegin != DateTime.MinValue ? DateTime.UtcNow - scopeBegin : TimeSpan.Zero;
-                    if (duration < TimeSpan.Zero)
-                        duration = TimeSpan.Zero;
 #if !NET3_5
                     var formatProvider = GetFormatProvider(logEvent, null);
-                    builder.Append(duration.ToString(Format, formatProvider));
+                    builder.Append(scopeDuration.Value.ToString(Format, formatProvider));
 #else
-                    builder.Append(duration.ToString());
+                    builder.Append(scopeDuration.Value.ToString());
 #endif
                 }
             }
