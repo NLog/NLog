@@ -78,7 +78,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            if (ScopeContext.TryLookupProperty(item, out var value))
+            if (ScopeContext.TryGetProperty(item, out var value))
                 return value;
             else
                 return null;
@@ -156,7 +156,7 @@ namespace NLog
         public static void Set<T>(string item, T value)
         {
 #if !NET35 && !NET40 && !NET45
-            ScopeContext.SetMappedContextLegacy(item, value);
+            ScopeContext.PushProperty(item, value);
 #else
             var oldContext = GetThreadLocal();
             var newContext = CloneDictionary(oldContext, 1);
@@ -186,7 +186,7 @@ namespace NLog
         public static bool Contains(string item)
         {
 #if !NET35 && !NET40 && !NET45
-            return ScopeContext.TryLookupProperty(item, out var _);
+            return ScopeContext.TryGetProperty(item, out var _);
 #else
             return GetThreadLocal()?.ContainsKey(item) == true;
 #endif
@@ -259,7 +259,7 @@ namespace NLog
             return new ScopeContextProperties(oldContext);
         }
 
-        internal static bool TryLookupProperty(string propertyName, out object value)
+        internal static bool TryGetProperty(string propertyName, out object value)
         {
             var oldContext = GetThreadLocal();
             if (oldContext != null && oldContext.TryGetValue(propertyName, out value))

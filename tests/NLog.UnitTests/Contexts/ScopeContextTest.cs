@@ -52,10 +52,10 @@ namespace NLog.UnitTests.Contexts
             // Act
             using (ScopeContext.PushProperty("HELLO", expectedValue))
             {
-                success = ScopeContext.TryLookupProperty("hello", out value);
+                success = ScopeContext.TryGetProperty("hello", out value);
                 allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
             }
-            var failed = ScopeContext.TryLookupProperty("hello", out var _);
+            var failed = ScopeContext.TryGetProperty("hello", out var _);
 
             // Assert
             Assert.True(success);
@@ -85,16 +85,16 @@ namespace NLog.UnitTests.Contexts
             {
                 using (ScopeContext.PushProperty("RequestId", expectedGuid))
                 {
-                    ScopeContext.TryLookupProperty("Hello", out stringValueLookup1);
-                    ScopeContext.TryLookupProperty("RequestId", out guidValueLookup1);
+                    ScopeContext.TryGetProperty("Hello", out stringValueLookup1);
+                    ScopeContext.TryGetProperty("RequestId", out guidValueLookup1);
                     allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
                 }
 
-                ScopeContext.TryLookupProperty("Hello", out stringValueLookup2);
-                guidValueLookup2 = ScopeContext.TryLookupProperty("RequestId", out var _);
+                ScopeContext.TryGetProperty("Hello", out stringValueLookup2);
+                guidValueLookup2 = ScopeContext.TryGetProperty("RequestId", out var _);
             }
-            guidValueLookup3 = ScopeContext.TryLookupProperty("RequestId", out var _);
-            stringValueLookup3 = ScopeContext.TryLookupProperty("Hello", out var _);
+            guidValueLookup3 = ScopeContext.TryGetProperty("RequestId", out var _);
+            stringValueLookup3 = ScopeContext.TryGetProperty("Hello", out var _);
 
             // Assert
             Assert.Equal(2, allProperties.Count);
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.Contexts
                     allOperationStates = ScopeContext.GetAllOperationStates();
                     allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
                 }
-                ScopeContext.TryLookupProperty("Hello", out stringValueLookup);
+                ScopeContext.TryGetProperty("Hello", out stringValueLookup);
             }
 
             // Assert
@@ -223,13 +223,13 @@ namespace NLog.UnitTests.Contexts
                     {
                         ScopeContext.Clear();
                         allOperationStates1 = ScopeContext.GetAllOperationStates();
-                        ScopeContext.TryLookupProperty("Hello", out stringValueLookup1);
+                        ScopeContext.TryGetProperty("Hello", out stringValueLookup1);
                     }
                 }
 
                 // Original scope was restored on dispose, verify expected behavior
                 allOperationStates2 = ScopeContext.GetAllOperationStates();
-                ScopeContext.TryLookupProperty("Hello", out stringValueLookup2);
+                ScopeContext.TryGetProperty("Hello", out stringValueLookup2);
             }
 
             // Assert
@@ -252,7 +252,7 @@ namespace NLog.UnitTests.Contexts
             using (ScopeContext.PushProperty("Hello", expectedValue))
             {
                 NestedDiagnosticsLogicalContext.PopObject();    // Should not pop anything (skip legacy mode)
-                success = ScopeContext.TryLookupProperty("Hello", out propertyValue);
+                success = ScopeContext.TryGetProperty("Hello", out propertyValue);
             }
 
             // Assert
@@ -276,7 +276,7 @@ namespace NLog.UnitTests.Contexts
             {
                 ScopeContext.PushOperationState(expectedOperationState);
                 operationState = NestedDiagnosticsLogicalContext.PopObject();    // Should only pop active scope (skip legacy mode)
-                success = ScopeContext.TryLookupProperty("Hello", out propertyValue);
+                success = ScopeContext.TryGetProperty("Hello", out propertyValue);
             }
 
             // Assert
@@ -311,8 +311,8 @@ namespace NLog.UnitTests.Contexts
                     operationState2 = NestedDiagnosticsLogicalContext.PopObject();    // Evil pop where it should leave properties alone (Legacy mode)
                     operationState1 = NestedDiagnosticsLogicalContext.PopObject();    // Evil pop where it should leave properties alone (Legacy mode)
 
-                    success1 = ScopeContext.TryLookupProperty("Hello", out propertyValue1);
-                    success2 = ScopeContext.TryLookupProperty("RequestId", out propertyValue2);
+                    success1 = ScopeContext.TryGetProperty("Hello", out propertyValue1);
+                    success2 = ScopeContext.TryGetProperty("RequestId", out propertyValue2);
                 }
             }
 
@@ -338,7 +338,7 @@ namespace NLog.UnitTests.Contexts
             using (ScopeContext.PushProperty("Hello", expectedValue))
             {
                 NestedDiagnosticsLogicalContext.Clear();    // Should not clear anything (skip legacy mode)
-                success = ScopeContext.TryLookupProperty("Hello", out propertyValue);
+                success = ScopeContext.TryGetProperty("Hello", out propertyValue);
             }
 
             // Assert
@@ -361,7 +361,7 @@ namespace NLog.UnitTests.Contexts
             {
                 ScopeContext.PushOperationState(expectedOperationState);
                 NestedDiagnosticsLogicalContext.Clear();    // Should not clear properties (Legacy mode)
-                success = ScopeContext.TryLookupProperty("Hello", out propertyValue);
+                success = ScopeContext.TryGetProperty("Hello", out propertyValue);
             }
 
             // Assert
@@ -457,8 +457,8 @@ namespace NLog.UnitTests.Contexts
                         MappedDiagnosticsLogicalContext.Remove("RequestId");    // Should not change stack (Legacy mode)
                         allOperationStates = ScopeContext.GetAllOperationStates();
 
-                        success1 = ScopeContext.TryLookupProperty("Hello", out propertyValue1);
-                        success2 = ScopeContext.TryLookupProperty("RequestId", out propertyValue2);
+                        success1 = ScopeContext.TryGetProperty("Hello", out propertyValue1);
+                        success2 = ScopeContext.TryGetProperty("RequestId", out propertyValue2);
                     }
                 }
             }
@@ -488,7 +488,7 @@ namespace NLog.UnitTests.Contexts
             using (ScopeContext.PushOperationState(expectedOperationState))
             {
                 MappedDiagnosticsLogicalContext.Set("Hello", expectedValue);    // Skip legacy mode (normal property push)
-                success = ScopeContext.TryLookupProperty("Hello", out propertyValue);
+                success = ScopeContext.TryGetProperty("Hello", out propertyValue);
                 allOperationStates = ScopeContext.GetAllOperationStates();
             }
 
@@ -516,7 +516,7 @@ namespace NLog.UnitTests.Contexts
                 using (ScopeContext.PushProperty("Hello", expectedValue))
                 {
                     MappedDiagnosticsLogicalContext.Set("Hello", expectedValue);    // Skip legacy mode (ignore when same value)
-                    success = ScopeContext.TryLookupProperty("Hello", out propertyValue);
+                    success = ScopeContext.TryGetProperty("Hello", out propertyValue);
                     allOperationStates = ScopeContext.GetAllOperationStates();
                 }
             }
@@ -547,11 +547,11 @@ namespace NLog.UnitTests.Contexts
                 using (ScopeContext.PushProperty("Hello", "World"))
                 {
                     MappedDiagnosticsLogicalContext.Set("Hello", expectedValue);    // Enter legacy mode (need to overwrite)
-                    success1 = ScopeContext.TryLookupProperty("Hello", out propertyValue1);
+                    success1 = ScopeContext.TryGetProperty("Hello", out propertyValue1);
                     allOperationStates = ScopeContext.GetAllOperationStates();
                 }
 
-                success2 = ScopeContext.TryLookupProperty("Hello", out propertyValue2);
+                success2 = ScopeContext.TryGetProperty("Hello", out propertyValue2);
             }
 
             // Assert
