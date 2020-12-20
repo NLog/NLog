@@ -155,14 +155,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set<T>(string item, T value)
         {
-#if !NET35 && !NET40 && !NET45
-            ScopeContext.PushProperty(item, value);
-#else
-            var oldContext = GetThreadLocal();
-            var newContext = CloneDictionary(oldContext, 1);
-            SetItemValue(item, value, newContext);
-            SetThreadLocal(newContext);
-#endif
+            ScopeContext.SetMappedContextLegacy(item, value);
         }
 
         /// <summary>
@@ -172,9 +165,17 @@ namespace NLog
         public static ICollection<string> GetNames()
         {
 #if !NET35 && !NET40 && !NET45
-            return new List<string>(System.Linq.Enumerable.Select(ScopeContext.GetAllProperties(), i => i.Key));
+            var scopeProperties = ScopeContext.GetAllProperties();
+            if (scopeProperties is IReadOnlyCollection<KeyValuePair<string, object>> scopeCollection)
+            {
+                if (scopeCollection.Count == 0)
+                    return ArrayHelper.Empty<string>();
+                else if (scopeCollection.Count == 1)
+                    return new string[] { System.Linq.Enumerable.First(scopeCollection).Key };
+            }
+            return new List<string>(System.Linq.Enumerable.Select(scopeProperties, i => i.Key));
 #else
-            return GetThreadLocal()?.Keys ?? (ICollection<string>)ArrayHelper.Empty<string>();
+            return ScopeContext.GetMappedContextThreadLocal()?.Keys ?? (ICollection<string>)ArrayHelper.Empty<string>();
 #endif
         }
 
@@ -185,11 +186,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current logical context.</returns>
         public static bool Contains(string item)
         {
-#if !NET35 && !NET40 && !NET45
             return ScopeContext.TryGetProperty(item, out var _);
-#else
-            return GetThreadLocal()?.ContainsKey(item) == true;
-#endif
         }
 
         /// <summary>
@@ -198,17 +195,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-#if !NET35 && !NET40 && !NET45
             ScopeContext.RemoveMappedContextLegacy(item);
-#else
-            var oldContext = GetThreadLocal();
-            if (oldContext?.ContainsKey(item)==true)
-            {
-                var newContext = CloneDictionary(oldContext, 0);
-                newContext.Remove(item);
-                SetThreadLocal(newContext);
-            }
-#endif
         }
 
         /// <summary>
@@ -225,149 +212,7 @@ namespace NLog
         /// <param name="free">Free the full slot.</param>
         public static void Clear(bool free)
         {
-#if !NET35 && !NET40 && !NET45
             ScopeContext.ClearMappedContextLegacy();
-#else
-            ClearMappedContext();
-#endif
         }
-
-#if NET35 || NET40 || NET45
-
-#if !NET35 && !NET40
-        internal static IDisposable PushProperties(IReadOnlyList<KeyValuePair<string, object>> properties)
-        {
-            if (properties?.Count > 0)
-            {
-                var oldContext = GetThreadLocal();
-                var newContext = CloneDictionary(oldContext, properties.Count);
-                for (int i = 0; i < properties.Count; ++i)
-                    SetItemValue(properties[i].Key, properties[i].Value, newContext);
-                SetThreadLocal(newContext);
-                return new ScopeContextProperties(oldContext);
-            }
-            return null;
-        }
-#endif
-
-        internal static IDisposable PushProperty<T>(string propertyName, T propertyValue)
-        {
-            var oldContext = GetThreadLocal();
-            var newContext = CloneDictionary(oldContext, 1);
-            SetItemValue(propertyName, propertyValue, newContext);
-            SetThreadLocal(newContext);
-            return new ScopeContextProperties(oldContext);
-        }
-
-        internal static bool TryGetProperty(string propertyName, out object value)
-        {
-            var oldContext = GetThreadLocal();
-            if (oldContext != null && oldContext.TryGetValue(propertyName, out value))
-            {
-                if (value is ObjectHandleSerializer objectHandle)
-                    value = objectHandle.Unwrap();
-                return true;
-            }
-
-            value = null;
-            return false;
-        }
-
-        internal static void ClearMappedContext()
-        {
-            SetThreadLocal(null);
-        }
-
-        internal static IEnumerable<KeyValuePair<string, object>> GetAllProperties()
-        {
-            var context = GetThreadLocal();
-            if (context?.Count > 0)
-            {
-                foreach (var item in context)
-                {
-                    if (item.Value is ObjectHandleSerializer)
-                    {
-                        return GetAllPropertiesUnwrapped(context);
-                    }
-                }
-                return context;
-            }
-            return ArrayHelper.Empty<KeyValuePair<string, object>>();
-        }
-
-        private static IEnumerable<KeyValuePair<string, object>> GetAllPropertiesUnwrapped(Dictionary<string, object> properties)
-        {
-            foreach (var item in properties)
-            {
-                if (item.Value is ObjectHandleSerializer objectHandle)
-                {
-                    yield return new KeyValuePair<string, object>(item.Key, objectHandle.Unwrap());
-                }
-                else
-                {
-                    yield return item;
-                }
-            }
-        }
-
-        private static Dictionary<string, object> CloneDictionary(Dictionary<string, object> oldContext, int initialCapacity = 0)
-        {
-            if (oldContext?.Count > 0)
-            {
-                var dictionary = new Dictionary<string, object>(oldContext.Count + initialCapacity, DefaultComparer);
-                foreach (var keyValue in oldContext)
-                    dictionary[keyValue.Key] = keyValue.Value;
-                return dictionary;
-            }
-            
-            return new Dictionary<string, object>(initialCapacity, DefaultComparer);
-        }
-
-        private static void SetItemValue<T>(string item, T value, IDictionary<string, object> logicalContext)
-        {
-            object objectValue = value;
-            if (Convert.GetTypeCode(objectValue) != TypeCode.Object)
-                logicalContext[item] = objectValue;
-            else
-                logicalContext[item] = new ObjectHandleSerializer(objectValue);
-        }
-
-        private sealed class ScopeContextProperties : IDisposable
-        {
-            private readonly Dictionary<string, object> _oldContext;
-            private bool _diposed;
-
-            public ScopeContextProperties(Dictionary<string, object> oldContext)
-            {
-                _oldContext = oldContext;
-            }
-
-            public void Dispose()
-            {
-                if (!_diposed)
-                {
-                    SetThreadLocal(_oldContext);
-                    _diposed = true;
-                }
-            }
-        }
-
-        private static void SetThreadLocal(Dictionary<string, object> newValue)
-        {
-            if (newValue == null)
-                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
-            else
-                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(LogicalThreadDictionaryKey, newValue);
-        }
-
-        private static Dictionary<string, object> GetThreadLocal()
-        {
-            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
-        }
-
-        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
-
-        private static IEqualityComparer<string> DefaultComparer = StringComparer.OrdinalIgnoreCase;
-#endif
     }
 }
