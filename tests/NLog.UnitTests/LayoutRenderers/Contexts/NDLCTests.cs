@@ -311,7 +311,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 2");
         }
 
-#if !NET3_5 && !NET4_0 && !NET4_5
+#if NETSTANDARD
         [Fact]
         public void NDLCTimingTest()
         {

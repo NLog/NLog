@@ -66,6 +66,33 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        public void LoggerPushPropertyTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedValue = "World";
+            Dictionary<string, object> allProperties = null;
+            var success = false;
+            object value;
+            var logger = new LogFactory().GetCurrentClassLogger();
+
+            // Act
+            using (logger.PushScopeProperty("HELLO", expectedValue))
+            {
+                success = ScopeContext.TryGetProperty("hello", out value);
+                allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
+            }
+            var failed = ScopeContext.TryGetProperty("hello", out var _);
+
+            // Assert
+            Assert.True(success);
+            Assert.Equal(expectedValue, value);
+            Assert.Single(allProperties);
+            Assert.Equal(expectedValue, allProperties["HELLO"]);
+            Assert.False(failed);
+        }
+
+        [Fact]
         public void PushPropertyNestedTest()
         {
             // Arrange
@@ -142,6 +169,39 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.Equal("People", stringValueLookup);
         }
+
+        [Fact]
+        public void LoggerPushNestedStatePropertiesTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedString = "World";
+            var expectedGuid = System.Guid.NewGuid();
+            var expectedProperties = new[] { new KeyValuePair<string, object>("Hello", expectedString), new KeyValuePair<string, object>("RequestId", expectedGuid) };
+            Dictionary<string, object> allProperties = null;
+            object[] allNestedStates = null;
+            object stringValueLookup = null;
+            var logger = new LogFactory().GetCurrentClassLogger();
+
+            // Act
+            using (logger.PushScopeProperty("Hello", "People"))
+            {
+                using (logger.PushScopeState(expectedProperties))
+                {
+                    allNestedStates = ScopeContext.GetAllNestedStates();
+                    allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
+                }
+                ScopeContext.TryGetProperty("Hello", out stringValueLookup);
+            }
+
+            // Assert
+            Assert.Equal(2, allProperties.Count);
+            Assert.Equal(expectedString, allProperties["Hello"]);
+            Assert.Equal(expectedGuid, allProperties["RequestId"]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedProperties, allNestedStates[0]);
+            Assert.Equal("People", stringValueLookup);
+        }
 #endif
 
         [Fact]
@@ -197,6 +257,31 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(2, allNestedStates.Length);
             Assert.Equal(expectedNestedState2, allNestedStates[0]);
             Assert.Equal(expectedNestedState1, allNestedStates[1]);
+            Assert.False(failed);
+        }
+
+        [Fact]
+        public void LoggerPushNestedStateTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedNestedState = "First Push";
+            object topNestedState = null;
+            object[] allNestedStates = null;
+            var logger = new LogFactory().GetCurrentClassLogger();
+
+            // Act
+            using (logger.PushScopeState(expectedNestedState))
+            {
+                topNestedState = ScopeContext.PeekNestedState();
+                allNestedStates = ScopeContext.GetAllNestedStates();
+            }
+            var failed = ScopeContext.PeekNestedState() != null;
+
+            // Assert
+            Assert.Equal(expectedNestedState, topNestedState);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.False(failed);
         }
 
