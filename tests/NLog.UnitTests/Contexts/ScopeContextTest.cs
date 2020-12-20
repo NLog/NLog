@@ -111,24 +111,24 @@ namespace NLog.UnitTests.Contexts
 
 #if !NET3_5 && !NET4_0
         [Fact]
-        public void PushOperationPropertiesTest()
+        public void PushNestedStatePropertiesTest()
         {
             // Arrange
             ScopeContext.Clear();
             var expectedString = "World";
             var expectedGuid = System.Guid.NewGuid();
             var expectedProperties = new[] { new KeyValuePair<string, object>("Hello", expectedString), new KeyValuePair<string, object>("RequestId", expectedGuid) };
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             Dictionary<string, object> allProperties = null;
-            object[] allOperationStates = null;
+            object[] allNestedStates = null;
             object stringValueLookup = null;
 
             // Act
             using (ScopeContext.PushProperty("Hello", "People"))
             {
-                using (ScopeContext.PushOperationProperties(expectedOperationState, expectedProperties))
+                using (ScopeContext.PushNestedStateProperties(expectedNestedState, expectedProperties))
                 {
-                    allOperationStates = ScopeContext.GetAllOperationStates();
+                    allNestedStates = ScopeContext.GetAllNestedStates();
                     allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
                 }
                 ScopeContext.TryGetProperty("Hello", out stringValueLookup);
@@ -138,66 +138,65 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(2, allProperties.Count);
             Assert.Equal(expectedString, allProperties["Hello"]);
             Assert.Equal(expectedGuid, allProperties["RequestId"]);
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.Equal("People", stringValueLookup);
         }
 #endif
 
-
         [Fact]
-        public void PushOperationStateTest()
+        public void PushNestedStateTest()
         {
             // Arrange
             ScopeContext.Clear();
-            var expectedOperationState = "First Push";
-            object topOperationState = null;
-            object[] allOperationStates = null;
+            var expectedNestedState = "First Push";
+            object topNestedState = null;
+            object[] allNestedStates = null;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
-                topOperationState = ScopeContext.PeekOperationState();
-                allOperationStates = ScopeContext.GetAllOperationStates();
+                topNestedState = ScopeContext.PeekNestedState();
+                allNestedStates = ScopeContext.GetAllNestedStates();
             }
-            var failed = ScopeContext.PeekOperationState() != null;
+            var failed = ScopeContext.PeekNestedState() != null;
 
             // Assert
-            Assert.Equal(expectedOperationState, topOperationState);
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Equal(expectedNestedState, topNestedState);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.False(failed);
         }
 
         [Fact]
-        public void PushNestedOperationStateTest()
+        public void DoublePushNestedStateTest()
         {
             // Arrange
             ScopeContext.Clear();
-            var expectedOperationState1 = "First Push";
-            var expectedOperationState2 = System.Guid.NewGuid();
-            object topOperationState1 = null;
-            object topOperationState2 = null;
-            object[] allOperationStates = null;
+            var expectedNestedState1 = "First Push";
+            var expectedNestedState2 = System.Guid.NewGuid();
+            object topNestedState1 = null;
+            object topNestedState2 = null;
+            object[] allNestedStates = null;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState1))
+            using (ScopeContext.PushNestedState(expectedNestedState1))
             {
-                topOperationState1 = ScopeContext.PeekOperationState();
-                using (ScopeContext.PushOperationState(expectedOperationState2))
+                topNestedState1 = ScopeContext.PeekNestedState();
+                using (ScopeContext.PushNestedState(expectedNestedState2))
                 {
-                    topOperationState2 = ScopeContext.PeekOperationState();
-                    allOperationStates = ScopeContext.GetAllOperationStates();
+                    topNestedState2 = ScopeContext.PeekNestedState();
+                    allNestedStates = ScopeContext.GetAllNestedStates();
                 }                   
             }
-            var failed = ScopeContext.PeekOperationState() != null;
+            var failed = ScopeContext.PeekNestedState() != null;
 
             // Assert
-            Assert.Equal(expectedOperationState1, topOperationState1);
-            Assert.Equal(expectedOperationState2, topOperationState2);
-            Assert.Equal(2, allOperationStates.Length);
-            Assert.Equal(expectedOperationState2, allOperationStates[0]);
-            Assert.Equal(expectedOperationState1, allOperationStates[1]);
+            Assert.Equal(expectedNestedState1, topNestedState1);
+            Assert.Equal(expectedNestedState2, topNestedState2);
+            Assert.Equal(2, allNestedStates.Length);
+            Assert.Equal(expectedNestedState2, allNestedStates[0]);
+            Assert.Equal(expectedNestedState1, allNestedStates[1]);
             Assert.False(failed);
         }
 
@@ -206,11 +205,11 @@ namespace NLog.UnitTests.Contexts
         {
             // Arrange
             ScopeContext.Clear();
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             var expectedString = "World";
             var expectedGuid = System.Guid.NewGuid();
-            object[] allOperationStates1 = null;
-            object[] allOperationStates2 = null;
+            object[] allNestedStates1 = null;
+            object[] allNestedStates2 = null;
             object stringValueLookup1 = null;
             object stringValueLookup2 = null;
 
@@ -219,24 +218,24 @@ namespace NLog.UnitTests.Contexts
             {
                 using (ScopeContext.PushProperty("RequestId", expectedGuid))
                 {
-                    using (ScopeContext.PushOperationState(expectedOperationState))
+                    using (ScopeContext.PushNestedState(expectedNestedState))
                     {
                         ScopeContext.Clear();
-                        allOperationStates1 = ScopeContext.GetAllOperationStates();
+                        allNestedStates1 = ScopeContext.GetAllNestedStates();
                         ScopeContext.TryGetProperty("Hello", out stringValueLookup1);
                     }
                 }
 
                 // Original scope was restored on dispose, verify expected behavior
-                allOperationStates2 = ScopeContext.GetAllOperationStates();
+                allNestedStates2 = ScopeContext.GetAllNestedStates();
                 ScopeContext.TryGetProperty("Hello", out stringValueLookup2);
             }
 
             // Assert
             Assert.Null(stringValueLookup1);
             Assert.Equal(expectedString, stringValueLookup2);
-            Assert.Empty(allOperationStates1);
-            Assert.Empty(allOperationStates2);
+            Assert.Empty(allNestedStates1);
+            Assert.Empty(allNestedStates2);
         }
 
         [Fact]
@@ -266,23 +265,23 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedValue = "World";
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             var success = false;
             object propertyValue;
-            object operationState;
+            object nestedState;
 
             // Act
             using (ScopeContext.PushProperty("Hello", expectedValue))
             {
-                ScopeContext.PushOperationState(expectedOperationState);
-                operationState = NestedDiagnosticsLogicalContext.PopObject();    // Should only pop active scope (skip legacy mode)
+                ScopeContext.PushNestedState(expectedNestedState);
+                nestedState = NestedDiagnosticsLogicalContext.PopObject();    // Should only pop active scope (skip legacy mode)
                 success = ScopeContext.TryGetProperty("Hello", out propertyValue);
             }
 
             // Assert
             Assert.True(success);
             Assert.Equal(expectedValue, propertyValue);
-            Assert.Equal(expectedOperationState, operationState);
+            Assert.Equal(expectedNestedState, nestedState);
         }
 
         [Fact]
@@ -292,24 +291,24 @@ namespace NLog.UnitTests.Contexts
             ScopeContext.Clear();
             var expectedValue1 = "World";
             var expectedValue2 = System.Guid.NewGuid();
-            var expectedOperationState1 = "First Push";
-            var expectedOperationState2 = System.Guid.NewGuid();
+            var expectedNestedState1 = "First Push";
+            var expectedNestedState2 = System.Guid.NewGuid();
             var success1 = false;
             var success2 = false;
             object propertyValue1;
             object propertyValue2;
-            object operationState1;
-            object operationState2;
+            object nestedState1;
+            object nestedState2;
 
             // Act
             using (ScopeContext.PushProperty("Hello", expectedValue1))
             {
-                ScopeContext.PushOperationState(expectedOperationState1);
-                ScopeContext.PushOperationState(expectedOperationState2);
+                ScopeContext.PushNestedState(expectedNestedState1);
+                ScopeContext.PushNestedState(expectedNestedState2);
                 using (ScopeContext.PushProperty("RequestId", expectedValue2))
                 {
-                    operationState2 = NestedDiagnosticsLogicalContext.PopObject();    // Evil pop where it should leave properties alone (Legacy mode)
-                    operationState1 = NestedDiagnosticsLogicalContext.PopObject();    // Evil pop where it should leave properties alone (Legacy mode)
+                    nestedState2 = NestedDiagnosticsLogicalContext.PopObject();    // Evil pop where it should leave properties alone (Legacy mode)
+                    nestedState1 = NestedDiagnosticsLogicalContext.PopObject();    // Evil pop where it should leave properties alone (Legacy mode)
 
                     success1 = ScopeContext.TryGetProperty("Hello", out propertyValue1);
                     success2 = ScopeContext.TryGetProperty("RequestId", out propertyValue2);
@@ -321,8 +320,8 @@ namespace NLog.UnitTests.Contexts
             Assert.True(success2);
             Assert.Equal(expectedValue1, propertyValue1);
             Assert.Equal(expectedValue2, propertyValue2);
-            Assert.Equal(expectedOperationState1, operationState1);
-            Assert.Equal(expectedOperationState2, operationState2);
+            Assert.Equal(expectedNestedState1, nestedState1);
+            Assert.Equal(expectedNestedState2, nestedState2);
         }
 
         [Fact]
@@ -352,14 +351,14 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedValue = "World";
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             var success = false;
             object propertyValue;
 
             // Act
             using (ScopeContext.PushProperty("Hello", expectedValue))
             {
-                ScopeContext.PushOperationState(expectedOperationState);
+                ScopeContext.PushNestedState(expectedNestedState);
                 NestedDiagnosticsLogicalContext.Clear();    // Should not clear properties (Legacy mode)
                 success = ScopeContext.TryGetProperty("Hello", out propertyValue);
             }
@@ -374,19 +373,19 @@ namespace NLog.UnitTests.Contexts
         {
             // Arrange
             ScopeContext.Clear();
-            var expectedOperationState = "First Push";
-            object[] allOperationStates = null;
+            var expectedNestedState = "First Push";
+            object[] allNestedStates = null;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
                 MappedDiagnosticsLogicalContext.Clear();    // Should not clear anything (skip legacy mode)
-                allOperationStates = ScopeContext.GetAllOperationStates();
+                allNestedStates = ScopeContext.GetAllNestedStates();
             }
 
             // Assert
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
         }
 
         [Fact]
@@ -395,20 +394,20 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedValue = "World";
-            var expectedOperationState = "First Push";
-            object[] allOperationStates = null;
+            var expectedNestedState = "First Push";
+            object[] allNestedStates = null;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
                 ScopeContext.PushProperty("Hello", expectedValue);
                 MappedDiagnosticsLogicalContext.Clear();    // Should not clear stack (Legacy mode)
-                allOperationStates = ScopeContext.GetAllOperationStates();
+                allNestedStates = ScopeContext.GetAllNestedStates();
             }
 
             // Assert
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
         }
 
         [Fact]
@@ -416,19 +415,19 @@ namespace NLog.UnitTests.Contexts
         {
             // Arrange
             ScopeContext.Clear();
-            var expectedOperationState = "First Push";
-            object[] allOperationStates = null;
+            var expectedNestedState = "First Push";
+            object[] allNestedStates = null;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
                 MappedDiagnosticsLogicalContext.Remove("Hello");    // Should not remove anything (skip legacy mode)
-                allOperationStates = ScopeContext.GetAllOperationStates();
+                allNestedStates = ScopeContext.GetAllNestedStates();
             }
 
             // Assert
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
         }
 
         [Fact]
@@ -438,24 +437,24 @@ namespace NLog.UnitTests.Contexts
             ScopeContext.Clear();
             var expectedValue1 = "World";
             var expectedValue2 = System.Guid.NewGuid();
-            var expectedOperationState1 = "First Push";
-            var expectedOperationState2 = System.Guid.NewGuid();
+            var expectedNestedState1 = "First Push";
+            var expectedNestedState2 = System.Guid.NewGuid();
             object propertyValue1;
             object propertyValue2;
-            object[] allOperationStates = null;
+            object[] allNestedStates = null;
             var success1 = false;
             var success2 = false;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState1))
+            using (ScopeContext.PushNestedState(expectedNestedState1))
             {
                 using (ScopeContext.PushProperty("Hello", expectedValue1))
                 {
-                    using (ScopeContext.PushOperationState(expectedOperationState2))
+                    using (ScopeContext.PushNestedState(expectedNestedState2))
                     {
                         ScopeContext.PushProperty("RequestId", expectedValue2);
                         MappedDiagnosticsLogicalContext.Remove("RequestId");    // Should not change stack (Legacy mode)
-                        allOperationStates = ScopeContext.GetAllOperationStates();
+                        allNestedStates = ScopeContext.GetAllNestedStates();
 
                         success1 = ScopeContext.TryGetProperty("Hello", out propertyValue1);
                         success2 = ScopeContext.TryGetProperty("RequestId", out propertyValue2);
@@ -464,9 +463,9 @@ namespace NLog.UnitTests.Contexts
             }
 
             // Assert
-            Assert.Equal(2, allOperationStates.Length);
-            Assert.Equal(expectedOperationState2, allOperationStates[0]);
-            Assert.Equal(expectedOperationState1, allOperationStates[1]);
+            Assert.Equal(2, allNestedStates.Length);
+            Assert.Equal(expectedNestedState2, allNestedStates[0]);
+            Assert.Equal(expectedNestedState1, allNestedStates[1]);
             Assert.True(success1);
             Assert.False(success2);
             Assert.Equal(expectedValue1, propertyValue1);
@@ -479,22 +478,22 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedValue = "World";
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             object propertyValue;
-            object[] allOperationStates = null;
+            object[] allNestedStates = null;
             var success = false;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
                 MappedDiagnosticsLogicalContext.Set("Hello", expectedValue);    // Skip legacy mode (normal property push)
                 success = ScopeContext.TryGetProperty("Hello", out propertyValue);
-                allOperationStates = ScopeContext.GetAllOperationStates();
+                allNestedStates = ScopeContext.GetAllNestedStates();
             }
 
             // Assert
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.True(success);
             Assert.Equal(expectedValue, propertyValue);
         }
@@ -505,25 +504,25 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedValue = "World";
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             object propertyValue;
-            object[] allOperationStates = null;
+            object[] allNestedStates = null;
             var success = false;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
                 using (ScopeContext.PushProperty("Hello", expectedValue))
                 {
                     MappedDiagnosticsLogicalContext.Set("Hello", expectedValue);    // Skip legacy mode (ignore when same value)
                     success = ScopeContext.TryGetProperty("Hello", out propertyValue);
-                    allOperationStates = ScopeContext.GetAllOperationStates();
+                    allNestedStates = ScopeContext.GetAllNestedStates();
                 }
             }
 
             // Assert
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.True(success);
             Assert.Equal(expectedValue, propertyValue);
         }
@@ -534,29 +533,29 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedValue = "Bob";
-            var expectedOperationState = "First Push";
+            var expectedNestedState = "First Push";
             object propertyValue1;
             object propertyValue2;
-            object[] allOperationStates = null;
+            object[] allNestedStates = null;
             var success1 = false;
             var success2 = false;
 
             // Act
-            using (ScopeContext.PushOperationState(expectedOperationState))
+            using (ScopeContext.PushNestedState(expectedNestedState))
             {
                 using (ScopeContext.PushProperty("Hello", "World"))
                 {
                     MappedDiagnosticsLogicalContext.Set("Hello", expectedValue);    // Enter legacy mode (need to overwrite)
                     success1 = ScopeContext.TryGetProperty("Hello", out propertyValue1);
-                    allOperationStates = ScopeContext.GetAllOperationStates();
+                    allNestedStates = ScopeContext.GetAllNestedStates();
                 }
 
                 success2 = ScopeContext.TryGetProperty("Hello", out propertyValue2);
             }
 
             // Assert
-            Assert.Single(allOperationStates);
-            Assert.Equal(expectedOperationState, allOperationStates[0]);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
             Assert.True(success1);
             Assert.Equal(expectedValue, propertyValue1);
             Assert.False(success2);

@@ -39,11 +39,12 @@ namespace NLog
 {
     /// <summary>
     /// <see cref="ScopeContext"/> allows one to store state in the thread execution context. All LogEvents created
-    /// within a scope can include the scope state when wanted. The logical operation scope state supports both
-    /// scope-properties and scope-operation-states.
+    /// within a scope can include the scope state when wanted. The logical context scope supports both
+    /// scope-properties and scope-nested-state-stack (Similar to log4j2 ThreadContext)
     /// </summary>
     /// <remarks>
-    /// <see cref="ScopeContext"/> unifies <see cref="MappedDiagnosticsLogicalContext"/> (MDLC) and <see cref="NestedDiagnosticsLogicalContext"/> (NDLC).
+    /// <see cref="MappedDiagnosticsLogicalContext"/> (MDLC), <see cref="MappedDiagnosticsContext"/> (MDC), <see cref="NestedDiagnosticsLogicalContext"/> (NDLC)
+    /// and <see cref="NestedDiagnosticsContext"/> (NDC) has been deprecated and replaced by <see cref="ScopeContext"/>.
     /// 
     /// .NetCore (and .Net46) uses AsyncLocal for handling the thread execution context. Older .NetFramework uses System.Runtime.Remoting.CallContext
     /// </remarks>
@@ -51,33 +52,33 @@ namespace NLog
     {
 #if !NET35 && !NET40
         /// <summary>
-        /// Pushes new operation state on the logical context scope operation stack, and includes the provided properties
+        /// Pushes new state on the logical context scope stack, and includes the provided properties
         /// </summary>
-        /// <param name="operationState">Value to added to the scope operation stack</param>
+        /// <param name="nestedState">Value to added to the scope stack</param>
         /// <param name="properties">Properties being added to the scope dictionary</param>
-        /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
+        /// <returns>A disposable object that pops the nested scope state on dispose (including properties).</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushOperationProperties(object operationState, IReadOnlyList<KeyValuePair<string, object>> properties)
+        public static IDisposable PushNestedStateProperties(object nestedState, IReadOnlyList<KeyValuePair<string, object>> properties)
         {
 #if !NET45
             var parent = GetThreadLocal();
             IScopeContext current = null;
             if (properties?.Count > 0)
-                current = new ScopeContextProperties(parent, properties, operationState);
+                current = new ScopeContextProperties(parent, properties, nestedState);
             else 
-                current = new ScopeContextOperationState<object>(parent, operationState);
+                current = new ScopeContextNestedState<object>(parent, nestedState);
             SetThreadLocal(current);
             return current;
 #else
             if (properties?.Count > 0)
             {
                 var mldcScope = MappedDiagnosticsLogicalContext.PushProperties(properties);
-                var ndlcScope = NestedDiagnosticsLogicalContext.PushOperationState(operationState);
-                return new ScopeContextOperationProperties(ndlcScope, mldcScope);
+                var ndlcScope = NestedDiagnosticsLogicalContext.PushNestedState(nestedState);
+                return new ScopeContextNestedStateProperties(ndlcScope, mldcScope);
             }
             else
             {
-                return NestedDiagnosticsLogicalContext.PushOperationState(operationState);
+                return NestedDiagnosticsLogicalContext.PushNestedState(nestedState);
             }
 #endif
         }
@@ -88,23 +89,23 @@ namespace NLog
         /// Updates the logical scope context with provided properties
         /// </summary>
         /// <param name="properties">Properties being added to the scope dictionary</param>
-        /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushProperties(IReadOnlyList<KeyValuePair<string, object>> properties)
         {
 #if !NET45
             var parent = GetThreadLocal();
             
-            var scopeDictionary = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
-            if (scopeDictionary != null)
+            var scopeProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
+            if (scopeProperties != null)
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                 for (int i = 0; i < properties.Count; ++i)
                 {
                     var property = properties[i];
-                    scopeDictionary[property.Key] = property.Value;
+                    scopeProperties[property.Key] = property.Value;
                 }
-                var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeDictionary);
+                var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeProperties);
                 SetThreadLocal(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -123,20 +124,20 @@ namespace NLog
         /// </summary>
         /// <param name="key">Name of property</param>
         /// <param name="value">Value of property</param>
-        /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushProperty<T>(string key, T value)
         {
 #if !NET35 && !NET40 && !NET45
             var parent = GetThreadLocal();
 
-            var scopeDictionary = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, 1);
-            if (scopeDictionary != null)
+            var scopeProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, 1);
+            if (scopeProperties != null)
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                scopeDictionary[key] = value;
+                scopeProperties[key] = value;
 
-                var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeDictionary);
+                var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeProperties);
                 SetThreadLocal(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -154,7 +155,7 @@ namespace NLog
         /// </summary>
         /// <param name="key">Name of property</param>
         /// <param name="value">Value of property</param>
-        /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushProperty(string key, object value)
         {
@@ -162,35 +163,35 @@ namespace NLog
         }
 
         /// <summary>
-        /// Pushes new operation state on the logical context scope operation stack
+        /// Pushes new state on the logical context scope stack
         /// </summary>
-        /// <param name="operationState">Value to added to the scope operation stack</param>
-        /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
-        /// <remarks>Skip casting of <paramref name="operationState"/> to check for scope-properties</remarks>
-        public static IDisposable PushOperationState<T>(T operationState)
+        /// <param name="nestedState">Value to added to the scope stack</param>
+        /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
+        /// <remarks>Skips casting of <paramref name="nestedState"/> to check for scope-properties</remarks>
+        public static IDisposable PushNestedState<T>(T nestedState)
         {
 #if !NET35 && !NET40 && !NET45
             var parent = GetThreadLocal();
-            var current = new ScopeContextOperationState<T>(parent, operationState);
+            var current = new ScopeContextNestedState<T>(parent, nestedState);
             SetThreadLocal(current);
             return current;
 #else
-            return NestedDiagnosticsLogicalContext.PushOperationState(operationState);
+            return NestedDiagnosticsLogicalContext.PushNestedState(nestedState);
 #endif
         }
 
         /// <summary>
-        /// Pushes new operation state on the logical context scope operation stack
+        /// Pushes new state on the logical context scope stack
         /// </summary>
-        /// <param name="operationState">Value to added to the scope operation stack</param>
-        /// <returns>A disposable object that ends the logical operation scope on dispose.</returns>
-        public static IDisposable PushOperationState(object operationState)
+        /// <param name="nestedState">Value to added to the scope stack</param>
+        /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
+        public static IDisposable PushNestedState(object nestedState)
         {
-            return PushOperationState<object>(operationState);
+            return PushNestedState<object>(nestedState);
         }
 
         /// <summary>
-        /// Clears all logical operation scopes
+        /// Clears all the entire logical context scope, and removes any properties and nested-states
         /// </summary>
         public static void Clear()
         {
@@ -210,7 +211,7 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             var contextState = GetThreadLocal();
-            return contextState?.CaptureScopeProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            return contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
 #else
             return MappedDiagnosticsLogicalContext.GetAllProperties();
 #endif
@@ -229,7 +230,7 @@ namespace NLog
             var contextState = GetThreadLocal();
             if (contextState != null)
             {
-                var mappedContext = contextState?.CaptureScopeProperties(0, out var _);
+                var mappedContext = contextState?.CaptureContextProperties(0, out var _);
                 if (mappedContext != null)
                 {
                     if (mappedContext is IDictionary<string, object> dictionary)
@@ -250,30 +251,30 @@ namespace NLog
         }
 
         /// <summary>
-        /// Retrieves all operation states inside the logical context scope operation stack
+        /// Retrieves all nested states inside the logical context scope stack
         /// </summary>
-        /// <returns>Array of operation state objects.</returns>
-        public static object[] GetAllOperationStates()
+        /// <returns>Array of nested state objects.</returns>
+        public static object[] GetAllNestedStates()
         {
 #if !NET35 && !NET40 && !NET45
             var parent = GetThreadLocal();
-            return parent?.CaptureScopeOperationStates(0, out var _) ?? ArrayHelper.Empty<object>();
+            return parent?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
 #else
-            return NestedDiagnosticsLogicalContext.GetAllOperationStates();
+            return NestedDiagnosticsLogicalContext.GetAllNestedStates();
 #endif
         }
 
         /// <summary>
-        /// Peeks the top value from the logical context scope operation stack
+        /// Peeks the top value from the logical context scope stack
         /// </summary>
         /// <returns>Value from the top of the stack.</returns>
-        public static object PeekOperationState()
+        public static object PeekNestedState()
         {
 #if !NET35 && !NET40 && !NET45
             var parent = GetThreadLocal();
             while (parent != null)
             {
-                var nestedContext = parent.OperationState;
+                var nestedContext = parent.NestedState;
                 if (nestedContext != null)
                     return nestedContext;
 
@@ -281,25 +282,25 @@ namespace NLog
             }
             return null;
 #else
-            return NestedDiagnosticsLogicalContext.PeekOperationState();
+            return NestedDiagnosticsLogicalContext.PeekNestedState();
 #endif
         }
 
         /// <summary>
-        /// Peeks the inner operation from the logical context scope operation stack, and returns its running duration
+        /// Peeks the inner state (newest) from the logical context scope stack, and returns its running duration
         /// </summary>
         /// <returns>Scope Duration Time</returns>
-        internal static TimeSpan? PeekInnerOperationDuration()
+        internal static TimeSpan? PeekInnerNestedDuration()
         {
 #if !NET35 && !NET40 && !NET45
-            var stopwatchNow = GetScopeOperationTimestamp(); // Early timestamp to reduce chance of measuring NLog time
+            var stopwatchNow = GetNestedContextTimestampNow(); // Early timestamp to reduce chance of measuring NLog time
             var parent = GetThreadLocal();
             while (parent != null)
             {
-                var scopeTimestamp = parent.OperationTimestamp;
+                var scopeTimestamp = parent.NestedStateTimestamp;
                 if (scopeTimestamp != 0)
                 {
-                    return GetScopeOperationDuration(scopeTimestamp, stopwatchNow);
+                    return GetNestedStateDuration(scopeTimestamp, stopwatchNow);
                 }
 
                 parent = parent.Parent;
@@ -311,25 +312,25 @@ namespace NLog
         }
 
         /// <summary>
-        /// Peeks the outer operation from the logical context scope operation stack, and returns its running duration
+        /// Peeks the outer state (oldest) from the logical context scope stack, and returns its running duration
         /// </summary>
         /// <returns>Scope Duration Time</returns>
-        internal static TimeSpan? PeekOuterOperationDuration()
+        internal static TimeSpan? PeekOuterNestedDuration()
         {
 #if !NET35 && !NET40 && !NET45
-            var stopwatchNow = GetScopeOperationTimestamp(); // Early timestamp to reduce chance of measuring NLog time
+            var stopwatchNow = GetNestedContextTimestampNow(); // Early timestamp to reduce chance of measuring NLog time
             var parent = GetThreadLocal();
             var scopeTimestamp = 0L;
             while (parent != null)
             {
-                if (parent.OperationTimestamp != 0)
-                    scopeTimestamp = parent.OperationTimestamp;
+                if (parent.NestedStateTimestamp != 0)
+                    scopeTimestamp = parent.NestedStateTimestamp;
                 parent = parent.Parent;
             }
 
             if (scopeTimestamp != 0L)
             {
-                return GetScopeOperationDuration(scopeTimestamp, stopwatchNow);
+                return GetNestedStateDuration(scopeTimestamp, stopwatchNow);
             }
 
             return null;
@@ -345,10 +346,10 @@ namespace NLog
             {
                 // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
                 var contextState = GetThreadLocal();
-                CaptureLegacyContext(contextState, out var scopeDictionary, out var scopeOperationStates, out var scopeOperationTimestamp);
-                scopeDictionary.Remove(key);
+                CaptureLegacyContext(contextState, out var scopeProperties, out var scopeNestedStates, out var scopeNestedStateTimestamp);
+                scopeProperties.Remove(key);
 
-                var legacyScope = new LegacyScopeContext(scopeDictionary, scopeOperationStates, scopeOperationTimestamp);
+                var legacyScope = new LegacyScopeContext(scopeProperties, scopeNestedStates, scopeNestedStateTimestamp);
                 SetThreadLocal(legacyScope);
             }
         }
@@ -358,35 +359,35 @@ namespace NLog
             var contextState = GetThreadLocal();
             if (contextState != null)
             {
-                if ((contextState.Parent == null && contextState is LegacyScopeContext) || contextState.OperationState == null)
+                if ((contextState.Parent == null && contextState is LegacyScopeContext) || contextState.NestedState == null)
                 {
-                    var scopeOperationStates = contextState?.CaptureScopeOperationStates(0, out var _) ?? ArrayHelper.Empty<object>();
-                    if (scopeOperationStates.Length == 0)
+                    var nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
+                    if (nestedContext.Length == 0)
                         return null;    // Nothing to pop, just leave scope alone
 
                     // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
-                    var stackTopValue = scopeOperationStates[0];
-                    var scopeProperties = contextState?.CaptureScopeProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-                    if (scopeOperationStates.Length == 1)
+                    var stackTopValue = nestedContext[0];
+                    var scopeProperties = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                    if (nestedContext.Length == 1)
                     {
-                        scopeOperationStates = ArrayHelper.Empty<object>();
+                        nestedContext = ArrayHelper.Empty<object>();
                     }
                     else
                     {
-                        var newScope = new object[scopeOperationStates.Length - 1];
+                        var newScope = new object[nestedContext.Length - 1];
                         for (int i = 0; i < newScope.Length; ++i)
-                            newScope[i] = scopeOperationStates[i + 1];
-                        scopeOperationStates = newScope;
+                            newScope[i] = nestedContext[i + 1];
+                        nestedContext = newScope;
                     }
 
-                    var legacyScope = new LegacyScopeContext(scopeProperties, scopeOperationStates, scopeOperationStates.Length > 0 ? GetScopeOperationTimestamp() : 0L);
+                    var legacyScope = new LegacyScopeContext(scopeProperties, nestedContext, nestedContext.Length > 0 ? GetNestedContextTimestampNow() : 0L);
                     SetThreadLocal(legacyScope);
                     return stackTopValue;
                 }
                 else
                 {
                     SetThreadLocal(contextState.Parent);
-                    return contextState?.OperationState;
+                    return contextState?.NestedState;
                 }
             }
 
@@ -398,12 +399,12 @@ namespace NLog
             var contextState = GetThreadLocal();
             if (contextState != null)
             {
-                CaptureLegacyContext(contextState, out var scopeDictionary, out var scopeOperationStates, out var scopeOperationTimestamp);
-                if (scopeOperationStates?.Length > 0)
+                CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
+                if (nestedContext?.Length > 0)
                 {
-                    if (scopeDictionary?.Count > 0)
+                    if (scopeProperties?.Count > 0)
                     {
-                        var legacyScope = new LegacyScopeContext(null, scopeOperationStates, scopeOperationTimestamp);
+                        var legacyScope = new LegacyScopeContext(null, nestedContext, nestedContextTimestamp);
                         SetThreadLocal(legacyScope);
                     }
                 }
@@ -419,12 +420,12 @@ namespace NLog
             var contextState = GetThreadLocal();
             if (contextState != null)
             {
-                CaptureLegacyContext(contextState, out var scopeDictionary, out var scopeOperationStates, out var scopeOperationTimestamp);
-                if (scopeDictionary?.Count > 0)
+                CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
+                if (scopeProperties?.Count > 0)
                 {
-                    if (scopeOperationStates?.Length > 0)
+                    if (nestedContext?.Length > 0)
                     {
-                        var legacyScope = new LegacyScopeContext(scopeDictionary, ArrayHelper.Empty<object>(), 0L);
+                        var legacyScope = new LegacyScopeContext(scopeProperties, ArrayHelper.Empty<object>(), 0L);
                         SetThreadLocal(legacyScope);
                     }
                 }
@@ -465,11 +466,11 @@ namespace NLog
             return false;
         }
 
-        private static void CaptureLegacyContext(IScopeContext contextState, out Dictionary<string, object> scopeDictionary, out object[] scopeOperationStates, out long scopeOperationTimestamp)
+        private static void CaptureLegacyContext(IScopeContext contextState, out Dictionary<string, object> scopeDictionary, out object[] nestedContext, out long nestedContextTimestamp)
         {
-            scopeOperationStates = contextState?.CaptureScopeOperationStates(0, out var _) ?? ArrayHelper.Empty<object>();
+            nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
             scopeDictionary = null;
-            var scopeProperties = contextState?.CaptureScopeProperties(0, out scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            var scopeProperties = contextState?.CaptureContextProperties(0, out scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
             if (scopeDictionary == null)
             {
                 scopeDictionary = new Dictionary<string, object>(scopeProperties.Count, DefaultComparer);
@@ -477,23 +478,23 @@ namespace NLog
                     scopeDictionary[scopeProperty.Key] = scopeProperty.Value;
             }
 
-            scopeOperationTimestamp = 0L;
-            if (scopeOperationStates?.Length > 0)
+            nestedContextTimestamp = 0L;
+            if (nestedContext?.Length > 0)
             {
                 var parent = contextState;
                 while (parent != null)
                 {
-                    if (parent.OperationTimestamp != 0L)
-                        scopeOperationTimestamp = parent.OperationTimestamp;
+                    if (parent.NestedStateTimestamp != 0L)
+                        nestedContextTimestamp = parent.NestedStateTimestamp;
                     parent = parent.Parent;
                 }
 
-                if (scopeOperationTimestamp == 0L)
-                    scopeOperationTimestamp = GetScopeOperationTimestamp();
+                if (nestedContextTimestamp == 0L)
+                    nestedContextTimestamp = GetNestedContextTimestampNow();
             }
         }
 
-        private static long GetScopeOperationTimestamp()
+        private static long GetNestedContextTimestampNow()
         {
             if (System.Diagnostics.Stopwatch.IsHighResolution)
                 return System.Diagnostics.Stopwatch.GetTimestamp();
@@ -501,7 +502,7 @@ namespace NLog
                 return System.Environment.TickCount;
         }
 
-        private static TimeSpan GetScopeOperationDuration(long scopeTimestamp, long currentTimestamp)
+        private static TimeSpan GetNestedStateDuration(long scopeTimestamp, long currentTimestamp)
         {
             if (System.Diagnostics.Stopwatch.IsHighResolution)
                 return TimeSpan.FromTicks((currentTimestamp - scopeTimestamp) * TimeSpan.TicksPerSecond / System.Diagnostics.Stopwatch.Frequency);
@@ -544,10 +545,10 @@ namespace NLog
         interface IScopeContext : IDisposable
         {
             IScopeContext Parent { get; }
-            object OperationState { get; }
-            long OperationTimestamp { get; }
-            IReadOnlyCollection<KeyValuePair<string, object>> CaptureScopeProperties(int initialCapacity, out Dictionary<string, object> scopeProperties);
-            object[] CaptureScopeOperationStates(int initialCapacity, out object[] scopeOperationStates);
+            object NestedState { get; }
+            long NestedStateTimestamp { get; }
+            IReadOnlyCollection<KeyValuePair<string, object>> CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties);
+            object[] CaptureNestedContext(int initialCapacity, out object[] nestedContext);
         }
 
         interface IPropertyScopeContext : IScopeContext
@@ -569,16 +570,16 @@ namespace NLog
                 _collapsed = collapsed;
             }
 
-            public static Dictionary<string, object> BuildCollapsedDictionary(IScopeContext parent, int extraPropertyCount)
+            public static Dictionary<string, object> BuildCollapsedDictionary(IScopeContext parent, int initialCapacity)
             {
                 if (parent is IPropertyScopeContext parentProperties && parentProperties.Parent is IPropertyScopeContext grandParentProperties)
                 {
-                    if (parentProperties.OperationState == null && grandParentProperties.OperationState == null)
+                    if (parentProperties.NestedState == null && grandParentProperties.NestedState == null)
                     {
-                        var scopeProperties = parentProperties.CaptureScopeProperties(extraPropertyCount, out var scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                        var scopeProperties = parentProperties.CaptureContextProperties(initialCapacity, out var scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
                         if (scopeDictionary == null)
                         {
-                            scopeDictionary = new Dictionary<string, object>(scopeProperties.Count + extraPropertyCount, DefaultComparer);
+                            scopeDictionary = new Dictionary<string, object>(scopeProperties.Count + initialCapacity, DefaultComparer);
                             foreach (var scopeProperty in scopeProperties)
                                 scopeDictionary[scopeProperty.Key] = scopeProperty.Value;
                         }
@@ -605,38 +606,38 @@ namespace NLog
             }
         }
 
-        private sealed class ScopeContextOperationState<T> : IScopeContext
+        private sealed class ScopeContextNestedState<T> : IScopeContext
         {
             private readonly T _value;
             private bool _disposed;
 
-            public ScopeContextOperationState(IScopeContext parent, T state)
+            public ScopeContextNestedState(IScopeContext parent, T state)
             {
                 Parent = parent;
-                OperationTimestamp = GetScopeOperationTimestamp();
+                NestedStateTimestamp = GetNestedContextTimestampNow();
                 _value = state;
             }
 
             public IScopeContext Parent { get; }
 
-            object IScopeContext.OperationState => _value;
+            object IScopeContext.NestedState => _value;
 
-            public long OperationTimestamp { get; }
+            public long NestedStateTimestamp { get; }
 
-            object[] IScopeContext.CaptureScopeOperationStates(int initialCapacity, out object[] scopeOperationStates)
+            object[] IScopeContext.CaptureNestedContext(int initialCapacity, out object[] nestedContext)
             {
-                scopeOperationStates = null;
-                Parent?.CaptureScopeOperationStates(initialCapacity + 1, out scopeOperationStates);
-                if (scopeOperationStates == null)
-                    scopeOperationStates = new object[initialCapacity + 1];
-                scopeOperationStates[initialCapacity] = _value;
-                return scopeOperationStates;
+                nestedContext = null;
+                Parent?.CaptureNestedContext(initialCapacity + 1, out nestedContext);
+                if (nestedContext == null)
+                    nestedContext = new object[initialCapacity + 1];
+                nestedContext[initialCapacity] = _value;
+                return nestedContext;
             }
 
-            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureScopeProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
+            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
             {
                 scopeProperties = null;
-                return Parent?.CaptureScopeProperties(initialCapacity, out scopeProperties) ?? scopeProperties;
+                return Parent?.CaptureContextProperties(initialCapacity, out scopeProperties) ?? scopeProperties;
             }
 
             public override string ToString()
@@ -657,8 +658,8 @@ namespace NLog
         private sealed class ScopeContextProperty<T> : IPropertyScopeContext
         {
             public IScopeContext Parent { get; }
-            long IScopeContext.OperationTimestamp => 0;
-            object IScopeContext.OperationState => null;
+            long IScopeContext.NestedStateTimestamp => 0;
+            object IScopeContext.NestedState => null;
             public string Name { get; }
             public T Value { get; }
             private IReadOnlyCollection<KeyValuePair<string, object>> _scopeDictionary;
@@ -671,13 +672,13 @@ namespace NLog
                 Value = value;
             }
 
-            object[] IScopeContext.CaptureScopeOperationStates(int initialCapacity, out object[] scopeOperationStates)
+            object[] IScopeContext.CaptureNestedContext(int initialCapacity, out object[] nestedContext)
             {
-                scopeOperationStates = null;
-                return Parent?.CaptureScopeOperationStates(initialCapacity, out scopeOperationStates) ?? ArrayHelper.Empty<object>();
+                nestedContext = null;
+                return Parent?.CaptureNestedContext(initialCapacity, out nestedContext) ?? ArrayHelper.Empty<object>();
             }
 
-            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureScopeProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
+            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
             {
                 scopeProperties = null;
                 if (_scopeDictionary != null)
@@ -686,7 +687,7 @@ namespace NLog
                 }
                 else
                 {
-                    var parentContext = Parent?.CaptureScopeProperties(initialCapacity + 1, out scopeProperties);
+                    var parentContext = Parent?.CaptureContextProperties(initialCapacity + 1, out scopeProperties);
                     if (scopeProperties == null)
                     {
                         if (parentContext == null)
@@ -729,8 +730,8 @@ namespace NLog
         private sealed class ScopeContextProperties : IPropertyScopeContext
         {
             public IScopeContext Parent { get; }
-            public long OperationTimestamp { get; }
-            public object OperationState { get; }
+            public long NestedStateTimestamp { get; }
+            public object NestedState { get; }
             public IReadOnlyList<KeyValuePair<string, object>> ScopeProperties { get; }
             private IReadOnlyCollection<KeyValuePair<string, object>> _scopeDictionary;
             private bool _disposed;
@@ -741,29 +742,29 @@ namespace NLog
                 _scopeDictionary = scopeDictionary;
             }
 
-            public ScopeContextProperties(IScopeContext parent, IReadOnlyList<KeyValuePair<string, object>> scopeProperties, object scopeOperationState)
+            public ScopeContextProperties(IScopeContext parent, IReadOnlyList<KeyValuePair<string, object>> scopeProperties, object nestedState)
             {
                 Parent = parent;
                 ScopeProperties = scopeProperties;
-                OperationState = scopeOperationState;
-                OperationTimestamp = scopeOperationState != null ? GetScopeOperationTimestamp() : 0;
+                NestedState = nestedState;
+                NestedStateTimestamp = nestedState != null ? GetNestedContextTimestampNow() : 0;
             }
 
-            object[] IScopeContext.CaptureScopeOperationStates(int initialCapacity, out object[] scopeOperationStates)
+            object[] IScopeContext.CaptureNestedContext(int initialCapacity, out object[] nestedContext)
             {
-                scopeOperationStates = null;
-                int extraCount = (OperationState != null ? 1 : 0);
-                Parent?.CaptureScopeOperationStates(initialCapacity + extraCount, out scopeOperationStates);
+                nestedContext = null;
+                int extraCount = (NestedState != null ? 1 : 0);
+                Parent?.CaptureNestedContext(initialCapacity + extraCount, out nestedContext);
                 if (extraCount > 0)
                 {
-                    if (scopeOperationStates == null)
-                        scopeOperationStates = new object[initialCapacity + extraCount];
-                    scopeOperationStates[initialCapacity] = OperationState;
+                    if (nestedContext == null)
+                        nestedContext = new object[initialCapacity + extraCount];
+                    nestedContext[initialCapacity] = NestedState;
                 }
-                return scopeOperationStates;
+                return nestedContext;
             }
 
-            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureScopeProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
+            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
             {
                 scopeProperties = null;
                 if (_scopeDictionary != null)
@@ -772,7 +773,7 @@ namespace NLog
                 }
                 else
                 {
-                    var parentContext = Parent?.CaptureScopeProperties(initialCapacity + ScopeProperties.Count, out scopeProperties);
+                    var parentContext = Parent?.CaptureContextProperties(initialCapacity + ScopeProperties.Count, out scopeProperties);
                     if (scopeProperties == null)
                     {
                         if (parentContext == null)
@@ -835,7 +836,7 @@ namespace NLog
 
             public override string ToString()
             {
-                return OperationState?.ToString() ?? base.ToString();
+                return NestedState?.ToString() ?? base.ToString();
             }
 
             public void Dispose()
@@ -853,40 +854,40 @@ namespace NLog
             public IScopeContext Parent => null;    // Always top parent
             public object[] NestedContext { get; }
             public IReadOnlyCollection<KeyValuePair<string, object>> MappedContext { get; }
-            public long OperationTimestamp { get; }
+            public long NestedStateTimestamp { get; }
             private bool _disposed;
 
-            public LegacyScopeContext(IReadOnlyCollection<KeyValuePair<string, object>> mappedContext, object[] nestedContext, long scopeOperationTimestamp)
+            public LegacyScopeContext(IReadOnlyCollection<KeyValuePair<string, object>> mappedContext, object[] nestedContext, long nestedContextTimestamp)
             {
                 MappedContext = mappedContext;
                 NestedContext = nestedContext;
-                OperationTimestamp = scopeOperationTimestamp;
+                NestedStateTimestamp = nestedContextTimestamp;
             }
 
-            object IScopeContext.OperationState => NestedContext?.Length > 0 ? NestedContext[0] : null;
+            object IScopeContext.NestedState => NestedContext?.Length > 0 ? NestedContext[0] : null;
 
-            object[] IScopeContext.CaptureScopeOperationStates(int initialCapacity, out object[] scopeOperationStates)
+            object[] IScopeContext.CaptureNestedContext(int initialCapacity, out object[] nestedContext)
             {
-                scopeOperationStates = null;
+                nestedContext = null;
                 int extraCount = NestedContext?.Length ?? 0;
-                Parent?.CaptureScopeOperationStates(initialCapacity + extraCount, out scopeOperationStates);
+                Parent?.CaptureNestedContext(initialCapacity + extraCount, out nestedContext);
                 if (extraCount > 0)
                 {
-                    if (scopeOperationStates == null)
+                    if (nestedContext == null)
                     {
                         if (initialCapacity == 0)
                             return NestedContext;
                         else
-                            scopeOperationStates = new object[initialCapacity + extraCount];
+                            nestedContext = new object[initialCapacity + extraCount];
                     }
 
                     for (int i = 0; i < extraCount; ++i)
-                        scopeOperationStates[initialCapacity + i] = NestedContext[i];
+                        nestedContext[initialCapacity + i] = NestedContext[i];
                 }
-                return scopeOperationStates;
+                return nestedContext;
             }
 
-            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureScopeProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
+            IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
             {
                 scopeProperties = null;
                 return MappedContext;
@@ -926,12 +927,12 @@ namespace NLog
 #endif
 
 #if NET45
-        private sealed class ScopeContextOperationProperties : IDisposable
+        private sealed class ScopeContextNestedStateProperties : IDisposable
         {
             private readonly IDisposable _mldcScope;
             private readonly IDisposable _ndlcScope;
 
-            public ScopeContextOperationProperties(IDisposable ndlcScope, IDisposable mldcScope)
+            public ScopeContextNestedStateProperties(IDisposable ndlcScope, IDisposable mldcScope)
             {
                 _ndlcScope = ndlcScope;
                 _mldcScope = mldcScope;

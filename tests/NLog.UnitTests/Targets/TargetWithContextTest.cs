@@ -87,7 +87,7 @@ namespace NLog.UnitTests.Targets
             target.IncludeMdc = true;
             target.IncludeGdc = true;
             target.IncludeNdc = true;
-            target.IncludeScopeOperationStates = true;
+            target.IncludeScopeNestedStates = true;
             target.IncludeCallSite = true;
 
             AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
