@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            TimeSpan? scopeDuration = CurrentScope ? ScopeContext.PeekInnerOperationDuration() : ScopeContext.PeekOuterOperationDuration();
+            TimeSpan? scopeDuration = CurrentScope ? ScopeContext.PeekInnerNestedDuration() : ScopeContext.PeekOuterNestedDuration();
             if (scopeDuration.HasValue)
             {
                 if (scopeDuration.Value < TimeSpan.Zero)

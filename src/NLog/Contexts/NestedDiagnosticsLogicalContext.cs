@@ -52,7 +52,7 @@ namespace NLog
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
         public static IDisposable Push<T>(T value)
         {
-            return ScopeContext.PushOperationState(value);
+            return ScopeContext.PushNestedState(value);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace NLog
         /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
         public static object PeekObject()
         {
-            return ScopeContext.PeekOperationState();
+            return ScopeContext.PeekNestedState();
         }
 
         /// <summary>
@@ -157,12 +157,12 @@ namespace NLog
         /// <returns>Array of objects on the stack.</returns>
         public static object[] GetAllObjects()
         {
-            return ScopeContext.GetAllOperationStates();
+            return ScopeContext.GetAllNestedStates();
         }
 
 #if NET35 || NET40 || NET45
 
-        internal static IDisposable PushOperationState<T>(T value)
+        internal static IDisposable PushNestedState<T>(T value)
         {
             var oldContext = GetThreadLocal();
             var newContext = oldContext?.Count > 0 ? new LinkedList<object>(oldContext) : new LinkedList<object>();
@@ -174,7 +174,7 @@ namespace NLog
             return new ScopeContextOperationState(oldContext, objectValue);
         }
 
-        internal static object PeekOperationState()
+        internal static object PeekNestedState()
         {
             var currentContext = GetThreadLocal();
             var objectValue = currentContext?.Count > 0 ? currentContext.First.Value : null;
@@ -183,7 +183,7 @@ namespace NLog
             return objectValue;
         }
 
-        internal static object[] GetAllOperationStates()
+        internal static object[] GetAllNestedStates()
         {
             var currentContext = GetThreadLocal();
             if (currentContext?.Count > 0)

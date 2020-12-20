@@ -178,8 +178,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeOperationStates. Marked obsolete on NLog 5.0")]
-        public bool IncludeNdlc { get => IncludeScopeOperationStates; set => IncludeScopeOperationStates = value; }
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => IncludeScopeNestedStates; set => IncludeScopeNestedStates = value; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
@@ -191,14 +191,14 @@ namespace NLog.LayoutRenderers
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeScopeOperationStates { get; set; }
+        public bool IncludeScopeNestedStates { get; set; }
 
         /// <summary>
         /// Gets or sets the separator for <see cref="ScopeContext"/> Stack items.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string ScopeOperationStatesSeparator
+        public string ScopeNestedStateSeparator
         {
             get => _ndlcLayoutRenderer.Separator;
             set => _ndlcLayoutRenderer.Separator = value;
@@ -209,8 +209,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        [Obsolete("Replaced by ScopeOperationStatesSeparator. Marked obsolete on NLog 5.0")]
-        public string NdlcItemSeparator { get => ScopeOperationStatesSeparator; set => ScopeOperationStatesSeparator = value; }
+        [Obsolete("Replaced by ScopeNestedStateSeparator. Marked obsolete on NLog 5.0")]
+        public string NdlcItemSeparator { get => ScopeNestedStateSeparator; set => ScopeNestedStateSeparator = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -379,7 +379,7 @@ namespace NLog.LayoutRenderers
                 ndcContent = _ndcLayoutRenderer.Render(logEvent);
             }
 
-            if (IncludeScopeOperationStates)
+            if (IncludeScopeNestedStates)
             {
                 if (ndcContent != null)
                 {

@@ -99,10 +99,10 @@ namespace NLog.Layouts
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeScopeOperationStates
+        public bool IncludeScopeNestedStates
         {
-            get => Renderer.IncludeScopeOperationStates;
-            set => Renderer.IncludeScopeOperationStates = value;
+            get => Renderer.IncludeScopeNestedStates;
+            set => Renderer.IncludeScopeNestedStates = value;
         }
 
         /// <summary>
@@ -143,8 +143,8 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeOperationStates. Marked obsolete on NLog 5.0")]
-        public bool IncludeNdlc { get => IncludeScopeOperationStates; set => IncludeScopeOperationStates = value; }
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => IncludeScopeNestedStates; set => IncludeScopeNestedStates = value; }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})

@@ -63,9 +63,9 @@ namespace NLog
         bool IncludeScopeProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> nested-state-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeScopeOperationStates { get; set; }
+        bool IncludeScopeNestedStates { get; set; }
     }
 }
