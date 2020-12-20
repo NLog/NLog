@@ -50,6 +50,8 @@ namespace NLog
     /// </remarks>
     public static class ScopeContext
     {
+        private static IEqualityComparer<string> DefaultComparer = StringComparer.OrdinalIgnoreCase;
+
 #if !NET35 && !NET40
         /// <summary>
         /// Pushes new state on the logical context scope stack, and includes the provided properties
@@ -60,27 +62,23 @@ namespace NLog
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushNestedStateProperties(object nestedState, IReadOnlyList<KeyValuePair<string, object>> properties)
         {
-#if !NET45
-            var parent = GetThreadLocal();
-            IScopeContext current = null;
-            if (properties?.Count > 0)
-                current = new ScopeContextProperties(parent, properties, nestedState);
-            else 
-                current = new ScopeContextNestedState<object>(parent, nestedState);
-            SetThreadLocal(current);
-            return current;
-#else
             if (properties?.Count > 0)
             {
-                var mldcScope = MappedDiagnosticsLogicalContext.PushProperties(properties);
-                var ndlcScope = NestedDiagnosticsLogicalContext.PushNestedState(nestedState);
-                return new ScopeContextNestedStateProperties(ndlcScope, mldcScope);
+#if !NET45
+                var parent = GetAsyncLocalContext();
+                var current = new ScopeContextProperties(parent, properties, nestedState);
+                SetAsyncLocalContext(current);
+                return current;
+#else
+                var oldMappedContext = PushPropertiesThreadLocal(properties);
+                var oldNestedContext = PushNestedStateThreadLocal(nestedState);
+                return new ScopeContextNestedStateProperties(oldNestedContext, oldMappedContext);
+#endif
             }
             else
             {
-                return NestedDiagnosticsLogicalContext.PushNestedState(nestedState);
+                return PushNestedState(nestedState);
             }
-#endif
         }
 #endif
 
@@ -94,7 +92,7 @@ namespace NLog
         public static IDisposable PushProperties(IReadOnlyList<KeyValuePair<string, object>> properties)
         {
 #if !NET45
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
             
             var scopeProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
             if (scopeProperties != null)
@@ -106,15 +104,16 @@ namespace NLog
                     scopeProperties[property.Key] = property.Value;
                 }
                 var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeProperties);
-                SetThreadLocal(collapsedState);
+                SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
 
             var current = new ScopeContextProperties(parent, properties, null);
-            SetThreadLocal(current);
+            SetAsyncLocalContext(current);
             return current;
 #else
-            return MappedDiagnosticsLogicalContext.PushProperties(properties);
+            var oldContext = PushPropertiesThreadLocal(properties);
+            return new ScopeContextProperties(oldContext);
 #endif
         }
 #endif
@@ -129,7 +128,7 @@ namespace NLog
         public static IDisposable PushProperty<T>(string key, T value)
         {
 #if !NET35 && !NET40 && !NET45
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
 
             var scopeProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, 1);
             if (scopeProperties != null)
@@ -138,15 +137,16 @@ namespace NLog
                 scopeProperties[key] = value;
 
                 var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeProperties);
-                SetThreadLocal(collapsedState);
+                SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
 
             var current = new ScopeContextProperty<T>(parent, key, value);
-            SetThreadLocal(current);
+            SetAsyncLocalContext(current);
             return current;
 #else
-            return MappedDiagnosticsLogicalContext.PushProperty(key, value);
+            var oldContext = PushPropertyThreadLocal(key, value);
+            return new ScopeContextProperties(oldContext);
 #endif
         }
 
@@ -171,12 +171,14 @@ namespace NLog
         public static IDisposable PushNestedState<T>(T nestedState)
         {
 #if !NET35 && !NET40 && !NET45
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
             var current = new ScopeContextNestedState<T>(parent, nestedState);
-            SetThreadLocal(current);
+            SetAsyncLocalContext(current);
             return current;
 #else
-            return NestedDiagnosticsLogicalContext.PushNestedState(nestedState);
+            object objectValue = nestedState;
+            var oldNestedContext = PushNestedStateThreadLocal(objectValue);
+            return new ScopeContextNestedState(oldNestedContext, objectValue);
 #endif
         }
 
@@ -196,10 +198,10 @@ namespace NLog
         public static void Clear()
         {
 #if !NET35 && !NET40 && !NET45
-            SetThreadLocal(null);
+            SetAsyncLocalContext(null);
 #else
-            MappedDiagnosticsLogicalContext.ClearMappedContext();
-            NestedDiagnosticsLogicalContext.ClearNestedContext();
+            ClearMappedContextThreadLocal();
+            ClearNestedContextThreadLocal();
 #endif
         }
 
@@ -210,10 +212,22 @@ namespace NLog
         public static IEnumerable<KeyValuePair<string, object>> GetAllProperties()
         {
 #if !NET35 && !NET40 && !NET45
-            var contextState = GetThreadLocal();
+            var contextState = GetAsyncLocalContext();
             return contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
 #else
-            return MappedDiagnosticsLogicalContext.GetAllProperties();
+            var context = GetMappedContextThreadLocal();
+            if (context?.Count > 0)
+            {
+                foreach (var item in context)
+                {
+                    if (item.Value is ObjectHandleSerializer)
+                    {
+                        return GetAllPropertiesUnwrapped(context);
+                    }
+                }
+                return context;
+            }
+            return ArrayHelper.Empty<KeyValuePair<string, object>>();
 #endif
         }
 
@@ -227,26 +241,28 @@ namespace NLog
         public static bool TryGetProperty(string key, out object value)
         {
 #if !NET35 && !NET40 && !NET45
-            var contextState = GetThreadLocal();
+            var contextState = GetAsyncLocalContext();
             if (contextState != null)
             {
                 var mappedContext = contextState?.CaptureContextProperties(0, out var _);
                 if (mappedContext != null)
                 {
-                    if (mappedContext is IDictionary<string, object> dictionary)
-                    {
-                        return dictionary.TryGetValue(key, out value);
-                    }
-                    else
-                    {
-                        return TryFindPropertyValue(mappedContext, key, out value);
-                    }
+                    return TryLookupProperty(mappedContext, key, out value);
                 }
             }
             value = null;
             return false;
 #else
-            return MappedDiagnosticsLogicalContext.TryGetProperty(key, out value);
+            var mappedContext = GetMappedContextThreadLocal();
+            if (mappedContext != null && mappedContext.TryGetValue(key, out value))
+            {
+                if (value is ObjectHandleSerializer objectHandle)
+                    value = objectHandle.Unwrap();
+                return true;
+            }
+
+            value = null;
+            return false;
 #endif
         }
 
@@ -257,10 +273,24 @@ namespace NLog
         public static object[] GetAllNestedStates()
         {
 #if !NET35 && !NET40 && !NET45
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
             return parent?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
 #else
-            return NestedDiagnosticsLogicalContext.GetAllNestedStates();
+            var currentContext = GetNestedContextThreadLocal();
+            if (currentContext?.Count > 0)
+            {
+                int index = 0;
+                object[] messages = new object[currentContext.Count];
+                foreach (var node in currentContext)
+                {
+                    if (node is ObjectHandleSerializer objectHandle)
+                        messages[index++] = objectHandle.Unwrap();
+                    else
+                        messages[index++] = node;
+                }
+                return messages;
+            }
+            return ArrayHelper.Empty<object>();
 #endif
         }
 
@@ -271,7 +301,7 @@ namespace NLog
         public static object PeekNestedState()
         {
 #if !NET35 && !NET40 && !NET45
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
             while (parent != null)
             {
                 var nestedContext = parent.NestedState;
@@ -282,7 +312,11 @@ namespace NLog
             }
             return null;
 #else
-            return NestedDiagnosticsLogicalContext.PeekNestedState();
+            var currentContext = GetNestedContextThreadLocal();
+            var objectValue = currentContext?.Count > 0 ? currentContext.First.Value : null;
+            if (objectValue is ObjectHandleSerializer objectHandle)
+                objectValue = objectHandle.Unwrap();
+            return objectValue;
 #endif
         }
 
@@ -294,7 +328,7 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             var stopwatchNow = GetNestedContextTimestampNow(); // Early timestamp to reduce chance of measuring NLog time
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
             while (parent != null)
             {
                 var scopeTimestamp = parent.NestedStateTimestamp;
@@ -307,7 +341,7 @@ namespace NLog
             }
             return null;
 #else
-            return default(TimeSpan?);  // Delay timing only supported when using AsyncLocal. CallContext is very sensitive.
+            return default(TimeSpan?);  // Delay timing only supported when using AsyncLocal. CallContext is sensitive to custom state
 #endif
         }
 
@@ -319,7 +353,7 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             var stopwatchNow = GetNestedContextTimestampNow(); // Early timestamp to reduce chance of measuring NLog time
-            var parent = GetThreadLocal();
+            var parent = GetAsyncLocalContext();
             var scopeTimestamp = 0L;
             while (parent != null)
             {
@@ -335,110 +369,18 @@ namespace NLog
 
             return null;
 #else
-            return default(TimeSpan?);  // Delay timing only supported when using AsyncLocal. CallContext is very sensitive.
+            return default(TimeSpan?);  // Delay timing only supported when using AsyncLocal. CallContext is sensitive to custom state
 #endif
         }
 
 #if !NET35 && !NET40 && !NET45
-        internal static void RemoveMappedContextLegacy(string key)
+        private static bool TryLookupProperty(IEnumerable<KeyValuePair<string, object>> scopeProperties, string key, out object value)
         {
-            if (TryGetProperty(key, out var _))
+            if (scopeProperties is IDictionary<string, object> mappedDictionary)
             {
-                // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
-                var contextState = GetThreadLocal();
-                CaptureLegacyContext(contextState, out var scopeProperties, out var scopeNestedStates, out var scopeNestedStateTimestamp);
-                scopeProperties.Remove(key);
-
-                var legacyScope = new LegacyScopeContext(scopeProperties, scopeNestedStates, scopeNestedStateTimestamp);
-                SetThreadLocal(legacyScope);
+                return mappedDictionary.TryGetValue(key, out value);
             }
-        }
-
-        internal static object PopNestedContextLegacy()
-        {
-            var contextState = GetThreadLocal();
-            if (contextState != null)
-            {
-                if ((contextState.Parent == null && contextState is LegacyScopeContext) || contextState.NestedState == null)
-                {
-                    var nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
-                    if (nestedContext.Length == 0)
-                        return null;    // Nothing to pop, just leave scope alone
-
-                    // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
-                    var stackTopValue = nestedContext[0];
-                    var scopeProperties = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-                    if (nestedContext.Length == 1)
-                    {
-                        nestedContext = ArrayHelper.Empty<object>();
-                    }
-                    else
-                    {
-                        var newScope = new object[nestedContext.Length - 1];
-                        for (int i = 0; i < newScope.Length; ++i)
-                            newScope[i] = nestedContext[i + 1];
-                        nestedContext = newScope;
-                    }
-
-                    var legacyScope = new LegacyScopeContext(scopeProperties, nestedContext, nestedContext.Length > 0 ? GetNestedContextTimestampNow() : 0L);
-                    SetThreadLocal(legacyScope);
-                    return stackTopValue;
-                }
-                else
-                {
-                    SetThreadLocal(contextState.Parent);
-                    return contextState?.NestedState;
-                }
-            }
-
-            return null;
-        }
-
-        internal static void ClearMappedContextLegacy()
-        {
-            var contextState = GetThreadLocal();
-            if (contextState != null)
-            {
-                CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
-                if (nestedContext?.Length > 0)
-                {
-                    if (scopeProperties?.Count > 0)
-                    {
-                        var legacyScope = new LegacyScopeContext(null, nestedContext, nestedContextTimestamp);
-                        SetThreadLocal(legacyScope);
-                    }
-                }
-                else
-                {
-                    SetThreadLocal(null);
-                }
-            }
-        }
-
-        internal static void ClearNestedContextLegacy()
-        {
-            var contextState = GetThreadLocal();
-            if (contextState != null)
-            {
-                CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
-                if (scopeProperties?.Count > 0)
-                {
-                    if (nestedContext?.Length > 0)
-                    {
-                        var legacyScope = new LegacyScopeContext(scopeProperties, ArrayHelper.Empty<object>(), 0L);
-                        SetThreadLocal(legacyScope);
-                    }
-                }
-                else
-                {
-                    SetThreadLocal(null);
-                }
-            }
-        }
-
-        private static bool TryFindPropertyValue(IEnumerable<KeyValuePair<string, object>> scopeProperties, string key, out object value)
-        {
-            if (scopeProperties is IReadOnlyList<KeyValuePair<string, object>> mappedList)
+            else if (scopeProperties is IReadOnlyList<KeyValuePair<string, object>> mappedList)
             {
                 for (int i = 0; i < mappedList.Count; ++i)
                 {
@@ -464,34 +406,6 @@ namespace NLog
 
             value = null;
             return false;
-        }
-
-        private static void CaptureLegacyContext(IScopeContext contextState, out Dictionary<string, object> scopeDictionary, out object[] nestedContext, out long nestedContextTimestamp)
-        {
-            nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
-            scopeDictionary = null;
-            var scopeProperties = contextState?.CaptureContextProperties(0, out scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-            if (scopeDictionary == null)
-            {
-                scopeDictionary = new Dictionary<string, object>(scopeProperties.Count, DefaultComparer);
-                foreach (var scopeProperty in scopeProperties)
-                    scopeDictionary[scopeProperty.Key] = scopeProperty.Value;
-            }
-
-            nestedContextTimestamp = 0L;
-            if (nestedContext?.Length > 0)
-            {
-                var parent = contextState;
-                while (parent != null)
-                {
-                    if (parent.NestedStateTimestamp != 0L)
-                        nestedContextTimestamp = parent.NestedStateTimestamp;
-                    parent = parent.Parent;
-                }
-
-                if (nestedContextTimestamp == 0L)
-                    nestedContextTimestamp = GetNestedContextTimestampNow();
-            }
         }
 
         private static long GetNestedContextTimestampNow()
@@ -597,7 +511,7 @@ namespace NLog
                     return;
 
                 _disposed = true;
-                SetThreadLocal(_parent);
+                SetAsyncLocalContext(_parent);
             }
 
             public override string ToString()
@@ -649,7 +563,7 @@ namespace NLog
             {
                 if (!_disposed)
                 {
-                    SetThreadLocal(Parent);
+                    SetAsyncLocalContext(Parent);
                     _disposed = true;
                 }
             }
@@ -721,7 +635,7 @@ namespace NLog
             {
                 if (!_disposed)
                 {
-                    SetThreadLocal(Parent);
+                    SetAsyncLocalContext(Parent);
                     _disposed = true;
                 }
             }
@@ -843,7 +757,7 @@ namespace NLog
             {
                 if (!_disposed)
                 {
-                    SetThreadLocal(Parent);
+                    SetAsyncLocalContext(Parent);
                     _disposed = true;
                 }
             }
@@ -862,6 +776,34 @@ namespace NLog
                 MappedContext = mappedContext;
                 NestedContext = nestedContext;
                 NestedStateTimestamp = nestedContextTimestamp;
+            }
+
+            public static void CaptureLegacyContext(IScopeContext contextState, out Dictionary<string, object> scopeDictionary, out object[] nestedContext, out long nestedContextTimestamp)
+            {
+                nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
+                scopeDictionary = null;
+                var scopeProperties = contextState?.CaptureContextProperties(0, out scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                if (scopeDictionary == null)
+                {
+                    scopeDictionary = new Dictionary<string, object>(scopeProperties.Count, DefaultComparer);
+                    foreach (var scopeProperty in scopeProperties)
+                        scopeDictionary[scopeProperty.Key] = scopeProperty.Value;
+                }
+
+                nestedContextTimestamp = 0L;
+                if (nestedContext?.Length > 0)
+                {
+                    var parent = contextState;
+                    while (parent != null)
+                    {
+                        if (parent.NestedStateTimestamp != 0L)
+                            nestedContextTimestamp = parent.NestedStateTimestamp;
+                        parent = parent.Parent;
+                    }
+
+                    if (nestedContextTimestamp == 0L)
+                        nestedContextTimestamp = GetNestedContextTimestampNow();
+                }
             }
 
             object IScopeContext.NestedState => NestedContext?.Length > 0 ? NestedContext[0] : null;
@@ -905,23 +847,22 @@ namespace NLog
             {
                 if (!_disposed)
                 {
-                    SetThreadLocal(Parent);
+                    SetAsyncLocalContext(Parent);
                     _disposed = true;
                 }
             }
         }
 
-        private static void SetThreadLocal(IScopeContext newValue)
+        private static void SetAsyncLocalContext(IScopeContext newValue)
         {
             AsyncNestedDiagnosticsContext.Value = newValue;
         }
 
-        private static IScopeContext GetThreadLocal()
+        private static IScopeContext GetAsyncLocalContext()
         {
             return AsyncNestedDiagnosticsContext.Value;
         }
 
-        private static IEqualityComparer<string> DefaultComparer = StringComparer.OrdinalIgnoreCase;                
 
         private static readonly System.Threading.AsyncLocal<IScopeContext> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<IScopeContext>();
 #endif
@@ -929,34 +870,19 @@ namespace NLog
 #if NET45
         private sealed class ScopeContextNestedStateProperties : IDisposable
         {
-            private readonly IDisposable _mldcScope;
-            private readonly IDisposable _ndlcScope;
+            private readonly LinkedList<object> _parentNestedContext;
+            private readonly Dictionary<string, object> _parentMappedContext;
 
-            public ScopeContextNestedStateProperties(IDisposable ndlcScope, IDisposable mldcScope)
+            public ScopeContextNestedStateProperties(LinkedList<object> parentNestedContext, Dictionary<string, object> parentMappedContext)
             {
-                _ndlcScope = ndlcScope;
-                _mldcScope = mldcScope;
+                _parentNestedContext = parentNestedContext;
+                _parentMappedContext = parentMappedContext;
             }
 
             public void Dispose()
             {
-                try
-                {
-                    _mldcScope?.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    NLog.Common.InternalLogger.Debug(ex, "Exception in BeginScope dispose MappedDiagnosticsLogicalContext");
-                }
-
-                try
-                {
-                    _ndlcScope?.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    NLog.Common.InternalLogger.Debug(ex, "Exception in BeginScope dispose NestedDiagnosticsLogicalContext");
-                }
+                SetNestedContextThreadLocal(_parentNestedContext);
+                SetMappedContextThreadLocal(_parentMappedContext);
             }
         }
 #endif
@@ -1079,5 +1005,307 @@ namespace NLog
                 }
             }
         }
+
+
+        internal static void SetMappedContextLegacy<T>(string key, T value)
+        {
+#if !NET35 && !NET40 && !NET45
+            PushProperty(key, value);
+#else
+            PushPropertyThreadLocal(key, value);
+#endif
+        }
+
+        internal static void RemoveMappedContextLegacy(string key)
+        {
+#if !NET35 && !NET40 && !NET45
+            if (TryGetProperty(key, out var _))
+            {
+                // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
+                var contextState = GetAsyncLocalContext();
+                LegacyScopeContext.CaptureLegacyContext(contextState, out var scopeProperties, out var scopeNestedStates, out var scopeNestedStateTimestamp);
+                scopeProperties.Remove(key);
+
+                var legacyScope = new LegacyScopeContext(scopeProperties, scopeNestedStates, scopeNestedStateTimestamp);
+                SetAsyncLocalContext(legacyScope);
+            }
+#else
+            var oldContext = GetMappedContextThreadLocal();
+            if (oldContext?.ContainsKey(key) == true)
+            {
+                var newContext = CloneDictionary(oldContext, 0);
+                newContext.Remove(key);
+                SetMappedContextThreadLocal(newContext);
+            }
+#endif
+        }
+
+        internal static object PopNestedContextLegacy()
+        {
+#if !NET35 && !NET40 && !NET45
+            var contextState = GetAsyncLocalContext();
+            if (contextState != null)
+            {
+                if ((contextState.Parent == null && contextState is LegacyScopeContext) || contextState.NestedState == null)
+                {
+                    var nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
+                    if (nestedContext.Length == 0)
+                        return null;    // Nothing to pop, just leave scope alone
+
+                    // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
+                    var stackTopValue = nestedContext[0];
+                    var scopeProperties = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                    if (nestedContext.Length == 1)
+                    {
+                        nestedContext = ArrayHelper.Empty<object>();
+                    }
+                    else
+                    {
+                        var newScope = new object[nestedContext.Length - 1];
+                        for (int i = 0; i < newScope.Length; ++i)
+                            newScope[i] = nestedContext[i + 1];
+                        nestedContext = newScope;
+                    }
+
+                    var legacyScope = new LegacyScopeContext(scopeProperties, nestedContext, nestedContext.Length > 0 ? GetNestedContextTimestampNow() : 0L);
+                    SetAsyncLocalContext(legacyScope);
+                    return stackTopValue;
+                }
+                else
+                {
+                    SetAsyncLocalContext(contextState.Parent);
+                    return contextState?.NestedState;
+                }
+            }
+            return null;
+#else
+            var currentContext = GetNestedContextThreadLocal();
+            if (currentContext?.Count > 0)
+            {
+                var objectValue = currentContext.First.Value;
+                if (objectValue is ObjectHandleSerializer objectHandle)
+                    objectValue = objectHandle.Unwrap();
+                var newContext = currentContext.Count > 1 ? new LinkedList<object>(currentContext) : null;
+                if (newContext != null)
+                    newContext.RemoveFirst();
+                
+                SetNestedContextThreadLocal(newContext);
+                return objectValue;
+            }
+            return null;
+#endif
+        }
+
+        internal static void ClearMappedContextLegacy()
+        {
+#if !NET35 && !NET40 && !NET45
+            var contextState = GetAsyncLocalContext();
+            if (contextState != null)
+            {
+                LegacyScopeContext.CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
+                if (nestedContext?.Length > 0)
+                {
+                    if (scopeProperties?.Count > 0)
+                    {
+                        var legacyScope = new LegacyScopeContext(null, nestedContext, nestedContextTimestamp);
+                        SetAsyncLocalContext(legacyScope);
+                    }
+                }
+                else
+                {
+                    SetAsyncLocalContext(null);
+                }
+            }
+#else
+            ClearMappedContextThreadLocal();
+#endif
+        }
+
+        internal static void ClearNestedContextLegacy()
+        {
+#if !NET35 && !NET40 && !NET45
+            var contextState = GetAsyncLocalContext();
+            if (contextState != null)
+            {
+                LegacyScopeContext.CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
+                if (scopeProperties?.Count > 0)
+                {
+                    if (nestedContext?.Length > 0)
+                    {
+                        var legacyScope = new LegacyScopeContext(scopeProperties, ArrayHelper.Empty<object>(), 0L);
+                        SetAsyncLocalContext(legacyScope);
+                    }
+                }
+                else
+                {
+                    SetAsyncLocalContext(null);
+                }
+            }
+#else
+            ClearNestedContextThreadLocal();
+#endif
+        }
+
+#if NET35 || NET40 || NET45
+
+#if !NET35 && !NET40
+        private static Dictionary<string, object> PushPropertiesThreadLocal(IReadOnlyList<KeyValuePair<string, object>> properties)
+        {
+            var oldContext = GetMappedContextThreadLocal();
+            var newContext = CloneDictionary(oldContext, properties.Count);
+            for (int i = 0; i < properties.Count; ++i)
+                SetItemValueThreadLocal(properties[i].Key, properties[i].Value, newContext);
+            SetMappedContextThreadLocal(newContext);
+            return oldContext;
+        }
+#endif
+
+        private static Dictionary<string, object> PushPropertyThreadLocal<T>(string propertyName, T propertyValue)
+        {
+            var oldContext = GetMappedContextThreadLocal();
+            var newContext = CloneDictionary(oldContext, 1);
+            SetItemValueThreadLocal(propertyName, propertyValue, newContext);
+            SetMappedContextThreadLocal(newContext);
+            return oldContext;
+        }
+
+        private static void ClearMappedContextThreadLocal()
+        {
+            SetMappedContextThreadLocal(null);
+        }
+
+        private static IEnumerable<KeyValuePair<string, object>> GetAllPropertiesUnwrapped(Dictionary<string, object> properties)
+        {
+            foreach (var item in properties)
+            {
+                if (item.Value is ObjectHandleSerializer objectHandle)
+                {
+                    yield return new KeyValuePair<string, object>(item.Key, objectHandle.Unwrap());
+                }
+                else
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        private static Dictionary<string, object> CloneDictionary(Dictionary<string, object> oldContext, int initialCapacity = 0)
+        {
+            if (oldContext?.Count > 0)
+            {
+                var dictionary = new Dictionary<string, object>(oldContext.Count + initialCapacity, DefaultComparer);
+                foreach (var keyValue in oldContext)
+                    dictionary[keyValue.Key] = keyValue.Value;
+                return dictionary;
+            }
+
+            return new Dictionary<string, object>(initialCapacity, DefaultComparer);
+        }
+
+        private static void SetItemValueThreadLocal<T>(string item, T value, IDictionary<string, object> logicalContext)
+        {
+            object objectValue = value;
+            if (Convert.GetTypeCode(objectValue) != TypeCode.Object)
+                logicalContext[item] = objectValue;
+            else
+                logicalContext[item] = new ObjectHandleSerializer(objectValue);
+        }
+
+        private sealed class ScopeContextProperties : IDisposable
+        {
+            private readonly Dictionary<string, object> _oldContext;
+            private bool _diposed;
+
+            public ScopeContextProperties(Dictionary<string, object> oldContext)
+            {
+                _oldContext = oldContext;
+            }
+
+            public void Dispose()
+            {
+                if (!_diposed)
+                {
+                    SetMappedContextThreadLocal(_oldContext);
+                    _diposed = true;
+                }
+            }
+        }
+
+        private static void SetMappedContextThreadLocal(Dictionary<string, object> newValue)
+        {
+            if (newValue == null)
+                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+            else
+                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(LogicalThreadDictionaryKey, newValue);
+        }
+
+        internal static Dictionary<string, object> GetMappedContextThreadLocal()
+        {
+            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
+        }
+
+        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
+#endif
+
+#if NET35 || NET40 || NET45
+
+        private static LinkedList<object> PushNestedStateThreadLocal(object objectValue)
+        {
+            var oldContext = GetNestedContextThreadLocal();
+            var newContext = oldContext?.Count > 0 ? new LinkedList<object>(oldContext) : new LinkedList<object>();
+            if (Convert.GetTypeCode(objectValue) == TypeCode.Object)
+                objectValue = new ObjectHandleSerializer(objectValue);
+            newContext.AddFirst(objectValue);
+            SetNestedContextThreadLocal(newContext);
+            return oldContext;
+        }
+
+        private static void ClearNestedContextThreadLocal()
+        {
+            SetNestedContextThreadLocal(null);
+        }
+
+        private sealed class ScopeContextNestedState : IDisposable
+        {
+            private readonly LinkedList<object> _oldContext;
+            private readonly object _nestedState;
+            private bool _diposed;
+
+            public ScopeContextNestedState(LinkedList<object> oldContext, object nestedState)
+            {
+                _oldContext = oldContext;
+                _nestedState = nestedState;
+            }
+
+            public void Dispose()
+            {
+                if (!_diposed)
+                {
+                    SetNestedContextThreadLocal(_oldContext);
+                    _diposed = true;
+                }
+            }
+
+            public override string ToString()
+            {
+                return _nestedState?.ToString() ?? "null";
+            }
+        }
+
+        private static void SetNestedContextThreadLocal(LinkedList<object> nestedContext)
+        {
+            if (nestedContext == null)
+                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(NestedDiagnosticsContextKey);
+            else
+                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(NestedDiagnosticsContextKey, nestedContext);
+        }
+
+        private static LinkedList<object> GetNestedContextThreadLocal()
+        {
+            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(NestedDiagnosticsContextKey) as LinkedList<object>;
+        }
+
+        private const string NestedDiagnosticsContextKey = "NLog.NestedDiagnosticsLogicalContext";
+#endif
     }
 }

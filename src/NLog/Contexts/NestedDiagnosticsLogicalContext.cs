@@ -35,7 +35,6 @@
 namespace NLog
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using NLog.Internal;
 
@@ -92,23 +91,7 @@ namespace NLog
         /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
         public static object PopObject()
         {
-#if !NET35 && !NET40 && !NET45
             return ScopeContext.PopNestedContextLegacy();
-#else
-            var currentContext = GetThreadLocal();
-            if (currentContext?.Count > 0)
-            {
-                var objectValue = currentContext.First.Value;
-                if (objectValue is ObjectHandleSerializer objectHandle)
-                    objectValue = objectHandle.Unwrap();
-                var newContext = currentContext.Count > 1 ? new LinkedList<object>(currentContext) : null;
-                if (newContext != null)
-                    newContext.RemoveFirst();
-                SetThreadLocal(newContext);
-                return objectValue;
-            }
-            return null;
-#endif
         }
 
         /// <summary>
@@ -125,11 +108,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-#if !NET35 && !NET40 && !NET45
             ScopeContext.ClearNestedContextLegacy();
-#else
-            ClearNestedContext();
-#endif
         }
 
         /// <summary>
@@ -159,96 +138,6 @@ namespace NLog
         {
             return ScopeContext.GetAllNestedStates();
         }
-
-#if NET35 || NET40 || NET45
-
-        internal static IDisposable PushNestedState<T>(T value)
-        {
-            var oldContext = GetThreadLocal();
-            var newContext = oldContext?.Count > 0 ? new LinkedList<object>(oldContext) : new LinkedList<object>();
-            object objectValue = value;
-            if (Convert.GetTypeCode(objectValue) == TypeCode.Object)
-                objectValue = new ObjectHandleSerializer(objectValue);
-            newContext.AddFirst(objectValue);
-            SetThreadLocal(newContext);
-            return new ScopeContextOperationState(oldContext, objectValue);
-        }
-
-        internal static object PeekNestedState()
-        {
-            var currentContext = GetThreadLocal();
-            var objectValue = currentContext?.Count > 0 ? currentContext.First.Value : null;
-            if (objectValue is ObjectHandleSerializer objectHandle)
-                objectValue = objectHandle.Unwrap();
-            return objectValue;
-        }
-
-        internal static object[] GetAllNestedStates()
-        {
-            var currentContext = GetThreadLocal();
-            if (currentContext?.Count > 0)
-            {
-                int index = 0;
-                object[] messages = new object[currentContext.Count];
-                foreach (var node in currentContext)
-                {
-                    if (node is ObjectHandleSerializer objectHandle)
-                        messages[index++] = objectHandle.Unwrap();
-                    else
-                        messages[index++] = node;
-                }
-                return messages;
-            }
-            return ArrayHelper.Empty<object>();
-        }
-
-        internal static void ClearNestedContext()
-        {
-            SetThreadLocal(null);
-        }
-
-        private sealed class ScopeContextOperationState : IDisposable
-        {
-            private readonly LinkedList<object> _oldContext;
-            private readonly object _operationState;
-            private bool _diposed;
-
-            public ScopeContextOperationState(LinkedList<object> oldContext, object operationState)
-            {
-                _oldContext = oldContext;
-                _operationState = operationState;
-            }
-
-            public void Dispose()
-            {
-                if (!_diposed)
-                {
-                    SetThreadLocal(_oldContext);
-                    _diposed = true;
-                }
-            }
-
-            public override string ToString()
-            {
-                return _operationState?.ToString() ?? "null";
-            }
-        }
-
-        private static void SetThreadLocal(LinkedList<object> nestedContext)
-        {
-            if (nestedContext == null)
-                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(NestedDiagnosticsContextKey);
-            else
-                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(NestedDiagnosticsContextKey, nestedContext);
-        }
-
-        private static LinkedList<object> GetThreadLocal()
-        {
-            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(NestedDiagnosticsContextKey) as LinkedList<object>;
-        }
-
-        private const string NestedDiagnosticsContextKey = "NLog.NestedDiagnosticsLogicalContext";
-#endif
 
         [Obsolete("Required to be compatible with legacy NLog versions, when using remoting. Marked obsolete on NLog 5.0")]
         interface INestedContext : IDisposable
