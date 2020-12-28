@@ -64,7 +64,7 @@ namespace NLog
             }
 #endif
 
-            AsyncContinuation exceptionHandler = (ex) => { };
+            AsyncContinuation exceptionHandler = SingleCallContinuation.Completed;
             if (factory.ThrowExceptions)
             {
                 int originalThreadId = AsyncHelpers.GetManagedThreadId();
