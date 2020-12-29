@@ -46,10 +46,9 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineWithInnerLayoutDefaultTest()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "foobar");
+            ScopeContext.PushProperty("foo", "foobar");
 
-            SimpleLayout le = "${wrapline:${mdc:foo}:WrapLine=3}";
+            SimpleLayout le = "${wrapline:${scopeproperty:foo}:WrapLine=3}";
 
             Assert.Equal("foo" + System.Environment.NewLine + "bar", le.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -57,10 +56,9 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineWithInnerLayoutTest()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "foobar");
+            ScopeContext.PushProperty("foo", "foobar");
 
-            SimpleLayout le = "${wrapline:Inner=${mdc:foo}:WrapLine=3}";
+            SimpleLayout le = "${wrapline:Inner=${scopeproperty:foo}:WrapLine=3}";
 
             Assert.Equal("foo" + System.Environment.NewLine + "bar", le.Render(LogEventInfo.CreateNullEvent()));
         }

@@ -183,7 +183,7 @@ namespace NLog
 #endif
 
         /// <summary>
-        /// Pushes new state on the logical context scope stack, and includes the provided properties
+        /// Pushes new state on the logical context scope stack, and attempts to extract properties from the input state.
         /// </summary>
         /// <param name="nestedState">Value to added to the scope stack</param>
         /// <returns>A disposable object that pops the nested scope state on dispose (including properties).</returns>

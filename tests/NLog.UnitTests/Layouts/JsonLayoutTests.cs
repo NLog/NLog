@@ -464,6 +464,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdcJsonProperties()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -534,6 +535,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdlcJsonProperties()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -569,6 +571,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdlcJsonNestedProperties()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"

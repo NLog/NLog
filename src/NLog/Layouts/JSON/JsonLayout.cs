@@ -133,17 +133,11 @@ namespace NLog.Layouts
         public bool IncludeGdc { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
-        /// </summary>
-        /// <docgen category='JSON Output' order='10' />
-        [DefaultValue(false)]
-        public bool IncludeMdc { get; set; }
-
-        /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeScopeProperties { get; set; }
+        public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
+        private bool? _includeScopeProperties;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -153,11 +147,21 @@ namespace NLog.Layouts
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [DefaultValue(false)]
+        public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
+        private bool? _includeMdc;
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
-        public bool IncludeMdlc { get => IncludeScopeProperties; set => IncludeScopeProperties = value; }
+        public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
+        private bool? _includeMdlc;
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
@@ -197,10 +201,7 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
-            if (IncludeMdc)
-            {
-                ThreadAgnostic = false;
-            }
+
             if (IncludeScopeProperties)
             {
                 ThreadAgnostic = false;
@@ -278,24 +279,13 @@ namespace NLog.Layouts
                 }
             }
 
-            if(IncludeGdc)
+            if (IncludeGdc)
             {
                 foreach (string key in GlobalDiagnosticsContext.GetNames())
                 {
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = GlobalDiagnosticsContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
-                }
-            }
-
-            if (IncludeMdc)
-            {
-                foreach (string key in MappedDiagnosticsContext.GetNames())
-                {
-                    if (string.IsNullOrEmpty(key))
-                        continue;
-                    object propertyValue = MappedDiagnosticsContext.GetObject(key);
                     AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }

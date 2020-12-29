@@ -40,6 +40,7 @@ namespace NLog.UnitTests.Contexts
     using System.Threading.Tasks;
     using Xunit;
 
+    [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MappedDiagnosticsLogicalContextTests
     {
         public MappedDiagnosticsLogicalContextTests()

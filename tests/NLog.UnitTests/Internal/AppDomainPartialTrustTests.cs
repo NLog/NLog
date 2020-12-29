@@ -113,10 +113,10 @@ namespace NLog.UnitTests.Internal
         {
             // ClassUnderTest must extend MarshalByRefObject
             AppDomain partialTrusted = MediumTrustContext.CreatePartialTrustDomain(fileWritePath);
-            var classUnderTest = (ClassUnderTest)partialTrusted.CreateInstanceAndUnwrap(typeof(ClassUnderTest).Assembly.FullName, typeof(ClassUnderTest).FullName); 
-            
-            MappedDiagnosticsLogicalContext.Set("Winner", new { Hero = "Zero" });
-            using (NestedDiagnosticsLogicalContext.Push(new { Hello = "World" }))
+            var classUnderTest = (ClassUnderTest)partialTrusted.CreateInstanceAndUnwrap(typeof(ClassUnderTest).Assembly.FullName, typeof(ClassUnderTest).FullName);
+
+            using (ScopeContext.PushProperty("Winner", new { Hero = "Zero" }))
+            using (ScopeContext.PushNestedState(new { Hello = "World" }))
             {
                 partialTrusted.DoCallBack(HelloWorld);
                 classUnderTest.PartialTrustSuccess(times, fileWritePath, autoShutdown);

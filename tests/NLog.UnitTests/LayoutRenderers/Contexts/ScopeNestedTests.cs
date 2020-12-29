@@ -35,17 +35,17 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
 
-    public class ScopeStackTests : NLogTestBase
+    public class ScopeNestedTests : NLogTestBase
     {
         [Fact]
-        public void ScopeStackTest()
+        public void ScopeNestedTest()
         {
             // Arrange
             ScopeContext.Clear();
             var logFactory = new LogFactory();
             logFactory.Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${scopestack} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${scopenested} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -67,14 +67,14 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ScopeStackTopTwoTest()
+        public void ScopeNestedTopTwoTest()
         {
             // Arrange
             ScopeContext.Clear();
             var logFactory = new LogFactory();
             logFactory.Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${scopestack:topframes=2} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${scopenested:topframes=2} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -99,14 +99,14 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ScopeStackTopOneTest()
+        public void scopenestedTopOneTest()
         {
             // Arrange
             ScopeContext.Clear();
             var logFactory = new LogFactory();
             logFactory.Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${scopestack:topframes=1} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${scopenested:topframes=1} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -131,14 +131,14 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ScopeStackBottomTwoTest()
+        public void ScopeNestedBottomTwoTest()
         {
             // Arrange
             ScopeContext.Clear();
             var logFactory = new LogFactory();
             logFactory.Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${scopestack:bottomframes=2} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${scopenested:bottomframes=2} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -163,14 +163,14 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ScopeStackSeparatorTest()
+        public void ScopeNestedSeparatorTest()
         {
             // Arrange
             ScopeContext.Clear();
             var logFactory = new LogFactory();
             logFactory.Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${scopestack:separator=\:} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${scopenested:separator=\:} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -196,7 +196,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 #if NETSTANDARD
         [Fact]
-        public void ScopeStackTimingTest()
+        public void ScopeNestedTimingTest()
         {
             // Arrange
             ScopeContext.Clear();

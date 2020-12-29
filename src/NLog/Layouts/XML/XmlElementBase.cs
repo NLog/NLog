@@ -115,17 +115,20 @@ namespace NLog.Layouts
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
+        private bool? _includeScopeProperties;
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
-        public bool IncludeMdc { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public bool IncludeScopeProperties { get; set; }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
+        private bool? _includeMdc;
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
@@ -133,7 +136,8 @@ namespace NLog.Layouts
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
-        public bool IncludeMdlc { get => IncludeScopeProperties; set => IncludeScopeProperties = value; }
+        public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
+        private bool? _includeMdlc;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
@@ -225,20 +229,11 @@ namespace NLog.Layouts
         {
             base.InitializeLayout();
 
-            if (IncludeMdc)
-            {
-                ThreadAgnostic = false;
-            }
-
             if (IncludeScopeProperties)
-            {
                 ThreadAgnostic = false;
-            }
 
             if (IncludeEventProperties)
-            {
                 MutableUnsafe = true;
-            }
 
             if (Attributes.Count > 1)
             {
@@ -369,9 +364,6 @@ namespace NLog.Layouts
             if (Elements.Count > 0)
                 return true;
 
-            if (IncludeMdc)
-                return true;
-
             if (IncludeScopeProperties)
                 return true;
 
@@ -383,18 +375,6 @@ namespace NLog.Layouts
 
         private void AppendLogEventXmlProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)
         {
-            if (IncludeMdc)
-            {
-                foreach (string key in MappedDiagnosticsContext.GetNames())
-                {
-                    if (string.IsNullOrEmpty(key))
-                        continue;
-
-                    object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendXmlPropertyValue(key, propertyValue, sb, orgLength);
-                }
-            }
-
             if (IncludeScopeProperties)
             {
                 using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator(ScopeContext.GetAllProperties()))

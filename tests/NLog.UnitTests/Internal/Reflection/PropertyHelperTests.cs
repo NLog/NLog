@@ -37,9 +37,8 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal.Reflection
 {
-    public class PropertyHelperTests
+    public class PropertyHelperTests : NLogTestBase
     {
-
         [Fact]
         public void AssignArrayPropertyFromStringWillResultInNotSupportedExceptionSomeWhereDeep()
         {
