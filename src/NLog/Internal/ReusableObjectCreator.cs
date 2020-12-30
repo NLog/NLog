@@ -58,7 +58,15 @@ namespace NLog.Internal
         /// <returns>Handle to the reusable item, that can release it again</returns>
         public LockOject Allocate()
         {
-            return new LockOject(this);
+            var reusableObject = _reusableObject;
+            _reusableObject = null;
+            return new LockOject(this, reusableObject);
+        }
+
+        private void Deallocate(T reusableObject)
+        {
+            _clearObject(reusableObject);
+            _reusableObject = reusableObject;
         }
 
         public struct LockOject : IDisposable
@@ -69,20 +77,15 @@ namespace NLog.Internal
             public readonly T Result;
             private readonly ReusableObjectCreator<T> _owner;
 
-            public LockOject(ReusableObjectCreator<T> owner)
+            public LockOject(ReusableObjectCreator<T> owner, T reusableObject)
             {
-                Result = owner._reusableObject;
-                owner._reusableObject = null;
+                Result = reusableObject;
                 _owner = owner;
             }
 
             public void Dispose()
             {
-                if (Result != null)
-                {
-                    _owner._clearObject(Result);
-                    _owner._reusableObject = Result;
-                }
+                _owner?.Deallocate(Result);
             }
         }
     }
