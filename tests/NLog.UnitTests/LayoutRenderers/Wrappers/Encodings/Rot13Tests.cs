@@ -85,14 +85,14 @@ namespace NLog.UnitTests.LayoutRenderers
                 <nlog>
                     <targets>
                         <target name='debug' type='Debug' layout='${rot13:${mdc:A}}' />
-                        <target name='debug2' type='Debug' layout='${rot13:${rot13:${mdc:A}}}' />
+                        <target name='debug2' type='Debug' layout='${rot13:${rot13:${scopeproperty:A}}}' />
                      </targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug,debug2' />
                     </rules>
                 </nlog>");
 
-            MappedDiagnosticsContext.Set("A", "Foo.Bar!");
+            ScopeContext.PushProperty("A", "Foo.Bar!");
             ILogger l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
             l.Trace("aaa");
 

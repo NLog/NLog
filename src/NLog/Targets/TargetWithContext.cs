@@ -75,21 +75,23 @@ namespace NLog.Targets
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         public bool IncludeMdc { get => _contextLayout.IncludeMdc; set => _contextLayout.IncludeMdc = value; }
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
         public bool IncludeNdc { get => _contextLayout.IncludeNdc; set => _contextLayout.IncludeNdc = value; }
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
-        public bool IncludeMdlc { get => IncludeScopeProperties; set => IncludeScopeProperties = value; }
+        public bool IncludeMdlc { get => _contextLayout.IncludeMdlc; set => _contextLayout.IncludeMdlc = value; }
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
-        public bool IncludeNdlc { get => IncludeScopeNestedStates; set => IncludeScopeNestedStates = value; }
+        public bool IncludeNdlc { get => _contextLayout.IncludeNdlc; set => _contextLayout.IncludeNdlc = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary
@@ -147,7 +149,6 @@ namespace NLog.Targets
         protected bool ShouldIncludeProperties(LogEventInfo logEvent)
         {
             return IncludeGdc
-            || IncludeMdc
             || IncludeScopeProperties
             || (IncludeEventProperties && (logEvent?.HasProperties ?? false));
         }
@@ -178,11 +179,6 @@ namespace NLog.Targets
             if (IncludeScopeProperties && !CombineProperties(logEvent, _contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
             {
                 combinedProperties = CaptureScopeContextProperties(logEvent, combinedProperties);
-            }
-
-            if (IncludeMdc && !CombineProperties(logEvent, _contextLayout.MdcLayout, ref combinedProperties))
-            {
-                combinedProperties = CaptureContextMdc(logEvent, combinedProperties);
             }
 
             if (IncludeGdc)
@@ -298,9 +294,10 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Dictionary with MDC context if any, else null</returns>
+        [Obsolete("Replaced by GetScopeContextProperties. Marked obsolete on NLog 5.0")]
         protected IDictionary<string, object> GetContextMdc(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.MdcLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
             {
                 return value as IDictionary<string, object>;
             }
@@ -341,9 +338,10 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with NDC context if any, else null</returns>
+        [Obsolete("Replaced by GetScopeContextNestedStates. Marked obsolete on NLog 5.0")]
         protected IList<object> GetContextNdc(LogEventInfo logEvent)
         {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.NdcLayout, out object value))
+            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
             {
                 return value as IList<object>;
             }
@@ -481,6 +479,7 @@ namespace NLog.Targets
         /// <param name="logEvent"></param>
         /// <param name="contextProperties">Optional pre-allocated dictionary for the snapshot</param>
         /// <returns>Dictionary with MDC context if any, else null</returns>
+        [Obsolete("Replaced by CaptureScopeContextProperties. Marked obsolete on NLog 5.0")]
         protected virtual IDictionary<string, object> CaptureContextMdc(LogEventInfo logEvent, IDictionary<string, object> contextProperties)
         {
             var names = MappedDiagnosticsContext.GetNames();
@@ -508,6 +507,7 @@ namespace NLog.Targets
         /// <param name="value">MDC value</param>
         /// <param name="serializedValue">Snapshot of MDC value</param>
         /// <returns>Include object value in snapshot</returns>
+        [Obsolete("Replaced by SerializeScopeContextProperty. Marked obsolete on NLog 5.0")]
         protected virtual bool SerializeMdcItem(LogEventInfo logEvent, string name, object value, out object serializedValue)
         {
             if (string.IsNullOrEmpty(name))
@@ -599,6 +599,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with NDC context if any, else null</returns>
+        [Obsolete("Replaced by CaptureScopeContextNestedStates. Marked obsolete on NLog 5.0")]
         protected virtual IList<object> CaptureContextNdc(LogEventInfo logEvent)
         {
             var stack = NestedDiagnosticsContext.GetAllObjects();
@@ -636,6 +637,7 @@ namespace NLog.Targets
         /// <param name="value">NDC value</param>
         /// <param name="serializedValue">Snapshot of NDC value</param>
         /// <returns>Include object value in snapshot</returns>
+        [Obsolete("Replaced by SerializeScopeContextNestedState. Marked obsolete on NLog 5.0")]
         protected virtual bool SerializeNdcItem(LogEventInfo logEvent, object value, out object serializedValue)
         {
             return SerializeItemValue(logEvent, null, value, out serializedValue);
@@ -746,10 +748,6 @@ namespace NLog.Targets
             public Layout TargetLayout { get => _targetLayout; set => _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value; }
             private Layout _targetLayout;
 
-            /// <summary>Internal Layout that allows capture of MDC context</summary>
-            internal LayoutContextMdc MdcLayout { get; }
-            /// <summary>Internal Layout that allows capture of NDC context</summary>
-            internal LayoutContextNdc NdcLayout { get; }
             /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> properties-dictionary</summary>
             internal LayoutScopeContextProperties ScopeContextPropertiesLayout { get; }
             /// <summary>Internal Layout that allows capture of <see cref="ScopeContext"/> nested-states-stack</summary>
@@ -759,11 +757,67 @@ namespace NLog.Targets
             public bool IncludeCallSite { get; set; }
             public bool IncludeCallSiteStackTrace { get; set; }
 
-            public bool IncludeMdc { get => MdcLayout.IsActive; set => MdcLayout.IsActive = value; }
-            public bool IncludeNdc { get => NdcLayout.IsActive; set => NdcLayout.IsActive = value; }
+            public bool IncludeScopeProperties
+            {
+                get => _includeScopeProperties ?? ScopeContextPropertiesLayout.IsActive;
+                set => _includeScopeProperties = ScopeContextPropertiesLayout.IsActive = value;
+            }
+            private bool? _includeScopeProperties;
 
-            public bool IncludeScopeProperties { get => ScopeContextPropertiesLayout.IsActive; set => ScopeContextPropertiesLayout.IsActive = value; }
-            public bool IncludeScopeNestedStates { get => ScopeContextNestedStatesLayout.IsActive; set => ScopeContextNestedStatesLayout.IsActive = value; }
+            public bool IncludeScopeNestedStates
+            {
+                get => _includeScopeNestedStates ?? ScopeContextNestedStatesLayout.IsActive;
+                set => _includeScopeNestedStates = ScopeContextNestedStatesLayout.IsActive = value;
+            }
+            private bool? _includeScopeNestedStates;
+
+            [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+            public bool IncludeMdc
+            {
+                get => _includeMdc ?? false;
+                set
+                {
+                    _includeMdc = value;
+                    ScopeContextPropertiesLayout.IsActive = _includeScopeProperties ?? (_includeMdlc == true || value);
+                }
+            }
+            private bool? _includeMdc;
+
+            [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+            public bool IncludeMdlc
+            {
+                get => _includeMdlc ?? false;
+                set
+                {
+                    _includeMdlc = value;
+                    ScopeContextPropertiesLayout.IsActive = _includeScopeProperties ?? (_includeMdc == true || value);
+                }
+            }
+            private bool? _includeMdlc;
+
+            [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+            public bool IncludeNdc
+            {
+                get => _includeNdc ?? false;
+                set
+                {
+                    _includeNdc = value;
+                    ScopeContextNestedStatesLayout.IsActive = _includeScopeNestedStates ?? (_includeNdlc == true || value);
+                }
+            }
+            private bool? _includeNdc;
+
+            [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+            public bool IncludeNdlc
+            {
+                get => _includeNdlc ?? false;
+                set
+                {
+                    _includeNdlc = value;
+                    ScopeContextNestedStatesLayout.IsActive = _includeScopeNestedStates ?? (_includeNdc == true || value);
+                }
+            }
+            private bool? _includeNdlc;
 
             StackTraceUsage IUsesStackTrace.StackTraceUsage
             {
@@ -786,8 +840,6 @@ namespace NLog.Targets
             {
                 TargetLayout = targetLayout;
 
-                MdcLayout = new LayoutContextMdc(owner);
-                NdcLayout = new LayoutContextNdc(owner);
                 ScopeContextPropertiesLayout = new LayoutScopeContextProperties(owner);
                 ScopeContextNestedStatesLayout = new LayoutScopeContextNestedStates(owner);
             }
@@ -795,8 +847,6 @@ namespace NLog.Targets
             protected override void InitializeLayout()
             {
                 base.InitializeLayout();
-                if (IncludeMdc || IncludeNdc)
-                    ThreadAgnostic = false;
                 if (IncludeScopeProperties || IncludeScopeNestedStates)
                     ThreadAgnostic = false;
                 if (IncludeEventProperties)
@@ -840,10 +890,6 @@ namespace NLog.Targets
 
             private void PrecalculateContext(LogEventInfo logEvent)
             {
-                if (IncludeMdc)
-                    MdcLayout.Precalculate(logEvent);
-                if (IncludeNdc)
-                    NdcLayout.Precalculate(logEvent);
                 if (IncludeScopeProperties)
                     ScopeContextPropertiesLayout.Precalculate(logEvent);
                 if (IncludeScopeNestedStates)
@@ -858,39 +904,6 @@ namespace NLog.Targets
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
                 TargetLayout?.RenderAppendBuilder(logEvent, target, false);
-            }
-
-            [ThreadSafe]
-            public class LayoutContextMdc : Layout
-            {
-                private readonly TargetWithContext _owner;
-
-                public bool IsActive { get; set; }
-
-                public LayoutContextMdc(TargetWithContext owner)
-                {
-                    _owner = owner;
-                }
-
-                protected override string GetFormattedMessage(LogEventInfo logEvent)
-                {
-                    CaptureContext(logEvent);
-                    return string.Empty;
-                }
-
-                public override void Precalculate(LogEventInfo logEvent)
-                {
-                    CaptureContext(logEvent);
-                }
-
-                private void CaptureContext(LogEventInfo logEvent)
-                {
-                    if (IsActive)
-                    {
-                        var contextMdc = _owner.CaptureContextMdc(logEvent, null);
-                        logEvent.AddCachedLayoutValue(this, contextMdc);
-                    }
-                }
             }
 
             [ThreadSafe]
@@ -922,39 +935,6 @@ namespace NLog.Targets
                     {
                         var scopeContextProperties = _owner.CaptureScopeContextProperties(logEvent, null);
                         logEvent.AddCachedLayoutValue(this, scopeContextProperties);
-                    }
-                }
-            }
-
-            [ThreadSafe]
-            public class LayoutContextNdc : Layout
-            {
-                private readonly TargetWithContext _owner;
-
-                public bool IsActive { get; set; }
-
-                public LayoutContextNdc(TargetWithContext owner)
-                {
-                    _owner = owner;
-                }
-
-                protected override string GetFormattedMessage(LogEventInfo logEvent)
-                {
-                    CaptureContext(logEvent);
-                    return string.Empty;
-                }
-
-                public override void Precalculate(LogEventInfo logEvent)
-                {
-                    CaptureContext(logEvent);
-                }
-
-                private void CaptureContext(LogEventInfo logEvent)
-                {
-                    if (IsActive)
-                    {
-                        var contextNdc = _owner.CaptureContextNdc(logEvent);
-                        logEvent.AddCachedLayoutValue(this, contextNdc);
                     }
                 }
             }

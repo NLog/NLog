@@ -43,9 +43,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithDefaultTest()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar" + Environment.NewLine + "123");
-            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar" + Environment.NewLine + "123");
+            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
 
             Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -53,9 +52,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithDefaultTestUnix()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar\n123");
-            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar\n123");
+            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
 
             Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -63,9 +61,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithDefaultTestWindows()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar\r\n123");
-            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar\r\n123");
+            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
 
             Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -73,9 +70,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithDefaultTestMixed()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar\r\n123\nabc");
-            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar\r\n123\nabc");
+            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
 
             Assert.Equal("bar 123 abc", l.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -83,9 +79,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithSpecifiedSeparationStringTest()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar" + System.Environment.NewLine + "123");
-            SimpleLayout l = "${replace-newlines:replacement=|:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar" + System.Environment.NewLine + "123");
+            SimpleLayout l = "${replace-newlines:replacement=|:${scopeproperty:foo}}";
 
             Assert.Equal("bar|123", l.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -93,9 +88,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineOneLineTest()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar123");
-            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar123");
+            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
 
             Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -103,9 +97,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithNoEmptySeparationStringTest()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "bar" + System.Environment.NewLine + "123");
-            SimpleLayout l = "${replace-newlines:replacement=:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "bar" + System.Environment.NewLine + "123");
+            SimpleLayout l = "${replace-newlines:replacement=:${scopeproperty:foo}}";
 
             Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
         }

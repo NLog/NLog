@@ -31,16 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using System.Text;
-
 namespace NLog.UnitTests.Contexts
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using System.Threading;
     using Xunit;
 
+    [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
     public class NestedDiagnosticsContextTests
     {
         [Fact]

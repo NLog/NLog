@@ -46,6 +46,7 @@ namespace NLog
     /// Ideally, these changes should be incorporated as a new version of the MappedDiagnosticsContext class in the original
     /// NLog library so that state can be maintained for multiple threads in asynchronous situations.
     /// </remarks>
+    [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public static class MappedDiagnosticsLogicalContext
     {
         /// <summary>
@@ -54,6 +55,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         /// <remarks>If the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="Config.LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
+        [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
         public static string Get(string item)
         {
             return Get(item, null);
@@ -66,6 +68,7 @@ namespace NLog
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="Config.LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
+        [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
         public static string Get(string item, IFormatProvider formatProvider)
         {
             return FormatHelper.ConvertToString(GetObject(item), formatProvider);
@@ -76,6 +79,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
         public static object GetObject(string item)
         {
             if (ScopeContext.TryGetProperty(item, out var value))
@@ -90,6 +94,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static IDisposable SetScoped(string item, string value)
         {
             return SetScoped<string>(item, value);
@@ -101,6 +106,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static IDisposable SetScoped(string item, object value)
         {
             return SetScoped<object>(item, value);
@@ -112,6 +118,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static IDisposable SetScoped<T>(string item, T value)
         {
             return ScopeContext.PushProperty(item, value);
@@ -123,6 +130,7 @@ namespace NLog
         /// </summary>
         /// <param name="items">.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context (null if no items).</returns>
+        [Obsolete("Replaced by ScopeContext.PushProperties or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static IDisposable SetScoped(IReadOnlyList<KeyValuePair<string, object>> items)
         {
             return ScopeContext.PushProperties(items);
@@ -133,6 +141,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static void Set(string item, string value)
         {
             Set<string>(item, value);
@@ -143,6 +152,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static void Set(string item, object value)
         {
             Set<object>(item, value);
@@ -153,6 +163,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public static void Set<T>(string item, T value)
         {
             ScopeContext.SetMappedContextLegacy(item, value);
@@ -162,21 +173,10 @@ namespace NLog
         /// Returns all item names
         /// </summary>
         /// <returns>A collection of the names of all items in current logical context.</returns>
+        [Obsolete("Replaced by ScopeContext.GetAllProperties. Marked obsolete on NLog 5.0")]
         public static ICollection<string> GetNames()
         {
-#if !NET35 && !NET40 && !NET45
-            var scopeProperties = ScopeContext.GetAllProperties();
-            if (scopeProperties is IReadOnlyCollection<KeyValuePair<string, object>> scopeCollection)
-            {
-                if (scopeCollection.Count == 0)
-                    return ArrayHelper.Empty<string>();
-                else if (scopeCollection.Count == 1)
-                    return new string[] { System.Linq.Enumerable.First(scopeCollection).Key };
-            }
-            return new List<string>(System.Linq.Enumerable.Select(scopeProperties, i => i.Key));
-#else
-            return ScopeContext.GetMappedContextThreadLocal()?.Keys ?? (ICollection<string>)ArrayHelper.Empty<string>();
-#endif
+            return ScopeContext.GetKeysMappedContextLegacy();
         }
 
         /// <summary>
@@ -184,6 +184,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current logical context.</returns>
+        [Obsolete("Replaced by ScopeContext.TryGetProperty. Marked obsolete on NLog 5.0")]
         public static bool Contains(string item)
         {
             return ScopeContext.TryGetProperty(item, out var _);
@@ -193,6 +194,7 @@ namespace NLog
         /// Removes the specified <paramref name="item"/> from current logical context.
         /// </summary>
         /// <param name="item">Item name.</param>
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushProperty. Marked obsolete on NLog 5.0")]
         public static void Remove(string item)
         {
             ScopeContext.RemoveMappedContextLegacy(item);
@@ -201,6 +203,7 @@ namespace NLog
         /// <summary>
         /// Clears the content of current logical context.
         /// </summary>
+        [Obsolete("Replaced by ScopeContext.Clear(). Marked obsolete on NLog 5.0")]
         public static void Clear()
         {
             Clear(true);
@@ -210,6 +213,7 @@ namespace NLog
         /// Clears the content of current logical context.
         /// </summary>
         /// <param name="free">Free the full slot.</param>
+        [Obsolete("Replaced by ScopeContext.Clear(). Marked obsolete on NLog 5.0")]
         public static void Clear(bool free)
         {
             ScopeContext.ClearMappedContextLegacy();

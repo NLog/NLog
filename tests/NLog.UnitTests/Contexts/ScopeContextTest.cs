@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Contexts
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
@@ -324,6 +325,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcPopShouldNotAffectProperties1()
         {
             // Arrange
@@ -345,6 +347,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcPopShouldNotAffectProperties2()
         {
             // Arrange
@@ -370,6 +373,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcPopShouldNotAffectProperties3()
         {
             // Arrange
@@ -410,6 +414,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcClearShouldNotAffectProperties1()
         {
             // Arrange
@@ -431,6 +436,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcClearShouldNotAffectProperties2()
         {
             // Arrange
@@ -454,6 +460,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcClearShouldNotAffectStackValues1()
         {
             // Arrange
@@ -474,6 +481,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcClearShouldNotAffectStackValues2()
         {
             // Arrange
@@ -496,6 +504,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcRemoveShouldNotAffectStackValues1()
         {
             // Arrange
@@ -516,6 +525,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcRemoveShouldNotAffectStackValues2()
         {
             // Arrange
@@ -558,6 +568,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcSetShouldNotAffectStackValues1()
         {
             // Arrange
@@ -584,6 +595,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcSetShouldNotAffectStackValues2()
         {
             // Arrange
@@ -613,6 +625,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void LegacyMdlcSetShouldNotAffectStackValues3()
         {
             // Arrange

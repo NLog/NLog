@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Targets
 
             int managedThreadId = 0;
             Task task;
-            using (MappedDiagnosticsLogicalContext.SetScoped("Test", 42))
+            using (ScopeContext.PushProperty("Test", 42))
             {
                 task = Task.Run(() =>
                 {

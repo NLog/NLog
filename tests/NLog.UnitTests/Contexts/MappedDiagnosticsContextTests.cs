@@ -31,16 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using System.Text;
-
 namespace NLog.UnitTests.Contexts
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading;
     using Xunit;
 
+    [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MappedDiagnosticsContextTests
     {
         /// <summary>

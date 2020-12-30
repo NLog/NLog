@@ -91,12 +91,11 @@ namespace NLog.UnitTests.Layouts
                     </rules>
                 </nlog>");
 
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo1", "bar1");
-            MappedDiagnosticsContext.Set("foo2", "bar2");
+            ScopeContext.Clear();
 
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
+            ScopeContext.PushProperty("foo1", "bar1");
+            ScopeContext.PushProperty("foo2", "bar2");
+            ScopeContext.PushProperty("foo3", "bar3");
 
             var logger = LogManager.GetLogger("hello");
 

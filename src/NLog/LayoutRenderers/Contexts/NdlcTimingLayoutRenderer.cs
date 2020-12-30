@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("ndlctiming")]
     [ThreadSafe]
+    [Obsolete("Replaced by ScopeContextTimingLayoutRenderer ${scopetiming}. Marked obsolete on NLog 5.0")]
     public class NdlcTimingLayoutRenderer : LayoutRenderer
     {
         /// <summary>

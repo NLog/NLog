@@ -2,7 +2,7 @@ language: csharp
 
 mono: 5.8.0
 dotnet: 2.0.0
-dist: bionic
+dist: xenial
 
 
 install:

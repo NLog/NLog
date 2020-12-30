@@ -39,18 +39,6 @@ namespace NLog
     internal interface IIncludeContext
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeMdc { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeNdc { get; set; }
-
-        /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
