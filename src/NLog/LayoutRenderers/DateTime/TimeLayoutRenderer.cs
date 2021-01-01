@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers
                 var culture = GetCulture(logEvent);
                 if (culture != null)
                 {
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                     timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #endif
                     ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;

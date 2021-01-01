@@ -70,7 +70,7 @@ namespace NLog.Internal
 
         public static int GetFrameCount(this StackTrace strackTrace)
         {
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return strackTrace.FrameCount;
 #else
             return strackTrace.GetFrames().Length;
@@ -165,7 +165,7 @@ namespace NLog.Internal
             int framesToSkip = 2;
 
             string className = string.Empty;
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var stackFrame = new StackFrame(framesToSkip, false);
             className = GetClassFullName(stackFrame);
 #else
@@ -195,7 +195,7 @@ namespace NLog.Internal
             return className;
         }
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
         /// <summary>
         /// Gets the fully qualified name of the class invoking the calling method, including the 
         /// namespace but not the assembly.

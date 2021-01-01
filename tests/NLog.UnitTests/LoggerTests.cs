@@ -1613,7 +1613,7 @@ namespace NLog.UnitTests
             Assert.Equal(1, logger.Swallow(() => 1));
             Assert.Equal(1, logger.Swallow(() => 1, 2));
 
-#if NET4_5
+#if !NET35
             logger.SwallowAsync(Task.WhenAll()).Wait();
 
             int executions = 0;
@@ -1636,7 +1636,7 @@ namespace NLog.UnitTests
             Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 3"); return 1; }, 2));
             AssertDebugLastMessageContains("debug", "Test message 3");
 
-#if NET4_5
+#if !NET35
             var fireAndFogetCompletion = new TaskCompletionSource<bool>();
             fireAndFogetCompletion.SetException(new InvalidOperationException("Swallow fire and forget test message"));
             logger.Swallow(fireAndFogetCompletion.Task);

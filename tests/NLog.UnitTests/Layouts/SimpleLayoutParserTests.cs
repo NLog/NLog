@@ -583,13 +583,13 @@ namespace NLog.UnitTests.Layouts
         [InlineData("2,3,4", "IEnumerableNumber", "2-3-4")]
         [InlineData("2,3,4", "IListNumber", "2-3-4")]
         [InlineData("2,3,4", "HashsetNumber", "2-3-4")]
-#if !NET3_5
+#if !NET35
         [InlineData("2,3,4", "ISetNumber", "2-3-4")]
 #endif
         [InlineData("a,b,c", "IEnumerableString", "a-b-c")]
         [InlineData("a,b,c", "IListString", "a-b-c")]
         [InlineData("a,b,c", "HashSetString", "a-b-c")]
-#if !NET3_5
+#if !NET35
         [InlineData("a,b,c", "ISetString", "a-b-c")]
 #endif
         public void LayoutWithListParamTest(string input, string propname, string expected)
@@ -866,7 +866,7 @@ namespace NLog.UnitTests.Layouts
 
             public IList<int> IListNumber { get; set; }
 
-#if !NET3_5
+#if !NET35
             public ISet<string> ISetString { get; set; }
 
             public ISet<int> ISetNumber { get; set; }
@@ -895,10 +895,9 @@ namespace NLog.UnitTests.Layouts
                 AppendFormattable(builder, IEnumerableNumber);
                 Append(builder, IListString);
                 AppendFormattable(builder, IListNumber);
-#if !NET3_5
+#if !NET35
                 Append(builder, ISetString);
                 AppendFormattable(builder, ISetNumber);
-
 #endif
                 Append(builder, HashSetString);
                 AppendFormattable(builder, HashSetNumber);

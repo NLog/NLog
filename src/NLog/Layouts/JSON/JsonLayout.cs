@@ -167,10 +167,10 @@ namespace NLog.Layouts
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
-#if NET3_5
-        public HashSet<string> ExcludeProperties { get; set; }
-#else
+#if !NET35
         public ISet<string> ExcludeProperties { get; set; }
+#else
+        public HashSet<string> ExcludeProperties { get; set; }        
 #endif
 
         /// <summary>

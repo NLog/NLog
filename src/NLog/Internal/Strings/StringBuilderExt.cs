@@ -193,7 +193,7 @@ namespace NLog.Internal
         /// <param name="builder"></param>
         public static void ClearBuilder(this StringBuilder builder)
         {
-#if !NET3_5
+#if !NET35
             builder.Clear();
 #else
             builder.Length = 0;

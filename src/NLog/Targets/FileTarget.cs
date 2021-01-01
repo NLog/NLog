@@ -184,7 +184,7 @@ namespace NLog.Targets
             OptimizeBufferReuse = GetType() == typeof(FileTarget);    // Class not sealed, reduce breaking changes
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         static FileTarget()
         {
             FileCompressor = new ZipArchiveFileCompressor();
@@ -1372,10 +1372,10 @@ namespace NLog.Targets
                 }
 
                 fileStream.Close(); // This flushes the content, too.
-#if NET3_5
-                archiveFileStream.Flush();
-#else
+#if !NET35
                 archiveFileStream.Flush(true);
+#else
+                archiveFileStream.Flush();                
 #endif
             }
 

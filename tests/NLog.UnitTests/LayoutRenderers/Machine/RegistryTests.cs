@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 #if !NETSTANDARD
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using Microsoft.Win32;
+    using NLog.Config;
     using Xunit;
 
     public class RegistryTests : NLogTestBase, IDisposable
@@ -51,16 +50,13 @@ namespace NLog.UnitTests.LayoutRenderers
             key.SetValue("Foo", "FooValue");
             key.SetValue(null, "UnnamedValue");
 
-#if !NET3_5
             //different keys because in 32bit the 64bits uses the 32
             RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32).CreateSubKey("Software\\NLogTest").SetValue("view32", "reg32");
             RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64).CreateSubKey("Software\\NLogTest").SetValue("view64", "reg64");
-#endif
         }
 
         public void Dispose()
         {
-#if !NET3_5
             //different keys because in 32bit the 64bits uses the 32
             try
             {
@@ -77,7 +73,7 @@ namespace NLog.UnitTests.LayoutRenderers
             catch (Exception)
             {
             }
-#endif
+
             try
             {
                 Registry.CurrentUser.DeleteSubKey(TestKey);
@@ -102,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "FooValue");
         }
 
-#if !NET3_5
+#if !NET35
 
         [Fact]
         public void RegistryNamedValueTest_hive32()

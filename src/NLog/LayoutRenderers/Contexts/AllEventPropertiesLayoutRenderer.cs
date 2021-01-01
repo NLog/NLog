@@ -85,10 +85,10 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the keys to exclude from the output. If omitted, none are excluded.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-#if NET3_5
-        public HashSet<string> Exclude { get; set; }
-#else
+#if !NET35
         public ISet<string> Exclude { get; set; }
+#else
+        public HashSet<string> Exclude { get; set; }   
 #endif
 
         /// <summary>

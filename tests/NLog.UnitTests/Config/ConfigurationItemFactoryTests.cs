@@ -74,7 +74,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD && !MONO
 
         [Fact]
         public void ExtendedTargetTest()

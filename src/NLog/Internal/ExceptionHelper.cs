@@ -118,7 +118,7 @@ namespace NLog.Internal
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
         public static bool MustBeRethrownImmediately(this Exception exception)
         {
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (exception is StackOverflowException)
             {
                 return true;

@@ -47,7 +47,7 @@ namespace NLog.UnitTests
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+#if !NETSTANDARD
     using Ionic.Zip;
 #endif
 
@@ -146,7 +146,7 @@ namespace NLog.UnitTests
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+#if !NETSTANDARD
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
@@ -156,7 +156,7 @@ namespace NLog.UnitTests
             }
         }
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
@@ -181,7 +181,7 @@ namespace NLog.UnitTests
                 }
             }
         }
-#elif NET4_5
+#else
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
@@ -206,11 +206,6 @@ namespace NLog.UnitTests
                     Assert.Equal(encodedBuf[i], buf[i]);
                 }
             }
-        }
-#else
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
-        {
-            Assert.True(false);
         }
 #endif
 
@@ -336,7 +331,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         /// <summary>
         /// Get line number of previous line.
         /// </summary>

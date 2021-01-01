@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Fluent
             TraceWrite_internal(() => _logger.Trace());
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void TraceWrite_static_builder()
         {
@@ -181,7 +181,7 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
 
-#if NET4_5
+#if !NET35 && !NET40
                 Assert.Equal(GetType().ToString(), _lastLogEventInfo.CallerClassName);
 #endif
             }
@@ -219,7 +219,7 @@ namespace NLog.UnitTests.Fluent
             }
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void LevelWriteProperties()
         {
@@ -317,7 +317,7 @@ namespace NLog.UnitTests.Fluent
             InfoWrite_internal(() => _logger.Info());
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void InfoWrite_static_builder()
         {
@@ -367,7 +367,7 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => _logger.Debug(), LogLevel.Debug);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void DebugWrite_static_builder()
         {
@@ -381,7 +381,7 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => _logger.Fatal(), LogLevel.Fatal);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void FatalWrite_static_builder()
         {
@@ -395,7 +395,7 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => _logger.Error(), LogLevel.Error);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void ErrorWrite_static_builder()
         {

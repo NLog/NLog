@@ -168,6 +168,14 @@ namespace NLog.UnitTests.Config
 
         public void TestAutoReloadOnFileMove(bool useExplicitFileLoading)
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileMove because we are running in Travis");
+                return;
+            }
+#endif
+
             string config1 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>

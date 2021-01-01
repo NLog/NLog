@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
                 }
                 else
                 {
-#if !NET3_5
+#if !NET35
                     var formatProvider = GetFormatProvider(logEvent, null);
                     builder.Append(scopeDuration.Value.ToString(Format, formatProvider));
 #else

@@ -357,7 +357,7 @@ namespace NLog.UnitTests.Contexts
             Assert.True(MappedDiagnosticsLogicalContext.Contains(itemKey));
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void disposable_multiple_items()
         {
