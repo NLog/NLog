@@ -362,6 +362,7 @@ namespace NLog.UnitTests
 
             return stringWriter.ToString();
         }
+
         /// <summary>
         /// To handle unstable integration tests, retry if failed
         /// </summary>
@@ -384,8 +385,9 @@ namespace NLog.UnitTests
                     {
                         throw;
                     }
-                }
 
+                    System.Threading.Thread.Sleep(1000);
+                }
             }
         }
 
