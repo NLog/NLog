@@ -1626,47 +1626,50 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 return;
             }
 
-            bool isAppVeyor = IsAppVeyor();
-            SqlServerTest.TryDropDatabase(isAppVeyor);
-
-            try
+            RetryingIntegrationTest(3, () =>
             {
-                SqlServerTest.CreateDatabase(isAppVeyor);
-
-                var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
-
-                DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
-                testTarget.ConnectionString = connectionString;
-
-                testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
-                {
-                    CommandType = CommandType.Text,
-                    Text = $@"
-                    IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NLogTestTable')
-                        RETURN
-
-                    CREATE TABLE [Dbo].[NLogTestTable] (
-                        [ID] [int] IDENTITY(1,1) NOT NULL,
-                        [MachineName] [nvarchar](200) NULL)"
-                });
-
-                using (var context = new InstallationContext())
-                {
-                    testTarget.Install(context);
-                }
-
-                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
-                    WHERE TABLE_TYPE = 'BASE TABLE'
-                    AND  TABLE_NAME = 'NLogTestTable'
-                ");
-
-                //check if table exists
-                Assert.Equal("NLogTestTable", tableCatalog);
-            }
-            finally
-            {
+                bool isAppVeyor = IsAppVeyor();
                 SqlServerTest.TryDropDatabase(isAppVeyor);
-            }
+
+                try
+                {
+                    SqlServerTest.CreateDatabase(isAppVeyor);
+
+                    var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
+
+                    DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
+                    testTarget.ConnectionString = connectionString;
+
+                    testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
+                    {
+                        CommandType = CommandType.Text,
+                        Text = $@"
+                        IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NLogTestTable')
+                            RETURN
+
+                        CREATE TABLE [Dbo].[NLogTestTable] (
+                            [ID] [int] IDENTITY(1,1) NOT NULL,
+                            [MachineName] [nvarchar](200) NULL)"
+                    });
+
+                    using (var context = new InstallationContext())
+                    {
+                        testTarget.Install(context);
+                    }
+
+                    var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
+                        WHERE TABLE_TYPE = 'BASE TABLE'
+                        AND  TABLE_NAME = 'NLogTestTable'
+                    ");
+
+                    //check if table exists
+                    Assert.Equal("NLogTestTable", tableCatalog);
+                }
+                finally
+                {
+                    SqlServerTest.TryDropDatabase(isAppVeyor);
+                }
+            });
         }
 
         [Fact]
@@ -1678,72 +1681,74 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 return;
             }
 
-            bool isAppVeyor = IsAppVeyor();
-            SqlServerTest.TryDropDatabase(isAppVeyor);
-
-            try
+            RetryingIntegrationTest(3, () =>
             {
-                SqlServerTest.CreateDatabase(isAppVeyor);
-
-                var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
-                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
-                <targets>
-                    <target name='database' xsi:type='Database' connectionstring=""" + connectionString + @"""
-                        commandText='insert into dbo.NLogSqlServerTest (Uid, LogDate) values (@uid, @logdate);'>
-                        <parameter name='@uid' layout='${event-properties:uid}' />
-                        <parameter name='@logdate' layout='${date}' />
-<install-command ignoreFailures=""false""
-                 text=""CREATE TABLE dbo.NLogSqlServerTest (
-    Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
-    Uid      uniqueidentifier  NULL,
-    LogDate  date              NULL
-);""/>
-
-                    </target>
-                </targets>
-                <rules>
-                    <logger name='*' writeTo='database' />
-                </rules>
-            </nlog>");
-
-                //install 
-                InstallationContext context = new InstallationContext();
-                LogManager.Configuration.Install(context);
-
-                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
-                 WHERE TABLE_SCHEMA = 'Dbo'
-                 AND  TABLE_NAME = 'NLogSqlServerTest'");
-
-                //check if table exists
-                Assert.Equal("NLogTest", tableCatalog);
-
-                var logger = LogManager.GetLogger("A");
-                var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
-
-                var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
-                var logEvent = new LogEventInfo(LogLevel.Info, null, null);
-                logEvent.Properties["uid"] = uid;
-                logger.Log(logEvent);
-
-                var count = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT count(1) FROM dbo.NLogSqlServerTest");
-
-                Assert.Equal(1, count);
-
-                var result = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT Uid FROM dbo.NLogSqlServerTest");
-
-                Assert.Equal(uid, result);
-
-                var result2 = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT LogDate FROM dbo.NLogSqlServerTest");
-
-                Assert.Equal(DateTime.Today, result2);
-            }
-            finally
-            {
+                bool isAppVeyor = IsAppVeyor();
                 SqlServerTest.TryDropDatabase(isAppVeyor);
-            }
 
+                try
+                {
+                    SqlServerTest.CreateDatabase(isAppVeyor);
+
+                    var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
+                    LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                    <targets>
+                        <target name='database' xsi:type='Database' connectionstring=""" + connectionString + @"""
+                            commandText='insert into dbo.NLogSqlServerTest (Uid, LogDate) values (@uid, @logdate);'>
+                            <parameter name='@uid' layout='${event-properties:uid}' />
+                            <parameter name='@logdate' layout='${date}' />
+    <install-command ignoreFailures=""false""
+                     text=""CREATE TABLE dbo.NLogSqlServerTest (
+        Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+        Uid      uniqueidentifier  NULL,
+        LogDate  date              NULL
+    );""/>
+
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' writeTo='database' />
+                    </rules>
+                </nlog>");
+
+                    //install 
+                    InstallationContext context = new InstallationContext();
+                    LogManager.Configuration.Install(context);
+
+                    var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
+                     WHERE TABLE_SCHEMA = 'Dbo'
+                     AND  TABLE_NAME = 'NLogSqlServerTest'");
+
+                    //check if table exists
+                    Assert.Equal("NLogTest", tableCatalog);
+
+                    var logger = LogManager.GetLogger("A");
+                    var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
+
+                    var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
+                    var logEvent = new LogEventInfo(LogLevel.Info, null, null);
+                    logEvent.Properties["uid"] = uid;
+                    logger.Log(logEvent);
+
+                    var count = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT count(1) FROM dbo.NLogSqlServerTest");
+
+                    Assert.Equal(1, count);
+
+                    var result = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT Uid FROM dbo.NLogSqlServerTest");
+
+                    Assert.Equal(uid, result);
+
+                    var result2 = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT LogDate FROM dbo.NLogSqlServerTest");
+
+                    Assert.Equal(DateTime.Today, result2);
+                }
+                finally
+                {
+                    SqlServerTest.TryDropDatabase(isAppVeyor);
+                }
+            });
         }
 
 #if !NETSTANDARD
