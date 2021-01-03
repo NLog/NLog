@@ -121,7 +121,7 @@ namespace NLog.LayoutRenderers
             {
                 Indent = IndentXml,
                 ConformanceLevel = ConformanceLevel.Fragment,
-#if !NET3_5
+#if !NET35
                 NamespaceHandling = NamespaceHandling.OmitDuplicates,
 #endif
                 IndentChars = "  ",

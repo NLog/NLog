@@ -1190,7 +1190,7 @@ namespace NLog.Config
             "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
-#if !NET3_5
+#if !NET35
             if (target is AsyncTaskTarget)
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
@@ -1229,7 +1229,7 @@ namespace NLog.Config
                 }
             }
 
-#if !NET3_5
+#if !NET35
             if (target is AsyncTaskTarget && wrapperTargetInstance is AsyncTargetWrapper && ReferenceEquals(wrapperTargetInstance, wtb))
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
@@ -1371,7 +1371,7 @@ namespace NLog.Config
             public IEnumerable<KeyValuePair<string, string>> Values => ValueLookup;
 
             /// <remarks>
-            /// Explicit cast because net3_5 doesn't support covariance.
+            /// Explicit cast because NET35 doesn't support covariance.
             /// </remarks>
             IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => ValidChildren.Cast<ILoggingConfigurationElement>();
 

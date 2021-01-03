@@ -34,7 +34,7 @@
 
 namespace NLog.Internal
 {
-#if !NET4_6 && !NETSTANDARD
+#if NET35 || NET40 || NET45
     using System;
     using System.Runtime.Serialization;
     using NLog.Common;
@@ -69,9 +69,7 @@ namespace NLog.Internal
             }
         }
 
-#if NET4_5
         [System.Security.Permissions.SecurityPermissionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, SerializationFormatter = true)]
-#endif
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             try

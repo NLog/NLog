@@ -373,7 +373,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{}", actual);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void SerializeReadOnlyExpandoDict_Test()
         {
@@ -508,7 +508,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
-#if NETSTANDARD || NET462 || NET47
+#if !NET35 && !NET45
         [Fact]
         public void SerializeValueTuple_Test()
         {
@@ -519,6 +519,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("\"(test name, 1)\"", actual);
         }
 #endif
+
         [Fact]
         public void SerializeAnonymousObject_Test()
         {
@@ -527,7 +528,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40
 
         [Fact]
         public void SerializeExpandoObject_Test()

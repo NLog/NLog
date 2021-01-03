@@ -504,7 +504,7 @@ namespace NLog.Config
                 }
             }
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
             foreach (var assembly in allAssemblies)
             {
@@ -599,7 +599,7 @@ namespace NLog.Config
         private void RegisterExternalItems()
         {
 
-#if !NET3_5 && !NET4_0
+#if !NET35 && !NET40
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
 #endif
         }

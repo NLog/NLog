@@ -551,6 +551,8 @@ namespace NLog.UnitTests.Config
                 var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
 #if NETSTANDARD
                     "netstandard2.0",
+#elif NET35 || NET40 || NET45
+                    "net461",
 #else
                     nlogDirectory.Name,
 #endif

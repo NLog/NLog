@@ -86,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET4_5
+#if !NET35 && !NET40
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -141,7 +141,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", dataText);
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET4_5
+#if !NET35 && !NET40
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -193,7 +193,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", dataText);
             AssertDebugLastMessage("debug10", "");
-#if NET4_5
+#if !NET35 && !NET40
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
         }
@@ -424,8 +424,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Null(exRecorded);
         }
 
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -469,8 +469,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", "Test Inner 1");
             AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -536,8 +537,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue));
         }
 
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -575,8 +576,9 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.StartsWith("Test exception 1", lastMessage);
             Assert.Contains("Test Inner 1", lastMessage);
         }
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -663,8 +665,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", "Goodbye World");
         }
 
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif

@@ -124,7 +124,7 @@ namespace NLog
             return ScopeContext.PushProperty(item, value);
         }
 
-#if !NET3_5 && !NET4_0
+#if !NET35 && !NET40
         /// <summary>
         /// Updates the current logical context with multiple items in single operation
         /// </summary>

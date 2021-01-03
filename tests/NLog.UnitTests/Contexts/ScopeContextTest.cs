@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Contexts
             Assert.False(stringValueLookup3);
         }
 
-#if !NET3_5 && !NET4_0
+#if !NET35 && !NET40
         [Fact]
         public void PushNestedStatePropertiesTest()
         {

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET35
+
 using System.Collections.Generic;
 using NLog.Common;
 using NLog.Targets.Wrappers;
@@ -106,3 +108,5 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
     }
 }
+
+#endif

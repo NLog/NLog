@@ -33,7 +33,7 @@
 
 namespace NLog.UnitTests.Targets
 {
-#if !NET3_5
+#if !NET35
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;

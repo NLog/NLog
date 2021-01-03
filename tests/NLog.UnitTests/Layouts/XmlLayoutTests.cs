@@ -543,7 +543,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, result);
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40
 
         [Fact]
         public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyExpando()

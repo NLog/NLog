@@ -79,7 +79,7 @@ namespace NLog.LayoutRenderers
             nameof(Exception.Message),
             nameof(Exception.Source),
             nameof(Exception.StackTrace),
-            "TargetSite",// Not available on NETSTANDARD1_0
+            "TargetSite",// Not available on NETSTANDARD1_3 OR NETSTANDARD1_5
         }, StringComparer.Ordinal);
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
@@ -182,7 +182,7 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool BaseException { get; set; }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET35
         /// <summary>
         /// Gets or sets whether to collapse exception tree using <see cref="AggregateException.Flatten()"/>
         /// </summary>
@@ -236,7 +236,7 @@ namespace NLog.LayoutRenderers
             {
                 int currentLevel = 0;
 
-#if !NET3_5
+#if !NET35
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     primaryException = FlattenException ? GetPrimaryException(aggregateException) : aggregateException;
@@ -262,7 +262,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#if !NET3_5
+#if !NET35
         private static Exception GetPrimaryException(AggregateException aggregateException)
         {
             if (aggregateException.InnerExceptions.Count == 1)
@@ -375,10 +375,10 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose method name should be appended.</param>        
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if NETSTANDARD1_0
-            sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             sb.Append(ex.TargetSite?.ToString());
+#else
+            sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));            
 #endif
         }
 
@@ -452,7 +452,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose HResult should be appended.</param>
         protected virtual void AppendHResult(StringBuilder sb, Exception ex)
         {
-#if NET4_5
+#if !NET35 && !NET40
             const int S_OK = 0;     // Carries no information, so skip
             const int S_FALSE = 1;  // Carries no information, so skip
             if (ex.HResult != S_OK && ex.HResult != S_FALSE)
@@ -548,7 +548,7 @@ namespace NLog.LayoutRenderers
             return formats;
         }
 
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
         /// <summary>
         /// Find name of method on stracktrace.
         /// </summary>

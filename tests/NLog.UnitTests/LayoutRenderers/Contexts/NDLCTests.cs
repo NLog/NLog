@@ -312,7 +312,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 2");
         }
 
-#if NETSTANDARD
+#if !NET35 && !NET40 && !NET45
         [Fact]
         public void NDLCTimingTest()
         {
@@ -333,10 +333,8 @@ namespace NLog.UnitTests.LayoutRenderers
                 var measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
                 Assert.Equal(6, measurements.Length);
                 Assert.Equal("ala", measurements[0]);
-#if !NET3_5
                 Assert.InRange(int.Parse(measurements[2]), 0, 999);
                 Assert.InRange(int.Parse(measurements[4]), 0, 9999999);
-#endif
                 Assert.Equal("a", measurements[measurements.Length-1]);
 
                 System.Threading.Thread.Sleep(10);
@@ -344,10 +342,8 @@ namespace NLog.UnitTests.LayoutRenderers
                 LogManager.GetLogger("A").Debug("b");
                 measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
                 Assert.Equal("ala", measurements[0]);
-#if !NET3_5
                 Assert.InRange(int.Parse(measurements[2]), 10, 999);
                 Assert.InRange(int.Parse(measurements[4]), 100000, 9999999);
-#endif
                 Assert.Equal("b", measurements[measurements.Length - 1]);
 
                 using (NestedDiagnosticsLogicalContext.Push("ma"))
@@ -356,10 +352,8 @@ namespace NLog.UnitTests.LayoutRenderers
                     measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
                     Assert.Equal(6, measurements.Length);
                     Assert.Equal("ala ma", measurements[0]);
-#if !NET3_5
                     Assert.InRange(int.Parse(measurements[2]), 10, 999);
                     Assert.InRange(int.Parse(measurements[4]), 0, 9999999);
-#endif
                     Assert.Equal("a", measurements[measurements.Length - 1]);
 
                     System.Threading.Thread.Sleep(10);
@@ -368,20 +362,16 @@ namespace NLog.UnitTests.LayoutRenderers
                     measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
                     Assert.Equal(6, measurements.Length);
                     Assert.Equal("ala ma", measurements[0]);
-#if !NET3_5
                     Assert.InRange(int.Parse(measurements[2]), 20, 999);
                     Assert.InRange(int.Parse(measurements[4]), 100000, 9999999);
-#endif
                     Assert.Equal("b", measurements[measurements.Length - 1]);
                 }
 
                 LogManager.GetLogger("A").Debug("c");
                 measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
                 Assert.Equal("ala", measurements[0]);
-#if !NET3_5
                 Assert.InRange(int.Parse(measurements[2]), 20, 999);
                 Assert.InRange(int.Parse(measurements[4]), 200000, 9999999);
-#endif
                 Assert.Equal("c", measurements[measurements.Length - 1]);
             }
 

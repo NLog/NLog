@@ -373,10 +373,10 @@ namespace NLog.Internal
         {
             var collectionType = propInfo.PropertyType;
             var typeDefinition = collectionType.GetGenericTypeDefinition();
-#if NET3_5
-            var isSet = typeDefinition == typeof(HashSet<>);
-#else
+#if !NET35
             var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
+#else
+            var isSet = typeDefinition == typeof(HashSet<>);       
 #endif
             //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
             if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc

@@ -33,7 +33,7 @@
 
 namespace NLog.Targets
 {
-#if !NET3_5
+#if !NET35
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -179,7 +179,7 @@ namespace NLog.Targets
                 ForceLockingQueue = true;   // ConcurrentQueue does not perform well if constantly hitting QueueLimit
             }
 
-#if NET4_5 || NET4_0
+#if !NET35
             if (_forceLockingQueue.HasValue && _forceLockingQueue.Value != (_requestQueue is AsyncRequestQueue))
             {
                 _requestQueue = ForceLockingQueue ? (AsyncRequestQueueBase)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
@@ -505,7 +505,7 @@ namespace NLog.Targets
         internal Task WriteAsyncTaskWithRetry(Task firstTask, IList<LogEventInfo> logEvents, CancellationToken cancellationToken, int retryCount)
         {
             var tcs =
-#if NETSTANDARD || NET46
+#if !NET45
                 new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
 #else
                 new TaskCompletionSource<object>();
@@ -617,11 +617,7 @@ namespace NLog.Targets
                     _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
 
                 // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
-#if NET4_0
-                newTask.ContinueWith(completedTask => TaskCompletion(completedTask, reusableLogEvents), TaskScheduler);
-#else
                 newTask.ContinueWith(_taskCompletion, reusableLogEvents, TaskScheduler);
-#endif
                 return true;
             }
             catch (Exception ex)

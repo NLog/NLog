@@ -1726,19 +1726,19 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters))]
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-#if !NET4_5
+            if (keepFileOpen && !networkWrites && !concurrentWrites)
+                return; // This combination do not support two local FileTargets to the same file
+
+#if NET35 || NET40
             if (enableArchiveCompression)
                 return; // No need to test with compression
 #endif
-
-            if (keepFileOpen && !networkWrites && !concurrentWrites)
-                return; // This combination do not support two local FileTargets to the same file
 
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
             var defaultTimeSource = TimeSource.Current;
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
             IFileCompressor fileCompressor = null;
 #endif
 
@@ -1755,7 +1755,7 @@ namespace NLog.UnitTests.Targets
 
                 var config = new LoggingConfiguration();
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableArchiveCompression)
                 {
                     fileCompressor = FileTarget.FileCompressor;
@@ -1837,7 +1837,7 @@ namespace NLog.UnitTests.Targets
             {
                 TimeSource.Current = defaultTimeSource; // restore default time source
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableArchiveCompression)
                 {
                     FileTarget.FileCompressor = fileCompressor;
@@ -2106,7 +2106,7 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.Combine(tempPath, "file.txt");
             var archiveExtension = enableCompression ? "zip" : "txt";
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
             IFileCompressor fileCompressor = null;
 #endif
 
@@ -2123,7 +2123,7 @@ namespace NLog.UnitTests.Targets
                     MaxArchiveFiles = 3
                 };
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     fileCompressor = FileTarget.FileCompressor;
@@ -2178,7 +2178,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     FileTarget.FileCompressor = fileCompressor;
@@ -2473,7 +2473,7 @@ namespace NLog.UnitTests.Targets
             Layout logFile = Path.Combine(tempPath, fileTxt);
             var logFileName = logFile.Render(LogEventInfo.CreateNullEvent());
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
             IFileCompressor fileCompressor = null;
 #endif
 
@@ -2494,7 +2494,7 @@ namespace NLog.UnitTests.Targets
                 });
 
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     fileCompressor = FileTarget.FileCompressor;
@@ -2537,7 +2537,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     FileTarget.FileCompressor = fileCompressor;

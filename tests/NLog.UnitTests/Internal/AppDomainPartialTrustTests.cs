@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET3_5 && !NETSTANDARD
+#if !NETSTANDARD
 
 using System;
 using System.IO;

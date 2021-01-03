@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers
         [DefaultValue(true)]
         public bool RequireEscapingSlashesInDefaultValue { get; set; }
 
-#if !NET3_5
+#if !NET35
         /// <summary>
         /// Gets or sets the registry view (see: https://msdn.microsoft.com/de-de/library/microsoft.win32.registryview.aspx). 
         /// Allowed values: Registry32, Registry64, Default 
@@ -133,11 +133,10 @@ namespace NLog.LayoutRenderers
             var parseResult = ParseKey(Key.Render(logEvent));
             try
             {
-#if !NET3_5
+#if !NET35
                 using (RegistryKey rootKey = RegistryKey.OpenBaseKey(parseResult.Hive, View))
 #else
                 var rootKey = MapHiveToKey(parseResult.Hive);
-
 #endif
 
                 {
@@ -261,7 +260,7 @@ namespace NLog.LayoutRenderers
             throw new ArgumentException($"Key name is not supported. Root hive '{hiveName}' not recognized.");
         }
 
-#if NET3_5
+#if NET35
         private static RegistryKey MapHiveToKey(RegistryHive hive)
         {
             switch (hive)

@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers
             if (WithException && logEvent.Exception != null)
             {
                 var primaryException = logEvent.Exception;
-#if !NET3_5
+#if !NET35
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     aggregateException = aggregateException.Flatten();

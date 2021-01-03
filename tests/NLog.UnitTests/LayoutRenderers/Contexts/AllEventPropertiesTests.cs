@@ -134,8 +134,8 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("m", "Test=InfoWrite, coolness=200%, a=not b");
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting Caller-Attributes")]
+#if NET35 || NET40
+        [Fact(Skip = "NET35 not supporting Caller-Attributes")]
 #else
         [Fact]
 #endif
