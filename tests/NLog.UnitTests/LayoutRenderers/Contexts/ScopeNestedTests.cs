@@ -99,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void scopenestedTopOneTest()
+        public void ScopeNestedTopOneTest()
         {
             // Arrange
             ScopeContext.Clear();

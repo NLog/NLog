@@ -175,13 +175,53 @@ namespace NLog.Internal
             return false;
         }
 
+#if !NET35 && !NET40
+        public bool TryLookupPropertyCollection(object value, out IReadOnlyCollection<KeyValuePair<string, object>> propertyCollection)
+        {
+            if (value is IDictionary<string, object>)
+            {
+                propertyCollection = new PropertyCollection(value, ObjectPropertyList.CreateIDictionaryEnumerator);
+                return true;
+            }
+
+            Type objectType = value.GetType();
+            if (ObjectTypeCache.TryGetValue(objectType, out var propertyInfos))
+            {
+                if (!propertyInfos.HasFastLookup)
+                {
+                    var fastLookup = BuildFastLookup(propertyInfos.Properties, false);
+                    propertyInfos = new ObjectPropertyInfos(propertyInfos.Properties, fastLookup);
+                    ObjectTypeCache.TryAddValue(objectType, propertyInfos);
+                }
+                propertyCollection = new PropertyCollection(value, propertyInfos.FastLookup);
+                return true;
+            }
+
+            if (TryExtractGenericCollection(objectType, false, out propertyInfos))
+            {
+                ObjectTypeCache.TryAddValue(objectType, propertyInfos);
+                propertyCollection = new PropertyCollection(value, propertyInfos.FastLookup);
+                return true;
+            }
+
+            propertyCollection = null;
+            return false;
+        }
+#endif
+
         private static bool TryExtractExpandoObject(Type objectType, out ObjectPropertyInfos propertyInfos)
+        {
+            return TryExtractGenericCollection(objectType, true, out propertyInfos);
+        }
+
+        private static bool TryExtractGenericCollection(Type objectType, bool mustBeDictionary, out ObjectPropertyInfos propertyInfos)
         {
             foreach (var interfaceType in objectType.GetInterfaces())
             {
-                if (IsGenericDictionaryEnumeratorType(interfaceType))
+                var collectionGenericArguments = GetCollectionGenericArguments(interfaceType, mustBeDictionary);
+                if (collectionGenericArguments != null)
                 {
-                    var dictionaryEnumerator = (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(interfaceType.GetGenericArguments()));
+                    var dictionaryEnumerator = (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(collectionGenericArguments));
                     propertyInfos = new ObjectPropertyInfos(null, new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
                     return true;
                 }
@@ -301,7 +341,7 @@ namespace NLog.Internal
         internal struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
         {
             internal static readonly StringComparer NameComparer = StringComparer.Ordinal;
-            private static readonly FastPropertyLookup[] CreateIDictionaryEnumerator = new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => ((IDictionary<string, object>)o).GetEnumerator()) };
+            internal static readonly FastPropertyLookup[] CreateIDictionaryEnumerator = new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => ((IDictionary<string, object>)o).GetEnumerator()) };
             private readonly object _object;
             private readonly PropertyInfo[] _properties;
             private readonly FastPropertyLookup[] _fastLookup;
@@ -591,24 +631,43 @@ namespace NLog.Internal
         }
 #endif
 
-        private static bool IsGenericDictionaryEnumeratorType(Type interfaceType)
+        private static Type[] GetCollectionGenericArguments(Type interfaceType, bool mustBeDictionary)
         {
             if (interfaceType.IsGenericType())
             {
                 if (interfaceType.GetGenericTypeDefinition() == typeof(IDictionary<,>)
-#if !NET35
+#if !NET35 && !NET40
                  || interfaceType.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)
 #endif
                    )
                 {
-                    if (interfaceType.GetGenericArguments()[0] == typeof(string))
+                    var collectionGenericArguments = interfaceType.GetGenericArguments();
+                    if (collectionGenericArguments[0] == typeof(string))
                     {
-                        return true;
+                        return collectionGenericArguments;
                     }
                 }
+
+#if !NET35 && !NET40
+                if (!mustBeDictionary)
+                {
+                    if (interfaceType.GetGenericTypeDefinition() == typeof(IReadOnlyCollection<>))
+                    {
+                        var itemType = interfaceType.GetGenericArguments()[0];
+                        if (itemType.IsGenericType() && itemType.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+                        {
+                            var collectionGenericArguments = itemType.GetGenericArguments();
+                            if (collectionGenericArguments[0] == typeof(string))
+                            {
+                                return collectionGenericArguments;
+                            }
+                        }
+                    }
+                }
+#endif
             }
 
-            return false;
+            return null;
         }
 
         private interface IDictionaryEnumerator
@@ -625,11 +684,16 @@ namespace NLog.Internal
                     if (dictionary.Count > 0)
                         return YieldEnumerator(dictionary);
                 }
-#if !NET35
+#if !NET35 && !NET40
                 else if (value is IReadOnlyDictionary<TKey, TValue> readonlyDictionary)
                 {
                     if (readonlyDictionary.Count > 0)
                         return YieldEnumerator(readonlyDictionary);
+                }
+                else if (value is IReadOnlyCollection<KeyValuePair<TKey,TValue>> readonlyCollection)
+                {
+                    if (readonlyCollection.Count > 0)
+                        return YieldEnumerator(readonlyCollection);
                 }
 #endif
                 return EmptyDictionaryEnumerator.Default;
@@ -641,10 +705,16 @@ namespace NLog.Internal
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
             }
 
-#if !NET35
+#if !NET35 && !NET40
             private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
+                    yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
+            }
+
+            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyCollection<KeyValuePair<TKey, TValue>> collection)
+            {
+                foreach (var item in collection)
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
             }
 #endif
@@ -670,5 +740,28 @@ namespace NLog.Internal
                 }
             }
         }
+
+#if !NET35 && !NET40
+        private class PropertyCollection : IReadOnlyCollection<KeyValuePair<string, object>>
+        {
+            private readonly object _collection;
+            private readonly ReflectionHelpers.LateBoundMethod _enumeratorLookup;
+
+            public PropertyCollection(object collection, FastPropertyLookup[] enumeratorLookup)
+            {
+                _collection = collection;
+                _enumeratorLookup = enumeratorLookup[0].ValueLookup;
+            }
+
+            public int Count => (_collection as ICollection)?.Count ?? 1;
+
+            public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+            {
+                return (IEnumerator<KeyValuePair<string, object>>)_enumeratorLookup(_collection, null);
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+#endif
     }
 }

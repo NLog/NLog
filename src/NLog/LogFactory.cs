@@ -59,9 +59,6 @@ namespace NLog
         private static IAppDomain currentAppDomain;
         private static AppEnvironmentWrapper defaultAppEnvironment;
 
-        /// <remarks>
-        /// Internal for unit tests
-        /// </remarks>
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
         private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
@@ -69,6 +66,9 @@ namespace NLog
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
         internal LogMessageFormatter SingleTargetMessageFormatter;
+        internal ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(_serviceRepository));
+        private ObjectReflectionCache _objectReflectionCache;
+
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 

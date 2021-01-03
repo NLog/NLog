@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
 #if !NET35 && !NET40
@@ -176,7 +177,7 @@ namespace NLog
         /// <param name="scopeProperties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
-        public IDisposable PushScopeProperties(IReadOnlyList<KeyValuePair<string, object>> scopeProperties)
+        public IDisposable PushScopeProperties(IReadOnlyCollection<KeyValuePair<string, object>> scopeProperties)
         {
             return ScopeContext.PushProperties(scopeProperties);
         }
@@ -190,12 +191,21 @@ namespace NLog
         /// <remarks></remarks>
         public IDisposable PushScopeState<T>(T nestedState)
         {
-#if !NET35 && !NET40
-            if (nestedState is IReadOnlyList<KeyValuePair<string, object>> scopeProperties)
-                return ScopeContext.PushNestedStateProperties(scopeProperties, scopeProperties);
-            else
+#if !NETSTANDARD1_3
+            if (Type.GetTypeCode(typeof(T)) != TypeCode.Object)
+#else
+            if (typeof(T) == typeof(string) || typeof(T).IsPrimitive())
 #endif
                 return ScopeContext.PushNestedState(nestedState);
+
+#if !NET35 && !NET40
+            if (nestedState is IReadOnlyCollection<KeyValuePair<string, object>> propertyDictionary)
+                return ScopeContext.PushNestedStateProperties(propertyDictionary, propertyDictionary);
+
+            if (nestedState is IEnumerable propertyCollection && Factory.ObjectReflectionCache.TryLookupPropertyCollection(propertyCollection, out var objectPropertyList) && objectPropertyList.Count > 0)
+                return ScopeContext.PushNestedStateProperties(propertyCollection, objectPropertyList);
+#endif
+            return ScopeContext.PushNestedState(nestedState);
         }
 
         /// <summary>
