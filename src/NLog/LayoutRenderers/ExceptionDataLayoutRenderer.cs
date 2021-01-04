@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
@@ -50,42 +49,29 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("exception-data")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ExceptionDataLayoutRenderer : LayoutRenderer, IRawValue
+    public class ExceptionDataLayoutRenderer : LayoutRenderer
     {
-        private string _dataKey;
         /// <summary>
-        /// Gets or sets the Data Key 
+        /// Gets or sets the key to search the exception Data for
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
-        public string DataKey
-        {
-            get => _dataKey;
-
-            set
-            {
-                _dataKey = SanitizeDataKey(value);
-            }
-        }
+        [RequiredParameter]
+        public string Item { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExceptionDataLayoutRenderer" /> class.
+        /// Format string for conversion from object to string.
         /// </summary>
-        public ExceptionDataLayoutRenderer()
-        {
-        }
+        /// <docgen category='Rendering Options' order='50' />
+        public string Format { get; set; }
+
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool BaseException { get; set; }
-
-        /// <inheritdoc />
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
-        {
-            value = GetTopException(logEvent);
-            return true;
-        }
 
         private Exception GetTopException(LogEventInfo logEvent)
         {
@@ -95,41 +81,17 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+
             Exception primaryException = GetTopException(logEvent);
             if (primaryException != null)
             {
-                AppendDataItem(builder, primaryException, DataKey);
-            }
-        }
-
-        /// <summary>
-        /// Appends the a specific value that matches the Key of an Exception's Data property to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose Data property elements should be searched for matching data item.</param>
-        /// <param name="dataKey">The Exception whose Data property elements should be appended.</param>
-        protected virtual void AppendDataItem(StringBuilder sb, Exception ex, string dataKey)
-        {
-            if (ex.Data?.Count > 0)
-            {
-                if (ex.Data.Contains(dataKey))
+                var value = primaryException.Data[Item];
+                if (value != null)
                 {
-                    sb.Append(ex.Data[dataKey]);
+                    var formatProvider = GetFormatProvider(logEvent);
+                    builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
                 }
             }
-        }
-
-        /// <summary>
-        /// Sanitizes the data key against comma separated values and Nulls
-        /// </summary>
-        /// <param name="dataKey">The data key.</param>
-        /// <returns></returns>
-        private static string SanitizeDataKey(string dataKey)
-        {
-            string sanitizedKey = dataKey.SplitAndTrimTokens(',').FirstOrDefault();
-            if (sanitizedKey == null)
-                sanitizedKey = String.Empty;
-            return sanitizedKey;
         }
     }   
 }

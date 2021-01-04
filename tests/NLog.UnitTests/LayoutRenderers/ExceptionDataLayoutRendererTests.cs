@@ -44,12 +44,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class ExceptionDataLayoutRendererTests : NLogTestBase
     {
-        const int E_FAIL = 80004005;
-
         private ILogger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionDataLayoutRendererTests");
 
         [Fact]
-        public void ExceptionWithDataIsLogged()
+        public void ExceptionWithDataItemIsLoggedTest()
         {
             const string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
@@ -64,17 +62,16 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger minlevel='Info' writeTo='debug1' />
                 </rules>
             </nlog>");
-
-
-            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
+
             logger.Error(ex, "msg");
             
             AssertDebugLastMessage("debug1", exceptionDataValue);
         }
 
         [Fact]
-        public void ExceptionWithOutDataIsNotLogged()
+        public void ExceptionWithOutDataIsNotLoggedTest()
         {
             const string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
@@ -91,14 +88,14 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
 
-            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            Exception ex = new ArgumentException(exceptionMessage);
             logger.Error(ex, "msg");
 
             Assert.NotEqual(GetDebugLastMessage("debug1"), exceptionDataValue);
         }
 
         [Fact]
-        public void ExceptionUsingSpecifiedParamLogsProperly()
+        public void ExceptionUsingSpecifiedParamLogsProperlyTest()
         {
             const string exceptionMessage = "I don't like nullref exception!";
             const string exceptionDataKey = "testkey";
@@ -107,7 +104,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:DataKey="+exceptionDataKey+@"}' />
+                    <target name='debug1' type='Debug' layout='${exceptiondata:item="+exceptionDataKey+@"}' />
                 </targets>
                 <rules>
                     <logger minlevel='Info' writeTo='debug1' />
@@ -115,53 +112,40 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
 
-            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.Error(ex);
             AssertDebugLastMessage("debug1", exceptionDataValue);
         }
 
-
-
         [Fact]
-        public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
+        public void BadDataForItemResultsInEmptyValueTest()
         {
+            const string exceptionMessage = "I don't like nullref exception!";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata}' />
+                    <target name='debug1' type='Debug' layout='${exceptiondata:item=@}' />
                 </targets>
                 <rules>
                     <logger minlevel='Info' writeTo='debug1' />
                 </rules>
             </nlog>");
 
-            var ex = new ExceptionWithBrokenMessagePropertyException();
-            var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
-            Assert.Null(exRecorded);
-        }
-
-        [Fact]
-        public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception_serialize()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:datakey=@}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
-                </rules>
-            </nlog>");
-
-            var ex = new ExceptionWithBrokenMessagePropertyException();
-            var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
-            Assert.Null(exRecorded);
+            Exception ex = new ArgumentException(exceptionMessage);
+            ex.Data.Add(exceptionDataKey, exceptionDataValue);
+            logger.Error(ex);
+            AssertDebugLastMessage("debug1", "");
         }
 
         [Fact]
         public void NoDatkeyTest()
         {
+            const string exceptionMessage = "I don't like nullref exception!";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
@@ -172,83 +156,59 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            var ex = GetNestedExceptionWithStackTrace("Goodbye World");
-            logger.Fatal(ex, "msg");
+            Exception ex = new ArgumentException(exceptionMessage);
+            ex.Data.Add(exceptionDataKey, exceptionDataValue);
+            logger.Error(ex);
             AssertDebugLastMessage("debug1", "");
         }
 
         [Fact]
         public void NoDatkeyUingParamTest()
         {
+            const string exceptionMessage = "I don't like nullref exception!";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:DataKey=}' />
+                    <target name='debug1' type='Debug' layout='${exceptiondata:item=}' />
                 </targets>
                 <rules>
                     <logger minlevel='Info' writeTo='debug1' />
                 </rules>
             </nlog>");
 
-            var ex = GetNestedExceptionWithStackTrace("Goodbye World");
-            logger.Fatal(ex, "msg");
+            Exception ex = new ArgumentException(exceptionMessage);
+            ex.Data.Add(exceptionDataKey, exceptionDataValue);
+            logger.Error(ex);
             AssertDebugLastMessage("debug1", "");
         }
 
         [Fact]
-        public void BaseExceptionTest()
+        public void BaseExceptionFlippedTest()
         {
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:DataKey=" + exceptionDataKey + @", BaseException=false}' />
+                    <target name='debug1' type='Debug' layout='${exceptiondata:item=" + exceptionDataKey + @":BaseException=true}' />
                 </targets>
                 <rules>
                     <logger minlevel='Info' writeTo='debug1' />
                 </rules>
             </nlog>");
 
-            var ex = GetNestedExceptionWithStackTrace("Goodbye World");
-            ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Fatal(ex, "msg");
-            AssertDebugLastMessage("debug1", exceptionDataValue);
-        }
-
-        private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
-        {
-            public override string Message => throw new Exception("Exception from Message property");
-        }
-
-        /// <summary>
-        /// Get an exception with stacktrace by generating a exception
-        /// </summary>
-        /// <param name="exceptionMessage"></param>
-        /// <returns></returns>
-        private Exception GetExceptionWithStackTrace(string exceptionMessage)
-        {
-            try
-            {
-                GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now, exceptionMessage);
-                return null;
-            }
-            catch (Exception exception)
-            {
-                exception.Source = GetType().ToString();
-                return exception;
-            }
-        }
-
-        private Exception GetNestedExceptionWithStackTrace(string exceptionMessage)
-        {
+            Exception exceptionToTest;
             try
             {
                 try
                 {
                     try
                     {
-                        GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now, exceptionMessage);
+                        var except = new ArgumentException("Inner Exception");
+                        except.Data[exceptionDataKey] = exceptionDataValue;
+                        throw except;
                     }
                     catch (Exception exception)
                     {
@@ -259,58 +219,15 @@ namespace NLog.UnitTests.LayoutRenderers
                 {
                     throw new ApplicationException("Wrapper2", exception);
                 }
-
-                return null;
             }
             catch (Exception ex)
             {
-                ex.Data["1Really.Bad-Boy!"] = "Hello World";
-                return ex;
-            }
-        }
-
-        private int NestedFunc(int recursion, Func<int> innerAction)
-        {
-            try
-            {
-                if (recursion-- == 0)
-                    return System.Threading.Tasks.Task<int>.Factory.StartNew(() => innerAction.Invoke())
-                        .Result;
-                return NestedFunc(recursion, innerAction);
-            }
-            catch
-            {
-                throw;  // Just to make the method complex, and avoid inline
-            }
-        }
-
-        private class GenericClass<TA, TB, TC>
-        {
-            internal static List<GenericClass<TA, TB, TC>> Method1(string aaa, bool b, object o, int i, DateTime now, string exceptionMessage)
-            {
-                Method2(aaa, b, o, i, now, null, null, exceptionMessage);
-                return null;
+                exceptionToTest = ex;
             }
 
-            internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something, string exceptionMessage)
-            {
-                throw new CustomArgumentException(exceptionMessage, "exceptionMessage");
-            }
-        }
+            logger.Fatal(exceptionToTest, "msg");
 
-        public class CustomArgumentException : ApplicationException
-        {
-            public CustomArgumentException(string message, string paramName)
-                : base(message)
-            {
-                ParamName = paramName;
-                StrangeProperty = "Strange World";
-                HResult = E_FAIL;
-            }
-
-            public string ParamName { get; }
-
-            public string StrangeProperty { private get; set; }
+            AssertDebugLastMessage("debug1", exceptionDataValue);
         }
     }
 }
