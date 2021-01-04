@@ -38,10 +38,10 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated MemoryStream for reuse (only one active user)
     /// </summary>
-    internal class ReusableStreamCreator : ReusableObjectCreator<System.IO.MemoryStream>, IDisposable
+    internal sealed class ReusableStreamCreator : ReusableObjectCreator<System.IO.MemoryStream>, IDisposable
     {
         public ReusableStreamCreator(int capacity)
-            :base(new System.IO.MemoryStream(capacity), (m) => { m.Position = 0; m.SetLength(0); })
+            :base(capacity, (cap) => new System.IO.MemoryStream(cap), (m) => { m.Position = 0; m.SetLength(0); })
         {
         }
 
