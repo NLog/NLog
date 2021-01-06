@@ -539,7 +539,7 @@ namespace NLog.Targets
         /// <returns>Dictionary with ScopeContext properties if any, else null</returns>
         protected virtual IDictionary<string, object> CaptureScopeContextProperties(LogEventInfo logEvent, IDictionary<string, object> contextProperties)
         {
-            using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator(ScopeContext.GetAllProperties()))
+            using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
             {
                 bool checkForDuplicates = contextProperties?.Count > 0;
                 while (scopeEnumerator.MoveNext())

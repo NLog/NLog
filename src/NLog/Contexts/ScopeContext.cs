@@ -60,13 +60,13 @@ namespace NLog
         /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that pops the nested scope state on dispose (including properties).</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushNestedStateProperties(object nestedState, IReadOnlyList<KeyValuePair<string, object>> properties)
+        public static IDisposable PushNestedStateProperties(object nestedState, IReadOnlyCollection<KeyValuePair<string, object>> properties)
         {
             if (properties?.Count > 0)
             {
 #if !NET45
                 var parent = GetAsyncLocalContext();
-                var current = new ScopeContextProperties(parent, properties, nestedState);
+                var current = new ScopeContextProperties<object>(parent, properties, nestedState);
                 SetAsyncLocalContext(current);
                 return current;
 #else
@@ -89,26 +89,34 @@ namespace NLog
         /// <param name="properties">Properties being added to the scope dictionary</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushProperties(IReadOnlyList<KeyValuePair<string, object>> properties)
+        public static IDisposable PushProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        {
+            return PushProperties<object>(properties);
+        }
+
+        /// <summary>
+        /// Updates the logical scope context with provided properties
+        /// </summary>
+        /// <param name="properties">Properties being added to the scope dictionary</param>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
+        /// <remarks>Scope dictionary keys are case-insensitive</remarks>
+        public static IDisposable PushProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
         {
 #if !NET45
             var parent = GetAsyncLocalContext();
             
-            var scopeProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
-            if (scopeProperties != null)
+            var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
+            if (allProperties != null)
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                for (int i = 0; i < properties.Count; ++i)
-                {
-                    var property = properties[i];
-                    scopeProperties[property.Key] = property.Value;
-                }
-                var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeProperties);
+                CopyScopePropertiesToDictionary(properties, allProperties);
+
+                var collapsedState = new ScopeContextProperties<object>(parent.Parent.Parent, allProperties);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
 
-            var current = new ScopeContextProperties(parent, properties, null);
+            var current = new ScopeContextProperties<TValue>(parent, properties, null);
             SetAsyncLocalContext(current);
             return current;
 #else
@@ -125,7 +133,7 @@ namespace NLog
         /// <param name="value">Value of property</param>
         /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
-        public static IDisposable PushProperty<T>(string key, T value)
+        public static IDisposable PushProperty<TValue>(string key, TValue value)
         {
 #if !NET35 && !NET40 && !NET45
             var parent = GetAsyncLocalContext();
@@ -136,12 +144,12 @@ namespace NLog
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
                 scopeProperties[key] = value;
 
-                var collapsedState = new ScopeContextProperties(parent.Parent.Parent, scopeProperties);
+                var collapsedState = new ScopeContextProperties<object>(parent.Parent.Parent, scopeProperties);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
 
-            var current = new ScopeContextProperty<T>(parent, key, value);
+            var current = new ScopeContextProperty<TValue>(parent, key, value);
             SetAsyncLocalContext(current);
             return current;
 #else
@@ -215,20 +223,25 @@ namespace NLog
             var contextState = GetAsyncLocalContext();
             return contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
 #else
-            var context = GetMappedContextCallContext();
-            if (context?.Count > 0)
+            var mappedContext = GetMappedContextCallContext();
+            if (mappedContext?.Count > 0)
             {
-                foreach (var item in context)
+                foreach (var item in mappedContext)
                 {
                     if (item.Value is ObjectHandleSerializer)
                     {
-                        return GetAllPropertiesUnwrapped(context);
+                        return GetAllPropertiesUnwrapped(mappedContext);
                     }
                 }
-                return context;
+                return mappedContext;
             }
             return ArrayHelper.Empty<KeyValuePair<string, object>>();
 #endif
+        }
+
+        internal static ScopePropertiesEnumerator<object> GetAllPropertiesEnumerator()
+        {
+            return new ScopePropertiesEnumerator<object>(GetAllProperties());
         }
 
         /// <summary>
@@ -374,38 +387,30 @@ namespace NLog
         }
 
 #if !NET35 && !NET40 && !NET45
-        private static bool TryLookupProperty(IEnumerable<KeyValuePair<string, object>> scopeProperties, string key, out object value)
+        private static bool TryLookupProperty(IReadOnlyCollection<KeyValuePair<string, object>> scopeProperties, string key, out object value)
         {
-            if (scopeProperties is IDictionary<string, object> mappedDictionary)
+            if (scopeProperties is Dictionary<string, object> mappedDictionary && ReferenceEquals(mappedDictionary.Comparer, DefaultComparer))
             {
                 return mappedDictionary.TryGetValue(key, out value);
             }
-            else if (scopeProperties is IReadOnlyList<KeyValuePair<string, object>> mappedList)
-            {
-                for (int i = 0; i < mappedList.Count; ++i)
-                {
-                    var item = mappedList[i];
-                    if (DefaultComparer.Equals(item.Key, key))
-                    {
-                        value = item.Value;
-                        return true;
-                    }
-                }
-            }
             else
             {
-                foreach (var item in scopeProperties)
+                using (var scopeEnumerator = new ScopePropertiesEnumerator<object>(scopeProperties))
                 {
-                    if (DefaultComparer.Equals(item.Key, key))
+                    while (scopeEnumerator.MoveNext())
                     {
-                        value = item.Value;
-                        return true;
+                        var item = scopeEnumerator.Current;
+                        if (DefaultComparer.Equals(item.Key, key))
+                        {
+                            value = item.Value;
+                            return true;
+                        }
                     }
                 }
-            }
 
-            value = null;
-            return false;
+                value = null;
+                return false;
+            }
         }
 
         private static long GetNestedContextTimestampNow()
@@ -424,35 +429,26 @@ namespace NLog
                 return TimeSpan.FromMilliseconds((int)currentTimestamp - (int)scopeTimestamp);
         }
 
-        private static Dictionary<string, object> CloneParentContextDictionary(IEnumerable<KeyValuePair<string, object>> parentContext, int initialCapacity)
+        private static Dictionary<string, object> CloneParentContextDictionary(IReadOnlyCollection<KeyValuePair<string, object>> parentContext, int initialCapacity)
         {
-            if (parentContext is IReadOnlyList<KeyValuePair<string, object>> parentPropertyList)
+            var propertyCount = parentContext.Count;
+            var scopeProperties = new Dictionary<string, object>(propertyCount + initialCapacity, DefaultComparer);
+            if (propertyCount > 0)
             {
-                var scopeProperties = new Dictionary<string, object>(parentPropertyList.Count + initialCapacity, DefaultComparer);
-                for (int i = 0; i < parentPropertyList.Count; ++i)
-                {
-                    var item = parentPropertyList[i];
-                    scopeProperties[item.Key] = item.Value;
-                }
-                return scopeProperties;
+                CopyScopePropertiesToDictionary(parentContext, scopeProperties);
             }
-            else if (parentContext is Dictionary<string, object> parentPropertyDictionary)
+            return scopeProperties;
+        }
+
+        private static void CopyScopePropertiesToDictionary<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> scopeProperties, Dictionary<string, object> scopeDictionary)
+        {
+            using (var propertyEnumerator = new ScopePropertiesEnumerator<TValue>(scopeProperties))
             {
-                var scopeProperties = new Dictionary<string, object>(parentPropertyDictionary.Count + initialCapacity, DefaultComparer);
-                foreach (var item in parentPropertyDictionary)
+                while (propertyEnumerator.MoveNext())
                 {
-                    scopeProperties[item.Key] = item.Value;
+                    var item = propertyEnumerator.Current;
+                    scopeDictionary[item.Key] = item.Value;
                 }
-                return scopeProperties;
-            }
-            else
-            {
-                var scopeProperties = new Dictionary<string, object>(1 + initialCapacity, DefaultComparer);
-                foreach (var item in parentContext)
-                {
-                    scopeProperties[item.Key] = item.Value;
-                }
-                return scopeProperties;
             }
         }
 
@@ -569,17 +565,17 @@ namespace NLog
             }
         }
 
-        private sealed class ScopeContextProperty<T> : IPropertyScopeContext
+        private sealed class ScopeContextProperty<TValue> : IPropertyScopeContext
         {
             public IScopeContext Parent { get; }
             long IScopeContext.NestedStateTimestamp => 0;
             object IScopeContext.NestedState => null;
             public string Name { get; }
-            public T Value { get; }
-            private IReadOnlyCollection<KeyValuePair<string, object>> _scopeDictionary;
+            public TValue Value { get; }
+            private IReadOnlyCollection<KeyValuePair<string, object>> _allProperties;
             private bool _disposed;
 
-            public ScopeContextProperty(IScopeContext parent, string name, T value)
+            public ScopeContextProperty(IScopeContext parent, string name, TValue value)
             {
                 Parent = parent;
                 Name = name;
@@ -595,9 +591,9 @@ namespace NLog
             IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
             {
                 scopeProperties = null;
-                if (_scopeDictionary != null)
+                if (_allProperties != null)
                 {
-                    return _scopeDictionary;
+                    return _allProperties;
                 }
                 else
                 {
@@ -608,7 +604,7 @@ namespace NLog
                         {
                             // No more parent-context, build scope-property-collection starting from this scope
                             if (initialCapacity == 0)
-                                return _scopeDictionary = new[] { new KeyValuePair<string, object>(Name, Value) };
+                                return _allProperties = new[] { new KeyValuePair<string, object>(Name, Value) };
                             else
                                 scopeProperties = new Dictionary<string, object>(initialCapacity + 1, DefaultComparer);
                         }
@@ -621,7 +617,7 @@ namespace NLog
 
                     scopeProperties[Name] = Value;
                     if (initialCapacity == 0)
-                        _scopeDictionary = scopeProperties; // Immutable since no more scope-properties
+                        _allProperties = scopeProperties; // Immutable since no more scope-properties
                     return scopeProperties;
                 }
             }
@@ -641,25 +637,26 @@ namespace NLog
             }
         }
 
-        private sealed class ScopeContextProperties : IPropertyScopeContext
+        private sealed class ScopeContextProperties<TValue> : IPropertyScopeContext, IReadOnlyCollection<KeyValuePair<string, object>>
         {
             public IScopeContext Parent { get; }
             public long NestedStateTimestamp { get; }
             public object NestedState { get; }
-            public IReadOnlyList<KeyValuePair<string, object>> ScopeProperties { get; }
-            private IReadOnlyCollection<KeyValuePair<string, object>> _scopeDictionary;
+
+            private readonly IReadOnlyCollection<KeyValuePair<string, TValue>> _scopeProperties;
+            private IReadOnlyCollection<KeyValuePair<string, object>> _allProperties;
             private bool _disposed;
 
-            public ScopeContextProperties(IScopeContext parent, Dictionary<string, object> scopeDictionary)
+            public ScopeContextProperties(IScopeContext parent, Dictionary<string, object> allProperties)
             {
                 Parent = parent;
-                _scopeDictionary = scopeDictionary;
+                _allProperties = allProperties; // Collapsed dictionary that includes all properties from parent scopes with case-insensitive-comparer
             }
 
-            public ScopeContextProperties(IScopeContext parent, IReadOnlyList<KeyValuePair<string, object>> scopeProperties, object nestedState)
+            public ScopeContextProperties(IScopeContext parent, IReadOnlyCollection<KeyValuePair<string, TValue>> scopeProperties, object nestedState)
             {
                 Parent = parent;
-                ScopeProperties = scopeProperties;
+                _scopeProperties = scopeProperties;
                 NestedState = nestedState;
                 NestedStateTimestamp = nestedState != null ? GetNestedContextTimestampNow() : 0;
             }
@@ -681,71 +678,73 @@ namespace NLog
             IReadOnlyCollection<KeyValuePair<string, object>> IScopeContext.CaptureContextProperties(int initialCapacity, out Dictionary<string, object> scopeProperties)
             {
                 scopeProperties = null;
-                if (_scopeDictionary != null)
+                if (_allProperties != null)
                 {
-                    return _scopeDictionary;
+                    return _allProperties;
                 }
                 else
                 {
-                    var parentContext = Parent?.CaptureContextProperties(initialCapacity + ScopeProperties.Count, out scopeProperties);
+                    var parentContext = Parent?.CaptureContextProperties(initialCapacity + _scopeProperties.Count, out scopeProperties);
                     if (scopeProperties == null)
                     {
                         if (parentContext == null)
                         {
                             // No more parent-context, build scope-property-collection starting from this scope
                             if (initialCapacity == 0)
-                                return _scopeDictionary = EnsureCollectionWithUniqueKeys();
+                                return _allProperties = EnsureCollectionWithUniqueKeys();
                             else
-                                scopeProperties = new Dictionary<string, object>(initialCapacity + ScopeProperties.Count, DefaultComparer);
+                                scopeProperties = new Dictionary<string, object>(initialCapacity + _scopeProperties.Count, DefaultComparer);
                         }
                         else
                         {
                             // Build scope-property-collection from parent-context
-                            scopeProperties = CloneParentContextDictionary(parentContext, initialCapacity + ScopeProperties.Count);
+                            scopeProperties = CloneParentContextDictionary(parentContext, initialCapacity + _scopeProperties.Count);
                         }
                     }
 
                     AppendScopeProperties(scopeProperties);
                     if (initialCapacity == 0)
-                        _scopeDictionary = scopeProperties; // Immutable since no more scope-properties
+                        _allProperties = scopeProperties; // Immutable since no more scope-properties
                     return scopeProperties;
                 }
             }
 
             private IReadOnlyCollection<KeyValuePair<string, object>> EnsureCollectionWithUniqueKeys()
             {
-                if (ScopeProperties.Count > 10)
+                if (_scopeProperties.Count > 10)
                 {
-                    var mappedContext = new Dictionary<string, object>(ScopeProperties.Count, DefaultComparer);
-                    AppendScopeProperties(mappedContext);
-                    return mappedContext;
+                    var scopeDictionary = new Dictionary<string, object>(_scopeProperties.Count, DefaultComparer);
+                    AppendScopeProperties(scopeDictionary);
+                    return scopeDictionary;
                 }
 
-                for (int i = 0; i < ScopeProperties.Count - 1; ++i)
+                using (var leftEnumerator = new ScopePropertiesEnumerator<TValue>(_scopeProperties))
                 {
-                    var left = ScopeProperties[i];
-                    for (int j = i + 1; j < ScopeProperties.Count; ++j)
+                    while (leftEnumerator.MoveNext())
                     {
-                        var right = ScopeProperties[j];
-                        if (DefaultComparer.Equals(left.Key, right.Key))
+                        var left = leftEnumerator.Current;
+                        using (var rightEnumerator = new ScopePropertiesEnumerator<TValue>(_scopeProperties))
                         {
-                            var mappedContext = new Dictionary<string, object>(ScopeProperties.Count, DefaultComparer);
-                            AppendScopeProperties(mappedContext);
-                            return mappedContext;
+                            while (rightEnumerator.MoveNext())
+                            {
+                                var right = rightEnumerator.Current;
+                                if (DefaultComparer.Equals(left.Key, right.Key))
+                                {
+                                    var scopeDictionary = new Dictionary<string, object>(_scopeProperties.Count, DefaultComparer);
+                                    AppendScopeProperties(scopeDictionary);
+                                    return scopeDictionary;
+                                }
+                            }
                         }
                     }
                 }
 
-                return ScopeProperties;
+                return _scopeProperties as IReadOnlyCollection<KeyValuePair<string, object>> ?? this;
             }
 
-            private void AppendScopeProperties(Dictionary<string, object> mappedContext)
+            private void AppendScopeProperties(Dictionary<string, object> scopeDictionary)
             {
-                for (int i = 0; i < ScopeProperties.Count; ++i)
-                {
-                    var item = ScopeProperties[i];
-                    mappedContext[item.Key] = item.Value;
-                }
+                CopyScopePropertiesToDictionary(_scopeProperties, scopeDictionary);
             }
 
             public override string ToString()
@@ -761,6 +760,20 @@ namespace NLog
                     _disposed = true;
                 }
             }
+
+            int IReadOnlyCollection<KeyValuePair<string, object>>.Count => _scopeProperties.Count;
+
+            IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator()
+            {
+                foreach (var property in _scopeProperties)
+                    yield return new KeyValuePair<string, object>(property.Key, property.Value);
+            }
+
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            {
+                foreach (var property in _scopeProperties)
+                    yield return new KeyValuePair<string, object>(property.Key, property.Value);
+            }
         }
 
         [Obsolete("Replaced by ScopeContext.PushProperty / ScopeContext.PushNestedState")]
@@ -772,23 +785,22 @@ namespace NLog
             public long NestedStateTimestamp { get; }
             private bool _disposed;
 
-            public LegacyScopeContext(IReadOnlyCollection<KeyValuePair<string, object>> mappedContext, object[] nestedContext, long nestedContextTimestamp)
+            public LegacyScopeContext(IReadOnlyCollection<KeyValuePair<string, object>> allProperties, object[] nestedContext, long nestedContextTimestamp)
             {
-                MappedContext = mappedContext;
+                MappedContext = allProperties;
                 NestedContext = nestedContext;
                 NestedStateTimestamp = nestedContextTimestamp;
             }
 
-            public static void CaptureLegacyContext(IScopeContext contextState, out Dictionary<string, object> scopeDictionary, out object[] nestedContext, out long nestedContextTimestamp)
+            public static void CaptureLegacyContext(IScopeContext contextState, out Dictionary<string, object> allProperties, out object[] nestedContext, out long nestedContextTimestamp)
             {
                 nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
-                scopeDictionary = null;
-                var scopeProperties = contextState?.CaptureContextProperties(0, out scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-                if (scopeDictionary == null)
+                allProperties = null;
+                var scopeProperties = contextState?.CaptureContextProperties(0, out allProperties) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                if (allProperties == null)
                 {
-                    scopeDictionary = new Dictionary<string, object>(scopeProperties.Count, DefaultComparer);
-                    foreach (var scopeProperty in scopeProperties)
-                        scopeDictionary[scopeProperty.Key] = scopeProperty.Value;
+                    allProperties = new Dictionary<string, object>(scopeProperties.Count, DefaultComparer);
+                    CopyScopePropertiesToDictionary(scopeProperties, allProperties);
                 }
 
                 nestedContextTimestamp = 0L;
@@ -888,7 +900,7 @@ namespace NLog
         }
 #endif
 
-        internal struct ScopePropertiesEnumerator : IEnumerator<KeyValuePair<string, object>>
+        internal struct ScopePropertiesEnumerator<TValue> : IEnumerator<KeyValuePair<string, object>>
         {
             readonly IEnumerator<KeyValuePair<string, object>> _scopeEnumerator;
 #if !NET35 && !NET40
@@ -897,35 +909,45 @@ namespace NLog
 #endif
             Dictionary<string, object>.Enumerator _dicationaryEnumerator;
 
-            public ScopePropertiesEnumerator(IEnumerable<KeyValuePair<string, object>> scopeProperties)
+            public ScopePropertiesEnumerator(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
             {
-                if (scopeProperties is Dictionary<string, object> scopeDictionary)
-                {
-                    _scopeEnumerator = null;
 #if !NET35 && !NET40
-                    _scopeList = null;
-                    _scopeIndex = 0;
-#endif
-                    _dicationaryEnumerator = scopeDictionary.GetEnumerator();
-                }
-#if !NET35 && !NET40
-                else if (scopeProperties is IReadOnlyList<KeyValuePair<string, object>> scopeList)
+                if (scopeProperties is IReadOnlyList<KeyValuePair<string, object>> scopeList)
                 {
                     _scopeEnumerator = null;
                     _scopeList = scopeList;
                     _scopeIndex = -1;
                     _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                    return;
                 }
-#endif
                 else
                 {
-                    _scopeEnumerator = scopeProperties.GetEnumerator();
-#if !NET35 && !NET40
                     _scopeList = null;
                     _scopeIndex = 0;
+                }
 #endif
+
+                if (scopeProperties is Dictionary<string, object> scopeDictionary)
+                {
+                    _scopeEnumerator = null;
+                    _dicationaryEnumerator = scopeDictionary.GetEnumerator();
+                }
+                else if (scopeProperties is IEnumerable<KeyValuePair<string, object>> scopeEnumerator)
+                {
+                    _scopeEnumerator = scopeEnumerator.GetEnumerator();
                     _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
                 }
+                else
+                {
+                    _scopeEnumerator = CreateScopeEnumerable(scopeProperties).GetEnumerator();
+                    _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                }
+            }
+
+            private static IEnumerable<KeyValuePair<string, object>> CreateScopeEnumerable(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
+            {
+                foreach (var property in scopeProperties)
+                    yield return new KeyValuePair<string, object>(property.Key, property.Value);
             }
 
             public KeyValuePair<string, object> Current
@@ -1008,7 +1030,7 @@ namespace NLog
         }
 
         [Obsolete("Replaced by ScopeContext.PushProperty")]
-        internal static void SetMappedContextLegacy<T>(string key, T value)
+        internal static void SetMappedContextLegacy<TValue>(string key, TValue value)
         {
 #if !NET35 && !NET40 && !NET45
             PushProperty(key, value);
@@ -1020,15 +1042,23 @@ namespace NLog
         internal static ICollection<string> GetKeysMappedContextLegacy()
         {
 #if !NET35 && !NET40 && !NET45
-            var scopeProperties = ScopeContext.GetAllProperties();
-            if (scopeProperties is IReadOnlyCollection<KeyValuePair<string, object>> scopeCollection)
+            using (var propertyEnumerator = GetAllPropertiesEnumerator())
             {
-                if (scopeCollection.Count == 0)
+                if (!propertyEnumerator.MoveNext())
                     return ArrayHelper.Empty<string>();
-                else if (scopeCollection.Count == 1)
-                    return new string[] { System.Linq.Enumerable.First(scopeCollection).Key };
+
+                var firstProperty = propertyEnumerator.Current;
+                if (!propertyEnumerator.MoveNext())
+                    return new[] { firstProperty.Key };
+
+                var propertyKeys = new List<string>();
+                propertyKeys.Add(firstProperty.Key);
+                do
+                {
+                    propertyKeys.Add(propertyEnumerator.Current.Key);
+                } while (propertyEnumerator.MoveNext());
+                return propertyKeys;
             }
-            return new List<string>(System.Linq.Enumerable.Select(scopeProperties, i => i.Key));
 #else
             return GetMappedContextCallContext()?.Keys ?? (ICollection<string>)ArrayHelper.Empty<string>();
 #endif
@@ -1042,10 +1072,10 @@ namespace NLog
             {
                 // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
                 var contextState = GetAsyncLocalContext();
-                LegacyScopeContext.CaptureLegacyContext(contextState, out var scopeProperties, out var scopeNestedStates, out var scopeNestedStateTimestamp);
-                scopeProperties.Remove(key);
+                LegacyScopeContext.CaptureLegacyContext(contextState, out var allProperties, out var scopeNestedStates, out var scopeNestedStateTimestamp);
+                allProperties.Remove(key);
 
-                var legacyScope = new LegacyScopeContext(scopeProperties, scopeNestedStates, scopeNestedStateTimestamp);
+                var legacyScope = new LegacyScopeContext(allProperties, scopeNestedStates, scopeNestedStateTimestamp);
                 SetAsyncLocalContext(legacyScope);
             }
 #else
@@ -1074,7 +1104,7 @@ namespace NLog
 
                     // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
                     var stackTopValue = nestedContext[0];
-                    var scopeProperties = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                    var allProperties = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
                     if (nestedContext.Length == 1)
                     {
                         nestedContext = ArrayHelper.Empty<object>();
@@ -1087,7 +1117,7 @@ namespace NLog
                         nestedContext = newScope;
                     }
 
-                    var legacyScope = new LegacyScopeContext(scopeProperties, nestedContext, nestedContext.Length > 0 ? GetNestedContextTimestampNow() : 0L);
+                    var legacyScope = new LegacyScopeContext(allProperties, nestedContext, nestedContext.Length > 0 ? GetNestedContextTimestampNow() : 0L);
                     SetAsyncLocalContext(legacyScope);
                     return stackTopValue;
                 }
@@ -1123,10 +1153,10 @@ namespace NLog
             var contextState = GetAsyncLocalContext();
             if (contextState != null)
             {
-                LegacyScopeContext.CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
+                LegacyScopeContext.CaptureLegacyContext(contextState, out var allProperties, out var nestedContext, out var nestedContextTimestamp);
                 if (nestedContext?.Length > 0)
                 {
-                    if (scopeProperties?.Count > 0)
+                    if (allProperties?.Count > 0)
                     {
                         var legacyScope = new LegacyScopeContext(null, nestedContext, nestedContextTimestamp);
                         SetAsyncLocalContext(legacyScope);
@@ -1149,12 +1179,12 @@ namespace NLog
             var contextState = GetAsyncLocalContext();
             if (contextState != null)
             {
-                LegacyScopeContext.CaptureLegacyContext(contextState, out var scopeProperties, out var nestedContext, out var nestedContextTimestamp);
-                if (scopeProperties?.Count > 0)
+                LegacyScopeContext.CaptureLegacyContext(contextState, out var allProperties, out var nestedContext, out var nestedContextTimestamp);
+                if (allProperties?.Count > 0)
                 {
                     if (nestedContext?.Length > 0)
                     {
-                        var legacyScope = new LegacyScopeContext(scopeProperties, ArrayHelper.Empty<object>(), 0L);
+                        var legacyScope = new LegacyScopeContext(allProperties, ArrayHelper.Empty<object>(), 0L);
                         SetAsyncLocalContext(legacyScope);
                     }
                 }
@@ -1171,18 +1201,24 @@ namespace NLog
 #if NET35 || NET40 || NET45
 
 #if !NET35 && !NET40
-        private static Dictionary<string, object> PushPropertiesCallContext(IReadOnlyList<KeyValuePair<string, object>> properties)
+        private static Dictionary<string, object> PushPropertiesCallContext<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> properties)
         {
             var oldContext = GetMappedContextCallContext();
             var newContext = CloneMappedContext(oldContext, properties.Count);
-            for (int i = 0; i < properties.Count; ++i)
-                SetPropertyCallContext(properties[i].Key, properties[i].Value, newContext);
+            using (var scopeEnumerator = new ScopePropertiesEnumerator<TValue>(properties))
+            {
+                while (scopeEnumerator.MoveNext())
+                {
+                    var item = scopeEnumerator.Current;
+                    SetPropertyCallContext(item.Key, item.Value, newContext);
+                }
+            }
             SetMappedContextCallContext(newContext);
             return oldContext;
         }
 #endif
 
-        private static Dictionary<string, object> PushPropertyCallContext<T>(string propertyName, T propertyValue)
+        private static Dictionary<string, object> PushPropertyCallContext<TValue>(string propertyName, TValue propertyValue)
         {
             var oldContext = GetMappedContextCallContext();
             var newContext = CloneMappedContext(oldContext, 1);
@@ -1224,7 +1260,7 @@ namespace NLog
             return new Dictionary<string, object>(initialCapacity, DefaultComparer);
         }
 
-        private static void SetPropertyCallContext<T>(string item, T value, IDictionary<string, object> mappedContext)
+        private static void SetPropertyCallContext<TValue>(string item, TValue value, IDictionary<string, object> mappedContext)
         {
             object objectValue = value;
             if (Convert.GetTypeCode(objectValue) != TypeCode.Object)
