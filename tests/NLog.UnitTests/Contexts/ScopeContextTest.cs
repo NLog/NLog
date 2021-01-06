@@ -172,7 +172,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        public void LoggerPushNestedStatePropertiesTest()
+        public void LoggerPushScopePropertiesTest()
         {
             // Arrange
             ScopeContext.Clear();
@@ -180,16 +180,14 @@ namespace NLog.UnitTests.Contexts
             var expectedGuid = System.Guid.NewGuid();
             var expectedProperties = new[] { new KeyValuePair<string, object>("Hello", expectedString), new KeyValuePair<string, object>("RequestId", expectedGuid) };
             Dictionary<string, object> allProperties = null;
-            object[] allNestedStates = null;
             object stringValueLookup = null;
             var logger = new LogFactory().GetCurrentClassLogger();
 
             // Act
             using (logger.PushScopeProperty("Hello", "People"))
             {
-                using (logger.PushScopeState(expectedProperties))
+                using (logger.PushScopeProperties(expectedProperties))
                 {
-                    allNestedStates = ScopeContext.GetAllNestedStates();
                     allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
                 }
                 ScopeContext.TryGetProperty("Hello", out stringValueLookup);
@@ -199,8 +197,41 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(2, allProperties.Count);
             Assert.Equal(expectedString, allProperties["Hello"]);
             Assert.Equal(expectedGuid, allProperties["RequestId"]);
-            Assert.Single(allNestedStates);
-            Assert.Equal(expectedProperties, allNestedStates[0]);
+            Assert.Equal(expectedProperties.Select(p => new KeyValuePair<string, object>(p.Key, p.Value)), allProperties);
+            Assert.Equal("People", stringValueLookup);
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void LoggerPushScopePropertiesCovarianceTest(bool convertDictionary)
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedString = "World";
+            var expectedId = 42;
+            IReadOnlyCollection<KeyValuePair<string,IConvertible>> expectedProperties = new[] { new KeyValuePair<string, IConvertible>("Hello", expectedString), new KeyValuePair<string, IConvertible>("RequestId", expectedId) };
+            if (convertDictionary)
+                expectedProperties = expectedProperties.ToDictionary(i => i.Key, i => i.Value);
+            Dictionary<string, object> allProperties = null;
+            object stringValueLookup = null;
+            var logger = new LogFactory().GetCurrentClassLogger();
+
+            // Act
+            using (logger.PushScopeProperty("Hello", "People"))
+            {
+                using (logger.PushScopeProperties(expectedProperties))
+                {
+                    allProperties = ScopeContext.GetAllProperties().ToDictionary(x => x.Key, x => x.Value);
+                }
+                ScopeContext.TryGetProperty("Hello", out stringValueLookup);
+            }
+
+            // Assert
+            Assert.Equal(2, allProperties.Count);
+            Assert.Equal(expectedString, allProperties["Hello"]);
+            Assert.Equal(expectedId, allProperties["RequestId"]);
+            Assert.Equal(expectedProperties.Select(p => new KeyValuePair<string, object>(p.Key, p.Value)), allProperties);
             Assert.Equal("People", stringValueLookup);
         }
 #endif
@@ -267,6 +298,31 @@ namespace NLog.UnitTests.Contexts
             // Arrange
             ScopeContext.Clear();
             var expectedNestedState = "First Push";
+            object topNestedState = null;
+            object[] allNestedStates = null;
+            var logger = new LogFactory().GetCurrentClassLogger();
+
+            // Act
+            using (logger.PushScopeState(expectedNestedState))
+            {
+                topNestedState = ScopeContext.PeekNestedState();
+                allNestedStates = ScopeContext.GetAllNestedStates();
+            }
+            var failed = ScopeContext.PeekNestedState() != null;
+
+            // Assert
+            Assert.Equal(expectedNestedState, topNestedState);
+            Assert.Single(allNestedStates);
+            Assert.Equal(expectedNestedState, allNestedStates[0]);
+            Assert.False(failed);
+        }
+
+        [Fact]
+        public void LoggerPushNestedStatePrimitiveTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedNestedState = 42;
             object topNestedState = null;
             object[] allNestedStates = null;
             var logger = new LogFactory().GetCurrentClassLogger();

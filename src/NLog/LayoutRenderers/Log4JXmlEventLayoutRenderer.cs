@@ -355,7 +355,7 @@ namespace NLog.LayoutRenderers
         {
             if (IncludeScopeProperties)
             {
-                using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator(ScopeContext.GetAllProperties()))
+                using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
                     while (scopeEnumerator.MoveNext())
                     {
