@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net452;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net461;netcoreapp2.1</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -18,44 +18,41 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 
-    <DebugType Condition=" '$(TargetFramework)' == 'net452' ">Full</DebugType>
+    <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">Full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
-    <DefineConstants>$(DefineConstants);NET4_5;DYNAMIC_OBJECT</DefineConstants>
+  <PropertyGroup Condition=" '$(TestTargetFramework)' != '' ">
+    <OutputPath>.\bin\$(Configuration)\$(TestTargetFramework)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == 'net35' ">
-    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' == 'net35' ">
+    <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == 'net40-client' ">
-    <DefineConstants>$(DefineConstants);NET4_0;DYNAMIC_OBJECT</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' == 'net45' ">
+    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5;DYNAMIC_OBJECT</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
   </PropertyGroup>
-
+  
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
     <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
-    <NoWarn>1701;1702;1705</NoWarn>
-  </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" Condition=" '$(monobuild)' == '' " />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.1" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
@@ -65,14 +62,16 @@
     </ProjectReference>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite" />
     <Reference Include="System.DirectoryServices.AccountManagement" Condition=" '$(monobuild)' == '' " />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -80,31 +79,19 @@
     <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
     <Reference Include="Microsoft.CSharp" />
 
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
+    <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" Condition=" '$(monobuild)' == '' " />
+
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
-    <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' != '' ">
+ 
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog">
-      <HintPath>..\..\src\NLog\bin\$(Configuration)\$(TestTargetFramework)\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NLog.MSMQ">
-      <HintPath>..\..\src\NLog.MSMQ\bin\$(Configuration)\$(TestTargetFramework)\NLog.MSMQ.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NLogAutoLoadExtension">
-      <HintPath>..\..\tests\NLogAutoLoadExtension\bin\$(Configuration)\$(TestTargetFramework)\NLogAutoLoadExtension.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SampleExtensions">
-      <HintPath>..\..\tests\SampleExtensions\bin\$(Configuration)\$(TestTargetFramework)\SampleExtensions.dll</HintPath>
+      <HintPath>../../src/NLog/bin/$(Configuration)/$(TestTargetFramework)/NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -119,9 +106,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj" />
-    <ProjectReference Include="..\..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj">
-      <Private>true</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj" /> 
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
       <Private>true</Private>
     </ProjectReference>
@@ -129,9 +114,7 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj" />
-    <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj">
-      <Private>true</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj" />
   </ItemGroup>
 
 </Project>

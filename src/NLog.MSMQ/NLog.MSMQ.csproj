@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35</TargetFrameworks>
 
     <Title>NLog MSMQ target</Title>
     <Company>NLog</Company>
@@ -35,33 +35,25 @@
 
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>MSMQ target for NLog - .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>MSMQ target for NLog - .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-    <Title>MSMQ target for NLog - .NET Framework 4</Title>
-    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>MSMQ target for NLog - .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(monobuild)' != '' ">
-    <Title>$(Title) - Mono</Title>
-    <DefineConstants>$(DefineConstants)MONO</DefineConstants>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

@@ -57,7 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             ILogger logger = LogManager.GetLogger("A");
 
-#if !NET4_5 && !MONO
+#if DEBUG
 #line 100000
 #endif
             logger.Debug("msg");
@@ -66,7 +66,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
             Assert.True(lastMessage.IndexOf(linenumber.ToString(), StringComparison.OrdinalIgnoreCase) == 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
-#if !NET4_5 && !MONO
+#if DEBUG
 #line default
 #endif
         }

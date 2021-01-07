@@ -46,7 +46,7 @@ namespace NLog.Internal
     {
         // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
         // filters control characters but allows only properly-formed surrogate sequences
-#if NET3_5 || NETSTANDARD1_0
+#if NET35 || NETSTANDARD1_3 || NETSTANDARD1_5
         private static readonly Regex InvalidXmlChars = new Regex(
             @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
             RegexOptions.Compiled);
@@ -60,9 +60,7 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-#if NET3_5 || NETSTANDARD1_0
-            return InvalidXmlChars.Replace(text, "");
-#else
+#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
@@ -72,10 +70,12 @@ namespace NLog.Internal
                 }
             }
             return text;
+#else
+            return InvalidXmlChars.Replace(text, "");
 #endif
         }
 
-#if !NET3_5 && !NETSTANDARD1_0
+#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
         /// <summary>
         /// Cleans string of any invalid XML chars found
         /// </summary>
@@ -183,6 +183,33 @@ namespace NLog.Internal
         internal static string XmlConvertToString(object value)
         {
             return XmlConvertToString(value, false);
+        }
+
+        internal static string XmlConvertToString(float value)
+        {
+            if (float.IsNaN(value))
+                return XmlConvert.ToString(value);
+
+            if (float.IsInfinity(value))
+                return Convert.ToString(value, CultureInfo.InvariantCulture);
+
+            return EnsureDecimalPlace(XmlConvert.ToString(value));
+        }
+
+        internal static string XmlConvertToString(double value)
+        {
+            if (double.IsNaN(value))
+                return XmlConvert.ToString(value);
+
+            if (double.IsInfinity(value))
+                return Convert.ToString(value, CultureInfo.InvariantCulture);
+
+            return EnsureDecimalPlace(XmlConvert.ToString(value));
+        }
+
+        internal static string XmlConvertToString(decimal value)
+        {
+            return EnsureDecimalPlace(XmlConvert.ToString(value));
         }
 
         /// <summary>
@@ -336,21 +363,11 @@ namespace NLog.Internal
                 case TypeCode.UInt64:
                     return XmlConvert.ToString(value.ToUInt64(CultureInfo.InvariantCulture));
                 case TypeCode.Single:
-                    {
-                        float singleValue = value.ToSingle(CultureInfo.InvariantCulture);
-                        return float.IsInfinity(singleValue) ?
-                            Convert.ToString(singleValue, CultureInfo.InvariantCulture) :
-                            XmlConvert.ToString(singleValue);
-                    }
+                    return XmlConvertToString(value.ToSingle(CultureInfo.InvariantCulture));
                 case TypeCode.Double:
-                    {
-                        double doubleValue = value.ToDouble(CultureInfo.InvariantCulture);
-                        return double.IsInfinity(doubleValue) ?
-                            Convert.ToString(doubleValue, CultureInfo.InvariantCulture) :
-                            XmlConvert.ToString(doubleValue);
-                    }
+                    return XmlConvertToString(value.ToDouble(CultureInfo.InvariantCulture));
                 case TypeCode.Decimal:
-                    return XmlConvert.ToString(value.ToDecimal(CultureInfo.InvariantCulture));
+                    return XmlConvertToString(value.ToDecimal(CultureInfo.InvariantCulture));
                 case TypeCode.DateTime:
                     return XmlConvert.ToString(value.ToDateTime(CultureInfo.InvariantCulture), XmlDateTimeSerializationMode.Utc);
                 case TypeCode.Char:
@@ -408,5 +425,32 @@ namespace NLog.Internal
         {
             writer.WriteCData(RemoveInvalidXmlChars(value));
         }
+
+        private static string EnsureDecimalPlace(string text)
+        {
+            if (text.IndexOf('.') != -1 || text.IndexOfAny(DecimalScientificExponent) != -1)
+            {
+                return text;
+            }
+            else if (text.Length == 1)
+            {
+                switch (text[0])
+                {
+                    case '0': return "0.0";
+                    case '1': return "1.0";
+                    case '2': return "2.0";
+                    case '3': return "3.0";
+                    case '4': return "4.0";
+                    case '5': return "5.0";
+                    case '6': return "6.0";
+                    case '7': return "7.0";
+                    case '8': return "8.0";
+                    case '9': return "9.0";
+                }
+            }
+            return text + ".0";
+        }
+
+        private static readonly char[] DecimalScientificExponent = new[] { 'e', 'E' };
     }
 }

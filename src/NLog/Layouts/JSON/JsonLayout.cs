@@ -94,7 +94,6 @@ namespace NLog.Layouts
         {
             Attributes = new List<JsonAttribute>();
             RenderEmptyObject = true;
-            IncludeAllProperties = false;
             ExcludeProperties = new HashSet<string>();
             MaxRecursionLimit = 1;
         }
@@ -121,6 +120,12 @@ namespace NLog.Layouts
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
+        /// Gets or sets the option to include all properties from the log event (as JSON)
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        public bool IncludeEventProperties { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
@@ -128,34 +133,44 @@ namespace NLog.Layouts
         public bool IncludeGdc { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
-        [DefaultValue(false)]
-        public bool IncludeMdc { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
-        /// </summary>
-        /// <docgen category='JSON Output' order='10' />
-        [DefaultValue(false)]
-        public bool IncludeMdlc { get; set; }
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
+        private bool? _includeScopeProperties;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [DefaultValue(false)]
-        public bool IncludeAllProperties { get; set; }
+        public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
+        private bool? _includeMdc;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
+        private bool? _includeMdlc;
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
-#if NET3_5
-        public HashSet<string> ExcludeProperties { get; set; }
-#else
+#if !NET35
         public ISet<string> ExcludeProperties { get; set; }
+#else
+        public HashSet<string> ExcludeProperties { get; set; }        
 #endif
 
         /// <summary>
@@ -168,6 +183,9 @@ namespace NLog.Layouts
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
+        /// <remarks>
+        /// If not set explicitly then the value of the parent will be used as default.
+        /// </remarks>
         /// <docgen category='JSON Formating' order='10' />
         [DefaultValue(true)]    // TODO NLog 5 change to nullable (with default fallback to false)
         public bool EscapeForwardSlash
@@ -183,15 +201,12 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
-            if (IncludeMdc)
+
+            if (IncludeScopeProperties)
             {
                 ThreadAgnostic = false;
             }
-            if (IncludeMdlc)
-            {
-                ThreadAgnostic = false;
-            }
-            if (IncludeAllProperties)
+            if (IncludeEventProperties)
             {
                 MutableUnsafe = true;
             }
@@ -264,7 +279,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if(IncludeGdc)
+            if (IncludeGdc)
             {
                 foreach (string key in GlobalDiagnosticsContext.GetNames())
                 {
@@ -275,29 +290,22 @@ namespace NLog.Layouts
                 }
             }
 
-            if (IncludeMdc)
+            if (IncludeScopeProperties)
             {
-                foreach (string key in MappedDiagnosticsContext.GetNames())
+                using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
-                    if (string.IsNullOrEmpty(key))
-                        continue;
-                    object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                    while (scopeEnumerator.MoveNext())
+                    {
+                        var scopeProperty = scopeEnumerator.Current;
+                        if (string.IsNullOrEmpty(scopeProperty.Key))
+                            continue;
+
+                        AppendJsonPropertyValue(scopeProperty.Key, scopeProperty.Value, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                    }
                 }
             }
 
-            if (IncludeMdlc)
-            {
-                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
-                {
-                    if (string.IsNullOrEmpty(key))
-                        continue;
-                    object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
-                }
-            }
-
-            if (IncludeAllProperties && logEvent.HasProperties)
+            if (IncludeEventProperties && logEvent.HasProperties)
             {
                 IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
                 foreach (var prop in propertiesList)

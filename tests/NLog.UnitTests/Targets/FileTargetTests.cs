@@ -1448,7 +1448,8 @@ namespace NLog.UnitTests.Targets
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    Header = "header",
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -1501,6 +1502,9 @@ namespace NLog.UnitTests.Targets
                 var files = Directory.GetFiles(archiveFolder);
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
                 Assert.Equal(maxArchiveFiles, files.Length);
+
+                foreach (var file in files)
+                    AssertFileContentsStartsWith(file, "header", Encoding.UTF8);
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
                 //writing one line on a new day will trigger the cleanup of old archived files
@@ -1734,19 +1738,19 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters))]
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-#if !NET4_5
+            if (keepFileOpen && !networkWrites && !concurrentWrites)
+                return; // This combination do not support two local FileTargets to the same file
+
+#if NET35 || NET40
             if (enableArchiveCompression)
                 return; // No need to test with compression
 #endif
-
-            if (keepFileOpen && !networkWrites && !concurrentWrites)
-                return; // This combination do not support two local FileTargets to the same file
 
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
             var defaultTimeSource = TimeSource.Current;
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
             IFileCompressor fileCompressor = null;
 #endif
 
@@ -1763,7 +1767,7 @@ namespace NLog.UnitTests.Targets
 
                 var config = new LoggingConfiguration();
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableArchiveCompression)
                 {
                     fileCompressor = FileTarget.FileCompressor;
@@ -1845,7 +1849,7 @@ namespace NLog.UnitTests.Targets
             {
                 TimeSource.Current = defaultTimeSource; // restore default time source
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableArchiveCompression)
                 {
                     FileTarget.FileCompressor = fileCompressor;
@@ -2114,7 +2118,7 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.Combine(tempPath, "file.txt");
             var archiveExtension = enableCompression ? "zip" : "txt";
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
             IFileCompressor fileCompressor = null;
 #endif
 
@@ -2131,7 +2135,7 @@ namespace NLog.UnitTests.Targets
                     MaxArchiveFiles = 3
                 };
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     fileCompressor = FileTarget.FileCompressor;
@@ -2186,7 +2190,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     FileTarget.FileCompressor = fileCompressor;
@@ -2481,7 +2485,7 @@ namespace NLog.UnitTests.Targets
             Layout logFile = Path.Combine(tempPath, fileTxt);
             var logFileName = logFile.Render(LogEventInfo.CreateNullEvent());
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
             IFileCompressor fileCompressor = null;
 #endif
 
@@ -2502,7 +2506,7 @@ namespace NLog.UnitTests.Targets
                 });
 
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     fileCompressor = FileTarget.FileCompressor;
@@ -2545,7 +2549,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-#if NET3_5 || NET4_0
+#if NET35 || NET40
                 if (enableCompression)
                 {
                     FileTarget.FileCompressor = fileCompressor;
@@ -3278,7 +3282,6 @@ namespace NLog.UnitTests.Targets
                 NLog.Common.InternalLogger.Reset();
             }
         }
-
 
         [Fact]
         public void Dont_throw_Exception_when_archiving_is_enabled_with_async()
@@ -4270,6 +4273,55 @@ namespace NLog.UnitTests.Targets
 
             // Assert
             Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ShouldNotArchiveWhenMeetingOldLogEventTimestamps()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                string archiveFolder = Path.Combine(tempPath, "archive");
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = logFile,
+                    ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    Layout = "${message}",
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                var logger = LogManager.GetLogger(nameof(ShouldNotArchiveWhenMeetingOldLogEventTimestamps));
+                logger.Info("123");
+                logger.Info("456");
+                logger.Log(new LogEventInfo(LogLevel.Info, null, "789") { TimeStamp = NLog.Time.TimeSource.Current.Time.AddDays(-2) });
+                logger.Log(new LogEventInfo(LogLevel.Info, null, "123") { TimeStamp = NLog.Time.TimeSource.Current.Time.AddDays(-2) });
+                logger.Info("456");
+                logger.Log(new LogEventInfo(LogLevel.Info, null, "123") { TimeStamp = NLog.Time.TimeSource.Current.Time.AddDays(1) });
+                LogManager.Configuration = null;    // Flush
+
+                AssertFileContents(logFile,
+                    "123\n",
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                   Path.Combine(archiveFolder, "0000.txt"),
+                    "123\n456\n789\n123\n456\n",
+                    Encoding.UTF8);
+
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0001.txt")));
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
         }
     }
 

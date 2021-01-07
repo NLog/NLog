@@ -53,41 +53,6 @@ namespace NLog.UnitTests.LogReceiverService
     {
         private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
 
-#if WCF_SUPPORTED
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData(" ")]
-        [InlineData("message1")]
-        public void TranslateEventAndBack(string message)
-        {
-            // Arrange
-            var service = new LogReceiverWebServiceTarget {IncludeEventProperties = true};
-
-            var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", message);
-
-            var nLogEvents = new NLogEvents
-            {
-                Strings = new StringCollection(),
-                LayoutNames = new StringCollection(),
-                BaseTimeUtc = DateTime.UtcNow.Ticks,
-                ClientName = "client1",
-                Events = new NLogEvent[0]
-
-            };
-            var dict2 = new Dictionary<string, int>();
-
-            // Act
-            var translateEvent = service.TranslateEvent(logEvent, nLogEvents, dict2);
-            var result = translateEvent.ToEventInfo(nLogEvents, "");
-
-            // Assert
-            Assert.Equal("logger1", result.LoggerName);
-            Assert.Equal(message, result.Message);
-
-        }
-#endif
-
         [Fact]
         public void ToLogEventInfoTest()
         {
@@ -398,7 +363,6 @@ namespace NLog.UnitTests.LogReceiverService
 
         public class LogReceiverMock : ILogReceiverServer, ILogReceiverOneWayServer
         {
-
             public CountdownEvent CountdownEvent { get; }
 
             /// <inheritdoc />

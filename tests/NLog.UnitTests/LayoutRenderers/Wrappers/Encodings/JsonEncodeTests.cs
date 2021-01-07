@@ -42,9 +42,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void JsonEncodeTest1()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", " abc\"\n\b\r\f\t/\u1234\u5432\\xyz ");
-            SimpleLayout l = "${json-encode:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", " abc\"\n\b\r\f\t/\u1234\u5432\\xyz ");
+            SimpleLayout l = "${json-encode:${scopeproperty:foo}}";
 
             Assert.Equal(@" abc\""\n\b\r\f\t\/\u1234\u5432\\xyz ", l.Render(LogEventInfo.CreateNullEvent()));
         }

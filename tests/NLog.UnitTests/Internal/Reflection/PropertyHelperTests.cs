@@ -37,15 +37,14 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal.Reflection
 {
-    public class PropertyHelperTests
+    public class PropertyHelperTests : NLogTestBase
     {
-
         [Fact]
         public void AssignArrayPropertyFromStringWillResultInNotSupportedExceptionSomeWhereDeep()
         {
             // Arrange
             var config = @"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                   <target name='f' type='File' filename='test.log'>
                     <layout type='CSVLayout' column='a'>

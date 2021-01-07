@@ -268,7 +268,7 @@ namespace NLog.Config
 
         private static string LookupNLogAssemblyLocation()
         {
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).GetAssembly();
             var nlogAssemblyLocation = nlogAssembly?.Location;

@@ -608,10 +608,8 @@ namespace NLog.Config
                         final = ParseBooleanValue(childProperty.Key, childProperty.Value, false);
                         break;
                     case "LEVEL":
-                        enableLevels = childProperty.Value;
-                        break;
                     case "LEVELS":
-                        enableLevels = StringHelpers.IsNullOrWhiteSpace(childProperty.Value) ? "," : childProperty.Value;
+                        enableLevels = childProperty.Value;
                         break;
                     case "MINLEVEL":
                         minLevel = childProperty.Value;
@@ -668,15 +666,9 @@ namespace NLog.Config
                 }
                 else
                 {
-                    if (enableLevels.IndexOf(',') >= 0)
+                    foreach (var logLevel in enableLevels.SplitAndTrimTokens(','))
                     {
-                        IEnumerable<LogLevel> logLevels = ParseLevels(enableLevels);
-                        foreach (var logLevel in logLevels)
-                            rule.EnableLoggingForLevel(logLevel);
-                    }
-                    else
-                    {
-                        rule.EnableLoggingForLevel(LogLevelFromString(enableLevels));
+                        rule.EnableLoggingForLevel(LogLevelFromString(logLevel));
                     }
                 }
             }
@@ -704,13 +696,6 @@ namespace NLog.Config
             SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? new SimpleLayout(levelLayout, _serviceRepository.ConfigurationItemFactory) : null;
             simpleLayout?.Initialize(this);
             return simpleLayout;
-        }
-
-        private IEnumerable<LogLevel> ParseLevels(string enableLevels)
-        {
-            string[] tokens = enableLevels.SplitAndTrimTokens(',');
-            var logLevels = tokens.Select(LogLevelFromString);
-            return logLevels;
         }
 
         private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
@@ -1205,7 +1190,7 @@ namespace NLog.Config
             "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
-#if !NET3_5
+#if !NET35
             if (target is AsyncTaskTarget)
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
@@ -1244,7 +1229,7 @@ namespace NLog.Config
                 }
             }
 
-#if !NET3_5
+#if !NET35
             if (target is AsyncTaskTarget && wrapperTargetInstance is AsyncTargetWrapper && ReferenceEquals(wrapperTargetInstance, wtb))
             {
                 InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
@@ -1386,7 +1371,7 @@ namespace NLog.Config
             public IEnumerable<KeyValuePair<string, string>> Values => ValueLookup;
 
             /// <remarks>
-            /// Explicit cast because net3_5 doesn't support covariance.
+            /// Explicit cast because NET35 doesn't support covariance.
             /// </remarks>
             IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => ValidChildren.Cast<ILoggingConfigurationElement>();
 

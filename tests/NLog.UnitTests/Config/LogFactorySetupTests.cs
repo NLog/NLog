@@ -537,6 +537,29 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void SetupInternalLoggerSetupFromEnvironmentVariablesTest()
+        {
+            try
+            {
+                // Arrange
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+                InternalLogger.LogToConsole = true;
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetupFromEnvironmentVariables().SetMinimumLogLevel(LogLevel.Fatal));
+
+                // Assert
+                Assert.False(InternalLogger.LogToConsole);
+                Assert.Equal(LogLevel.Fatal, InternalLogger.LogLevel);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
         public void SetupExtensionsRegisterConditionMethodTest()
         {
             try

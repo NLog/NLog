@@ -45,7 +45,7 @@ namespace NLog.Targets
         public static bool IsConsoleAvailable(out string reason)
         {
             reason = string.Empty;
-#if !MONO && !NETSTANDARD1_0
+#if !MONO && !NETSTANDARD1_3 && !NETSTANDARD1_5
             try
             {
                 if (!Environment.UserInteractive)
@@ -79,7 +79,7 @@ namespace NLog.Targets
                 return currentEncoding;
             else if ((isInitialized && !pauseLogging) || IsConsoleAvailable(out _))
                 return Console.OutputEncoding;
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_5
             return Encoding.Default;
 #else
             return currentEncoding;

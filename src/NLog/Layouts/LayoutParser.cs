@@ -386,8 +386,11 @@ namespace NLog.Layouts
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            // TODO NLog 5.0 Should throw exception when invalid configuration (Check throwConfigExceptions)
-                            InternalLogger.Warn("Skipping unrecognized property '{0}={1}` for ${{{2}}} ({3})", parameterName, value, name, layoutRenderer?.GetType());
+                            var configException = new NLogConfigurationException($"Unrecognized property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
+                            if (throwConfigExceptions ?? configException.MustBeRethrown())
+                            {
+                                throw configException;
+                            }
                         }
                     }
                     else
@@ -413,7 +416,7 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    SetDefaultPropertyValue(configurationItemFactory, layoutRenderer, parameterName);
+                    SetDefaultPropertyValue(configurationItemFactory, layoutRenderer, parameterName, throwConfigExceptions);
                 }
 
                 ch = stringReader.Read();
@@ -436,18 +439,18 @@ namespace NLog.Layouts
             }
             catch (Exception ex)
             {
-                if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                var configException = new NLogConfigurationException(ex, $"Error parsing layout {name}");
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
-                    throw;  // TODO NLog 5.0 throw NLogConfigurationException. Maybe also include entire input layout-string (if not too long)
+                    throw configException;
                 }
-                InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
                 // replace with empty values
                 layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
             return layoutRenderer;
         }
 
-        private static void SetDefaultPropertyValue(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, string value)
+        private static void SetDefaultPropertyValue(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, string value, bool? throwConfigExceptions)
         {
             // what we've just read is not a parameterName, but a value
             // assign it to a default property (denoted by empty string)
@@ -457,8 +460,11 @@ namespace NLog.Layouts
             }
             else
             {
-                // TODO NLog 5.0 Should throw exception when invalid configuration (Check throwConfigExceptions)
-                InternalLogger.Warn("{0} has no default property to assign value {1}", layoutRenderer.GetType(), value);
+                var configException = new NLogConfigurationException($"{layoutRenderer.GetType()} has no default property to assign value {value}");
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
+                {
+                    throw configException;
+                }
             }
         }
 

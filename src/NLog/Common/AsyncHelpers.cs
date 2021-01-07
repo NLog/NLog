@@ -46,29 +46,29 @@ namespace NLog.Common
     {
         internal static int GetManagedThreadId()
         {
-#if NETSTANDARD1_3
-            return System.Environment.CurrentManagedThreadId;
-#else
+#if !NETSTANDARD1_3
             return Thread.CurrentThread.ManagedThreadId;
+#else
+            return System.Environment.CurrentManagedThreadId;            
 #endif
         }
 
         internal static void StartAsyncTask(AsyncHelpersTask asyncTask, object state)
         {
             var asyncDelegate = asyncTask.AsyncDelegate;
-#if NETSTANDARD1_0
-            System.Threading.Tasks.Task.Factory.StartNew(asyncDelegate, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             ThreadPool.QueueUserWorkItem(asyncDelegate, state);
+#else
+            System.Threading.Tasks.Task.Factory.StartNew(asyncDelegate, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);       
 #endif
         }
 
         internal static void WaitForDelay(TimeSpan delay)
         {
-#if NETSTANDARD1_3
-            System.Threading.Tasks.Task.Delay(delay).Wait();
-#else
+#if !NETSTANDARD1_3
             Thread.Sleep(delay);
+#else
+            System.Threading.Tasks.Task.Delay(delay).Wait();
 #endif
         }
 
@@ -230,9 +230,10 @@ namespace NLog.Common
                 T itemCopy = item;
                 StartAsyncTask(new AsyncHelpersTask(s =>
                 {
+                    var preventMultipleCalls = PreventMultipleCalls(continuation);
                     try
                     {
-                        action(itemCopy, PreventMultipleCalls(continuation));
+                        action(itemCopy, preventMultipleCalls);
                     }
                     catch (Exception ex)
                     {
@@ -241,6 +242,8 @@ namespace NLog.Common
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
+
+                        preventMultipleCalls.Invoke(ex);
                     }
                 }), null);
             }

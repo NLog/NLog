@@ -39,33 +39,21 @@ namespace NLog
     internal interface IIncludeContext
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeMdc { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeNdc { get; set; }
-
-        /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeAllProperties { get; set; }
+        bool IncludeEventProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeMdlc { get; set; }
+        bool IncludeScopeProperties { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> nested-state-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeNdlc { get; set; }
+        bool IncludeScopeNestedStates { get; set; }
     }
 }

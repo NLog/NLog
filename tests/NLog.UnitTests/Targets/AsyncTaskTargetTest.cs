@@ -33,7 +33,7 @@
 
 namespace NLog.UnitTests.Targets
 {
-#if !NET3_5
+#if !NET35
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Targets
 
             int managedThreadId = 0;
             Task task;
-            using (MappedDiagnosticsLogicalContext.SetScoped("Test", 42))
+            using (ScopeContext.PushProperty("Test", 42))
             {
                 task = Task.Run(() =>
                 {
@@ -521,6 +521,33 @@ namespace NLog.UnitTests.Targets
             logger.Error("Goodbye World");
             Assert.True(asyncTarget.WaitForWriteEvent());
             Assert.NotEmpty(asyncTarget.Logs);
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_FlushWhenBlocked()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+            var asyncTarget = new AsyncTaskBatchTestTarget
+            {
+                Layout = "${level}",
+                TaskDelayMilliseconds = 10000,
+                BatchSize = 10,
+                QueueLimit = 10,
+                OverflowAction = NLog.Targets.Wrappers.AsyncTargetWrapperOverflowAction.Block,
+            };
+            logConfig.AddRuleForAllLevels(asyncTarget);
+            logFactory.Configuration = logConfig;
+            var logger = logFactory.GetLogger(nameof(AsyncTaskTarget_FlushWhenBlocked));
+
+            // Act
+            for (int i = 0; i < 10; ++i)
+                logger.Info("Testing {0}", i);
+            logFactory.Flush(TimeSpan.FromSeconds(5));
+
+            // Assert
+            Assert.Equal(1, asyncTarget.WriteTasks);
         }
 
         [Fact]

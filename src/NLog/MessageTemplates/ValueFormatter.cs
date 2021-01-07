@@ -207,7 +207,7 @@ namespace NLog.MessageTemplates
                         }
                         else
                         {
-                            builder.AppendIntegerAsString(value, convertibleTypeCode);
+                            builder.AppendNumericInvariant(value, convertibleTypeCode);
                         }
                         break;
                     }

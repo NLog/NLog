@@ -169,10 +169,10 @@ namespace NLog
             get
             {
                 return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
-#if NETSTANDARD1_0
-                    new FakeAppDomain()
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                     new AppDomainWrapper(AppDomain.CurrentDomain)
+#else
+                    new FakeAppDomain()                    
 #endif
                     )));
             }
@@ -438,10 +438,10 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
-#if NETSTANDARD1_0
-            var className = StackTraceUsageUtils.GetClassFullName();
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = StackTraceUsageUtils.GetClassFullName();       
 #endif
             return GetLogger(className);
         }
@@ -456,12 +456,12 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public T GetCurrentClassLogger<T>() where T : Logger
+        public T GetCurrentClassLogger<T>() where T : Logger, new()
         {
-#if NETSTANDARD1_0
-            var className = StackTraceUsageUtils.GetClassFullName();
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = StackTraceUsageUtils.GetClassFullName();            
 #endif
             return (T)GetLogger(className, typeof(T));
         }
@@ -478,10 +478,10 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
-#if NETSTANDARD1_0
-            var className = StackTraceUsageUtils.GetClassFullName();
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = StackTraceUsageUtils.GetClassFullName();            
 #endif
             return GetLoggerThreadSafe(className, loggerType);
         }
@@ -506,7 +506,7 @@ namespace NLog
         /// <typeparam name="T">Type of the logger</typeparam>
         /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
         /// are not guaranteed to return the same logger reference.</returns>
-        public T GetLogger<T>(string name) where T : Logger
+        public T GetLogger<T>(string name) where T : Logger, new()
         {
             return (T)GetLoggerThreadSafe(name, typeof(T));
         }

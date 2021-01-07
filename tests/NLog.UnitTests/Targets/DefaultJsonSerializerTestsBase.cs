@@ -177,6 +177,16 @@ namespace NLog.UnitTests.Targets
         [InlineData((ulong)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
         [InlineData(2776145.7743, "2776145.7743")]
+        [InlineData(0D, "0.0")]
+        [InlineData(0F, "0.0")]
+        [InlineData(1D, "1.0")]
+        [InlineData(1F, "1.0")]
+        [InlineData(-1D, "-1.0")]
+        [InlineData(-1F, "-1.0")]
+        [InlineData(5e30D, "5E+30")]
+        [InlineData(5e30F, "5E+30")]
+        [InlineData(-5e30D, "-5E+30")]
+        [InlineData(-5e30F, "-5E+30")]
         [InlineData(double.NaN, "\"NaN\"")]
         [InlineData(double.PositiveInfinity, "\"Infinity\"")]
         [InlineData(float.NaN, "\"NaN\"")]
@@ -185,9 +195,6 @@ namespace NLog.UnitTests.Targets
         {
             var actual = SerializeObject(o);
             Assert.Equal(expected, actual);
-
-            var result = SerializeObject(o);
-            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -197,6 +204,46 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("true", actual);
             actual = SerializeObject(false);
             Assert.Equal("false", actual);
+        }
+
+        [Fact]
+        public void SerializeNumberDecimal_Test()
+        {
+            var actual = SerializeObject(-1M);
+            Assert.Equal("-1.0", actual);
+
+            actual = SerializeObject(0M);
+            Assert.Equal("0.0", actual);
+
+            actual = SerializeObject(1M);
+            Assert.Equal("1.0", actual);
+
+            actual = SerializeObject(2M);
+            Assert.Equal("2.0", actual);
+
+            actual = SerializeObject(3M);
+            Assert.Equal("3.0", actual);
+
+            actual = SerializeObject(4M);
+            Assert.Equal("4.0", actual);
+
+            actual = SerializeObject(5M);
+            Assert.Equal("5.0", actual);
+
+            actual = SerializeObject(6M);
+            Assert.Equal("6.0", actual);
+
+            actual = SerializeObject(7M);
+            Assert.Equal("7.0", actual);
+
+            actual = SerializeObject(8M);
+            Assert.Equal("8.0", actual);
+
+            actual = SerializeObject(9M);
+            Assert.Equal("9.0", actual);
+
+            actual = SerializeObject(3.14159265M);
+            Assert.Equal("3.14159265", actual);
         }
 
         [Fact]
@@ -211,17 +258,41 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeDateTime_Test2()
         {
-            var val = new DateTime(2016, 12, 31);
-            var actual = SerializeObject(val);
-            Assert.Equal("\"" + "2016-12-31T00:00:00Z" + "\"", actual);
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");    // uses "." instead of ":" for time
+
+                var val = new DateTime(2016, 12, 31);
+                var actual = SerializeObject(val);
+                Assert.Equal("\"" + "2016-12-31T00:00:00Z" + "\"", actual);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         [Fact]
         public void SerializeDateTimeOffset_Test()
         {
-            var val = new DateTimeOffset(new DateTime(2016, 12, 31, 2, 30, 59), new TimeSpan(4, 30, 0));
-            var actual = SerializeObject(val);
-            Assert.Equal("\"" + "2016-12-31 02:30:59 +04:30" + "\"", actual);
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");    // uses "." instead of ":" for time
+
+                var val = new DateTimeOffset(new DateTime(2016, 12, 31, 2, 30, 59), new TimeSpan(4, 30, 0));
+                var actual = SerializeObject(val);
+                Assert.Equal("\"" + "2016-12-31 02:30:59 +04:30" + "\"", actual);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         [Fact]
@@ -241,8 +312,20 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeTime3_Test()
         {
-            var actual = SerializeObject(new TimeSpan(0, 0, 2, 3, 4));
-            Assert.Equal("\"00:02:03.0040000\"", actual);
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");    // uses "." instead of ":" for time
+
+                var actual = SerializeObject(new TimeSpan(0, 0, 2, 3, 4));
+                Assert.Equal("\"00:02:03.0040000\"", actual);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
         }
 
         [Fact]
@@ -290,7 +373,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{}", actual);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void SerializeReadOnlyExpandoDict_Test()
         {
@@ -425,7 +508,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
-#if NETSTANDARD || NET462 || NET47
+#if !NET35 && !NET45
         [Fact]
         public void SerializeValueTuple_Test()
         {
@@ -436,6 +519,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("\"(test name, 1)\"", actual);
         }
 #endif
+
         [Fact]
         public void SerializeAnonymousObject_Test()
         {
@@ -444,7 +528,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40
 
         [Fact]
         public void SerializeExpandoObject_Test()

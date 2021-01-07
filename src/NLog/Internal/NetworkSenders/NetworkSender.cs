@@ -103,8 +103,16 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Send(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            LastSendTime = Interlocked.Increment(ref currentSendTime);
-            DoSend(bytes, offset, length, asyncContinuation);
+            try
+            {
+                LastSendTime = Interlocked.Increment(ref currentSendTime);
+                DoSend(bytes, offset, length, asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "NetworkTarget: Error sending network request");
+                asyncContinuation(ex);
+            }
         }
 
         /// <summary>
@@ -167,10 +175,10 @@ namespace NLog.Internal.NetworkSenders
 
                 default:
                     {
-#if NETSTANDARD1_0
-                        var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList;
+#else
+                        var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;                        
 #endif
                         foreach (var addr in addresses)
                         {

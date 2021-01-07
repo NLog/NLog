@@ -83,7 +83,7 @@ namespace NLog.Internal.NetworkSenders
                 EnableKeepAliveSuccessful = TryEnableKeepAlive(socketProxy.UnderlyingSocket, (int)KeepAliveTime.TotalSeconds);
             }
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
                 return new SslSocketProxy(host, SslProtocols, socketProxy);

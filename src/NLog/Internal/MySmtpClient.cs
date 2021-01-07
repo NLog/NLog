@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
 
 namespace NLog.Internal
 {
@@ -48,7 +48,7 @@ namespace NLog.Internal
     internal class MySmtpClient : SmtpClient, ISmtpClient
 #pragma warning restore 618
     {
-#if NET3_5 || MONO
+#if NET35 || MONO
         /// <summary>
         /// Sends a QUIT message to the SMTP server, gracefully ends the TCP connection, and releases all resources used by the current instance of the <see cref="T:System.Net.Mail.SmtpClient"/> class.
         /// </summary>

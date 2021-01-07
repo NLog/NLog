@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Runtime.CompilerServices;
-using NLog.Internal;
-
 namespace NLog.Fluent
 {
-#if NET4_5
+#if !NET35 && !NET40
+    using System;
+    using System.IO;
+    using System.Runtime.CompilerServices;
+    using NLog.Common;
+
     /// <summary>
     /// A global logging class using caller info to find the logger.
     /// </summary>
@@ -52,7 +52,7 @@ namespace NLog.Fluent
         /// <param name="logLevel">The log level.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Level(LogLevel logLevel, [CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Level(LogLevel logLevel, [CallerFilePath] string callerFilePath = null)
         {
             return Create(logLevel, callerFilePath);
         }
@@ -62,7 +62,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Trace([CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Trace([CallerFilePath] string callerFilePath = null)
         {
             return Create(LogLevel.Trace, callerFilePath);
         }
@@ -72,7 +72,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Debug([CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Debug([CallerFilePath] string callerFilePath = null)
         {
             return Create(LogLevel.Debug, callerFilePath);
         }
@@ -82,7 +82,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Info([CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Info([CallerFilePath] string callerFilePath = null)
         {
             return Create(LogLevel.Info, callerFilePath);
         }
@@ -92,7 +92,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Warn([CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Warn([CallerFilePath] string callerFilePath = null)
         {
             return Create(LogLevel.Warn, callerFilePath);
         }
@@ -102,7 +102,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Error([CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Error([CallerFilePath] string callerFilePath = null)
         {
             return Create(LogLevel.Error, callerFilePath);
         }
@@ -112,17 +112,30 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        public static LogBuilder Fatal([CallerFilePath]string callerFilePath = null)
+        public static LogBuilder Fatal([CallerFilePath] string callerFilePath = null)
         {
             return Create(LogLevel.Fatal, callerFilePath);
         }
 
         private static LogBuilder Create(LogLevel logLevel, string callerFilePath)
         {
-            string name = !StringHelpers.IsNullOrWhiteSpace(callerFilePath) ? Path.GetFileNameWithoutExtension(callerFilePath) : null;
-            var logger = StringHelpers.IsNullOrWhiteSpace(name) ? _logger : LogManager.GetLogger(name);
+            var logger = GetLogger(callerFilePath);
             var builder = new LogBuilder(logger, logLevel);
             return builder;
+        }
+
+        private static ILogger GetLogger(string callerFilePath)
+        {
+            try
+            {
+                string name = !string.IsNullOrWhiteSpace(callerFilePath) ? Path.GetFileNameWithoutExtension(callerFilePath) : null;
+                return string.IsNullOrWhiteSpace(name) ? _logger : LogManager.GetLogger(name);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Error when converting CallerFilePath to logger name.");
+                return _logger;
+            }
         }
     }
 #endif

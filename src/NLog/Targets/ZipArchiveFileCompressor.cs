@@ -33,9 +33,9 @@
 
 namespace NLog.Targets
 {
-#if NET4_5
-using System.IO;
-using System.IO.Compression;
+#if !NET35 && !NET40
+    using System.IO;
+    using System.IO.Compression;
 
     /// <summary>
     /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/> 

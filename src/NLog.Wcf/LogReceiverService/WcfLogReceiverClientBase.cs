@@ -111,7 +111,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> CloseCompleted;
 
-#if !NET4_0 && !NET3_5 && !NETSTANDARD
+#if !NET35 && !NET40 && !NETSTANDARD
 
         /// <summary>
         /// Gets or sets the cookie container.
