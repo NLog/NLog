@@ -77,345 +77,268 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void SetupExtensionsAutoLoadExtensionsTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadExtensions());
-                Func<LogFactory, LoggingConfiguration> buildConfig = (f) => new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='t' type='AutoLoadTarget' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='t'>
-                      </logger>
-                    </rules>
-                </nlog>", null, f);
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.AutoLoadExtensions());
+            Func<LogFactory, LoggingConfiguration> buildConfig = (f) => new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='t' type='AutoLoadTarget' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='t'>
+                    </logger>
+                </rules>
+            </nlog>", null, f);
 
-                // Assert
-                logFactory.Configuration = buildConfig(logFactory);
-                Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            logFactory.Configuration = buildConfig(logFactory);
+            Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
         }
 
         [Fact]
         public void SetupExtensionsRegisterAssemblyNameTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterAssembly("NLogAutoLoadExtension"));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='t' type='AutoLoadTarget' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='t'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterAssembly("NLogAutoLoadExtension"));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='t' type='AutoLoadTarget' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='t'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
 
-                // Assert
-                Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
         }
 
         [Fact]
         public void SetupExtensionsRegisterAssemblyTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(MyExtensionNamespace.MyTarget).Assembly));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='t' type='MyTarget' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='t'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(MyExtensionNamespace.MyTarget).Assembly));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='t' type='MyTarget' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='t'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
 
-                // Assert
-                Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
         }
 
         [Fact]
         public void SetupExtensionsRegisterTargetTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget<MyExtensionNamespace.MyTarget>("MyTarget"));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='t' type='MyTarget' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='t'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget<MyExtensionNamespace.MyTarget>("MyTarget"));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='t' type='MyTarget' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='t'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
 
-                // Assert
-                Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
         }
 
         [Fact]
         public void SetupExtensionsRegisterTargetTypeTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget("MyTarget", typeof(MyExtensionNamespace.MyTarget)));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='t' type='MyTarget' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='t'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget("MyTarget", typeof(MyExtensionNamespace.MyTarget)));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='t' type='MyTarget' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='t'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
 
-                // Assert
-                Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<MyExtensionNamespace.MyTarget>("t"));
         }
 
         [Fact]
         public void SetupExtensionsRegisterLayoutMethodTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42")));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${mylayout}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
+            // Act
+            logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42")));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${mylayout}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
 
-                // Assert
-                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
         }
 
         [Fact]
         public void SetupExtensionsRegisterLayoutMethodThreadUnsafeTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.None)));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${mylayout}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
+            // Act
+            logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.None)));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${mylayout}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
 
-                logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
-                var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
-                layout.Render(LogEventInfo.CreateNullEvent());
+            logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+            var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", logFactory.ServiceRepository.ConfigurationItemFactory);
+            layout.Render(LogEventInfo.CreateNullEvent());
 
-                // Assert
-                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-                Assert.False(layout.ThreadAgnostic);
-                Assert.False(layout.ThreadSafe);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+            Assert.False(layout.ThreadAgnostic);
+            Assert.False(layout.ThreadSafe);
         }
 
         [Fact]
         public void SetupExtensionsRegisterLayoutMethodThreadSafeTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.ThreadSafe)));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${mylayout}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
+            // Act
+            logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.ThreadSafe)));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${mylayout}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
 
-                logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
-                var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
-                layout.Render(LogEventInfo.CreateNullEvent());
+            logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+            var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", logFactory.ServiceRepository.ConfigurationItemFactory);
+            layout.Render(LogEventInfo.CreateNullEvent());
 
-                // Assert
-                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-                Assert.False(layout.ThreadAgnostic);
-                Assert.True(layout.ThreadSafe);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+            Assert.False(layout.ThreadAgnostic);
+            Assert.True(layout.ThreadSafe);
         }
 
         [Fact]
         public void SetupExtensionsRegisterLayoutMethodThreadAgnosticTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.ThreadAgnostic)));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${mylayout}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
+            // Act
+            logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42", LayoutRenderOptions.ThreadAgnostic)));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${mylayout}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
 
-                logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
-                var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
-                layout.Render(LogEventInfo.CreateNullEvent());
+            logFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+            var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", logFactory.ServiceRepository.ConfigurationItemFactory);
+            layout.Render(LogEventInfo.CreateNullEvent());
 
-                // Assert
-                Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-                Assert.True(layout.ThreadAgnostic);
-                Assert.True(layout.ThreadSafe);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+            Assert.True(layout.ThreadAgnostic);
+            Assert.True(layout.ThreadSafe);
         }
 
         [Fact]
         public void SetupExtensionsRegisterLayoutRendererTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<MyExtensionNamespace.FooLayoutRenderer>("foo"));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${foo}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<MyExtensionNamespace.FooLayoutRenderer>("foo"));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${foo}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
 
-                // Assert
-                Assert.Equal("foo", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("foo", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
         }
 
         [Fact]
         public void SetupExtensionsRegisterLayoutRendererTypeTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
+            // Arrange
+            var logFactory = new LogFactory();
 
-                // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("foo", typeof(MyExtensionNamespace.FooLayoutRenderer)));
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${foo}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("foo", typeof(MyExtensionNamespace.FooLayoutRenderer)));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${foo}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
 
-                // Assert
-                Assert.Equal("foo", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("foo", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
         }
 
         [Theory]
@@ -553,39 +476,32 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void SetupExtensionsRegisterConditionMethodTest()
         {
-            try
-            {
-                // Arrange
-                var logFactory = new LogFactory();
-                logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("hasParameters", evt => evt.Parameters?.Length > 0));
-                logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isProduction", () => false));
-                logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isValid", typeof(Conditions.ConditionEvaluatorTests.MyConditionMethods).GetMethod(nameof(Conditions.ConditionEvaluatorTests.MyConditionMethods.IsValid))));
+            // Arrange
+            var logFactory = new LogFactory();
+            logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("hasParameters", evt => evt.Parameters?.Length > 0));
+            logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isProduction", () => false));
+            logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isValid", typeof(Conditions.ConditionEvaluatorTests.MyConditionMethods).GetMethod(nameof(Conditions.ConditionEvaluatorTests.MyConditionMethods.IsValid))));
 
-                // Act
-                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
-                    <targets>
-                        <target name='debug' type='Debug' layout='${message}' />
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='debug'>
-			            <filters defaultAction='Neutral'>
-				            <when condition='hasParameters()' action='Ignore' />
-                            <when condition='isProduction()' action='Ignore' />
-                            <when condition='isValid()==false' action='Ignore' />
-			            </filters>
-                      </logger>
-                    </rules>
-                </nlog>", null, logFactory);
-                logFactory.GetLogger("Hello").Info("World");
-                logFactory.GetLogger("Hello").Info("{0}", "Earth");
+            // Act
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+			        <filters defaultAction='Neutral'>
+				        <when condition='hasParameters()' action='Ignore' />
+                        <when condition='isProduction()' action='Ignore' />
+                        <when condition='isValid()==false' action='Ignore' />
+			        </filters>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
+            logFactory.GetLogger("Hello").Info("{0}", "Earth");
 
-                // Assert
-                Assert.Equal("World", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;    // Restore global default
-            }
+            // Assert
+            Assert.Equal("World", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
         }
 
         [Fact]
