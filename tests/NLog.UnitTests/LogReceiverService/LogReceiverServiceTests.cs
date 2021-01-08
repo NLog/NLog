@@ -257,7 +257,7 @@ namespace NLog.UnitTests.LogReceiverService
 
         private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode)
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
           <nlog throwExceptions='true' autoLoadExtensions='true'>
                 <targets>
                    <target type='LogReceiverService'
@@ -277,11 +277,9 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-
-            ExecLogRecieverAndCheck(ExecLogging1, CheckReceived1, 2);
-
+            ExecLogRecieverAndCheck(ExecLogging1, CheckReceived1, 2, logFactory);
         }
 
         /// <summary>
@@ -290,7 +288,7 @@ namespace NLog.UnitTests.LogReceiverService
         /// <param name="logFunc">function for logging the messages</param>
         /// <param name="logCheckFunc">function for checking the received messages</param>
         /// <param name="messageCount">message count for wait for listen and checking</param>
-        private void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
+        private void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount, LogFactory logFactory)
         {
 
             Uri baseAddress = new Uri(logRecieverUrl);
@@ -324,7 +322,7 @@ namespace NLog.UnitTests.LogReceiverService
 
               
 
-                var logger1 = LogManager.GetLogger("logger1");
+                var logger1 = logFactory.GetLogger("logger1");
                 logFunc(logger1);
 
                 countdownEvent.Wait(20000);

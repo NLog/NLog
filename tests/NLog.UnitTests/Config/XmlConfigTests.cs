@@ -259,10 +259,6 @@ namespace NLog.UnitTests.Config
 
             try
             {
-
-                // ReSharper disable once UnusedVariable
-                var factory = ConfigurationItemFactory.Default; // retrieve factory for calling preload and so won't assert those warnings
-
                 TextWriter textWriter = new StringWriter();
                 InternalLogger.LogWriter = textWriter;
                 InternalLogger.IncludeTimestamp = false;
