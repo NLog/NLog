@@ -402,7 +402,7 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(fileLocations.Length, fileLocations.Select(f => f.Key).Distinct().Count());
 
                 var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
+<nlog throwExceptions='true' autoLoadExtensions='true'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
     </targets>
@@ -447,7 +447,7 @@ namespace NLog.UnitTests.Config
                     LogManager.ThrowExceptions = true;
 
                     var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='false'>
+<nlog throwExceptions='false' autoLoadExtensions='true'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
     </targets>

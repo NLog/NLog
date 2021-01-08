@@ -120,6 +120,7 @@ namespace NLog.Config
 
             bool? parseMessageTemplates = null;
             bool internalLoggerEnabled = false;
+            bool autoLoadExtensions = false;
             foreach (var configItem in sortedList)
             {
                 switch (configItem.Key.ToUpperInvariant())
@@ -172,6 +173,9 @@ namespace NLog.Config
                         break;
                     case "AUTORELOAD":
                         break;  // Ignore here, used by other logic
+                    case "AUTOLOADEXTENSIONS":
+                        autoLoadExtensions = ParseBooleanValue(configItem.Key, configItem.Value, false);
+                        break;
                     default:
                         InternalLogger.Debug("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
                         break;
@@ -181,6 +185,11 @@ namespace NLog.Config
             if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
             {
                 InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
+            }
+
+            if (autoLoadExtensions)
+            {
+                ConfigurationItemFactory.ScanForAutoLoadExtensions(LogFactory);
             }
 
             _serviceRepository.ConfigurationItemFactory.ParseMessageTemplates = parseMessageTemplates;

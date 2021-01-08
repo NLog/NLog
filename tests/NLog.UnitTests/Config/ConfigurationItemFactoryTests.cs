@@ -77,14 +77,6 @@ namespace NLog.UnitTests.Config
 #if !NETSTANDARD && !MONO
 
         [Fact]
-        public void ExtendedTargetTest()
-        {
-            var targets = ConfigurationItemFactory.Default.Targets;
-
-            AssertInstance(targets, "MSMQ", "MessageQueueTarget");
-        }
-
-        [Fact]
         public void ExtendedLayoutRendererTest()
         {
             var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;
