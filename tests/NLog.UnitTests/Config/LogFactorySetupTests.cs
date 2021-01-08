@@ -74,10 +74,8 @@ namespace NLog.UnitTests.Config
             Assert.Same(logger1, logger2);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void SetupExtensionsAutoLoadExtensionsTest(bool autoLoadAssemblies)
+        [Fact]
+        public void SetupExtensionsAutoLoadExtensionsTest()
         {
             try
             {
@@ -85,7 +83,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadAssemblies(autoLoadAssemblies));
+                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadExtensions());
                 Func<LogFactory, LoggingConfiguration> buildConfig = (f) => new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                     <targets>
                         <target name='t' type='AutoLoadTarget' />
@@ -97,15 +95,8 @@ namespace NLog.UnitTests.Config
                 </nlog>", null, f);
 
                 // Assert
-                if (autoLoadAssemblies)
-                {
-                    logFactory.Configuration = buildConfig(logFactory);
-                    Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
-                }
-                else
-                {
-                    Assert.Throws<NLogConfigurationException>(() => buildConfig(logFactory));
-                }
+                logFactory.Configuration = buildConfig(logFactory);
+                Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
             }
             finally
             {
@@ -122,7 +113,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadAssemblies(false).RegisterAssembly("NLogAutoLoadExtension"));
+                logFactory.Setup().SetupExtensions(ext => ext.RegisterAssembly("NLogAutoLoadExtension"));
                 logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                     <targets>
                         <target name='t' type='AutoLoadTarget' />
@@ -151,7 +142,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadAssemblies(false).RegisterAssembly(typeof(MyExtensionNamespace.MyTarget).Assembly));
+                logFactory.Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(MyExtensionNamespace.MyTarget).Assembly));
                 logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                     <targets>
                         <target name='t' type='MyTarget' />
@@ -180,7 +171,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadAssemblies(false).RegisterTarget<MyExtensionNamespace.MyTarget>("MyTarget"));
+                logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget<MyExtensionNamespace.MyTarget>("MyTarget"));
                 logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                     <targets>
                         <target name='t' type='MyTarget' />
@@ -209,7 +200,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupExtensions(ext => ext.AutoLoadAssemblies(false).RegisterTarget("MyTarget", typeof(MyExtensionNamespace.MyTarget)));
+                logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget("MyTarget", typeof(MyExtensionNamespace.MyTarget)));
                 logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                     <targets>
                         <target name='t' type='MyTarget' />
