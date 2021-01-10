@@ -104,7 +104,9 @@ namespace NLog.Config
                 }
                 else if (!ParseNLogSection(child))
                 {
-                    InternalLogger.Warn("Skipping unknown 'NLog' child node: {0}", child.Name);
+                    var configException = new NLogConfigurationException($"Unknown element '{child.Name}' from section 'NLog'");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
                 }
             }
 
@@ -177,7 +179,9 @@ namespace NLog.Config
                         autoLoadExtensions = ParseBooleanValue(configItem.Key, configItem.Value, false);
                         break;
                     default:
-                        InternalLogger.Debug("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
+                        var configException = new NLogConfigurationException($"Unknown property '{configItem.Key}'='{configItem.Value}' for element '{nlogConfig.Name}'");
+                        if (MustThrowConfigException(configException))
+                            throw configException;
                         break;
                 }
             }
@@ -200,7 +204,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="nlogConfig"></param>
         /// <returns></returns>
-        private static IList<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
+        private IList<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var configItem in nlogConfig.Values)
@@ -214,7 +218,9 @@ namespace NLog.Config
                     }
                     else
                     {
-                        InternalLogger.Debug("Skipping duplicate value for 'NLog'. PropertyName={0}. Skips Value={1}. Existing Value={2}", configItem.Key, configItem.Value, dict[key]);
+                        var configException = new NLogConfigurationException($"Property '{configItem.Key}' with duplicate value for element '{nlogConfig.Name}'. Existing Value='{dict[key]}'. Extra value='{configItem.Value}'");
+                        if (MustThrowConfigException(configException))
+                            throw configException;
                     }
                 }
             }
@@ -277,15 +283,15 @@ namespace NLog.Config
         /// <summary>
         /// Parse loglevel, but don't throw if exception throwing is disabled
         /// </summary>
-        /// <param name="attributeName">Name of attribute for logging.</param>
-        /// <param name="attributeValue">Value of parse.</param>
-        /// <param name="default">Used if there is an exception</param>
+        /// <param name="propertyName">Name of attribute for logging.</param>
+        /// <param name="propertyValue">Value of parse.</param>
+        /// <param name="fallbackValue">Used if there is an exception</param>
         /// <returns></returns>
-        private LogLevel ParseLogLevelSafe(string attributeName, string attributeValue, LogLevel @default)
+        private LogLevel ParseLogLevelSafe(string propertyName, string propertyValue, LogLevel fallbackValue)
         {
             try
             {
-                var internalLogLevel = LogLevel.FromString(attributeValue?.Trim());
+                var internalLogLevel = LogLevel.FromString(propertyValue?.Trim());
                 return internalLogLevel;
             }
             catch (Exception exception)
@@ -293,13 +299,11 @@ namespace NLog.Config
                 if (exception.MustBeRethrownImmediately())
                     throw;
 
-                const string message = "attribute '{0}': '{1}' isn't valid LogLevel. {2} will be used.";
-                var configException =
-                    new NLogConfigurationException(exception, message, attributeName, attributeValue, @default);
+                var configException = new NLogConfigurationException(exception, $"Property '{propertyName}' assigned invalid LogLevel value '{propertyValue}'. Fallback to '{fallbackValue}'");
                 if (MustThrowConfigException(configException))
                     throw configException;
 
-                return @default;
+                return fallbackValue;
             }
         }
 
@@ -367,8 +371,9 @@ namespace NLog.Config
                     }
                     else
                     {
-                        InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
-                            childProperty.Key, childItem.Name, extensionsElement.Name);
+                        var configException = new NLogConfigurationException($"Unknown property '{childProperty.Key}'='{childProperty.Value}' for element '{childItem.Name}' in section '{extensionsElement.Name}'");
+                        if (MustThrowConfigException(configException))
+                            throw configException;
                     }
                 }
 
@@ -460,8 +465,11 @@ namespace NLog.Config
                 else if (MatchesName(childProperty.Key, "value") || MatchesName(childProperty.Key, "layout"))
                     variableValue = childProperty.Value;
                 else
-                    InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
-                        childProperty.Key, variableElement.Name, "variables");
+                {
+                    var configException = new NLogConfigurationException($"Unknown property '{childProperty.Key}'='{childProperty.Value}' for element '{variableElement.Name}' in section 'variables'");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
+                }
             }
 
             if (!AssertNonEmptyValue(variableName, "name", variableElement.Name, "variables"))
@@ -505,10 +513,15 @@ namespace NLog.Config
             foreach (var childProperty in timeElement.Values)
             {
                 if (MatchesName(childProperty.Key, "type"))
+                {
                     timeSourceType = childProperty.Value;
+                }
                 else
-                    InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
-                        childProperty.Key, timeElement.Name, timeElement.Name);
+                {
+                    var configException = new NLogConfigurationException($"Unknown property '{childProperty.Key}'='{childProperty.Value}' for element '{timeElement.Name}'");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
+                }
             }
 
             if (!AssertNonEmptyValue(timeSourceType, "type", timeElement.Name, string.Empty))
@@ -522,7 +535,7 @@ namespace NLog.Config
         }
 
         [ContractAnnotation("value:notnull => true")]
-        private static bool AssertNotNullValue(object value, string propertyName, string elementName, string sectionName)
+        private bool AssertNotNullValue(object value, string propertyName, string elementName, string sectionName)
         {
             if (value != null)
                 return true;
@@ -531,17 +544,15 @@ namespace NLog.Config
         }
 
         [ContractAnnotation("value:null => false")]
-        private static bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
+        private bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
         {
             if (!StringHelpers.IsNullOrWhiteSpace(value))
                 return true;
 
-            if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
-                throw new NLogConfigurationException(
-                    $"Expected property {propertyName} on element name: {elementName} in section: {sectionName}");
+            var configException = new NLogConfigurationException($"Property '{propertyName}' has blank value, for element '{elementName}' in section '{sectionName}'");
+            if (MustThrowConfigException(configException))
+                throw configException;
 
-            InternalLogger.Warn("Skipping element name: {0} in section: {1} because property {2} is blank", elementName,
-                sectionName, propertyName);
             return false;
         }
 
@@ -599,7 +610,7 @@ namespace NLog.Config
                             ruleName = childProperty.Value;
                         break;
                     case "RULENAME":
-                        ruleName = childProperty.Value; // Legacy Style
+                        ruleName = childProperty.Value;
                         break;
                     case "LOGGER":
                         namePattern = childProperty.Value;
@@ -627,8 +638,9 @@ namespace NLog.Config
                         maxLevel = childProperty.Value;
                         break;
                     default:
-                        InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
-                            childProperty.Key, loggerElement.Name, "rules");
+                        var configException = new NLogConfigurationException($"Unknown property '{childProperty.Key}'='{childProperty.Value}' for element '{loggerElement.Name}' in section 'rules'");
+                        if (MustThrowConfigException(configException))
+                            throw configException;
                         break;
                 }
             }
@@ -644,7 +656,7 @@ namespace NLog.Config
 
             if (!enabled)
             {
-                InternalLogger.Debug("Logging rule {0} with filter `{1}` is disabled", ruleName, namePattern);
+                InternalLogger.Debug("Logging rule {0} with name pattern `{1}` is disabled", ruleName, namePattern);
                 return null;
             }
 
@@ -748,8 +760,9 @@ namespace NLog.Config
                 }
                 else
                 {
-                    InternalLogger.Debug("Skipping unknown child {0} for element {1} in section {2}", child.Name,
-                        loggerElement.Name, "rules");
+                    var configException = new NLogConfigurationException($"Unknown child element '{child.Name}' for element '{loggerElement.Name}' in section 'rules'");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
                 }
 
                 if (childRule != null)
@@ -835,8 +848,9 @@ namespace NLog.Config
                         break;
 
                     default:
-                        InternalLogger.Debug("Skipping unknown element {0} in section {1}", targetValueName,
-                            targetsElement.Name);
+                        var configException = new NLogConfigurationException($"Unknown element '{targetValueName}' in section '{targetsElement.Name}'");
+                        if (MustThrowConfigException(configException))
+                            throw configException;
                         break;
                 }
 
@@ -1049,7 +1063,10 @@ namespace NLog.Config
         {
             if (!PropertyHelper.TryGetPropertyInfo(o, childElement.Name, out var propInfo))
             {
-                InternalLogger.Debug("Skipping unknown element {0} in section {1}. Not matching any property on {2} - {3}", childElement.Name, parentElement.Name, o, o?.GetType());
+                var configException = new NLogConfigurationException($"Unknown element '{childElement.Name}' in section '{parentElement.Name}'. Not matching any property on {o} {o?.GetType()}");
+                if (MustThrowConfigException(configException))
+                    throw configException;
+
                 return;
             }
 
@@ -1338,8 +1355,9 @@ namespace NLog.Config
             {
                 if (element is ValidatedConfigurationElement validConfig)
                     return validConfig;
-                else
-                    return new ValidatedConfigurationElement(element, logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions);
+
+                bool throwConfigExceptions = (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions) || (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions);
+                return new ValidatedConfigurationElement(element, throwConfigExceptions);
             }
 
             public ValidatedConfigurationElement(ILoggingConfigurationElement element, bool throwConfigExceptions)
