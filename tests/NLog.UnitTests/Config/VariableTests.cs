@@ -144,8 +144,10 @@ namespace NLog.UnitTests.Config
         {
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
-    <variable name='prefix' value='[[' />
-    <variable name='suffix' value=']]' />
+    <variables>
+        <variable name='prefix' value='[[' />
+        <variable name='suffix' value=']]' />
+    </variables>
 </nlog>");
 
 

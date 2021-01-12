@@ -386,7 +386,7 @@ namespace NLog.Layouts
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            var configException = new NLogConfigurationException($"Unrecognized property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
+                            var configException = new NLogConfigurationException($"Unknown property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
                             if (throwConfigExceptions ?? configException.MustBeRethrown())
                             {
                                 throw configException;

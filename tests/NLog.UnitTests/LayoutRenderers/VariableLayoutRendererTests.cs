@@ -93,20 +93,22 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg and logger=A=123", lastMessage);
         }
 
-        [Fact]
-        public void Var_with_layout()
+        [Theory]
+        [InlineData("myJson", "${myJson}")]
+        [InlineData("myJson", "${var:myJson}")]
+        public void Var_with_layout(string variableName, string layoutStyle)
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
 <nlog throwExceptions='true'>
-    <variable name='myJson'  >
+    <variable name='{variableName}'  >
         <layout type='JsonLayout'>
-            <attribute name='short date' layout='${level}' />
-            <attribute name='message' layout='${message}' />
+            <attribute name='short date' layout='${{level}}' />
+            <attribute name='message' layout='${{message}}' />
         </layout>
     </variable>
             
                 <targets>
-                    <target name='debug' type='Debug' layout='${var:myJson}' /></targets>
+                    <target name='debug' type='Debug' layout='{layoutStyle}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>

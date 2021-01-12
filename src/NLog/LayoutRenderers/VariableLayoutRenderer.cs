@@ -61,6 +61,12 @@ namespace NLog.LayoutRenderers
         public string Default { get; set; }
 
         /// <summary>
+        /// Gets the configuration variable layout matching the configured Name
+        /// </summary>
+        /// <remarks>Mostly relevant for the scanning of active NLog Layouts</remarks>
+        public Layout ActiveLayout => TryGetLayout(out var layout) ? layout : null;
+
+        /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
         protected override void InitializeLayoutRenderer()
@@ -86,17 +92,14 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Try get the 
+        /// Try lookup the configuration variable layout matching the configured Name
         /// </summary>
-        /// <param name="layout"></param>
-        /// <returns></returns>
         private bool TryGetLayout(out Layout layout)
         {
             layout = null;
             //Note: don't use LogManager (locking, recursion)
             return Name != null && LoggingConfiguration?.Variables?.TryGetValue(Name, out layout) == true;
         }
-
 
         /// <summary>
         /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
