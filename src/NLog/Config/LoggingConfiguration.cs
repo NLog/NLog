@@ -886,7 +886,7 @@ namespace NLog.Config
                     }
                     else
                     {
-                        if (layoutText == input.Trim())
+                        if (string.Equals(layoutText, input.Trim(), culture))
                         {
                             matchingLayout = layout;
                         }

@@ -94,8 +94,8 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Theory]
-        [InlineData("myJson", "${myJson}")]
-        [InlineData("myJson", "${var:myJson}")]
+        [InlineData("myJson", "${MyJson}")]
+        [InlineData("myJson", "${var:myJSON}")]
         public void Var_with_layout(string variableName, string layoutStyle)
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
