@@ -851,8 +851,15 @@ namespace NLog.Config
         [NotNull]
         internal string ExpandSimpleVariables(string input)
         {
+            return ExpandSimpleVariables(input, out var _);
+        }
+
+        [NotNull]
+        internal string ExpandSimpleVariables(string input, out Layout matchingLayout)
+        {
             string output = input;
             var culture = StringComparison.CurrentCultureIgnoreCase;
+            matchingLayout = null;
 
             if (Variables.Count > 0 && output?.IndexOf("${") >= 0)
             {
@@ -875,8 +882,14 @@ namespace NLog.Config
                     //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
                     if (layout is SimpleLayout simpleLayout)
                     {
-
                         output = StringHelpers.Replace(output, layoutText, simpleLayout.OriginalText, culture);
+                    }
+                    else
+                    {
+                        if (layoutText == input.Trim())
+                        {
+                            matchingLayout = layout;
+                        }
                     }
                 }
             }
