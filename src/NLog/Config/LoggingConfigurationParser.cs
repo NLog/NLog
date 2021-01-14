@@ -467,8 +467,7 @@ namespace NLog.Config
             if (!AssertNotNullValue(variableLayout, "value", variableElement.Name, "variables"))
                 return;
 
-            variableLayout.Initialize(this);
-            Variables[variableName] = variableLayout;
+            InsertConfigFileVariable(variableName, variableLayout);
         }
 
         private Layout ParseVariableLayoutValue(ValidatedConfigurationElement variableElement)
@@ -1029,24 +1028,15 @@ namespace NLog.Config
         {
             try
             {
-                var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingLayout);
-                if (matchingLayout != null && propertyValueExpanded == propertyValue)
+                var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingVariableName);
+                if (matchingVariableName != null && propertyValueExpanded == propertyValue && TryLookupDynamicVariable(matchingVariableName, out var matchingLayout) && PropertyHelper.TryGetPropertyInfo(targetObject, propertyName, out var propInfo) && propInfo.PropertyType.IsAssignableFrom(matchingLayout.GetType()))
                 {
-                    if (!matchingLayout.ThreadSafe)
-                    {
-                        // When NOT ThreadSafe then the correct solution would be to make a clone (not possible), or parse the original configuration-element again (cumbersome)
-                        matchingLayout = CreateSimpleLayout("${var:" + propertyValue.Trim().Substring(2));
-                        matchingLayout.Initialize(this);
-                    }
-
-                    if (PropertyHelper.TryGetPropertyInfo(targetObject, propertyName, out var propInfo))
-                    {
-                        propInfo.SetValue(targetObject, matchingLayout, null);
-                        return;
-                    }
+                    propInfo.SetValue(targetObject, matchingLayout, null);
                 }
-
-                PropertyHelper.SetPropertyFromString(targetObject, propertyName, propertyValueExpanded, _serviceRepository.ConfigurationItemFactory);
+                else
+                {
+                    PropertyHelper.SetPropertyFromString(targetObject, propertyName, propertyValueExpanded, _serviceRepository.ConfigurationItemFactory);
+                }
             }
             catch (NLogConfigurationException ex)
             {

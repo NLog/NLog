@@ -34,12 +34,11 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
     /// <summary>
-    /// Render a NLog variable (xml or config)
+    /// Render a NLog Configuration variable assigned from API or loaded from config-file
     /// </summary>
     [LayoutRenderer("var")]
     [ThreadSafe]
@@ -63,7 +62,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the configuration variable layout matching the configured Name
         /// </summary>
-        /// <remarks>Mostly relevant for the scanning of active NLog Layouts</remarks>
+        /// <remarks>Mostly relevant for the scanning of active NLog Layouts (Ex. CallSite capture)</remarks>
         public Layout ActiveLayout => TryGetLayout(out var layout) ? layout : null;
 
         /// <summary>
@@ -75,17 +74,6 @@ namespace NLog.LayoutRenderers
             {
                 //pass loggingConfiguration to layout
                 layout.Initialize(LoggingConfiguration);
-                if (!layout.ThreadSafe)
-                {
-                    if (layout is SimpleLayout)
-                    {
-                        InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${{var_{0}}}. Because of layout isn't thread safe. Layout={1}", Name, layout);
-                    }
-                    else
-                    {
-                        InternalLogger.Warn("${{var={0}}} is not thread safe. This could lead to unexpected results when two targets use the same layout", Name);
-                    }
-                }
             }
 
             base.InitializeLayoutRenderer();
@@ -98,7 +86,7 @@ namespace NLog.LayoutRenderers
         {
             layout = null;
             //Note: don't use LogManager (locking, recursion)
-            return Name != null && LoggingConfiguration?.Variables?.TryGetValue(Name, out layout) == true;
+            return Name != null && LoggingConfiguration?.TryLookupDynamicVariable(Name, out layout) == true;
         }
 
         /// <summary>
