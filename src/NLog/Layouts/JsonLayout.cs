@@ -81,9 +81,9 @@ namespace NLog.Layouts
                     return _converter.SerializeObject(value, builder);
             }
 
-            public void SerializeObjectNoLimit(object value, StringBuilder builder)
+            public bool SerializeObjectNoLimit(object value, StringBuilder builder)
             {
-                _converter.SerializeObject(value, builder);
+                return _converter.SerializeObject(value, builder);
             }
         }
 
@@ -371,7 +371,11 @@ namespace NLog.Layouts
             if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
             {
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
-                JsonConverter.SerializeObjectNoLimit(propertyValue, sb);
+                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                    return;
+                }
             }
             else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
@@ -382,7 +386,11 @@ namespace NLog.Layouts
             }
             else
             {
-                JsonConverter.SerializeObject(propertyValue, sb);
+                if (!JsonConverter.SerializeObject(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                    return;
+                }
             }
 
             if (ExcludeEmptyProperties && (sb[sb.Length-1] == '"' && sb[sb.Length-2] == '"'))

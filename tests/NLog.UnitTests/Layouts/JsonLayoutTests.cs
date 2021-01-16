@@ -103,19 +103,15 @@ namespace NLog.UnitTests.Layouts
                     {
                         new JsonAttribute("logger", "${logger}") { EscapeUnicode = true },
                         new JsonAttribute("level", "${level}"),
-                        new JsonAttribute("message", "${message}") { EscapeUnicode = false },
+                        new JsonAttribute("message", "${event-properties:msg}") { EscapeUnicode = false },
                     },
-                SuppressSpaces = true
+                SuppressSpaces = true,
+                IncludeAllProperties = true,
             };
 
-            var logEventInfo = new LogEventInfo
-            {
-                LoggerName = "\u00a9",
-                Level = LogLevel.Info,
-                Message = "\u00a9",
-            };
-
-            Assert.Equal("{\"logger\":\"\\u00a9\",\"level\":\"Info\",\"message\":\"\u00a9\"}", jsonLayout.Render(logEventInfo));
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, "\u00a9", null, "{$a}", new object[] { "\\" });
+            logEventInfo.Properties["msg"] = "\u00a9";
+            Assert.Equal("{\"logger\":\"\\u00a9\",\"level\":\"Info\",\"message\":\"\u00a9\",\"a\":\"\\\\\",\"msg\":\"\u00a9\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -1040,6 +1036,40 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo1);
 
             AssertDebugLastMessage("debug", "{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\" }");
+        }
+
+        [Fact]
+        public void SkipInvalidJsonPropertyValues()
+        {
+            var jsonLayout = new JsonLayout() { IncludeAllProperties = true };
+
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = new System.Text.StringBuilder().Append('x', 1024 * 1024).ToString(),
+            };
+
+            var expectedValue = Guid.NewGuid();
+            logEventInfo.Properties["BadObject"] = new BadObject();
+            logEventInfo.Properties["RequestId"] = expectedValue;
+
+            Assert.Equal($"{{ \"RequestId\": \"{expectedValue}\" }}", jsonLayout.Render(logEventInfo));
+        }
+
+
+
+        class BadObject : IFormattable
+        {
+            public string ToString(string format, IFormatProvider formatProvider)
+            {
+                throw new ApplicationException("BadObject");
+            }
+
+            public override string ToString()
+            {
+                return ToString(null, null);
+            }
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()
