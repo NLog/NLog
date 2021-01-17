@@ -69,7 +69,7 @@ namespace NLog.Config
         /// Loads NLog configuration from provided config section
         /// </summary>
         /// <param name="nlogConfig"></param>
-        /// <param name="basePath"></param>
+        /// <param name="basePath">Directory where the NLog-config-file was loaded from</param>
         protected void LoadConfig(ILoggingConfigurationElement nlogConfig, string basePath)
         {
             InternalLogger.Trace("ParseNLogConfig");
@@ -322,9 +322,6 @@ namespace NLog.Config
             return false;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability",
-            "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Reflection.Assembly.LoadFrom",
-            Justification = "Need to load external assembly.")]
         private void ParseExtensionsElement(ValidatedConfigurationElement extensionsElement, string baseDirectory)
         {
             extensionsElement.AssertName("extensions");
@@ -424,7 +421,7 @@ namespace NLog.Config
         {
             try
             {
-                Assembly asm = AssemblyHelpers.LoadFromName(assemblyName);
+                Assembly asm = _serviceRepository.ConfigurationItemFactory.AssemblyLoader(assemblyName);
                 _serviceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)

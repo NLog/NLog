@@ -142,6 +142,11 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets or sets the assembly loader used for loading NLog extension-assemblies
+        /// </summary>
+        public Func<string, Assembly> AssemblyLoader { get; set; } = AssemblyHelpers.LoadFromName;
+
+        /// <summary>
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>

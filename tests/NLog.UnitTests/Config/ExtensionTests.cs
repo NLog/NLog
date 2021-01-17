@@ -355,6 +355,20 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void OverrideAssemblyLoaderForLoadingExtensions()
+        {
+            var assemblyName = "some_assembly_that_doesnt_exist";
+            var configXml = $@"
+<nlog throwConfigExceptions='true'>
+    <extensions>
+        <add assembly='{assemblyName}'/>
+    </extensions>
+</nlog>";
+            var configException = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssemblyLoader(asmName => throw new ApplicationException(asmName))).LoadConfigurationFromXml(configXml));
+            Assert.Equal(assemblyName, configException.GetBaseException().Message);
+        }
+
+        [Fact]
         public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyFileIfThrowConfigExceptionsFalse()
         {
             var configXml = @"

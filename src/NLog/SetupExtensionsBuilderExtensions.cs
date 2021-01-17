@@ -73,6 +73,17 @@ namespace NLog
         }
 
         /// <summary>
+        /// Overrides the assembly loader used for loading NLog extension-assemblies
+        /// </summary>
+        /// <param name="setupBuilder"></param>
+        /// <param name="assemblyLoader"></param>
+        public static ISetupExtensionsBuilder RegisterAssemblyLoader(this ISetupExtensionsBuilder setupBuilder, Func<string, Assembly> assemblyLoader)
+        {
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.AssemblyLoader = assemblyLoader;
+            return setupBuilder;
+        }
+
+        /// <summary>
         /// Registers NLog extensions from the assembly.
         /// </summary>
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, Assembly assembly)
@@ -86,7 +97,7 @@ namespace NLog
         /// </summary>
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, string assemblyName)
         {
-            Assembly assembly = AssemblyHelpers.LoadFromName(assemblyName);
+            Assembly assembly = setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.AssemblyLoader(assemblyName);
             setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(assembly);
             return setupBuilder;
         }
