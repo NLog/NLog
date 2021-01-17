@@ -97,7 +97,7 @@ namespace NLog.Internal
 
             if (!TryGetPropertyInfo(objType, propertyName, out var propInfo))
             {
-                throw new NotSupportedException($"Parameter {propertyName} not supported on {objType.Name}");
+                throw new NLogConfigurationException($"Unknown property '{propertyName}'='{value}' for '{objType.Name}'");
             }
 
             try
@@ -123,7 +123,7 @@ namespace NLog.Internal
                 {
                     if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                     {
-                        throw new NotSupportedException($"Parameter {propertyName} of {objType.Name} is an array and cannot be assigned a scalar value.");
+                        throw new NotSupportedException($"Property {propertyName} on {objType.Name} is an array, and cannot be assigned a scalar value: '{value}'.");
                     }
 
                     unwrappedType = Nullable.GetUnderlyingType(unwrappedType) ?? unwrappedType;
@@ -147,18 +147,16 @@ namespace NLog.Internal
             }
             catch (TargetInvocationException ex)
             {
-                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}' on {objType.Name}", ex.InnerException);
+                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {objType.Name}", ex.InnerException);
             }
             catch (Exception exception)
             {
-                InternalLogger.Warn(exception, "Error when setting property '{0}' on '{1}'", propInfo.Name, objType);
-
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}' on {objType.Name}", exception);
+                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {objType.Name}", exception);
             }
         }
 

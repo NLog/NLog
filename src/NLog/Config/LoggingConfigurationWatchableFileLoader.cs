@@ -169,9 +169,15 @@ namespace NLog.Config
                         return;
                     }
 
-                    newConfig = oldConfig.ReloadNewConfig();
-                    if (newConfig == null || ReferenceEquals(newConfig, oldConfig))
+                    newConfig = oldConfig.Reload();
+                    if (ReferenceEquals(newConfig, oldConfig))
                         return;
+
+                    if (newConfig is IInitializeSucceeded config2 && config2.InitializeSucceeded != true)
+                    {
+                        InternalLogger.Warn("NLog Config Reload() failed. Invalid XML?");
+                        return;
+                    }
                 }
                 catch (Exception exception)
                 {

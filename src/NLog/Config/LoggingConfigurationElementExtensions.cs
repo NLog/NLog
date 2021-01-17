@@ -117,7 +117,7 @@ namespace NLog.Config
         public static string GetConfigItemTypeAttribute(this ILoggingConfigurationElement element, string sectionNameForRequiredValue = null)
         {
             var typeAttributeValue = sectionNameForRequiredValue != null ? element.GetRequiredValue("type", sectionNameForRequiredValue) : element.GetOptionalValue("type", null);
-            return StripOptionalNamespacePrefix(typeAttributeValue);
+            return StripOptionalNamespacePrefix(typeAttributeValue)?.Trim();
         }
 
         /// <summary>

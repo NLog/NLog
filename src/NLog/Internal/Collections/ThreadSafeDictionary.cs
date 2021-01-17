@@ -43,7 +43,6 @@ namespace NLog.Internal
     internal class ThreadSafeDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         private readonly object _lockObject = new object();
-        private readonly IEqualityComparer<TKey> _comparer;
         private Dictionary<TKey, TValue> _dict;
         private Dictionary<TKey, TValue> _dictReadOnly;  // Reset cache on change
 
@@ -54,15 +53,15 @@ namespace NLog.Internal
 
         public ThreadSafeDictionary(IEqualityComparer<TKey> comparer)
         {
-            _comparer = comparer;
-            _dict = new Dictionary<TKey, TValue>(_comparer);
+            _dict = new Dictionary<TKey, TValue>(comparer);
         }
 
         public ThreadSafeDictionary(ThreadSafeDictionary<TKey, TValue> source)
         {
-            _comparer = source._comparer;
-            _dict = source.GetReadOnlyDict();
-            GetWritableDict();  // Clone
+            var sourceDictionary = source.GetReadOnlyDict();
+            _dict = new Dictionary<TKey, TValue>(sourceDictionary.Count, sourceDictionary.Comparer);
+            foreach (var item in sourceDictionary)
+                _dict.Add(item.Key, item.Value);
         }
 
         public TValue this[TKey key]
@@ -76,6 +75,8 @@ namespace NLog.Internal
                 }
             }
         }
+
+        public IEqualityComparer<TKey> Comparer => _dict.Comparer;
 
         public ICollection<TKey> Keys => GetReadOnlyDict().Keys;
 
@@ -217,7 +218,15 @@ namespace NLog.Internal
 
         private IDictionary<TKey, TValue> GetWritableDict(bool clearDictionary = false)
         {
-            var newDict = new Dictionary<TKey, TValue>(clearDictionary ? 0 : _dict.Count + 1, _comparer);
+            if (_dictReadOnly == null)
+            {
+                // Never exposed the dictionary using enumerator, so immutable is not required
+                if (clearDictionary)
+                    _dict.Clear();
+                return _dict;
+            }
+
+            var newDict = new Dictionary<TKey, TValue>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
             if (!clearDictionary)
             {
                 // Less allocation with enumerator than Dictionary-constructor

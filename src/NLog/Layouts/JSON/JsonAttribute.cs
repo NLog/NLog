@@ -113,7 +113,7 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='JSON Attribute Options' order='100' />
-        [DefaultValue(true)] // TODO NLog 5 change to nullable (with default fallback to false)
+        [DefaultValue(false)]
         public bool EscapeForwardSlash 
         {
             get => LayoutWrapper.EscapeForwardSlash;

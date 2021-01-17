@@ -165,81 +165,63 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_SkipAsyncTargetWrapper()
         {
-            try
-            {
-                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets async='true'>
-                <target name='asyncDebug' type='AsyncTaskTest' />
-                <target name='debug' type='Debug' />
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<AsyncTaskTestTarget>("AsyncTaskTest"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                <targets async='true'>
+                    <target name='asyncDebug' type='AsyncTaskTest' />
+                    <target name='debug' type='Debug' />
+                </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
 
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;
-            }
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
         }
 
         [Fact]
         public void AsyncTaskTarget_SkipDefaultAsyncWrapper()
         {
-            try
-            {
-                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets>
-                <default-wrapper type='AsyncWrapper' />
-                <target name='asyncDebug' type='AsyncTaskTest' />
-                <target name='debug' type='Debug' />
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<AsyncTaskTestTarget>("AsyncTaskTest"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                <targets>
+                    <default-wrapper type='AsyncWrapper' />
+                    <target name='asyncDebug' type='AsyncTaskTest' />
+                    <target name='debug' type='Debug' />
+                </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
 
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;
-            }
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
         }
 
         [Fact]
         public void AsyncTaskTarget_AllowDefaultBufferWrapper()
         {
-            try
-            {
-                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets>
-                <default-wrapper type='BufferingWrapper' />
-                <target name='asyncDebug' type='AsyncTaskTest' />
-                <target name='debug' type='Debug' />
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<AsyncTaskTestTarget>("AsyncTaskTest"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                <targets>
+                    <default-wrapper type='BufferingWrapper' />
+                    <target name='asyncDebug' type='AsyncTaskTest' />
+                    <target name='debug' type='Debug' />
+                </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
 
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("asyncDebug"));
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("debug"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;
-            }
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("asyncDebug"));
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("debug"));
         }
 
         [Fact]

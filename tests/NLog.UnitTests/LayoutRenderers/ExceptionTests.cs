@@ -878,9 +878,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomExceptionLayoutRendrerInnerExceptionTest()
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("exception-custom", typeof(CustomExceptionLayoutRendrer));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer<CustomExceptionLayoutRendrer>("exception-custom"))
+                .LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -890,9 +890,9 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger minlevel='Info' writeTo='debug1' />
                     <logger minlevel='Info' writeTo='debug2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as CustomExceptionLayoutRendrer;
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
@@ -901,11 +901,11 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue = "testvalue";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
             ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                              "\r\n----INNER----\r\n" +
                                              "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer");
-            AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
+            logFactory.AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                                            "\r\n----INNER----\r\n" +
                                                            "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
         }

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,38 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.LayoutRenderers.Wrappers
-{
-    using NLog;
-    using NLog.Layouts;
-    using Xunit;
-    
-    public class JsonEncodeTests : NLogTestBase
-    {
-        [Fact]
-        public void JsonEncodeTest1()
-        {
-            ScopeContext.PushProperty("foo", " abc\"\n\b\r\f\t/\u1234\u5432\\xyz ");
-            SimpleLayout l = "${json-encode:${scopeproperty:foo}:escapeForwardSlash=true}";
+using System;
+using NLog.Config;
+using NLog.Targets;
+using Xunit;
 
-            Assert.Equal(@" abc\""\n\b\r\f\t\/\u1234\u5432\\xyz ", l.Render(LogEventInfo.CreateNullEvent()));
+namespace NLog.UnitTests
+{
+    static class LogFactoryTestExtensions
+    {
+        public static void AssertDebugLastMessage(this LogFactory logFactory, string message)
+        {
+            AssertDebugLastMessage(logFactory, "Debug", message);
         }
 
-        [Fact]
-        public void JsonHyperlinkEscapeForwardSlashTest()
+        public static void AssertDebugLastMessage(this LogFactory logFactory, string targetName, string message)
         {
-            SimpleLayout l = "${json-encode:${event-properties:prop1}:escapeForwardSlash=false}";
+            var debugTarget = GetDebugTarget(targetName, logFactory.Configuration);
+            Assert.Equal(message, debugTarget.LastMessage);
+        }
 
-            var url = "https://localhost:5001/api/values";
-
-            var logEventInfo = LogEventInfo.Create(LogLevel.Info, "logger1", "myMessage");
-            logEventInfo.Properties["prop1"] = url;
-
-            // Act
-            var result = l.Render(logEventInfo);
-
-            // Assert
-            Assert.Equal(url, result);
+        public static DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        {
+            var debugTarget = configuration.FindTargetByName<DebugTarget>(targetName);
+            if (debugTarget == null)
+            {
+                throw new Exception($"debugtarget with name {targetName} not found in configuration");
+            }
+            return debugTarget;
         }
     }
 }

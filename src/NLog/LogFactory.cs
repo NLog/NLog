@@ -207,7 +207,7 @@ namespace NLog
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
         /// Default value - false.
         /// </summary>
-        public bool KeepVariablesOnReload { get; set; }
+        public bool KeepVariablesOnReload { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically call <see cref="LogFactory.Shutdown"/>

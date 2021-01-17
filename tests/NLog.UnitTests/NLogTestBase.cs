@@ -104,12 +104,7 @@ namespace NLog.UnitTests
 
         protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
-            var debugTarget = configuration.FindTargetByName<DebugTarget>(targetName);
-            if (debugTarget == null)
-            {
-                throw new Exception($"debugtarget with name {targetName} not found in configuration");
-            }
-            return debugTarget;
+            return LogFactoryTestExtensions.GetDebugTarget(targetName, configuration);
         }
 
         protected void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
