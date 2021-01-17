@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Exception information provided through 
+    /// Render information of <see cref="Exception.Data" />
     /// a call to one of the Logger.*Exception() methods.
     /// </summary>
     [LayoutRenderer("exceptiondata")]
