@@ -594,7 +594,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
             Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
 
-            logFactory.Configuration = configuration.Reload();
+            logFactory.Setup().ReloadConfiguration();
             Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].Render(nullEvent));
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
             Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));

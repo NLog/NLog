@@ -136,5 +136,19 @@ namespace NLog
             setupBuilder.LogFactory.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml, setupBuilder.LogFactory);
             return setupBuilder;
         }
+
+        /// <summary>
+        /// Reloads the current logging configuration and activates it
+        /// </summary>
+        /// <remarks>Logevents can become lost because targets will be unavailable, while closing the old config and initializing the new config.</remarks>
+        public static ISetupBuilder ReloadConfiguration(this ISetupBuilder setupBuilder)
+        {
+            var newConfig = setupBuilder.LogFactory._config?.Reload();
+            if (newConfig == null || (newConfig as IInitializeSucceeded)?.InitializeSucceeded == false)
+                return setupBuilder;
+
+            setupBuilder.LogFactory.Configuration = newConfig;
+            return setupBuilder;
+        }
     }
 }
