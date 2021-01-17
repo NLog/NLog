@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
 
     /// <summary>
     /// Render information of <see cref="Exception.Data" />
-    /// a call to one of the Logger.*Exception() methods.
+    /// for the exception passed to the logger call
     /// </summary>
     [LayoutRenderer("exceptiondata")]
     [LayoutRenderer("exception-data")]
