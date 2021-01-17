@@ -182,9 +182,9 @@ namespace NLog.Config
         /// <summary>
         /// Inserts NLog Config Variable without overriding NLog Config Variable assigned from API
         /// </summary>
-        internal void InsertConfigFileVariable(string key, Layout value)
+        internal void InsertParsedConfigVariable(string key, Layout value)
         {
-            _variables.InsertConfigFileVariable(key, value, LogFactory.KeepVariablesOnReload);
+            _variables.InsertParsedConfigVariable(key, value, LogFactory.KeepVariablesOnReload);
         }
 
         /// <summary>
