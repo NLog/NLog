@@ -116,19 +116,13 @@ namespace NLog.Internal
 
         public int Count => _variables.Count;
 
-        ICollection<string> IDictionary<string, Layout>.Keys => _variables.Keys;
+        public ICollection<string> Keys => _variables.Keys;
 
-        ICollection<Layout> IDictionary<string, Layout>.Values => _variables.Values;
+        public ICollection<Layout> Values => _variables.Values;
 
-        bool ICollection<KeyValuePair<string, Layout>>.IsReadOnly => false;
+        public bool ContainsKey(string key) => _variables.ContainsKey(key);
 
-        bool IDictionary<string, Layout>.ContainsKey(string key) => _variables.ContainsKey(key);
-
-        bool IDictionary<string, Layout>.TryGetValue(string key, out Layout value) => _variables.TryGetValue(key, out value);
-
-        bool ICollection<KeyValuePair<string, Layout>>.Contains(KeyValuePair<string, Layout> item) => _variables.Contains(item);
-
-        void ICollection<KeyValuePair<string, Layout>>.CopyTo(KeyValuePair<string, Layout>[] array, int arrayIndex) => _variables.CopyTo(array, arrayIndex);
+        public bool TryGetValue(string key, out Layout value) => _variables.TryGetValue(key, out value);
 
         IEnumerator<KeyValuePair<string, Layout>> IEnumerable<KeyValuePair<string, Layout>>.GetEnumerator() => _variables.GetEnumerator();
 
@@ -136,7 +130,7 @@ namespace NLog.Internal
 
         public ThreadSafeDictionary<string, Layout>.Enumerator GetEnumerator() => _variables.GetEnumerator();
 
-        Layout IDictionary<string, Layout>.this[string key]
+        public Layout this[string key]
         {
             get
             {
@@ -149,38 +143,35 @@ namespace NLog.Internal
             }
         }
 
-        void IDictionary<string, Layout>.Add(string key, Layout value)
+        public void Add(string key, Layout value)
         {
             _variables.Add(key, value);
             RegisterApiVariable(key);
         }
 
-        void ICollection<KeyValuePair<string, Layout>>.Add(KeyValuePair<string, Layout> item)
-        {
-            _variables.Add(item);
-            RegisterApiVariable(item.Key);
-        }
-
-        bool IDictionary<string, Layout>.Remove(string key)
+        public bool Remove(string key)
         {
             _apiVariables?.Remove(key);
             _dynamicVariables?.Remove(key);
             return _variables.Remove(key);
         }
 
-        bool ICollection<KeyValuePair<string, Layout>>.Remove(KeyValuePair<string, Layout> item)
-        {
-            _apiVariables?.Remove(item.Key);
-            _dynamicVariables?.Remove(item.Key);
-            return _variables.Remove(item.Key);
-        }
-
-        void ICollection<KeyValuePair<string, Layout>>.Clear()
+        public void Clear()
         {
             _variables.Clear();
             _apiVariables?.Clear();
             _dynamicVariables?.Clear();
         }
+
+        bool ICollection<KeyValuePair<string, Layout>>.IsReadOnly => false;
+
+        bool ICollection<KeyValuePair<string, Layout>>.Contains(KeyValuePair<string, Layout> item) => _variables.Contains(item);
+
+        void ICollection<KeyValuePair<string, Layout>>.CopyTo(KeyValuePair<string, Layout>[] array, int arrayIndex) => _variables.CopyTo(array, arrayIndex);
+
+        void ICollection<KeyValuePair<string, Layout>>.Add(KeyValuePair<string, Layout> item) => Add(item.Key, item.Value);
+
+        bool ICollection<KeyValuePair<string, Layout>>.Remove(KeyValuePair<string, Layout> item) => Remove(item.Key);
 
         private void RegisterApiVariable(string key)
         {
