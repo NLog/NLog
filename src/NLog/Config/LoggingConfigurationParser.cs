@@ -467,7 +467,7 @@ namespace NLog.Config
             if (!AssertNotNullValue(variableLayout, "value", variableElement.Name, "variables"))
                 return;
 
-            InsertConfigFileVariable(variableName, variableLayout);
+            InsertParsedConfigVariable(variableName, variableLayout);
         }
 
         private Layout ParseVariableLayoutValue(ValidatedConfigurationElement variableElement)
@@ -1029,14 +1029,10 @@ namespace NLog.Config
             try
             {
                 var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingVariableName);
-                if (matchingVariableName != null && propertyValueExpanded == propertyValue && TryLookupDynamicVariable(matchingVariableName, out var matchingLayout) && PropertyHelper.TryGetPropertyInfo(targetObject, propertyName, out var propInfo) && propInfo.PropertyType.IsAssignableFrom(matchingLayout.GetType()))
-                {
-                    propInfo.SetValue(targetObject, matchingLayout, null);
-                }
-                else
-                {
-                    PropertyHelper.SetPropertyFromString(targetObject, propertyName, propertyValueExpanded, _serviceRepository.ConfigurationItemFactory);
-                }
+                if (matchingVariableName != null && propertyValueExpanded == propertyValue && TrySetPropertyFromConfigVariableLayout(targetObject, propertyName, matchingVariableName))
+                    return;
+
+                PropertyHelper.SetPropertyFromString(targetObject, propertyName, propertyValueExpanded, _serviceRepository.ConfigurationItemFactory);
             }
             catch (NLogConfigurationException ex)
             {
@@ -1052,6 +1048,17 @@ namespace NLog.Config
                 if (MustThrowConfigException(configException))
                     throw;
             }
+        }
+
+        private bool TrySetPropertyFromConfigVariableLayout(object targetObject, string propertyName, string configVariableName)
+        {
+            if (TryLookupDynamicVariable(configVariableName, out var matchingLayout) && PropertyHelper.TryGetPropertyInfo(targetObject, propertyName, out var propInfo) && propInfo.PropertyType.IsAssignableFrom(matchingLayout.GetType()))
+            {
+                propInfo.SetValue(targetObject, matchingLayout, null);
+                return true;
+            }
+
+            return false;
         }
 
         private void SetPropertyValuesFromElement(object o, ValidatedConfigurationElement childElement, ILoggingConfigurationElement parentElement)

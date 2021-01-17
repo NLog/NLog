@@ -35,7 +35,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using NLog.Config;
 using NLog.Layouts;
@@ -55,7 +54,7 @@ namespace NLog.Internal
             _configuration = configuration;
         }
 
-        public void InsertConfigFileVariable(string key, Layout value, bool keepVariablesOnReload)
+        public void InsertParsedConfigVariable(string key, Layout value, bool keepVariablesOnReload)
         {
             if (keepVariablesOnReload && _apiVariables?.ContainsKey(key)==true && _variables.ContainsKey(key))
                 return;
