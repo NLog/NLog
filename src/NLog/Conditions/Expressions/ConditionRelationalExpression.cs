@@ -227,6 +227,13 @@ namespace NLog.Conditions
                     return true;
                 }
 
+                if (type1 == typeof(LogLevel))
+                {
+                    string strval = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    val = LogLevel.FromString(strval);
+                    return true;
+                }
+
                 if (type1 == typeof(string))
                 {
                     val = Convert.ToString(val, CultureInfo.InvariantCulture);
@@ -288,6 +295,7 @@ namespace NLog.Conditions
                 typeof(long),
                 typeof(int),
                 typeof(bool),
+                typeof(LogLevel),
                 typeof(string),
             };
 
