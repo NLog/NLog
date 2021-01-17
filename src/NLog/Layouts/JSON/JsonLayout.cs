@@ -49,7 +49,7 @@ namespace NLog.Layouts
     {
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ResolveService<IJsonConverter>()));
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, EscapeForwardSlash, ResolveService<IJsonConverter>()));
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
@@ -66,11 +66,11 @@ namespace NLog.Layouts
             readonly Targets.DefaultJsonSerializer _serializer;
             readonly Targets.JsonSerializeOptions _serializerOptions;
 
-            public LimitRecursionJsonConvert(int maxRecursionLimit, IJsonConverter converter)
+            public LimitRecursionJsonConvert(int maxRecursionLimit, bool escapeForwardSlash, IJsonConverter converter)
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit) };
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), EscapeForwardSlash = escapeForwardSlash };
             }
 
             public bool SerializeObject(object value, StringBuilder builder)
@@ -187,10 +187,10 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='JSON Formating' order='10' />
-        [DefaultValue(true)]    // TODO NLog 5 change to nullable (with default fallback to false)
+        [DefaultValue(false)]
         public bool EscapeForwardSlash
         {
-            get => _escapeForwardSlashInternal ?? true;
+            get => _escapeForwardSlashInternal ?? false;
             set => _escapeForwardSlashInternal = value;
         }
         private bool? _escapeForwardSlashInternal;
