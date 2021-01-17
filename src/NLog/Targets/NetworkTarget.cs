@@ -329,12 +329,12 @@ namespace NLog.Targets
                     {
                         switch (OnConnectionOverflow)
                         {
-                            case NetworkTargetConnectionsOverflowAction.DiscardMessage:
-                                InternalLogger.Warn("NetworkTarget(Name={0}): Discarding message otherwise to many connections.", Name);
+                            case NetworkTargetConnectionsOverflowAction.Discard:
+                                InternalLogger.Warn("NetworkTarget(Name={0}): Discarding message otherwise too many connections.", Name);
                                 logEvent.Continuation(null);
                                 return;
 
-                            case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
+                            case NetworkTargetConnectionsOverflowAction.Grow:
                                 InternalLogger.Debug("NetworkTarget(Name={0}): Too may connections, but this is allowed", Name);
                                 break;
 

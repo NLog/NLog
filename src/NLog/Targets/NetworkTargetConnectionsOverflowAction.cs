@@ -32,8 +32,6 @@
 // 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace NLog.Targets
 {
@@ -43,18 +41,30 @@ namespace NLog.Targets
     public enum NetworkTargetConnectionsOverflowAction
     {
         /// <summary>
+        /// Allow new connections when reaching max connection limit
+        /// </summary>
+        Grow = 0,
+
+        /// <summary>
         /// Just allow it.
         /// </summary>
-        AllowNewConnnection, //TODO Nlog 5 - fix typo and obsolete this one
+        [Obsolete("Replaced by Grow. Marked obsolete on NLog 5.0")]
+        AllowNewConnnection = 0,
+
+        /// <summary>
+        /// Discard new messages when reaching max connection limit
+        /// </summary>
+        Discard = 1,
 
         /// <summary>
         /// Discard the connection item.
         /// </summary>
-        DiscardMessage,
+        [Obsolete("Replaced by Discard. Marked obsolete on NLog 5.0")]
+        DiscardMessage = 1,
 
         /// <summary>
         /// Block until there's more room in the queue.
         /// </summary>
-        Block,
+        Block = 2,
     }
 }
