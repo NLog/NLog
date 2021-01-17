@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Targets
         public void StringWithSlashAndQuotes_Test()
         {
             var text = "This sentence/text is \"normal\", we think.";
-            var expected = "\"This sentence\\/text is \\\"normal\\\", we think.\"";
+            var expected = "\"This sentence/text is \\\"normal\\\", we think.\"";
 
             var actual = SerializeObject(text);
             Assert.Equal(expected, actual);

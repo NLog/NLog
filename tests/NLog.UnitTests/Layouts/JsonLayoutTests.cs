@@ -807,7 +807,7 @@ namespace NLog.UnitTests.Layouts
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' escapeForwardSlash='true'>
                  </layout>
                 </target>
             </targets>
