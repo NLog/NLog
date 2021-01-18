@@ -194,7 +194,6 @@ namespace NLog.UnitTests
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
                 Assert.Single(zip.Entries);
-                Assert.Equal(expectedEntryName, zip.Entries[0].Name);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
                 byte[] buf = new byte[(int)zip.Entries[0].Length];

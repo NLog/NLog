@@ -1329,6 +1329,10 @@ namespace NLog.Targets
             else if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("FileTarget(Name={0}): Archiving {1} to compressed {2}", Name, fileName, archiveFileName);
+                if (FileCompressor is ZipArchiveFileCompressor zipArchiveFileCompressor)
+                {
+                    zipArchiveFileCompressor.IsEntryNameInferredFromArchiveFileName = (ArchiveNumbering != ArchiveNumberingMode.Rolling);
+                }
                 FileCompressor.CompressFile(fileName, archiveFileName);
                 DeleteAndWaitForFileDelete(fileName);
             }

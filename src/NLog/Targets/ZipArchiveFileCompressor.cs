@@ -50,7 +50,7 @@ using System.IO.Compression;
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
-            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+            string entryName = IsEntryNameInferredFromArchiveFileName ? (Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName)) : fileName;
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
@@ -61,6 +61,12 @@ using System.IO.Compression;
                     originalFileStream.CopyTo(destination);
                 }
             }
+        }
+
+        public bool IsEntryNameInferredFromArchiveFileName
+        {
+            get;
+            set;
         }
     }
 #endif
