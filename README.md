@@ -89,6 +89,11 @@ As the current NLog team is a small team, we cannot fix every bug or implement e
 If you like to start with a small task, then
 [up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs+-label%3A%22almost+ready%22+)  are nice to start with.
 
+Please note, we have a `dev` and `master` branch
+
+- `master` is for pure bug fixes and targets NLog 4.x
+- `dev` targets NLog 5
+
 
 A good way to get started (flow)
 

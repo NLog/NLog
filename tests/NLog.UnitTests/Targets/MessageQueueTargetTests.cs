@@ -128,8 +128,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MessageQueueTarget_CheckIfQueueExists_setting_should_work()
         {
+            var logFactory = new LogFactory();
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(string.Format(@"
-                <nlog throwExceptions='true' >
+                <nlog throwExceptions='true' autoLoadExtensions='true' >
                     <targets>
                         <target type='MSMQ'
                                 name='q'
@@ -142,10 +143,8 @@ namespace NLog.UnitTests.Targets
                        
                       </logger>
                     </rules>
-                </nlog>"));
-
-
-            LogManager.Configuration = configuration;
+                </nlog>"), logFactory);
+            logFactory.Configuration = configuration;
             var messageQueueTarget = configuration.FindTargetByName("q") as MessageQueueTarget;
 
             Assert.NotNull(messageQueueTarget);

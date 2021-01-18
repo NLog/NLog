@@ -56,7 +56,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var lower = actual.ToLower();
 
             //lowercase
-            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen", "dotnet", "testhost.x86", "testhost.x64", "testhost.net452.x86", "testhost.net452.x64" };
+            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen", "dotnet", "testhost.x86", "testhost.x64", "testhost.net452.x86", "testhost.net452.x64", "testhost.net461.x86", "testhost.net461.x64" };
 
             Assert.True(allowedProcessNames.Any(p => lower.Contains(p)),
                 $"validating processname failed. Please add (if correct) '{actual}' to 'allowedProcessNames'");

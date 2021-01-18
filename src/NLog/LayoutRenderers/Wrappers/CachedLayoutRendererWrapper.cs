@@ -50,6 +50,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("ClearCache")]
     [AmbientProperty("CachedSeconds")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
     {
         /// <summary>
@@ -66,6 +67,7 @@ namespace NLog.LayoutRenderers.Wrappers
             OnClose = 2
         }
 
+        private readonly object _lockObject = new object();
         private string _cachedValue;
         private string _renderedCacheKey;
         private DateTime _cachedValueExpires;
@@ -153,12 +155,25 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (Cached)
             {
-                if (InvalidateCachedValue(logEvent))
+                var newCacheKey = CacheKey?.Render(logEvent) ?? string.Empty;
+                var cachedValue = LookupValidCachedValue(logEvent, newCacheKey);
+
+                if (cachedValue == null)
                 {
-                    _cachedValue = base.RenderInner(logEvent);
+                    lock (_lockObject)
+                    {
+                        cachedValue = LookupValidCachedValue(logEvent, newCacheKey);
+                        if (cachedValue == null)
+                        {
+                            _cachedValue = cachedValue = base.RenderInner(logEvent);
+                            _renderedCacheKey = newCacheKey;
+                            if (_cachedValueTimeout.HasValue)
+                                _cachedValueExpires = logEvent.TimeStamp + _cachedValueTimeout.Value;
+                        }
+                    }
                 }
 
-                return _cachedValue;
+                return cachedValue;
             }
             else
             {
@@ -166,18 +181,15 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        bool InvalidateCachedValue(LogEventInfo logEvent)
+        string LookupValidCachedValue(LogEventInfo logEvent, string newCacheKey)
         {
-            var newCacheKey = CacheKey?.Render(logEvent);
-            if (_cachedValue == null || _renderedCacheKey != newCacheKey || (_cachedValueTimeout.HasValue && logEvent.TimeStamp > _cachedValueExpires))
-            {
-                _renderedCacheKey = newCacheKey;
-                if (_cachedValueTimeout.HasValue)
-                    _cachedValueExpires = logEvent.TimeStamp + _cachedValueTimeout.Value;
-                return true;
-            }
+            if (_renderedCacheKey != newCacheKey)
+                return null;
 
-            return false;
+            if (_cachedValueTimeout.HasValue && logEvent.TimeStamp > _cachedValueExpires)
+                return null;
+
+            return _cachedValue;
         }
 
         /// <inheritdoc/>

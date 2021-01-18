@@ -50,11 +50,25 @@ namespace NLog
         /// Enable/disables autoloading of NLog extensions by scanning and loading available assemblies
         /// </summary>
         /// <remarks>
-        /// Enabled by default, and gives a huge performance hit during startup. Recommended to disable this when running in the cloud.
+        /// Disabled by default as it can give a huge performance hit during startup. Recommended to keep it disabled especially when running in the cloud.
         /// </remarks>
+        [Obsolete("AutoLoadAssemblies(true) has been replaced by AutoLoadExtensions(), that matches the name of nlog-attribute in NLog.config. Marked obsolete on NLog 5.0")]
         public static ISetupExtensionsBuilder AutoLoadAssemblies(this ISetupExtensionsBuilder setupBuilder, bool enable)
         {
-            ConfigurationItemFactory.Default = enable ? null : new ConfigurationItemFactory(typeof(SetupBuilderExtensions).GetAssembly());
+            if (enable)
+                AutoLoadExtensions(setupBuilder);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Enable/disables autoloading of NLog extensions by scanning and loading available assemblies
+        /// </summary>
+        /// <remarks>
+        /// Disabled by default as it can give a huge performance hit during startup. Recommended to keep it disabled especially when running in the cloud.
+        /// </remarks>
+        public static ISetupExtensionsBuilder AutoLoadExtensions(this ISetupExtensionsBuilder setupBuilder)
+        {
+            ConfigurationItemFactory.ScanForAutoLoadExtensions(setupBuilder.LogFactory);
             return setupBuilder;
         }
 
@@ -191,7 +205,7 @@ namespace NLog
             return setupBuilder;
         }
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
         private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
             setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);

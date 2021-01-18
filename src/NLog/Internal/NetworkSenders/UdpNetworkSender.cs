@@ -149,7 +149,26 @@ namespace NLog.Internal.NetworkSenders
                 args.Completed += SocketOperationCompleted;
                 args.RemoteEndPoint = _endpoint;
 
-                if (!_socket.SendToAsync(args))
+                bool asyncOperation = false;
+                try
+                {
+                    asyncOperation = _socket.SendToAsync(args);
+                }
+                catch (SocketException ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
+                    args.SocketError = ex.SocketErrorCode;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
+                    if (ex.InnerException is SocketException socketException)
+                        args.SocketError = socketException.SocketErrorCode;
+                    else
+                        args.SocketError = SocketError.OperationAborted;
+                }
+
+                if (!asyncOperation)
                 {
                     SocketOperationCompleted(_socket, args);
                 }

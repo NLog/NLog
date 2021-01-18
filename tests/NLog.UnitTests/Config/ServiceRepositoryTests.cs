@@ -323,7 +323,7 @@ namespace NLog.UnitTests.Config
 
         private class ExternalServiceRepository : IServiceProvider
         {
-            Func<Type, object> _serviceResolver;
+            private readonly Func<Type, object> _serviceResolver;
 
             public ExternalServiceRepository(Func<Type, object> serviceResolver)
             {

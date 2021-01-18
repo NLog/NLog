@@ -98,21 +98,21 @@ namespace NLog.Config
 
         private static object ConvertGuid(string format, string propertyString)
         {
-#if NET3_5
-            return new Guid(propertyString);
-#else
+#if !NET35
             return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
+#else
+            return new Guid(propertyString);       
 #endif
         }
 
         private static object ConvertTimeSpan(string format, IFormatProvider formatProvider, string propertyString)
         {
-#if NET3_5
-            return TimeSpan.Parse(propertyString);
-#else
+#if !NET35
             if (!string.IsNullOrEmpty(format))
                 return TimeSpan.ParseExact(propertyString, format, formatProvider);
             return TimeSpan.Parse(propertyString, formatProvider);
+#else
+            return TimeSpan.Parse(propertyString);
 #endif
         }
 

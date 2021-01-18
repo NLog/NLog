@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
     <Title>NLog for .NET Framework and .NET Standard</Title>
     <Company>NLog</Company>
@@ -13,9 +13,8 @@ NLog supports traditional logging, structured logging and the combination of bot
 Supported platforms:
 
 - .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
-- .NET Core 1, 2 and 3
+- .NET Core 1, 2, 3 &amp; 5
 - .NET Standard 1.3+ and 2.0+;
-- .NET Framework 4 client profile
 - Mono 4
 
 For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
@@ -30,18 +29,21 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 
 ## Bugfixes
-- FileTarget - New current file should write start header, when archive operation is performed on previous file (#4106) (@snakefoot)
+- JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
+- AsyncTaskTarget - Flush when buffer is full should not block forever (#4176) (@snakefoot)
+- Failing to lookup ProcessName because of Access Denied should fallback to Win32-API (#4182) (@snakefoot)
+
+## Features
+- ExceptionLayoutRenderer - Added FlattenException option (#4153) (@snakefoot)
 
 ## Improvements
-- LoggingConfiguration - ValidateConfig should only throw when enabled (#4102) (@snakefoot)
-- Fix VerificationException Operation could destabilize the runtime (#4114) (@snakefoot)
+- NetworkTarget - Improve handling of synchronous exceptions from UdpClient.SendAsync (#4141) (@snakefoot)
+- AsyncTaskTarget - Include TaskScheduler in ContinueWith (#4176) (@snakefoot)
+- Improving debugger-display for Logger.Properties and LogEventInfo.Properties (#4190) (@snakefoot)
 
 ## Performance
-- Removed EmptyDefaultDictionary from MappedDiagnosticsContext (#4115) (@snakefoot)
-
-## Other
-- Fix root .editorconfig to use end_of_line = CRLF. Remove local .editorconfig (#4109) (@snakefoot)
-- Improve docs (#4097) (@304NotModified)
+- Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
+- ConditionLayoutExpression - Skip allocating StringBuilder for every condition check (#4171) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
@@ -61,48 +63,39 @@ For all config options and platform support, check https://nlog-project.org/conf
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'netstandard2.0' ">true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>NLog for .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET4_5;DYNAMIC_OBJECT</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-    <Title>NLog for .NET Framework 4</Title>
-    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET4_0;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <Title>NLog for NetStandard 1.3</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_0;NETSTANDARD1_3</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <Title>NLog for NetStandard 1.5</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_0;NETSTANDARD1_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -114,7 +107,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -124,11 +117,12 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Xml" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>

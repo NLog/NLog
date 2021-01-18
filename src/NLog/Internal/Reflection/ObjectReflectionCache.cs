@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System.Dynamic;
 #endif
     using System.Linq;
@@ -142,7 +142,7 @@ namespace NLog.Internal
                 return true;
             }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (value is DynamicObject d)
             {
                 var dictionary = DynamicObjectToDict(d);
@@ -558,7 +558,7 @@ namespace NLog.Internal
             }
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
         private static Dictionary<string, object> DynamicObjectToDict(DynamicObject d)
         {
             var newVal = new Dictionary<string, object>();
@@ -596,7 +596,7 @@ namespace NLog.Internal
             if (interfaceType.IsGenericType())
             {
                 if (interfaceType.GetGenericTypeDefinition() == typeof(IDictionary<,>)
-#if NET4_5
+#if !NET35
                  || interfaceType.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)
 #endif
                    )
@@ -625,7 +625,7 @@ namespace NLog.Internal
                     if (dictionary.Count > 0)
                         return YieldEnumerator(dictionary);
                 }
-#if NET4_5
+#if !NET35
                 else if (value is IReadOnlyDictionary<TKey, TValue> readonlyDictionary)
                 {
                     if (readonlyDictionary.Count > 0)
@@ -641,7 +641,7 @@ namespace NLog.Internal
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
             }
 
-#if NET4_5
+#if !NET35
             private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)

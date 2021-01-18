@@ -256,9 +256,9 @@ namespace NLog.Targets
                 return true;
             }
 
-            if (value is DateTimeOffset)
+            if (value is DateTimeOffset dateTimeOffset)
             {
-                QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
+                QuoteValue(destination, dateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
                 return true;
             }
 
@@ -516,10 +516,10 @@ namespace NLog.Targets
 
         private static CultureInfo CreateFormatProvider()
         {
-#if NETSTANDARD1_0
-            var culture = new CultureInfo("en-US");
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var culture = new CultureInfo("en-US", false);
+#else
+            var culture = new CultureInfo("en-US");            
 #endif
             var numberFormat = culture.NumberFormat;
             numberFormat.NumberGroupSeparator = string.Empty;

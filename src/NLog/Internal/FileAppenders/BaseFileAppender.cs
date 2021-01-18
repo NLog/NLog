@@ -167,10 +167,10 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
         protected FileStream CreateFileStream(bool allowFileSharedWriting, int overrideBufferSize = 0)
         {
-            int currentDelay = CreateFileParameters.ConcurrentWriteAttemptDelay;
+            int currentDelay = CreateFileParameters.FileOpenRetryDelay;
 
             InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", FileName, allowFileSharedWriting);
-            for (int i = 0; i < CreateFileParameters.ConcurrentWriteAttempts; ++i)
+            for (int i = 0; i <= CreateFileParameters.FileOpenRetryCount; ++i)
             {
                 try
                 {
@@ -185,6 +185,7 @@ namespace NLog.Internal.FileAppenders
                         {
                             throw;
                         }
+
                         var directoryName = Path.GetDirectoryName(FileName);
                         try
                         {
@@ -195,13 +196,13 @@ namespace NLog.Internal.FileAppenders
                             //if creating a directory failed, don't retry for this message (e.g the ConcurrentWriteAttempts below)
                             throw new NLogRuntimeException("Could not create directory {0}", directoryName);
                         }
-                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
 
+                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
                     }
                 }
                 catch (IOException)
                 {
-                    if (!CreateFileParameters.ConcurrentWrites || i + 1 == CreateFileParameters.ConcurrentWriteAttempts)
+                    if (i + 1 >= CreateFileParameters.FileOpenRetryCount)
                     {
                         throw; // rethrow
                     }

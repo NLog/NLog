@@ -55,11 +55,11 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc />
         public string EntryAssemblyFileName => _entryAssemblyFileName ?? (_entryAssemblyFileName = LookupEntryAssemblyFileName());
         /// <inheritdoc />
-        public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePath());
+        public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePathWithFallback());
         /// <inheritdoc />
-        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessName());
+        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback());
         /// <inheritdoc />
-        public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessId()).Value;
+        public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
 #endif
         /// <inheritdoc />
         public string AppDomainBaseDirectory => AppDomain.BaseDirectory;
@@ -110,35 +110,87 @@ namespace NLog.Internal.Fakeables
             }
         }
 
+        private static string LookupCurrentProcessFilePathWithFallback()
+        {
+            try
+            {
+                var processFilePath = LookupCurrentProcessFilePath();
+                return processFilePath ?? LookupCurrentProcessFilePathNative();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return LookupCurrentProcessFilePathNative();
+            }
+        }
+
         private static string LookupCurrentProcessFilePath()
         {
             try
             {
                 var currentProcess = Process.GetCurrentProcess();
-                return currentProcess?.MainModule.FileName ?? string.Empty;
+                return currentProcess?.MainModule.FileName;
             }
             catch (Exception ex)
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                return string.Empty;
+                // May throw a SecurityException or Access Denied when running from an IIS app. pool process
+                return null;
             }
         }
 
-        private static int LookupCurrentProcessId()
+        private static int LookupCurrentProcessIdWithFallback()
+        {
+            try
+            {
+                var processId = LookupCurrentProcessId();
+                return processId ?? LookupCurrentProcessIdNative();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                // May throw a SecurityException if running from an IIS app. pool process (Cannot compile method)
+                return LookupCurrentProcessIdNative();
+            }
+        }
+
+        private static int? LookupCurrentProcessId()
         {
             try
             {
                 var currentProcess = Process.GetCurrentProcess();
-                return currentProcess?.Id ?? 0;
+                return currentProcess?.Id;
             }
             catch (Exception ex)
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                return 0;
+                // May throw a SecurityException or Access Denied when running from an IIS app. pool process
+                return null;
+            }
+        }
+
+        private static string LookupCurrentProcessNameWithFallback()
+        {
+            try
+            {
+                var processName = LookupCurrentProcessName();
+                return processName ?? LookupCurrentProcessNameNative();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                // May throw a SecurityException if running from an IIS app. pool process (Cannot compile method)
+                return LookupCurrentProcessNameNative();
             }
         }
 
@@ -150,15 +202,6 @@ namespace NLog.Internal.Fakeables
                 var currentProcessName = currentProcess?.ProcessName;
                 if (!string.IsNullOrEmpty(currentProcessName))
                     return currentProcessName;
-
-                // This code-path will probably never be exercised, but here for legacy reasons
-                var currentProcessFilePath = LookupCurrentProcessFilePath();
-                if (!string.IsNullOrEmpty(currentProcessFilePath))
-                {
-                    currentProcessName = Path.GetFileNameWithoutExtension(currentProcessFilePath);
-                    if (!string.IsNullOrEmpty(currentProcessName))
-                        return currentProcessName;
-                }
             }
             catch (Exception ex)
             {
@@ -166,7 +209,106 @@ namespace NLog.Internal.Fakeables
                     throw;
             }
 
+            return null;
+        }
+
+        private static string LookupCurrentProcessNameNative()
+        {
+            var currentProcessFilePath = LookupCurrentProcessFilePath();
+            if (!string.IsNullOrEmpty(currentProcessFilePath))
+            {
+                var currentProcessName = Path.GetFileNameWithoutExtension(currentProcessFilePath);
+                if (!string.IsNullOrEmpty(currentProcessName))
+                    return currentProcessName;
+            }
+
             return UnknownProcessName;
+        }
+#endif
+
+#if !NETSTANDARD
+        private static string LookupCurrentProcessFilePathNative()
+        {
+            try
+            {
+                if (!PlatformDetector.IsWin32)
+                    return string.Empty;
+
+                return LookupCurrentProcessFilePathWin32();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return string.Empty;
+            }
+        }
+
+        [System.Security.SecuritySafeCritical]
+        private static string LookupCurrentProcessFilePathWin32()
+        {
+            try
+            {
+                var sb = new System.Text.StringBuilder(512);
+                if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
+                {
+                    throw new InvalidOperationException("Cannot determine program name.");
+                }
+
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return string.Empty;
+            }
+        }
+
+        private static int LookupCurrentProcessIdNative()
+        {
+            try
+            {
+                if (!PlatformDetector.IsWin32)
+                    return 0;
+
+                return LookupCurrentProcessIdWin32();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return 0;
+            }
+        }
+
+        [System.Security.SecuritySafeCritical]
+        private static int LookupCurrentProcessIdWin32()
+        {
+            try
+            {
+                return NativeMethods.GetCurrentProcessId();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                return 0;
+            }
+        }
+#else
+        private static string LookupCurrentProcessFilePathNative()
+        {
+            return string.Empty;
+        }
+
+        private static int LookupCurrentProcessIdNative()
+        {
+            return 0;
         }
 #endif
     }

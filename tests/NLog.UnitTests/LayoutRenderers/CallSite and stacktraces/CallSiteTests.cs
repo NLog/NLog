@@ -134,7 +134,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             ILogger logger = LogManager.GetLogger("A");
-#if !NET4_5 && !MONO
+#if DEBUG
 #line 100000
 #endif
             logger.Debug("msg");
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
             Assert.True(lastMessage.IndexOf("callsitetests.cs:" + linenumber, StringComparison.OrdinalIgnoreCase) >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
-#if !NET4_5 && !MONO
+#if DEBUG
 #line default
 #endif
         }
@@ -728,8 +728,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #else
         [Fact]
 #endif
@@ -772,8 +772,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -794,8 +794,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains("|direct", GetDebugLastMessage("debug"));
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #else
         [Fact]
 #endif
@@ -848,8 +848,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if NET3_5 
-        [Fact(Skip = "NET3_5 not supporting async callstack")]
+#if NET35 
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif !DEBUG
         [Fact(Skip = "RELEASE not working, only DEBUG")]
 #else
@@ -904,8 +904,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -950,8 +950,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if NET3_5 || NET4_0 || NETSTANDARD1_5
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -1230,8 +1230,8 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -1286,8 +1286,8 @@ namespace NLog.UnitTests.LayoutRenderers
             await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -1315,8 +1315,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", callsiteMethodName);
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -1351,8 +1351,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6b");
         }
 
-#if NET3_5 || NET4_0
-        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else

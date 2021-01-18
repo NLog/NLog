@@ -42,6 +42,7 @@ namespace NLog
     /// Async version of <see cref="NestedDiagnosticsContext" /> - a logical context structure that keeps a stack
     /// Allows for maintaining scope across asynchronous tasks and call contexts.
     /// </summary>
+    [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
     public static class NestedDiagnosticsLogicalContext
     {
         /// <summary>
@@ -49,12 +50,10 @@ namespace NLog
         /// </summary>
         /// <param name="value">The value to be pushed.</param>
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public static IDisposable Push<T>(T value)
         {
-            var parent = GetThreadLocal();
-            var current = NestedContext<T>.CreateNestedContext(parent, value);
-            SetThreadLocal(current);
-            return current;
+            return ScopeContext.PushNestedState(value);
         }
 
         /// <summary>
@@ -62,6 +61,7 @@ namespace NLog
         /// </summary>
         /// <param name="value">The value to be pushed.</param>
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
         public static IDisposable PushObject(object value)
         {
             return Push(value);
@@ -72,9 +72,9 @@ namespace NLog
         /// </summary>
         /// <returns>The top message which is no longer on the stack.</returns>
         /// <remarks>this methods returns a object instead of string, this because of backwards-compatibility</remarks>
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
         public static object Pop()
         {
-            //NLOG 5: return string (breaking change)
             return PopObject();
         }
 
@@ -83,6 +83,7 @@ namespace NLog
         /// </summary>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting the value to a string.</param>
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
         public static string Pop(IFormatProvider formatProvider)
         {
             return FormatHelper.ConvertToString(PopObject() ?? string.Empty, formatProvider);
@@ -92,68 +93,36 @@ namespace NLog
         /// Pops the top message off the current NDLC stack
         /// </summary>
         /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
         public static object PopObject()
         {
-            var current = GetThreadLocal();
-            if (current != null)
-                SetThreadLocal(current.Parent);
-            return current?.Value;
+            return ScopeContext.PopNestedContextLegacy();
         }
 
         /// <summary>
         /// Peeks the top object on the current NDLC stack
         /// </summary>
         /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
+        [Obsolete("Replaced by ScopeContext.PeekNestedState. Marked obsolete on NLog 5.0")]
         public static object PeekObject()
         {
-            return PeekContext(false)?.Value;
-        }
-
-        /// <summary>
-        /// Peeks the current scope, and returns its start time
-        /// </summary>
-        /// <returns>Scope Creation Time</returns>
-        internal static DateTime PeekTopScopeBeginTime()
-        {
-            return new DateTime(PeekContext(false)?.CreatedTimeUtcTicks ?? DateTime.MinValue.Ticks, DateTimeKind.Utc);
-        }
-
-        /// <summary>
-        /// Peeks the first scope, and returns its start time
-        /// </summary>
-        /// <returns>Scope Creation Time</returns>
-        internal static DateTime PeekBottomScopeBeginTime()
-        {
-            return new DateTime(PeekContext(true)?.CreatedTimeUtcTicks ?? DateTime.MinValue.Ticks, DateTimeKind.Utc);
-        }
-
-        private static INestedContext PeekContext(bool bottomScope)
-        {
-            var current = GetThreadLocal();
-            if (current != null)
-            {
-                if (bottomScope)
-                {
-                    while (current.Parent != null)
-                        current = current.Parent;
-                }
-                return current;
-            }
-            return null;
+            return ScopeContext.PeekNestedState();
         }
 
         /// <summary>
         /// Clears current stack.
         /// </summary>
+        [Obsolete("Replaced by ScopeContext.Clear. Marked obsolete on NLog 5.0")]
         public static void Clear()
         {
-            SetThreadLocal(null);
+            ScopeContext.ClearNestedContextLegacy();
         }
 
         /// <summary>
         /// Gets all messages on the stack.
         /// </summary>
         /// <returns>Array of strings on the stack.</returns>
+        [Obsolete("Replaced by ScopeContext.GetAllNestedStates. Marked obsolete on NLog 5.0")]
         public static string[] GetAllMessages()
         {
             return GetAllMessages(null);
@@ -164,6 +133,7 @@ namespace NLog
         /// </summary>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>Array of strings.</returns>
+        [Obsolete("Replaced by ScopeContext.GetAllNestedStates. Marked obsolete on NLog 5.0")]
         public static string[] GetAllMessages(IFormatProvider formatProvider)
         {
             return GetAllObjects().Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
@@ -173,22 +143,13 @@ namespace NLog
         /// Gets all objects on the stack. The objects are not removed from the stack.
         /// </summary>
         /// <returns>Array of objects on the stack.</returns>
+        [Obsolete("Replaced by ScopeContext.GetAllNestedStates. Marked obsolete on NLog 5.0")]
         public static object[] GetAllObjects()
         {
-            var currentContext = GetThreadLocal();
-            if (currentContext == null)
-                return ArrayHelper.Empty<object>();
-
-            int index = 0;
-            object[] messages = new object[currentContext.FrameLevel];
-            while (currentContext != null)
-            {
-                messages[index++] = currentContext.Value;
-                currentContext = currentContext.Parent;
-            }
-            return messages;
+            return ScopeContext.GetAllNestedStates();
         }
 
+        [Obsolete("Required to be compatible with legacy NLog versions, when using remoting. Marked obsolete on NLog 5.0")]
         interface INestedContext : IDisposable
         {
             INestedContext Parent { get; }
@@ -197,10 +158,11 @@ namespace NLog
             long CreatedTimeUtcTicks { get; }
         }
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
         [Serializable]
 #endif
-        class NestedContext<T> : INestedContext
+        [Obsolete("Required to be compatible with legacy NLog versions, when using remoting. Marked obsolete on NLog 5.0")]
+        sealed class NestedContext<T> : INestedContext
         {
             public INestedContext Parent { get; }
             public T Value { get; }
@@ -208,32 +170,18 @@ namespace NLog
             public int FrameLevel { get; }
             private int _disposed;
 
-            public static INestedContext CreateNestedContext(INestedContext parent, T value)
-            {
-#if NET4_6 || NETSTANDARD
-                return new NestedContext<T>(parent, value);
-#else
-                if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
-                    return new NestedContext<T>(parent, value);
-                else
-                    return new NestedContext<ObjectHandleSerializer>(parent, new ObjectHandleSerializer(value));
-#endif
-            }
-
             object INestedContext.Value
             {
                 get
                 {
-#if NET4_6 || NETSTANDARD
-                    return Value;
-#else
                     object value = Value;
+#if NET35 || NET40 || NET45
                     if (value is ObjectHandleSerializer objectHandle)
                     {
                         return objectHandle.Unwrap();
                     }
-                    return value;
 #endif
+                    return value;
                 }
             }
 
@@ -259,32 +207,5 @@ namespace NLog
                 return value?.ToString() ?? "null";
             }
         }
-
-        private static void SetThreadLocal(INestedContext newValue)
-        {
-#if NET4_6 || NETSTANDARD
-            AsyncNestedDiagnosticsContext.Value = newValue;
-#else
-            if (newValue == null)
-                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(NestedDiagnosticsContextKey);
-            else
-                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(NestedDiagnosticsContextKey, newValue);
-#endif
-        }
-
-        private static INestedContext GetThreadLocal()
-        {
-#if NET4_6 || NETSTANDARD
-            return AsyncNestedDiagnosticsContext.Value;
-#else
-            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(NestedDiagnosticsContextKey) as INestedContext;
-#endif
-        }
-
-#if NET4_6 || NETSTANDARD
-        private static readonly System.Threading.AsyncLocal<INestedContext> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<INestedContext>();
-#else
-        private const string NestedDiagnosticsContextKey = "NLog.AsyncableNestedDiagnosticsContext";
-#endif
     }
 }

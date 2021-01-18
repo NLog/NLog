@@ -52,13 +52,12 @@ namespace NLog.Internal
         [ContractAnnotation("value:null => true")]
         internal static bool IsNullOrWhiteSpace(string value)
         {
-#if NET3_5
-
+#if !NET35
+            return string.IsNullOrWhiteSpace(value);
+#else
             if (value == null) return true;
             if (value.Length == 0) return true;
             return String.IsNullOrEmpty(value.Trim());
-#else
-            return string.IsNullOrWhiteSpace(value);
 #endif
         }
 
@@ -157,7 +156,7 @@ namespace NLog.Internal
         /// <paramref name="values" /> is <see langword="null" />. </exception>
         internal static string Join(string separator, IEnumerable<string> values)
         {
-#if NETSTANDARD || NET4_5 || NET4_0
+#if !NET35
             return string.Join(separator, values);
 #else
             return string.Join(separator, values.ToArray());

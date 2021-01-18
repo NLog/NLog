@@ -61,6 +61,11 @@ namespace NLog.Config
 
         private readonly Stack<string> _currentFilePath = new Stack<string>();
 
+        internal XmlLoggingConfiguration(LogFactory logFactory)
+            : base(logFactory)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -77,10 +82,7 @@ namespace NLog.Config
         public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            using (XmlReader reader = CreateFileReader(fileName))
-            {
-                Initialize(reader, fileName);
-            }
+            LoadFromXmlFile(fileName);
         }
 
         /// <summary>
@@ -171,13 +173,7 @@ namespace NLog.Config
         internal XmlLoggingConfiguration([NotNull] string xmlContents, [CanBeNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            using (var stringReader = new StringReader(xmlContents))
-            {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    Initialize(reader, fileName);
-                }
-            }
+            LoadFromXmlContent(xmlContents, fileName);
         }
 
         /// <summary>
@@ -260,9 +256,14 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName, LogFactory);
-            else
-                return base.Reload();
+            {
+                var newConfig = new XmlLoggingConfiguration(LogFactory);
+                newConfig.PrepareForReload(this);
+                newConfig.LoadFromXmlFile(_originalFileName);
+                return newConfig;
+            }
+
+            return base.Reload();
         }
 
         /// <summary>
@@ -289,6 +290,25 @@ namespace NLog.Config
         public static void ResetCandidateConfigFilePath()
         {
             LogManager.LogFactory.ResetCandidateConfigFilePath();
+        }
+
+        private void LoadFromXmlFile(string fileName)
+        {
+            using (XmlReader reader = CreateFileReader(fileName))
+            {
+                Initialize(reader, fileName);
+            }
+        }
+
+        internal void LoadFromXmlContent(string xmlContent, string fileName)
+        {
+            using (var stringReader = new StringReader(xmlContent))
+            {
+                using (XmlReader reader = XmlReader.Create(stringReader))
+                {
+                    Initialize(reader, fileName);
+                }
+            }
         }
 
         /// <summary>

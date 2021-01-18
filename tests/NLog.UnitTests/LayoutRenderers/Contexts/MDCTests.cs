@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
+    using NLog.Config;
     using Xunit;
 
+    [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MDCTests : NLogTestBase
     {
         [Fact]

@@ -41,7 +41,7 @@ namespace NLog.Targets
     using System.Data.Common;
     using System.Reflection;
     using System.Text;
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System.Transactions;
 #endif
 
@@ -1183,7 +1183,7 @@ namespace NLog.Targets
                 return DBNull.Value;
         }
 
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
         /// <summary>
         /// Fake transaction
         /// 

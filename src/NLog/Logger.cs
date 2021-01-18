@@ -36,7 +36,7 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-#if NET4_5
+#if !NET35 && !NET40
     using System.Threading.Tasks;
 #endif
     using JetBrains.Annotations;
@@ -155,6 +155,64 @@ namespace NLog
                 ? new ThreadSafeDictionary<string, object>(contextProperties)
                 : new ThreadSafeDictionary<string, object>();
             return contextProperties;
+        }
+
+        /// <summary>
+        /// Updates the <see cref="ScopeContext"/> with provided property
+        /// </summary>
+        /// <param name="propertyName">Name of property</param>
+        /// <param name="propertyValue">Value of property</param>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
+        /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
+        public IDisposable PushScopeProperty(string propertyName, object propertyValue)
+        {
+            return ScopeContext.PushProperty(propertyName, propertyValue);
+        }
+
+        /// <summary>
+        /// Updates the <see cref="ScopeContext"/> with provided property
+        /// </summary>
+        /// <param name="propertyName">Name of property</param>
+        /// <param name="propertyValue">Value of property</param>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
+        /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
+        public IDisposable PushScopeProperty<TValue>(string propertyName, TValue propertyValue)
+        {
+            return ScopeContext.PushProperty(propertyName, propertyValue);
+        }
+
+#if !NET35 && !NET40
+        /// <summary>
+        /// Updates the <see cref="ScopeContext"/> with provided properties
+        /// </summary>
+        /// <param name="scopeProperties">Properties being added to the scope dictionary</param>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
+        /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
+        public IDisposable PushScopeProperties(IReadOnlyCollection<KeyValuePair<string, object>> scopeProperties)
+        {
+            return ScopeContext.PushProperties(scopeProperties);
+        }
+
+        /// <summary>
+        /// Updates the <see cref="ScopeContext"/> with provided properties
+        /// </summary>
+        /// <param name="scopeProperties">Properties being added to the scope dictionary</param>
+        /// <returns>A disposable object that removes the properties from logical context scope on dispose.</returns>
+        /// <remarks><see cref="ScopeContext"/> property-dictionary-keys are case-insensitive</remarks>
+        public IDisposable PushScopeProperties<TValue>(IReadOnlyCollection<KeyValuePair<string, TValue>> scopeProperties)
+        {
+            return ScopeContext.PushProperties(scopeProperties);
+        }
+#endif
+
+        /// <summary>
+        /// Pushes new state on the logical context scope stack
+        /// </summary>
+        /// <param name="nestedState">Value to added to the scope stack</param>
+        /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
+        public IDisposable PushScopeState<T>(T nestedState)
+        {
+            return ScopeContext.PushNestedState(nestedState);
         }
 
         /// <summary>
@@ -499,7 +557,7 @@ namespace NLog
             }
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         /// <summary>
         /// Logs an exception is logged at <c>Error</c> level if the provided task does not run to completion.
         /// </summary>

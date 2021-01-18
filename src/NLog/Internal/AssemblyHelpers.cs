@@ -83,10 +83,7 @@ namespace NLog.Internal
         {
             InternalLogger.Info("Loading assembly: {0}", assemblyName);
 
-#if NETSTANDARD1_0
-            var name = new AssemblyName(assemblyName);
-            return Assembly.Load(name);
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             try
             {
                 Assembly assembly = Assembly.Load(assemblyName);
@@ -106,6 +103,9 @@ namespace NLog.Internal
                 InternalLogger.Trace("Haven't found' '{0}' in current domain", assemblyName);
                 throw;
             }
+#else
+            var name = new AssemblyName(assemblyName);
+            return Assembly.Load(name);
 #endif
         }
 

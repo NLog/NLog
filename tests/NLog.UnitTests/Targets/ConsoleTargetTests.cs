@@ -187,7 +187,7 @@ namespace NLog.UnitTests.Targets
 
 #endif
 
-#if !NET3_5 && !MONO
+#if !MONO
         [Fact]
         public void ConsoleRaceCondtionIgnoreTest()
         {

@@ -43,7 +43,7 @@ namespace NLog.UnitTests.Internal
         {
 #if MONO
             Assert.True(PlatformDetector.IsMono);
-#elif NET3_5 || NET4_0 || NET4_5
+#else
             Assert.False(PlatformDetector.IsMono);
 #endif
         }

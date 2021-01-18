@@ -34,7 +34,7 @@
 namespace NLog
 {
     using System;
-#if NET4_5
+#if !NET35 && !NET40
     using System.Threading.Tasks;
 #endif
 
@@ -68,7 +68,7 @@ namespace NLog
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
         T Swallow<T>(Func<T> func, T fallback);
 
-#if NET4_5
+#if !NET35 && !NET40
         /// <summary>
         /// Logs an exception is logged at <c>Error</c> level if the provided task does not run to completion.
         /// </summary>

@@ -177,9 +177,12 @@ namespace NLog.Conditions
 
             if (_tokenizer.TokenType == ConditionTokenType.String)
             {
-                ConditionExpression e = new ConditionLayoutExpression(new SimpleLayout(_tokenizer.StringTokenValue, _configurationItemFactory));
+                var simpleLayout = new SimpleLayout(_tokenizer.StringTokenValue, _configurationItemFactory);
                 _tokenizer.GetNextToken();
-                return e;
+                if (simpleLayout.IsFixedText)
+                    return new ConditionLiteralExpression(simpleLayout.FixedText);
+                else
+                    return new ConditionLayoutExpression(simpleLayout);
             }
 
             if (_tokenizer.TokenType == ConditionTokenType.Keyword)

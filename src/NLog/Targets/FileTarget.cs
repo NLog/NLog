@@ -163,7 +163,7 @@ namespace NLog.Targets
             ArchiveAboveSize = ArchiveAboveSizeDisabled;
             ArchiveOldFileOnStartupAboveSize = 0;
             ConcurrentWriteAttempts = 10;
-            ConcurrentWrites = true;
+            ConcurrentWrites = false;
             Encoding = Encoding.UTF8;
             BufferSize = 32768;
             AutoFlush = true;
@@ -184,7 +184,7 @@ namespace NLog.Targets
             OptimizeBufferReuse = GetType() == typeof(FileTarget);    // Class not sealed, reduce breaking changes
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         static FileTarget()
         {
             FileCompressor = new ZipArchiveFileCompressor();
@@ -347,6 +347,10 @@ namespace NLog.Targets
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
+        int ICreateFileParameters.FileOpenRetryCount => (!KeepFileOpen || ConcurrentWrites) ? ConcurrentWriteAttempts : 0;
+
+        int ICreateFileParameters.FileOpenRetryDelay => (!KeepFileOpen || ConcurrentWrites) ? ConcurrentWriteAttemptDelay : 1;
+
         /// <summary>
         /// Gets or sets the line ending mode.
         /// </summary>
@@ -424,7 +428,7 @@ namespace NLog.Targets
         /// that lets it keep the files open for writing.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool ConcurrentWrites
         {
             get => _concurrentWrites;
@@ -1378,10 +1382,10 @@ namespace NLog.Targets
                 }
 
                 fileStream.Close(); // This flushes the content, too.
-#if NET3_5
-                archiveFileStream.Flush();
-#else
+#if !NET35
                 archiveFileStream.Flush(true);
+#else
+                archiveFileStream.Flush();                
 #endif
             }
 

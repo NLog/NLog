@@ -68,17 +68,20 @@ namespace NLog.UnitTests.Config
         {
             using (new InternalLoggerScope(true))
             {
-                var xml = "<nlog logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
-                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                using (new NoThrowNLogExceptions())
+                {
+                    var xml = "<nlog logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
+                    var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
-                Assert.False(config.AutoReload);
-                Assert.True(config.InitializeSucceeded);
-                Assert.Equal("", InternalLogger.LogFile);
-                Assert.False(InternalLogger.IncludeTimestamp);
-                Assert.True(InternalLogger.LogToConsole);
-                Assert.True(InternalLogger.LogToConsoleError);
-                Assert.Null(InternalLogger.LogWriter);
-                Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);
+                    Assert.False(config.AutoReload);
+                    Assert.True(config.InitializeSucceeded);
+                    Assert.Equal("", InternalLogger.LogFile);
+                    Assert.False(InternalLogger.IncludeTimestamp);
+                    Assert.True(InternalLogger.LogToConsole);
+                    Assert.True(InternalLogger.LogToConsoleError);
+                    Assert.Null(InternalLogger.LogWriter);
+                    Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);
+                }
             }
         }
 
@@ -229,8 +232,8 @@ namespace NLog.UnitTests.Config
                         <target name='debug' type='Debug' layout='${message}' />
                     </targets>
                     <rules>
-                        <logger name='*' minlevel='debug' appendto='debug' defaultFilterResult='ignore'>
-                            <filters>
+                        <logger name='*' minlevel='debug' appendto='debug'>
+                            <filters defaultFilterResult='ignore'>
                                 <whenContains />
                             </filters>
                         </logger>
@@ -252,17 +255,11 @@ namespace NLog.UnitTests.Config
 <nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd"" 
       xmlns:{@namespace}=""http://www.w3.org/2001/XMLSchema-instance"" 
       {@namespace}:schemaLocation=""somewhere"" 
-      {@namespace}:type=""asa""
       internalLogToConsole=""true"" internalLogLevel=""Warn"">
 </nlog>";
 
-
             try
             {
-
-                // ReSharper disable once UnusedVariable
-                var factory = ConfigurationItemFactory.Default; // retrieve factory for calling preload and so won't assert those warnings
-
                 TextWriter textWriter = new StringWriter();
                 InternalLogger.LogWriter = textWriter;
                 InternalLogger.IncludeTimestamp = false;

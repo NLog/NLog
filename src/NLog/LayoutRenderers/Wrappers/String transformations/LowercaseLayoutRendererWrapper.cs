@@ -92,7 +92,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             CultureInfo culture = Culture;
 
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
             string stringToLower = null;
             if (culture != null && culture != CultureInfo.InvariantCulture)
             {
@@ -103,7 +103,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
             for (int i = startPos; i < target.Length; ++i)
             {
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
                 if (stringToLower != null)
                     target[i] = stringToLower[i];    //no char.ToLower with culture
                 else

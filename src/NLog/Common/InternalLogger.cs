@@ -56,16 +56,7 @@ namespace NLog.Common
         private static readonly object LockObject = new object();
         private static string _logFile;
 
-        /// <summary>
-        /// Initializes static members of the InternalLogger class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static InternalLogger()
-        {
-            Reset();
-        }
-
-        /// <summary>
+       /// <summary>
         /// Set the config of the InternalLogger with defaults and config.
         /// </summary>
         public static void Reset()
@@ -508,16 +499,16 @@ namespace NLog.Common
         {
             try
             {
-#if  NETSTANDARD1_0
-                Info(assembly.FullName);
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
-                System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
+                    System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
                 Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
                     assembly.FullName,
                     fileVersionInfo?.FileVersion,
                     fileVersionInfo?.ProductVersion,
                     assembly.GlobalAssemblyCache);
+#else
+                Info(assembly.FullName);
 #endif
             }
             catch (Exception ex)
