@@ -811,14 +811,6 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if NET4_5
-        [Fact]
-        public void ArchiveEntryNameAsExpected()
-        {
-            Assert.Equal("log.00000.csv", ZipArchiveFileCompressor.GetEntryName("log-latest.csv", "log.00000.zip"));
-        }
-#endif
-
         [Fact]
         public void ArchiveOldFileOnStartupAboveSize()
         {
