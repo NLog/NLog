@@ -48,8 +48,9 @@ using System.IO.Compression;
         /// <summary>
         /// Implements <see cref="IFileCompressor.CompressFile(string, string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
         /// </summary>
-        public void CompressFile(string fileName, string entryName, string archiveFileName)
+        public void CompressFile(string fileName, string archiveFileName)
         {
+            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))

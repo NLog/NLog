@@ -144,12 +144,12 @@ namespace NLog.UnitTests
 
         protected class CustomFileCompressor : IFileCompressor
         {
-            public void CompressFile(string fileName, string entryName, string archiveFileName)
+            public void CompressFile(string fileName, string archiveFileName)
             {
 #if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
-                    zip.AddFile(fileName).FileName = entryName;
+                    zip.AddFile(fileName);
                     zip.Save(archiveFileName);
                 }
 #endif

@@ -43,8 +43,7 @@ namespace NLog.Targets
         /// Create archiveFileName by compressing fileName.
         /// </summary>
         /// <param name="fileName">Absolute path to the log file to compress.</param>
-        /// <param name="entryName">The name of the log file inside the compressed archive file</param>
         /// <param name="archiveFileName">Absolute path to the compressed archive file to create.</param>
-        void CompressFile(string fileName, string entryName, string archiveFileName);
+        void CompressFile(string fileName, string archiveFileName);
     }
 }
