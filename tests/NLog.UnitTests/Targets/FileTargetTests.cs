@@ -713,7 +713,7 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(ArchiveFileOnStartTests_TestParameters))]
         public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
         {
-            var logFile = Path.GetTempFileName();
+            var logFile = Path.GetTempFileName() + ".txt";
             var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
             var archiveExtension = enableCompression ? "zip" : "txt";
             IFileCompressor fileCompressor = null;
