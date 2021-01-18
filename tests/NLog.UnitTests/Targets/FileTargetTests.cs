@@ -794,10 +794,11 @@ namespace NLog.UnitTests.Targets
                 Assert.True(File.Exists(archiveTempName));
 
                 var assertFileContents = ft.EnableArchiveFileCompression ?
-                    new Action<string, string, Encoding>(AssertZipFileContents) :
+                    new Action<string, string, string, Encoding>(AssertZipFileContents) :
                     AssertFileContents;
 
-                assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
+                string expectedEntryName = Path.GetFileNameWithoutExtension(archiveTempName) + ".txt";
+                assertFileContents(archiveTempName, expectedEntryName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
                     Encoding.UTF8);
             }
             finally
@@ -2148,7 +2149,7 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;    // Flush
 
                 var assertFileContents =
-                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                    enableCompression ? new Action<string, string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 
                 var times = 25;
                 AssertFileContents(logFile,
@@ -2161,16 +2162,19 @@ namespace NLog.UnitTests.Targets
 
                 assertFileContents(
                     Path.Combine(tempPath, string.Format(archiveFileNameFormat, 0)),
+                    "file.txt",
                     StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
 
                 assertFileContents(
                     Path.Combine(tempPath, string.Format(archiveFileNameFormat, 1)),
+                    "file.txt",
                     StringRepeat(times, "ccc\n"),
                     Encoding.UTF8);
 
                 assertFileContents(
                     Path.Combine(tempPath, string.Format(archiveFileNameFormat, 2)),
+                    "file.txt",
                     StringRepeat(times, "bbb\n"),
                     Encoding.UTF8);
 
@@ -2516,7 +2520,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                var assertFileContents = enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                var assertFileContents = enableCompression ? new Action<string, string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 
                 var extension = Path.GetExtension(renderedArchiveFileName);
                 var fileNameWithoutExt = renderedArchiveFileName.Substring(0, renderedArchiveFileName.Length - extension.Length);
@@ -2528,9 +2532,9 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "eee\n"),
                     Encoding.UTF8);
 
-                assertFileContents(helper.GetFullPath(1), StringRepeat(times, "bbb\n"), Encoding.UTF8);
-                assertFileContents(helper.GetFullPath(2), StringRepeat(times, "ccc\n"), Encoding.UTF8);
-                assertFileContents(helper.GetFullPath(3), StringRepeat(times, "ddd\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(1), Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt", StringRepeat(times, "bbb\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(2), Path.GetFileNameWithoutExtension(helper.GetFullPath(2)) + ".txt", StringRepeat(times, "ccc\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(3), Path.GetFileNameWithoutExtension(helper.GetFullPath(3)) + ".txt", StringRepeat(times, "ddd\n"), Encoding.UTF8);
 
                 Assert.False(helper.Exists(0), "First archive should have been deleted due to max archive count.");
                 Assert.False(helper.Exists(4), "Fifth archive must not have been created yet.");
