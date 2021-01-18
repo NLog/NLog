@@ -46,7 +46,7 @@ using System.IO.Compression;
     internal class ZipArchiveFileCompressor : IFileCompressor
     {
         /// <summary>
-        /// Implements <see cref="IFileCompressor.CompressFile(string, string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
+        /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
