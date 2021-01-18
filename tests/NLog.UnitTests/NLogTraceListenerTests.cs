@@ -360,14 +360,16 @@ namespace NLog.UnitTests
         }
 
         [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void TraceTargetEnableTraceFailTest(bool enableTraceFail)
+        [InlineData(true, false)]
+        [InlineData(false, false)]
+        [InlineData(true, true)]
+        [InlineData(false, true)]
+        public void TraceTargetEnableTraceFailTest(bool enableTraceFail, bool reportLogLevel)
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog>
                     <targets>
-                        <target name='trace' type='Trace' layout='${{logger}} ${{level}} ${{message}}' enableTraceFail='{enableTraceFail}' />
+                        <target name='trace' type='Trace' layout='${{logger}} ${{level}} ${{message}}' enableTraceFail='{enableTraceFail}' reportLogLevel='{reportLogLevel}' />
                     </targets>
                     <rules>
                         <logger name='*' minlevel='Trace' writeTo='trace' />
@@ -390,7 +392,7 @@ namespace NLog.UnitTests
 
                     if (logLevel == LogLevel.Fatal)
                     {
-                        if (enableTraceFail)
+                        if (enableTraceFail && reportLogLevel)
                             Assert.Equal($"Fail: {logger.Name} Fatal Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
                         else
                             Assert.NotEqual($"Fail: {logger.Name} Fatal Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());

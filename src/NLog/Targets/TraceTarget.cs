@@ -37,6 +37,7 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.ComponentModel;
     using System.Diagnostics;
 
@@ -63,14 +64,30 @@ namespace NLog.Targets
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
+        /// Report based on <see cref="NLog.LogLevel"/> to the matching <see cref="System.Diagnostics.Trace"/> facility-method:
+        /// 
+        ///  - <see cref="NLog.LogLevel.Fatal"/> writes to <see cref="Trace.TraceError(string)" />
+        ///  - <see cref="NLog.LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
+        ///  - <see cref="NLog.LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
+        ///  - <see cref="NLog.LogLevel.Info"/> writes to <see cref="Trace.TraceInformation(string)" />
+        ///  - <see cref="NLog.LogLevel.Debug"/> writes to <see cref="Trace.WriteLine(string)" />
+        ///  - <see cref="NLog.LogLevel.Trace"/> writes to <see cref="Trace.WriteLine(string)" />
+        /// </summary>
+        /// <remarks>Trace Listeners might give unwanted side-effects and output, when using level-specific Trace-methods.</remarks>
+        /// <docgen category='Output Options' order='100' />
+        [DefaultValue(false)]
+        public bool ReportLogLevel { get; set; }
+
+        /// <summary>
         /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
         /// <docgen category='Output Options' order='100' />
-        [DefaultValue(false)]
-        public bool RawWrite { get; set; }
+        [Obsolete("Replaced by ReportLogLevel as the property-name is more meaningful. Marked obsolete on NLog 5.0")]
+        [DefaultValue(true)]
+        public bool RawWrite { get => !ReportLogLevel; set => ReportLogLevel = !value; }
 
         /// <summary>
-        /// Forward <see cref="LogLevel.Fatal" /> to <see cref="Trace.Fail(string)" /> (Instead of <see cref="Trace.TraceError(string)" />)
+        /// Forward <see cref="NLog.LogLevel.Fatal" /> to <see cref="Trace.Fail(string)" /> (Instead of <see cref="Trace.TraceError(string)" />)
         /// </summary>
         /// <remarks>
         /// Trace.Fail can have special side-effects, and give fatal exceptions, message dialogs or Environment.FailFast
@@ -104,21 +121,11 @@ namespace NLog.Targets
 
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
-        /// 
-        /// Redirects the log message depending on <see cref="LogLevel"/> and  <see cref="RawWrite"/>. 
-        /// When <see cref="RawWrite"/> is <c>false</c>:
-        ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.TraceError(string)" />
-        ///  - <see cref="LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
-        ///  - <see cref="LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
-        ///  - <see cref="LogLevel.Info"/> writes to <see cref="Trace.TraceInformation(string)" />
-        ///  - <see cref="LogLevel.Debug"/> writes to <see cref="Trace.WriteLine(string)" />
-        ///  - <see cref="LogLevel.Trace"/> writes to <see cref="Trace.WriteLine(string)" />
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             string logMessage = RenderLogEvent(Layout, logEvent);
-            if (RawWrite || logEvent.Level <= LogLevel.Debug)
+            if (!ReportLogLevel || logEvent.Level <= LogLevel.Debug)
             {
                 Trace.WriteLine(logMessage);
             }
