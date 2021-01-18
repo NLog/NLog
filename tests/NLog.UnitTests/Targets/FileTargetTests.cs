@@ -812,6 +812,12 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void ArchiveEntryNameAsExpected()
+        {
+            Assert.Equal("log.00000.csv", ZipArchiveFileCompressor.GetEntryName("log-latest.csv", "log.00000.zip"));
+        }
+
+        [Fact]
         public void ArchiveOldFileOnStartupAboveSize()
         {
             var logFile = Path.GetTempFileName();

@@ -50,7 +50,7 @@ using System.IO.Compression;
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
-            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+            string entryName = GetEntryName(fileName, archiveFileName);
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
@@ -61,6 +61,11 @@ using System.IO.Compression;
                     originalFileStream.CopyTo(destination);
                 }
             }
+        }
+        
+        internal static string GetEntryName(string fileName, string archiveFileName)
+        {
+            return Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
         }
     }
 #endif
