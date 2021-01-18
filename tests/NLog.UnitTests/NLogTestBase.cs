@@ -209,7 +209,7 @@ namespace NLog.UnitTests
             }
         }
 #else
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        protected void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             Assert.True(false);
         }
