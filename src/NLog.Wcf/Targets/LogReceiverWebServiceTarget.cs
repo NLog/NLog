@@ -161,12 +161,12 @@ namespace NLog.Targets
                 return;
             }
 
-            // OptimizeBufferReuse = true, will reuse the input-array on method-exit (so we make clone here)
+            // Make clone as the input IList will be reused on next call
             AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEvents.Count];
             logEvents.CopyTo(logEventsArray, 0);
 
-            var networkLogEvents = TranslateLogEvents(logEventsArray);
-            Send(networkLogEvents, logEventsArray, null);
+            var networkLogEvents = TranslateLogEvents(logEvents);
+            Send(networkLogEvents, logEvents, null);
         }
 
         /// <summary>

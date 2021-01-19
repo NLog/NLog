@@ -131,7 +131,6 @@ namespace NLog.Targets
         protected TargetWithContext()
         {
             _contextLayout = _contextLayout ?? new TargetWithContextLayout(this, base.Layout);
-            OptimizeBufferReuse = true;
         }
 
         /// <inheritdoc/>

@@ -206,7 +206,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void PostFilteringTargetWrapperOnlyDefaultFilter()
         {
-            var target = new MyTarget() { OptimizeBufferReuse = true };
+            var target = new MyTarget();
             var wrapper = new PostFilteringTargetWrapper()
             {
                 WrappedTarget = target,

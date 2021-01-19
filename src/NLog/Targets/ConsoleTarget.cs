@@ -142,7 +142,6 @@ namespace NLog.Targets
         /// </remarks>
         public ConsoleTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>

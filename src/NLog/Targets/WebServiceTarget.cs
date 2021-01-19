@@ -99,7 +99,6 @@ namespace NLog.Targets
             const bool writeBOM = false;
             Encoding = new UTF8Encoding(writeBOM);
             IncludeBOM = writeBOM;
-            OptimizeBufferReuse = true;
 
             Headers = new List<MethodCallParameter>();
 
@@ -482,7 +481,7 @@ namespace NLog.Targets
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             string queryParameters;
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
                 UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);

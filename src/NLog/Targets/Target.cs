@@ -74,7 +74,8 @@ namespace NLog.Targets
         /// Required for legacy NLog-targets, that expects buffers to remain stable after Write-method exit
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        public bool OptimizeBufferReuse { get; set; }
+        [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
+        public bool OptimizeBufferReuse { get => true; set { } }
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -107,9 +108,6 @@ namespace NLog.Targets
         }
         private volatile bool _isInitialized;
 
-        /// <summary>
-        /// Can be used if <see cref="OptimizeBufferReuse"/> has been enabled.
-        /// </summary>
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
         private StringBuilderPool _precalculateStringBuilderPool;
 
@@ -201,7 +199,7 @@ namespace NLog.Targets
             }
 
             // Not all Layouts support concurrent threads, so we have to protect them
-            if (OptimizeBufferReuse && _allLayoutsAreThreadSafe)
+            if (_allLayoutsAreThreadSafe)
             {
                 PrecalculateVolatileLayoutsConcurrent(logEvent);
             }
@@ -244,22 +242,12 @@ namespace NLog.Targets
                 if (_allLayouts == null)
                     return;
 
-                if (OptimizeBufferReuse)
-                {
-                    using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                    {
-                        foreach (Layout layout in _allLayouts)
-                        {
-                            targetBuilder.Result.ClearBuilder();
-                            layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
-                        }
-                    }
-                }
-                else
+                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                 {
                     foreach (Layout layout in _allLayouts)
                     {
-                        layout.Precalculate(logEvent);
+                        targetBuilder.Result.ClearBuilder();
+                        layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
                     }
                 }
             }
@@ -370,29 +358,14 @@ namespace NLog.Targets
                 return;
             }
 
-            IList<AsyncLogEventInfo> wrappedEvents;
-            if (OptimizeBufferReuse)
+            for (int i = 0; i < logEvents.Count; ++i)
             {
-                for (int i = 0; i < logEvents.Count; ++i)
-                {
-                    logEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
-                }
-                wrappedEvents = logEvents;
-            }
-            else
-            {
-                var cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
-                for (int i = 0; i < logEvents.Count; ++i)
-                {
-                    AsyncLogEventInfo ev = logEvents[i];
-                    cloneLogEvents[i] = ev.LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(ev.Continuation));
-                }
-                wrappedEvents = cloneLogEvents;
+                logEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
             }
 
             try
             {
-                WriteAsyncThreadSafe(wrappedEvents);
+                WriteAsyncThreadSafe(logEvents);
             }
             catch (Exception exception)
             {
@@ -402,9 +375,9 @@ namespace NLog.Targets
                 }
 
                 // in case of synchronous failure, assume that nothing is running asynchronously
-                for (int i = 0; i < wrappedEvents.Count; ++i)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    wrappedEvents[i].Continuation(exception);
+                    logEvents[i].Continuation(exception);
                 }
             }
         }
@@ -713,32 +686,25 @@ namespace NLog.Targets
             if (layout == null || logEvent == null)
                 return null;    // Signal that input was wrong
 
-            if (OptimizeBufferReuse)
+            SimpleLayout simpleLayout = layout as SimpleLayout;
+            if (simpleLayout != null && simpleLayout.IsFixedText)
             {
-                SimpleLayout simpleLayout = layout as SimpleLayout;
-                if (simpleLayout != null && simpleLayout.IsFixedText)
-                {
-                    return simpleLayout.Render(logEvent);
-                }
-
-                if (TryGetCachedValue(layout, logEvent, out var value))
-                {
-                    return value;
-                }
-
-                if (simpleLayout != null && simpleLayout.IsSimpleStringText)
-                {
-                    return simpleLayout.Render(logEvent);
-                }
-
-                using (var localTarget = ReusableLayoutBuilder.Allocate())
-                {
-                    return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
-                }
+                return simpleLayout.Render(logEvent);
             }
-            else
+
+            if (TryGetCachedValue(layout, logEvent, out var value))
             {
-                return layout.Render(logEvent);
+                return value;
+            }
+
+            if (simpleLayout != null && simpleLayout.IsSimpleStringText)
+            {
+                return simpleLayout.Render(logEvent);
+            }
+
+            using (var localTarget = ReusableLayoutBuilder.Allocate())
+            {
+                return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
             }
         }
 

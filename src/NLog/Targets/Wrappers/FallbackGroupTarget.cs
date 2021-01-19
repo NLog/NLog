@@ -87,7 +87,6 @@ namespace NLog.Targets.Wrappers
         public FallbackGroupTarget(params Target[] targets)
             : base(targets)
         {
-            OptimizeBufferReuse = GetType() == typeof(FallbackGroupTarget); // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
