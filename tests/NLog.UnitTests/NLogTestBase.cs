@@ -144,7 +144,11 @@ namespace NLog.UnitTests
 #if !NETSTANDARD
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
-                    zip.AddFile(fileName);
+                    ZipEntry entry = zip.AddFile(fileName);
+#if NET45
+                    string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+                    entry.FileName = entryName;
+#endif
                     zip.Save(archiveFileName);
                 }
 #endif
