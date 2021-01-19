@@ -2538,8 +2538,8 @@ namespace NLog.UnitTests.Targets
 
 #if NET45
                 string expectedEntry1Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
-                string expectedEntry2Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
-                string expectedEntry2Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
+                string expectedEntry2Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(2)) + ".txt";
+                string expectedEntry3Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(3)) + ".txt";
 #else
                 string expectedEntry1Name = fileTxt;
                 string expectedEntry2Name = fileTxt;
