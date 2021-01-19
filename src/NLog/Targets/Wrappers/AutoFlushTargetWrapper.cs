@@ -130,7 +130,7 @@ namespace NLog.Targets.Wrappers
             if (wrappedTarget is BufferingTargetWrapper)
                 return false;
 
-#if !NET3_5
+#if !NET35
             if (wrappedTarget is AsyncTaskTarget)
                 return false;
 #endif

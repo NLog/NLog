@@ -36,6 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using MessageTemplates;
 
     /// <summary>
@@ -45,6 +46,7 @@ namespace NLog.Internal
     /// The <see cref="MessageProperties" /> are returned as the first items
     /// in the collection, and in positional order.
     /// </summary>
+    [DebuggerDisplay("Count = {Count}")]
     internal sealed class PropertiesDictionary : IDictionary<object, object>, IEnumerable<MessageTemplateParameter>
     {
         private struct PropertyValue
@@ -592,6 +594,7 @@ namespace NLog.Internal
             }
         }
 
+        [DebuggerDisplay("Count = {Count}")]
         private class DictionaryCollection : ICollection<object>
         {
             private readonly PropertiesDictionary _dictionary;

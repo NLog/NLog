@@ -150,10 +150,10 @@ namespace NLog.Layouts
             if (layoutMethod == null)
                 throw new ArgumentNullException(nameof(layoutMethod));
 
-#if NETSTANDARD1_0
-            var name = $"{layoutMethod.Target?.ToString()}";
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
+#else
+            var name = $"{layoutMethod.Target?.ToString()}";            
 #endif
             var layoutRenderer = CreateFuncLayoutRenderer((l, c) => layoutMethod(l), options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);

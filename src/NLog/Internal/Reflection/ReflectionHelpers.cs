@@ -254,75 +254,75 @@ namespace NLog.Internal
 
         public static bool IsEnum(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsEnum;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsEnum;
+#else
+            return type.GetTypeInfo().IsEnum;            
 #endif
         }
 
         public static bool IsPrimitive(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsPrimitive;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsPrimitive;
+#else
+            return type.GetTypeInfo().IsPrimitive;
 #endif
         }
 
         public static bool IsValueType(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsValueType;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsValueType;
+#else
+            return type.GetTypeInfo().IsValueType;
 #endif
         }
 
         public static bool IsSealed(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsSealed;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsSealed;
+#else
+            return type.GetTypeInfo().IsSealed;
 #endif
         }
 
         public static bool IsAbstract(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsAbstract;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsAbstract;
+#else
+            return type.GetTypeInfo().IsAbstract;
 #endif
         }
 
         public static bool IsClass(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsClass;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsClass;
+#else
+            return type.GetTypeInfo().IsClass;
 #endif
         }
 
         public static bool IsGenericType(this Type type)
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().IsGenericType;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.IsGenericType;
+#else
+            return type.GetTypeInfo().IsGenericType;
 #endif
         }
 
         [CanBeNull]
         public static TAttr GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
-#if NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            return Attribute.GetCustomAttributes(type, typeof(TAttr)).FirstOrDefault() as TAttr;
+#else
             var typeInfo = type.GetTypeInfo();
             return typeInfo.GetCustomAttributes<TAttr>().FirstOrDefault();
-#else
-            return Attribute.GetCustomAttributes(type, typeof(TAttr)).FirstOrDefault() as TAttr;
 #endif
         }
 
@@ -330,10 +330,10 @@ namespace NLog.Internal
         public static TAttr GetFirstCustomAttribute<TAttr>(this PropertyInfo info)
              where TAttr : Attribute
         {
-#if NETSTANDARD1_0
-            return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return Attribute.GetCustomAttributes(info, typeof(TAttr)).FirstOrDefault() as TAttr;
+#else
+            return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;            
 #endif
         }
 
@@ -341,29 +341,29 @@ namespace NLog.Internal
         public static TAttr GetFirstCustomAttribute<TAttr>(this Assembly assembly)
             where TAttr : Attribute
         {
-#if NETSTANDARD1_0
-            return assembly.GetCustomAttributes(typeof(TAttr)).FirstOrDefault() as TAttr;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return Attribute.GetCustomAttributes(assembly, typeof(TAttr)).FirstOrDefault() as TAttr;
+#else
+            return assembly.GetCustomAttributes(typeof(TAttr)).FirstOrDefault() as TAttr;       
 #endif
         }
 
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(this Type type, bool inherit) where TAttr : Attribute
         {
-#if NETSTANDARD1_0
-            return type.GetTypeInfo().GetCustomAttributes<TAttr>(inherit);
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return (TAttr[])type.GetCustomAttributes(typeof(TAttr), inherit);
+#else
+            return type.GetTypeInfo().GetCustomAttributes<TAttr>(inherit);       
 #endif
         }
 
         public static Assembly GetAssembly(this Type type)
         {
-#if NETSTANDARD1_0
-            var typeInfo = type.GetTypeInfo();
-            return typeInfo.Assembly;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return type.Assembly;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Assembly;            
 #endif
         }
 
@@ -374,7 +374,7 @@ namespace NLog.Internal
 
         public static object GetPropertyValue(this PropertyInfo p, object instance)
         {
-#if NET4_5
+#if !NET35 && !NET40
             return p.GetValue(instance);
 #else
             return p.GetGetMethod().Invoke(instance, null);

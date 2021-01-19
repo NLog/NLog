@@ -33,7 +33,7 @@
 
 namespace NLog.Internal.NetworkSenders
 {
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System;
     using System.Net.Security;
     using System.Net.Sockets;

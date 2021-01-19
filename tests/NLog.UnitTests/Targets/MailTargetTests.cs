@@ -161,15 +161,15 @@ namespace NLog.UnitTests.Targets
                     To = "bar@foo.com",
                     SmtpServer = "server1",
                     SmtpAuthentication = SmtpAuthenticationMode.Basic,
-                    SmtpUserName = "${mdc:username}",
-                    SmtpPassword = "${mdc:password}",
+                    SmtpUserName = "${scopeproperty:username}",
+                    SmtpPassword = "${scopeproperty:password}",
                 };
 
                 mmt.Initialize(null);
 
                 var exceptions = new List<Exception>();
-                MappedDiagnosticsContext.Set("username", "u1");
-                MappedDiagnosticsContext.Set("password", "p1");
+                ScopeContext.PushProperty("username", "u1");
+                ScopeContext.PushProperty("password", "p1");
                 mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
                 Assert.Null(exceptions[0]);
 
@@ -184,7 +184,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                MappedDiagnosticsContext.Clear();
+                ScopeContext.Clear();
             }
         }
 

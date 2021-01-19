@@ -169,10 +169,10 @@ namespace NLog
             get
             {
                 return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
-#if NETSTANDARD1_0
-                    new FakeAppDomain()
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                     new AppDomainWrapper(AppDomain.CurrentDomain)
+#else
+                    new FakeAppDomain()                    
 #endif
                     )));
             }
@@ -207,7 +207,7 @@ namespace NLog
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
         /// Default value - false.
         /// </summary>
-        public bool KeepVariablesOnReload { get; set; }
+        public bool KeepVariablesOnReload { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically call <see cref="LogFactory.Shutdown"/>
@@ -437,10 +437,10 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
-#if NETSTANDARD1_0
-            var className = StackTraceUsageUtils.GetClassFullName();
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = StackTraceUsageUtils.GetClassFullName();       
 #endif
             return GetLogger(className);
         }
@@ -457,10 +457,10 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T GetCurrentClassLogger<T>() where T : Logger, new()
         {
-#if NETSTANDARD1_0
-            var className = StackTraceUsageUtils.GetClassFullName();
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = StackTraceUsageUtils.GetClassFullName();            
 #endif
             return (T)GetLogger(className, typeof(T));
         }
@@ -477,10 +477,10 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
-#if NETSTANDARD1_0
-            var className = StackTraceUsageUtils.GetClassFullName();
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = StackTraceUsageUtils.GetClassFullName();            
 #endif
             return GetLoggerThreadSafe(className, loggerType);
         }

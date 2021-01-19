@@ -52,6 +52,7 @@ namespace NLog.UnitTests.Config
                 LogManager.LogFactory.ResetLoggerCache();
             }
         }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -168,6 +169,14 @@ namespace NLog.UnitTests.Config
 
         public void TestAutoReloadOnFileMove(bool useExplicitFileLoading)
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileMove because we are running in Travis");
+                return;
+            }
+#endif
+
             string config1 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -585,9 +594,43 @@ namespace NLog.UnitTests.Config
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
             Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
 
-            logFactory.Configuration = configuration.ReloadNewConfig();
+            logFactory.Configuration = configuration.Reload();
             Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].Render(nullEvent));
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
+            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
+        }
+
+        [Fact]
+        public void TestKeepVariablesOnReloadAllowUpdate()
+        {
+            string config1 = @"<nlog autoReload='true' keepVariablesOnReload='true'>
+                                <variable name='var1' value='' />
+                                <variable name='var2' value='old_value2' />
+                                <targets><target name='mem' type='memory' layout='${var:var2}' /></targets>
+                                <rules><logger name='*' writeTo='mem' /></rules>
+                            </nlog>";
+
+            string config2 = @"<nlog autoReload='true' keepVariablesOnReload='true'>
+                                <variable name='var1' value='' />
+                                <variable name='var2' value='new_value2' />
+                                <targets><target name='mem' type='memory' layout='${var:var2}' /></targets>
+                                <rules><logger name='*' writeTo='mem' /></rules>
+                            </nlog>";
+
+            var logFactory = new LogFactory();
+            var xmlConfig = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config1);
+            logFactory.Configuration = xmlConfig;
+
+            // Act
+            logFactory.Configuration.Variables.Remove("var1");
+            logFactory.Configuration.Variables.Add("var3", "new_value3");
+            xmlConfig.ConfigXml = config2;
+            logFactory.Configuration = xmlConfig.Reload();
+
+            // Assert
+            var nullEvent = LogEventInfo.CreateNullEvent();
+            Assert.Equal("", logFactory.Configuration.Variables["var1"].Render(nullEvent));
+            Assert.Equal("new_value2", logFactory.Configuration.Variables["var2"].Render(nullEvent));
             Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
         }
 
@@ -610,9 +653,39 @@ namespace NLog.UnitTests.Config
             Assert.Equal("", logFactory.Configuration.Variables["var1"].Render(nullEvent));
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
 
-            logFactory.Configuration = configuration.ReloadNewConfig();
+            logFactory.Configuration = configuration.Reload();
             Assert.Equal("", logFactory.Configuration.Variables["var1"].Render(nullEvent));
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
+        }
+
+        [Fact]
+        public void KeepVariablesOnReloadWithStaticMode()
+        {
+            // Arrange
+            string config = @"<nlog autoReload='true'>
+                                <variable name='maxArchiveDays' value='7' />
+                                <targets>
+                                    <target name='logfile' type='file' fileName='test.log' maxArchiveDays='${maxArchiveDays}' />
+                                </targets>
+                                <rules>
+                                    <logger name='*' minLevel='Debug' writeTo='logfile' />
+                                </rules>
+                            </nlog>";
+            var logFactory = new LogFactory();
+            logFactory.Configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
+
+            var fileTarget = logFactory.Configuration.AllTargets[0] as NLog.Targets.FileTarget;
+            var beforeValue = fileTarget.MaxArchiveDays;
+
+            // Act
+            logFactory.Configuration.Variables["MaxArchiveDays"] = "42";
+            logFactory.Configuration = logFactory.Configuration.Reload();
+            fileTarget = logFactory.Configuration.AllTargets[0] as NLog.Targets.FileTarget;
+            var afterValue = fileTarget.MaxArchiveDays;
+
+            // Assert
+            Assert.Equal(7, beforeValue);
+            Assert.Equal(42, afterValue);
         }
 
         [Fact]
@@ -765,23 +838,27 @@ namespace NLog.UnitTests.Config
     /// </summary>
     public class XmlLoggingConfigurationMock : XmlLoggingConfiguration
     {
-        private string _configXml;
-        private LogFactory _logFactory;
+        public string ConfigXml { get; set; }
 
-        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml) : base(XmlReader.Create(new StringReader(configXml)), null, logFactory)
+        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml)
+            :base(logFactory)
         {
-            _logFactory = logFactory;
-            _configXml = configXml;
+            ConfigXml = configXml;
         }
 
         public override LoggingConfiguration Reload()
         {
-            return new XmlLoggingConfigurationMock(_logFactory, _configXml);
+            var newConfig = new XmlLoggingConfigurationMock(LogFactory, ConfigXml);
+            newConfig.PrepareForReload(this);
+            newConfig.LoadFromXmlContent(ConfigXml, null);
+            return newConfig;
         }
 
         public static XmlLoggingConfigurationMock CreateFromXml(LogFactory logFactory, string configXml)
         {
-            return new XmlLoggingConfigurationMock(logFactory, configXml);
+            var newConfig = new XmlLoggingConfigurationMock(logFactory, configXml);
+            newConfig.LoadFromXmlContent(configXml, null);
+            return newConfig;
         }
     }
 }

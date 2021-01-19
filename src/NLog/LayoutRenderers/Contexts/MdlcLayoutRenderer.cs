@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -43,6 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("mdlc")]
     [ThreadSafe]
+    [Obsolete("Replaced by ScopeContextPropertyLayoutRenderer ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MdlcLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

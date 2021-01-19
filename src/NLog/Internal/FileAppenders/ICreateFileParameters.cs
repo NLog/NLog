@@ -43,13 +43,13 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
         /// </summary>
-        int ConcurrentWriteAttemptDelay { get; }
+        int FileOpenRetryCount { get; }
 
         /// <summary>
         /// Gets or sets the number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
-        int ConcurrentWriteAttempts { get; }
+        int FileOpenRetryDelay { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on the same host.

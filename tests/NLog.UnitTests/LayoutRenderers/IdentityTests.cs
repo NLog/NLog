@@ -97,18 +97,13 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
-
             try
             {
-
-                ConfigurationItemFactory.Default.Targets
-                            .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
-
-
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
+                var logFactory = new LogFactory().Setup()
+                    .SetupExtensions(ext => ext.RegisterTarget<CSharpEventTarget>("CSharpEventTarget"))
+                    .LoadConfigurationFromXml(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
- 
       internalLogLevel='Debug'
       throwExceptions='true' >
 
@@ -120,7 +115,7 @@ namespace NLog.UnitTests.LayoutRenderers
     <logger name='*' writeTo='target1' />
   </rules>
 </nlog>
-");
+").LogFactory;
 
                 try
                 {
@@ -130,7 +125,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     var asyncThreadId = threadId;
                     LogEventInfo lastLogEvent = null;
 
-                    var asyncTarget = LogManager.Configuration.FindTargetByName<AsyncTargetWrapper>("target1");
+                    var asyncTarget = logFactory.Configuration.FindTargetByName<AsyncTargetWrapper>("target1");
                     Assert.NotNull(asyncTarget);
                     var target = asyncTarget.WrappedTarget as CSharpEventTarget;
                     Assert.NotNull(target);
@@ -148,27 +143,21 @@ namespace NLog.UnitTests.LayoutRenderers
                         continuationHit.Set();
                     };
 
-
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
 
-                    var logger = LogManager.GetCurrentClassLogger();
+                    var logger = logFactory.GetCurrentClassLogger();
                     logger.Debug("test write");
-
 
                     Assert.True(continuationHit.WaitOne());
                     Assert.NotNull(lastLogEvent);
                     //should be written in another thread.
                     Assert.NotEqual(threadId, asyncThreadId);
 
-
                     Assert.Equal("auth:CustomAuth:SOMEDOMAIN\\SomeUser", rendered);
-
-
-
                 }
                 finally
                 {
-                    LogManager.Configuration.Close();
+                    logFactory.Shutdown();
                 }
             }
             finally

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET3_5 && !NETSTANDARD
+#if !NETSTANDARD
 
 using System;
 using System.IO;
@@ -39,12 +39,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading;
-using System.Xml;
-using NLog;
 using NLog.Config;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using NLog.UnitTests;
 using Xunit;
 
 namespace NLog.UnitTests.Internal
@@ -117,18 +112,24 @@ namespace NLog.UnitTests.Internal
         private static void RunAppDomainTestMethod(string fileWritePath, int times, bool autoShutdown)
         {
             // ClassUnderTest must extend MarshalByRefObject
-            AppDomain partialTrusted;
-            var classUnderTest = MediumTrustContext.Create<ClassUnderTest>(fileWritePath, out partialTrusted);
-#if NET4_0 || NET4_5
-            MappedDiagnosticsLogicalContext.Set("Winner", new { Hero = "Zero" });
-            using (NestedDiagnosticsLogicalContext.Push(new { Hello = "World" }))
-#endif
+            AppDomain partialTrusted = MediumTrustContext.CreatePartialTrustDomain(fileWritePath);
+            var classUnderTest = (ClassUnderTest)partialTrusted.CreateInstanceAndUnwrap(typeof(ClassUnderTest).Assembly.FullName, typeof(ClassUnderTest).FullName);
+
+            using (ScopeContext.PushProperty("Winner", new { Hero = "Zero" }))
+            using (ScopeContext.PushNestedState(new { Hello = "World" }))
             {
+                partialTrusted.DoCallBack(HelloWorld);
                 classUnderTest.PartialTrustSuccess(times, fileWritePath, autoShutdown);
             }
             AppDomain.Unload(partialTrusted);
         }
 
+#pragma warning disable xUnit1013 // Public method should be marked as test
+        public static void HelloWorld()
+#pragma warning restore xUnit1013 // Public method should be marked as test
+        {
+            Console.WriteLine("Hello World");
+        }
     }
 
     [Serializable]
@@ -178,13 +179,6 @@ namespace NLog.UnitTests.Internal
 
     internal static class MediumTrustContext
     {
-        public static T Create<T>(string applicationBase, out AppDomain appDomain)
-        {
-            appDomain = CreatePartialTrustDomain(applicationBase);
-            var t = (T)appDomain.CreateInstanceAndUnwrap(typeof(T).Assembly.FullName, typeof(T).FullName);
-            return t;
-        }
-
         public static AppDomain CreatePartialTrustDomain(string fileWritePath)
         {
             var setup = new AppDomainSetup { ApplicationBase = AppDomain.CurrentDomain.BaseDirectory };

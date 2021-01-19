@@ -280,7 +280,7 @@ namespace NLog.Targets
             {
                 case WebServiceProxyType.DefaultWebProxy:
                     break;
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 case WebServiceProxyType.AutoProxy:
                     if (_activeProxy.Value == null)
                     {
@@ -307,7 +307,7 @@ namespace NLog.Targets
                     break;
             }
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 webRequest.PreAuthenticate = true;

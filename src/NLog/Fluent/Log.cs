@@ -33,7 +33,7 @@
 
 namespace NLog.Fluent
 {
-#if NET4_5
+#if !NET35 && !NET40
     using System;
     using System.IO;
     using System.Runtime.CompilerServices;

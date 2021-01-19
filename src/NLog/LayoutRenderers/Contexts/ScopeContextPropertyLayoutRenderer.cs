@@ -31,69 +31,59 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.LayoutRenderers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
-    /// Helper for dealing with thread-local storage.
+    /// Renders specified property-item from <see cref="ScopeContext"/>
     /// </summary>
-    internal static class ThreadLocalStorageHelper
+    [LayoutRenderer("scopeproperty")]
+    [ThreadSafe]
+    public sealed class ScopeContextPropertyLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
+        /// <summary>
+        /// Gets or sets the name of the item.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [RequiredParameter]
+        [DefaultParameter]
+        public string Item { get; set; }
 
         /// <summary>
-        /// Allocates the data slot for storing thread-local information.
+        /// Format string for conversion from object to string.
         /// </summary>
-        /// <returns>Allocated slot key.</returns>
-        public static object AllocateDataSlot()
+        /// <docgen category='Rendering Options' order='50' />
+        public string Format { get; set; }
+
+        /// <inheritdoc />
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if NETSTANDARD || NET4_6
-            return new System.Threading.ThreadLocal<object>();
-#else
-            return Thread.AllocateDataSlot();
-#endif
+            var value = GetValue();
+            var formatProvider = GetFormatProvider(logEvent, null);
+            builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+        }
+        
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
+        {
+            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
+            {
+                object value = GetValue();
+                string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));
+                return stringValue;
+            }
+            return null;
         }
 
-        /// <summary>
-        /// Gets the data for a slot in thread-local storage.
-        /// </summary>
-        /// <typeparam name="T">Type of the data.</typeparam>
-        /// <param name="slot">The slot to get data for.</param>
-        /// <param name="create">Automatically create the object if it doesn't exist.</param>
-        /// <returns>
-        /// Slot data (will create T if null).
-        /// </returns>
-        public static T GetDataForSlot<T>(object slot, bool create = true)
-            where T : class, new()
+        private object GetValue()
         {
-#if NETSTANDARD || NET4_6
-            var thread = slot as ThreadLocal<object>;
-            if (thread == null)
-                throw new InvalidOperationException($"Expected ThreadLocal object. Received {slot?.GetType()}.");
-            if (!thread.IsValueCreated)
-            {
-                if (!create)
-                    return null;
-
-                thread.Value = new T();
-            }
-            return (T)thread.Value;
-#else
-            LocalDataStoreSlot localDataStoreSlot = (LocalDataStoreSlot)slot;
-            object v = Thread.GetData(localDataStoreSlot);
-            if (v == null)
-            {
-                if (!create)
-                    return null;
-
-                v = new T();
-                Thread.SetData(localDataStoreSlot, v);
-            }
-
-            return (T)v;
-#endif
+            ScopeContext.TryGetProperty(Item, out var value);
+            return value;
         }
     }
 }

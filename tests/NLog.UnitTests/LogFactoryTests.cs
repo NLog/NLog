@@ -285,13 +285,16 @@ namespace NLog.UnitTests
         [Fact]
         public void NewAttrOnNLogLevelShouldNotThrowError()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true' imAnewAttribute='noError'>
-                <targets><target type='file' name='f1' filename='test.log' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeto='f1'></logger>
-                </rules>
-            </nlog>");
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog imAnewAttribute='noError'>
+                    <targets><target type='file' name='f1' filename='test.log' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeto='f1'></logger>
+                    </rules>
+                </nlog>");
+            }
         }
 
         [Fact]

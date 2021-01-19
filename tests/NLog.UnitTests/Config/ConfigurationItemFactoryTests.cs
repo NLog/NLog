@@ -74,15 +74,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
-#if !NETSTANDARD
-
-        [Fact]
-        public void ExtendedTargetTest()
-        {
-            var targets = ConfigurationItemFactory.Default.Targets;
-
-            AssertInstance(targets, "MSMQ", "MessageQueueTarget");
-        }
+#if !NETSTANDARD && !MONO
 
         [Fact]
         public void ExtendedLayoutRendererTest()

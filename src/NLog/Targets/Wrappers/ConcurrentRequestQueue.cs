@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NET4_5 || NET4_0
+#if !NET35
 
 namespace NLog.Targets.Wrappers
 {

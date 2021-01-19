@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper() {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
-#if NET4_5
+#if !NET35 && !NET40
                 ForceLockingQueue = forceLockingQueue,
                 OptimizeBufferReuse = !forceLockingQueue,
 #endif
@@ -175,7 +175,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                 }
 
-#if NET4_5
+#if !NET35 && !NET40
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
                     Assert.InRange(elapsedMilliseconds, 0, 975);

@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Layouts
                         new XmlElement("message", "${message}"),
                     },
                 IndentXml = true,
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -91,12 +91,11 @@ namespace NLog.UnitTests.Layouts
                     </rules>
                 </nlog>");
 
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo1", "bar1");
-            MappedDiagnosticsContext.Set("foo2", "bar2");
+            ScopeContext.Clear();
 
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
+            ScopeContext.PushProperty("foo1", "bar1");
+            ScopeContext.PushProperty("foo2", "bar2");
+            ScopeContext.PushProperty("foo3", "bar3");
 
             var logger = LogManager.GetLogger("hello");
 
@@ -162,7 +161,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     new XmlElement("message", "${message}") { IncludeEmptyValue = true },
                 },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 IncludeEmptyValue = true,
             };
 
@@ -193,7 +192,7 @@ namespace NLog.UnitTests.Layouts
                     new XmlElement("message", "${message}"),
                 },
                 IndentXml = false,
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -226,7 +225,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     new XmlElement("message", "${message}"),
                 },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 ExcludeProperties = new HashSet<string> { "prop2" }
             };
 
@@ -252,7 +251,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -277,7 +276,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
             };
@@ -305,7 +304,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesElementName = "p",
                 PropertiesElementKeyAttribute = "k",
                 PropertiesElementValueAttribute = "v",
@@ -332,7 +331,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
                 PropertiesElementValueAttribute = "v",
@@ -367,7 +366,7 @@ namespace NLog.UnitTests.Layouts
                         {
                             new XmlElement("level", "${level}")
                         },
-                        IncludeAllProperties = true,
+                        IncludeEventProperties = true,
                     }
 
                 },
@@ -396,7 +395,7 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -422,7 +421,7 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -446,7 +445,7 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -472,7 +471,7 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesCollectionItemName = "node",
                 PropertiesElementValueAttribute = "value",
             };
@@ -498,7 +497,7 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var guid = Guid.NewGuid();
@@ -525,7 +524,7 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var guid = Guid.NewGuid();
@@ -544,7 +543,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, result);
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40
 
         [Fact]
         public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyExpando()
@@ -553,7 +552,7 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             dynamic object1 = new System.Dynamic.ExpandoObject();
@@ -585,7 +584,7 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 MaxRecursionLimit = 10,
             };
 
@@ -612,7 +611,7 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 MaxRecursionLimit = 10,
             };
 

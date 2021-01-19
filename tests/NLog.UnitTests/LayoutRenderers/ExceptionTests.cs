@@ -86,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET4_5
+#if !NET35 && !NET40
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -141,7 +141,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", dataText);
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET4_5
+#if !NET35 && !NET40
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -193,7 +193,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", dataText);
             AssertDebugLastMessage("debug10", "");
-#if NET4_5
+#if !NET35 && !NET40
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
         }
@@ -424,8 +424,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Null(exRecorded);
         }
 
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -469,8 +469,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", "Test Inner 1");
             AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -536,8 +537,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue));
         }
 
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -575,8 +576,9 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.StartsWith("Test exception 1", lastMessage);
             Assert.Contains("Test Inner 1", lastMessage);
         }
-#if NET3_5
-        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
 #else
         [Fact]
 #endif
@@ -626,6 +628,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains(string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue), lastMessage);
             Assert.Contains(string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue), lastMessage);
         }
+
         [Fact]
         public void CustomExceptionProperties_Layout_Test()
         {
@@ -660,6 +663,40 @@ namespace NLog.UnitTests.LayoutRenderers
             var ex = GetNestedExceptionWithStackTrace("Goodbye World");
             logger.Fatal(ex, "msg");
             AssertDebugLastMessage("debug1", "Goodbye World");
+        }
+
+#if NET35
+        [Fact(Skip = "NET35 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
+        public void RecursiveAsyncExceptionWithoutFlattenException()
+        {
+            var recursionCount = 3;
+            Func<int> innerAction = () => throw new ApplicationException("Life is hard");
+            var t1 = System.Threading.Tasks.Task<int>.Factory.StartNew(() =>
+            {
+                return NestedFunc(recursionCount, innerAction);
+            });
+
+            try
+            {
+                t1.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                var layoutRenderer = new ExceptionLayoutRenderer() { Format = "ToString", FlattenException = false };
+                var logEvent = LogEventInfo.Create(LogLevel.Error, null, null, (object)ex);
+                var result = layoutRenderer.Render(logEvent);
+                int needleCount = 0;
+                int foundIndex = result.IndexOf(nameof(NestedFunc), 0);
+                while (foundIndex >= 0)
+                {
+                    ++needleCount;
+                    foundIndex = result.IndexOf(nameof(NestedFunc), foundIndex + nameof(NestedFunc).Length);
+                }
+                Assert.True(needleCount >= recursionCount, $"{needleCount} too small");
+            }
         }
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
@@ -725,6 +762,21 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 ex.Data["1Really.Bad-Boy!"] = "Hello World";
                 return ex;
+            }
+        }
+
+        private int NestedFunc(int recursion, Func<int> innerAction)
+        {
+            try
+            {
+                if (recursion-- == 0)
+                    return System.Threading.Tasks.Task<int>.Factory.StartNew(() => innerAction.Invoke())
+                        .Result;
+                return NestedFunc(recursion, innerAction);
+            }
+            catch
+            {
+                throw;  // Just to make the method complex, and avoid inline
             }
         }
 
@@ -826,9 +878,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomExceptionLayoutRendrerInnerExceptionTest()
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("exception-custom", typeof(CustomExceptionLayoutRendrer));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer<CustomExceptionLayoutRendrer>("exception-custom"))
+                .LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -838,9 +890,9 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger minlevel='Info' writeTo='debug1' />
                     <logger minlevel='Info' writeTo='debug2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as CustomExceptionLayoutRendrer;
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
@@ -849,11 +901,11 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue = "testvalue";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
             ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                              "\r\n----INNER----\r\n" +
                                              "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer");
-            AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
+            logFactory.AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                                            "\r\n----INNER----\r\n" +
                                                            "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
         }

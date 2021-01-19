@@ -42,16 +42,15 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void TrimWhiteSpaceTest1()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "  bar  ");
-            SimpleLayout l = "${trim-whitespace:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "  bar  ");
+            SimpleLayout l = "${trim-whitespace:${scopeproperty:foo}}";
             
             Assert.Equal("bar", l.Render(LogEventInfo.CreateNullEvent()));
 
-            MappedDiagnosticsContext.Set("foo", "");
+            ScopeContext.PushProperty("foo", "");
             Assert.Equal("", l.Render(LogEventInfo.CreateNullEvent()));
 
-            MappedDiagnosticsContext.Set("foo", "    ");
+            ScopeContext.PushProperty("foo", "    ");
             Assert.Equal("", l.Render(LogEventInfo.CreateNullEvent()));
         }
     }

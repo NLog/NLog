@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("ndc")]
     [ThreadSafe]
+    [Obsolete("Replaced by ScopeContextNestedStatesLayoutRenderer ${scopenested}. Marked obsolete on NLog 5.0")]
     public class NdcLayoutRenderer : LayoutRenderer
     {
         /// <summary>

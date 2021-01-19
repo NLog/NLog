@@ -216,6 +216,8 @@ namespace NLog.Config
         {
             if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
                 return true;
+            if (reader.LocalName?.Equals("schemaLocation", StringComparison.OrdinalIgnoreCase) == true && !StringHelpers.IsNullOrWhiteSpace(reader.Prefix))
+                return true;
             if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
                 return true;
             if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)

@@ -65,6 +65,7 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void ConditionMethodsTest()
         {
+            AssertEvaluationResult(true, "'${exception:format=type}'==''");
             AssertEvaluationResult(true, "starts-with('foobar','foo')");
             AssertEvaluationResult(false, "starts-with('foobar','bar')");
             AssertEvaluationResult(true, "ends-with('foobar','bar')");
