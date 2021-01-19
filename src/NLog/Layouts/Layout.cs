@@ -224,7 +224,7 @@ namespace NLog.Layouts
 
         internal virtual void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            Precalculate(logEvent); // Allow custom Layouts to work with OptimizeBufferReuse
+            Precalculate(logEvent); // Allow custom Layouts to also work
         }
 
         /// <summary>
@@ -250,8 +250,11 @@ namespace NLog.Layouts
                     return;
                 }
             }
+            else
+            {
+                cacheLayoutResult = false;
+            }
 
-            cacheLayoutResult = cacheLayoutResult && !ThreadAgnostic;
             using (var localTarget = new AppendBuilderCreator(target, cacheLayoutResult))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);

@@ -1029,7 +1029,7 @@ namespace NLog
             }
         }
 
-        [Obsolete("Replaced by ScopeContext.PushProperty")]
+        [Obsolete("Replaced by ScopeContext.PushProperty. Marked obsolete on NLog 5.0")]
         internal static void SetMappedContextLegacy<TValue>(string key, TValue value)
         {
 #if !NET35 && !NET40 && !NET45
@@ -1064,7 +1064,7 @@ namespace NLog
 #endif
         }
 
-        [Obsolete("Replaced by disposing return value from ScopeContext.PushProperty")]
+        [Obsolete("Replaced by disposing return value from ScopeContext.PushProperty. Marked obsolete on NLog 5.0")]
         internal static void RemoveMappedContextLegacy(string key)
         {
 #if !NET35 && !NET40 && !NET45
@@ -1089,7 +1089,7 @@ namespace NLog
 #endif
         }
 
-        [Obsolete("Replaced by disposing return value from ScopeContext.PushNestedState")]
+        [Obsolete("Replaced by disposing return value from ScopeContext.PushNestedState. Marked obsolete on NLog 5.0")]
         internal static object PopNestedContextLegacy()
         {
 #if !NET35 && !NET40 && !NET45
@@ -1146,7 +1146,7 @@ namespace NLog
 #endif
         }
 
-        [Obsolete("Replaced by ScopeContext.Clear")]
+        [Obsolete("Replaced by ScopeContext.Clear. Marked obsolete on NLog 5.0")]
         internal static void ClearMappedContextLegacy()
         {
 #if !NET35 && !NET40 && !NET45
@@ -1172,7 +1172,7 @@ namespace NLog
 #endif
         }
 
-        [Obsolete("Replaced by ScopeContext.Clear")]
+        [Obsolete("Replaced by ScopeContext.Clear. Marked obsolete on NLog 5.0")]
         internal static void ClearNestedContextLegacy()
         {
 #if !NET35 && !NET40 && !NET45

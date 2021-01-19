@@ -67,8 +67,7 @@ namespace NLog.UnitTests.Targets
                     from forceMutexConcurrentWrites in booleanValues
                     where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from forceManaged in booleanValues
-                    from optimizeBufferReuse in booleanValues
-                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites, optimizeBufferReuse };
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, forceManaged, forceMutexConcurrentWrites };
             }
         }
 
@@ -85,7 +84,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
-        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var logFile = Path.GetTempFileName();
             try
@@ -101,7 +100,6 @@ namespace NLog.UnitTests.Targets
                     NetworkWrites = networkWrites,
                     ForceManaged = forceManaged,
                     ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    OptimizeBufferReuse = optimizeBufferReuse,
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -123,7 +121,7 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
-        public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
+        public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsTravis();
 #if MONO
@@ -153,7 +151,6 @@ namespace NLog.UnitTests.Targets
                         NetworkWrites = networkWrites,
                         ForceManaged = forceManaged,
                         ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                        OptimizeBufferReuse = optimizeBufferReuse,
                     });
 
                     SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -297,11 +294,8 @@ namespace NLog.UnitTests.Targets
         /// </summary>
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
-        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
+        public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-            if (optimizeBufferReuse)
-                return; // No need to test with buffer optimization enabled, as it is enabled by default
-
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
             var logFile = nonExistingDrive + "://dont-extist/no-timeout.log";

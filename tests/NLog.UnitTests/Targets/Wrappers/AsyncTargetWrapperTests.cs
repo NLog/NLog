@@ -95,7 +95,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                 TimeToSleepBetweenBatches = 0,
 #if !NET35 && !NET40
                 ForceLockingQueue = forceLockingQueue,
-                OptimizeBufferReuse = !forceLockingQueue,
 #endif
                 BatchSize = 3,
                 QueueLimit = 5, // Will make it "sleep" between every second write

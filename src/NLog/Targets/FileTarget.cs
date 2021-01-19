@@ -180,8 +180,6 @@ namespace NLog.Targets
             CleanupFileName = true;
 
             WriteFooterOnArchivingOnly = false;
-
-            OptimizeBufferReuse = GetType() == typeof(FileTarget);    // Class not sealed, reduce breaking changes
         }
 
 #if !NET35 && !NET40
@@ -1013,17 +1011,8 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
-        /// </summary>
         private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator(4096);
-        /// <summary>
-        /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
-        /// </summary>
         private readonly ReusableStreamCreator _reusableAsyncFileWriteStream = new ReusableStreamCreator(4096);
-        /// <summary>
-        /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
-        /// </summary>
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
@@ -1039,23 +1028,15 @@ namespace NLog.Targets
                 throw new ArgumentException("The path is not of a legal form.");
             }
 
-            if (OptimizeBufferReuse)
+            using (var targetStream = _reusableFileWriteStream.Allocate())
             {
-                using (var targetStream = _reusableFileWriteStream.Allocate())
+                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
                 {
-                    using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                    using (var targetBuffer = _reusableEncodingBuffer.Allocate())
-                    {
-                        RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
-                    }
-
-                    ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length));
+                    RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
                 }
-            }
-            else
-            {
-                byte[] bytes = GetBytesToWrite(logEvent);
-                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(bytes));
+
+                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length));
             }
         }
 
@@ -1071,16 +1052,9 @@ namespace NLog.Targets
                 return null;
             }
 
-            if (OptimizeBufferReuse)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                {
-                    return _fullFileName.RenderWithBuilder(logEvent, targetBuilder.Result);
-                }
-            }
-            else
-            {
-                return _fullFileName.Render(logEvent);
+                return _fullFileName.RenderWithBuilder(logEvent, targetBuilder.Result);
             }
         }
 
@@ -1103,7 +1077,7 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(_getFullFileNameDelegate);
 
-            using (var reusableStream = OptimizeBufferReuse ? _reusableAsyncFileWriteStream.Allocate() : _reusableAsyncFileWriteStream.None)
+            using (var reusableStream = _reusableAsyncFileWriteStream.Allocate())
             {
                 var ms = reusableStream.Result ?? new MemoryStream();
 
@@ -1144,64 +1118,32 @@ namespace NLog.Targets
 
         private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, MemoryStream ms)
         {
-            if (OptimizeBufferReuse)
+            int maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
+
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+            using (var targetStream = _reusableFileWriteStream.Allocate())
             {
-                int maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
+                var formatBuilder = targetBuilder.Result;
+                var transformBuffer = targetBuffer.Result;
+                var encodingStream = targetStream.Result;
 
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
-                using (var targetStream = _reusableFileWriteStream.Allocate())
-                {
-                    var formatBuilder = targetBuilder.Result;
-                    var transformBuffer = targetBuffer.Result;
-                    var encodingStream = targetStream.Result;
-
-                    for (int i = startIndex; i < logEvents.Count; ++i)
-                    {
-                        // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
-                        encodingStream.Position = 0;
-                        encodingStream.SetLength(0);
-                        formatBuilder.ClearBuilder();
-
-                        AsyncLogEventInfo ev = logEvents[i];
-                        RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, encodingStream);
-                        ms.Write(encodingStream.GetBuffer(), 0, (int)encodingStream.Length);
-                        if (ms.Length > maxBufferSize && !ReplaceFileContentsOnEachWrite)
-                            return i - startIndex + 1;  // Max Chunk Size Limit to avoid out-of-memory issues
-                    }
-                }
-            }
-            else
-            {
                 for (int i = startIndex; i < logEvents.Count; ++i)
                 {
+                    // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
+                    encodingStream.Position = 0;
+                    encodingStream.SetLength(0);
+                    formatBuilder.ClearBuilder();
+
                     AsyncLogEventInfo ev = logEvents[i];
-                    byte[] bytes = GetBytesToWrite(ev.LogEvent);
-                    if (ms.Capacity == 0)
-                    {
-                        ms.Capacity = GetMemoryStreamInitialSize(logEvents.Count, bytes.Length);
-                    }
-                    ms.Write(bytes, 0, bytes.Length);
+                    RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, encodingStream);
+                    ms.Write(encodingStream.GetBuffer(), 0, (int)encodingStream.Length);
+                    if (ms.Length > maxBufferSize && !ReplaceFileContentsOnEachWrite)
+                        return i - startIndex + 1;  // Max Chunk Size Limit to avoid out-of-memory issues
                 }
             }
 
             return logEvents.Count - startIndex;
-        }
-
-        /// <summary>
-        /// Returns estimated size for memory stream, based on events count and first event size in bytes.
-        /// </summary>
-        /// <param name="eventsCount">Count of events</param>
-        /// <param name="firstEventSize">Bytes count of first event</param>
-        private int GetMemoryStreamInitialSize(int eventsCount, int firstEventSize)
-        {
-            if (eventsCount > 10)
-                return (1 + eventsCount) * ((firstEventSize / 1024) + 1) * 1024;
-
-            if (eventsCount > 1)
-                return (1 + eventsCount) * firstEventSize;
-
-            return firstEventSize;
         }
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, ArraySegment<byte> bytesToWrite)
@@ -1244,6 +1186,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">Log event.</param>
         /// <returns>Array of bytes that are ready to be written.</returns>
+        [Obsolete("No longer used and replaced by RenderFormattedMessageToStream. Marked obsolete on NLog 5.0")]
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
             string text = GetFormattedMessage(logEvent);
@@ -1261,6 +1204,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The byte array.</param>
         /// <returns>The modified byte array. The function can do the modification in-place.</returns>
+        [Obsolete("No longer used and replaced by RenderFormattedMessageToStream. Marked obsolete on NLog 5.0")]
         protected virtual byte[] TransformBytes(byte[] value)
         {
             return value;
@@ -2525,25 +2469,17 @@ namespace NLog.Targets
                 return default(ArraySegment<byte>);
             }
 
-            if (OptimizeBufferReuse)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+                var nullEvent = LogEventInfo.CreateNullEvent();
+                layout.RenderAppendBuilder(nullEvent, targetBuilder.Result);
+                targetBuilder.Result.Append(NewLineChars);
+                using (MemoryStream ms = new MemoryStream(targetBuilder.Result.Length))
                 {
-                    var nullEvent = LogEventInfo.CreateNullEvent();
-                    layout.RenderAppendBuilder(nullEvent, targetBuilder.Result);
-                    targetBuilder.Result.Append(NewLineChars);
-                    using (MemoryStream ms = new MemoryStream(targetBuilder.Result.Length))
-                    {
-                        TransformBuilderToStream(nullEvent, targetBuilder.Result, targetBuffer.Result, ms);
-                        return new ArraySegment<byte>(ms.ToArray());
-                    }
+                    TransformBuilderToStream(nullEvent, targetBuilder.Result, targetBuffer.Result, ms);
+                    return new ArraySegment<byte>(ms.ToArray());
                 }
-            }
-            else
-            {
-                string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + NewLineChars;
-                return new ArraySegment<byte>(TransformBytes(encoding.GetBytes(renderedText)));
             }
         }
     }

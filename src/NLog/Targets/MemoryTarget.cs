@@ -67,7 +67,6 @@ namespace NLog.Targets
         public MemoryTarget()
         {
             Logs = new List<string>();
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>

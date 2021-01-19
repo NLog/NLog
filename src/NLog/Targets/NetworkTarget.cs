@@ -103,7 +103,6 @@ namespace NLog.Targets
             MaxMessageSize = 65000;
             ConnectionCacheSize = 5;
             LineEnding = LineEndingMode.CRLF;
-            OptimizeBufferReuse = GetType() == typeof(NetworkTarget);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -412,38 +411,25 @@ namespace NLog.Targets
         /// <returns>Byte array.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            if (OptimizeBufferReuse)
-            {
-                using (var localBuffer = _reusableEncodingBuffer.Allocate())
-                { 
-                    if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
-                    {
-                        return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
-                    }
-                    else
-                    {
-                        using (var localBuilder = ReusableLayoutBuilder.Allocate())
-                        {
-                            Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
-                            if (NewLine)
-                            {
-                                localBuilder.Result.Append(LineEnding.NewLineCharacters);
-                            }
-
-                            return GetBytesFromStringBuilder(localBuffer.Result, localBuilder.Result);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                var rendered = Layout.Render(logEvent);
-                InternalLogger.Trace("NetworkTarget(Name={0}): Sending: {1}", Name, rendered);
-                if (NewLine)
+            using (var localBuffer = _reusableEncodingBuffer.Allocate())
+            { 
+                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
                 {
-                    rendered += LineEnding.NewLineCharacters;
+                    return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
                 }
-                return Encoding.GetBytes(rendered);
+                else
+                {
+                    using (var localBuilder = ReusableLayoutBuilder.Allocate())
+                    {
+                        Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
+                        if (NewLine)
+                        {
+                            localBuilder.Result.Append(LineEnding.NewLineCharacters);
+                        }
+
+                        return GetBytesFromStringBuilder(localBuffer.Result, localBuilder.Result);
+                    }
+                }
             }
         }
 

@@ -87,7 +87,6 @@ namespace NLog.Targets
         /// </remarks>
         public TraceTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>

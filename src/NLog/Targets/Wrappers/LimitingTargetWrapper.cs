@@ -86,7 +86,6 @@ namespace NLog.Targets.Wrappers
             MessageLimit = messageLimit;
             Interval = interval;
             WrappedTarget = wrappedTarget;
-            OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
