@@ -50,7 +50,7 @@ namespace NLog.Targets
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
-            string entryName = IsEntryNameInferredFromArchiveFileName ? (Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName)) : fileName;
+            string entryName = IsEntryNameInferredFromArchiveFileName ? (Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName)) : Path.GetFileName(fileName);
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
