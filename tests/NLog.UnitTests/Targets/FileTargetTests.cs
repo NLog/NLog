@@ -797,7 +797,11 @@ namespace NLog.UnitTests.Targets
                     new Action<string, string, string, Encoding>(AssertZipFileContents) :
                     AssertFileContents;
 
+#if NET45
                 string expectedEntryName = Path.GetFileNameWithoutExtension(archiveTempName) + ".txt";
+#else
+                string expectedEntryName = logFile;
+#endif
                 assertFileContents(archiveTempName, expectedEntryName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
                     Encoding.UTF8);
             }
@@ -2532,9 +2536,18 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "eee\n"),
                     Encoding.UTF8);
 
-                assertFileContents(helper.GetFullPath(1), Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt", StringRepeat(times, "bbb\n"), Encoding.UTF8);
-                assertFileContents(helper.GetFullPath(2), Path.GetFileNameWithoutExtension(helper.GetFullPath(2)) + ".txt", StringRepeat(times, "ccc\n"), Encoding.UTF8);
-                assertFileContents(helper.GetFullPath(3), Path.GetFileNameWithoutExtension(helper.GetFullPath(3)) + ".txt", StringRepeat(times, "ddd\n"), Encoding.UTF8);
+#if NET45
+                string expectedEntry1Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
+                string expectedEntry2Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
+                string expectedEntry2Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
+#else
+                string expectedEntry1Name = fileTxt;
+                string expectedEntry2Name = fileTxt;
+                string expectedEntry3Name = fileTxt;
+#endif
+                assertFileContents(helper.GetFullPath(1), expectedEntry1Name, StringRepeat(times, "bbb\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(2), expectedEntry2Name, StringRepeat(times, "ccc\n"), Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(3), expectedEntry3Name, StringRepeat(times, "ddd\n"), Encoding.UTF8);
 
                 Assert.False(helper.Exists(0), "First archive should have been deleted due to max archive count.");
                 Assert.False(helper.Exists(4), "Fifth archive must not have been created yet.");
