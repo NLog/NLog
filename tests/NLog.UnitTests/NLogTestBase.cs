@@ -151,7 +151,7 @@ namespace NLog.UnitTests
             }
         }
 
-#if NET3_5 || NET4_0
+#if NET35 || NET40
         protected void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
@@ -203,19 +203,12 @@ namespace NLog.UnitTests
                 }
             }
         }
-#else
-        protected void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
-        {
-            Assert.True(false);
-        }
 #endif
 
-#if (NET3_5 || NET4_0 || NET4_5)
         protected void AssertFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             AssertFileContents(fileName, contents, encoding, false);
         }
-#endif
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
