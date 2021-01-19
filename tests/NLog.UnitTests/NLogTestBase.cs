@@ -215,10 +215,12 @@ namespace NLog.UnitTests
         }
 #endif
 
+#if (NET3_5 || NET4_0 || NET4_5)
         protected void AssertFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             AssertFileContents(fileName, contents, encoding, false);
         }
+#endif
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
