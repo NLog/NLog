@@ -82,7 +82,6 @@ namespace NLog.Targets
             WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             UseDefaultRowHighlightingRules = true;
-            OptimizeBufferReuse = true;
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
 
@@ -383,7 +382,7 @@ namespace NLog.Targets
 
         private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor, bool wordHighlighting)
         {
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 TextWriter consoleWriter = _consolePrinter.AcquireTextWriter(consoleStream, targetBuilder.Result);
 
@@ -453,7 +452,7 @@ namespace NLog.Targets
 
             message = EscapeColorCodes(message);
 
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result;
 

@@ -69,7 +69,6 @@ namespace NLog.Targets
         /// </remarks>
         public OutputDebugStringTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>

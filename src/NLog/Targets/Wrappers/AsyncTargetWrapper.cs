@@ -271,15 +271,6 @@ namespace NLog.Targets.Wrappers
         {
             base.InitializeTarget();
 
-            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
-            {
-                OptimizeBufferReuse = GetType() == typeof(AsyncTargetWrapper); // Class not sealed, reduce breaking changes
-                if (!OptimizeBufferReuse && !ForceLockingQueue)
-                {
-                    ForceLockingQueue = true;   // Avoid too much allocation, when wrapping a legacy target
-                }
-            }
-
             if (!ForceLockingQueue && OverflowAction == AsyncTargetWrapperOverflowAction.Block && BatchSize * 1.5m > QueueLimit)
             {
                 ForceLockingQueue = true;   // ConcurrentQueue does not perform well if constantly hitting QueueLimit
@@ -563,7 +554,7 @@ namespace NLog.Targets.Wrappers
             int count = 0;
             for (int i = 0; i < FullBatchSizeWriteLimit; ++i)
             {
-                if (!OptimizeBufferReuse || batchSize == int.MaxValue)
+                if (batchSize == int.MaxValue)
                 {
                     var logEvents = _requestQueue.DequeueBatch(batchSize);
                     if (logEvents.Length > 0)

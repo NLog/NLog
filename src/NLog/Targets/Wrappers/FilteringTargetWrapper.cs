@@ -106,17 +106,6 @@ namespace NLog.Targets.Wrappers
         [RequiredParameter]
         public Filter Filter { get; set; }
 
-        /// <inheritdoc/>
-        protected override void InitializeTarget()
-        {
-            base.InitializeTarget();
-
-            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
-            {
-                OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper); // Class not sealed, reduce breaking changes
-            }
-        }
-
         /// <summary>
         /// Checks the condition against the passed log event.
         /// If the condition is met, the log event is forwarded to

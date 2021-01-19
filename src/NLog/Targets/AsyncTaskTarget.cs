@@ -133,7 +133,6 @@ namespace NLog.Targets
         /// </summary>
         protected AsyncTaskTarget()
         {
-            OptimizeBufferReuse = true;
             TaskTimeoutSeconds = 150;
             TaskDelayMilliseconds = 1;
             BatchSize = 1;
@@ -722,7 +721,7 @@ namespace NLog.Targets
                     }
                 }
 
-                if (success && OptimizeBufferReuse)
+                if (success)
                 {
                     // The expected Task completed with success, allow buffer reuse
                     fullBatchCompleted = reusableLogEvents.Item2.Count * 2 > BatchSize;

@@ -116,17 +116,6 @@ namespace NLog.Targets.Wrappers
         public IList<FilteringRule> Rules { get; private set; }
 
         /// <inheritdoc/>
-        protected override void InitializeTarget()
-        {
-            base.InitializeTarget();
-
-            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
-            {
-                OptimizeBufferReuse = GetType() == typeof(PostFilteringTargetWrapper); // Class not sealed, reduce breaking changes
-            }
-        }
-
-        /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             Write((IList<AsyncLogEventInfo>)new[] { logEvent });  // Single LogEvent should also work

@@ -43,9 +43,6 @@ namespace NLog.Internal
         protected T _reusableObject;
         private readonly Action<T> _clearObject;
 
-        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
-        public readonly LockOject None = default(LockOject);
-
         protected ReusableObjectCreator(T reusableObject, Action<T> clearObject)
         {
             _reusableObject = reusableObject;

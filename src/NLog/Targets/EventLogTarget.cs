@@ -94,7 +94,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         /// <param name="appDomain"><see cref="IAppDomain"/>.<see cref="IAppDomain.FriendlyName"/> to be used as Source.</param>
-        [Obsolete("This constructor will be removed in NLog 5. Marked obsolete on NLog 4.6")]
+        [Obsolete("This constructor should not be used. Marked obsolete on NLog 4.6")]
         public EventLogTarget(IAppDomain appDomain)
             : this(null, appDomain)
         {
@@ -112,7 +112,6 @@ namespace NLog.Targets
             Log = "Application";
             MachineName = ".";
             MaxMessageLength = EventLogMaxMessageLength;
-            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
