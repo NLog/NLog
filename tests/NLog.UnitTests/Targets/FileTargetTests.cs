@@ -800,7 +800,7 @@ namespace NLog.UnitTests.Targets
 #if NET45
                 string expectedEntryName = Path.GetFileNameWithoutExtension(archiveTempName) + ".txt";
 #else
-                string expectedEntryName = logFile;
+                string expectedEntryName = Path.GetFileName(logFile);
 #endif
                 assertFileContents(archiveTempName, expectedEntryName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
                     Encoding.UTF8);
