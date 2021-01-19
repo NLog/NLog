@@ -151,6 +151,7 @@ namespace NLog.UnitTests
             }
         }
 
+#if NET3_5 || NET4_0
         protected void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
