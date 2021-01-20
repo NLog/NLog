@@ -4,6 +4,20 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.7 (2021/01/20)
+
+#### Bugfixes
+- [#4202](https://github.com/NLog/NLog/pull/4202) Generate correct json for keys that contain quote (#4202) (@virgilp)
+- [#4229](https://github.com/NLog/NLog/pull/4229) Skip lookup MainModule.FileName on Android platform to avoid crash  (#4229) (@snakefoot)
+
+#### Improvements
+- [#4229](https://github.com/NLog/NLog/pull/4245) JsonLayout - Unwind after invalid property value to avoid invalid Json (#4245) (@snakefoot)
+- [#4222](https://github.com/NLog/NLog/pull/4222) Better handling of low memory (#4222) (@snakefoot)
+- [#4221](https://github.com/NLog/NLog/pull/4221) Added a new ExcludeEmptyProperties to JsonLayout as to avoid GDC/MDC/MLDC properties with null or empty values from output  (#4221) (@pruiz)
+
+#### Performance
+- [#4207](https://github.com/NLog/NLog/pull/4207) Skip allocation of SingleCallContinuation when ThrowExceptions = false (#4207) (@snakefoot)
+
 ### V4.7.6 (2020/12/06)
 
 #### Bugfixes
