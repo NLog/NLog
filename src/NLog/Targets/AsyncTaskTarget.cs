@@ -369,7 +369,7 @@ namespace NLog.Targets
         {
             if (_previousTask?.IsCompleted == false || !_requestQueue.IsEmpty)
             {
-                InternalLogger.Debug("{0} Flushing {1}", Name, _requestQueue.IsEmpty ? "empty queue" : "pending queue items");
+                InternalLogger.Debug("{0}: Flushing {1}", this, _requestQueue.IsEmpty ? "empty queue" : "pending queue items");
                 if (_requestQueue.OnOverflow != AsyncTargetWrapperOverflowAction.Block)
                 {
                     _requestQueue.Enqueue(new AsyncLogEventInfo(null, asyncContinuation));
@@ -393,7 +393,7 @@ namespace NLog.Targets
             }
             else
             {
-                InternalLogger.Debug("{0} Flushing Nothing", Name);
+                InternalLogger.Debug("{0}: Flushing Nothing", this);
                 asyncContinuation(null);
             }
         }
@@ -523,7 +523,7 @@ namespace NLog.Targets
 
                         if (RetryFailedAsyncTask(actualException, cancellationToken, retryCount - 1, out var retryDelay))
                         {
-                            InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", Name, retryCount, retryDelay.TotalMilliseconds);
+                            InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", this, retryCount, retryDelay.TotalMilliseconds);
                             AsyncHelpers.WaitForDelay(retryDelay);
                             if (!cancellationToken.IsCancellationRequested)
                             {
@@ -539,7 +539,7 @@ namespace NLog.Targets
                             }
                         }
 
-                        InternalLogger.Warn(actualException, "{0}: Write operation failed after {1} retries", Name, RetryCount - retryCount);
+                        InternalLogger.Warn(actualException, "{0}: Write operation failed after {1} retries", this, RetryCount - retryCount);
                     }
                     else
                     {
@@ -596,14 +596,14 @@ namespace NLog.Targets
                     NotifyTaskCompletion(reusableLogEvents.Item2, null);
                     reusableLogEvents.Item2.Clear();
                     Interlocked.CompareExchange(ref _reusableLogEvents, reusableLogEvents, null);
-                    InternalLogger.Debug("{0} Flush Completed", Name);
+                    InternalLogger.Debug("{0}: Flush Completed", this);
                     return false;
                 }
 
                 Task newTask = StartWriteAsyncTask(reusableLogEvents.Item1, _cancelTokenSource.Token);
                 if (newTask == null)
                 {
-                    InternalLogger.Debug("{0} WriteAsyncTask returned null", Name);
+                    InternalLogger.Debug("{0}: WriteAsyncTask returned null", this);
                     NotifyTaskCompletion(reusableLogEvents.Item2, null);
                     return false;
                 }
@@ -622,7 +622,7 @@ namespace NLog.Targets
             catch (Exception ex)
             {
                 _previousTask = null;
-                InternalLogger.Error(ex, "{0} WriteAsyncTask failed on creation", Name);
+                InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
                 NotifyTaskCompletion(reusableLogEvents?.Item2, ex);
             }
             return false;
@@ -642,7 +642,7 @@ namespace NLog.Targets
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Error(ex, "{0} WriteAsyncTask failed on creation", Name);
+                InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
                 return Task.Factory.StartNew(e => throw (Exception)e, new AggregateException(ex), _cancelTokenSource.Token, TaskCreationOptions.None, TaskScheduler);
             }
         }
@@ -698,9 +698,9 @@ namespace NLog.Targets
                 {
                     success = false;
                     if (completedTask.Exception != null)
-                        InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask was cancelled", Name);
+                        InternalLogger.Warn(completedTask.Exception, "{0}: WriteAsyncTask was cancelled", this);
                     else
-                        InternalLogger.Info("{0} WriteAsyncTask was cancelled", Name);
+                        InternalLogger.Info("{0}: WriteAsyncTask was cancelled", this);
                 }
                 else if (completedTask.Exception != null)
                 {
@@ -711,13 +711,13 @@ namespace NLog.Targets
                     {
                         if (RetryFailedAsyncTask(actualException, CancellationToken.None, 0, out var retryDelay))
                         {
-                            InternalLogger.Warn(actualException, "{0}: WriteAsyncTask failed on completion. Sleep {1} ms", Name, retryDelay.TotalMilliseconds);
+                            InternalLogger.Warn(actualException, "{0}: WriteAsyncTask failed on completion. Sleep {1} ms", this, retryDelay.TotalMilliseconds);
                             AsyncHelpers.WaitForDelay(retryDelay);
                         }
                     }
                     else
                     {
-                        InternalLogger.Warn(actualException, "{0} WriteAsyncTask failed on completion", Name);
+                        InternalLogger.Warn(actualException, "{0}: WriteAsyncTask failed on completion", this);
                     }
                 }
 
@@ -747,7 +747,7 @@ namespace NLog.Targets
                 if (!IsInitialized)
                     return;
 
-                InternalLogger.Warn("{0} WriteAsyncTask had timeout. Task will be cancelled.", Name);
+                InternalLogger.Warn("{0}: WriteAsyncTask had timeout. Task will be cancelled.", this);
 
                 var previousTask = _previousTask;
                 try
@@ -773,7 +773,7 @@ namespace NLog.Targets
                             previousTask.Status != TaskStatus.Faulted &&
                             previousTask.Status != TaskStatus.RanToCompletion && !previousTask.Wait(100))
                         {
-                            InternalLogger.Debug("{0} WriteAsyncTask had timeout. Task did not cancel properly: {1}.", Name, previousTask.Status);
+                            InternalLogger.Debug("{0}: WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this, previousTask.Status);
                         }
 
                         Exception actualException = ExtractActualException(previousTask.Exception);
@@ -782,14 +782,14 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Debug(ex, "{0} WriteAsyncTask had timeout. Task failed to cancel properly.", Name);
+                    InternalLogger.Debug(ex, "{0}: WriteAsyncTask had timeout. Task failed to cancel properly.", this);
                 }
 
                 TaskStartNext(null, false);
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "{0} WriteAsyncTask failed on timeout", Name);
+                InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on timeout", this);
             }
         }
 

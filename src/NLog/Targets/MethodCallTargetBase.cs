@@ -93,7 +93,7 @@ namespace NLog.Targets
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to get parameter value {2}", GetType(), Name, Parameters[i].Name);
+                    Common.InternalLogger.Warn(ex, "{0}: Failed to get parameter value {1}", this, Parameters[i].Name);
                     throw;
                 }
             }

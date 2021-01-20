@@ -169,7 +169,7 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("Console(Name={0}): Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", Name, reason);
+                    InternalLogger.Info("{0}: Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", this, reason);
                 }
             }
 
@@ -350,8 +350,8 @@ namespace NLog.Targets
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "Console(Name={0}): {1} has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
+                InternalLogger.Warn(ex, "{0}: {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", this, ex.GetType());
             }
         }
 
@@ -365,8 +365,8 @@ namespace NLog.Targets
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "Console(Name={0}): {1} has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
+                InternalLogger.Warn(ex, "{0}: {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", this, ex.GetType());
             }
         }
 

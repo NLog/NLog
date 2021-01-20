@@ -175,7 +175,7 @@ namespace NLog.Internal.FileAppenders
             if (_logFileWasArchived)
             {
                 _logFileWasArchived = false;
-                InternalLogger.Trace("FileAppender: Invalidate archived files");
+                InternalLogger.Trace("{0}: Invalidate archived files", CreateFileParameters);
                 CloseAppenders("Cleanup Archive");
             }
         }
@@ -276,7 +276,7 @@ namespace NLog.Internal.FileAppenders
             BaseFileAppender appenderToWrite;
             try
             {
-                InternalLogger.Debug("Creating file appender: {0}", fileName);
+                InternalLogger.Debug("{0}: Creating file appender: {1}", CreateFileParameters, fileName);
                 BaseFileAppender newAppender = Factory.Open(fileName, CreateFileParameters);
 
                 if (_appenders[freeSpot] != null)
@@ -312,7 +312,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn(ex, "Failed to create file appender: {0}", fileName);
+                InternalLogger.Warn(ex, "{0}: Failed to create file appender: {1}", CreateFileParameters, fileName);
                 throw;
             }
             return appenderToWrite;
@@ -401,7 +401,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed to flush file '{0}'.", appender.FileName);
+                    InternalLogger.Error(ex, "{0}: Failed to flush file '{1}'.", CreateFileParameters, appender.FileName);
                     InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
@@ -445,7 +445,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed to get file creation time for file '{0}'.", appender.FileName);
+                    InternalLogger.Error(ex, "{0}: Failed to get file creation time for file '{1}'.", CreateFileParameters, appender.FileName);
                     InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
@@ -493,13 +493,13 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (IOException ex)
                 {
-                    InternalLogger.Error(ex, "Failed to get length for file '{0}'.", appender.FileName);
+                    InternalLogger.Error(ex, "{0}: Failed to get length for file '{1}'.", CreateFileParameters, appender.FileName);
                     InvalidateAppender(appender.FileName)?.Dispose();
                     // Do not rethrow as failed archive-file-size check should not drop logevents
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed to get length for file '{0}'.", appender.FileName);
+                    InternalLogger.Error(ex, "{0}: Failed to get length for file '{1}'.", CreateFileParameters, appender.FileName);
                     InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
@@ -545,7 +545,7 @@ namespace NLog.Internal.FileAppenders
 
         private void CloseAppender(BaseFileAppender appender, string reason, bool lastAppender)
         {
-            InternalLogger.Debug("FileAppender Closing {0} - {1}", reason, appender.FileName);
+            InternalLogger.Debug("{0}: FileAppender Closing {1} - {2}", CreateFileParameters, reason, appender.FileName);
 
             if (lastAppender)
             {

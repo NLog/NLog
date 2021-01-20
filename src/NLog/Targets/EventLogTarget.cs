@@ -223,7 +223,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping removing of event source because it contains layout renderers", Name);
+                InternalLogger.Debug("{0}: Skipping removing of event source because it contains layout renderers", this);
             }
             else
             {
@@ -246,7 +246,7 @@ namespace NLog.Targets
             {
                 return _eventLogWrapper.SourceExists(fixedSource, MachineName);
             }
-            InternalLogger.Debug("EventLogTarget(Name={0}): Unclear if event source exists because it contains layout renderers", Name);
+            InternalLogger.Debug("{0}: Unclear if event source exists because it contains layout renderers", this);
             return null; //unclear!
         }
 
@@ -274,20 +274,20 @@ namespace NLog.Targets
             string renderEventId = RenderLogEvent(EventId, logEvent);
             if (!string.IsNullOrEmpty(renderEventId) && !int.TryParse(renderEventId, out eventId))
             {
-                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EventId={1}", Name, renderEventId);
+                InternalLogger.Warn("{0}: WriteEntry failed to parse EventId={1}", this, renderEventId);
             }
 
             short category = 0;
             string renderCategory = RenderLogEvent(Category, logEvent);
             if (!string.IsNullOrEmpty(renderCategory) && !short.TryParse(renderCategory, out category))
             {
-                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse Category={1}", Name, renderCategory);
+                InternalLogger.Warn("{0}: WriteEntry failed to parse Category={1}", this, renderCategory);
             }
 
             var eventLogSource = RenderLogEvent(Source, logEvent);
             if (string.IsNullOrEmpty(eventLogSource))
             {
-                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry discarded because Source rendered as empty string", Name);
+                InternalLogger.Warn("{0}: WriteEntry discarded because Source rendered as empty string", this);
                 return;
             }
 
@@ -310,7 +310,7 @@ namespace NLog.Targets
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
                     // message should not be written
-                    InternalLogger.Debug("EventLogTarget(Name={0}): WriteEntry discarded because too big message size: {1}", Name, message.Length);
+                    InternalLogger.Debug("{0}: WriteEntry discarded because too big message size: {1}", this, message.Length);
                 }
             }
             else
@@ -328,21 +328,21 @@ namespace NLog.Targets
 
             if (!isCacheUpToDate)
             {
-                InternalLogger.Debug("EventLogTarget(Name={0}): Refresh EventLog Source {1} and Log {2}", Name, eventLogSource, Log);
+                InternalLogger.Debug("{0}: Refresh EventLog Source {1} and Log {2}", this, eventLogSource, Log);
 
                 _eventLogWrapper.AssociateNewEventLog(Log, MachineName, eventLogSource);
                 try
                 {
                     if (!_eventLogWrapper.SourceExists(eventLogSource, MachineName))
                     {
-                        InternalLogger.Warn("EventLogTarget(Name={0}): Source {1} does not exist", Name, eventLogSource);
+                        InternalLogger.Warn("{0}: Source {1} does not exist", this, eventLogSource);
                     }
                     else
                     {
                         var currentLogName = _eventLogWrapper.LogNameFromSourceName(eventLogSource, MachineName);
                         if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                         {
-                            InternalLogger.Debug("EventLogTarget(Name={0}): Source {1} should be mapped to Log {2}, but EventLog.LogNameFromSourceName returns {3}", Name, eventLogSource, Log, currentLogName);
+                            InternalLogger.Debug("{0}: Source {1} should be mapped to Log {2}, but EventLog.LogNameFromSourceName returns {3}", this, eventLogSource, Log, currentLogName);
                         }
                     }
                 }
@@ -351,7 +351,7 @@ namespace NLog.Targets
                     if (LogManager.ThrowExceptions)
                         throw;
 
-                    InternalLogger.Warn(ex, "EventLogTarget(Name={0}): Exception thrown when checking if Source {1} and LogName {2} are valid", Name, eventLogSource, Log);
+                    InternalLogger.Warn(ex, "{0}: Exception thrown when checking if Source {1} and LogName {2} are valid", this, eventLogSource, Log);
                 }
             }
 
@@ -373,7 +373,7 @@ namespace NLog.Targets
                     return eventLogEntryType;
                 }
 
-                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EntryType={1}", Name, renderEntryType);
+                InternalLogger.Warn("{0}: WriteEntry failed to parse EntryType={1}", this, renderEntryType);
             }
 
             // determine auto
@@ -412,7 +412,7 @@ namespace NLog.Targets
         {
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
+                InternalLogger.Debug("{0}: Skipping creation of event source because it contains layout renderers", this);
                 // we can only create event sources if the source is fixed (no layout)
                 return;
             }
@@ -425,7 +425,7 @@ namespace NLog.Targets
                     string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
                     if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                     {
-                        InternalLogger.Debug("EventLogTarget(Name={0}): Updating source {1} to use log {2}, instead of {3} (Computer restart is needed)", Name, fixedSource, Log, currentLogName);
+                        InternalLogger.Debug("{0}: Updating source {1} to use log {2}, instead of {3} (Computer restart is needed)", this, fixedSource, Log, currentLogName);
 
                         // re-create the association between Log and Source
                         _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
@@ -439,7 +439,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    InternalLogger.Debug("EventLogTarget(Name={0}): Creating source {1} to use log {2}", Name, fixedSource, Log);
+                    InternalLogger.Debug("{0}: Creating source {1} to use log {2}", this, fixedSource, Log);
                     var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                     {
                         MachineName = MachineName
@@ -456,7 +456,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "EventLogTarget(Name={0}): Error when connecting to EventLog. Source={1} in Log={2}", Name, fixedSource, Log);
+                InternalLogger.Error(exception, "{0}: Error when connecting to EventLog. Source={1} in Log={2}", this, fixedSource, Log);
                 if (alwaysThrowError || LogManager.ThrowExceptions)
                 {
                     throw;

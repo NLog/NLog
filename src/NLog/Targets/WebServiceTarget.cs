@@ -347,7 +347,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting request", Name);
+                InternalLogger.Error(ex, "{0}: Error starting request", this);
                 if (ExceptionMustBeRethrown(ex))
                 {
                     throw;
@@ -373,7 +373,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error receiving response", Name);
+                        InternalLogger.Error(ex, "{0}: Error receiving response", this);
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -405,7 +405,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending payload", Name);
+                        InternalLogger.Error(ex, "{0}: Error sending payload", this);
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)

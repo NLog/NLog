@@ -397,7 +397,7 @@ namespace NLog.Targets
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to add context property {2}", GetType(), Name, contextProperty.Name);
+                    Common.InternalLogger.Warn(ex, "{0}: Failed to add context property {1}", this, contextProperty.Name);
                 }
             }
 

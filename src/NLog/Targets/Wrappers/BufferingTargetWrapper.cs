@@ -172,7 +172,7 @@ namespace NLog.Targets.Wrappers
         {
             base.InitializeTarget();
             _buffer = new AsyncRequestQueue(BufferSize, AsyncTargetWrapperOverflowAction.Discard);
-            InternalLogger.Trace("BufferingWrapper(Name={0}): Create Timer", Name);
+            InternalLogger.Trace("{0}: Create Timer", this);
             _flushTimer = new Timer(FlushCallback, null, Timeout.Infinite, Timeout.Infinite);
         }
 
@@ -253,7 +253,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "BufferingWrapper(Name={0}): Error in flush procedure.", Name);
+                InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
 
                 if (exception.MustBeRethrownImmediately())
                 {
@@ -273,7 +273,7 @@ namespace NLog.Targets.Wrappers
         {
             if (WrappedTarget == null)
             {
-                InternalLogger.Error("BufferingWrapper(Name={0}): WrappedTarget is NULL", Name);
+                InternalLogger.Error("{0}: WrappedTarget is NULL", this);
                 return;
             }
 
@@ -283,7 +283,7 @@ namespace NLog.Targets.Wrappers
                 if (logEvents.Length > 0)
                 {
                     if (reason != null)
-                        InternalLogger.Trace("BufferingWrapper(Name={0}): Writing {1} events ({2})", Name, logEvents.Length, reason);
+                        InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Length, reason);
                     WrappedTarget.WriteAsyncLogEvents(logEvents);
                 }
             }
