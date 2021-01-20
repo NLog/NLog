@@ -42,6 +42,8 @@ namespace NLog.Internal
     /// </summary>
     internal class SingleCallContinuation
     {
+        internal static readonly AsyncContinuation Completed = new SingleCallContinuation(null).CompletedFunction;
+
         private AsyncContinuation _asyncContinuation;
 
         /// <summary>
@@ -76,6 +78,11 @@ namespace NLog.Internal
                     throw;
                 }       
             }
+        }
+
+        private void CompletedFunction(Exception exception)
+        {
+            // Completed, nothing to do
         }
     }
 }

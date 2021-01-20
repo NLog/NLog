@@ -161,7 +161,7 @@ namespace NLog.UnitTests
 #else
                 AppDomainConfigurationFile = Path.Combine(tmpDir, "EntryDir", "Entry.exe.config"),
 #endif
-                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),// NetCore dotnet.exe
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "dotnet.exe"),  // NetCore dotnet.exe
                 EntryAssemblyLocation = Path.Combine(tmpDir, "EntryDir"),
                 EntryAssemblyFileName = "Entry.dll"
             };
@@ -186,9 +186,9 @@ namespace NLog.UnitTests
 #if NETSTANDARD
                 AppDomainConfigurationFile = string.Empty,                  // NetCore style
 #else
-                AppDomainConfigurationFile = Path.Combine(tmpDir, "ProcessDir", "Process.exe.config"),
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "ProcessDir", "Entry.exe.config"),
 #endif
-                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),    // NetCore published exe
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Entry.exe"),    // NetCore published exe
                 EntryAssemblyLocation = Path.Combine(tmpDir, "ProcessDir"),
                 EntryAssemblyFileName = "Entry.dll"
             };
@@ -199,7 +199,7 @@ namespace NLog.UnitTests
             var result = fileLoader.GetDefaultCandidateConfigFilePaths().ToList();
 
             // Assert base-directory + process-directory + nlog-assembly-directory
-            AssertResult(tmpDir, "ProcessDir", "ProcessDir", "Process", result);
+            AssertResult(tmpDir, "ProcessDir", "ProcessDir", "Entry", result);
         }
 
         [Fact]
@@ -213,9 +213,9 @@ namespace NLog.UnitTests
 #if NETSTANDARD
                 AppDomainConfigurationFile = string.Empty,                  // NetCore style
 #else
-                AppDomainConfigurationFile = Path.Combine(tmpDir, "TempProcessDir", "Process.exe.config"),
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "TempProcessDir", "Entry.exe.config"),
 #endif
-                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),    // NetCore published exe
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Entry.exe"),    // NetCore published exe
                 EntryAssemblyLocation = Path.Combine(tmpDir, "TempProcessDir"),
                 UserTempFilePath = Path.Combine(tmpDir, "TempProcessDir"),
                 EntryAssemblyFileName = "Entry.dll"
@@ -228,9 +228,9 @@ namespace NLog.UnitTests
 
             // Assert base-directory + process-directory + nlog-assembly-directory
 #if NETSTANDARD
-            Assert.Equal(Path.Combine(tmpDir, "ProcessDir", "Process.exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
+            Assert.Equal(Path.Combine(tmpDir, "ProcessDir", "Entry.exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
 #endif
-            AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Process", result);
+            AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Entry", result);
         }
 
         [Fact]
@@ -244,9 +244,9 @@ namespace NLog.UnitTests
 #if NETSTANDARD
                 AppDomainConfigurationFile = string.Empty,                  // NetCore style
 #else
-                AppDomainConfigurationFile = Path.Combine(tmpDir, "TempProcessDir", "Process.exe.config"),
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "TempProcessDir", "Entry.exe.config"),
 #endif
-                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),    // NetCore published exe
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Entry.exe"),    // NetCore published exe
                 EntryAssemblyLocation = Path.Combine(tmpDir, "TempProcessDir"),
                 UserTempFilePath = "/tmp/",
                 EntryAssemblyFileName = "Entry.dll"
@@ -259,26 +259,31 @@ namespace NLog.UnitTests
 
             // Assert base-directory + process-directory + nlog-assembly-directory
 #if NETSTANDARD
-            Assert.Equal(Path.Combine(tmpDir, "ProcessDir", "Process.exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
+            Assert.Equal(Path.Combine(tmpDir, "ProcessDir", "Entry.exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
 #endif
-            AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Process", result);
+            AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Entry", result);
         }
 
         private static void AssertResult(string tmpDir, string appDir, string processDir, string appName, List<string> result)
         {
-            if (NLog.Internal.PlatformDetector.IsWin32)
-            {
-#if NETSTANDARD
-                Assert.Equal(5, result.Count);  // Case insensitive
-#else
-                Assert.Equal(4, result.Count);  // Case insensitive
-#endif
-            }
 #if NETSTANDARD
             Assert.Contains(Path.Combine(tmpDir, processDir, appName + ".exe.nlog"), result, StringComparer.OrdinalIgnoreCase);
             Assert.Contains(Path.Combine(tmpDir, appDir, "Entry.dll.nlog"), result, StringComparer.OrdinalIgnoreCase);
+            if (NLog.Internal.PlatformDetector.IsWin32)
+            {
+                if (appDir != processDir)
+                    Assert.Equal(6, result.Count);  // Single File Publish on NetCore 3.1 - Case insensitive
+                else
+                    Assert.Equal(5, result.Count);  // Case insensitive
+            }
+            // Verify Single File Publish will always load "exe.nlog" before "dll.nlog"
+            var priorityIndexExe = result.FindIndex(s => s.EndsWith(appName+".exe.nlog"));
+            var priorityIndexDll = result.FindIndex(s => s.EndsWith(appName+".dll.nlog"));
+            Assert.True(priorityIndexExe <  priorityIndexDll, $"{appName+".exe.nlog"}={priorityIndexExe} < {appName+".dll.nlog"}={priorityIndexDll}"); // Always scan for exe.nlog first
 #else
             Assert.Equal(Path.Combine(tmpDir, appDir, appName + ".exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
+            if (NLog.Internal.PlatformDetector.IsWin32)
+                Assert.Equal(4, result.Count);  // Case insensitive
 #endif
             Assert.Contains(Path.Combine(tmpDir, "BaseDir", "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
             Assert.Contains(Path.Combine(tmpDir, appDir, "NLog.config"), result, StringComparer.OrdinalIgnoreCase);

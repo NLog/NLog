@@ -97,11 +97,15 @@ namespace NLog.Internal
                 int maxBuilderCapacity = poolIndex == -1 ? _maxBuilderCapacity * 10 : _maxBuilderCapacity;
                 if (stringBuilder.Length > maxBuilderCapacity)
                 {
-                    stringBuilder = new StringBuilder(maxBuilderCapacity / 2);
+                    stringBuilder.Remove(0, stringBuilder.Length - 1);  // Attempt soft clear that skips re-allocation
+                    if (stringBuilder.Capacity > maxBuilderCapacity)
+                    {
+                        stringBuilder = new StringBuilder(maxBuilderCapacity / 2);
+                    }
                 }
             }
 
-            stringBuilder.Length = 0;
+            stringBuilder.ClearBuilder();
 
             if (poolIndex == -1)
             {
