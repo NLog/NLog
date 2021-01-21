@@ -4,11 +4,25 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7.7 (2021/01/20)
+
+#### Bugfixes
+- [#4229](https://github.com/NLog/NLog/pull/4229) Skip lookup MainModule.FileName on Android platform to avoid crash  (#4229) (@snakefoot)
+- [#4202](https://github.com/NLog/NLog/pull/4202) JsonLayout - Generate correct json for keys that contain quote (#4202) (@virgilp)
+- [#4245](https://github.com/NLog/NLog/pull/4245) JsonLayout - Unwind after invalid property value to avoid invalid Json (#4245) (@snakefoot)
+
+#### Improvements
+- [#4222](https://github.com/NLog/NLog/pull/4222) Better handling of low memory (#4222) (@snakefoot)
+- [#4221](https://github.com/NLog/NLog/pull/4221) JsonLayout - Added new ExcludeEmptyProperties to skip GDC/MDC/MLDC properties with null or empty values (#4221) (@pruiz)
+
+#### Performance
+- [#4207](https://github.com/NLog/NLog/pull/4207) Skip allocation of SingleCallContinuation when ThrowExceptions = false (#4207) (@snakefoot)
+
 ### V4.7.6 (2020/12/06)
 
 #### Bugfixes
 - [#4142](https://github.com/NLog/NLog/pull/4142) JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
-- [#4176](https://github.com/NLog/NLog/pull/4176) AsyncTaskTarget - Flush when buffer is full should not block forever (#4176) (@snakefoot)
+- [#4172](https://github.com/NLog/NLog/pull/4172) AsyncTaskTarget - Flush when buffer is full should not block forever (#4172) (@snakefoot)
 - [#4182](https://github.com/NLog/NLog/pull/4182) Failing to lookup ProcessName because of Access Denied should fallback to Win32-API (#4182) (@snakefoot)
 
 #### Features
@@ -20,7 +34,7 @@ Date format: (year/month/day)
 - [#4190](https://github.com/NLog/NLog/pull/4190) Improving debugger-display for Logger.Properties and LogEventInfo.Properties (@snakefoot)
 
 #### Performance
-- [#4132](https://github.com/NLog/NLog/pull/4132) Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
+- [#4132](https://github.com/NLog/NLog/pull/4132) Improve thread concurrency when using wrapper cached=true (#4132) (@snakefoot)
 - [#4171](https://github.com/NLog/NLog/pull/4171) ConditionLayoutExpression - Skip allocating StringBuilder for every condition check (#4171) (@snakefoot)
 
 ### V4.7.5 (2020/09/27)

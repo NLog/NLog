@@ -41,7 +41,7 @@ namespace NLog.Internal
     internal class ReusableBufferCreator : ReusableObjectCreator<char[]>
     {
         public ReusableBufferCreator(int capacity)
-            :base(new char[capacity], (b) => { })
+            :base(capacity, cap => new char[cap], (b) => { })
         {
         }
     }

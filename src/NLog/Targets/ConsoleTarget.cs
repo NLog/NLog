@@ -302,7 +302,7 @@ namespace NLog.Targets
                 {
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        targetBuilder.Result.Length = 0;
+                        targetBuilder.Result.ClearBuilder();
                         RenderLogEventToWriteBuffer(output, Layout, logEvents[i].LogEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
                         logEvents[i].Continuation(null);
                     }

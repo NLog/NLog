@@ -42,11 +42,18 @@ namespace NLog.Internal
     {
         protected T _reusableObject;
         private readonly Action<T> _clearObject;
+        private readonly Func<int, T> _createObject;
+        private readonly int _initialCapacity;
 
-        protected ReusableObjectCreator(T reusableObject, Action<T> clearObject)
+        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
+        public readonly LockOject None = default(LockOject);
+
+        protected ReusableObjectCreator(int initialCapacity, Func<int, T> createObject, Action<T> clearObject)
         {
-            _reusableObject = reusableObject;
+            _reusableObject = createObject(initialCapacity);
             _clearObject = clearObject;
+            _createObject = createObject;
+            _initialCapacity = initialCapacity;
         }
 
         /// <summary>
@@ -55,7 +62,16 @@ namespace NLog.Internal
         /// <returns>Handle to the reusable item, that can release it again</returns>
         public LockOject Allocate()
         {
-            return new LockOject(this);
+            var reusableObject = _reusableObject ?? _createObject(_initialCapacity);
+            System.Diagnostics.Debug.Assert(_reusableObject != null);
+            _reusableObject = null;
+            return new LockOject(this, reusableObject);
+        }
+
+        private void Deallocate(T reusableObject)
+        {
+            _clearObject(reusableObject);
+            _reusableObject = reusableObject;
         }
 
         public struct LockOject : IDisposable
@@ -66,20 +82,15 @@ namespace NLog.Internal
             public readonly T Result;
             private readonly ReusableObjectCreator<T> _owner;
 
-            public LockOject(ReusableObjectCreator<T> owner)
+            public LockOject(ReusableObjectCreator<T> owner, T reusableObject)
             {
-                Result = owner._reusableObject;
-                owner._reusableObject = null;
+                Result = reusableObject;
                 _owner = owner;
             }
 
             public void Dispose()
             {
-                if (Result != null)
-                {
-                    _owner._clearObject(Result);
-                    _owner._reusableObject = Result;
-                }
+                _owner?.Deallocate(Result);
             }
         }
     }
