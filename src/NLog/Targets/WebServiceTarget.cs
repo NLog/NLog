@@ -270,7 +270,7 @@ namespace NLog.Targets
             DoInvoke(parameters, webRequest, logEvent.Continuation);
         }
 
-        void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        private void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
         {
             Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
@@ -332,115 +332,89 @@ namespace NLog.Targets
                 postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
             }
 
-            var sendContinuation = CreateSendContinuation(continuation, webRequest);
+            _pendingManualFlushList.BeginOperation();
 
-            PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload, sendContinuation);
+            try
+            {
+                if (postPayload != null && postPayload.Length > 0)
+                {
+                    PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload);
+                }
+                else
+                {
+                    WaitForReponse(continuation, webRequest);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting request", Name);
+                if (ExceptionMustBeRethrown(ex))
+                {
+                    throw;
+                }
+
+                DoInvokeCompleted(continuation, ex);
+            }
         }
 
-        private AsyncContinuation CreateSendContinuation(AsyncContinuation continuation, HttpWebRequest webRequest)
+        private void WaitForReponse(AsyncContinuation continuation, HttpWebRequest webRequest)
         {
-            AsyncContinuation sendContinuation =
-                ex =>
+            webRequest.BeginGetResponse(
+                r =>
                 {
-                    if (ex != null)
-                    {
-                        DoInvokeCompleted(continuation, ex);
-                        return;
-                    }
-
                     try
                     {
-                        webRequest.BeginGetResponse(
-                            r =>
-                            {
-                                try
-                                {
-                                    using (var response = webRequest.EndGetResponse(r))
-                                    {
-                                        // Request successfully initialized
-                                    }
-
-                                    DoInvokeCompleted(continuation, null);
-                                }
-                                catch (Exception ex2)
-                                {
-                                    InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error sending request", Name);
-                                    if (ex2.MustBeRethrownImmediately())
-                                    {
-                                        throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                                    }
-
-                                    DoInvokeCompleted(continuation, ex2);
-                                }
-                            },
-                            null);
-                    }
-                    catch (Exception ex2)
-                    {
-                        InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error starting request", Name);
-                        if (ExceptionMustBeRethrown(ex2))
+                        using (var response = webRequest.EndGetResponse(r))
                         {
-                            throw;
+                            // Request successfully initialized
                         }
 
-                        DoInvokeCompleted(continuation, ex2);
+                        DoInvokeCompleted(continuation, null);
                     }
-                };
-            return sendContinuation;
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error receiving response", Name);
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+
+                        DoInvokeCompleted(continuation, ex);
+                    }
+                },
+                null);
         }
 
-        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, Stream postPayload, AsyncContinuation sendContinuation)
+        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, Stream postPayload)
         {
-            if (postPayload != null && postPayload.Length > 0)
-            {
-                postPayload.Position = 0;
-                try
+            postPayload.Position = 0;
+
+            beginGetRequest(webRequest,
+                result =>
                 {
-                    _pendingManualFlushList.BeginOperation();
-
-                    beginGetRequest(webRequest,
-                        result =>
-                        {
-                            try
-                            {
-                                using (Stream stream = getRequestStream(webRequest, result))
-                                {
-                                    WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
-
-                                    postPayload.Dispose();
-                                }
-
-                                sendContinuation(null);
-                            }
-                            catch (Exception ex)
-                            {
-                                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending post data", Name);
-                                if (ex.MustBeRethrownImmediately())
-                                {
-                                    throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                                }
-
-                                postPayload.Dispose();
-                                DoInvokeCompleted(continuation, ex);
-                            }
-                        });
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting post data", Name);
-                    if (ExceptionMustBeRethrown(ex))
+                    try
                     {
-                        throw;
-                    }
+                        using (Stream stream = getRequestStream(webRequest, result))
+                        {
+                            WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
 
-                    DoInvokeCompleted(continuation, ex);
-                }
-            }
-            else
-            {
-                _pendingManualFlushList.BeginOperation();
-                sendContinuation(null);
-            }
+                            postPayload.Dispose();
+                        }
+
+                        WaitForReponse(continuation, webRequest);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending payload", Name);
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+
+                        postPayload.Dispose();
+                        DoInvokeCompleted(continuation, ex);
+                    }
+                });
         }
 
         private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
