@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 2/4") != -1);
             Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 3/4") != -1);
             Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 4/4") != -1);
-            Assert.True(result.IndexOf("Warn Too many retries. Aborting.") != -1);
+            Assert.True(result.IndexOf("Too many retries. Aborting.") != -1);
             Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 1/4") != -1);
             Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 2/4") != -1);
 

@@ -89,7 +89,7 @@ namespace NLog.Targets
             base.InitializeTarget();
             if (!Debugger.IsLogging())
             {
-                InternalLogger.Debug("Debugger(Name={0}): System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", Name);
+                InternalLogger.Debug("{0}: System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", this);
             }
 
             if (Header != null)
