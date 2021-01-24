@@ -80,7 +80,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 else
                 {
-                    InternalLogger.Debug("Mutex for file archive not supported");
+                    InternalLogger.Debug("{0}: Mutex for file archive not supported", CreateFileParameters);
                 }
             }
         }
@@ -103,11 +103,11 @@ namespace NLog.Internal.FileAppenders
             {
                 if (ex is SecurityException || ex is UnauthorizedAccessException || ex is NotSupportedException || ex is NotImplementedException || ex is PlatformNotSupportedException)
                 {
-                    InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
+                    InternalLogger.Warn(ex, "{0}: Failed to create global archive mutex: {1}", CreateFileParameters, FileName);
                     return new Mutex();
                 }
 
-                InternalLogger.Error(ex, "Failed to create global archive mutex: {0}", FileName);
+                InternalLogger.Error(ex, "{0}: Failed to create global archive mutex: {1}", CreateFileParameters, FileName);
                 if (ex.MustBeRethrown())
                     throw;
                 return new Mutex();

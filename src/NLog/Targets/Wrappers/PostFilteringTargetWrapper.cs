@@ -130,7 +130,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            InternalLogger.Trace("PostFilteringWrapper(Name={0}): Running on {1} events", Name, logEvents.Count);
+            InternalLogger.Trace("{0}: Running on {1} events", this, logEvents.Count);
 
             var resultFilter = EvaluateAllRules(logEvents) ?? DefaultFilter;
             if (resultFilter == null)
@@ -139,12 +139,12 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
+                InternalLogger.Trace("{0}: Filter to apply: {1}", this, resultFilter);
                 var resultBuffer = logEvents.Filter(resultFilter, (logEvent, filter) => ApplyFilter(logEvent, filter));
-                InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
+                InternalLogger.Trace("{0}: After filtering: {1} events.", this, resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {
-                    InternalLogger.Trace("PostFilteringWrapper(Name={0}): Sending to {1}", Name, WrappedTarget);
+                    InternalLogger.Trace("{0}: Sending to {1}", this, WrappedTarget);
                     WrappedTarget.WriteAsyncLogEvents(resultBuffer);
                 }
             }
@@ -182,7 +182,7 @@ namespace NLog.Targets.Wrappers
                     object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
                     if (boxedTrue.Equals(v))
                     {
-                        InternalLogger.Trace("PostFilteringWrapper(Name={0}): Rule matched: {1}", Name, rule.Exists);
+                        InternalLogger.Trace("{0}: Rule matched: {1}", this, rule.Exists);
                         return rule.Filter;
                     }
                 }

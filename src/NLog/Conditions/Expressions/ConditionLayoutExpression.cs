@@ -34,6 +34,7 @@
 namespace NLog.Conditions
 {
     using Layouts;
+    using NLog.Internal;
     using System.Text;
 
     /// <summary>
@@ -88,7 +89,7 @@ namespace NLog.Conditions
             }
             finally
             {
-                stringBuilder.Length = 0;
+                stringBuilder.ClearBuilder();
                 System.Threading.Interlocked.Exchange(ref _fastObjectPool, stringBuilder);
             }
         }

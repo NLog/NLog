@@ -366,12 +366,12 @@ namespace NLog.Targets
                     var propertyValue = GetDatabaseObjectPropertyValue(logEventInfo, propertyInfo);
                     if (!propertyInfo.SetPropertyValue(databaseObject, propertyValue))
                     {
-                        InternalLogger.Warn("DatabaseTarget(Name={0}): Failed to lookup property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
+                        InternalLogger.Warn("{0}: Failed to lookup property {1} on {2}", this, propertyInfo.Name, databaseObject.GetType());
                     }
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to assign value for property {1} on {2}", Name, propertyInfo.Name, databaseObject.GetType());
+                    InternalLogger.Error(ex, "{0}: Failed to assign value for property {1} on {2}", this, propertyInfo.Name, databaseObject.GetType());
                     if (ExceptionMustBeRethrown(ex))
                         throw;
                 }
@@ -432,12 +432,12 @@ namespace NLog.Targets
                     SetConnectionType();
                     if (ConnectionType == null)
                     {
-                        InternalLogger.Warn("DatabaseTarget(Name={0}): No ConnectionType created from DBProvider={1}", Name, DBProvider);
+                        InternalLogger.Warn("{0}: No ConnectionType created from DBProvider={1}", this, DBProvider);
                     }
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to create ConnectionType from DBProvider={1}", Name, DBProvider);
+                    InternalLogger.Error(ex, "{0}: Failed to create ConnectionType from DBProvider={1}", this, DBProvider);
                     throw;
                 }
             }
@@ -466,10 +466,10 @@ namespace NLog.Targets
             {
 #if !NETSTANDARD
                 if (!string.IsNullOrEmpty(ConnectionStringName))
-                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
+                    InternalLogger.Warn(ex, "{0}: DbConnectionStringBuilder failed to parse '{1}' ConnectionString", this, ConnectionStringName);
                 else
 #endif
-                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                    InternalLogger.Warn(ex, "{0}: DbConnectionStringBuilder failed to parse ConnectionString", this);
             }
 
             return providerName;
@@ -486,7 +486,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "DatabaseTarget(Name={0}): DbProviderFactories failed to get factory from ProviderName={1}", Name, providerName);
+                InternalLogger.Error(ex, "{0}: DbProviderFactories failed to get factory from ProviderName={1}", this, providerName);
                 throw;
             }
 
@@ -533,7 +533,7 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): Failed to load assembly 'Microsoft.Data.SqlClient'. Falling back to 'System.Data.SqlClient'.", Name);
+                            InternalLogger.Warn(ex, "{0}: Failed to load assembly 'Microsoft.Data.SqlClient'. Falling back to 'System.Data.SqlClient'.", this);
                             var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
                             ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                         }
@@ -591,7 +591,7 @@ namespace NLog.Targets
         {
             PropertyTypeConverter = null;
             base.CloseTarget();
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of CloseTarget", Name);
+            InternalLogger.Trace("{0}: Close connection because of CloseTarget", this);
             CloseConnection();
         }
 
@@ -611,7 +611,7 @@ namespace NLog.Targets
             {
                 if (!KeepConnection)
                 {
-                    InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection (KeepConnection = false).", Name);
+                    InternalLogger.Trace("{0}: Close connection (KeepConnection = false).", this);
                     CloseConnection();
                 }
             }
@@ -640,7 +640,7 @@ namespace NLog.Targets
                 {
                     if (!KeepConnection)
                     {
-                        InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of KeepConnection=false", Name);
+                        InternalLogger.Trace("{0}: Close connection because of KeepConnection=false", this);
                         CloseConnection();
                     }
                 }
@@ -664,17 +664,12 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrownImmediately())
+                        if (ExceptionMustBeRethrown(exception))
                         {
                             throw;
                         }
 
                         logEvents[i].Continuation(exception);
-
-                        if (ExceptionMustBeRethrown(exception))
-                        {
-                            throw;
-                        }
                     }
                 }
             }
@@ -720,7 +715,7 @@ namespace NLog.Targets
                         }
                         catch (Exception exception)
                         {
-                            InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error during rollback of batch writing {1} logevents to database.", Name, logEvents.Count);
+                            InternalLogger.Error(exception, "{0}: Error during rollback of batch writing {1} logevents to database.", this, logEvents.Count);
                             if (exception.MustBeRethrownImmediately())
                             {
                                 throw;
@@ -733,8 +728,8 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when batch writing {1} logevents to database.", Name, logEvents.Count);
-                if (exception.MustBeRethrownImmediately())
+                InternalLogger.Error(exception, "{0}: Error when batch writing {1} logevents to database.", this, logEvents.Count);
+                if (ExceptionMustBeRethrown(exception))
                 {
                     throw;
                 }
@@ -744,12 +739,8 @@ namespace NLog.Targets
                     logEvents[i].Continuation(exception);
                 }
 
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
+                InternalLogger.Trace("{0}: Close connection because of error", this);
                 CloseConnection();
-                if (ExceptionMustBeRethrown(exception))
-                {
-                    throw;
-                }
             }
         }
 
@@ -769,14 +760,14 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when writing to database.", Name);
+                InternalLogger.Error(exception, "{0}: Error when writing to database.", this);
 
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
+                InternalLogger.Trace("{0}: Close connection because of error", this);
                 CloseConnection();
                 throw;
             }
@@ -793,14 +784,14 @@ namespace NLog.Targets
                     command.Transaction = dbTransaction;
 
                 int result = command.ExecuteNonQuery();
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
+                InternalLogger.Trace("{0}: Finished execution, result = {1}", this, result);
             }
         }
 
         internal IDbCommand CreateDbCommand(LogEventInfo logEvent, IDbConnection dbConnection)
         {
             var commandText = RenderLogEvent(CommandText, logEvent);
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, CommandType, commandText);
+            InternalLogger.Trace("{0}: Executing {1}: {2}", this, CommandType, commandText);
             return CreateDbCommandWithParameters(logEvent, dbConnection, CommandType, commandText, Parameters);
         }
 
@@ -918,7 +909,7 @@ namespace NLog.Targets
         {
             if (_activeConnection != null && _activeConnectionString != connectionString)
             {
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of opening new.", Name);
+                InternalLogger.Trace("{0}: Close connection because of opening new.", this);
                 CloseConnection();
             }
 
@@ -927,7 +918,7 @@ namespace NLog.Targets
                 return;
             }
 
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Open connection.", Name);
+            InternalLogger.Trace("{0}: Open connection.", this);
             _activeConnection = OpenConnection(connectionString, logEventInfo);
             _activeConnectionString = connectionString;
         }
@@ -996,7 +987,7 @@ namespace NLog.Targets
             }
             finally
             {
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection after install.", Name);
+                InternalLogger.Trace("{0}: Close connection after install.", this);
 
                 CloseConnection();
             }

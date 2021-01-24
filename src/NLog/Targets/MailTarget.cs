@@ -131,7 +131,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn(ex, "MailTarget(Name={0}): Reading 'From' from .config failed.", Name);
+                        InternalLogger.Warn(ex, "{0}: Reading 'From' from .config failed.", this);
 
                         if (ExceptionMustBeRethrown(ex))
                         {
@@ -396,12 +396,12 @@ namespace NLog.Targets
                         }
 
                         if (client.EnableSsl)
-                            InternalLogger.Debug("MailTarget(Name={0}): Sending mail to {1} using {2}:{3} (ssl=true)", Name, msg.To, client.Host, client.Port);
+                            InternalLogger.Debug("{0}: Sending mail to {1} using {2}:{3} (ssl=true)", this, msg.To, client.Host, client.Port);
                         else
-                            InternalLogger.Debug("MailTarget(Name={0}): Sending mail to {1} using {2}:{3} (ssl=false)", Name, msg.To, client.Host, client.Port);
+                            InternalLogger.Debug("{0}: Sending mail to {1} using {2}:{3} (ssl=false)", this, msg.To, client.Host, client.Port);
 
-                        InternalLogger.Trace("MailTarget(Name={0}):   Subject: '{1}'", Name, msg.Subject);
-                        InternalLogger.Trace("MailTarget(Name={0}):   From: '{1}'", Name, msg.From.ToString());
+                        InternalLogger.Trace("{0}:   Subject: '{1}'", this, msg.Subject);
+                        InternalLogger.Trace("{0}:   From: '{1}'", this, msg.From);
 
                         client.Send(msg);
 
@@ -415,7 +415,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 //always log
-                InternalLogger.Error(exception, "MailTarget(Name={0}): Error sending mail.", Name);
+                InternalLogger.Error(exception, "{0}: Error sending mail.", this);
 
                 if (ExceptionMustBeRethrown(exception))
                 {
@@ -507,7 +507,7 @@ namespace NLog.Targets
 
                 if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
                 {
-                    InternalLogger.Trace("MailTarget(Name={0}):   Using NTLM authentication.", Name);
+                    InternalLogger.Trace("{0}:   Using NTLM authentication.", this);
                     client.Credentials = CredentialCache.DefaultNetworkCredentials;
                 }
                 else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
@@ -515,7 +515,7 @@ namespace NLog.Targets
                     string username = SmtpUserName.Render(lastEvent);
                     string password = SmtpPassword.Render(lastEvent);
 
-                    InternalLogger.Trace("MailTarget(Name={0}):   Using basic authentication: Username='{1}' Password='{2}'", Name, username, new string('*', password.Length));
+                    InternalLogger.Trace("{0}:   Using basic authentication: Username='{1}' Password='{2}'", this, username, new string('*', password.Length));
                     client.Credentials = new NetworkCredential(username, password);
                 }
             }
@@ -646,7 +646,7 @@ namespace NLog.Targets
                 else
                 {
                     msg.Priority = MailPriority.Normal;
-                    InternalLogger.Warn("MailTarget(Name={0}): Could not convert '{1}' to MailPriority, valid values are Low, Normal and High. Using normal priority as fallback.", Name, renderedPriority);
+                    InternalLogger.Warn("{0}: Could not convert '{1}' to MailPriority, valid values are Low, Normal and High. Using normal priority as fallback.", this, renderedPriority);
                 }
             }
             msg.Body = body;

@@ -49,6 +49,8 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IInternalLoggerContext, IDisposable
     {
+        internal string _tostring;
+
         private List<Layout> _allLayouts;
 
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
@@ -69,7 +71,16 @@ namespace NLog.Targets
         /// Gets or sets the name of the target.
         /// </summary>
         /// <docgen category='General Options' order='10' />
-        public string Name { get; set; }
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                _tostring = null;
+            }
+        }
+        private string _name;
         
         /// <summary>
         /// Target supports reuse of internal buffers, and doesn't have to constantly allocate new buffers
@@ -176,9 +187,7 @@ namespace NLog.Targets
                 catch (Exception exception)
                 {
                     if (ExceptionMustBeRethrown(exception))
-                    {
                         throw;
-                    }
 
                     asyncContinuation(exception);
                 }
@@ -263,13 +272,20 @@ namespace NLog.Targets
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = GetType().GetFirstCustomAttribute<TargetAttribute>();
-            if (targetAttribute != null)
-            {
-                return $"{targetAttribute.Name} Target[{(Name ?? "(unnamed)")}]";
-            }
+            return _tostring ?? (_tostring = GenerateTargetToString(false));
+        }
 
-            return GetType().Name;
+        internal string GenerateTargetToString(bool targetWrapper, string targetName = null)
+        {
+            var targetAttribute = GetType().GetFirstCustomAttribute<TargetAttribute>();
+            string targetType = (targetAttribute?.Name ?? GetType().Name).Trim();
+            targetWrapper = targetWrapper || targetAttribute?.IsCompound == true || targetAttribute?.IsWrapper == true;
+            if (!targetWrapper && targetType.IndexOf("Target", StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                targetType += "Target";
+            }
+            targetName = targetName ?? Name;
+            return string.IsNullOrEmpty(targetName) ? targetType : $"{targetType}(Name={targetName})";
         }
 
         /// <summary>
@@ -372,9 +388,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 if (ExceptionMustBeRethrown(exception))
-                {
                     throw;
-                }
 
                 // in case of synchronous failure, assume that nothing is running asynchronously
                 for (int i = 0; i < logEvents.Count; ++i)
@@ -422,21 +436,15 @@ namespace NLog.Targets
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
-                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
                         if (ExceptionMustBeRethrown(exception))
-                        {
                             throw;
-                        }
                     }
                     catch (Exception exception)
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
-                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
                         if (ExceptionMustBeRethrown(exception))
-                        {
                             throw;
-                        }
 
                         var logFactory = LoggingConfiguration?.LogFactory ?? LogManager.LogFactory;
                         if ((logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
@@ -470,19 +478,15 @@ namespace NLog.Targets
                         if (_initializeException == null)
                         {
                             // if Init succeeded, call Close()
-                            InternalLogger.Debug("Closing target '{0}'.", this);
+                            InternalLogger.Debug("{0}: Closing...", this);
                             CloseTarget();
-                            InternalLogger.Debug("Closed target '{0}'.", this);
+                            InternalLogger.Debug("{0}: Closed.", this);
                         }
                     }
                     catch (Exception exception)
                     {
-                        InternalLogger.Error(exception, "{0}: Error closing target", this);
-
                         if (ExceptionMustBeRethrown(exception))
-                        {
                             throw;
-                        }
                     }
                 }
             }
@@ -576,9 +580,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 if (ExceptionMustBeRethrown(exception))
-                {
                     throw;
-                }
 
                 logEvent.Continuation(exception);
             }
@@ -743,6 +745,28 @@ namespace NLog.Targets
             return layout.RenderToValueOrDefault(logEvent, defaultValue);
         }
 
+        /// Resolve from DI <see cref="LogFactory.ServiceRepository"/>
+        /// </summary>
+        /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
+        protected T ResolveService<T>() where T : class
+        {
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
+        }
+
+        /// <summary>
+        /// Should the exception be rethrown?
+        /// </summary>
+        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
+        /// 
+        internal bool ExceptionMustBeRethrown(Exception exception,
+#if !NET35
+            [System.Runtime.CompilerServices.CallerMemberName]
+#endif
+            string callerMemberName = null)
+        {
+            return exception.MustBeRethrown(this, callerMemberName);
+        }
+
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
         {
             if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
@@ -788,27 +812,7 @@ namespace NLog.Targets
         /// <param name="name"> Name of the Target.</param>
         public static void Register(string name, Type targetType)
         {
-            ConfigurationItemFactory.Default.Targets
-                .RegisterDefinition(name, targetType);
-        }
-
-        /// <summary>
-        /// Resolve from DI <see cref="LogFactory.ServiceRepository"/>
-        /// </summary>
-        /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
-        protected T ResolveService<T>() where T : class
-        {
-            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
-        }
-
-        /// <summary>
-        /// Should the exception be rethrown?
-        /// </summary>
-        /// <param name="exception"></param>
-        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
-        internal bool ExceptionMustBeRethrown(Exception exception)
-        {
-            return exception.MustBeRethrown(this);
+            ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
         }
     }
 }
