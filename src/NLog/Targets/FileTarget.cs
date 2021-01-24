@@ -502,7 +502,7 @@ namespace NLog.Targets
         /// This option works only when the "FileName" parameter denotes a single file.
         /// After archiving the old file, the current log file will be empty.
         /// </remarks>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Archival Options' order='10' />
         [DefaultValue(false)]
         public bool ArchiveOldFileOnStartup
         {
@@ -519,7 +519,7 @@ namespace NLog.Targets
         /// Default value is 0 which means that the file is archived as soon as archival on
         /// startup is enabled.
         /// </remarks>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Archival Options' order='10' />
         [DefaultValue(0)]
         public long ArchiveOldFileOnStartupAboveSize { get; set; }
 
@@ -529,7 +529,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
         /// </remarks>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Archival Options' order='10' />
         [DefaultValue("")]
         public string ArchiveDateFormat
         {
@@ -547,15 +547,10 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
-        /// 
-        /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create multiple archive files, if they should have the same name.
-        /// Choose:  <see cref="ArchiveNumberingMode.DateAndSequence"/> 
         /// </summary>
         /// <remarks>
-        /// Caution: Enabling this option can considerably slow down your file 
-        /// logging in multi-process scenarios. If only one process is going to
-        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
-        /// to <c>false</c> for maximum performance.
+        /// Notice when combined with <see cref="ArchiveNumberingMode.Date"/> then it will attempt to append to any existing
+        /// archive file if grown above size multiple times. New archive file will be created when using <see cref="ArchiveNumberingMode.DateAndSequence"/>
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
         public long ArchiveAboveSize
@@ -563,14 +558,15 @@ namespace NLog.Targets
             get => _archiveAboveSize;
             set
             {
-                if ((ArchiveAboveSize > ArchiveAboveSizeDisabled) != (value > ArchiveAboveSizeDisabled))
+                var newValue = value > 0 ? value : ArchiveAboveSizeDisabled;
+                if ((_archiveAboveSize > 0) != (newValue > 0))
                 {
-                    _archiveAboveSize = value;
+                    _archiveAboveSize = newValue;
                     ResetFileAppenders("ArchiveAboveSize Changed"); // Reset archive file-monitoring
                 }
                 else
                 {
-                    _archiveAboveSize = value;
+                    _archiveAboveSize = newValue;
                 }
             }
         }
@@ -582,12 +578,6 @@ namespace NLog.Targets
         /// Files are moved to the archive as part of the write operation if the current period of time changes. For example
         /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
         /// on or after 11:00 will trigger the archiving.
-        /// <p>
-        /// Caution: Enabling this option can considerably slow down your file 
-        /// logging in multi-process scenarios. If only one process is going to
-        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
-        /// to <c>false</c> for maximum performance.
-        /// </p>
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
         public FileArchivePeriod ArchiveEvery
@@ -706,7 +696,7 @@ namespace NLog.Targets
         /// on platforms other than .Net4.5.
         /// Defaults to ZipArchiveFileCompressor on .Net4.5 and to null otherwise.
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Archival Options' order='10' />
         public static IFileCompressor FileCompressor { get; set; }
 
         /// <summary>
@@ -928,7 +918,7 @@ namespace NLog.Targets
                 return SingleProcessFileAppender.TheFactory;
         }
 
-        private bool IsArchivingEnabled => ArchiveAboveSize > ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
+        private bool IsArchivingEnabled => ArchiveAboveSize != ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
 
         private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !NetworkWrites && !ReplaceFileContentsOnEachWrite;
 
@@ -1876,7 +1866,7 @@ namespace NLog.Targets
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
         private string GetArchiveFileNameBasedOnFileSize(string fileName, int upcomingWriteSize, bool initializedNewFile)
         {
-            if (ArchiveAboveSize <= ArchiveAboveSizeDisabled)
+            if (ArchiveAboveSize == ArchiveAboveSizeDisabled)
             {
                 return null;
             }
@@ -2221,7 +2211,7 @@ namespace NLog.Targets
             return lastTime;
         }
 
-        DateTime EnsureValidLogEventTimeStamp(DateTime logEventTimeStamp, DateTime previousTimeStamp)
+        private static DateTime EnsureValidLogEventTimeStamp(DateTime logEventTimeStamp, DateTime previousTimeStamp)
         {
             // Truncating using DateTime.Date is "expensive", so first check if it look like it is from the past
             if (logEventTimeStamp < previousTimeStamp && logEventTimeStamp.Date < previousTimeStamp.Date)
