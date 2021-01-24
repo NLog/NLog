@@ -75,7 +75,7 @@ namespace NLog.Targets
         /// <summary>
         /// This value disables file archiving based on the size. 
         /// </summary>
-        private const int ArchiveAboveSizeDisabled = -1;
+        private const long ArchiveAboveSizeDisabled = -1L;
 
         /// <summary>
         /// Holds the initialized files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
@@ -1078,13 +1078,13 @@ namespace NLog.Targets
                     }
 
                     int currentIndex = 0;
-                    while (currentIndex < bucket.Value.Count)
+                    while (currentIndex < bucketCount)
                     {
                         ms.Position = 0;
                         ms.SetLength(0);
 
                         var written = WriteToMemoryStream(bucket.Value, currentIndex, ms);
-                        FlushCurrentFileWrites(fileName, bucket.Value[currentIndex].LogEvent, ms, out var lastException);
+                        AppendMemoryStreamToFile(fileName, bucket.Value[currentIndex].LogEvent, ms, out var lastException);
                         for (int i = 0; i < written; ++i)
                         {
                             bucket.Value[currentIndex++].Continuation(lastException);
@@ -1096,11 +1096,11 @@ namespace NLog.Targets
 
         private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, MemoryStream ms)
         {
-            int maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
+            long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
 
+            using (var targetStream = _reusableFileWriteStream.Allocate())
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
-            using (var targetStream = _reusableFileWriteStream.Allocate())
             {
                 var formatBuilder = targetBuilder.Result;
                 var transformBuffer = targetBuffer.Result;
@@ -1225,17 +1225,13 @@ namespace NLog.Targets
         {
         }
 
-        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, out Exception lastException)
+        private void AppendMemoryStreamToFile(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, out Exception lastException)
         {
-            lastException = null;
-
             try
             {
-                if (currentFileName != null)
-                {
-                    ArraySegment<byte> bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
-                    ProcessLogEvent(firstLogEvent, currentFileName, bytes);
-                }
+                ArraySegment<byte> bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
+                ProcessLogEvent(firstLogEvent, currentFileName, bytes);
+                lastException = null;
             }
             catch (Exception exception)
             {
@@ -2181,9 +2177,9 @@ namespace NLog.Targets
         /// <returns>The DateTime of the previous log event for this file (DateTime.MinValue if just initialized).</returns>
         private DateTime InitializeFile(string fileName, LogEventInfo logEvent)
         {
-            if (_initializedFiles.Count != 0 && _previousLogEventTimestamp.HasValue && _previousLogFileName == fileName && logEvent.TimeStamp == _previousLogEventTimestamp.Value)
+            if (_initializedFiles.Count != 0 && logEvent.TimeStamp == _previousLogEventTimestamp && _previousLogFileName == fileName)
             {
-                return _previousLogEventTimestamp.Value;
+                return logEvent.TimeStamp;
             }
 
             var now = logEvent.TimeStamp;
