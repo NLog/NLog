@@ -25,6 +25,14 @@ msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\tests\SampleExtens
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
+msbuild /t:Restore,Build /p:Configuration=Release /p:DebugType=Full .\tests\NLog.MSMQ.Tests\ /verbosity:minimal
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
+
+& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.MSMQ.Tests\bin\Release\net461\NLog.MSMQ.Tests.dll -appveyor -noshadow
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
+
 msbuild /t:Restore,Build /p:Configuration=Release /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
