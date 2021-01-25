@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.MSMQ.Tests", "..\tests\NLog.MSMQ.Tests\NLog.MSMQ.Tests.csproj", "{C02CA4A7-31A8-4054-B807-A9836FABEF3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Wcf.Tests", "..\tests\NLog.Wcf.Tests\NLog.Wcf.Tests.csproj", "{6ED1212B-DBF0-4FDD-955B-4F1B34669672}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{C02CA4A7-31A8-4054-B807-A9836FABEF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C02CA4A7-31A8-4054-B807-A9836FABEF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C02CA4A7-31A8-4054-B807-A9836FABEF3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED1212B-DBF0-4FDD-955B-4F1B34669672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED1212B-DBF0-4FDD-955B-4F1B34669672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED1212B-DBF0-4FDD-955B-4F1B34669672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED1212B-DBF0-4FDD-955B-4F1B34669672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{1A86A7FA-1C2E-4745-87FC-FD3F583DBAD2} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 		{B9714BBB-A9F6-429B-ACC1-961C16643057} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 		{C02CA4A7-31A8-4054-B807-A9836FABEF3A} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{6ED1212B-DBF0-4FDD-955B-4F1B34669672} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B4C8E9F-1E2F-4AB3-993A-8776CFA08DC0}
