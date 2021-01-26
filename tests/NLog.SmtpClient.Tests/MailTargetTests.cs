@@ -31,24 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD1_5
-
-namespace NLog.UnitTests.Targets
+namespace NLog.SmtpClient.Tests
 {
     using System;
     using System.Collections.Generic;
+#if !NETSTANDARD
+    using System.Net.Configuration;
+#endif
+    using System.IO;
     using System.Net;
     using System.Net.Mail;
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-	using System.IO;
-#if !NETSTANDARD
-    using System.Net.Configuration;
-#endif
 
-    public class MailTargetTests : NLogTestBase
+    public class MailTargetTests
     {
         public MailTargetTests()
         {
@@ -69,12 +67,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            mmt.Initialize(null);
-
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-            Assert.Null(exceptions[0]);
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             Assert.Single(mmt.CreatedMocks);
 
@@ -113,12 +111,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            mmt.Initialize(null);
-
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-            Assert.Null(exceptions[0]);
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             Assert.Single(mmt.CreatedMocks);
 
@@ -137,12 +135,12 @@ namespace NLog.UnitTests.Targets
                 SmtpServer = "server1",
                 SmtpAuthentication = SmtpAuthenticationMode.Ntlm,
             };
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            mmt.Initialize(null);
-
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-            Assert.Null(exceptions[0]);
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             Assert.Single(mmt.CreatedMocks);
 
@@ -153,39 +151,34 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void BasicAuthEmailTest()
         {
-            try
+            var mmt = new MockMailTarget
             {
-                var mmt = new MockMailTarget
-                {
-                    From = "foo@bar.com",
-                    To = "bar@foo.com",
-                    SmtpServer = "server1",
-                    SmtpAuthentication = SmtpAuthenticationMode.Basic,
-                    SmtpUserName = "${scopeproperty:username}",
-                    SmtpPassword = "${scopeproperty:password}",
-                };
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                SmtpServer = "server1",
+                SmtpAuthentication = SmtpAuthenticationMode.Basic,
+                SmtpUserName = "${scopeproperty:username}",
+                SmtpPassword = "${scopeproperty:password}",
+            };
 
-                mmt.Initialize(null);
-
-                var exceptions = new List<Exception>();
-                ScopeContext.PushProperty("username", "u1");
-                ScopeContext.PushProperty("password", "p1");
-                mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-                Assert.Null(exceptions[0]);
-
-                Assert.Single(mmt.CreatedMocks);
-
-                var mock = mmt.CreatedMocks[0];
-                var credential = mock.Credentials as NetworkCredential;
-                Assert.NotNull(credential);
-                Assert.Equal("u1", credential.UserName);
-                Assert.Equal("p1", credential.Password);
-                Assert.Equal(string.Empty, credential.Domain);
-            }
-            finally
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
-                ScopeContext.Clear();
-            }
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
+                
+            var logger = logFactory.GetLogger("MyLogger");
+            using (logger.PushScopeProperty("username", "u1"))
+            using (logger.PushScopeProperty("password", "p1"))
+                logger.Info("log message 1");
+
+            Assert.Single(mmt.CreatedMocks);
+
+            var mock = mmt.CreatedMocks[0];
+            var credential = mock.Credentials as NetworkCredential;
+            Assert.NotNull(credential);
+            Assert.Equal("u1", credential.UserName);
+            Assert.Equal("p1", credential.Password);
+            Assert.Equal(string.Empty, credential.Domain);
         }
 
         [Fact]
@@ -212,9 +205,10 @@ namespace NLog.UnitTests.Targets
                 Layout = layout,
             };
 
-            layout.Initialize(null);
-
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvents(
@@ -244,7 +238,10 @@ namespace NLog.UnitTests.Targets
                 AddNewLines = true,
             };
 
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvents(
@@ -274,18 +271,23 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ErrorHandlingTest()
         {
-            using (new NoThrowNLogExceptions())
+            var mmt = new MockMailTarget
             {
-                var mmt = new MockMailTarget
-                {
-                    From = "foo@bar.com",
-                    To = "bar@foo.com",
-                    SmtpServer = "${logger}",
-                    Body = "${message}",
-                    AddNewLines = true,
-                };
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                SmtpServer = "${logger}",
+                Body = "${message}",
+                AddNewLines = true,
+            };
 
-                mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
+
+            try
+            {
+                LogManager.ThrowExceptions = false;
 
                 var exceptions = new List<Exception>();
                 var exceptions2 = new List<Exception>();
@@ -299,24 +301,28 @@ namespace NLog.UnitTests.Targets
 
                 Assert.NotNull(exceptions2[0]);
                 Assert.Equal("Some SMTP error.", exceptions2[0].Message);
-
-                // 2 messages are sent, one using MyLogger1.mydomain.com, another using MyLogger2.mydomain.com
-                Assert.Equal(2, mmt.CreatedMocks.Count);
-
-                var mock1 = mmt.CreatedMocks[0];
-                Assert.Equal("MyLogger1", mock1.Host);
-                Assert.Single(mock1.MessagesSent);
-
-                var msg1 = mock1.MessagesSent[0];
-                Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
-
-                var mock2 = mmt.CreatedMocks[1];
-                Assert.Equal("ERROR", mock2.Host);
-                Assert.Single(mock2.MessagesSent);
-
-                var msg2 = mock2.MessagesSent[0];
-                Assert.Equal("log message 2\n", msg2.Body);
             }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+            }
+
+            // 2 messages are sent, one using MyLogger1.mydomain.com, another using MyLogger2.mydomain.com
+            Assert.Equal(2, mmt.CreatedMocks.Count);
+
+            var mock1 = mmt.CreatedMocks[0];
+            Assert.Equal("MyLogger1", mock1.Host);
+            Assert.Single(mock1.MessagesSent);
+
+            var msg1 = mock1.MessagesSent[0];
+            Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
+
+            var mock2 = mmt.CreatedMocks[1];
+            Assert.Equal("ERROR", mock2.Host);
+            Assert.Single(mock2.MessagesSent);
+
+            var msg2 = mock2.MessagesSent[0];
+            Assert.Equal("log message 2\n", msg2.Body);
         }
 
         /// <summary>
@@ -335,7 +341,10 @@ namespace NLog.UnitTests.Targets
                 AddNewLines = true,
             };
 
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvents(
@@ -376,7 +385,10 @@ namespace NLog.UnitTests.Targets
                 Footer = "Last event: ${logger}",
             };
 
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvents(
@@ -416,10 +428,12 @@ namespace NLog.UnitTests.Targets
                 ReplaceNewlineWithBrTagInHtml = true
             };
 
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
@@ -441,10 +455,12 @@ namespace NLog.UnitTests.Targets
                 ReplaceNewlineWithBrTagInHtml = false
             };
 
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
@@ -463,9 +479,12 @@ namespace NLog.UnitTests.Targets
                 SmtpServer = "server1",
                 Priority = "high"
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.High, messageSent.Priority);
@@ -481,9 +500,12 @@ namespace NLog.UnitTests.Targets
                 Subject = "Hello from NLog",
                 SmtpServer = "server1",
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
@@ -500,9 +522,12 @@ namespace NLog.UnitTests.Targets
                 SmtpServer = "server1",
                 Priority = "invalidPriority"
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+            logFactory.GetLogger("MyLogger").Info("log message 1");
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
@@ -521,12 +546,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}",
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-
-            Assert.Null(exceptions[0]);
+            logFactory.GetLogger("MyLogger").Info("log message 1");
             Assert.Single(mmt.CreatedMocks);
             Assert.Single(mmt.CreatedMocks[0].MessagesSent);
         }
@@ -544,10 +569,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}",
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            logFactory.GetLogger("MyLogger").Info("log message 1");
             Assert.Single(mmt.CreatedMocks);
             Assert.Single(mmt.CreatedMocks[0].MessagesSent);
         }
@@ -564,10 +591,13 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}",
             };
-            mmt.Initialize(null);
-            var exceptions = new List<Exception>();
-            Assert.Throws<NLogRuntimeException>(() => mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add)));
 
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
+
+            Assert.Throws<NLogRuntimeException>(() => logFactory.GetLogger("MyLogger").Info("log message 1"));
         }
 
         [Fact]
@@ -582,10 +612,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            var exceptions = new List<Exception>();
-            Assert.Throws<NLogRuntimeException>(() => mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add)));
+            Assert.Throws<NLogRuntimeException>(() => logFactory.GetLogger("MyLogger").Info("log message 1"));
         }
 
         [Fact]
@@ -600,10 +632,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
-            mmt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            var exceptions = new List<Exception>();
-            Assert.Throws<NLogRuntimeException>(() => mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add)));
+            Assert.Throws<NLogRuntimeException>(() => logFactory.GetLogger("MyLogger").Info("log message 1"));
         }
 
         [Fact]
@@ -617,7 +651,12 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
-            Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
         }
 
         [Fact]
@@ -632,7 +671,12 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = false
             };
-            Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
         }
 
         [Fact]
@@ -647,7 +691,10 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
-            mmt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            });
         }
 
         [Fact]
@@ -663,10 +710,13 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = false
             };
-            Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
         }
-
-
 
         /// <summary>
         /// Test for https://github.com/NLog/NLog/issues/690
@@ -752,7 +802,6 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile_dontoverride()
         {
-
             var mmt = new MailTarget()
             {
                 From = "nlog@foo.com",
@@ -767,7 +816,10 @@ namespace NLog.UnitTests.Targets
             };
             Assert.Equal("nlog@foo.com", mmt.From.ToString());
 
-            mmt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            });
 
             Assert.Equal("nlog@foo.com", mmt.From.ToString());
         }
@@ -788,7 +840,10 @@ namespace NLog.UnitTests.Targets
             };
             Assert.Equal("config@foo.com", mmt.From.ToString());
 
-            mmt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            });
 
             Assert.Equal("config@foo.com", mmt.From.ToString());
 #endif
@@ -810,7 +865,11 @@ namespace NLog.UnitTests.Targets
             };
             Assert.Null(mmt.From);
 
-            Assert.Throws <NLogConfigurationException>(() => mmt.Initialize(null));
+            Assert.Throws<NLogConfigurationException>(() =>
+                new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.Configuration.AddRuleForAllLevels(mmt);
+                })
+            );
 #endif
         }
 
@@ -825,12 +884,14 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}"
             };
-            mmt.Initialize(null);
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
 
-            Assert.Null(exceptions[0]);
+            logFactory.GetLogger("MyLogger").Info("log message 1");
+
             Assert.Single(mmt.CreatedMocks);
             var mock = mmt.CreatedMocks[0];
             Assert.Single(mock.MessagesSent);
@@ -838,7 +899,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal($"Message from NLog on {Environment.MachineName}", mock.MessagesSent[0].Subject);
         }
 
-        public class MockSmtpClient : ISmtpClient
+        public sealed class MockSmtpClient : ISmtpClient
         {
             public MockSmtpClient()
             {
@@ -939,5 +1000,3 @@ namespace NLog.UnitTests.Targets
 
     }
 }
-
-#endif

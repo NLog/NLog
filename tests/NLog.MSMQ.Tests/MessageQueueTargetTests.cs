@@ -40,6 +40,11 @@ namespace NLog.MSMQ.Tests
 
     public class MessageQueueTargetTests
     {
+        public MessageQueueTargetTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void QueueExists_Write_MessageIsWritten()
         {

@@ -53,6 +53,11 @@ namespace NLog.Wcf.Tests
     {
         private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
 
+        public LogReceiverServiceTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void ToLogEventInfoTest()
         {
