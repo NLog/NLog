@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Wcf.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets.Wrappers;
     using System.Threading;
 
-    public class LogReceiverWebServiceTargetTests : NLogTestBase
+    public class LogReceiverWebServiceTargetTests
     {
         [Theory]
         [InlineData(null)]
@@ -80,13 +80,16 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void LogReceiverWebServiceTargetSingleEventTest()
         {
-            var logger = LogManager.GetLogger("loggerName");
             var target = new MyLogReceiverWebServiceTarget();
             target.EndpointAddress = "http://notimportant:9999/";
             target.Parameters.Add(new MethodCallParameter("message", "${message}"));
             target.Parameters.Add(new MethodCallParameter("lvl", "${level}"));
 
-            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(target);
+            }).GetLogger("loggerName");
+
             logger.Info("message text");
 
             var payload = target.LastPayload;
@@ -108,6 +111,11 @@ namespace NLog.UnitTests.Targets
             target.Parameters.Add(new MethodCallParameter("message", "${message}"));
             target.Parameters.Add(new MethodCallParameter("lvl", "${level}"));
 
+            new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(target);
+            });
+
             var exceptions = new List<Exception>();
 
             var events = new[]
@@ -117,8 +125,6 @@ namespace NLog.UnitTests.Targets
                 LogEventInfo.Create(LogLevel.Fatal, "logger1", "message2").WithContinuation(exceptions.Add),
             };
 
-            var configuration = new LoggingConfiguration();
-            target.Initialize(configuration);
             target.WriteAsyncLogEvents(events);
 
             // with multiple events, we should get string caching
@@ -146,7 +152,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(payload.Events[0].LoggerOrdinal, payload.Events[2].LoggerOrdinal);
         }
 
-
         [Fact]
         public void LogReceiverWebServiceTargetMultipleEventWithPerEventPropertiesTest()
         {
@@ -155,6 +160,11 @@ namespace NLog.UnitTests.Targets
             target.EndpointAddress = "http://notimportant:9999/";
             target.Parameters.Add(new MethodCallParameter("message", "${message}"));
             target.Parameters.Add(new MethodCallParameter("lvl", "${level}"));
+
+            new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(target);
+            });
 
             var exceptions = new List<Exception>();
 
@@ -168,11 +178,8 @@ namespace NLog.UnitTests.Targets
             events[0].LogEvent.Properties["prop1"] = "value1";
             events[1].LogEvent.Properties["prop1"] = "value2";
             events[2].LogEvent.Properties["prop1"] = "value3";
-
             events[0].LogEvent.Properties["prop2"] = "value2a";
 
-            var configuration = new LoggingConfiguration();
-            target.Initialize(configuration);
             target.WriteAsyncLogEvents(events);
 
             // with multiple events, we should get string caching
@@ -214,25 +221,27 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NoEmptyEventLists()
         {
-            var configuration = new LoggingConfiguration();
             var target = new MyLogReceiverWebServiceTarget();
             target.EndpointAddress = "http://notimportant:9999/";
-            target.Initialize(configuration);
-            var asyncTarget = new AsyncTargetWrapper(target)
+
+            var logger = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
-                Name = "NoEmptyEventLists_wrapper"
-            };
+                var asyncTarget = new AsyncTargetWrapper(target)
+                {
+                    Name = "NoEmptyEventLists_wrapper"
+                };
+                cfg.Configuration.AddRuleForAllLevels(asyncTarget);
+            }).GetLogger("logger1");
+
             try
             {
-                asyncTarget.Initialize(configuration);
-                asyncTarget.WriteAsyncLogEvents(new[] { LogEventInfo.Create(LogLevel.Info, "logger1", "message1").WithContinuation(ex => { }) });
+                logger.Info("message1");
                 Thread.Sleep(1000);
                 Assert.Equal(1, target.SendCount);
             }
             finally
             {
-                asyncTarget.Close();
-                target.Close();
+                logger.Factory.Shutdown();
             }
         }
 
