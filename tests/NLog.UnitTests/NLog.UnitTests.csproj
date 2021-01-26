@@ -76,10 +76,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
     <Reference Include="Microsoft.CSharp" />
-
-    <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" Condition=" '$(monobuild)' == '' " />
 
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
