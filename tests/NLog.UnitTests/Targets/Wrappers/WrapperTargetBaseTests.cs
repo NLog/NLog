@@ -42,7 +42,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     public class WrapperTargetBaseTests : NLogTestBase
     {
         [Fact]
-        public void WrapperTargetToStringTest()
+        public void WrapperTargetNestedToStringTest()
         {
             var wrapper = new MyWrapper
             {
@@ -54,7 +54,19 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapper,
             };
 
-            Assert.Equal("MyWrapper(MyWrapper(Debug Target[foo]))", wrapper2.ToString());
+            Assert.Equal("MyWrapper_MyWrapper_DebugTarget(Name=foo)", wrapper2.ToString());
+        }
+
+        [Fact]
+        public void WrapperTargetToStringTest()
+        {
+            var wrapper = new MyWrapper
+            {
+                Name = "foo",
+                WrappedTarget = new DebugTarget() { Name = "foo_wrapped" },
+            };
+
+            Assert.Equal("MyWrapper_DebugTarget(Name=foo)", wrapper.ToString());
         }
 
         [Fact]

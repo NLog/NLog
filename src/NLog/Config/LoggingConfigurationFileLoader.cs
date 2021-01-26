@@ -221,16 +221,21 @@ namespace NLog.Config
         /// </summary>
         public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null)
         {
+            string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
+#if !NETSTANDARD1_3
+            string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
+#else
+            string entryAssemblyLocation = string.Empty;
+#endif
             if (filename == null)
             {
                 // Scan for process specific nlog-files
-                foreach (var filePath in GetAppSpecificNLogLocations())
+                foreach (var filePath in GetAppSpecificNLogLocations(baseDirectory, entryAssemblyLocation))
                     yield return filePath;
             }
 
             // NLog.config from application directory
             string nlogConfigFile = filename ?? "NLog.config";
-            string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
             if (!string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nlogConfigFile);
 
@@ -239,11 +244,6 @@ namespace NLog.Config
             if (!platformFileSystemCaseInsensitive && !string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nLogConfigFileLowerCase);
 
-#if !NETSTANDARD1_3
-            string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
-#else
-            string entryAssemblyLocation = string.Empty;
-#endif
             if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
             {
                 yield return Path.Combine(entryAssemblyLocation, nlogConfigFile);
@@ -283,7 +283,7 @@ namespace NLog.Config
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files. 
         /// </summary>
-        public IEnumerable<string> GetAppSpecificNLogLocations()
+        public IEnumerable<string> GetAppSpecificNLogLocations(string baseDirectory, string entryAssemblyLocation)
         {
             // Current config file with .config renamed to .nlog
             string configurationFile = _appEnvironment.AppDomainConfigurationFile;
@@ -301,37 +301,30 @@ namespace NLog.Config
 #if NETSTANDARD && !NETSTANDARD1_3
             else
             {
-                string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
-                string processFilePath = _appEnvironment.CurrentProcessFilePath;
-                string processDirectory = !string.IsNullOrEmpty(processFilePath) ? PathHelpers.TrimDirectorySeparators(Path.GetDirectoryName(processFilePath)) : string.Empty;
+                if (string.IsNullOrEmpty(entryAssemblyLocation))
+                    entryAssemblyLocation = baseDirectory;
 
-                if (!IsValidProcessDirectory(processDirectory, entryAssemblyLocation, _appEnvironment))
+                if (PathHelpers.IsTempDir(entryAssemblyLocation, _appEnvironment.UserTempFilePath))
                 {
-                    // Handle dotnet-process loading .NET Core-assembly, or IIS-process loading website
-                    string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
-                    yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
-
-                    // Handle unpublished .NET Core Application
-                    assemblyFileName = Path.GetFileNameWithoutExtension(assemblyFileName);
-                    if (!string.IsNullOrEmpty(assemblyFileName))
-                        yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".exe.nlog");
-                }
-                else if (!string.IsNullOrEmpty(processFilePath))
-                {
-                    yield return processFilePath + ".nlog";
-
-                    // Handle published .NET Core Application with assembly-nlog-file
-                    if (!string.IsNullOrEmpty(entryAssemblyLocation))
+                    // Handle Single File Published on NetCore 3.1 and loading side-by-side exe.nlog (Not relevant for Net5.0)
+                    string processFilePath = _appEnvironment.CurrentProcessFilePath;
+                    if (!string.IsNullOrEmpty(processFilePath))
                     {
-                        string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
-                        if (!string.IsNullOrEmpty(assemblyFileName))
-                            yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
+                        yield return processFilePath + ".nlog";
                     }
-                    else
+                }
+
+                if (!string.IsNullOrEmpty(entryAssemblyLocation))
+                {
+                    string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
+                    if (!string.IsNullOrEmpty(assemblyFileName))
                     {
-                        string processFileName = Path.GetFileNameWithoutExtension(processFilePath);
-                        if (!string.IsNullOrEmpty(processFileName))
-                            yield return Path.Combine(processDirectory, processFileName + ".dll.nlog");
+                        // Handle unpublished .NET Core Application
+                        var assemblyBaseName = Path.GetFileNameWithoutExtension(assemblyFileName);
+                        if (!string.IsNullOrEmpty(assemblyBaseName))
+                            yield return Path.Combine(entryAssemblyLocation, assemblyBaseName + ".exe.nlog");
+
+                        yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
                     }
                 }
             }
@@ -355,25 +348,6 @@ namespace NLog.Config
                 }
             }
         }
-
-#if NETSTANDARD && !NETSTANDARD1_3
-        private static bool IsValidProcessDirectory(string processDirectory, string entryAssemblyLocation, IAppEnvironment appEnvironment)
-        {
-            if (string.IsNullOrEmpty(entryAssemblyLocation))
-                return true;
-
-            if (string.Equals(entryAssemblyLocation, processDirectory, StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (string.IsNullOrEmpty(processDirectory))
-                return false;
-
-            if (PathHelpers.IsTempDir(entryAssemblyLocation, appEnvironment.UserTempFilePath))
-                return true;    // Hack for .NET Core 3 - Single File Publish that unpacks Entry-Assembly into temp-folder, and process-directory is valid
-
-            return false;   // NetCore Application is not published and is possible being executed by dotnet-process
-        }
-#endif
 
         protected virtual void Dispose(bool disposing)
         {

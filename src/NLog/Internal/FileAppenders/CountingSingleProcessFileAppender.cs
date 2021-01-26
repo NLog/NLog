@@ -74,7 +74,7 @@ namespace NLog.Internal.FileAppenders
         {
             if (_file != null)
             {
-                InternalLogger.Trace("Closing '{0}'", FileName);
+                InternalLogger.Trace("{0}: Closing '{1}'", CreateFileParameters, FileName);
 
                 try
                 {
@@ -83,7 +83,7 @@ namespace NLog.Internal.FileAppenders
                 catch (Exception ex)
                 {
                     // Swallow exception as the file-stream now is in final state (broken instead of closed)
-                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                    InternalLogger.Warn(ex, "{0}: Failed to close file: '{1}'", CreateFileParameters, FileName);
                     AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));    // Artificial delay to avoid hammering a bad file location
                 }
                 finally

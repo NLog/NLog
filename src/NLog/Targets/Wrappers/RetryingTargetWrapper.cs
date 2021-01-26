@@ -93,7 +93,6 @@ namespace NLog.Targets.Wrappers
             WrappedTarget = wrappedTarget;
             RetryCount = retryCount;
             RetryDelayMilliseconds = retryDelayMilliseconds;
-            OptimizeBufferReuse = GetType() == typeof(RetryingTargetWrapper);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -164,12 +163,12 @@ namespace NLog.Targets.Wrappers
                 }
 
                 int retryNumber = Interlocked.Increment(ref counter);
-                InternalLogger.Warn(ex, "RetryingWrapper(Name={0}): Error while writing to '{1}'. Try {2}/{3}", Name, WrappedTarget, retryNumber, RetryCount);
+                InternalLogger.Warn(ex, "{0}: Error while writing to '{1}'. Try {2}/{3}", this, WrappedTarget, retryNumber, RetryCount);
 
                 // exceeded retry count
                 if (retryNumber >= RetryCount)
                 {
-                    InternalLogger.Warn("Too many retries. Aborting.");
+                    InternalLogger.Warn("{0}: Too many retries. Aborting.", this);
                     logEvent.Continuation(ex);
                     return;
                 }
@@ -182,7 +181,7 @@ namespace NLog.Targets.Wrappers
                     i += retryDelay;
                     if (!IsInitialized)
                     {
-                        InternalLogger.Warn("RetryingWrapper(Name={0}): Target closed. Aborting.", Name);
+                        InternalLogger.Warn("{0}): Target closed. Aborting.", this);
                         logEvent.Continuation(ex);
                         return;
                     }

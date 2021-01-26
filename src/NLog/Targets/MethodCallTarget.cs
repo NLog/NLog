@@ -199,7 +199,7 @@ namespace NLog.Targets
             }
             else
             {
-                InternalLogger.Trace("No invoke because class/method was not found or set");
+                InternalLogger.Trace("{0}: No invoke because class/method was not found or set", this);
             }
         }
     }

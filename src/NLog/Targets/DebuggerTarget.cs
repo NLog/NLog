@@ -67,7 +67,6 @@ namespace NLog.Targets
         /// </remarks>
         public DebuggerTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace NLog.Targets
             base.InitializeTarget();
             if (!Debugger.IsLogging())
             {
-                InternalLogger.Debug("Debugger(Name={0}): System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", Name);
+                InternalLogger.Debug("{0}: System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", this);
             }
 
             if (Header != null)
@@ -121,18 +120,11 @@ namespace NLog.Targets
             if (Debugger.IsLogging())
             {
                 string logMessage;
-                if (OptimizeBufferReuse)
+                using (var localTarget = ReusableLayoutBuilder.Allocate())
                 {
-                    using (var localTarget = ReusableLayoutBuilder.Allocate())
-                    {
-                        Layout.RenderAppendBuilder(logEvent, localTarget.Result);
-                        localTarget.Result.Append('\n');
-                        logMessage = localTarget.Result.ToString();
-                    }
-                }
-                else
-                {
-                    logMessage = RenderLogEvent(Layout, logEvent) + "\n";
+                    Layout.RenderAppendBuilder(logEvent, localTarget.Result);
+                    localTarget.Result.Append('\n');
+                    logMessage = localTarget.Result.ToString();
                 }
 
                 Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, logMessage);

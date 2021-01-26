@@ -49,7 +49,7 @@ namespace NLog.Layouts
     {
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ResolveService<IJsonConverter>()));
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, EscapeForwardSlash, ResolveService<IJsonConverter>()));
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
@@ -66,11 +66,11 @@ namespace NLog.Layouts
             readonly Targets.DefaultJsonSerializer _serializer;
             readonly Targets.JsonSerializeOptions _serializerOptions;
 
-            public LimitRecursionJsonConvert(int maxRecursionLimit, IJsonConverter converter)
+            public LimitRecursionJsonConvert(int maxRecursionLimit, bool escapeForwardSlash, IJsonConverter converter)
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit) };
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), EscapeForwardSlash = escapeForwardSlash };
             }
 
             public bool SerializeObject(object value, StringBuilder builder)
@@ -81,9 +81,9 @@ namespace NLog.Layouts
                     return _converter.SerializeObject(value, builder);
             }
 
-            public void SerializeObjectNoLimit(object value, StringBuilder builder)
+            public bool SerializeObjectNoLimit(object value, StringBuilder builder)
             {
-                _converter.SerializeObject(value, builder);
+                return _converter.SerializeObject(value, builder);
             }
         }
 
@@ -164,6 +164,13 @@ namespace NLog.Layouts
         private bool? _includeMdlc;
 
         /// <summary>
+        /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
+        public bool ExcludeEmptyProperties { get; set; }
+
+        /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
@@ -187,10 +194,10 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='JSON Formating' order='10' />
-        [DefaultValue(true)]    // TODO NLog 5 change to nullable (with default fallback to false)
+        [DefaultValue(false)]
         public bool EscapeForwardSlash
         {
-            get => _escapeForwardSlashInternal ?? true;
+            get => _escapeForwardSlashInternal ?? false;
             set => _escapeForwardSlashInternal = value;
         }
         private bool? _escapeForwardSlashInternal;
@@ -338,7 +345,7 @@ namespace NLog.Layouts
             }
 
             sb.Append('"');
-            sb.Append(propName);
+            Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
             sb.Append('"');
             sb.Append(':');
             if (!SuppressSpaces)
@@ -352,11 +359,20 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
+            if (ExcludeEmptyProperties && propertyValue == null)
+                return;
+
+            var initialLength = sb.Length;
+
             BeginJsonProperty(sb, propName, beginJsonMessage);
             if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
             {
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
-                JsonConverter.SerializeObjectNoLimit(propertyValue, sb);
+                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                    return;
+                }
             }
             else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
@@ -367,7 +383,16 @@ namespace NLog.Layouts
             }
             else
             {
-                JsonConverter.SerializeObject(propertyValue, sb);
+                if (!JsonConverter.SerializeObject(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                    return;
+                }
+            }
+
+            if (ExcludeEmptyProperties && (sb[sb.Length-1] == '"' && sb[sb.Length-2] == '"'))
+            {
+                sb.Length = initialLength;
             }
         }
 

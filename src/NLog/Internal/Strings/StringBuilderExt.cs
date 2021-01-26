@@ -193,11 +193,22 @@ namespace NLog.Internal
         /// <param name="builder"></param>
         public static void ClearBuilder(this StringBuilder builder)
         {
+            try
+            {
 #if !NET35
-            builder.Clear();
+                builder.Clear();
 #else
-            builder.Length = 0;
+                builder.Length = 0;
 #endif
+            }
+            catch
+            {
+                // Default StringBuilder Clear() can cause the StringBuilder to re-allocate new internal char-array
+                // This can fail in low memory conditions when StringBuilder is big, so instead try to clear the StringBuilder "gently"
+                if (builder.Length > 1)
+                    builder.Remove(0, builder.Length - 1);
+                builder.Remove(0, builder.Length);
+            }
         }
 
         /// <summary>

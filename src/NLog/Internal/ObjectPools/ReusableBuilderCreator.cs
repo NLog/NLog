@@ -41,7 +41,7 @@ namespace NLog.Internal
     internal class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
     {
         public ReusableBuilderCreator()
-            : base(new StringBuilder(), (sb) => { sb.ClearBuilder(); })
+            : base(128, (cap) => new StringBuilder(cap), (sb) => { sb.ClearBuilder(); })
         {
         }
     }

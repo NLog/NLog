@@ -256,7 +256,8 @@ namespace NLog.Common
                 if (hasEventListeners)
                 {
                     var loggerContext = args?.Length > 0 ? args[0] as IInternalLoggerContext : null;
-                    LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContext?.Name));
+                    var loggerContextName = string.IsNullOrEmpty(loggerContext?.Name) ? loggerContext?.ToString() : loggerContext.Name;
+                    LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContextName));
 
                     ex?.MarkAsLoggedToInternalLogger();
                 }

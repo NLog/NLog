@@ -29,21 +29,16 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 
 ## Bugfixes
-- JsonSerializer - Ensure invariant formatting of DateTimeOffset (#4142) (@snakefoot)
-- AsyncTaskTarget - Flush when buffer is full should not block forever (#4176) (@snakefoot)
-- Failing to lookup ProcessName because of Access Denied should fallback to Win32-API (#4182) (@snakefoot)
-
-## Features
-- ExceptionLayoutRenderer - Added FlattenException option (#4153) (@snakefoot)
+- Skip lookup MainModule.FileName on Android platform to avoid crash (#4229) (@snakefoot)
+- JsonLayout - Generate correct json for keys that contain quote (#4202) (@virgilp)
+- JsonLayout - Unwind after invalid property value to avoid invalid Json (#4245) (@snakefoot)
 
 ## Improvements
-- NetworkTarget - Improve handling of synchronous exceptions from UdpClient.SendAsync (#4141) (@snakefoot)
-- AsyncTaskTarget - Include TaskScheduler in ContinueWith (#4176) (@snakefoot)
-- Improving debugger-display for Logger.Properties and LogEventInfo.Properties (#4190) (@snakefoot)
+- Better handling of low memory (#4222) (@snakefoot)
+- JsonLayout - Added new ExcludeEmptyProperties to skip GDC/MDC/MLDC properties with null or empty values (#4221) (@pruiz)
 
 ## Performance
-- Improve thead concurrency when using wrapper cached=true (#4132) (@snakefoot)
-- ConditionLayoutExpression - Skip allocating StringBuilder for every condition check (#4171) (@snakefoot)
+- Skip allocation of SingleCallContinuation when ThrowExceptions = false (#4207) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

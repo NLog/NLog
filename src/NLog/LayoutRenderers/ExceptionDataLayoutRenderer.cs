@@ -31,69 +31,67 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-
-namespace NLog.Targets
+namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
-    /// Options for JSON serialisation
+    /// Render information of <see cref="Exception.Data" />
+    /// for the exception passed to the logger call
     /// </summary>
-    public class JsonSerializeOptions
+    [LayoutRenderer("exceptiondata")]
+    [LayoutRenderer("exception-data")]
+    [ThreadAgnostic]
+    [ThreadSafe]
+    public class ExceptionDataLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Add quotes around object keys?
+        /// Gets or sets the key to search the exception Data for
         /// </summary>
-        [DefaultValue(true)]
-        public bool QuoteKeys { get; set; }
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultParameter]
+        [RequiredParameter]
+        public string Item { get; set; }
 
         /// <summary>
-        /// Format provider for value
+        /// Format string for conversion from object to string.
         /// </summary>
-        public IFormatProvider FormatProvider { get; set; }
-
-        /// <summary>
-        /// Format string for value
-        /// </summary>
+        /// <docgen category='Rendering Options' order='50' />
         public string Format { get; set; }
 
-        /// <summary>
-        /// Should non-ascii characters be encoded
-        /// </summary>
-        [DefaultValue(false)]
-        public bool EscapeUnicode { get; set; }
 
         /// <summary>
-        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
-        public bool EscapeForwardSlash { get; set; }
-        
-        /// <summary>
-        /// Serialize enum as string value
-        /// </summary>
-        [DefaultValue(false)]
-        public bool EnumAsInteger { get; set; }
+        public bool BaseException { get; set; }
 
-        /// <summary>
-        /// Should dictionary keys be sanitized. All characters must either be letters, numbers or underscore character (_).
-        /// 
-        /// Any other characters will be converted to underscore character (_)
-        /// </summary>
-        [DefaultValue(false)]
-        public bool SanitizeDictionaryKeys { get; set; }
-
-        /// <summary>
-        /// How far down the rabbit hole should the Json Serializer go with object-reflection before stopping
-        /// </summary>
-        [DefaultValue(10)]
-        public int MaxRecursionLimit { get; set; }
-
-        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-        public JsonSerializeOptions()
+        private Exception GetTopException(LogEventInfo logEvent)
         {
-            QuoteKeys = true;
-            MaxRecursionLimit = 10;
+            return BaseException ? logEvent.Exception?.GetBaseException() : logEvent.Exception;
         }
-    }
+
+        /// <inheritdoc />
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+
+            Exception primaryException = GetTopException(logEvent);
+            if (primaryException != null)
+            {
+                var value = primaryException.Data[Item];
+                if (value != null)
+                {
+                    var formatProvider = GetFormatProvider(logEvent);
+                    builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+                }
+            }
+        }
+    }   
 }

@@ -69,7 +69,6 @@ namespace NLog.Targets
         /// </summary>
         public NullTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
