@@ -35,7 +35,6 @@ using System;
 using System.Text;
 using NLog.LayoutRenderers;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -54,7 +53,6 @@ namespace NLog.UnitTests.LayoutRenderers
         [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
         public void RenderTimeSpanTest(int day, int hour, int min, int sec, int milisec, string expected)
         {
-
             var time = new TimeSpan(day, hour, min, sec, milisec);
 
             var sb = new StringBuilder();
@@ -67,8 +65,10 @@ namespace NLog.UnitTests.LayoutRenderers
         public void RenderProcessTimeLayoutRenderer()
         {
             var layout = "${processtime}";
+            var timestamp = LogEventInfo.ZeroDate;
+            System.Threading.Thread.Sleep(16);
             var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", "message1");
-            var time = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            var time = logEvent.TimeStamp.ToUniversalTime() - timestamp;
 
             var expected = time.ToString("hh\\:mm\\:ss\\.fff");
             AssertLayoutRendererOutput(layout, logEvent, expected);
