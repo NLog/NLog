@@ -64,24 +64,49 @@ namespace NLog.UnitTests.LayoutRenderers
             if (!string.IsNullOrEmpty(userDomainName))
                 userName = userDomainName + "\\" + userName;
 
-            NLog.Layouts.Layout layout = "${windows-identity}";
-            var result = layout.Render(LogEventInfo.CreateNullEvent());
-            if (!string.IsNullOrEmpty(result) || !IsAppVeyor())
-                Assert.Equal(userName, result);
+            var logFactory = new LogFactory().Setup()
+#if NETSTANDARD
+                .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
+#endif
+                .LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target type='debug' name='debug' layout='${windows-identity}' /></targets>
+                    <rules><logger name='*' writeTo='debug' /></rules>
+                </nlog>").LogFactory;
+
+            var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+            logFactory.GetCurrentClassLogger().Info("Test Message");
+            Assert.Equal(1, debugTarget.Counter);
+            if (!string.IsNullOrEmpty(debugTarget.LastMessage) || !IsAppVeyor())
+                Assert.Equal(userName, debugTarget.LastMessage);
         }
 
-        [Fact]
-        public void IdentityTest1()
+        [Theory]
+        [InlineData("${identity}", "auth:CustomAuth:SOMEDOMAIN\\SomeUser")]
+        [InlineData("${identity:authtype=false}", "auth:SOMEDOMAIN\\SomeUser")]
+        [InlineData("${identity:authtype=false:isauthenticated=false}", "SOMEDOMAIN\\SomeUser")]
+        [InlineData("${identity:fsnormalize=true}", "auth_CustomAuth_SOMEDOMAIN_SomeUser")]
+        public void IdentityTest1(string layout, string expectedOutput)
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
             try
             {
-                AssertLayoutRendererOutput("${identity}", "auth:CustomAuth:SOMEDOMAIN\\SomeUser");
-                AssertLayoutRendererOutput("${identity:authtype=false}", "auth:SOMEDOMAIN\\SomeUser");
-                AssertLayoutRendererOutput("${identity:authtype=false:isauthenticated=false}", "SOMEDOMAIN\\SomeUser");
-                AssertLayoutRendererOutput("${identity:fsnormalize=true}", "auth_CustomAuth_SOMEDOMAIN_SomeUser");
+                var logFactory = new LogFactory().Setup()
+#if NETSTANDARD
+                    .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
+#endif
+                    .LoadConfigurationFromXml($@"
+                    <nlog>
+                        <targets><target type='debug' name='debug' layout='{layout}' /></targets>
+                        <rules><logger name='*' writeTo='debug' /></rules>
+                    </nlog>").LogFactory;
+
+                var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+                logFactory.GetCurrentClassLogger().Info("Test Message");
+                Assert.Equal(1, debugTarget.Counter);
+                Assert.Equal(expectedOutput, debugTarget.LastMessage);
             }
             finally
             {
@@ -101,6 +126,9 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 var logFactory = new LogFactory().Setup()
                     .SetupExtensions(ext => ext.RegisterTarget<CSharpEventTarget>("CSharpEventTarget"))
+#if NETSTANDARD
+                    .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
+#endif
                     .LoadConfigurationFromXml(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
@@ -175,7 +203,20 @@ namespace NLog.UnitTests.LayoutRenderers
             Thread.CurrentPrincipal = new GenericPrincipal(new NotAuthenticatedIdentity(), new[] { "role1" });
             try
             {
-                AssertLayoutRendererOutput("${identity}", "notauth::");
+                var logFactory = new LogFactory().Setup()
+#if NETSTANDARD
+                    .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
+#endif
+                    .LoadConfigurationFromXml(@"
+                    <nlog>
+                        <targets><target type='debug' name='debug' layout='${identity}' /></targets>
+                        <rules><logger name='*' writeTo='debug' /></rules>
+                    </nlog>").LogFactory;
+
+                var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+                logFactory.GetCurrentClassLogger().Info("Test Message");
+                Assert.Equal(1, debugTarget.Counter);
+                Assert.Equal("notauth::", debugTarget.LastMessage);
             }
             finally
             {
@@ -194,8 +235,6 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-#region Overrides of GenericIdentity
-
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
             /// </summary>
@@ -203,8 +242,6 @@ namespace NLog.UnitTests.LayoutRenderers
             /// true if the user was has been authenticated; otherwise, false.
             /// </returns>
             public override bool IsAuthenticated => false;
-
-#endregion
         }
     }
 }

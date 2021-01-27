@@ -31,20 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.LogReceiverService
+namespace NLog.Wcf.Tests
 {
     using System;
-    using NLog.Config;
     using NLog.LogReceiverService;
     using Xunit;
 
-    public class LogReceiverForwardingServiceTests : NLogTestBase
+    public class LogReceiverForwardingServiceTests
     {
         [Fact]
         public void ToLogEventInfoTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message} ${event-context:foo} ${event-context:bar} ${event-context:baz}' />
                     <target name='debug2' type='Debug' layout='${message} ${event-context:foo} ${event-context:bar} ${event-context:baz}' />
@@ -55,9 +54,12 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger2' minlevel='Trace' writeTo='debug2' />
                     <logger name='logger3' minlevel='Trace' writeTo='debug3' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
+            var debug1 = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug1");
+            var debug2 = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug2");
+            var debug3 = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug3");
 
-            var service = new LogReceiverForwardingService();
+            var service = new LogReceiverForwardingService(logFactory);
             var events = new NLogEvents
             {
                 BaseTimeUtc = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).Ticks,
@@ -89,11 +91,14 @@ namespace NLog.UnitTests.LogReceiverService
             };
 
             service.ProcessLogMessages(events);
-            AssertDebugCounter("debug1", 1);
-            AssertDebugCounter("debug2", 0);
-            AssertDebugCounter("debug3", 1);
-            AssertDebugLastMessage("debug1", "message1 logger1 logger2 logger3");
-            AssertDebugLastMessage("debug3", "message1 logger1 logger2 zzz");
+
+            Assert.Equal(1, debug1.Counter);
+            Assert.Equal(0, debug2.Counter);
+            Assert.Equal(1, debug3.Counter);
+            Assert.Equal("message1 logger1 logger2 logger3", debug1.LastMessage);
+            Assert.Equal("message1 logger1 logger2 zzz", debug3.LastMessage);
+
+            logFactory.Shutdown();
         }
     }
 }

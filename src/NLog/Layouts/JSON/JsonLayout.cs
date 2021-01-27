@@ -81,9 +81,9 @@ namespace NLog.Layouts
                     return _converter.SerializeObject(value, builder);
             }
 
-            public void SerializeObjectNoLimit(object value, StringBuilder builder)
+            public bool SerializeObjectNoLimit(object value, StringBuilder builder)
             {
-                _converter.SerializeObject(value, builder);
+                return _converter.SerializeObject(value, builder);
             }
         }
 
@@ -162,6 +162,13 @@ namespace NLog.Layouts
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
         private bool? _includeMdlc;
+
+        /// <summary>
+        /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
+        public bool ExcludeEmptyProperties { get; set; }
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
@@ -338,7 +345,7 @@ namespace NLog.Layouts
             }
 
             sb.Append('"');
-            sb.Append(propName);
+            Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
             sb.Append('"');
             sb.Append(':');
             if (!SuppressSpaces)
@@ -352,11 +359,20 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
+            if (ExcludeEmptyProperties && propertyValue == null)
+                return;
+
+            var initialLength = sb.Length;
+
             BeginJsonProperty(sb, propName, beginJsonMessage);
             if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
             {
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
-                JsonConverter.SerializeObjectNoLimit(propertyValue, sb);
+                if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                    return;
+                }
             }
             else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
@@ -367,7 +383,16 @@ namespace NLog.Layouts
             }
             else
             {
-                JsonConverter.SerializeObject(propertyValue, sb);
+                if (!JsonConverter.SerializeObject(propertyValue, sb))
+                {
+                    sb.Length = initialLength;
+                    return;
+                }
+            }
+
+            if (ExcludeEmptyProperties && (sb[sb.Length-1] == '"' && sb[sb.Length-2] == '"'))
+            {
+                sb.Length = initialLength;
             }
         }
 

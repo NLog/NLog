@@ -69,7 +69,7 @@ namespace NLog.Config
         /// <summary>
         /// Stack trace should be captured. This option won't add the filenames and linenumbers.
         /// </summary>
-        [Obsolete("Replace with `WithStackTrace`. Will be removed in NLog 6")]
+        [Obsolete("Replace with `WithStackTrace`. Marked obsolete on NLog 5.0")]
         WithoutSource = WithStackTrace,
 
         /// <summary>

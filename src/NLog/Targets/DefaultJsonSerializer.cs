@@ -255,10 +255,17 @@ namespace NLog.Targets
                 SerializeSimpleTypeCodeValue(convertibleValue, objTypeCode, destination, options, forceToString);
                 return true;
             }
-
+            
             if (value is DateTimeOffset dateTimeOffset)
             {
                 QuoteValue(destination, dateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
+                return true;
+            }
+
+            if (value is IFormattable formattable)
+            {
+                var hasFormat = !StringHelpers.IsNullOrWhiteSpace(options.Format);
+                SerializeWithFormatProvider(formattable, true, destination, options, hasFormat);
                 return true;
             }
 

@@ -161,12 +161,12 @@ namespace NLog.Targets
                 return;
             }
 
-            // OptimizeBufferReuse = true, will reuse the input-array on method-exit (so we make clone here)
+            // Make clone as the input IList will be reused on next call
             AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEvents.Count];
             logEvents.CopyTo(logEventsArray, 0);
 
-            var networkLogEvents = TranslateLogEvents(logEventsArray);
-            Send(networkLogEvents, logEventsArray, null);
+            var networkLogEvents = TranslateLogEvents(logEvents);
+            Send(networkLogEvents, logEvents, null);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace NLog.Targets
         {
             if (logEvents.Count == 0 && !LogManager.ThrowExceptions)
             {
-                InternalLogger.Error("LogReceiverServiceTarget(Name={0}): LogEvents array is empty, sending empty event...", Name);
+                InternalLogger.Error("{0}: LogEvents array is empty, sending empty event...", this);
                 return new NLogEvents();
             }
 
@@ -280,7 +280,7 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
-                    InternalLogger.Error(e.Error, "LogReceiverServiceTarget(Name={0}): Error while sending", Name);
+                    InternalLogger.Error(e.Error, "{0}: Error while sending", this);
 
                 // report error to the callers
                 for (int i = 0; i < asyncContinuations.Count; ++i)
@@ -379,7 +379,7 @@ namespace NLog.Targets
             {
                 if (flushContinuation != null)
                 {
-                    InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in flush async", Name);
+                    InternalLogger.Error(exception, "{0}: Error in flush async", this);
                     if (LogManager.ThrowExceptions)
                         throw;
 
@@ -388,7 +388,7 @@ namespace NLog.Targets
                 else
                 {
                     // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                    InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in send async", Name);
+                    InternalLogger.Error(exception, "{0}: Error in send async", this);
                 }
             }
         }

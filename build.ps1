@@ -5,7 +5,7 @@ dotnet --version
 # dotnet restore .\src\NLog\
 # dotnet pack .\src\NLog\  --configuration release --include-symbols -o ..\..\artifacts
 
-$versionPrefix = "4.7.6"
+$versionPrefix = "4.7.7"
 $versionSuffix = ""
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
@@ -41,6 +41,7 @@ function create-package($packageName)
 }
 
 create-package('NLog.MSMQ')
+create-package('NLog.SmtpClient')
 create-package('NLog.Wcf')
 create-package('NLog.WindowsEventLog')
 create-package('NLog.WindowsIdentity')

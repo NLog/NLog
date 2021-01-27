@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.LogReceiverService
+namespace NLog.Wcf.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -49,9 +49,14 @@ namespace NLog.UnitTests.LogReceiverService
     using NLog.Layouts;
     using NLog.LogReceiverService;
 
-    public class LogReceiverServiceTests : NLogTestBase
+    public class LogReceiverServiceTests
     {
         private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
+
+        public LogReceiverServiceTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
 
         [Fact]
         public void ToLogEventInfoTest()
@@ -290,7 +295,6 @@ namespace NLog.UnitTests.LogReceiverService
         /// <param name="messageCount">message count for wait for listen and checking</param>
         private void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount, LogFactory logFactory)
         {
-
             Uri baseAddress = new Uri(logRecieverUrl);
 
             // Create the ServiceHost.
@@ -299,7 +303,6 @@ namespace NLog.UnitTests.LogReceiverService
 
             using (ServiceHost host = new ServiceHost(logReceiverMock, baseAddress))
             {
-
                 var behaviour = host.Description.Behaviors.Find<ServiceBehaviorAttribute>();
                 behaviour.InstanceContextMode = InstanceContextMode.Single;
 
@@ -332,6 +335,8 @@ namespace NLog.UnitTests.LogReceiverService
                 Assert.Equal(messageCount, received.Count);
 
                 logCheckFunc(received);
+
+                logFactory.Shutdown();
 
                 // Close the ServiceHost.
                 host.Close();

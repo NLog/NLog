@@ -31,19 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
-#if  !MONO && !NETSTANDARD
-
-namespace NLog.UnitTests.Targets
+namespace NLog.MSMQ.Tests
 {
     using System.Collections.Generic;
     using System.Messaging;
     using NLog.Targets;
     using Xunit;
 
-    public class MessageQueueTargetTests : NLogTestBase
+    public class MessageQueueTargetTests
     {
+        public MessageQueueTargetTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void QueueExists_Write_MessageIsWritten()
         {
@@ -51,9 +52,9 @@ namespace NLog.UnitTests.Targets
                                         {
                                             QueueExists = true,
                                         };
-            var target = CreateTarget(messageQueueTestProxy, false);
+            var logFactory = SetupMsmqTarget(messageQueueTestProxy, false);
 
-            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(_ => { }));
+            logFactory.GetCurrentClassLogger().Fatal("Test Message");
 
             Assert.Equal(1, messageQueueTestProxy.SentMessages.Count);
         }
@@ -65,9 +66,9 @@ namespace NLog.UnitTests.Targets
                                         {
                                             QueueExists = false,
                                         };
-            var target = CreateTarget(messageQueueTestProxy, false);
+            var logFactory = SetupMsmqTarget(messageQueueTestProxy, false);
 
-            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(_ => { }));
+            logFactory.GetCurrentClassLogger().Fatal("Test Message");
 
             Assert.Equal(0, messageQueueTestProxy.SentMessages.Count);
         }
@@ -79,9 +80,9 @@ namespace NLog.UnitTests.Targets
                                         {
                                             QueueExists = false,
                                         };
-            var target = CreateTarget(messageQueueTestProxy, true);
+            var logFactory = SetupMsmqTarget(messageQueueTestProxy, true);
 
-            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(_ => { }));
+            logFactory.GetCurrentClassLogger().Fatal("Test Message");
 
             Assert.True(messageQueueTestProxy.QueueCreated);
         }
@@ -93,9 +94,9 @@ namespace NLog.UnitTests.Targets
                                         {
                                             QueueExists = false,
                                         };
-            var target = CreateTarget(messageQueueTestProxy, true);
+            var logFactory = SetupMsmqTarget(messageQueueTestProxy, true);
 
-            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(_ => { }));
+            logFactory.GetCurrentClassLogger().Fatal("Test Message");
 
             Assert.Equal(1, messageQueueTestProxy.SentMessages.Count);
         }
@@ -104,9 +105,9 @@ namespace NLog.UnitTests.Targets
         public void FormatQueueName_Write_DoesNotCheckIfQueueExists()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy();
-            var target = CreateTarget(messageQueueTestProxy, false, "DIRECT=http://test.com/MSMQ/queue");
+            var logFactory = SetupMsmqTarget(messageQueueTestProxy, false, "DIRECT=http://test.com/MSMQ/queue");
 
-            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(_ => { }));
+            logFactory.GetCurrentClassLogger().Fatal("Test Message");
 
             Assert.False(messageQueueTestProxy.QueueExistsCalled);
         }
@@ -115,9 +116,9 @@ namespace NLog.UnitTests.Targets
         public void DoNotCheckIfQueueExists_Write_DoesNotCheckIfQueueExists()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy();
-            var target = CreateTarget(messageQueueTestProxy, false, checkIfQueueExists: false);
+            var logFactory = SetupMsmqTarget(messageQueueTestProxy, false, checkIfQueueExists: false);
 
-            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(_ => { }));
+            logFactory.GetCurrentClassLogger().Fatal("Test Message");
 
             Assert.False(messageQueueTestProxy.QueueExistsCalled);
         }
@@ -128,9 +129,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MessageQueueTarget_CheckIfQueueExists_setting_should_work()
         {
-            var logFactory = new LogFactory();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(string.Format(@"
-                <nlog throwExceptions='true' autoLoadExtensions='true' >
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true' >
+                    <extensions>
+                        <add assembly='NLog.MSMQ' />
+                    </extensions>
                     <targets>
                         <target type='MSMQ'
                                 name='q'
@@ -143,25 +146,26 @@ namespace NLog.UnitTests.Targets
                        
                       </logger>
                     </rules>
-                </nlog>"), logFactory);
-            logFactory.Configuration = configuration;
-            var messageQueueTarget = configuration.FindTargetByName("q") as MessageQueueTarget;
+                </nlog>").LogFactory;
+            var messageQueueTarget = logFactory.Configuration.FindTargetByName("q") as MessageQueueTarget;
 
             Assert.NotNull(messageQueueTarget);
             Assert.False(messageQueueTarget.CheckIfQueueExists);
         }
 
-        private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)
+        private static LogFactory SetupMsmqTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)
         {
-            var target = new MessageQueueTarget
-                         {
-                             MessageQueueProxy = messageQueueTestProxy,
-                             Queue = queueName,
-                             CreateQueueIfNotExists = createQueue,
-                             CheckIfQueueExists = checkIfQueueExists,
-                         };
-            target.Initialize(null);
-            return target;
+            return new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                var target = new MessageQueueTarget
+                {
+                    MessageQueueProxy = messageQueueTestProxy,
+                    Queue = queueName,
+                    CreateQueueIfNotExists = createQueue,
+                    CheckIfQueueExists = checkIfQueueExists,
+                };
+                cfg.Configuration.AddRuleForAllLevels(target);
+            }).LogFactory;
         }
 
         internal class MessageQueueTestProxy : MessageQueueProxy
@@ -197,5 +201,3 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
-
-#endif

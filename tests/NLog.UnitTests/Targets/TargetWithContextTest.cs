@@ -269,7 +269,7 @@ namespace NLog.UnitTests.Targets
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
-                        <target name='debug' type='contexttarget' includeCallSite='true' optimizeBufferReuse='false'>
+                        <target name='debug' type='contexttarget' includeCallSite='true'>
                             <layout type='JsonLayout' includeScopeProperties='true'>
                                 <attribute name='level' layout='${level:upperCase=true}'/>
                                 <attribute name='message' layout='${message}' />
@@ -342,7 +342,7 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(new KeyValuePair<string, object>("processid", System.Diagnostics.Process.GetCurrentProcess().Id), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);
             Assert.DoesNotContain("int-non-existing-empty", lastCombinedProperties.Keys);
-            Assert.Contains(new KeyValuePair<string, object>("object-non-existing", null), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("object-non-existing", ""), lastCombinedProperties);
             Assert.DoesNotContain("object-non-existing-empty", lastCombinedProperties.Keys);
         }
     }

@@ -53,9 +53,6 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.1" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
 
     <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
       <Private>true</Private>
@@ -71,15 +68,9 @@
     <Reference Include="System.DirectoryServices.AccountManagement" Condition=" '$(monobuild)' == '' " />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
     <Reference Include="Microsoft.CSharp" />
-
-    <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" Condition=" '$(monobuild)' == '' " />
 
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
@@ -105,7 +96,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj" />
     <ProjectReference Include="..\..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj" /> 
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
       <Private>true</Private>

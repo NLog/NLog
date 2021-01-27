@@ -86,7 +86,6 @@ namespace NLog.Targets.Wrappers
             MessageLimit = messageLimit;
             Interval = interval;
             WrappedTarget = wrappedTarget;
-            OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace NLog.Targets.Wrappers
 
             base.InitializeTarget();
             ResetInterval();
-            InternalLogger.Trace("LimitingWrapper(Name={0}): Initialized with MessageLimit={1} and Interval={2}.", Name, MessageLimit, Interval);
+            InternalLogger.Trace("{0}: Initialized with MessageLimit={1} and Interval={2}.", this, MessageLimit, Interval);
         }
 
 
@@ -148,7 +147,7 @@ namespace NLog.Targets.Wrappers
             if (IsIntervalExpired())
             {
                 ResetInterval();
-                InternalLogger.Debug("LimitingWrapper(Name={0}): New interval of '{1}' started.", Name, Interval);
+                InternalLogger.Debug("{0}: New interval of '{1}' started.", this, Interval);
             }
 
             if (MessagesWrittenCount < MessageLimit)
@@ -159,7 +158,7 @@ namespace NLog.Targets.Wrappers
             else
             {
                 logEvent.Continuation(null);
-                InternalLogger.Trace("LimitingWrapper(Name={0}): Discarded event, because MessageLimit of '{1}' was reached.", Name, MessageLimit);
+                InternalLogger.Trace("{0}: Discarded event, because MessageLimit of '{1}' was reached.", this, MessageLimit);
             }
         }
 

@@ -71,6 +71,7 @@ namespace NLog
         private LogMessageFormatter _messageFormatter;
         private IDictionary<Layout, object> _layoutCache;
         private PropertiesDictionary _properties;
+        private int _sequenceId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
@@ -78,7 +79,6 @@ namespace NLog
         public LogEventInfo()
         {
             TimeStamp = TimeSource.Current.Time;
-            SequenceID = Interlocked.Increment(ref globalSequenceId);
         }
 
         /// <summary>
@@ -150,7 +150,15 @@ namespace NLog
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Backwards compatibility")]
         // ReSharper disable once InconsistentNaming
-        public int SequenceID { get; private set; }
+        public int SequenceID
+        {
+            get
+            {
+                if (_sequenceId == 0)
+                    Interlocked.CompareExchange(ref _sequenceId, Interlocked.Increment(ref globalSequenceId), 0);
+                return _sequenceId;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the timestamp of the logging event.

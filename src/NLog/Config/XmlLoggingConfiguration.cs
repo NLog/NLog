@@ -436,17 +436,22 @@ namespace NLog.Config
             nlogElement.AssertName("nlog");
 
             bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-            if (!string.IsNullOrEmpty(filePath))
-                _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
             try
             {
-                _currentFilePath.Push(filePath);
-                base.LoadConfig(nlogElement, Path.GetDirectoryName(filePath));
+                string baseDirectory = null;
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
+                    _currentFilePath.Push(filePath);
+                    baseDirectory = Path.GetDirectoryName(filePath);
+                }
+                base.LoadConfig(nlogElement, baseDirectory);
             }
             finally
             {
-                _currentFilePath.Pop();
+                if (!string.IsNullOrEmpty(filePath))
+                    _currentFilePath.Pop();
             }
         }
 

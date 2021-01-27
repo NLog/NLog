@@ -169,7 +169,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = CreateFileParameters.FileOpenRetryDelay;
 
-            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", FileName, allowFileSharedWriting);
+            InternalLogger.Trace("{0}: Opening {1} with allowFileSharedWriting={2}", CreateFileParameters, FileName, allowFileSharedWriting);
             for (int i = 0; i <= CreateFileParameters.FileOpenRetryCount; ++i)
             {
                 try
@@ -208,7 +208,7 @@ namespace NLog.Internal.FileAppenders
                     }
 
                     int actualDelay = _random.Next(currentDelay);
-                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, FileName, actualDelay);
+                    InternalLogger.Warn("{0}: Attempt #{1} to open {2} failed. Sleeping for {3}ms", CreateFileParameters, i, FileName, actualDelay);
                     currentDelay *= 2;
                     AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(actualDelay));
                 }
@@ -282,7 +282,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch (SecurityException)
             {
-                InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream: {0}", FileName);
+                InternalLogger.Debug("{0}: Could not use native Windows create file, falling back to managed filestream: {1}", CreateFileParameters, FileName);
             }
 #endif
 
@@ -333,7 +333,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed to check if File.Exists {0}", fileName);
+                    InternalLogger.Error(ex, "FileTarget: Failed to check if File.Exists {0}", fileName);
                     return true;
                 }
             }
