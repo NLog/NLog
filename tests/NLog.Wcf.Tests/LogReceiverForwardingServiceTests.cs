@@ -43,7 +43,7 @@ namespace NLog.Wcf.Tests
         public void ToLogEventInfoTest()
         {
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message} ${event-context:foo} ${event-context:bar} ${event-context:baz}' />
                     <target name='debug2' type='Debug' layout='${message} ${event-context:foo} ${event-context:bar} ${event-context:baz}' />

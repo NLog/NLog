@@ -45,7 +45,7 @@ namespace NLog.Internal
     ///  we strongly recommend you use https://github.com/jstedfast/MailKit and https://github.com/jstedfast/MimeKit instead'	
     /// </remarks>
 #pragma warning disable 618
-    internal class MySmtpClient : SmtpClient, ISmtpClient
+    internal sealed class MySmtpClient : SmtpClient, ISmtpClient
 #pragma warning restore 618
     {
 #if NET35 || MONO

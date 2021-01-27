@@ -33,6 +33,10 @@ dotnet test .\tests\NLog.MSMQ.Tests\ --configuration release
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
+dotnet test .\tests\NLog.SmtpClient.Tests\ --configuration release
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
+
 dotnet test .\tests\NLog.Wcf.Tests\ --configuration release
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }

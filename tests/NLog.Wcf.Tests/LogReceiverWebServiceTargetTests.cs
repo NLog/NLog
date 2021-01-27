@@ -37,7 +37,6 @@ namespace NLog.Wcf.Tests
     using System.Collections.Generic;
     using NLog.Common;
     using NLog.LogReceiverService;
-    using NLog.Config;
     using NLog.Targets;
     using Xunit;
     using NLog.Targets.Wrappers;
@@ -45,6 +44,11 @@ namespace NLog.Wcf.Tests
 
     public class LogReceiverWebServiceTargetTests
     {
+        public LogReceiverWebServiceTargetTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Theory]
         [InlineData(null)]
         [InlineData("")]
