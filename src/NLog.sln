@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Wcf.Tests", "..\tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.SmtpClient", "NLog.SmtpClient\NLog.SmtpClient.csproj", "{7633C621-A129-4025-9384-B4B2918F4188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.SmtpClient.Tests", "..\tests\NLog.SmtpClient.Tests\NLog.SmtpClient.Tests.csproj", "{52417AFB-5456-40C4-8887-20D56AA26DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.SmtpClient.Tests", "..\tests\NLog.SmtpClient.Tests\NLog.SmtpClient.Tests.csproj", "{52417AFB-5456-40C4-8887-20D56AA26DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

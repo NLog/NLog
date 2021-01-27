@@ -1,44 +1,57 @@
 version: 4.7.0-{build}
-image: Visual Studio 2017
+image:
+  - Visual Studio 2017
+  - Previous Ubuntu
 configuration: Release
-clone_folder: c:\projects\nlog
-environment:
-  github_auth_token:
-    secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
-  sonar_token:
-    secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduP
-
-install:
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
-
+build: no
+test: no
 skip_tags: true
 skip_branch_with_pr: true
-build_script:
-  - ps: .\build.ps1
-
-test_script:
-  - msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
-  - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
-  - ps: .\run-tests.ps1
-
-cache:
-  - src\packages -> **\packages.config
-  - c:\projects\nlog\appveyor.sonar\cache
-
-services:
-  - mssql2016
 
 nuget:
   disable_publish_on_pr: true
 
-artifacts:
-  - path: 'artifacts\*.nupkg'
-  - path: 'artifacts\*.snupkg'
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2017
+    services: mssql2016
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      github_auth_token:
+        secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
+      sonar_token:
+        secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduP
+    install:
+    - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
+    build_script:
+    - ps: ./build.ps1
+    test_script:
+    - msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
+    - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+    - ps: if (./Test-XmlFile.ps1) { Write-Output "Valid XSD" } else { exit 400 }
+    - ps: ./run-tests.ps1
+    deploy:
+    - provider: NuGet
+      api_key:
+        secure: N/3SLEg4r4QlbIVrI6epIHgv2KfwkwkrIUeLRyqS8D3AkC29Ql86NMkHxWOfcmUM
+      on:
+        branch: master
+    artifacts:
+    - path: 'artifacts\*.nupkg'
+      type: NuGetPackage
+    - path: 'artifacts\*.snupkg'
+      type: NuGetPackage
 
-deploy:
-- provider: NuGet
-  api_key:
-    secure: N/3SLEg4r4QlbIVrI6epIHgv2KfwkwkrIUeLRyqS8D3AkC29Ql86NMkHxWOfcmUM
-  on:
-    branch: master
-
+  -
+    matrix:
+      only:
+        - image: Previous Ubuntu
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
+    build_script:
+    - ps: dotnet --version
+    test_script:
+    - ps: ./run-tests.ps1
