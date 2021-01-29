@@ -50,14 +50,14 @@ else
     dotnet msbuild /t:Restore,Build /p:targetFramework=net461 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 /p:TestTargetFramework=net45 tests/NLog.UnitTests
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
-	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll -appveyor -noshadow
+	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
 
 	dotnet msbuild /t:Rebuild /p:targetframework=net461 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 tests/NLog.UnitTests
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
-	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net461/NLog.UnitTests.dll -appveyor -noshadow
+	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net461/NLog.UnitTests.dll
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
 }
