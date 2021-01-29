@@ -249,7 +249,7 @@ namespace NLog.Config
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
                     internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
 #endif
-                if (internalLogFile.IndexOf("%", StringComparison.OrdinalIgnoreCase) >= 0)
+                if (internalLogFile.IndexOf('%') >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
 #endif
                 return internalLogFile;
