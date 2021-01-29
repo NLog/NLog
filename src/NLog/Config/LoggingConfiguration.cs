@@ -848,7 +848,7 @@ namespace NLog.Config
         internal string ExpandSimpleVariables(string input, out string matchingVariableName)
         {
             string output = input;
-            var culture = StringComparison.CurrentCultureIgnoreCase;
+            var culture = StringComparison.OrdinalIgnoreCase;
             matchingVariableName = null;
 
             if (Variables.Count > 0 && output?.IndexOf("${") >= 0)

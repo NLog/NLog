@@ -133,7 +133,7 @@ namespace NLog.UnitTests.Config
 
             var logEventInfo = CreateLogEventInfo(cultureName);
 
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] CultureInfoTests.ProcessInfoLayoutRendererCultureTest because we are running in Travis");
             }

@@ -52,7 +52,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void WindowsIdentityTest()
         {
 #if NETSTANDARD
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] IdentityTests.WindowsIdentityTest NetStandard on Travis not supporting WindowsIdentity");
                 return; // NetCore on Travis not supporting WindowsIdentity

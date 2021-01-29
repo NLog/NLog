@@ -279,7 +279,7 @@ namespace NLog.UnitTests
         public void AutoReloadTest()
         {
 #if NETSTANDARD
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] LogManagerTests.AutoReloadTest because we are running in Travis");
                 return;

@@ -122,9 +122,9 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsTravis();
+            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsLinux();
 #if MONO
-            if (IsTravis() && concurrentWrites && keepFileOpen && !networkWrites)
+            if (IsLinux() && concurrentWrites && keepFileOpen && !networkWrites)
             {
                 Console.WriteLine("[SKIP] FileTargetTests.SimpleFileDeleteTest Not supported on MONO on Travis, because of FileSystemWatcher not working");
                 return;
@@ -411,7 +411,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(true, true, ArchiveNumberingMode.Sequence)]
         public void DatedArchiveEveryMonth(bool archiveSubFolder, bool maxArchiveDays, ArchiveNumberingMode archiveNumberingMode)
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] FileTargetTests.DatedArchiveEveryMonth because SetCreationTime is not working on Travis");
                 return;
@@ -1392,7 +1392,7 @@ namespace NLog.UnitTests.Targets
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool maxArhiveDays)
         {
 #if NETSTANDARD
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] FileTargetTests.DateArchive_UsesDateFromCurrentTimeSource because SetLastWriteTime is not working on Travis");
                 return;
