@@ -1,7 +1,7 @@
 version: 4.7.0-{build}
 image:
   - Visual Studio 2017
-  - Ubuntu
+  - Previous Ubuntu
 configuration: Release
 build: no
 test: no
@@ -47,7 +47,7 @@ for:
   -
     matrix:
       only:
-        - image: Ubuntu
+        - image: Previous Ubuntu
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
