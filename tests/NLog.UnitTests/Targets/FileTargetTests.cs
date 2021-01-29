@@ -1391,7 +1391,7 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(DateArchive_UsesDateFromCurrentTimeSource_TestParameters))]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool maxArhiveDays)
         {
-#if NETSTANDARD
+#if NETSTANDARD || MONO
             if (IsLinux())
             {
                 Console.WriteLine("[SKIP] FileTargetTests.DateArchive_UsesDateFromCurrentTimeSource because SetLastWriteTime is not working on Travis");
