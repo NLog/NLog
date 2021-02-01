@@ -54,10 +54,6 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.1" />
-
-    <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
-      <Private>true</Private>
-    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
@@ -66,7 +62,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite" />
-    <Reference Include="System.DirectoryServices.AccountManagement" Condition=" '$(monobuild)' == '' " />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Transactions" />

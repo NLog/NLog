@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -52,9 +50,8 @@ namespace NLog.Targets.Wrappers
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {
-        private WindowsIdentity _newIdentity;
-        private IntPtr _duplicateTokenHandle = IntPtr.Zero;
-
+        private NewIdentityHandle _newIdentity;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
         /// </summary>
@@ -138,13 +135,10 @@ namespace NLog.Targets.Wrappers
         {
             if (!RevertToSelf)
             {
-                _newIdentity = CreateWindowsIdentity(out _duplicateTokenHandle);
+                _newIdentity = new NewIdentityHandle(UserName, Domain, Password, LogOnType, LogOnProvider, ImpersonationLevel);
             }
 
-            using (DoImpersonate())
-            {
-                base.InitializeTarget();
-            }
+            RunImpersonated(_newIdentity, (s) => base.InitializeTarget(), (object)null);
         }
 
         /// <summary>
@@ -152,16 +146,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            using (DoImpersonate())
-            {
-                base.CloseTarget();
-            }
-
-            if (_duplicateTokenHandle != IntPtr.Zero)
-            {
-                NativeMethods.CloseHandle(_duplicateTokenHandle);
-                _duplicateTokenHandle = IntPtr.Zero;
-            }
+            RunImpersonated(_newIdentity, (s) => base.CloseTarget(), (object)null);
 
             if (_newIdentity != null)
             {
@@ -177,11 +162,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            using (DoImpersonate())
-            {
-                WrappedTarget.WriteAsyncLogEvent(logEvent);
-            }
+            if (_writeLogEvent == null)
+                _writeLogEvent = (l) => WrappedTarget.WriteAsyncLogEvent(l);
+            RunImpersonated(_newIdentity, _writeLogEvent, logEvent);
         }
+        private Action<AsyncLogEventInfo> _writeLogEvent;
 
         /// <summary>
         /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
@@ -190,11 +175,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Log events.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            using (DoImpersonate())
-            {
-                WrappedTarget.WriteAsyncLogEvents(logEvents);
-            }
+            if (_writeLogEvents == null)
+                _writeLogEvents = (l) => WrappedTarget.WriteAsyncLogEvents(l);
+            RunImpersonated(_newIdentity, _writeLogEvents, logEvents);
         }
+        private Action<IList<AsyncLogEventInfo>> _writeLogEvents;
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -202,79 +187,80 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            using (DoImpersonate())
-            {
-                WrappedTarget.Flush(asyncContinuation);
-            }
+            RunImpersonated(_newIdentity, (s) => WrappedTarget.Flush(s), asyncContinuation);
         }
 
-        private IDisposable DoImpersonate()
+        private void RunImpersonated<T>(NewIdentityHandle newIdentity, Action<T> executeOperation, T state)
         {
-            if (RevertToSelf)
-            {
-                return new ContextReverter(WindowsIdentity.Impersonate(IntPtr.Zero));
-            }
-
-            return new ContextReverter(_newIdentity.Impersonate());
+            NewIdentityHandle.RunImpersonated(RevertToSelf ? null : newIdentity, executeOperation, state);
         }
 
-        //
-        // adapted from:
-        // https://www.codeproject.com/csharp/cpimpersonation1.asp
-        //
-        private WindowsIdentity CreateWindowsIdentity(out IntPtr handle)
+        internal sealed class NewIdentityHandle : IDisposable
         {
-            // initialize tokens
+#if NETSTANDARD
+            public Microsoft.Win32.SafeHandles.SafeAccessTokenHandle Handle { get; }
+#else
+            public WindowsIdentity Handle { get; }
+            private readonly IntPtr _handle = IntPtr.Zero;
 
-            if (!NativeMethods.LogonUser(
-                UserName,
-                Domain,
-                Password,
-                (int)LogOnType,
-                (int)LogOnProvider,
-                out var logonHandle))
+#endif
+            public NewIdentityHandle(string userName, string domain, string password, SecurityLogOnType logOnType, LogOnProviderType logOnProvider, SecurityImpersonationLevel impersonationLevel)
             {
-                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
+                if (!NativeMethods.LogonUser(
+                    userName,
+                    domain,
+                    password,
+                    (int)logOnType,
+                    (int)logOnProvider,
+                    out var logonHandle))
+                {
+                    throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+                }
 
-            if (!NativeMethods.DuplicateToken(logonHandle, (int)ImpersonationLevel, out handle))
-            {
+#if NETSTANDARD
+                Handle = logonHandle;
+#else
+                // adapted from:
+                // https://www.codeproject.com/csharp/cpimpersonation1.asp
+                if (!NativeMethods.DuplicateToken(logonHandle, (int)impersonationLevel, out _handle))
+                {
+                    NativeMethods.CloseHandle(logonHandle);
+                    throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+                }
+
                 NativeMethods.CloseHandle(logonHandle);
-                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+
+                // create new identity using new primary token)
+                Handle = new WindowsIdentity(_handle);
+#endif
             }
 
-            NativeMethods.CloseHandle(logonHandle);
-
-            // create new identity using new primary token)
-            return new WindowsIdentity(handle);
-        }
-
-        /// <summary>
-        /// Helper class which reverts the given <see cref="WindowsImpersonationContext"/> 
-        /// to its original value as part of <see cref="IDisposable.Dispose"/>.
-        /// </summary>
-        internal sealed class ContextReverter : IDisposable
-        {
-            private readonly WindowsImpersonationContext _impersonationContext;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="ContextReverter" /> class.
-            /// </summary>
-            /// <param name="windowsImpersonationContext">The windows impersonation context.</param>
-            public ContextReverter(WindowsImpersonationContext windowsImpersonationContext)
-            {
-                _impersonationContext = windowsImpersonationContext;
-            }
-
-            /// <summary>
-            /// Reverts the impersonation context.
-            /// </summary>
             public void Dispose()
             {
-                _impersonationContext.Undo();
+                Handle.Dispose();
+#if !NETSTANDARD
+                if (_handle != IntPtr.Zero)
+                    NativeMethods.CloseHandle(_handle);
+#endif
+            }
+
+            internal static void RunImpersonated<T>(NewIdentityHandle newIdentity, Action<T> executeOperation, T state)
+            {
+#if NETSTANDARD
+                WindowsIdentity.RunImpersonated(newIdentity?.Handle ?? Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle, () => executeOperation.Invoke(state));
+#else
+                WindowsImpersonationContext context = null;
+                try
+                {
+                    context = newIdentity?.Handle.Impersonate() ?? WindowsIdentity.Impersonate(IntPtr.Zero);
+                    executeOperation.Invoke(state);
+                }
+                finally
+                {
+                    context?.Undo();
+                }
+#endif
             }
         }
     }
 }
-
-#endif

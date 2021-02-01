@@ -37,50 +37,12 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Security.Principal;
     using System.Threading;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Targets.Wrappers;
     using NLog.UnitTests.Common;
     using Xunit;
 
     public class IdentityTests : NLogTestBase
     {
-#if MONO
-        [Fact(Skip = "MONO on Travis not supporting WindowsIdentity")]
-#else
-        [Fact]
-#endif
-        public void WindowsIdentityTest()
-        {
-#if NETSTANDARD
-            if (IsLinux())
-            {
-                Console.WriteLine("[SKIP] IdentityTests.WindowsIdentityTest NetStandard on Travis not supporting WindowsIdentity");
-                return; // NetCore on Travis not supporting WindowsIdentity
-            }
-#endif
-
-            var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
-            var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
-            if (!string.IsNullOrEmpty(userDomainName))
-                userName = userDomainName + "\\" + userName;
-
-            var logFactory = new LogFactory().Setup()
-#if NETSTANDARD
-                .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
-#endif
-                .LoadConfigurationFromXml(@"
-                <nlog>
-                    <targets><target type='debug' name='debug' layout='${windows-identity}' /></targets>
-                    <rules><logger name='*' writeTo='debug' /></rules>
-                </nlog>").LogFactory;
-
-            var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
-            logFactory.GetCurrentClassLogger().Info("Test Message");
-            Assert.Equal(1, debugTarget.Counter);
-            if (!string.IsNullOrEmpty(debugTarget.LastMessage) || !IsAppVeyor())
-                Assert.Equal(userName, debugTarget.LastMessage);
-        }
-
         [Theory]
         [InlineData("${identity}", "auth:CustomAuth:SOMEDOMAIN\\SomeUser")]
         [InlineData("${identity:authtype=false}", "auth:SOMEDOMAIN\\SomeUser")]
@@ -94,9 +56,6 @@ namespace NLog.UnitTests.LayoutRenderers
             try
             {
                 var logFactory = new LogFactory().Setup()
-#if NETSTANDARD
-                    .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
-#endif
                     .LoadConfigurationFromXml($@"
                     <nlog>
                         <targets><target type='debug' name='debug' layout='{layout}' /></targets>
@@ -126,9 +85,6 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 var logFactory = new LogFactory().Setup()
                     .SetupExtensions(ext => ext.RegisterTarget<CSharpEventTarget>("CSharpEventTarget"))
-#if NETSTANDARD
-                    .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
-#endif
                     .LoadConfigurationFromXml(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
@@ -204,9 +160,6 @@ namespace NLog.UnitTests.LayoutRenderers
             try
             {
                 var logFactory = new LogFactory().Setup()
-#if NETSTANDARD
-                    .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
-#endif
                     .LoadConfigurationFromXml(@"
                     <nlog>
                         <targets><target type='debug' name='debug' layout='${identity}' /></targets>
