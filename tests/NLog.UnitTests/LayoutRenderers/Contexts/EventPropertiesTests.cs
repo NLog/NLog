@@ -118,7 +118,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DateTimeCulture()
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] EventPropertiesTests.DateTimeCulture because we are running in Travis");
                 return;

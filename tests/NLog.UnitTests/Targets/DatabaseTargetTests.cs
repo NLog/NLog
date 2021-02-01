@@ -1619,7 +1619,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [Fact]
         public void SqlServer_NoTargetInstallException()
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
                 return;
@@ -1671,7 +1671,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [Fact]
         public void SqlServer_InstallAndLogMessage()
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
                 return;

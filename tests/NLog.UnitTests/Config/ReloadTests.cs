@@ -109,8 +109,8 @@ namespace NLog.UnitTests.Config
         [InlineData(false)]
         public void TestAutoReloadOnFileChange(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileChange because we are running in Travis");
                 return;
@@ -169,8 +169,8 @@ namespace NLog.UnitTests.Config
 
         public void TestAutoReloadOnFileMove(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileMove because we are running in Travis");
                 return;
@@ -237,8 +237,8 @@ namespace NLog.UnitTests.Config
 
         public void TestAutoReloadOnFileCopy(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileCopy because we are running in Travis");
                 return;
@@ -305,8 +305,8 @@ namespace NLog.UnitTests.Config
 
         public void TestIncludedConfigNoReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestIncludedConfigNoReload because we are running in Travis");
                 return;
@@ -371,8 +371,8 @@ namespace NLog.UnitTests.Config
 
         public void TestIncludedConfigReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestIncludedConfigNoReload because we are running in Travis");
                 return;
@@ -437,8 +437,8 @@ namespace NLog.UnitTests.Config
 
         public void TestMainConfigReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestMainConfigReload because we are running in Travis");
                 return;
@@ -508,8 +508,8 @@ namespace NLog.UnitTests.Config
 
         public void TestMainConfigReloadIncludedConfigNoReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestMainConfigReload because we are running in Travis");
                 return;

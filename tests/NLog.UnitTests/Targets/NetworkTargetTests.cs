@@ -906,7 +906,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("30", 30)]
         public void KeepAliveTimeConfigTest(string keepAliveTimeSeconds, int expected)
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] NetworkTargetTests.KeepAliveTimeConfigTest because we are running in Travis");
                 return;

@@ -1,70 +1,60 @@
+dotnet restore ./tests/NLog.UnitTests/
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
 
-if(.\Test-XmlFile.ps1){
-	Write-Output "Valid XSD"
-}else {
-	exit 400;
+dotnet test ./tests/NLog.UnitTests/ --framework netcoreapp2.1 --configuration release --no-restore
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
+
+if ($isWindows -or $Env:WinDir)
+{
+	dotnet test ./tests/NLog.UnitTests/ --framework net461 --configuration release --no-restore
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet test ./tests/NLog.MSMQ.Tests/ --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet test ./tests/NLog.SmtpClient.Tests/ --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet test ./tests/NLog.Wcf.Tests/ --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet msbuild /t:Build /p:targetFramework=net461 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net35 ./tests/NLog.UnitTests/
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net35/NLog.UnitTests.dll
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet msbuild /t:Build /p:targetFramework=net461 /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net45 ./tests/NLog.UnitTests/
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
 }
+else
+{
+	# Need help from MONO to run normal .NetFramework tests
+	dotnet msbuild /t:Restore,Rebuild /p:targetframework=net461 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 tests/NLog.UnitTests
+    if (-Not $LastExitCode -eq 0)
+	    { exit $LastExitCode }
+	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net461/NLog.UnitTests.dll
+    if (-Not $LastExitCode -eq 0)
+	    { exit $LastExitCode }
 
-dotnet restore .\src\NLog\
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-dotnet restore .\tests\NLogAutoLoadExtension\
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-dotnet restore .\tests\SampleExtensions\
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\tests\NLogAutoLoadExtension\ /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\tests\SampleExtensions\ /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-msbuild /t:Restore,Build /p:Configuration=Release /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-dotnet test .\tests\NLog.MSMQ.Tests\ --configuration release
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-dotnet test .\tests\NLog.SmtpClient.Tests\ --configuration release
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-dotnet test .\tests\NLog.Wcf.Tests\ --configuration release
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-dotnet test .\tests\NLog.UnitTests\ --configuration release --framework netcoreapp2.1 --no-build
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-msbuild /t:Build /p:targetFramework=net461 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net35 /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\Release\net35\NLog.UnitTests.dll -appveyor -noshadow
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-msbuild /t:Build /p:targetFramework=net461 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net45 /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\Release\net45\NLog.UnitTests.dll -appveyor -noshadow
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-msbuild /t:Build /p:Configuration=Debug /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\Debug\net461\NLog.UnitTests.dll -appveyor -noshadow
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
+    dotnet msbuild /t:Build /p:targetFramework=net45 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 ./src/NLog/
+    if (-Not $LastExitCode -eq 0)
+	    { exit $LastExitCode }
+    dotnet msbuild /t:Build /p:targetFramework=net461 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 /p:TestTargetFramework=net45 tests/NLog.UnitTests
+    if (-Not $LastExitCode -eq 0)
+	    { exit $LastExitCode }
+	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll
+    if (-Not $LastExitCode -eq 0)
+	    { exit $LastExitCode }
+}
