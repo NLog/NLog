@@ -111,7 +111,7 @@ namespace NLog.WindowsIdentity.Tests
 
             var wrapped = new MyTarget()
             {
-                ExpectedUser = Environment.UserDomainName + "\\" + Environment.UserName,
+                ExpectedUser = LocalMachineName + "\\" + Environment.UserName,
             };
 
             WindowsIdentity originalIdentity = WindowsIdentity.GetCurrent();
@@ -175,7 +175,7 @@ namespace NLog.WindowsIdentity.Tests
         {
             var wrapped = new MyTarget()
             {
-                ExpectedUser = Environment.UserName,
+                ExpectedUser = LocalMachineName + "\\" + Environment.UserName,
             };
 
             var wrapper = new ImpersonatingTargetWrapper()
@@ -218,7 +218,7 @@ namespace NLog.WindowsIdentity.Tests
 
             var wrapped = new MyTarget()
             {
-                ExpectedUser = NLogTestUser,
+                ExpectedUser = LocalMachineName + "\\" + NLogTestUser,
             };
 
             var wrapper = new ImpersonatingTargetWrapper()
@@ -253,7 +253,7 @@ namespace NLog.WindowsIdentity.Tests
 
             var wrapped = new MyTarget()
             {
-                ExpectedUser = NLogTestUser,
+                ExpectedUser = LocalMachineName + "\\" + NLogTestUser,
             };
 
             LogManager.ThrowExceptions = true;
@@ -296,18 +296,6 @@ namespace NLog.WindowsIdentity.Tests
 
             public string ExpectedUser { get; set; }
 
-            protected override void InitializeTarget()
-            {
-                base.InitializeTarget();
-                AssertExpectedUser();
-            }
-
-            protected override void CloseTarget()
-            {
-                base.CloseTarget();
-                AssertExpectedUser();
-            }
-
             protected override void Write(LogEventInfo logEvent)
             {
                 AssertExpectedUser();
@@ -332,7 +320,7 @@ namespace NLog.WindowsIdentity.Tests
                 {
                     var windowsIdentity = WindowsIdentity.GetCurrent();
                     Assert.True(windowsIdentity.IsAuthenticated);
-                    Assert.Equal(Environment.MachineName + "\\" + ExpectedUser, windowsIdentity.Name);
+                    Assert.Equal(ExpectedUser, windowsIdentity.Name);
                 }
             }
         }

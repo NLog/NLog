@@ -138,7 +138,7 @@ namespace NLog.Targets.Wrappers
                 _newIdentity = new NewIdentityHandle(UserName, Domain, Password, LogOnType, LogOnProvider, ImpersonationLevel);
             }
 
-            RunImpersonated(_newIdentity, (s) => base.InitializeTarget(), (object)null);
+            base.InitializeTarget();
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            RunImpersonated(_newIdentity, (s) => base.CloseTarget(), (object)null);
+            base.CloseTarget();
 
             if (_newIdentity != null)
             {
