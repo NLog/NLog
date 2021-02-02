@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
@@ -105,5 +103,3 @@ namespace NLog.Targets.Wrappers
         NewCredentials = 9,
     }
 }
-
-#endif

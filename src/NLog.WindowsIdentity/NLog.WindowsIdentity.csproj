@@ -3,18 +3,18 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35;netstandard1.5;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.WindowsIdentity for .NET Standard</Title>
+    <Title>NLog.WindowsIdentity for .NET Standard and .NetFramework</Title>
     <Company>NLog</Company>
-    <Description>NLog.WindowsIdentity.dll provides windows-identity renderer for NetStandard</Description>
+    <Description>NLog.WindowsIdentity.dll provides windows-identity renderer</Description>
     <Product>NLog WindowsIdentity v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
-    <PackageReleaseNotes>
+    <PackageReleaseNotes>     
       Docs:
       https://github.com/NLog/NLog/wiki/Windows-Identity-Layout-Renderer
     </PackageReleaseNotes>
@@ -45,16 +45,12 @@
     <DefineConstants>$(DefineConstants);NETSTANDARD2_0;WindowsIdentityPackage</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\NLog\LayoutRenderers\WindowsIdentityLayoutRenderer.cs" Link="WindowsIdentityLayoutRenderer.cs" />
-  </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <PackageReference Include="System.Security.Principal.Windows" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="System.Security.Principal.Windows" Version="4.4.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -31,35 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
-    /// Impersonation level.
+    /// Logon provider.
     /// </summary>
-    public enum SecurityImpersonationLevel
+    public enum LogOnProviderType
     {
         /// <summary>
-        /// Anonymous Level.
+        /// Use the standard logon provider for the system.
         /// </summary>
-        Anonymous = 0,
-
-        /// <summary>
-        /// Identification Level.
-        /// </summary>
-        Identification = 1,
-
-        /// <summary>
-        /// Impersonation Level.
-        /// </summary>
-        Impersonation = 2,
-
-        /// <summary>
-        /// Delegation Level.
-        /// </summary>
-        Delegation = 3
+        /// <remarks>
+        /// The default security provider is negotiate, unless you pass NULL for the domain name and the user name
+        /// is not in UPN format. In this case, the default provider is NTLM.
+        /// NOTE: Windows 2000/NT:   The default security provider is NTLM.
+        /// </remarks>
+        Default = 0,
     }
 }
-
-#endif

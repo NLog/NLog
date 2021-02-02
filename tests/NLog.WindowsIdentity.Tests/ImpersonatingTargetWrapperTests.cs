@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO && !NETSTANDARD
-
-namespace NLog.UnitTests.Targets.Wrappers
+namespace NLog.WindowsIdentity.Tests
 {
     using NLog.Common;
     using NLog.Targets;
@@ -45,35 +43,44 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System.Security.Principal;
     using Xunit;
 
-    public class ImpersonatingTargetWrapperTests : NLogTestBase, IDisposable
+    public sealed class ImpersonatingTargetWrapperTests : IDisposable
     {
         private const string NLogTestUser = "NLogTestUser";
         private const string NLogTestUserPassword = "BC@57acasd123";
-        private string Localhost = Environment.MachineName;
+        private readonly string LocalMachineName = Environment.MachineName;
+        private bool? _userCreated;
 
         public ImpersonatingTargetWrapperTests()
         {
-            CreateUserIfNotPresent();
+            LogManager.ThrowExceptions = true;
         }
 
+#if !NETSTANDARD
         [Fact]
+#else
+        [Fact(Skip = "CreateUserIfNotPresent fails with NetCore")]
+#endif
         public void ImpersonatingWrapperTest()
         {
+            CreateUserIfNotPresent();
+
             var wrapped = new MyTarget()
             {
-                ExpectedUser = Environment.MachineName + "\\" + NLogTestUser,
+                ExpectedUser = LocalMachineName + "\\" + NLogTestUser,
             };
 
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
                 Password = NLogTestUserPassword,
-                Domain = Environment.MachineName,
+                Domain = LocalMachineName,
                 WrappedTarget = wrapped,
             };
 
-            // wrapped.Initialize(null);
-            wrapper.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(wrapper);
+            }).LogFactory;
 
             var exceptions = new List<Exception>();
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
@@ -90,57 +97,73 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Assert.Null(ex);
             }
 
-            wrapper.Close();
+            logFactory.Shutdown();
         }
 
+#if !NETSTANDARD
         [Fact]
+#else
+        [Fact(Skip = "CreateUserIfNotPresent fails with NetCore")]
+#endif
         public void RevertToSelfTest()
         {
+            CreateUserIfNotPresent();
+
             var wrapped = new MyTarget()
             {
-                ExpectedUser = Environment.UserDomainName + "\\" + Environment.UserName,
+                ExpectedUser = LocalMachineName + "\\" + Environment.UserName,
             };
 
             WindowsIdentity originalIdentity = WindowsIdentity.GetCurrent();
 
+            var newIdentity = new ImpersonatingTargetWrapper.NewIdentityHandle(
+                NLogTestUser,
+                LocalMachineName,
+                NLogTestUserPassword,
+                SecurityLogOnType.Interactive,
+                LogOnProviderType.Default,
+                SecurityImpersonationLevel.Identification
+                );
+
             try
             {
-                var id = CreateWindowsIdentity(NLogTestUser, Environment.MachineName, NLogTestUserPassword, SecurityLogOnType.Interactive, LogOnProviderType.Default, SecurityImpersonationLevel.Identification);
-                id.Impersonate();
-
-                WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
-                Assert.Contains(NLogTestUser.ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant(), StringComparison.InvariantCulture);
-
-                var wrapper = new ImpersonatingTargetWrapper()
+                ImpersonatingTargetWrapper.NewIdentityHandle.RunImpersonated(newIdentity, (s) =>
                 {
-                    WrappedTarget = wrapped,
-                    RevertToSelf = true,
-                };
+                    WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
+                    Assert.Contains(NLogTestUser.ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant(), StringComparison.InvariantCulture);
 
-                // wrapped.Initialize(null);
-                wrapper.Initialize(null);
+                    var wrapper = new ImpersonatingTargetWrapper()
+                    {
+                        WrappedTarget = wrapped,
+                        RevertToSelf = true,
+                    };
 
-                var exceptions = new List<Exception>();
-                wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                Assert.Single(exceptions);
-                wrapper.WriteAsyncLogEvents(
-                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
-                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
-                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                Assert.Equal(4, exceptions.Count);
-                wrapper.Flush(exceptions.Add);
-                Assert.Equal(5, exceptions.Count);
-                foreach (var ex in exceptions)
-                {
-                    Assert.Null(ex);
-                }
+                    var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+                    {
+                        cfg.Configuration.AddRuleForAllLevels(wrapper);
+                    }).LogFactory;
 
-                wrapper.Close();
+                    var exceptions = new List<Exception>();
+                    wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                    Assert.Single(exceptions);
+                    wrapper.WriteAsyncLogEvents(
+                        LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                        LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                        LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                    Assert.Equal(4, exceptions.Count);
+                    wrapper.Flush(exceptions.Add);
+                    Assert.Equal(5, exceptions.Count);
+                    foreach (var ex in exceptions)
+                    {
+                        Assert.Null(ex);
+                    }
+
+                    logFactory.Shutdown();
+                }, (object)null);
             }
             finally
             {
-                // revert to self
-                NativeMethods.RevertToSelf();
+                newIdentity.Dispose();
 
                 WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
                 Assert.Equal(originalIdentity.Name.ToLowerInvariant(), currentIdentity.Name.ToLowerInvariant());
@@ -148,106 +171,113 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Fact]
-        public void ImpersonatingWrapperNegativeTest()
+        public void RevertToSameIdentity()
         {
             var wrapped = new MyTarget()
             {
-                ExpectedUser = NLogTestUser,
+                ExpectedUser = LocalMachineName + "\\" + Environment.UserName,
             };
 
-            LogManager.ThrowExceptions = true;
+            var wrapper = new ImpersonatingTargetWrapper()
+            {
+                WrappedTarget = wrapped,
+                RevertToSelf = true,
+            };
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(wrapper);
+            }).LogFactory;
+
+            var exceptions = new List<Exception>();
+            wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+            Assert.Single(exceptions);
+            wrapper.WriteAsyncLogEvents(
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+            Assert.Equal(4, exceptions.Count);
+            wrapper.Flush(exceptions.Add);
+            Assert.Equal(5, exceptions.Count);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            logFactory.Shutdown();
+        }
+
+#if !NETSTANDARD
+        [Fact]
+#else
+        [Fact(Skip = "CreateUserIfNotPresent fails with NetCore")]
+#endif
+        public void ImpersonatingWrapperNegativeTest()
+        {
+            CreateUserIfNotPresent();
+
+            var wrapped = new MyTarget()
+            {
+                ExpectedUser = LocalMachineName + "\\" + NLogTestUser,
+            };
 
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
                 Password = Guid.NewGuid().ToString("N"), // wrong password
-                Domain = Environment.MachineName,
+                Domain = LocalMachineName,
                 WrappedTarget = wrapped,
             };
 
+            var logFactory = new LogFactory();
+
             Assert.Throws<COMException>(() =>
             {
-                wrapper.Initialize(null);
+                logFactory.Setup().LoadConfiguration(cfg =>
+                {
+                    cfg.Configuration.AddRuleForAllLevels(wrapper);
+                });
             });
 
-            wrapper.Close(); // will not fail because Initialize() failed
+            logFactory.Shutdown(); // will not fail because Initialize() failed
         }
 
+#if !NETSTANDARD
         [Fact]
+#else
+        [Fact(Skip = "CreateUserIfNotPresent fails with NetCore")]
+#endif
         public void ImpersonatingWrapperNegativeTest2()
         {
+            CreateUserIfNotPresent();
+
             var wrapped = new MyTarget()
             {
-                ExpectedUser = NLogTestUser,
+                ExpectedUser = LocalMachineName + "\\" + NLogTestUser,
             };
 
             LogManager.ThrowExceptions = true;
-
 
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
                 Password = NLogTestUserPassword,
-                Domain = Environment.MachineName,
+                Domain = LocalMachineName,
                 ImpersonationLevel = (SecurityImpersonationLevel)1234,
                 WrappedTarget = wrapped,
             };
 
+            var logFactory = new LogFactory();
+
             Assert.Throws<COMException>(() =>
                 {
-                    wrapper.Initialize(null);
+                    logFactory.Setup().LoadConfiguration(cfg =>
+                    {
+                        cfg.Configuration.AddRuleForAllLevels(wrapper);
+                    });
                 });
 
-            wrapper.Close(); // will not fail because Initialize() failed
-        }
-
-        private WindowsIdentity CreateWindowsIdentity(string username, string domain, string password, SecurityLogOnType logonType, LogOnProviderType logonProviderType, SecurityImpersonationLevel impersonationLevel)
-        {
-            // initialize tokens
-            var existingTokenHandle = IntPtr.Zero;
-            var duplicateTokenHandle = IntPtr.Zero;
-
-            if (!NativeMethods.LogonUser(
-                username,
-                domain,
-                password,
-                (int)logonType,
-                (int)logonProviderType,
-                out existingTokenHandle))
-            {
-                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
-
-            if (!NativeMethods.DuplicateToken(existingTokenHandle, (int)impersonationLevel, out duplicateTokenHandle))
-            {
-                NativeMethods.CloseHandle(existingTokenHandle);
-                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
-
-            // create new identity using new primary token
-            return new WindowsIdentity(duplicateTokenHandle);
-        }
-
-        private static class NativeMethods
-        {
-            // obtains user token
-            [DllImport("advapi32.dll", SetLastError = true)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            internal static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out IntPtr phToken);
-
-            // closes open handles returned by LogonUser
-            [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            internal static extern bool CloseHandle(IntPtr handle);
-
-            // creates duplicate token handle
-            [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            internal static extern bool DuplicateToken(IntPtr existingTokenHandle, int impersonationLevel, out IntPtr duplicateTokenHandle);
-
-            [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool RevertToSelf();
+            logFactory.Shutdown(); // will not fail because Initialize() failed
         }
 
         public class MyTarget : Target
@@ -265,18 +295,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             public List<LogEventInfo> Events { get; set; }
 
             public string ExpectedUser { get; set; }
-
-            protected override void InitializeTarget()
-            {
-                base.InitializeTarget();
-                AssertExpectedUser();
-            }
-
-            protected override void CloseTarget()
-            {
-                base.CloseTarget();
-                AssertExpectedUser();
-            }
 
             protected override void Write(LogEventInfo logEvent)
             {
@@ -302,18 +320,25 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     var windowsIdentity = WindowsIdentity.GetCurrent();
                     Assert.True(windowsIdentity.IsAuthenticated);
-                    Assert.Equal(Environment.MachineName + "\\" + ExpectedUser, windowsIdentity.Name);
+                    Assert.Equal(ExpectedUser, windowsIdentity.Name);
                 }
             }
         }
 
         private void CreateUserIfNotPresent()
         {
-            using (var context = new PrincipalContext(ContextType.Machine, Localhost))
+            if (_userCreated.HasValue)
+                return;
+
+            using (var context = new PrincipalContext(ContextType.Machine, LocalMachineName))
             {
                 if (UserPrincipal.FindByIdentity(context, IdentityType.Name, NLogTestUser) != null)
+                {
+                    _userCreated = false;
                     return;
+                }
 
+#if !NETSTANDARD
                 var user = new UserPrincipal(context);
                 user.SetPassword(NLogTestUserPassword);
                 user.Name = NLogTestUser;
@@ -322,7 +347,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 var group = GroupPrincipal.FindByIdentity(context, "Users");
                 group.Members.Add(user);
                 group.Save();
+#endif
             }
+
+            _userCreated = true;
         }
 
         public void Dispose()
@@ -332,7 +360,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         private void DeleteUser()
         {
-            using (var context = new PrincipalContext(ContextType.Machine, Localhost))
+            using (var context = new PrincipalContext(ContextType.Machine, LocalMachineName))
             using (var up = UserPrincipal.FindByIdentity(context, IdentityType.Name, NLogTestUser))
             {
                 if (up != null)
@@ -341,5 +369,3 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
     }
 }
-
-#endif

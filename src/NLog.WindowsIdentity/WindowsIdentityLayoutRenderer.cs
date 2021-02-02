@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || WindowsIdentityPackage
-
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
@@ -146,5 +144,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif

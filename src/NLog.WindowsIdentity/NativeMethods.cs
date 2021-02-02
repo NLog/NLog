@@ -31,25 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
-namespace NLog.Targets.Wrappers
+namespace NLog.Internal
 {
-    /// <summary>
-    /// Logon provider.
-    /// </summary>
-    public enum LogOnProviderType
+    using System;
+    using System.Runtime.InteropServices;
+
+    internal static class NativeMethods
     {
-        /// <summary>
-        /// Use the standard logon provider for the system.
-        /// </summary>
-        /// <remarks>
-        /// The default security provider is negotiate, unless you pass NULL for the domain name and the user name
-        /// is not in UPN format. In this case, the default provider is NTLM.
-        /// NOTE: Windows 2000/NT:   The default security provider is NTLM.
-        /// </remarks>
-        Default = 0,
+#if NETSTANDARD
+        // obtains user token
+        [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out Microsoft.Win32.SafeHandles.SafeAccessTokenHandle phToken);
+#else
+        // obtains user token
+        [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out IntPtr phToken);
+
+        // closes open handles returned by LogonUser
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool CloseHandle(IntPtr handle);
+
+        // creates duplicate token handle
+        [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool DuplicateToken(IntPtr existingTokenHandle, int impersonationLevel, out IntPtr duplicateTokenHandle);
+#endif
     }
 }
-
-#endif
