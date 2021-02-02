@@ -34,16 +34,34 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>NLog.WindowsIdentity for .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog.WindowsIdentity for .NET Framework 4.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog.WindowsIdentity for .NET Framework 3.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <Title>NLog.WindowsIdentity for NetStandard 1.5</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <DefineConstants>$(DefineConstants);NETSTANDARD1_5;WindowsIdentityPackage</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog.WindowsIdentity for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;WindowsIdentityPackage</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net35' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <PackageReference Include="System.Security.Principal.Windows" Version="4.0.0" />

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -41,7 +39,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -211,7 +208,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
+                if (LogManager.ThrowExceptions)
                     throw;
 
                 InternalLogger.Warn(ex, "PerformanceCounter - Failed to auto detect current process instance.");
@@ -271,5 +268,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif
