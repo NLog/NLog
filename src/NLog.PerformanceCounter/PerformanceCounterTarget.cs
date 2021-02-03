@@ -31,21 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.Targets
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Globalization;
     using System.Linq;
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Increments specified performance counter on each write.
@@ -74,6 +69,7 @@ namespace NLog.Targets
     ///    another counter instance (with dynamic creation of new instance). This could be done with layouts. 
     /// </remarks>
     [Target("PerfCounter")]
+    [Target("PerformanceCounter")]
     public class PerformanceCounterTarget : Target, IInstallable
     {
         private PerformanceCounter perfCounter;
@@ -153,19 +149,29 @@ namespace NLog.Targets
         public void Install(InstallationContext installationContext)
         {
             // categories must be installed together, so we must find all PerfCounter targets in the configuration file
-            var countersByCategory = LoggingConfiguration.AllTargets.OfType<PerformanceCounterTarget>().BucketSort(c => c.CategoryName);
             string categoryName = CategoryName;
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                installationContext.Trace("Blank Category '{0}' cannot be installed.", categoryName);
+                return;
+            }
 
-            if (countersByCategory[categoryName].Any(c => c.created))
+            var countersInCategory = LoggingConfiguration?.AllTargets.OfType<PerformanceCounterTarget>().Where(c => c.CategoryName == categoryName).ToList();
+            if (countersInCategory?.Any(c => c.created)==true)
             {
                 installationContext.Trace("Category '{0}' has already been installed.", categoryName);
                 return;
             }
 
+            if (countersInCategory == null)
+                countersInCategory = new List<PerformanceCounterTarget>(new[] { this });
+            else if (!countersInCategory.Contains(this))
+                countersInCategory.Add(this);
+
             try
             {
                 PerformanceCounterCategoryType categoryType;
-                CounterCreationDataCollection ccds = GetCounterCreationDataCollection(countersByCategory[CategoryName], out categoryType);
+                CounterCreationDataCollection ccds = GetCounterCreationDataCollection(countersInCategory, out categoryType);
 
                 if (PerformanceCounterCategory.Exists(categoryName))
                 {
@@ -183,11 +189,9 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-
-                if (exception.MustBeRethrownImmediately())
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
+
                 if (installationContext.IgnoreFailures)
                 {
                     installationContext.Warning("Error creating category '{0}': {1}", categoryName, exception.Message);
@@ -197,15 +201,10 @@ namespace NLog.Targets
                     installationContext.Error("Error creating category '{0}': {1}", categoryName, exception.Message);
                     throw;
                 }
-
-                if (ExceptionMustBeRethrown(exception))
-                {
-                    throw;
-                }
             }
             finally
             {
-                foreach (var t in countersByCategory[categoryName])
+                foreach (var t in countersInCategory)
                 {
                     t.created = true;
                 }
@@ -323,13 +322,10 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Error(exception, "{0}: Cannot open performance counter {1}/{2}/{3}.", this, CategoryName, CounterName, InstanceName);
-
-                    if (ExceptionMustBeRethrown(exception))
-                    {
+                    if (LogManager.ThrowExceptions)
                         throw;
-                    }
-                    
+
+                    InternalLogger.Error(exception, "{0}: Cannot open performance counter {1}/{2}/{3}.", this, CategoryName, CounterName, InstanceName);
                 }
             }
 
@@ -337,5 +333,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif
