@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -42,7 +40,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -138,9 +135,7 @@ namespace NLog.LayoutRenderers
 #else
                 var rootKey = MapHiveToKey(parseResult.Hive);
 #endif
-
                 {
-
                     if (parseResult.HasSubKey)
                     {
                         using (RegistryKey registryKey = rootKey.OpenSubKey(parseResult.SubKey))
@@ -156,11 +151,10 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Error when writing to registry");
-                if (ex.MustBeRethrown())
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
+                
+                InternalLogger.Error(ex, "Error when reading from registry");
             }
 
             string value = null;
@@ -216,7 +210,6 @@ namespace NLog.LayoutRenderers
 
                 //replace double slashes from pre-layout times
                 subkey = subkey.Replace("\\\\", "\\");
-
             }
             else
             {
@@ -235,7 +228,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Aliases for the hives. See https://msdn.microsoft.com/en-us/library/ctb3kd86(v=vs.110).aspx
         /// </summary>
-        private static readonly Dictionary<string, RegistryHive> HiveAliases = new Dictionary<string, RegistryHive>(StringComparer.InvariantCultureIgnoreCase)
+        private static readonly Dictionary<string, RegistryHive> HiveAliases = new Dictionary<string, RegistryHive>(StringComparer.OrdinalIgnoreCase)
         {
             {"HKEY_LOCAL_MACHINE", RegistryHive.LocalMachine},
             {"HKLM", RegistryHive.LocalMachine},
@@ -244,7 +237,9 @@ namespace NLog.LayoutRenderers
             {"HKEY_CLASSES_ROOT", RegistryHive.ClassesRoot},
             {"HKEY_USERS", RegistryHive.Users},
             {"HKEY_CURRENT_CONFIG", RegistryHive.CurrentConfig},
+#if !NETSTANDARD
             {"HKEY_DYN_DATA", RegistryHive.DynData},
+#endif
             {"HKEY_PERFORMANCE_DATA", RegistryHive.PerformanceData},
         };
 
@@ -276,5 +271,3 @@ namespace NLog.LayoutRenderers
 #endif
     }
 }
-
-#endif

@@ -31,21 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.WindowsRegistry.Tests
 {
     using System;
     using Microsoft.Win32;
     using NLog.Config;
     using Xunit;
 
-    public class RegistryTests : NLogTestBase, IDisposable
+    public sealed class RegistryTests : IDisposable
     {
         private const string TestKey = @"Software\NLogTest";
 
         public RegistryTests()
         {
+            LogManager.ThrowExceptions = true;
+
             var key = Registry.CurrentUser.CreateSubKey(TestKey);
             key.SetValue("Foo", "FooValue");
             key.SetValue(null, "UnnamedValue");
@@ -86,16 +86,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void RegistryNamedValueTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("FooValue",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU\\Software\\NLogTest:value=Foo}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "FooValue");
         }
 
 #if !NET35
@@ -103,31 +100,25 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void RegistryNamedValueTest_hive32()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("reg32",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU\\Software\\NLogTest:value=view32:view=Registry32}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "reg32");
         }
 
         [Fact]
         public void RegistryNamedValueTest_hive64()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("reg64",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU\\Software\\NLogTest:value=view64:view=Registry64}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "reg64");
         }
 
 #endif
@@ -135,192 +126,209 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void RegistryNamedValueTest_forward_slash()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("FooValue",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU/Software/NLogTest:value=Foo}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "FooValue");
         }
 
         [Fact]
         public void RegistryUnnamedValueTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("UnnamedValue",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU\\Software\\NLogTest}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "UnnamedValue");
-
         }
-
 
         [Fact]
         public void RegistryUnnamedValueTest_forward_slash()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("UnnamedValue",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU/Software/NLogTest}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "UnnamedValue");
-
         }
 
         [Fact]
         public void RegistryKeyNotFoundTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("xyz",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU\\Software\\NoSuchKey:defaultValue=xyz}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "xyz");
         }
 
         [Fact]
         public void RegistryKeyNotFoundTest_forward_slash()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("xyz",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU/Software/NoSuchKey:defaultValue=xyz}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "xyz");
         }
 
         [Fact]
         public void RegistryValueNotFoundTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
+            AssertLayoutRendererResult("xyz",
+            @"<nlog>
                 <targets><target name='debug' type='Debug' layout='${registry:key=HKCU\\Software\\NLogTest:value=NoSuchValue:defaultValue=xyz}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", "xyz");
         }
-
 
         [Fact]
         public void RegistryDefaultValueTest()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                //example: 0003: NLog.UnitTests
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=logdefaultvalue}",
-                "logdefaultvalue");
-            }
+            AssertLayoutRendererResult("logdefaultvalue",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=logdefaultvalue}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
 
         [Fact]
         public void RegistryDefaultValueTest_with_colon()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                //example: 0003: NLog.UnitTests
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\:temp}",
-                "C:temp");
-            }
+            AssertLayoutRendererResult("C:temp",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\:temp}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
-
 
         [Fact]
         public void RegistryDefaultValueTest_with_slash()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                //example: 0003: NLog.UnitTests
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C/temp}",
-                "C/temp");
-            }
+            AssertLayoutRendererResult("C/temp",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C/temp}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
 
         [Fact]
         public void RegistryDefaultValueTest_with_foward_slash()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                //example: 0003: NLog.UnitTests
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\\\temp}",
-                "C\\temp");
-            }
+            AssertLayoutRendererResult("C\\temp",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
 
 
         [Fact]
         public void RegistryDefaultValueTest_with_foward_slash2()
         {
-            //example: 0003: NLog.UnitTests
-            using (new NoThrowNLogExceptions())
-            {
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp:requireEscapingSlashesInDefaultValue=false}",
-                "C\\temp");
-            }
+            AssertLayoutRendererResult("C\\temp",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\temp:requireEscapingSlashesInDefaultValue=false}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
 
         [Fact]
         public void Registry_nosubky()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                //example: 0003: NLog.UnitTests
-                AssertLayoutRendererOutput("${registry:key=HKEY_CURRENT_CONFIG}", "");
-            }
+            AssertLayoutRendererResult("",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:key=HKEY_CURRENT_CONFIG}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
 
         [Fact]
         public void RegistryDefaultValueNull()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                //example: 0003: NLog.UnitTests
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT}", "");
-            }
+            AssertLayoutRendererResult("",
+            @"<nlog>
+                <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
         }
 
         [Fact]
         public void RegistryTestWrongKey_no_ex()
         {
-            using (new NoThrowNLogExceptions())
+            try
             {
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", "");
+                LogManager.ThrowExceptions = false;
+                AssertLayoutRendererResult("",
+                @"<nlog>
+                    <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
             }
         }
 
         [Fact]
         public void RegistryTestWrongKey_ex()
         {
-            LogManager.ThrowExceptions = true;
+            try
+            {
+                LogManager.ThrowExceptions = false;
+                AssertLayoutRendererResult("",
+                @"<nlog>
+                    <targets><target name='debug' type='Debug' layout='${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+            }
+        }
 
-            Assert.Throws<ArgumentException>(
-                () => { AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", ""); });
+        private static void AssertLayoutRendererResult(string expectedOuput, string xmlConfig)
+        {
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<NLog.LayoutRenderers.RegistryLayoutRenderer>("registry")).
+                LoadConfigurationFromXml(xmlConfig).LogFactory;
+            var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+
+            logFactory.GetCurrentClassLogger().Debug("zzz");
+
+            Assert.Equal(expectedOuput, debugTarget.LastMessage);
         }
     }
 }
-
-#endif
