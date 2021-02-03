@@ -69,31 +69,31 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the performance counter instance (e.g. this.Global_).
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        public string Instance
+        public Layout Instance
         {
-            get { return _instance?.Text; }
+            get { return _instance; }
             set
             {
-                _instance = value != null ? new SimpleLayout(value) : null;
+                _instance = value;
                 ResetPerformanceCounters();
             }
         }
-        private SimpleLayout _instance;
+        private Layout _instance;
 
         /// <summary>
         /// Gets or sets the name of the machine to read the performance counter from.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        public string MachineName
+        public Layout MachineName
         {
-            get { return _machineName?.Text; }
+            get { return _machineName; }
             set
             {
-                _machineName = value != null ? new SimpleLayout(value) : null;
+                _machineName = value;
                 ResetPerformanceCounters();
             }
         }
-        private SimpleLayout _machineName;
+        private Layout _machineName;
 
         /// <summary>
         /// Format string for conversion from float to string.
@@ -112,7 +112,7 @@ namespace NLog.LayoutRenderers
         {
             base.InitializeLayoutRenderer();
 
-            if (_instance == null && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
+            if (ReferenceEquals(_instance, null) && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
             {
                 _instance = GetCurrentProcessInstanceName(Category) ?? string.Empty;
             }
@@ -159,7 +159,7 @@ namespace NLog.LayoutRenderers
 
             var perfCounter = CreatePerformanceCounter(machineName, instanceName);
             perfCounterCached = new PerformanceCounterCached(machineName, instanceName, perfCounter);
-            if ((_machineName?.Text == null || _machineName.IsFixedText) && (_instance?.Text == null || _instance.IsFixedText))
+            if ((ReferenceEquals(_machineName, null) || (_machineName as SimpleLayout)?.IsFixedText==true) && (ReferenceEquals(_instance, null) || (_instance as SimpleLayout)?.IsFixedText == true))
             {
                 _fixedPerformanceCounter = perfCounterCached;
             }
