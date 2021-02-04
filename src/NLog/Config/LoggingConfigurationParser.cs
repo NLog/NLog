@@ -1301,7 +1301,9 @@ namespace NLog.Config
         {
             try
             {
-                return Convert.ToBoolean(value?.Trim(), CultureInfo.InvariantCulture);
+                string expandedValue;
+                ExpandSimpleVariables(value, out expandedValue);
+                return Convert.ToBoolean(expandedValue?.Trim(), CultureInfo.InvariantCulture);
             }
             catch (Exception exception)
             {
