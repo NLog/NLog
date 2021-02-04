@@ -43,6 +43,7 @@ create-package('NLog.SmtpClient')
 create-package('NLog.Wcf')
 create-package('NLog.WindowsEventLog')
 create-package('NLog.WindowsIdentity')
+create-package('NLog.WindowsRegistry')
 
 msbuild /t:xsd /t:NuGetSchemaPackage /t:NuGetConfigPackage .\src\NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
 
