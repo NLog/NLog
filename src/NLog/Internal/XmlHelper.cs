@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.Globalization;
     using System.Text;
-    using System.Text.RegularExpressions;
     using System.Xml;
 
     /// <summary>
@@ -47,9 +46,9 @@ namespace NLog.Internal
         // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
         // filters control characters but allows only properly-formed surrogate sequences
 #if NET35 || NETSTANDARD1_3 || NETSTANDARD1_5
-        private static readonly Regex InvalidXmlChars = new Regex(
+        private static readonly System.Text.RegularExpressions.Regex InvalidXmlChars = new System.Text.RegularExpressions.Regex(
             @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
-            RegexOptions.Compiled);
+            System.Text.RegularExpressions.RegexOptions.Compiled);
 #endif
 
         /// <summary>
@@ -61,12 +60,17 @@ namespace NLog.Internal
                 return string.Empty;
 
 #if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
-            for (int i = 0; i < text.Length; ++i)
+            int length = text.Length;
+            for (int i = 0; i < length; ++i)
             {
                 char ch = text[i];
-                if (!XmlConvert.IsXmlChar(ch))
+                if (!XmlConvert.IsXmlChar(ch) && !(i + 1 < text.Length && XmlConvert.IsXmlSurrogatePair(text[i + 1], text[i])))
                 {
                     return CreateValidXmlString(text);   // rare expensive case
+                }
+                else 
+                {
+                    ++i;
                 }
             }
             return text;
@@ -220,13 +224,14 @@ namespace NLog.Internal
         ///  - Element names cannot contain spaces
         /// </summary>
         /// <param name="xmlElementName"></param>
-        /// <param name="allowNamespace"></param>
-        internal static string XmlConvertToElementName(string xmlElementName, bool allowNamespace)
+        internal static string XmlConvertToElementName(string xmlElementName)
         {
             if (string.IsNullOrEmpty(xmlElementName))
                 return xmlElementName;
 
             xmlElementName = RemoveInvalidXmlChars(xmlElementName);
+
+            bool allowNamespace = true;
 
             StringBuilder sb = null;
             for (int i = 0; i < xmlElementName.Length; ++i)
@@ -277,7 +282,7 @@ namespace NLog.Internal
 
                 if (sb == null)
                 {
-                    sb = CreateStringBuilder(i);
+                    sb = CreateStringBuilder(xmlElementName, i);
                 }
                 sb.Append('_');
                 if (includeChr)
@@ -287,11 +292,11 @@ namespace NLog.Internal
             sb?.TrimRight();
             return sb?.ToString() ?? xmlElementName;
 
-            StringBuilder CreateStringBuilder(int i)
+            StringBuilder CreateStringBuilder(string orgValue, int i)
             {
-                var sb2 = new StringBuilder(xmlElementName.Length);
+                var sb2 = new StringBuilder(orgValue.Length);
                 if (i > 0)
-                    sb2.Append(xmlElementName, 0, i);
+                    sb2.Append(orgValue, 0, i);
                 return sb2;
             }
         }
@@ -300,8 +305,8 @@ namespace NLog.Internal
         {
             try
             {
-                IConvertible convertibleValue = value as IConvertible;
-                TypeCode objTypeCode = value == null ? TypeCode.Empty : (convertibleValue?.GetTypeCode() ?? TypeCode.Object);
+                var convertibleValue = value as IConvertible;
+                var objTypeCode = convertibleValue?.GetTypeCode() ?? (value == null ? TypeCode.Empty : TypeCode.Object);
                 if (objTypeCode != TypeCode.Object)
                 {
                     return XmlConvertToString(convertibleValue, objTypeCode, safeConversion);
@@ -377,19 +382,6 @@ namespace NLog.Internal
                 default:
                     return XmlConvertToStringInvariant(value, safeConversion);
             }
-        }
-
-        /// <summary>
-        /// Safe version of WriteAttributeString
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="prefix"></param>
-        /// <param name="localName"></param>
-        /// <param name="ns"></param>
-        /// <param name="value"></param>
-        public static void WriteAttributeSafeString(this XmlWriter writer, string prefix, string localName, string ns, string value)
-        {
-            writer.WriteAttributeString(prefix, localName, ns, RemoveInvalidXmlChars(value));
         }
 
         /// <summary>

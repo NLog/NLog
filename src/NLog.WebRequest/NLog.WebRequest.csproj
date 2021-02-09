@@ -3,11 +3,11 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46;net45;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.WCF for .NET Standard and .NetFramework</Title>
+    <Title>NLog.WebRequest for .NET Standard and .NetFramework</Title>
     <Company>NLog</Company>
-    <Description>NLog.WCF ServiceModel provides LogReceiverService target and the WCF contract interfaces/implementations for NetStandard</Description>
+    <Description>NLog.WebRequest includes WebServiceTarget for making SOAP calls using HTTP and HTTPS requests.</Description>
     <Product>NLog WCF v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
@@ -16,9 +16,9 @@
 
     <PackageReleaseNotes>
       Docs:
-      https://github.com/NLog/NLog/wiki/LogReceiverService-target
+      https://github.com/NLog/NLog/wiki/WebService-target
     </PackageReleaseNotes>
-    <PackageTags>NLog;WCF;ServiceModel;logging;log</PackageTags>
+    <PackageTags>NLog;WebService;Soap;Soap2;WebRequest;HttpRequest;http;https;logging;log</PackageTags>
     <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
@@ -35,61 +35,43 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Title>NLog.Wcf for .NET Framework 4.6</Title>
+    <Title>NLog.WebRequest for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.Wcf for .NET Framework 4.5</Title>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
- 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Title>NLog.Wcf for .NET Framework 3.5</Title>
+    <Title>NLog.WebRequest for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <Title>NLog.Wcf for NetStandard 1.3</Title>
+    <Title>NLog.WebRequest for NetStandard 1.3</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
-    <Title>NLog.Wcf for NetStandard 1.5</Title>
+    <Title>NLog.WebRequest for NetStandard 1.5</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <Title>NLog.Wcf for NetStandard 2.0</Title>
+    <Title>NLog.WebRequest for NetStandard 2.0</Title>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net35' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net45' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' or '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="System.ServiceModel.Duplex" Version="4.0.1" />
-    <PackageReference Include="System.ServiceModel.Http" Version="4.1.0" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.1.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.1.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.0.1" />
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.0.11" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Http" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>

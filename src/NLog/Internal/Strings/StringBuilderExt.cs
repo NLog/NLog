@@ -220,29 +220,19 @@ namespace NLog.Internal
         /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
         public static void CopyToStream(this StringBuilder builder, MemoryStream ms, Encoding encoding, char[] transformBuffer)
         {
-            if (transformBuffer != null)
+            int charCount;
+            int byteCount = encoding.GetMaxByteCount(builder.Length);
+            ms.SetLength(ms.Position + byteCount);
+            for (int i = 0; i < builder.Length; i += transformBuffer.Length)
             {
-                int charCount;
-                int byteCount = encoding.GetMaxByteCount(builder.Length);
-                ms.SetLength(ms.Position + byteCount);
-                for (int i = 0; i < builder.Length; i += transformBuffer.Length)
-                {
-                    charCount = Math.Min(builder.Length - i, transformBuffer.Length);
-                    builder.CopyTo(i, transformBuffer, 0, charCount);
-                    byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
-                    ms.Position += byteCount;
-                }
-                if (ms.Position != ms.Length)
-                {
-                    ms.SetLength(ms.Position);
-                }
+                charCount = Math.Min(builder.Length - i, transformBuffer.Length);
+                builder.CopyTo(i, transformBuffer, 0, charCount);
+                byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
+                ms.Position += byteCount;
             }
-            else
+            if (ms.Position != ms.Length)
             {
-                // Faster than MemoryStream, but generates garbage
-                var str = builder.ToString();
-                byte[] bytes = encoding.GetBytes(str);
-                ms.Write(bytes, 0, bytes.Length);
+                ms.SetLength(ms.Position);
             }
         }
 
@@ -452,14 +442,12 @@ namespace NLog.Internal
 
         private static void AppendDecimalInvariant(StringBuilder sb, decimal decimalValue)
         {
-#if !SILVERLIGHT
             if (Math.Truncate(decimalValue) == decimalValue && decimalValue > int.MinValue && decimalValue < int.MaxValue)
             {
                 sb.AppendInvariant(Convert.ToInt32(decimalValue));
                 sb.Append(".0");
             }
             else
-#endif
             {
                 sb.Append(XmlHelper.XmlConvertToString(decimalValue));
             }
@@ -471,13 +459,11 @@ namespace NLog.Internal
             {
                 sb.Append(XmlHelper.XmlConvertToString(doubleValue));
             }
-#if !SILVERLIGHT
             else if (Math.Truncate(doubleValue) == doubleValue && doubleValue > int.MinValue && doubleValue < int.MaxValue)
             {
                 sb.AppendInvariant(Convert.ToInt32(doubleValue));
                 sb.Append(".0");
             }
-#endif
             else
             {
                 sb.Append(XmlHelper.XmlConvertToString(doubleValue));
@@ -490,13 +476,11 @@ namespace NLog.Internal
             {
                 sb.Append(XmlHelper.XmlConvertToString(floatValue));
             }
-#if !SILVERLIGHT
             else if (Math.Truncate(floatValue) == floatValue && floatValue > int.MinValue && floatValue < int.MaxValue)
             {
                 sb.AppendInvariant(Convert.ToInt32(floatValue));
                 sb.Append(".0");
             }
-#endif
             else
             {
                 sb.Append(XmlHelper.XmlConvertToString(floatValue));

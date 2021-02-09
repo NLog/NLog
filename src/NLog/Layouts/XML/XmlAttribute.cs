@@ -75,7 +75,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='XML Attribute Options' order='10' />
         [RequiredParameter]
-        public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
+        public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim()); }
         private string _name;
 
         /// <summary>
