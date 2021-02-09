@@ -363,13 +363,13 @@ namespace NLog.LayoutRenderers
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
-                        string propertyValue = XmlHelper.XmlConvertToString(scopeProperty.Value);
+                        string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
                         if (propertyValue == null)
                             continue;
 
                         xtw.WriteStartElement(prefix, "data", propertiesNamespace);
                         xtw.WriteAttributeSafeString("name", scopeProperty.Key);
-                        xtw.WriteAttributeSafeString("value", propertyValue);
+                        xtw.WriteAttributeString("value", propertyValue);
                         xtw.WriteEndElement();
                     }
                 }
@@ -450,17 +450,17 @@ namespace NLog.LayoutRenderers
             {
                 foreach (var contextProperty in logEvent.Properties)
                 {
-                    string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
+                    string propertyKey = XmlHelper.XmlConvertToStringSafe(contextProperty.Key);
                     if (string.IsNullOrEmpty(propertyKey))
                         continue;
 
-                    string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
+                    string propertyValue = XmlHelper.XmlConvertToStringSafe(contextProperty.Value);
                     if (propertyValue == null)
                         continue;
 
                     xtw.WriteStartElement(prefix, "data", propertiesNamespace);
-                    xtw.WriteAttributeSafeString("name", propertyKey);
-                    xtw.WriteAttributeSafeString("value", propertyValue);
+                    xtw.WriteAttributeString("name", propertyKey);
+                    xtw.WriteAttributeString("value", propertyValue);
                     xtw.WriteEndElement();
                 }
             }

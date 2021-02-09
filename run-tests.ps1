@@ -28,6 +28,10 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
+	dotnet test ./tests/NLog.WebRequest.Tests/ --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
 	dotnet test ./tests/NLog.WindowsIdentity.Tests/ --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }

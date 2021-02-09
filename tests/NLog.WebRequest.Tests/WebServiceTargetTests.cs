@@ -37,55 +37,28 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using NLog.Internal;
-using NLog.Targets;
-using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using NLog.Config;
 #if !NETSTANDARD
 using System.Collections.Concurrent;
 using System.Web.Http;
-using Owin;
-using Microsoft.Owin.Hosting;
 using System.Web.Http.Dependencies;
+using Microsoft.Owin.Hosting;
+using Owin;
 #endif
+using NLog.Targets;
+using NLog.Config;
 using Xunit;
 
-namespace NLog.UnitTests.Targets
+namespace NLog.WebRequest.Tests
 {
-    public class WebServiceTargetTests : NLogTestBase
+    public class WebServiceTargetTests
     {
-        [Fact]
-        public void Stream_CopyWithOffset_test()
+        public WebServiceTargetTests()
         {
-            var text = @"
-
-Lorem ipsum dolor sit amet consectetuer tellus semper dictum urna consectetuer. Eu iaculis enim tincidunt mi pede id ut sociis non vitae. Condimentum augue Nam Vestibulum faucibus tortor et at Sed et molestie. Interdum morbi Nullam pellentesque Vestibulum pede et eget semper Pellentesque quis. Velit cursus nec dolor vitae id et urna quis ante velit. Neque urna et vitae neque Vestibulum tellus convallis dui.
-
-Tellus nibh enim augue senectus ut augue Donec Pellentesque Sed pretium. Volutpat nunc rutrum auctor dolor pharetra malesuada elit sapien ac nec. Adipiscing et id penatibus turpis a odio risus orci Suspendisse eu. Nibh eu facilisi eu consectetuer nibh eu in Nunc Curabitur rutrum. Quisque sit lacus consectetuer eu Duis quis felis hendrerit lobortis mauris. Nam Vivamus enim Aenean rhoncus.
-
-Nulla tellus dui orci montes Vestibulum Aenean condimentum non id vel. Euismod Nam libero odio ut ut Nunc ac dui Nulla volutpat. Quisque facilisis consequat tempus tempus Curabitur tortor id Phasellus Suspendisse In. Lorem et Phasellus wisi Fusce fringilla pretium pede sapien amet ligula. In sed id In eget tristique quam sed interdum wisi commodo. Volutpat neque nibh mauris Quisque lorem nunc porttitor Cras faucibus augue. Sociis tempus et.
-
-Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrerit. Enim at laoreet elit eros ut at laoreet vel velit quis. Netus sed Suspendisse sed Curabitur vel sed wisi sapien nonummy congue. Semper Sed a malesuada tristique Vivamus et est eu quis ante. Wisi cursus Suspendisse dictum pretium habitant sodales scelerisque dui tempus libero. Venenatis consequat Lorem eu.
-
-
-
-";
-
-            var textStream = GenerateStreamFromString(text);
-            var textBytes = StreamToBytes(textStream);
-
-            textStream.Position = 0;
-            textStream.Flush();
-
-            var resultStream = new MemoryStream();
-            textStream.CopyWithOffset(resultStream, 3);
-            var result = StreamToBytes(resultStream);
-            var expected = textBytes.Skip(3).ToArray();
-            Assert.Equal(result.Length, expected.Length);
-            Assert.Equal(result, expected);
+            LogManager.ThrowExceptions = true;
         }
 
         [Fact]
@@ -108,7 +81,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         private void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml(@"
                 <nlog>
 <targets>
     <target type='WebService'
@@ -126,9 +101,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         <parameter name='level' type='System.String' layout='${level}'/>
     </target>
 </targets>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var target = configuration.FindTargetByName("webservice") as WebServiceTarget;
+            var target = logFactory.Configuration.FindTargetByName("webservice") as WebServiceTarget;
             Assert.NotNull(target);
 
             Assert.Equal(6, target.Parameters.Count);
@@ -136,7 +111,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal("utf-8", target.Encoding.WebName);
 
             //async call with mockup stream
-            WebRequest webRequest = WebRequest.Create("http://www.test.com");
+            var webRequest = System.Net.WebRequest.Create("http://www.test.com");
             var httpWebRequest = (HttpWebRequest)webRequest;
             var streamMock = new StreamMock();
 
@@ -158,7 +133,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var bytes = streamMock.bytes;
             var url = streamMock.stringed;
 
-            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3a15%3a14.6348&logger=TestClient.Program&level=Debug";
+            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3A15%3A14.6348&logger=TestClient.Program&level=Debug";
             Assert.Equal(expectedUrl, url);
 
             Assert.True(bytes.Length > 3);
@@ -167,40 +142,14 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var possbleBomBytes = bytes.Take(3).ToArray();
             if (includeBom)
             {
-                Assert.Equal(possbleBomBytes, EncodingHelpers.Utf8BOM);
+                Assert.Equal(possbleBomBytes, System.Text.Encoding.UTF8.GetPreamble());
             }
             else
             {
-                Assert.NotEqual(possbleBomBytes, EncodingHelpers.Utf8BOM);
+                Assert.NotEqual(possbleBomBytes, System.Text.Encoding.UTF8.GetPreamble());
             }
 
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
-        }
-
-        private Stream GenerateStreamFromString(string s)
-        {
-            MemoryStream stream = new MemoryStream();
-            StreamWriter writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
-        }
-
-        private static byte[] StreamToBytes(Stream stream)
-        {
-            stream.Flush();
-            stream.Position = 0;
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
         }
 
         /// <summary>
@@ -247,7 +196,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_restapi_httppost()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -263,11 +214,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var context = new LogMeController.TestContext();
             context.ResetState(2);
@@ -293,7 +242,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_restapi_httpget()
         {
             string wsAddress = getNewWsAddress();
-            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme");
+            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme").GetCurrentClassLogger();
 
             var context = new LogMeController.TestContext();
             context.ResetState(2);
@@ -319,7 +268,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_restapi_httpget_flush()
         {
             string wsAddress = getNewWsAddress();
-            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme");
+            var logFactory = SetUpHttpGetWebservice(wsAddress, "api/logme");
+            var logger = logFactory.GetCurrentClassLogger();
 
             var context = new LogMeController.TestContext();
             context.ResetState(0);
@@ -337,8 +287,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
                 catch (NLogRuntimeException)
                 { }
-                LogManager.Flush(); // Waits for flush (Scheduled on top of the previous flush)
-                LogManager.Flush(); // Nothing to flush
+                logFactory.Flush(); // Waits for flush (Scheduled on top of the previous flush)
+                logFactory.Flush(); // Nothing to flush
             });
 
             Assert.Equal(100, context.ReceivedLogsGetParam1.Count);
@@ -348,7 +298,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebServiceTest_restapi_httpget_querystring()
         {
             string wsAddress = getNewWsAddress();
-            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme?paramFromConfig=valueFromConfig");
+            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme?paramFromConfig=valueFromConfig").GetCurrentClassLogger();
 
             var context = new LogMeController.TestContext();
             context.ResetState(1);
@@ -363,9 +313,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             CheckQueueMessage("another message", context.ReceivedLogsGetParam1);
         }
 
-        private static Logger SetUpHttpGetWebservice(string wsAddress, string relativeUrl)
+        private static LogFactory SetUpHttpGetWebservice(string wsAddress, string relativeUrl)
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='WebService'
@@ -381,12 +333,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
-
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
-            return logger;
+                </nlog>").LogFactory;
+            return logFactory;
         }
 
         private static void CheckQueueMessage(string message1, ConcurrentBag<string> receivedLogsGetParam1)
@@ -394,7 +342,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var success = receivedLogsGetParam1.Contains(message1);
             Assert.True(success, $"message '{message1}' not found");
         }
-
 
         /// <summary>
         /// Timeout for <see cref="WebserviceTest_restapi_httppost_checkingLost"/>.
@@ -412,7 +359,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -428,38 +377,33 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
+            var logger = logFactory.GetCurrentClassLogger();
 
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            const int messageCount = 1000;
+            var createdMessages = new List<string>(messageCount);
 
-            RetryingIntegrationTest(3, () =>
+            for (int i = 0; i < messageCount; i++)
             {
-                const int messageCount = 1000;
-                var createdMessages = new List<string>(messageCount);
+                var message = "message " + i;
+                createdMessages.Add(message);
+            }
 
-                for (int i = 0; i < messageCount; i++)
+            //reset
+            var context = new LogMeController.TestContext();
+            context.ResetState(messageCount);
+
+            StartOwinTest(wsAddress, context, () =>
+            {
+                foreach (var createdMessage in createdMessages)
                 {
-                    var message = "message " + i;
-                    createdMessages.Add(message);
+                    logger.Info(createdMessage);
                 }
-
-                //reset
-                var context = new LogMeController.TestContext();
-                context.ResetState(messageCount);
-
-                StartOwinTest(wsAddress, context, () =>
-                {
-                    foreach (var createdMessage in createdMessages)
-                    {
-                        logger.Info(createdMessage);
-                    }
-                });
-
-                Assert.Equal(0, context.CountdownEvent.CurrentCount);
-                Assert.Equal(createdMessages.Count, context.ReceivedLogsPostParam1.Count);
             });
+
+            Assert.Equal(0, context.CountdownEvent.CurrentCount);
+            Assert.Equal(createdMessages.Count, context.ReceivedLogsPostParam1.Count);
         }
 
         /// <summary>
@@ -469,7 +413,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_restapi_json()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -488,11 +434,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
             var count = 101;
@@ -515,7 +459,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_restapi_xml()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -534,11 +480,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "message 1 with a XML POST<hello><again\\>\"";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 101;
@@ -547,7 +491,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             StartOwinDocTest(wsAddress, context, () =>
             {
                 for (int i = 0; i < count; i++)
-                    logger.Info(txt + "\b");    // Lets tease the Xml-Serializer, and see it can remove invalid chars
+                    logger.Info(txt);
             });
 
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
@@ -560,7 +504,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_soap11_default_soapaction()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -579,11 +525,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 1;
@@ -608,7 +552,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_soap11_custom_soapaction()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -628,10 +574,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 1;
@@ -656,7 +601,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public void WebserviceTest_soap12_default_soapaction()
         {
             string wsAddress = getNewWsAddress();
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -675,11 +622,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 1;

@@ -61,7 +61,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.PerformanceCounter.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsRegistry", "NLog.WindowsRegistry\NLog.WindowsRegistry.csproj", "{BFE365AA-A01F-4E8B-B540-3F8DF0466CE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.WindowsRegistry.Tests", "..\tests\NLog.WindowsRegistry.Tests\NLog.WindowsRegistry.Tests.csproj", "{1648106F-CD67-4009-878B-96B5D2369B6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsRegistry.Tests", "..\tests\NLog.WindowsRegistry.Tests\NLog.WindowsRegistry.Tests.csproj", "{1648106F-CD67-4009-878B-96B5D2369B6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WebRequest", "NLog.WebRequest\NLog.WebRequest.csproj", "{0825BDD9-FE6D-4D12-B137-C865D30DBE1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.WebRequest.Tests", "..\tests\NLog.WebRequest.Tests\NLog.WebRequest.Tests.csproj", "{08FB14AF-71F2-4EE6-AC68-36F490894912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,6 +149,14 @@ Global
 		{1648106F-CD67-4009-878B-96B5D2369B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1648106F-CD67-4009-878B-96B5D2369B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1648106F-CD67-4009-878B-96B5D2369B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0825BDD9-FE6D-4D12-B137-C865D30DBE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0825BDD9-FE6D-4D12-B137-C865D30DBE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0825BDD9-FE6D-4D12-B137-C865D30DBE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0825BDD9-FE6D-4D12-B137-C865D30DBE1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08FB14AF-71F2-4EE6-AC68-36F490894912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FB14AF-71F2-4EE6-AC68-36F490894912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FB14AF-71F2-4EE6-AC68-36F490894912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FB14AF-71F2-4EE6-AC68-36F490894912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +179,8 @@ Global
 		{4F298FBF-A2E8-45E2-ADE5-056EEDF2C611} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 		{BFE365AA-A01F-4E8B-B540-3F8DF0466CE6} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 		{1648106F-CD67-4009-878B-96B5D2369B6C} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{0825BDD9-FE6D-4D12-B137-C865D30DBE1C} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{08FB14AF-71F2-4EE6-AC68-36F490894912} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B4C8E9F-1E2F-4AB3-993A-8776CFA08DC0}
