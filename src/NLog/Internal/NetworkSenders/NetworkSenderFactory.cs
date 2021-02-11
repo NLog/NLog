@@ -34,8 +34,6 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
-    using System.IO;
-    using System.Net;
     using System.Net.Sockets;
 
     /// <summary>
