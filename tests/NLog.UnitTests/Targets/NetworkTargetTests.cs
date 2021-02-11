@@ -926,6 +926,25 @@ namespace NLog.UnitTests.Targets
             logger.Info("Hello");
         }
 
+        [Fact]
+        public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
+        {
+            // this would fail because of stack overflow in the 
+            // constructor of NLogViewerTarget
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog>
+  <targets>
+    <target name='viewer' type='NLogViewer' address='udp://127.0.0.1:9999' />
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='viewer' />
+  </rules>
+</nlog>");
+
+            var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
+            Assert.NotNull(target);
+        }
+
         internal class MySenderFactory : INetworkSenderFactory
         {
             internal List<MyNetworkSender> Senders = new List<MyNetworkSender>();

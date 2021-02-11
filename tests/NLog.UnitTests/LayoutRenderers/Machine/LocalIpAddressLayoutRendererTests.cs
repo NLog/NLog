@@ -44,6 +44,7 @@ using Xunit;
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
+    using NLog.Internal;
 
     public class LocalIpAddressLayoutRendererTests : NLogTestBase
     {

@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The IP address from the network interface card (NIC) on the local machine

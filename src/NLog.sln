@@ -65,7 +65,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsRegistry.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WebRequest", "NLog.WebRequest\NLog.WebRequest.csproj", "{0825BDD9-FE6D-4D12-B137-C865D30DBE1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.WebRequest.Tests", "..\tests\NLog.WebRequest.Tests\NLog.WebRequest.Tests.csproj", "{08FB14AF-71F2-4EE6-AC68-36F490894912}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WebRequest.Tests", "..\tests\NLog.WebRequest.Tests\NLog.WebRequest.Tests.csproj", "{08FB14AF-71F2-4EE6-AC68-36F490894912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
