@@ -81,7 +81,10 @@ namespace NLog.LayoutRenderers
         {
             return TryLookupValue(() => Environment.GetEnvironmentVariable("HOSTNAME"), "HOSTNAME")
                 ?? TryLookupValue(() => System.Net.Dns.GetHostName(), "DnsHostName")
-                ?? TryLookupValue(() => EnvironmentHelper.GetMachineName(), "MachineName");
+#if !NETSTANDARD1_3
+                ?? TryLookupValue(() => Environment.MachineName, "MachineName")
+#endif
+                ?? TryLookupValue(() => Environment.GetEnvironmentVariable("MACHINENAME"), "MachineName");
         }
 
         /// <summary>
