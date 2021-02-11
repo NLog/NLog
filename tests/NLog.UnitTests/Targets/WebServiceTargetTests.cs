@@ -52,7 +52,7 @@ using NLog.Targets;
 using NLog.Config;
 using Xunit;
 
-namespace NLog.WebRequest.Tests
+namespace NLog.UnitTests.Targets
 {
     public class WebServiceTargetTests
     {
@@ -133,7 +133,7 @@ namespace NLog.WebRequest.Tests
             var bytes = streamMock.bytes;
             var url = streamMock.stringed;
 
-            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3A15%3A14.6348&logger=TestClient.Program&level=Debug";
+            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3a15%3a14.6348&logger=TestClient.Program&level=Debug";
             Assert.Equal(expectedUrl, url);
 
             Assert.True(bytes.Length > 3);
