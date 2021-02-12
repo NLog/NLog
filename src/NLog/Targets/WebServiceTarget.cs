@@ -42,6 +42,7 @@ namespace NLog.Targets
     using System.Xml;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -196,7 +197,6 @@ namespace NLog.Targets
         /// </summary>
         /// <value>A value of <c>true</c> if Rfc3986; otherwise, <c>false</c> for legacy Rfc2396.</value>
         /// <docgen category='Web Service Options' order='100' />
-        [Obsolete("Replaced by WebUtility.UrlEncode. Marked obsolete in NLog 5.0")]
         public bool EscapeDataRfc3986 { get; set; }
 
         /// <summary>
@@ -204,7 +204,6 @@ namespace NLog.Targets
         /// </summary>
         /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
         /// <docgen category='Web Service Options' order='100' />
-        [Obsolete("Replaced by WebUtility.UrlEncode. Marked obsolete in NLog 5.0")]
         public bool EscapeDataNLogLegacy { get; set; }
 
         /// <summary>
@@ -237,11 +236,7 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='100' />
         public bool PreAuthenticate { get; set; }
 
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
-        private IJsonConverter _jsonConverter;
-
-        private long _pendingWriteOperations;
-        private Action _pendingFlushOperation;
+        private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -352,7 +347,7 @@ namespace NLog.Targets
                 postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
             }
 
-            System.Threading.Interlocked.Increment(ref _pendingWriteOperations);
+            _pendingManualFlushList.BeginOperation();
 
             try
             {
@@ -367,10 +362,12 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (LogManager.ThrowExceptions)
-                    throw;
-
                 InternalLogger.Error(ex, "{0}: Error starting request", this);
+                if (ExceptionMustBeRethrown(ex))
+                {
+                    throw;
+                }
+
                 DoInvokeCompleted(continuation, ex);
             }
         }
@@ -392,6 +389,11 @@ namespace NLog.Targets
                     catch (Exception ex)
                     {
                         InternalLogger.Error(ex, "{0}: Error receiving response", this);
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+
                         DoInvokeCompleted(continuation, ex);
                     }
                 },
@@ -417,6 +419,11 @@ namespace NLog.Targets
                     catch (Exception ex)
                     {
                         InternalLogger.Error(ex, "{0}: Error sending payload", this);
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+
                         postPayload.Dispose();
                         DoInvokeCompleted(continuation, ex);
                     }
@@ -425,8 +432,7 @@ namespace NLog.Targets
 
         private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
         {
-            System.Threading.Interlocked.Decrement(ref _pendingWriteOperations);
-            _pendingFlushOperation?.Invoke();
+            _pendingManualFlushList.CompleteOperation(ex);
             continuation(ex);
         }
 
@@ -436,27 +442,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            var pendingWriteOperations = System.Threading.Interlocked.Read(ref _pendingWriteOperations);
-            if (pendingWriteOperations <= 0)
-            {
-                asyncContinuation?.Invoke(null);
-            }
-            else
-            {
-                var pendingFlushOperation = _pendingFlushOperation;
-                Action newPendingFlushOperation = null;
-                newPendingFlushOperation = () =>
-                {
-                    pendingFlushOperation?.Invoke();
-                    if (System.Threading.Interlocked.Decrement(ref pendingWriteOperations) == 0)
-                    {
-                        System.Threading.Interlocked.CompareExchange(ref _pendingFlushOperation, null, newPendingFlushOperation);
-                        asyncContinuation.Invoke(null);
-                    }
-                };
-
-                _pendingFlushOperation = newPendingFlushOperation;
-            }
+            _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
         }
 
         /// <summary>
@@ -464,8 +450,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            _pendingFlushOperation = null;  // Maybe consider to wait a short while if pending requests?
-            _pendingWriteOperations = 0;
+            _pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
             base.CloseTarget();
         }
 
@@ -480,9 +465,15 @@ namespace NLog.Targets
                 return uri;
             }
 
-            StringBuilder sb = new StringBuilder();
-            BuildWebServiceQueryParameters(parameterValues, sb);
-            var queryParameters = sb.ToString();
+            //if the protocol is HttpGet, we need to add the parameters to the query string of the url
+            string queryParameters;
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            {
+                StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+                BuildWebServiceQueryParameters(parameterValues, sb, encodingOptions);
+                queryParameters = sb.ToString();
+            }
 
             var builder = new UriBuilder(uri);
             //append our query string to the URL following 
@@ -513,7 +504,7 @@ namespace NLog.Targets
             return prevUri;
         }
 
-        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb)
+        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingOptions encodingOptions)
         {
             string separator = string.Empty;
             for (int i = 0; i < Parameters.Count; i++)
@@ -521,28 +512,13 @@ namespace NLog.Targets
                 sb.Append(separator);
                 sb.Append(Parameters[i].Name);
                 sb.Append("=");
-                AppendParameterAsString(parameterValues[i], sb);
+                string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
+                if (!string.IsNullOrEmpty(parameterValue))
+                {
+                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingOptions);
+                }
                 separator = "&";
             }
-        }
-
-        private void AppendParameterAsString(object parameterValue, StringBuilder sb)
-        {
-            var parameterObject = parameterValue as IConvertible;
-            if (parameterObject != null)
-            {
-                switch (parameterObject.GetTypeCode())
-                {
-                    case TypeCode.DateTime: sb.Append(XmlConvert.ToString(parameterObject.ToDateTime(System.Globalization.CultureInfo.InvariantCulture), XmlDateTimeSerializationMode.RoundtripKind)); return;
-                    case TypeCode.Object: break;
-                    case TypeCode.String: break;
-                    case TypeCode.Char: break;
-                    default: JsonConverter.SerializeObject(parameterValue, sb); return;
-                }
-            }
-
-            var parameterString = Convert.ToString(parameterValue, System.Globalization.CultureInfo.InvariantCulture);
-            sb.Append(WebUtility.UrlEncode(parameterString));
         }
 
         private void PrepareGetRequest(HttpWebRequest webRequest)
@@ -571,22 +547,10 @@ namespace NLog.Targets
                 nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
             }
 
-            var byteArray = GetBuffer(postPayload);
+            var byteArray = postPayload.GetBuffer();
             int offset = nothingToDo ? 0 : preambleSize;
             output.Write(byteArray, offset, (int)postPayload.Length - offset);
-        }
 
-        private static byte[] GetBuffer(MemoryStream memoryStream)
-        {
-#if NETSTANDARD1_3 || NETSTANDARD1_5
-                if (memoryStream.TryGetBuffer(out var bytes))
-                {
-                    return bytes.Array;
-                }
-                return memoryStream.ToArray();
-#else
-            return memoryStream.GetBuffer();
-#endif
         }
 
         /// <summary>
@@ -632,8 +596,11 @@ namespace NLog.Targets
 
         private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
+            readonly UrlHelper.EscapeEncodingOptions _encodingOptions;
+
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
+                _encodingOptions = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
             protected override string GetContentType(WebServiceTarget target)
@@ -643,7 +610,7 @@ namespace NLog.Targets
 
             protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
-                Target.BuildWebServiceQueryParameters(parameterValues, builder);
+                Target.BuildWebServiceQueryParameters(parameterValues, builder, _encodingOptions);
             }
         }
 
@@ -782,8 +749,8 @@ namespace NLog.Targets
 
         private abstract class HttpPostTextFormatterBase : HttpPostFormatterBase
         {
-            readonly StringBuilder _reusableStringBuilder = new StringBuilder();
-            readonly char[] _reusableEncodingBuffer = new char[1024];
+            readonly ReusableBuilderCreator _reusableStringBuilder = new ReusableBuilderCreator();
+            readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
             readonly byte[] _encodingPreamble;
 
             protected HttpPostTextFormatterBase(WebServiceTarget target) : base(target)
@@ -795,33 +762,16 @@ namespace NLog.Targets
             {
                 lock (_reusableStringBuilder)
                 {
-                    try
+                    using (var targetBuilder = _reusableStringBuilder.Allocate())
                     {
-                        _reusableStringBuilder.Length = 0;
+                        WriteStringContent(targetBuilder.Result, parameterValues);
 
-                        WriteStringContent(_reusableStringBuilder, parameterValues);
-
-                        if (_encodingPreamble.Length > 0)
-                            ms.Write(_encodingPreamble, 0, _encodingPreamble.Length);
-
-                        int charCount;
-                        int byteCount = Target.Encoding.GetMaxByteCount(_reusableStringBuilder.Length);
-                        ms.SetLength(ms.Position + byteCount);
-                        for (int i = 0; i < _reusableStringBuilder.Length; i += _reusableEncodingBuffer.Length)
+                        using (var transformBuffer = _reusableEncodingBuffer.Allocate())
                         {
-                            charCount = Math.Min(_reusableStringBuilder.Length - i, _reusableEncodingBuffer.Length);
-                            _reusableStringBuilder.CopyTo(i, _reusableEncodingBuffer, 0, charCount);
-                            byteCount = Target.Encoding.GetBytes(_reusableEncodingBuffer, 0, charCount, GetBuffer(ms), (int)ms.Position);
-                            ms.Position += byteCount;
+                            if (_encodingPreamble.Length > 0)
+                                ms.Write(_encodingPreamble, 0, _encodingPreamble.Length);
+                            targetBuilder.Result.CopyToStream(ms, Target.Encoding, transformBuffer.Result);
                         }
-                        if (ms.Position != ms.Length)
-                        {
-                            ms.SetLength(ms.Position);
-                        }
-                    }
-                    finally
-                    {
-                        _reusableStringBuilder.Length = 0;
                     }
                 }
             }
