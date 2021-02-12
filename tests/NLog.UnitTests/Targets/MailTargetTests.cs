@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.SmtpClient.Tests
+namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
@@ -996,7 +996,5 @@ namespace NLog.SmtpClient.Tests
 
             public string SmtpClientPickUpDirectory => Client.PickupDirectoryLocation;
         }
-
-
     }
 }
