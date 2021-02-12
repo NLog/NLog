@@ -60,6 +60,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Trace/Simple/Example.cs" />
     /// </example>
     [Target("Trace")]
+    [Target("TraceSystem")]
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
