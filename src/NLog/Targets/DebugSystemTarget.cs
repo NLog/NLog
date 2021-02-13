@@ -31,69 +31,72 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if MONO || NETSTANDARD
 #define DEBUG   // System.Diagnostics.Debug.WriteLine
-#endif
 
 namespace NLog.Targets
 {
-    using Internal;
-
     /// <summary>
-    /// Outputs log messages through the <c>OutputDebugString()</c> Win32 API.
+    /// Outputs log messages through <see cref="System.Diagnostics.Debug.WriteLine(string)" />
     /// </summary>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/OutputDebugString-target">Documentation on NLog Wiki</seealso>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/OutputDebugString/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
-    /// </example>
-    [Target("OutputDebugString")]
-    public sealed class OutputDebugStringTarget : TargetWithLayout
+    [Target("DebugSystem")]
+    public sealed class DebugSystemTarget : TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OutputDebugStringTarget" /> class.
+        /// Initializes a new instance of the <see cref="DebugSystemTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        public OutputDebugStringTarget() : base()
+        public DebugSystemTarget() : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OutputDebugStringTarget" /> class.
+        /// Initializes a new instance of the <see cref="DebugSystemTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
-        public OutputDebugStringTarget(string name) : this()
+        public DebugSystemTarget(string name) : this()
         {
             Name = name;
         }
 
+        /// <inheritdoc />
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (Header != null)
+            {
+                DebugWriteLine(RenderLogEvent(Header, LogEventInfo.CreateNullEvent()));
+            }
+        }
+
+        /// <inheritdoc />
+        protected override void CloseTarget()
+        {
+            if (Footer != null)
+            {
+                DebugWriteLine(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+            }
+
+            base.CloseTarget();
+        }
+
         /// <summary>
-        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+        /// Outputs the rendered logging event through <see cref="System.Diagnostics.Debug.WriteLine(string)" />
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-#if MONO || NETSTANDARD
-            System.Diagnostics.Debug.WriteLine(RenderLogEvent(Layout, logEvent));
-#else
-            NativeMethods.OutputDebugString(RenderLogEvent(Layout, logEvent));
-#endif
+            DebugWriteLine(RenderLogEvent(Layout, logEvent));
+        }
+
+        private void DebugWriteLine(string message)
+        {
+            System.Diagnostics.Debug.WriteLine(message);
         }
     }
 }

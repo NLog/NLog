@@ -38,6 +38,7 @@ function create-package($packageName)
 }
 
 create-package('NLog.MSMQ')
+create-package('NLog.OutputDebugString')
 create-package('NLog.PerformanceCounter')
 create-package('NLog.Wcf')
 create-package('NLog.WindowsEventLog')
