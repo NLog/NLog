@@ -65,14 +65,15 @@ namespace NLog.Config
         /// Scans the assembly.
         /// </summary>
         /// <param name="types">The types to scan.</param>
-        /// <param name="prefix">The prefix.</param>
-        public void ScanTypes(Type[] types, string prefix)
+        /// <param name="assemblyName">The assembly name for the types.</param>
+        /// <param name="itemNamePrefix">The prefix.</param>
+        public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
         {
             foreach (Type t in types)
             {
                 try
                 {
-                    RegisterType(t, prefix);
+                    RegisterType(t, assemblyName, itemNamePrefix);
                 }
                 catch (Exception exception)
                 {
@@ -93,6 +94,17 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
+            RegisterType(type, string.Empty, itemNamePrefix);
+        }
+
+        /// <summary>
+        /// Registers the type.
+        /// </summary>
+        /// <param name="type">The type to register.</param>
+        /// <param name="assemblyName">The assembly name for the type.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterType(Type type, string assemblyName, string itemNamePrefix)
+        {
             if (typeof(TBaseType).IsAssignableFrom(type))
             {
                 IEnumerable<TAttributeType> attributes = type.GetCustomAttributes<TAttributeType>(false);
@@ -100,7 +112,7 @@ namespace NLog.Config
                 {
                     foreach (var attr in attributes)
                     {
-                        RegisterDefinition(itemNamePrefix + attr.Name, type);
+                        RegisterDefinition(attr.Name, type, assemblyName, itemNamePrefix);
                     }
                 }
             }
@@ -131,7 +143,22 @@ namespace NLog.Config
         /// <param name="itemDefinition">The type of the item.</param>
         public void RegisterDefinition(string itemName, Type itemDefinition)
         {
-            _items[itemName] = () => itemDefinition;
+            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+        }
+
+        /// <summary>
+        /// Registers a single type definition.
+        /// </summary>
+        /// <param name="itemName">The item name.</param>
+        /// <param name="itemDefinition">The type of the item.</param>
+        /// <param name="assemblyName">The assembly name for the types.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        private void RegisterDefinition(string itemName, Type itemDefinition, string assemblyName, string itemNamePrefix)
+        {
+            GetTypeDelegate typeLookup = () => itemDefinition;
+            _items[itemNamePrefix + itemName] = typeLookup;
+            if (!string.IsNullOrEmpty(assemblyName))
+                _items[assemblyName + "." + itemName] = typeLookup;
         }
 
         /// <summary>

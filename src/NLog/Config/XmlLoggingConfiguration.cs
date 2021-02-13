@@ -360,7 +360,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
+                var configurationException = new NLogConfigurationException(exception, "Exception when loading configuration {0}", fileName);
                 InternalLogger.Error(exception, configurationException.Message);
                 if (!ignoreErrors && (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions || configurationException.MustBeRethrown()))
                     throw configurationException;

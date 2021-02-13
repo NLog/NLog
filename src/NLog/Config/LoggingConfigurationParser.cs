@@ -1192,9 +1192,21 @@ namespace NLog.Config
             try
             {
                 classType = ExpandSimpleVariables(classType);
+                if (classType.Contains('.'))
+                {
+                    // Possible prefix detected, that could be assembly-name-as-prefix
+                    if (factory.TryCreateInstance(classType, out newInstance) && newInstance != null)
+                        return newInstance;
+
+                    // Attempt to load the assembly name extracted from the prefix
+                    RegisterExtensionAssemblyFromPrefix(classType);
+                }
+
                 newInstance = factory.CreateInstance(classType);
                 if (newInstance == null)
+                {
                     throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {classType}");
+                }
             }
             catch (NLogConfigurationException configException)
             {
@@ -1212,6 +1224,23 @@ namespace NLog.Config
             }
 
             return newInstance;
+        }
+
+        private void RegisterExtensionAssemblyFromPrefix(string classType)
+        {
+            var assemblyName = classType.Substring(0, classType.LastIndexOf('.'));
+            if (!string.IsNullOrEmpty(assemblyName))
+            {
+                try
+                {
+                    ParseExtensionWithAssembly(assemblyName, string.Empty);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+                }
+            }
         }
 
         private void SetItemOnProperty(object o, PropertyInfo propInfo, ValidatedConfigurationElement element, object properyValue)

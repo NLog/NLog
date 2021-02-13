@@ -405,6 +405,23 @@ namespace NLog.UnitTests.Config
             Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
         }
 
+        [Fact]
+        public void ExtensionTypeWithAssemblyNameCanLoad()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+<nlog throwExceptions='true'>
+<targets>
+    <target name='t' type='NLogAutoLoadExtension.AutoLoadTarget' />
+</targets>
+<rules>
+    <logger name='*' writeTo='t' />
+</rules>
+</nlog>").LogFactory;
+
+            var autoLoadedTarget = logFactory.Configuration.FindTargetByName("t");
+            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]

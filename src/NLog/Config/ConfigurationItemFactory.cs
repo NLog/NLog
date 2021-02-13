@@ -305,10 +305,14 @@ namespace NLog.Config
 
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
             var typesToScan = assembly.SafeGetTypes();
-            PreloadAssembly(typesToScan);
-            foreach (IFactory f in _allFactories)
+            if (typesToScan?.Length > 0)
             {
-                f.ScanTypes(typesToScan, itemNamePrefix);
+                var assemblyName = new AssemblyName(assembly.FullName).Name;
+                PreloadAssembly(typesToScan);
+                foreach (IFactory f in _allFactories)
+                {
+                    f.ScanTypes(typesToScan, assemblyName, itemNamePrefix);
+                }
             }
         }
 
