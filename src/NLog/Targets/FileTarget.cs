@@ -164,7 +164,7 @@ namespace NLog.Targets
             ArchiveOldFileOnStartupAboveSize = 0;
             ConcurrentWriteAttempts = 10;
             ConcurrentWrites = false;
-            Encoding = System.Text.Encoding.UTF8;
+            Encoding = Encoding.UTF8;
             BufferSize = 32768;
             AutoFlush = true;
             FileAttributes = Win32FileAttributes.Normal;
@@ -407,12 +407,7 @@ namespace NLog.Targets
         /// Gets or sets the file encoding.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Layout<Encoding> Encoding { get; set; }
-
-        private Encoding GetEncoding(LogEventInfo logEvent)
-        {
-            return Encoding.RenderToValueOrDefault(logEvent, System.Text.Encoding.UTF8);
-        }
+        public Encoding Encoding { get; set; }
 
         /// <summary>
         /// Gets or sets whether or not this target should just discard all data that its asked to write.
@@ -455,6 +450,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool NetworkWrites { get; set; }
 
+        private bool? _writeBom;
 
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
@@ -462,15 +458,10 @@ namespace NLog.Targets
         /// Defaults to true for UTF-16 and UTF-32
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        public bool? WriteBom
+        public bool WriteBom
         {
-            get;
-            set;
-        }
-
-        internal bool ShouldWriteBom(Encoding encoding)
-        {
-            return WriteBom ?? InitialValueBom(encoding);
+            get => _writeBom ?? InitialValueBom(Encoding);
+            set => _writeBom = value;
         }
 
         /// <summary>
@@ -834,10 +825,9 @@ namespace NLog.Targets
             // Finalize the files.
             if (filesToFinalize != null)
             {
-                var logEventInfo = LogEventInfo.CreateNullEvent();
                 foreach (string fileName in filesToFinalize)
                 {
-                    FinalizeFile(fileName, logEventInfo);
+                    FinalizeFile(fileName);
                 }
             }
 
@@ -970,10 +960,9 @@ namespace NLog.Targets
         {
             base.CloseTarget();
 
-            var logEventInfo = LogEventInfo.CreateNullEvent();
             foreach (string fileName in new List<string>(_initializedFiles.Keys))
             {
-                FinalizeFile(fileName, logEventInfo);
+                FinalizeFile(fileName);
             }
 
             _fileArchiveHelper = null;
@@ -1146,14 +1135,13 @@ namespace NLog.Targets
             if (archiveOccurred)
                 initializedNewFile = InitializeFile(fileName, logEvent) == DateTime.MinValue || initializedNewFile;
 
-            var encoding = GetEncoding(logEvent);
             if (ReplaceFileContentsOnEachWrite)
             {
-                ReplaceFileContent(fileName, bytesToWrite, encoding, true);
+                ReplaceFileContent(fileName, bytesToWrite, true);
             }
             else
             {
-                WriteToFile(fileName, bytesToWrite, initializedNewFile, encoding);
+                WriteToFile(fileName, bytesToWrite, initializedNewFile);
             }
 
             _previousLogFileName = fileName;
@@ -1179,12 +1167,11 @@ namespace NLog.Targets
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
             string text = GetFormattedMessage(logEvent);
-            var encoding = GetEncoding(logEvent);
-            int textBytesCount = encoding.GetByteCount(text);
-            int newLineBytesCount = encoding.GetByteCount(NewLineChars);
+            int textBytesCount = Encoding.GetByteCount(text);
+            int newLineBytesCount = Encoding.GetByteCount(NewLineChars);
             byte[] bytes = new byte[textBytesCount + newLineBytesCount];
-            encoding.GetBytes(text, 0, text.Length, bytes, 0);
-            encoding.GetBytes(NewLineChars, 0, NewLineChars.Length, bytes, textBytesCount);
+            Encoding.GetBytes(text, 0, text.Length, bytes, 0);
+            Encoding.GetBytes(NewLineChars, 0, NewLineChars.Length, bytes, textBytesCount);
             return TransformBytes(bytes);
         }
 
@@ -1225,8 +1212,7 @@ namespace NLog.Targets
 
         private void TransformBuilderToStream(LogEventInfo logEvent, StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
         {
-            var encoding = GetEncoding(logEvent);
-            builder.CopyToStream(workStream, encoding, transformBuffer);
+            builder.CopyToStream(workStream, Encoding, transformBuffer);
             TransformStream(logEvent, workStream);
         }
 
@@ -1263,8 +1249,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="archiveFileName">Name of the archive file.</param>
-        /// <param name="eventInfo"></param>
-        private void ArchiveFile(string fileName, string archiveFileName, LogEventInfo eventInfo)
+        private void ArchiveFile(string fileName, string archiveFileName)
         {
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (archiveFolderPath != null && !Directory.Exists(archiveFolderPath))
@@ -1285,8 +1270,7 @@ namespace NLog.Targets
                 InternalLogger.Info("{0}: Archiving {1} to {2}", this, fileName, archiveFileName);
                 if (File.Exists(archiveFileName))
                 {
-                    var encoding = GetEncoding(eventInfo);
-                    ArchiveFileAppendExisting(fileName, archiveFileName, encoding);
+                    ArchiveFileAppendExisting(fileName, archiveFileName);
                 }
                 else
                 {
@@ -1295,7 +1279,7 @@ namespace NLog.Targets
             }
         }
 
-        private void ArchiveFileAppendExisting(string fileName, string archiveFileName, Encoding encoding)
+        private void ArchiveFileAppendExisting(string fileName, string archiveFileName)
         {
             //todo handle double footer
             InternalLogger.Info("{0}: Already exists, append to {1}", this, archiveFileName);
@@ -1310,7 +1294,7 @@ namespace NLog.Targets
             using (FileStream fileStream = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite, fileShare))
             using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append))
             {
-                fileStream.CopyAndSkipBom(archiveFileStream, encoding);
+                fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
                 //clear old content
                 fileStream.SetLength(0);
 
@@ -1593,14 +1577,14 @@ namespace NLog.Targets
 
             DateTime? archiveDate = GetArchiveDate(fileName, eventInfo, previousLogEventTimestamp);
 
-            var archiveFileName = GenerateArchiveFileNameAfterCleanup(fileName, fileInfo, archiveFilePattern, archiveDate, initializedNewFile, eventInfo);
+            var archiveFileName = GenerateArchiveFileNameAfterCleanup(fileName, fileInfo, archiveFilePattern, archiveDate, initializedNewFile);
             if (!string.IsNullOrEmpty(archiveFileName))
             {
-                ArchiveFile(fileInfo.FullName, archiveFileName, eventInfo);
+                ArchiveFile(fileInfo.FullName, archiveFileName);
             }
         }
 
-        private string GenerateArchiveFileNameAfterCleanup(string fileName, FileInfo fileInfo, string archiveFilePattern, DateTime? archiveDate, bool initializedNewFile, LogEventInfo eventInfo)
+        private string GenerateArchiveFileNameAfterCleanup(string fileName, FileInfo fileInfo, string archiveFilePattern, DateTime? archiveDate, bool initializedNewFile)
         {
             InternalLogger.Trace("{0}: Archive pattern '{1}'", this, archiveFilePattern);
 
@@ -1635,7 +1619,7 @@ namespace NLog.Targets
 
             if (!initializedNewFile)
             {
-                FinalizeFile(fileName, eventInfo, isArchiving: true);
+                FinalizeFile(fileName, isArchiving: true);
             }
 
             if (fileArchiveStyle.IsArchiveCleanupEnabled)
@@ -2157,17 +2141,16 @@ namespace NLog.Targets
         /// <see cref="FileTarget"/> instance and writes them.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>
+        /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
         /// <param name="initializedNewFile">File has just been opened.</param>
-        /// <param name="encoding"></param>
-        private void WriteToFile(string fileName, ArraySegment<byte> bytes, bool initializedNewFile, Encoding encoding)
+        private void WriteToFile(string fileName, ArraySegment<byte> bytes, bool initializedNewFile)
         {
             BaseFileAppender appender = _fileAppenderCache.AllocateAppender(fileName);
             try
             {
                 if (initializedNewFile)
                 {
-                    WriteHeaderAndBom(appender, encoding);
+                    WriteHeaderAndBom(appender);
                 }
 
                 appender.Write(bytes.Array, bytes.Offset, bytes.Count);
@@ -2248,12 +2231,11 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to close.</param>
         /// <param name="isArchiving">Indicates if the file is being finalized for archiving.</param>
-        /// <param name="eventInfo"></param>
-        private void FinalizeFile(string fileName, LogEventInfo eventInfo, bool isArchiving = false)
+        private void FinalizeFile(string fileName, bool isArchiving = false)
         {
             InternalLogger.Trace("{0}: FinalizeFile '{1}, isArchiving: {2}'", this, fileName, isArchiving);
             if ((isArchiving) || (!WriteFooterOnArchivingOnly))
-                WriteFooter(fileName, GetEncoding(eventInfo));
+                WriteFooter(fileName);
 
             _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
             _initializedFiles.Remove(fileName);
@@ -2263,13 +2245,12 @@ namespace NLog.Targets
         /// Writes the footer information to a file.
         /// </summary>
         /// <param name="fileName">The file path to write to.</param>
-        /// <param name="encoding">Encoding of the file</param>
-        private void WriteFooter(string fileName, Encoding encoding)
+        private void WriteFooter(string fileName)
         {
-            ArraySegment<byte> footerBytes = GetLayoutBytes(Footer, encoding);
+            ArraySegment<byte> footerBytes = GetLayoutBytes(Footer);
             if (footerBytes.Count > 0 && File.Exists(fileName))
             {
-                WriteToFile(fileName, footerBytes, false, encoding);
+                WriteToFile(fileName, footerBytes, false);
             }
         }
 
@@ -2354,16 +2335,15 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">The name of the file to be written.</param>
         /// <param name="bytes">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
-        /// <param name="encoding"></param>
         /// <param name="firstAttempt">First attempt to write?</param>
         /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
-        private void ReplaceFileContent(string fileName, ArraySegment<byte> bytes, Encoding encoding, bool firstAttempt)
+        private void ReplaceFileContent(string fileName, ArraySegment<byte> bytes, bool firstAttempt)
         {
             try
             {
                 using (FileStream fs = File.Create(fileName))
                 {
-                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header, encoding);
+                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
                     if (headerBytes.Count > 0)
                     {
                         fs.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
@@ -2371,7 +2351,7 @@ namespace NLog.Targets
 
                     fs.Write(bytes.Array, bytes.Offset, bytes.Count);
 
-                    ArraySegment<byte> footerBytes = GetLayoutBytes(Footer, encoding);
+                    ArraySegment<byte> footerBytes = GetLayoutBytes(Footer);
                     if (footerBytes.Count > 0)
                     {
                         fs.Write(footerBytes.Array, footerBytes.Offset, footerBytes.Count);
@@ -2386,7 +2366,7 @@ namespace NLog.Targets
                 }
                 Directory.CreateDirectory(Path.GetDirectoryName(fileName));
                 //retry.
-                ReplaceFileContent(fileName, bytes, encoding, false);
+                ReplaceFileContent(fileName, bytes, false);
             }
         }
 
@@ -2408,20 +2388,19 @@ namespace NLog.Targets
         /// Writes the header information and byte order mark to a file.
         /// </summary>
         /// <param name="appender">File appender associated with the file.</param>
-        /// <param name="encoding"></param>
-        private void WriteHeaderAndBom(BaseFileAppender appender, Encoding encoding)
+        private void WriteHeaderAndBom(BaseFileAppender appender)
         {
             //performance: cheap check before checking file info 
-            if (Header == null && !ShouldWriteBom(encoding)) return;
+            if (Header == null && !WriteBom) return;
 
             var length = appender.GetFileLength();
             //  Write header and BOM only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
-                if (ShouldWriteBom(encoding))
+                if (WriteBom)
                 {
-                    var preamble = encoding.GetPreamble();
-                    InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, encoding);
+                    InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
+                    var preamble = Encoding.GetPreamble();
                     if (preamble.Length > 0)
                         appender.Write(preamble, 0, preamble.Length);
                 }
@@ -2429,7 +2408,7 @@ namespace NLog.Targets
                 if (Header != null)
                 {
                     InternalLogger.Trace("{0}: Write header", this);
-                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header, encoding);
+                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
                     if (headerBytes.Count > 0)
                     {
                         appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
@@ -2443,10 +2422,9 @@ namespace NLog.Targets
         /// transformations required from the <see cref="Layout"/>.
         /// </summary>
         /// <param name="layout">The layout used to render output message.</param>
-        /// <param name="encoding"></param>
         /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
-        private ArraySegment<byte> GetLayoutBytes(Layout layout, Encoding encoding)
+        private ArraySegment<byte> GetLayoutBytes(Layout layout)
         {
             if (layout == null)
             {

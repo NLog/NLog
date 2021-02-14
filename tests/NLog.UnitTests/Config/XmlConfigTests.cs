@@ -34,10 +34,8 @@
 
 using System;
 using System.IO;
-using System.Linq;
 using NLog.Common;
 using NLog.Config;
-using NLog.Targets;
 using NLog.Targets.Wrappers;
 using Xunit;
 using Xunit.Extensions;
@@ -222,9 +220,7 @@ namespace NLog.UnitTests.Config
             var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
             Assert.Single(config.AllTargets);
-            var fileTarget = Assert.IsType<FileTarget>(config.AllTargets.First());
-            var encoding = fileTarget.Encoding.RenderToValueInternal(LogEventInfo.CreateNullEvent(), null);
-            Assert.Equal(System.Text.Encoding.UTF8, encoding);
+            Assert.Equal(System.Text.Encoding.UTF8, (config.AllTargets[0] as NLog.Targets.FileTarget)?.Encoding);
         }
 
         [Fact]

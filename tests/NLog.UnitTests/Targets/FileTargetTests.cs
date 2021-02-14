@@ -46,8 +46,6 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using NLog.Time;
-    using JetBrains.Annotations;
-    using NSubstitute.Core;
     using NSubstitute;
     using NSubstitute.Core;
     using Xunit;
@@ -124,9 +122,9 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsTravis();
+            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsLinux();
 #if MONO
-            if (IsTravis() && concurrentWrites && keepFileOpen && !networkWrites)
+            if (IsLinux() && concurrentWrites && keepFileOpen && !networkWrites)
             {
                 Console.WriteLine("[SKIP] FileTargetTests.SimpleFileDeleteTest Not supported on MONO on Travis, because of FileSystemWatcher not working");
                 return;
@@ -219,26 +217,15 @@ namespace NLog.UnitTests.Targets
             SimpleFileWriteLogTest(logFile);
         }
 
-        [Fact]
-        public void SimpleFileWithEncodingTest()
-        {
-            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + ".log");
-            SimpleFileWriteLogTest(logFile, true, Encoding.UTF32);
-        }
-
-        private void SimpleFileWriteLogTest(string logFile, bool shouldWriteBom = false, Encoding encoding = null)
+        private void SimpleFileWriteLogTest(string logFile)
         {
             try
             {
-                encoding = encoding ?? Encoding.UTF8;
                 var fileTarget = new FileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
-                    Header = "header",
-                    Footer = "footer",
-                    Encoding = encoding
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
@@ -249,7 +236,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null; // Flush
 
-                AssertFileContents(logFile, "header\nDebug aaa\nInfo bbb\nWarn ccc\nfooter\n", encoding, shouldWriteBom);
+                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -257,7 +244,6 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
             }
         }
-
 
         [Fact]
         public void SimpleFileTestWriteBom()
@@ -425,7 +411,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(true, true, ArchiveNumberingMode.Sequence)]
         public void DatedArchiveEveryMonth(bool archiveSubFolder, bool maxArchiveDays, ArchiveNumberingMode archiveNumberingMode)
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] FileTargetTests.DatedArchiveEveryMonth because SetCreationTime is not working on Travis");
                 return;
@@ -474,19 +460,19 @@ namespace NLog.UnitTests.Targets
                     var fileTarget = new FileTarget
                     {
                         FileName = logFile,
-                    LineEnding = LineEndingMode.LF,
+                        LineEnding = LineEndingMode.LF,
                         Encoding = Encoding.ASCII,
-                    Layout = "${message}",
+                        Layout = "${message}",
                         KeepFileOpen = i % 2 != 0,
                         ArchiveFileName = archiveSubFolder ? Path.Combine(archivePath, "AppName.{#}.log") : (Layout)null,
                         ArchiveNumbering = archiveNumberingMode,
-                    ArchiveEvery = FileArchivePeriod.Month,
-                    ArchiveDateFormat = "yyyyMMdd",
+                        ArchiveEvery = FileArchivePeriod.Month,
+                        ArchiveDateFormat = "yyyyMMdd",
                         MaxArchiveFiles = maxArchiveDays ? 0 : 2,
                         MaxArchiveDays = maxArchiveDays ? 5 * 30 : 0
                     };
 
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
                     logger.Debug($"{i.ToString()}{i.ToString()}{i.ToString()}");
                     LogManager.Configuration = null;    // Flush
 
@@ -496,7 +482,7 @@ namespace NLog.UnitTests.Targets
 
                     string newFile = string.Empty;
                     foreach (var fileName in currentFiles)
-                {
+                    {
                         if (!createdFiles.Contains(fileName))
                         {
                             Assert.Empty(newFile);
@@ -505,20 +491,20 @@ namespace NLog.UnitTests.Targets
                             if (archiveNumberingMode == ArchiveNumberingMode.DateAndSequence && createdFiles.Count > 1)
                             {
                                 // Verify it used the last-modified-time (And not file-creation-time)
-                string dateName = string.Empty;
-                        dateName = Path.GetFileName(fileName);
-                        dateName = dateName.Replace("AppName.", "");
+                                string dateName = string.Empty;
+                                dateName = Path.GetFileName(fileName);
+                                dateName = dateName.Replace("AppName.", "");
                                 dateName = dateName.Replace(".0.log", "");
-                        dateName = dateName.Replace("log", "");
+                                dateName = dateName.Replace("log", "");
                                 Assert.NotEmpty(dateName);
                                 Assert.Equal(timeSource.Time.Month, DateTime.ParseExact(dateName, "yyyyMMdd", null).Month);
-                    }
-                }
+                            }
+                        }
                     }
 
                     Assert.False(string.IsNullOrEmpty(newFile), $"Missing new file. OldFileCount={createdFiles.Count}, NewFileCount={currentFiles.Count}");
                     createdFiles.Add(newFile);
-            }
+                }
 
                 Assert.Equal(3, currentFiles.Count);
                 AssertFileContents(logFile, "333\n", Encoding.ASCII);
@@ -1405,8 +1391,8 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(DateArchive_UsesDateFromCurrentTimeSource_TestParameters))]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool maxArhiveDays)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] FileTargetTests.DateArchive_UsesDateFromCurrentTimeSource because SetLastWriteTime is not working on Travis");
                 return;
@@ -3977,13 +3963,12 @@ namespace NLog.UnitTests.Targets
         public void TestInitialBomValue(string encodingName, bool expected)
         {
             var fileTarget = new FileTarget();
-            var encoding = Encoding.GetEncoding(encodingName);
 
             // Act
-            var result = fileTarget.ShouldWriteBom(encoding);
+            fileTarget.Encoding = Encoding.GetEncoding(encodingName);
 
             // Assert
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, fileTarget.WriteBom);
         }
 
         [Fact]
