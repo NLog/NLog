@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers
         protected override void InitializeLayoutRenderer()
         {
             string connectionStringSection = "ConnectionStrings.";
-            _connectionStringName = Item?.TrimStart().StartsWith(connectionStringSection, StringComparison.InvariantCultureIgnoreCase) == true ?
+            _connectionStringName = Item?.TrimStart().StartsWith(connectionStringSection, StringComparison.OrdinalIgnoreCase) == true ?
                 Item.TrimStart().Substring(connectionStringSection.Length) : null;
         }
 

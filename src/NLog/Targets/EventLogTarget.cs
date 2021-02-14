@@ -340,7 +340,7 @@ namespace NLog.Targets
                     else
                     {
                         var currentLogName = _eventLogWrapper.LogNameFromSourceName(eventLogSource, MachineName);
-                        if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
+                        if (!currentLogName.Equals(Log, StringComparison.OrdinalIgnoreCase))
                         {
                             InternalLogger.Debug("{0}: Source {1} should be mapped to Log {2}, but EventLog.LogNameFromSourceName returns {3}", this, eventLogSource, Log, currentLogName);
                         }
@@ -423,7 +423,7 @@ namespace NLog.Targets
                 if (_eventLogWrapper.SourceExists(fixedSource, MachineName))
                 {
                     string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
-                    if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
+                    if (!currentLogName.Equals(Log, StringComparison.OrdinalIgnoreCase))
                     {
                         InternalLogger.Debug("{0}: Updating source {1} to use log {2}, instead of {3} (Computer restart is needed)", this, fixedSource, Log, currentLogName);
 
