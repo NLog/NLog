@@ -271,6 +271,14 @@ namespace NLog.Internal
                 return true;
             }
 
+            if (propertyType.IsGenericType() && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
+            {
+                var simpleLayout = new SimpleLayout(value, configurationItemFactory);
+                var concreteType = typeof(Layout<>).MakeGenericType(propertyType.GetGenericArguments());
+                newValue = Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
+                return true;
+            }
+
             newValue = null;
             return false;
         }
@@ -436,7 +444,7 @@ namespace NLog.Internal
             return null;
         }
 
-        private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
+        internal static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
             try
             {

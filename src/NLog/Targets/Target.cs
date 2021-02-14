@@ -696,7 +696,7 @@ namespace NLog.Targets
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {
-                return value;
+                return value?.ToString() ?? string.Empty;
             }
 
             if (simpleLayout != null && simpleLayout.IsSimpleStringText)
@@ -707,6 +707,36 @@ namespace NLog.Targets
             using (var localTarget = ReusableLayoutBuilder.Allocate())
             {
                 return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="layout"></param>
+        /// <param name="logEvent"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        protected T RenderLogEvent<T>(Layout<T> layout, LogEventInfo logEvent, T defaultValue = default(T))
+        {
+            if (layout == null || logEvent == null)
+                return defaultValue;
+
+            if (layout.IsFixed)
+                return layout.StaticValue;
+
+            if (TryGetCachedValue(layout, logEvent, out var value))
+            {
+                if (value != null)
+                    return (T)value;
+                else
+                    return defaultValue;
+            }
+
+            using (var localTarget = ReusableLayoutBuilder.Allocate())
+            {
+                return layout.RenderValue(logEvent, localTarget.Result, defaultValue);
             }
         }
 
@@ -733,11 +763,10 @@ namespace NLog.Targets
             return exception.MustBeRethrown(this, callerMemberName);
         }
 
-        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
+        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out object value)
         {
-            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
+            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out value))
             {
-                value = value2?.ToString() ?? string.Empty;
                 return true;
             }
 

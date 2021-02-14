@@ -224,12 +224,7 @@ namespace NLog.Layouts
             return Evaluate(text, LogEventInfo.CreateNullEvent());
         }
 
-        /// <summary>
-        /// Returns a <see cref="T:System.String"></see> that represents the current object.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"></see> that represents the current object.
-        /// </returns>
+        /// <inheritdoc />
         public override string ToString()
         {
             if (string.IsNullOrEmpty(Text) && Renderers?.Count > 0)
@@ -238,6 +233,18 @@ namespace NLog.Layouts
             }
 
             return Text;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            return obj is SimpleLayout other && string.Equals(OriginalText, other.OriginalText);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
         }
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
