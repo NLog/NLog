@@ -837,13 +837,13 @@ namespace NLog.UnitTests.Targets
                     <target type='MyTypedLayoutTarget' name='myTarget'
                         byteProperty='42' 
                         int16Property='43' 
-                        int32Property='${threadid}' 
-                        int64Property='${sequenceid}' 
-                        stringProperty='${processname}'
+                        int32Property='44' 
+                        int64Property='45000000000' 
+                        stringProperty='foobar'
                         boolProperty='true'
                         doubleProperty='3.14159'
                         floatProperty='3.24159'
-                        enumProperty='${var:value3}'
+                        enumProperty='Value3'
                         flagsEnumProperty='Value1,Value3'
                         encodingProperty='utf-8'
                         cultureProperty='en-US'
@@ -866,7 +866,57 @@ namespace NLog.UnitTests.Targets
             logFactory.Flush();
 
             // Assert
-            Assert.Equal(System.Threading.Thread.CurrentThread.ManagedThreadId, logEvent.Properties[nameof(MyTypedLayoutTarget.Int32Property)]);
+            Assert.Equal((byte)42, logEvent.Properties["ByteProperty"]);
+            Assert.Equal((short)43, logEvent.Properties["Int16Property"]);
+            Assert.Equal(44, logEvent.Properties["Int32Property"]);
+            Assert.Equal(45000000000L, logEvent.Properties["Int64Property"]);
+            Assert.Equal("foobar", logEvent.Properties["StringProperty"]);
+            Assert.Equal(true, logEvent.Properties["BoolProperty"]);
+            Assert.Equal(3.14159, logEvent.Properties["DoubleProperty"]);
+            Assert.Equal(3.24159f, logEvent.Properties["FloatProperty"]);
+            Assert.Equal(TargetConfigurationTests.MyEnum.Value3, logEvent.Properties["EnumProperty"]);
+            Assert.Equal(TargetConfigurationTests.MyFlagsEnum.Value1 | TargetConfigurationTests.MyFlagsEnum.Value3, logEvent.Properties["FlagsEnumProperty"]);
+            Assert.Equal(Encoding.UTF8, logEvent.Properties["EncodingProperty"]);
+            Assert.Equal(CultureInfo.GetCultureInfo("en-US"), logEvent.Properties["CultureProperty"]);
+            Assert.Equal(typeof(int), logEvent.Properties["TypeProperty"]);
+            Assert.Equal(new Uri("https://nlog-project.org"), logEvent.Properties["UriProperty"]);
+            Assert.Equal(LineEndingMode.Default, logEvent.Properties["LineEndingModeProperty"]);
+
+        }
+        [Fact]
+        public void TypedLayoutTargetAsyncDynamicTest()
+        {
+            // Arrange
+            LogFactory logFactory = new LogFactory();
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyTypedLayoutTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <variable name='value3' value='Value3' />
+
+                <targets async='true'>
+                    <target type='MyTypedLayoutTarget' name='myTarget'
+                        int32Property='${threadid}' 
+                        />
+                </targets>
+
+                <rules>
+                    <logger minlevel='trace' writeTo='myTarget' />
+                </rules>
+            </nlog>", logFactory);
+            logFactory.Configuration = c;
+
+            // Act
+            var logger = logFactory.GetLogger(nameof(TypedLayoutTargetAsyncTest));
+            var logEvent = new LogEventInfo(LogLevel.Info, null, "Hello");
+            logger.Log(logEvent);
+            logFactory.Flush();
+
+            // Assert
+            Assert.Equal(Thread.CurrentThread.ManagedThreadId, logEvent.Properties["Int32Property"]);
+
         }
 
         [Target("MyTypedLayoutTarget")]
