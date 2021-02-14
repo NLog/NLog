@@ -851,7 +851,7 @@ namespace NLog.Config
             var culture = StringComparison.OrdinalIgnoreCase;
             matchingVariableName = null;
 
-            if (Variables.Count > 0 && output?.IndexOf("${") >= 0)
+            if (Variables.Count > 0 && output?.IndexOf('$') >= 0)
             {
                 foreach (var kvp in _variables)
                 {
