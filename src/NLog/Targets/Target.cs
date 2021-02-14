@@ -81,7 +81,7 @@ namespace NLog.Targets
             }
         }
         private string _name;
-        
+
         /// <summary>
         /// Target supports reuse of internal buffers, and doesn't have to constantly allocate new buffers
         /// Required for legacy NLog-targets, that expects buffers to remain stable after Write-method exit
@@ -741,6 +741,7 @@ namespace NLog.Targets
 
         }
 
+        /// <summary>
         /// Resolve from DI <see cref="LogFactory.ServiceRepository"/>
         /// </summary>
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
