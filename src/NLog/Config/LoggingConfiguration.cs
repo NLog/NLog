@@ -834,7 +834,7 @@ namespace NLog.Config
         {
             string output = input;
 
-            if (Variables.Count > 0 && output?.IndexOf("${") >= 0)
+            if (Variables.Count > 0 && output?.IndexOf('$') >= 0)
             {
                 // TODO - make this case-insensitive, will probably require a different approach
                 var variables = Variables.ToList();

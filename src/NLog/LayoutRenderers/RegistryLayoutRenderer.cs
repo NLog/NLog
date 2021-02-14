@@ -236,7 +236,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Aliases for the hives. See https://msdn.microsoft.com/en-us/library/ctb3kd86(v=vs.110).aspx
         /// </summary>
-        private static readonly Dictionary<string, RegistryHive> HiveAliases = new Dictionary<string, RegistryHive>(StringComparer.InvariantCultureIgnoreCase)
+        private static readonly Dictionary<string, RegistryHive> HiveAliases = new Dictionary<string, RegistryHive>(StringComparer.OrdinalIgnoreCase)
         {
             {"HKEY_LOCAL_MACHINE", RegistryHive.LocalMachine},
             {"HKLM", RegistryHive.LocalMachine},
