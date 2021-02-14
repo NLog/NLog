@@ -35,7 +35,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Runtime;
 using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
@@ -48,7 +47,7 @@ namespace NLog.Layouts
     /// Layout with a simple value (e.g. int) or a layout which results in a simple value (e.g. ${counter})
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Layout<T> : Layout, IRenderable<T>, IInternalLoggerContext
+    public class Layout<T> : Layout, IRenderable<T>, IInternalLoggerContext, IEquatable<Layout<T>>
     {
         // ReSharper disable StaticMemberInGenericType - this is safe, static ctor is called for every generic type
         [NotNull] private static readonly Type Type;
@@ -102,9 +101,9 @@ namespace NLog.Layouts
             return TryConvertTo(text, out value, defaultValue);
         }
 
-        private object _cacheKey = null;
-        private T _cacheValue = default(T);
-        private bool _cacheResult = false;
+        private object _cacheKey;
+        private T _cacheValue;
+        private bool _cacheResult;
 
         private bool TryGetCacheValue(object rawValue, out T resultValue, out bool resultValid)
         {
@@ -325,7 +324,7 @@ namespace NLog.Layouts
         /// <returns>Is fixed value</returns>
         private bool TryGetFixedValue(Layout layout, out T value)
         {
-            if (layout != null && layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
                 var success = TryParse(simpleLayout.FixedText, out value, default(T));
                 if (!success)
@@ -365,8 +364,13 @@ namespace NLog.Layouts
         /// <summary>
         /// Equals another layout?
         /// </summary>
-        protected bool Equals(Layout<T> other)
+        public bool Equals(Layout<T> other)
         {
+            if (other == null)
+            {
+                return false;
+            }
+
             return IsFixed == other.IsFixed && Equals(_layout, other._layout) && Equals(_fixedValue, other._fixedValue);
         }
 
