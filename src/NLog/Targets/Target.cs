@@ -724,25 +724,21 @@ namespace NLog.Targets
             if (layout == null || logEvent == null)
                 return defaultValue;
 
-            if (OptimizeBufferReuse)
+            if (layout.IsFixed)
             {
-                if (layout.IsFixed)
-                {
-                    return layout.RenderToValueOrDefault(logEvent, defaultValue);
-                }
-
-                if (TryGetCachedValue(layout, logEvent, out var value))
-                {
-                    return value;
-                }
-
-                using (var localTarget = ReusableLayoutBuilder.Allocate())
-                {
-                    return layout.RenderToValueInternal(logEvent, localTarget.Result, default(T));
-                }
+                return layout.RenderToValueOrDefault(logEvent, defaultValue);
             }
 
-            return layout.RenderToValueOrDefault(logEvent, defaultValue);
+            if (TryGetCachedValue(layout, logEvent, out var value))
+            {
+                return value;
+            }
+
+            using (var localTarget = ReusableLayoutBuilder.Allocate())
+            {
+                return layout.RenderToValueInternal(logEvent, localTarget.Result, default(T));
+            }
+
         }
 
         /// Resolve from DI <see cref="LogFactory.ServiceRepository"/>
