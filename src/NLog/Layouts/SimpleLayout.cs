@@ -52,7 +52,7 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     [ThreadSafe]
     [AppDomainFixedOutput]
-    public class SimpleLayout : Layout, IUsesStackTrace
+    public sealed class SimpleLayout : Layout, IUsesStackTrace
     {
         private string _fixedText;
         private string _layoutText;
@@ -83,7 +83,7 @@ namespace NLog.Layouts
         /// <param name="txt">The layout string to parse.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
-            :this(txt, configurationItemFactory, null)
+            : this(txt, configurationItemFactory, null)
         {
         }
 
@@ -476,12 +476,6 @@ namespace NLog.Layouts
 
         #region Equality members
 
-        /// 
-        protected bool Equals(SimpleLayout other)
-        {
-            return OriginalText == other.OriginalText;
-        }
-
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
@@ -500,7 +494,7 @@ namespace NLog.Layouts
                 return false;
             }
 
-            return Equals((SimpleLayout) obj);
+            return Equals((SimpleLayout)obj);
         }
 
         /// <inheritdoc />
