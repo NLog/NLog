@@ -255,7 +255,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     new XmlElement("message", "${message}"),
                 },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 ExcludeProperties = "${Event-properties:excludeKeys}"
             };
 
