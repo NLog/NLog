@@ -64,8 +64,9 @@ namespace NLog.Config
         /// to the factory.
         /// </summary>
         /// <param name="types">The types to scan.</param>
-        /// <param name="prefix">The prefix to use for names.</param>
-        public void ScanTypes(Type[] types, string prefix)
+        /// <param name="assemblyName">The assembly name for the type.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
         {
             foreach (Type t in types)
             {
@@ -73,7 +74,7 @@ namespace NLog.Config
                 {
                     if (t.IsClass() || t.IsAbstract())
                     {
-                        RegisterType(t, prefix);
+                        RegisterType(t, assemblyName, itemNamePrefix);
                     }
                 }
                 catch (Exception exception)
@@ -95,12 +96,23 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
+            RegisterType(type, string.Empty, itemNamePrefix);
+        }
+
+        /// <summary>
+        /// Registers the type.
+        /// </summary>
+        /// <param name="type">The type to register.</param>
+        /// <param name="assemblyName">The assembly name for the type.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterType(Type type, string assemblyName, string itemNamePrefix)
+        {
             var extractedMethods = _methodExtractor(type);
             if (extractedMethods?.Count > 0)
             {
                 for (int i = 0; i < extractedMethods.Count; ++i)
                 {
-                    RegisterDefinition(itemNamePrefix + extractedMethods[i].Key, extractedMethods[i].Value);
+                    RegisterDefinition(extractedMethods[i].Key, extractedMethods[i].Value, assemblyName, itemNamePrefix);
                 }
             }
         }
@@ -149,9 +161,27 @@ namespace NLog.Config
         /// <param name="itemDefinition">The method info.</param>
         public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
         {
-            _nameToMethodInfo[itemName] = itemDefinition;
+            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+        }
+
+        /// <summary>
+        /// Registers the definition of a single method.
+        /// </summary>
+        /// <param name="itemName">The method name.</param>
+        /// <param name="itemDefinition">The method info.</param>
+        /// <param name="assemblyName">The assembly name for the method.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterDefinition(string itemName, MethodInfo itemDefinition, string assemblyName, string itemNamePrefix)
+        {
+            _nameToMethodInfo[itemName + itemNamePrefix] = itemDefinition;
+            if (!string.IsNullOrEmpty(assemblyName))
+                _nameToMethodInfo[itemName + "." + assemblyName] = itemDefinition;
             lock (_nameToLateBoundMethod)
-                _nameToLateBoundMethod.Remove(itemName);
+            {
+                _nameToLateBoundMethod.Remove(itemName + itemNamePrefix);
+                if (!string.IsNullOrEmpty(assemblyName))
+                    _nameToLateBoundMethod.Remove(itemName + "." + assemblyName);
+            }
         }
 
         /// <summary>
