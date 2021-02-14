@@ -594,6 +594,7 @@ namespace NLog.UnitTests.Targets
 
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
+                cfg.LogFactory.ThrowExceptions = true;
                 cfg.Configuration.AddRuleForAllLevels(mmt);
             }).LogFactory;
 
@@ -614,6 +615,7 @@ namespace NLog.UnitTests.Targets
             };
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
+                cfg.LogFactory.ThrowExceptions = true;
                 cfg.Configuration.AddRuleForAllLevels(mmt);
             }).LogFactory;
 
@@ -634,6 +636,7 @@ namespace NLog.UnitTests.Targets
             };
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
+                cfg.LogFactory.ThrowExceptions = true;
                 cfg.Configuration.AddRuleForAllLevels(mmt);
             }).LogFactory;
 
@@ -654,6 +657,7 @@ namespace NLog.UnitTests.Targets
 
             Assert.Throws<NLogConfigurationException>(() =>
                 new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
                     cfg.Configuration.AddRuleForAllLevels(mmt);
                 })
             );
@@ -674,6 +678,7 @@ namespace NLog.UnitTests.Targets
 
             Assert.Throws<NLogConfigurationException>(() =>
                 new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
                     cfg.Configuration.AddRuleForAllLevels(mmt);
                 })
             );
@@ -713,6 +718,7 @@ namespace NLog.UnitTests.Targets
 
             Assert.Throws<NLogConfigurationException>(() =>
                 new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
                     cfg.Configuration.AddRuleForAllLevels(mmt);
                 })
             );
@@ -867,6 +873,7 @@ namespace NLog.UnitTests.Targets
 
             Assert.Throws<NLogConfigurationException>(() =>
                 new LogFactory().Setup().LoadConfiguration(cfg => {
+                    cfg.LogFactory.ThrowConfigExceptions = true;
                     cfg.Configuration.AddRuleForAllLevels(mmt);
                 })
             );
