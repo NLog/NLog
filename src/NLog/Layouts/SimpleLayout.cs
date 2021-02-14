@@ -473,5 +473,42 @@ namespace NLog.Layouts
 
             RenderAllRenderers(logEvent, target);
         }
+
+        #region Equality members
+
+        /// 
+        protected bool Equals(SimpleLayout other)
+        {
+            return OriginalText == other.OriginalText;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((SimpleLayout) obj);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            return (OriginalText != null ? OriginalText.GetHashCode() : 0);
+        }
+
+        #endregion
     }
 }

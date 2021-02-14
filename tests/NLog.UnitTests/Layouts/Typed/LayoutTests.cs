@@ -35,6 +35,7 @@ using NLog.Layouts;
 using System;
 using System.Globalization;
 using System.Threading;
+using NLog.Config;
 using Xunit;
 
 namespace NLog.UnitTests.Layouts.Typed
@@ -177,29 +178,231 @@ namespace NLog.UnitTests.Layouts.Typed
             Assert.Equal(value, result);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void WrongValueErrorTest(bool throwsException)
+        [Fact]
+        public void WrongValueErrorTest()
         {
             // Arrange
-            LogManager.ThrowExceptions = throwsException; //will be reset by NLogTestBase for every test
             var value = "12312aa3";
             var layout = CreateLayoutRenderedFromProperty<int>();
             var logEventInfo = CreateLogEventInfoWithValue(value);
 
             // Act
+            using (new NoThrowNLogExceptions())
+            {
+                layout.RenderToValueOrDefault(logEventInfo);
+            }
+
+            // Assert
+            // No Exception
+        }
+
+        [Fact]
+        public void WrongValueErrorTestThrowsEception()
+        {
+            // Arrange
+            var value = "12312aa3";
+            var layout = CreateLayoutRenderedFromProperty<int>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
             Action action = () => layout.RenderToValueOrDefault(logEventInfo);
 
             // Assert
-            if (throwsException)
+            Assert.Throws<FormatException>(action);
+
+        }
+
+        [Theory]
+        [InlineData(100, "100")]
+        [InlineData(null, null)]
+        public void GetFormattedMessageFixedValueTest(int? input, string expected)
+        {
+            // Arrange
+            var layout = new LayoutWithPublicGetFormattedMessage<int?>(input);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var result = layout.GetFormattedMessage(logEventInfo);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData("100", "100")]
+        public void GetFormattedStringMessageFixedValueTest(string input, string expected)
+        {
+            // Arrange
+            var layout = new LayoutWithPublicGetFormattedMessage<string>(input);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var result = layout.GetFormattedMessage(logEventInfo);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData("100", 100, true)]
+        [InlineData("1  00", null, false)]
+        public void TryGetRawValueTest(string input, int? expected, bool expectedSuccess)
+        {
+            // Arrange
+
+
+            var layout = new Layout<int?>("${event-properties:prop1}");
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = input;
+
+            // Act
+            bool success;
+            object result;
+            using (new NoThrowNLogExceptions())
             {
-                Assert.Throws<FormatException>(action);
+                success = layout.TryGetRawValue(logEventInfo, out result);
             }
-            else
+
+            // Assert
+            Assert.Equal(expected, result);
+            Assert.Equal(expectedSuccess, success);
+        }
+
+        [Fact]
+        public void TryConvertToShouldHandleNullLayout()
+        {
+            // Arrange
+            var layout = new Layout<int>((Layout)null);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var success = layout.TryGetRawValue(logEventInfo, out var result);
+
+            // Assert
+            Assert.Equal(0, result);
+            Assert.True(success);
+        }
+
+        [Fact]
+        public void RenderShouldHandleInvalidConversionAndLogFactory()
+        {
+            // Arrange
+            var factory = new LogFactory
             {
-                action();
+                ThrowExceptions = false,
+            };
+            var configuration = new LoggingConfiguration(factory);
+
+            var layout = new Layout<int>("${event-properties:prop1}");
+            layout.Initialize(configuration);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = "Not a int";
+
+            // Act
+            int result;
+            using (new NoThrowNLogExceptions())
+            {
+                result = layout.RenderToValueOrDefault(logEventInfo);
             }
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void RenderShouldHandleInvalidConversionAndLogFactoryAndDefault()
+        {
+            // Arrange
+            var factory = new LogFactory
+            {
+                ThrowExceptions = false,
+            };
+            var configuration = new LoggingConfiguration(factory);
+
+            var layout = new Layout<int>("${event-properties:prop1}");
+            layout.Initialize(configuration);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = "Not a int";
+
+            // Act
+            int result;
+            using (new NoThrowNLogExceptions())
+            {
+                result = layout.RenderToValueOrDefault(logEventInfo, 200);
+            }
+
+            // Assert
+            Assert.Equal(200, result);
+        }
+
+        [Fact]
+        public void RenderShouldHandleValidConversion()
+        {
+            // Arrange
+            var layout = new Layout<int>("${event-properties:prop1}");
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = "100";
+
+            // Act
+            var result = layout.RenderToValueOrDefault(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
+
+        [Fact]
+        public void Equals_Fixed_EqualTest()
+        {
+            // Arrange
+            var layout1 = new Layout<int>(1);
+            var layout2 = new Layout<int>(1);
+
+            // Act
+            var equal = layout1.Equals((object)layout2);
+
+            // Assert
+            Assert.True(equal);
+        }
+
+        [Fact]
+        public void Equals_Fixed_NotEqualTest()
+        {
+            // Arrange
+            var layout1 = new Layout<int>(1);
+            var layout2 = new Layout<int>(2);
+
+            // Act
+            var equal = layout1.Equals((object)layout2);
+
+            // Assert
+            Assert.False(equal);
+        }
+
+        [Fact]
+        public void Equals_Dynamic_EqualTest()
+        {
+            // Arrange
+            var layout1 = new Layout<int>("${event-properties:prop1}");
+            var layout2 = new Layout<int>("${event-properties:prop1}");
+
+            // Act
+            var equal = layout1.Equals((object)layout2);
+
+            // Assert
+            Assert.True(equal);
+        }
+
+        [Fact]
+        public void Equals_Dynamic_NotEqualTest()
+        {
+            // Arrange
+            var layout1 = new Layout<int>("${event-properties:prop1}");
+            var layout2 = new Layout<int>("${event-properties:prop2}");
+
+            // Act
+            var equal = layout1.Equals((object)layout2);
+
+            // Assert
+            Assert.False(equal);
         }
 
         private class TestObject
@@ -218,6 +421,29 @@ namespace NLog.UnitTests.Layouts.Typed
             var logEventInfo = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
             logEventInfo.Properties.Add("value1", value);
             return logEventInfo;
+        }
+
+
+        private class LayoutWithPublicGetFormattedMessage<T> : Layout<T>
+        {
+            /// <inheritdoc />
+            public LayoutWithPublicGetFormattedMessage(T value) : base(value)
+            {
+            }
+
+            /// <inheritdoc />
+            public LayoutWithPublicGetFormattedMessage(Layout layout) : base(layout)
+            {
+            }
+
+            #region Overrides of Layout<T>
+
+            public string GetFormattedMessage(LogEventInfo logEvent)
+            {
+                return base.GetFormattedMessage(logEvent);
+            }
+
+            #endregion
         }
     }
 }

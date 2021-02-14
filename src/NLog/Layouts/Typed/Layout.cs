@@ -48,7 +48,7 @@ namespace NLog.Layouts
     /// Layout with a simple value (e.g. int) or a layout which results in a simple value (e.g. ${counter})
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Layout<T> : Layout, IRenderable<T>
+    public class Layout<T> : Layout, IRenderable<T>, IInternalLoggerContext
     {
         // ReSharper disable StaticMemberInGenericType - this is safe, static ctor is called for every generic type
         [NotNull] private static readonly Type Type;
@@ -158,7 +158,7 @@ namespace NLog.Layouts
             catch (Exception e)
             {
                 InternalLogger.Debug(e, "Conversion to type {0} failed. Value: '{1}'", Type, raw.ToString().Left(1000));
-                if (e.MustBeRethrown())
+                if (e.MustBeRethrown(this))
                 {
                     throw;
                 }
@@ -344,6 +344,11 @@ namespace NLog.Layouts
         /// <inheritdoc />
         public override string ToString()
         {
+            return Describe();
+        }
+
+        private string Describe()
+        {
             if (IsFixed)
             {
                 return $"Typed Layout with fixed value: {_layout}, Value: {_fixedValue}";
@@ -351,6 +356,9 @@ namespace NLog.Layouts
 
             return $"Typed Layout with dynamic value: {_layout}";
         }
+        string IInternalLoggerContext.Name => Describe();
+
+        LogFactory IInternalLoggerContext.LogFactory => base.LoggingConfiguration?.LogFactory;
 
         #region Equality members
 
@@ -359,7 +367,7 @@ namespace NLog.Layouts
         /// </summary>
         protected bool Equals(Layout<T> other)
         {
-            return IsFixed == other.IsFixed && Equals(_layout, other._layout) && EqualityComparer<T>.Default.Equals(_fixedValue, other._fixedValue);
+            return IsFixed == other.IsFixed && Equals(_layout, other._layout) && Equals(_fixedValue, other._fixedValue);
         }
 
         /// <inheritdoc />
