@@ -475,7 +475,7 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void LogBuilder_message_cultureTest()
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] LogBuilderTests.LogBuilder_message_cultureTest because we are running in Travis");
                 return;

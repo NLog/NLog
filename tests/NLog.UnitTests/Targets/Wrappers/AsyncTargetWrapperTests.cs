@@ -174,7 +174,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                 }
 
-#if !NET35 && !NET40
+#if DEBUG
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
                     Assert.InRange(elapsedMilliseconds, 0, 975);

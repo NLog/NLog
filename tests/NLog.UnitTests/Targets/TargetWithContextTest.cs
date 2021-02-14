@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Targets
             ScopeContext.PushProperty("TestKey", "Hello Async World");
             ScopeContext.PushProperty("AsyncKey", "Hello Async World");
             logger.Debug("log message");
-            WaitForLastMessage(target);
+            Assert.True(WaitForLastMessage(target));
 
             Assert.NotEqual(0, target.LastMessage.Length);
             Assert.NotNull(target.LastCombinedProperties);
@@ -123,16 +123,17 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
         }
 
-        private static void WaitForLastMessage(CustomTargetWithContext target)
+        private static bool WaitForLastMessage(CustomTargetWithContext target)
         {
             System.Threading.Thread.Sleep(1);
             for (int i = 0; i < 1000; ++i)
             {
                 if (target.LastMessage != null)
-                    break;
+                    return true;
 
                 System.Threading.Thread.Sleep(1);
             }
+            return false;
         }
 
         [Fact]
@@ -193,7 +194,7 @@ namespace NLog.UnitTests.Targets
 
             logger.Debug("log message");
 
-            WaitForLastMessage(target);
+            Assert.True(WaitForLastMessage(target));
 
             Assert.Equal("{ a = b }", target.LastCombinedProperties["TestKey"]);
         }

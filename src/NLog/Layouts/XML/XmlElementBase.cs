@@ -70,7 +70,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
         /// <docgen category='XML Options' order='10' />
-        internal string ElementNameInternal { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
+        internal string ElementNameInternal { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim()); }
         private string _elementName;
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace NLog.Layouts
                 _propertiesElementName = value;
                 _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0;
                 if (!_propertiesElementNameHasFormat)
-                    _propertiesElementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true);
+                    _propertiesElementName = XmlHelper.XmlConvertToElementName(value?.Trim());
             }
         }
         private string _propertiesElementName = DefaultPropertyName;
@@ -422,8 +422,8 @@ namespace NLog.Layouts
 
         private bool AppendXmlPropertyObjectValue(string propName, object propertyValue, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
         {
-            IConvertible convertibleValue = propertyValue as IConvertible;
-            TypeCode objTypeCode = propertyValue == null ? TypeCode.Empty : (convertibleValue?.GetTypeCode() ?? TypeCode.Object);
+            var convertibleValue = propertyValue as IConvertible;
+            var objTypeCode = convertibleValue?.GetTypeCode() ?? (propertyValue == null ? TypeCode.Empty : TypeCode.Object);
             if (objTypeCode != TypeCode.Object)
             {
                 string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
@@ -596,14 +596,14 @@ namespace NLog.Layouts
             string propNameElement;
             if (ignorePropertiesElementName)
             {
-                propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
+                propNameElement = XmlHelper.XmlConvertToElementName(propName);
                 sb.Append(propNameElement);
             }
             else
             {
                 if (_propertiesElementNameHasFormat)
                 {
-                    propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
+                    propNameElement = XmlHelper.XmlConvertToElementName(propName);
                     sb.AppendFormat(PropertiesElementName, propNameElement);
                 }
                 else

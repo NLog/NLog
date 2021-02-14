@@ -446,13 +446,12 @@ namespace NLog.UnitTests
         }
 
         /// <summary>
-        /// Are we running on Travis?
+        /// Are we running on Linux environment or Windows environemtn ?
         /// </summary>
-        /// <returns></returns>
-        protected static bool IsTravis()
+        /// <returns>true when something else than Windows</returns>
+        protected static bool IsLinux()
         {
-            var val = Environment.GetEnvironmentVariable("TRAVIS");
-            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+            return !NLog.Internal.PlatformDetector.IsWin32;
         }
 
         /// <summary>

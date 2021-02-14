@@ -2,9 +2,6 @@
 # creates NuGet package at \artifacts
 dotnet --version
 
-# dotnet restore .\src\NLog\
-# dotnet pack .\src\NLog\  --configuration release --include-symbols -o ..\..\artifacts
-
 $versionPrefix = "4.7.7"
 $versionSuffix = ""
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
@@ -41,9 +38,12 @@ function create-package($packageName)
 }
 
 create-package('NLog.MSMQ')
+create-package('NLog.OutputDebugString')
+create-package('NLog.PerformanceCounter')
 create-package('NLog.Wcf')
 create-package('NLog.WindowsEventLog')
 create-package('NLog.WindowsIdentity')
+create-package('NLog.WindowsRegistry')
 
 msbuild /t:xsd /t:NuGetSchemaPackage /t:NuGetConfigPackage .\src\NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
 

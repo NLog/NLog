@@ -182,7 +182,7 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
 
         /// <summary>
-        /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/> or <see cref="JsonLayout"/>
+        /// Gets or sets the JSON serializer to use with <see cref="JsonLayout"/>
         /// </summary>
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
         public IJsonConverter JsonConverter
@@ -202,7 +202,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/>, <see cref="WebServiceTarget"/> or <see cref="TargetWithContext"/>
+        /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/> or <see cref="TargetWithContext"/>
         /// </summary>
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IPropertyTypeConverter)). Marked obsolete on NLog 5.0")]
         public IPropertyTypeConverter PropertyTypeConverter

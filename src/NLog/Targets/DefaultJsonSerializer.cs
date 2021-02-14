@@ -249,7 +249,7 @@ namespace NLog.Targets
         private bool SerializeSimpleObjectValue(object value, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
             var convertibleValue = value as IConvertible;
-            var objTypeCode = value == null ? TypeCode.Empty : (convertibleValue?.GetTypeCode() ?? TypeCode.Object);
+            var objTypeCode = convertibleValue?.GetTypeCode() ?? (value == null ? TypeCode.Empty : TypeCode.Object);
             if (objTypeCode != TypeCode.Object)
             {
                 SerializeSimpleTypeCodeValue(convertibleValue, objTypeCode, destination, options, forceToString);

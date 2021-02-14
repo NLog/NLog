@@ -77,8 +77,6 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
-            Parameters = new List<NLogViewerParameterInfo>();
-            Renderer.Parameters = Parameters;
             OnConnectionOverflow = NetworkTargetConnectionsOverflowAction.Block;
             MaxConnections = 16;
             NewLine = false;
@@ -232,7 +230,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
-        public IList<NLogViewerParameterInfo> Parameters { get; private set; }
+        public IList<NLogViewerParameterInfo> Parameters => _log4JLayout.Parameters;
 
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.

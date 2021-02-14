@@ -19,6 +19,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 
     <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">Full</DebugType>
+    <DisableImplicitFrameworkReferences Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">True</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TestTargetFramework)' != '' ">
@@ -43,23 +44,17 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.8.3" Condition="'$(OS)' != 'Windows_NT'" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.1" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
-
-    <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
-      <Private>true</Private>
-    </ProjectReference>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
@@ -68,25 +63,19 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite" />
-    <Reference Include="System.DirectoryServices.AccountManagement" Condition=" '$(monobuild)' == '' " />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
-    <Reference Include="Microsoft.CSharp" />
-
-    <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" Condition=" '$(monobuild)' == '' " />
+    <Reference Include="System.Xml.Linq" />
 
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
   </ItemGroup>
  
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' != '' ">
@@ -105,7 +94,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj" />
     <ProjectReference Include="..\..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj" /> 
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
       <Private>true</Private>

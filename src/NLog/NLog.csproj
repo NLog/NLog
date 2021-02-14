@@ -45,7 +45,7 @@ Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 For all config options and platform support, check https://nlog-project.org/config/
 
     </PackageReleaseNotes>
-    <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;email;wcf;console</PackageTags>
+    <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;console;email</PackageTags>
     <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>

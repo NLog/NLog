@@ -37,51 +37,35 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Security.Principal;
     using System.Threading;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Targets.Wrappers;
     using NLog.UnitTests.Common;
     using Xunit;
 
     public class IdentityTests : NLogTestBase
     {
-#if MONO
-        [Fact(Skip = "MONO on Travis not supporting WindowsIdentity")]
-#else
-        [Fact]
-#endif
-        public void WindowsIdentityTest()
-        {
-#if NETSTANDARD
-            if (IsTravis())
-            {
-                Console.WriteLine("[SKIP] IdentityTests.WindowsIdentityTest NetStandard on Travis not supporting WindowsIdentity");
-                return; // NetCore on Travis not supporting WindowsIdentity
-            }
-#endif
-
-            var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
-            var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
-            if (!string.IsNullOrEmpty(userDomainName))
-                userName = userDomainName + "\\" + userName;
-
-            NLog.Layouts.Layout layout = "${windows-identity}";
-            var result = layout.Render(LogEventInfo.CreateNullEvent());
-            if (!string.IsNullOrEmpty(result) || !IsAppVeyor())
-                Assert.Equal(userName, result);
-        }
-
-        [Fact]
-        public void IdentityTest1()
+        [Theory]
+        [InlineData("${identity}", "auth:CustomAuth:SOMEDOMAIN\\SomeUser")]
+        [InlineData("${identity:authtype=false}", "auth:SOMEDOMAIN\\SomeUser")]
+        [InlineData("${identity:authtype=false:isauthenticated=false}", "SOMEDOMAIN\\SomeUser")]
+        [InlineData("${identity:fsnormalize=true}", "auth_CustomAuth_SOMEDOMAIN_SomeUser")]
+        public void IdentityTest1(string layout, string expectedOutput)
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("SOMEDOMAIN\\SomeUser", "CustomAuth"), new[] { "Role1", "Role2" });
             try
             {
-                AssertLayoutRendererOutput("${identity}", "auth:CustomAuth:SOMEDOMAIN\\SomeUser");
-                AssertLayoutRendererOutput("${identity:authtype=false}", "auth:SOMEDOMAIN\\SomeUser");
-                AssertLayoutRendererOutput("${identity:authtype=false:isauthenticated=false}", "SOMEDOMAIN\\SomeUser");
-                AssertLayoutRendererOutput("${identity:fsnormalize=true}", "auth_CustomAuth_SOMEDOMAIN_SomeUser");
+                var logFactory = new LogFactory().Setup()
+                    .LoadConfigurationFromXml($@"
+                    <nlog>
+                        <targets><target type='debug' name='debug' layout='{layout}' /></targets>
+                        <rules><logger name='*' writeTo='debug' /></rules>
+                    </nlog>").LogFactory;
+
+                var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+                logFactory.GetCurrentClassLogger().Info("Test Message");
+                Assert.Equal(1, debugTarget.Counter);
+                Assert.Equal(expectedOutput, debugTarget.LastMessage);
             }
             finally
             {
@@ -175,7 +159,17 @@ namespace NLog.UnitTests.LayoutRenderers
             Thread.CurrentPrincipal = new GenericPrincipal(new NotAuthenticatedIdentity(), new[] { "role1" });
             try
             {
-                AssertLayoutRendererOutput("${identity}", "notauth::");
+                var logFactory = new LogFactory().Setup()
+                    .LoadConfigurationFromXml(@"
+                    <nlog>
+                        <targets><target type='debug' name='debug' layout='${identity}' /></targets>
+                        <rules><logger name='*' writeTo='debug' /></rules>
+                    </nlog>").LogFactory;
+
+                var debugTarget = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+                logFactory.GetCurrentClassLogger().Info("Test Message");
+                Assert.Equal(1, debugTarget.Counter);
+                Assert.Equal("notauth::", debugTarget.LastMessage);
             }
             finally
             {
@@ -194,8 +188,6 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-#region Overrides of GenericIdentity
-
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
             /// </summary>
@@ -203,8 +195,6 @@ namespace NLog.UnitTests.LayoutRenderers
             /// true if the user was has been authenticated; otherwise, false.
             /// </returns>
             public override bool IsAuthenticated => false;
-
-#endregion
         }
     }
 }
