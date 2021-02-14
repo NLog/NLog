@@ -54,7 +54,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Targets
 {
-    public class WebServiceTargetTests
+    public class WebServiceTargetTests : NLogTestBase
     {
         public WebServiceTargetTests()
         {
@@ -358,52 +358,55 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
-            string wsAddress = getNewWsAddress();
-            var logFactory = new LogFactory().Setup()
-                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
-                                             .LoadConfigurationFromXml($@"
-                <nlog throwExceptions='true'>
-                    <targets>
-                        <target type='WebService'
-                                name='ws'
-                                url='{wsAddress}{"api/logme"}'
-                                protocol='HttpPost'
-                                encoding='UTF-8'
-                               >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
-                            <parameter name='param2' type='System.String' layout='${{level}}'/>
-                        </target>
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='ws' />
-                    </rules>
-                </nlog>").LogFactory;
-
-            var logger = logFactory.GetCurrentClassLogger();
-
-            const int messageCount = 1000;
-            var createdMessages = new List<string>(messageCount);
-
-            for (int i = 0; i < messageCount; i++)
+            RetryingIntegrationTest(3, () =>
             {
-                var message = "message " + i;
-                createdMessages.Add(message);
-            }
+                string wsAddress = getNewWsAddress();
+                var logFactory = new LogFactory().Setup()
+                                                 .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                                 .LoadConfigurationFromXml($@"
+                    <nlog throwExceptions='true'>
+                        <targets>
+                            <target type='WebService'
+                                    name='ws'
+                                    url='{wsAddress}{"api/logme"}'
+                                    protocol='HttpPost'
+                                    encoding='UTF-8'
+                                   >
+                                <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                                <parameter name='param2' type='System.String' layout='${{level}}'/>
+                            </target>
+                        </targets>
+                        <rules>
+                          <logger name='*' writeTo='ws' />
+                        </rules>
+                    </nlog>").LogFactory;
 
-            //reset
-            var context = new LogMeController.TestContext();
-            context.ResetState(messageCount);
+                var logger = logFactory.GetCurrentClassLogger();
 
-            StartOwinTest(wsAddress, context, () =>
-            {
-                foreach (var createdMessage in createdMessages)
+                const int messageCount = 1000;
+                var createdMessages = new List<string>(messageCount);
+
+                for (int i = 0; i < messageCount; i++)
                 {
-                    logger.Info(createdMessage);
+                    var message = "message " + i;
+                    createdMessages.Add(message);
                 }
-            });
 
-            Assert.Equal(0, context.CountdownEvent.CurrentCount);
-            Assert.Equal(createdMessages.Count, context.ReceivedLogsPostParam1.Count);
+                //reset
+                var context = new LogMeController.TestContext();
+                context.ResetState(messageCount);
+
+                StartOwinTest(wsAddress, context, () =>
+                {
+                    foreach (var createdMessage in createdMessages)
+                    {
+                        logger.Info(createdMessage);
+                    }
+                });
+
+                Assert.Equal(0, context.CountdownEvent.CurrentCount);
+                Assert.Equal(createdMessages.Count, context.ReceivedLogsPostParam1.Count);
+            });
         }
 
         /// <summary>
