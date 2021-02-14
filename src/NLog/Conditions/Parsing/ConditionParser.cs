@@ -216,26 +216,26 @@ namespace NLog.Conditions
         {
             if (0 == string.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLevelExpression();
-                    return true;
-                }
+                expression = new ConditionLevelExpression();
+                return true;
             }
 
             if (0 == string.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLoggerNameExpression();
-                    return true;
-                }
+                expression = new ConditionLoggerNameExpression();
+                return true;
             }
 
             if (0 == string.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionMessageExpression();
-                    return true;
-                }
+                expression = new ConditionMessageExpression();
+                return true;
+            }
+
+            if (0 == string.Compare(keyword, "exception", StringComparison.OrdinalIgnoreCase))
+            {
+                expression = new ConditionExceptionExpression();
+                return true;
             }
 
             if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
