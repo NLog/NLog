@@ -37,7 +37,7 @@ namespace NLog.Targets
     using System.ComponentModel;
 
     /// <summary>
-    /// Writes log messages to an ArrayList in memory for programmatic retrieval.
+    /// Writes log messages to <see cref="Logs"/> in memory for programmatic retrieval.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Memory-target">Documentation on NLog Wiki</seealso>
     /// <example>
@@ -95,7 +95,7 @@ namespace NLog.Targets
         public int MaxLogsCount { get; set; }
 
         /// <summary>
-        /// Renders the logging event message and adds it to the internal ArrayList of log messages.
+        /// Renders the logging event message and adds to <see cref="Logs"/>
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
