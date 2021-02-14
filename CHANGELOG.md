@@ -3,6 +3,14 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 Date format: (year/month/day)
 
 ## Change Log
+### V4.7.8 (2021/02/25)
+
+#### Bugfixes
+- [#4316](https://github.com/NLog/NLog/pull/4316) Fix TrimDirectorySeparators to handle root-path on Windows and Linux to load Nlog.config from root-path (#4316) (@snakefoot)
+
+#### Improvements
+- [#4273](https://github.com/NLog/NLog/pull/4273) Handle Breaking change with string.IndexOf(string) in .NET 5 (#4273) (@snakefoot)
+- [#4301](https://github.com/NLog/NLog/pull/4301) Update docs, remove ArrayList in docs (#4301) (@304NotModified)
 
 ### V4.7.7 (2021/01/20)
 

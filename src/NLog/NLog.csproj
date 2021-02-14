@@ -12,9 +12,10 @@ NLog supports traditional logging, structured logging and the combination of bot
 
 Supported platforms:
 
-- .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
+- .NET 5
 - .NET Core 1, 2 and 3
 - .NET Standard 1.3+ and 2.0+;
+- .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
 - .NET Framework 4 client profile
 - Xamarin Android, Xamarin iOs
 - UWP
@@ -32,18 +33,12 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-
-## Bugfixes
-- Skip lookup MainModule.FileName on Android platform to avoid crash (#4229) (@snakefoot)
-- JsonLayout - Generate correct json for keys that contain quote (#4202) (@virgilp)
-- JsonLayout - Unwind after invalid property value to avoid invalid Json (#4245) (@snakefoot)
+## Bug fixes
+- Fix TrimDirectorySeparators to handle root-path on Windows and Linux to load Nlog.config from root-path (#4316) (@snakefoot)
 
 ## Improvements
-- Better handling of low memory (#4222) (@snakefoot)
-- JsonLayout - Added new ExcludeEmptyProperties to skip GDC/MDC/MLDC properties with null or empty values (#4221) (@pruiz)
-
-## Performance
-- Skip allocation of SingleCallContinuation when ThrowExceptions = false (#4207) (@snakefoot)
+- Handle Breaking change with string.IndexOf(string) in .NET 5 (#4273) (@snakefoot)
+- Update docs, remove ArrayList in docs (#4301) (@304NotModified)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
