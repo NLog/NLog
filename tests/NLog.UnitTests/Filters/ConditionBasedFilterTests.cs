@@ -65,5 +65,56 @@ namespace NLog.UnitTests.Filters
             logger.Debug("Zz");
             AssertDebugCounter("debug", 2);
         }
+
+        [Fact]
+        public void WhenLogLevelTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minLevel='Debug' writeTo='debug'>
+                            <filters defaultAction='ignore'>
+                                <when condition=""level >= '${scopeproperty:filterlevel:whenEmpty=Off}'"" action='Log' />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>
+            ").LogFactory;
+            var logger = logFactory.GetCurrentClassLogger();
+
+            logger.Fatal("Hello Emptiness");
+            logFactory.AssertDebugLastMessage("");
+
+            using (logger.PushScopeProperty("filterLevel", LogLevel.Warn))
+            {
+                logger.Error("Hello can you hear me");
+                logFactory.AssertDebugLastMessage("Hello can you hear me");
+            }
+        }
+
+        [Fact]
+        public void WhenExceptionTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minLevel='Debug' writeTo='debug'>
+                            <filters defaultAction='ignore'>
+                                <when condition='exception != null' action='Log' />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>
+            ").LogFactory;
+            var logger = logFactory.GetCurrentClassLogger();
+
+            logger.Fatal("Hello missing Exception");
+            logFactory.AssertDebugLastMessage("");
+
+            logger.Error(new System.Exception("Oh no"), "Hello with Exception");
+            logFactory.AssertDebugLastMessage("Hello with Exception");
+        }
     }
 }
