@@ -1192,14 +1192,14 @@ namespace NLog.Config
             try
             {
                 classType = ExpandSimpleVariables(classType);
-                if (classType.Contains('.'))
+                if (classType.Contains(','))
                 {
-                    // Possible prefix detected, that could be assembly-name-as-prefix
+                    // Possible specification of assemlby-name detected
                     if (factory.TryCreateInstance(classType, out newInstance) && newInstance != null)
                         return newInstance;
 
                     // Attempt to load the assembly name extracted from the prefix
-                    RegisterExtensionAssemblyFromPrefix(classType);
+                    classType = RegisterExtensionFromAssemblyName(classType);
                 }
 
                 newInstance = factory.CreateInstance(classType);
@@ -1226,14 +1226,15 @@ namespace NLog.Config
             return newInstance;
         }
 
-        private void RegisterExtensionAssemblyFromPrefix(string classType)
+        private string RegisterExtensionFromAssemblyName(string classType)
         {
-            var assemblyName = classType.Substring(0, classType.LastIndexOf('.'));
+            var assemblyName = classType.Substring(classType.IndexOf(',') + 1).Trim();
             if (!string.IsNullOrEmpty(assemblyName))
             {
                 try
                 {
                     ParseExtensionWithAssembly(assemblyName, string.Empty);
+                    return classType.Substring(0, classType.IndexOf(',')).Trim() + ", " + assemblyName; // uniform format
                 }
                 catch (Exception ex)
                 {
@@ -1241,6 +1242,8 @@ namespace NLog.Config
                         throw;
                 }
             }
+
+            return classType;
         }
 
         private void SetItemOnProperty(object o, PropertyInfo propInfo, ValidatedConfigurationElement element, object properyValue)

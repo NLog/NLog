@@ -175,12 +175,16 @@ namespace NLog.Config
         {
             _nameToMethodInfo[itemName + itemNamePrefix] = itemDefinition;
             if (!string.IsNullOrEmpty(assemblyName))
-                _nameToMethodInfo[itemName + "." + assemblyName] = itemDefinition;
+            {
+                _nameToMethodInfo[itemName + ", " + assemblyName] = itemDefinition;
+            }
             lock (_nameToLateBoundMethod)
             {
                 _nameToLateBoundMethod.Remove(itemName + itemNamePrefix);
                 if (!string.IsNullOrEmpty(assemblyName))
-                    _nameToLateBoundMethod.Remove(itemName + "." + assemblyName);
+                {
+                    _nameToMethodInfo.Remove(itemName + ", " + assemblyName);
+                }
             }
         }
 

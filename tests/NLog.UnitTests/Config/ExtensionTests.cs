@@ -396,13 +396,12 @@ namespace NLog.UnitTests.Config
 </targets>
 
 <rules>
-    <logger name='*' writeTo='t'>
-    </logger>
+    <logger name='*' writeTo='t' />
 </rules>
 </nlog>").LogFactory;
 
             var autoLoadedTarget = logFactory.Configuration.FindTargetByName("t");
-            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().ToString());
         }
 
         [Fact]
@@ -411,7 +410,7 @@ namespace NLog.UnitTests.Config
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>
 <targets>
-    <target name='t' type='NLogAutoLoadExtension.AutoLoadTarget' />
+    <target name='t' type='AutoLoadTarget,  NLogAutoLoadExtension' />
 </targets>
 <rules>
     <logger name='*' writeTo='t' />
@@ -419,7 +418,7 @@ namespace NLog.UnitTests.Config
 </nlog>").LogFactory;
 
             var autoLoadedTarget = logFactory.Configuration.FindTargetByName("t");
-            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().ToString());
         }
 
         [Theory]
@@ -448,8 +447,7 @@ namespace NLog.UnitTests.Config
     </targets>
 
     <rules>
-      <logger name='*' writeTo='t'>
-      </logger>
+      <logger name='*' writeTo='t' />
     </rules>
 </nlog>").LogFactory;
 
@@ -461,7 +459,7 @@ namespace NLog.UnitTests.Config
                     }
                     else
                     {
-                        Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                        Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().ToString());
                     }
                 }
             }
