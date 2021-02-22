@@ -790,7 +790,7 @@ namespace NLog.UnitTests.Targets
                     new Action<string, string, string, Encoding>(AssertZipFileContents) :
                     AssertFileContents;
 
-#if NET45
+#if !NET35
                 string expectedEntryName = Path.GetFileNameWithoutExtension(archiveTempName) + ".txt";
 #else
                 string expectedEntryName = Path.GetFileName(logFile);
@@ -2523,7 +2523,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "eee\n"),
                     Encoding.UTF8);
 
-#if NET45
+#if !NET35
                 string expectedEntry1Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(1)) + ".txt";
                 string expectedEntry2Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(2)) + ".txt";
                 string expectedEntry3Name = Path.GetFileNameWithoutExtension(helper.GetFullPath(3)) + ".txt";
