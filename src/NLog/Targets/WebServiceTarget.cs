@@ -122,19 +122,7 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Layout Url
-        {
-            get => _url;
-            set
-            {
-                _url = value;
-                _fixedUri = value is SimpleLayout simpleLayout && simpleLayout.IsFixedText ? new Uri(simpleLayout.FixedText) : null;
-            }
-        }
-        private Layout _url;
-        private Uri _fixedUri;
-        private Uri _prevUri;
-        private string _prevUriString;
+        public Layout<Uri> Url { get; set; }
 
         /// <summary>
         /// Gets or sets the Web service method name. Only used with Soap.
@@ -255,7 +243,7 @@ namespace NLog.Targets
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
-            var url = (Protocol != WebServiceProtocol.HttpGet ? _fixedUri : null) ?? BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
+            var url = Protocol != WebServiceProtocol.HttpGet ? Url.StaticValue : BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
             DoInvoke(parameters, webRequest, continuation);
         }
@@ -267,7 +255,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
         {
-            var url = (Protocol != WebServiceProtocol.HttpGet ? _fixedUri : null) ?? BuildWebServiceUrl(logEvent.LogEvent, parameters);
+            var url = BuildWebServiceUrl(logEvent.LogEvent, parameters);
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
 
             if (Headers != null && Headers.Count > 0)
@@ -459,7 +447,7 @@ namespace NLog.Targets
         /// </summary>
         private Uri BuildWebServiceUrl(LogEventInfo logEvent, object[] parameterValues)
         {
-            var uri = _fixedUri ?? RenderUri(logEvent);
+            var uri = RenderLogEvent(Url, logEvent);
             if (Protocol != WebServiceProtocol.HttpGet)
             {
                 return uri;
@@ -488,20 +476,6 @@ namespace NLog.Targets
             }
 
             return builder.Uri;
-        }
-
-        private Uri RenderUri(LogEventInfo logEvent)
-        {
-            Uri prevUri = _prevUri;
-            string prevUriString = _prevUriString;
-            string uriString = RenderLogEvent(Url, logEvent);
-            if (uriString == prevUriString)
-                return prevUri;
-
-            prevUri = new Uri(uriString);
-            _prevUri = prevUri;
-            _prevUriString = uriString;
-            return prevUri;
         }
 
         private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingOptions encodingOptions)

@@ -125,19 +125,19 @@ namespace NLog.Targets
         /// Gets or sets the layout that renders event ID.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout EventId { get; set; }
+        public Layout<int> EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout Category { get; set; }
+        public Layout<short> Category { get; set; }
 
         /// <summary>
         /// Optional entry type. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout EntryType { get; set; }
+        public Layout<EventLogEntryType> EntryType { get; set; }
 
         /// <summary>
         /// Gets or sets the value to be used as the event Source.
@@ -270,19 +270,8 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = 0;
-            string renderEventId = RenderLogEvent(EventId, logEvent);
-            if (!string.IsNullOrEmpty(renderEventId) && !int.TryParse(renderEventId, out eventId))
-            {
-                InternalLogger.Warn("{0}: WriteEntry failed to parse EventId={1}", this, renderEventId);
-            }
-
-            short category = 0;
-            string renderCategory = RenderLogEvent(Category, logEvent);
-            if (!string.IsNullOrEmpty(renderCategory) && !short.TryParse(renderCategory, out category))
-            {
-                InternalLogger.Warn("{0}: WriteEntry failed to parse Category={1}", this, renderCategory);
-            }
+            int eventId = RenderLogEvent(EventId, logEvent, defaultValue: 0);
+            var category = RenderLogEvent(Category, logEvent, defaultValue: default(short));
 
             var eventLogSource = RenderLogEvent(Source, logEvent);
             if (string.IsNullOrEmpty(eventLogSource))
@@ -364,16 +353,10 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event - for rendering the <see cref="EntryType"/></param>
         private EventLogEntryType GetEntryType(LogEventInfo logEvent)
         {
-            string renderEntryType = RenderLogEvent(EntryType, logEvent);
-            if (!string.IsNullOrEmpty(renderEntryType))
+            var eventLogEntryType = RenderLogEvent(EntryType, logEvent, (EventLogEntryType)0);
+            if (eventLogEntryType != (EventLogEntryType)0)
             {
-                // try parse, if fail, determine auto
-                if (ConversionHelpers.TryParseEnum(renderEntryType, out EventLogEntryType eventLogEntryType))
-                {
-                    return eventLogEntryType;
-                }
-
-                InternalLogger.Warn("{0}: WriteEntry failed to parse EntryType={1}", this, renderEntryType);
+                return eventLogEntryType;
             }
 
             // determine auto
