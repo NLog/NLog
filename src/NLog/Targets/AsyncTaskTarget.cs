@@ -256,7 +256,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            retryDelay = TimeSpan.FromMilliseconds(RetryDelayMilliseconds * (RetryCount - retryCountRemaining) * 2 + RetryDelayMilliseconds);
+            retryDelay = TimeSpan.FromMilliseconds(RetryDelayMilliseconds * Math.Pow(2d, RetryCount - (1 + retryCountRemaining)));
             return true;
         }
 

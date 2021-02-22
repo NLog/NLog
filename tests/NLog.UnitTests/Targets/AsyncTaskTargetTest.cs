@@ -123,6 +123,29 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        class AsyncTaskBatchExceptionTestTarget : AsyncTaskTestTarget
+        {
+            public List<int> retryDelayLog = new List<int>();
+
+            protected override async Task WriteAsyncTask(IList<LogEventInfo> logEvents, CancellationToken cancellationToken)
+            {
+                await Task.Delay(50);
+                throw new Exception("Failed to write to message queue, or something");
+            }
+
+            protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override bool RetryFailedAsyncTask(Exception exception, CancellationToken cancellationToken, int retryCountRemaining, out TimeSpan retryDelay)
+            {
+                var shouldRetry = base.RetryFailedAsyncTask(exception, cancellationToken, retryCountRemaining, out retryDelay);
+                retryDelayLog.Add((int)retryDelay.TotalMilliseconds);
+                return shouldRetry;
+            }
+        }
+
         [Fact]
         public void AsyncTaskTarget_TestLogging()
         {
@@ -389,6 +412,32 @@ namespace NLog.UnitTests.Targets
                 var logLevel = LogLevel.FromString(logEventMessage);
                 Assert.Equal(ordinal++, logLevel.Ordinal);
             }
+
+            LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestBatchRetryTimings()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskBatchExceptionTestTarget
+            {
+                Layout = "${level}",
+                BatchSize = 10,
+                TaskDelayMilliseconds = 10,
+                RetryCount = 5,
+                RetryDelayMilliseconds = 3
+            };
+
+            SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
+
+            logger.Log(LogLevel.Info, "test");
+           
+            LogManager.Flush();
+
+            // The zero at the end of the array is used when there will be no more retries.
+            Assert.Equal(new[] { 3, 6, 12, 24, 48, 0 }, asyncTarget.retryDelayLog);
 
             LogManager.Configuration = null;
         }
