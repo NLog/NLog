@@ -145,7 +145,7 @@ namespace NLog.UnitTests
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
                     ZipEntry entry = zip.AddFile(fileName);
-#if NET45
+#if !NET35
                     string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
                     entry.FileName = entryName;
 #endif
