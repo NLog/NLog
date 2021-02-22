@@ -1261,7 +1261,7 @@ namespace NLog.Targets
             }
             else if (EnableArchiveFileCompression)
             {
-                InternalLogger.Info("{0}: Archiving {1} to compressed {2}", this, fileName, archiveFileName
+                InternalLogger.Info("{0}: Archiving {1} to compressed {2}", this, fileName, archiveFileName);
                 if (FileCompressor is ZipArchiveFileCompressor zipArchiveFileCompressor)
                 {
                     zipArchiveFileCompressor.IsEntryNameInferredFromArchiveFileName = (ArchiveNumbering != ArchiveNumberingMode.Rolling);
