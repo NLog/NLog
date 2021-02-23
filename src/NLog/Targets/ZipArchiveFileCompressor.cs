@@ -43,14 +43,19 @@ namespace NLog.Targets
     /// So log files created via <see cref="FileTarget"/> can be zipped when archived
     /// w/o 3rd party zip library when run on .Net4.5 or higher.
     /// </summary>
-    internal class ZipArchiveFileCompressor : IFileCompressor
+    internal class ZipArchiveFileCompressor : IArchiveFileCompressor
     {
         /// <summary>
         /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
-            string entryName = IsEntryNameInferredFromArchiveFileName ? (Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName)) : Path.GetFileName(fileName);
+            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+            CompressFile(fileName, archiveFileName, entryName);
+        }
+
+        public void CompressFile(string fileName, string archiveFileName, string entryName)
+        {
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
@@ -61,12 +66,6 @@ namespace NLog.Targets
                     originalFileStream.CopyTo(destination);
                 }
             }
-        }
-
-        public bool IsEntryNameInferredFromArchiveFileName
-        {
-            get;
-            set;
         }
     }
 #endif
