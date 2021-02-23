@@ -25,12 +25,6 @@
 //  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 //  SUBSTITUTE GOODS OR SERVICES
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace NLog.Targets
 {
     /// <summary>
