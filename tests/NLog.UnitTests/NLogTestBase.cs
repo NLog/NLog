@@ -137,18 +137,21 @@ namespace NLog.UnitTests
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
         }
 
-        protected class CustomFileCompressor : IFileCompressor
+        protected class CustomFileCompressor : IArchiveFileCompressor
         {
             public void CompressFile(string fileName, string archiveFileName)
+            {
+                string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+                CompressFile(fileName, archiveFileName, entryName);
+            }
+
+            public void CompressFile(string fileName, string archiveFileName, string entryName)
             {
 #if !NETSTANDARD
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
                     ZipEntry entry = zip.AddFile(fileName);
-#if !NET35
-                    string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
                     entry.FileName = entryName;
-#endif
                     zip.Save(archiveFileName);
                 }
 #endif
