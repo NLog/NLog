@@ -33,40 +33,18 @@
 
 namespace NLog.Targets
 {
-#if !NET35 && !NET40
-    using System.IO;
-    using System.IO.Compression;
-
     /// <summary>
-    /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/> 
-    /// and is used as the default value for <see cref="FileTarget.FileCompressor"/> on .Net4.5.
-    /// So log files created via <see cref="FileTarget"/> can be zipped when archived
-    /// w/o 3rd party zip library when run on .Net4.5 or higher.
+    /// <see cref="FileTarget"/> may be configured to compress archived files in a custom way
+    /// by setting <see cref="FileTarget.FileCompressor"/> before logging your first event.
     /// </summary>
-    internal class ZipArchiveFileCompressor : IArchiveFileCompressor
+    internal interface IArchiveFileCompressor : IFileCompressor
     {
         /// <summary>
-        /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
+        /// Create archiveFileName by compressing fileName.
         /// </summary>
-        public void CompressFile(string fileName, string archiveFileName)
-        {
-            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
-            CompressFile(fileName, archiveFileName, entryName);
-        }
-
-        public void CompressFile(string fileName, string archiveFileName, string entryName)
-        {
-            using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-            using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-            using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
-            {
-                var zipArchiveEntry = archive.CreateEntry(entryName);
-                using (var destination = zipArchiveEntry.Open())
-                {
-                    originalFileStream.CopyTo(destination);
-                }
-            }
-        }
+        /// <param name="fileName">Absolute path to the log file to compress.</param>
+        /// <param name="archiveFileName">Absolute path to the compressed archive file to create.</param>
+        /// <param name="entryName">The name of the file inside the archive.</param>
+        void CompressFile(string fileName, string archiveFileName, string entryName);
     }
-#endif
 }
