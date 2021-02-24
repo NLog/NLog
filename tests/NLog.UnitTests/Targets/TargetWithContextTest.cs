@@ -77,11 +77,12 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LastCombinedProperties = base.GetAllProperties(logEvent);
-                LastMessage = base.RenderLogEvent(Layout, logEvent);
 
                 var nestedStates = base.GetScopeContextNestedStates(logEvent);
                 if (nestedStates.Count != 0)
                     LastCombinedProperties["TestKey"] = nestedStates[0];
+
+                LastMessage = base.RenderLogEvent(Layout, logEvent);
             }
         }
 
