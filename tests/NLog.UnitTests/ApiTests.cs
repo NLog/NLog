@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -128,6 +130,21 @@ namespace NLog.UnitTests
             }
 
             Assert.Empty(unusedTypes);
+        }
+
+        [Fact]
+        public void TypesInInternalNamespaceShouldBeInternalTest()
+        {
+            var excludes = new HashSet<string> { "NLog.Internal.Xamarin.PreserveAttribute" };
+
+            var notInternalTypes = allTypes
+                .Where(t => t.Namespace != null && t.Namespace.Contains(".Internal"))
+                .Where(t => !t.IsNested && (t.IsVisible || t.IsPublic))
+                .Select(t => t.FullName)
+                .Where(n => !excludes.Contains(n))
+                .ToList();
+
+            Assert.Empty(notInternalTypes);
         }
 
         private void IncrementUsageCount(Type type)
