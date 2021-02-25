@@ -77,7 +77,7 @@ namespace NLog.Internal.Fakeables
         /// Process exit event.
         /// </summary>
         event EventHandler<EventArgs> ProcessExit;
-        
+
         /// <summary>
         /// Domain unloaded event.
         /// </summary>
