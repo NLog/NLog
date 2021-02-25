@@ -42,7 +42,7 @@ namespace NLog.Internal
     /// <summary>
     /// Helpers for <see cref="string"/>.
     /// </summary>
-    public static class StringHelpers
+    internal static class StringHelpers
     {
         /// <summary>
         /// IsNullOrWhiteSpace, including for .NET 3.5

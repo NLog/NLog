@@ -41,7 +41,7 @@ namespace NLog.Internal
     /// <summary>
     ///  Helper class for XML
     /// </summary>
-    public static class XmlHelper
+    internal static class XmlHelper
     {
         // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
         // filters control characters but allows only properly-formed surrogate sequences
@@ -68,7 +68,7 @@ namespace NLog.Internal
                 {
                     return CreateValidXmlString(text);   // rare expensive case
                 }
-                else 
+                else
                 {
                     ++i;
                 }
