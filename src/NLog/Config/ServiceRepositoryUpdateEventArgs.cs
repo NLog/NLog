@@ -36,22 +36,21 @@ using System;
 namespace NLog.Config
 {
     /// <summary>
-    /// Registered type on repository 
+    /// Registered service type in the service repository
     /// </summary>
-    public class RepositoryUpdateEventArgs : EventArgs
+    public class ServiceRepositoryUpdateEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="ServiceRepositoryUpdateEventArgs" /> class.
         /// </summary>
-        /// <param name="type"></param>
-        public RepositoryUpdateEventArgs(Type type)
+        public ServiceRepositoryUpdateEventArgs(Type serviceType)
         {
-            Type = type;
+            ServiceType = serviceType;
         }
 
         /// <summary>
-        /// 
+        /// Type of service-interface that has been registered
         /// </summary>
-        public Type Type { get; }
+        public Type ServiceType { get; }
     }
 }

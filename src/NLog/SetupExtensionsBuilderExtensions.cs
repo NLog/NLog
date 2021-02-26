@@ -94,49 +94,55 @@ namespace NLog
         /// <summary>
         /// Register a custom Target.
         /// </summary>
+        /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <typeparam name="T"> Type of the Target.</typeparam>
-        /// <param name="name"> Name of the Target.</param>
-        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name) where T : Target
+        /// <param name="overrideName">Type name of the Target. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string overrideName = null) where T : Target
         {
             var layoutRendererType = typeof(T);
-            return RegisterTarget(setupBuilder, name, layoutRendererType);
+            return RegisterTarget(setupBuilder, layoutRendererType, overrideName);
         }
 
         /// <summary>
         /// Register a custom Target.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="targetType"> Type of the Target.</param>
-        /// <param name="name"> Name of the Target.</param>
-        public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, string name, Type targetType)
+        /// <param name="targetType">Type of the Target.</param>
+        /// <param name="overrideName">Type name of the Target. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, Type targetType, string overrideName = null)
         {
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.Targets.RegisterDefinition(name, targetType);
+            overrideName = string.IsNullOrEmpty(overrideName) ? targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name : overrideName;
+            if (string.IsNullOrEmpty(overrideName))
+                throw new ArgumentException("Empty type name. Missing class attribute?", nameof(overrideName));
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.Targets.RegisterDefinition(overrideName, targetType);
             return setupBuilder;
         }
 
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
+        /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <typeparam name="T"> Type of the layout renderer.</typeparam>
-        /// <param name="name"> Name of the layout renderer - without ${}.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name)
+        /// <param name="overrideName">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string overrideName = null)
             where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);
-            return RegisterLayoutRenderer(setupBuilder, name, layoutRendererType);
+            return RegisterLayoutRenderer(setupBuilder, layoutRendererType, overrideName);
         }
 
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="layoutRendererType"> Type of the layout renderer.</param>
-        /// <param name="name"> Name of the layout renderer - without ${}.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Type layoutRendererType)
+        /// <param name="layoutRendererType">Type of the layout renderer.</param>
+        /// <param name="overrideName">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, Type layoutRendererType, string overrideName = null)
         {
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
+            overrideName = string.IsNullOrEmpty(overrideName) ? layoutRendererType.GetFirstCustomAttribute<LayoutRendererAttribute>()?.Name : overrideName;
+            if (string.IsNullOrEmpty(overrideName))
+                throw new ArgumentException("Empty type name. Missing class attribute?", nameof(overrideName));
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.LayoutRenderers.RegisterDefinition(overrideName, layoutRendererType);
             return setupBuilder;
         }
 
@@ -206,12 +212,6 @@ namespace NLog
         }
 
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
-        {
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
-            return setupBuilder;
-        }
-
         /// <summary>
         /// Register a custom condition method, that can use in condition filters
         /// </summary>
@@ -239,6 +239,58 @@ namespace NLog
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod();
             return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
         }
+
+        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
+        {
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
+            return setupBuilder;
+        }
 #endif
+
+        /// <summary>
+        /// Register (or replaces) singleton-object for the specified service-type
+        /// </summary>
+        /// <typeparam name="T">Service interface type</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="singletonService">Implementation of interface.</param>
+        public static ISetupExtensionsBuilder RegisterSingletonService<T>(this ISetupExtensionsBuilder setupBuilder, T singletonService) where T : class
+        {
+            if (singletonService == null)
+                throw new ArgumentNullException(nameof(singletonService));
+            setupBuilder.LogFactory.ServiceRepository.RegisterSingleton<T>(singletonService);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Register (or replaces) singleton-object for the specified service-type
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="interfaceType">Service interface type.</param>
+        /// <param name="singletonService">Implementation of interface.</param>
+        public static ISetupExtensionsBuilder RegisterSingletonService(this ISetupExtensionsBuilder setupBuilder, Type interfaceType, object singletonService)
+        {
+            if (interfaceType == null)
+                throw new ArgumentNullException(nameof(interfaceType));
+            if (singletonService == null)
+                throw new ArgumentNullException(nameof(singletonService));
+            if (!interfaceType.IsAssignableFrom(singletonService.GetType()))
+                throw new ArgumentException("Service instance not matching type", nameof(singletonService));
+            setupBuilder.LogFactory.ServiceRepository.RegisterService(interfaceType, singletonService);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Register (or replaces) external service-repository for resolving dependency injection
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="serviceProvider">External dependency injection repository</param>
+        public static ISetupExtensionsBuilder RegisterServiceProvider(this ISetupExtensionsBuilder setupBuilder, IServiceProvider serviceProvider)
+        {
+            if (serviceProvider == null)
+                throw new ArgumentNullException(nameof(serviceProvider));
+
+            setupBuilder.LogFactory.ServiceRepository.RegisterSingleton(serviceProvider);
+            return setupBuilder;
+        }
     }
 }
