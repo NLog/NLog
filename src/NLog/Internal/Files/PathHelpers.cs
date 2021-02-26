@@ -70,7 +70,13 @@ namespace NLog.Internal
         /// <returns>never null</returns>
         public static string TrimDirectorySeparators(string path)
         {
-            return path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
+            var newpath = path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
+            if (newpath.EndsWith(":", System.StringComparison.OrdinalIgnoreCase))
+                return path;    // Support root-path on Windows
+            else if (string.IsNullOrEmpty(newpath) && !string.IsNullOrEmpty(path))
+                return path;    // Support root-path on Linux
+            else
+                return newpath;
         }
 
         public static bool IsTempDir(string directory, string tempDir)

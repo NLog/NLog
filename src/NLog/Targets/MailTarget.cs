@@ -333,7 +333,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Renders the logging event message and adds it to the internal ArrayList of log messages.
+        /// Writes async log event to the mail target.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
