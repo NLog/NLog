@@ -1,6 +1,6 @@
 version: 4.7.0-{build}
 image:
-  - Visual Studio 2017
+  - Visual Studio 2019
   - Previous Ubuntu
 configuration: Release
 build: no
@@ -15,7 +15,7 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2017
+        - image: Visual Studio 2019
     services: mssql2016
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
