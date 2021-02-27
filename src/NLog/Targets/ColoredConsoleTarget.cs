@@ -102,7 +102,15 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
-        public bool ErrorStream { get; set; }
+        [Obsolete("Replaced by StdErr to align with ConsoleTarget. Marked obsolete on NLog 5.0")]
+        public bool ErrorStream { get => StdErr; set => StdErr = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        [DefaultValue(false)]
+        public bool StdErr { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use default row highlighting rules.
@@ -241,7 +249,7 @@ namespace NLog.Targets
             {
                 try
                 {
-                    _disableColors = ErrorStream ? Console.IsErrorRedirected : Console.IsOutputRedirected;
+                    _disableColors = StdErr ? Console.IsErrorRedirected : Console.IsOutputRedirected;
                     if (_disableColors)
                     {
                         InternalLogger.Info("{0}: Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", this);
@@ -623,7 +631,7 @@ namespace NLog.Targets
 
         private TextWriter GetOutput()
         {
-            return ErrorStream ? Console.Error : Console.Out;
+            return StdErr ? Console.Error : Console.Out;
         }
     }
 }

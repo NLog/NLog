@@ -88,6 +88,9 @@ namespace NLog
         /// <param name="minLevel">Minimum level that this rule matches</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterMinLevel(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel minLevel)
         {
+            if (minLevel == null)
+                throw new ArgumentNullException(nameof(minLevel));
+
             configBuilder.LoggingRule.DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             configBuilder.LoggingRule.EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
             return configBuilder;
@@ -100,6 +103,9 @@ namespace NLog
         /// <param name="maxLevel">Maximum level that this rule matches</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterMaxLevel(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel maxLevel)
         {
+            if (maxLevel == null)
+                throw new ArgumentNullException(nameof(maxLevel));
+
             configBuilder.LoggingRule.DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             configBuilder.LoggingRule.EnableLoggingForLevels(LogLevel.MinLevel, maxLevel);
             return configBuilder;
@@ -112,6 +118,9 @@ namespace NLog
         /// <param name="logLevel">Single loglevel that this rule matches</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterLevel(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel logLevel)
         {
+            if (logLevel == null)
+                throw new ArgumentNullException(nameof(logLevel));
+
             if (configBuilder.LoggingRule.IsLoggingEnabledForLevel(logLevel))
             {
                 configBuilder.LoggingRule.DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
@@ -129,7 +138,7 @@ namespace NLog
         public static ISetupConfigurationLoggingRuleBuilder FilterLevels(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel minLevel, LogLevel maxLevel)
         {
             configBuilder.LoggingRule.DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
-            configBuilder.LoggingRule.EnableLoggingForLevels(minLevel, maxLevel);
+            configBuilder.LoggingRule.EnableLoggingForLevels(minLevel ?? LogLevel.MinLevel, maxLevel ?? LogLevel.MaxLevel);
             return configBuilder;
         }
 
@@ -141,6 +150,9 @@ namespace NLog
         /// <param name="defaultFilterResult">Default action if none of the filters match</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Filter filter, FilterResult? defaultFilterResult = null)
         {
+            if (filter == null)
+                throw new ArgumentNullException(nameof(filter));
+
             configBuilder.LoggingRule.Filters.Add(filter);
             if (defaultFilterResult.HasValue)
                 configBuilder.LoggingRule.DefaultFilterResult = defaultFilterResult.Value;
@@ -155,6 +167,9 @@ namespace NLog
         /// <param name="defaultFilterResult">Default action if none of the filters match</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Func<LogEventInfo, FilterResult> filterMethod, FilterResult? defaultFilterResult = null)
         {
+            if (filterMethod == null)
+                throw new ArgumentNullException(nameof(filterMethod));
+
             return configBuilder.FilterDynamic(new WhenMethodFilter(filterMethod), defaultFilterResult);
         }
 
@@ -224,13 +239,16 @@ namespace NLog
         }
 
         /// <summary>
-        /// Redirect output from matching <see cref="Logger"/> to the <see cref="NLog.Targets.MethodCallTarget"/> 
+        /// Write to <see cref="NLog.Targets.MethodCallTarget"/>
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="logEventAction">Method to call on logevent</param>
         /// <param name="layouts">Layouts to render object[]-args before calling <paramref name="logEventAction"/></param>
         public static ISetupConfigurationWriteToTargetsBuilder WriteToMethodCall(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Action<LogEventInfo, object[]> logEventAction, Layout[] layouts = null)
         {
+            if (logEventAction == null)
+                throw new ArgumentNullException(nameof(logEventAction));
+
             var methodTarget = new MethodCallTarget(string.Empty, logEventAction);
             if (layouts?.Length > 0)
             {
@@ -241,6 +259,64 @@ namespace NLog
             return configBuilder.WriteTo(methodTarget);
         }
 
+#if !NETSTANDARD1_3
+        /// <summary>
+        /// Write to <see cref="NLog.Targets.ConsoleTarget"/> 
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="layout">Override the default Layout for output</param>
+        /// <param name="encoding">Override the default Encoding for output (Ex. UTF8)</param>
+        /// <param name="stderr">Write to stderr instead of standard output (stdout)</param>
+        /// <param name="detectConsoleAvailable">Skip overhead from writing to console, when not available (Ex. running as Windows Service)</param>
+        /// <param name="writeBuffered">Enable batch writing of logevents, instead of Console.WriteLine for each logevent (Requires <see cref="WithAsync"/>)</param>
+        public static ISetupConfigurationWriteToTargetsBuilder WriteToConsole(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Layout layout = null, System.Text.Encoding encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool writeBuffered = false)
+        {
+            var consoleTarget = new ConsoleTarget();
+            if (layout != null)
+                consoleTarget.Layout = layout;
+            if (encoding != null)
+                consoleTarget.Encoding = encoding;
+            consoleTarget.StdErr = stderr;
+            consoleTarget.DetectConsoleAvailable = detectConsoleAvailable;
+            consoleTarget.WriteBuffer = writeBuffered;
+            return configBuilder.WriteTo(consoleTarget);
+        }
+#endif
+
+        /// <summary>
+        /// Write to <see cref="NLog.Targets.FileTarget"/> 
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="fileName"></param>
+        /// <param name="layout">Override the default Layout for output</param>
+        /// <param name="encoding">Override the default Encoding for output (Default = UTF8)</param>
+        /// <param name="lineEnding">Override the default line ending characters (Ex. <see cref="LineEndingMode.LF"/> without CR)</param>
+        /// <param name="keepFileOpen">Keep log file open instead of opening and closing it on each logging event</param>
+        /// <param name="concurrentWrites">Activate multi-process synchronization using global mutex on the operating system</param>
+        /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
+        /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
+        /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
+        public static ISetupConfigurationWriteToTargetsBuilder WriteToFile(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = false, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
+        {
+            if (fileName == null)
+                throw new ArgumentNullException(nameof(fileName));
+
+            var fileTarget = new FileTarget();
+            fileTarget.FileName = fileName;
+            if (layout != null)
+                fileTarget.Layout = layout;
+            if (encoding != null)
+                fileTarget.Encoding = encoding;
+            if (lineEnding != null)
+                fileTarget.LineEnding = lineEnding;
+            fileTarget.KeepFileOpen = keepFileOpen;
+            fileTarget.ConcurrentWrites = concurrentWrites;
+            fileTarget.ArchiveAboveSize = archiveAboveSize;
+            fileTarget.MaxArchiveFiles = maxArchiveFiles;
+            fileTarget.MaxArchiveDays = maxArchiveDays;
+            return configBuilder.WriteTo(fileTarget);
+        }
+
         /// <summary>
         /// Applies target wrapper for existing <see cref="LoggingRule.Targets"/>
         /// </summary>
@@ -248,6 +324,9 @@ namespace NLog
         /// <param name="wrapperFactory">Factory method for creating target-wrapper</param>
         public static ISetupConfigurationWriteToTargetsBuilder WithWrapper(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Func<Target, Target> wrapperFactory)
         {
+            if (wrapperFactory == null)
+                throw new ArgumentNullException(nameof(wrapperFactory));
+
             var targets = configBuilder.LoggingRule.Targets;
             for (int i = 0; i < targets.Count; ++i)
             {
@@ -369,6 +448,9 @@ namespace NLog
         /// <param name="returnToFirstOnSuccess">Whether to return to the first target after any successful write</param>
         public static ISetupConfigurationWriteToTargetsBuilder WithFallback(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Target fallbackTarget, bool returnToFirstOnSuccess = true)
         {
+            if (fallbackTarget == null)
+                throw new ArgumentNullException(nameof(fallbackTarget));
+
             if (string.IsNullOrEmpty(fallbackTarget.Name))
                 fallbackTarget.Name = EnsureUniqueTargetName(configBuilder.Configuration, fallbackTarget, "_Fallback");
 

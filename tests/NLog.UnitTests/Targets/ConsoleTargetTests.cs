@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Targets
                 Header = "-- header --",
                 Layout = "${logger} ${message}",
                 Footer = "-- footer --",
-                Error = true,
+                StdErr = true,
             };
 
             var consoleErrorWriter = new StringWriter();
@@ -139,6 +139,31 @@ namespace NLog.UnitTests.Targets
 
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
+        }
+
+        [Fact]
+        public void SetupBuilder_WriteToConsole()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(c =>
+            {
+                c.ForLogger().FilterMinLevel(LogLevel.Error).WriteToConsole("${message}", stderr: true);
+            }).LogFactory;
+
+            var consoleErrorWriter = new StringWriter();
+            TextWriter oldConsoleErrorWriter = Console.Error;
+            Console.SetError(consoleErrorWriter);
+
+            try
+            {
+                logFactory.GetCurrentClassLogger().Error("Abort");
+                logFactory.GetCurrentClassLogger().Info("Continue");
+            }
+            finally
+            {
+                Console.SetError(oldConsoleErrorWriter);
+            }
+
+            Assert.Equal($"Abort{System.Environment.NewLine}", consoleErrorWriter.ToString());
         }
 
 #if !MONO

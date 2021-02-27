@@ -81,6 +81,29 @@ namespace NLog.UnitTests.Targets
             return false;
         }
 
+        [Fact]
+        public void SetupBuilder_WriteToFile()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+
+            try
+            {
+                var logFactory = new LogFactory().Setup().LoadConfiguration(c =>
+                {
+                    c.ForLogger().WriteToFile(Path.Combine(tempPath, "${logger}.txt"), "${message}", Encoding.UTF8, LineEndingMode.LF);
+                }).LogFactory;
+
+                logFactory.GetLogger("SetupBuilder").Info("Hello");
+
+                AssertFileContents(Path.Combine(tempPath, "SetupBuilder.txt"), "Hello\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
