@@ -14,6 +14,7 @@ nuget:
 for:
   -
     matrix:
+      fast_finish: true
       only:
         - image: Visual Studio 2017
     services: mssql2016
@@ -46,6 +47,7 @@ for:
 
   -
     matrix:
+      fast_finish: true
       only:
         - image: Previous Ubuntu
     environment:
