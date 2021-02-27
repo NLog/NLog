@@ -59,7 +59,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsRegistry", "NLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsRegistry.Tests", "..\tests\NLog.WindowsRegistry.Tests\NLog.WindowsRegistry.Tests.csproj", "{1648106F-CD67-4009-878B-96B5D2369B6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.OutputDebugString", "NLog.OutputDebugString\NLog.OutputDebugString.csproj", "{FDABA8A6-80EE-4FBA-A5AA-2EB972DC4F17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.OutputDebugString", "NLog.OutputDebugString\NLog.OutputDebugString.csproj", "{FDABA8A6-80EE-4FBA-A5AA-2EB972DC4F17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
