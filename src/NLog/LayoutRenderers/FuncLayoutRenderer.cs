@@ -43,6 +43,17 @@ namespace NLog.LayoutRenderers
     /// </summary>
     public class FuncLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
+        private readonly Func<LogEventInfo, LoggingConfiguration, object> _renderMethod;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FuncLayoutRenderer"/> class.
+        /// </summary>
+        /// <param name="layoutRendererName">Name without ${}.</param>
+        protected FuncLayoutRenderer(string layoutRendererName)
+        {
+            LayoutRendererName = layoutRendererName;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FuncLayoutRenderer"/> class.
         /// </summary>
@@ -50,7 +61,7 @@ namespace NLog.LayoutRenderers
         /// <param name="renderMethod">Method that renders the layout.</param>
         public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
         {
-            RenderMethod = renderMethod ?? throw new ArgumentNullException(nameof(renderMethod));
+            _renderMethod = renderMethod ?? throw new ArgumentNullException(nameof(renderMethod));
             LayoutRendererName = layoutRendererName;
         }
 
@@ -60,9 +71,11 @@ namespace NLog.LayoutRenderers
         public string LayoutRendererName { get; set; }
 
         /// <summary>
-        /// Method that renders the layout. 
+        /// Method that renders the layout.
+        ///
+        /// This public property will be removed in NLog 5.
         /// </summary>
-        public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod { get; }
+        public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod => _renderMethod;
 
         /// <summary>
         /// Format string for conversion from object to string.
@@ -73,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var value = GetValue(logEvent);
+            var value = RenderValue(logEvent);
             var formatProvider = GetFormatProvider(logEvent, null);
             builder.AppendFormattedValue(value, Format, formatProvider);
         }
@@ -85,16 +98,21 @@ namespace NLog.LayoutRenderers
         {
             if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
             {
-                object value = GetValue(logEvent);
+                object value = RenderValue(logEvent);
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));
                 return stringValue;
             }
             return null;
         }
 
-        private object GetValue(LogEventInfo logEvent)
+        /// <summary>
+        /// Render the value for this log event
+        /// </summary>
+        /// <param name="logEvent">The event info.</param>
+        /// <returns>The value.</returns>
+        protected virtual object RenderValue(LogEventInfo logEvent)
         {
-            return RenderMethod.Invoke(logEvent, LoggingConfiguration);
+            return _renderMethod?.Invoke(logEvent, LoggingConfiguration);
         }
     }
 }

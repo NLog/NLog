@@ -244,7 +244,7 @@ namespace NLog.LayoutRenderers
         /// <typeparam name="T"> Type of the layout renderer.</typeparam>
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
         public static void Register<T>(string name)
-            where T: LayoutRenderer
+            where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);
             Register(name, layoutRendererType);
@@ -280,8 +280,17 @@ namespace NLog.LayoutRenderers
         public static void Register(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
         {
             var layoutRenderer = new FuncLayoutRenderer(name, func);
-            
-            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
+
+            Register(layoutRenderer);
+        }
+
+        /// <summary>
+        /// Register a custom layout renderer with a callback function <paramref name="layoutRenderer"/>. The callback receives the logEvent and the current configuration.
+        /// </summary>
+        /// <param name="layoutRenderer">Renderer with callback func</param>
+        public static void Register(FuncLayoutRenderer layoutRenderer)
+        {
+            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
         }
     }
 }
