@@ -54,4 +54,4 @@ function Test-XmlFile
 $pwd = get-location;
 
 # Returns true if valid
-return Test-XmlFile "$pwd\src\NLog\bin\Release\NLog.xsd" "$pwd\src\NuGet\NLog.Config\content\NLog.config"
+return Test-XmlFile "$pwd\src\NLog\bin\Release\NLog.xsd" "$pwd\examples\targets\Configuration File\Null\NLog.config"
