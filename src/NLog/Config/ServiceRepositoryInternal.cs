@@ -112,7 +112,7 @@ namespace NLog.Config
             if (objectResolver == null && compiledConstructor == null)
             {
                 if (itemType.IsAbstract())
-                    throw new NLogResolveException("Instance of class must be registered", itemType);
+                    throw new NLogDependencyResolveException("Instance of class must be registered", itemType);
 
                 // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
                 var newCompiledConstructor = CreateCompiledConstructor(itemType);
@@ -160,7 +160,7 @@ namespace NLog.Config
             }
             catch (MissingMethodException exception)
             {
-                throw new NLogResolveException("Is the required permission granted?", exception, itemType);
+                throw new NLogDependencyResolveException("Is the required permission granted?", exception, itemType);
             }
             finally
             {
@@ -174,12 +174,12 @@ namespace NLog.Config
 
             if (ctors.Length == 0)
             {
-                throw new NLogResolveException("No public constructor", itemType);
+                throw new NLogDependencyResolveException("No public constructor", itemType);
             }
 
             if (ctors.Length > 1)
             {
-                throw new NLogResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
+                throw new NLogDependencyResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
             }
 
             var ctor = ctors[0];
@@ -197,7 +197,7 @@ namespace NLog.Config
                 var parameterType = param.ParameterType;
                 if (seenTypes.Contains(parameterType))
                 {
-                    throw new NLogResolveException("There is a cycle", parameterType);
+                    throw new NLogDependencyResolveException("There is a cycle", parameterType);
                 }
 
                 seenTypes.Add(parameterType);

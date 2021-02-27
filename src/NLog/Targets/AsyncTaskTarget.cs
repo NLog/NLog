@@ -350,7 +350,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
         {
-            if (initializeException is Config.NLogResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
+            if (initializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
             {
                 _missingServiceTypes = true;
                 Write(logEvent);

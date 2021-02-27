@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Value formatter
         /// </summary>
-        protected IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
+        protected IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
@@ -286,11 +286,9 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Resolve from DI
+        /// Resolves the interface service-type from the service-repository
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        protected T Resolve<T>() where T : class
+        protected T ResolveService<T>() where T : class
         {
             return LoggingConfiguration.GetServiceProvider().ResolveService<T>(_isInitialized);
         }

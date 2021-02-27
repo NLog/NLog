@@ -152,7 +152,7 @@ namespace NLog.UnitTests
 
         private void InvalidLoggerConfiguration_ThrowsNLogResolveException()
         {
-            Assert.Throws<NLogResolveException>(() =>
+            Assert.Throws<NLogDependencyResolveException>(() =>
             {
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });

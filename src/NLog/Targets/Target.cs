@@ -430,7 +430,7 @@ namespace NLog.Targets
                             FindAllLayouts();
                         }
                     }
-                    catch (NLogResolveException exception)
+                    catch (NLogDependencyResolveException exception)
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
