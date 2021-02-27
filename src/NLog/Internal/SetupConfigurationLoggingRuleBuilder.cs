@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,21 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
-{
-    /// <summary>
-    /// Interface for fluent setup of LoggingConfiguration for LogFactory 
-    /// </summary>
-    public interface ISetupLoadConfigurationBuilder
-    {
-        /// <summary>
-        /// LogFactory under configuration
-        /// </summary>
-        LogFactory LogFactory { get; }
+using NLog.Config;
 
-        /// <summary>
-        /// LoggingConfiguration being built
-        /// </summary>
-        LoggingConfiguration Configuration { get; set; }
+namespace NLog.Internal
+{
+    internal class SetupConfigurationLoggingRuleBuilder : ISetupConfigurationLoggingRuleBuilder
+    {
+        public SetupConfigurationLoggingRuleBuilder(LogFactory logFactory, LoggingConfiguration configuration, string loggerNamePattern = null, string ruleName = null)
+        {
+            LoggingRule = new LoggingRule(ruleName) { LoggerNamePattern = loggerNamePattern ?? "*" };
+            Configuration = configuration;
+            LogFactory = logFactory;
+        }
+
+        /// <inheritdoc />
+        public LoggingRule LoggingRule { get; }
+
+        /// <inheritdoc />
+        public LoggingConfiguration Configuration { get; }
+
+        /// <inheritdoc />
+        public LogFactory LogFactory { get; }
     }
 }

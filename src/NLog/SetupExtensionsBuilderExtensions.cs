@@ -211,7 +211,6 @@ namespace NLog
             return setupBuilder;
         }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
         /// <summary>
         /// Register a custom condition method, that can use in condition filters
         /// </summary>
@@ -223,7 +222,7 @@ namespace NLog
             if (conditionMethod == null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod((LogEventInfo)args[0]);
-            return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
+            return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
         }
 
         /// <summary>
@@ -237,15 +236,14 @@ namespace NLog
             if (conditionMethod == null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod();
-            return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
+            return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
         }
 
-        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
+        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Delegate conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod.GetDelegateInfo(), lateBoundMethod);
             return setupBuilder;
         }
-#endif
 
         /// <summary>
         /// Register (or replaces) singleton-object for the specified service-type
