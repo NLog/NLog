@@ -179,14 +179,20 @@ namespace NLog.UnitTests.Config
         public void ResolveShouldCheckExternalServiceProvider()
         {
             // Arrange
-            var logFactory = new LogFactory();
-            logFactory.ServiceRepository.RegisterSingleton<IServiceProvider>(new ExternalServiceRepository(t => t == typeof(IMisingDependencyClass) ? new MisingDependencyClass() : null));
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext =>
+            {
+                ext.RegisterSingletonService<IMyPrettyInterface>(new MyPrettyImplementation());
+                ext.RegisterSingletonService(typeof(IMyPrettyInterface), new MyPrettyImplementation());
+                ext.RegisterServiceProvider(new ExternalServiceRepository(t => t == typeof(IMisingDependencyClass) ? new MisingDependencyClass() : null));
+            }).LogFactory;
 
             // Act
             var missingDependency = logFactory.ServiceRepository.ResolveService<IMisingDependencyClass>(false);
+            var otherDependency = logFactory.ServiceRepository.ResolveService<IMyPrettyInterface>(false);
 
             // Assert
             Assert.NotNull(missingDependency);
+            Assert.NotNull(otherDependency);
         }
 
         private static void AssertCycleException<T>(LogFactory logFactory) where T : class

@@ -170,7 +170,7 @@ namespace NLog.UnitTests.Config
             var logFactory = new LogFactory();
 
             // Act
-            logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget("MyTarget", typeof(MyExtensionNamespace.MyTarget)));
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterTarget<MyExtensionNamespace.MyTarget>());
             logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                 <targets>
                     <target name='t' type='MyTarget' />
@@ -325,7 +325,7 @@ namespace NLog.UnitTests.Config
             var logFactory = new LogFactory();
 
             // Act
-            logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("foo", typeof(MyExtensionNamespace.FooLayoutRenderer)));
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<MyExtensionNamespace.FooLayoutRenderer>());
             logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                 <targets>
                     <target name='debug' type='Debug' layout='${foo}' />

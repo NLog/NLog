@@ -320,11 +320,11 @@ namespace NLog
             }
         }
 
-        private void ServiceRepository_TypeRegistered(object sender, RepositoryUpdateEventArgs e)
+        private void ServiceRepository_TypeRegistered(object sender, ServiceRepositoryUpdateEventArgs e)
         {
-            _config?.CheckForMissingServiceTypes(e.Type);
+            _config?.CheckForMissingServiceTypes(e.ServiceType);
 
-            if (e.Type == typeof(ILogMessageFormatter))
+            if (e.ServiceType == typeof(ILogMessageFormatter))
             {
                 RefreshMessageFormatter();
             }

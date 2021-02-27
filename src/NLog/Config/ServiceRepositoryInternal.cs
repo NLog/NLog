@@ -49,7 +49,7 @@ namespace NLog.Config
         private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
         private readonly object _lockObject = new object();
         private ConfigurationItemFactory _localItemFactory;
-        public event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
+        public event EventHandler<ServiceRepositoryUpdateEventArgs> TypeRegistered;
 
         public override ConfigurationItemFactory ConfigurationItemFactory
         {
@@ -85,7 +85,7 @@ namespace NLog.Config
                 _creatorMap[type] = new ConfigurationItemCreator(t => instance);
             }
 
-            TypeRegistered?.Invoke(this, new RepositoryUpdateEventArgs(type));
+            TypeRegistered?.Invoke(this, new ServiceRepositoryUpdateEventArgs(type));
         }
 
         public override object GetService(Type serviceType)
