@@ -64,7 +64,7 @@ namespace NLog
         /// </remarks>
         internal readonly object _syncRoot = new object();
         private readonly LoggerCache _loggerCache = new LoggerCache();
-        private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
+        [NotNull] private ServiceRepositoryInternal _serviceRepository = new ServiceRepositoryInternal();
         private IAppEnvironment _currentAppEnvironment;
         internal LoggingConfiguration _config;
         internal LogMessageFormatter ActiveMessageFormatter;
@@ -309,6 +309,7 @@ namespace NLog
         /// <summary>
         /// Repository of interfaces used by NLog to allow override for dependency injection
         /// </summary>
+        [NotNull]
         public ServiceRepository ServiceRepository
         {
             get => _serviceRepository;
