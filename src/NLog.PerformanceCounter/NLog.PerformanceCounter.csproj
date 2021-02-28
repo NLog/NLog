@@ -20,9 +20,9 @@ PerformanceCounterLayoutRenderer Docs:
 https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
     </PackageReleaseNotes>
     <PackageTags>NLog;Windows;PerformanceCounter;logging;log</PackageTags>
-    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
@@ -67,5 +67,12 @@ https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="N.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
+  <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
+    <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
+  </Target>
 
 </Project>
