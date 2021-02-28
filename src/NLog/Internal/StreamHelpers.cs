@@ -43,7 +43,7 @@ namespace NLog.Internal
     /// <summary>
     /// Stream helpers
     /// </summary>
-    public static class StreamHelpers
+    internal static class StreamHelpers
     {
         /// <summary>
         /// Copy to output stream and skip BOM if encoding is UTF8

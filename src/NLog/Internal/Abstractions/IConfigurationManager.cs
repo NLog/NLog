@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Interface for the wrapper around System.Configuration.ConfigurationManager.
     /// </summary>
-    public interface IConfigurationManager
+    internal interface IConfigurationManager
     {
         /// <summary>
         /// Gets the wrapper around ConfigurationManager.AppSettings.
