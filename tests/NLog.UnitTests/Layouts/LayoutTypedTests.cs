@@ -167,6 +167,34 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutRenderIntValueWhenNull()
+        {
+            // Arrange
+            var integer = 42;
+            Layout<int> layout = null;
+
+            // Act
+            var value = LayoutTypedExtensions.RenderValue(layout, null, integer);
+
+            // Assert
+            Assert.Equal(integer, value);
+        }
+
+        [Fact]
+        public void LayoutRenderUrlValueWhenNull()
+        {
+            // Arrange
+            var url = new Uri("http://nlog");
+            Layout<Uri> layout = null;
+
+            // Act
+            var value = LayoutTypedExtensions.RenderValue(layout, null, url);
+
+            // Assert
+            Assert.Equal(url, value);
+        }
+
+        [Fact]
         public void LayoutEqualsIntValueFixedTest()
         {
             // Arrange

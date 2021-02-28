@@ -604,8 +604,6 @@ namespace NLog.Targets
                 sb.Append(layout.Render(logEvent));
         }
 
-
-
         /// <summary>
         /// Create the mail message with the addresses, properties and body.
         /// </summary>
@@ -636,8 +634,9 @@ namespace NLog.Targets
 
             if (Priority != null)
             {
-                msg.Priority = Priority.RenderValue(lastEvent, MailPriority.Normal);
+                msg.Priority = RenderLogEvent(Priority, lastEvent, MailPriority.Normal);
             }
+
             msg.Body = body;
             if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null)
                 msg.Body = msg.Body.Replace(Environment.NewLine, "<br/>");

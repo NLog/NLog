@@ -35,6 +35,7 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
+using JetBrains.Annotations;
 using NLog.Common;
 using NLog.Config;
 
@@ -90,7 +91,7 @@ namespace NLog.Layouts
                     return _staticValue;
 
                 // Would be great if ReconfigExistingLoggers() caused all StaticValue's to reset
-                var staticValue = RenderValue(LogEventInfo.CreateNullEvent(), default(T));
+                var staticValue = RenderTypedValue(LogEventInfo.CreateNullEvent(), default(T));
                 _staticValue = staticValue;
                 _createdStaticValue = true;
                 return staticValue;
@@ -154,17 +155,17 @@ namespace NLog.Layouts
         /// <param name="logEvent">Log event for rendering</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public T RenderValue(LogEventInfo logEvent, T defaultValue = default(T))
+        internal T RenderTypedValue([CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
         {
-            return RenderValue(logEvent, null, defaultValue);
+            return RenderTypedValue(logEvent, null, defaultValue);
         }
 
-        internal T RenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, T defaultValue)
+        internal T RenderTypedValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder stringBuilder, T defaultValue)
         {
             if (IsFixed)
                 return _fixedValue;
 
-            return RenderTypedValue(logEvent, stringBuilder, defaultValue);
+            return RenderTypedValue<T>(logEvent, stringBuilder, defaultValue);
         }
 
         object ITypedLayout.RenderValue(LogEventInfo logEvent, object defaultValue)
@@ -180,7 +181,7 @@ namespace NLog.Layouts
         /// Renders the value and converts the value into string format
         /// </summary>
         /// <remarks>
-        /// Only to implement abstract method from <see cref="Layout"/>, and only used when calling <see cref="Layout.Render(LogEventInfo)"/> instead of <see cref="RenderValue(LogEventInfo, T)"/>
+        /// Only to implement abstract method from <see cref="Layout"/>, and only used when calling <see cref="Layout.Render(LogEventInfo)"/>
         /// </remarks>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
