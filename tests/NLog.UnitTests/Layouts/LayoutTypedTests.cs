@@ -165,5 +165,58 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri.ToString(), layout.Render(logevent));
             Assert.Null(layout.StaticValue);
         }
+
+        [Fact]
+        public void LayoutEqualsIntValueFixedTest()
+        {
+            // Arrange
+            Layout<int> layout1 = "42";
+            Layout<int> layout2 = "42";
+
+            // Act + Assert
+            Assert.True(layout1 == 42);
+            Assert.True(layout1.Equals(42));
+            Assert.Equal(layout1, layout2);
+            Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsUrlValueFixedTest()
+        {
+            // Arrange
+            var url = new Uri("http://nlog");
+            Layout<Uri> layout1 = url;
+            Layout<Uri> layout2 = url;
+
+            // Act + Assert
+            Assert.True(layout1 == url);
+            Assert.True(layout1.Equals(url));
+            Assert.Equal(layout1, layout2);
+            Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsIntValueDynamicTest()
+        {
+            // Arrange
+            Layout<int> layout1 = "${event-properties:intvalue}";
+            Layout<int> layout2 = "${event-properties:intvalue}";
+
+            // Act + Assert (LogEventInfo.LayoutCache must work)
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsUrlValueDynamicTest()
+        {
+            // Arrange
+            Layout<Uri> layout1 = "${event-properties:urlvalue}";
+            Layout<Uri> layout2 = "${event-properties:urlvalue}";
+
+            // Act + Assert (LogEventInfo.LayoutCache must work)
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
     }
 }
