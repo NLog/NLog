@@ -36,6 +36,9 @@ namespace NLog.Internal
     /// <summary>
     /// Get the Raw, unformatted and unstrinyfied, value
     /// </summary>
+    /// <remarks>
+    /// Implementors must has the  [ThreadAgnostic] attribute
+    /// </remarks>
     internal interface IRawValue
     {
         /// <summary>

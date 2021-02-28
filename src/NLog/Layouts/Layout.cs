@@ -41,6 +41,7 @@ namespace NLog.Layouts
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -81,6 +82,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
+        [CanBeNull]
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>
