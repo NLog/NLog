@@ -1,6 +1,6 @@
 version: 4.7.0-{build}
 image:
-  - Visual Studio 2017
+  - Visual Studio 2019
   - Previous Ubuntu
 configuration: Release
 build: no
@@ -16,16 +16,15 @@ for:
     matrix:
       fast_finish: true
       only:
-        - image: Visual Studio 2017
-    services: mssql2016
+        - image: Visual Studio 2019
+    init:
+        - net start MSSQL$SQL2019
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       github_auth_token:
         secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
       sonar_token:
         secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduP
-    install:
-    - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
     build_script:
     - ps: ./build.ps1
     test_script:
