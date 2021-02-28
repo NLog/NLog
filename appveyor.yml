@@ -57,3 +57,6 @@ for:
     - ps: dotnet --version
     test_script:
     - ps: ./run-tests.ps1
+
+matrix:
+  fast_finish: true
