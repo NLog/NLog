@@ -831,13 +831,13 @@ namespace NLog.UnitTests.Targets
                     <target type='MyTypedLayoutTarget' name='myTarget'
                         byteProperty='42' 
                         int16Property='43' 
-                        int32Property='44' 
-                        int64Property='45000000000' 
-                        stringProperty='foobar'
+                        int32Property='${threadid}' 
+                        int64Property='${sequenceid}' 
+                        stringProperty='${appdomain:format=\{1\}}'
                         boolProperty='true'
                         doubleProperty='3.14159'
                         floatProperty='3.24159'
-                        enumProperty='Value3'
+                        enumProperty='${var:value3}'
                         flagsEnumProperty='Value1,Value3'
                         encodingProperty='utf-8'
                         cultureProperty='en-US'
@@ -862,9 +862,9 @@ namespace NLog.UnitTests.Targets
             // Assert
             Assert.Equal((byte)42, logEvent.Properties["ByteProperty"]);
             Assert.Equal((short)43, logEvent.Properties["Int16Property"]);
-            Assert.Equal(44, logEvent.Properties["Int32Property"]);
-            Assert.Equal(45000000000L, logEvent.Properties["Int64Property"]);
-            Assert.Equal("foobar", logEvent.Properties["StringProperty"]);
+            Assert.Equal(Thread.CurrentThread.ManagedThreadId, logEvent.Properties["Int32Property"]);
+            Assert.Equal((long)logEvent.SequenceID, logEvent.Properties["Int64Property"]);
+            Assert.Equal(AppDomain.CurrentDomain.FriendlyName, logEvent.Properties["StringProperty"]);
             Assert.Equal(true, logEvent.Properties["BoolProperty"]);
             Assert.Equal(3.14159, logEvent.Properties["DoubleProperty"]);
             Assert.Equal(3.24159f, logEvent.Properties["FloatProperty"]);
@@ -875,42 +875,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(typeof(int), logEvent.Properties["TypeProperty"]);
             Assert.Equal(new Uri("https://nlog-project.org"), logEvent.Properties["UriProperty"]);
             Assert.Equal(LineEndingMode.Default, logEvent.Properties["LineEndingModeProperty"]);
-
-        }
-        [Fact]
-        public void TypedLayoutTargetAsyncDynamicTest()
-        {
-            // Arrange
-            LogFactory logFactory = new LogFactory();
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-                <extensions>
-                    <add type='" + typeof(MyTypedLayoutTarget).AssemblyQualifiedName + @"' />
-                </extensions>
-
-                <variable name='value3' value='Value3' />
-
-                <targets async='true'>
-                    <target type='MyTypedLayoutTarget' name='myTarget'
-                        int32Property='${threadid}' 
-                        />
-                </targets>
-
-                <rules>
-                    <logger minlevel='trace' writeTo='myTarget' />
-                </rules>
-            </nlog>", logFactory);
-            logFactory.Configuration = c;
-
-            // Act
-            var logger = logFactory.GetLogger(nameof(TypedLayoutTargetAsyncTest));
-            var logEvent = new LogEventInfo(LogLevel.Info, null, "Hello");
-            logger.Log(logEvent);
-            logFactory.Flush();
-
-            // Assert
-            Assert.Equal(Thread.CurrentThread.ManagedThreadId, logEvent.Properties["Int32Property"]);
-
         }
 
         [Target("MyTypedLayoutTarget")]

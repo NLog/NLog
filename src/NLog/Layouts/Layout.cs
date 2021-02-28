@@ -83,7 +83,7 @@ namespace NLog.Layouts
         /// Gets the logging configuration this target is part of.
         /// </summary>
         [CanBeNull]
-        protected LoggingConfiguration LoggingConfiguration { get; private set; }
+        protected internal LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.

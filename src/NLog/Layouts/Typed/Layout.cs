@@ -110,13 +110,13 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="Layout{T}" /> class.
         /// </summary>
         /// <param name="layout">Dynamic NLog Layout</param>
-        /// <param name="parseValueFormat">Format used for parsing string-value into actual value type</param>
-        /// <param name="parseValueCulture">Culture used for parsing string-value into actual value type</param>
+        /// <param name="parseValueFormat">Format used for parsing string-value into result value type</param>
+        /// <param name="parseValueCulture">Culture used for parsing string-value into result value type</param>
         public Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
         {
             if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
-                if (TryParseValueFromString(simpleLayout.Text, parseValueFormat, parseValueCulture, out var value) && value != null)
+                if (TryParseValueFromString(simpleLayout.FixedText, parseValueFormat, parseValueCulture, out var value) && value != null)
                 {
                     _fixedValue = (T)value;
                 }
@@ -153,7 +153,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="logEvent">Log event for rendering</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
-        /// <returns></returns>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
         public T RenderValue(LogEventInfo logEvent, T defaultValue = default(T))
         {
             return RenderValue(logEvent, null, defaultValue);
@@ -193,7 +193,7 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
-            _innerLayout?.Initialize(LoggingConfiguration);
+            _innerLayout?.Initialize(LoggingConfiguration ?? _innerLayout.LoggingConfiguration);
             ThreadSafe = _innerLayout?.ThreadSafe ?? true;
             ThreadAgnostic = _innerLayout?.ThreadAgnostic ?? true;
             MutableUnsafe = _innerLayout?.MutableUnsafe ?? false;
@@ -257,6 +257,11 @@ namespace NLog.Layouts
 
         private bool TryRenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder, out object value)
         {
+            if (!IsInitialized)
+            {
+                Initialize(LoggingConfiguration ?? _innerLayout?.LoggingConfiguration);
+            }
+
             if (_innerLayout.TryGetRawValue(logEvent, out var rawValue))
             {
                 if (rawValue is string rawStringValue)

@@ -678,10 +678,10 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Renders the event info in layout.
+        /// Renders the logevent into a string-result using the provided layout
         /// </summary>
         /// <param name="layout">The layout.</param>
-        /// <param name="logEvent">The event info.</param>
+        /// <param name="logEvent">The logevent info.</param>
         /// <returns>String representing log event.</returns>
         protected string RenderLogEvent(Layout layout, LogEventInfo logEvent)
         {
@@ -711,13 +711,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// 
+        /// Renders the logevent into a result-value by using the provided layout
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="layout"></param>
-        /// <param name="logEvent"></param>
-        /// <param name="defaultValue"></param>
-        /// <returns></returns>
+        /// <param name="layout">The layout.</param>
+        /// <param name="logEvent">The logevent info.</param>
+        /// <param name="defaultValue">Fallback value when no value available</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
         protected T RenderLogEvent<T>(Layout<T> layout, LogEventInfo logEvent, T defaultValue = default(T))
         {
             if (layout == null || logEvent == null)
