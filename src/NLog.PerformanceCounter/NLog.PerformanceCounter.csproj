@@ -54,7 +54,7 @@ https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
     <Title>NLog.PerformanceCounter for NetStandard 2.0</Title>
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
   </PropertyGroup>
-  
+
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,7 +63,7 @@ https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.7.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
