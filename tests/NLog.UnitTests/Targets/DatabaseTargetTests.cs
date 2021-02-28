@@ -2474,13 +2474,13 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
 
             /// <summary>
-            /// AppVeyor connectionstring for SQL 2016, see https://www.appveyor.com/docs/services-databases/
+            /// AppVeyor connectionstring for SQL 2019, see https://www.appveyor.com/docs/services-databases/
             /// </summary>
             private const string AppVeyorConnectionStringMaster =
-                @"Server=(local)\SQL2016;Database=master;User ID=sa;Password=Password12!";
+                @"Server=(local)\SQL2019;Database=master;User ID=sa;Password=Password12!";
 
             private const string AppVeyorConnectionStringNLogTest =
-                @"Server=(local)\SQL2016;Database=NLogTest;User ID=sa;Password=Password12!";
+                @"Server=(local)\SQL2019;Database=NLogTest;User ID=sa;Password=Password12!";
 
             private const string LocalConnectionStringMaster =
                 @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
