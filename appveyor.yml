@@ -16,7 +16,8 @@ for:
     matrix:
       only:
         - image: Visual Studio 2019
-    services: mssql2019
+    init:
+        - net start MSSQL$SQL2019
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       github_auth_token:
