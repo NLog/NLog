@@ -1,6 +1,6 @@
 How to build your fork in the cloud
 ---
-Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.org/)/[CodeCov](https://codecov.io/) for your own fork.
+Steps to set up CI for your own fork.
 
 **AppVeyor**:
 
