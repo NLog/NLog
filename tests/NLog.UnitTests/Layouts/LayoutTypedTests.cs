@@ -209,6 +209,20 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutNotEqualsIntValueFixedTest()
+        {
+            // Arrange
+            Layout<int> layout1 = "2";
+            Layout<int> layout2 = "42";
+
+            // Act + Assert
+            Assert.False(layout1 == 42);
+            Assert.False(layout1.Equals(42));
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
         public void LayoutEqualsUrlValueFixedTest()
         {
             // Arrange
@@ -221,6 +235,22 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout1.Equals(url));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutNotEqualsUrlValueFixedTest()
+        {
+            // Arrange
+            var url = new Uri("http://nlog");
+            var url2 = new Uri("http://nolog");
+            Layout<Uri> layout1 = url2;
+            Layout<Uri> layout2 = url;
+
+            // Act + Assert
+            Assert.False(layout1 == url);
+            Assert.False(layout1.Equals(url));
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }
 
         [Fact]
@@ -245,6 +275,273 @@ namespace NLog.UnitTests.Layouts
             // Act + Assert (LogEventInfo.LayoutCache must work)
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(100)]
+        [InlineData(100d)]
+        [InlineData("100")]
+        [InlineData(" 100 ")]
+        public void TypedIntLayoutDynamicTest(object value)
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<int>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
+
+        [Fact]
+        public void TypedNullableIntToIntLayoutDynamicTest()
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<int>();
+            int? value = 100;
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
+
+        [Theory]
+        [InlineData(100)]
+        [InlineData(100d)]
+        [InlineData("100")]
+        [InlineData(" 100 ")]
+        public void TypedNullableIntLayoutDynamicTest(object value)
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<int?>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
+
+        [Theory]
+        [InlineData(100.5)]
+        [InlineData("100.5", "EN-us")]
+        [InlineData("  100.5  ", "EN-us")]
+        public void TypedDecimalLayoutDynamicTest(object value, string culture = null)
+        {
+            // Arrange
+            var oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(culture))
+                {
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
+                }
+
+                var layout = CreateLayoutRenderedFromProperty<decimal>();
+                var logEventInfo = CreateLogEventInfoWithValue(value);
+
+                // Act
+                var result = layout.RenderValue(logEventInfo);
+
+                // Assert
+                decimal expected = 100.5m;
+                Assert.Equal(expected, result);
+            }
+            finally
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData("true")]
+        [InlineData(" true ")]
+        public void TypedBoolLayoutDynamicTest(object value)
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<bool>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        /// <remarks>Cache usage, see coverage result</remarks>
+        [Fact]
+        public void SameValueShouldUseCacheAndCorrectResult()
+        {
+            // Arrange
+            var layout = CreateLayoutRenderedFromProperty<bool>();
+            var logEventInfo1 = CreateLogEventInfoWithValue("true");
+            var logEventInfo2 = CreateLogEventInfoWithValue("true");
+            var logEventInfo3 = CreateLogEventInfoWithValue("true");
+
+            // Act
+            var result1 = layout.RenderValue(logEventInfo1);
+            var result2 = layout.RenderValue(logEventInfo2);
+            var result3 = layout.RenderValue(logEventInfo3);
+
+            // Assert
+            Assert.True(result1);
+            Assert.True(result2);
+            Assert.True(result3);
+        }
+
+        [Fact]
+        public void ComplexTypeTest()
+        {
+            // Arrange
+            var value = new TestObject { Value = "123" };
+            var layout = CreateLayoutRenderedFromProperty<TestObject>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(value, result);
+        }
+
+        [Fact]
+        public void WrongValueErrorTest()
+        {
+            // Arrange
+            var value = "12312aa3";
+            var layout = CreateLayoutRenderedFromProperty<int>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Theory]
+        [InlineData("100", 100)]
+        [InlineData("1  00", null)]
+        public void TryGetRawValueTest(string input, int? expected)
+        {
+            // Arrange
+            var layout = new Layout<int?>("${event-properties:prop1}");
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = input;
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void TryConvertToShouldHandleNullLayout()
+        {
+            // Arrange
+            var layout = new Layout<int>((Layout)null);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void RenderShouldHandleInvalidConversionAndLogFactory()
+        {
+            // Arrange
+            var factory = new LogFactory
+            {
+                ThrowExceptions = false,
+            };
+            var configuration = new NLog.Config.LoggingConfiguration(factory);
+
+            var layout = new Layout<int>("${event-properties:prop1}");
+            layout.Initialize(configuration);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = "Not a int";
+
+            // Act
+            int result;
+            using (new NoThrowNLogExceptions())
+            {
+                result = layout.RenderValue(logEventInfo);
+            }
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void RenderShouldHandleInvalidConversionAndLogFactoryAndDefault()
+        {
+            // Arrange
+            var factory = new LogFactory
+            {
+                ThrowExceptions = false,
+            };
+            var configuration = new NLog.Config.LoggingConfiguration(factory);
+
+            var layout = new Layout<int>("${event-properties:prop1}");
+            layout.Initialize(configuration);
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = "Not a int";
+
+            // Act
+            int result;
+            using (new NoThrowNLogExceptions())
+            {
+                result = layout.RenderValue(logEventInfo, 200);
+            }
+
+            // Assert
+            Assert.Equal(200, result);
+        }
+
+        [Fact]
+        public void RenderShouldHandleValidConversion()
+        {
+            // Arrange
+            var layout = new Layout<int>("${event-properties:prop1}");
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["prop1"] = "100";
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
+
+        private class TestObject
+        {
+            public string Value { get; set; }
+        }
+
+        private static Layout<T> CreateLayoutRenderedFromProperty<T>()
+        {
+            var layout = new Layout<T>("${event-properties:value1}");
+            return layout;
+        }
+
+        private static LogEventInfo CreateLogEventInfoWithValue(object value)
+        {
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEventInfo.Properties.Add("value1", value);
+            return logEventInfo;
         }
     }
 }
