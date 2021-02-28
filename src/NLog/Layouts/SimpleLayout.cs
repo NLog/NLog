@@ -235,18 +235,6 @@ namespace NLog.Layouts
             return Text;
         }
 
-        /// <inheritdoc />
-        public override bool Equals(object obj)
-        {
-            return obj is SimpleLayout other && string.Equals(OriginalText, other.OriginalText);
-        }
-
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
-        }
-
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
             Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);

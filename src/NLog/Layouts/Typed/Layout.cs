@@ -343,13 +343,34 @@ namespace NLog.Layouts
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            return obj is Layout<T> other && object.Equals(_innerLayout, other._innerLayout) && object.Equals(FixedObjectValue, other.FixedObjectValue);
+            if (IsFixed)
+            {
+                // Support property-compare
+                if (obj is Layout<T> other)
+                    return other.IsFixed && object.Equals(FixedObjectValue, other.FixedObjectValue);
+                else
+                    return obj is T && object.Equals(FixedObjectValue, obj);
+            }
+            else
+            {
+                return ReferenceEquals(this, obj);  // Support LogEventInfo.LayoutCache
+            }
+        }
+
+        /// <inheritdoc />
+        public bool Equals(T other)
+        {
+            // Support property-compare
+            return IsFixed && object.Equals(FixedObjectValue, other);
         }
 
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
+            if (IsFixed)
+                return FixedObjectValue.GetHashCode();   // Support property-compare
+            else
+                return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);    // Support LogEventInfo.LayoutCache
         }
 
         /// <summary>
