@@ -466,6 +466,9 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(debugTarget);
             Assert.Equal("d_wrapped", debugTarget.Name);
             Assert.Equal("${level}", debugTarget.Layout.ToString());
+
+            var debugTarget2 = c.FindTargetByName<DebugTarget>("d");
+            Assert.Same(debugTarget, debugTarget2);
         }
 
         [Fact]

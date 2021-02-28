@@ -267,7 +267,20 @@ namespace NLog.Config
         public TTarget FindTargetByName<TTarget>(string name)
             where TTarget : Target
         {
-            return FindTargetByName(name) as TTarget;
+            var target = FindTargetByName(name);
+            if (target is TTarget specificTarget)
+            {
+                return specificTarget;
+            }
+            else if (target is WrapperTargetBase wrapperTarget)
+            {
+                if (wrapperTarget.WrappedTarget is TTarget wrappedTarget)
+                    return wrappedTarget;
+                else if (wrapperTarget.WrappedTarget is WrapperTargetBase nestedWrapperTarget && nestedWrapperTarget.WrappedTarget is TTarget nestedTarget)
+                    return nestedTarget;
+            }
+
+            return null;
         }
 
         /// <summary>
