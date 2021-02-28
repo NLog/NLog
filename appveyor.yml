@@ -14,6 +14,7 @@ nuget:
 for:
   -
     matrix:
+      fast_finish: true
       only:
         - image: Visual Studio 2019
     init:
@@ -45,6 +46,7 @@ for:
 
   -
     matrix:
+      fast_finish: true
       only:
         - image: Previous Ubuntu
     environment:
@@ -54,3 +56,8 @@ for:
     - ps: dotnet --version
     test_script:
     - ps: ./run-tests.ps1
+
+
+matrix:
+  fast_finish: true
+

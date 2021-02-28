@@ -53,7 +53,7 @@ namespace NLog.Config
             {
                 return serviceProvider.GetService<T>();
             }
-            catch (NLogResolveException)
+            catch (NLogDependencyResolveException)
             {
                 if (ignoreExternalProvider)
                     throw;
@@ -81,21 +81,21 @@ namespace NLog.Config
                 if (service != null)
                     return service;
                 
-                throw new NLogResolveException($"Service type {typeof(T)} cannot be resolved", typeof(T));
+                throw new NLogDependencyResolveException($"Service type {typeof(T)} cannot be resolved", typeof(T));
             }
-            catch (NLogResolveException ex)
+            catch (NLogDependencyResolveException ex)
             {
-                if (ex.TypeToResolve == typeof(T))
+                if (ex.ServiceType == typeof(T))
                     throw;
 
-                throw new NLogResolveException(ex.Message, ex, typeof(T));
+                throw new NLogDependencyResolveException(ex.Message, ex, typeof(T));
             }
             catch (Exception ex)
             {
                 if (ex.MustBeRethrown())
                     throw;
 
-                throw new NLogResolveException(ex.Message, ex, typeof(T));
+                throw new NLogDependencyResolveException(ex.Message, ex, typeof(T));
             }
         }
 

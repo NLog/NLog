@@ -32,31 +32,30 @@
 // 
 
 using System;
-using System.Linq;
 using JetBrains.Annotations;
 
 namespace NLog.Config
 {
     /// <summary>
-    /// Failed to resolve a Type
+    /// Failed to resolve the interface of service type
     /// </summary>
-    public sealed class NLogResolveException : Exception
+    public sealed class NLogDependencyResolveException : Exception
     {
         /// <summary>
         /// Typed we tried to resolve
         /// </summary>
-        [NotNull] public Type TypeToResolve { get; }
+        [NotNull] public Type ServiceType { get; }
         
         /// <inheritdoc />
-        public NLogResolveException(string message, [NotNull] Type typeToResolve) : base(CreateFullMessage(typeToResolve, message))
+        public NLogDependencyResolveException(string message, [NotNull] Type serviceType) : base(CreateFullMessage(serviceType, message))
         {
-            TypeToResolve = typeToResolve ?? throw new ArgumentNullException(nameof(typeToResolve));
+            ServiceType = serviceType ?? throw new ArgumentNullException(nameof(serviceType));
         }
 
         /// <inheritdoc />
-        public NLogResolveException(string message, Exception innerException, [NotNull] Type typeToResolve) : base(CreateFullMessage(typeToResolve, message), innerException)
+        public NLogDependencyResolveException(string message, Exception innerException, [NotNull] Type serviceType) : base(CreateFullMessage(serviceType, message), innerException)
         {
-            TypeToResolve = typeToResolve ?? throw new ArgumentNullException(nameof(typeToResolve));
+            ServiceType = serviceType ?? throw new ArgumentNullException(nameof(serviceType));
         }
 
         private static string CreateFullMessage(Type typeToResolve, string message) => $"Cannot resolve the type: '{typeToResolve.Name}'. {message}".Trim();

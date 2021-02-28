@@ -288,7 +288,7 @@ namespace NLog.Targets.Wrappers
                 BatchSize = QueueLimit;     // Avoid too much throttling 
             }
 
-            if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
+            if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
             {
                 _missingServiceTypes = true;
             }
@@ -542,7 +542,7 @@ namespace NLog.Targets.Wrappers
 
             if (_missingServiceTypes)
             {
-                if (WrappedTarget.InitializeException is Config.NLogResolveException)
+                if (WrappedTarget.InitializeException is Config.NLogDependencyResolveException)
                 {
                     return 0;
                 }
