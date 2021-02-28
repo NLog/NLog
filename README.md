@@ -119,8 +119,7 @@ Use Visual Studio 2017 and open the solution 'NLog.sln' - C# 7.2 support is requ
 
 For building in the cloud we use:
 - AppVeyor for Windows builds, including Silverlight and Xamarin.
-- Travis for Mono builds.
-- CodeCov for code coverage
+- SonarQube for code coverage
 
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
