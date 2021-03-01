@@ -452,6 +452,15 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void AttributerKeyWithQuote()
+        {
+            var jsonLayout = new JsonLayout();
+            jsonLayout.Attributes.Add(new JsonAttribute(@"fo""o", "bar"));
+
+            Assert.Equal(@"{ ""fo\""o"": ""bar"" }", jsonLayout.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
         public void ExcludeEmptyJsonProperties()
         {
             var jsonLayout = new JsonLayout()
