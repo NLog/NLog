@@ -48,7 +48,7 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     [ThreadSafe]
     [AppDomainFixedOutput]
-    public class Layout<T> : Layout, ITypedLayout
+    public sealed class Layout<T> : Layout, ITypedLayout
     {
         private static readonly Type UnderlyingType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
 
@@ -115,6 +115,11 @@ namespace NLog.Layouts
         /// <param name="parseValueCulture">Culture used for parsing string-value into result value type</param>
         public Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
         {
+            if (PropertyTypeConverter.IsComplexType(typeof(T)))
+            {
+                throw new NLogConfigurationException($"Layout<{typeof(T).ToString()}> not supported. Immutable value type is recommended");
+            }
+
             if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
                 if (TryParseValueFromString(simpleLayout.FixedText, parseValueFormat, parseValueCulture, out var value) && value != null)

@@ -401,16 +401,8 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void ComplexTypeTest()
         {
-            // Arrange
-            var value = new TestObject { Value = "123" };
-            var layout = CreateLayoutRenderedFromProperty<TestObject>();
-            var logEventInfo = CreateLogEventInfoWithValue(value);
-
-            // Act
-            var result = layout.RenderValue(logEventInfo);
-
-            // Assert
-            Assert.Equal(value, result);
+            // Arrange + Act + Assert
+            Assert.Throws<NLogConfigurationException>(() => CreateLayoutRenderedFromProperty<TestObject>());
         }
 
         [Fact]

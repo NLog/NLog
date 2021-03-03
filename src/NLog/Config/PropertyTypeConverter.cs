@@ -48,8 +48,8 @@ namespace NLog.Config
         /// </summary>
         public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
 
-        private Dictionary<Type, Func<string, string, IFormatProvider, object>> StringConverterLookup => _stringConverters ?? (_stringConverters = BuildStringConverterLookup());
-        private Dictionary<Type, Func<string, string, IFormatProvider, object>> _stringConverters;
+        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> StringConverterLookup => _stringConverters ?? (_stringConverters = BuildStringConverterLookup());
+        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> _stringConverters;
 
         private static Dictionary<Type, Func<string, string, IFormatProvider, object>> BuildStringConverterLookup()
         {
@@ -65,6 +65,11 @@ namespace NLog.Config
                 { typeof(TimeSpan), (stringvalue, format, formatProvider) => ConvertToTimeSpan(format, formatProvider, stringvalue) },
                 { typeof(Guid), (stringvalue, format, formatProvider) => ConvertGuid(format, stringvalue) }
             };
+        }
+
+        internal static bool IsComplexType(Type type)
+        {
+            return !type.IsValueType() && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() == null;
         }
 
         /// <inheritdoc/>
@@ -96,12 +101,9 @@ namespace NLog.Config
                     return enumValue;
                 }
 
-                if (!typeof(IConvertible).IsAssignableFrom(propertyType))
+                if (!typeof(IConvertible).IsAssignableFrom(propertyType) && PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
                 {
-                    if (PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
-                    {
-                        return convertedValue;
-                    }
+                    return convertedValue;
                 }
             }
             else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
