@@ -167,7 +167,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             Assert.Null(result);
-            Assert.Null(result5);
+            Assert.Equal(5, result5);
             Assert.Equal("", layout.Render(logevent));
             Assert.Null(layout.StaticValue);
         }

@@ -50,8 +50,6 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public sealed class Layout<T> : Layout, ITypedLayout
     {
-        private static readonly Type UnderlyingType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
-
         private readonly Layout _innerLayout;
         private readonly CultureInfo _parseFormatCulture;
         private readonly string _parseFormat;
@@ -176,7 +174,7 @@ namespace NLog.Layouts
         object ITypedLayout.RenderValue(LogEventInfo logEvent, object defaultValue)
         {
             var value = FixedObjectValue ?? RenderTypedValue(logEvent, null, defaultValue);
-            if (ReferenceEquals(value, defaultValue) && ReferenceEquals(defaultValue, string.Empty) && UnderlyingType != typeof(string))
+            if (ReferenceEquals(value, defaultValue) && ReferenceEquals(defaultValue, string.Empty) && typeof(T) != typeof(string))
                 return default(T);
             else
                 return value;
@@ -247,18 +245,18 @@ namespace NLog.Layouts
         {
             if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
             {
-                if (cachedValue == null || string.Empty.Equals(cachedValue))
-                    return defaultValue;
-                else
+                if (cachedValue != null)
                     return (TValueType)cachedValue;
+                else
+                    return defaultValue;
             }
 
             if (TryRenderObjectValue(logEvent, stringBuilder, out var value))
             {
                 if (value != null)
                     return (TValueType)value;
-                else if (typeof(T) != UnderlyingType)
-                    return (TValueType)value;
+                else
+                    return defaultValue;
             }
 
             return defaultValue;
@@ -277,7 +275,7 @@ namespace NLog.Layouts
                 {
                     if (string.IsNullOrEmpty(rawStringValue))
                     {
-                        value = UnderlyingType == typeof(string) ? rawStringValue : null;
+                        value = typeof(T) == typeof(string) ? rawStringValue : null;
                         return true;
                     }
                 }
@@ -332,7 +330,7 @@ namespace NLog.Layouts
         {
             try
             {
-                parsedValue = ValueTypeConverter.Convert(rawValue, UnderlyingType, parseValueFormat, parseValueCulture);
+                parsedValue = ValueTypeConverter.Convert(rawValue, typeof(T), parseValueFormat, parseValueCulture);
                 return true;
             }
             catch (Exception ex)
@@ -377,7 +375,7 @@ namespace NLog.Layouts
         public override int GetHashCode()
         {
             if (IsFixed)
-                return FixedObjectValue?.GetHashCode() ?? UnderlyingType.GetHashCode();     // Support property-compare
+                return FixedObjectValue?.GetHashCode() ?? typeof(T).GetHashCode();     // Support property-compare
             else
                 return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);    // Support LogEventInfo.LayoutCache
         }

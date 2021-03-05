@@ -81,7 +81,7 @@ namespace NLog.Config
             }
 
             var nullableType = Nullable.GetUnderlyingType(propertyType);
-            var type = nullableType ?? propertyType;
+            propertyType = nullableType ?? propertyType;
             if (propertyValue is string propertyString)
             {
                 propertyValue = propertyString = propertyString.Trim();
@@ -91,7 +91,7 @@ namespace NLog.Config
                     return null;
                 }
 
-                if (StringConverterLookup.TryGetValue(type, out var converter))
+                if (StringConverterLookup.TryGetValue(propertyType, out var converter))
                 {
                     return converter.Invoke(propertyString, format, formatProvider);
                 }
@@ -111,8 +111,15 @@ namespace NLog.Config
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            var newValue = System.Convert.ChangeType(propertyValue, type, formatProvider);
-            return newValue;
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            if (propertyValue is IConvertible convertibleValue)
+            {
+                var typeCode = convertibleValue.GetTypeCode();
+                if (typeCode == TypeCode.DBNull)
+                    return propertyValue;
+            }
+#endif
+            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
         }
 
         private static bool NeedToConvert(object propertyValue, Type propertyType)
