@@ -190,7 +190,7 @@ namespace NLog.Layouts
         /// </remarks>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            var value = FixedObjectValue ?? RenderTypedValue<object>(logEvent, null, null);
+            var value = IsFixed ? FixedObjectValue : RenderTypedValue<object>(logEvent, null, null);
             var formatProvider = logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
             return Convert.ToString(value, formatProvider);
         }
@@ -253,9 +253,12 @@ namespace NLog.Layouts
                     return (TValueType)cachedValue;
             }
 
-            if (TryRenderObjectValue(logEvent, stringBuilder, out var value) && value != null)
+            if (TryRenderObjectValue(logEvent, stringBuilder, out var value))
             {
-                return (TValueType)value;
+                if (value != null)
+                    return (TValueType)value;
+                else if (typeof(T) != UnderlyingType)
+                    return (TValueType)value;
             }
 
             return defaultValue;
@@ -374,7 +377,7 @@ namespace NLog.Layouts
         public override int GetHashCode()
         {
             if (IsFixed)
-                return FixedObjectValue.GetHashCode();   // Support property-compare
+                return FixedObjectValue?.GetHashCode() ?? UnderlyingType.GetHashCode();     // Support property-compare
             else
                 return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);    // Support LogEventInfo.LayoutCache
         }

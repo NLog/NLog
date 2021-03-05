@@ -55,6 +55,38 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutFixedNullableIntValueTest()
+        {
+            // Arrange
+            Layout<int?> layout = 5;
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(5, result);
+            Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(5, layout.StaticValue);
+        }
+
+        [Fact]
+        public void LayoutFixedNullIntValueTest()
+        {
+            // Arrange
+            Layout<int?> layout = new Layout<int?>((int?)null);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            var result5 = layout.RenderValue(LogEventInfo.CreateNullEvent(), 5);
+
+            // Assert
+            Assert.Null(result);
+            Assert.Null(result5);
+            Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Null(layout.StaticValue);
+        }
+
+        [Fact]
         public void LayoutFixedUrlValueTest()
         {
             // Arrange
@@ -68,6 +100,24 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, result);
             Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
             Assert.Equal(uri.ToString(), layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(uri, layout.StaticValue);
+            Assert.Same(layout.StaticValue, layout.StaticValue);
+        }
+
+        [Fact]
+        public void LayoutFixedNullUrlValueTest()
+        {
+            // Arrange
+            Uri uri = null;
+            Layout<Uri> layout = new Layout<Uri>(uri);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(uri, result);
+            Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
+            Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.Equal(uri, layout.StaticValue);
             Assert.Same(layout.StaticValue, layout.StaticValue);
         }
@@ -89,6 +139,40 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutDynamicNullableIntValueTest()
+        {
+            // Arrange
+            Layout<int?> layout = "${event-properties:intvalue}";
+
+            // Act
+            var logevent = LogEventInfo.Create(LogLevel.Info, null, null, "{intvalue}", new object[] { 5 });
+            var result = layout.RenderValue(logevent);
+
+            // Assert
+            Assert.Equal(5, result);
+            Assert.Equal("5", layout.Render(logevent));
+            Assert.Null(layout.StaticValue);
+        }
+
+        [Fact]
+        public void LayoutDynamicNullIntValueTest()
+        {
+            // Arrange
+            Layout<int?> layout = "${event-properties:intvalue}";
+
+            // Act
+            var logevent = LogEventInfo.Create(LogLevel.Info, null, null, "{intvalue}", new object[] { null });
+            var result = layout.RenderValue(logevent);
+            var result5 = layout.RenderValue(logevent, 5);
+
+            // Assert
+            Assert.Null(result);
+            Assert.Null(result5);
+            Assert.Equal("", layout.Render(logevent));
+            Assert.Null(layout.StaticValue);
+        }
+
+        [Fact]
         public void LayoutDynamicUrlValueTest()
         {
             // Arrange
@@ -103,6 +187,24 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, result);
             Assert.Same(result, layout.RenderValue(logevent));
             Assert.Equal(uri.ToString(), layout.Render(logevent));
+            Assert.Null(layout.StaticValue);
+        }
+
+        [Fact]
+        public void LayoutDynamicNullUrlValueTest()
+        {
+            // Arrange
+            Layout<Uri> layout = "${event-properties:urlvalue}";
+            Uri uri = null;
+
+            // Act
+            var logevent = LogEventInfo.Create(LogLevel.Info, null, null, "{urlvalue}", new object[] { uri });
+            var result = layout.RenderValue(logevent);
+
+            // Assert
+            Assert.Equal(uri, result);
+            Assert.Same(result, layout.RenderValue(logevent));
+            Assert.Equal("", layout.Render(logevent));
             Assert.Null(layout.StaticValue);
         }
 
@@ -123,6 +225,25 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, layout.RenderValue(logevent));
             Assert.Equal("5", layout.Render(logevent));
             Assert.Equal(0, layout.StaticValue);
+        }
+
+        [Fact]
+        public void LayoutDynamicNullableIntValueAsyncTest()
+        {
+            // Arrange
+            Layout<int?> layout = "${scopeproperty:intvalue}";
+
+            // Act
+            var logevent = LogEventInfo.CreateNullEvent();
+            using (ScopeContext.PushProperty("intvalue", 5))
+            {
+                layout.Precalculate(logevent);
+            }
+
+            // Assert
+            Assert.Equal(5, layout.RenderValue(logevent));
+            Assert.Equal("5", layout.Render(logevent));
+            Assert.Null(layout.StaticValue);
         }
 
         [Fact]
@@ -181,6 +302,20 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutRenderNullableIntValueWhenNull()
+        {
+            // Arrange
+            var integer = 42;
+            Layout<int?> layout = null;
+
+            // Act
+            var value = LayoutTypedExtensions.RenderValue(layout, null, integer);
+
+            // Assert
+            Assert.Equal(integer, value);
+        }
+
+        [Fact]
         public void LayoutRenderUrlValueWhenNull()
         {
             // Arrange
@@ -203,7 +338,39 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.True(layout1 == 42);
+            Assert.True(42 == layout1);
             Assert.True(layout1.Equals(42));
+            Assert.Equal(layout1, layout2);
+            Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsNullableIntValueFixedTest()
+        {
+            // Arrange
+            Layout<int?> layout1 = "42";
+            Layout<int?> layout2 = "42";
+
+            // Act + Assert
+            Assert.True(layout1 == 42);
+            Assert.True(42 == layout1);
+            Assert.True(layout1.Equals(42));
+            Assert.Equal(layout1, layout2);
+            Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsNullIntValueFixedTest()
+        {
+            // Arrange
+            int? nullInt = null;
+            Layout<int?> layout1 = nullInt;
+            Layout<int?> layout2 = nullInt;
+
+            // Act + Assert
+            Assert.True(layout1 == nullInt);
+            Assert.True(nullInt == layout1);
+            Assert.True(layout1.Equals(nullInt));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -217,7 +384,39 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == 42);
+            Assert.False(42 == layout1);
             Assert.False(layout1.Equals(42));
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutNotEqualsNullableIntValueFixedTest()
+        {
+            // Arrange
+            Layout<int?> layout1 = "2";
+            Layout<int?> layout2 = "42";
+
+            // Act + Assert
+            Assert.False(layout1 == 42);
+            Assert.False(42 == layout1);
+            Assert.False(layout1.Equals(42));
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutNotEqualsNullIntValueFixedTest()
+        {
+            // Arrange
+            int? nullInt = null;
+            Layout<int?> layout1 = "2";
+            Layout<int?> layout2 = nullInt;
+
+            // Act + Assert
+            Assert.False(layout1 == nullInt);
+            Assert.False(nullInt == layout1);
+            Assert.False(layout1.Equals(nullInt));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -232,6 +431,23 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.True(layout1 == url);
+            Assert.True(url == layout1);
+            Assert.True(layout1.Equals(url));
+            Assert.Equal(layout1, layout2);
+            Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsNullUrlValueFixedTest()
+        {
+            // Arrange
+            Uri url = null;
+            Layout<Uri> layout1 = url;
+            Layout<Uri> layout2 = url;
+
+            // Act + Assert
+            Assert.True(layout1 == url);
+            Assert.True(url == layout1);
             Assert.True(layout1.Equals(url));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
@@ -248,6 +464,24 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == url);
+            Assert.False(url == layout1);
+            Assert.False(layout1.Equals(url));
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutNotEqualsNullUrlValueFixedTest()
+        {
+            // Arrange
+            Uri url = null;
+            var url2 = new Uri("http://nlog");
+            Layout<Uri> layout1 = url2;
+            Layout<Uri> layout2 = url;
+
+            // Act + Assert
+            Assert.False(layout1 == url);
+            Assert.False(url == layout1);
             Assert.False(layout1.Equals(url));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
@@ -259,6 +493,18 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             Layout<int> layout1 = "${event-properties:intvalue}";
             Layout<int> layout2 = "${event-properties:intvalue}";
+
+            // Act + Assert (LogEventInfo.LayoutCache must work)
+            Assert.NotEqual(layout1, layout2);
+            Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
+        }
+
+        [Fact]
+        public void LayoutEqualsNullableIntValueDynamicTest()
+        {
+            // Arrange
+            Layout<int?> layout1 = "${event-properties:intvalue}";
+            Layout<int?> layout2 = "${event-properties:intvalue}";
 
             // Act + Assert (LogEventInfo.LayoutCache must work)
             Assert.NotEqual(layout1, layout2);
