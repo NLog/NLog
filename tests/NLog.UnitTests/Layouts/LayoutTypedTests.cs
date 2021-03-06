@@ -52,6 +52,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, result);
             Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.Equal(5, layout.StaticValue);
+            Assert.Equal("5", layout.ToString());
         }
 
         [Fact]
@@ -67,6 +68,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, result);
             Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.Equal(5, layout.StaticValue);
+            Assert.Equal("5", layout.ToString());
         }
 
         [Fact]
@@ -84,6 +86,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(result5);
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.Null(layout.StaticValue);
+            Assert.Equal("null", layout.ToString());
         }
 
         [Fact]
@@ -102,6 +105,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri.ToString(), layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.Equal(uri, layout.StaticValue);
             Assert.Same(layout.StaticValue, layout.StaticValue);
+            Assert.Equal(uri.ToString(), layout.ToString());
         }
 
         [Fact]
@@ -120,13 +124,15 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.Equal(uri, layout.StaticValue);
             Assert.Same(layout.StaticValue, layout.StaticValue);
+            Assert.Equal("null", layout.ToString());
         }
 
         [Fact]
         public void LayoutDynamicIntValueTest()
         {
             // Arrange
-            Layout<int> layout = "${event-properties:intvalue}";
+            string simpleLayout = "${event-properties:intvalue}";
+            Layout<int> layout = simpleLayout;
 
             // Act
             var logevent = LogEventInfo.Create(LogLevel.Info, null, null, "{intvalue}", new object[] { 5 });
@@ -136,6 +142,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, result);
             Assert.Equal("5", layout.Render(logevent));
             Assert.Equal(0, layout.StaticValue);
+            Assert.Equal(simpleLayout, layout.ToString());
         }
 
         [Fact]
@@ -257,7 +264,6 @@ namespace NLog.UnitTests.Layouts
             var logevent = LogEventInfo.CreateNullEvent();
             using (ScopeContext.PushProperty("urlvalue", uri.ToString()))
             {
-  
                 layout.Precalculate(logevent);
             }
 
@@ -340,6 +346,7 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout1 == 42);
             Assert.True(42 == layout1);
             Assert.True(layout1.Equals(42));
+            Assert.True(layout1.Equals((object)42));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -355,6 +362,7 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout1 == 42);
             Assert.True(42 == layout1);
             Assert.True(layout1.Equals(42));
+            Assert.True(layout1.Equals((object)42));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -371,6 +379,7 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout1 == nullInt);
             Assert.True(nullInt == layout1);
             Assert.True(layout1.Equals(nullInt));
+            Assert.True(layout1.Equals((object)nullInt));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -386,6 +395,7 @@ namespace NLog.UnitTests.Layouts
             Assert.False(layout1 == 42);
             Assert.False(42 == layout1);
             Assert.False(layout1.Equals(42));
+            Assert.False(layout1.Equals((object)42));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -401,6 +411,7 @@ namespace NLog.UnitTests.Layouts
             Assert.False(layout1 == 42);
             Assert.False(42 == layout1);
             Assert.False(layout1.Equals(42));
+            Assert.False(layout1.Equals((object)42));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -417,6 +428,7 @@ namespace NLog.UnitTests.Layouts
             Assert.False(layout1 == nullInt);
             Assert.False(nullInt == layout1);
             Assert.False(layout1.Equals(nullInt));
+            Assert.False(layout1.Equals((object)nullInt));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -433,6 +445,7 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout1 == url);
             Assert.True(url == layout1);
             Assert.True(layout1.Equals(url));
+            Assert.True(layout1.Equals((object)url));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -449,6 +462,7 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout1 == url);
             Assert.True(url == layout1);
             Assert.True(layout1.Equals(url));
+            Assert.True(layout1.Equals((object)url));
             Assert.Equal(layout1, layout2);
             Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -466,6 +480,7 @@ namespace NLog.UnitTests.Layouts
             Assert.False(layout1 == url);
             Assert.False(url == layout1);
             Assert.False(layout1.Equals(url));
+            Assert.False(layout1.Equals((object)url));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }
@@ -483,6 +498,7 @@ namespace NLog.UnitTests.Layouts
             Assert.False(layout1 == url);
             Assert.False(url == layout1);
             Assert.False(layout1.Equals(url));
+            Assert.False(layout1.Equals((object)url));
             Assert.NotEqual(layout1, layout2);
             Assert.NotEqual(layout1.GetHashCode(), layout2.GetHashCode());
         }

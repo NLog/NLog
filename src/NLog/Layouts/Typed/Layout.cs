@@ -344,7 +344,7 @@ namespace NLog.Layouts
         /// <inheritdoc />
         public override string ToString()
         {
-            return (IsFixed ? _fixedValue.ToString() : _innerLayout?.ToString()) ?? string.Empty;
+            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : (_innerLayout?.ToString() ?? base.ToString());
         }
 
         /// <inheritdoc />
@@ -355,8 +355,10 @@ namespace NLog.Layouts
                 // Support property-compare
                 if (obj is Layout<T> other)
                     return other.IsFixed && object.Equals(FixedObjectValue, other.FixedObjectValue);
+                else if (obj is T)
+                    return object.Equals(FixedObjectValue, obj);
                 else
-                    return obj is T && object.Equals(FixedObjectValue, obj);
+                    return obj == null && FixedObjectValue == null;
             }
             else
             {
