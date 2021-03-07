@@ -38,6 +38,7 @@ using System.Text;
 using JetBrains.Annotations;
 using NLog.Common;
 using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.Layouts
 {
@@ -111,7 +112,7 @@ namespace NLog.Layouts
         /// <param name="layout">Dynamic NLog Layout</param>
         /// <param name="parseValueFormat">Format used for parsing string-value into result value type</param>
         /// <param name="parseValueCulture">Culture used for parsing string-value into result value type</param>
-        public Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
+        internal Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
         {
             if (PropertyTypeConverter.IsComplexType(typeof(T)))
             {
@@ -167,8 +168,8 @@ namespace NLog.Layouts
         {
             if (IsFixed)
                 return _fixedValue;
-
-            return RenderTypedValue<T>(logEvent, stringBuilder, defaultValue);
+            else
+                return RenderTypedValue<T>(logEvent, stringBuilder, defaultValue);
         }
 
         object ITypedLayout.RenderValue(LogEventInfo logEvent, object defaultValue)
@@ -293,7 +294,8 @@ namespace NLog.Layouts
 
             var previousStringValue = _previousStringValue;
             var previousValue = _previousValue;
-            var stringValue = stringBuilder != null ? _innerLayout.RenderAllocateBuilder(logEvent, stringBuilder) : _innerLayout.Render(logEvent);
+
+            var stringValue = RenderStringValue(logEvent, stringBuilder, previousStringValue);
             if (previousStringValue != null && previousStringValue == stringValue)
             {
                 value = previousValue;
@@ -308,6 +310,30 @@ namespace NLog.Layouts
             }
 
             return false;
+        }
+
+        private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
+        {
+            SimpleLayout simpleLayout = _innerLayout as SimpleLayout;
+            if (simpleLayout != null && simpleLayout.IsSimpleStringText)
+            {
+                return simpleLayout.Render(logEvent);
+            }
+
+            if (stringBuilder?.Length == 0)
+            {
+                _innerLayout.RenderAppendBuilder(logEvent, stringBuilder);
+                if (stringBuilder.Length == 0)
+                    return string.Empty;
+                else if (!string.IsNullOrEmpty(previousStringValue) && stringBuilder.EqualTo(previousStringValue))
+                    return previousStringValue;
+                else
+                    return stringBuilder.ToString();
+            }
+            else
+            {
+                return _innerLayout.Render(logEvent);
+            }
         }
 
         private bool TryParseValueFromString(string stringValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)

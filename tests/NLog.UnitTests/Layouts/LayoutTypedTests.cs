@@ -294,6 +294,24 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutDynamicRenderExceptionTypeTest()
+        {
+            // Arrange
+            Layout<Type> layout = "${exception:format=type:norawvalue=true}";
+            var exception = new System.ApplicationException("Test");
+            var stringBuilder = new System.Text.StringBuilder();
+
+            // Act
+            var logevent = LogEventInfo.Create(LogLevel.Info, null, exception, null, "");
+            var exceptionType = layout.RenderTypedValue(logevent, stringBuilder, null);
+            stringBuilder.Length = 0;
+
+            // Assert
+            Assert.Equal(exception.GetType(), exceptionType);
+            Assert.Same(exceptionType, layout.RenderTypedValue(logevent, stringBuilder, null));
+        }
+
+        [Fact]
         public void LayoutRenderIntValueWhenNull()
         {
             // Arrange
