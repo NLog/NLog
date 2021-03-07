@@ -312,6 +312,21 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void ComplexTypeTestWithStringConversion()
+        {
+            // Arrange
+            var value = "utf8";
+            var layout = CreateLayoutRenderedFromProperty<System.Text.Encoding>();
+            var logEventInfo = CreateLogEventInfoWithValue(value);
+
+            // Act
+            var result = layout.RenderValue(logEventInfo);
+
+            // Assert
+            Assert.Equal(System.Text.Encoding.UTF8.EncodingName, result.EncodingName);
+        }
+
+        [Fact]
         public void LayoutRenderIntValueWhenNull()
         {
             // Arrange
