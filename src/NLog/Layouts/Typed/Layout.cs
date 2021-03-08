@@ -176,7 +176,7 @@ namespace NLog.Layouts
         {
             var value = FixedObjectValue ?? RenderTypedValue(logEvent, null, defaultValue);
             if (ReferenceEquals(value, defaultValue) && ReferenceEquals(defaultValue, string.Empty) && typeof(T) != typeof(string))
-                return default(T);
+                return default(T);  // Translate defaultValue = string.Empty into unspecified defaultValue
             else
                 return value;
         }
@@ -276,8 +276,7 @@ namespace NLog.Layouts
                 {
                     if (string.IsNullOrEmpty(rawStringValue))
                     {
-                        value = typeof(T) == typeof(string) ? rawStringValue : null;
-                        return true;
+                        return TryParseValueFromString(rawStringValue, _parseFormat, _parseFormatCulture, out value);
                     }
                 }
                 else
@@ -340,7 +339,7 @@ namespace NLog.Layouts
         {
             if (string.IsNullOrEmpty(stringValue))
             {
-                parsedValue = null;
+                parsedValue = typeof(T) == typeof(string) ? stringValue : null;
                 return true;
             }
 
