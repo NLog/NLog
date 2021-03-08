@@ -179,6 +179,38 @@ namespace NLog.UnitTests.Contexts
             var expectedString = "World";
             var expectedGuid = System.Guid.NewGuid();
             var expectedProperties = new[] { new KeyValuePair<string, object>("Hello", expectedString), new KeyValuePair<string, object>("RequestId", expectedGuid) };
+            IEnumerable<KeyValuePair<string, object>> allPropertiesState = null;
+            Dictionary<string, object> allProperties = null;
+            var logger = new LogFactory().GetCurrentClassLogger();
+            object stringValueLookup = null;
+
+            // Act
+            using (logger.PushScopeProperties(expectedProperties))
+            {
+                allPropertiesState = ScopeContext.GetAllProperties();
+                allProperties = allPropertiesState.ToDictionary(x => x.Key, x => x.Value);
+            }
+            ScopeContext.TryGetProperty("Hello", out stringValueLookup);
+
+            // Assert
+#if !NET35 && !NET40 && !NET45
+            Assert.Same(expectedProperties, allPropertiesState);
+#endif
+            Assert.Equal(2, allProperties.Count);
+            Assert.Equal(expectedString, allProperties["Hello"]);
+            Assert.Equal(expectedGuid, allProperties["RequestId"]);
+            Assert.Equal(expectedProperties.Select(p => new KeyValuePair<string, object>(p.Key, p.Value)), allProperties);
+            Assert.Null(stringValueLookup);
+        }
+
+        [Fact]
+        public void LoggerPushScopePropertiesOverwriteTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var expectedString = "World";
+            var expectedGuid = System.Guid.NewGuid();
+            var expectedProperties = new[] { new KeyValuePair<string, object>("Hello", expectedString), new KeyValuePair<string, object>("RequestId", expectedGuid) };
             Dictionary<string, object> allProperties = null;
             object stringValueLookup = null;
             var logger = new LogFactory().GetCurrentClassLogger();

@@ -152,7 +152,7 @@ namespace NLog.UnitTests.Layouts
             var nestedLayoutRenderer = nestedLayout.Renderers[0] as ScopeContextNestedStatesLayoutRenderer;
             Assert.NotNull(nestedLayoutRenderer);
             Assert.Equal(3, nestedLayoutRenderer.TopFrames);
-            Assert.Equal("x", nestedLayoutRenderer.Separator);
+            Assert.Equal("x", nestedLayoutRenderer.Separator.ToString());
         }
 
         [Fact]
@@ -173,7 +173,7 @@ namespace NLog.UnitTests.Layouts
             var nestedLayoutRenderer = nestedLayout.Renderers[0] as ScopeContextNestedStatesLayoutRenderer;
             Assert.NotNull(nestedLayoutRenderer);
             Assert.Equal(3, nestedLayoutRenderer.TopFrames);
-            Assert.Equal("x", nestedLayoutRenderer.Separator);
+            Assert.Equal("x", nestedLayoutRenderer.Separator.ToString());
         }
 
         [Fact]
@@ -194,7 +194,7 @@ namespace NLog.UnitTests.Layouts
             var nestedLayoutRenderer = nestedLayout.Renderers[0] as ScopeContextNestedStatesLayoutRenderer;
             Assert.NotNull(nestedLayoutRenderer);
             Assert.Equal(3, nestedLayoutRenderer.TopFrames);
-            Assert.Equal("x", nestedLayoutRenderer.Separator);
+            Assert.Equal("x", nestedLayoutRenderer.Separator.ToString());
         }
 
         [Fact]

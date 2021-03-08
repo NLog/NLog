@@ -159,6 +159,7 @@ namespace NLog.LayoutRenderers
             if (_isInitialized)
             {
                 LoggingConfiguration = null;
+                _valueFormatter = null;
                 _isInitialized = false;
                 CloseLayoutRenderer();
             }
