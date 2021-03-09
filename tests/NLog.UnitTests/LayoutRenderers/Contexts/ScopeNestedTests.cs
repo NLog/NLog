@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System.Collections.Generic;
     using Xunit;
 
     public class ScopeNestedTests : NLogTestBase
@@ -194,7 +195,85 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("ala:ma:kota c", target.LastMessage);
         }
 
-#if NETSTANDARD
+        [Fact]
+        public void ScopeNestedSinglePropertyTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${scopenested:format=@}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            var logger = logFactory.GetCurrentClassLogger();
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+
+            // Act
+            using (logger.PushScopeState(new[] { new KeyValuePair<string, object>("Hello", "World") }))
+            {
+                logger.Debug("c");
+            }
+
+            // Assert
+            Assert.Equal("[ { \"Hello\": \"World\" } ]", target.LastMessage);
+        }
+
+        [Fact]
+        public void ScopeNestedTwoPropertiesTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${scopenested:format=@}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            var logger = logFactory.GetCurrentClassLogger();
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+
+            // Act
+            using (logger.PushScopeState(new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } }))
+            {
+                logger.Debug("c");
+            }
+
+            // Assert
+            Assert.Equal("[ { \"Hello\": 42, \"Unlucky\": 13 } ]", target.LastMessage);
+        }
+
+        [Fact]
+        public void ScopeNestedTwoPropertiesNewlineTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${scopenested:format=@:separator=${newline}}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            var logger = logFactory.GetCurrentClassLogger();
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+
+            // Act
+            using (logger.PushScopeState(new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } }))
+            {
+                logger.Debug("c");
+            }
+
+            // Assert
+            Assert.Equal(string.Format("[{0}{{{0}\"Hello\": 42,{0}\"Unlucky\": 13{0}}}{0}]", System.Environment.NewLine), target.LastMessage);
+        }
+
+#if !NET35 && !NET40 && !NET45
         [Fact]
         public void ScopeNestedTimingTest()
         {

@@ -34,8 +34,11 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Collections.Generic;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Renders the nested states from <see cref="ScopeContext"/> like a callstack
@@ -60,7 +63,12 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string Separator { get; set; } = " ";
+        public Layout Separator { get; set; } = new SimpleLayout(new[] { new LiteralLayoutRenderer(" ") }, " ", ConfigurationItemFactory.Default);
+
+        /// <summary>
+        /// Gets or sets how to format each nested state. Ex. like JSON = @
+        /// </summary>
+        public string Format { get; set; }
 
         /// <summary>
         /// Renders the specified Nested Logical Context item and appends it to the specified <see cref="StringBuilder" />.
@@ -74,7 +82,7 @@ namespace NLog.LayoutRenderers
                 // Allows fast rendering of topframes=1
                 var topFrame = ScopeContext.PeekNestedState();
                 if (topFrame != null)
-                    AppendAsString(topFrame, GetFormatProvider(logEvent), builder);
+                    builder.AppendFormattedValue(topFrame, Format, GetFormatProvider(logEvent), ValueFormatter);
                 return;
             }
 
@@ -94,20 +102,125 @@ namespace NLog.LayoutRenderers
                 startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
 
-            var formatProvider = GetFormatProvider(logEvent);
-            string currentSeparator = string.Empty;
-            for (int i = endPos - 1; i >= startPos; --i)
+            string separator = Separator?.Render(logEvent) ?? string.Empty;
+            string itemSeparator = separator;
+            if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
             {
-                builder.Append(currentSeparator);
-                AppendAsString(messages[i], formatProvider, builder);
-                currentSeparator = Separator;
+                builder.Append("[");
+                builder.Append(separator);
+                itemSeparator = "," + separator;
+            }
+
+            try
+            {
+                var formatProvider = GetFormatProvider(logEvent);
+                string currentSeparator = string.Empty;
+                for (int i = endPos - 1; i >= startPos; --i)
+                {
+                    builder.Append(currentSeparator);
+                    AppendFormattedValue(messages[i], formatProvider, builder, separator, itemSeparator);
+                    currentSeparator = itemSeparator;
+                }
+            }
+            finally
+            {
+                if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
+                {
+                    builder.Append(separator);
+                    builder.Append("]");
+                }
             }
         }
 
-        private static void AppendAsString(object message, IFormatProvider formatProvider, StringBuilder builder)
+        private void AppendFormattedValue(object nestedState, IFormatProvider formatProvider, StringBuilder builder, string separator, string itemSeparator)
         {
-            string stringValue = Convert.ToString(message, formatProvider);
-            builder.Append(stringValue);
+            if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
+            {
+                AppendJsonFormattedValue(nestedState, formatProvider, builder, separator, itemSeparator);
+            }
+            else
+            {
+                builder.AppendFormattedValue(nestedState, Format, formatProvider, ValueFormatter);
+            }
+        }
+
+        private void AppendJsonFormattedValue(object nestedState, IFormatProvider formatProvider, StringBuilder builder, string separator, string itemSeparator)
+        {
+            if (nestedState is IEnumerable<KeyValuePair<string, object>> propertyList && HasUniqueCollectionKeys(propertyList))
+            {
+                // Special support for Microsoft Extension Logging ILogger.BeginScope where property-states are rendered as expando-objects
+                builder.Append("{");
+                builder.Append(separator);
+
+                string currentSeparator = string.Empty;
+
+                using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator<object>(propertyList))
+                {
+                    while (scopeEnumerator.MoveNext())
+                    {
+                        var property = scopeEnumerator.Current;
+
+                        int orgLength = builder.Length;
+                        if (!AppendJsonProperty(property.Key, property.Value, builder, currentSeparator))
+                        {
+                            builder.Length = orgLength;
+                            continue;
+                        }
+
+                        currentSeparator = itemSeparator;
+                    }
+                }
+
+                builder.Append(separator);
+                builder.Append("}");
+            }
+            else
+            {
+                builder.AppendFormattedValue(nestedState, Format, formatProvider, ValueFormatter);
+            }
+        }
+
+        bool AppendJsonProperty(string propertyName, object propertyValue, StringBuilder builder, string itemSeparator)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+                return false;
+
+            builder.Append(itemSeparator);
+
+            if (!ValueFormatter.FormatValue(propertyName, null, MessageTemplates.CaptureType.Serialize, null, builder))
+            {
+                return false;
+            }
+
+            builder.Append(": ");
+            if (!ValueFormatter.FormatValue(propertyValue, null, MessageTemplates.CaptureType.Serialize, null, builder))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        bool HasUniqueCollectionKeys(IEnumerable<KeyValuePair<string, object>> propertyList)
+        {
+            if (propertyList is IDictionary<string, object>)
+            {
+                return true;
+            }
+#if !NET35
+            else if (propertyList is IReadOnlyDictionary<string, object>)
+            {
+                return true;
+            }
+            else if (propertyList is IReadOnlyCollection<KeyValuePair<string, object>> propertyCollection)
+            {
+                if (propertyCollection.Count <= 1)
+                    return true;
+                else if (propertyCollection.Count > 10)
+                    return false;   // Too many combinations
+            }
+#endif
+            return ScopeContext.ScopePropertiesEnumerator<object>.HasUniqueCollectionKeys(propertyList, StringComparer.Ordinal);
         }
     }
 }

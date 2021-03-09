@@ -173,7 +173,7 @@ namespace NLog.Targets
         /// Gets or sets the separator for <see cref="ScopeContext"/> operation-states-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public string ScopeNestedStateSeparator { get => Renderer.ScopeNestedStateSeparator; set => Renderer.ScopeNestedStateSeparator = value; }
+        public Layout ScopeNestedStateSeparator { get => Renderer.ScopeNestedStateSeparator; set => Renderer.ScopeNestedStateSeparator = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events

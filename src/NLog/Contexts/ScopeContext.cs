@@ -711,32 +711,19 @@ namespace NLog
 
             private IReadOnlyCollection<KeyValuePair<string, object>> EnsureCollectionWithUniqueKeys()
             {
-                if (_scopeProperties.Count > 10)
+                var propertyCount = _scopeProperties.Count;
+                if (propertyCount > 10)
                 {
                     var scopeDictionary = new Dictionary<string, object>(_scopeProperties.Count, DefaultComparer);
                     AppendScopeProperties(scopeDictionary);
                     return scopeDictionary;
                 }
 
-                using (var leftEnumerator = new ScopePropertiesEnumerator<TValue>(_scopeProperties))
+                if (propertyCount > 1 && !ScopePropertiesEnumerator<TValue>.HasUniqueCollectionKeys(_scopeProperties, DefaultComparer))
                 {
-                    while (leftEnumerator.MoveNext())
-                    {
-                        var left = leftEnumerator.Current;
-                        using (var rightEnumerator = new ScopePropertiesEnumerator<TValue>(_scopeProperties))
-                        {
-                            while (rightEnumerator.MoveNext())
-                            {
-                                var right = rightEnumerator.Current;
-                                if (DefaultComparer.Equals(left.Key, right.Key))
-                                {
-                                    var scopeDictionary = new Dictionary<string, object>(_scopeProperties.Count, DefaultComparer);
-                                    AppendScopeProperties(scopeDictionary);
-                                    return scopeDictionary;
-                                }
-                            }
-                        }
-                    }
+                    var scopeDictionary = new Dictionary<string, object>(_scopeProperties.Count, DefaultComparer);
+                    AppendScopeProperties(scopeDictionary);
+                    return scopeDictionary;
                 }
 
                 return _scopeProperties as IReadOnlyCollection<KeyValuePair<string, object>> ?? this;
@@ -749,7 +736,7 @@ namespace NLog
 
             public override string ToString()
             {
-                return NestedState?.ToString() ?? base.ToString();
+                return NestedState?.ToString() ?? $"Count = {Count}";
             }
 
             public void Dispose()
@@ -761,7 +748,7 @@ namespace NLog
                 }
             }
 
-            int IReadOnlyCollection<KeyValuePair<string, object>>.Count => _scopeProperties.Count;
+            public int Count => _scopeProperties.Count;
 
             IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator()
             {
@@ -942,6 +929,43 @@ namespace NLog
                     _scopeEnumerator = CreateScopeEnumerable(scopeProperties).GetEnumerator();
                     _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
                 }
+            }
+
+            public static bool HasUniqueCollectionKeys(IEnumerable<KeyValuePair<string, TValue>> scopeProperties, IEqualityComparer<string> keyComparer)
+            {
+                int startIndex = 1;
+                using (var leftEnumerator = new ScopePropertiesEnumerator<TValue>(scopeProperties))
+                {
+                    while (leftEnumerator.MoveNext())
+                    {
+                        ++startIndex;
+
+                        int currentIndex = 0;
+
+                        var left = leftEnumerator.Current;
+                        using (var rightEnumerator = new ScopePropertiesEnumerator<TValue>(scopeProperties))
+                        {
+                            while (rightEnumerator.MoveNext())
+                            {
+                                if (++currentIndex < startIndex)
+                                    continue;
+
+                                var right = rightEnumerator.Current;
+                                if (keyComparer.Equals(left.Key, right.Key))
+                                {
+                                    return false;
+                                }
+
+                                if (currentIndex > 10)
+                                {
+                                    return false;   // Too many comparisons
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return true;
             }
 
             private static IEnumerable<KeyValuePair<string, object>> CreateScopeEnumerable(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
