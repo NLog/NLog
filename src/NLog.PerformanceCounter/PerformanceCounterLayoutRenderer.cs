@@ -187,6 +187,7 @@ namespace NLog.LayoutRenderers
         {
             try
             {
+                string instanceName = null;
                 using (Process proc = Process.GetCurrentProcess())
                 {
                     int pid = proc.Id;
@@ -198,10 +199,16 @@ namespace NLog.LayoutRenderers
                             int val = (int)cnt.RawValue;
                             if (val == pid)
                             {
-                                return instanceValue;
+                                InternalLogger.Debug("PerformanceCounter - Found instance-name={0} from processId={1}", instanceValue, pid);
+                                instanceName = instanceValue;
+                                if (instanceValue?.IndexOf(proc.ProcessName, StringComparison.Ordinal) >= 0)
+                                    return instanceValue;   // Most likely this process, and not old state from recycled ProcessId
                             }
                         }
                     }
+
+                    if (!string.IsNullOrEmpty(instanceName))
+                        return instanceName;
 
                     InternalLogger.Debug("PerformanceCounter - Failed to auto detect current process instance. ProcessId={0}", pid);
                 }
