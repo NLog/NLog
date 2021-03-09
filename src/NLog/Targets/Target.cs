@@ -36,6 +36,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -678,12 +679,12 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Renders the event info in layout.
+        /// Renders the logevent into a string-result using the provided layout
         /// </summary>
         /// <param name="layout">The layout.</param>
-        /// <param name="logEvent">The event info.</param>
+        /// <param name="logEvent">The logevent info.</param>
         /// <returns>String representing log event.</returns>
-        protected string RenderLogEvent(Layout layout, LogEventInfo logEvent)
+        protected string RenderLogEvent([CanBeNull] Layout layout, [CanBeNull] LogEventInfo logEvent)
         {
             if (layout == null || logEvent == null)
                 return null;    // Signal that input was wrong
@@ -696,7 +697,7 @@ namespace NLog.Targets
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {
-                return value;
+                return value?.ToString() ?? string.Empty;
             }
 
             if (simpleLayout != null && simpleLayout.IsSimpleStringText)
@@ -707,6 +708,36 @@ namespace NLog.Targets
             using (var localTarget = ReusableLayoutBuilder.Allocate())
             {
                 return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
+            }
+        }
+
+        /// <summary>
+        /// Renders the logevent into a result-value by using the provided layout
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="layout">The layout.</param>
+        /// <param name="logEvent">The logevent info.</param>
+        /// <param name="defaultValue">Fallback value when no value available</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
+        {
+            if (layout == null || logEvent == null)
+                return defaultValue;
+
+            if (layout.IsFixed)
+                return layout.StaticValue;
+
+            if (TryGetCachedValue(layout, logEvent, out var value))
+            {
+                if (value != null)
+                    return (T)value;
+                else
+                    return defaultValue;
+            }
+
+            using (var localTarget = ReusableLayoutBuilder.Allocate())
+            {
+                return layout.RenderTypedValue(logEvent, localTarget.Result, defaultValue);
             }
         }
 
@@ -733,11 +764,10 @@ namespace NLog.Targets
             return exception.MustBeRethrown(this, callerMemberName);
         }
 
-        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
+        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out object value)
         {
-            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
+            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out value))
             {
-                value = value2?.ToString() ?? string.Empty;
                 return true;
             }
 

@@ -34,6 +34,8 @@
 namespace NLog.Config
 {
     using System;
+    using System.Collections.Generic;
+    using System.Reflection;
     using NLog.Internal;
 
     /// <summary>
@@ -46,6 +48,30 @@ namespace NLog.Config
         /// </summary>
         public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
 
+        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> StringConverterLookup => _stringConverters ?? (_stringConverters = BuildStringConverterLookup());
+        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> _stringConverters;
+
+        private static Dictionary<Type, Func<string, string, IFormatProvider, object>> BuildStringConverterLookup()
+        {
+            return new Dictionary<Type, Func<string, string, IFormatProvider, object>>()
+            {
+                { typeof(System.Text.Encoding), (stringvalue, format, formatProvider) => ConvertToEncoding(stringvalue) },
+                { typeof(System.Globalization.CultureInfo), (stringvalue, format, formatProvider) => new System.Globalization.CultureInfo(stringvalue) },
+                { typeof(Type), (stringvalue, format, formatProvider) => Type.GetType(stringvalue, true) },
+                { typeof(NLog.Targets.LineEndingMode), (stringvalue, format, formatProvider) => NLog.Targets.LineEndingMode.FromString(stringvalue) },
+                { typeof(Uri), (stringvalue, format, formatProvider) => new Uri(stringvalue) },
+                { typeof(DateTime), (stringvalue, format, formatProvider) => ConvertToDateTime(format, formatProvider, stringvalue) },
+                { typeof(DateTimeOffset), (stringvalue, format, formatProvider) => ConvertToDateTimeOffset(format, formatProvider, stringvalue) },
+                { typeof(TimeSpan), (stringvalue, format, formatProvider) => ConvertToTimeSpan(format, formatProvider, stringvalue) },
+                { typeof(Guid), (stringvalue, format, formatProvider) => ConvertGuid(format, stringvalue) }
+            };
+        }
+
+        internal static bool IsComplexType(Type type)
+        {
+            return !type.IsValueType() && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() == null;
+        }
+
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
@@ -55,7 +81,7 @@ namespace NLog.Config
             }
 
             var nullableType = Nullable.GetUnderlyingType(propertyType);
-            var type = nullableType ?? propertyType;
+            propertyType = nullableType ?? propertyType;
             if (propertyValue is string propertyString)
             {
                 propertyValue = propertyString = propertyString.Trim();
@@ -64,22 +90,20 @@ namespace NLog.Config
                 {
                     return null;
                 }
-                
-                if (type == typeof(DateTime))
+
+                if (StringConverterLookup.TryGetValue(propertyType, out var converter))
                 {
-                    return ConvertDateTime(format, formatProvider, propertyString);
+                    return converter.Invoke(propertyString, format, formatProvider);
                 }
-                if (type == typeof(DateTimeOffset))
+
+                if (propertyType.IsEnum() && NLog.Common.ConversionHelpers.TryParseEnum(propertyString, propertyType, out var enumValue))
                 {
-                    return ConvertDateTimeOffset(format, formatProvider, propertyString);
+                    return enumValue;
                 }
-                if (type == typeof(TimeSpan))
+
+                if (!typeof(IConvertible).IsAssignableFrom(propertyType) && PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
                 {
-                    return ConvertTimeSpan(format, formatProvider, propertyString);
-                }
-                if (type == typeof(Guid))
-                {
-                    return ConvertGuid(format, propertyString);
+                    return convertedValue;
                 }
             }
             else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
@@ -87,8 +111,15 @@ namespace NLog.Config
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            var newValue = System.Convert.ChangeType(propertyValue, type, formatProvider);
-            return newValue;
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            if (propertyValue is IConvertible convertibleValue)
+            {
+                var typeCode = convertibleValue.GetTypeCode();
+                if (typeCode == TypeCode.DBNull)
+                    return propertyValue;
+            }
+#endif
+            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
         }
 
         private static bool NeedToConvert(object propertyValue, Type propertyType)
@@ -105,7 +136,15 @@ namespace NLog.Config
 #endif
         }
 
-        private static object ConvertTimeSpan(string format, IFormatProvider formatProvider, string propertyString)
+        private static object ConvertToEncoding(string stringValue)
+        {
+            stringValue = stringValue.Trim();
+            if (string.Equals(stringValue, nameof(System.Text.Encoding.UTF8), StringComparison.OrdinalIgnoreCase))
+                stringValue = System.Text.Encoding.UTF8.WebName;  // Support utf8 without hyphen (And not just Utf-8)
+            return System.Text.Encoding.GetEncoding(stringValue);
+        }
+
+        private static object ConvertToTimeSpan(string format, IFormatProvider formatProvider, string propertyString)
         {
 #if !NET35
             if (!string.IsNullOrEmpty(format))
@@ -116,14 +155,14 @@ namespace NLog.Config
 #endif
         }
 
-        private static object ConvertDateTimeOffset(string format, IFormatProvider formatProvider, string propertyString)
+        private static object ConvertToDateTimeOffset(string format, IFormatProvider formatProvider, string propertyString)
         {
             if (!string.IsNullOrEmpty(format))
                 return DateTimeOffset.ParseExact(propertyString, format, formatProvider);
             return DateTimeOffset.Parse(propertyString, formatProvider);
         }
 
-        private static object ConvertDateTime(string format, IFormatProvider formatProvider, string propertyString)
+        private static object ConvertToDateTime(string format, IFormatProvider formatProvider, string propertyString)
         {
             if (!string.IsNullOrEmpty(format))
                 return DateTime.ParseExact(propertyString, format, formatProvider);

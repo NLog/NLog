@@ -308,7 +308,7 @@ namespace NLog.Targets
         /// Gets or sets the priority used for sending mails.
         /// </summary>
         /// <docgen category='Message Options' order='100' />
-        public Layout Priority { get; set; }
+        public Layout<MailPriority> Priority { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.
@@ -604,8 +604,6 @@ namespace NLog.Targets
                 sb.Append(layout.Render(logEvent));
         }
 
-
-
         /// <summary>
         /// Create the mail message with the addresses, properties and body.
         /// </summary>
@@ -636,22 +634,9 @@ namespace NLog.Targets
 
             if (Priority != null)
             {
-                var renderedPriority = Priority.Render(lastEvent);
-
-                if (string.IsNullOrEmpty(renderedPriority))
-                {
-                    msg.Priority = MailPriority.Normal;
-                }
-                else if (ConversionHelpers.TryParseEnum(renderedPriority, out MailPriority mailPriority))
-                {
-                    msg.Priority = mailPriority;
-                }
-                else
-                {
-                    msg.Priority = MailPriority.Normal;
-                    InternalLogger.Warn("{0}: Could not convert '{1}' to MailPriority, valid values are Low, Normal and High. Using normal priority as fallback.", this, renderedPriority);
-                }
+                msg.Priority = RenderLogEvent(Priority, lastEvent, MailPriority.Normal);
             }
+
             msg.Body = body;
             if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null)
                 msg.Body = msg.Body.Replace(Environment.NewLine, "<br/>");
