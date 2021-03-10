@@ -71,10 +71,8 @@ namespace NLog.Internal
         public static string TrimDirectorySeparators(string path)
         {
             var newpath = path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
-            if (newpath.EndsWith(":", System.StringComparison.OrdinalIgnoreCase))
-                return path;    // Support root-path on Windows
-            else if (string.IsNullOrEmpty(newpath) && !string.IsNullOrEmpty(path))
-                return path;    // Support root-path on Linux
+            if (newpath.EndsWith(":", System.StringComparison.Ordinal))
+                return path;    // Support root-path on Windows (But Linux root-path is off limits)
             else
                 return newpath;
         }
