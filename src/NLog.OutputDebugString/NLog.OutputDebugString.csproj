@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath=""/>
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
   </ItemGroup>
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
     <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />

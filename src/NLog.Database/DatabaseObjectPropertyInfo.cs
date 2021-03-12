@@ -35,8 +35,9 @@ namespace NLog.Targets
 {
     using System;
     using System.ComponentModel;
-    using System.Data;
     using System.Globalization;
+    using System.Reflection;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
@@ -45,7 +46,7 @@ namespace NLog.Targets
     /// Information about object-property for the database-connection-object
     /// </summary>
     [NLogConfigurationItem]
-    public class DatabaseObjectPropertyInfo
+    public class DatabaseObjectPropertyInfo : ValueTypeLayoutInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseObjectPropertyInfo"/> class.
@@ -66,28 +67,28 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
-        public Layout Layout { get; set; }
+        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
 
         /// <summary>
         /// Gets or sets the type of the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(typeof(string))]
-        public Type PropertyType { get; set; } = typeof(string);
+        public Type PropertyType { get => ValueType ?? typeof(string); set => ValueType = value; }
 
         /// <summary>
         /// Gets or sets convert format of the property value
         /// </summary>
         /// <docgen category='Connection Options' order='8' />
         [DefaultValue(null)]
-        public string Format { get; set; }
+        public string Format { get => ValueParseFormat; set => ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing property string-value for type-conversion
         /// </summary>
         /// <docgen category='Connection Options' order='9' />
         [DefaultValue(null)]
-        public CultureInfo Culture { get; set; }
+        public CultureInfo Culture { get => ValueParseCulture; set => ValueParseCulture = value; }
 
         internal bool SetPropertyValue(object dbObject, object propertyValue)
         {
@@ -95,21 +96,28 @@ namespace NLog.Targets
             var propertySetterCache = _propertySetter;
             if (!propertySetterCache.Equals(Name, dbConnectionType))
             {
-                var propertySetter = PropertySetter.CreatePropertySetter(dbConnectionType, Name);
+                var propertyInfo = dbConnectionType.GetProperty(Name);
+                var propertySetter = propertyInfo.CreatePropertySetter();
                 propertySetterCache = new PropertySetterCacheItem(Name, dbConnectionType, propertySetter);
                 _propertySetter = propertySetterCache;
             }
 
-            return propertySetterCache.PropertySetter?.SetPropertyValue(dbObject, propertyValue) ?? false;
+            if (propertySetterCache.PropertySetter != null)
+            {
+                propertySetterCache.PropertySetter.Invoke(dbObject, propertyValue);
+                return true;
+            }
+
+            return false;
         }
 
         private struct PropertySetterCacheItem
         {
             public string PropertyName { get; }
             public Type ObjectType { get; }
-            public PropertySetter PropertySetter { get; }
+            public Action<object, object> PropertySetter { get; }
 
-            public PropertySetterCacheItem(string propertyName, Type objectType, PropertySetter propertySetter)
+            public PropertySetterCacheItem(string propertyName, Type objectType, Action<object,object> propertySetter)
             {
                 PropertyName = propertyName;
                 ObjectType = objectType;

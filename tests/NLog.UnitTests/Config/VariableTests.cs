@@ -82,15 +82,15 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
   <variable name='test' value='hello'/>
   <targets>
-    <target type='DataBase'  name='test' DBProvider='${test}'/>
+    <target type='File' name='test' ArchiveDateFormat='${test}'/>
   </targets>
 </nlog>");
 
-            var target = configuration.FindTargetByName("test") as DatabaseTarget;
+            var target = configuration.FindTargetByName("test") as FileTarget;
             Assert.NotNull(target);
             //dont change the ${test} as it isn't a Layout
-            Assert.NotEqual(typeof(Layout), target.DBProvider.GetType());
-            Assert.Equal("hello", target.DBProvider);
+            Assert.NotEqual(typeof(Layout), target.ArchiveDateFormat.GetType());
+            Assert.Equal("hello", target.ArchiveDateFormat);
         }
 
         [Fact]

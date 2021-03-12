@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>net35;net45;net46;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.WindowsRegistry</Title>
+    <Title>NLog Windows Registry</Title>
     <Company>NLog</Company>
-    <Description>NLog.WindowsRegistry provides support for Windows Registry</Description>
+    <Description>NLog.WindowsRegistry provides support for Windows Registry Lookup</Description>
     <Product>NLog.WindowsRegistry v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
@@ -70,7 +70,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath="" />
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
   </ItemGroup>
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
     <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />

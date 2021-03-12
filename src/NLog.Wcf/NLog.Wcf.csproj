@@ -5,9 +5,9 @@
 
     <TargetFrameworks>net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.WCF for .NET Standard and .NetFramework</Title>
+    <Title>NLog WCF LogReceiverService Target</Title>
     <Company>NLog</Company>
-    <Description>NLog.WCF ServiceModel provides LogReceiverService target and the WCF contract interfaces/implementations for NetStandard</Description>
+    <Description>NLog.WCF ServiceModel provides LogReceiverService target and the WCF contract interfaces/implementations</Description>
     <Product>NLog WCF v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
@@ -96,16 +96,12 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="..\NLog\Resources\NLog.ico" />
-  </ItemGroup>
-
   <PropertyGroup>
     <AssemblyTitle>$(Title)</AssemblyTitle>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath=""/>
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
   </ItemGroup>
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
     <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />

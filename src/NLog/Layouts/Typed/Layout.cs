@@ -94,7 +94,7 @@ namespace NLog.Layouts
         /// <param name="layout">Dynamic NLog Layout</param>
         /// <param name="parseValueFormat">Format used for parsing string-value into result value type</param>
         /// <param name="parseValueCulture">Culture used for parsing string-value into result value type</param>
-        internal Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
+        public Layout(Layout layout, string parseValueFormat, CultureInfo parseValueCulture)
         {
             if (PropertyTypeConverter.IsComplexType(typeof(T)))
             {

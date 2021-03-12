@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Database.Tests
 {
     using System;
     using System.Collections;
@@ -61,9 +61,14 @@ namespace NLog.UnitTests.Targets
     using System.Data.SQLite;
 #endif
 
-    public class DatabaseTargetTests : NLogTestBase
+    public class DatabaseTargetTests
     {
-#if !MONO && !NETSTANDARD
+        public DatabaseTargetTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
+#if !NETSTANDARD
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -85,7 +90,8 @@ namespace NLog.UnitTests.Targets
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
             };
 
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
+
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
@@ -125,7 +131,7 @@ Dispose()
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
             };
 
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
@@ -165,7 +171,7 @@ Dispose()
                 KeepConnection = true,
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
@@ -186,7 +192,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -206,7 +212,7 @@ Dispose()
                 KeepConnection = true,
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
             var exceptions = new List<Exception>();
 
@@ -232,7 +238,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -253,7 +259,7 @@ Dispose()
                 IsolationLevel = IsolationLevel.ReadCommitted,
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
             var exceptions = new List<Exception>();
 
@@ -282,7 +288,7 @@ DbTransaction.Dispose()
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -302,7 +308,7 @@ Dispose()
                 KeepConnection = true,
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
@@ -331,7 +337,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -351,7 +357,7 @@ Dispose()
                 KeepConnection = true,
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
@@ -389,7 +395,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -416,7 +422,7 @@ Dispose()
             };
             dt.InstallDdlCommands.Add(installDbCommand);
 
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
 
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
@@ -454,7 +460,7 @@ Dispose()
                 }
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
@@ -515,7 +521,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -547,7 +553,7 @@ Dispose()
                 }
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
@@ -580,7 +586,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
             AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
-            dt.Close();
+            logFactory.Shutdown();
             expectedLog = @"Close()
 Dispose()
 ";
@@ -610,7 +616,7 @@ Dispose()
         [InlineData("${event-properties:almostAsIntProp}", DbType.Int64, (long)124)]
         [InlineData("${event-properties:almostAsIntProp}", DbType.AnsiString, " 124 ")]
         [InlineData("${event-properties:emptyprop}", DbType.AnsiString, "")]
-        [InlineData("${event-properties:emptyprop}", DbType.AnsiString, "", true)]
+        [InlineData("${event-properties:emptyprop}", DbType.AnsiString, null, true)]
         [InlineData("${event-properties:NullRawValue}", DbType.AnsiString, "")]
         [InlineData("${event-properties:NullRawValue}", DbType.Int32, 0)]
         [InlineData("${event-properties:NullRawValue}", DbType.AnsiString, null, true)]
@@ -656,7 +662,6 @@ Dispose()
         [MemberData(nameof(ConvertFromStringTestCases))]
         public void GetParameterValueFromStringTest(string value, DbType dbType, object expected, string format = null, CultureInfo cultureInfo = null, bool? allowDbNull = null)
         {
-
             var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
 
             try
@@ -753,7 +758,7 @@ Dispose()
                 }
             };
 
-            dt.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
@@ -771,7 +776,7 @@ Dispose()
             };
 
             dt.WriteAsyncLogEvents(events);
-            dt.Close();
+            logFactory.Shutdown();
             foreach (var ex in exceptions)
             {
                 Assert.Null(ex);
@@ -828,24 +833,25 @@ Dispose()
         public void ParameterDbTypePropertyNameTest()
         {
             MockDbConnection.ClearLog();
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+
+            var dbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml($@"
             <nlog>
                 <targets>
                     <target name='dt' type='Database'>
-                        <DBProvider>MockDb</DBProvider>
+                        <DBProvider>{dbProvider}</DBProvider>
                         <ConnectionString>FooBar</ConnectionString>
                         <CommandText>INSERT INTO FooBar VALUES(@message,@level,@date)</CommandText>
-                        <parameter name='@message' layout='${message}'/>
-                        <parameter name='@level' dbType=' MockDbType.int32  ' layout='${level:format=Ordinal}'/>
-                        <parameter name='@date' dbType='MockDbType.DateTime' format='yyyy-MM-dd HH:mm:ss.fff' layout='${date:format=yyyy-MM-dd HH\:mm\:ss.fff}'/>
+                        <parameter name='@message' layout='${{message}}'/>
+                        <parameter name='@level' dbType=' MockDbType.int32  ' layout='${{level:format=Ordinal}}'/>
+                        <parameter name='@date' dbType='MockDbType.DateTime' format='yyyy-MM-dd HH:mm:ss.fff' layout='${{date:format=yyyy-MM-dd HH\:mm\:ss.fff}}'/>
                     </target>
                 </targets>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            DatabaseTarget dt = logFactory.Configuration.FindTargetByName("dt") as DatabaseTarget;
             Assert.NotNull(dt);
-            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-            dt.Initialize(c);
+
             List<Exception> exceptions = new List<Exception>();
             var alogEvent = new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add);
             dt.WriteAsyncLogEvent(alogEvent);
@@ -920,15 +926,22 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            using (new NoThrowNLogExceptions())
+            var db = new DatabaseTarget();
+            db.CommandText = "not important";
+            db.ConnectionString = "cannotconnect";
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(db)).LogFactory;
+
+            try
             {
-                var db = new DatabaseTarget();
-                db.CommandText = "not important";
-                db.ConnectionString = "cannotconnect";
-                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-                db.Initialize(null);
+                LogManager.ThrowExceptions = false;
                 db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                db.Close();
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+                logFactory.Shutdown();
             }
 
             Assert.Single(exceptions);
@@ -943,18 +956,24 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            using (new NoThrowNLogExceptions())
+            var db = new DatabaseTarget();
+            db.CommandText = "not important";
+            db.ConnectionString = "cannotexecute";
+            db.KeepConnection = true;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(db)).LogFactory;
+
+            try
             {
-                var db = new DatabaseTarget();
-                db.CommandText = "not important";
-                db.ConnectionString = "cannotexecute";
-                db.KeepConnection = true;
-                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-                db.Initialize(null);
+                LogManager.ThrowExceptions = false;
                 db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
                 db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
                 db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                db.Close();
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+                logFactory.Shutdown();
             }
 
             Assert.Equal(3, exceptions.Count);
@@ -987,14 +1006,16 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            using (new NoThrowNLogExceptions())
+            var db = new DatabaseTarget();
+            db.CommandText = "not important";
+            db.ConnectionString = "cannotexecute";
+            db.KeepConnection = true;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(db)).LogFactory;
+
+            try
             {
-                var db = new DatabaseTarget();
-                db.CommandText = "not important";
-                db.ConnectionString = "cannotexecute";
-                db.KeepConnection = true;
-                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-                db.Initialize(null);
+                LogManager.ThrowExceptions = false;
                 var events = new[]
                 {
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -1003,7 +1024,11 @@ Dispose()
                 };
 
                 db.WriteAsyncLogEvents(events);
-                db.Close();
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+                logFactory.Shutdown();
             }
 
             Assert.Equal(3, exceptions.Count);
@@ -1036,15 +1061,17 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            using (new NoThrowNLogExceptions())
+            var db = new DatabaseTarget();
+            db.CommandText = "not important";
+            db.ConnectionString = "cannotexecute";
+            db.KeepConnection = true;
+            db.IsolationLevel = IsolationLevel.Serializable;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(db)).LogFactory;
+
+            try
             {
-                var db = new DatabaseTarget();
-                db.CommandText = "not important";
-                db.ConnectionString = "cannotexecute";
-                db.KeepConnection = true;
-                db.IsolationLevel = IsolationLevel.Serializable;
-                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-                db.Initialize(null);
+                LogManager.ThrowExceptions = false;
                 var events = new[]
                 {
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -1053,7 +1080,11 @@ Dispose()
                 };
 
                 db.WriteAsyncLogEvents(events);
-                db.Close();
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+                logFactory.Shutdown();
             }
 
             Assert.Equal(3, exceptions.Count);
@@ -1081,19 +1112,25 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            using (new NoThrowNLogExceptions())
+            var db = new DatabaseTarget();
+            db.CommandText = "not important";
+            db.ConnectionString = "cannotexecute";
+            db.KeepConnection = true;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(db)).LogFactory;
+
+            try
             {
-                var db = new DatabaseTarget();
-                db.CommandText = "not important";
-                db.ConnectionString = "cannotexecute";
-                db.KeepConnection = true;
-                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-                db.Initialize(null);
+                LogManager.ThrowExceptions = false;
                 db.WriteAsyncLogEvents(
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                db.Close();
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+                logFactory.Shutdown();
             }
 
             Assert.Equal(3, exceptions.Count);
@@ -1136,7 +1173,8 @@ Dispose()
                 new ConnectionStringSettings("MyConnectionString", "cs1", "MockDb"),
             };
 
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
+
             Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
             Assert.Equal("cs1", dt.ConnectionString.Render(LogEventInfo.CreateNullEvent()));
         }
@@ -1154,7 +1192,7 @@ Dispose()
 
             try
             {
-                dt.Initialize(null);
+                new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
                 Assert.True(false, "Exception expected.");
             }
             catch (NLogConfigurationException configurationException)
@@ -1171,7 +1209,8 @@ Dispose()
             var dt = new DatabaseTarget();
             dt.DBProvider = "MockDb";
             dt.CommandText = "Notimportant";
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
+
             Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
             dt.OpenConnection("myConnectionString", null);
             Assert.Equal(1, MockDbConnection2.OpenCount);
@@ -1191,7 +1230,7 @@ Dispose()
                 CommandText = "command1",
             };
             databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = accessToken });
-            databaseTarget.Initialize(new LoggingConfiguration());
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget));
 
             // Act
             var connection1 = databaseTarget.OpenConnection(".", null);
@@ -1215,10 +1254,10 @@ Dispose()
                 CommandText = "command1",
             };
             databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = "abc", PropertyType = typeof(int) });
-            databaseTarget.Initialize(new LoggingConfiguration());
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget)).LogFactory;
 
             // Act + Assert
-            Assert.Throws<FormatException>(() => databaseTarget.OpenConnection(".", null));
+            Assert.Throws<InvalidCastException>(() => logFactory.GetCurrentClassLogger().Info("Hello"));
         }
 
         [Fact]
@@ -1233,7 +1272,7 @@ Dispose()
                 CommandText = "command1",
             };
             databaseTarget.CommandProperties.Add(new DatabaseObjectPropertyInfo() { Name = "CommandTimeout", Layout = commandTimeout, PropertyType = typeof(int) });
-            databaseTarget.Initialize(new LoggingConfiguration());
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget));
 
             // Act
             var connection = databaseTarget.OpenConnection(".", null);
@@ -1260,7 +1299,7 @@ Dispose()
                     CommandText = "notimportant",
                 };
 
-                dt.Initialize(null);
+                new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
 
                 Assert.Equal(typeof(SqlConnection), dt.ConnectionType);
             }
@@ -1278,7 +1317,7 @@ Dispose()
                 CommandText = "notimportant",
             };
 
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
             Assert.Equal(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
         }
 
@@ -1293,7 +1332,7 @@ Dispose()
                 CommandText = "notimportant",
             };
 
-            dt.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
 #endif
@@ -1391,7 +1430,7 @@ Dispose()
                 string dbProvider = GetSQLiteDbProvider();
 
                 // Create log with xml config
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
                 <targets>
@@ -1409,18 +1448,18 @@ Dispose()
                 <rules>
                     <logger name='*' writeTo='database' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
                 //install 
                 InstallationContext context = new InstallationContext();
-                LogManager.Configuration.Install(context);
+                logFactory.Configuration.Install(context);
 
                 // check so table is created
                 var tableName = sqlLite.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogSqlLiteTest'");
                 Assert.Equal("NLogSqlLiteTest", tableName);
 
                 // start to log
-                var logger = LogManager.GetLogger("SQLite");
+                var logger = logFactory.GetLogger("SQLite");
                 logger.Debug("Test");
                 logger.Error("Test2");
                 logger.Info("Final test row");
@@ -1452,7 +1491,7 @@ Dispose()
                 string dbProvider = GetSQLiteDbProvider();
 
                 // Create log with xml config
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
                 <targets>
@@ -1472,11 +1511,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 <rules>
                     <logger name='*' writeTo='database' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
                 //install 
                 InstallationContext context = new InstallationContext();
-                LogManager.Configuration.Install(context);
+                logFactory.Configuration.Install(context);
 
                 // check so table is created
                 var tableName = sqlLite.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogSqlLiteTestAppNames'");
@@ -1546,7 +1585,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-        private void SetupSqliteConfigWithInvalidInstallCommand(string databaseName)
+        private LogFactory SetupSqliteConfigWithInvalidInstallCommand(string databaseName)
         {
             var nlogXmlConfig = @"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -1571,16 +1610,16 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             var connectionString = "Uri=file::memory:;Version=3";
 #endif
 
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString));
+            return new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml(String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)).LogFactory;
         }
 
         [Fact]
         public void NotRethrowingInstallExceptions()
         {
-            using (new NoThrowNLogExceptions())
+            try
             {
-                SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
+                LogManager.ThrowExceptions = false;
+                var logFactory = SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
 
                 // Default InstallationContext should not rethrow exceptions
                 InstallationContext context = new InstallationContext();
@@ -1588,18 +1627,22 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 Assert.False(context.IgnoreFailures, "Failures should not be ignored by default");
                 Assert.False(context.ThrowExceptions, "Exceptions should not be thrown by default");
 
-                var exRecorded = Record.Exception(() => LogManager.Configuration.Install(context));
+                var exRecorded = Record.Exception(() => logFactory.Configuration.Install(context));
                 Assert.Null(exRecorded);
             }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+            }
         }
-
 
         [Fact]
         public void RethrowingInstallExceptions()
         {
-            using (new NoThrowNLogExceptions())
+            try
             {
-                SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
+                LogManager.ThrowExceptions = false;
+                var logFactory = SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
 
                 InstallationContext context = new InstallationContext()
                 {
@@ -1609,10 +1652,14 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 Assert.True(context.ThrowExceptions);  // Sanity check
 
 #if MONO || NETSTANDARD
-                Assert.Throws<SqliteException>(() => LogManager.Configuration.Install(context));
+                Assert.Throws<SqliteException>(() => logFactory.Configuration.Install(context));
 #else
-                Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
+                Assert.Throws<SQLiteException>(() => logFactory.Configuration.Install(context));
 #endif
+            }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
             }
         }
 
@@ -1685,7 +1732,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 SqlServerTest.CreateDatabase(isAppVeyor);
 
                 var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+
+                var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
                 <targets>
@@ -1705,11 +1753,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 <rules>
                     <logger name='*' writeTo='database' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
                 //install 
                 InstallationContext context = new InstallationContext();
-                LogManager.Configuration.Install(context);
+                logFactory.Configuration.Install(context);
 
                 var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
                  WHERE TABLE_SCHEMA = 'Dbo'
@@ -1718,8 +1766,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 //check if table exists
                 Assert.Equal("NLogTest", tableCatalog);
 
-                var logger = LogManager.GetLogger("A");
-                var target = LogManager.Configuration.FindTargetByName<DatabaseTarget>("database");
+                var logger = logFactory.GetLogger("A");
+                var target = logFactory.Configuration.FindTargetByName<DatabaseTarget>("database");
 
                 var uid = new Guid("e7c648b4-3508-4df2-b001-753148659d6d");
                 var logEvent = new LogEventInfo(LogLevel.Info, null, null);
@@ -1742,7 +1790,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             {
                 SqlServerTest.TryDropDatabase(isAppVeyor);
             }
-
         }
 
 #if !NETSTANDARD
@@ -1763,7 +1810,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                     "System.Data.SqlClient"),
             };
 
-            databaseTarget.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget));
+
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
@@ -1787,7 +1835,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                     "System.Data.SqlClient"),
             };
 
-            databaseTarget.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget));
+
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
@@ -1810,7 +1859,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                     "System.Data.EntityClient"),
             };
 
-            databaseTarget.Initialize(null);
+            new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget));
+
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
             Assert.Equal("data source=192.168.0.100;initial catalog=TEST_DB;user id=myUser;password=SecretPassword;multipleactiveresultsets=True;application name=EntityFramework", ((NLog.Layouts.SimpleLayout)databaseTarget.ConnectionString).FixedText);
@@ -1888,11 +1938,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             MockDbConnection.ClearLog();
             dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             dt.CommandText = "NotImportant";
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt)).LogFactory;
 
             var exceptions = new List<Exception>();
-            dt.Initialize(null);
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger1", "msg1").WithContinuation(exceptions.Add));
-            dt.Close();
+            logFactory.Shutdown();
 
             return MockDbConnection.LastConnectionString;
         }
@@ -2552,17 +2602,25 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                         return true;
                     }
                     return false;
-
                 }
                 catch (Exception)
                 {
-
                     //ignore
                     return false;
                 }
-
             }
         }
-    }
 
+        protected static bool IsAppVeyor()
+        {
+            var val = Environment.GetEnvironmentVariable("APPVEYOR");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
+        protected static bool IsLinux()
+        {
+            var val = Environment.GetEnvironmentVariable("WINDIR");
+            return string.IsNullOrEmpty(val);
+        }
+    }
 }

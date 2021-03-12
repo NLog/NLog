@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.ComponentModel;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -42,7 +43,7 @@ namespace NLog.Targets
     /// Attribute details for <see cref="TargetWithContext"/> 
     /// </summary>
     [NLogConfigurationItem]
-    public class TargetPropertyWithContext
+    public class TargetPropertyWithContext : ValueTypeLayoutInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
@@ -72,18 +73,30 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Property Options' order='10' />
         [RequiredParameter]
-        public Layout Layout { get; set; }
+        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
 
         /// <summary>
         /// Gets or sets when an empty value should cause the property to be included
         /// </summary>
         [DefaultValue(true)]
-        public bool IncludeEmptyValue { get; set; } = true;
+        public bool IncludeEmptyValue
+        {
+            get => _includeEmptyValue;
+            set
+            {
+                _includeEmptyValue = value;
+                if (!value)
+                    DefaultValue = new Layout<string>(null);
+                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue == null)
+                    DefaultValue = null;
+            }
+        }
+        private bool _includeEmptyValue = true;
 
         /// <summary>
         /// Gets or sets the type of the property.
         /// </summary>
         [DefaultValue(typeof(string))]
-        public Type PropertyType { get; set; } = typeof(string);
+        public Type PropertyType { get => ValueType ?? typeof(string); set => ValueType = value; }
     }
 }
