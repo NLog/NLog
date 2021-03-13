@@ -3037,7 +3037,7 @@ namespace NLog.UnitTests.Targets
             const int maxArchiveFiles = 1;
 
             var tempPath = ArchiveFileNameHelper.GenerateTempPath();
-            var logFile1 = Path.Combine(tempPath, "MyFile{0}.txt");
+            var logFile1 = Path.Combine(tempPath, "Log{0}.txt");
             try
             {
                 var fileTarget1 = new FileTarget
