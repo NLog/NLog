@@ -155,7 +155,7 @@ namespace NLog.Targets.FileArchiveModes
                 case ArchiveNumberingMode.DateAndSequence:
                     {
                         // Force sequence-number into template (Just before extension)
-                        if (sb.Length > 3 && sb[sb.Length - 3] != '{' && sb[sb.Length - 2] != '#' && sb[sb.Length - 1] != '}')
+                        if (sb.Length < 3 || (sb[sb.Length - 3] != '{' && sb[sb.Length - 2] != '#' && sb[sb.Length - 1] != '}'))
                         {
                             if (digitsRemoved <= 1)
                             {
