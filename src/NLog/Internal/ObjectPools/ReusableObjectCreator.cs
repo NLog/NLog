@@ -38,15 +38,12 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated object for reuse (only one active user)
     /// </summary>
-    class ReusableObjectCreator<T> where T : class
+    internal class ReusableObjectCreator<T> where T : class
     {
         protected T _reusableObject;
         private readonly Action<T> _clearObject;
         private readonly Func<int, T> _createObject;
         private readonly int _initialCapacity;
-
-        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
-        public readonly LockOject None = default(LockOject);
 
         protected ReusableObjectCreator(int initialCapacity, Func<int, T> createObject, Action<T> clearObject)
         {
