@@ -87,7 +87,8 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
         [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
-        public bool OptimizeBufferReuse { get => true; set { } }
+        public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
+        private bool? _optimizeBufferReuse;
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
