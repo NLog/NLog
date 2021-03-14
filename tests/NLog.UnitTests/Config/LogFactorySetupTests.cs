@@ -826,6 +826,81 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        void SetupBuilder_MultipleTargets3()
+        {
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c =>
+            {
+                var debugTarget1 = new DebugTarget("debug1") { Layout = "${message}" };
+                var debugTarget2 = new DebugTarget("debug2") { Layout = "${message}" };
+                c.ForLogger().WriteTo(debugTarget1, debugTarget2).WithAsync();
+            }).GetCurrentClassLogger();
+
+            var target1 = logFactory.Configuration.FindTargetByName<DebugTarget>("debug1");
+            var target2 = logFactory.Configuration.FindTargetByName<DebugTarget>("debug2");
+            Assert.Equal(4, logFactory.Configuration.AllTargets.Count);
+            Assert.NotNull(target1);
+            Assert.NotNull(target2);
+
+            logger.Debug("Debug Level");
+            logFactory.Flush();
+            Assert.Equal("Debug Level", target1.LastMessage);
+            Assert.Equal("Debug Level", target2.LastMessage);
+        }
+
+        [Fact]
+        void SetupBuilder_ForTarget_WithName()
+        {
+            string lastMessage = null;
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c =>
+            {
+                var methodTarget = c.ForTarget("mymethod").WriteToMethodCall((evt, args) => lastMessage = evt.FormattedMessage).WithAsync().FirstTarget<MethodCallTarget>();
+
+                c.ForLogger().FilterLevel(LogLevel.Fatal).WriteTo(methodTarget);
+                c.ForLogger("ErrorLogger").FilterLevel(LogLevel.Error).WriteTo(methodTarget);
+            }).GetCurrentClassLogger();
+
+            var target = logFactory.Configuration.FindTargetByName<MethodCallTarget>("mymethod");
+            Assert.Equal(2, logFactory.Configuration.AllTargets.Count);
+            Assert.NotNull(target);
+
+            Assert.True(logger.IsFatalEnabled);
+            Assert.False(logger.IsErrorEnabled);
+            var errorLogger = logFactory.GetLogger("ErrorLogger");
+            Assert.True(errorLogger.IsFatalEnabled);
+            Assert.True(errorLogger.IsErrorEnabled);
+
+            logger.Fatal("Debug Level");
+            logFactory.Flush();
+            Assert.Equal("Debug Level", lastMessage);
+        }
+
+        [Fact]
+        void SetupBuilder_ForTarget_Group()
+        {
+            string lastMessage = null;
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c =>
+            {
+                var debugTargets = c.ForTarget().WriteToMethodCall((evt, args) => lastMessage = evt.FormattedMessage).WriteTo(new DebugTarget() { Layout = "${message}" }).WithAsync();
+                c.ForLogger().WriteTo(debugTargets);
+            }).GetCurrentClassLogger();
+
+            var debugTarget = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
+            var methodTarget = logFactory.Configuration.AllTargets.OfType<MethodCallTarget>().FirstOrDefault();
+            Assert.Equal(4, logFactory.Configuration.AllTargets.Count);
+            Assert.NotNull(debugTarget);
+            Assert.NotNull(methodTarget);
+
+            logger.Debug("Debug Level");
+            logFactory.Flush();
+
+            Assert.Equal("Debug Level", debugTarget.LastMessage);
+            Assert.Equal("Debug Level", lastMessage);
+        }
+
+        [Fact]
         void SetupBuilder_WriteToWithBuffering()
         {
             var logFactory = new LogFactory();

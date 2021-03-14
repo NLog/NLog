@@ -33,16 +33,14 @@
 
 namespace NLog.Config
 {
-    /// <summary>
-    /// Interface for fluent setup of LoggingRules for LoggingConfiguration
-    /// </summary>
-    public interface ISetupConfigurationWriteToTargetsBuilder
-    {
-        /// <summary>
-        /// LoggingRule being built
-        /// </summary>
-        LoggingRule LoggingRule { get; }
+    using System.Collections.Generic;
+    using NLog.Targets;
 
+    /// <summary>
+    /// Interface for fluent setup of target for LoggingRule
+    /// </summary>
+    public interface ISetupConfigurationTargetBuilder
+    {
         /// <summary>
         /// LoggingConfiguration being built
         /// </summary>
@@ -52,5 +50,10 @@ namespace NLog.Config
         /// LogFactory under configuration
         /// </summary>
         LogFactory LogFactory { get; }
+
+        /// <summary>
+        /// Collection of targets that should be written to
+        /// </summary>
+        IList<Target> Targets { get; }
     }
 }

@@ -96,25 +96,25 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="overrideName">Type name of the Target. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string overrideName = null) where T : Target
+        /// <param name="name">Type name of the Target. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name = null) where T : Target
         {
-            var layoutRendererType = typeof(T);
-            return RegisterTarget(setupBuilder, layoutRendererType, overrideName);
+            var targetType = typeof(T);
+            name = string.IsNullOrEmpty(name) ? targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name : name;
+            return RegisterTarget(setupBuilder, name, targetType);
         }
 
         /// <summary>
         /// Register a custom Target.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="name">Type name of the Target</param>
         /// <param name="targetType">Type of the Target.</param>
-        /// <param name="overrideName">Type name of the Target. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, Type targetType, string overrideName = null)
+        public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, string name, Type targetType)
         {
-            overrideName = string.IsNullOrEmpty(overrideName) ? targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name : overrideName;
-            if (string.IsNullOrEmpty(overrideName))
-                throw new ArgumentException("Empty type name. Missing class attribute?", nameof(overrideName));
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.Targets.RegisterDefinition(overrideName, targetType);
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Missing type symbol name", nameof(name));
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.Targets.RegisterDefinition(name, targetType);
             return setupBuilder;
         }
 
@@ -123,12 +123,13 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="overrideName">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string overrideName = null)
+        /// <param name="name">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name = null)
             where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);
-            return RegisterLayoutRenderer(setupBuilder, layoutRendererType, overrideName);
+            name = string.IsNullOrEmpty(name) ? layoutRendererType.GetFirstCustomAttribute<LayoutRendererAttribute>()?.Name : name;
+            return RegisterLayoutRenderer(setupBuilder, name, layoutRendererType);
         }
 
         /// <summary>
@@ -136,13 +137,12 @@ namespace NLog
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="layoutRendererType">Type of the layout renderer.</param>
-        /// <param name="overrideName">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, Type layoutRendererType, string overrideName = null)
+        /// <param name="name">Symbol-name of the layout renderer</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Type layoutRendererType)
         {
-            overrideName = string.IsNullOrEmpty(overrideName) ? layoutRendererType.GetFirstCustomAttribute<LayoutRendererAttribute>()?.Name : overrideName;
-            if (string.IsNullOrEmpty(overrideName))
-                throw new ArgumentException("Empty type name. Missing class attribute?", nameof(overrideName));
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.LayoutRenderers.RegisterDefinition(overrideName, layoutRendererType);
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Missing type symbol name", nameof(name));
+            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
             return setupBuilder;
         }
 

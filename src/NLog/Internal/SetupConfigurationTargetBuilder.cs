@@ -33,93 +33,94 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using NLog.Config;
     using NLog.Targets;
 
-    internal class SetupConfigurationLoggingRuleBuilder : ISetupConfigurationLoggingRuleBuilder, IList<Target>
+    internal class SetupConfigurationTargetBuilder : ISetupConfigurationTargetBuilder, IList<Target>
     {
-        public SetupConfigurationLoggingRuleBuilder(LogFactory logFactory, LoggingConfiguration configuration, string loggerNamePattern = null, string ruleName = null)
+        private readonly IList<Target> _targets = new List<Target>();
+        private string _targetName;
+
+        public SetupConfigurationTargetBuilder(LogFactory logFactory, LoggingConfiguration configuration, string targetName = null)
         {
-            LoggingRule = new LoggingRule(ruleName) { LoggerNamePattern = loggerNamePattern ?? "*" };
             Configuration = configuration;
             LogFactory = logFactory;
+            _targetName = targetName;
         }
 
-        /// <inheritdoc />
-        public LoggingRule LoggingRule { get; }
-
-        /// <inheritdoc />
         public LoggingConfiguration Configuration { get; }
 
-        /// <inheritdoc />
         public LogFactory LogFactory { get; }
 
-        /// <summary>
-        /// Collection of targets that should be written to
-        /// </summary>
         public IList<Target> Targets => this;
 
-        Target IList<Target>.this[int index] { get => LoggingRule.Targets[index]; set => LoggingRule.Targets[index] = value; }
+        Target IList<Target>.this[int index] { get => _targets[index]; set => _targets[index] = value; }
 
-        int ICollection<Target>.Count => LoggingRule.Targets.Count;
+        int ICollection<Target>.Count => _targets.Count;
 
-        bool ICollection<Target>.IsReadOnly => LoggingRule.Targets.IsReadOnly;
+        bool ICollection<Target>.IsReadOnly => _targets.IsReadOnly;
 
         void ICollection<Target>.Add(Target item)
         {
-            if (!Configuration.LoggingRules.Contains(LoggingRule))
+            if (!string.IsNullOrEmpty(_targetName))
             {
-                Configuration.LoggingRules.Add(LoggingRule);
+                item.Name = _targetName;
+                _targetName = null;
             }
-
-            LoggingRule.Targets.Add(item);
+            _targets.Add(item);
         }
 
         void ICollection<Target>.Clear()
         {
-            LoggingRule.Targets.Clear();
+            _targets.Clear();
         }
 
         bool ICollection<Target>.Contains(Target item)
         {
-            return LoggingRule.Targets.Contains(item);
+            return _targets.Contains(item);
         }
 
         void ICollection<Target>.CopyTo(Target[] array, int arrayIndex)
         {
-            LoggingRule.Targets.CopyTo(array, arrayIndex);
+            _targets.CopyTo(array, arrayIndex);
         }
 
         IEnumerator<Target> IEnumerable<Target>.GetEnumerator()
         {
-            return LoggingRule.Targets.GetEnumerator();
+            return _targets.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return LoggingRule.Targets.GetEnumerator();
+            return _targets.GetEnumerator();
         }
 
         int IList<Target>.IndexOf(Target item)
         {
-            return LoggingRule.Targets.IndexOf(item);
+            return _targets.IndexOf(item);
         }
 
         void IList<Target>.Insert(int index, Target item)
         {
-            LoggingRule.Targets.Insert(index, item);
+            if (!string.IsNullOrEmpty(_targetName))
+            {
+                item.Name = _targetName;
+                _targetName = null;
+            }
+            _targets.Insert(index, item);
         }
 
         bool ICollection<Target>.Remove(Target item)
         {
-            return LoggingRule.Targets.Remove(item);
+            return _targets.Remove(item);
         }
 
         void IList<Target>.RemoveAt(int index)
         {
-            LoggingRule.Targets.RemoveAt(index);
+            _targets.RemoveAt(index);
         }
     }
 }

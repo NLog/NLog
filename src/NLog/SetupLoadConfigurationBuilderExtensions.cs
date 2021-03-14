@@ -82,6 +82,17 @@ namespace NLog
         }
 
         /// <summary>
+        /// Defines <see cref="LoggingRule" /> for redirecting output from matching <see cref="Logger"/> to wanted targets.
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="targetName">Override the name for the target created</param>
+        public static ISetupConfigurationTargetBuilder ForTarget(this ISetupLoadConfigurationBuilder configBuilder, string targetName = null)
+        {
+            var ruleBuilder = new SetupConfigurationTargetBuilder(configBuilder.LogFactory, configBuilder.Configuration, targetName);
+            return ruleBuilder;
+        }
+
+        /// <summary>
         /// Apply fast filtering based on <see cref="LogLevel"/>. Include LogEvents with same or worse severity as <paramref name="minLevel"/>.
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
@@ -209,20 +220,55 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="target">Target that should be written to.</param>
         /// <returns>Fluent interface for configuring targets for the new LoggingRule.</returns>
-        public static ISetupConfigurationWriteToTargetsBuilder WriteTo(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Target target)
+        public static ISetupConfigurationTargetBuilder WriteTo(this ISetupConfigurationTargetBuilder configBuilder, Target target)
         {
-            var loggingRule = configBuilder.LoggingRule;
-            if (!configBuilder.Configuration.LoggingRules.Contains(loggingRule))
-            {
-                configBuilder.Configuration.LoggingRules.Add(loggingRule);
-            }
-
             if (target != null)
             {
                 if (string.IsNullOrEmpty(target.Name))
                     target.Name = EnsureUniqueTargetName(configBuilder.Configuration, target);
-                configBuilder.LoggingRule.Targets.Add(target);
+                configBuilder.Targets.Add(target);
                 configBuilder.Configuration.AddTarget(target);
+            }
+
+            return configBuilder;
+        }
+
+        /// <summary>
+        /// Redirect output from matching <see cref="Logger"/> to the provided <paramref name="targets"/>
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="targets">Target-collection that should be written to.</param>
+        /// <returns>Fluent interface for configuring targets for the new LoggingRule.</returns>
+        public static ISetupConfigurationTargetBuilder WriteTo(this ISetupConfigurationTargetBuilder configBuilder, params Target[] targets)
+        {
+            if (targets?.Length > 0)
+            {
+                for (int i = 0; i < targets.Length; ++i)
+                {
+                    configBuilder.WriteTo(targets[i]);
+                }
+            }
+
+            return configBuilder;
+        }
+
+        /// <summary>
+        /// Redirect output from matching <see cref="Logger"/> to the provided <paramref name="targetBuilder"/>
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="targetBuilder">Target-collection that should be written to.</param>
+        /// <returns>Fluent interface for configuring targets for the new LoggingRule.</returns>
+        public static ISetupConfigurationTargetBuilder WriteTo(this ISetupConfigurationTargetBuilder configBuilder, ISetupConfigurationTargetBuilder targetBuilder)
+        {
+            if (ReferenceEquals(configBuilder, targetBuilder))
+                throw new ArgumentException("ConfigBuilder and TargetBuilder cannot be the same object", nameof(targetBuilder));
+
+            if (targetBuilder.Targets?.Count > 0)
+            {
+                for (int i = 0; i < targetBuilder.Targets.Count; ++i)
+                {
+                    configBuilder.WriteTo(targetBuilder.Targets[i]);
+                }
             }
 
             return configBuilder;
@@ -235,7 +281,58 @@ namespace NLog
         /// <param name="maxLevel">Maximum level that this rule matches</param>
         public static void WriteToNil(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel maxLevel = null)
         {
-            configBuilder.FilterMaxLevel(maxLevel ?? LogLevel.MaxLevel).FinalRule().WriteTo(null);
+            var logginRule = configBuilder.FilterMaxLevel(maxLevel ?? LogLevel.MaxLevel).FinalRule().LoggingRule;
+            if (!configBuilder.Configuration.LoggingRules.Contains(logginRule))
+            {
+                configBuilder.Configuration.LoggingRules.Add(logginRule);
+            }
+        }
+
+        /// <summary>
+        /// Returns first target registered
+        /// </summary>
+        public static Target FirstTarget(this ISetupConfigurationTargetBuilder configBuilder)
+        {
+            return System.Linq.Enumerable.First(configBuilder.Targets);
+        }
+
+        /// <summary>
+        /// Returns first target registered with the specified type
+        /// </summary>
+        /// <typeparam name="T">Type of target</typeparam>
+        public static T FirstTarget<T>(this ISetupConfigurationTargetBuilder configBuilder) where T : Target
+        {
+            var target = System.Linq.Enumerable.First(configBuilder.Targets);
+
+            for (int i = 0; i < configBuilder.Targets.Count; ++i)
+            {
+                foreach (var unwrappedTarget in YieldAllTargets(configBuilder.Targets[i]))
+                {
+                    if (unwrappedTarget is T typedTarget)
+                        return typedTarget;
+                }
+            }
+
+            throw new InvalidCastException($"Unable to cast object of type '{target.GetType()}' to type '{typeof(T)}'");
+        }
+
+        internal static IEnumerable<Target> YieldAllTargets(Target target)
+        {
+            yield return target;
+
+            if (target is WrapperTargetBase wrapperTarget)
+            {
+                foreach (var unwrappedTarget in YieldAllTargets(wrapperTarget.WrappedTarget))
+                    yield return unwrappedTarget;
+            }
+            else if (target is CompoundTargetBase compoundTarget)
+            {
+                foreach (var nestedTarget in compoundTarget.Targets)
+                {
+                    foreach (var unwrappedTarget in YieldAllTargets(nestedTarget))
+                        yield return unwrappedTarget;
+                }
+            }
         }
 
         /// <summary>
@@ -244,7 +341,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="logEventAction">Method to call on logevent</param>
         /// <param name="layouts">Layouts to render object[]-args before calling <paramref name="logEventAction"/></param>
-        public static ISetupConfigurationWriteToTargetsBuilder WriteToMethodCall(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Action<LogEventInfo, object[]> logEventAction, Layout[] layouts = null)
+        public static ISetupConfigurationTargetBuilder WriteToMethodCall(this ISetupConfigurationTargetBuilder configBuilder, Action<LogEventInfo, object[]> logEventAction, Layout[] layouts = null)
         {
             if (logEventAction == null)
                 throw new ArgumentNullException(nameof(logEventAction));
@@ -269,7 +366,7 @@ namespace NLog
         /// <param name="stderr">Write to stderr instead of standard output (stdout)</param>
         /// <param name="detectConsoleAvailable">Skip overhead from writing to console, when not available (Ex. running as Windows Service)</param>
         /// <param name="writeBuffered">Enable batch writing of logevents, instead of Console.WriteLine for each logevent (Requires <see cref="WithAsync"/>)</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WriteToConsole(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Layout layout = null, System.Text.Encoding encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool writeBuffered = false)
+        public static ISetupConfigurationTargetBuilder WriteToConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null, System.Text.Encoding encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool writeBuffered = false)
         {
             var consoleTarget = new ConsoleTarget();
             if (layout != null)
@@ -296,7 +393,7 @@ namespace NLog
         /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WriteToFile(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = false, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = false, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
         {
             if (fileName == null)
                 throw new ArgumentNullException(nameof(fileName));
@@ -322,24 +419,32 @@ namespace NLog
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="wrapperFactory">Factory method for creating target-wrapper</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WithWrapper(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Func<Target, Target> wrapperFactory)
+        public static ISetupConfigurationTargetBuilder WithWrapper(this ISetupConfigurationTargetBuilder configBuilder, Func<Target, Target> wrapperFactory)
         {
             if (wrapperFactory == null)
                 throw new ArgumentNullException(nameof(wrapperFactory));
 
-            var targets = configBuilder.LoggingRule.Targets;
-            for (int i = 0; i < targets.Count; ++i)
+            var targets = configBuilder.Targets;
+
+            if (targets?.Count > 0)
             {
-                var target = targets[i];
-                var targetWrapper = wrapperFactory(target);
-                if (targetWrapper == null || ReferenceEquals(targetWrapper, target))
-                    continue;
+                for (int i = 0; i < targets.Count; ++i)
+                {
+                    var target = targets[i];
+                    var targetWrapper = wrapperFactory(target);
+                    if (targetWrapper == null || ReferenceEquals(targetWrapper, target))
+                        continue;
 
-                if (string.IsNullOrEmpty(targetWrapper.Name))
-                    targetWrapper.Name = EnsureUniqueTargetName(configBuilder.Configuration, targetWrapper, target.Name);
+                    if (string.IsNullOrEmpty(targetWrapper.Name))
+                        targetWrapper.Name = EnsureUniqueTargetName(configBuilder.Configuration, targetWrapper, target.Name);
 
-                targets[i] = targetWrapper;
-                configBuilder.Configuration.AddTarget(targetWrapper);
+                    targets[i] = targetWrapper;
+                    configBuilder.Configuration.AddTarget(targetWrapper);
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Must call WriteTo(...) before applying target wrapper");
             }
 
             return configBuilder;
@@ -352,27 +457,22 @@ namespace NLog
         /// <param name="overflowAction">Action to take when queue overflows</param>
         /// <param name="queueLimit">Queue size limit for pending logevents</param>
         /// <param name="batchSize">Batch size when writing on the background thread</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WithAsync(this ISetupConfigurationWriteToTargetsBuilder configBuilder, AsyncTargetWrapperOverflowAction overflowAction = AsyncTargetWrapperOverflowAction.Discard, int queueLimit = 10000, int batchSize = 200)
+        public static ISetupConfigurationTargetBuilder WithAsync(this ISetupConfigurationTargetBuilder configBuilder, AsyncTargetWrapperOverflowAction overflowAction = AsyncTargetWrapperOverflowAction.Discard, int queueLimit = 10000, int batchSize = 200)
         {
-            var targets = configBuilder.LoggingRule.Targets;
-            for (int i = 0; i < targets.Count; ++i)
+            return configBuilder.WithWrapper(t =>
             {
-                var target = targets[i];
-                if (target is AsyncTargetWrapper)
-                    continue;
+                if (t is AsyncTargetWrapper)
+                    return null;
 #if !NET35
-                if (target is AsyncTaskTarget)
-                    continue;
+                if (t is AsyncTaskTarget)
+                    return null;
 #endif
-                var asyncWrapper = new AsyncTargetWrapper() { WrappedTarget = target };
-                asyncWrapper.Name = EnsureUniqueTargetName(configBuilder.Configuration, asyncWrapper, target.Name);
+                var asyncWrapper = new AsyncTargetWrapper() { WrappedTarget = t };
                 asyncWrapper.OverflowAction = overflowAction;
                 asyncWrapper.QueueLimit = queueLimit;
                 asyncWrapper.BatchSize = batchSize;
-                targets[i] = asyncWrapper;
-                configBuilder.Configuration.AddTarget(asyncWrapper);
-            }
-            return configBuilder;
+                return asyncWrapper;
+            });
         }
 
         /// <summary>
@@ -383,7 +483,7 @@ namespace NLog
         /// <param name="flushTimeout">Timeout for when the buffer will flush automatically using background thread</param>
         /// <param name="slidingTimeout">Restart timeout when when logevent is written</param>
         /// <param name="overflowAction">Action to take when buffer overflows</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WithBuffering(this ISetupConfigurationWriteToTargetsBuilder configBuilder, int? bufferSize = null, TimeSpan? flushTimeout = null, bool? slidingTimeout = null, BufferingTargetWrapperOverflowAction? overflowAction = null)
+        public static ISetupConfigurationTargetBuilder WithBuffering(this ISetupConfigurationTargetBuilder configBuilder, int? bufferSize = null, TimeSpan? flushTimeout = null, bool? slidingTimeout = null, BufferingTargetWrapperOverflowAction? overflowAction = null)
         {
             return configBuilder.WithWrapper(t =>
             {
@@ -406,7 +506,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="conditionMethod">Method delegate that controls whether logevent should force flush.</param>
         /// <param name="flushOnConditionOnly">Only flush when <paramref name="conditionMethod"/> triggers (Ignore config-reload and config-shutdown)</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WithAutoFlush(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Func<LogEventInfo, bool> conditionMethod, bool? flushOnConditionOnly = null)
+        public static ISetupConfigurationTargetBuilder WithAutoFlush(this ISetupConfigurationTargetBuilder configBuilder, Func<LogEventInfo, bool> conditionMethod, bool? flushOnConditionOnly = null)
         {
             return configBuilder.WithWrapper(t =>
             {
@@ -427,7 +527,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="retryCount">Number of retries that should be attempted on the wrapped target in case of a failure.</param>
         /// <param name="retryDelay">Time to wait between retries</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WithRetry(this ISetupConfigurationWriteToTargetsBuilder configBuilder, int? retryCount = null, TimeSpan? retryDelay = null)
+        public static ISetupConfigurationTargetBuilder WithRetry(this ISetupConfigurationTargetBuilder configBuilder, int? retryCount = null, TimeSpan? retryDelay = null)
         {
             return configBuilder.WithWrapper(t =>
             {
@@ -446,7 +546,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="fallbackTarget">Target to use for fallback</param>
         /// <param name="returnToFirstOnSuccess">Whether to return to the first target after any successful write</param>
-        public static ISetupConfigurationWriteToTargetsBuilder WithFallback(this ISetupConfigurationWriteToTargetsBuilder configBuilder, Target fallbackTarget, bool returnToFirstOnSuccess = true)
+        public static ISetupConfigurationTargetBuilder WithFallback(this ISetupConfigurationTargetBuilder configBuilder, Target fallbackTarget, bool returnToFirstOnSuccess = true)
         {
             if (fallbackTarget == null)
                 throw new ArgumentNullException(nameof(fallbackTarget));
