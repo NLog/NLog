@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Fluent
     using Xunit;
     using NLog.Fluent;
 
-    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
     public class LogBuilderTests : NLogTestBase
     {
         private static readonly Logger _logger = LogManager.GetLogger("logger1");

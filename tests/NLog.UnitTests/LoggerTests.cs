@@ -207,10 +207,19 @@ namespace NLog.UnitTests
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                logger.Trace(new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                logger.Trace(CultureInfo.InvariantCulture, new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                 logger.Trace(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Trace(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                logger.Trace(new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 logger.Trace(delegate { return "message from lambda"; });
@@ -381,10 +390,19 @@ namespace NLog.UnitTests
                 logger.Debug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                logger.Debug(new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                logger.Debug(CultureInfo.InvariantCulture, new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                 logger.Debug(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Debug(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                logger.Debug(new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 logger.Debug(delegate { return "message from lambda"; });
@@ -555,10 +573,19 @@ namespace NLog.UnitTests
                 logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                logger.Info(new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                logger.Info(CultureInfo.InvariantCulture, new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                 logger.Info(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Info(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                logger.Info(new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 logger.Info(delegate { return "message from lambda"; });
@@ -729,10 +756,19 @@ namespace NLog.UnitTests
                 logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                logger.Warn(new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                logger.Warn(CultureInfo.InvariantCulture, new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                 logger.Warn(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Warn(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                logger.Warn(new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 logger.Warn(delegate { return "message from lambda"; });
@@ -903,10 +939,19 @@ namespace NLog.UnitTests
                 logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                logger.Error(new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                logger.Error(CultureInfo.InvariantCulture, new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                 logger.Error(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Error(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                logger.Error(new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 logger.Error(delegate { return "message from lambda"; });
@@ -1077,10 +1122,19 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                logger.Fatal(new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                logger.Fatal(CultureInfo.InvariantCulture, new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                 logger.Fatal(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                 logger.Fatal(new Exception("test"), "message {0}", "from parameter");
+                if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                logger.Fatal(new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                 logger.Fatal(delegate { return "message from lambda"; });
@@ -1223,10 +1277,19 @@ namespace NLog.UnitTests
                     logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
+                    logger.Log(level, new Exception("test"));
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, new Exception("test"));
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|System.Exception: testtest");
+
                     logger.Log(level, new Exception("test"), "message");
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
                     logger.Log(level, new Exception("test"), "message {0}", "from parameter");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
+
+                    logger.Log(level, new Exception("test"), CultureInfo.InvariantCulture, "message {0}", "from parameter");
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
 
                     logger.Log(level, delegate { return "message from lambda"; });
@@ -1443,7 +1506,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                ILog logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 //set current UI culture as invariant to receive exception messages in EN
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
@@ -1791,7 +1854,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                ILog logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 //set current UI culture as invariant to receive exception messages in EN
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
@@ -1988,65 +2051,6 @@ namespace NLog.UnitTests
             while (!GetDebugLastMessage("debug").Contains("Swallow fire and forget test message"))
                 Thread.Sleep(10); // Polls forever since there is nothing to wait on.
 
-            var completion = new TaskCompletionSource<bool>();
-            completion.SetException(new InvalidOperationException("Test message 4"));
-            logger.SwallowAsync(completion.Task).Wait();
-            AssertDebugLastMessageContains("debug", "Test message 4");
-
-            logger.SwallowAsync(async () => { await Task.Delay(20); throw new InvalidOperationException("Test message 5"); }).Wait();
-            AssertDebugLastMessageContains("debug", "Test message 5");
-
-            Assert.Equal(0, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 6"); return 1; }).Result);
-            AssertDebugLastMessageContains("debug", "Test message 6");
-
-            Assert.Equal(2, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 7"); return 1; }, 2).Result);
-            AssertDebugLastMessageContains("debug", "Test message 7");
-#endif
-        }
-
-        [Fact]
-        public void SwallowILogTest()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Error' writeTo='debug' />
-                    </rules>
-                </nlog>");
-            ILog logger = LogManager.GetLogger("A");
-            bool warningFix = true;
-
-            bool executed = false;
-            logger.Swallow(() => executed = true);
-            Assert.True(executed);
-
-            Assert.Equal(1, logger.Swallow(() => 1));
-            Assert.Equal(1, logger.Swallow(() => 1, 2));
-
-#if NET4_5
-            logger.SwallowAsync(Task.WhenAll()).Wait();
-
-            int executions = 0;
-            logger.SwallowAsync(async () => { await Task.Delay(20); ++executions; }).Wait();
-            Assert.True(executions == 1);
-
-            Assert.Equal(1, logger.SwallowAsync(async () => { await Task.Delay(20); return 1; }).Result);
-            Assert.Equal(1, logger.SwallowAsync(async () => { await Task.Delay(20); return 1; }, 2).Result);
-#endif
-
-            AssertDebugCounter("debug", 0);
-
-            logger.Swallow(() => { throw new InvalidOperationException("Test message 1"); });
-            AssertDebugLastMessageContains("debug", "Test message 1");
-
-            Assert.Equal(0, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 2"); return 1; }));
-            AssertDebugLastMessageContains("debug", "Test message 2");
-
-            Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 3"); return 1; }, 2));
-            AssertDebugLastMessageContains("debug", "Test message 3");
-
-#if NET4_5
             var completion = new TaskCompletionSource<bool>();
             completion.SetException(new InvalidOperationException("Test message 4"));
             logger.SwallowAsync(completion.Task).Wait();
@@ -2680,7 +2684,7 @@ namespace NLog.UnitTests
 
         public class MyWrapper : BaseWrapper
         {
-            private readonly ILog _wrapperLogger;
+            private readonly ILogger _wrapperLogger;
 
             public MyWrapper()
             {
@@ -2839,7 +2843,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        [Obsolete("Obsoleted too complex interface. Instead use ILog-interface. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted too complex interface. Obsoleted in NLog 5.0")]
         public void ObsoleteILoggerExceptionMethods()
         {
             // Arrange

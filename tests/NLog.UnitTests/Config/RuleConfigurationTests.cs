@@ -734,12 +734,12 @@ namespace NLog.UnitTests.Config
             yield return new object[] { "Trace", "Trace", new[] { LogLevel.Trace, LogLevel.Trace } };
         }
 
-        private static void AssertLogLevelEnabled(ILog logger, LogLevel expectedLogLevel)
+        private static void AssertLogLevelEnabled(ILogger logger, LogLevel expectedLogLevel)
         {
             AssertLogLevelEnabled(logger, new[] {expectedLogLevel });
         }
 
-        private static void AssertLogLevelEnabled(ILog logger, LogLevel[] expectedLogLevels)
+        private static void AssertLogLevelEnabled(ILogger logger, LogLevel[] expectedLogLevels)
         {
             for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {

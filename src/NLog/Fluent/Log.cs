@@ -44,7 +44,7 @@ namespace NLog.Fluent
     /// </summary>
     public static class Log
     {
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace NLog.Fluent
         /// <param name="logLevel">The log level.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Level(LogLevel logLevel, [CallerFilePath]string callerFilePath = null)
         {
             return Create(logLevel, callerFilePath);
@@ -64,7 +64,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Trace([CallerFilePath]string callerFilePath = null)
         {
             return Create(LogLevel.Trace, callerFilePath);
@@ -75,7 +75,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Debug([CallerFilePath]string callerFilePath = null)
         {
             return Create(LogLevel.Debug, callerFilePath);
@@ -86,7 +86,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Info([CallerFilePath]string callerFilePath = null)
         {
             return Create(LogLevel.Info, callerFilePath);
@@ -97,7 +97,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Warn([CallerFilePath]string callerFilePath = null)
         {
             return Create(LogLevel.Warn, callerFilePath);
@@ -108,7 +108,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Error([CallerFilePath]string callerFilePath = null)
         {
             return Create(LogLevel.Error, callerFilePath);
@@ -119,13 +119,13 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is the file path at the time of compile.</param>
         /// <returns>An instance of the fluent <see cref="LogBuilder"/>.</returns>
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         public static LogBuilder Fatal([CallerFilePath]string callerFilePath = null)
         {
             return Create(LogLevel.Fatal, callerFilePath);
         }
 
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         private static LogBuilder Create(LogLevel logLevel, string callerFilePath)
         {
             var logger = GetLogger(callerFilePath);
@@ -133,7 +133,7 @@ namespace NLog.Fluent
             return builder;
         }
 
-        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILog.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
         private static ILogger GetLogger(string callerFilePath)
         {
             try

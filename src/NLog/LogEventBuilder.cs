@@ -41,16 +41,17 @@ namespace NLog
     /// <summary>
     /// A fluent builder for logging events to NLog.
     /// </summary>
+    [CLSCompliant(false)]
     public struct LogEventBuilder
     {
-        private readonly ILog _logger;
+        private readonly ILogger _logger;
         private readonly LogEventInfo _logEvent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventBuilder"/> class.
         /// </summary>
         /// <param name="logger">The <see cref="NLog.Logger"/> to send the log event.</param>
-        public LogEventBuilder([NotNull] ILog logger)
+        public LogEventBuilder([NotNull] ILogger logger)
         {
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
@@ -65,7 +66,7 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The <see cref="NLog.Logger"/> to send the log event.</param>
         /// <param name="logLevel">The log level. LogEvent is only created when <see cref="LogLevel"/> is enabled for <paramref name="logger"/></param>
-        public LogEventBuilder([NotNull] ILog logger, [NotNull] LogLevel logLevel)
+        public LogEventBuilder([NotNull] ILogger logger, [NotNull] LogLevel logLevel)
         {
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
@@ -87,7 +88,7 @@ namespace NLog
         /// The logger to write the log event to
         /// </summary>
         [NotNull]
-        public ILog Log => _logger;
+        public ILogger Logger => _logger;
 
         /// <summary>
         /// Logging event that will be written

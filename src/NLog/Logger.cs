@@ -46,7 +46,7 @@ namespace NLog
     /// Provides logging interface and utility functions.
     /// </summary>
     [CLSCompliant(true)]
-    public partial class Logger : ILog, ILogger
+    public partial class Logger : ILogger
     {
         internal static readonly Type DefaultLoggerType = typeof(Logger);
         private Logger _contextLogger;
