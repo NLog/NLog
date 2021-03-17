@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,7 +45,7 @@ namespace NLog
     /// <summary>
     /// Extension methods to setup NLog <see cref="LoggingConfiguration"/>
     /// </summary>
-    public static class SetupLoadConfigurationBuilderExtensions
+    public static class SetupLoadConfigurationExtensions
     {
         /// <summary>
         /// Configures the global time-source used for all logevents
@@ -603,7 +603,7 @@ namespace NLog
             return true;
         }
 
-        internal static string GenerateTargetName(Type targetType)
+        private static string GenerateTargetName(Type targetType)
         {
             var targetName = targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name ?? string.Empty;
             if (string.IsNullOrEmpty(targetName))

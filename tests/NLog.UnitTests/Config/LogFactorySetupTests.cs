@@ -901,6 +901,24 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        void SetupBuilder_ForTargetWithName_ShouldFailForGroup()
+        {
+            var logFactory = new LogFactory();
+            Assert.Throws<ArgumentException>(() =>
+                logFactory.Setup().LoadConfiguration(c => c.ForTarget("OnlyOne").WriteTo(new DebugTarget() { Layout = "${message}" }).WriteTo(new DebugTarget() { Layout = "${message}" }))
+            );
+        }
+
+        [Fact]
+        void SetupBuilder_WithWrapperFirst_ShouldFail()
+        {
+            var logFactory = new LogFactory();
+            Assert.Throws<ArgumentException>(() =>
+                logFactory.Setup().LoadConfiguration(c => c.ForLogger().WithAsync().WriteTo(new DebugTarget() { Layout = "${message}" }))
+            );
+        }
+
+        [Fact]
         void SetupBuilder_WriteToWithBuffering()
         {
             var logFactory = new LogFactory();

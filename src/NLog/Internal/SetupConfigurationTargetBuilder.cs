@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,7 +48,7 @@ namespace NLog.Internal
         {
             Configuration = configuration;
             LogFactory = logFactory;
-            _targetName = targetName;
+            _targetName = string.IsNullOrEmpty(targetName) ? null : targetName;
         }
 
         public LoggingConfiguration Configuration { get; }
@@ -56,6 +56,19 @@ namespace NLog.Internal
         public LogFactory LogFactory { get; }
 
         public IList<Target> Targets => this;
+
+        private void UpdateTargetName(Target item)
+        {
+            if (!string.IsNullOrEmpty(_targetName))
+            {
+                item.Name = _targetName;
+                _targetName = string.Empty; // Mark that target-name has been used
+            }
+            else if (_targetName == string.Empty)
+            {
+                throw new ArgumentException("Cannot apply the same Target-Name to multiple targets");
+            }
+        }
 
         Target IList<Target>.this[int index] { get => _targets[index]; set => _targets[index] = value; }
 
@@ -65,11 +78,7 @@ namespace NLog.Internal
 
         void ICollection<Target>.Add(Target item)
         {
-            if (!string.IsNullOrEmpty(_targetName))
-            {
-                item.Name = _targetName;
-                _targetName = null;
-            }
+            UpdateTargetName(item);
             _targets.Add(item);
         }
 
@@ -105,11 +114,7 @@ namespace NLog.Internal
 
         void IList<Target>.Insert(int index, Target item)
         {
-            if (!string.IsNullOrEmpty(_targetName))
-            {
-                item.Name = _targetName;
-                _targetName = null;
-            }
+            UpdateTargetName(item);
             _targets.Insert(index, item);
         }
 
