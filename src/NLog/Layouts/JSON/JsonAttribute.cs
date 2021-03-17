@@ -73,7 +73,24 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='JSON Attribute Options' order='10' />
         [RequiredParameter]
-        public string Name { get; set; }
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    _name = value;
+                else if (System.Linq.Enumerable.All(value, chr => char.IsLetterOrDigit(chr)))
+                    _name = value;
+                else
+                {
+                    var builder = new System.Text.StringBuilder();
+                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, value, false, false);
+                    _name = builder.ToString();
+                }
+            }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the layout that will be rendered as the attribute's value.

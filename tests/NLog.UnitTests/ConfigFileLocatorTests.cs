@@ -126,8 +126,11 @@ namespace NLog.UnitTests
             var d = Path.DirectorySeparatorChar;
             var baseDir = Path.GetTempPath();
             var dirInBaseDir = $"{baseDir}dir1";
-            var rootBaseDir = Path.GetPathRoot(baseDir);
-            yield return new object[] { "nlog.config", $"{rootBaseDir}nlog.config", $"{rootBaseDir}nlog.config", rootBaseDir };
+            if (!IsLinux())
+            {
+                var rootBaseDir = Path.GetPathRoot(baseDir);
+                yield return new object[] { "nlog.config", $"{rootBaseDir}nlog.config", $"{rootBaseDir}nlog.config", rootBaseDir };
+            }
             yield return new object[] { $"{baseDir}configfile", $"{baseDir}configfile", $"{baseDir}configfile", dirInBaseDir };
             yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog.config", $"{baseDir}dir1{d}nlog.config", dirInBaseDir }; //exists
             yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", null, dirInBaseDir }; //not existing, fallback

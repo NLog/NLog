@@ -331,25 +331,23 @@ namespace NLog.Layouts
                 CompleteJsonMessage(sb);
         }
 
-        private void BeginJsonProperty(StringBuilder sb, string propName, bool beginJsonMessage)
+        private void BeginJsonProperty(StringBuilder sb, string propName, bool beginJsonMessage, bool ensureStringEscape)
         {
             if (beginJsonMessage)
             {
-                sb.Append(SuppressSpaces ? "{" : "{ ");
+                sb.Append(SuppressSpaces ? "{\"" : "{ \"");
             }
             else
             {
-                sb.Append(',');
-                if (!SuppressSpaces)
-                    sb.Append(' ');
+                sb.Append(SuppressSpaces ? ",\"" : ", \"");
             }
 
-            sb.Append('"');
-            Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
-            sb.Append('"');
-            sb.Append(':');
-            if (!SuppressSpaces)
-                sb.Append(' ');
+            if (ensureStringEscape)
+                Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
+            else
+                sb.Append(propName);
+
+            sb.Append(SuppressSpaces ? "\":" : "\": ");
         }
 
         private void CompleteJsonMessage(StringBuilder sb)
@@ -364,7 +362,7 @@ namespace NLog.Layouts
 
             var initialLength = sb.Length;
 
-            BeginJsonProperty(sb, propName, beginJsonMessage);
+            BeginJsonProperty(sb, propName, beginJsonMessage, true);
             if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
             {
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
@@ -417,7 +415,7 @@ namespace NLog.Layouts
 
         private bool RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, StringBuilder sb, bool beginJsonMessage)
         {
-            BeginJsonProperty(sb, attrib.Name, beginJsonMessage);
+            BeginJsonProperty(sb, attrib.Name, beginJsonMessage, false);
             if (attrib.Encode)
             {
                 // "\"{0}\":{1}\"{2}\""

@@ -542,11 +542,13 @@ namespace NLog.Config
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var assemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
+            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", assemblyLocation);
             if (!string.IsNullOrEmpty(assemblyLocation))
                 yield return new KeyValuePair<string, Assembly>(assemblyLocation, nlogAssembly);
 
             var entryAssembly = Assembly.GetEntryAssembly();
-            var entryLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(Assembly.GetEntryAssembly()));
+            var entryLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(entryAssembly));
+            InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryLocation);
             if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                 yield return new KeyValuePair<string, Assembly>(entryLocation, entryAssembly);
 
