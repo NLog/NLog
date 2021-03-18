@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -84,8 +84,8 @@ namespace NLog.UnitTests.Internal
         [InlineData(" Caac ", "a", " ", StringComparison.InvariantCulture, " C  c ")]
         [InlineData("aA", "a", "b", StringComparison.InvariantCulture, "bA")]
         [InlineData("aA", "a", "b", StringComparison.InvariantCultureIgnoreCase, "bb")]
-        [InlineData("œ", "œ", "", StringComparison.InvariantCulture, "")]
-        [InlineData("œ", "oe", "", StringComparison.OrdinalIgnoreCase, "œ")]
+        [InlineData("ï¿½", "ï¿½", "", StringComparison.InvariantCulture, "")]
+        [InlineData("ï¿½", "oe", "", StringComparison.OrdinalIgnoreCase, "ï¿½")]
         [InlineData("var ${var}", "${var}", "2", StringComparison.InvariantCulture, "var 2")]
         [InlineData("var ${var}", "${VAR}", "2", StringComparison.InvariantCulture, "var ${var}")]
         [InlineData("var ${VAR}", "${var}", "2", StringComparison.InvariantCulture, "var ${VAR}")]
