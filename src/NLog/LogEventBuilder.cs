@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -267,7 +267,7 @@ namespace NLog
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
-#if NET4_5
+#if !NET35
         public LogEventBuilder Callsite(string callerClassName = null,
                                        [CallerMemberName]string callerMemberName = null,
                                        [CallerFilePath]string callerFilePath = null,
@@ -293,13 +293,13 @@ namespace NLog
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
-#if NET4_5
-        public void Write(LogLevel logLevel = null,
+#if !NET35
+        public void Log(LogLevel logLevel = null,
                         [CallerMemberName]string callerMemberName = null,
                         [CallerFilePath]string callerFilePath = null,
                         [CallerLineNumber]int callerLineNumber = 0)
 #else
-        public void Write(LogLevel logLevel = null,
+        public void Log(LogLevel logLevel = null,
                         string callerMemberName = null,
                         string callerFilePath = null,
                         int callerLineNumber = 0)

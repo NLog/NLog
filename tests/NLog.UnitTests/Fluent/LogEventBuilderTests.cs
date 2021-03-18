@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -91,7 +91,7 @@ namespace NLog.UnitTests.Fluent
             logBuilder()
                 .Message("This is a test fluent message.")
                 .Property("Test", "TraceWrite")
-                .Write();
+                .Log();
 
             var loggerName = "logger1";
             {
@@ -104,7 +104,7 @@ namespace NLog.UnitTests.Fluent
             logBuilder()
                 .Message("This is a test fluent message '{0}'.", ticks)
                 .Property("Test", "TraceWrite")
-                .Write();
+                .Log();
 
             {
                 var rendered = $"This is a test fluent message '{ticks}'.";
@@ -127,7 +127,7 @@ namespace NLog.UnitTests.Fluent
 
             _logger.ForTraceEvent()
                 .Message("This is a test fluent message.")
-                .Properties(props).Write();
+                .Properties(props).Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent message.");
@@ -149,7 +149,7 @@ namespace NLog.UnitTests.Fluent
 
             _logger.ForWarnEvent()
                 .Message("This is a test fluent message.")
-                .Properties(props).Write();
+                .Properties(props).Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Warn, "logger1", "This is a test fluent message.");
@@ -173,14 +173,14 @@ namespace NLog.UnitTests.Fluent
             {
                 _logger.ForLogEvent(LogLevel.Fatal)
                     .Message("This is a test fluent message.")
-                    .Properties(props).Write();
+                    .Properties(props).Log();
 
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
                 expectedEvent.Properties["prop1"] = "1";
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
 
-#if NET4_5
+#if !NET35
                 Assert.Equal(GetType().ToString(), _lastLogEventInfo.CallerClassName);
 #endif
             }
@@ -199,16 +199,15 @@ namespace NLog.UnitTests.Fluent
             {
                 {"prop1", "4"},
                 {"prop2", "5"},
-
             };
 
             _logger.ForLogEvent(LogLevel.Fatal)
                 .Message("This is a test fluent message.")
-                .Properties(props).Write();
+                .Properties(props).Log();
 
             _logger.ForLogEvent(LogLevel.Off)
                 .Message("dont log this.")
-                .Properties(props2).Write();
+                .Properties(props2).Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
@@ -224,7 +223,7 @@ namespace NLog.UnitTests.Fluent
             _logger.ForTraceEvent()
                 .Message("This is a test fluent message.1")
                 .Property("Test", "TraceWrite")
-                .Write();
+                .Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent message.1");
@@ -236,7 +235,7 @@ namespace NLog.UnitTests.Fluent
             _logger.ForTraceEvent()
                 .Message("This is a test fluent WriteIf message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .Write(v == 1 ? null : LogLevel.Off);
+                .Log(v == 1 ? null : LogLevel.Off);
 
 
             {
@@ -249,7 +248,7 @@ namespace NLog.UnitTests.Fluent
             _logger.ForTraceEvent()
                 .Message("dont write this! '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .Write(LogLevel.Off);
+                .Log(LogLevel.Off);
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent WriteIf message '{0}'.");
@@ -261,7 +260,7 @@ namespace NLog.UnitTests.Fluent
             _logger.ForTraceEvent()
                 .Message("This is a test fluent WriteIf message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .Write(v == 1 ? null : LogLevel.Off);
+                .Log(v == 1 ? null : LogLevel.Off);
 
 
             {
@@ -274,7 +273,7 @@ namespace NLog.UnitTests.Fluent
             _logger.ForTraceEvent()
                 .Message("Should Not WriteIf message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .Write(v > 1 ? null : LogLevel.Off);
+                .Log(v > 1 ? null : LogLevel.Off);
 
             {
                 //previous
@@ -334,7 +333,7 @@ namespace NLog.UnitTests.Fluent
 
             _logger.ForErrorEvent()
                 .Exception(ex)
-                .Write();
+                .Log();
 
             var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", ex.Message) { Exception = ex };
             AssertLastLogEventTarget(expectedEvent);
@@ -345,24 +344,26 @@ namespace NLog.UnitTests.Fluent
         {
             LogManager.ThrowExceptions = true;
 
+            _logger.ForDebugEvent();
+
             _logger.ForDebugEvent()
               .Message("Message with {0} arg", 1)
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with 1 arg");
 
             _logger.ForDebugEvent()
               .Message("Message with {0} args. {1}", 2, "YES")
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with 2 args. YES");
 
             _logger.ForDebugEvent()
               .Message("Message with {0} args. {1} {2}", 3, ":) ", 2)
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with 3 args. :)  2");
 
             _logger.ForDebugEvent()
               .Message("Message with {0} args. {1} {2}{3}", "more", ":) ", 2, "b")
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with more args. :)  2b");
         }
 
@@ -379,12 +380,12 @@ namespace NLog.UnitTests.Fluent
 
             _logger.ForDebugEvent()
              .Message("Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
-             .Write();
+             .Log();
             AssertDebugLastMessage("t2", "Message with 4.1 4.001 12/31/2016 12:00:00 AM True");
 
             _logger.ForDebugEvent()
            .Message(GetCultureInfo("nl-nl"), "Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
-           .Write();
+           .Log();
             AssertDebugLastMessage("t2", "Message with 4,1 4,001 31-12-2016 00:00:00 True");
         }
 
@@ -429,7 +430,7 @@ namespace NLog.UnitTests.Fluent
                 logBuilder(ex)
                     .Message("Error reading file '{0}'.", path)
                     .Property("Test", "ErrorWrite")
-                    .Write();
+                    .Log();
             }
 
             var loggerName = "logger1";
@@ -443,7 +444,7 @@ namespace NLog.UnitTests.Fluent
             logBuilder(null)
                 .Message("This is a test fluent message.")
                 .Property("Test", "ErrorWrite")
-                .Write();
+                .Log();
 
             {
                 var expectedEvent = new LogEventInfo(logLevel, loggerName, "This is a test fluent message.");
@@ -454,7 +455,7 @@ namespace NLog.UnitTests.Fluent
             logBuilder(null)
                 .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "ErrorWrite")
-                .Write();
+                .Log();
 
             {
                 var expectedEvent = new LogEventInfo(logLevel, loggerName, "This is a test fluent message '{0}'.");
