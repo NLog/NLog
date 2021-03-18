@@ -26,7 +26,7 @@ if (-Not (test-path $targetNugetExe))
 	Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
 }
 
-msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0;sl4;sl5;wp8;monoandroid44;xamarinios10"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
+msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0;sl4;sl5;wp8;monoandroid44;xamarinios10"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -34,7 +34,7 @@ function create-package($packageName)
 {
 
 	$path = ".\src\$packageName\"
-	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
+	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
