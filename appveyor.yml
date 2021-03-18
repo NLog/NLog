@@ -8,8 +8,6 @@ environment:
   sonar_token:
     secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduP
 
-install:
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
 
 skip_tags: true
 skip_branch_with_pr: true
