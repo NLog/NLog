@@ -1,3 +1,5 @@
-<ItemGroup>
-  <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
-</ItemGroup>
+<Project>
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+  </ItemGroup>
+</Project>
