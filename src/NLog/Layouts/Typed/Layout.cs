@@ -413,6 +413,8 @@ namespace NLog.Layouts
         /// <param name="value">Text to be converted.</param>
         public static implicit operator Layout<T>(T value)
         {
+            if (value == null && !typeof(T).IsValueType()) return null;
+
             return new Layout<T>(value);
         }
 
@@ -422,6 +424,8 @@ namespace NLog.Layouts
         /// <param name="layout">Text to be converted.</param>
         public static implicit operator Layout<T>([Localizable(false)] string layout)
         {
+            if (layout == null) return null;
+
             return new Layout<T>(layout);
         }
 
@@ -429,7 +433,7 @@ namespace NLog.Layouts
         /// Converts a <see cref="Layout{T}" /> its current value
         /// </summary>
         /// <param name="layout">Text to be converted.</param>
-        public static implicit operator T(Layout<T> layout) => layout.StaticValue;
+        public static implicit operator T(Layout<T> layout) => ReferenceEquals(layout, null) ? default(T) : layout.StaticValue;
     }
 
     /// <summary>

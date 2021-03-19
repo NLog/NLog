@@ -489,15 +489,17 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             Uri url = null;
             Layout<Uri> layout1 = url;
-            Layout<Uri> layout2 = url;
+            Layout<Uri> layout2 = new Layout<Uri>(url);
 
             // Act + Assert
+            Assert.Null(layout1);
             Assert.True(layout1 == url);
+            Assert.True(layout2 == url);
             Assert.True(url == layout1);
-            Assert.True(layout1.Equals(url));
-            Assert.True(layout1.Equals((object)url));
-            Assert.Equal(layout1, layout2);
-            Assert.Equal(layout1.GetHashCode(), layout2.GetHashCode());
+            Assert.True(url == layout2);
+            Assert.True(layout2.Equals(url));
+            Assert.True(layout2.Equals((object)url));
+            Assert.NotEqual(layout1, layout2);
         }
 
         [Fact]
@@ -525,7 +527,7 @@ namespace NLog.UnitTests.Layouts
             Uri url = null;
             var url2 = new Uri("http://nlog");
             Layout<Uri> layout1 = url2;
-            Layout<Uri> layout2 = url;
+            Layout<Uri> layout2 = new Layout<Uri>(url);
 
             // Act + Assert
             Assert.False(layout1 == url);

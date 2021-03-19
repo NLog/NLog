@@ -50,6 +50,26 @@ namespace NLog.Layouts
     /// </summary>
     internal static class LayoutParser
     {
+        private static readonly char[] SpecialTokens = new char[] { '$', '\\', '}', ':' };
+
+        internal static LayoutRenderer[] CompileLayout(string value, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions, out string text)
+        {
+            if (value == null)
+            {
+                text = string.Empty;
+                return ArrayHelper.Empty<LayoutRenderer>();
+            }
+            else if (value.Length < 128 && value.IndexOfAny(SpecialTokens) < 0)
+            {
+                text = value;
+                return new LayoutRenderer[] { new LiteralLayoutRenderer(value) };
+            }
+            else
+            {
+                return CompileLayout(configurationItemFactory, new SimpleStringReader(value), throwConfigExceptions, false, out text);
+            }
+        }
+
         internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr, bool? throwConfigExceptions, bool isNested, out string text)
         {
             var result = new List<LayoutRenderer>();

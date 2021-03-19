@@ -170,8 +170,9 @@ namespace NLog.Internal
 
             if (enumerable is IList list)
             {
-                if (!list.IsReadOnly)
+                if (!list.IsReadOnly && !(list is Array))
                 {
+                    // Protect against collection was modified
                     List<object> elements = new List<object>(list.Count);
                     lock (list.SyncRoot)
                     {
