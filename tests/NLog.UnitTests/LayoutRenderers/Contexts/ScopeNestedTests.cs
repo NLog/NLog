@@ -255,7 +255,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logFactory = new LogFactory();
             logFactory.Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${scopenested:format=@:separator=${newline}}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${scopenested:format=@:separator=\n}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -270,7 +270,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
 
             // Assert
-            Assert.Equal(string.Format("[{0}{{{0}\"Hello\": 42,{0}\"Unlucky\": 13{0}}}{0}]", System.Environment.NewLine), target.LastMessage);
+            Assert.Equal(string.Format("[{0}{{{0}\"Hello\": 42,{0}\"Unlucky\": 13{0}}}{0}]", "\n"), target.LastMessage);
         }
 
 #if !NET35 && !NET40 && !NET45

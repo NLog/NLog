@@ -63,7 +63,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public Layout Separator { get; set; } = new SimpleLayout(new[] { new LiteralLayoutRenderer(" ") }, " ", ConfigurationItemFactory.Default);
+        public string Separator { get; set; } = " ";
 
         /// <summary>
         /// Gets or sets how to format each nested state. Ex. like JSON = @
@@ -102,7 +102,7 @@ namespace NLog.LayoutRenderers
                 startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
 
-            string separator = Separator?.Render(logEvent) ?? string.Empty;
+            string separator = Separator ?? string.Empty;
             string itemSeparator = separator;
             if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
             {
