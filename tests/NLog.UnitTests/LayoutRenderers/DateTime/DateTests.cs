@@ -122,5 +122,21 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
         }
+
+        [Fact]
+        public void FormattedDateTest2()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${date:\thh\:mm\:ss:UniversalTime=true}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            var dateTimeUtc = DateTime.UtcNow;
+            LogManager.GetLogger("d").Log(new LogEventInfo(LogLevel.Info, null, "Hello") { TimeStamp = dateTimeUtc });
+            AssertDebugLastMessage("debug", dateTimeUtc.ToString("\thh:mm:ss", CultureInfo.InvariantCulture));
+        }
     }
 }

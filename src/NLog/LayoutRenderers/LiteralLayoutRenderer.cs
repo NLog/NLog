@@ -70,6 +70,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the literal text.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultParameter]
         public string Text { get; set; }
 
         /// <summary>
