@@ -39,13 +39,7 @@ namespace MyExtensionNamespace
     [Layout("FooLayout")]
     public class FooLayout : Layout
     {
-        private int x;
-
-        public int X
-        {
-            get => x;
-            set => x = value;
-        }
+        public int X { get; set; }
 
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {

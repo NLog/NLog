@@ -452,7 +452,8 @@ namespace NLog.Config
                 }
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-                LoadNLogExtensionAssemblies(factory, nlogAssembly, extensionDlls);
+                var alreadyRegistered = LoadNLogExtensionAssemblies(factory, nlogAssembly, extensionDlls);
+                RegisterAppDomainAssemblies(factory, nlogAssembly, alreadyRegistered);
             }
             catch (System.Security.SecurityException ex)
             {
@@ -477,7 +478,7 @@ namespace NLog.Config
         }
 
 #if !NETSTANDARD1_3
-        private static void LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
+        private static HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
                 {
@@ -515,8 +516,18 @@ namespace NLog.Config
                 }
             }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            return alreadyRegistered;
+        }
+
+        private static void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
+        {
+            alreadyRegistered.Add(nlogAssembly.FullName);
+
+#if !NETSTANDARD1_5
             var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
+#else
+            var allAssemblies = new [] { nlogAssembly };
+#endif
             foreach (var assembly in allAssemblies)
             {
                 if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
@@ -524,18 +535,37 @@ namespace NLog.Config
                     factory.RegisterItemsFromAssembly(assembly);
                 }
 
-                if (assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
+                if (IncludeAsHiddenAssembly(assembly.FullName))
                 {
                     LogManager.AddHiddenAssembly(assembly);
                 }
             }
-#endif
+        }
+
+        private static bool IncludeAsHiddenAssembly(string assemblyFullName)
+        {
+            if (assemblyFullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return false;
         }
 
         internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
@@ -606,10 +636,10 @@ namespace NLog.Config
         }
 #endif
 
-        /// <summary>
-        /// Registers items in using late-bound types, so that we don't need a reference to the dll.
-        /// </summary>
-        private void RegisterExternalItems()
+            /// <summary>
+            /// Registers items in using late-bound types, so that we don't need a reference to the dll.
+            /// </summary>
+            private void RegisterExternalItems()
         {
 
 #if !NET35 && !NET40

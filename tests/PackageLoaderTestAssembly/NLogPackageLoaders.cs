@@ -36,7 +36,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using NLog;
 using NLog.Config;
-using NLog.Targets;
 
 namespace LoaderTestPublic
 {
@@ -58,7 +57,7 @@ namespace LoaderTestInternal
     {
         public static void Preload()
         {
-
+            // Nothing to do
         }
     }
 }
@@ -90,7 +89,7 @@ namespace LoaderTestPrivateNestedStatic
         {
             public static void Preload()
             {
-
+                // Nothing to do
             }
         }
     }
@@ -103,7 +102,7 @@ namespace LoaderTestWrong1
         [DebuggerStepThrough]
         public static void Preload()
         {
-            throw new Exception("ow noos");
+            throw new NLogRuntimeException("ow noos");
         }
     }
 }

@@ -80,12 +80,20 @@ namespace NLog.Attributes
 
         private static bool IsNumericType(Type sourceType)
         {
-            return sourceType == typeof(int) ||
-                sourceType == typeof(uint) ||
-                sourceType == typeof(long) ||
-                sourceType == typeof(ulong) ||
-                sourceType == typeof(short) ||
-                sourceType == typeof(ushort);
+            if (sourceType == typeof(int))
+                return true;
+            if (sourceType == typeof(uint))
+                return true;
+            if (sourceType == typeof(long))
+                return true;
+            if (sourceType == typeof(ulong))
+                return true;
+            if (sourceType == typeof(short))
+                return true;
+            if (sourceType == typeof(ushort))
+                return true;
+
+            return false;
         }
     }
 }
