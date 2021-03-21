@@ -44,7 +44,7 @@ namespace NLog
     public static class GlobalDiagnosticsContext
     {
         private static readonly object _lockObject = new object();
-        private static Dictionary<string, object> _dict = new Dictionary<string, object>();
+        private static Dictionary<string, object> _dict = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, object> _dictReadOnly;  // Reset cache on change
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace NLog
 
         private static Dictionary<string, object> CopyDictionaryOnWrite(bool clearDictionary)
         {
-            var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1);
+            var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
             if (!clearDictionary)
             {
                 // Less allocation with enumerator than Dictionary-constructor

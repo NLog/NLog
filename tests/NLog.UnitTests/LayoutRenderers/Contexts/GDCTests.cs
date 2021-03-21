@@ -79,5 +79,26 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("A").Debug("a");
             AssertDebugLastMessage("debug", "{\"AppId\":123} a");
         }
+
+        [Fact]
+        public void GDCIgnoreCaseTest()
+        {
+            try
+            {
+                string expectedValue = "Hello";
+                GlobalDiagnosticsContext.Clear();
+
+                // Act
+                GlobalDiagnosticsContext.Set(nameof(GDCIgnoreCaseTest), expectedValue);
+
+                // Assert
+                Assert.Equal(expectedValue, GlobalDiagnosticsContext.Get(nameof(GDCIgnoreCaseTest)));
+                Assert.Equal(expectedValue, GlobalDiagnosticsContext.Get(nameof(GDCIgnoreCaseTest).ToLower()));
+            }
+            finally
+            {
+                GlobalDiagnosticsContext.Clear();
+            }
+        }
     }
 }
