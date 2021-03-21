@@ -109,7 +109,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void FormattedDateTest()
+        public void DateFormatExplicitTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
@@ -124,7 +124,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void FormattedDateTest2()
+        public void DateFormatDefaultTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
@@ -137,6 +137,18 @@ namespace NLog.UnitTests.LayoutRenderers
             var dateTimeUtc = DateTime.UtcNow;
             LogManager.GetLogger("d").Log(new LogEventInfo(LogLevel.Info, null, "Hello") { TimeStamp = dateTimeUtc });
             AssertDebugLastMessage("debug", dateTimeUtc.ToString("\thh:mm:ss", CultureInfo.InvariantCulture));
+        }
+
+        [Fact]
+        public void DateFormatInvalidTest()
+        {
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                    <nlog throwConfigExceptions='true'>
+                        <variable name='logDate' value='${date:format=hh:mm}' />
+                    </nlog>");
+            });
         }
     }
 }
