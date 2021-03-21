@@ -165,20 +165,26 @@ namespace NLog.Layouts
             return ch == '}' || ch == ':';
         }
 
-        private static string ParseLayoutRendererName(SimpleStringReader sr)
+        private static string ParseLayoutRendererTypeName(SimpleStringReader sr)
         {
             return sr.ReadUntilMatch(ch => EndOfLayout(ch));
         }
 
-        private static string ParseParameterName(SimpleStringReader sr)
+        private static string ParseParameterNameOrValue(SimpleStringReader sr)
         {
+            var parameterName = sr.ReadUntilMatch(chr => EndOfLayout(chr) || chr == '=' || chr == '$' || chr == '\\');
+            if (sr.Peek() != '$' && sr.Peek() != '\\')
+            {
+                return parameterName;
+            }
+
             int ch;
             int nestLevel = 0;
 
-            var nameBuf = new StringBuilder();
+            var nameBuf = new StringBuilder(parameterName);
             while ((ch = sr.Peek()) != -1)
             {
-                if ((ch == '=' || ch == '}' || ch == ':') && nestLevel == 0)
+                if ((ch == '=' || EndOfLayout(ch)) && nestLevel == 0)
                 {
                     break;
                 }
@@ -205,14 +211,16 @@ namespace NLog.Layouts
                 if (ch == '\\')
                 {
                     sr.Read();
-
-                    // issue#3193
-                    if (nestLevel != 0)
+                    ch = sr.Peek();
+                    if (nestLevel == 0 && (EndOfLayout(ch) || ch == '$' || ch == '='))
                     {
-                        nameBuf.Append((char)ch);
+                        nameBuf.Append((char)sr.Read());
                     }
-                    // append next character
-                    nameBuf.Append((char)sr.Read());
+                    else if (ch != -1)
+                    {
+                        nameBuf.Append('\\');
+                        nameBuf.Append((char)sr.Read());
+                    }
                     continue;
                 }
 
@@ -225,27 +233,61 @@ namespace NLog.Layouts
 
         private static string ParseParameterValue(SimpleStringReader sr)
         {
-            var simpleValue = sr.ReadUntilMatch(ch => EndOfLayout(ch) || ch == '\\');
+            var value = sr.ReadUntilMatch(ch => EndOfLayout(ch) || ch == '\\');
             if (sr.Peek() == '\\')
             {
-                var nameBuf = new StringBuilder();
-                nameBuf.Append(simpleValue);
-                ParseParameterUnicodeValue(sr, nameBuf);
-                return nameBuf.ToString();
+                bool containsUnicodeEscape = false;
+
+                var nameBuf = new StringBuilder(value);
+                int ch;
+                while ((ch = sr.Peek()) != -1)
+                {
+                    if (EndOfLayout(ch))
+                        break;
+
+                    if (ch == '\\')
+                    {
+                        sr.Read();
+                        ch = sr.Peek();
+                        if (EndOfLayout(ch))
+                        {
+                            nameBuf.Append((char)sr.Read());
+                        }
+                        else if (ch != -1)
+                        {
+                            containsUnicodeEscape = true;
+                            nameBuf.Append('\\');
+                            nameBuf.Append((char)sr.Read());
+                        }
+                    }
+                    else
+                    {
+                        nameBuf.Append((char)ch);
+                        sr.Read();
+                    }
+                }
+
+                value = nameBuf.ToString();
+                if (containsUnicodeEscape)
+                {
+                    nameBuf.Length = 0;
+                    value = EscapeUnicodeStringValue(value, nameBuf);
+                }
             }
 
-            return simpleValue;
+            return value;
         }
 
-        private static void ParseParameterUnicodeValue(SimpleStringReader sr, StringBuilder nameBuf)
+        private static string EscapeUnicodeStringValue(string value, StringBuilder nameBuf = null)
         {
-            int ch;
-            while ((ch = sr.Peek()) != -1)
+            bool escapeNext = false;
+
+            nameBuf = nameBuf ?? new StringBuilder(value.Length);
+
+            char ch;
+            for (int i = 0; i < value.Length; ++i)
             {
-                if (EndOfLayout(ch))
-                {
-                    break;
-                }
+                ch = value[i];
 
                 // Code in this condition was replaced
                 // to support escape codes e.g. '\r' '\n' '\u003a',
@@ -253,14 +295,11 @@ namespace NLog.Layouts
                 // All escape codes listed in the following link were included
                 // in addition to "\{", "\}", "\:" which are NLog specific:
                 // https://blogs.msdn.com/b/csharpfaq/archive/2004/03/12/what-character-escape-sequences-are-available.aspx
-                if (ch == '\\')
+                if (escapeNext)
                 {
-                    // skip the backslash
-                    sr.Read();
+                    escapeNext = false;
 
-                    var nextChar = (char)sr.Peek();
-
-                    switch (nextChar)
+                    switch (ch)
                     {
                         case ':':
                         case '{':
@@ -268,79 +307,79 @@ namespace NLog.Layouts
                         case '\'':
                         case '"':
                         case '\\':
-                            sr.Read();
-                            nameBuf.Append(nextChar);
+                            nameBuf.Append(ch);
                             break;
                         case '0':
-                            sr.Read();
                             nameBuf.Append('\0');
                             break;
                         case 'a':
-                            sr.Read();
                             nameBuf.Append('\a');
                             break;
                         case 'b':
-                            sr.Read();
                             nameBuf.Append('\b');
                             break;
                         case 'f':
-                            sr.Read();
                             nameBuf.Append('\f');
                             break;
                         case 'n':
-                            sr.Read();
                             nameBuf.Append('\n');
                             break;
                         case 'r':
-                            sr.Read();
                             nameBuf.Append('\r');
                             break;
                         case 't':
-                            sr.Read();
                             nameBuf.Append('\t');
                             break;
                         case 'u':
                             {
-                                sr.Read();
-                                var uChar = GetUnicode(sr, 4); // 4 digits
+                                var uChar = GetUnicode(value, 4, ref i); // 4 digits
                                 nameBuf.Append(uChar);
                                 break;
                             }
                         case 'U':
                             {
-                                sr.Read();
-                                var uChar = GetUnicode(sr, 8); // 8 digits
+                                var uChar = GetUnicode(value, 8, ref i); // 8 digits
                                 nameBuf.Append(uChar);
                                 break;
                             }
                         case 'x':
                             {
-                                sr.Read();
-                                var xChar = GetUnicode(sr, 4); // 1-4 digits
+                                var xChar = GetUnicode(value, 4, ref i); // 1-4 digits
                                 nameBuf.Append(xChar);
                                 break;
                             }
                         case 'v':
-                            sr.Read();
                             nameBuf.Append('\v');
                             break;
+                        default:
+                            nameBuf.Append(ch);
+                            break;
                     }
-
-                    continue;
                 }
-
-                nameBuf.Append((char)ch);
-                sr.Read();
+                else if (ch == '\\')
+                {
+                    escapeNext = true;
+                }
+                else
+                {
+                    nameBuf.Append(ch);
+                }
             }
+
+            if (escapeNext)
+                nameBuf.Append('\\');
+            return nameBuf.ToString();
         }
 
-        private static char GetUnicode(SimpleStringReader sr, int maxDigits)
+        private static char GetUnicode(string value, int maxDigits, ref int currentIndex)
         {
             int code = 0;
 
-            for (int cnt = 0; cnt < maxDigits; cnt++)
+            maxDigits = Math.Min(value.Length - 1, currentIndex + maxDigits);
+
+            for ( ; currentIndex < maxDigits; ++currentIndex)
             {
-                var digitCode = sr.Peek();
+                int digitCode = value[currentIndex + 1];
                 if (digitCode >= (int)'0' && digitCode <= (int)'9')
                     digitCode = digitCode - (int)'0';
                 else if (digitCode >= (int)'a' && digitCode <= (int)'f')
@@ -350,7 +389,6 @@ namespace NLog.Layouts
                 else
                     break;
 
-                sr.Read();
                 code = code * 16 + digitCode;
             }
 
@@ -362,8 +400,8 @@ namespace NLog.Layouts
             int ch = stringReader.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
-            string name = ParseLayoutRendererName(stringReader);
-            var layoutRenderer = GetLayoutRenderer(configurationItemFactory, name, throwConfigExceptions);
+            string typeName = ParseLayoutRendererTypeName(stringReader);
+            var layoutRenderer = GetLayoutRenderer(configurationItemFactory, typeName, throwConfigExceptions);
 
             Dictionary<Type, LayoutRenderer> wrappers = null;
             List<LayoutRenderer> orderedWrappers = null;
@@ -371,10 +409,12 @@ namespace NLog.Layouts
             ch = stringReader.Read();
             while (ch != -1 && ch != '}')
             {
-                string parameterName = ParseParameterName(stringReader).Trim();
+                string parameterName = ParseParameterNameOrValue(stringReader);
                 if (stringReader.Peek() == '=')
                 {
                     stringReader.Read(); // skip the '='
+
+                    parameterName = parameterName.Trim();
                     LayoutRenderer parameterTarget = layoutRenderer;
 
                     if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out var propertyInfo))
@@ -406,7 +446,7 @@ namespace NLog.Layouts
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            var configException = new NLogConfigurationException($"Unknown property '{parameterName}={value}` for ${{{name}}} ({layoutRenderer?.GetType()})");
+                            var configException = new NLogConfigurationException($"Unknown property '{parameterName}={value}` for ${{{typeName}}} ({layoutRenderer?.GetType()})");
                             if (throwConfigExceptions ?? configException.MustBeRethrown())
                             {
                                 throw configException;
@@ -450,16 +490,16 @@ namespace NLog.Layouts
             return layoutRenderer;
         }
 
-        private static LayoutRenderer GetLayoutRenderer(ConfigurationItemFactory configurationItemFactory, string name, bool? throwConfigExceptions)
+        private static LayoutRenderer GetLayoutRenderer(ConfigurationItemFactory configurationItemFactory, string typeName, bool? throwConfigExceptions)
         {
             LayoutRenderer layoutRenderer;
             try
             {
-                layoutRenderer = configurationItemFactory.LayoutRenderers.CreateInstance(name);
+                layoutRenderer = configurationItemFactory.LayoutRenderers.CreateInstance(typeName);
             }
             catch (Exception ex)
             {
-                var configException = new NLogConfigurationException(ex, $"Error parsing layout {name}");
+                var configException = new NLogConfigurationException(ex, $"Error parsing layout {typeName}");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
@@ -476,6 +516,11 @@ namespace NLog.Layouts
             // assign it to a default property (denoted by empty string)
             if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out var propertyInfo))
             {
+                if (!typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType) && value.IndexOf('\\') >= 0)
+                {
+                    value = EscapeUnicodeStringValue(value);
+                }
+
                 PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
             }
             else
