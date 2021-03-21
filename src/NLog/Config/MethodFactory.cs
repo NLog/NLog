@@ -44,8 +44,8 @@ namespace NLog.Config
     /// </summary>
     internal class MethodFactory : INamedItemFactory<MethodInfo, MethodInfo>, INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>, IFactory
     {
-        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
-        private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>();
+        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>(StringComparer.OrdinalIgnoreCase);
         private readonly Func<Type, IList<KeyValuePair<string, MethodInfo>>> _methodExtractor;
         private readonly MethodFactory _globalDefaultFactory;
 
