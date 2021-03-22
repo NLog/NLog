@@ -432,6 +432,33 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void FiltersTest_defaultFilterResult()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1'>
+                        <filters defaultFilterResult='Ignore'>
+                            <filter type='when' condition=""starts-with(message, 't')"" action='Log' />
+                        </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            var logger = LogManager.GetLogger("logger1");
+            logger.Warn("test 1");
+            AssertDebugLastMessage("d1", "test 1");
+
+            logger.Warn("x-mass");
+            AssertDebugLastMessage("d1", "test 1");
+        }
+
+        [Fact]
         public void FiltersTest_defaultFilterAction_noRules()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
