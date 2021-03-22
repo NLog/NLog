@@ -43,7 +43,7 @@ namespace NLog.Internal.Fakeables
     internal class FakeAppDomain : IAppDomain
     {
 #if NETSTANDARD1_5
-        System.Runtime.Loader.AssemblyLoadContext _defaultContext;
+        private readonly System.Runtime.Loader.AssemblyLoadContext _defaultContext;
 #endif
 
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>

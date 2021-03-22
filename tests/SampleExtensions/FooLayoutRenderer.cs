@@ -41,9 +41,9 @@ namespace MyExtensionNamespace
     [LayoutRenderer("foo")]
     public class FooLayoutRenderer : LayoutRenderer
     {
-        protected override void Append(StringBuilder buffer, LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            buffer.Append("foo");
+            builder.Append("foo");
         }
     }
 }

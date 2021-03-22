@@ -39,13 +39,7 @@ namespace MyExtensionNamespace
     [Filter("whenFoo")]
     public class WhenFooFilter : Filter
     {
-        private int x;
-
-        public int X
-        {
-            get => x;
-            set => x = value;
-        }
+        public int X { get; set; }
 
         protected override FilterResult Check(LogEventInfo logEvent)
         {
