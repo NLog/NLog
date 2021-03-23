@@ -568,7 +568,7 @@ namespace NLog.Config
             bool enabled = true;
             bool final = false;
             string writeTargets = null;
-            string defaultFilterResult = null;
+            string defaultFilterAction = null;
             foreach (var childProperty in loggerElement.Values)
             {
                 switch (childProperty.Key?.Trim().ToUpperInvariant())
@@ -609,8 +609,8 @@ namespace NLog.Config
                     case "MAXLEVEL":
                         maxLevel = childProperty.Value;
                         break;
-                    case "DEFAULTFILTERRESULT":
-                        defaultFilterResult = childProperty.Value;
+                    case "DEFAULTFILTERACTION":
+                        defaultFilterAction = childProperty.Value;
                         break;
                     default:
                         InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
@@ -644,7 +644,7 @@ namespace NLog.Config
 
             ParseLoggingRuleTargets(writeTargets, rule);
 
-            ParseLoggingRuleChildren(loggerElement, rule, defaultFilterResult);
+            ParseLoggingRuleChildren(loggerElement, rule, defaultFilterAction);
 
             return rule;
         }
@@ -728,14 +728,14 @@ namespace NLog.Config
             }
         }
 
-        private void ParseLoggingRuleChildren(ILoggingConfigurationElement loggerElement, LoggingRule rule, string defaultFilterResult = null)
+        private void ParseLoggingRuleChildren(ILoggingConfigurationElement loggerElement, LoggingRule rule, string defaultFilterAction = null)
         {
             foreach (var child in loggerElement.Children)
             {
                 LoggingRule childRule = null;
                 if (child.MatchesName("filters"))
                 {
-                    ParseFilters(rule, child, defaultFilterResult);
+                    ParseFilters(rule, child, defaultFilterAction);
                 }
                 else if (child.MatchesName("logger") && loggerElement.MatchesName("logger"))
                 {
@@ -761,14 +761,14 @@ namespace NLog.Config
             }
         }
 
-        private void ParseFilters(LoggingRule rule, ILoggingConfigurationElement filtersElement, string defaultFilterResult = null)
+        private void ParseFilters(LoggingRule rule, ILoggingConfigurationElement filtersElement, string defaultFilterAction = null)
         {
             filtersElement.AssertName("filters");
 
-            defaultFilterResult = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue("defaultFilterResult", null) ?? defaultFilterResult;
-            if (defaultFilterResult != null)
+            defaultFilterAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue("defaultFilterAction", null) ?? defaultFilterAction;
+            if (defaultFilterAction != null)
             {
-                PropertyHelper.SetPropertyFromString(rule, nameof(rule.DefaultFilterResult), defaultFilterResult,
+                PropertyHelper.SetPropertyFromString(rule, nameof(rule.DefaultFilterResult), defaultFilterAction,
                     _configurationItemFactory);
             }
 

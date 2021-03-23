@@ -442,7 +442,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters defaultFilterResult='Ignore'>
+                        <filters defaultFilterAction='Ignore'>
                             <filter type='when' condition=""starts-with(message, 't')"" action='Log' />
                         </filters>
                     </logger>
