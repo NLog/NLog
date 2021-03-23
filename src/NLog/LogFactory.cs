@@ -1331,7 +1331,7 @@ namespace NLog
         /// <summary>
         /// Enables logging in <see cref="IDisposable.Dispose"/> implementation.
         /// </summary>
-        private class LogEnabler : IDisposable
+        private sealed class LogEnabler : IDisposable
         {
             private readonly LogFactory _factory;
 

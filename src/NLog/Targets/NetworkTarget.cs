@@ -289,10 +289,81 @@ namespace NLog.Targets
 
             if (KeepConnection)
             {
-                LinkedListNode<NetworkSender> senderNode;
+                WriteBytesToCachedNetworkSender(address, bytes, logEvent);
+            }
+            else
+            {
+                WriteBytesToNewNetworkSender(address, bytes, logEvent);
+            }
+        }
+
+        private void WriteBytesToCachedNetworkSender(string address, byte[] bytes, AsyncLogEventInfo logEvent)
+        {
+            LinkedListNode<NetworkSender> senderNode;
+            try
+            {
+                senderNode = GetCachedNetworkSender(address);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Failed to create sender to address: '{1}'", this, address);
+                throw;
+            }
+
+            ChunkedSend(
+                senderNode.Value,
+                bytes,
+                ex =>
+                {
+                    if (ex != null)
+                    {
+                        InternalLogger.Error(ex, "{0}: Error when sending.", this);
+                        ReleaseCachedConnection(senderNode);
+                    }
+
+                    logEvent.Continuation(ex);
+                });
+        }
+
+        private void WriteBytesToNewNetworkSender(string address, byte[] bytes, AsyncLogEventInfo logEvent)
+        {
+            NetworkSender sender;
+            LinkedListNode<NetworkSender> linkedListNode;
+
+            lock (_openNetworkSenders)
+            {
+                //handle too many connections
+                var tooManyConnections = _openNetworkSenders.Count >= MaxConnections;
+
+                if (tooManyConnections && MaxConnections > 0)
+                {
+                    switch (OnConnectionOverflow)
+                    {
+                        case NetworkTargetConnectionsOverflowAction.Discard:
+                            InternalLogger.Warn("{0}: Discarding message otherwise to many connections.", this);
+                            logEvent.Continuation(null);
+                            return;
+
+                        case NetworkTargetConnectionsOverflowAction.Grow:
+                            InternalLogger.Debug("{0}: Too may connections, but this is allowed", this);
+                            break;
+
+                        case NetworkTargetConnectionsOverflowAction.Block:
+                            while (_openNetworkSenders.Count >= MaxConnections)
+                            {
+                                InternalLogger.Debug("{0}: Blocking networktarget otherwhise too many connections.", this);
+                                Monitor.Wait(_openNetworkSenders);
+                                InternalLogger.Trace("{0}: Entered critical section.", this);
+                            }
+
+                            InternalLogger.Trace("{0}: Limit ok.", this);
+                            break;
+                    }
+                }
+
                 try
                 {
-                    senderNode = GetCachedNetworkSender(address);
+                    sender = CreateNetworkSender(address);
                 }
                 catch (Exception ex)
                 {
@@ -300,91 +371,30 @@ namespace NLog.Targets
                     throw;
                 }
 
-                ChunkedSend(
-                    senderNode.Value,
-                    bytes,
-                    ex =>
-                    {
-                        if (ex != null)
-                        {
-                            InternalLogger.Error(ex, "{0}: Error when sending.", this);
-                            ReleaseCachedConnection(senderNode);
-                        }
-
-                        logEvent.Continuation(ex);
-                    });
+                linkedListNode = _openNetworkSenders.AddLast(sender);
             }
-            else
-            {
-                NetworkSender sender;
-                LinkedListNode<NetworkSender> linkedListNode;
-
-                lock (_openNetworkSenders)
+            ChunkedSend(
+                sender,
+                bytes,
+                ex =>
                 {
-                    //handle too many connections
-                    var tooManyConnections = _openNetworkSenders.Count >= MaxConnections;
-
-                    if (tooManyConnections && MaxConnections > 0)
+                    lock (_openNetworkSenders)
                     {
-                        switch (OnConnectionOverflow)
+                        TryRemove(_openNetworkSenders, linkedListNode);
+                        if (OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
                         {
-                            case NetworkTargetConnectionsOverflowAction.Discard:
-                                InternalLogger.Warn("{0}: Discarding message otherwise to many connections.", this);
-                                logEvent.Continuation(null);
-                                return;
-
-                            case NetworkTargetConnectionsOverflowAction.Grow:
-                                InternalLogger.Debug("{0}: Too may connections, but this is allowed", this);
-                                break;
-
-                            case NetworkTargetConnectionsOverflowAction.Block:
-                                while (_openNetworkSenders.Count >= MaxConnections)
-                                {
-                                    InternalLogger.Debug("{0}: Blocking networktarget otherwhise too many connections.", this);
-                                    Monitor.Wait(_openNetworkSenders);
-                                    InternalLogger.Trace("{0}: Entered critical section.", this);
-                                }
-
-                                InternalLogger.Trace("{0}: Limit ok.", this);
-                                break;
+                            Monitor.PulseAll(_openNetworkSenders);
                         }
                     }
 
-                    try
+                    if (ex != null)
                     {
-                        sender = CreateNetworkSender(address);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error(ex, "{0}: Failed to create sender to address: '{1}'", this, address);
-                        throw;
+                        InternalLogger.Error(ex, "{0}: Error when sending.", this);
                     }
 
-                    linkedListNode = _openNetworkSenders.AddLast(sender);
-                }
-                ChunkedSend(
-                    sender,
-                    bytes,
-                    ex =>
-                    {
-                        lock (_openNetworkSenders)
-                        {
-                            TryRemove(_openNetworkSenders, linkedListNode);
-                            if (OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
-                            {
-                                Monitor.PulseAll(_openNetworkSenders);
-                            }
-                        }
-
-                        if (ex != null)
-                        {
-                            InternalLogger.Error(ex, "{0}: Error when sending.", this);
-                        }
-
-                        sender.Close(ex2 => { });
-                        logEvent.Continuation(ex);
-                    });
-            }
+                    sender.Close(ex2 => { });
+                    logEvent.Continuation(ex);
+                });
         }
 
         /// <summary>

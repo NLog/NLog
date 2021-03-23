@@ -39,7 +39,7 @@ namespace NLog.Internal.NetworkSenders
     using System.Net.Sockets;
     using System.Security.Authentication;
 
-    class SslSocketProxy : ISocket, IDisposable
+    internal sealed class SslSocketProxy : ISocket, IDisposable
     {
         readonly AsyncCallback _sendCompleted;
         readonly SocketProxy _socketProxy;

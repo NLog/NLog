@@ -87,24 +87,12 @@ namespace NLog.Targets.Wrappers
                 {
                     case AsyncTargetWrapperOverflowAction.Discard:
                         {
-                            do
-                            {
-                                if (_logEventInfoQueue.TryDequeue(out var lostItem))
-                                {
-                                    InternalLogger.Debug("Discarding one element from queue");
-                                    queueWasEmpty = Interlocked.Decrement(ref _count) == 1 || queueWasEmpty;
-                                    OnLogEventDropped(lostItem.LogEvent);
-                                    break;
-                                }
-                                currentCount = Interlocked.Read(ref _count);
-                                queueWasEmpty = true;
-                            } while (currentCount > RequestLimit);
+                            queueWasEmpty = DequeueUntilBelowRequestLimit();
                         }
                         break;
                     case AsyncTargetWrapperOverflowAction.Block:
                         {
-                            WaitForBelowRequestLimit();
-                            queueWasEmpty = true;
+                            queueWasEmpty = WaitForBelowRequestLimit();
                         }
                         break;
                     case AsyncTargetWrapperOverflowAction.Grow:
@@ -120,7 +108,28 @@ namespace NLog.Targets.Wrappers
             return queueWasEmpty;
         }
 
-        private void WaitForBelowRequestLimit()
+        private bool DequeueUntilBelowRequestLimit()
+        {
+            long currentCount;
+            bool queueWasEmpty = false;
+
+            do
+            {
+                if (_logEventInfoQueue.TryDequeue(out var lostItem))
+                {
+                    InternalLogger.Debug("Discarding one element from queue");
+                    queueWasEmpty = Interlocked.Decrement(ref _count) == 1 || queueWasEmpty;
+                    OnLogEventDropped(lostItem.LogEvent);
+                    break;
+                }
+                currentCount = Interlocked.Read(ref _count);
+                queueWasEmpty = true;
+            } while (currentCount > RequestLimit);
+
+            return queueWasEmpty;
+        }
+
+        private bool WaitForBelowRequestLimit()
         {
             // Attempt to yield using SpinWait
             long currentCount = TrySpinWaitForLowerCount();
@@ -144,6 +153,7 @@ namespace NLog.Targets.Wrappers
             }
 
             InternalLogger.Trace("Async queue limit ok.");
+            return true;
         }
 
         private long TrySpinWaitForLowerCount()
