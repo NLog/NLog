@@ -65,6 +65,30 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void LogLevelUppercaseTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level:uppercase=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "DEBUG a");
+            logger.Info("a");
+            AssertDebugLastMessage("debug", "INFO a");
+            logger.Warn("a");
+            AssertDebugLastMessage("debug", "WARN a");
+            logger.Error("a");
+            AssertDebugLastMessage("debug", "ERROR a");
+            logger.Fatal("a");
+            AssertDebugLastMessage("debug", "FATAL a");
+        }
+
+        [Fact]
         public void LogLevelSingleCharacterTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"

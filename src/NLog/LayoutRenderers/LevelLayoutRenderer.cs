@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool Uppercase { get; set; }
 
         /// <inheritdoc/>
