@@ -323,7 +323,12 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public void CloseAppenders(string reason)
         {
-            for (int i = 0; i < _appenders.Length; ++i)
+            CloseAllAppenders(0, reason);
+        }
+
+        private void CloseAllAppenders(int startIndex, string reason)
+        {
+            for (int i = startIndex; i < _appenders.Length; ++i)
             {
                 var oldAppender = _appenders[i];
                 if (oldAppender == null)
@@ -331,7 +336,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                CloseAppender(oldAppender, reason, true);
+                CloseAppender(oldAppender, reason, i == 0);
                 _appenders[i] = null;
                 oldAppender.Dispose();  // Dispose of Archive Mutex
             }
@@ -340,8 +345,8 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Close the allocated appenders initialized before the supplied time.
         /// </summary>
-        /// <param name="expireTime">The time which prior the appenders considered expired</param>
-        public void CloseAppenders(DateTime expireTime)
+        /// <param name="expireTimeUtc">The time which prior the appenders considered expired</param>
+        public void CloseExpiredAppenders(DateTime expireTimeUtc)
         {
 #if !NETSTANDARD1_3
             if (_logFileWasArchived)
@@ -352,7 +357,7 @@ namespace NLog.Internal.FileAppenders
             else
 #endif
             {
-                if (expireTime != DateTime.MinValue)
+                if (expireTimeUtc != DateTime.MinValue)
                 {
                     for (int i = 0; i < _appenders.Length; ++i)
                     {
@@ -361,21 +366,9 @@ namespace NLog.Internal.FileAppenders
                             break;
                         }
 
-                        if (_appenders[i].OpenTimeUtc < expireTime)
+                        if (_appenders[i].OpenTimeUtc < expireTimeUtc)
                         {
-                            for (int j = i; j < _appenders.Length; ++j)
-                            {
-                                var oldAppender = _appenders[j];
-                                if (oldAppender == null)
-                                {
-                                    break;
-                                }
-
-                                CloseAppender(oldAppender, "Expired", i == 0);
-                                _appenders[j] = null;
-                                oldAppender.Dispose();  // Dispose of Archive Mutex
-                            }
-
+                            CloseAllAppenders(i, "Expired");
                             break;
                         }
                     }

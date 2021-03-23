@@ -159,12 +159,12 @@ namespace NLog.UnitTests.Internal.FileAppenders
 
             FileAppenderCache cache2 = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders. 
-            cache2.CloseAppenders(DateTime.Now);
+            cache2.CloseExpiredAppenders(DateTime.UtcNow);
 
             // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
-            cache.CloseAppenders(DateTime.Now);
+            cache.CloseExpiredAppenders(DateTime.UtcNow);
         }
 
         [Fact]
