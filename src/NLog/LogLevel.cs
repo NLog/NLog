@@ -251,7 +251,7 @@ namespace NLog
                     return Off;
 
                 default:
-                    throw new ArgumentException("Invalid ordinal.");
+                    throw new ArgumentException($"Unknown loglevel: {ordinal.ToString()}.", nameof(ordinal));
             }
         }
 
@@ -317,7 +317,7 @@ namespace NLog
                 return Warn;    // .NET Core Microsoft Extension Logging
             }
 
-            throw new ArgumentException($"Unknown log level: {levelName}");
+            throw new ArgumentException($"Unknown log level: {levelName}", nameof(levelName));
         }
 
         /// <summary>

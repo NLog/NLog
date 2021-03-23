@@ -91,10 +91,5 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             throw new NotSupportedException();
         }
-
-        private static bool HasUnixNewline(string str)
-        {
-            return str != null && str.IndexOf('\n') >= 0;
-        }
     }
 }

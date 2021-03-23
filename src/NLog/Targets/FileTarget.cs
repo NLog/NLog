@@ -2087,7 +2087,7 @@ namespace NLog.Targets
                 }
 
                 InternalLogger.Trace("{0}: Auto Close FileAppenders after archive", this);
-                _fileAppenderCache.CloseAppenders(DateTime.MinValue);
+                _fileAppenderCache.CloseExpiredAppenders(DateTime.MinValue);
             }
             catch (Exception exception)
             {
@@ -2119,9 +2119,9 @@ namespace NLog.Targets
 
                 if (OpenFileCacheTimeout > 0)
                 {
-                    DateTime expireTime = DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout);
+                    DateTime expireTimeUtc = DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout);
                     InternalLogger.Trace("{0}: Auto Close FileAppenders", this);
-                    _fileAppenderCache.CloseAppenders(expireTime);
+                    _fileAppenderCache.CloseExpiredAppenders(expireTimeUtc);
                 }
 
                 if (OpenFileFlushTimeout > 0 && !AutoFlush)

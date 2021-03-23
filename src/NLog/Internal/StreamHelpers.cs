@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -96,7 +95,7 @@ namespace NLog.Internal
         {
             if (offset < 0)
             {
-                throw new ArgumentException("negative offset");
+                throw new ArgumentException("cannot be negative", nameof(offset));
             }
 
             if (offset > 0)
