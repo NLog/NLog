@@ -1,12 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
     <Title>NLog for .NET Framework and .NET Standard</Title>
-    <Company>NLog</Company>
     <Description>NLog is a logging platform for .NET with rich log routing and management capabilities.
 NLog supports traditional logging, structured logging and the combination of both.
 
@@ -22,10 +19,6 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     </Description>
     <Product>NLog v$(ProductVersion)</Product>
-    <InformationalVersion>$(ProductVersion)</InformationalVersion>
-    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
-    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
 ## Bug fixes
@@ -41,19 +34,6 @@ For all config options and platform support, check https://nlog-project.org/conf
 
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;console;email</PackageTags>
-    <PackageIcon>N.png</PackageIcon>
-    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
-
-    <SignAssembly>true</SignAssembly>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -92,10 +72,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Title>$(Title) - Mono</Title>
     <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />
@@ -198,20 +174,12 @@ For all config options and platform support, check https://nlog-project.org/conf
   </ItemGroup>
 
   <PropertyGroup>
-    <AssemblyTitle>$(Title)</AssemblyTitle>
     <!-- SonarQube WARNING: The following projects do not have a valid ProjectGuid and were not built using a valid solution (.sln) thus will be skipped from analysis… -->
     <ProjectGuid>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</ProjectGuid>
   </PropertyGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="echo building $(TargetFramework) ..." />
-  </Target>
-
-  <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath=""/>
-  </ItemGroup>
-  <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
-    <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
   </Target>
 
 </Project>

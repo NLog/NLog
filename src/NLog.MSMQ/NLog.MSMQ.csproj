@@ -1,38 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35</TargetFrameworks>
 
     <Title>NLog MSMQ target</Title>
-    <Company>NLog</Company>
     <Description>NLog MSMQ target - write to the Microsoft Message Queuing</Description>
     <Product>NLog MSMQ target</Product>
-    <InformationalVersion>$(ProductVersion)</InformationalVersion>
-    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
-    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
       Docs:
       https://github.com/NLog/NLog/wiki/MSMQ-target
-</PackageReleaseNotes>
+    </PackageReleaseNotes>
     <PackageTags>NLog;MSMQ;logging;log</PackageTags>
-    <PackageIcon>N.png</PackageIcon>
-    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
-
-    <SignAssembly>true</SignAssembly>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -69,16 +48,5 @@
   <ItemGroup>
     <EmbeddedResource Include="..\NLog\Resources\NLog.ico" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <AssemblyTitle>$(Title)</AssemblyTitle>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath=""/>
-  </ItemGroup>
-  <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
-    <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
-  </Target>
 
 </Project>
