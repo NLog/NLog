@@ -102,10 +102,8 @@ namespace NLog.LayoutRenderers
 
         private string GetUpperCaseString(LogLevel level)
         {
-            if (_upperCaseMapper.TryGetValue(level.Ordinal, out var uppercaseString))
-                return uppercaseString;
-            else
-                return level.ToString().ToUpperInvariant();
+            _upperCaseMapper.TryGetValue(level.Ordinal, out var uppercaseString);
+            return uppercaseString ?? level.ToString().ToUpperInvariant();
         }
 
         /// <inheritdoc/>
