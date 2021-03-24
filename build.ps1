@@ -5,7 +5,7 @@ dotnet --version
 # dotnet restore .\src\NLog\
 # dotnet pack .\src\NLog\  --configuration release --include-symbols -o ..\..\artifacts
 
-$versionPrefix = "4.7.8"
+$versionPrefix = "4.7.9"
 $versionSuffix = ""
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
