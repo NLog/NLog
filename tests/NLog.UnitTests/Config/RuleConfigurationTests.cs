@@ -404,7 +404,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void FiltersTest_defaultFilterAction()
+        public void FiltersTest_DefaultAction()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
@@ -432,7 +432,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void FiltersTest_defaultFilterResult()
+        public void FiltersTest_FilterDefaultAction()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
@@ -442,7 +442,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters defaultFilterAction='Ignore'>
+                        <filters filterDefaultAction='Ignore'>
                             <filter type='when' condition=""starts-with(message, 't')"" action='Log' />
                         </filters>
                     </logger>
@@ -459,7 +459,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void FiltersTest_defaultFilterAction_noRules()
+        public void FiltersTest_DefaultAction_noRules()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
