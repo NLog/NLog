@@ -589,6 +589,7 @@ namespace NLog.Config
             bool enabled = true;
             bool final = false;
             string writeTargets = null;
+            string filterDefaultAction = null;
             foreach (var childProperty in loggerElement.Values)
             {
                 switch (childProperty.Key?.Trim().ToUpperInvariant())
@@ -627,6 +628,9 @@ namespace NLog.Config
                     case "MAXLEVEL":
                         maxLevel = childProperty.Value;
                         break;
+                    case "FILTERDEFAULTACTION":
+                        filterDefaultAction = childProperty.Value;
+                        break;
                     default:
                         var configException = new NLogConfigurationException($"Unrecognized value '{childProperty.Key}'='{childProperty.Value}' for element '{loggerElement.Name}' in section 'rules'");
                         if (MustThrowConfigException(configException))
@@ -660,7 +664,7 @@ namespace NLog.Config
 
             ParseLoggingRuleTargets(writeTargets, rule);
 
-            ParseLoggingRuleChildren(loggerElement, rule);
+            ParseLoggingRuleChildren(loggerElement, rule, filterDefaultAction);
 
             return rule;
         }
@@ -731,14 +735,14 @@ namespace NLog.Config
             }
         }
 
-        private void ParseLoggingRuleChildren(ValidatedConfigurationElement loggerElement, LoggingRule rule)
+        private void ParseLoggingRuleChildren(ValidatedConfigurationElement loggerElement, LoggingRule rule, string filterDefaultAction = null)
         {
             foreach (var child in loggerElement.ValidChildren)
             {
                 LoggingRule childRule = null;
                 if (child.MatchesName("filters"))
                 {
-                    ParseFilters(rule, child);
+                    ParseFilters(rule, child, filterDefaultAction);
                 }
                 else if (child.MatchesName("logger") && loggerElement.MatchesName("logger"))
                 {
@@ -765,22 +769,21 @@ namespace NLog.Config
             }
         }
 
-        private void ParseFilters(LoggingRule rule, ValidatedConfigurationElement filtersElement)
+        private void ParseFilters(LoggingRule rule, ValidatedConfigurationElement filtersElement, string filterDefaultAction = null)
         {
             filtersElement.AssertName("filters");
 
-            var defaultActionResult = filtersElement.GetOptionalValue("defaultAction", null);
-            if (defaultActionResult != null)
+            filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue("filterDefaultAction", null) ?? filterDefaultAction;
+            if (filterDefaultAction != null)
             {
-                SetPropertyValueFromString(rule, nameof(rule.DefaultFilterResult), defaultActionResult, filtersElement);
+                SetPropertyValueFromString(rule, nameof(rule.DefaultFilterResult), filterDefaultAction, filtersElement);
             }
 
             foreach (var filterElement in filtersElement.ValidChildren)
             {
-                string name = filterElement.Name;
-
-                Filter filter = FactoryCreateInstance(name, _serviceRepository.ConfigurationItemFactory.Filters);
-                ConfigureFromAttributesAndElements(filter, filterElement, false);
+                var filterType = filterElement.GetOptionalValue("type", null) ?? filterElement.Name;
+                Filter filter = FactoryCreateInstance(filterType, _serviceRepository.ConfigurationItemFactory.Filters);
+                ConfigureFromAttributesAndElements(filter, filterElement, true);
                 rule.Filters.Add(filter);
             }
         }
@@ -1041,7 +1044,7 @@ namespace NLog.Config
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException($"Error when setting property '{propertyName}'='{propertyValue}' on {targetObject?.GetType()} in section '{element.Name}'", ex);
+                var configException = new NLogConfigurationException(ex, $"Error when setting value '{propertyValue}' for property '{propertyName}' on {targetObject?.GetType()} in section '{element.Name}'");
                 if (MustThrowConfigException(configException))
                     throw;
             }
