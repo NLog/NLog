@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### v4.7.9 (2021/03/25)
+### v4.7.9 (2021/03/24)
 
 #### Bugfixes
 - [#4349](https://github.com/NLog/NLog/pull/4349) Fixed TrimDirectorySeparators to not use the root-path on Linux (#4349) (@snakefoot)
