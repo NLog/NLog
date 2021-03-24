@@ -232,8 +232,8 @@ namespace NLog.UnitTests.Config
                         <target name='debug' type='Debug' layout='${message}' />
                     </targets>
                     <rules>
-                        <logger name='*' minlevel='debug' appendto='debug'>
-                            <filters defaultFilterResult='ignore'>
+                        <logger name='*' minlevel='debug' appendto='debug' filterDefaultAction='ignore'>
+                            <filters>
                                 <whenContains />
                             </filters>
                         </logger>

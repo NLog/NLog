@@ -4,6 +4,20 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v4.7.9 (2021/03/24)
+
+#### Bugfixes
+- [#4349](https://github.com/NLog/NLog/pull/4349) Fixed TrimDirectorySeparators to not use the root-path on Linux (#4349) (@snakefoot)
+- [#4353](https://github.com/NLog/NLog/pull/4353) Fixed FileTarget archive cleanup within same folder at startup (#4353) (@snakefoot)
+- [#4352](https://github.com/NLog/NLog/pull/4352) Fixed FileTarget archive cleanup when using short filename (#4352) (@snakefoot)
+
+#### Improvements
+- [#4326](https://github.com/NLog/NLog/pull/4326) Make it possible to extend the FuncLayoutRenderer (#4326) (@304NotModified)
+- [#4369](https://github.com/NLog/NLog/pull/4369) + [#4375](https://github.com/NLog/NLog/pull/4375) LoggingConfigurationParser - Recognize LoggingRule.FilterDefaultAction (#4369 + #4375) (@snakefoot)
+
+#### Performance
+- [#4337](https://github.com/NLog/NLog/pull/4337) JsonLayout - Avoid constant string-escape of JsonAttribute Name-property (#4337) (@snakefoot)
+
 ### V4.7.8 (2021/02/25)
 
 #### Bugfixes

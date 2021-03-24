@@ -28,17 +28,21 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-## Bug fixes
-- Fix TrimDirectorySeparators to handle root-path on Windows and Linux to load Nlog.config from root-path (#4316) (@snakefoot)
+## Bugfixes
+- Fixed TrimDirectorySeparators to not use the root-path on Linux (#4349) (@snakefoot)
+- Fixed FileTarget archive cleanup within same folder at startup (#4353) (@snakefoot)
+- Fixed FileTarget archive cleanup when using short filename (#4352) (@snakefoot)
 
 ## Improvements
-- Handle Breaking change with string.IndexOf(string) in .NET 5 (#4273) (@snakefoot)
-- Update docs, remove ArrayList in docs (#4301) (@304NotModified)
+- Make it possible to extend the FuncLayoutRenderer (#4326) (@304NotModified)
+- LoggingConfigurationParser - Recognize LoggingRule.FilterDefaultAction (#4369 + #4375) (@snakefoot)
+
+## Performance
+- JsonLayout - Avoid constant string-escape of JsonAttribute Name-property (#4337) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
 For all config options and platform support, check https://nlog-project.org/config/
-
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;console;email</PackageTags>
     <PackageIcon>N.png</PackageIcon>
