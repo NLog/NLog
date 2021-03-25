@@ -773,10 +773,10 @@ namespace NLog.Config
         {
             filtersElement.AssertName("filters");
 
-            filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue("filterDefaultAction", null) ?? filterDefaultAction;
+            filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue(nameof(rule.FilterDefaultAction), null) ?? filterDefaultAction;
             if (filterDefaultAction != null)
             {
-                SetPropertyValueFromString(rule, nameof(rule.DefaultFilterResult), filterDefaultAction, filtersElement);
+                SetPropertyValueFromString(rule, nameof(rule.FilterDefaultAction), filterDefaultAction, filtersElement);
             }
 
             foreach (var filterElement in filtersElement.ValidChildren)
