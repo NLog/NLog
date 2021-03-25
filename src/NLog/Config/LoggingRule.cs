@@ -186,7 +186,13 @@ namespace NLog.Config
         /// <summary>
         /// Default action if none of the filters match
         /// </summary>
-        public FilterResult DefaultFilterResult { get; set; } = FilterResult.Ignore;
+        [Obsolete("Replaced by FilterDefaultAction. Marked obsolete on NLog 5.0")]
+        public FilterResult DefaultFilterResult { get => FilterDefaultAction; set => FilterDefaultAction = value; }
+
+        /// <summary>
+        /// Default action if none of the filters match
+        /// </summary>
+        public FilterResult FilterDefaultAction { get; set; } = FilterResult.Ignore;
 
         /// <summary>
         /// Enables logging for a particular level.

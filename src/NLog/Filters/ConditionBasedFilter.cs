@@ -55,7 +55,7 @@ namespace NLog.Filters
         [RequiredParameter]
         public ConditionExpression Condition { get; set; }
 
-        internal FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
+        internal FilterResult FilterDefaultAction { get; set; } = FilterResult.Neutral;
 
         /// <summary>
         /// Checks whether log event should be logged or not.
@@ -74,7 +74,7 @@ namespace NLog.Filters
                 return Action;
             }
 
-            return DefaultFilterResult;
+            return FilterDefaultAction;
         }
     }
 }

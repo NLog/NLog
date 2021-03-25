@@ -163,9 +163,9 @@ namespace NLog
         /// </summary>
         /// <param name="filterChain">The filter chain.</param>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="defaultFilterResult">default result if there are no filters, or none of the filters decides.</param>
+        /// <param name="filterDefaultAction">default result if there are no filters, or none of the filters decides.</param>
         /// <returns>The result of the filter.</returns>
-        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult defaultFilterResult)
+        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult filterDefaultAction)
         {
             if (filterChain == null || filterChain.Count == 0) 
                 return FilterResult.Neutral;
@@ -184,7 +184,7 @@ namespace NLog
                     }
                 }
 
-                return defaultFilterResult;
+                return filterDefaultAction;
             }
             catch (Exception exception)
             {

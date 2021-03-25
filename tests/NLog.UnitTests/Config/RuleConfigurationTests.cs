@@ -76,7 +76,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
-            Assert.Equal(FilterResult.Ignore, rule.DefaultFilterResult);
+            Assert.Equal(FilterResult.Ignore, rule.FilterDefaultAction);
             Assert.Equal(4, rule.Levels.Count);
             Assert.Contains(LogLevel.Info, rule.Levels);
             Assert.Contains(LogLevel.Warn, rule.Levels);

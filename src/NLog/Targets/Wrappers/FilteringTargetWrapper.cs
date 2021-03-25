@@ -151,7 +151,7 @@ namespace NLog.Targets.Wrappers
             {
                 return null;
             }
-            return new ConditionBasedFilter { Condition = value, DefaultFilterResult = FilterResult.Ignore };
+            return new ConditionBasedFilter { Condition = value, FilterDefaultAction = FilterResult.Ignore };
         }
     }
 }
