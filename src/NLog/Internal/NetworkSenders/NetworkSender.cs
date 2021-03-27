@@ -178,7 +178,7 @@ namespace NLog.Internal.NetworkSenders
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList;
 #else
-                        var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;                        
+                        var addresses = Dns.GetHostAddressesAsync(uri.Host).ConfigureAwait(false).GetAwaiter().GetResult();
 #endif
                         foreach (var addr in addresses)
                         {
