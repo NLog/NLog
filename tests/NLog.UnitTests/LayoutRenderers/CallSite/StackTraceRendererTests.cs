@@ -159,6 +159,31 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void RenderStackTraceSeperator_raw()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace:format=Raw:separator= \=&gt; }' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            RenderMe("I am:");
+
+            AssertDebugLastMessageContains("debug", " => RenderStackTraceSeperator_raw at offset ");
+            AssertDebugLastMessageContains("debug", " => RenderMe at offset ");
+#if !MONO
+            AssertDebugLastMessageContains("debug", "StackTraceRendererTests.cs");
+#endif
+
+            string debugLastMessage = GetDebugLastMessage("debug");
+            int index0 = debugLastMessage.IndexOf(" => RenderStackTraceSeperator_raw at offset ");
+            int index1 = debugLastMessage.IndexOf(" => RenderMe at offset ");
+            Assert.True(index0 < index1);
+        }
+
+        [Fact]
         public void RenderStackTraceReversed_raw()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
