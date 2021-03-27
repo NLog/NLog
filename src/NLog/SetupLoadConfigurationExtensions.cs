@@ -158,15 +158,15 @@ namespace NLog
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="filter">Filter for controlling whether to write</param>
-        /// <param name="defaultFilterResult">Default action if none of the filters match</param>
-        public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Filter filter, FilterResult? defaultFilterResult = null)
+        /// <param name="filterDefaultAction">Default action if none of the filters match</param>
+        public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Filter filter, FilterResult? filterDefaultAction = null)
         {
             if (filter == null)
                 throw new ArgumentNullException(nameof(filter));
 
             configBuilder.LoggingRule.Filters.Add(filter);
-            if (defaultFilterResult.HasValue)
-                configBuilder.LoggingRule.DefaultFilterResult = defaultFilterResult.Value;
+            if (filterDefaultAction.HasValue)
+                configBuilder.LoggingRule.FilterDefaultAction = filterDefaultAction.Value;
             return configBuilder;
         }
 
