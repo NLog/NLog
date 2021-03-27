@@ -178,10 +178,16 @@ namespace NLog.Layouts
                 return parameterName;
             }
 
+            var parameterValue = new StringBuilder(parameterName);
+            ParseLayoutParameterValue(sr, parameterValue);
+            return parameterValue.ToString();
+        }
+
+        private static void ParseLayoutParameterValue(SimpleStringReader sr, StringBuilder parameterValue)
+        {
             int ch;
             int nestLevel = 0;
 
-            var nameBuf = new StringBuilder(parameterName);
             while ((ch = sr.Peek()) != -1)
             {
                 if ((ch == '=' || EndOfLayout(ch)) && nestLevel == 0)
@@ -192,10 +198,10 @@ namespace NLog.Layouts
                 if (ch == '$')
                 {
                     sr.Read();
-                    nameBuf.Append('$');
+                    parameterValue.Append('$');
                     if (sr.Peek() == '{')
                     {
-                        nameBuf.Append('{');
+                        parameterValue.Append('{');
                         nestLevel++;
                         sr.Read();
                     }
@@ -214,21 +220,19 @@ namespace NLog.Layouts
                     ch = sr.Peek();
                     if (nestLevel == 0 && (EndOfLayout(ch) || ch == '$' || ch == '='))
                     {
-                        nameBuf.Append((char)sr.Read());
+                        parameterValue.Append((char)sr.Read());
                     }
                     else if (ch != -1)
                     {
-                        nameBuf.Append('\\');
-                        nameBuf.Append((char)sr.Read());
+                        parameterValue.Append('\\');
+                        parameterValue.Append((char)sr.Read());
                     }
                     continue;
                 }
 
-                nameBuf.Append((char)ch);
+                parameterValue.Append((char)ch);
                 sr.Read();
             }
-
-            return nameBuf.ToString();
         }
 
         private static string ParseParameterValue(SimpleStringReader sr)
