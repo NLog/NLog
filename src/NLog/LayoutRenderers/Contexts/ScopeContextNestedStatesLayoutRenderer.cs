@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
 
                 string currentSeparator = string.Empty;
 
-                using (var scopeEnumerator = new ScopeContext.ScopePropertiesEnumerator<object>(propertyList))
+                using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(propertyList))
                 {
                     while (scopeEnumerator.MoveNext())
                     {
@@ -220,7 +220,7 @@ namespace NLog.LayoutRenderers
                     return false;   // Too many combinations
             }
 #endif
-            return ScopeContext.ScopePropertiesEnumerator<object>.HasUniqueCollectionKeys(propertyList, StringComparer.Ordinal);
+            return ScopeContextPropertyEnumerator<object>.HasUniqueCollectionKeys(propertyList, StringComparer.Ordinal);
         }
     }
 }
