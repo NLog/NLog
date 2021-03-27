@@ -90,7 +90,15 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
-        public bool Error { get; set; }
+        [Obsolete("Replaced by StdErr to align with ColoredConsoleTarget. Marked obsolete on NLog 5.0")]
+        public bool Error { get => StdErr; set => StdErr = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        [DefaultValue(false)]
+        public bool StdErr { get; set; }
 
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
@@ -128,7 +136,7 @@ namespace NLog.Targets
         public bool AutoFlush { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to enable batch writing using char[]-buffers, instead of using <see cref="Console.WriteLine()"/>
+        /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
@@ -372,7 +380,7 @@ namespace NLog.Targets
 
         private TextWriter GetOutput()
         {
-            return Error ? Console.Error : Console.Out;
+            return StdErr ? Console.Error : Console.Out;
         }
     }
 }
