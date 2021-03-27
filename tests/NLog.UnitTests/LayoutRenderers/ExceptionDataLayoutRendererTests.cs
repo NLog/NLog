@@ -34,17 +34,12 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
-    using NLog.LayoutRenderers;
-    using NLog.Layouts;
-    using NLog.Targets;
-    using NLog.Internal;
     using Xunit;
     using NLog.Config;
 
     public class ExceptionDataLayoutRendererTests : NLogTestBase
     {
-        private ILogger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionDataLayoutRendererTests");
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionDataLayoutRendererTests");
 
         [Fact]
         public void ExceptionWithDataItemIsLoggedTest()

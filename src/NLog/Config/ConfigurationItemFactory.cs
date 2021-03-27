@@ -419,7 +419,7 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var nlogAssembly = typeof(ILogger).GetAssembly();
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
             var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
             factory.RegisterExternalItems();
             return factory;
@@ -431,7 +431,7 @@ namespace NLog.Config
             try
             {
                 var factory = logFactory.ServiceRepository.ConfigurationItemFactory;
-                var nlogAssembly = typeof(ILogger).GetAssembly();
+                var nlogAssembly = typeof(LogFactory).GetAssembly();
                 var assemblyLocation = string.Empty;
                 var extensionDlls = ArrayHelper.Empty<string>();
                 var fileLocations = GetAutoLoadingFileLocations();
@@ -570,7 +570,7 @@ namespace NLog.Config
 
         internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
         {
-            var nlogAssembly = typeof(ILogger).GetAssembly();
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
             var assemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
             InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", assemblyLocation);
             if (!string.IsNullOrEmpty(assemblyLocation))

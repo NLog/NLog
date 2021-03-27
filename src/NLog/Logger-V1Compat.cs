@@ -3315,5 +3315,75 @@ namespace NLog
         #endregion
 
         // end of generated code
+
+        void ILoggerBase.LogException(LogLevel level, [Localizable(false)] string message, Exception exception)
+        {
+            Log(level, exception, message, NLog.Internal.ArrayHelper.Empty<object>());
+        }
+
+        void ILoggerBase.Log(LogLevel level, [Localizable(false)] string message, Exception exception)
+        {
+            Log(level, exception, message, NLog.Internal.ArrayHelper.Empty<object>());
+        }
+
+        void ILogger.TraceException([Localizable(false)] string message, Exception exception)
+        {
+            Trace(exception, message);
+        }
+
+        void ILogger.Trace([Localizable(false)] string message, Exception exception)
+        {
+            Trace(exception, message);
+        }
+
+        void ILogger.DebugException([Localizable(false)] string message, Exception exception)
+        {
+            Debug(exception, message);
+        }
+
+        void ILogger.Debug([Localizable(false)] string message, Exception exception)
+        {
+            Debug(exception, message);
+        }
+
+        void ILogger.InfoException([Localizable(false)] string message, Exception exception)
+        {
+            Info(exception, message);
+        }
+
+        void ILogger.Info([Localizable(false)] string message, Exception exception)
+        {
+            Info(exception, message);
+        }
+
+        void ILogger.WarnException([Localizable(false)] string message, Exception exception)
+        {
+            Warn(exception, message);
+        }
+
+        void ILogger.Warn([Localizable(false)] string message, Exception exception)
+        {
+            Warn(exception, message);
+        }
+
+        void ILogger.ErrorException([Localizable(false)] string message, Exception exception)
+        {
+            Error(exception, message);
+        }
+
+        void ILogger.Error([Localizable(false)] string message, Exception exception)
+        {
+            Error(exception, message);
+        }
+
+        void ILogger.FatalException([Localizable(false)] string message, Exception exception)
+        {
+            Fatal(exception, message);
+        }
+
+        void ILogger.Fatal([Localizable(false)] string message, Exception exception)
+        {
+            Fatal(exception, message);
+        }
     }
 }

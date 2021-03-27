@@ -162,7 +162,7 @@ namespace NLog.UnitTests.Internal
                 //this method gave issues
                 LogFactory.LogConfigurationInitialized();
 
-                ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+                var logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
                 for (var i = 0; i < times; ++i)
                 {

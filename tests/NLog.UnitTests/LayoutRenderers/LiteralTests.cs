@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "abcd");
         }

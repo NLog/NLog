@@ -56,7 +56,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
@@ -180,7 +180,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             AsyncMethod().Wait();
 

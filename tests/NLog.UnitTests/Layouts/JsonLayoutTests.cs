@@ -225,7 +225,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("B");
+            var logger = LogManager.GetLogger("B");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -257,7 +257,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("C");
+            var logger = LogManager.GetLogger("C");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -523,7 +523,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -600,7 +600,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -676,7 +676,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -756,7 +756,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -794,7 +794,7 @@ namespace NLog.UnitTests.Layouts
             </nlog>");
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -821,7 +821,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             // Act
             var logEventInfo = CreateLogEventWithExcluded();
@@ -858,7 +858,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             // Act
             var logEventInfo = CreateLogEventWithExcluded();
@@ -893,7 +893,7 @@ namespace NLog.UnitTests.Layouts
             </nlog>");
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -937,7 +937,7 @@ namespace NLog.UnitTests.Layouts
             </nlog>");
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -981,7 +981,7 @@ namespace NLog.UnitTests.Layouts
             </nlog>");
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -1009,7 +1009,7 @@ namespace NLog.UnitTests.Layouts
             </nlog>");
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -1043,7 +1043,7 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
             logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");

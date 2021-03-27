@@ -166,7 +166,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Trace("Test");
            
             AssertDebugCounter("debug", 0);

@@ -71,7 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
             ScopeContext.PushNestedState("baz2");
             ScopeContext.PushNestedState("baz3");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);

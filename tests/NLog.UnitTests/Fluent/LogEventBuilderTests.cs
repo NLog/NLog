@@ -31,27 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Globalization;
-using NLog.Config;
-using NLog.Targets;
-using NLog.UnitTests.Common;
-
 namespace NLog.UnitTests.Fluent
 {
     using System;
     using System.IO;
+    using System.Collections.Generic;
+    using NLog.Config;
+    using NLog.Targets;
     using Xunit;
-    using NLog.Fluent;
 
-    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
-    public class LogBuilderTests : NLogTestBase
+    public class LogEventBuilderTests : NLogTestBase
     {
         private static readonly Logger _logger = LogManager.GetLogger("logger1");
 
         private LogEventInfo _lastLogEventInfo;
 
-        public LogBuilderTests()
+        public LogEventBuilderTests()
         {
             var configuration = new LoggingConfiguration();
 
@@ -69,16 +64,20 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void TraceWrite()
         {
-            TraceWrite_internal(() => _logger.Trace());
+            LogWrite_internal(() => _logger.ForTraceEvent(), LogLevel.Trace);
         }
 
-#if !NET35 && !NET40
         [Fact]
-        public void TraceWrite_static_builder()
+        public void DebugWrite()
         {
-            TraceWrite_internal(() => Log.Trace(), true);
+            LogWrite_internal(() => _logger.ForDebugEvent(), LogLevel.Debug);
         }
-#endif
+
+        [Fact]
+        public void InfoWrite()
+        {
+            LogWrite_internal(() => _logger.ForInfoEvent(), LogLevel.Info);
+        }
 
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
@@ -87,17 +86,16 @@ namespace NLog.UnitTests.Fluent
         /// CATASTROPHIC ERROR OCCURRED:
         /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
         /// </remarks>
-        private void TraceWrite_internal(Func<LogBuilder> logBuilder, bool isStatic = false)
+        private void LogWrite_internal(Func<LogEventBuilder> logBuilder, LogLevel logLevel)
         {
             logBuilder()
                 .Message("This is a test fluent message.")
                 .Property("Test", "TraceWrite")
-                .Write();
+                .Log();
 
-
-            var loggerName = isStatic ? "LogBuilderTests" : "logger1";
+            var loggerName = "logger1";
             {
-                var expectedEvent = new LogEventInfo(LogLevel.Trace, loggerName, "This is a test fluent message.");
+                var expectedEvent = new LogEventInfo(logLevel, loggerName, "This is a test fluent message.");
                 expectedEvent.Properties["Test"] = "TraceWrite";
                 AssertLastLogEventTarget(expectedEvent);
             }
@@ -106,11 +104,11 @@ namespace NLog.UnitTests.Fluent
             logBuilder()
                 .Message("This is a test fluent message '{0}'.", ticks)
                 .Property("Test", "TraceWrite")
-                .Write();
+                .Log();
 
             {
                 var rendered = $"This is a test fluent message '{ticks}'.";
-                var expectedEvent = new LogEventInfo(LogLevel.Trace, loggerName, "This is a test fluent message '{0}'.");
+                var expectedEvent = new LogEventInfo(logLevel, loggerName, "This is a test fluent message '{0}'.");
                 expectedEvent.Properties["Test"] = "TraceWrite";
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessage("t2", rendered);
@@ -127,9 +125,9 @@ namespace NLog.UnitTests.Fluent
 
             };
 
-            _logger.Trace()
+            _logger.ForTraceEvent()
                 .Message("This is a test fluent message.")
-                .Properties(props).Write();
+                .Properties(props).Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent message.");
@@ -149,9 +147,9 @@ namespace NLog.UnitTests.Fluent
 
             };
 
-            _logger.Warn()
+            _logger.ForWarnEvent()
                 .Message("This is a test fluent message.")
-                .Properties(props).Write();
+                .Properties(props).Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Warn, "logger1", "This is a test fluent message.");
@@ -173,16 +171,16 @@ namespace NLog.UnitTests.Fluent
             // Loop to verify caller-attribute-caching-lookup
             for (int i = 0; i < 2; ++i)
             {
-                _logger.Log(LogLevel.Fatal)
+                _logger.ForLogEvent(LogLevel.Fatal)
                     .Message("This is a test fluent message.")
-                    .Properties(props).Write();
+                    .Properties(props).Log();
 
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
                 expectedEvent.Properties["prop1"] = "1";
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
 
-#if !NET35 && !NET40
+#if !NET35
                 Assert.Equal(GetType().ToString(), _lastLogEventInfo.CallerClassName);
 #endif
             }
@@ -201,16 +199,15 @@ namespace NLog.UnitTests.Fluent
             {
                 {"prop1", "4"},
                 {"prop2", "5"},
-
             };
 
-            _logger.Log(LogLevel.Fatal)
+            _logger.ForLogEvent(LogLevel.Fatal)
                 .Message("This is a test fluent message.")
-                .Properties(props).Write();
+                .Properties(props).Log();
 
-            _logger.Log(LogLevel.Off)
+            _logger.ForLogEvent(LogLevel.Off)
                 .Message("dont log this.")
-                .Properties(props2).Write();
+                .Properties(props2).Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
@@ -220,37 +217,13 @@ namespace NLog.UnitTests.Fluent
             }
         }
 
-#if !NET35 && !NET40
-        [Fact]
-        public void LevelWriteProperties()
-        {
-            var props = new Dictionary<string, object>
-            {
-                {"prop1", "1"},
-                {"prop2", "2"},
-
-            };
-
-            Log.Level(LogLevel.Fatal)
-                .Message("This is a test fluent message.")
-                .Properties(props).Write();
-
-            {
-                var expectedEvent = new LogEventInfo(LogLevel.Fatal, "LogBuilderTests", "This is a test fluent message.");
-                expectedEvent.Properties["prop1"] = "1";
-                expectedEvent.Properties["prop2"] = "2";
-                AssertLastLogEventTarget(expectedEvent);
-            }
-        }
-#endif
-
         [Fact]
         public void TraceIfWrite()
         {
-            _logger.Trace()
+            _logger.ForTraceEvent()
                 .Message("This is a test fluent message.1")
                 .Property("Test", "TraceWrite")
-                .Write();
+                .Log();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent message.1");
@@ -259,10 +232,10 @@ namespace NLog.UnitTests.Fluent
             }
 
             int v = 1;
-            _logger.Trace()
+            _logger.ForTraceEvent()
                 .Message("This is a test fluent WriteIf message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .WriteIf(() => v == 1);
+                .Log(v == 1 ? null : LogLevel.Off);
 
 
             {
@@ -272,10 +245,10 @@ namespace NLog.UnitTests.Fluent
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
             }
 
-            _logger.Trace()
+            _logger.ForTraceEvent()
                 .Message("dont write this! '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .WriteIf(() => { return false; });
+                .Log(LogLevel.Off);
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent WriteIf message '{0}'.");
@@ -284,10 +257,10 @@ namespace NLog.UnitTests.Fluent
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
             }
 
-            _logger.Trace()
+            _logger.ForTraceEvent()
                 .Message("This is a test fluent WriteIf message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .WriteIf(v == 1);
+                .Log(v == 1 ? null : LogLevel.Off);
 
 
             {
@@ -297,11 +270,10 @@ namespace NLog.UnitTests.Fluent
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
             }
 
-            _logger.Trace()
+            _logger.ForTraceEvent()
                 .Message("Should Not WriteIf message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
-                .WriteIf(v > 1);
-
+                .Log(v > 1 ? null : LogLevel.Off);
 
             {
                 //previous
@@ -311,108 +283,34 @@ namespace NLog.UnitTests.Fluent
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
             }
         }
-
-        [Fact]
-        public void InfoWrite()
-        {
-            InfoWrite_internal(() => _logger.Info());
-        }
-
-#if !NET35 && !NET40
-        [Fact]
-        public void InfoWrite_static_builder()
-        {
-            InfoWrite_internal(() => Log.Info(), true);
-        }
-#endif
-
-        ///<remarks>
-        /// func because 1 logbuilder creates 1 message
-        /// 
-        /// Caution: don't use overloading, that will break xUnit:
-        /// CATASTROPHIC ERROR OCCURRED:
-        /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
-        /// </remarks>
-        private void InfoWrite_internal(Func<LogBuilder> logBuilder, bool isStatic = false)
-        {
-            logBuilder()
-                .Message("This is a test fluent message.")
-                .Property("Test", "InfoWrite")
-                .Write();
-
-            var loggerName = isStatic ? "LogBuilderTests" : "logger1";
-            {
-                //previous
-                var expectedEvent = new LogEventInfo(LogLevel.Info, loggerName, "This is a test fluent message.");
-                expectedEvent.Properties["Test"] = "InfoWrite";
-                AssertLastLogEventTarget(expectedEvent);
-            }
-
-            logBuilder()
-                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
-                .Property("Test", "InfoWrite")
-                .Write();
-
-            {
-                //previous
-                var expectedEvent = new LogEventInfo(LogLevel.Info, loggerName, "This is a test fluent message '{0}'.");
-                expectedEvent.Properties["Test"] = "InfoWrite";
-                AssertLastLogEventTarget(expectedEvent);
-                AssertDebugLastMessageContains("t2", "This is a test fluent message '");
-            }
-        }
-
-        [Fact]
-        public void DebugWrite()
-        {
-            ErrorWrite_internal(() => _logger.Debug(), LogLevel.Debug);
-        }
-
-#if !NET35 && !NET40
-        [Fact]
-        public void DebugWrite_static_builder()
-        {
-            ErrorWrite_internal(() => Log.Debug(), LogLevel.Debug, true);
-        }
-#endif
 
         [Fact]
         public void FatalWrite()
         {
-            ErrorWrite_internal(() => _logger.Fatal(), LogLevel.Fatal);
+            LogWriteException_internal((ex) => _logger.ForFatalEvent().Exception(ex), LogLevel.Fatal);
         }
-
-#if !NET35 && !NET40
-        [Fact]
-        public void FatalWrite_static_builder()
-        {
-            ErrorWrite_internal(() => Log.Fatal(), LogLevel.Fatal, true);
-        }
-#endif
 
         [Fact]
         public void ErrorWrite()
         {
-            ErrorWrite_internal(() => _logger.Error(), LogLevel.Error);
+            LogWriteException_internal((ex) => _logger.ForErrorEvent().Exception(ex), LogLevel.Error);
         }
 
-#if !NET35 && !NET40
         [Fact]
-        public void ErrorWrite_static_builder()
+        public void ExceptionWrite()
         {
-            ErrorWrite_internal(() => Log.Error(), LogLevel.Error, true);
+            LogWriteException_internal((ex) => _logger.ForExceptionEvent(ex), LogLevel.Error);
         }
-#endif
 
         [Fact]
         public void LogBuilder_null_lead_to_ArgumentNullException()
         {
             var logger = LogManager.GetLogger("a");
-            Assert.Throws<ArgumentNullException>(() => new LogBuilder(null, LogLevel.Debug));
-            Assert.Throws<ArgumentNullException>(() => new LogBuilder(null));
-            Assert.Throws<ArgumentNullException>(() => new LogBuilder(logger, null));
+            Assert.Throws<ArgumentNullException>(() => new LogEventBuilder(null, LogLevel.Debug));
+            Assert.Throws<ArgumentNullException>(() => new LogEventBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new LogEventBuilder(logger, null));
 
-            var logBuilder = new LogBuilder(logger);
+            var logBuilder = new LogEventBuilder(logger);
             Assert.Throws<ArgumentNullException>(() => logBuilder.Properties(null));
             Assert.Throws<ArgumentNullException>(() => logBuilder.Property(null, "b"));
         }
@@ -421,9 +319,9 @@ namespace NLog.UnitTests.Fluent
         public void LogBuilder_nLogEventInfo()
         {
             var d = new DateTime(2015, 01, 30, 14, 30, 5);
-            var logEventInfo = new LogBuilder(LogManager.GetLogger("a")).LoggerName("b").Level(LogLevel.Fatal).TimeStamp(d).LogEventInfo;
+            var logEventInfo = new LogEventBuilder(LogManager.GetLogger("a"), LogLevel.Fatal).TimeStamp(d).LogEvent;
 
-            Assert.Equal("b", logEventInfo.LoggerName);
+            Assert.Equal("a", logEventInfo.LoggerName);
             Assert.Equal(LogLevel.Fatal, logEventInfo.Level);
             Assert.Equal(d, logEventInfo.TimeStamp);
         }
@@ -433,18 +331,12 @@ namespace NLog.UnitTests.Fluent
         {
             var ex = new Exception("Exception message1");
 
-            _logger.Error()
-            .Exception(ex)
-            .Write();
+            _logger.ForErrorEvent()
+                .Exception(ex)
+                .Log();
 
-            var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", null) { Exception = ex };
+            var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", ex.Message) { Exception = ex };
             AssertLastLogEventTarget(expectedEvent);
-        }
-
-        [Fact]
-        public void LogBuilder_null_logLevel()
-        {
-            Assert.Throws<ArgumentNullException>(() => _logger.Error().Level(null));
         }
 
         [Fact]
@@ -452,24 +344,26 @@ namespace NLog.UnitTests.Fluent
         {
             LogManager.ThrowExceptions = true;
 
-            _logger.Debug()
+            _logger.ForDebugEvent();
+
+            _logger.ForDebugEvent()
               .Message("Message with {0} arg", 1)
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with 1 arg");
 
-            _logger.Debug()
+            _logger.ForDebugEvent()
               .Message("Message with {0} args. {1}", 2, "YES")
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with 2 args. YES");
 
-            _logger.Debug()
+            _logger.ForDebugEvent()
               .Message("Message with {0} args. {1} {2}", 3, ":) ", 2)
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with 3 args. :)  2");
 
-            _logger.Debug()
+            _logger.ForDebugEvent()
               .Message("Message with {0} args. {1} {2}{3}", "more", ":) ", 2, "b")
-              .Write();
+              .Log();
             AssertDebugLastMessage("t2", "Message with more args. :)  2b");
         }
 
@@ -484,24 +378,34 @@ namespace NLog.UnitTests.Fluent
 
             LogManager.Configuration.DefaultCultureInfo = GetCultureInfo("en-US");
 
-            _logger.Debug()
+            _logger.ForDebugEvent()
              .Message("Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
-             .Write();
+             .Log();
             AssertDebugLastMessage("t2", "Message with 4.1 4.001 12/31/2016 12:00:00 AM True");
 
-            _logger.Debug()
+            _logger.ForDebugEvent()
            .Message(GetCultureInfo("nl-nl"), "Message with {0} {1} {2} {3}", 4.1, 4.001, new DateTime(2016, 12, 31), true)
-           .Write();
+           .Log();
             AssertDebugLastMessage("t2", "Message with 4,1 4,001 31-12-2016 00:00:00 True");
         }
 
         [Fact]
         public void LogBuilder_Structured_Logging_Test()
         {
-            var logEvent = _logger.Info().Property("Property1Key", "Property1Value").Message("{@message}", "My custom message").LogEventInfo;
+            var logEvent = _logger.ForInfoEvent().Property("Property1Key", "Property1Value").Message("{@message}", "My custom message").LogEvent;
             Assert.NotEmpty(logEvent.Properties);
             Assert.Contains("message", logEvent.Properties.Keys);
             Assert.Contains("Property1Key", logEvent.Properties.Keys);
+        }
+
+        [Fact]
+        public void LogBuilder_Callsite_Test()
+        {
+            var logEvent = _logger.ForInfoEvent().Callsite(nameof(LogEventInfo.CallerClassName), nameof(LogEventInfo.CallerMemberName), nameof(LogEventInfo.CallerFilePath), 42).LogEvent;
+            Assert.Equal(nameof(LogEventInfo.CallerClassName), logEvent.CallerClassName);
+            Assert.Equal(nameof(LogEventInfo.CallerMemberName), logEvent.CallerMemberName);
+            Assert.Equal(nameof(LogEventInfo.CallerFilePath), logEvent.CallerFilePath);
+            Assert.Equal(42, logEvent.CallerLineNumber);
         }
 
         ///<remarks>
@@ -511,7 +415,7 @@ namespace NLog.UnitTests.Fluent
         /// CATASTROPHIC ERROR OCCURRED:
         /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
         /// </remarks>
-        private void ErrorWrite_internal(Func<LogBuilder> logBuilder, LogLevel logLevel, bool isStatic = false)
+        private void LogWriteException_internal(Func<Exception, LogEventBuilder> logBuilder, LogLevel logLevel)
         {
             Exception catchedException = null;
             string path = "blah.txt";
@@ -523,14 +427,13 @@ namespace NLog.UnitTests.Fluent
             catch (Exception ex)
             {
                 catchedException = ex;
-                logBuilder()
+                logBuilder(ex)
                     .Message("Error reading file '{0}'.", path)
-                    .Exception(ex)
                     .Property("Test", "ErrorWrite")
-                    .Write();
+                    .Log();
             }
 
-            var loggerName = isStatic ? "LogBuilderTests" : "logger1";
+            var loggerName = "logger1";
             {
                 var expectedEvent = new LogEventInfo(logLevel, loggerName, "Error reading file '{0}'.");
                 expectedEvent.Properties["Test"] = "ErrorWrite";
@@ -538,10 +441,10 @@ namespace NLog.UnitTests.Fluent
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "Error reading file '");
             }
-            logBuilder()
+            logBuilder(null)
                 .Message("This is a test fluent message.")
                 .Property("Test", "ErrorWrite")
-                .Write();
+                .Log();
 
             {
                 var expectedEvent = new LogEventInfo(logLevel, loggerName, "This is a test fluent message.");
@@ -549,10 +452,10 @@ namespace NLog.UnitTests.Fluent
                 AssertLastLogEventTarget(expectedEvent);
             }
 
-            logBuilder()
+            logBuilder(null)
                 .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "ErrorWrite")
-                .Write();
+                .Log();
 
             {
                 var expectedEvent = new LogEventInfo(logLevel, loggerName, "This is a test fluent message '{0}'.");
