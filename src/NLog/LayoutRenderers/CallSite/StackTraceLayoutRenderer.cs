@@ -83,7 +83,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" => ")]
-        public string Separator { get; set; }
+        public string Separator { get => _separator ?? " => "; set => _separator = value ?? ""; }
+        private string _separator;
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
@@ -178,12 +179,15 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static void AppendRaw(StringBuilder builder, StackFrameList stackFrameList)
+        private void AppendRaw(StringBuilder builder, StackFrameList stackFrameList)
         {
+            string separator = string.Empty;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
+                builder.Append(separator);
                 StackFrame f = stackFrameList[i];
                 builder.Append(f.ToString());
+                separator = _separator;
             }
         }
 
