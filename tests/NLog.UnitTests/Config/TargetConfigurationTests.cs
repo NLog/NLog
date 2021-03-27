@@ -92,6 +92,24 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void TargetWithLayoutHasUniqueLayout()
+        {
+            var target1 = new StructuredDebugTarget();
+            var target2 = new StructuredDebugTarget();
+            var simpleLayout1 = target1.Layout as SimpleLayout;
+            var simpleLayout2 = target2.Layout as SimpleLayout;
+
+            // Ensure the default Layout for two Targets are not reusing objects
+            // As it would cause havoc with initializing / closing lifetime-events
+            Assert.NotSame(simpleLayout1, simpleLayout2);
+            Assert.Equal(simpleLayout1.Renderers.Count, simpleLayout1.Renderers.Count);
+            for (int i = 0; i < simpleLayout1.Renderers.Count; ++i)
+            {
+                Assert.NotSame(simpleLayout1.Renderers[i], simpleLayout2.Renderers[i]);
+            }
+        }
+
+        [Fact]
         public void NestedXmlConfigElementTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"

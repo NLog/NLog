@@ -42,6 +42,18 @@ namespace NLog.Targets
     /// </summary>
     public abstract class TargetWithLayout : Target
     {
+        private const string DefaultLayoutText = "${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}";
+        private static NLog.LayoutRenderers.LayoutRenderer[] DefaultLayout => new NLog.LayoutRenderers.LayoutRenderer[]
+        {
+            new NLog.LayoutRenderers.LongDateLayoutRenderer(),
+            new NLog.LayoutRenderers.LiteralLayoutRenderer("|"),
+            new NLog.LayoutRenderers.LevelLayoutRenderer() { Uppercase = true },
+            new NLog.LayoutRenderers.LiteralLayoutRenderer("|"),
+            new NLog.LayoutRenderers.LoggerNameLayoutRenderer(),
+            new NLog.LayoutRenderers.LiteralLayoutRenderer("|"),
+            new NLog.LayoutRenderers.MessageLayoutRenderer() { WithException = true },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetWithLayout" /> class.
         /// </summary>
@@ -51,7 +63,7 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "This one is safe.")]
         protected TargetWithLayout()
         {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}";
+            Layout = new SimpleLayout(DefaultLayout, DefaultLayoutText, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -62,7 +74,7 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}")]
+        [DefaultValue(DefaultLayoutText)]
         public virtual Layout Layout { get; set; }
    }
 }
