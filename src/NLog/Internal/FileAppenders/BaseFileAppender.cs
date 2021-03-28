@@ -317,6 +317,29 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
+        protected static void CloseFileSafe(ref FileStream fileStream, string fileName)
+        {
+            if (fileStream == null)
+            {
+                return;
+            }
+
+            InternalLogger.Trace("FileTarget: Closing '{0}'", fileName);
+            try
+            {
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                InternalLogger.Warn(ex, "FileTarget: Failed to close file '{0}'", fileName);
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));    // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                fileStream = null;
+            }
+        }
 
         protected static bool MonitorForEnableFileDeleteEvent(string fileName, ref DateTime lastSimpleMonitorCheckTimeUtc)
         {

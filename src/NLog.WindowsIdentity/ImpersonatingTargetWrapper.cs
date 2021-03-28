@@ -150,7 +150,7 @@ namespace NLog.Targets.Wrappers
 
             if (_newIdentity != null)
             {
-                _newIdentity.Dispose();
+                _newIdentity.Close();
                 _newIdentity = null;
             }
         }
@@ -235,13 +235,18 @@ namespace NLog.Targets.Wrappers
 #endif
             }
 
-            public void Dispose()
+            public void Close()
             {
                 Handle.Dispose();
 #if !NETSTANDARD
                 if (_handle != IntPtr.Zero)
                     NativeMethods.CloseHandle(_handle);
 #endif
+            }
+
+            public void Dispose()
+            {
+                Close();
             }
 
             internal static void RunImpersonated<T>(NewIdentityHandle newIdentity, Action<T> executeOperation, T state)

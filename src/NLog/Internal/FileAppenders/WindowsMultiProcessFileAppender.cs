@@ -66,9 +66,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (_fileStream != null)
-                    _fileStream.Dispose();
-                _fileStream = null;
+                CloseFileSafe(ref _fileStream, fileName);
                 throw;
             }
         }
@@ -141,9 +139,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (_fileStream != null)
-                    _fileStream.Dispose();
-                _fileStream = null;
+                CloseFileSafe(ref _fileStream, fileName);
                 throw;
             }
         }
