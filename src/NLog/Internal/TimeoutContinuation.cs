@@ -87,7 +87,6 @@ namespace NLog.Internal
         public void Dispose()
         {
             StopTimer();
-            GC.SuppressFinalize(this);
         }
 
         private void StopTimer()
