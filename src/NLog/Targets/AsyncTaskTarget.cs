@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET35
+
 namespace NLog.Targets
 {
-#if !NET35
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -509,51 +510,42 @@ namespace NLog.Targets
 #else
                 new TaskCompletionSource<object>();
 #endif
-
-            try
+            return firstTask.ContinueWith(t =>
             {
-                return firstTask.ContinueWith(t =>
+                if (t.IsFaulted || t.IsCanceled)
                 {
-                    if (t.IsFaulted || t.IsCanceled)
+                    if (t.Exception != null)
+                        tcs.TrySetException(t.Exception);
+
+                    Exception actualException = ExtractActualException(t.Exception);
+
+                    if (RetryFailedAsyncTask(actualException, cancellationToken, retryCount - 1, out var retryDelay))
                     {
-                        if (t.Exception != null)
-                            tcs.TrySetException(t.Exception);
-
-                        Exception actualException = ExtractActualException(t.Exception);
-
-                        if (RetryFailedAsyncTask(actualException, cancellationToken, retryCount - 1, out var retryDelay))
+                        InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", this, retryCount, retryDelay.TotalMilliseconds);
+                        AsyncHelpers.WaitForDelay(retryDelay);
+                        if (!cancellationToken.IsCancellationRequested)
                         {
-                            InternalLogger.Warn(actualException, "{0}: Write operation failed. {1} attempts left. Sleep {2} ms", this, retryCount, retryDelay.TotalMilliseconds);
-                            AsyncHelpers.WaitForDelay(retryDelay);
-                            if (!cancellationToken.IsCancellationRequested)
+                            Task retryTask;
+                            lock (SyncRoot)
                             {
-                                Task retryTask;
-                                lock (SyncRoot)
-                                {
-                                    retryTask = StartWriteAsyncTask(logEvents, cancellationToken);
-                                }
-                                if (retryTask != null)
-                                {
-                                    return WriteAsyncTaskWithRetry(retryTask, logEvents, cancellationToken, retryCount - 1);
-                                }
+                                retryTask = StartWriteAsyncTask(logEvents, cancellationToken);
+                            }
+                            if (retryTask != null)
+                            {
+                                return WriteAsyncTaskWithRetry(retryTask, logEvents, cancellationToken, retryCount - 1);
                             }
                         }
-
-                        InternalLogger.Warn(actualException, "{0}: Write operation failed after {1} retries", this, RetryCount - retryCount);
                     }
-                    else
-                    {
-                        tcs.SetResult(null);
-                    }
-                    return tcs.Task;
-                }, cancellationToken, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler).Unwrap();
-            }
-            catch (Exception ex)
-            {
-                tcs.SetException(ex);
-            }
 
-            return tcs.Task;
+                    InternalLogger.Warn(actualException, "{0}: Write operation failed after {1} retries", this, RetryCount - retryCount);
+                }
+                else
+                {
+                    tcs.SetResult(null);
+                }
+                return tcs.Task;
+
+            }, cancellationToken, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler).Unwrap();
         }
 
         /// <summary>
@@ -769,9 +761,7 @@ namespace NLog.Targets
 
                     if (previousTask != null)
                     {
-                        if (previousTask.Status != TaskStatus.Canceled &&
-                            previousTask.Status != TaskStatus.Faulted &&
-                            previousTask.Status != TaskStatus.RanToCompletion && !previousTask.Wait(100))
+                        if (!WaitTaskIsCompleted(previousTask, TimeSpan.FromMilliseconds(150)))
                         {
                             InternalLogger.Debug("{0}: WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this, previousTask.Status);
                         }
@@ -793,6 +783,17 @@ namespace NLog.Targets
             }
         }
 
+        private bool WaitTaskIsCompleted(Task task, TimeSpan timeout)
+        {
+            while (!task.IsCompleted && timeout > TimeSpan.Zero)
+            {
+                timeout -= TimeSpan.FromMilliseconds(10);
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(10));
+            }
+
+            return task.IsCompleted;
+        }
+
         private static Exception ExtractActualException(AggregateException taskException)
         {
             var flattenExceptions = taskException?.Flatten()?.InnerExceptions;
@@ -806,5 +807,6 @@ namespace NLog.Targets
             _cancelTokenSource.Token.Register(_taskCancelledTokenReInit);
         }
     }
-#endif
 }
+
+#endif

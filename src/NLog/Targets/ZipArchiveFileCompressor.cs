@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET35 && !NET40
+
 namespace NLog.Targets
 {
-#if !NET35 && !NET40
     using System.IO;
     using System.IO.Compression;
 
@@ -68,5 +69,6 @@ namespace NLog.Targets
             }
         }
     }
-#endif
 }
+
+#endif

@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NET35 || NET40 || NET45
 
 namespace NLog.Internal
 {
-#if NET35 || NET40 || NET45
     using System;
     using System.Runtime.Serialization;
     using NLog.Common;
@@ -105,5 +105,6 @@ namespace NLog.Internal
             return _wrapped ?? string.Empty;
         }
     }
-#endif
 }
+
+#endif

@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET35 && !NET40
+
 namespace NLog.Fluent
 {
-#if !NET35 && !NET40
     using System;
     using System.IO;
     using System.Runtime.CompilerServices;
@@ -148,5 +149,6 @@ namespace NLog.Fluent
             }
         }
     }
-#endif
 }
+
+#endif
