@@ -73,7 +73,6 @@ namespace NLog.Internal
         {
             FileChanged = null;   // Release event listeners
             StopWatching();
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
