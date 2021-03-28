@@ -218,7 +218,7 @@ namespace NLog.Targets
 
         private static bool IsFormatNameSyntax(string queue)
         {
-            return queue.ToLowerInvariant().IndexOf('=') != -1;
+            return queue.IndexOf('=') >= 0;
         }
     }
 

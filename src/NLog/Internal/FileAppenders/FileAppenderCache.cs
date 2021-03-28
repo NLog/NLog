@@ -293,9 +293,9 @@ namespace NLog.Internal.FileAppenders
                 _appenders[0] = newAppender;
                 appenderToWrite = newAppender;
 
+#if !NETSTANDARD1_3
                 if (CheckCloseAppenders != null)
                 {
-#if !NETSTANDARD1_3
                     if (freeSpot == 0)
                         _logFileWasArchived = false;
                     if (!string.IsNullOrEmpty(_archiveFilePatternToWatch))
@@ -307,8 +307,8 @@ namespace NLog.Internal.FileAppenders
                         _externalFileArchivingWatcher.Watch(_archiveFilePatternToWatch); // Always monitor the archive-folder
                     }
                     _externalFileArchivingWatcher.Watch(appenderToWrite.FileName); // Monitor the active file-appender
-#endif
                 }
+#endif
             }
             catch (Exception ex)
             {

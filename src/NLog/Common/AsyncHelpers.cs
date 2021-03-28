@@ -68,7 +68,7 @@ namespace NLog.Common
 #if !NETSTANDARD1_3
             Thread.Sleep(delay);
 #else
-            System.Threading.Tasks.Task.Delay(delay).Wait();
+            System.Threading.Tasks.Task.Delay(delay).ConfigureAwait(false).GetAwaiter().GetResult();
 #endif
         }
 
