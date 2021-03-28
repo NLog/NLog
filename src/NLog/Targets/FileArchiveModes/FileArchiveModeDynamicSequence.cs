@@ -36,7 +36,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using NLog.Common;
 using NLog.Internal;
 
 namespace NLog.Targets.FileArchiveModes
@@ -219,7 +218,7 @@ namespace NLog.Targets.FileArchiveModes
                         ++templatePos;
                     }
 
-                    if (fileNameChar == templateChar || char.ToLowerInvariant(fileNameChar) == char.ToLowerInvariant(templateChar))
+                    if (fileNameChar == templateChar || char.ToUpperInvariant(fileNameChar) == char.ToUpperInvariant(templateChar))
                     {
                         continue;
                     }
