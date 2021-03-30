@@ -417,7 +417,7 @@ namespace NLog.Config
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
 
-            var nlogElements = configurationElement.Elements("nlog").ToList();
+            var nlogElements = configurationElement.FilterChildren("nlog");
             foreach (var nlogElement in nlogElements)
             {
                 ParseNLogElement(nlogElement, filePath, autoReloadDefault);

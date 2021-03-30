@@ -1508,6 +1508,11 @@ namespace NLog.Config
                 }
                 return valueLookup ?? EmptyDefaultDictionary;
             }
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
     }
 }
