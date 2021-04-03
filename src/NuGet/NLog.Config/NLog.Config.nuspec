@@ -16,11 +16,11 @@ This package is not mandatory to get started with NLog: the configuration file c
 created manually (read specs here: https://github.com/NLog/NLog/wiki/Configuration-file) 
 or the configuration can be created programmatically. (read more here: https://github.com/NLog/NLog/wiki/Configuration-API) 
 
-Note: Unfortunately this package won't work well when using &lt;PackageReference&gt; 
+Note: Unfortunately this package won't work well when using &lt;PackageReference&gt;
 
 Advised to:
 
-- download manually: https://raw.githubusercontent.com/NLog/NLog/dev/src/NuGet/NLog.Config/content/NLog.config
+- download manually: https://raw.githubusercontent.com/NLog/NLog/v4.4/src/NuGet/NLog.Config/content/NLog.config
 - set "Copy To Output Directory" to "Copy if newer"
 
 </description>
