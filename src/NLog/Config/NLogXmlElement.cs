@@ -116,7 +116,7 @@ namespace NLog.Config
                         return Children.Where(item => !SingleValueElement(item)).Cast<ILoggingConfigurationElement>();
                 }
 
-                return NLog.Internal.ArrayHelper.Empty<ILoggingConfigurationElement>();
+                return ArrayHelper.Empty<ILoggingConfigurationElement>();
             }
         }
 
@@ -125,7 +125,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="elementName">Name of the element.</param>
         /// <returns>Children elements with the specified element name.</returns>
-        public IEnumerable<NLogXmlElement> Elements(string elementName)
+        public List<NLogXmlElement> FilterChildren(string elementName)
         {
             var result = new List<NLogXmlElement>();
 
@@ -223,6 +223,11 @@ namespace NLog.Config
             if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
                 return true;
             return false;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
