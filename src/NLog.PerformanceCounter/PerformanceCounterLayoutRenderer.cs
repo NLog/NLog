@@ -187,28 +187,19 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-                string instanceName = null;
                 using (Process proc = Process.GetCurrentProcess())
                 {
                     int pid = proc.Id;
                     PerformanceCounterCategory cat = new PerformanceCounterCategory(category);
                     foreach (string instanceValue in cat.GetInstanceNames())
                     {
-                        using (PerformanceCounter cnt = new PerformanceCounter(category, "ID Process", instanceValue, true))
+                        int val = GetProcessIdFromInstanceName(category, instanceValue);
+                        if (val == pid)
                         {
-                            int val = (int)cnt.RawValue;
-                            if (val == pid)
-                            {
-                                InternalLogger.Debug("PerformanceCounter - Found instance-name={0} from processId={1}", instanceValue, pid);
-                                instanceName = instanceValue;
-                                if (instanceValue?.IndexOf(proc.ProcessName, StringComparison.Ordinal) >= 0)
-                                    return instanceValue;   // Most likely this process, and not old state from recycled ProcessId
-                            }
+                            InternalLogger.Debug("PerformanceCounter - Found instance-name={0} from processId={1}", instanceValue, pid);
+                            return instanceValue;
                         }
                     }
-
-                    if (!string.IsNullOrEmpty(instanceName))
-                        return instanceName;
 
                     InternalLogger.Debug("PerformanceCounter - Failed to auto detect current process instance. ProcessId={0}", pid);
                 }
@@ -220,7 +211,26 @@ namespace NLog.LayoutRenderers
 
                 InternalLogger.Warn(ex, "PerformanceCounter - Failed to auto detect current process instance.");
             }
+
             return string.Empty;
+        }
+
+        private static int GetProcessIdFromInstanceName(string category, string instanceName)
+        {
+            try
+            {
+                using (PerformanceCounter cnt = new PerformanceCounter(category, "ID Process", instanceName, true))
+                {
+                    var val = (int)cnt.RawValue;
+                    return val;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Debug(ex, "PerformanceCounter - Skipped instance-name={0} since no longer valid.", instanceName);
+            }
+
+            return 0;
         }
 
         class PerformanceCounterCached
