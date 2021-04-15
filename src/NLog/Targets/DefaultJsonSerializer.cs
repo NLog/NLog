@@ -492,7 +492,7 @@ namespace NLog.Targets
             else
             {
                 string str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
+                if (!forceToString && !string.IsNullOrEmpty(str) && SkipQuotes(value, objTypeCode))
                 {
                     destination.Append(str);
                 }

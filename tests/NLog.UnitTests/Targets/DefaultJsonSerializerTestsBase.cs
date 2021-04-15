@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json.Linq;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Targets;
@@ -124,6 +125,25 @@ namespace NLog.UnitTests.Targets
             };
 
             var expected = "{\"Name\":\"TestObject\",\"Assets\":{\"First\":17}}";
+            var actual = SerializeObject(target);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReferenceLoopInDictionaryWithJObject_Test()
+        {
+            var d = new Dictionary<string, object>();
+            d.Add("First", 17);
+            d.Add("Loop", d);
+            var target = new Dictionary<string, object>
+            {
+                {"Name", "TestObject" },
+                {"Second", new JObject(new JProperty("subSecond", new JObject(new JProperty("nullValue",null))))},
+                {"Assets" , d },
+            };
+
+            var expected = "{\"Name\":\"TestObject\",\"Second\":{\"subSecond\":{\"nullValue\":\"\"}},\"Assets\":{\"First\":17}}";
             var actual = SerializeObject(target);
 
             Assert.Equal(expected, actual);
