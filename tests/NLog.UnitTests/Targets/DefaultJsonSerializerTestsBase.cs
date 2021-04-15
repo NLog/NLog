@@ -131,25 +131,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void ReferenceLoopInDictionaryWithJObject_Test()
-        {
-            var d = new Dictionary<string, object>();
-            d.Add("First", 17);
-            d.Add("Loop", d);
-            var target = new Dictionary<string, object>
-            {
-                {"Name", "TestObject" },
-                {"Second", new JObject(new JProperty("subSecond", new JObject(new JProperty("nullValue",null))))},
-                {"Assets" , d },
-            };
-
-            var expected = "{\"Name\":\"TestObject\",\"Second\":{\"subSecond\":{\"nullValue\":\"\"}},\"Assets\":{\"First\":17}}";
-            var actual = SerializeObject(target);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void ReferenceLoopInList_Test()
         {
             var d = new List<object>();
@@ -316,6 +297,18 @@ namespace NLog.UnitTests.Targets
             dictionary.Add("key 2", 1.3m);
             var actual = SerializeObject(dictionary);
             Assert.Equal("{\"key1\":13,\"key 2\":1.3}", actual);
+        }
+
+        [Fact]
+        public void SerializeDictWithJObject_Test()
+        {
+            var dictionary = new Dictionary<string, object>();
+            dictionary.Add("key1", new JObject(new JProperty("subKey1", new JObject(new JProperty("nullValue", null)))));
+            dictionary.Add("key 2", 1.3m);
+
+            var actual = SerializeObject(dictionary);
+
+            Assert.Equal("{\"key1\":{\"subKey1\":{\"nullValue\":\"\"}},\"key 2\":1.3}", actual);
         }
 
         [Fact]
