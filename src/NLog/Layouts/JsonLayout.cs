@@ -49,7 +49,7 @@ namespace NLog.Layouts
     {
         private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ConfigurationItemFactory.Default.JsonConverter));
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(ConfigurationItemFactory.Default.JsonConverter, MaxRecursionLimit, EscapeForwardSlash));
             set => _jsonConverter = value;
         }
         private LimitRecursionJsonConvert _jsonConverter;
@@ -66,11 +66,11 @@ namespace NLog.Layouts
             readonly Targets.DefaultJsonSerializer _serializer;
             readonly Targets.JsonSerializeOptions _serializerOptions;
 
-            public LimitRecursionJsonConvert(int maxRecursionLimit, IJsonConverter converter)
+            public LimitRecursionJsonConvert(IJsonConverter converter, int maxRecursionLimit, bool escapeForwardSlash)
             {
                 _converter = converter;
                 _serializer = converter as Targets.DefaultJsonSerializer;
-                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit) };
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit), EscapeForwardSlash = escapeForwardSlash };
             }
 
             public bool SerializeObject(object value, StringBuilder builder)
