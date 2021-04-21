@@ -773,35 +773,6 @@ namespace NLog
         {
             LogEventInfoPrepared?.Invoke(this, new LogEventInfoPreparedEventArgs(e));
         }
-
-        /// <summary>
-        /// Raises the event when the logger has prepared a new LogEventInfo
-        /// </summary>
-        /// <param name="e">LogEventInfo instance</param>
-        protected virtual void OnLogEventInfoPrepared(LogEventInfo e)
-        {
-            LogEventInfoPrepared?.Invoke(this, new LogEventInfoPreparedEventArgs(e));
-        }
-    }
-
-    /// <summary>
-    /// LogEventInfoPrepared EventArgs
-    /// </summary>
-    public class LogEventInfoPreparedEventArgs : EventArgs
-    {
-        /// <summary>
-        /// LogEventInfo
-        /// </summary>
-        public LogEventInfo LogEventInfo { get; private set; }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public LogEventInfoPreparedEventArgs(LogEventInfo evnt)
-        {
-            LogEventInfo = evnt;
-        }
-
     }
 
     /// <summary>
