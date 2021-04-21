@@ -73,6 +73,11 @@ namespace NLog
         public event EventHandler<EventArgs> LoggerReconfigured;
 
         /// <summary>
+        /// Occurs when logger has created the LogEventInfo
+        /// </summary>
+        public event EventHandler<LogEventInfo> LogEventInfoPrepared;
+
+        /// <summary>
         /// Gets the name of the logger.
         /// </summary>
         public string Name { get; private set; }
@@ -510,6 +515,7 @@ namespace NLog
                     }
                 }
             }
+            OnLogEventInfoPrepared(logEvent);
             return logEvent;
         }
 
@@ -757,6 +763,15 @@ namespace NLog
         protected virtual void OnLoggerReconfigured(EventArgs e)
         {
             LoggerReconfigured?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Raises the event when the logger has prepared a new LogEventInfo
+        /// </summary>
+        /// <param name="e">LogEventInfo instance</param>
+        protected virtual void OnLogEventInfoPrepared(LogEventInfo e)
+        {
+            LogEventInfoPrepared?.Invoke(this, e);
         }
     }
 }
