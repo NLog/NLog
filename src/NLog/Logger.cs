@@ -771,7 +771,7 @@ namespace NLog
         /// <param name="e">LogEventInfo instance</param>
         protected virtual void OnLogEventInfoPrepared(LogEventInfo e)
         {
-            LogEventInfoPrepared?.Invoke(this, e);
+            LogEventInfoPrepared?.Invoke(this, new LogEventInfoPreparedEventArgs(e));
         }
 
         /// <summary>
@@ -782,6 +782,26 @@ namespace NLog
         {
             LogEventInfoPrepared?.Invoke(this, new LogEventInfoPreparedEventArgs(e));
         }
+    }
+
+    /// <summary>
+    /// LogEventInfoPrepared EventArgs
+    /// </summary>
+    public class LogEventInfoPreparedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// LogEventInfo
+        /// </summary>
+        public LogEventInfo LogEventInfo { get; private set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public LogEventInfoPreparedEventArgs(LogEventInfo evnt)
+        {
+            LogEventInfo = evnt;
+        }
+
     }
 
     /// <summary>
