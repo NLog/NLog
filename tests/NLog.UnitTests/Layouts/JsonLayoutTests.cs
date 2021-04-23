@@ -1027,7 +1027,7 @@ namespace NLog.UnitTests.Layouts
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                  <layout type='JsonLayout' escapeForwardSlash='false'>
+                  <layout type='JsonLayout' escapeForwardSlash='false' includeAllProperties='true'>
                     <attribute name='myurl1' layout='${event-properties:myurl}' />
                     <attribute name='myurl2' layout='${event-properties:myurl}' escapeForwardSlash='true' />
                   </layout>
@@ -1044,7 +1044,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");
             logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\" }");
+            AssertDebugLastMessage("debug", "{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\", \"myurl\": \"http://hello.world.com/\" }");
         }
 
         [Fact]
