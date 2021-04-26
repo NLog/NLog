@@ -180,7 +180,7 @@ namespace NLog.UnitTests
             loggerA.Trace("---");
             AssertDebugLastMessage("debug", "---");
 
-            using (LogManager.DisableLogging())
+            using (LogManager.SuspendLogging())
             {
                 Assert.False(LogManager.IsLoggingEnabled());
 
@@ -234,7 +234,7 @@ namespace NLog.UnitTests
             loggerA.Trace("---");
             AssertDebugLastMessage("debug", "---");
 
-            LogManager.DisableLogging();
+            LogManager.SuspendLogging();
             Assert.False(LogManager.IsLoggingEnabled());
 
             // The last value of LastMessage before DisableLogging() should be returned.
@@ -245,7 +245,7 @@ namespace NLog.UnitTests
             loggerB.Error("EEE");
             AssertDebugLastMessage("debug", "---");
 
-            LogManager.EnableLogging();
+            LogManager.ResumeLogging();
 
             Assert.True(LogManager.IsLoggingEnabled());
 
