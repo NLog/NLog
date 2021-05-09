@@ -895,16 +895,16 @@ namespace NLog
                         if (sb != null)
                         {
                             sb.Length = 0;
-                            sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                            sb.AppendFormat(CultureInfo.InvariantCulture, "Logger {0} [{1}] =>", loggerName, LogLevel.FromOrdinal(i));
                         }
 
                         for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                         {
                             if (sb == null)
                             {
-                                InternalLogger.Debug("Targets configured when LogLevel >= {0} for logger: {1}", LogLevel.FromOrdinal(i), loggerName);
+                                InternalLogger.Debug("Targets configured when LogLevel >= {0} for Logger: {1}", LogLevel.FromOrdinal(i), loggerName);
                                 sb = new StringBuilder();
-                                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                                sb.AppendFormat(CultureInfo.InvariantCulture, "Logger {0} [{1}] =>", loggerName, LogLevel.FromOrdinal(i));
                             }
 
                             sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
@@ -920,7 +920,7 @@ namespace NLog
                 }
 
                 if (sb == null)
-                    InternalLogger.Debug("Targets not configured for logger: {0}", loggerName);
+                    InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
             }
 
             return new LoggerConfiguration(targetsByLevel);
