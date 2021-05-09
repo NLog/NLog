@@ -870,7 +870,7 @@ namespace NLog
             return targetsFound;
         }
 
-        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
+        internal LoggerConfiguration GetConfigurationForLogger(string loggerName, LoggingConfiguration configuration)
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
@@ -881,34 +881,46 @@ namespace NLog
             {
                 //no "System.InvalidOperationException: Collection was modified"
                 var loggingRules = configuration.GetLoggingRulesThreadSafe();
-                targetsFound = GetTargetsByLevelForLogger(name, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
             if (InternalLogger.IsDebugEnabled)
             {
+                StringBuilder sb = null;
+
                 if (targetsFound)
                 {
-                    InternalLogger.Debug("Targets for {0} by level:", name);
                     for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                     {
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                        if (sb != null)
+                        {
+                            sb.Length = 0;
+                            sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                        }
+
                         for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                         {
+                            if (sb == null)
+                            {
+                                InternalLogger.Debug("Targets configured when LogLevel >= {0} for logger: {1}", LogLevel.FromOrdinal(i), loggerName);
+                                sb = new StringBuilder();
+                                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                            }
+
                             sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
                             if (afc.FilterChain.Count > 0)
                             {
                                 sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
                             }
                         }
-
-                        InternalLogger.Debug(sb.ToString());
+                        
+                        if (sb != null)
+                            InternalLogger.Debug(sb.ToString());
                     }
                 }
-                else
-                {
-                    InternalLogger.Debug("Targets not configured for logger: {0}", name);
-                }
+
+                if (sb == null)
+                    InternalLogger.Debug("Targets not configured for logger: {0}", loggerName);
             }
 
             return new LoggerConfiguration(targetsByLevel);
