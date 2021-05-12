@@ -886,7 +886,7 @@ namespace NLog
 
             if (InternalLogger.IsDebugEnabled)
             {
-                targetsFound = targetsFound && CheckTargetsConfiguredForLogger(loggerName, targetsByLevel);
+                targetsFound = targetsFound && DumpTargetConfigurationForLogger(loggerName, targetsByLevel);
                 if (!targetsFound)
                     InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
             }
@@ -894,7 +894,7 @@ namespace NLog
             return new LoggerConfiguration(targetsByLevel);
         }
 
-        private static bool CheckTargetsConfiguredForLogger(string loggerName, TargetWithFilterChain[] targetsByLevel)
+        private static bool DumpTargetConfigurationForLogger(string loggerName, TargetWithFilterChain[] targetsByLevel)
         {
             StringBuilder sb = null;
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
