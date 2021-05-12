@@ -51,7 +51,10 @@ namespace NLog.Internal
         internal static bool IsNullOrWhiteSpace(string value)
         {
 #if NET3_5
-            return value?.Length > 0 ? string.IsNullOrEmpty(value.Trim()) : true;
+
+            if (value == null) return true;
+            if (value.Length == 0) return true;
+            return String.IsNullOrEmpty(value.Trim());
 #else
             return string.IsNullOrWhiteSpace(value);
 #endif
