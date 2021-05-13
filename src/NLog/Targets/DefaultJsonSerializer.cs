@@ -452,7 +452,7 @@ namespace NLog.Targets
 
         private void SerializeSimpleTypeCodeValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
-            if (value == null)
+            if (objTypeCode == TypeCode.Empty || value == null)
             {
                 destination.Append(forceToString ? "\"\"" : "null");
             }
@@ -492,7 +492,7 @@ namespace NLog.Targets
             else
             {
                 string str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
+                if (!forceToString && SkipQuotes(value, objTypeCode) && !string.IsNullOrEmpty(str))
                 {
                     destination.Append(str);
                 }
