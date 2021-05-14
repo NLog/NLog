@@ -450,7 +450,7 @@ namespace NLog.Targets
 
         private void SerializeSimpleTypeCodeValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
-            if (value == null)
+            if (objTypeCode == TypeCode.Empty || value == null)
             {
                 destination.Append(forceToString ? "\"\"" : "null");
             }

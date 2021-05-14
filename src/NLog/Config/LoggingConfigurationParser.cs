@@ -811,6 +811,7 @@ namespace NLog.Config
                 switch (targetElement.Name?.Trim().ToUpperInvariant())
                 {
                     case "DEFAULT-WRAPPER":
+                    case "TARGETDEFAULTWRAPPER":
                         if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
                             defaultWrapperElement = targetElement;
@@ -818,6 +819,7 @@ namespace NLog.Config
                         break;
 
                     case "DEFAULT-TARGET-PARAMETERS":
+                    case "TARGETDEFAULTPARAMETERS":
                         if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
                             typeNameToDefaultTargetParameters[targetTypeName.Trim()] = targetElement;

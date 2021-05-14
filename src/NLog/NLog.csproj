@@ -29,16 +29,11 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 
     <PackageReleaseNotes>
 ## Bugfixes
-- Fixed TrimDirectorySeparators to not use the root-path on Linux (#4349) (@snakefoot)
-- Fixed FileTarget archive cleanup within same folder at startup (#4353) (@snakefoot)
-- Fixed FileTarget archive cleanup when using short filename (#4352) (@snakefoot)
+- JsonSerializer - Fixed bug when handling custom IConvertible returning TypeCode.Empty (#4401) (@snakefoot)
 
 ## Improvements
-- Make it possible to extend the FuncLayoutRenderer (#4326) (@304NotModified)
-- LoggingConfigurationParser - Recognize LoggingRule.FilterDefaultAction (#4369 + #4375) (@snakefoot)
-
-## Performance
-- JsonLayout - Avoid constant string-escape of JsonAttribute Name-property (#4337) (@snakefoot)
+- Support TargetDefaultParameters and TargetDefaultWrapper (#4391) (@snakefoot)
+- JsonLayout - Apply EscapeForwardSlash for LogEventInfo.Properties (#4403) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

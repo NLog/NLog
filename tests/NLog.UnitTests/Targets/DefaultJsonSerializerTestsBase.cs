@@ -346,6 +346,16 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeCustomNullDict_Test()
+        {
+            var dictionary = new Dictionary<string, object>();
+            dictionary.Add("key1", 13);
+            dictionary.Add("key 2", new CustomNullProperty());
+            var actual = SerializeObject(dictionary);
+            Assert.Equal("{\"key1\":13,\"key 2\":null}", actual);
+        }
+
+        [Fact]
         public void SerializeTrickyDict_Test()
         {
             IDictionary<object,object> dictionary = new Internal.TrickyTestDictionary();
@@ -528,6 +538,31 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
         }
 
+        /// <summary>
+        /// Simulate behavior of JProperty("nullValue", null) from Newtonsoft.Json
+        /// </summary>
+        private class CustomNullProperty : IConvertible
+        {
+            TypeCode IConvertible.GetTypeCode() => TypeCode.Empty;
+            bool IConvertible.ToBoolean(IFormatProvider provider) => default(bool);
+            byte IConvertible.ToByte(IFormatProvider provider) => default(byte);
+            char IConvertible.ToChar(IFormatProvider provider) => default(char);
+            DateTime IConvertible.ToDateTime(IFormatProvider provider) => default(DateTime);
+            decimal IConvertible.ToDecimal(IFormatProvider provider) => default(decimal);
+            double IConvertible.ToDouble(IFormatProvider provider) => default(double);
+            short IConvertible.ToInt16(IFormatProvider provider) => default(short);
+            int IConvertible.ToInt32(IFormatProvider provider) => default(int);
+            long IConvertible.ToInt64(IFormatProvider provider) => default(long);
+            sbyte IConvertible.ToSByte(IFormatProvider provider) => default(sbyte);
+            float IConvertible.ToSingle(IFormatProvider provider) => default(float);
+            string IConvertible.ToString(IFormatProvider provider) => default(string);
+            object IConvertible.ToType(Type conversionType, IFormatProvider provider) => default(object);
+            ushort IConvertible.ToUInt16(IFormatProvider provider) => default(ushort);
+            uint IConvertible.ToUInt32(IFormatProvider provider) => default(uint);
+            ulong IConvertible.ToUInt64(IFormatProvider provider) => default(ulong);
+            public override string ToString() => "nullValue";
+        }
+
 #if !NET35 && !NET40
 
         [Fact]
@@ -636,7 +671,7 @@ namespace NLog.UnitTests.Targets
 
         protected class NoPropsObject
         {
-            private string something = "something";
+            private readonly string something = "something";
 
             #region Overrides of Object
 

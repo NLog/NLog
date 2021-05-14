@@ -342,7 +342,7 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(IConvertible value, TypeCode objTypeCode, bool safeConversion = false)
         {
-            if (value == null)
+            if (objTypeCode == TypeCode.Empty || value == null)
             {
                 return "null";
             }
