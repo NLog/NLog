@@ -933,10 +933,14 @@ namespace NLog.Config
                 if (newTarget != null)
                 {
                     ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
-                    if (newTarget.Name != null)
+                    if (!string.IsNullOrEmpty(newTarget.Name))
                     {
                         // if the new target has name, register it
                         AddTarget(newTarget.Name, newTarget);
+                    }
+                    else if (!string.IsNullOrEmpty(wrapper.Name))
+                    {
+                        newTarget.Name = wrapper.Name + "_wrapped";
                     }
 
                     if (wrapper.WrappedTarget != null)
@@ -1278,6 +1282,12 @@ namespace NLog.Config
                 return target;
             }
 #endif
+
+            if (target is AsyncTargetWrapper)
+            {
+                InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
+                return target;
+            }
 
             var asyncTargetWrapper = new AsyncTargetWrapper();
             asyncTargetWrapper.WrappedTarget = target;
