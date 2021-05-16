@@ -284,10 +284,11 @@ namespace NLog.Config
                 }
             }
 
-            sb.Append("] appendTo: [ ");
-            foreach (Target app in GetTargetsThreadSafe())
+            sb.Append("] writeTo: [ ");
+            foreach (Target writeTo in GetTargetsThreadSafe())
             {
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", app.Name);
+                var targetName = string.IsNullOrEmpty(writeTo.Name) ? writeTo.ToString() : writeTo.Name;
+                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", targetName);
             }
 
             sb.Append("]");

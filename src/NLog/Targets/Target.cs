@@ -285,7 +285,7 @@ namespace NLog.Targets
                 targetType += "Target";
             }
             targetName = targetName ?? Name;
-            return string.IsNullOrEmpty(targetName) ? targetType : $"{targetType}(Name={targetName})";
+            return string.IsNullOrEmpty(targetName) ? $"{targetType}([unnamed])" : $"{targetType}(Name={targetName})";
         }
 
         /// <summary>
