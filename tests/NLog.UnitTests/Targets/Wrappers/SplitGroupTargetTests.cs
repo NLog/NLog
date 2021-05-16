@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Targets = { myTarget1, myTarget2, myTarget3 },
             };
 
-            Assert.Equal("SplitGroup[MyTarget, FileTarget(Name=file1), ConsoleTarget(Name=Console2)]", wrapper.ToString());
+            Assert.Equal("SplitGroup([unnamed])[MyTarget([unnamed]), FileTarget(Name=file1), ConsoleTarget(Name=Console2)]", wrapper.ToString());
         }
 
         public class MyTarget : Target

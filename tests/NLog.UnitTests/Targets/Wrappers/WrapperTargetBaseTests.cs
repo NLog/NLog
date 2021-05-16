@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapper,
             };
 
-            Assert.Equal("MyWrapper_MyWrapper_DebugTarget(Name=foo)", wrapper2.ToString());
+            Assert.Equal("MyWrapper([unnamed])_MyWrapper([unnamed])_DebugTarget(Name=foo)", wrapper2.ToString());
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = new DebugTarget() { Name = "foo_wrapped" },
             };
 
-            Assert.Equal("MyWrapper_DebugTarget(Name=foo)", wrapper.ToString());
+            Assert.Equal("MyWrapper([unnamed])_DebugTarget(Name=foo)", wrapper.ToString());
         }
 
         [Fact]
