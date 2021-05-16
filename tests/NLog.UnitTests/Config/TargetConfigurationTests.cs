@@ -417,6 +417,27 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void UnnamedWrappedTargetTest()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets async='true'>
+                    <target type='AsyncWrapper' name='d'>
+                        <target type='Debug' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("d") as AsyncTargetWrapper;
+            Assert.NotNull(t);
+            Assert.Equal("d", t.Name);
+
+            var wrappedTarget = t.WrappedTarget as DebugTarget;
+            Assert.NotNull(wrappedTarget);
+            Assert.Equal("d_wrapped", wrappedTarget.Name);
+        }
+
+        [Fact]
         public void DefaultTargetParametersTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
