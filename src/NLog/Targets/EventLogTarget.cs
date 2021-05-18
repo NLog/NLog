@@ -38,7 +38,6 @@ namespace NLog.Targets
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
-    using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
@@ -93,20 +92,10 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        /// <param name="appDomain"><see cref="IAppDomain"/>.<see cref="IAppDomain.FriendlyName"/> to be used as Source.</param>
-        [Obsolete("For unit testing only. Marked obsolete on NLog 4.6")]
-        public EventLogTarget(IAppDomain appDomain)
-            : this(null, (appDomain ?? LogFactory.CurrentAppDomain)?.FriendlyName)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
-        /// </summary>
         internal EventLogTarget(IEventLogWrapper eventLogWrapper, string sourceName)
         {
             _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
-            Source = sourceName;
+            Source = sourceName ?? AppDomain.CurrentDomain.FriendlyName;
             Log = "Application";
             MachineName = ".";
             MaxMessageLength = EventLogMaxMessageLength;
@@ -144,6 +133,7 @@ namespace NLog.Targets
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
+        [RequiredParameter]
         public Layout Source { get; set; }
 
         /// <summary>
