@@ -40,6 +40,7 @@ using System.Reflection;
 
 namespace NLog.Internal.Fakeables
 {
+    [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
     internal class FakeAppDomain : IAppDomain
     {
 #if NETSTANDARD1_5

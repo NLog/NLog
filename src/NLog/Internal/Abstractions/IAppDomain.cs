@@ -38,9 +38,10 @@ namespace NLog.Internal.Fakeables
     using System.Collections.Generic;
 
     /// <summary>
-    /// Interface for fakeable the current <see cref="LogFactory.CurrentAppDomain"/>. Not fully implemented, please methods/properties as necessary.
+    /// Interface for fakeable of the current AppDomain.
     /// </summary>
-    public interface IAppDomain
+    [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
+    public interface IAppDomain 
     {
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.

@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})",
-                appEnvironment.AppDomain.FriendlyName,
+                appEnvironment.AppDomainFriendlyName,
                 appEnvironment.CurrentProcessId);
 #endif
 

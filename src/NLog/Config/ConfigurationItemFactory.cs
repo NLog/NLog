@@ -524,7 +524,7 @@ namespace NLog.Config
             alreadyRegistered.Add(nlogAssembly.FullName);
 
 #if !NETSTANDARD1_5
-            var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
+            var allAssemblies = LogFactory.DefaultAppEnvironment.GetAppDomainRuntimeAssemblies();
 #else
             var allAssemblies = new [] { nlogAssembly };
 #endif
@@ -568,25 +568,24 @@ namespace NLog.Config
             return false;
         }
 
-        internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
+        internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
         {
             var nlogAssembly = typeof(LogFactory).GetAssembly();
-            var assemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
-            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", assemblyLocation);
-            if (!string.IsNullOrEmpty(assemblyLocation))
-                yield return new KeyValuePair<string, Assembly>(assemblyLocation, nlogAssembly);
+            var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
+            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyLocation);
+            if (!string.IsNullOrEmpty(nlogAssemblyLocation))
+                yield return new KeyValuePair<string, string>(nlogAssemblyLocation, nameof(nlogAssemblyLocation));
 
-            var entryAssembly = Assembly.GetEntryAssembly();
-            var entryLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(entryAssembly));
-            InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryLocation);
-            if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
-                yield return new KeyValuePair<string, Assembly>(entryLocation, entryAssembly);
+            var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.EntryAssemblyLocation);
+            InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryAssemblyLocation);
+            if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
+                yield return new KeyValuePair<string, string>(entryAssemblyLocation, nameof(entryAssemblyLocation));
 
             // TODO Consider to prioritize AppDomain.PrivateBinPath
-            var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.CurrentAppDomain.BaseDirectory);
+            var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory);
             InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
-            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
-                yield return new KeyValuePair<string, Assembly>(baseDirectory, null);
+            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
+                yield return new KeyValuePair<string, string>(baseDirectory, nameof(baseDirectory));
         }
 
         private static string[] GetNLogExtensionFiles(string assemblyLocation)

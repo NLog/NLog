@@ -61,21 +61,47 @@ namespace NLog.Internal.Fakeables
         /// <inheritdoc />
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
 #endif
+#pragma warning disable CS0618 // Type or member is obsolete
         /// <inheritdoc />
         public string AppDomainBaseDirectory => AppDomain.BaseDirectory;
         /// <inheritdoc />
         public string AppDomainConfigurationFile => AppDomain.ConfigurationFile;
         /// <inheritdoc />
-        public IEnumerable<string> PrivateBinPath => AppDomain.PrivateBinPath;
+        public string AppDomainFriendlyName => AppDomain.FriendlyName;
+        /// <inheritdoc />
+        public int AppDomainId => AppDomain.Id;
+        /// <inheritdoc />
+        public IEnumerable<string> AppDomainPrivateBinPath => AppDomain.PrivateBinPath;
+        /// <inheritdoc />
+        public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => AppDomain.GetAssemblies();
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> ProcessExit
+        {
+            add
+            {
+                AppDomain.ProcessExit += value;
+                AppDomain.DomainUnload += value;
+            }
+            remove
+            {
+                AppDomain.DomainUnload -= value;
+                AppDomain.ProcessExit -= value;
+            }
+        }
+#pragma warning restore CS0618 // Type or member is obsolete
+
         /// <inheritdoc />
         public string UserTempFilePath => Path.GetTempPath();
-        /// <inheritdoc />
+        
+        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
         public IAppDomain AppDomain { get; internal set; }
 
+#pragma warning disable CS0618 // Type or member is obsolete
         public AppEnvironmentWrapper(IAppDomain appDomain)
         {
             AppDomain = appDomain;
         }
+#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <inheritdoc />
         public bool FileExists(string path)

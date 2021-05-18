@@ -50,6 +50,14 @@ namespace NLog.UnitTests.Targets
         private const int MaxMessageLength = EventLogTarget.EventLogMaxMessageLength;
 
         [Fact]
+        public void EventLogSource_AppDomainFriendlyName()
+        {
+            var eventLogTarget = new EventLogTarget();
+            var eventLogSource = eventLogTarget.Source?.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal(AppDomain.CurrentDomain.FriendlyName, eventLogSource);
+        }
+
+        [Fact]
         public void MaxMessageLengthShouldBe16384_WhenNotSpecifyAnyOption()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"

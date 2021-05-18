@@ -89,14 +89,14 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
         public void InjectBaseDirAndCheckConfigPathsTest()
         {
             string fakeBaseDir = @"y:\root\";
             var old = LogFactory.CurrentAppDomain;
             try
             {
-                var currentAppDomain = new MyAppDomain();
-                currentAppDomain.BaseDirectory = fakeBaseDir;
+                var currentAppDomain = new Mocks.AppDomainMock(fakeBaseDir);
                 LogFactory.CurrentAppDomain = currentAppDomain;
 
                 //test 1 
@@ -119,74 +119,20 @@ namespace NLog.UnitTests.LayoutRenderers
         public void BaseDir_FixTempDir_ChoosesProcessDir()
         {
             var tempPath = System.IO.Path.GetTempPath();
-            var old = LogFactory.CurrentAppDomain;
-            try
-            {
-                var currentAppDomain = new MyAppDomain();
-                currentAppDomain.BaseDirectory = tempPath;
-                LogFactory.CurrentAppDomain = currentAppDomain;
+            var processPath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
 
-                //test 1 
-                AssertLayoutRendererOutput("${basedir}", tempPath);
+            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            appEnvironment.AppDomainBaseDirectory = tempPath;
+            appEnvironment.UserTempFilePath = tempPath;
+            appEnvironment.CurrentProcessFilePath = processPath;
+            var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
-                //test 2
-                AssertLayoutRendererOutput("${basedir:fixtempdir=true}", Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
-            }
-            finally
-            {
-                //restore
-                LogFactory.CurrentAppDomain = old;
-            }
-        }
+            // test1
+            Assert.Equal(tempPath, baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
 
-        class MyAppDomain : IAppDomain
-        {
-            private IAppDomain _appDomain;
-
-            /// <summary>
-            /// Injectable
-            /// </summary>
-            public string BaseDirectory { get; set; }
-
-            /// <summary>
-            /// Gets or sets the name of the configuration file for an application domain.
-            /// </summary>
-            public string ConfigurationFile => _appDomain.ConfigurationFile;
-
-            /// <summary>
-            /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
-            /// </summary>
-            public IEnumerable<string> PrivateBinPath => _appDomain.PrivateBinPath;
-
-            /// <summary>
-            /// Gets or set the friendly name.
-            /// </summary>
-            public string FriendlyName => _appDomain.FriendlyName;
-
-            /// <summary>
-            /// Gets an integer that uniquely identifies the application domain within the process. 
-            /// </summary>
-            public int Id => _appDomain.Id;
-
-            public IEnumerable<Assembly> GetAssemblies() { return new Assembly[0]; }
-
-            public event EventHandler<EventArgs> ProcessExit
-            {
-                add => _appDomain.ProcessExit += value;
-                remove => _appDomain.ProcessExit -= value;
-            }
-
-            public event EventHandler<EventArgs> DomainUnload
-            {
-                add => _appDomain.DomainUnload += value;
-                remove => _appDomain.DomainUnload -= value;
-            }
-
-            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-            public MyAppDomain()
-            {
-                _appDomain = LogFactory.CurrentAppDomain;
-            }
+            // test2
+            baseLayoutRenderer.FixTempDir = true;
+            Assert.Equal(Path.GetDirectoryName(processPath), baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
         }
     }
 }
