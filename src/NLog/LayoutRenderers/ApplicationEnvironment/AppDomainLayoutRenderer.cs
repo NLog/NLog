@@ -53,28 +53,28 @@ namespace NLog.LayoutRenderers
         private const string LongFormatCode = "Long";
         private const string ShortFormatCode = "Short";
 
-        private readonly IAppDomain _currentDomain;
+        private readonly IAppEnvironment _currentAppEnvironment;
 
         /// <summary>
         /// Create a new renderer
         /// </summary>
         public AppDomainLayoutRenderer()
-            : this(LogFactory.CurrentAppDomain)
+            : this(LogFactory.DefaultAppEnvironment)
         {
         }
 
         /// <summary>
         /// Create a new renderer
         /// </summary>
-        public AppDomainLayoutRenderer(IAppDomain currentDomain)
+        internal AppDomainLayoutRenderer(IAppEnvironment appEnvironment)
         {
-            _currentDomain = currentDomain;
+            _currentAppEnvironment = appEnvironment;
             Format = LongFormatCode;
         }
 
         /// <summary>
         /// Format string. Possible values: "Short", "Long" or custom like {0} {1}. Default "Long"
-        /// The first parameter is the  <see cref="IAppDomain.Id"/>, the second the second the  <see cref="IAppDomain.FriendlyName"/>
+        /// The first parameter is the AppDomain.Id, the second the second the AppDomain.FriendlyName
         /// This string is used in <see cref="string.Format(string,object[])"/>
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
@@ -104,7 +104,7 @@ namespace NLog.LayoutRenderers
             if (_assemblyName == null)
             {
                 var formattingString = GetFormattingString(Format);
-                _assemblyName = string.Format(formattingString, _currentDomain.Id, _currentDomain.FriendlyName);
+                _assemblyName = string.Format(formattingString, _currentAppEnvironment.AppDomainId, _currentAppEnvironment.AppDomainFriendlyName);
             }
             builder.Append(_assemblyName);
         }

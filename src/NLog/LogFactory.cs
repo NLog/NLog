@@ -56,6 +56,7 @@ namespace NLog
     {
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
+        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
         private static IAppDomain currentAppDomain;
         private static AppEnvironmentWrapper defaultAppEnvironment;
 
@@ -103,7 +104,7 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogFactory()
         {
-            RegisterEvents(CurrentAppDomain);
+            RegisterEvents(DefaultAppEnvironment);
         }
 #endif
 
@@ -149,18 +150,23 @@ namespace NLog
         /// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
+        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
         public static IAppDomain CurrentAppDomain
         {
             get => currentAppDomain ?? DefaultAppEnvironment.AppDomain;
             set
             {
-                UnregisterEvents(currentAppDomain);
-                //make sure we aren't double registering.
-                UnregisterEvents(value);
-                RegisterEvents(value);
+                if (defaultAppEnvironment != null)
+                    UnregisterEvents(defaultAppEnvironment);
+
                 currentAppDomain = value;
+
                 if (value != null && defaultAppEnvironment != null)
+                {
                     defaultAppEnvironment.AppDomain = value;
+                    UnregisterEvents(defaultAppEnvironment);
+                    RegisterEvents(defaultAppEnvironment);
+                }
             }
         }
 
@@ -168,6 +174,7 @@ namespace NLog
         {
             get
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
                     new AppDomainWrapper(AppDomain.CurrentDomain)
@@ -175,6 +182,7 @@ namespace NLog
                     new FakeAppDomain()                    
 #endif
                     )));
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
 
@@ -1367,14 +1375,13 @@ namespace NLog
             }
         }
 
-        private static void RegisterEvents(IAppDomain appDomain)
+        private static void RegisterEvents(IAppEnvironment appEnvironment)
         {
-            if (appDomain == null) return;
+            if (appEnvironment == null) return;
 
             try
             {
-                appDomain.ProcessExit += OnLoggerShutdown;
-                appDomain.DomainUnload += OnLoggerShutdown;
+                appEnvironment.ProcessExit += OnLoggerShutdown;
             }
             catch (Exception exception)
             {
@@ -1387,12 +1394,11 @@ namespace NLog
             }
         }
 
-        private static void UnregisterEvents(IAppDomain appDomain)
+        private static void UnregisterEvents(IAppEnvironment appEnvironment)
         {
-            if (appDomain == null) return;
+            if (appEnvironment == null) return;
 
-            appDomain.DomainUnload -= OnLoggerShutdown;
-            appDomain.ProcessExit -= OnLoggerShutdown;
+            appEnvironment.ProcessExit -= OnLoggerShutdown;
         }
 
         private static void OnLoggerShutdown(object sender, EventArgs args)
@@ -1410,9 +1416,9 @@ namespace NLog
             finally
             {
                 LoggerShutdown = null;
-                if (currentAppDomain != null)
+                if (defaultAppEnvironment != null)
                 {
-                    CurrentAppDomain = null;    // Unregister and disconnect from AppDomain
+                    defaultAppEnvironment.ProcessExit -= OnLoggerShutdown;  // Unregister from AppDomain
                 }
             }
         }

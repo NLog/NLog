@@ -38,6 +38,7 @@ using NLog.Internal.Fakeables;
 
 namespace NLog.UnitTests.Mocks
 {
+    [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
     public class AppDomainMock : IAppDomain
     {
         public AppDomainMock(string baseDirectory)

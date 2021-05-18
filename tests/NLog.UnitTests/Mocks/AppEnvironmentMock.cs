@@ -49,6 +49,10 @@ namespace NLog.UnitTests.Mocks
             _fileload = fileLoad;
         }
 
+        public int AppDomainId { get; set; }
+
+        public string AppDomainFriendlyName { get; set; } = nameof(AppEnvironmentMock);
+
         public string AppDomainBaseDirectory { get; set; } = string.Empty;
 
         public string AppDomainConfigurationFile { get; set; } = string.Empty;
@@ -65,9 +69,14 @@ namespace NLog.UnitTests.Mocks
 
         public string UserTempFilePath { get; set; } = string.Empty;
 
-        public IEnumerable<string> PrivateBinPath { get; set; } = NLog.Internal.ArrayHelper.Empty<string>();
+        public IEnumerable<string> AppDomainPrivateBinPath { get; set; } = NLog.Internal.ArrayHelper.Empty<string>();
 
-        public IAppDomain AppDomain { get; set; } = LogFactory.CurrentAppDomain;
+        public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => NLog.Internal.ArrayHelper.Empty<System.Reflection.Assembly>();
+
+        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
+        public IAppDomain AppDomain { get; set; } = new AppDomainMock(string.Empty);
+
+        public event EventHandler<EventArgs> ProcessExit;
 
         public bool FileExists(string path)
         {
@@ -77,6 +86,13 @@ namespace NLog.UnitTests.Mocks
         public XmlReader LoadXmlFile(string path)
         {
             return _fileload(path);
+        }
+
+        public void SignalShutdown()
+        {
+            ProcessExit?.Invoke(this, EventArgs.Empty);
+            if (ProcessExit != null)
+                throw new InvalidOperationException("Shutdown failed"); // LogFactory should unregister on shutdown
         }
     }
 }

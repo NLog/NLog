@@ -138,7 +138,9 @@ namespace NLog.UnitTests
             var excludes = new HashSet<Type>
             {
                 typeof(NLog.Internal.Xamarin.PreserveAttribute),
+#pragma warning disable CS0618 // Type or member is obsolete
                 typeof(NLog.Internal.Fakeables.IAppDomain), // TODO NLog 5 - handle IAppDomain
+#pragma warning restore CS0618 // Type or member is obsolete
             };
 
             var notInternalTypes = allTypes

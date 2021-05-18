@@ -333,7 +333,7 @@ namespace NLog.Config
 
         private IEnumerable<string> GetPrivateBinPathNLogLocations(string baseDirectory, string nlogConfigFile, string nLogConfigFileLowerCase)
         {
-            IEnumerable<string> privateBinPaths = _appEnvironment.PrivateBinPath;
+            IEnumerable<string> privateBinPaths = _appEnvironment.AppDomainPrivateBinPath;
             if (privateBinPaths != null)
             {
                 foreach (var privatePath in privateBinPaths)

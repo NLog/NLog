@@ -94,21 +94,19 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         /// <param name="appDomain"><see cref="IAppDomain"/>.<see cref="IAppDomain.FriendlyName"/> to be used as Source.</param>
-        [Obsolete("This constructor should not be used. Marked obsolete on NLog 4.6")]
+        [Obsolete("For unit testing only. Marked obsolete on NLog 4.6")]
         public EventLogTarget(IAppDomain appDomain)
-            : this(null, appDomain)
+            : this(null, (appDomain ?? LogFactory.CurrentAppDomain)?.FriendlyName)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        internal EventLogTarget(IEventLogWrapper eventLogWrapper, IAppDomain appDomain)
+        internal EventLogTarget(IEventLogWrapper eventLogWrapper, string sourceName)
         {
             _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
-            appDomain = appDomain ?? LogFactory.CurrentAppDomain;
-
-            Source = appDomain.FriendlyName;
+            Source = sourceName;
             Log = "Application";
             MachineName = ".";
             MaxMessageLength = EventLogMaxMessageLength;

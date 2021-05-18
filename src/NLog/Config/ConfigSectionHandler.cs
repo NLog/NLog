@@ -61,8 +61,7 @@ namespace NLog.Config
         {
             try
             {
-                string configFileName = AppDomainWrapper.CurrentDomain.ConfigurationFile;
-
+                string configFileName = LogFactory.DefaultAppEnvironment.AppDomainConfigurationFile;
                 _config = new XmlLoggingConfiguration(reader, configFileName, LogManager.LogFactory);
             }
             catch (Exception exception)

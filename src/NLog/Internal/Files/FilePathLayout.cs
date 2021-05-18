@@ -104,9 +104,8 @@ namespace NLog.Internal
 
             if (_filePathKind == FilePathKind.Relative)
             {
-                _baseDir = LogFactory.CurrentAppDomain.BaseDirectory;
+                _baseDir = LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory;
             }
-
         }
 
         private static FilePathKind DetectKind(Layout layout, FilePathKind currentFilePathKind)

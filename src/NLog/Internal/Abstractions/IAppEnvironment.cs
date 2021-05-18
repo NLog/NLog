@@ -33,6 +33,7 @@
 
 namespace NLog.Internal.Fakeables
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -40,9 +41,14 @@ namespace NLog.Internal.Fakeables
     /// </summary>
     internal interface IAppEnvironment : IFileSystem
     {
-        IAppDomain AppDomain { get; }
         string AppDomainBaseDirectory { get; }
         string AppDomainConfigurationFile { get; }
+        string AppDomainFriendlyName { get; }
+        int AppDomainId { get; }
+        IEnumerable<string> AppDomainPrivateBinPath { get; }
+        IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies();
+        [Obsolete("Marked obsolete on NLog 5.0")]
+        IAppDomain AppDomain { get; }
 #if !NETSTANDARD1_3
         string CurrentProcessFilePath { get; }
         /// <summary>
@@ -54,6 +60,10 @@ namespace NLog.Internal.Fakeables
         string EntryAssemblyFileName { get; }
 #endif
         string UserTempFilePath { get; }
-        IEnumerable<string> PrivateBinPath { get; }
+
+        /// <summary>
+        /// Process exit event.
+        /// </summary>
+        event EventHandler<EventArgs> ProcessExit;
     }
 }
