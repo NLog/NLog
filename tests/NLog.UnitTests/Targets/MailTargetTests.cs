@@ -165,7 +165,7 @@ namespace NLog.UnitTests.Targets
             {
                 cfg.Configuration.AddRuleForAllLevels(mmt);
             }).LogFactory;
-                
+
             var logger = logFactory.GetLogger("MyLogger");
             using (logger.PushScopeProperty("username", "u1"))
             using (logger.PushScopeProperty("password", "p1"))
@@ -730,8 +730,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_False_Override_ThrowsNLogRuntimeException_if_DeliveryMethodNotSpecified()
         {
-            var inConfigVal = @"C:\config";
-            var mmt = new MockMailTarget(inConfigVal)
+            var mmt = new MockMailTarget()
             {
                 From = "foo@bar.com",
                 To = "bar@bar.com",
@@ -742,7 +741,7 @@ namespace NLog.UnitTests.Targets
                 UseSystemNetMailSettings = false
             };
 
-            Assert.Throws<NLogRuntimeException>(() => mmt.ConfigureMailClient());
+            Assert.Throws<NLogConfigurationException>(() => mmt.InitializeTarget());
         }
 
         /// <summary>
@@ -752,7 +751,7 @@ namespace NLog.UnitTests.Targets
         public void MailTarget_UseSystemNetMailSettings_False_Override_DeliveryMethod_SpecifiedDeliveryMethod()
         {
             var inConfigVal = @"C:\config";
-            var mmt = new MockMailTarget(inConfigVal)
+            var mmt = new MockMailTarget()
             {
                 From = "foo@bar.com",
                 To = "bar@bar.com",
@@ -763,15 +762,16 @@ namespace NLog.UnitTests.Targets
                 UseSystemNetMailSettings = false,
                 DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
             };
-            mmt.ConfigureMailClient();
-            Assert.NotEqual(mmt.PickupDirectoryLocation, inConfigVal);
+            mmt.InitializeTarget();
+            mmt.ConfigureMailClient(LogEventInfo.CreateNullEvent(), mmt.CreateSmtpClient());
+
+            Assert.NotEqual(mmt.SmtpClientPickUpDirectory, inConfigVal);
         }
 
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True()
         {
-            var inConfigVal = @"C:\config";
-            var mmt = new MockMailTarget(inConfigVal)
+            var mmt = new MockMailTarget()
             {
                 From = "foo@bar.com",
                 To = "bar@bar.com",
@@ -779,16 +779,16 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
-            mmt.ConfigureMailClient();
+            mmt.InitializeTarget();
 
-            Assert.Equal(mmt.SmtpClientPickUpDirectory, inConfigVal);
+            Assert.True(mmt.UseSystemNetMailSettings);
         }
-    
+
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_WithVirtualPath()
         {
             var inConfigVal = @"~/App_Data/Mail";
-            var mmt = new MockMailTarget(inConfigVal)
+            var mmt = new MockMailTarget()
             {
                 From = "foo@bar.com",
                 To = "bar@bar.com",
@@ -798,7 +798,8 @@ namespace NLog.UnitTests.Targets
                 PickupDirectoryLocation = inConfigVal,
                 DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
             };
-            mmt.ConfigureMailClient();
+            mmt.InitializeTarget();
+            mmt.ConfigureMailClient(LogEventInfo.CreateNullEvent(), mmt.CreateSmtpClient());
             
             Assert.NotEqual(inConfigVal, mmt.SmtpClientPickUpDirectory);
             var separator = Path.DirectorySeparatorChar;
@@ -943,65 +944,21 @@ namespace NLog.UnitTests.Targets
 
         public class MockMailTarget : MailTarget
         {
-            private const string RequiredPropertyIsEmptyFormat = "After the processing of the MailTarget's '{0}' property it appears to be empty. The email message will not be sent.";
-
-            public MockSmtpClient Client;
-
-            public MockMailTarget()
-            {
-                Client = new MockSmtpClient();
-            }
-
-            public MockMailTarget(string configPickUpdirectory)
-            {
-                Client = new MockSmtpClient
-                {
-                    PickupDirectoryLocation = configPickUpdirectory
-                };
-
-            }
-
-
             public List<MockSmtpClient> CreatedMocks = new List<MockSmtpClient>();
 
             internal override ISmtpClient CreateSmtpClient()
             {
                 var client = new MockSmtpClient();
-
                 CreatedMocks.Add(client);
-
                 return client;
             }
 
-
-            public void ConfigureMailClient()
+            public new void InitializeTarget()
             {
-                if (UseSystemNetMailSettings) return;
-
-                if (SmtpServer == null && string.IsNullOrEmpty(PickupDirectoryLocation))
-                {
-                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
-        }
-
-                if (DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
-                {
-                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
-    }
-
-                if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(PickupDirectoryLocation))
-                {
-                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
-}
-
-                if (!string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
-                {
-                    Client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
-                }
-
-                Client.DeliveryMethod = DeliveryMethod;
+                base.InitializeTarget();
             }
 
-            public string SmtpClientPickUpDirectory => Client.PickupDirectoryLocation;
+            public string SmtpClientPickUpDirectory => System.Linq.Enumerable.LastOrDefault(CreatedMocks)?.PickupDirectoryLocation;
         }
     }
 }
