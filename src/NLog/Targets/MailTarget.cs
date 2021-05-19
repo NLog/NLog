@@ -162,6 +162,7 @@ namespace NLog.Targets
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='10' />
+        [RequiredParameter]
         public Layout From
         {
             get
@@ -280,6 +281,7 @@ namespace NLog.Targets
         /// Gets or sets the port number that SMTP Server is listening on.
         /// </summary>
         /// <docgen category='SMTP Options' order='15' />
+        [DefaultValue(25)]
         public Layout<int> SmtpPort { get; set; }
 
         /// <summary>
@@ -322,6 +324,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Warning: zero is not infinite waiting</remarks>
         /// <docgen category='SMTP Options' order='100' />
+        [DefaultValue(10000)]
         public Layout<int> Timeout { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
@@ -558,11 +561,6 @@ namespace NLog.Targets
             if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && PickupDirectoryLocation == null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation");
-            }
-
-            if (From == null)
-            {
-                throw new NLogConfigurationException(RequiredPropertyIsEmptyFormat, "From");
             }
         }
 
