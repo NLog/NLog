@@ -162,6 +162,7 @@ namespace NLog.Targets
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='10' />
+        [RequiredParameter]
         public Layout From
         {
             get
@@ -281,7 +282,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='SMTP Options' order='15' />
         [DefaultValue(25)]
-        public int SmtpPort { get; set; }
+        public Layout<int> SmtpPort { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the default Settings from System.Net.MailSettings should be used.
@@ -302,7 +303,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='SMTP Options' order='17' />
         [DefaultValue(null)]
-        public string PickupDirectoryLocation { get; set; }
+        public Layout PickupDirectoryLocation { get; set; }
 
         /// <summary>
         /// Gets or sets the priority used for sending mails.
@@ -324,7 +325,7 @@ namespace NLog.Targets
         /// <remarks>Warning: zero is not infinite waiting</remarks>
         /// <docgen category='SMTP Options' order='100' />
         [DefaultValue(10000)]
-        public int Timeout { get; set; }
+        public Layout<int> Timeout { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
@@ -481,31 +482,22 @@ namespace NLog.Targets
         {
             CheckRequiredParameters();
 
-            if (SmtpServer == null && string.IsNullOrEmpty(PickupDirectoryLocation))
+            if (DeliveryMethod == SmtpDeliveryMethod.Network)
             {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
-            }
-
-            if (DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
-            {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
-            }
-
-            if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(PickupDirectoryLocation))
-            {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
-            }
-
-            if (SmtpServer != null && DeliveryMethod == SmtpDeliveryMethod.Network)
-            {
-                var renderedSmtpServer = SmtpServer.Render(lastEvent);
-                if (string.IsNullOrEmpty(renderedSmtpServer))
+                var smtpServer = RenderLogEvent(SmtpServer, lastEvent);
+                if (string.IsNullOrEmpty(smtpServer))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
                 }
 
-                client.Host = renderedSmtpServer;
-                client.Port = SmtpPort;
+                var smtpPort = RenderLogEvent(SmtpPort, lastEvent, 25);
+                if (smtpPort <= 0)
+                {
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpPort"));
+                }
+
+                client.Host = smtpServer;
+                client.Port = smtpPort;
                 client.EnableSsl = EnableSsl;
 
                 if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
@@ -515,22 +507,28 @@ namespace NLog.Targets
                 }
                 else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 {
-                    string username = SmtpUserName.Render(lastEvent);
-                    string password = SmtpPassword.Render(lastEvent);
+                    string username = RenderLogEvent(SmtpUserName, lastEvent);
+                    string password = RenderLogEvent(SmtpPassword, lastEvent);
 
                     InternalLogger.Trace("{0}:   Using basic authentication: Username='{1}' Password='{2}'", this, username, new string('*', password.Length));
                     client.Credentials = new NetworkCredential(username, password);
                 }
             }
-
-            if (!string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            
+            if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
+                var pickupDirectoryLocation = RenderLogEvent(PickupDirectoryLocation, lastEvent);
+                if (string.IsNullOrEmpty(pickupDirectoryLocation))
+                {
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
+                }
+
+                client.PickupDirectoryLocation = ConvertDirectoryLocation(pickupDirectoryLocation);
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
             client.DeliveryMethod = DeliveryMethod;
-            client.Timeout = Timeout;
+            client.Timeout = RenderLogEvent(Timeout, lastEvent, 10000);
         }
 
         /// <summary>
@@ -555,19 +553,14 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!UseSystemNetMailSettings && SmtpServer == null && DeliveryMethod == SmtpDeliveryMethod.Network)
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer");
             }
 
-            if (!UseSystemNetMailSettings && string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && PickupDirectoryLocation == null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation");
-            }
-
-            if (From == null)
-            {
-                throw new NLogConfigurationException(RequiredPropertyIsEmptyFormat, "From");
             }
         }
 
