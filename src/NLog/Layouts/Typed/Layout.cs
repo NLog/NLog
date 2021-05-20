@@ -49,7 +49,7 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     [ThreadSafe]
     [AppDomainFixedOutput]
-    public sealed class Layout<T> : Layout, ITypedLayout
+    public sealed class Layout<T> : Layout, ITypedLayout, IEquatable<T>
     {
         private readonly Layout _innerLayout;
         private readonly CultureInfo _parseFormatCulture;
@@ -57,45 +57,27 @@ namespace NLog.Layouts
         private string _previousStringValue;
         private object _previousValue;
         private readonly T _fixedValue;
-        private T _staticValue;
-        private bool _createdStaticValue;
 
         /// <summary>
         /// Is fixed value?
         /// </summary>
         public bool IsFixed => ReferenceEquals(_innerLayout, null);
 
+        /// <summary>
+        /// Fixed value
+        /// </summary>
+        public T FixedValue => _fixedValue;
+
+        private object FixedObjectValue => IsFixed ? (_previousValue ?? (_previousValue = _fixedValue)) : null;
+
+        object ITypedLayout.FixedObjectValue => FixedObjectValue;
+
         Layout ITypedLayout.InnerLayout => _innerLayout;
 
         Type ITypedLayout.ValueType => typeof(T);
 
-        object ITypedLayout.StaticValue => FixedObjectValue ?? StaticValue;
-
-        private object FixedObjectValue => IsFixed ? (_previousValue ?? (_previousValue = _fixedValue)) : null;
-
         private IPropertyTypeConverter ValueTypeConverter => _valueTypeConverter ?? (_valueTypeConverter = ResolveService<IPropertyTypeConverter>());
         IPropertyTypeConverter _valueTypeConverter;
-
-        /// <summary>
-        /// Static value independent of LogEvent being processed. Remains static until LoggingConfiguration is closed.
-        /// </summary>
-        public T StaticValue
-        {
-            get
-            {
-                if (IsFixed)
-                    return _fixedValue;
-
-                if (_createdStaticValue)
-                    return _staticValue;
-
-                // Would be great if ReconfigExistingLoggers() caused all StaticValue's to reset
-                var staticValue = RenderTypedValue(LogEventInfo.CreateNullEvent(), default(T));
-                _staticValue = staticValue;
-                _createdStaticValue = true;
-                return staticValue;
-            }
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Layout{T}" /> class.
@@ -174,7 +156,7 @@ namespace NLog.Layouts
 
         object ITypedLayout.RenderValue(LogEventInfo logEvent, object defaultValue)
         {
-            var value = FixedObjectValue ?? RenderTypedValue(logEvent, null, defaultValue);
+            var value = IsFixed ? FixedObjectValue : RenderTypedValue(logEvent, null, defaultValue);
             if (ReferenceEquals(value, defaultValue) && ReferenceEquals(defaultValue, string.Empty) && typeof(T) != typeof(string))
                 return default(T);  // Translate defaultValue = string.Empty into unspecified defaultValue
             else
@@ -203,7 +185,6 @@ namespace NLog.Layouts
             ThreadAgnostic = _innerLayout?.ThreadAgnostic ?? true;
             MutableUnsafe = _innerLayout?.MutableUnsafe ?? false;
             _valueTypeConverter = null;
-            _createdStaticValue = false;
             _previousStringValue = null;
             _previousValue = null;
         }
@@ -213,7 +194,6 @@ namespace NLog.Layouts
         {
             _innerLayout?.Close();
             _valueTypeConverter = null;
-            _createdStaticValue = false;
             _previousStringValue = null;
             _previousValue = null;
             base.CloseLayout();
@@ -383,7 +363,7 @@ namespace NLog.Layouts
                 else if (obj is T)
                     return object.Equals(FixedObjectValue, obj);
                 else
-                    return obj == null && FixedObjectValue == null;
+                    return ReferenceEquals(obj, FixedObjectValue);
             }
             else
             {
@@ -391,7 +371,9 @@ namespace NLog.Layouts
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Implements Equals using <see cref="FixedValue"/>
+        /// </summary>
         public bool Equals(T other)
         {
             // Support property-compare
@@ -430,10 +412,36 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Converts a <see cref="Layout{T}" /> its current value
+        /// Implements the operator == using <see cref="FixedValue"/>
         /// </summary>
-        /// <param name="layout">Text to be converted.</param>
-        public static implicit operator T(Layout<T> layout) => ReferenceEquals(layout, null) ? default(T) : layout.StaticValue;
+        public static bool operator ==(Layout<T> left, T right)
+        {
+            return left?.Equals(right) == true || ReferenceEquals(left, right);
+        }
+
+        /// <summary>
+        /// Implements the operator != using <see cref="FixedValue"/>
+        /// </summary>
+        public static bool operator !=(Layout<T> left, T right)
+        {
+            return left?.Equals(right) != true && !ReferenceEquals(left, right);
+        }
+
+        /// <summary>
+        /// Implements the operator == using <see cref="FixedValue"/>
+        /// </summary>
+        public static bool operator ==(T left, Layout<T> right)
+        {
+            return right?.Equals(left) == true || ReferenceEquals(left, right);
+        }
+
+        /// <summary>
+        /// Implements the operator != using <see cref="FixedValue"/>
+        /// </summary>
+        public static bool operator !=(T left, Layout<T> right)
+        {
+            return right?.Equals(left) != true && !ReferenceEquals(left, right);
+        }
     }
 
     /// <summary>
@@ -444,7 +452,7 @@ namespace NLog.Layouts
         Layout InnerLayout { get; }
         Type ValueType { get; }
         bool IsFixed { get; }
-        object StaticValue { get; }
+        object FixedObjectValue { get; }
         object RenderValue(LogEventInfo logEvent, object defaultValue);
         bool TryParseValueFromString(string stringValue, out object parsedValue);
     }

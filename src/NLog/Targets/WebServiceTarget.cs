@@ -243,7 +243,7 @@ namespace NLog.Targets
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
-            var url = Protocol != WebServiceProtocol.HttpGet ? Url.StaticValue : BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
+            var url = BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
             DoInvoke(parameters, webRequest, continuation);
         }
