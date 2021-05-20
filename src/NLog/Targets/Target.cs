@@ -726,7 +726,7 @@ namespace NLog.Targets
                 return defaultValue;
 
             if (layout.IsFixed)
-                return layout.StaticValue;
+                return layout.FixedValue;
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {

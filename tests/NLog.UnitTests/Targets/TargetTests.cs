@@ -797,21 +797,21 @@ namespace NLog.UnitTests.Targets
             var nullEvent = LogEventInfo.CreateNullEvent();
             var myTarget = c.FindTargetByName("myTarget") as MyTypedLayoutTarget;
             Assert.NotNull(myTarget);
-            Assert.Equal((byte)42, myTarget.ByteProperty.StaticValue);
-            Assert.Equal((short)43, myTarget.Int16Property.StaticValue);
-            Assert.Equal(44, myTarget.Int32Property.StaticValue);
-            Assert.Equal(45000000000L, myTarget.Int64Property.StaticValue);
-            Assert.Equal("foobar", myTarget.StringProperty.StaticValue);
-            Assert.True(myTarget.BoolProperty.StaticValue);
-            Assert.Equal(3.14159, myTarget.DoubleProperty.StaticValue);
-            Assert.Equal(3.24159f, myTarget.FloatProperty.StaticValue);
-            Assert.Equal(TargetConfigurationTests.MyEnum.Value3, myTarget.EnumProperty.StaticValue);
-            Assert.Equal(TargetConfigurationTests.MyFlagsEnum.Value1 | TargetConfigurationTests.MyFlagsEnum.Value3, myTarget.FlagsEnumProperty.StaticValue);
-            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty.StaticValue);
-            Assert.Equal("en-US", myTarget.CultureProperty.StaticValue.Name);
-            Assert.Equal(typeof(int), myTarget.TypeProperty.StaticValue);
-            Assert.Equal(new Uri("https://nlog-project.org"), myTarget.UriProperty.StaticValue);
-            Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty.StaticValue);
+            Assert.Equal((byte)42, myTarget.ByteProperty.FixedValue);
+            Assert.Equal((short)43, myTarget.Int16Property.FixedValue);
+            Assert.Equal(44, myTarget.Int32Property.FixedValue);
+            Assert.Equal(45000000000L, myTarget.Int64Property.FixedValue);
+            Assert.Equal("foobar", myTarget.StringProperty.FixedValue);
+            Assert.True(myTarget.BoolProperty.FixedValue);
+            Assert.Equal(3.14159, myTarget.DoubleProperty.FixedValue);
+            Assert.Equal(3.24159f, myTarget.FloatProperty.FixedValue);
+            Assert.Equal(TargetConfigurationTests.MyEnum.Value3, myTarget.EnumProperty.FixedValue);
+            Assert.Equal(TargetConfigurationTests.MyFlagsEnum.Value1 | TargetConfigurationTests.MyFlagsEnum.Value3, myTarget.FlagsEnumProperty.FixedValue);
+            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty.FixedValue);
+            Assert.Equal("en-US", myTarget.CultureProperty.FixedValue.Name);
+            Assert.Equal(typeof(int), myTarget.TypeProperty.FixedValue);
+            Assert.Equal(new Uri("https://nlog-project.org"), myTarget.UriProperty.FixedValue);
+            Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty.FixedValue);
         }
 
         [Fact]
