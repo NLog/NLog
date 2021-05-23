@@ -170,6 +170,25 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutDynamicNullableGuidValueTest()
+        {
+            // Arrange
+            Layout<Guid?> layout = "${event-properties:guidvalue}";
+            var guid = Guid.NewGuid();
+
+            // Act
+            var logevent = LogEventInfo.Create(LogLevel.Info, null, null, "{guidvalue}", new object[] { guid });
+            var result = layout.RenderValue(logevent);
+
+            // Assert
+            Assert.Equal(guid, result);
+            Assert.Equal(guid.ToString(), layout.Render(logevent));
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual(default(Guid), layout);
+            Assert.NotEqual(default(Guid?), layout);
+        }
+
+        [Fact]
         public void LayoutDynamicNullIntValueTest()
         {
             // Arrange

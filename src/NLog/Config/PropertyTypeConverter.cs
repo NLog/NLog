@@ -75,21 +75,41 @@ namespace NLog.Config
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
-            if (!NeedToConvert(propertyValue, propertyType))
+            if (propertyValue == null || propertyType == null || propertyType == typeof(object))
             {
-                return propertyValue;
+                return propertyValue;   // No type conversion required
+            }
+
+            var propertyValueType = propertyValue.GetType();
+            if (propertyType == propertyValueType)
+            {
+                return propertyValue;   // Same type
             }
 
             var nullableType = Nullable.GetUnderlyingType(propertyType);
-            propertyType = nullableType ?? propertyType;
-            if (propertyValue is string propertyString)
+            if (nullableType != null)
             {
-                propertyValue = propertyString = propertyString.Trim();
+                if (nullableType == propertyValueType)
+                {
+                    return propertyValue;   // Same type
+                }
 
-                if (nullableType != null && StringHelpers.IsNullOrWhiteSpace(propertyString))
+                if (propertyValue is string propertyString && StringHelpers.IsNullOrWhiteSpace(propertyString))
                 {
                     return null;
                 }
+
+                propertyType = nullableType;
+            }
+
+            return ChangeObjectType(propertyValue, propertyType, format, formatProvider);
+        }
+
+        private static object ChangeObjectType(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
+        {
+            if (propertyValue is string propertyString)
+            {
+                propertyValue = propertyString = propertyString.Trim();
 
                 if (StringConverterLookup.TryGetValue(propertyType, out var converter))
                 {
@@ -111,20 +131,18 @@ namespace NLog.Config
                 propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (propertyValue is IConvertible convertibleValue)
             {
                 var typeCode = convertibleValue.GetTypeCode();
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 if (typeCode == TypeCode.DBNull)
                     return propertyValue;
-            }
 #endif
-            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
-        }
+                if (typeCode == TypeCode.Empty)
+                    return null;
+            }
 
-        private static bool NeedToConvert(object propertyValue, Type propertyType)
-        {
-            return propertyType != null && propertyValue != null && propertyValue.GetType() != propertyType && propertyType != typeof(object);
+            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
         }
 
         private static object ConvertGuid(string format, string propertyString)

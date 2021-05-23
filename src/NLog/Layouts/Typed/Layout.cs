@@ -283,8 +283,12 @@ namespace NLog.Layouts
 
             if (TryParseValueFromString(stringValue, _parseFormat, _parseFormatCulture, out value))
             {
-                _previousValue = value;
-                _previousStringValue = stringValue;
+                if (string.IsNullOrEmpty(previousStringValue) || stringValue?.Length < 3)
+                {
+                    // Only cache initial value to avoid constantly changing values like CorrelationId (Guid) or DateTime.UtcNow
+                    _previousValue = value;
+                    _previousStringValue = stringValue;
+                }
                 return true;
             }
 
