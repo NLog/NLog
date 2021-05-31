@@ -77,7 +77,8 @@ namespace NLog.UnitTests.Layouts
         public void LayoutFixedNullIntValueTest()
         {
             // Arrange
-            Layout<int?> layout = new Layout<int?>((int?)null);
+            var nullValue = (int?)null;
+            Layout<int?> layout = new Layout<int?>(nullValue);
 
             // Act
             var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
@@ -87,6 +88,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(result);
             Assert.Null(result5);
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(nullValue, layout);
             Assert.True(layout.IsFixed);
             Assert.Null(layout.FixedValue);
             Assert.Equal("null", layout.ToString());
@@ -106,6 +108,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, result);
             Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
             Assert.Equal(uri.ToString(), layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(uri, layout);
             Assert.True(layout.IsFixed);
             Assert.Equal(uri, layout.FixedValue);
             Assert.Same(layout.FixedValue, layout.FixedValue);
@@ -126,10 +129,39 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, result);
             Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.True(layout == uri);
+            Assert.False(layout != uri);
             Assert.True(layout.IsFixed);
             Assert.Equal(uri, layout.FixedValue);
             Assert.Same(layout.FixedValue, layout.FixedValue);
             Assert.Equal("null", layout.ToString());
+        }
+
+        [Fact]
+        public void NullLayoutDefaultValueTest()
+        {
+            var nullLayout = default(Layout<int>);
+
+            Assert.True(default(Layout<int>) == nullLayout);
+            Assert.False(default(Layout<int>) != nullLayout);
+
+            Assert.True(default(Layout<int>) == default(int));
+            Assert.False(default(Layout<int>) != default(int));
+
+            Assert.True(default(Layout<int>) == null);
+            Assert.False(default(Layout<int>) != null);
+
+            Assert.True(default(Layout<int?>) == default(int?));
+            Assert.False(default(Layout<int?>) != default(int?));
+
+            Assert.True(default(Layout<int?>) == null);
+            Assert.False(default(Layout<int?>) != null);
+
+            Assert.True(default(Layout<Uri>) == default(Uri));
+            Assert.False(default(Layout<Uri>) != default(Uri));
+
+            Assert.True(default(Layout<Uri>) == null);
+            Assert.False(default(Layout<Uri>) != null);
         }
 
         [Fact]

@@ -420,7 +420,7 @@ namespace NLog.Layouts
         /// </summary>
         public static bool operator ==(Layout<T> left, T right)
         {
-            return left?.Equals(right) == true || ReferenceEquals(left, right);
+            return left?.Equals(right) == true || (ReferenceEquals(left, null) && object.Equals(right, default(T)));
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace NLog.Layouts
         /// </summary>
         public static bool operator !=(Layout<T> left, T right)
         {
-            return left?.Equals(right) != true && !ReferenceEquals(left, right);
+            return left?.Equals(right) != true && !(ReferenceEquals(left, null) && object.Equals(right, default(T)));
         }
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace NLog.Layouts
         /// </summary>
         public static bool operator ==(T left, Layout<T> right)
         {
-            return right?.Equals(left) == true || ReferenceEquals(left, right);
+            return right?.Equals(left) == true || (ReferenceEquals(right, null) && object.Equals(left, default(T)));
         }
 
         /// <summary>
@@ -444,7 +444,7 @@ namespace NLog.Layouts
         /// </summary>
         public static bool operator !=(T left, Layout<T> right)
         {
-            return right?.Equals(left) != true && !ReferenceEquals(left, right);
+            return right?.Equals(left) != true && !(ReferenceEquals(right, null) && object.Equals(left, default(T)));
         }
     }
 
