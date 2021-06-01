@@ -445,7 +445,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.True(layout1 == 42);
-            Assert.True(42 == layout1);
             Assert.True(layout1.Equals(42));
             Assert.True(layout1.Equals((object)42));
             Assert.Equal(layout1, layout2);
@@ -461,7 +460,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.True(layout1 == 42);
-            Assert.True(42 == layout1);
             Assert.True(layout1.Equals(42));
             Assert.True(layout1.Equals((object)42));
             Assert.Equal(layout1, layout2);
@@ -478,7 +476,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.True(layout1 == nullInt);
-            Assert.True(nullInt == layout1);
             Assert.True(layout1.Equals(nullInt));
             Assert.True(layout1.Equals((object)nullInt));
             Assert.Equal(layout1, layout2);
@@ -494,7 +491,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == 42);
-            Assert.False(42 == layout1);
             Assert.False(layout1.Equals(42));
             Assert.False(layout1.Equals((object)42));
             Assert.NotEqual(layout1, layout2);
@@ -510,7 +506,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == 42);
-            Assert.False(42 == layout1);
             Assert.False(layout1.Equals(42));
             Assert.False(layout1.Equals((object)42));
             Assert.NotEqual(layout1, layout2);
@@ -527,7 +522,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == nullInt);
-            Assert.False(nullInt == layout1);
             Assert.False(layout1.Equals(nullInt));
             Assert.False(layout1.Equals((object)nullInt));
             Assert.NotEqual(layout1, layout2);
@@ -544,7 +538,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.True(layout1 == url);
-            Assert.True(url == layout1);
             Assert.True(layout1.Equals(url));
             Assert.True(layout1.Equals((object)url));
             Assert.Equal(layout1, layout2);
@@ -563,8 +556,6 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(layout1);
             Assert.True(layout1 == url);
             Assert.True(layout2 == url);
-            Assert.True(url == layout1);
-            Assert.True(url == layout2);
             Assert.True(layout2.Equals(url));
             Assert.True(layout2.Equals((object)url));
             Assert.NotEqual(layout1, layout2);
@@ -581,7 +572,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == url);
-            Assert.False(url == layout1);
             Assert.False(layout1.Equals(url));
             Assert.False(layout1.Equals((object)url));
             Assert.NotEqual(layout1, layout2);
@@ -599,7 +589,6 @@ namespace NLog.UnitTests.Layouts
 
             // Act + Assert
             Assert.False(layout1 == url);
-            Assert.False(url == layout1);
             Assert.False(layout1.Equals(url));
             Assert.False(layout1.Equals((object)url));
             Assert.NotEqual(layout1, layout2);
