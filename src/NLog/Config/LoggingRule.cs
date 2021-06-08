@@ -141,6 +141,11 @@ namespace NLog.Config
         public bool Final { get; set; }
 
         /// <summary>
+        /// Gets or sets a LogLevel whether to quit processing any further rule for loglevels with lower severity.
+        /// </summary>
+        public LogLevel FinalMinLevel { get; set; }
+
+        /// <summary>
         /// Gets or sets logger name pattern.
         /// </summary>
         /// <remarks>

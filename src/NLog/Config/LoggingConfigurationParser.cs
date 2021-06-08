@@ -582,6 +582,7 @@ namespace NLog.Config
         {
             string minLevel = null;
             string maxLevel = null;
+            string finalMinLevel = null;
             string enableLevels = null;
 
             string ruleName = null;
@@ -628,6 +629,9 @@ namespace NLog.Config
                     case "MAXLEVEL":
                         maxLevel = childProperty.Value;
                         break;
+                    case "FINALMINLEVEL":
+                        finalMinLevel = childProperty.Value;
+                        break;
                     case "FILTERDEFAULTACTION":
                         filterDefaultAction = childProperty.Value;
                         break;
@@ -659,6 +663,15 @@ namespace NLog.Config
                 LoggerNamePattern = namePattern,
                 Final = final,
             };
+
+            if (!string.IsNullOrEmpty(finalMinLevel))
+            {
+                rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
+                if (string.IsNullOrEmpty(enableLevels) && string.IsNullOrEmpty(minLevel))
+                {
+                    minLevel = finalMinLevel;
+                }
+            }
 
             EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
 
