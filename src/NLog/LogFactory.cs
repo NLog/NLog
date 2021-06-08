@@ -661,8 +661,7 @@ namespace NLog
         /// <returns></returns>
         private static AsyncContinuation FlushAllTargetsAsync(LoggingConfiguration loggingConfiguration, AsyncContinuation asyncContinuation, TimeSpan? asyncTimeout)
         {
-            var targets = loggingConfiguration.GetAllTargetsToFlush();
-            var pendingTargets = new HashSet<Target>(targets, SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
+            var pendingTargets = loggingConfiguration.GetAllTargetsToFlush();
 
             AsynchronousAction<Target> flushAction = (target, cont) =>
             {
@@ -701,8 +700,8 @@ namespace NLog
                 flushContinuation = AsyncHelpers.PreventMultipleCalls(flushContinuation);
             }
 
-            InternalLogger.Trace("Flushing all {0} targets...", targets.Count);
-            AsyncHelpers.ForEachItemInParallel(targets, flushContinuation, flushAction);
+            InternalLogger.Trace("Flushing all {0} targets...", pendingTargets.Count);
+            AsyncHelpers.ForEachItemInParallel(pendingTargets, flushContinuation, flushAction);
             return flushContinuation;
         }
 
