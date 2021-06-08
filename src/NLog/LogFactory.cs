@@ -835,32 +835,7 @@ namespace NLog
                     continue;
                 }
 
-                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-                {
-                    if (i < GlobalThreshold.Ordinal || suppressedLevels[i] || !rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
-                    {
-                        continue;
-                    }
-
-                    if (rule.Final)
-                        suppressedLevels[i] = true;
-
-                    foreach (Target target in rule.GetTargetsThreadSafe())
-                    {
-                        targetsFound = true;
-                        var awf = new TargetWithFilterChain(target, rule.Filters, rule.FilterDefaultAction);
-                        if (lastTargetsByLevel[i] != null)
-                        {
-                            lastTargetsByLevel[i].NextInChain = awf;
-                        }
-                        else
-                        {
-                            targetsByLevel[i] = awf;
-                        }
-
-                        lastTargetsByLevel[i] = awf;
-                    }
-                }
+                targetsFound = AddTargetsFromLoggingRule(rule, name, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
 
                 // Recursively analyze the child rules.
                 if (rule.ChildRules.Count != 0)
@@ -876,6 +851,69 @@ namespace NLog
             }
 
             return targetsFound;
+        }
+
+        private bool AddTargetsFromLoggingRule(LoggingRule rule, string loggerName, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        {
+            bool targetsFound = false;
+            bool duplicateTargetsFound = false;
+
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (i < GlobalThreshold.Ordinal || suppressedLevels[i] || !rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
+                {
+                    continue;
+                }
+
+                if (rule.Final)
+                    suppressedLevels[i] = true;
+
+                foreach (Target target in rule.GetTargetsThreadSafe())
+                {
+                    targetsFound = true;
+                    var awf = CreateTargetChainFromLoggingRule(rule, target, targetsByLevel[i]);
+                    if (awf == null)
+                    {
+                        if (!duplicateTargetsFound)
+                        {
+                            InternalLogger.Warn("Logger: {0} configured with duplicate output to target: {1}. LoggingRule with NamePattern='{2}' and Level={3} has been skipped.", loggerName, target, rule.LoggerNamePattern, LogLevel.FromOrdinal(i));
+                        }
+                        duplicateTargetsFound = true;
+                        continue;
+                    }
+
+                    if (lastTargetsByLevel[i] != null)
+                    {
+                        lastTargetsByLevel[i].NextInChain = awf;
+                    }
+                    else
+                    {
+                        targetsByLevel[i] = awf;
+                    }
+
+                    lastTargetsByLevel[i] = awf;
+                }
+            }
+
+            return targetsFound;
+        }
+
+        private static TargetWithFilterChain CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)
+        {
+            var newTarget = new TargetWithFilterChain(target, rule.Filters, rule.FilterDefaultAction);
+
+            if (existingTargets != null && (newTarget.FilterChain?.Count ?? 0) == 0)
+            {
+                for (TargetWithFilterChain afc = existingTargets; afc != null; afc = afc.NextInChain)
+                {
+                    if (ReferenceEquals(target, afc.Target) && (afc.FilterChain?.Count ?? 0) == 0)
+                    {
+                        return null;    // Duplicate Target
+                    }
+                }
+            }
+
+            return newTarget;
         }
 
         internal LoggerConfiguration GetConfigurationForLogger(string loggerName, LoggingConfiguration configuration)
