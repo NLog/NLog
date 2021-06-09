@@ -202,6 +202,35 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void MultipleTargetsTest_RemoveDuplicate()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Memory' />
+                    <target name='d2' type='Memory' />
+                    <target name='d3' type='Memory' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1,d2,d3,d3' />
+                    <logger name='*' level='Warn' writeTo='d3' />
+                </rules>
+            </nlog>").LogFactory;
+
+            Assert.Equal(2, logFactory.Configuration.LoggingRules.Count);
+            Assert.Equal(3, logFactory.Configuration.AllTargets.Count);
+
+            var logger = logFactory.GetCurrentClassLogger();
+            logger.Warn("Hello");
+
+            foreach (var target in logFactory.Configuration.AllTargets.OfType<NLog.Targets.MemoryTarget>())
+            {
+                Assert.Equal(1, target.Logs.Count);
+            }
+        }
+
+        [Fact]
         public void MultipleRulesSameTargetTest()
         {
             LogFactory logFactory = new LogFactory();

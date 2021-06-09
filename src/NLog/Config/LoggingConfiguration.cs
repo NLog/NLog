@@ -689,18 +689,15 @@ namespace NLog.Config
             InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
 
-        internal List<Target> GetAllTargetsToFlush()
+        internal HashSet<Target> GetAllTargetsToFlush()
         {
-            var uniqueTargets = new List<Target>();
+            var uniqueTargets = new HashSet<Target>(SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
             foreach (var rule in GetLoggingRulesThreadSafe())
             {
                 var targetList = rule.GetTargetsThreadSafe();
                 foreach (var target in targetList)
                 {
-                    if (!uniqueTargets.Contains(target))
-                    {
-                        uniqueTargets.Add(target);
-                    }
+                    uniqueTargets.Add(target);
                 }
             }
 
@@ -958,11 +955,11 @@ namespace NLog.Config
         /// <inheritdoc />
         public override string ToString()
         {
-            var targets = GetAllTargetsToFlush();
+            ICollection<Target> targets = GetAllTargetsToFlush();
             if (targets.Count == 0)
                 targets = GetAllTargetsThreadSafe();
             if (targets.Count == 0)
-                targets = AllTargets.ToList();
+                targets = AllTargets;
 
             if (targets.Count > 0 && targets.Count < 5)
                 return $"TargetNames={string.Join(", ", targets.Select(t => t.Name).Where(n => !string.IsNullOrEmpty(n)).ToArray())}, ConfigItems={_configItems.Count}";

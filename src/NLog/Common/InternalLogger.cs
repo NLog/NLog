@@ -128,8 +128,12 @@ namespace NLog.Common
 
         /// <summary>
         /// Event written to the internal log.
-        /// Please note that the event is not triggered when then event hasn't the minimal log level set by <see cref="LogLevel"/> 
         /// </summary>
+        /// <remarks>
+        /// EventHandler will only be triggered for events, where severity matches the configured <see cref="LogLevel"/>.
+        /// 
+        /// Avoid using/calling NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
+        /// </remarks>
         public static event EventHandler<InternalLoggerMessageEventArgs> LogMessageReceived;
 
         /// <summary>

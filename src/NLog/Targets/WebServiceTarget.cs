@@ -103,8 +103,9 @@ namespace NLog.Targets
 
             Headers = new List<MethodCallParameter>();
 
-#if NETSTANDARD
-            // WebRequest.GetSystemWebProxy throws PlatformNotSupportedException on NetCore, when Proxy is not configured
+#if NETSTANDARD1_3 || NETSTANDARD1_5
+            // NetCore1 throws PlatformNotSupportedException on WebRequest.GetSystemWebProxy, when using DefaultWebProxy
+            // Net5 (or newer) will turn off Http-connection-pooling if not using DefaultWebProxy
             ProxyType = WebServiceProxyType.NoProxy;
 #endif
         }
@@ -151,6 +152,9 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the proxy configuration when calling web service
         /// </summary>
+        /// <remarks>
+        /// Changing ProxyType on Net5 (or newer) will turn off Http-connection-pooling
+        /// </remarks>
         /// <docgen category='Web Service Options' order='10' />
         [DefaultValue("DefaultWebProxy")]
         public WebServiceProxyType ProxyType

@@ -50,6 +50,7 @@ namespace NLog.Config
     {
         private ILoggingRuleLevelFilter _logLevelFilter = LoggingRuleLevelFilter.Off;
         private LoggerNameMatcher _loggerNameMatcher = LoggerNameMatcher.Create(null);
+        private readonly List<Target> _targets = new List<Target>();
 
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
@@ -67,7 +68,6 @@ namespace NLog.Config
             RuleName = ruleName;
             Filters = new List<Filter>();
             ChildRules = new List<LoggingRule>();
-            Targets = new List<Target>();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace NLog.Config
             : this()
         {
             LoggerNamePattern = loggerNamePattern;
-            Targets.Add(target);
+            _targets.Add(target);
             EnableLoggingForLevels(minLevel, maxLevel);
         }
 
@@ -95,7 +95,7 @@ namespace NLog.Config
             : this()
         {
             LoggerNamePattern = loggerNamePattern;
-            Targets.Add(target);
+            _targets.Add(target);
             EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
         }
 
@@ -108,7 +108,7 @@ namespace NLog.Config
             : this()
         {
             LoggerNamePattern = loggerNamePattern;
-            Targets.Add(target);
+            _targets.Add(target);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
         /// </summary>
-        public IList<Target> Targets { get; }
+        public IList<Target> Targets => _targets;
 
         /// <summary>
         /// Gets a collection of child rules to be evaluated when this rule matches.
@@ -127,8 +127,8 @@ namespace NLog.Config
         public IList<LoggingRule> ChildRules { get; }
 
         internal List<LoggingRule> GetChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
-        internal List<Target> GetTargetsThreadSafe() { lock (Targets) return Targets.ToList(); }
-        internal bool RemoveTargetThreadSafe(Target target) { lock (Targets) return Targets.Remove(target); }
+        internal Target[] GetTargetsThreadSafe() { lock (_targets) return _targets.Count == 0 ? NLog.Internal.ArrayHelper.Empty<Target>() : _targets.ToArray(); }
+        internal bool RemoveTargetThreadSafe(Target target) { lock (_targets) return _targets.Remove(target); }
 
         /// <summary>
         /// Gets a collection of filters to be checked before writing to targets.
