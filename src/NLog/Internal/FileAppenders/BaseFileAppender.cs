@@ -186,21 +186,24 @@ namespace NLog.Internal.FileAppenders
                             throw;
                         }
 
+                        InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for FileName: {1}", CreateFileParameters, FileName);
+
                         var directoryName = Path.GetDirectoryName(FileName);
+
                         try
                         {
                             Directory.CreateDirectory(directoryName);
                         }
                         catch (DirectoryNotFoundException)
                         {
-                            //if creating a directory failed, don't retry for this message (e.g the ConcurrentWriteAttempts below)
+                            //if creating a directory failed, don't retry for this message (e.g the FileOpenRetryCount below)
                             throw new NLogRuntimeException("Could not create directory {0}", directoryName);
                         }
 
                         return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
                     }
                 }
-                catch (IOException)
+                catch (IOException ex)
                 {
                     if (i + 1 >= CreateFileParameters.FileOpenRetryCount)
                     {
@@ -208,7 +211,7 @@ namespace NLog.Internal.FileAppenders
                     }
 
                     int actualDelay = _random.Next(currentDelay);
-                    InternalLogger.Warn("{0}: Attempt #{1} to open {2} failed. Sleeping for {3}ms", CreateFileParameters, i, FileName, actualDelay);
+                    InternalLogger.Warn("{0}: Attempt #{1} to open {2} failed - {3} {4}. Sleeping for {5}ms", CreateFileParameters, i, FileName, ex.GetType(), ex.Message, actualDelay);
                     currentDelay *= 2;
                     AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(actualDelay));
                 }
