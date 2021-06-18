@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
 
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.114.2" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.114.3" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
