@@ -62,7 +62,7 @@ namespace NLog.Layouts
             LayoutWrapper.Inner = elementValue;
             Attributes = new List<XmlAttribute>();
             Elements = new List<XmlElement>();
-            ExcludeProperties = new HashSet<string>();
+            ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>

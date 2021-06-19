@@ -94,7 +94,7 @@ namespace NLog.Layouts
         {
             Attributes = new List<JsonAttribute>();
             RenderEmptyObject = true;
-            ExcludeProperties = new HashSet<string>();
+            ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             MaxRecursionLimit = 1;
         }
 
