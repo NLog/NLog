@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -118,26 +117,12 @@ namespace NLog.Targets
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
         public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
-        private IPropertyTypeConverter PropertyTypeConverter
-        {
-            get => _propertyTypeConverter ?? (_propertyTypeConverter = ResolveService<IPropertyTypeConverter>());
-            set => _propertyTypeConverter = value;
-        }
-        private IPropertyTypeConverter _propertyTypeConverter;
-
         /// <summary>
         /// Constructor
         /// </summary>
         protected TargetWithContext()
         {
             _contextLayout = _contextLayout ?? new TargetWithContextLayout(this, base.Layout);
-        }
-
-        /// <inheritdoc/>
-        protected override void CloseTarget()
-        {
-            PropertyTypeConverter = null;
-            base.CloseTarget();
         }
 
         /// <summary>
@@ -406,43 +391,12 @@ namespace NLog.Targets
 
         private bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
         {
-            var propertyType = contextProperty.PropertyType ?? typeof(string);
-
-            var isStringType = propertyType == typeof(string);
-            if (!isStringType && contextProperty.Layout.TryGetRawValue(logEvent, out var rawValue))
+            propertyValue = contextProperty.RenderValue(logEvent);
+            if (!contextProperty.IncludeEmptyValue && (propertyValue == null || string.Empty.Equals(propertyValue)))
             {
-                if (propertyType == typeof(object))
-                {
-                    propertyValue = rawValue;
-                    return contextProperty.IncludeEmptyValue || propertyValue != null;
-                }
-                else if (rawValue?.GetType() == propertyType)
-                {
-                    propertyValue = rawValue;
-                    return true;
-                }
-            }
-
-            var propertyStringValue = RenderLogEvent(contextProperty.Layout, logEvent) ?? string.Empty;
-            if (!contextProperty.IncludeEmptyValue && string.IsNullOrEmpty(propertyStringValue))
-            {
-                propertyValue = null;
                 return false;
             }
 
-            if (isStringType)
-            {
-                propertyValue = propertyStringValue;
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(propertyStringValue) && propertyType.IsValueType())
-            {
-                propertyValue = Activator.CreateInstance(propertyType);
-                return true;
-            }
-
-            propertyValue = PropertyTypeConverter.Convert(propertyStringValue, propertyType, null, CultureInfo.InvariantCulture);
             return true;
         }
 

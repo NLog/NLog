@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.ComponentModel;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -42,7 +43,7 @@ namespace NLog.Targets
     /// A parameter to MethodCall.
     /// </summary>
     [NLogConfigurationItem]
-    public class MethodCallParameter
+    public class MethodCallParameter : ValueTypeLayoutInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
@@ -99,24 +100,20 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
         [Obsolete("Use property ParameterType instead. Marked obsolete on NLog 4.6")]
-        public Type Type
-        {
-            get => ParameterType;
-            set => ParameterType = value;
-        }
+        public Type Type { get => ParameterType; set => ParameterType = value; }
 
         /// <summary>
         /// Gets or sets the type of the parameter. 
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(typeof(string))]
-        public Type ParameterType { get; set; }
+        public Type ParameterType { get => ValueType ?? typeof(string); set => ValueType = value; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
-        public Layout Layout { get; set; }
+        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
     }
 }

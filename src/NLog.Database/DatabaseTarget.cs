@@ -207,9 +207,18 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         public Layout DBPassword
         {
-            get => _dbPassword?.Layout;
-            set => _dbPassword = TransformedLayout.Create(value, EscapeValueForConnectionString, RenderLogEvent);
+            get => _dbPassword;
+            set
+            {
+                _dbPassword = value;
+                if (value is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+                    _dbPasswordFixed = EscapeValueForConnectionString(simpleLayout.OriginalText);
+                else
+                    _dbPasswordFixed = null;
+            }
         }
+        private Layout _dbPassword;
+        private string _dbPasswordFixed;
 
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
@@ -283,18 +292,7 @@ namespace NLog.Targets
         internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
 #endif
 
-        internal Type ConnectionType { get; set; }
-
-        private IPropertyTypeConverter PropertyTypeConverter
-        {
-            get => _propertyTypeConverter ?? (_propertyTypeConverter = ResolveService<IPropertyTypeConverter>());
-            set => _propertyTypeConverter = value;
-        }
-
-        private IPropertyTypeConverter _propertyTypeConverter;
-
-        SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildConnectionStringDelegate;
-        private TransformedLayout _dbPassword;
+        internal Type ConnectionType { get; private set; }
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -363,7 +361,7 @@ namespace NLog.Targets
                 var propertyInfo = objectProperties[i];
                 try
                 {
-                    var propertyValue = GetDatabaseObjectPropertyValue(logEventInfo, propertyInfo);
+                    var propertyValue = propertyInfo.RenderValue(logEventInfo);
                     if (!propertyInfo.SetPropertyValue(databaseObject, propertyValue))
                     {
                         InternalLogger.Warn("{0}: Failed to lookup property {1} on {2}", this, propertyInfo.Name, databaseObject.GetType());
@@ -372,7 +370,7 @@ namespace NLog.Targets
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "{0}: Failed to assign value for property {1} on {2}", this, propertyInfo.Name, databaseObject.GetType());
-                    if (ExceptionMustBeRethrown(ex))
+                    if (LogManager.ThrowExceptions)
                         throw;
                 }
             }
@@ -589,7 +587,6 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            PropertyTypeConverter = null;
             base.CloseTarget();
             InternalLogger.Trace("{0}: Close connection because of CloseTarget", this);
             CloseConnection();
@@ -605,7 +602,7 @@ namespace NLog.Targets
         {
             try
             {
-                WriteLogEventToDatabase(logEvent, BuildConnectionString(logEvent));
+                WriteLogEventSuppressTransactionScope(logEvent, BuildConnectionString(logEvent));
             }
             finally
             {
@@ -625,57 +622,99 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (_buildConnectionStringDelegate == null)
-                _buildConnectionStringDelegate = (l) => BuildConnectionString(l.LogEvent);
-
-            var buckets = logEvents.BucketSort(_buildConnectionStringDelegate);
-
-            foreach (var kvp in buckets)
+            var buckets = GroupInBuckets(logEvents);
+            if (buckets.Count == 1)
             {
-                try
-                {
-                    WriteLogEventsToDatabase(kvp.Value, kvp.Key);
-                }
-                finally
-                {
-                    if (!KeepConnection)
-                    {
-                        InternalLogger.Trace("{0}: Close connection because of KeepConnection=false", this);
-                        CloseConnection();
-                    }
-                }
+                var firstBucket = System.Linq.Enumerable.First(buckets);
+                WriteLogEventsToDatabase(firstBucket.Value, firstBucket.Key);
             }
+            else
+            {
+                foreach (var bucket in buckets)
+                    WriteLogEventsToDatabase(bucket.Value, bucket.Key);
+            }
+        }
+
+        private ICollection<KeyValuePair<string, IList<AsyncLogEventInfo>>> GroupInBuckets(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (logEvents.Count == 0)
+            {
+#if !NET35 && !NET45
+                return Array.Empty<KeyValuePair<string, IList<AsyncLogEventInfo>>>();
+#else
+                return new KeyValuePair<string, IList<AsyncLogEventInfo>>[0];
+#endif
+            }
+
+            string firstConnectionString = BuildConnectionString(logEvents[0].LogEvent);
+            IDictionary<string, IList<AsyncLogEventInfo>> dictionary = null;
+            for (int i = 1; i < logEvents.Count; ++i)
+            {
+                var connectionString = BuildConnectionString(logEvents[i].LogEvent);
+                if (dictionary == null)
+                {
+                    if (connectionString == firstConnectionString)
+                        continue;
+
+                    var firstBucket = new List<AsyncLogEventInfo>(i);
+                    for (int j = 0; j < i; ++j)
+                        firstBucket.Add(logEvents[j]);
+
+                    dictionary = new Dictionary<string, IList<AsyncLogEventInfo>>() { { firstConnectionString, firstBucket } };
+                }
+
+                if (!dictionary.TryGetValue(connectionString, out var bucket))
+                    bucket = dictionary[connectionString] = new List<AsyncLogEventInfo>();
+
+                bucket.Add(logEvents[i]);
+            }
+
+            return (ICollection<KeyValuePair<string, IList<AsyncLogEventInfo>>>)dictionary ?? new KeyValuePair<string, IList<AsyncLogEventInfo>>[] { new KeyValuePair<string, IList<AsyncLogEventInfo>>(firstConnectionString, logEvents) };
         }
 
         private void WriteLogEventsToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString)
         {
-            if (IsolationLevel.HasValue && logEvents.Count > 1)
+            try
             {
-                WriteLogEventBatchToDatabase(logEvents, connectionString);
-            }
-            else
-            {
-                for (int i = 0; i < logEvents.Count; i++)
+                if (IsolationLevel.HasValue && logEvents.Count > 1)
                 {
-                    try
-                    {
-                        WriteLogEventToDatabase(logEvents[i].LogEvent, connectionString);
-                        logEvents[i].Continuation(null);
-                    }
-                    catch (Exception exception)
-                    {
-                        if (ExceptionMustBeRethrown(exception))
-                        {
-                            throw;
-                        }
-
-                        logEvents[i].Continuation(exception);
-                    }
+                    WriteLogEventsWithTransactionScope(logEvents, connectionString);
+                }
+                else
+                {
+                    WriteLogEventsSuppressTransactionScope(logEvents, connectionString);
+                }
+            }
+            finally
+            {
+                if (!KeepConnection)
+                {
+                    InternalLogger.Trace("{0}: Close connection because of KeepConnection=false", this);
+                    CloseConnection();
                 }
             }
         }
 
-        private void WriteLogEventBatchToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString)
+        private void WriteLogEventsSuppressTransactionScope(IList<AsyncLogEventInfo> logEvents, string connectionString)
+        {
+            for (int i = 0; i < logEvents.Count; i++)
+            {
+                try
+                {
+                    WriteLogEventSuppressTransactionScope(logEvents[i].LogEvent, connectionString);
+                    logEvents[i].Continuation(null);
+                }
+                catch (Exception exception)
+                {
+                    if (LogManager.ThrowExceptions)
+                        throw;
+
+                    logEvents[i].Continuation(exception);
+                }
+            }
+        }
+
+        private void WriteLogEventsWithTransactionScope(IList<AsyncLogEventInfo> logEvents, string connectionString)
         {
             try
             {
@@ -716,10 +755,8 @@ namespace NLog.Targets
                         catch (Exception exception)
                         {
                             InternalLogger.Error(exception, "{0}: Error during rollback of batch writing {1} logevents to database.", this, logEvents.Count);
-                            if (exception.MustBeRethrownImmediately())
-                            {
+                            if (LogManager.ThrowExceptions)
                                 throw;
-                            }
                         }
 
                         throw;
@@ -729,10 +766,8 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Error(exception, "{0}: Error when batch writing {1} logevents to database.", this, logEvents.Count);
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
 
                 for (int i = 0; i < logEvents.Count; i++)
                 {
@@ -744,7 +779,7 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteLogEventToDatabase(LogEventInfo logEvent, string connectionString)
+        private void WriteLogEventSuppressTransactionScope(LogEventInfo logEvent, string connectionString)
         {
             try
             {
@@ -762,10 +797,8 @@ namespace NLog.Targets
             {
                 InternalLogger.Error(exception, "{0}: Error when writing to database.", this);
 
-                if (exception.MustBeRethrownImmediately())
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
 
                 InternalLogger.Trace("{0}: Close connection because of error", this);
                 CloseConnection();
@@ -850,7 +883,7 @@ namespace NLog.Targets
                 sb.Append("User id=");
                 sb.Append(dbUserName);
                 sb.Append(";Password=");
-                var password = _dbPassword.Render(logEvent);
+                var password = _dbPasswordFixed ?? EscapeValueForConnectionString(_dbPassword.Render(logEvent));
                 sb.Append(password);
                 sb.Append(";");
             }
@@ -870,6 +903,9 @@ namespace NLog.Targets
         /// </summary>
         private static string EscapeValueForConnectionString(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return value;
+
             const string singleQuote = "'";
 
             if (value.StartsWith(singleQuote) && value.EndsWith(singleQuote))
@@ -967,10 +1003,8 @@ namespace NLog.Targets
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrownImmediately())
-                            {
+                            if (LogManager.ThrowExceptions)
                                 throw;
-                            }
 
                             if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
                             {
@@ -1053,12 +1087,9 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-
                 InternalLogger.Error(ex, "  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", parameterInfo.Name, parameterInfo.DbType);
 
-                if (ExceptionMustBeRethrown(ex))
+                if (LogManager.ThrowExceptions)
                     throw;
             }
 
@@ -1072,105 +1103,11 @@ namespace NLog.Targets
         /// <param name="parameterInfo">Parameter configuration info.</param>
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
-            return RenderObjectValue(logEvent, parameterInfo.Name, parameterInfo.Layout, parameterInfo.ParameterType, parameterInfo.Format, parameterInfo.Culture, parameterInfo.AllowDbNull);
-        }
-
-        private object GetDatabaseObjectPropertyValue(LogEventInfo logEvent, DatabaseObjectPropertyInfo connectionInfo)
-        {
-            return RenderObjectValue(logEvent, connectionInfo.Name, connectionInfo.Layout, connectionInfo.PropertyType, connectionInfo.Format, connectionInfo.Culture, false);
-        }
-
-        private object RenderObjectValue(LogEventInfo logEvent, string propertyName, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull)
-        {
-            if (string.IsNullOrEmpty(valueFormat) && valueType == typeof(string) && !allowDbNull)
-            {
-                return RenderLogEvent(valueLayout, logEvent) ?? string.Empty;
-            }
-
-            formatProvider = formatProvider ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
-
-            try
-            {
-                if (TryRenderObjectRawValue(logEvent, valueLayout, valueType, valueFormat, formatProvider, allowDbNull, out var rawValue))
-                {
-                    return rawValue;
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-
-                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", propertyName, valueType);
-                if (ExceptionMustBeRethrown(ex))
-                    throw;
-            }
-
-            try
-            {
-                InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", propertyName, valueType);
-                string parameterValue = RenderLogEvent(valueLayout, logEvent);
-                if (string.IsNullOrEmpty(parameterValue))
-                {
-                    return CreateDefaultValue(valueType, allowDbNull);
-                }
-
-                return PropertyTypeConverter.Convert(parameterValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-
-                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", propertyName, valueType);
-
-                if (ExceptionMustBeRethrown(ex))
-                    throw;
-
-                return CreateDefaultValue(valueType, allowDbNull);
-            }
-        }
-
-        private bool TryRenderObjectRawValue(LogEventInfo logEvent, Layout valueLayout, Type valueType, string valueFormat, IFormatProvider formatProvider, bool allowDbNull, out object rawValue)
-        {
-            if (valueLayout.TryGetRawValue(logEvent, out rawValue))
-            {
-                if (ReferenceEquals(rawValue, DBNull.Value))
-                {
-                    return true;
-                }
-
-                if (rawValue == null)
-                {
-                    rawValue = CreateDefaultValue(valueType, allowDbNull);
-                    return true;
-                }
-
-                if (valueType == typeof(string))
-                {
-                    return rawValue is string;
-                }
-
-                rawValue = PropertyTypeConverter.Convert(rawValue, valueType, valueFormat, formatProvider) ?? CreateDefaultValue(valueType, allowDbNull);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Create Default Value of Type
-        /// </summary>
-        private static object CreateDefaultValue(Type dbParameterType, bool allowDbNull)
-        {
-            if (allowDbNull)
+            var value = parameterInfo.RenderValue(logEvent);
+            if (parameterInfo.AllowDbNull && string.Empty.Equals(value))
                 return DBNull.Value;
-            else if (dbParameterType == typeof(string))
-                return string.Empty;
-            else if (dbParameterType.IsValueType())
-                return Activator.CreateInstance(dbParameterType);
             else
-                return DBNull.Value;
+                return value;
         }
 
 #if NETSTANDARD1_3 || NETSTANDARD1_5
@@ -1181,21 +1118,21 @@ namespace NLog.Targets
         /// </summary>
         private sealed class TransactionScope : IDisposable
         {
-            private readonly TransactionScopeOption suppress;
+            private readonly TransactionScopeOption _suppress;
 
             public TransactionScope(TransactionScopeOption suppress)
             {
-                this.suppress = suppress;
+                _suppress = suppress;
             }
 
-            public void Complete() { }
+            public void Complete()
+            {
+                // Fake scope for compatibility, so nothing to do
+            }
 
-            /// <summary>
-            ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            /// </summary>
             public void Dispose()
             {
-
+                // Fake scope for compatibility, so nothing to do
             }
         }
 

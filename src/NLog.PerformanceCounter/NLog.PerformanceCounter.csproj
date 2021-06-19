@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net35;net45;net46;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.PerformanceCounter</Title>
+    <Title>NLog Windows PerformanceCounter</Title>
     <Company>NLog</Company>
     <Description>NLog.PerformanceCounter provides support for Windows Performance Counters</Description>
     <Product>NLog.PerformanceCounter v$(ProductVersion)</Product>
@@ -13,10 +13,10 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-PerformanceCounterTarget Docs:
+PerformanceCounter Target Docs:
 https://github.com/NLog/NLog/wiki/PerfCounter-target
 
-PerformanceCounterLayoutRenderer Docs:
+PerformanceCounter LayoutRenderer Docs:
 https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
     </PackageReleaseNotes>
     <PackageTags>NLog;Windows;PerformanceCounter;logging;log</PackageTags>
@@ -73,7 +73,7 @@ https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath=""/>
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
   </ItemGroup>
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
     <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
