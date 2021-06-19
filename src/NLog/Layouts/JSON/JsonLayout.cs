@@ -222,9 +222,9 @@ namespace NLog.Layouts
             {
                 foreach (var attribute in Attributes)
                 {
-                    if (!attribute.LayoutWrapper.EscapeForwardSlashInternal.HasValue)
+                    if (!attribute.EscapeForwardSlashInternal.HasValue)
                     {
-                        attribute.LayoutWrapper.EscapeForwardSlashInternal = _escapeForwardSlashInternal.Value;
+                        attribute.EscapeForwardSlash = _escapeForwardSlashInternal.Value;
                     }
                 }
             }
@@ -416,21 +416,12 @@ namespace NLog.Layouts
         private bool RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, StringBuilder sb, bool beginJsonMessage)
         {
             BeginJsonProperty(sb, attrib.Name, beginJsonMessage, false);
-            if (attrib.Encode)
-            {
-                // "\"{0}\":{1}\"{2}\""
-                sb.Append('"');
-            }
-            int beforeValueLength = sb.Length;
-            attrib.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
-            if (!attrib.IncludeEmptyValue && beforeValueLength == sb.Length)
+
+            if (!attrib.RenderAppendJsonValue(logEvent, JsonConverter, sb))
             {
                 return false;
             }
-            if (attrib.Encode)
-            {
-                sb.Append('"');
-            }
+
             return true;
         }
 

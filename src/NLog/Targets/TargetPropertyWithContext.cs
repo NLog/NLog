@@ -43,8 +43,10 @@ namespace NLog.Targets
     /// Attribute details for <see cref="TargetWithContext"/> 
     /// </summary>
     [NLogConfigurationItem]
-    public class TargetPropertyWithContext : ValueTypeLayoutInfo
+    public class TargetPropertyWithContext
     {
+        private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
         /// </summary>
@@ -73,7 +75,18 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Property Options' order='10' />
         [RequiredParameter]
-        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
+        public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
+
+        /// <summary>
+        /// Gets or sets the type of the property.
+        /// </summary>
+        [DefaultValue(typeof(string))]
+        public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
+
+        /// <summary>
+        /// Gets or sets the fallback value when result value is not available
+        /// </summary>
+        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets when an empty value should cause the property to be included
@@ -94,9 +107,10 @@ namespace NLog.Targets
         private bool _includeEmptyValue = true;
 
         /// <summary>
-        /// Gets or sets the type of the property.
+        /// Render Result Value
         /// </summary>
-        [DefaultValue(typeof(string))]
-        public Type PropertyType { get => ValueType ?? typeof(string); set => ValueType = value; }
+        /// <param name="logEvent">Log event for rendering</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
     }
 }

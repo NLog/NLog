@@ -100,6 +100,38 @@ namespace NLog.Internal
         }
 #endif
 
+        internal static void PerformXmlEscapeWhenNeeded(StringBuilder builder, int startPos, bool xmlEncodeNewlines)
+        {
+            if (RequiresXmlEscape(builder, startPos, xmlEncodeNewlines))
+            {
+                var str = builder.ToString(startPos, builder.Length - startPos);
+                builder.Length = startPos;
+                EscapeXmlString(str, xmlEncodeNewlines, builder);
+            }
+        }
+
+        private static bool RequiresXmlEscape(StringBuilder target, int startPos, bool xmlEncodeNewlines)
+        {
+            for (int i = startPos; i < target.Length; ++i)
+            {
+                switch (target[i])
+                {
+                    case '<':
+                    case '>':
+                    case '&':
+                    case '\'':
+                    case '"':
+                        return true;
+                    case '\r':
+                    case '\n':
+                        if (xmlEncodeNewlines)
+                            return true;
+                        break;
+                }
+            }
+            return false;
+        }
+
         private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
         private static readonly char[] XmlEscapeNewlineChars = new char[] { '<', '>', '&', '\'', '"', '\r', '\n' };
 

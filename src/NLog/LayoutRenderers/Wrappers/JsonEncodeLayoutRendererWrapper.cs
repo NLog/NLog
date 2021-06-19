@@ -79,22 +79,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </remarks>
         /// <docgen category="Transformation Options" order="10"/>
         [DefaultValue(false)]
-        public bool EscapeForwardSlash
-        {
-            get => EscapeForwardSlashInternal ?? false;
-            set => EscapeForwardSlashInternal = value;
-        }
-        internal bool? EscapeForwardSlashInternal;
+        public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner.RenderAppendBuilder(logEvent, builder);
-            if (JsonEncode && builder.Length > orgLength && RequiresJsonEncode(builder, orgLength))
+            if (JsonEncode && builder.Length > orgLength)
             {
-                var str = builder.ToString(orgLength, builder.Length - orgLength);
-                builder.Length = orgLength;
-                Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode, EscapeForwardSlash);
+                Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(builder, orgLength, EscapeUnicode, EscapeForwardSlash);
             }
         }
 
@@ -102,18 +95,6 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override string Transform(string text)
         {
             throw new NotSupportedException();
-        }
-
-        private bool RequiresJsonEncode(StringBuilder target, int startPos = 0)
-        {
-            for (int i = startPos; i < target.Length; ++i)
-            {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], EscapeUnicode, EscapeForwardSlash))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

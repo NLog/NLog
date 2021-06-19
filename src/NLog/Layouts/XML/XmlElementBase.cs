@@ -713,9 +713,7 @@ namespace NLog.Layouts
             sb.Append(xmlKeyString);
             sb.Append("=\"");
 
-            int beforeValueLength = sb.Length;
-            xmlAttribute.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
-            if (sb.Length == beforeValueLength && !xmlAttribute.IncludeEmptyValue)
+            if (!xmlAttribute.RenderAppendXmlValue(logEvent, sb))
                 return false;
 
             sb.Append('\"');

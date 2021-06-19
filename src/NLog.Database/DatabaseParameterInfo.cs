@@ -47,8 +47,10 @@ namespace NLog.Targets
     /// Represents a parameter to a Database target.
     /// </summary>
     [NLogConfigurationItem]
-    public class DatabaseParameterInfo : ValueTypeLayoutInfo
+    public class DatabaseParameterInfo
     {
+        private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
         /// </summary>
@@ -80,14 +82,39 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Parameter Options' order='1' />
         [RequiredParameter]
-        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
+        public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the database parameter DbType.
         /// </summary>
         /// <docgen category='Parameter Options' order='2' />
         [DefaultValue(null)]
-        public string DbType { get; set; }
+        public string DbType
+        {
+            get => _dbType;
+            set
+            {
+                _dbType = value;
+                if (!string.IsNullOrEmpty(_dbType))
+                {
+                    if (ParameterType == null || ParameterType == _dbParameterType)
+                    {
+                        var dbParameterType = TryParseDbType(DbType);
+                        if (dbParameterType != null)
+                        {
+                            ParameterType = dbParameterType;
+                        }
+                        _dbParameterType = dbParameterType;
+                    }
+                }
+                else if (_dbParameterType != null && ParameterType == _dbParameterType)
+                {
+                    ParameterType = null;
+                }
+            }
+        }
+        private string _dbType;
+        private Type _dbParameterType;
 
         /// <summary>
         /// Gets or sets the database parameter size.
@@ -114,29 +141,34 @@ namespace NLog.Targets
         /// Gets or sets the type of the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='6' />
-        [DefaultValue(typeof(string))]
-        public Type ParameterType { get => ValueType; set => ValueType = value; }
-
-        /// <inheritdoc/>
-        protected override Type ValueType
+        public Type ParameterType
         {
-            get => base.ValueType ?? TryParseDbType(DbType) ?? typeof(string);
-            set => base.ValueType = value;
+            get => _layoutInfo.ValueType;
+            set
+            {
+                _dbParameterType = null;
+                _layoutInfo.ValueType = value;
+            }
         }
+
+        /// <summary>
+        /// Gets or sets the fallback value when result value is not available
+        /// </summary>
+        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets convert format of the database parameter value.
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />
         [DefaultValue(null)]
-        public string Format { get => ValueParseFormat; set => ValueParseFormat = value; }
+        public string Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
         /// <docgen category='Parameter Options' order='9' />
         [DefaultValue(null)]
-        public CultureInfo Culture { get => ValueParseCulture; set => ValueParseCulture = value; }
+        public CultureInfo Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
 
         /// <summary>
         /// Gets or sets whether empty value should translate into DbNull. Requires database column to allow NULL values.
@@ -156,6 +188,13 @@ namespace NLog.Targets
             }
         }
         private bool _allowDbNull;
+
+        /// <summary>
+        /// Render Result Value
+        /// </summary>
+        /// <param name="logEvent">Log event for rendering</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
 
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
