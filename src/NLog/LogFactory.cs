@@ -859,13 +859,10 @@ namespace NLog
 
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
-                if (i < GlobalThreshold.Ordinal || suppressedLevels[i] || !rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
+                if (SuppressLogLevel(rule, i, ref suppressedLevels[i]))
                 {
                     continue;
                 }
-
-                if (rule.Final)
-                    suppressedLevels[i] = true;
 
                 foreach (Target target in rule.GetTargetsThreadSafe())
                 {
@@ -895,6 +892,31 @@ namespace NLog
             }
 
             return targetsFound;
+        }
+
+        private bool SuppressLogLevel(LoggingRule rule, int logLevelOrdinal, ref bool suppressedLevels)
+        {
+            if (logLevelOrdinal < GlobalThreshold.Ordinal || suppressedLevels)
+            {
+                return true;
+            }
+
+            if (rule.FinalMinLevel?.Ordinal > logLevelOrdinal)
+            {
+                suppressedLevels = true;
+            }
+
+            if (!rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(logLevelOrdinal)))
+            {
+                return true;
+            }
+
+            if (rule.Final)
+            {
+                suppressedLevels = true;
+            }
+
+            return false;
         }
 
         private static TargetWithFilterChain CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)

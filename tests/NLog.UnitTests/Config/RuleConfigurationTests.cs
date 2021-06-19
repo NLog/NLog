@@ -130,6 +130,42 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void FinalMinLevelTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='defaultTarget' type='Debug' layout='${message}' />
+                    <target name='requestTarget' type='Debug' layout='Request-${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='RequestLogger' minLevel='Info' finalMinLevel='Error' writeTo='requestTarget' />
+                    <logger name='*' minLevel='Info' writeTo='defaultTarget' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var requestLogger = logFactory.GetLogger("RequestLogger");
+            var defaultLogger = logFactory.GetLogger("DefaultLogger");
+
+            requestLogger.Error("Important Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Important Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Important Noise");
+
+            defaultLogger.Info("Other Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Important Noise");
+
+            requestLogger.Warn("Good Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            requestLogger.Debug("Unwanted Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+        }
+
+        [Fact]
         public void NoLevelsTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
