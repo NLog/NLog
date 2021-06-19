@@ -2,8 +2,8 @@
 # creates NuGet package at \artifacts
 dotnet --version
 
-$versionPrefix = "4.7.11"
-$versionSuffix = ""
+$versionPrefix = "5.0.0"
+$versionSuffix = "preview.1"
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
 if (-Not $versionSuffix.Equals(""))
