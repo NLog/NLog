@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Layouts
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>
-                            <layout type='xmllayout' elementName='log4j:event' propertiesElementName='log4j:data' propertiesElementKeyAttribute='name' propertiesElementValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
+                            <layout type='xmllayout' elementName='log4j:event' propertiesElementName='log4j:data' propertiesElementKeyAttribute='name' propertiesElementValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' excludeProperties='BADPROPERTYKEY' >
                                 <attribute name='logger' layout='${logger}' includeEmptyValue='true' />
                                 <attribute name='level' layout='${uppercase:${level}}' includeEmptyValue='true' />
                                 <element name='log4j:message' value='${message}' />
@@ -101,6 +101,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", null, null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "<nlog\r\nPropertyValue>";
+            logEventInfo.Properties["badPropertyKey"] = "NOT ME";
             logger.Log(logEventInfo);
 
             var target = LogManager.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");

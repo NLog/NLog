@@ -61,9 +61,7 @@ namespace NLog.LayoutRenderers
         {
             Separator = ", ";
             Format = "[key]=[value]";
-            Exclude = new HashSet<string>(
-                ArrayHelper.Empty<string>(),
-                StringComparer.OrdinalIgnoreCase);
+            Exclude = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>

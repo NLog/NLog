@@ -69,4 +69,8 @@ else
 	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
+
+	dotnet test ./tests/NLog.Database.Tests/ --framework netcoreapp2.1 --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
 }

@@ -783,7 +783,7 @@ namespace NLog.UnitTests.Layouts
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2'>
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,EXCLUDED2'>
             
                  </layout>
                 </target>

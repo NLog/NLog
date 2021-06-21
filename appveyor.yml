@@ -1,6 +1,6 @@
 version: 4.7.0-{build}
 image:
-  - Visual Studio 2019
+  - Previous Visual Studio 2019
   - Previous Ubuntu
 configuration: Release
 build: no
@@ -11,12 +11,14 @@ skip_branch_with_pr: true
 nuget:
   disable_publish_on_pr: true
 
+matrix:
+  fast_finish: true
+
 for:
   -
     matrix:
-      fast_finish: true
       only:
-        - image: Visual Studio 2019
+        - image: Previous Visual Studio 2019
     init:
         - net start MSSQL$SQL2019
     environment:
@@ -46,7 +48,6 @@ for:
 
   -
     matrix:
-      fast_finish: true
       only:
         - image: Previous Ubuntu
     environment:
@@ -56,6 +57,3 @@ for:
     - ps: dotnet --version
     test_script:
     - ps: ./run-tests.ps1
-
-matrix:
-  fast_finish: true
