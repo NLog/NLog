@@ -46,58 +46,71 @@ namespace NLog.Internal
     [NLogConfigurationItem]
     internal class TargetWithFilterChain
     {
-        /// <summary>
-        /// cached result as calculating is expensive.
-        /// </summary>
-        private StackTraceUsage? _stackTraceUsage;
-
         private MruCache<CallSiteKey, string> _callSiteClassNameCache;
 
-        struct CallSiteKey : IEquatable<CallSiteKey>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="filterChain">The filter chain.</param>
+        /// <param name="defaultResult">Default action if none of the filters match.</param>
+        public TargetWithFilterChain(Target target, IList<Filter> filterChain, FilterResult defaultResult)
         {
-            public CallSiteKey(string methodName, string fileSourceName, int fileSourceLineNumber)
+            Target = target;
+            FilterChain = filterChain;
+            DefaultResult = defaultResult;
+        }
+
+        /// <summary>
+        /// Gets the target.
+        /// </summary>
+        /// <value>The target.</value>
+        public Target Target { get; }
+
+        /// <summary>
+        /// Gets the filter chain.
+        /// </summary>
+        /// <value>The filter chain.</value>
+        public IList<Filter> FilterChain { get;  }
+
+        /// <summary>
+        /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
+        /// </summary>
+        /// <value>The next item in the chain.</value>
+        /// <example>This is for example the 'target2' logger in writeTo='target1,target2'  </example>
+        public TargetWithFilterChain NextInChain { get; set; }
+
+        /// <summary>
+        /// Gets the stack trace usage.
+        /// </summary>
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
+        public StackTraceUsage StackTraceUsage { get; private set; }
+
+                /// <summary>
+        /// Default action if none of the filters match.
+        /// </summary>
+        public FilterResult DefaultResult { get; }
+
+        internal StackTraceUsage PrecalculateStackTraceUsage()
+        {
+            var stackTraceUsage = StackTraceUsage.None;
+
+            // find all objects which may need stack trace
+            // and determine maximum
+            if (Target != null)
             {
-                MethodName = methodName ?? string.Empty;
-                FileSourceName = fileSourceName ?? string.Empty;
-                FileSourceLineNumber = fileSourceLineNumber;
+                stackTraceUsage = Target.StackTraceUsage;
             }
 
-            public readonly string MethodName;
-            public readonly string FileSourceName;
-            public readonly int FileSourceLineNumber;
-
-            /// <summary>
-            /// Serves as a hash function for a particular type.
-            /// </summary>
-            /// <returns>
-            /// A hash code for the current <see cref="T:System.Object"/>.
-            /// </returns>
-            public override int GetHashCode()
+            //recurse into chain if not max
+            if (NextInChain != null && (stackTraceUsage & StackTraceUsage.Max) != StackTraceUsage.Max)
             {
-                return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;
+                var stackTraceUsageForChain = NextInChain.PrecalculateStackTraceUsage();
+                stackTraceUsage |= stackTraceUsageForChain;
             }
 
-            /// <summary>
-            /// Determines if two objects are equal in value.
-            /// </summary>
-            /// <param name="obj">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
-            public override bool Equals(object obj)
-            {
-                return obj is CallSiteKey key && Equals(key);
-            }
-
-            /// <summary>
-            /// Determines if two objects of the same type are equal in value.
-            /// </summary>
-            /// <param name="other">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
-            public bool Equals(CallSiteKey other)
-            {
-                return FileSourceLineNumber == other.FileSourceLineNumber
-                    && string.Equals(FileSourceName, other.FileSourceName, StringComparison.Ordinal)
-                    && string.Equals(MethodName, other.MethodName, StringComparison.Ordinal);
-            }
+            StackTraceUsage = stackTraceUsage;
+            return stackTraceUsage;
         }
 
         internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
@@ -165,72 +178,51 @@ namespace NLog.Internal
             return _callSiteClassNameCache.TryGetValue(callSiteKey, out callSiteClassName);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
-        /// </summary>
-        /// <param name="target">The target.</param>
-        /// <param name="filterChain">The filter chain.</param>
-        /// <param name="defaultResult">Default action if none of the filters match.</param>
-        public TargetWithFilterChain(Target target, IList<Filter> filterChain, FilterResult defaultResult)
+        struct CallSiteKey : IEquatable<CallSiteKey>
         {
-            Target = target;
-            FilterChain = filterChain;
-            DefaultResult = defaultResult;
-        }
-
-        /// <summary>
-        /// Gets the target.
-        /// </summary>
-        /// <value>The target.</value>
-        public Target Target { get; }
-
-        /// <summary>
-        /// Gets the filter chain.
-        /// </summary>
-        /// <value>The filter chain.</value>
-        public IList<Filter> FilterChain { get;  }
-
-        /// <summary>
-        /// Default action if none of the filters match.
-        /// </summary>
-        public FilterResult DefaultResult { get; }
-
-        /// <summary>
-        /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
-        /// </summary>
-        /// <value>The next item in the chain.</value>
-        /// <example>This is for example the 'target2' logger in writeTo='target1,target2'  </example>
-        public TargetWithFilterChain NextInChain { get; set; }
-
-        /// <summary>
-        /// Gets the stack trace usage.
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        public StackTraceUsage GetStackTraceUsage()
-        {
-            return _stackTraceUsage ?? StackTraceUsage.None;
-        }
-
-        internal StackTraceUsage PrecalculateStackTraceUsage()
-        {
-            var stackTraceUsage = StackTraceUsage.None;
-
-            // find all objects which may need stack trace
-            // and determine maximum
-            if (Target != null)
+            public CallSiteKey(string methodName, string fileSourceName, int fileSourceLineNumber)
             {
-                stackTraceUsage = Target.StackTraceUsage;
+                MethodName = methodName ?? string.Empty;
+                FileSourceName = fileSourceName ?? string.Empty;
+                FileSourceLineNumber = fileSourceLineNumber;
             }
 
-            //recurse into chain if not max
-            if (NextInChain != null && (stackTraceUsage & StackTraceUsage.Max) != StackTraceUsage.Max)
+            public readonly string MethodName;
+            public readonly string FileSourceName;
+            public readonly int FileSourceLineNumber;
+
+            /// <summary>
+            /// Serves as a hash function for a particular type.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the current <see cref="T:System.Object"/>.
+            /// </returns>
+            public override int GetHashCode()
             {
-                var stackTraceUsageForChain = NextInChain.PrecalculateStackTraceUsage();
-                stackTraceUsage |= stackTraceUsageForChain;
+                return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;
             }
 
-            _stackTraceUsage = stackTraceUsage;
-            return stackTraceUsage;
+            /// <summary>
+            /// Determines if two objects are equal in value.
+            /// </summary>
+            /// <param name="obj">Other object to compare to.</param>
+            /// <returns>True if objects are equal, false otherwise.</returns>
+            public override bool Equals(object obj)
+            {
+                return obj is CallSiteKey key && Equals(key);
+            }
+
+            /// <summary>
+            /// Determines if two objects of the same type are equal in value.
+            /// </summary>
+            /// <param name="other">Other object to compare to.</param>
+            /// <returns>True if objects are equal, false otherwise.</returns>
+            public bool Equals(CallSiteKey other)
+            {
+                return FileSourceLineNumber == other.FileSourceLineNumber
+                    && string.Equals(FileSourceName, other.FileSourceName, StringComparison.Ordinal)
+                    && string.Equals(MethodName, other.MethodName, StringComparison.Ordinal);
+            }
         }
     }
 }

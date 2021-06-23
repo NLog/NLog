@@ -923,11 +923,11 @@ namespace NLog
         {
             var newTarget = new TargetWithFilterChain(target, rule.Filters, rule.FilterDefaultAction);
 
-            if (existingTargets != null && (newTarget.FilterChain?.Count ?? 0) == 0)
+            if (existingTargets != null && newTarget.FilterChain.Count == 0)
             {
                 for (TargetWithFilterChain afc = existingTargets; afc != null; afc = afc.NextInChain)
                 {
-                    if (ReferenceEquals(target, afc.Target) && (afc.FilterChain?.Count ?? 0) == 0)
+                    if (ReferenceEquals(target, afc.Target) && afc.FilterChain.Count == 0)
                     {
                         return null;    // Duplicate Target
                     }
