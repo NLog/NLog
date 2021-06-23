@@ -59,7 +59,7 @@ namespace NLog
             logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain == null ? logFactory.SingleTargetMessageFormatter : null);
 
 #if CaptureCallSiteInfo
-            StackTraceUsage stu = targetsForLevel.GetStackTraceUsage();
+            StackTraceUsage stu = targetsForLevel.StackTraceUsage;
             if (stu != StackTraceUsage.None)
             {
                 bool attemptCallSiteOptimization = targetsForLevel.TryCallSiteClassNameOptimization(stu, logEvent);
@@ -96,15 +96,16 @@ namespace NLog
             FilterResult prevFilterResult = FilterResult.Neutral;
             for (var t = targetsForLevel; t != null; t = t.NextInChain)
             {
-                FilterResult result = ReferenceEquals(prevFilterChain, t.FilterChain) ?
-                    prevFilterResult : GetFilterResult(t.FilterChain, logEvent, t.DefaultResult);
+                var currentFilterChain = t.FilterChain;
+                FilterResult result = ReferenceEquals(prevFilterChain, currentFilterChain) ?
+                    prevFilterResult : GetFilterResult(currentFilterChain, logEvent, t.DefaultResult);
                 if (!WriteToTargetWithFilterChain(t.Target, result, logEvent, exceptionHandler))
                 {
                     break;
                 }
 
                 prevFilterResult = result;  // Cache the result, and reuse it for the next target, if it comes from the same logging-rule
-                prevFilterChain = t.FilterChain;
+                prevFilterChain = currentFilterChain;
             }
         }
 
@@ -167,7 +168,7 @@ namespace NLog
         /// <returns>The result of the filter.</returns>
         private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult filterDefaultAction)
         {
-            if (filterChain == null || filterChain.Count == 0) 
+            if (filterChain.Count == 0) 
                 return FilterResult.Neutral;
 
             try
