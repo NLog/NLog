@@ -268,6 +268,13 @@ namespace NLog.Targets
                     if (headerValue == null)
                         continue;
 
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+                    if (nameof(webRequest.UserAgent).Equals(Headers[i].Name))
+                    {
+                        webRequest.UserAgent = headerValue;
+                        continue;
+                    }
+#endif
                     webRequest.Headers[Headers[i].Name] = headerValue;
                 }
             }
