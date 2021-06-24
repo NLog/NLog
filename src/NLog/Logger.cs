@@ -49,9 +49,9 @@ namespace NLog
     public partial class Logger : ILogger
     {
         internal static readonly Type DefaultLoggerType = typeof(Logger);
+        private TargetWithFilterChain[] _targetsByLevel = TargetWithFilterChain.NoTargetsByLevel;
         private Logger _contextLogger;
         private ThreadSafeDictionary<string, object> _contextProperties;
-        private LoggerConfiguration _configuration;
         private volatile bool _isTraceEnabled;
         private volatile bool _isDebugEnabled;
         private volatile bool _isInfoEnabled;
@@ -98,12 +98,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the specified level, otherwise it returns <see langword="false" />.</returns>
         public bool IsEnabled(LogLevel level)
         {
-            if (level == null)
-            {
-                throw new InvalidOperationException("Log level must be defined");
-            }
-
-            return GetTargetsForLevel(level) != null;
+            return GetTargetsForLevelSafe(level) != null;
         }
 
         /// <summary>
@@ -120,10 +115,10 @@ namespace NLog
                 throw new ArgumentException(nameof(propertyKey));
 
             Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
-            newLogger.Initialize(Name, _configuration, Factory);
+            newLogger.Initialize(Name, _targetsByLevel, Factory);
             newLogger._contextProperties = CreateContextPropertiesDictionary(_contextProperties);
             newLogger._contextProperties[propertyKey] = propertyValue;
-            newLogger._contextLogger = _contextLogger;  // Use the LoggerConfiguration of the parent Logger
+            newLogger._contextLogger = _contextLogger;  // Use the GetTargetsForLevel() of the parent Logger
             return newLogger;
         }
 
@@ -229,7 +224,7 @@ namespace NLog
         /// <param name="logEvent">Log event.</param>
         public void Log(LogEventInfo logEvent)
         {
-            var targetsForLevel = IsEnabled(logEvent.Level) ? GetTargetsForLevel(logEvent.Level) : null;
+            var targetsForLevel = GetTargetsForLevelSafe(logEvent.Level);
             if (targetsForLevel != null)
             {
                 if (logEvent.LoggerName == null)
@@ -245,7 +240,7 @@ namespace NLog
         /// <param name="logEvent">Log event.</param>
         public void Log(Type wrapperType, LogEventInfo logEvent)
         {
-            var targetsForLevel = IsEnabled(logEvent.Level) ? GetTargetsForLevel(logEvent.Level) : null;
+            var targetsForLevel = GetTargetsForLevelSafe(logEvent.Level);
             if (targetsForLevel != null)
             {
                 if (logEvent.LoggerName == null)
@@ -650,11 +645,11 @@ namespace NLog
         }
 #endif
 
-        internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
+        internal void Initialize(string name, TargetWithFilterChain[] targetsByLevel, LogFactory factory)
         {
             Name = name;
             Factory = factory;
-            SetConfiguration(loggerConfiguration);
+            SetConfiguration(targetsByLevel);
         }
 
         private void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
@@ -727,9 +722,9 @@ namespace NLog
             LoggerImpl.Write(wrapperType ?? DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
         }
 
-        internal void SetConfiguration(LoggerConfiguration newConfiguration)
+        internal void SetConfiguration(TargetWithFilterChain[] targetsByLevel)
         {
-            _configuration = newConfiguration;
+            _targetsByLevel = targetsByLevel;
 
             // pre-calculate 'enabled' flags
             _isTraceEnabled = IsEnabled(LogLevel.Trace);
@@ -742,12 +737,22 @@ namespace NLog
             OnLoggerReconfigured(EventArgs.Empty);
         }
 
+        private TargetWithFilterChain GetTargetsForLevelSafe(LogLevel level)
+        {
+            if (level is null)
+            {
+                throw new InvalidOperationException("Log level must be defined");
+            }
+
+            return GetTargetsForLevel(level);
+        }
+
         private TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
             if (ReferenceEquals(_contextLogger, this))
-                return _configuration.GetTargetsForLevel(level);
+                return _targetsByLevel[level.Ordinal];
             else
-                return _contextLogger.GetTargetsForLevel(level);    // Use the LoggerConfiguration of the parent Logger
+                return _contextLogger.GetTargetsForLevel(level);    // Use the GetTargetsForLevel() of the parent Logger
         }
 
         /// <summary>

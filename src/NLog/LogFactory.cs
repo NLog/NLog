@@ -550,7 +550,7 @@ namespace NLog
 
             foreach (var logger in loggers)
             {
-                logger.SetConfiguration(GetConfigurationForLogger(logger.Name, _config));
+                logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
             }
         }
 
@@ -867,6 +867,7 @@ namespace NLog
                 foreach (Target target in rule.GetTargetsThreadSafe())
                 {
                     targetsFound = true;
+
                     var awf = CreateTargetChainFromLoggingRule(rule, target, targetsByLevel[i]);
                     if (awf == null)
                     {
@@ -937,10 +938,10 @@ namespace NLog
             return newTarget;
         }
 
-        internal LoggerConfiguration GetConfigurationForLogger(string loggerName, LoggingConfiguration configuration)
+        internal TargetWithFilterChain[] GetLoggerConfiguration(string loggerName, LoggingConfiguration configuration)
         {
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
+            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
             bool targetsFound = false;
@@ -951,14 +952,15 @@ namespace NLog
                 targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
-            if (InternalLogger.IsDebugEnabled)
+            if (InternalLogger.IsDebugEnabled && !targetsFound && !DumpTargetConfigurationForLogger(loggerName, targetsByLevel))
             {
-                targetsFound = targetsFound && DumpTargetConfigurationForLogger(loggerName, targetsByLevel);
-                if (!targetsFound)
-                    InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
+                InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
             }
 
-            return new LoggerConfiguration(targetsByLevel);
+            if (targetsFound)
+                return targetsByLevel;
+            else
+                return TargetWithFilterChain.NoTargetsByLevel;
         }
 
         private static bool DumpTargetConfigurationForLogger(string loggerName, TargetWithFilterChain[] targetsByLevel)
@@ -1177,7 +1179,7 @@ namespace NLog
                     newLogger = new Logger();
                 }
 
-                newLogger.Initialize(name, GetConfigurationForLogger(name, Configuration), this);
+                newLogger.Initialize(name, GetLoggerConfiguration(name, Configuration), this);
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
