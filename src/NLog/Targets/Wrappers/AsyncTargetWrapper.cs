@@ -152,7 +152,6 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(1)]
         public int TimeToSleepBetweenBatches { get; set; }
-
         
         /// <summary>
         /// Raise event when Target cannot store LogEvent.
@@ -354,6 +353,7 @@ namespace NLog.Targets.Wrappers
         /// queued log messages.
         /// </summary>
         /// <returns>Returns true when scheduled a timer-worker-thread</returns>
+        [Obsolete("Obsolete because the instant Timer handling has grown more advanced. Obsoleted in NLog 5.0")]
         protected virtual bool StartInstantWriterTimer()
         {
             return StartTimerUnlessWriterActive(true);
@@ -427,12 +427,11 @@ namespace NLog.Targets.Wrappers
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             PrecalculateVolatileLayouts(logEvent.LogEvent);
+
             bool queueWasEmpty = _requestQueue.Enqueue(logEvent);
             if (queueWasEmpty)
             {
-                if (TimeToSleepBetweenBatches == 0)
-                    StartInstantWriterTimer();
-                else if (TimeToSleepBetweenBatches <= 1)
+                if (TimeToSleepBetweenBatches <= 1)
                     StartLazyWriterTimer();
             }
         }
@@ -474,7 +473,7 @@ namespace NLog.Targets.Wrappers
                         wroteFullBatchSize = true;
 
                     if (wroteFullBatchSize && TimeToSleepBetweenBatches <= 1)
-                        StartInstantWriterTimer(); // Found full batch, fast schedule to take next batch (within lock to avoid pile up)
+                        StartTimerUnlessWriterActive(true); // Found full batch, fast schedule to take next batch (within lock to avoid pile up)
                 }
             }
             catch (Exception exception)
