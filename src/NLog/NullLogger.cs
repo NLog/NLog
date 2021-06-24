@@ -56,8 +56,7 @@ namespace NLog
                 throw new ArgumentNullException(nameof(factory));
             }
 
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            Initialize(string.Empty, new LoggerConfiguration(targetsByLevel), factory);
+            Initialize(string.Empty, TargetWithFilterChain.NoTargetsByLevel, factory);
         }
     }
 }

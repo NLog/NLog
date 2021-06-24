@@ -46,6 +46,10 @@ namespace NLog.Internal
     [NLogConfigurationItem]
     internal class TargetWithFilterChain
     {
+        internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggingConfiguration();
+
+        internal static TargetWithFilterChain[] CreateLoggingConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
+
         private MruCache<CallSiteKey, string> _callSiteClassNameCache;
 
         /// <summary>

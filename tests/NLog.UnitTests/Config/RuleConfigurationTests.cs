@@ -287,8 +287,8 @@ namespace NLog.UnitTests.Config
             </nlog>", logFactory);
 
             logFactory.Configuration = c;
-            var loggerConfig = logFactory.GetConfigurationForLogger("AAA", c);
-            var targets = loggerConfig.GetTargetsForLevel(LogLevel.Warn);
+            var loggerConfig = logFactory.GetLoggerConfiguration("AAA", c);
+            var targets = loggerConfig[LogLevel.Warn.Ordinal];
             Assert.Equal("d1", targets.Target.Name);
             Assert.Equal("d2", targets.NextInChain.Target.Name);
             Assert.Equal("d3", targets.NextInChain.NextInChain.Target.Name);
