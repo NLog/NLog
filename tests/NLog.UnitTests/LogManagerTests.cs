@@ -92,29 +92,6 @@ namespace NLog.UnitTests
             Assert.Equal(String.Empty, logger.Name);
         }
 
-        [Fact]
-        public void ThrowExceptionsTest()
-        {
-            FileTarget ft = new FileTarget();
-            ft.FileName = ""; // invalid file name
-            SimpleConfigurator.ConfigureForTargetLogging(ft);
-
-            using (new NoThrowNLogExceptions())
-            {
-                LogManager.GetLogger("A").Info("a");
-                LogManager.ThrowExceptions = true;
-                try
-                {
-                    LogManager.GetLogger("A").Info("a");
-                    Assert.True(false, "Should not be reached.");
-                }
-                catch
-                {
-                    Assert.True(true);
-                }
-            }
-        }
-
         [Fact(Skip="Side effects to other unit tests.")]
         public void GlobalThresholdTest()
         {

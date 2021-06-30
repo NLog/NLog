@@ -2658,6 +2658,34 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Theory]
+        [InlineData(@"""D:\Temp\Test.txt""\.txt")]
+        [InlineData("")]
+        [InlineData("\\")]
+        [InlineData("\\\\localhost\\")]
+        public void FileTarget_InvalidPathValidation(string invalidFileName)
+        {
+            if (IsLinux())
+            {
+                Console.WriteLine("[SKIP] FileTargetTests.FileTarget_InvalidPathValidation Not supported on Travis, because it only throws FileNotFoundException");
+                return;
+            }
+
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.ThrowConfigExceptions = true;
+
+                var logFactory = new LogFactory();
+                var logConfig = new LoggingConfiguration(logFactory);
+                logConfig.AddRuleForAllLevels(new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(invalidFileName),
+                    Layout = "${level} ${message}",
+                });
+                Assert.Throws<NLogConfigurationException>(() => logFactory.Configuration = logConfig);
+            }
+        }
+
         [Fact]
         public void FileTarget_LogAndArchiveFilesWithSameName_ShouldArchive()
         {
