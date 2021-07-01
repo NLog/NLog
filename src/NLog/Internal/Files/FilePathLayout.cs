@@ -82,6 +82,8 @@ namespace NLog.Internal
         /// </summary>
         private string _cachedPrevCleanFileName;
 
+        public bool IsFixedFilePath => _cleanedFixedResult != null;
+
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public FilePathLayout(Layout layout, bool cleanupInvalidChars, FilePathKind filePathKind)
         {
