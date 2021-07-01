@@ -1,5 +1,6 @@
 version: 2
 updates:
+
 - package-ecosystem: nuget
   directory: "/tests/NLog.UnitTests"
   schedule:
@@ -38,67 +39,10 @@ updates:
     - ">= 4.3.a, < 4.4"
   - dependency-name: System.Reflection.TypeExtensions
     versions:
-    - ">= 4.3.a, < 4.4"
-  - dependency-name: System.Reflection.TypeExtensions
-    versions:
-    - ">= 4.4.a, < 4.5"
-  - dependency-name: System.Reflection.TypeExtensions
-    versions:
-    - ">= 4.5.a, < 4.6"
+    - ">= 4.3.a, < 4.7"
   - dependency-name: System.Runtime.Loader
     versions:
     - ">= 4.3.a, < 4.4"
-  - dependency-name: System.Security.Principal.Windows
-    versions:
-    - ">= 4.3.a, < 4.4"
-  - dependency-name: System.Security.Principal.Windows
-    versions:
-    - ">= 4.4.a, < 4.5"
-  - dependency-name: System.Security.Principal.Windows
-    versions:
-    - ">= 4.5.a, < 4.6"
-  - dependency-name: System.ServiceModel.Duplex
-    versions:
-    - "> 4.0.1, < 4.1"
-  - dependency-name: System.ServiceModel.Duplex
-    versions:
-    - ">= 4.3.a, < 4.4"
-  - dependency-name: System.ServiceModel.Duplex
-    versions:
-    - ">= 4.4.a, < 4.5"
-  - dependency-name: System.ServiceModel.Duplex
-    versions:
-    - ">= 4.5.a, < 4.6"
-  - dependency-name: System.ServiceModel.Http
-    versions:
-    - "> 4.1.0, < 5"
-  - dependency-name: System.ServiceModel.Http
-    versions:
-    - ">= 4.4.a, < 4.5"
-  - dependency-name: System.ServiceModel.Http
-    versions:
-    - ">= 4.5.a, < 4.6"
-  - dependency-name: System.ServiceModel.NetTcp
-    versions:
-    - ">= 4.5.a, < 4.6"
-  - dependency-name: System.ServiceModel.Primitives
-    versions:
-    - "> 4.1.0, < 4.2"
-  - dependency-name: System.ServiceModel.Primitives
-    versions:
-    - ">= 4.3.a, < 4.4"
-  - dependency-name: System.ServiceModel.Primitives
-    versions:
-    - ">= 4.5.a, < 4.6"
-  - dependency-name: System.ServiceModel.Security
-    versions:
-    - "> 4.0.1, < 4.1"
-  - dependency-name: System.ServiceModel.Security
-    versions:
-    - ">= 4.3.a, < 4.4"
-  - dependency-name: System.ServiceModel.Security
-    versions:
-    - ">= 4.5.a, < 4.6"
   - dependency-name: System.Threading.Thread
     versions:
     - ">= 4.3.a, < 4.4"
@@ -108,6 +52,3 @@ updates:
   - dependency-name: System.Xml.XmlSerializer
     versions:
     - ">= 4.3.a, < 4.4"
-  - dependency-name: Microsoft.Data.Sqlite
-    versions:
-    - 5.0.2

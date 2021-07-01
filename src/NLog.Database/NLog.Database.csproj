@@ -77,7 +77,6 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' or '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="System.Data.Common" Version="4.1.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
