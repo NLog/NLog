@@ -951,61 +951,6 @@ namespace NLog.Targets
                     openFileAutoTimeoutSecs * 1000,
                     openFileAutoTimeoutSecs * 1000);
             }
-
-            if (CleanupFileName && _fullFileName.IsFixedFilePath && (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions))
-            {
-                ValidateFilePath(LogEventInfo.CreateNullEvent());
-            }
-        }
-
-        private void ValidateFilePath(LogEventInfo logEventInfo)
-        {
-            string fixedFilePath = null;
-
-            try
-            {
-                fixedFilePath = _fullFileName.Render(logEventInfo);
-                if (StringHelpers.IsNullOrWhiteSpace(PathHelpers.TrimDirectorySeparators(fixedFilePath)))
-                    throw new ArgumentException("The path is not of a legal form.");
-
-                using (var fileStream = new FileStream(fixedFilePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
-                {
-                    // Its working
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                var configException = new NLogConfigurationException($"FileName has invalid path: {fixedFilePath ?? FileName?.ToString()}", ex);
-                if (configException.MustBeRethrown(this))
-                    throw configException;
-            }
-            catch (System.IO.DirectoryNotFoundException)
-            {
-                // Acceptable
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                // Acceptable
-            }
-            catch (System.IO.IOException ex)
-            {
-#if !NETSTANDARD1_3 && !NET35
-                if (ex.HResult == -2147024773 /* 0x8007007B = ERROR_INVALID_NAME */ || ex.HResult == -2147024735 /* 0x800700A1 - ERROR_BAD_PATHNAME */)
-                {
-                    var configException = new NLogConfigurationException($"FileName has invalid path: {fixedFilePath ?? FileName?.ToString()}", ex);
-                    if (configException.MustBeRethrown(this))
-                        throw configException;
-                }
-                else
-#endif
-                {
-                    InternalLogger.Debug("{0}: Cannot validate FileName: {1} - {2} {3}", this, fixedFilePath, ex.GetType(), ex.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Debug("{0}: Cannot validate FileName: {1} - {2} {3}", this, fixedFilePath, ex.GetType(), ex.Message);
-            }
         }
 
         /// <summary>
