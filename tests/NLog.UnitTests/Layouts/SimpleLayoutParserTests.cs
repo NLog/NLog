@@ -813,14 +813,12 @@ namespace NLog.UnitTests.Layouts
             var layout = (SimpleLayout)Layout.FromString(input);
 
             // Assert
+            Assert.True(layout.IsFixedText);
             var single = Assert.Single(layout.Renderers);
-            var singleRaw = Assert.IsType<LiteralWithRawValueLayoutRenderer>(single);
-            var succeeded = singleRaw.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var rawValue);
+            Assert.IsType<LiteralWithRawValueLayoutRenderer>(single);
+            var succeeded = layout.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var rawValue);
             Assert.True(succeeded);
-            var rawValueInt = Assert.IsType<int>(rawValue);
-            Assert.True(rawValueInt > 0);
-
-
+            Assert.True((int)rawValue > 0);
         }
 
         /// <summary>

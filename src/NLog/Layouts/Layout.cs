@@ -54,7 +54,7 @@ namespace NLog.Layouts
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
         internal bool IsInitialized;
-        private bool _scannedForObjects;
+        internal bool _scannedForObjects;
 
         /// <summary>
         /// Gets a value indicating whether this layout is thread-agnostic (can be rendered on any thread).

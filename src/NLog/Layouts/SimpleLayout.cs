@@ -246,16 +246,14 @@ namespace NLog.Layouts
                 {
                     _fixedText = renderer.Text;
                 }
-                else
+                else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
                 {
-                    if (_layoutRenderers[0] is IRawValue rawValueRenderer)
-                    {
-                        _rawValueRenderer = rawValueRenderer;
-                    }
-                    if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
-                    {
-                        _stringValueRenderer = stringValueRenderer;
-                    }
+                    _stringValueRenderer = stringValueRenderer;
+                }
+
+                if (_layoutRenderers[0] is IRawValue rawValueRenderer)
+                {
+                    _rawValueRenderer = rawValueRenderer;
                 }
             }
 
