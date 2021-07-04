@@ -184,6 +184,7 @@ namespace NLog.Layouts
             ThreadSafe = _innerLayout?.ThreadSafe ?? true;
             ThreadAgnostic = _innerLayout?.ThreadAgnostic ?? true;
             MutableUnsafe = _innerLayout?.MutableUnsafe ?? false;
+            StackTraceUsage = _innerLayout?.StackTraceUsage ?? StackTraceUsage.None;
             _valueTypeConverter = null;
             _previousStringValue = null;
             _previousValue = null;

@@ -876,6 +876,32 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(100, result);
         }
 
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
+        [Fact]
+#endif
+        public void RenderShouldRecognizeStackTraceUsage()
+        {
+            // Arrange
+            object[] callback_args = null;
+            Action<LogEventInfo, object[]> callback = (evt, args) => callback_args = args;
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                var methodCall = new NLog.Targets.MethodCallTarget("dbg", callback);
+                methodCall.Parameters.Add(new NLog.Targets.MethodCallParameter("LineNumber", "${callsite-linenumber}", typeof(int)));
+                builder.ForLogger().WriteTo(methodCall);
+            }).GetLogger(nameof(RenderShouldRecognizeStackTraceUsage));
+
+            // Act
+            logger.Info("Testing");
+
+            // Assert
+            Assert.Single(callback_args);
+            var lineNumber = Assert.IsType<int>(callback_args[0]);
+            Assert.True(lineNumber > 0);
+        }
+
         private class TestObject
         {
             public string Value { get; set; }
