@@ -54,7 +54,7 @@ namespace NLog.Layouts
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
         internal bool IsInitialized;
-        internal bool _scannedForObjects;
+        private bool _scannedForObjects;
 
         /// <summary>
         /// Gets a value indicating whether this layout is thread-agnostic (can be rendered on any thread).
@@ -74,7 +74,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
-        internal StackTraceUsage StackTraceUsage { get; private set; }
+        internal StackTraceUsage StackTraceUsage { get; set; }
 
         private const int MaxInitialRenderBufferLength = 16384;
         private int _maxRenderedLength;

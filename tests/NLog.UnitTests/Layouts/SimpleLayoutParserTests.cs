@@ -817,8 +817,9 @@ namespace NLog.UnitTests.Layouts
             var single = Assert.Single(layout.Renderers);
             Assert.IsType<LiteralWithRawValueLayoutRenderer>(single);
             var succeeded = layout.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var rawValue);
+            var rawValueInt = Assert.IsType<int>(rawValue);
             Assert.True(succeeded);
-            Assert.True((int)rawValue > 0);
+            Assert.True(rawValueInt > 0);
         }
 
         /// <summary>
