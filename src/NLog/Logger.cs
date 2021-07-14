@@ -570,7 +570,7 @@ namespace NLog
         {
             try
             {
-                await task;
+                await task.ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -587,7 +587,7 @@ namespace NLog
         {
             try
             {
-                await task;
+                await task.ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -603,7 +603,7 @@ namespace NLog
         {
             try
             {
-                await asyncAction();
+                await asyncAction().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -620,7 +620,7 @@ namespace NLog
         /// <returns>A task that represents the completion of the supplied task. If the supplied task ends in the <see cref="TaskStatus.RanToCompletion"/> state, the result of the new task will be the result of the supplied task; otherwise, the result of the new task will be the default value of type <typeparamref name="TResult"/>.</returns>
         public async Task<TResult> SwallowAsync<TResult>(Func<Task<TResult>> asyncFunc)
         {
-            return await SwallowAsync(asyncFunc, default(TResult));
+            return await SwallowAsync(asyncFunc, default(TResult)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -635,7 +635,7 @@ namespace NLog
         {
             try
             {
-                return await asyncFunc();
+                return await asyncFunc().ConfigureAwait(false);
             }
             catch (Exception e)
             {
