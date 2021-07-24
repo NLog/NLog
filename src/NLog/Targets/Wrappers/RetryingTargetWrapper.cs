@@ -110,6 +110,13 @@ namespace NLog.Targets.Wrappers
         public int RetryDelayMilliseconds { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to enable batching, and only apply single delay when a whole batch fails
+        /// </summary>
+        /// <docgen category='Retrying Options' order='10' />
+        [DefaultValue(false)]
+        public bool EnableBatchWrite { get; set; }
+
+        /// <summary>
         /// Special SyncObject to allow closing down Target while busy retrying
         /// </summary>
         private readonly object _retrySyncObject = new object();
@@ -120,14 +127,35 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">The log event.</param>
         protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
         {
-            lock (_retrySyncObject)
+            if (logEvents.Count == 1)
             {
+                WriteAsyncThreadSafe(logEvents[0]);
+            }
+            else if (EnableBatchWrite)
+            {
+                int initialSleep = 1;
+                Func<int, bool> sleepBeforeRetry = (retryNumber) => retryNumber > 1 || Interlocked.Exchange(ref initialSleep, 0) == 1;
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    if (!IsInitialized)
-                        logEvents[i].Continuation(null);
-                    else 
-                        WriteAsyncThreadSafe(logEvents[i]);
+                    logEvents[i] = WrapWithRetry(logEvents[i], sleepBeforeRetry);
+                }
+
+                lock (_retrySyncObject)
+                {
+                    WrappedTarget.WriteAsyncLogEvents(logEvents);
+                }
+            }
+            else
+            {
+                lock (_retrySyncObject)
+                {
+                    for (int i = 0; i < logEvents.Count; ++i)
+                    {
+                        if (!IsInitialized)
+                            logEvents[i].Continuation(null);
+                        else
+                            WriteAsyncThreadSafe(logEvents[i]);
+                    }
                 }
             }
         }
@@ -150,6 +178,11 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
+        {
+            WrappedTarget.WriteAsyncLogEvent(WrapWithRetry(logEvent, (retryNumber) => true));
+        }
+
+        private AsyncLogEventInfo WrapWithRetry(AsyncLogEventInfo logEvent, Func<int, bool> sleepBeforeRetry)
         {
             AsyncContinuation continuation = null;
             int counter = 0;
@@ -174,23 +207,26 @@ namespace NLog.Targets.Wrappers
                 }
 
                 // sleep and try again (Check every 100 ms if target have been closed)
-                for (int i = 0; i < RetryDelayMilliseconds;)
+                if (sleepBeforeRetry(retryNumber))
                 {
-                    int retryDelay = Math.Min(100, RetryDelayMilliseconds - i);
-                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(retryDelay));
-                    i += retryDelay;
-                    if (!IsInitialized)
+                    for (int i = 0; i < RetryDelayMilliseconds;)
                     {
-                        InternalLogger.Warn("{0}): Target closed. Aborting.", this);
-                        logEvent.Continuation(ex);
-                        return;
+                        int retryDelay = Math.Min(100, RetryDelayMilliseconds - i);
+                        AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(retryDelay));
+                        i += retryDelay;
+                        if (!IsInitialized)
+                        {
+                            InternalLogger.Warn("{0}): Target closed. Aborting.", this);
+                            logEvent.Continuation(ex);
+                            return;
+                        }
                     }
                 }
 
                 WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
             };
 
-            WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+            return logEvent.LogEvent.WithContinuation(continuation);
         }
     }
 }
