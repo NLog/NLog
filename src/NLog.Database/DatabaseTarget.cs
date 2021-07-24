@@ -769,13 +769,13 @@ namespace NLog.Targets
                 if (LogManager.ThrowExceptions)
                     throw;
 
+                InternalLogger.Trace("{0}: Close connection because of error", this);
+                CloseConnection();
+
                 for (int i = 0; i < logEvents.Count; i++)
                 {
                     logEvents[i].Continuation(exception);
                 }
-
-                InternalLogger.Trace("{0}: Close connection because of error", this);
-                CloseConnection();
             }
         }
 
@@ -961,12 +961,22 @@ namespace NLog.Targets
 
         private void CloseConnection()
         {
-            _activeConnectionString = null;
-
-            if (_activeConnection != null)
+            try
             {
-                _activeConnection.Close();
-                _activeConnection.Dispose();
+                var activeConnection = _activeConnection;
+                if (activeConnection != null)
+                {
+                    activeConnection.Close();
+                    activeConnection.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "{0}: Error while closing connection.", this);
+            }
+            finally
+            {
+                _activeConnectionString = null;
                 _activeConnection = null;
             }
         }
@@ -1022,7 +1032,6 @@ namespace NLog.Targets
             finally
             {
                 InternalLogger.Trace("{0}: Close connection after install.", this);
-
                 CloseConnection();
             }
         }
