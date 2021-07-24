@@ -57,12 +57,12 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="target">The target.</param>
         /// <param name="filterChain">The filter chain.</param>
-        /// <param name="defaultResult">Default action if none of the filters match.</param>
-        public TargetWithFilterChain(Target target, IList<Filter> filterChain, FilterResult defaultResult)
+        /// <param name="filterDefaultAction">Default action if none of the filters match.</param>
+        public TargetWithFilterChain(Target target, IList<Filter> filterChain, FilterResult filterDefaultAction)
         {
             Target = target;
             FilterChain = filterChain;
-            DefaultResult = defaultResult;
+            FilterDefaultAction = filterDefaultAction;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog.Internal
         /// Gets the filter chain.
         /// </summary>
         /// <value>The filter chain.</value>
-        public IList<Filter> FilterChain { get;  }
+        public IList<Filter> FilterChain { get; }
 
         /// <summary>
         /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
@@ -90,10 +90,10 @@ namespace NLog.Internal
         /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
         public StackTraceUsage StackTraceUsage { get; private set; }
 
-                /// <summary>
+        /// <summary>
         /// Default action if none of the filters match.
         /// </summary>
-        public FilterResult DefaultResult { get; }
+        public FilterResult FilterDefaultAction { get; }
 
         internal StackTraceUsage PrecalculateStackTraceUsage()
         {
@@ -178,6 +178,7 @@ namespace NLog.Internal
             {
                 System.Threading.Interlocked.CompareExchange(ref _callSiteClassNameCache, new MruCache<CallSiteKey, string>(1000), null);
             }
+
             CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
             return _callSiteClassNameCache.TryGetValue(callSiteKey, out callSiteClassName);
         }

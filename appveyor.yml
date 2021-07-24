@@ -1,6 +1,6 @@
 version: 4.7.0-{build}
 image:
-  - Previous Visual Studio 2019
+  - Visual Studio 2019
   - Previous Ubuntu
 configuration: Release
 build: no
@@ -18,9 +18,10 @@ for:
   -
     matrix:
       only:
-        - image: Previous Visual Studio 2019
+        - image: Visual Studio 2019
     init:
         - net start MSSQL$SQL2019
+        - ps: Invoke-WebRequest -Uri 'https://dot.net/v1/dotnet-install.ps1' -UseBasicParsing -OutFile "$env:temp/dotnet-install.ps1"; & $env:temp\dotnet-install.ps1 -Architecture x64 -Version 5.0.302 -InstallDir "$env:ProgramFiles\dotnet"
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       github_auth_token:

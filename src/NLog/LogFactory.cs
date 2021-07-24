@@ -922,7 +922,8 @@ namespace NLog
 
         private static TargetWithFilterChain CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)
         {
-            var newTarget = new TargetWithFilterChain(target, rule.Filters, rule.FilterDefaultAction);
+            var filterChain = rule.Filters.Count == 0 ? ArrayHelper.Empty<NLog.Filters.Filter>() : rule.Filters;
+            var newTarget = new TargetWithFilterChain(target, filterChain, rule.FilterDefaultAction);
 
             if (existingTargets != null && newTarget.FilterChain.Count == 0)
             {

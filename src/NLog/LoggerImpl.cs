@@ -92,13 +92,13 @@ namespace NLog
                 };
             }
 
-            IList<Filter> prevFilterChain = null;
+            IList<Filter> prevFilterChain = ArrayHelper.Empty<Filter>();
             FilterResult prevFilterResult = FilterResult.Neutral;
             for (var t = targetsForLevel; t != null; t = t.NextInChain)
             {
                 var currentFilterChain = t.FilterChain;
                 FilterResult result = ReferenceEquals(prevFilterChain, currentFilterChain) ?
-                    prevFilterResult : GetFilterResult(currentFilterChain, logEvent, t.DefaultResult);
+                    prevFilterResult : GetFilterResult(currentFilterChain, logEvent, t.FilterDefaultAction);
                 if (!WriteToTargetWithFilterChain(t.Target, result, logEvent, exceptionHandler))
                 {
                     break;
