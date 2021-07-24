@@ -296,19 +296,14 @@ namespace NLog.Targets
         {
             if (!IsInitialized)
             {
-                lock (SyncRoot)
-                {
-                    logEvent.Continuation(null);
-                }
+                logEvent.Continuation(null);
                 return;
             }
 
-            if (_initializeException != null)
+            var initializeException = _initializeException;
+            if (initializeException != null)
             {
-                lock (SyncRoot)
-                {
-                    WriteFailedNotInitialized(logEvent, _initializeException);
-                }
+                WriteFailedNotInitialized(logEvent, initializeException);
                 return;
             }
 
@@ -318,12 +313,12 @@ namespace NLog.Targets
             {
                 WriteAsyncThreadSafe(wrappedLogEvent);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                if (ExceptionMustBeRethrown(ex))
+                if (ExceptionMustBeRethrown(exception))
                     throw;
 
-                wrappedLogEvent.Continuation(ex);
+                wrappedLogEvent.Continuation(exception);
             }
         }
 
@@ -354,24 +349,19 @@ namespace NLog.Targets
 
             if (!IsInitialized)
             {
-                lock (SyncRoot)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    for (int i = 0; i < logEvents.Count; ++i)
-                    {
-                        logEvents[i].Continuation(null);
-                    }
+                    logEvents[i].Continuation(null);
                 }
                 return;
             }
 
-            if (_initializeException != null)
+            var initializeException = _initializeException;
+            if (initializeException != null)
             {
-                lock (SyncRoot)
+                for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    for (int i = 0; i < logEvents.Count; ++i)
-                    {
-                        WriteFailedNotInitialized(logEvents[i], _initializeException);
-                    }
+                    WriteFailedNotInitialized(logEvents[i], initializeException);
                 }
                 return;
             }
@@ -599,13 +589,6 @@ namespace NLog.Targets
         {
             lock (SyncRoot)
             {
-                if (!IsInitialized)
-                {
-                    // In case target was Closed
-                    logEvent.Continuation(null);
-                    return;
-                }
-
                 Write(logEvent);
             }
         }
@@ -637,16 +620,6 @@ namespace NLog.Targets
         {
             lock (SyncRoot)
             {
-                if (!IsInitialized)
-                {
-                    // In case target was Closed
-                    for (int i = 0; i < logEvents.Count; ++i)
-                    {
-                        logEvents[i].Continuation(null);
-                    }
-                    return;
-                }
-
                 Write(logEvents);
             }
         }
