@@ -37,7 +37,6 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.Reflection;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
@@ -46,8 +45,10 @@ namespace NLog.Targets
     /// Information about object-property for the database-connection-object
     /// </summary>
     [NLogConfigurationItem]
-    public class DatabaseObjectPropertyInfo : ValueTypeLayoutInfo
+    public class DatabaseObjectPropertyInfo
     {
+        private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseObjectPropertyInfo"/> class.
         /// </summary>
@@ -67,28 +68,35 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
-        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
+        public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the type of the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(typeof(string))]
-        public Type PropertyType { get => ValueType ?? typeof(string); set => ValueType = value; }
+        public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets convert format of the property value
         /// </summary>
         /// <docgen category='Connection Options' order='8' />
         [DefaultValue(null)]
-        public string Format { get => ValueParseFormat; set => ValueParseFormat = value; }
+        public string Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing property string-value for type-conversion
         /// </summary>
         /// <docgen category='Connection Options' order='9' />
         [DefaultValue(null)]
-        public CultureInfo Culture { get => ValueParseCulture; set => ValueParseCulture = value; }
+        public CultureInfo Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
+
+        /// <summary>
+        /// Render Result Value
+        /// </summary>
+        /// <param name="logEvent">Log event for rendering</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
 
         internal bool SetPropertyValue(object dbObject, object propertyValue)
         {

@@ -207,6 +207,29 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void JsonLayoutValueTypeAttribute()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}") { ValueType = typeof(DateTime) },
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
+                    }
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "{ \"hello\" : \"world\" }"
+            };
+
+            Assert.Equal("{ \"date\": \"2010-01-01T12:34:56Z\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
         public void JsonAttributeThreadAgnosticTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"

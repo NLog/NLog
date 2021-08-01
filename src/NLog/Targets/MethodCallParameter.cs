@@ -43,8 +43,10 @@ namespace NLog.Targets
     /// A parameter to MethodCall.
     /// </summary>
     [NLogConfigurationItem]
-    public class MethodCallParameter : ValueTypeLayoutInfo
+    public class MethodCallParameter
     {
+        private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
         /// </summary>
@@ -107,13 +109,25 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(typeof(string))]
-        public Type ParameterType { get => ValueType ?? typeof(string); set => ValueType = value; }
+        public Type ParameterType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
-        public new Layout Layout { get => base.Layout; set => base.Layout = value; }
+        public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
+
+        /// <summary>
+        /// Gets or sets the fallback value when result value is not available
+        /// </summary>
+        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+
+        /// <summary>
+        /// Render Result Value
+        /// </summary>
+        /// <param name="logEvent">Log event for rendering</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
     }
 }

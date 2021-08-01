@@ -76,11 +76,9 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner.RenderAppendBuilder(logEvent, builder);
-            if (XmlEncode && RequiresXmlEncode(builder, orgLength))
+            if (XmlEncode)
             {
-                var str = builder.ToString(orgLength, builder.Length - orgLength);
-                builder.Length = orgLength;
-                XmlHelper.EscapeXmlString(str, XmlEncodeNewlines, builder);
+                XmlHelper.PerformXmlEscapeWhenNeeded(builder, orgLength, XmlEncodeNewlines);
             }
         }
 
@@ -92,28 +90,6 @@ namespace NLog.LayoutRenderers.Wrappers
                 return XmlHelper.EscapeXmlString(text, XmlEncodeNewlines);
             }
             return text;
-        }
-
-        private bool RequiresXmlEncode(StringBuilder target, int startPos = 0)
-        {
-            for (int i = startPos; i < target.Length; ++i)
-            {
-                switch (target[i])
-                {
-                    case '<':
-                    case '>':
-                    case '&':
-                    case '\'':
-                    case '"':
-                        return true;
-                    case '\r':
-                    case '\n':
-                        if (XmlEncodeNewlines)
-                            return true;
-                        break;
-                }
-            }
-            return false;
         }
     }
 }

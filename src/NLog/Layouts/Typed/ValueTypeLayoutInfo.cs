@@ -35,59 +35,20 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using NLog.Config;
-using NLog.Layouts;
 
-namespace NLog.Common
+namespace NLog.Layouts
 {
     /// <summary>
     /// Typed Value that is easily configured from NLog.config file
     /// </summary>
     [NLogConfigurationItem]
-    public abstract class ValueTypeLayoutInfo
+    public sealed class ValueTypeLayoutInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ValueTypeLayoutInfo" /> class.
         /// </summary>
-        protected ValueTypeLayoutInfo()
+        public ValueTypeLayoutInfo()
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ValueTypeLayoutInfo" /> class.
-        /// </summary>
-        /// <param name="layout">Dynamic value</param>
-        protected ValueTypeLayoutInfo(Layout layout)
-            :this(layout, typeof(string))
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ValueTypeLayoutInfo" /> class.
-        /// </summary>
-        /// <param name="layout">Dynamic value</param>
-        /// <param name="valueType">Expected value type</param>
-        protected ValueTypeLayoutInfo(Layout layout, Type valueType)
-        {
-            _valueType = valueType ?? typeof(string);
-            Layout = layout;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ValueTypeLayoutInfo" /> class.
-        /// </summary>
-        /// <param name="fixedValue">Fixed value</param>
-        protected ValueTypeLayoutInfo(object fixedValue)
-        {
-            if (fixedValue is Layout layout)
-            {
-                _valueType = typeof(string);
-                Layout = layout;
-            }
-            else
-            {
-                _valueType = fixedValue?.GetType() ?? typeof(string);
-                _layout = _innerLayout = CreateTypedLayout(_valueType, fixedValue);
-            }
         }
 
         /// <summary>
@@ -121,7 +82,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
-        protected virtual Type ValueType
+        public Type ValueType
         {
             get => _valueType;
             set
@@ -155,7 +116,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets or sets format used for parsing parameter string-value for type-conversion
         /// </summary>
-        protected string ValueParseFormat
+        public string ValueParseFormat
         {
             get => _valueParseFormat;
             set
@@ -172,7 +133,7 @@ namespace NLog.Common
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
         /// <docgen category='Parameter Options' order='9' />
-        protected CultureInfo ValueParseCulture
+        public CultureInfo ValueParseCulture
         {
             get => _valueParseCulture;
             set

@@ -712,6 +712,20 @@ namespace NLog.Targets
                 destination.Append(text);   // Faster to make single Append
         }
 
+        internal static void PerformJsonEscapeWhenNeeded(StringBuilder builder, int startPos, bool escapeUnicode, bool escapeForwardSlash)
+        {
+            for (int i = startPos; i < builder.Length; ++i)
+            {
+                if (RequiresJsonEscape(builder[i], escapeUnicode, escapeForwardSlash))
+                {
+                    var str = builder.ToString(startPos, builder.Length - startPos);
+                    builder.Length = startPos;
+                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, escapeUnicode, escapeForwardSlash);
+                    break;
+                }
+            }
+        }
+
         internal static bool RequiresJsonEscape(char ch, JsonSerializeOptions options)
         {
             return RequiresJsonEscape(ch, options.EscapeUnicode, options.EscapeForwardSlash);
