@@ -185,15 +185,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Configure <see cref="LoggingRule.Final"/>, so LogEvents matching this LoggingRule will not flow down to the following rules.
-        /// </summary>
-        public static ISetupConfigurationLoggingRuleBuilder FinalRule(this ISetupConfigurationLoggingRuleBuilder configBuilder, bool final = true)
-        {
-            configBuilder.LoggingRule.Final = final;
-            return configBuilder;
-        }
-
-        /// <summary>
         /// Move the <see cref="LoggingRule" /> to the top, to match before any of the existing <see cref="LoggingConfiguration.LoggingRules"/>
         /// </summary>
         public static ISetupConfigurationLoggingRuleBuilder TopRule(this ISetupConfigurationLoggingRuleBuilder configBuilder, bool insertFirst = true)
@@ -275,16 +266,33 @@ namespace NLog
         }
 
         /// <summary>
-        /// Discard output from any matching <see cref="Logger"/>, so the output will not reach <see cref="LoggingConfiguration.LoggingRules"/> added after this.
+        /// Discard output from matching <see cref="Logger"/>, so it will not reach any following <see cref="LoggingConfiguration.LoggingRules"/>.
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
-        /// <param name="maxLevel">Maximum level that this rule matches</param>
-        public static void WriteToNil(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel maxLevel = null)
+        /// <param name="finalMinLevel">Only discard output from matching Logger when below minimum LogLevel</param>
+        public static void WriteToNil(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel finalMinLevel = null)
         {
-            var logginRule = configBuilder.FilterMaxLevel(maxLevel ?? LogLevel.MaxLevel).FinalRule().LoggingRule;
-            if (!configBuilder.Configuration.LoggingRules.Contains(logginRule))
+            var loggingRule = configBuilder.LoggingRule;
+            if (finalMinLevel != null)
             {
-                configBuilder.Configuration.LoggingRules.Add(logginRule);
+                if (loggingRule.Targets.Count == 0)
+                {
+                    loggingRule = configBuilder.FilterMinLevel(finalMinLevel).LoggingRule;
+                }
+                loggingRule.FinalMinLevel = finalMinLevel;
+            }
+            else
+            {
+                if (loggingRule.Targets.Count == 0)
+                {
+                    loggingRule = configBuilder.FilterMaxLevel(LogLevel.MaxLevel).LoggingRule;
+                }
+                loggingRule.Final = true;
+            }
+
+            if (!configBuilder.Configuration.LoggingRules.Contains(loggingRule))
+            {
+                configBuilder.Configuration.LoggingRules.Add(loggingRule);
             }
         }
 
