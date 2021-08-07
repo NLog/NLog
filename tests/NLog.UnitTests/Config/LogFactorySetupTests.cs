@@ -709,7 +709,7 @@ namespace NLog.UnitTests.Config
             var logger = logFactory.Setup().LoadConfiguration(c =>
             {
                 c.ForLogger().FilterMinLevel(LogLevel.Info).WriteTo(new DebugTarget() { Layout = "${message}" });
-                c.ForLogger("*").TopRule().WriteToNil(LogLevel.Info);
+                c.ForLogger("*").TopRule().WriteToNil(LogLevel.Warn);
             }).GetCurrentClassLogger();
             var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
             Assert.Single(logFactory.Configuration.AllTargets);

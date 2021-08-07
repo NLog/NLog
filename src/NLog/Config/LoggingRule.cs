@@ -136,13 +136,16 @@ namespace NLog.Config
         public IList<Filter> Filters { get; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to quit processing any further rule when this one matches.
+        /// Gets or sets a value indicating whether to quit processing any following rules when this one matches.
         /// </summary>
         public bool Final { get; set; }
 
         /// <summary>
-        /// Gets or sets a LogLevel whether to quit processing any further rule for loglevels with lower severity.
+        /// Gets or sets the <see cref="NLog.LogLevel"/> whether to quit processing any following rules when lower severity and this one matches.
         /// </summary>
+        /// <remarks>
+        /// Becomes the final minimum level for any following rules when this one matches.
+        /// </remarks>
         public LogLevel FinalMinLevel { get; set; }
 
         /// <summary>
