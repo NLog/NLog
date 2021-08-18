@@ -498,6 +498,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                                 protocol='JsonPost'
                                 encoding='UTF-8'
                                >
+                            <UserAgent>SecretAgent</UserAgent>
                             <header name='Authorization' layout='OpenBackDoor' />
                             <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
@@ -518,7 +519,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
             var count = 101;
-            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" } }, txt, "info", true, DateTime.UtcNow);
+            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" }, { "User-Agent", "SecretAgent" } }, txt, "info", true, DateTime.UtcNow);
 
             StartOwinDocTest(context, () =>
             {
