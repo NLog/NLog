@@ -34,11 +34,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 ## Bugfixes
-- JsonSerializer - Fixed bug when handling custom IConvertible returning TypeCode.Empty (#4401) (@snakefoot)
+- JsonSerializer - Fix CultureNotFoundException with Globalization Invariant Mode (#4519) (@snakefoot)
 
-## Improvements
-- Support TargetDefaultParameters and TargetDefaultWrapper (#4391) (@snakefoot)
-- JsonLayout - Apply EscapeForwardSlash for LogEventInfo.Properties (#4403) (@snakefoot)
+## Features
+- WebServiceTarget - Added support for assigning UserAgent-Header (#4475) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

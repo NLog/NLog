@@ -4,13 +4,20 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v4.7.11 (2021/08/18)
+
+#### Bugfixes
+- [#4519](https://github.com/NLog/NLog/pull/4519) JsonSerializer - Fix CultureNotFoundException with Globalization Invariant Mode (#4519) (@snakefoot)
+
+#### Features
+- [#4475](https://github.com/NLog/NLog/pull/4475) WebServiceTarget - Added support for assigning UserAgent-Header (#4475) (@snakefoot)
+
 ### v4.7.10 (2021/05/14)
 
 #### Bugfixes
-
 - [#4401](https://github.com/NLog/NLog/pull/4401) JsonSerializer - Fixed bug when handling custom IConvertible returning TypeCode.Empty (#4401) (@snakefoot)
-#### Improvements
 
+#### Improvements
 - [#4391](https://github.com/NLog/NLog/pull/4391) Support TargetDefaultParameters and TargetDefaultWrapper (#4391) (@snakefoot)
 - [#4403](https://github.com/NLog/NLog/pull/4403) JsonLayout - Apply EscapeForwardSlash for LogEventInfo.Properties (#4403) (@snakefoot)
 - [#4393](https://github.com/NLog/NLog/pull/4393) NLog.Config package: Updated hyperlink (#4393) (@snakefoot)
