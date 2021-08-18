@@ -126,6 +126,12 @@ namespace NLog.Targets
         public Layout<Uri> Url { get; set; }
 
         /// <summary>
+        /// Gets or sets the value of the User-agent HTTP header.
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        public Layout UserAgent { get; set; }
+
+        /// <summary>
         /// Gets or sets the Web service method name. Only used with Soap.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
@@ -262,7 +268,7 @@ namespace NLog.Targets
             var url = BuildWebServiceUrl(logEvent.LogEvent, parameters);
             var webRequest = (HttpWebRequest)WebRequest.Create(url);
 
-            if (Headers != null && Headers.Count > 0)
+            if (Headers?.Count > 0)
             {
                 for (int i = 0; i < Headers.Count; i++)
                 {
@@ -273,6 +279,14 @@ namespace NLog.Targets
                     webRequest.Headers[Headers[i].Name] = headerValue;
                 }
             }
+
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            var userAgent = RenderLogEvent(UserAgent, logEvent.LogEvent);
+            if (!string.IsNullOrEmpty(userAgent))
+            {
+                webRequest.UserAgent = userAgent;
+            }
+#endif
 
             DoInvoke(parameters, webRequest, logEvent.Continuation);
         }

@@ -523,15 +523,13 @@ namespace NLog.Targets
 
         private static CultureInfo CreateFormatProvider()
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var culture = new CultureInfo("en-US", false);
-#else
-            var culture = new CultureInfo("en-US");            
-#endif
+            var culture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
             var numberFormat = culture.NumberFormat;
             numberFormat.NumberGroupSeparator = string.Empty;
             numberFormat.NumberDecimalSeparator = ".";
             numberFormat.NumberGroupSizes = new int[] { 0 };
+            numberFormat.NegativeInfinitySymbol = "Infinity";
+            numberFormat.PositiveInfinitySymbol = "Infinity";
             return culture;
         }
 
