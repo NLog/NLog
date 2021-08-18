@@ -521,15 +521,13 @@ namespace NLog.Targets
 
         private static CultureInfo CreateFormatProvider()
         {
-#if SILVERLIGHT || NETSTANDARD1_0
-            var culture = new CultureInfo("en-US");
-#else
-            var culture = new CultureInfo("en-US", false);
-#endif
+            var culture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
             var numberFormat = culture.NumberFormat;
             numberFormat.NumberGroupSeparator = string.Empty;
             numberFormat.NumberDecimalSeparator = ".";
             numberFormat.NumberGroupSizes = new int[] { 0 };
+            numberFormat.NegativeInfinitySymbol = "Infinity";
+            numberFormat.PositiveInfinitySymbol = "Infinity";
             return culture;
         }
 
