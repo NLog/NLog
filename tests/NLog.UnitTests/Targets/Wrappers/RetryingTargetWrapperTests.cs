@@ -205,15 +205,16 @@ namespace NLog.UnitTests.Targets.Wrappers
                 builder.ForLogger().WriteTo(asyncWrapper);
             }).LogFactory;
 
+            // Verify that RetryingTargetWrapper is not sleeping for every LogEvent in single batch
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
+
             var logger = logFactory.GetCurrentClassLogger();
             for (int i = 1; i <= 500; ++i)
                 logger.Info("Test {0}", i);
             logFactory.Flush();
             Assert.Equal(1, target.WriteBatchCount);
 
-            // Verify that RetryingTargetWrapper is not sleeping for every LogEvent in single batch
-            var stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
             for (int i = 0; i < 5000; ++i)
             {
                 if (target.Events.Count >= 495)
@@ -223,7 +224,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             Assert.Equal(1, target.WriteBatchCount);
             Assert.InRange(target.Events.Count, 495, 500);
-            Assert.InRange(stopWatch.ElapsedMilliseconds, 0, 2000);
+            Assert.InRange(stopWatch.ElapsedMilliseconds, 0, 3000);
         } 
 
         public class MyTarget : Target

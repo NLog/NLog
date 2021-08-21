@@ -113,8 +113,8 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets whether to enable batching, and only apply single delay when a whole batch fails
         /// </summary>
         /// <docgen category='Retrying Options' order='10' />
-        [DefaultValue(false)]
-        public bool EnableBatchWrite { get; set; }
+        [DefaultValue(true)]
+        public bool EnableBatchWrite { get; set; } = true;
 
         /// <summary>
         /// Special SyncObject to allow closing down Target while busy retrying
@@ -151,10 +151,7 @@ namespace NLog.Targets.Wrappers
                 {
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        if (!IsInitialized)
-                            logEvents[i].Continuation(null);
-                        else
-                            WriteAsyncThreadSafe(logEvents[i]);
+                        WriteAsyncThreadSafe(logEvents[i]);
                     }
                 }
             }
