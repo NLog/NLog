@@ -228,9 +228,9 @@ namespace NLog.Config
                 {
                     return false;
                 }
-                else if (messageFormatter is LogMessageTemplateFormatter messageTemplateFormatter)
+                else if ((messageFormatter as LogMessageTemplateFormatter)?.ForceTemplateRenderer == true)
                 {
-                    return messageTemplateFormatter.ForceTemplateRenderer;
+                    return true;
                 }
                 else
                 {

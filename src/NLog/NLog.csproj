@@ -191,7 +191,7 @@ For all config options and platform support, check https://nlog-project.org/conf
   </Target>
 
   <ItemGroup>
-    <None Include="N.png" Pack="true" PackagePath=""/>
+    <None Include="N.png" Pack="true" PackagePath="" Visible="false" />
   </ItemGroup>
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
     <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />

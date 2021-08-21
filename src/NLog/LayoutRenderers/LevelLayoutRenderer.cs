@@ -48,15 +48,15 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class LevelLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
-        private static readonly Dictionary<int, string> _upperCaseMapper = new Dictionary<int, string>()
+        private static readonly string[] _upperCaseMapper = new string[]
         {
-            { LogLevel.Trace.Ordinal, LogLevel.Trace.ToString().ToUpperInvariant() },
-            { LogLevel.Debug.Ordinal, LogLevel.Debug.ToString().ToUpperInvariant() },
-            { LogLevel.Info.Ordinal, LogLevel.Info.ToString().ToUpperInvariant() },
-            { LogLevel.Warn.Ordinal, LogLevel.Warn.ToString().ToUpperInvariant() },
-            { LogLevel.Error.Ordinal, LogLevel.Error.ToString().ToUpperInvariant() },
-            { LogLevel.Fatal.Ordinal, LogLevel.Fatal.ToString().ToUpperInvariant() },
-            { LogLevel.Off.Ordinal, LogLevel.Off.ToString().ToUpperInvariant() },
+            LogLevel.Trace.ToString().ToUpperInvariant(),
+            LogLevel.Debug.ToString().ToUpperInvariant(),
+            LogLevel.Info.ToString().ToUpperInvariant(),
+            LogLevel.Warn.ToString().ToUpperInvariant(),
+            LogLevel.Error.ToString().ToUpperInvariant(),
+            LogLevel.Fatal.ToString().ToUpperInvariant(),
+            LogLevel.Off.ToString().ToUpperInvariant(),
         };
 
         /// <summary>
@@ -102,8 +102,14 @@ namespace NLog.LayoutRenderers
 
         private string GetUpperCaseString(LogLevel level)
         {
-            _upperCaseMapper.TryGetValue(level.Ordinal, out var uppercaseString);
-            return uppercaseString ?? level.ToString().ToUpperInvariant();
+            try
+            {
+                return _upperCaseMapper[level.Ordinal];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return level.ToString().ToUpperInvariant();
+            }
         }
 
         /// <inheritdoc/>
