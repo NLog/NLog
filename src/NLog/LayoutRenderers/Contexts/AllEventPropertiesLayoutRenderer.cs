@@ -80,6 +80,12 @@ namespace NLog.LayoutRenderers
         public bool IncludeEmptyValues { get; set; } = false;
 
         /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public bool IncludeScopeProperties { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets the keys to exclude from the output. If omitted, none are excluded.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
@@ -88,6 +94,12 @@ namespace NLog.LayoutRenderers
 #else
         public HashSet<string> Exclude { get; set; }   
 #endif
+
+        /// <summary>
+        /// Enables capture of ScopeContext-properties from active thread context
+        /// </summary>
+        public LayoutRenderer FixScopeContext => IncludeScopeProperties ? _fixScopeContext : null;
+        private static readonly LayoutRenderer _fixScopeContext = new ScopeContextPropertyLayoutRenderer() { Item = string.Empty };
 
         /// <summary>
         /// Gets or sets how key/value pairs will be formatted.
@@ -129,46 +141,73 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (!logEvent.HasProperties)
+            if (!logEvent.HasProperties && !IncludeScopeProperties)
                 return;
 
             var formatProvider = GetFormatProvider(logEvent);
             bool checkForExclude = Exclude?.Count > 0;
             bool nonStandardFormat = _beforeKey == null || _afterKey == null || _afterValue == null;
 
-            bool first = true;
-            foreach (var property in logEvent.Properties)
+            bool includeSeparator = false;
+            if (logEvent.HasProperties)
             {
-                if (!IncludeEmptyValues && IsEmptyPropertyValue(property.Value))
-                    continue;
-
-                if (checkForExclude && property.Key is string propertyKey && Exclude.Contains(propertyKey))
-                    continue;
-
-                if (!first)
+                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
+                foreach (var property in propertiesList)
                 {
-                    builder.Append(Separator);
-                }
-
-                first = false;
-
-                if (nonStandardFormat)
-                {
-                    var key = Convert.ToString(property.Key, formatProvider);
-                    var value = Convert.ToString(property.Value, formatProvider);
-                    var pair = Format.Replace("[key]", key)
-                                     .Replace("[value]", value);
-                    builder.Append(pair);
-                }
-                else
-                {
-                    builder.Append(_beforeKey);
-                    builder.AppendFormattedValue(property.Key, null, formatProvider, ValueFormatter);
-                    builder.Append(_afterKey);
-                    builder.AppendFormattedValue(property.Value, null, formatProvider, ValueFormatter);
-                    builder.Append(_afterValue);
+                    if (AppendProperty(builder, property.Name, property.Value, property.Format, formatProvider, includeSeparator, checkForExclude, nonStandardFormat))
+                    {
+                        includeSeparator = true;
+                    }
                 }
             }
+
+            if (IncludeScopeProperties)
+            {
+                using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
+                {
+                    while (scopeEnumerator.MoveNext())
+                    {
+                        var property = scopeEnumerator.Current;
+                        if (AppendProperty(builder, property.Key, property.Value, null, formatProvider, includeSeparator, checkForExclude, nonStandardFormat))
+                        {
+                            includeSeparator = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool AppendProperty(StringBuilder builder, object propertyKey, object propertyValue, string propertyFormat, IFormatProvider formatProvider, bool includeSeparator, bool checkForExclude, bool nonStandardFormat)
+        {
+            if (!IncludeEmptyValues && IsEmptyPropertyValue(propertyValue))
+                return false;
+
+            if (checkForExclude && Exclude.Contains(propertyKey as string ?? string.Empty))
+                return false;
+
+            if (includeSeparator)
+            {
+                builder.Append(Separator);
+            }
+
+            if (nonStandardFormat)
+            {
+                var key = Convert.ToString(propertyKey, formatProvider);
+                var value = Convert.ToString(propertyValue, formatProvider);
+                var pair = Format.Replace("[key]", key)
+                                 .Replace("[value]", value);
+                builder.Append(pair);
+            }
+            else
+            {
+                builder.Append(_beforeKey);
+                builder.AppendFormattedValue(propertyKey, null, formatProvider, ValueFormatter);
+                builder.Append(_afterKey);
+                builder.AppendFormattedValue(propertyValue, propertyFormat, formatProvider, ValueFormatter);
+                builder.Append(_afterValue);
+            }
+
+            return true;
         }
 
         private static bool IsEmptyPropertyValue(object value)

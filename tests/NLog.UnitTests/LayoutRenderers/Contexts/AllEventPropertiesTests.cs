@@ -34,10 +34,8 @@
 namespace NLog.UnitTests.Layouts
 {
     using System;
-    using System.Text;
     using NLog.Config;
     using NLog.LayoutRenderers;
-    using NLog.Fluent;
     using Xunit;
 
     public class AllEventPropertiesTests : NLogTestBase
@@ -86,6 +84,42 @@ namespace NLog.UnitTests.Layouts
             var result = renderer.Render(ev);
 
             Assert.Equal("", result);
+        }
+
+        [Fact]
+        public void EventPropertyFormat()
+        {
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            var ev = new LogEventInfo(LogLevel.Info, null, null, "{pi:0}", new object[] { 3.14159265359 });
+            var result = renderer.Render(ev);
+            Assert.Equal("pi=3", result);
+        }
+
+        [Fact]
+        public void StructuredLoggingProperties()
+        {
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            var planetProperties = new System.Collections.Generic.Dictionary<string, object>()
+            {
+                { "Name", "Earth" },
+                { "PlanetType", "Water-world" },
+            };
+
+            var ev = new LogEventInfo(LogLevel.Info, null, null, "Hello Planet {@planet}", new object[] { planetProperties });
+            var result = renderer.Render(ev);
+            Assert.Equal(@"planet=""Name""=""Earth"", ""PlanetType""=""Water-world""", result);
+        }
+
+        [Fact]
+        public void IncludeScopeProperties()
+        {
+            var renderer = new AllEventPropertiesLayoutRenderer() { IncludeScopeProperties = true };
+            var ev = new LogEventInfo(LogLevel.Info, null, null, "{pi:0}", new object[] { 3.14159265359 });
+            using (ScopeContext.PushProperty("Figure", "Circle"))
+            {
+                var result = renderer.Render(ev);
+                Assert.Equal("pi=3, Figure=Circle", result);
+            }
         }
 
         [Fact]
