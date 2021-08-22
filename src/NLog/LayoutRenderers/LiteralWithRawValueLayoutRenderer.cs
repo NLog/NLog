@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
-    using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A string literal with a fixed raw value
@@ -63,7 +61,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = _rawValue;
             return _rawValueSuccess;
