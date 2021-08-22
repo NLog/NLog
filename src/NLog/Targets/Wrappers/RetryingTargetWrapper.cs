@@ -186,7 +186,7 @@ namespace NLog.Targets.Wrappers
 
             continuation = ex =>
             {
-                if (ex == null)
+                if (ex is null)
                 {
                     logEvent.Continuation(null);
                     return;

@@ -335,7 +335,7 @@ namespace NLog.Filters
                     LastLogTime = logTimeStamp;
                     LogLevel = logLevel;
                 }
-                else if (LogLevel == null || logLevel.Ordinal > LogLevel.Ordinal)
+                else if (LogLevel is null || logLevel.Ordinal > LogLevel.Ordinal)
                 {
                     LogLevel = logLevel;
                 }

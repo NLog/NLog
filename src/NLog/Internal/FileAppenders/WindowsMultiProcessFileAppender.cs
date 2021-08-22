@@ -152,10 +152,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (_fileStream != null)
-            {
-                _fileStream.Write(bytes, offset, count);
-            }
+            _fileStream?.Write(bytes, offset, count);
         }
 
         /// <summary>
@@ -163,7 +160,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (_fileStream == null)
+            if (_fileStream is null)
             {
                 return;
             }

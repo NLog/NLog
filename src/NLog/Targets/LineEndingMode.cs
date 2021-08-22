@@ -122,7 +122,7 @@ namespace NLog.Targets
         /// <exception cref="ArgumentOutOfRangeException">There is no line ending mode with the specified name.</exception>
         public static LineEndingMode FromString([NotNull] string name)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (name is null) throw new ArgumentNullException(nameof(name));
 
             if (name.Equals(CRLF.Name, StringComparison.OrdinalIgnoreCase)) return CRLF;
             if (name.Equals(LF.Name, StringComparison.OrdinalIgnoreCase)) return LF;
@@ -143,12 +143,12 @@ namespace NLog.Targets
         /// <returns>The value of <c>mode1.NewLineCharacters == mode2.NewLineCharacters</c>.</returns>
         public static bool operator ==(LineEndingMode mode1, LineEndingMode mode2)
         {
-            if (ReferenceEquals(mode1, null))
+            if (mode1 is null)
             {
-                return ReferenceEquals(mode2, null);
+                return mode2 is null;
             }
 
-            if (ReferenceEquals(mode2, null))
+            if (mode2 is null)
             {
                 return false;
             }
@@ -165,12 +165,12 @@ namespace NLog.Targets
         /// <returns>The value of <c>mode1.NewLineCharacters != mode2.NewLineCharacters</c>.</returns>
         public static bool operator !=(LineEndingMode mode1, LineEndingMode mode2)
         {
-            if (ReferenceEquals(mode1, null))
+            if (mode1 is null)
             {
-                return !ReferenceEquals(mode2, null);
+                return !(mode2 is null);
             }
 
-            if (ReferenceEquals(mode2, null))
+            if (mode2 is null)
             {
                 return true;
             }
@@ -196,7 +196,7 @@ namespace NLog.Targets
         /// </returns>
         public override int GetHashCode()
         {
-            return (_newLineCharacters != null ? _newLineCharacters.GetHashCode() : 0);
+            return _newLineCharacters?.GetHashCode() ?? 0;
         }
 
         /// <summary>
@@ -214,8 +214,6 @@ namespace NLog.Targets
         /// </exception>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
             return obj is LineEndingMode mode && Equals(mode);
         }
 
@@ -224,9 +222,7 @@ namespace NLog.Targets
         /// <param name="other">An object to compare with this object.</param>
         public bool Equals(LineEndingMode other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return string.Equals(_newLineCharacters, other._newLineCharacters);
+            return ReferenceEquals(this, other) || string.Equals(_newLineCharacters, other?._newLineCharacters);
         }
 
 #if !NETSTANDARD1_3

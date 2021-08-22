@@ -212,11 +212,7 @@ namespace NLog.Internal.NetworkSenders
             {
                 var sock = _socket;
                 _socket = null;
-
-                if (sock != null)
-                {
-                    sock.Close();
-                }
+                sock?.Close();
 
                 continuation(pendingException);
             }
@@ -281,7 +277,7 @@ namespace NLog.Internal.NetworkSenders
 
         public override void CheckSocket()
         {
-            if (_socket == null)
+            if (_socket is null)
             {
                 DoInitialize();
             }

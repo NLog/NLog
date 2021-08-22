@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            if (System.Threading.Thread.CurrentThread.Name == null)
+            if (System.Threading.Thread.CurrentThread.Name is null)
                 System.Threading.Thread.CurrentThread.Name = "mythreadname";
 
             LogManager.GetLogger("A").Debug("a");

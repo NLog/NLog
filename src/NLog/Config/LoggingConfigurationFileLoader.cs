@@ -227,7 +227,7 @@ namespace NLog.Config
 #else
             string entryAssemblyLocation = string.Empty;
 #endif
-            if (filename == null)
+            if (filename is null)
             {
                 // Scan for process specific nlog-files
                 foreach (var filePath in GetAppSpecificNLogLocations(baseDirectory, entryAssemblyLocation))

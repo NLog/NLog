@@ -204,8 +204,8 @@ namespace NLog.Config
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
         public void AddTarget([NotNull] Target target)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
-            if (target.Name == null) { throw new ArgumentNullException(nameof(target) + ".Name cannot be null."); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            if (target.Name is null) { throw new ArgumentNullException(nameof(target) + ".Name cannot be null."); }
 
             AddTargetThreadSafe(target.Name, target, true);
         }
@@ -219,7 +219,7 @@ namespace NLog.Config
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
         public void AddTarget(string name, Target target)
         {
-            if (name == null)
+            if (name is null)
             {
                 throw new ArgumentNullException(nameof(name), "Target name cannot be null");
             }
@@ -229,7 +229,7 @@ namespace NLog.Config
                 throw new ArgumentException("Target name cannot be empty", nameof(name));
             }
 
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
 
             AddTargetThreadSafe(name, target, true);
         }
@@ -293,7 +293,7 @@ namespace NLog.Config
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, string targetName, string loggerNamePattern = "*")
         {
             var target = FindTargetByName(targetName);
-            if (target == null)
+            if (target is null)
             {
                 throw new NLogRuntimeException("Target '{0}' not found", targetName);
             }
@@ -310,7 +310,7 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern = "*")
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             AddRule(minLevel, maxLevel, target, loggerNamePattern, false);
         }
 
@@ -324,7 +324,7 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern, bool final)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             AddLoggingRulesThreadSafe(new LoggingRule(loggerNamePattern, minLevel, maxLevel, target) { Final = final });
             AddTargetThreadSafe(target.Name, target, false);
         }
@@ -338,7 +338,7 @@ namespace NLog.Config
         public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*")
         {
             var target = FindTargetByName(targetName);
-            if (target == null)
+            if (target is null)
             {
                 throw new NLogConfigurationException("Target '{0}' not found", targetName);
             }
@@ -354,7 +354,7 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*")
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             AddRuleForOneLevel(level, target, loggerNamePattern, false);
         }
 
@@ -367,7 +367,7 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern, bool final)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
             loggingRule.EnableLoggingForLevel(level);
             AddLoggingRulesThreadSafe(loggingRule);
@@ -382,7 +382,7 @@ namespace NLog.Config
         public void AddRuleForAllLevels(string targetName, string loggerNamePattern = "*")
         {
             var target = FindTargetByName(targetName);
-            if (target == null)
+            if (target is null)
             {
                 throw new NLogRuntimeException("Target '{0}' not found", targetName);
             }
@@ -397,7 +397,7 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*")
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             AddRuleForAllLevels(target, loggerNamePattern, false);
         }
 
@@ -409,7 +409,7 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern, bool final)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
             loggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             AddLoggingRulesThreadSafe(loggingRule);
@@ -423,7 +423,7 @@ namespace NLog.Config
         /// <returns>Found logging rule or <see langword="null"/> when not found.</returns>
         public LoggingRule FindRuleByName(string ruleName)
         {
-            if (ruleName == null)
+            if (ruleName is null)
                 return null;
 
             var loggingRules = GetLoggingRulesThreadSafe();
@@ -444,7 +444,7 @@ namespace NLog.Config
         /// <returns>Found one or more logging rule to remove, or <see langword="false"/> when not found.</returns>
         public bool RemoveRuleByName(string ruleName)
         {
-            if (ruleName == null)
+            if (ruleName is null)
                 return false;
 
             HashSet<LoggingRule> removedRules = new HashSet<LoggingRule>();
@@ -561,7 +561,7 @@ namespace NLog.Config
         /// </remarks>
         public void Install(InstallationContext installationContext)
         {
-            if (installationContext == null)
+            if (installationContext is null)
             {
                 throw new ArgumentNullException(nameof(installationContext));
             }
@@ -599,7 +599,7 @@ namespace NLog.Config
         /// </remarks>
         public void Uninstall(InstallationContext installationContext)
         {
-            if (installationContext == null)
+            if (installationContext is null)
             {
                 throw new ArgumentNullException(nameof(installationContext));
             }
@@ -867,7 +867,7 @@ namespace NLog.Config
                 {
                     var layout = kvp.Value;
 
-                    if (layout == null)
+                    if (layout is null)
                     {
                         continue;
                     }

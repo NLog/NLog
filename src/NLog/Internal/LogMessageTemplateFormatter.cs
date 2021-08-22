@@ -166,7 +166,7 @@ namespace NLog.Internal
                     var hole = templateEnumerator.Current.Hole;
                     if (hole.Alignment != 0)
                         holeStartPosition = sb.Length;
-                    if (hole.Index != -1 && messageTemplateParameters == null)
+                    if (hole.Index != -1 && messageTemplateParameters is null)
                     {
                         holeIndex++;
                         RenderHole(sb, hole, formatProvider, parameters[hole.Index], true);
@@ -174,7 +174,7 @@ namespace NLog.Internal
                     else
                     {
                         var holeParameter = parameters[holeIndex];
-                        if (messageTemplateParameters == null)
+                        if (messageTemplateParameters is null)
                         {
                             messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
                             if (holeIndex != 0)
@@ -211,7 +211,7 @@ namespace NLog.Internal
 
         private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value, bool legacy = false)
         {
-            if (value == null)
+            if (value is null)
             {
                 sb.Append("NULL");
                 return;

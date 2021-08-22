@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             var simpleLayout = GetSimpleLayout();
-            if (simpleLayout == null)
+            if (simpleLayout is null)
                 return string.Empty;
             if (simpleLayout.IsFixedText || simpleLayout.IsSimpleStringText)
                 return simpleLayout.Render(logEvent);

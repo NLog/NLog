@@ -101,11 +101,11 @@ namespace NLog.Internal
                     continue;
                 }
 
-                if (charArray == null)
+                if (charArray is null)
                     charArray = new char[1];
                 charArray[0] = ch;
 
-                if (byteArray == null)
+                if (byteArray is null)
                     byteArray = new byte[8];
 
                 

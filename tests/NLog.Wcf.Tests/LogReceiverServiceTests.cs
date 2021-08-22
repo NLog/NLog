@@ -382,7 +382,7 @@ namespace NLog.Wcf.Tests
             /// <param name="events">The events.</param>
             public void ProcessLogMessages(NLogEvents events)
             {
-                if (CountdownEvent == null)
+                if (CountdownEvent is null)
                 {
                     throw new Exception("test not prepared well");
                 }

@@ -227,7 +227,7 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(logEvent.Level);
             if (targetsForLevel != null)
             {
-                if (logEvent.LoggerName == null)
+                if (logEvent.LoggerName is null)
                     logEvent.LoggerName = Name;
                 WriteToTargets(logEvent, targetsForLevel);
             }
@@ -243,7 +243,7 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevelSafe(logEvent.Level);
             if (targetsForLevel != null)
             {
-                if (logEvent.LoggerName == null)
+                if (logEvent.LoggerName is null)
                     logEvent.LoggerName = Name;
                 WriteToTargets(wrapperType, logEvent, targetsForLevel);
             }
@@ -292,7 +292,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -491,7 +491,7 @@ namespace NLog
 
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
-            if (logEvent.FormatProvider == null)
+            if (logEvent.FormatProvider is null)
             {
                 logEvent.FormatProvider = Factory.DefaultCultureInfo;
             }
@@ -695,7 +695,7 @@ namespace NLog
             if (targetsForLevel != null)
             {
                 // Translate Exception with missing LogEvent message as log single value (See also ExceptionMessageFormatProvider)
-                var logEvent = message == null && ex != null && !(args?.Length > 0) ? 
+                var logEvent = message is null && ex != null && !(args?.Length > 0) ? 
                     LogEventInfo.Create(level, Name, null, ex) :
                     LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
                 WriteToTargets(logEvent, targetsForLevel);

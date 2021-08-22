@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
         {
             base.InitializeLayoutRenderer();
             var propertyInfo = typeof(Process).GetProperty(Property.ToString());
-            if (propertyInfo == null)
+            if (propertyInfo is null)
             {
                 throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process");
             }
@@ -85,12 +85,8 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc />
         protected override void CloseLayoutRenderer()
         {
-            if (_process != null)
-            {
-                _process.Close();
-                _process = null;
-            }
-
+            _process?.Close();
+            _process = null;
             base.CloseLayoutRenderer();
         }
 

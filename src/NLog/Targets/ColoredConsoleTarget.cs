@@ -435,7 +435,7 @@ namespace NLog.Targets
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
         {
             var matchingRule = GetMatchingRowHighlightingRule(RowHighlightingRules, logEvent);
-            if (matchingRule == null && UseDefaultRowHighlightingRules)
+            if (matchingRule is null && UseDefaultRowHighlightingRules)
             {
                 matchingRule = GetMatchingRowHighlightingRule(_consolePrinter.DefaultConsoleRowHighlightingRules, logEvent);
             }
@@ -468,7 +468,7 @@ namespace NLog.Targets
                 {
                     var hl = WordHighlightingRules[i];
                     var matches = hl.Matches(logEvent, message);
-                    if (matches == null || matches.Count == 0)
+                    if (matches is null || matches.Count == 0)
                         continue;
 
                     if (sb != null)

@@ -360,7 +360,7 @@ namespace NLog.LayoutRenderers
                             continue;
 
                         string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
-                        if (propertyValue == null)
+                        if (propertyValue is null)
                             continue;
 
                         xtw.WriteStartElement(prefix, "data", propertiesNamespace);
@@ -451,7 +451,7 @@ namespace NLog.LayoutRenderers
                         continue;
 
                     string propertyValue = XmlHelper.XmlConvertToStringSafe(contextProperty.Value);
-                    if (propertyValue == null)
+                    if (propertyValue is null)
                         continue;
 
                     xtw.WriteStartElement(prefix, "data", propertiesNamespace);

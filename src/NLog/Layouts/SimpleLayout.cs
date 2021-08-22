@@ -169,7 +169,7 @@ namespace NLog.Layouts
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
         public static implicit operator SimpleLayout(string text)
         {
-            if (text == null) return null;
+            if (text is null) return null;
 
             return new SimpleLayout(text);
         }

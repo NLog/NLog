@@ -262,7 +262,7 @@ namespace NLog
         /// <returns>The enumeration value.</returns>
         public static LogLevel FromString(string levelName)
         {
-            if (levelName == null)
+            if (levelName is null)
             {
                 throw new ArgumentNullException(nameof(levelName));
             }

@@ -72,7 +72,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (_file == null)
+            if (_file is null)
             {
                 return;
             }
@@ -91,7 +91,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Flush()
         {
-            if (_file == null)
+            if (_file is null)
             {
                 return;
             }

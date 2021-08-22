@@ -113,7 +113,7 @@ namespace NLog.Internal
         /// <param name="fileNames">The file names.</param>
         public void Watch(IEnumerable<string> fileNames)
         {
-            if (fileNames == null)
+            if (fileNames is null)
             {
                 return;
             }

@@ -65,7 +65,7 @@ namespace NLog.Internal
 
         public bool TryLookupDynamicVariable(string key, out Layout dynamicLayout)
         {
-            if (_dynamicVariables == null)
+            if (_dynamicVariables is null)
             {
                 if (!_variables.TryGetValue(key, out dynamicLayout))
                     return false;
@@ -175,7 +175,7 @@ namespace NLog.Internal
 
         private void RegisterApiVariable(string key)
         {
-            if (_apiVariables == null)
+            if (_apiVariables is null)
             {
                 System.Threading.Interlocked.CompareExchange(ref _apiVariables, new ThreadSafeDictionary<string, bool>(_variables.Comparer), null);
             }

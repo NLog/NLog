@@ -137,7 +137,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -378,7 +378,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -619,7 +619,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -860,7 +860,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -1101,7 +1101,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -1342,7 +1342,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }

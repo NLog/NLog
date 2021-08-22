@@ -202,7 +202,7 @@ namespace NLog
         /// <param name="conditionMethod">MethodInfo extracted by reflection - typeof(MyClass).GetMethod("MyFunc", BindingFlags.Static).</param>
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod)
         {
-            if (conditionMethod == null)
+            if (conditionMethod is null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             if (!conditionMethod.IsStatic)
                 throw new ArgumentException($"{conditionMethod.Name} must be static", nameof(conditionMethod));
@@ -219,7 +219,7 @@ namespace NLog
         /// <param name="conditionMethod">Lambda method.</param>
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> conditionMethod)
         {
-            if (conditionMethod == null)
+            if (conditionMethod is null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod((LogEventInfo)args[0]);
             return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
@@ -233,7 +233,7 @@ namespace NLog
         /// <param name="conditionMethod">Lambda method.</param>
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<object> conditionMethod)
         {
-            if (conditionMethod == null)
+            if (conditionMethod is null)
                 throw new ArgumentNullException(nameof(conditionMethod));
             ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod();
             return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
@@ -253,7 +253,7 @@ namespace NLog
         /// <param name="singletonService">Implementation of interface.</param>
         public static ISetupExtensionsBuilder RegisterSingletonService<T>(this ISetupExtensionsBuilder setupBuilder, T singletonService) where T : class
         {
-            if (singletonService == null)
+            if (singletonService is null)
                 throw new ArgumentNullException(nameof(singletonService));
             setupBuilder.LogFactory.ServiceRepository.RegisterSingleton<T>(singletonService);
             return setupBuilder;
@@ -267,9 +267,9 @@ namespace NLog
         /// <param name="singletonService">Implementation of interface.</param>
         public static ISetupExtensionsBuilder RegisterSingletonService(this ISetupExtensionsBuilder setupBuilder, Type interfaceType, object singletonService)
         {
-            if (interfaceType == null)
+            if (interfaceType is null)
                 throw new ArgumentNullException(nameof(interfaceType));
-            if (singletonService == null)
+            if (singletonService is null)
                 throw new ArgumentNullException(nameof(singletonService));
             if (!interfaceType.IsAssignableFrom(singletonService.GetType()))
                 throw new ArgumentException("Service instance not matching type", nameof(singletonService));
@@ -284,7 +284,7 @@ namespace NLog
         /// <param name="serviceProvider">External dependency injection repository</param>
         public static ISetupExtensionsBuilder RegisterServiceProvider(this ISetupExtensionsBuilder setupBuilder, IServiceProvider serviceProvider)
         {
-            if (serviceProvider == null)
+            if (serviceProvider is null)
                 throw new ArgumentNullException(nameof(serviceProvider));
 
             setupBuilder.LogFactory.ServiceRepository.RegisterSingleton(serviceProvider);

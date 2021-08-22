@@ -100,7 +100,7 @@ namespace NLog.Targets
                 _includeEmptyValue = value;
                 if (!value)
                     DefaultValue = new Layout<string>(null);
-                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue == null)
+                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
                     DefaultValue = null;
             }
         }

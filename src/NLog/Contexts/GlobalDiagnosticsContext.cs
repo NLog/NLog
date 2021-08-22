@@ -152,7 +152,7 @@ namespace NLog
         private static Dictionary<string, object> GetReadOnlyDict()
         {
             var readOnly = _dictReadOnly;
-            if (readOnly == null)
+            if (readOnly is null)
             {
                 lock (_lockObject)
                 {

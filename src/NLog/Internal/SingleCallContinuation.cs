@@ -64,10 +64,7 @@ namespace NLog.Internal
             try
             {
                 var cont = Interlocked.Exchange(ref _asyncContinuation, null);
-                if (cont != null)
-                {
-                    cont(exception);
-                }
+                cont?.Invoke(exception);
             }
             catch (Exception ex)
             {

@@ -61,7 +61,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Is fixed value?
         /// </summary>
-        public bool IsFixed => ReferenceEquals(_innerLayout, null);
+        public bool IsFixed => _innerLayout is null;
 
         /// <summary>
         /// Fixed value
@@ -114,7 +114,7 @@ namespace NLog.Layouts
                     _parseFormatCulture = parseValueCulture;
                 }
             }
-            else if (ReferenceEquals(layout, null))
+            else if (layout is null)
             {
                 _fixedValue = default(T);
             }
@@ -235,10 +235,10 @@ namespace NLog.Layouts
 
             if (TryRenderObjectValue(logEvent, stringBuilder, out var value))
             {
-                if (value != null)
-                    return (TValueType)value;
-                else
+                if (value is null)
                     return defaultValue;
+                else
+                    return (TValueType)value;
             }
 
             return defaultValue;
@@ -262,7 +262,7 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    if (ReferenceEquals(rawValue, null))
+                    if (rawValue is null)
                     {
                         value = null;
                         return true;
@@ -411,7 +411,7 @@ namespace NLog.Layouts
         /// <param name="layout">Text to be converted.</param>
         public static implicit operator Layout<T>([Localizable(false)] string layout)
         {
-            if (layout == null) return null;
+            if (layout is null) return null;
 
             return new Layout<T>(layout);
         }
@@ -421,7 +421,7 @@ namespace NLog.Layouts
         /// </summary>
         public static bool operator ==(Layout<T> left, T right)
         {
-            return left?.Equals(right) == true || (ReferenceEquals(left, null) && object.Equals(right, default(T)));
+            return left?.Equals(right) == true || (left is null && object.Equals(right, default(T)));
         }
 
         /// <summary>
@@ -429,7 +429,7 @@ namespace NLog.Layouts
         /// </summary>
         public static bool operator !=(Layout<T> left, T right)
         {
-            return left?.Equals(right) != true && !(ReferenceEquals(left, null) && object.Equals(right, default(T)));
+            return left?.Equals(right) != true && !(left is null && object.Equals(right, default(T)));
         }
     }
 

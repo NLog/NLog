@@ -53,7 +53,7 @@ namespace NLog.Internal
                 var item = items[i];
                 if (filter(item, state))
                 {
-                    if (hasIgnoredLogEvents && filterLogEvents == null)
+                    if (hasIgnoredLogEvents && filterLogEvents is null)
                     {
                         filterLogEvents = new List<TItem>();
                     }

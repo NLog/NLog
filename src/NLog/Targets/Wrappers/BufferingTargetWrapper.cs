@@ -240,7 +240,7 @@ namespace NLog.Targets.Wrappers
                 lockTaken = Monitor.TryEnter(_lockObject, timeoutMilliseconds);
                 if (lockTaken)
                 {
-                    if (_flushTimer == null)
+                    if (_flushTimer is null)
                         return;
 
                     WriteEventsInBuffer(null);
@@ -271,7 +271,7 @@ namespace NLog.Targets.Wrappers
 
         private void WriteEventsInBuffer(string reason)
         {
-            if (WrappedTarget == null)
+            if (WrappedTarget is null)
             {
                 InternalLogger.Error("{0}: WrappedTarget is NULL", this);
                 return;

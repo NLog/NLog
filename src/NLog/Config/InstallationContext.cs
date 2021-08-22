@@ -162,11 +162,8 @@ namespace NLog.Config
         /// </summary>
         public void Dispose()
         {
-            if (LogOutput != null)
-            {
-                LogOutput.Close();
-                LogOutput = null;
-            }
+            LogOutput?.Close();
+            LogOutput = null;
         }
 
         /// <summary>

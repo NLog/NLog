@@ -52,7 +52,7 @@ namespace NLog.Internal
         /// <returns></returns>
         public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
         {
-            string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
+            string fullFileName = baseDirectory is null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
 
             InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 #if NETSTANDARD1_5
@@ -120,7 +120,7 @@ namespace NLog.Internal
                 return false;
 #endif
             var expectedKeyToken = expected.GetPublicKeyToken();
-            var correctToken = expectedKeyToken == null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
+            var correctToken = expectedKeyToken is null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
             return correctToken;
         }
 
@@ -131,7 +131,7 @@ namespace NLog.Internal
 
             try
             {
-                if (assembly == null)
+                if (assembly is null)
                 {
                     return string.Empty;
                 }

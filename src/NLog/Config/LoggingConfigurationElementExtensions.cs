@@ -61,7 +61,7 @@ namespace NLog.Config
         public static string GetRequiredValue(this ILoggingConfigurationElement element, string attributeName, string section)
         {
             string value = element.GetOptionalValue(attributeName, null);
-            if (value == null)
+            if (value is null)
             {
                 throw new NLogConfigurationException($"Expected {attributeName} on {element.Name} in {section}");
             }
@@ -130,7 +130,7 @@ namespace NLog.Config
         /// <returns></returns>
         private static string StripOptionalNamespacePrefix(string attributeValue)
         {
-            if (attributeValue == null)
+            if (attributeValue is null)
             {
                 return null;
             }

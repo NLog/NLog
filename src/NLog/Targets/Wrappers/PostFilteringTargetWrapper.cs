@@ -133,7 +133,7 @@ namespace NLog.Targets.Wrappers
             InternalLogger.Trace("{0}: Running on {1} events", this, logEvents.Count);
 
             var resultFilter = EvaluateAllRules(logEvents) ?? DefaultFilter;
-            if (resultFilter == null)
+            if (resultFilter is null)
             {
                 WrappedTarget.WriteAsyncLogEvents(logEvents);
             }

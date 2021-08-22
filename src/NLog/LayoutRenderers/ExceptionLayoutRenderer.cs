@@ -292,7 +292,7 @@ namespace NLog.LayoutRenderers
                     if (ReferenceEquals(currentException, primaryException.InnerException))
                         continue; // Skip firstException when it is innerException
 
-                    if (currentException == null)
+                    if (currentException is null)
                     {
                         InternalLogger.Debug("Skipping rendering exception as exception is null");
                         continue;

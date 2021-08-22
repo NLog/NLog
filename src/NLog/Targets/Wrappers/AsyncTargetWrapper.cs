@@ -162,7 +162,7 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (_logEventDroppedEvent == null && _requestQueue != null )
+                if (_eventQueueGrowEvent == null && _requestQueue != null)
                 {
                     _requestQueue.LogEventDropped += OnRequestQueueDropItem;
                 }
@@ -173,7 +173,7 @@ namespace NLog.Targets.Wrappers
             {
                 _logEventDroppedEvent -= value;
 
-                if (_logEventDroppedEvent == null && _requestQueue != null)
+                if (_eventQueueGrowEvent == null && _requestQueue != null)
                 {
                     _requestQueue.LogEventDropped -= OnRequestQueueDropItem;
                 }
@@ -257,7 +257,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            if (_flushEventsInQueueDelegate == null)
+            if (_flushEventsInQueueDelegate is null)
                 _flushEventsInQueueDelegate = new AsyncHelpersTask(FlushEventsInQueue);
             AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate.Value, asyncContinuation);
         }
@@ -460,7 +460,7 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            if (_lazyWriterTimer == null)
+            if (_lazyWriterTimer is null)
                 return;
 
             bool wroteFullBatchSize = false;
@@ -534,7 +534,7 @@ namespace NLog.Targets.Wrappers
 
         private int WriteEventsInQueue(int batchSize, string reason)
         {
-            if (WrappedTarget == null)
+            if (WrappedTarget is null)
             {
                 InternalLogger.Error("{0}: WrappedTarget is NULL", this);
                 return 0;

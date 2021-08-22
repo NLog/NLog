@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (_assemblyName == null)
+            if (_assemblyName is null)
             {
                 var formattingString = GetFormattingString(Format);
                 _assemblyName = string.Format(formattingString, _currentAppEnvironment.AppDomainId, _currentAppEnvironment.AppDomainFriendlyName);

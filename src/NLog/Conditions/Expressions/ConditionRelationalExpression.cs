@@ -146,7 +146,7 @@ namespace NLog.Conditions
         /// <param name="rightValue"></param>
         private static void PromoteTypes(ref object leftValue, ref object rightValue)
         {
-            if (ReferenceEquals(leftValue, rightValue) || leftValue == null || rightValue == null)
+            if (ReferenceEquals(leftValue, rightValue) || leftValue is null || rightValue is null)
             {
                 return;
             }

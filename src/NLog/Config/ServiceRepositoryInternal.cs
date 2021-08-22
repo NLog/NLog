@@ -75,9 +75,9 @@ namespace NLog.Config
 
         public override void RegisterService(Type type, object instance)
         {
-            if (type == null)
+            if (type is null)
                 throw new ArgumentNullException(nameof(type));
-            if (instance == null)
+            if (instance is null)
                 throw new ArgumentNullException(nameof(instance));
 
             lock (_lockObject)
@@ -95,7 +95,7 @@ namespace NLog.Config
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
         {
-            if (itemType == null)
+            if (itemType is null)
                 throw new ArgumentNullException(nameof(itemType));
 
             ConfigurationItemCreator objectResolver = null;
@@ -109,7 +109,7 @@ namespace NLog.Config
                 }
             }
 
-            if (objectResolver == null && compiledConstructor == null)
+            if (objectResolver is null && compiledConstructor is null)
             {
                 if (itemType.IsAbstract())
                     throw new NLogDependencyResolveException("Instance of class must be registered", itemType);

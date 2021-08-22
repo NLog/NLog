@@ -72,7 +72,7 @@ namespace NLog.Config
         /// <returns>A concrete <see cref="LoggerNameMatcher"/></returns>
         public static LoggerNameMatcher Create(string loggerNamePattern)
         {
-            if (loggerNamePattern == null)
+            if (loggerNamePattern is null)
                 return NoneLoggerNameMatcher.Instance;
             if (loggerNamePattern.Trim()=="*")
                 return AllLoggerNameMatcher.Instance;
@@ -180,7 +180,7 @@ namespace NLog.Config
                 : base(pattern, pattern) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.Equals(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -196,7 +196,7 @@ namespace NLog.Config
                 : base(pattern, pattern.Substring(0, pattern.Length - 1)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.StartsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -212,7 +212,7 @@ namespace NLog.Config
                 : base(pattern, pattern.Substring(1)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.EndsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -228,7 +228,7 @@ namespace NLog.Config
                 : base(pattern, pattern.Substring(1, pattern.Length - 2)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.IndexOf(_matchingArgument, StringComparison.Ordinal) >= 0;
             }
         }
@@ -262,7 +262,7 @@ namespace NLog.Config
             }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return false;
+                if (loggerName is null) return false;
                 return _regex.IsMatch(loggerName);
             }
         }

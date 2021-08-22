@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         internal static void DecodeRot13(StringBuilder encodedValue, int startPos)
         {
-            if (encodedValue == null)
+            if (encodedValue is null)
             {
                 return;
             }

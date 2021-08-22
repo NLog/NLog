@@ -95,7 +95,7 @@ namespace NLog.Internal.FileAppenders
 #if !NETSTANDARD1_3
         private void ExternalFileArchivingWatcher_OnFileChanged(object sender, FileSystemEventArgs e)
         {
-            if (_logFileWasArchived || CheckCloseAppenders == null || _autoClosingTimer == null)
+            if (_logFileWasArchived || CheckCloseAppenders is null || _autoClosingTimer is null)
             {
                 return;
             }
@@ -236,7 +236,7 @@ namespace NLog.Internal.FileAppenders
             for (int i = 0; i < _appenders.Length; ++i)
             {
                 // Use empty slot in recent appender list, if there is one.
-                if (_appenders[i] == null)
+                if (_appenders[i] is null)
                 {
                     freeSpot = i;
                     break;
@@ -263,7 +263,7 @@ namespace NLog.Internal.FileAppenders
                 }
             }
 
-            if (appenderToWrite == null)
+            if (appenderToWrite is null)
             {
                 appenderToWrite = CreateAppender(fileName, freeSpot);
             }
@@ -331,7 +331,7 @@ namespace NLog.Internal.FileAppenders
             for (int i = startIndex; i < _appenders.Length; ++i)
             {
                 var oldAppender = _appenders[i];
-                if (oldAppender == null)
+                if (oldAppender is null)
                 {
                     break;
                 }
@@ -361,7 +361,7 @@ namespace NLog.Internal.FileAppenders
                 {
                     for (int i = 0; i < _appenders.Length; ++i)
                     {
-                        if (_appenders[i] == null)
+                        if (_appenders[i] is null)
                         {
                             break;
                         }
@@ -383,7 +383,7 @@ namespace NLog.Internal.FileAppenders
         {
             foreach (BaseFileAppender appender in _appenders)
             {
-                if (appender == null)
+                if (appender is null)
                 {
                     break;
                 }
@@ -406,7 +406,7 @@ namespace NLog.Internal.FileAppenders
             for (int i = 0; i < _appenders.Length; ++i)
             {
                 BaseFileAppender appender = _appenders[i];
-                if (appender == null)
+                if (appender is null)
                     break;
 
                 if (string.Equals(appender.FileName, fileName, StringComparison.OrdinalIgnoreCase))
@@ -517,7 +517,7 @@ namespace NLog.Internal.FileAppenders
             for (int i = 0; i < _appenders.Length; ++i)
             {
                 var oldAppender = _appenders[i];
-                if (oldAppender == null)
+                if (oldAppender is null)
                 {
                     break;
                 }
@@ -529,7 +529,7 @@ namespace NLog.Internal.FileAppenders
                         _appenders[j] = _appenders[j + 1];
                     }
                     _appenders[_appenders.Length - 1] = null;
-                    CloseAppender(oldAppender, "Invalidate", _appenders[0] == null);
+                    CloseAppender(oldAppender, "Invalidate", _appenders[0] is null);
                     return oldAppender; // Return without Dispose of Archive Mutex
                 }
             }

@@ -286,7 +286,7 @@ namespace NLog.UnitTests.Common
 
             Trace.Listeners.Clear();
 
-            if (traceListener == null)
+            if (traceListener is null)
             {
                 return null;
             }

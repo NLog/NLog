@@ -102,7 +102,7 @@ namespace NLog.Targets.Wrappers
         // <inheritdoc />
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (_buildKeyStringDelegate == null)
+            if (_buildKeyStringDelegate is null)
                 _buildKeyStringDelegate = logEvent => RenderLogEvent(Key, logEvent.LogEvent);
 
             var buckets = logEvents.BucketSort(_buildKeyStringDelegate);

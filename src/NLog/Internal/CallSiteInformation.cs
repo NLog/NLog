@@ -124,7 +124,7 @@ namespace NLog.Internal
             }
 
             method = method ?? GetCallerStackFrameMethod(0);
-            if (method == null)
+            if (method is null)
                 return string.Empty;
 
             cleanAsyncMoveNext = cleanAsyncMoveNext || UserStackFrameNumberLegacy.HasValue;
@@ -138,7 +138,7 @@ namespace NLog.Internal
                 return CallerMethodName;
 
             method = method ?? GetCallerStackFrameMethod(0);
-            if (method == null)
+            if (method is null)
                 return string.Empty;
 
             cleanAsyncMoveNext = cleanAsyncMoveNext || UserStackFrameNumberLegacy.HasValue;
@@ -177,7 +177,7 @@ namespace NLog.Internal
         /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
         private static int? FindCallingMethodOnStackTrace(StackFrame[] stackFrames, Type loggerType)
         {
-            if (stackFrames == null || stackFrames.Length == 0)
+            if (stackFrames is null || stackFrames.Length == 0)
                 return null;
 
             int? firstStackFrameAfterLogger = null;
@@ -243,7 +243,7 @@ namespace NLog.Internal
         private static bool SkipAssembly(StackFrame frame)
         {
             var assembly = StackTraceUsageUtils.LookupAssemblyFromStackFrame(frame);
-            return assembly == null || LogManager.IsHiddenAssembly(assembly);
+            return assembly is null || LogManager.IsHiddenAssembly(assembly);
         }
 
         /// <summary>

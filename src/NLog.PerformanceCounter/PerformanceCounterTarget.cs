@@ -72,9 +72,9 @@ namespace NLog.Targets
     [Target("PerformanceCounter")]
     public class PerformanceCounterTarget : Target, IInstallable
     {
-        private PerformanceCounter perfCounter;
-        private bool initialized;
-        private bool created;
+        private PerformanceCounter _perfCounter;
+        private bool _initialized;
+        private bool _created;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PerformanceCounterTarget" /> class.
@@ -157,13 +157,13 @@ namespace NLog.Targets
             }
 
             var countersInCategory = LoggingConfiguration?.AllTargets.OfType<PerformanceCounterTarget>().Where(c => c.CategoryName == categoryName).ToList();
-            if (countersInCategory?.Any(c => c.created)==true)
+            if (countersInCategory?.Any(c => c._created)==true)
             {
                 installationContext.Trace("Category '{0}' has already been installed.", categoryName);
                 return;
             }
 
-            if (countersInCategory == null)
+            if (countersInCategory is null)
                 countersInCategory = new List<PerformanceCounterTarget>(new[] { this });
             else if (!countersInCategory.Contains(this))
                 countersInCategory.Add(this);
@@ -206,7 +206,7 @@ namespace NLog.Targets
             {
                 foreach (var t in countersInCategory)
                 {
-                    t.created = true;
+                    t._created = true;
                 }
             }
         }
@@ -258,7 +258,7 @@ namespace NLog.Targets
                 string incrementValueString = IncrementValue.Render(logEvent);
                 long incrementValue;
                 if (long.TryParse(incrementValueString, out incrementValue))
-                    perfCounter.IncrementBy(incrementValue);
+                    _perfCounter.IncrementBy(incrementValue);
                 else
                     InternalLogger.Error("{0}: Error incrementing PerfCounter {1}. IncrementValue must be an integer but was <{2}>", this, CounterName, incrementValueString);
             }
@@ -271,13 +271,10 @@ namespace NLog.Targets
         {
             base.CloseTarget();
 
-            if (perfCounter != null)
-            {
-                perfCounter.Close();
-                perfCounter = null;
-            }
+            _perfCounter?.Close();
+            _perfCounter = null;
 
-            initialized = false;
+            _initialized = false;
         }
 
         private static CounterCreationDataCollection GetCounterCreationDataCollection(IEnumerable<PerformanceCounterTarget> countersInCategory, out PerformanceCounterCategoryType categoryType)
@@ -304,9 +301,9 @@ namespace NLog.Targets
         /// <returns>True if the performance counter is operational, false otherwise.</returns>
         private bool EnsureInitialized()
         {
-            if (!initialized)
+            if (!_initialized)
             {
-                initialized = true;
+                _initialized = true;
 
                 if (AutoCreate)
                 {
@@ -318,7 +315,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    perfCounter = new PerformanceCounter(CategoryName, CounterName, InstanceName, false);
+                    _perfCounter = new PerformanceCounter(CategoryName, CounterName, InstanceName, false);
                 }
                 catch (Exception exception)
                 {
@@ -329,7 +326,7 @@ namespace NLog.Targets
                 }
             }
 
-            return perfCounter != null;
+            return _perfCounter != null;
         }
     }
 }

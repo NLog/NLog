@@ -118,7 +118,7 @@ namespace NLog.Targets
                 if (targetType != null)
                 {
                     var methodInfo = targetType.GetMethod(MethodName);
-                    if (methodInfo == null)
+                    if (methodInfo is null)
                     {
                         throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} not found in ClassName={ClassName} - it should be static");
                     }
@@ -132,7 +132,7 @@ namespace NLog.Targets
                     throw new NLogConfigurationException($"MethodCallTarget: failed to get type from ClassName={ClassName}");
                 }
             }
-            else if (_logEventAction == null)
+            else if (_logEventAction is null)
             {
                 throw new NLogConfigurationException($"MethodCallTarget: Missing configuration of ClassName and MethodName");
             }

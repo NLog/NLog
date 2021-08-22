@@ -157,7 +157,7 @@ namespace NLog.Internal
 
         internal static bool IsConfigurationItemType(Type type)
         {
-            if (type == null || IsSimplePropertyType(type))
+            if (type is null || IsSimplePropertyType(type))
                 return false;
 
             if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
@@ -205,7 +205,7 @@ namespace NLog.Internal
                 if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                 {
                     object value = propInfo.GetValue(o, null);
-                    if (value == null)
+                    if (value is null)
                     {
                         throw new NLogConfigurationException(
                             $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
@@ -246,7 +246,7 @@ namespace NLog.Internal
                 }
 
                 MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
-                if (operatorImplicitMethod == null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
+                if (operatorImplicitMethod is null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
                 {
                     result = null;
                     return false;
@@ -298,7 +298,7 @@ namespace NLog.Internal
                 foreach (string v in value.SplitAndTrimTokens(','))
                 {
                     FieldInfo enumField = resultType.GetField(v, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                    if (enumField == null)
+                    if (enumField is null)
                     {
                         throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
                     }
@@ -314,7 +314,7 @@ namespace NLog.Internal
             else
             {
                 FieldInfo enumField = resultType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                if (enumField == null)
+                if (enumField is null)
                 {
                     throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
                 }
@@ -393,13 +393,13 @@ namespace NLog.Internal
                 collectionItemType = collectionType.GetGenericArguments()[0];
                 collectionObject = CreateCollectionObjectInstance(isSet ? typeof(HashSet<>) : typeof(List<>), collectionItemType, hashsetComparer);
                 //no support for array
-                if (collectionObject == null)
+                if (collectionObject is null)
                 {
                     throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", collectionType.ToString(), valueRaw);
                 }
 
                 collectionAddMethod = collectionObject.GetType().GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-                if (collectionAddMethod == null)
+                if (collectionAddMethod is null)
                 {
                     throw new NLogConfigurationException("Add method on type {0} for value {1} not found", collectionType.ToString(), valueRaw);
                 }
@@ -530,7 +530,7 @@ namespace NLog.Internal
 
         private static string LookupPropertySymbolName(PropertyInfo propInfo)
         {
-            if (propInfo.PropertyType == null)
+            if (propInfo.PropertyType is null)
                 return null;
 
             if (IsSimplePropertyType(propInfo.PropertyType))

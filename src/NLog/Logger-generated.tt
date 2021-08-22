@@ -113,7 +113,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }

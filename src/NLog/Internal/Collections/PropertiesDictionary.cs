@@ -95,13 +95,13 @@ namespace NLog.Internal
             }
         }
 
-        private bool IsEmpty => (_eventProperties == null || _eventProperties.Count == 0) && (_messageProperties == null || _messageProperties.Count == 0);
+        private bool IsEmpty => (_eventProperties is null || _eventProperties.Count == 0) && (_messageProperties is null || _messageProperties.Count == 0);
 
         private Dictionary<object, PropertyValue> EventProperties
         {
             get
             {
-                if (_eventProperties == null)
+                if (_eventProperties is null)
                 {
                     if (_messageProperties != null && _messageProperties.Count > 0)
                     {
@@ -128,13 +128,13 @@ namespace NLog.Internal
 
         private IList<MessageTemplateParameter> SetMessageProperties(IList<MessageTemplateParameter> newMessageProperties, IList<MessageTemplateParameter> oldMessageProperties)
         {
-            if (_eventProperties == null && VerifyUniqueMessageTemplateParametersFast(newMessageProperties))
+            if (_eventProperties is null && VerifyUniqueMessageTemplateParametersFast(newMessageProperties))
             {
                 return newMessageProperties;
             }
             else
             {
-                if (_eventProperties == null)
+                if (_eventProperties is null)
                 {
                     _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count);
                 }
@@ -268,7 +268,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public void CopyTo(KeyValuePair<object, object>[] array, int arrayIndex)
         {
-            if (array == null)
+            if (array is null)
                 throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex));
@@ -343,7 +343,7 @@ namespace NLog.Internal
         /// <returns>Are all parameter names unique (true / false)</returns>
         private static bool VerifyUniqueMessageTemplateParametersFast(IList<MessageTemplateParameter> parameterList)
         {
-            if (parameterList == null || parameterList.Count == 0)
+            if (parameterList is null || parameterList.Count == 0)
                 return true;
 
             if (parameterList.Count > 10)
@@ -402,7 +402,7 @@ namespace NLog.Internal
             {
                 if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
                 {
-                    if (messagePropertiesUnique == null)
+                    if (messagePropertiesUnique is null)
                     {
                         messagePropertiesUnique = new List<MessageTemplateParameter>(messageProperties.Count);
                         for (int j = 0; j < i; ++j)
@@ -539,7 +539,7 @@ namespace NLog.Internal
 
             private int? FindNextValidMessagePropertyIndex(int startIndex)
             {
-                if (_dictionary._eventProperties == null)
+                if (_dictionary._eventProperties is null)
                     return startIndex;
 
                 for (int i = startIndex; i < _dictionary._messageProperties.Count; ++i)
@@ -643,7 +643,7 @@ namespace NLog.Internal
             /// <inheritDoc/>
             public void CopyTo(object[] array, int arrayIndex)
             {
-                if (array == null)
+                if (array is null)
                     throw new ArgumentNullException(nameof(array));
                 if (arrayIndex < 0)
                     throw new ArgumentOutOfRangeException(nameof(arrayIndex));

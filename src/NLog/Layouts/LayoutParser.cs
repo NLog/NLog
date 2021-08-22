@@ -54,7 +54,7 @@ namespace NLog.Layouts
 
         internal static LayoutRenderer[] CompileLayout(string value, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions, out string text)
         {
-            if (value == null)
+            if (value is null)
             {
                 text = string.Empty;
                 return ArrayHelper.Empty<LayoutRenderer>();
@@ -426,14 +426,14 @@ namespace NLog.Layouts
                     if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out var propertyInfo))
                     {
                         parameterTarget = LookupAmbientProperty(parameterName, configurationItemFactory, ref wrappers, ref orderedWrappers);
-                        if (parameterTarget == null || !PropertyHelper.TryGetPropertyInfo(parameterTarget, parameterName, out propertyInfo))
+                        if (parameterTarget is null || !PropertyHelper.TryGetPropertyInfo(parameterTarget, parameterName, out propertyInfo))
                         {
                             parameterTarget = layoutRenderer;
                             propertyInfo = null;
                         }
                     }
 
-                    if (propertyInfo == null)
+                    if (propertyInfo is null)
                     {
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))

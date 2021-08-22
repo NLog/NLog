@@ -124,7 +124,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (logEvent.StackTrace == null)
+            if (logEvent.StackTrace is null)
                 return;
 
             int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
@@ -203,19 +203,19 @@ namespace NLog.LayoutRenderers
                 }
 
                 var method = f.GetMethod();
-                if (method == null)
+                if (method is null)
                 {
                     continue;   // Net Native can have StackFrames without managed methods
                 }
 
                 var type = method.DeclaringType;
-                if (type != null)
+                if (type is null)
                 {
-                    builder.Append(type.Name);
+                    builder.Append("<no type>");
                 }
                 else
                 {
-                    builder.Append("<no type>");
+                    builder.Append(type.Name);
                 }
 
                 builder.Append(".");
@@ -231,7 +231,7 @@ namespace NLog.LayoutRenderers
             {
                 StackFrame f = stackFrameList[i];
                 var method = f.GetMethod();
-                if (method == null)
+                if (method is null)
                 {
                     continue;   // Net Native can have StackFrames without managed methods
                 }

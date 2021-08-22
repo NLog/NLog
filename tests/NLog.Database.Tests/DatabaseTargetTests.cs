@@ -2323,7 +2323,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public void Commit()
             {
-                if (Connection == null)
+                if (Connection is null)
                     throw new NotSupportedException();
                 ((MockDbConnection)Connection).AddToLog("DbTransaction.Commit()");
             }
@@ -2336,7 +2336,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public void Rollback()
             {
-                if (Connection == null)
+                if (Connection is null)
                     throw new NotSupportedException();
                 ((MockDbConnection)Connection).AddToLog("DbTransaction.Rollback()");
             }
@@ -2562,7 +2562,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
-                    if (connectionString == null)
+                    if (connectionString is null)
                         connection.ChangeDatabase("NLogTest");
                     using (var command = new SqlCommand(commandString, connection))
                     {
@@ -2576,7 +2576,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
-                    if (connectionString == null)
+                    if (connectionString is null)
                         connection.ChangeDatabase("NLogTest");
                     using (var command = new SqlCommand(commandString, connection))
                     {

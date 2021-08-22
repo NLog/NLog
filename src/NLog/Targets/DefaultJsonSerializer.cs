@@ -88,7 +88,7 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value, JsonSerializeOptions options)
         {
-            if (value == null)
+            if (value is null)
             {
                 return "null";
             }
@@ -111,7 +111,7 @@ namespace NLog.Targets
             {
                 IConvertible convertibleValue = value as IConvertible;
                 TypeCode objTypeCode = convertibleValue?.GetTypeCode() ?? TypeCode.Object;
-                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider == null)
+                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider is null)
                 {
                     Enum enumValue;
                     if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && (enumValue = value as Enum) != null)
@@ -249,7 +249,7 @@ namespace NLog.Targets
         private bool SerializeSimpleObjectValue(object value, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
             var convertibleValue = value as IConvertible;
-            var objTypeCode = convertibleValue?.GetTypeCode() ?? (value == null ? TypeCode.Empty : TypeCode.Object);
+            var objTypeCode = convertibleValue?.GetTypeCode() ?? (value is null ? TypeCode.Empty : TypeCode.Object);
             if (objTypeCode != TypeCode.Object)
             {
                 SerializeSimpleTypeCodeValue(convertibleValue, objTypeCode, destination, options, forceToString);
@@ -450,7 +450,7 @@ namespace NLog.Targets
 
         private void SerializeSimpleTypeCodeValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString = false)
         {
-            if (objTypeCode == TypeCode.Empty || value == null)
+            if (objTypeCode == TypeCode.Empty || value is null)
             {
                 destination.Append(forceToString ? "\"\"" : "null");
             }
@@ -646,7 +646,7 @@ namespace NLog.Targets
                     sb?.Append(ch);
                     continue;
                 }
-                else if (sb == null)
+                else if (sb is null)
                 {
                     sb = destination;
                     sb.Append(text, 0, i);
@@ -706,7 +706,7 @@ namespace NLog.Targets
                 }
             }
 
-            if (sb == null)
+            if (sb is null)
                 destination.Append(text);   // Faster to make single Append
         }
 

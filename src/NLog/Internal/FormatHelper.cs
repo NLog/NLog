@@ -50,7 +50,7 @@ namespace NLog.Internal
         internal static string ConvertToString(object o, IFormatProvider formatProvider)
         {
             // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if (formatProvider == null)
+            if (formatProvider is null)
             {
                 if (SkipFormattableToString(o))
                     return o?.ToString() ?? string.Empty;

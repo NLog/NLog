@@ -144,7 +144,7 @@ namespace NLog
         public static ISetupBuilder ReloadConfiguration(this ISetupBuilder setupBuilder)
         {
             var newConfig = setupBuilder.LogFactory._config?.Reload();
-            if (newConfig == null || (newConfig as IInitializeSucceeded)?.InitializeSucceeded == false)
+            if (newConfig is null || (newConfig as IInitializeSucceeded)?.InitializeSucceeded == false)
                 return setupBuilder;
 
             setupBuilder.LogFactory.Configuration = newConfig;

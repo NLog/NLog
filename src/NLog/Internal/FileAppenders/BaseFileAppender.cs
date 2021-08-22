@@ -322,7 +322,7 @@ namespace NLog.Internal.FileAppenders
 
         protected static void CloseFileSafe(ref FileStream fileStream, string fileName)
         {
-            if (fileStream == null)
+            if (fileStream is null)
             {
                 return;
             }

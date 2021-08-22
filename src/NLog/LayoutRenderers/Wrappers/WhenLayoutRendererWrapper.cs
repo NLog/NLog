@@ -92,7 +92,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private bool ShouldRenderInner(LogEventInfo logEvent)
         {
-            return When == null || true.Equals(When.Evaluate(logEvent));
+            return When is null || true.Equals(When.Evaluate(logEvent));
         }
 
         /// <inheritdoc />
@@ -108,7 +108,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object value)
         {
-            if (layout == null)
+            if (layout is null)
             {
                 value = null;
                 return false;

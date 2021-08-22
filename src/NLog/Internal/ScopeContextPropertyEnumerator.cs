@@ -158,7 +158,7 @@ namespace NLog.Internal
                 }
                 else
 #endif
-                    if (_scopeEnumerator != null)
+                if (_scopeEnumerator != null)
                 {
                     return _scopeEnumerator.Current;
                 }
@@ -177,7 +177,7 @@ namespace NLog.Internal
                 _scopeEnumerator.Dispose();
             else
 #if !NET35 && !NET40
-            if (_scopeList == null)
+            if (_scopeList is null)
 #endif
                 _dicationaryEnumerator.Dispose();
         }
@@ -196,7 +196,7 @@ namespace NLog.Internal
             }
             else
 #endif
-                if (_scopeEnumerator != null)
+            if (_scopeEnumerator != null)
             {
                 return _scopeEnumerator.MoveNext();
             }
@@ -215,7 +215,7 @@ namespace NLog.Internal
             }
             else
 #endif
-                if (_scopeEnumerator != null)
+            if (_scopeEnumerator != null)
             {
                 _scopeEnumerator.Reset();
             }

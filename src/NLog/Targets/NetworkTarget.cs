@@ -406,7 +406,7 @@ namespace NLog.Targets
         /// <returns>removed something?</returns>
         private static bool TryRemove<T>(LinkedList<T> list, LinkedListNode<T> node)
         {
-            if (node == null || list != node.List)
+            if (node is null || list != node.List)
             {
                 return false;
             }

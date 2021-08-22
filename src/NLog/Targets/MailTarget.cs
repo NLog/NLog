@@ -135,7 +135,7 @@ namespace NLog.Targets
         {
             get
             {
-                if (_currentailSettings == null)
+                if (_currentailSettings is null)
                 {
                     try
                     {
@@ -174,7 +174,7 @@ namespace NLog.Targets
                 // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
 
                 //only use from config when not set in current
-                if (UseSystemNetMailSettings && _from == null)
+                if (UseSystemNetMailSettings && _from is null)
                 {
                     var from = SmtpSection.From;
                     return from;
@@ -384,7 +384,7 @@ namespace NLog.Targets
             {
                 LogEventInfo firstEvent = events.FirstOrDefault().LogEvent;
                 LogEventInfo lastEvent = events.LastOrDefault().LogEvent;
-                if (firstEvent == null || lastEvent == null)
+                if (firstEvent is null || lastEvent is null)
                 {
                     throw new NLogRuntimeException("We need at least one event.");
                 }
@@ -553,12 +553,12 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer is null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer");
             }
 
-            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && PickupDirectoryLocation == null)
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && PickupDirectoryLocation is null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation");
             }
@@ -621,7 +621,7 @@ namespace NLog.Targets
                 throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc");
             }
 
-            msg.Subject = Subject == null ? string.Empty : Subject.Render(lastEvent).Trim();
+            msg.Subject = Subject is null ? string.Empty : Subject.Render(lastEvent).Trim();
             msg.BodyEncoding = Encoding;
             msg.IsBodyHtml = Html;
 

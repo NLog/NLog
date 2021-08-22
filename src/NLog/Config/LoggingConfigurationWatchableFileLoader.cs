@@ -135,7 +135,7 @@ namespace NLog.Config
 
         internal void ReloadConfigOnTimer(object state)
         {
-            if (_reloadTimer == null && _isDisposing)
+            if (_reloadTimer is null && _isDisposing)
             {
                 return; //timer was disposed already. 
             }
@@ -229,7 +229,7 @@ namespace NLog.Config
                     return;
                 }
 
-                if (_reloadTimer == null)
+                if (_reloadTimer is null)
                 {
                     var configuration = _logFactory._config;
                     if (configuration != null)
@@ -257,7 +257,7 @@ namespace NLog.Config
                 var fileNamesToWatch = config.FileNamesToWatch?.ToList();
                 if (fileNamesToWatch?.Count > 0)
                 {
-                    if (_watcher == null)
+                    if (_watcher is null)
                     {
                         _watcher = new MultiFileWatcher();
                         _watcher.FileChanged += ConfigFileChanged;

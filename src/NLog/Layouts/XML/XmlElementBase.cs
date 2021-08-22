@@ -422,7 +422,7 @@ namespace NLog.Layouts
         private bool AppendXmlPropertyObjectValue(string propName, object propertyValue, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
         {
             var convertibleValue = propertyValue as IConvertible;
-            var objTypeCode = convertibleValue?.GetTypeCode() ?? (propertyValue == null ? TypeCode.Empty : TypeCode.Object);
+            var objTypeCode = convertibleValue?.GetTypeCode() ?? (propertyValue is null ? TypeCode.Empty : TypeCode.Object);
             if (objTypeCode != TypeCode.Object)
             {
                 string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);

@@ -67,7 +67,7 @@ namespace NLog.Internal
         public ItemHolder Acquire()
         {
             StringBuilder item = _fastPool;
-            if (item == null || item != Interlocked.CompareExchange(ref _fastPool, null, item))
+            if (item is null || item != Interlocked.CompareExchange(ref _fastPool, null, item))
             {
                 for (int i = 0; i < _slowPool.Length; i++)
                 {
@@ -138,10 +138,7 @@ namespace NLog.Internal
             /// </summary>
             public void Dispose()
             {
-                if (_owner != null)
-                {
-                    _owner.Release(Item, _poolIndex);
-                }
+                _owner?.Release(Item, _poolIndex);
             }
         }
     }

@@ -97,7 +97,7 @@ namespace NLog.Targets
                 _dbType = value;
                 if (!string.IsNullOrEmpty(_dbType))
                 {
-                    if (ParameterType == null || ParameterType == _dbParameterType)
+                    if (ParameterType is null || ParameterType == _dbParameterType)
                     {
                         var dbParameterType = TryParseDbType(DbType);
                         if (dbParameterType != null)
@@ -200,7 +200,7 @@ namespace NLog.Targets
         {
             if (!string.IsNullOrEmpty(DbType))
             {
-                if (_cachedDbTypeSetter == null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
+                if (_cachedDbTypeSetter is null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
                 {
                     _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), DbType);
                 }

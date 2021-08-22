@@ -104,14 +104,14 @@ namespace NLog.Internal
         {
             foundValue = null;
 
-            if (objectPath == null)
+            if (objectPath is null)
             {
                 return false;
             }
 
             for (int i = 0; i < objectPath.Length; ++i)
             {
-                if (value == null)
+                if (value is null)
                 {
                     // Found null
                     foundValue = null;
@@ -310,7 +310,7 @@ namespace NLog.Internal
             {
                 public readonly string Name;
                 public readonly object Value;
-                public TypeCode TypeCode => Value == null ? TypeCode.Empty : _typecode;
+                public TypeCode TypeCode => Value is null ? TypeCode.Empty : _typecode;
                 private readonly TypeCode _typecode;
                 public bool HasNameAndValue => Name != null && Value != null;
 

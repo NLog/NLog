@@ -148,11 +148,8 @@ namespace NLog.Targets.Wrappers
         {
             base.CloseTarget();
 
-            if (_newIdentity != null)
-            {
-                _newIdentity.Close();
-                _newIdentity = null;
-            }
+            _newIdentity?.Close();
+            _newIdentity = null;
         }
 
         /// <summary>
@@ -162,7 +159,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (_writeLogEvent == null)
+            if (_writeLogEvent is null)
                 _writeLogEvent = (l) => WrappedTarget.WriteAsyncLogEvent(l);
             RunImpersonated(_newIdentity, _writeLogEvent, logEvent);
         }
@@ -175,7 +172,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Log events.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (_writeLogEvents == null)
+            if (_writeLogEvents is null)
                 _writeLogEvents = (l) => WrappedTarget.WriteAsyncLogEvents(l);
             RunImpersonated(_newIdentity, _writeLogEvents, logEvents);
         }

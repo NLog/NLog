@@ -291,7 +291,7 @@ namespace NLog
 
                     _config = value;
 
-                    if (_config == null)
+                    if (_config is null)
                     {
                         _configLoaded = false;
                         _configLoader.Activated(this, _config);
@@ -415,7 +415,7 @@ namespace NLog
         /// </summary>
         public LogFactory Setup(Action<ISetupBuilder> setupBuilder)
         {
-            if (setupBuilder == null)
+            if (setupBuilder is null)
                 throw new ArgumentNullException(nameof(setupBuilder));
             setupBuilder(new SetupBuilder(this));
             return this;
@@ -862,7 +862,7 @@ namespace NLog
                     targetsFound = true;
 
                     var awf = CreateTargetChainFromLoggingRule(rule, target, targetsByLevel[i]);
-                    if (awf == null)
+                    if (awf is null)
                     {
                         if (!duplicateTargetsFound)
                         {
@@ -970,7 +970,7 @@ namespace NLog
 
                 for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                 {
-                    if (sb == null)
+                    if (sb is null)
                     {
                         InternalLogger.Debug("Targets configured when LogLevel >= {0} for Logger: {1}", LogLevel.FromOrdinal(i), loggerName);
                         sb = new StringBuilder();
@@ -1152,7 +1152,7 @@ namespace NLog
 
         private Logger GetLoggerThreadSafe(string name, Type loggerType)
         {
-            if (name == null)
+            if (name is null)
                 throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
 
             LoggerCacheKey cacheKey = new LoggerCacheKey(name, loggerType ?? typeof(Logger));
@@ -1167,7 +1167,7 @@ namespace NLog
                 }
 
                 Logger newLogger = CreateNewLogger(cacheKey.ConcreteType);
-                if (newLogger == null)
+                if (newLogger is null)
                 {
                     cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
                     newLogger = new Logger();
@@ -1224,7 +1224,7 @@ namespace NLog
             {
                 var instance = ServiceRepository.GetService(customLoggerType);
                 var newLogger = instance as Logger;
-                if (newLogger == null)
+                if (newLogger is null)
                 {
                     //well, it's not a Logger, and we should return a Logger.
                     var errorMessage =
@@ -1261,7 +1261,7 @@ namespace NLog
             }
 
             var config = _configLoader.Load(this, configFile);
-            if (config == null)
+            if (config is null)
             {
                 if (!optional)
                 {
@@ -1432,7 +1432,7 @@ namespace NLog
 
         private static void RegisterEvents(IAppEnvironment appEnvironment)
         {
-            if (appEnvironment == null) return;
+            if (appEnvironment is null) return;
 
             try
             {
@@ -1451,7 +1451,7 @@ namespace NLog
 
         private static void UnregisterEvents(IAppEnvironment appEnvironment)
         {
-            if (appEnvironment == null) return;
+            if (appEnvironment is null) return;
 
             appEnvironment.ProcessExit -= OnLoggerShutdown;
         }

@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
-            if (tempDir == null)
+            if (tempDir is null)
             {
                 tempDir = Path.GetTempPath();   // Can throw exception
             }

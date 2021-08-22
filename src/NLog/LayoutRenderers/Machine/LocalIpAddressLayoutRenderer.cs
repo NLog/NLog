@@ -223,7 +223,7 @@ namespace NLog.LayoutRenderers
 
         private static bool IsLoopbackAddressValue(IPAddress ipAddress)
         {
-            if (ipAddress == null)
+            if (ipAddress is null)
                 return true;
 
             if (IPAddress.IsLoopback(ipAddress))

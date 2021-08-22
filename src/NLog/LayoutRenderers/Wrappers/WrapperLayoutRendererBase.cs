@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (Inner == null)
+            if (Inner is null)
             {
                 InternalLogger.Warn("{0} has no configured Inner-Layout, so skipping", this);
                 return;
