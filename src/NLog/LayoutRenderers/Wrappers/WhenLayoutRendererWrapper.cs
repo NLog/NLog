@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             if (ShouldRenderInner(logEvent))
             {
