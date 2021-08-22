@@ -448,10 +448,10 @@ namespace NLog
             {
                 if (parent is IScopeContextPropertiesAsyncState parentProperties && parentProperties.Parent is IScopeContextPropertiesAsyncState grandParentProperties)
                 {
-                    if (parentProperties.NestedState == null && grandParentProperties.NestedState == null)
+                    if (parentProperties.NestedState is null && grandParentProperties.NestedState is null)
                     {
                         var scopeProperties = parentProperties.CaptureContextProperties(initialCapacity, out var scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-                        if (scopeDictionary == null)
+                        if (scopeDictionary is null)
                         {
                             scopeDictionary = new Dictionary<string, object>(scopeProperties.Count + initialCapacity, DefaultComparer);
                             foreach (var scopeProperty in scopeProperties)
@@ -582,7 +582,7 @@ namespace NLog
             var contextState = GetAsyncLocalContext();
             if (contextState != null)
             {
-                if ((contextState.Parent == null && contextState is ScopeContextLegacyAsyncState) || contextState.NestedState == null)
+                if ((contextState.Parent is null && contextState is ScopeContextLegacyAsyncState) || contextState.NestedState is null)
                 {
                     var nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
                     if (nestedContext.Length == 0)
@@ -777,7 +777,7 @@ namespace NLog
 
         private static void SetMappedContextCallContext(Dictionary<string, object> newValue)
         {
-            if (newValue == null)
+            if (newValue is null)
                 System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(MappedContextDataSlotName);
             else
                 System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(MappedContextDataSlotName, newValue);
@@ -836,7 +836,7 @@ namespace NLog
         [System.Security.SecuritySafeCriticalAttribute]
         private static void SetNestedContextCallContext(LinkedList<object> nestedContext)
         {
-            if (nestedContext == null)
+            if (nestedContext is null)
                 System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(NestedContextDataSlotName );
             else
                 System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(NestedContextDataSlotName , nestedContext);

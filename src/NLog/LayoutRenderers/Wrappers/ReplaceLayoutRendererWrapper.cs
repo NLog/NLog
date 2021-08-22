@@ -150,7 +150,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
             else
             {
-                if (_groupMatchEvaluator == null)
+                if (_groupMatchEvaluator is null)
                     _groupMatchEvaluator = m => ReplaceNamedGroup(ReplaceGroupName, ReplaceWith, m);
                 return _regexHelper.Regex?.Replace(text, _groupMatchEvaluator) ?? text;
             }

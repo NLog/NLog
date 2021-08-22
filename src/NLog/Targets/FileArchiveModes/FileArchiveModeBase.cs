@@ -146,10 +146,7 @@ namespace NLog.Targets.FileArchiveModes
 
         protected virtual string GenerateFileNameMask(string archiveFilePath, FileNameTemplate fileTemplate)
         {
-            if (fileTemplate != null)
-                return fileTemplate.ReplacePattern("*");
-            else
-                return string.Empty;
+            return fileTemplate?.ReplacePattern("*") ?? string.Empty;
         }
 
         protected abstract DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate);

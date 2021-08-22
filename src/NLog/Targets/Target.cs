@@ -164,7 +164,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            if (asyncContinuation == null)
+            if (asyncContinuation is null)
             {
                 throw new ArgumentNullException(nameof(asyncContinuation));
             }
@@ -225,10 +225,10 @@ namespace NLog.Targets
             if (!IsInitialized)
                 return;
 
-            if (_allLayouts == null)
+            if (_allLayouts is null)
                 return;
 
-            if (_precalculateStringBuilderPool == null)
+            if (_precalculateStringBuilderPool is null)
             {
                 System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
             }
@@ -250,7 +250,7 @@ namespace NLog.Targets
                 if (!_isInitialized)
                     return;
 
-                if (_allLayouts == null)
+                if (_allLayouts is null)
                     return;
 
                 using (var targetBuilder = ReusableLayoutBuilder.Allocate())
@@ -333,7 +333,7 @@ namespace NLog.Targets
         /// <param name="logEvents">The log events.</param>
         public void WriteAsyncLogEvents(params AsyncLogEventInfo[] logEvents)
         {
-            if (logEvents == null || logEvents.Length == 0)
+            if (logEvents is null || logEvents.Length == 0)
             {
                 return;
             }
@@ -347,7 +347,7 @@ namespace NLog.Targets
         /// <param name="logEvents">The log events.</param>
         public void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
         {
-            if (logEvents == null || logEvents.Count == 0)
+            if (logEvents is null || logEvents.Count == 0)
             {
                 return;
             }
@@ -475,7 +475,7 @@ namespace NLog.Targets
 
                     try
                     {
-                        if (_initializeException == null)
+                        if (_initializeException is null)
                         {
                             // if Init succeeded, call Close()
                             InternalLogger.Debug("{0}: Closing...", this);
@@ -501,7 +501,7 @@ namespace NLog.Targets
             if (disposing && _isInitialized)
             {
                 _isInitialized = false;
-                if (_initializeException == null)
+                if (_initializeException is null)
                 {
                     CloseTarget();
                 }
@@ -659,7 +659,7 @@ namespace NLog.Targets
         [Obsolete("Logger.Trace(logEvent) now automatically captures the logEvent Properties. Marked obsolete on NLog 4.6")]
         protected void MergeEventProperties(LogEventInfo logEvent)
         {
-            if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)
+            if (logEvent.Parameters is null || logEvent.Parameters.Length == 0)
             {
                 return;
             }
@@ -687,7 +687,7 @@ namespace NLog.Targets
         /// <returns>String representing log event.</returns>
         protected string RenderLogEvent([CanBeNull] Layout layout, [CanBeNull] LogEventInfo logEvent)
         {
-            if (layout == null || logEvent == null)
+            if (layout is null || logEvent is null)
                 return null;    // Signal that input was wrong
 
             SimpleLayout simpleLayout = layout as SimpleLayout;
@@ -722,7 +722,7 @@ namespace NLog.Targets
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
         {
-            if (layout == null || logEvent == null)
+            if (layout is null || logEvent is null)
                 return defaultValue;
 
             if (layout.IsFixed)

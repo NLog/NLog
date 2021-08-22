@@ -201,13 +201,13 @@ namespace NLog.Internal.Fakeables
         private void OnDomainUnload(object sender, EventArgs e)
         {
             var handler = domainUnloadEvent;
-            if (handler != null) handler.Invoke(sender, e);
+            handler?.Invoke(sender, e);
         }
 
         private void OnProcessExit(object sender, EventArgs eventArgs)
         {
             var handler = processExitEvent;
-            if (handler != null) handler.Invoke(sender, eventArgs);
+            handler?.Invoke(sender, eventArgs);
         }
     }
 }

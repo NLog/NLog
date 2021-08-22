@@ -66,10 +66,7 @@ namespace NLog.Internal
             {
                 var cont = Interlocked.Exchange(ref _asyncContinuation, null);
                 StopTimer();
-                if (cont != null)
-                {
-                    cont(exception);
-                }
+                cont?.Invoke(exception);
             }
             catch (Exception ex)
             {
@@ -92,10 +89,7 @@ namespace NLog.Internal
         private void StopTimer()
         {
             var currentTimer = Interlocked.Exchange(ref _timeoutTimer, null);
-            if (currentTimer != null)
-            {
-                currentTimer.WaitForDispose(TimeSpan.Zero);
-            }
+            currentTimer?.WaitForDispose(TimeSpan.Zero);
         }
 
         private void TimerElapsed(object state)

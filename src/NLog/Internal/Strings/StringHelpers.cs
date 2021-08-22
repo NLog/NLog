@@ -55,7 +55,7 @@ namespace NLog.Internal
 #if !NET35
             return string.IsNullOrWhiteSpace(value);
 #else
-            if (value == null) return true;
+            if (value is null) return true;
             if (value.Length == 0) return true;
             return String.IsNullOrEmpty(value.Trim());
 #endif
@@ -91,12 +91,12 @@ namespace NLog.Internal
         /// <returns>The same reference of nothing has been replaced.</returns>
         public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
         {
-            if (str == null)
+            if (str is null)
             {
                 throw new ArgumentNullException(nameof(str));
             }
 
-            if (oldValue == null)
+            if (oldValue is null)
             {
                 throw new ArgumentNullException(nameof(oldValue));
             }
@@ -134,7 +134,7 @@ namespace NLog.Internal
                 index = str.IndexOf(oldValue, index, comparison);
             }
 
-            if (sb == null)
+            if (sb is null)
             {
                 //nothing replaced
                 return str;

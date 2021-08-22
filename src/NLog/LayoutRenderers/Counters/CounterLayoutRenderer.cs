@@ -78,14 +78,14 @@ namespace NLog.LayoutRenderers
         {
             int v;
 
-            if (Sequence != null)
-            {
-                v = GetNextSequenceValue(Sequence.Render(logEvent), Value, Increment);
-            }
-            else
+            if (Sequence is null)
             {
                 v = Value;
                 Value += Increment;
+            }
+            else
+            {
+                v = GetNextSequenceValue(Sequence.Render(logEvent), Value, Increment);
             }
 
             return v;

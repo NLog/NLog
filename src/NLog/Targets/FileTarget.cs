@@ -232,7 +232,7 @@ namespace NLog.Targets
 
         private FilePathLayout CreateFileNameLayout(Layout value)
         {
-            if (value == null)
+            if (value is null)
                 return null;
 
             return new FilePathLayout(value, CleanupFileName, FileNameKind);
@@ -626,7 +626,7 @@ namespace NLog.Targets
         {
             get
             {
-                if (_fullArchiveFileName == null) return null;
+                if (_fullArchiveFileName is null) return null;
 
                 return _fullArchiveFileName.GetLayout();
             }
@@ -815,7 +815,7 @@ namespace NLog.Targets
             {
                 if (file.Value < cleanupThreshold)
                 {
-                    if (filesToFinalize == null)
+                    if (filesToFinalize is null)
                     {
                         filesToFinalize = new List<string>();
                     }
@@ -1026,7 +1026,7 @@ namespace NLog.Targets
         /// <returns></returns>
         internal string GetFullFileName(LogEventInfo logEvent)
         {
-            if (_fullFileName == null)
+            if (_fullFileName is null)
             {
                 return null;
             }
@@ -1051,7 +1051,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (_getFullFileNameDelegate == null)
+            if (_getFullFileNameDelegate is null)
                 _getFullFileNameDelegate = c => GetFullFileName(c.LogEvent);
 
             var buckets = logEvents.BucketSort(_getFullFileNameDelegate);
@@ -1624,7 +1624,7 @@ namespace NLog.Targets
             }
 
             var archiveFileName = archiveDate.HasValue ? fileArchiveStyle.GenerateArchiveFileName(archiveFilePattern, archiveDate.Value, existingArchiveFiles) : null;
-            if (archiveFileName == null)
+            if (archiveFileName is null)
                 return null;
 
             if (!initializedNewFile)
@@ -1688,7 +1688,7 @@ namespace NLog.Targets
         /// <returns>A string with a pattern that will match the archive filenames</returns>
         private string GetArchiveFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
-            if (_fullArchiveFileName == null)
+            if (_fullArchiveFileName is null)
             {
                 if (EnableArchiveFileCompression)
                     return Path.ChangeExtension(fileName, ".zip");
@@ -2433,11 +2433,11 @@ namespace NLog.Targets
         private void WriteHeaderAndBom(BaseFileAppender appender)
         {
             //performance: cheap check before checking file info 
-            if (Header == null && !WriteBom) return;
+            if (Header is null && !WriteBom) return;
 
             var length = appender.GetFileLength();
             //  Write header and BOM only on empty files or if file info cannot be obtained.
-            if (length == null || length == 0)
+            if (length is null || length == 0)
             {
                 if (WriteBom)
                 {
@@ -2468,7 +2468,7 @@ namespace NLog.Targets
         /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
         private ArraySegment<byte> GetLayoutBytes(Layout layout)
         {
-            if (layout == null)
+            if (layout is null)
             {
                 return default(ArraySegment<byte>);
             }

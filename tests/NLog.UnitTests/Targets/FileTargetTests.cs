@@ -4075,7 +4075,7 @@ namespace NLog.UnitTests.Targets
                 for (int i = 1; i <= times; ++i)
                 {
                     int counter = i;
-                    events.Add(new LogEventInfo(LogLevel.Info, "logger", counter.ToString()).WithContinuation(ex => result.Add(ex == null ? counter : -1)));
+                    events.Add(new LogEventInfo(LogLevel.Info, "logger", counter.ToString()).WithContinuation(ex => result.Add(ex is null ? counter : -1)));
                 }
 
                 // Act

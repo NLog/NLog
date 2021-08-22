@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers
 
         private int? GetLineNumber(LogEventInfo logEvent)
         {
-            if (logEvent.CallSiteInformation == null)
+            if (logEvent.CallSiteInformation is null)
             {
                 return null;
             }

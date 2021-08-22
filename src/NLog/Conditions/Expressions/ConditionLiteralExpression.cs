@@ -62,7 +62,7 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
-            if (LiteralValue == null)
+            if (LiteralValue is null)
             {
                 return "null";
             }

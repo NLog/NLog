@@ -146,7 +146,7 @@ namespace NLog.LayoutRenderers
 
             var formatProvider = GetFormatProvider(logEvent);
             bool checkForExclude = Exclude?.Count > 0;
-            bool nonStandardFormat = _beforeKey == null || _afterKey == null || _afterValue == null;
+            bool nonStandardFormat = _beforeKey is null || _afterKey is null || _afterValue is null;
 
             bool includeSeparator = false;
             if (logEvent.HasProperties)
@@ -217,7 +217,7 @@ namespace NLog.LayoutRenderers
                 return string.IsNullOrEmpty(s);
             }
 
-            return value == null;
+            return value is null;
         }
     }
 }

@@ -154,7 +154,7 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(className))
                 return false;
 
-            if (_callSiteClassNameCache == null)
+            if (_callSiteClassNameCache is null)
                 return false;
 
             string internClassName = logEvent.LoggerName == className ?
@@ -174,7 +174,7 @@ namespace NLog.Internal
             if (!string.IsNullOrEmpty(callSiteClassName))
                 return true;
 
-            if (_callSiteClassNameCache == null)
+            if (_callSiteClassNameCache is null)
             {
                 System.Threading.Interlocked.CompareExchange(ref _callSiteClassNameCache, new MruCache<CallSiteKey, string>(1000), null);
             }

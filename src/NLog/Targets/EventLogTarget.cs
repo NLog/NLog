@@ -551,8 +551,7 @@ namespace NLog.Targets
                 Source = source;
                 Log = logName;
                 MachineName = machineName;
-                if (windowsEventLog != null)
-                    windowsEventLog.Dispose();
+                windowsEventLog?.Dispose();
             }
 
             /// <inheritdoc />

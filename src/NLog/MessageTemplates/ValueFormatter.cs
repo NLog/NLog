@@ -131,7 +131,7 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            if (value == null)
+            if (value is null)
             {
                 builder.Append("NULL");
                 return true;

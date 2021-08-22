@@ -124,7 +124,7 @@ namespace NLog.LayoutRenderers
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (LoggingConfiguration == null)
+            if (LoggingConfiguration is null)
                 LoggingConfiguration = configuration;
 
             if (!_isInitialized)

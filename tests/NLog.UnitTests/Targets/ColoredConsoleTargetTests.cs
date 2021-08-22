@@ -314,7 +314,7 @@ namespace NLog.UnitTests.Targets
                 target.Close();
 
                 Assert.Single(exceptions);
-                Assert.True(exceptions.TrueForAll(e => e == null));
+                Assert.True(exceptions.TrueForAll(e => e is null));
             }
             finally
             {

@@ -69,13 +69,13 @@ namespace NLog.Config
 
         internal static bool IsComplexType(Type type)
         {
-            return !type.IsValueType() && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() == null;
+            return !type.IsValueType() && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
         }
 
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
-            if (propertyValue == null || propertyType == null || propertyType == typeof(object))
+            if (propertyValue is null || propertyType is null || propertyType == typeof(object))
             {
                 return propertyValue;   // No type conversion required
             }

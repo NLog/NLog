@@ -232,7 +232,7 @@ namespace NLog.Targets
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
                     LogEventInfo logEvent = logEvents[i];
-                    if (taskChain == null)
+                    if (taskChain is null)
                         taskChain = WriteAsyncTask(logEvent, cancellationToken);
                     else
                         taskChain = taskChain.ContinueWith(t => WriteAsyncTask(logEvent, cancellationToken), cancellationToken, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler).Unwrap();
@@ -297,12 +297,12 @@ namespace NLog.Targets
                 bool lockTaken = false;
                 try
                 {
-                    if (_previousTask == null)
+                    if (_previousTask is null)
                         Monitor.Enter(SyncRoot, ref lockTaken);
                     else
                         Monitor.TryEnter(SyncRoot, 50, ref lockTaken);
 
-                    if (_previousTask == null)
+                    if (_previousTask is null)
                     {
                         _lazyWriterTimer.Change(TaskDelayMilliseconds, Timeout.Infinite);
                     }
@@ -379,7 +379,7 @@ namespace NLog.Targets
                 else
                 {
                     // We are holding target-SyncRoot, and might get blocked in queue, so need to schedule flush using async-task
-                    if (_flushEventsInQueueDelegate == null)
+                    if (_flushEventsInQueueDelegate is null)
                     {
                         _flushEventsInQueueDelegate = new AsyncHelpersTask(cont =>
                         {
@@ -570,7 +570,7 @@ namespace NLog.Targets
 
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    if (logEvents[i].LogEvent == null)
+                    if (logEvents[i].LogEvent is null)
                     {
                         // Flush Request
                         reusableLogEvents.Item2.Add(logEvents[i].Continuation);
@@ -593,7 +593,7 @@ namespace NLog.Targets
                 }
 
                 Task newTask = StartWriteAsyncTask(reusableLogEvents.Item1, _cancelTokenSource.Token);
-                if (newTask == null)
+                if (newTask is null)
                 {
                     InternalLogger.Debug("{0}: WriteAsyncTask returned null", this);
                     NotifyTaskCompletion(reusableLogEvents.Item2, null);

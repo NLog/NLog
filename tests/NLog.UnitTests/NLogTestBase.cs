@@ -528,7 +528,7 @@ namespace NLog.UnitTests
 
             public void SetConsoleError(StringWriter consoleErrorWriter)
             {
-                if (ConsoleOutputWriter == null || consoleErrorWriter == null)
+                if (ConsoleOutputWriter is null || consoleErrorWriter is null)
                     throw new InvalidOperationException("Initialize with redirectConsole=true");
 
                 ConsoleErrorWriter = consoleErrorWriter;
@@ -537,7 +537,7 @@ namespace NLog.UnitTests
 
             public void SetConsoleOutput(StringWriter consoleOutputWriter)
             {
-                if (ConsoleOutputWriter == null || consoleOutputWriter == null)
+                if (ConsoleOutputWriter is null || consoleOutputWriter is null)
                     throw new InvalidOperationException("Initialize with redirectConsole=true");
 
                 ConsoleOutputWriter = consoleOutputWriter;

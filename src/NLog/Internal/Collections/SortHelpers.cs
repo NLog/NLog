@@ -120,7 +120,7 @@ namespace NLog.Internal
                     singleBucketFirstKey = true;
                     singleBucketKey = keyValue;
                 }
-                else if (buckets == null)
+                else if (buckets is null)
                 {
                     if (!keyComparer.Equals(singleBucketKey, keyValue))
                     {

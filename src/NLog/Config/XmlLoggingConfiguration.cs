@@ -547,7 +547,7 @@ namespace NLog.Config
             if (Path.IsPathRooted(fileMask))
             {
                 directory = Path.GetDirectoryName(fileMask);
-                if (directory == null)
+                if (directory is null)
                 {
                     InternalLogger.Warn("directory is empty for include of '{0}'", fileMask);
                     return;
@@ -555,7 +555,7 @@ namespace NLog.Config
 
                 var filename = Path.GetFileName(fileMask);
 
-                if (filename == null)
+                if (filename is null)
                 {
                     InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);
                     return;

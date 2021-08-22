@@ -72,13 +72,10 @@ namespace NLog.Targets
         /// </summary>
         public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
         {
-            if (fileName == null) throw new ArgumentNullException(nameof(fileName));
-            if (dateFormat == null) throw new ArgumentNullException(nameof(dateFormat));
-
+            FileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
+            _dateFormat = dateFormat ?? throw new ArgumentNullException(nameof(dateFormat));
             Date = date;
-            _dateFormat = dateFormat;
             Sequence = sequence;
-            FileName = fileName;
         }
     }
 }

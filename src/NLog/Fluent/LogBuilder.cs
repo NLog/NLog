@@ -65,9 +65,9 @@ namespace NLog.Fluent
         [CLSCompliant(false)]
         public LogBuilder(ILogger logger, LogLevel logLevel)
         {
-            if (logger == null)
+            if (logger is null)
                 throw new ArgumentNullException(nameof(logger));
-            if (logLevel == null)
+            if (logLevel is null)
                 throw new ArgumentNullException(nameof(logLevel));
 
             _logger = logger;
@@ -97,7 +97,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Level(LogLevel logLevel)
         {
-            if (logLevel == null)
+            if (logLevel is null)
                 throw new ArgumentNullException(nameof(logLevel));
 
             _logEvent.Level = logLevel;
@@ -233,7 +233,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Property(object name, object value)
         {
-            if (name == null)
+            if (name is null)
                 throw new ArgumentNullException(nameof(name));
 
             _logEvent.Properties[name] = value;
@@ -247,7 +247,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Properties(IDictionary properties)
         {
-            if (properties == null)
+            if (properties is null)
                 throw new ArgumentNullException(nameof(properties));
 
             foreach (var key in properties.Keys)
@@ -323,7 +323,7 @@ namespace NLog.Fluent
             [CallerFilePath]string callerFilePath = null,
             [CallerLineNumber]int callerLineNumber = 0)
         {
-            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
+            if (condition is null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
@@ -337,7 +337,7 @@ namespace NLog.Fluent
             string callerFilePath = null,
             int callerLineNumber = 0)
         {
-            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
+            if (condition is null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             _logger.Log(_logEvent);

@@ -91,7 +91,7 @@ namespace NLog.Internal
             _filePathKind = filePathKind;
             _cleanupInvalidChars = cleanupInvalidChars;
 
-            if (_layout == null)
+            if (_layout is null)
             {
                 _filePathKind = FilePathKind.Unknown;
                 return;
@@ -169,7 +169,7 @@ namespace NLog.Internal
                 return _cleanedFixedResult;
             }
 
-            if (_layout == null)
+            if (_layout is null)
             {
                 return null;
             }
@@ -211,7 +211,7 @@ namespace NLog.Internal
         private string GetCleanFileName(string rawFileName)
         {
             var cleanFileName = rawFileName;
-            if (_cleanupInvalidChars && _cleanedFixedResult == null)
+            if (_cleanupInvalidChars && _cleanedFixedResult is null)
             {
                 cleanFileName = CleanupInvalidFilePath(rawFileName);
             }
@@ -351,7 +351,7 @@ namespace NLog.Internal
                 {
                     //delay char[] creation until first invalid char
                     //is found to avoid memory allocation.
-                    if (fileNameChars == null)
+                    if (fileNameChars is null)
                     {
                         fileNameChars = filePath.Substring(lastDirSeparator + 1).ToCharArray();
                     }

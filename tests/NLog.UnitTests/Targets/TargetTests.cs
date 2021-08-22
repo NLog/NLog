@@ -244,7 +244,7 @@ namespace NLog.UnitTests.Targets
             /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
             public override bool Equals(IRenderable x, IRenderable y)
             {
-                if (x == null) return y == null;
+                if (x is null) return y is null;
                 var nullEvent = LogEventInfo.CreateNullEvent();
                 return x.Render(nullEvent) == y.Render(nullEvent);
             }
@@ -273,7 +273,7 @@ namespace NLog.UnitTests.Targets
             /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
             public override bool Equals(AsyncRequestQueue x, AsyncRequestQueue y)
             {
-                if (x == null) return y == null;
+                if (x is null) return y is null;
 
                 return x.RequestLimit == y.RequestLimit && x.OnOverflow == y.OnOverflow;
             }

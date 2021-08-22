@@ -296,7 +296,7 @@ namespace NLog
         {
             get
             {
-                if (_formattedMessage == null)
+                if (_formattedMessage is null)
                 {
                     CalcFormattedMessage();
                 }
@@ -338,13 +338,13 @@ namespace NLog
         internal PropertiesDictionary CreateOrUpdatePropertiesInternal(bool forceCreate = true, IList<MessageTemplateParameter> templateParameters = null)
         {
             var properties = _properties;
-            if (properties == null)
+            if (properties is null)
             {
-                if (forceCreate || templateParameters?.Count > 0 || (templateParameters == null && HasMessageTemplateParameters))
+                if (forceCreate || templateParameters?.Count > 0 || (templateParameters is null && HasMessageTemplateParameters))
                 {
                     properties = new PropertiesDictionary(templateParameters);
                     Interlocked.CompareExchange(ref _properties, properties, null);
-                    if (templateParameters == null && (!forceCreate || HasMessageTemplateParameters))
+                    if (templateParameters is null && (!forceCreate || HasMessageTemplateParameters))
                     {
                         // Trigger capture of MessageTemplateParameters from logevent-message
                         CalcFormattedMessage();
@@ -363,7 +363,7 @@ namespace NLog
             get
             {
                 // Have not yet parsed/rendered the FormattedMessage, so check with ILogMessageFormatter
-                if (_formattedMessage == null && _parameters?.Length > 0)
+                if (_formattedMessage is null && _parameters?.Length > 0)
                 {
                     var logMessageFormatter = MessageFormatter.Target as ILogMessageFormatter;
                     return logMessageFormatter?.HasProperties(this) ?? false;
@@ -440,7 +440,7 @@ namespace NLog
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, object message)
         {
             Exception exception = message as Exception;
-            if (exception == null && message is LogEventInfo logEvent)
+            if (exception is null && message is LogEventInfo logEvent)
             {
                 logEvent.LoggerName = loggerName;
                 logEvent.Level = logLevel;
@@ -523,11 +523,11 @@ namespace NLog
 
         internal void AddCachedLayoutValue(Layout layout, object value)
         {
-            if (_layoutCache == null)
+            if (_layoutCache is null)
             {
                 var dictionary = new Dictionary<Layout, object>();
                 dictionary[layout] = value; // Faster than collection initializer
-                if (Interlocked.CompareExchange(ref _layoutCache, dictionary, null) == null)
+                if (Interlocked.CompareExchange(ref _layoutCache, dictionary, null) is null)
                 {
                     return; // No need to use lock
                 }
@@ -540,7 +540,7 @@ namespace NLog
 
         internal bool TryGetCachedLayoutValue(Layout layout, out object value)
         {
-            if (_layoutCache == null)
+            if (_layoutCache is null)
             {
                 // We don't need lock to see if dictionary has been created
                 value = null;
@@ -558,7 +558,7 @@ namespace NLog
         {
             // we need to preformat message if it contains any parameters which could possibly
             // do logging in their ToString()
-            if (parameters == null || parameters.Length == 0)
+            if (parameters is null || parameters.Length == 0)
             {
                 return false;
             }
@@ -589,7 +589,7 @@ namespace NLog
                 return false;
 
             var properties = CreateOrUpdatePropertiesInternal(false);
-            if (properties == null || properties.Count == 0)
+            if (properties is null || properties.Count == 0)
                 return true; // No mutable state, no need to precalculate
 
             if (properties.Count > 5)

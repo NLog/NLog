@@ -107,10 +107,8 @@ namespace NLog.LayoutRenderers
             string value = _connectionStringName != null ?
                 ConfigurationManager.LookupConnectionString(_connectionStringName)?.ConnectionString :
                 ConfigurationManager.AppSettings[Item];
-            if (value == null && Default != null)
-                value = Default;
 
-            return value ?? string.Empty;
+            return value ?? Default ?? string.Empty;
         }
     }
 }

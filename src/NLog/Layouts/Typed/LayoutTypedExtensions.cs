@@ -51,10 +51,10 @@ namespace NLog
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         public static T RenderValue<T>([CanBeNull] this Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
         {
-            if (layout != null)
-                return layout.RenderTypedValue(logEvent, defaultValue);
-            else
+            if (layout is null)
                 return defaultValue;
+            else
+                return layout.RenderTypedValue(logEvent, defaultValue);
         }
     }
 }

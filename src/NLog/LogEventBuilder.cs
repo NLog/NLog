@@ -53,11 +53,8 @@ namespace NLog
         /// <param name="logger">The <see cref="NLog.Logger"/> to send the log event.</param>
         public LogEventBuilder([NotNull] ILogger logger)
         {
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
-
-            _logger = logger;
-            _logEvent = new LogEventInfo() { LoggerName = logger.Name };
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logEvent = new LogEventInfo() { LoggerName = _logger.Name };
         }
 
 
@@ -68,15 +65,14 @@ namespace NLog
         /// <param name="logLevel">The log level. LogEvent is only created when <see cref="LogLevel"/> is enabled for <paramref name="logger"/></param>
         public LogEventBuilder([NotNull] ILogger logger, [NotNull] LogLevel logLevel)
         {
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
-            if (logLevel == null)
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+            if (logLevel is null)
                 throw new ArgumentNullException(nameof(logLevel));
 
-            _logger = logger;
             if (logger.IsEnabled(logLevel))
             {
-                _logEvent = new LogEventInfo() { LoggerName = logger.Name, Level = logLevel };
+                _logEvent = new LogEventInfo() { LoggerName = _logger.Name, Level = logLevel };
             }
             else
             {
@@ -103,12 +99,13 @@ namespace NLog
         /// <param name="propertyValue">The value of the context property.</param>
         public LogEventBuilder Property<T>([NotNull] string propertyName, T propertyValue)
         {
-            if (_logEvent != null)
-            {
-                if (propertyName == null)
-                    throw new ArgumentNullException(nameof(propertyName));
-                _logEvent.Properties[propertyName] = propertyValue;
-            }
+            if (propertyName is null)
+                throw new ArgumentNullException(nameof(propertyName));
+
+            if (_logEvent is null)
+                return this;
+
+            _logEvent.Properties[propertyName] = propertyValue;
             return this;
         }
 
@@ -118,14 +115,14 @@ namespace NLog
         /// <param name="properties">The properties to set.</param>
         public LogEventBuilder Properties([NotNull] IEnumerable<KeyValuePair<string, object>> properties)
         {
-            if (_logEvent != null)
-            {
-                if (properties == null)
-                    throw new ArgumentNullException(nameof(properties));
+            if (properties is null)
+                throw new ArgumentNullException(nameof(properties));
 
-                foreach (var property in properties)
-                    _logEvent.Properties[property.Key] = property.Value;
-            }
+            if (_logEvent is null)
+                return this;
+            
+            foreach (var property in properties)
+                _logEvent.Properties[property.Key] = property.Value;
             return this;
         }
 

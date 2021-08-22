@@ -76,7 +76,7 @@ namespace NLog.Config
         /// <param name="target">The target to log all messages to.</param>
         public static void ConfigureForTargetLogging(Target target)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             ConfigureForTargetLogging(target, LogLevel.Info);
         }
 
@@ -88,7 +88,7 @@ namespace NLog.Config
         /// <param name="minLevel">The minimal logging level.</param>
         public static void ConfigureForTargetLogging(Target target, LogLevel minLevel)
         {
-            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
             LoggingConfiguration config = new LoggingConfiguration();
             config.AddRule(minLevel, LogLevel.MaxLevel, target, "*");
             LogManager.Configuration = config;

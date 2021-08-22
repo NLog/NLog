@@ -56,7 +56,7 @@ namespace NLog
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
         public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger, LogLevel logLevel = null)
         {
-            return logLevel != null ? new LogEventBuilder(logger, logLevel) : new LogEventBuilder(logger);
+            return logLevel is null ? new LogEventBuilder(logger) : new LogEventBuilder(logger, logLevel);
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace NLog
         {
             if (logger.IsTraceEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -509,7 +509,7 @@ namespace NLog
         {
             if (logger.IsDebugEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -528,7 +528,7 @@ namespace NLog
         {
             if (logger.IsInfoEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -547,7 +547,7 @@ namespace NLog
         {
             if (logger.IsWarnEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -566,7 +566,7 @@ namespace NLog
         {
             if (logger.IsErrorEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
@@ -585,7 +585,7 @@ namespace NLog
         {
             if (logger.IsFatalEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }

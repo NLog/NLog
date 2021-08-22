@@ -273,7 +273,7 @@ namespace NLog.Targets
                 for (int i = 0; i < Headers.Count; i++)
                 {
                     string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
-                    if (headerValue == null)
+                    if (headerValue is null)
                         continue;
 
                     webRequest.Headers[Headers[i].Name] = headerValue;
@@ -302,7 +302,7 @@ namespace NLog.Targets
                     break;
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 case WebServiceProxyType.AutoProxy:
-                    if (_activeProxy.Value == null)
+                    if (_activeProxy.Value is null)
                     {
                         IWebProxy proxy = WebRequest.GetSystemWebProxy();
                         proxy.Credentials = CredentialCache.DefaultCredentials;
@@ -313,7 +313,7 @@ namespace NLog.Targets
                 case WebServiceProxyType.ProxyAddress:
                     if (ProxyAddress != null)
                     {
-                        if (_activeProxy.Value == null)
+                        if (_activeProxy.Value is null)
                         {
                             IWebProxy proxy = new WebProxy(RenderLogEvent(ProxyAddress, LogEventInfo.CreateNullEvent()), true);
                             _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
@@ -348,7 +348,7 @@ namespace NLog.Targets
             }
             else
             {
-                if (_activeProtocol.Value == null)
+                if (_activeProtocol.Value is null)
                     _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(Protocol, _postFormatterFactories[Protocol](this));
                 postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
             }
@@ -484,7 +484,7 @@ namespace NLog.Targets
             var builder = new UriBuilder(uri);
             //append our query string to the URL following 
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
-            if (builder.Query != null && builder.Query.Length > 1)
+            if (builder.Query?.Length > 1)
             {
                 builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters);
             }
@@ -524,7 +524,7 @@ namespace NLog.Targets
         private static void WriteStreamAndFixPreamble(MemoryStream postPayload, Stream output, bool? writeUtf8BOM, Encoding encoding)
         {
             //only when utf-8 encoding is used, the Encoding preamble is optional
-            var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
+            var nothingToDo = writeUtf8BOM is null || !(encoding is UTF8Encoding);
 
             const int preambleSize = 3;
             if (!nothingToDo)

@@ -69,7 +69,7 @@ namespace NLog.Targets
                 {
                     base.Layout = value;
                 }
-                else if (LHF == null)
+                else if (LHF is null)
                 {
                     LHF = new LayoutWithHeaderAndFooter()
                     {

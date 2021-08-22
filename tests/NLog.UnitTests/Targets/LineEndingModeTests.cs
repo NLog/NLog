@@ -58,7 +58,7 @@ namespace NLog.UnitTests.Targets
             Assert.False(LineEndingMode.None == modeCRLF);
             Assert.False(LineEndingMode.None == modeNull);
             Assert.False(LineEndingMode.None == (object)new { });
-            Assert.False(LineEndingMode.None == null);
+            Assert.False(LineEndingMode.None is null);
 
             Assert.True(LineEndingMode.Default.Equals(modeDefault));
             Assert.True(LineEndingMode.None.Equals(modeNone));
@@ -131,13 +131,13 @@ namespace NLog.UnitTests.Targets
         public void LineEndingModeNullComparison()
         {
             LineEndingMode mode1 = LineEndingMode.LF;
-            Assert.False(mode1 == null);
+            Assert.False(mode1 is null);
             Assert.True(mode1 != null);
             Assert.False(null == mode1);
             Assert.True(null != mode1);
 
             LineEndingMode mode2 = null;
-            Assert.True(mode2 == null);
+            Assert.True(mode2 is null);
             Assert.False(mode2 != null);
             Assert.True(null == mode2);
             Assert.False(null != mode2);

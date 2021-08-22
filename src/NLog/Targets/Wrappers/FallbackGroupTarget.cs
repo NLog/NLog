@@ -124,7 +124,7 @@ namespace NLog.Targets.Wrappers
 
             continuation = ex =>
                 {
-                    if (ex == null)
+                    if (ex is null)
                     {
                         // success
                         if (ReturnToFirstOnSuccess)

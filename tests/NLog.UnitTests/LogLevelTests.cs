@@ -165,13 +165,13 @@ namespace NLog.UnitTests
         public void LogLevelNullComparison()
         {
             LogLevel level = LogLevel.Info;
-            Assert.False(level == null);
+            Assert.False(level is null);
             Assert.True(level != null);
             Assert.False(null == level);
             Assert.True(null != level);
 
             level = null;
-            Assert.True(level == null);
+            Assert.True(level is null);
             Assert.False(level != null);
             Assert.True(null == level);
             Assert.False(null != level);

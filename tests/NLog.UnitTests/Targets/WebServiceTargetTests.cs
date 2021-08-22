@@ -696,7 +696,7 @@ namespace NLog.UnitTests.Targets
             public void Post([FromBody] ComplexType complexType)
             {
                 //this is working. 
-                if (complexType == null)
+                if (complexType is null)
                 {
                     throw new ArgumentNullException(nameof(complexType));
                 }
@@ -883,7 +883,7 @@ namespace NLog.UnitTests.Targets
             [HttpPost]
             public void Json(LogMeController.ComplexType complexType)
             {
-                if (complexType == null)
+                if (complexType is null)
                 {
                     throw new ArgumentNullException(nameof(complexType));
                 }
@@ -912,7 +912,7 @@ namespace NLog.UnitTests.Targets
             [HttpPost]
             public void Xml(LogMeController.ComplexType complexType)
             {
-                if (complexType == null)
+                if (complexType is null)
                 {
                     throw new ArgumentNullException(nameof(complexType));
                 }

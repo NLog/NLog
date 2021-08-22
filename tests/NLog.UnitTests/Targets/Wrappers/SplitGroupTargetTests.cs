@@ -104,7 +104,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             // Assert
             Assert.Equal(LogEventWriteCount + 1, exceptions.Count); // +1 because of flush
-            Assert.Equal(LogEventWriteCount + 1 - logEventFailCount, exceptions.Count(ex => ex == null));
+            Assert.Equal(LogEventWriteCount + 1 - logEventFailCount, exceptions.Count(ex => ex is null));
             foreach (var target in targets)
             {
                 var myTarget = lookupTarget(target);

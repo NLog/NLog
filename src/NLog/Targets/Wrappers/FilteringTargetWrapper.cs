@@ -147,7 +147,7 @@ namespace NLog.Targets.Wrappers
 
         private static ConditionBasedFilter CreateFilter(ConditionExpression value)
         {
-            if (value == null)
+            if (value is null)
             {
                 return null;
             }

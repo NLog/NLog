@@ -112,7 +112,7 @@ namespace NLog.LayoutRenderers
         {
             base.InitializeLayoutRenderer();
 
-            if (ReferenceEquals(_instance, null) && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
+            if (_instance is null && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
             {
                 _instance = GetCurrentProcessInstanceName(Category) ?? string.Empty;
             }
@@ -159,7 +159,7 @@ namespace NLog.LayoutRenderers
 
             var perfCounter = CreatePerformanceCounter(machineName, instanceName);
             perfCounterCached = new PerformanceCounterCached(machineName, instanceName, perfCounter);
-            if ((ReferenceEquals(_machineName, null) || (_machineName as SimpleLayout)?.IsFixedText==true) && (ReferenceEquals(_instance, null) || (_instance as SimpleLayout)?.IsFixedText == true))
+            if ((_machineName is null || (_machineName as SimpleLayout)?.IsFixedText == true) && (_instance is null || (_instance as SimpleLayout)?.IsFixedText == true))
             {
                 _fixedPerformanceCounter = perfCounterCached;
             }

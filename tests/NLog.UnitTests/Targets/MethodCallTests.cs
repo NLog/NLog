@@ -199,8 +199,8 @@ namespace NLog.UnitTests.Targets
             /// </summary>
             public MethodCallRecord(string method, params object[] parameterValues)
             {
-                Method = method;
-                if (parameterValues != null) ParameterValues = parameterValues.ToList();
+                Method = method ?? string.Empty;
+                ParameterValues = parameterValues?.ToList() ?? new List<object>();
             }
 
             public string Method { get; set; }
@@ -220,10 +220,7 @@ namespace NLog.UnitTests.Targets
             /// <param name="obj">The object to compare with the current object. </param>
             public override bool Equals(object obj)
             {
-                if (ReferenceEquals(null, obj)) return false;
-                if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != GetType()) return false;
-                return Equals((MethodCallRecord)obj);
+                return obj is MethodCallRecord other && Equals(other);
             }
 
             /// <summary>
@@ -236,7 +233,7 @@ namespace NLog.UnitTests.Targets
             {
                 unchecked
                 {
-                    return ((Method != null ? Method.GetHashCode() : 0) * 397) ^ (ParameterValues != null ? ParameterValues.GetHashCode() : 0);
+                    return Method.GetHashCode() * 397 ^ ParameterValues.Count.GetHashCode();
                 }
             }
         }

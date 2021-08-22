@@ -89,7 +89,7 @@ namespace NLog.Layouts
             {
                 _valueType = value;
                 _layout = null;
-                if (!ReferenceEquals(_innerLayout, _typedLayout) && !ReferenceEquals(_innerLayout, null))
+                if (!ReferenceEquals(_innerLayout, _typedLayout) && !(_innerLayout is null))
                     _typedLayout = null;
                 _defaultValueObject = null;
             }
@@ -122,7 +122,7 @@ namespace NLog.Layouts
             set
             {
                 _valueParseFormat = value;
-                if (!ReferenceEquals(_innerLayout, _typedLayout) && !ReferenceEquals(_innerLayout, null))
+                if (!ReferenceEquals(_innerLayout, _typedLayout) && !(_innerLayout is null))
                     _typedLayout = null;
                 _defaultValueObject = null;
             }
@@ -139,7 +139,7 @@ namespace NLog.Layouts
             set
             {
                 _valueParseCulture = value;
-                if (!ReferenceEquals(_innerLayout, _typedLayout) && !ReferenceEquals(_innerLayout, null))
+                if (!ReferenceEquals(_innerLayout, _typedLayout) && !(_innerLayout is null))
                     _typedLayout = null;
                 _defaultValueObject = null;
             }
@@ -184,7 +184,7 @@ namespace NLog.Layouts
 
         private Layout CreateTypedLayout(Type valueType, object existingValue)
         {
-            if (ReferenceEquals(valueType, null) || valueType == typeof(string) || valueType == typeof(object))
+            if (valueType is null || valueType == typeof(string) || valueType == typeof(object))
                 return existingValue as Layout ?? _innerLayout;
 
             try
@@ -220,16 +220,16 @@ namespace NLog.Layouts
             if (_typedDefaultValue?.IsFixed == true)
                 return _typedDefaultValue.FixedObjectValue;
 
-            if (ReferenceEquals(_defaultValue, null))
+            if (_defaultValue is null)
                 return string.Empty;
 
-            if (_typedLayout == null)
-                return _defaultValue?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
+            if (_typedLayout is null)
+                return _defaultValue.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
 
             if (_typedLayout.IsFixed)
                 return string.Empty;
 
-            var defaultStringValue = _defaultValue?.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
+            var defaultStringValue = _defaultValue.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
             if (string.IsNullOrEmpty(defaultStringValue))
                 return string.Empty;
 

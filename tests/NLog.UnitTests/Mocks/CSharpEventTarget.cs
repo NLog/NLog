@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Common
 
             if (EventWritten != null)
             {
-                var rendered = Layout == null ? null : Layout.Render(logEvent);
+                var rendered = Layout is null ? null : Layout.Render(logEvent);
                 EventWritten.Invoke(logEvent, rendered, Thread.CurrentThread.ManagedThreadId);
             }
         }

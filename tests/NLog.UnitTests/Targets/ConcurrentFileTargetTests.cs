@@ -273,7 +273,7 @@ namespace NLog.UnitTests.Targets
                 }
                 catch (Exception ex)
                 {
-                    var reoderProblem = equalsWhenReorderd == null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
+                    var reoderProblem = equalsWhenReorderd is null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
                     throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a recording problem? {reoderProblem}", ex);
                 }
 

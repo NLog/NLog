@@ -266,7 +266,7 @@ namespace NLog.Targets
             if (checkForDuplicates && combinedProperties.ContainsKey(itemName))
             {
                 itemName = GenerateUniqueItemName(logEvent, itemName, itemValue, combinedProperties);
-                if (itemName == null)
+                if (itemName is null)
                     return;
             }
 
@@ -367,7 +367,7 @@ namespace NLog.Targets
             for (int i = 0; i < ContextProperties.Count; ++i)
             {
                 var contextProperty = ContextProperties[i];
-                if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout == null)
+                if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout is null)
                     continue;
 
                 try
@@ -392,7 +392,7 @@ namespace NLog.Targets
         private bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
         {
             propertyValue = contextProperty.RenderValue(logEvent);
-            if (!contextProperty.IncludeEmptyValue && (propertyValue == null || string.Empty.Equals(propertyValue)))
+            if (!contextProperty.IncludeEmptyValue && (propertyValue is null || string.Empty.Equals(propertyValue)))
             {
                 return false;
             }
@@ -572,7 +572,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    if (filteredStack == null)
+                    if (filteredStack is null)
                     {
                         filteredStack = new List<object>(stack.Length);
                         for (int j = 0; j < i; ++j)
@@ -631,7 +631,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    if (filteredStack == null)
+                    if (filteredStack is null)
                     {
                         filteredStack = new List<object>(stack.Length);
                         for (int j = 0; j < i; ++j)
@@ -677,7 +677,7 @@ namespace NLog.Targets
         /// <returns>Include object value in snapshot</returns>
         protected virtual bool SerializeItemValue(LogEventInfo logEvent, string name, object value, out object serializedValue)
         {
-            if (value == null)
+            if (value is null)
             {
                 serializedValue = null;
                 return true;

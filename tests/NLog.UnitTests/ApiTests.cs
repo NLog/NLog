@@ -189,7 +189,7 @@ namespace NLog.UnitTests
                 if (typeof(NLog.Internal.IRawValue).IsAssignableFrom(type) && !type.IsInterface)
                 {
                     var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
-                    Assert.True(!ReferenceEquals(threadAgnosticAttribute, null), $"{type.ToString()} cannot implement IRawValue");
+                    Assert.True(!(threadAgnosticAttribute is null), $"{type.ToString()} cannot implement IRawValue");
                 }
             }
         }
@@ -202,7 +202,7 @@ namespace NLog.UnitTests
                 if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface)
                 {
                     var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
-                    Assert.True(ReferenceEquals(appDomainFixedOutputAttribute, null), $"{type.ToString()} should not implement IStringValueRenderer");
+                    Assert.True(appDomainFixedOutputAttribute is null, $"{type.ToString()} should not implement IStringValueRenderer");
                 }
             }
         }
@@ -216,7 +216,7 @@ namespace NLog.UnitTests
                 if (appDomainFixedOutputAttribute != null)
                 {
                     var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
-                    Assert.True(!ReferenceEquals(threadAgnosticAttribute, null), $"{type.ToString()} should also have ThreadAgnostic");
+                    Assert.True(!(threadAgnosticAttribute is null), $"{type.ToString()} should also have ThreadAgnostic");
                 }
             }
         }

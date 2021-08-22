@@ -188,7 +188,7 @@ namespace NLog.Targets
         private static int AddValueAndGetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
         {
 
-            if (value == null || !stringTable.TryGetValue(value, out var stringIndex))
+            if (value is null || !stringTable.TryGetValue(value, out var stringIndex))
             {
                 stringIndex = context.Strings.Count;
                 if (value != null)
@@ -210,11 +210,7 @@ namespace NLog.Targets
                 return new NLogEvents();
             }
 
-            string clientID = string.Empty;
-            if (ClientId != null)
-            {
-                clientID = ClientId.Render(logEvents[0].LogEvent);
-            }
+            string clientID = RenderLogEvent(ClientId, logEvents[0].LogEvent) ?? string.Empty;
 
             var networkLogEvents = new NLogEvents
             {
@@ -288,8 +284,7 @@ namespace NLog.Targets
                     asyncContinuations[i].Continuation(e.Error);
                 }
 
-                if (flushContinuations != null)
-                    flushContinuations(e.Error);
+                flushContinuations?.Invoke(e.Error);
 
                 // send any buffered events
                 SendBufferedEvents(null);

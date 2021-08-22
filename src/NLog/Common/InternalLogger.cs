@@ -342,7 +342,7 @@ namespace NLog.Common
         private static string CreateFullMessage(string message, object[] args)
         {
             var formattedMessage =
-                (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
+                (args is null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
             return formattedMessage;
         }
 
@@ -425,7 +425,7 @@ namespace NLog.Common
         private static void WriteToTextWriter(string message)
         {
             var writer = LogWriter;
-            if (writer == null)
+            if (writer is null)
             {
                 return;
             }
@@ -576,7 +576,7 @@ namespace NLog.Common
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
         {
             string value = GetSettingString(configName, envName);
-            if (value == null)
+            if (value is null)
             {
                 return defaultValue;
             }
@@ -599,7 +599,7 @@ namespace NLog.Common
         private static T GetSetting<T>(string configName, string envName, T defaultValue)
         {
             string value = GetSettingString(configName, envName);
-            if (value == null)
+            if (value is null)
             {
                 return defaultValue;
             }

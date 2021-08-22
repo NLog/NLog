@@ -81,7 +81,7 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText, ConfigurationItemFactory configurationItemFactories)
         {
-            if (expressionText == null)
+            if (expressionText is null)
             {
                 return null;
             }

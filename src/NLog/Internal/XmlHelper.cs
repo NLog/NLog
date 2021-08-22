@@ -137,7 +137,7 @@ namespace NLog.Internal
 
         internal static string EscapeXmlString(string text, bool xmlEncodeNewlines, StringBuilder result = null)
         {
-            if (result == null && SmallAndNoEscapeNeeded(text, xmlEncodeNewlines))
+            if (result is null && SmallAndNoEscapeNeeded(text, xmlEncodeNewlines))
             {
                 return text;
             }
@@ -187,7 +187,7 @@ namespace NLog.Internal
                 }
             }
 
-            return result == null ? sb.ToString() : null;
+            return result is null ? sb.ToString() : null;
         }
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace NLog.Internal
                         }
                 }
 
-                if (sb == null)
+                if (sb is null)
                 {
                     sb = CreateStringBuilder(xmlElementName, i);
                 }
@@ -338,7 +338,7 @@ namespace NLog.Internal
             try
             {
                 var convertibleValue = value as IConvertible;
-                var objTypeCode = convertibleValue?.GetTypeCode() ?? (value == null ? TypeCode.Empty : TypeCode.Object);
+                var objTypeCode = convertibleValue?.GetTypeCode() ?? (value is null ? TypeCode.Empty : TypeCode.Object);
                 if (objTypeCode != TypeCode.Object)
                 {
                     return XmlConvertToString(convertibleValue, objTypeCode, safeConversion);
@@ -374,7 +374,7 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(IConvertible value, TypeCode objTypeCode, bool safeConversion = false)
         {
-            if (objTypeCode == TypeCode.Empty || value == null)
+            if (objTypeCode == TypeCode.Empty || value is null)
             {
                 return "null";
             }

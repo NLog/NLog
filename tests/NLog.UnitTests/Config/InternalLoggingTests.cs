@@ -128,7 +128,7 @@ namespace NLog.UnitTests.Config
             var internalLogToConsoleErrorString = logToConsoleError.ToString().ToLower();
             var globalThresholdString = globalThreshold.ToString();
             var throwExceptionsString = throwExceptions.ToString().ToLower();
-            var throwConfigExceptionsString = throwConfigExceptions == null ? "" : throwConfigExceptions.ToString().ToLower();
+            var throwConfigExceptionsString = throwConfigExceptions?.ToString().ToLower() ?? string.Empty;
             var logToTraceString = logToTrace.ToString().ToLower();
             var autoShutdownString = autoShutdown.ToString().ToLower();
 

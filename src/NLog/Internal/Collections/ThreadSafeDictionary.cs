@@ -206,7 +206,7 @@ namespace NLog.Internal
         private Dictionary<TKey, TValue> GetReadOnlyDict()
         {
             var readOnly = _dictReadOnly;
-            if (readOnly == null)
+            if (readOnly is null)
             {
                 lock (_lockObject)
                 {
@@ -218,7 +218,7 @@ namespace NLog.Internal
 
         private IDictionary<TKey, TValue> GetWritableDict(bool clearDictionary = false)
         {
-            if (_dictReadOnly == null)
+            if (_dictReadOnly is null)
             {
                 // Never exposed the dictionary using enumerator, so immutable is not required
                 if (clearDictionary)

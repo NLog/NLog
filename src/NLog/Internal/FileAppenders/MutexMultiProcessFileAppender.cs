@@ -78,17 +78,11 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (_mutex != null)
-                {
-                    _mutex.Close();
-                    _mutex = null;
-                }
+                _mutex?.Close();
+                _mutex = null;
 
-                if (_fileStream != null)
-                {
-                    _fileStream.Close();
-                    _fileStream = null;
-                }
+                _fileStream?.Close();
+                _fileStream = null;
 
                 throw;
             }
@@ -102,7 +96,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (_mutex == null || _fileStream == null)
+            if (_mutex is null || _fileStream is null)
             {
                 return;
             }
@@ -135,7 +129,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (_mutex == null && _fileStream == null)
+            if (_mutex is null && _fileStream is null)
             {
                 return;
             }

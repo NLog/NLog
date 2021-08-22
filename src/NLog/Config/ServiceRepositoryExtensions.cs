@@ -119,7 +119,7 @@ namespace NLog.Config
         /// </summary>
         public static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
         {
-            if (valueFormatter == null)
+            if (valueFormatter is null)
             {
                 throw new ArgumentNullException(nameof(valueFormatter));
             }
@@ -130,7 +130,7 @@ namespace NLog.Config
 
         public static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
         {
-            if (jsonConverter == null)
+            if (jsonConverter is null)
             {
                 throw new ArgumentNullException(nameof(jsonConverter));
             }
@@ -141,7 +141,7 @@ namespace NLog.Config
 
         public static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
         {
-            if (converter == null)
+            if (converter is null)
             {
                 throw new ArgumentNullException(nameof(converter));
             }
@@ -152,7 +152,7 @@ namespace NLog.Config
 
         public static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
         {
-            if (transformer == null)
+            if (transformer is null)
             {
                 throw new ArgumentNullException(nameof(transformer));
             }

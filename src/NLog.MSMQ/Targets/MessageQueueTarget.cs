@@ -158,7 +158,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (Queue == null)
+            if (Queue is null)
             {
                 return;
             }
@@ -236,7 +236,7 @@ namespace NLog.Targets
 
         public virtual void Send(string queue, Message message)
         {
-            if (message == null)
+            if (message is null)
             {
                 return;
             }

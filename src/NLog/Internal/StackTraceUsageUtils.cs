@@ -79,7 +79,7 @@ namespace NLog.Internal
 
         public static string GetStackFrameMethodName(MethodBase method, bool includeMethodInfo, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
-            if (method == null)
+            if (method is null)
                 return null;
 
             string methodName = method.Name;
@@ -118,7 +118,7 @@ namespace NLog.Internal
 
         public static string GetStackFrameMethodClassName(MethodBase method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
         {
-            if (method == null)
+            if (method is null)
                 return null;
 
             var callerClassType = method.DeclaringType;
@@ -236,7 +236,7 @@ namespace NLog.Internal
         public static Assembly LookupAssemblyFromStackFrame(StackFrame stackFrame)
         {
             var method = stackFrame.GetMethod();
-            if (method == null)
+            if (method is null)
             {
                 return null;
             }

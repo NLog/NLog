@@ -148,7 +148,7 @@ namespace NLog.Layouts
                 _includeEmptyValue = value;
                 if (!value)
                     DefaultValue = new Layout<string>(null);
-                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue == null)
+                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
                     DefaultValue = null;
             }
         }
@@ -156,7 +156,7 @@ namespace NLog.Layouts
 
         internal bool RenderAppendJsonValue(LogEventInfo logEvent, IJsonConverter jsonConverter, StringBuilder builder)
         {
-            if (ValueType == null)
+            if (ValueType is null)
             {
                 if (Encode)
                 {
@@ -180,7 +180,7 @@ namespace NLog.Layouts
             else
             {
                 var objectValue = _layoutInfo.RenderValue(logEvent);
-                if (!IncludeEmptyValue && (objectValue == null || string.Empty.Equals(objectValue)))
+                if (!IncludeEmptyValue && (objectValue is null || string.Empty.Equals(objectValue)))
                 {
                     return false;
                 }

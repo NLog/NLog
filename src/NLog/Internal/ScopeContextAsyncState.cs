@@ -102,7 +102,7 @@ namespace NLog.Internal
         {
             nestedContext = null;
             Parent?.CaptureNestedContext(initialCapacity + 1, out nestedContext);
-            if (nestedContext == null)
+            if (nestedContext is null)
                 nestedContext = new object[initialCapacity + 1];
             nestedContext[initialCapacity] = _value;
             return nestedContext;
@@ -154,9 +154,9 @@ namespace NLog.Internal
             else
             {
                 var parentContext = Parent?.CaptureContextProperties(initialCapacity + 1, out scopeProperties);
-                if (scopeProperties == null)
+                if (scopeProperties is null)
                 {
-                    if (parentContext == null)
+                    if (parentContext is null)
                     {
                         // No more parent-context, build scope-property-collection starting from this scope
                         if (initialCapacity == 0)
@@ -216,7 +216,7 @@ namespace NLog.Internal
             Parent?.CaptureNestedContext(initialCapacity + extraCount, out nestedContext);
             if (extraCount > 0)
             {
-                if (nestedContext == null)
+                if (nestedContext is null)
                     nestedContext = new object[initialCapacity + extraCount];
                 nestedContext[initialCapacity] = NestedState;
             }
@@ -233,9 +233,9 @@ namespace NLog.Internal
             else
             {
                 var parentContext = Parent?.CaptureContextProperties(initialCapacity + _scopeProperties.Count, out scopeProperties);
-                if (scopeProperties == null)
+                if (scopeProperties is null)
                 {
-                    if (parentContext == null)
+                    if (parentContext is null)
                     {
                         // No more parent-context, build scope-property-collection starting from this scope
                         if (initialCapacity == 0)
@@ -325,7 +325,7 @@ namespace NLog.Internal
             nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
             allProperties = null;
             var scopeProperties = contextState?.CaptureContextProperties(0, out allProperties) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-            if (allProperties == null)
+            if (allProperties is null)
             {
                 allProperties = new Dictionary<string, object>(scopeProperties.Count, ScopeContext.DefaultComparer);
                 ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(scopeProperties, allProperties);
@@ -356,7 +356,7 @@ namespace NLog.Internal
             Parent?.CaptureNestedContext(initialCapacity + extraCount, out nestedContext);
             if (extraCount > 0)
             {
-                if (nestedContext == null)
+                if (nestedContext is null)
                 {
                     if (initialCapacity == 0)
                         return NestedContext;

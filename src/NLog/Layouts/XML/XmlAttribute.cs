@@ -117,7 +117,7 @@ namespace NLog.Layouts
                 _includeEmptyValue = value;
                 if (!value)
                     DefaultValue = new Layout<string>(null);
-                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue == null)
+                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
                     DefaultValue = null;
             }
         }
@@ -125,7 +125,7 @@ namespace NLog.Layouts
 
         internal bool RenderAppendXmlValue(LogEventInfo logEvent, StringBuilder builder)
         {
-            if (ValueType == null)
+            if (ValueType is null)
             {
                 int orgLength = builder.Length;
                 Layout.RenderAppendBuilder(logEvent, builder);
@@ -142,13 +142,13 @@ namespace NLog.Layouts
             else
             {
                 var objectValue = _layoutInfo.RenderValue(logEvent);
-                if (!IncludeEmptyValue && (objectValue == null || string.Empty.Equals(objectValue)))
+                if (!IncludeEmptyValue && (objectValue is null || string.Empty.Equals(objectValue)))
                 {
                     return false;
                 }
 
                 var convertibleValue = objectValue as IConvertible;
-                var objTypeCode = convertibleValue?.GetTypeCode() ?? (objectValue == null ? TypeCode.Empty : TypeCode.Object);
+                var objTypeCode = convertibleValue?.GetTypeCode() ?? (objectValue is null ? TypeCode.Empty : TypeCode.Object);
                 if (objTypeCode != TypeCode.Object)
                 {
                     string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);

@@ -340,7 +340,7 @@ namespace NLog.Config
         /// <param name="type"></param>
         private void CallPreload(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 return;
             }

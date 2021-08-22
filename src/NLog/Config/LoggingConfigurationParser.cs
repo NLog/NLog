@@ -927,7 +927,7 @@ namespace NLog.Config
                 var targetName = childElement.GetRequiredValue("name", GetName(wrapper));
 
                 Target newTarget = FindTargetByName(targetName);
-                if (newTarget == null)
+                if (newTarget is null)
                 {
                     var configException = new NLogConfigurationException($"Referenced target '{targetName}' not found.");
                     if (MustThrowConfigException(configException))
@@ -992,7 +992,7 @@ namespace NLog.Config
                 targetName = childElement.GetRequiredValue("name", GetName(compound));
 
                 Target newTarget = FindTargetByName(targetName);
-                if (newTarget == null)
+                if (newTarget is null)
                 {
                     throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
                 }
@@ -1141,7 +1141,7 @@ namespace NLog.Config
         {
             object arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
-            if (arrayItem == null)
+            if (arrayItem is null)
                 arrayItem = _serviceRepository.GetService(elementType);
 
             ConfigureFromAttributesAndElements(arrayItem, element);
@@ -1201,7 +1201,7 @@ namespace NLog.Config
 
             // Check if the 'type' attribute has been specified
             string classType = element.GetConfigItemTypeAttribute();
-            if (classType == null)
+            if (classType is null)
                 return null;
 
             return FactoryCreateInstance(classType, factory);
@@ -1225,7 +1225,7 @@ namespace NLog.Config
                 }
 
                 newInstance = factory.CreateInstance(classType);
-                if (newInstance == null)
+                if (newInstance is null)
                 {
                     throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {classType}");
                 }
@@ -1317,7 +1317,7 @@ namespace NLog.Config
             string wrapperTypeName = defaultWrapperElement.GetConfigItemTypeAttribute("targets");
             Target wrapperTargetInstance = CreateTargetType(wrapperTypeName);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
-            if (wtb == null)
+            if (wtb is null)
             {
                 throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
             }
@@ -1326,7 +1326,7 @@ namespace NLog.Config
             while (wtb.WrappedTarget != null)
             {
                 wtb = wtb.WrappedTarget as WrapperTargetBase;
-                if (wtb == null)
+                if (wtb is null)
                 {
                     throw new NLogConfigurationException(
                         "Child target type specified on <default-wrapper /> is not a wrapper.");
@@ -1483,7 +1483,7 @@ namespace NLog.Config
             public string GetRequiredValue(string attributeName, string section)
             {
                 string value = GetOptionalValue(attributeName, null);
-                if (value == null)
+                if (value is null)
                 {
                     throw new NLogConfigurationException($"Expected {attributeName} on {Name} in {section}");
                 }

@@ -339,7 +339,7 @@ namespace NLog.Targets
                 connection = (IDbConnection)Activator.CreateInstance(ConnectionType);
             }
 
-            if (connection == null)
+            if (connection is null)
             {
                 throw new NLogRuntimeException("Creation of connection failed");
             }
@@ -393,7 +393,7 @@ namespace NLog.Targets
             {
                 // read connection string and provider factory from the configuration file
                 var cs = ConnectionStringsSettings[ConnectionStringName];
-                if (cs == null)
+                if (cs is null)
                 {
                     throw new NLogConfigurationException($"Connection string '{ConnectionStringName}' is not declared in <connectionStrings /> section.");
                 }
@@ -428,7 +428,7 @@ namespace NLog.Targets
                 try
                 {
                     SetConnectionType();
-                    if (ConnectionType == null)
+                    if (ConnectionType is null)
                     {
                         InternalLogger.Warn("{0}: No ConnectionType created from DBProvider={1}", this, DBProvider);
                     }
@@ -651,7 +651,7 @@ namespace NLog.Targets
             for (int i = 1; i < logEvents.Count; ++i)
             {
                 var connectionString = BuildConnectionString(logEvents[i].LogEvent);
-                if (dictionary == null)
+                if (dictionary is null)
                 {
                     if (connectionString == firstConnectionString)
                         continue;
@@ -994,7 +994,7 @@ namespace NLog.Targets
                     var connectionString = GetConnectionStringFromCommand(commandInfo, logEvent);
 
                     // Set ConnectionType if it has not been initialized already
-                    if (ConnectionType == null)
+                    if (ConnectionType is null)
                     {
                         SetConnectionType();
                     }

@@ -51,7 +51,7 @@ namespace NLog
         /// <param name="factory">The factory class to be used for the creation of this logger.</param>
         public NullLogger(LogFactory factory)
         {
-            if (factory == null)
+            if (factory is null)
             {
                 throw new ArgumentNullException(nameof(factory));
             }
