@@ -345,9 +345,9 @@ namespace NLog.Targets
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
-        int ICreateFileParameters.FileOpenRetryCount => (!KeepFileOpen || ConcurrentWrites) ? ConcurrentWriteAttempts : 0;
+        int ICreateFileParameters.FileOpenRetryCount => ConcurrentWrites ? ConcurrentWriteAttempts : (KeepFileOpen ? 0 : (_concurrentWriteAttempts ?? 2));
 
-        int ICreateFileParameters.FileOpenRetryDelay => (!KeepFileOpen || ConcurrentWrites) ? ConcurrentWriteAttemptDelay : 1;
+        int ICreateFileParameters.FileOpenRetryDelay => ConcurrentWriteAttemptDelay;
 
         /// <summary>
         /// Gets or sets the line ending mode.
@@ -471,7 +471,8 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(10)]
         [Advanced]
-        public int ConcurrentWriteAttempts { get; set; }
+        public int ConcurrentWriteAttempts { get => _concurrentWriteAttempts ?? 10; set => _concurrentWriteAttempts = value; }
+        private int? _concurrentWriteAttempts;
 
         /// <summary>
         /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
