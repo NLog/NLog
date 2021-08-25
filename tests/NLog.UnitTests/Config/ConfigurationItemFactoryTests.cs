@@ -35,7 +35,6 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Targets;
     using System.Collections.Generic;
     using Xunit;
@@ -45,8 +44,10 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ConfigurationItemFactoryDefaultTest()
         {
-            var cif = new ConfigurationItemFactory();
-            Assert.IsType<DebugTarget>(cif.CreateInstance(typeof(DebugTarget)));
+            var itemFactory = new ConfigurationItemFactory();
+#pragma warning disable CS0618 // Type or member is obsolete
+            Assert.IsType<DebugTarget>(itemFactory.CreateInstance(typeof(DebugTarget)));
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Fact]
@@ -64,24 +65,16 @@ namespace NLog.UnitTests.Config
             var cif = new ConfigurationItemFactory();
             cif.RegisterType(typeof(DebugTarget), string.Empty);
             List<Type> resolvedTypes = new List<Type>();
-            cif.CreateInstance = t => { resolvedTypes.Add(t); return FactoryHelper.CreateInstance(t); };
+#pragma warning disable CS0618 // Type or member is obsolete
+            cif.CreateInstance = t => { resolvedTypes.Add(t); return Activator.CreateInstance(t); };
+#pragma warning restore CS0618 // Type or member is obsolete
             Target target = cif.Targets.CreateInstance("Debug");
             Assert.NotNull(target);
             Assert.Single(resolvedTypes);
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
-#if !NETSTANDARD
-        // this is just to force reference to NLog.Extended.dll
-        public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
-
-        [Fact]
-        public void ExtendedTargetTest()
-        {
-            var targets = ConfigurationItemFactory.Default.Targets;
-
-            AssertInstance(targets, "MSMQ", "MessageQueueTarget");
-        }
+#if !NETSTANDARD && !MONO
 
         [Fact]
         public void ExtendedLayoutRendererTest()

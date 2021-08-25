@@ -42,40 +42,38 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void FSNormalizeTest1()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "abc.log");
-            SimpleLayout l = "${filesystem-normalize:${mdc:foo}}";
+            ScopeContext.PushProperty("foo", "abc.log");
+            SimpleLayout l = "${filesystem-normalize:${scopeproperty:foo}}";
             
             Assert.Equal("abc.log", l.Render(LogEventInfo.CreateNullEvent()));
 
-            MappedDiagnosticsContext.Set("foo", "");
+            ScopeContext.PushProperty("foo", "");
             Assert.Equal("", l.Render(LogEventInfo.CreateNullEvent()));
 
-            MappedDiagnosticsContext.Set("foo", "a/b/c");
+            ScopeContext.PushProperty("foo", "a/b/c");
             Assert.Equal("a_b_c", l.Render(LogEventInfo.CreateNullEvent()));
 
             // all characters outside of alpha/digits/space/_/./- are replaced with _
-            MappedDiagnosticsContext.Set("foo", ":\\/$@#$%^");
+            ScopeContext.PushProperty("foo", ":\\/$@#$%^");
             Assert.Equal("_________", l.Render(LogEventInfo.CreateNullEvent()));
         }
 
         [Fact]
         public void FSNormalizeTest2()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", "abc.log");
-            SimpleLayout l = "${mdc:foo:fsnormalize=true}";
+            ScopeContext.PushProperty("foo", "abc.log");
+            SimpleLayout l = "${scopeproperty:foo:fsnormalize=true}";
 
             Assert.Equal("abc.log", l.Render(LogEventInfo.CreateNullEvent()));
 
-            MappedDiagnosticsContext.Set("foo", "");
+            ScopeContext.PushProperty("foo", "");
             Assert.Equal("", l.Render(LogEventInfo.CreateNullEvent()));
 
-            MappedDiagnosticsContext.Set("foo", "a/b/c");
+            ScopeContext.PushProperty("foo", "a/b/c");
             Assert.Equal("a_b_c", l.Render(LogEventInfo.CreateNullEvent()));
 
             // all characters outside of alpha/digits/space/_/./- are replaced with _
-            MappedDiagnosticsContext.Set("foo", ":\\/$@#$%^");
+            ScopeContext.PushProperty("foo", ":\\/$@#$%^");
             Assert.Equal("_________", l.Render(LogEventInfo.CreateNullEvent()));
         }
     }

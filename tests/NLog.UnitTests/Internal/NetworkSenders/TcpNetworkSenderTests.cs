@@ -282,7 +282,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             public int SendFailureIn { get; set; }
         }
 
-        internal class MockSocket : ISocket
+        internal sealed class MockSocket : ISocket
         {
             private readonly MyTcpNetworkSender sender;
             private readonly StringWriter log;

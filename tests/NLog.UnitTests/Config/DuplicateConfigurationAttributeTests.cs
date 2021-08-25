@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Config
                         <targets><target name='debug' type='debug' layout='${message}' /></targets>
                         <rules>
                             <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                                <filters>
+                               <filters defaultAction='log'>
                                     <whencontains layout='${message}' substring='msg' action='ignore' />
                                 </filters>
                             </logger>
@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Config
                         <targets><target name='debug' type='debug' layout='${message}' /></targets>
                         <rules>
                             <logger name='*' minlevel='info' minLevel='trace' appendto='debug'>
-                                <filters>
+                               <filters defaultAction='log'>
                                     <whencontains layout='${message}' substring='msg' Substring='msg1' action='ignore' />
                                 </filters>
                             </logger>
@@ -86,8 +86,8 @@ namespace NLog.UnitTests.Config
                 }
             }, LogLevel.Error);
 
-            Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [minLevel]. Duplicate value:[trace], Current value:[info]"), internalLog);
-            Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [Substring]. Duplicate value:[msg1], Current value:[msg]"), internalLog);
+            Assert.True(internalLog.Contains("Skipping Duplicate value for 'logger'. PropertyName=minLevel. Skips Value=trace. Existing Value=info"), internalLog);
+            Assert.True(internalLog.Contains("Skipping Duplicate value for 'whencontains'. PropertyName=Substring. Skips Value=msg1. Existing Value=msg"), internalLog);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                            <filters>
+                           <filters defaultAction='log'>
                                 <whencontains layout='${message}' substring='msg' action='ignore' />
                             </filters>
                         </logger>
@@ -115,7 +115,7 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                            <filters>
+                           <filters defaultAction='log'>
                                 <whencontains layout='${message}' substring='msg' action='ignore' />
                             </filters>
                         </logger>

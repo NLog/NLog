@@ -113,25 +113,13 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.<#=level#>, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void <#=level#>Exception([Localizable(false)] string message, Exception exception)
-        {
-            <#=level#>(message, exception); 
         }
 
         /// <summary>
@@ -172,21 +160,6 @@ namespace NLog
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void <#=level#>([Localizable(false)] string message, Exception exception)
-        {
-            if (Is<#=level#>Enabled)
-            {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, null);
             }
         }
 
@@ -261,22 +234,6 @@ namespace NLog
         { 
             if (Is<#=level#>Enabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        <#=level#>(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.<#=level#>, message, new object[] { argument });
             }
         }

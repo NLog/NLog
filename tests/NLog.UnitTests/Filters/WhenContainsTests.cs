@@ -47,14 +47,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenContains layout='${message}' substring='zzz' action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzz");
@@ -71,14 +71,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzz");
@@ -97,14 +97,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenContains layout='${message}' substring='&apos;' action='Ignore' ignoreCase='true' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("'");
             AssertDebugCounter("debug", 0);
             logger.Debug("a'a");
@@ -123,7 +123,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <when condition=""contains('${message}', 'Cannot insert the value NULL into column ''Col1')"" action=""Log""></when>
                         <when condition='true' action='Ignore' />
                     </filters>
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("Test");
             AssertDebugCounter("debug", 0);
             logger.Debug("Cannot insert the value NULL into column 'Col1");

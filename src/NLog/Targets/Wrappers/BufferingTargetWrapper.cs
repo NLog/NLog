@@ -46,7 +46,7 @@ namespace NLog.Targets.Wrappers
     [Target("BufferingWrapper", IsWrapper = true)]
     public class BufferingTargetWrapper : WrapperTargetBase
     {
-        private LogEventInfoBuffer _buffer;
+        private AsyncRequestQueue _buffer;
         private Timer _flushTimer;
         private readonly object _lockObject = new object();
 
@@ -171,8 +171,8 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            _buffer = new LogEventInfoBuffer(BufferSize, false, 0);
-            InternalLogger.Trace("BufferingWrapper(Name={0}): Create Timer", Name);
+            _buffer = new AsyncRequestQueue(BufferSize, AsyncTargetWrapperOverflowAction.Discard);
+            InternalLogger.Trace("{0}: Create Timer", this);
             _flushTimer = new Timer(FlushCallback, null, Timeout.Infinite, Timeout.Infinite);
         }
 
@@ -189,7 +189,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (OverflowAction == BufferingTargetWrapperOverflowAction.Discard)
                     {
-                        _buffer.GetEventsAndClear();
+                        _buffer.Clear();
                     }
                     else
                     {
@@ -210,8 +210,8 @@ namespace NLog.Targets.Wrappers
         {
             PrecalculateVolatileLayouts(logEvent.LogEvent);
 
-            int count = _buffer.Append(logEvent);
-            if (count >= BufferSize)
+            var firstEventInQueue = _buffer.Enqueue(logEvent);
+            if (_buffer.RequestCount >= BufferSize)
             {
                 // If the OverflowAction action is set to "Discard", the buffer will automatically
                 // roll over the oldest item.
@@ -222,7 +222,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                if (FlushTimeout > 0 && (SlidingTimeout || count == 1))
+                if (FlushTimeout > 0 && (SlidingTimeout || firstEventInQueue))
                 {
                     // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
                     _flushTimer.Change(FlushTimeout, -1);
@@ -240,20 +240,20 @@ namespace NLog.Targets.Wrappers
                 lockTaken = Monitor.TryEnter(_lockObject, timeoutMilliseconds);
                 if (lockTaken)
                 {
-                    if (_flushTimer == null)
+                    if (_flushTimer is null)
                         return;
 
                     WriteEventsInBuffer(null);
                 }
                 else
                 {
-                    if (_buffer.Count > 0)
+                    if (!_buffer.IsEmpty)
                         _flushTimer?.Change(FlushTimeout, -1);   // Schedule new retry timer
                 }
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "BufferingWrapper(Name={0}): Error in flush procedure.", Name);
+                InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
 
                 if (exception.MustBeRethrownImmediately())
                 {
@@ -271,19 +271,19 @@ namespace NLog.Targets.Wrappers
 
         private void WriteEventsInBuffer(string reason)
         {
-            if (WrappedTarget == null)
+            if (WrappedTarget is null)
             {
-                InternalLogger.Error("BufferingWrapper(Name={0}): WrappedTarget is NULL", Name);
+                InternalLogger.Error("{0}: WrappedTarget is NULL", this);
                 return;
             }
 
             lock (_lockObject)
             {
-                AsyncLogEventInfo[] logEvents = _buffer.GetEventsAndClear();
+                AsyncLogEventInfo[] logEvents = _buffer.DequeueBatch(int.MaxValue);
                 if (logEvents.Length > 0)
                 {
                     if (reason != null)
-                        InternalLogger.Trace("BufferingWrapper(Name={0}): Writing {1} events ({2})", Name, logEvents.Length, reason);
+                        InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Length, reason);
                     WrappedTarget.WriteAsyncLogEvents(logEvents);
                 }
             }

@@ -57,10 +57,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public FileContentsLayoutRenderer()
         {
-#if SILVERLIGHT || NETSTANDARD1_0
-            this.Encoding = Encoding.UTF8;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             Encoding = Encoding.Default;
+#else
+            Encoding = Encoding.UTF8;
 #endif
             _lastFileName = string.Empty;
         }
@@ -104,13 +104,13 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-#if NETSTANDARD1_0
-                return File.ReadAllText(fileName, Encoding);
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 using (var reader = new StreamReader(fileName, Encoding))
                 {
                     return reader.ReadToEnd();
                 }
+#else
+                return File.ReadAllText(fileName, Encoding);
 #endif
             }
             catch (Exception exception)

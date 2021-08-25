@@ -137,25 +137,13 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Trace, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void TraceException([Localizable(false)] string message, Exception exception)
-        {
-            Trace(message, exception); 
         }
 
         /// <summary>
@@ -196,21 +184,6 @@ namespace NLog
             if (IsTraceEnabled)
             {
                 WriteToTargets(LogLevel.Trace, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void Trace([Localizable(false)] string message, Exception exception)
-        {
-            if (IsTraceEnabled)
-            {
-                WriteToTargets(LogLevel.Trace, exception, message, null);
             }
         }
 
@@ -285,22 +258,6 @@ namespace NLog
         { 
             if (IsTraceEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Trace(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
@@ -421,25 +378,13 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Debug, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void DebugException([Localizable(false)] string message, Exception exception)
-        {
-            Debug(message, exception); 
         }
 
         /// <summary>
@@ -480,21 +425,6 @@ namespace NLog
             if (IsDebugEnabled)
             {
                 WriteToTargets(LogLevel.Debug, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void Debug([Localizable(false)] string message, Exception exception)
-        {
-            if (IsDebugEnabled)
-            {
-                WriteToTargets(LogLevel.Debug, exception, message, null);
             }
         }
 
@@ -569,22 +499,6 @@ namespace NLog
         { 
             if (IsDebugEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Debug(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
@@ -705,25 +619,13 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Info, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Info</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void InfoException([Localizable(false)] string message, Exception exception)
-        {
-            Info(message, exception); 
         }
 
         /// <summary>
@@ -764,21 +666,6 @@ namespace NLog
             if (IsInfoEnabled)
             {
                 WriteToTargets(LogLevel.Info, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Info</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void Info([Localizable(false)] string message, Exception exception)
-        {
-            if (IsInfoEnabled)
-            {
-                WriteToTargets(LogLevel.Info, exception, message, null);
             }
         }
 
@@ -853,22 +740,6 @@ namespace NLog
         { 
             if (IsInfoEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Info(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
@@ -989,25 +860,13 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Warn, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void WarnException([Localizable(false)] string message, Exception exception)
-        {
-            Warn(message, exception); 
         }
 
         /// <summary>
@@ -1048,21 +907,6 @@ namespace NLog
             if (IsWarnEnabled)
             {
                 WriteToTargets(LogLevel.Warn, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void Warn([Localizable(false)] string message, Exception exception)
-        {
-            if (IsWarnEnabled)
-            {
-                WriteToTargets(LogLevel.Warn, exception, message, null);
             }
         }
 
@@ -1137,22 +981,6 @@ namespace NLog
         { 
             if (IsWarnEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Warn(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
@@ -1273,25 +1101,13 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Error, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Error</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void ErrorException([Localizable(false)] string message, Exception exception)
-        {
-            Error(message, exception); 
         }
 
         /// <summary>
@@ -1332,21 +1148,6 @@ namespace NLog
             if (IsErrorEnabled)
             {
                 WriteToTargets(LogLevel.Error, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Error</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void Error([Localizable(false)] string message, Exception exception)
-        {
-            if (IsErrorEnabled)
-            {
-                WriteToTargets(LogLevel.Error, exception, message, null);
             }
         }
 
@@ -1421,22 +1222,6 @@ namespace NLog
         { 
             if (IsErrorEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Error(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
@@ -1557,25 +1342,13 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                if (messageFunc == null)
+                if (messageFunc is null)
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Fatal, null, messageFunc());
             }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void FatalException([Localizable(false)] string message, Exception exception)
-        {
-            Fatal(message, exception); 
         }
 
         /// <summary>
@@ -1616,21 +1389,6 @@ namespace NLog
             if (IsFatalEnabled)
             {
                 WriteToTargets(LogLevel.Fatal, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void Fatal([Localizable(false)] string message, Exception exception)
-        {
-            if (IsFatalEnabled)
-            {
-                WriteToTargets(LogLevel.Fatal, exception, message, null);
             }
         }
 
@@ -1705,22 +1463,6 @@ namespace NLog
         { 
             if (IsFatalEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Fatal(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }

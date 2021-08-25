@@ -41,6 +41,7 @@ namespace NLog.Layouts
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -73,7 +74,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
-        internal StackTraceUsage StackTraceUsage { get; private set; }
+        internal StackTraceUsage StackTraceUsage { get; set; }
 
         private const int MaxInitialRenderBufferLength = 16384;
         private int _maxRenderedLength;
@@ -81,7 +82,8 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
-        protected LoggingConfiguration LoggingConfiguration { get; private set; }
+        [CanBeNull]
+        protected internal LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
@@ -147,26 +149,26 @@ namespace NLog.Layouts
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
         {
-            if (layoutMethod == null)
+            if (layoutMethod is null)
                 throw new ArgumentNullException(nameof(layoutMethod));
 
-#if NETSTANDARD1_0
-            var name = $"{layoutMethod.Target?.ToString()}";
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
+#else
+            var name = $"{layoutMethod.Target?.ToString()}";            
 #endif
-            var layoutRenderer = CreateFuncLayoutRenderer(layoutMethod, options, name);
+            var layoutRenderer = CreateFuncLayoutRenderer((l, c) => layoutMethod(l), options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
         }
 
-        private static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options, string name)
+        internal static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options, string name)
         {
             if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
-                return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, (l, c) => layoutMethod(l));
+                return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, layoutMethod);
             else if ((options & LayoutRenderOptions.ThreadSafe) != 0)
-                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l));
+                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, layoutMethod);
             else
-                return new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
+                return new LayoutRenderers.FuncLayoutRenderer(name, layoutMethod);
         }
 
         /// <summary>
@@ -222,7 +224,7 @@ namespace NLog.Layouts
 
         internal virtual void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            Precalculate(logEvent); // Allow custom Layouts to work with OptimizeBufferReuse
+            Precalculate(logEvent); // Allow custom Layouts to also work
         }
 
         /// <summary>
@@ -248,8 +250,11 @@ namespace NLog.Layouts
                     return;
                 }
             }
+            else
+            {
+                cacheLayoutResult = false;
+            }
 
-            cacheLayoutResult = cacheLayoutResult && !ThreadAgnostic;
             using (var localTarget = new AppendBuilderCreator(target, cacheLayoutResult))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);
@@ -446,7 +451,7 @@ namespace NLog.Layouts
         {
             if (nestedItems?.Count > 0)
             {
-                var nestedNames = nestedItems.Select(c => nextItemToString(c)).ToArray();
+                var nestedNames = nestedItems.Select(nextItemToString).ToArray();
                 return string.Concat(GetType().Name, "=", string.Join("|", nestedNames));
             }
             return base.ToString();
@@ -462,6 +467,15 @@ namespace NLog.Layouts
         {
             rawValue = null;
             return false;
+        }
+
+        /// <summary>
+        /// Resolve from DI <see cref="LogFactory.ServiceRepository"/>
+        /// </summary>
+        /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur</remarks>
+        protected T ResolveService<T>() where T : class
+        {
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(IsInitialized);
         }
     }
 }

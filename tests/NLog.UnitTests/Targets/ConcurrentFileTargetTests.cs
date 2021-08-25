@@ -32,6 +32,7 @@
 // 
 
 #if !NETSTANDARD
+
 #define DISABLE_FILE_INTERNAL_LOGGING
 
 namespace NLog.UnitTests.Targets
@@ -51,7 +52,7 @@ namespace NLog.UnitTests.Targets
 
     public class ConcurrentFileTargetTests : NLogTestBase
     {
-        private ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
+        private Logger _logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
 
         private void ConfigureSharedFile(string mode, string fileName)
         {
@@ -60,7 +61,7 @@ namespace NLog.UnitTests.Targets
             FileTarget ft = new FileTarget();
             ft.FileName = fileName;
             ft.Layout = "${message}";
-            ft.KeepFileOpen = true;
+            ft.ConcurrentWrites = true;
             ft.OpenFileCacheTimeout = 10;
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = LineEndingMode.LF;
@@ -98,7 +99,7 @@ namespace NLog.UnitTests.Targets
 
 #pragma warning disable xUnit1013 // Needed for test
         public void Process(string processIndex, string fileName, string numLogsString, string mode)
-#pragma warning restore xUnit1013 
+#pragma warning restore xUnit1013
         {
             Thread.CurrentThread.Name = processIndex;
 
@@ -128,7 +129,7 @@ namespace NLog.UnitTests.Targets
 
                     for (int i = 0; i < numLogs; ++i)
                     {
-                        logger.Debug(format, i);
+                        _logger.Debug(format, i);
                     }
 
                     LogManager.Configuration = null;     // Flush + Close
@@ -272,7 +273,7 @@ namespace NLog.UnitTests.Targets
                 }
                 catch (Exception ex)
                 {
-                    var reoderProblem = equalsWhenReorderd == null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
+                    var reoderProblem = equalsWhenReorderd is null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
                     throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a recording problem? {reoderProblem}", ex);
                 }
 

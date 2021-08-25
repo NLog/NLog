@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using NLog.Internal;
 
 namespace NLog.Targets.FileArchiveModes
 {
@@ -74,8 +75,10 @@ namespace NLog.Targets.FileArchiveModes
             {
                 return null;
             }
-
-            return new DateAndSequenceArchive(archiveFile.FullName, DateTime.MinValue, string.Empty, num);
+            
+            var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc();
+            var creationTime = creationTimeUtc > DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(creationTimeUtc) : DateTime.MinValue;
+            return new DateAndSequenceArchive(archiveFile.FullName, creationTime, string.Empty, num);
         }
 
         public override DateAndSequenceArchive GenerateArchiveFileName(string archiveFilePath, DateTime archiveDate, List<DateAndSequenceArchive> existingArchiveFiles)

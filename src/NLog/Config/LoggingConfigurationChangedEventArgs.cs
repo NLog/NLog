@@ -55,26 +55,12 @@ namespace NLog.Config
         /// Gets the old configuration.
         /// </summary>
         /// <value>The old configuration.</value>
-        public LoggingConfiguration DeactivatedConfiguration { get; private set; }
+        public LoggingConfiguration DeactivatedConfiguration { get; }
 
         /// <summary>
         /// Gets the new configuration.
         /// </summary>
         /// <value>The new configuration.</value>
-        public LoggingConfiguration ActivatedConfiguration { get; private set; }
-
-        /// <summary>
-        /// Gets the new configuration
-        /// </summary>
-        /// <value>The new configuration.</value>
-        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        public LoggingConfiguration OldConfiguration => ActivatedConfiguration;
-
-        /// <summary>
-        /// Gets the old configuration
-        /// </summary>
-        /// <value>The old configuration.</value>
-        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        public LoggingConfiguration NewConfiguration => DeactivatedConfiguration;
+        public LoggingConfiguration ActivatedConfiguration { get; }
     }
 }

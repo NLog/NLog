@@ -35,7 +35,6 @@ namespace NLog
 {
     using System;
     using System.Reflection;
-    using NLog.Common;
     using NLog.Config;
 
     /// <summary>
@@ -48,7 +47,7 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterJsonConverter(this ISetupSerializationBuilder setupBuilder, IJsonConverter jsonConverter)
         {
-            ConfigurationItemFactory.Default.JsonConverter = jsonConverter ?? NLog.Targets.DefaultJsonSerializer.Instance;
+            setupBuilder.LogFactory.ServiceRepository.RegisterJsonConverter(jsonConverter ?? new NLog.Targets.DefaultJsonSerializer(setupBuilder.LogFactory.ServiceRepository));
             return setupBuilder;
         }
 
@@ -57,7 +56,7 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterValueFormatter(this ISetupSerializationBuilder setupBuilder, IValueFormatter valueFormatter)
         {
-            ConfigurationItemFactory.Default.ValueFormatter = valueFormatter ?? NLog.MessageTemplates.ValueFormatter.Instance;
+            setupBuilder.LogFactory.ServiceRepository.RegisterValueFormatter(valueFormatter ?? new MessageTemplates.ValueFormatter(setupBuilder.LogFactory.ServiceRepository));
             return setupBuilder;
         }
 
@@ -66,11 +65,11 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterObjectTransformation<T>(this ISetupSerializationBuilder setupBuilder, Func<T, object> transformer)
         {
-            if (transformer == null)
+            if (transformer is null)
                 throw new ArgumentNullException(nameof(transformer));
 
-            var original = ConfigurationItemFactory.Default.ObjectTypeTransformer;
-            ConfigurationItemFactory.Default.ObjectTypeTransformer = new ObjectTypeTransformation<T>(transformer, original);
+            var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
+            setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation<T>(transformer, original));
             return setupBuilder;
         }
 
@@ -79,13 +78,13 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterObjectTransformation(this ISetupSerializationBuilder setupBuilder, Type objectType, Func<object, object> transformer)
         {
-            if (objectType == null)
+            if (objectType is null)
                 throw new ArgumentNullException(nameof(objectType));
-            if (transformer == null)
+            if (transformer is null)
                 throw new ArgumentNullException(nameof(transformer));
 
-            var original = ConfigurationItemFactory.Default.ObjectTypeTransformer;
-            ConfigurationItemFactory.Default.ObjectTypeTransformer = new ObjectTypeTransformation(objectType, transformer, original);
+            var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
+            setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation(objectType, transformer, original));
             return setupBuilder;
         }
 

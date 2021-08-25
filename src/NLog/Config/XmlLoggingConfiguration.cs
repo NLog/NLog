@@ -42,10 +42,6 @@ namespace NLog.Config
     using NLog.Internal;
     using NLog.Layouts;
     using JetBrains.Annotations;
-#if SILVERLIGHT
-// ReSharper disable once RedundantUsingDirective
-    using System.Windows;
-#endif
 
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
@@ -57,21 +53,18 @@ namespace NLog.Config
     /// - This class is thread-safe.<c>.ToList()</c> is used for that purpose.
     /// - Update TemplateXSD.xml for changes outside targets
     /// </remarks>
-    public class XmlLoggingConfiguration : LoggingConfigurationParser
+    public class XmlLoggingConfiguration : LoggingConfigurationParser, IInitializeSucceeded
     {
-#if __ANDROID__
-
-        /// <summary>
-        /// Prefix for assets in Xamarin Android
-        /// </summary>
-        private const string AssetsPrefix = "assets/";
-#endif
-
         private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string _originalFileName;
 
         private readonly Stack<string> _currentFilePath = new Stack<string>();
+
+        internal XmlLoggingConfiguration(LogFactory logFactory)
+            : base(logFactory)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -89,10 +82,7 @@ namespace NLog.Config
         public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            using (XmlReader reader = CreateFileReader(fileName))
-            {
-                Initialize(reader, fileName);
-            }
+            LoadFromXmlFile(fileName);
         }
 
         /// <summary>
@@ -177,19 +167,13 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="xmlContents">The XML contents.</param>
+        /// <param name="xmlContents">NLog configuration as XML string.</param>
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         internal XmlLoggingConfiguration([NotNull] string xmlContents, [CanBeNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            using (var stringReader = new StringReader(xmlContents))
-            {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    Initialize(reader, fileName);
-                }
-            }
+            LoadFromXmlContent(xmlContents, fileName);
         }
 
         /// <summary>
@@ -211,7 +195,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !NETSTANDARD
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -272,9 +256,14 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName, LogFactory);
-            else
-                return base.Reload();
+            {
+                var newConfig = new XmlLoggingConfiguration(LogFactory);
+                newConfig.PrepareForReload(this);
+                newConfig.LoadFromXmlFile(_originalFileName);
+                return newConfig;
+            }
+
+            return base.Reload();
         }
 
         /// <summary>
@@ -303,6 +292,25 @@ namespace NLog.Config
             LogManager.LogFactory.ResetCandidateConfigFilePath();
         }
 
+        private void LoadFromXmlFile(string fileName)
+        {
+            using (XmlReader reader = CreateFileReader(fileName))
+            {
+                Initialize(reader, fileName);
+            }
+        }
+
+        internal void LoadFromXmlContent(string xmlContent, string fileName)
+        {
+            using (var stringReader = new StringReader(xmlContent))
+            {
+                using (XmlReader reader = XmlReader.Create(stringReader))
+                {
+                    Initialize(reader, fileName);
+                }
+            }
+        }
+
         /// <summary>
         /// Create XML reader for (xml config) file.
         /// </summary>
@@ -313,16 +321,6 @@ namespace NLog.Config
             if (!string.IsNullOrEmpty(fileName))
             {
                 fileName = fileName.Trim();
-#if __ANDROID__
-                //support loading config from special assets folder in nlog.config
-                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    //remove prefix
-                    fileName = fileName.Substring(AssetsPrefix.Length);
-                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
-                    return XmlReader.Create(stream);
-                }
-#endif
                 return LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName);
             }
             return null;
@@ -352,7 +350,6 @@ namespace NLog.Config
                     ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-                CheckParsingErrors(content);
             }
             catch (Exception exception)
             {
@@ -363,37 +360,10 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
+                var configurationException = new NLogConfigurationException(exception, "Exception when loading configuration {0}", fileName);
                 InternalLogger.Error(exception, configurationException.Message);
                 if (!ignoreErrors && (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions || configurationException.MustBeRethrown()))
                     throw configurationException;
-            }
-        }
-
-        /// <summary>
-        /// Checks whether any error during XML configuration parsing has occured.
-        /// If there are any and <c>ThrowConfigExceptions</c> or <c>ThrowExceptions</c>
-        /// setting is enabled - throws <c>NLogConfigurationException</c>, otherwise
-        /// just write an internal log at Warn level.
-        /// </summary>
-        /// <param name="rootContentElement">Root NLog configuration xml element</param>
-        private void CheckParsingErrors(NLogXmlElement rootContentElement)
-        {
-            var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
-            if (parsingErrors.Any())
-            {
-                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
-                {
-                    string exceptionMessage = string.Join(Environment.NewLine, parsingErrors);
-                    throw new NLogConfigurationException(exceptionMessage);
-                }
-                else
-                {
-                    foreach (var parsingError in parsingErrors)
-                    {
-                        InternalLogger.Log(LogLevel.Warn, parsingError);
-                    }
-                }
             }
         }
 
@@ -447,7 +417,7 @@ namespace NLog.Config
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
 
-            var nlogElements = configurationElement.Elements("nlog").ToList();
+            var nlogElements = configurationElement.FilterChildren("nlog");
             foreach (var nlogElement in nlogElements)
             {
                 ParseNLogElement(nlogElement, filePath, autoReloadDefault);
@@ -466,17 +436,22 @@ namespace NLog.Config
             nlogElement.AssertName("nlog");
 
             bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-            if (!string.IsNullOrEmpty(filePath))
-                _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
             try
             {
-                _currentFilePath.Push(filePath);
-                base.LoadConfig(nlogElement, Path.GetDirectoryName(filePath));
+                string baseDirectory = null;
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
+                    _currentFilePath.Push(filePath);
+                    baseDirectory = Path.GetDirectoryName(filePath);
+                }
+                base.LoadConfig(nlogElement, baseDirectory);
             }
             finally
             {
-                _currentFilePath.Pop();
+                if (!string.IsNullOrEmpty(filePath))
+                    _currentFilePath.Pop();
             }
         }
 
@@ -518,12 +493,7 @@ namespace NLog.Config
                     fullNewFileName = Path.Combine(baseDirectory, newFileName);
                 }
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-                newFileName = newFileName.Replace("\\", "/");
-                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
-#else
                 if (File.Exists(fullNewFileName))
-#endif
                 {
                     InternalLogger.Debug("Including file '{0}'", fullNewFileName);
                     ConfigureFromFile(fullNewFileName, autoReloadDefault);
@@ -577,7 +547,7 @@ namespace NLog.Config
             if (Path.IsPathRooted(fileMask))
             {
                 directory = Path.GetDirectoryName(fileMask);
-                if (directory == null)
+                if (directory is null)
                 {
                     InternalLogger.Warn("directory is empty for include of '{0}'", fileMask);
                     return;
@@ -585,7 +555,7 @@ namespace NLog.Config
 
                 var filename = Path.GetFileName(fileMask);
 
-                if (filename == null)
+                if (filename is null)
                 {
                     InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);
                     return;
@@ -593,11 +563,7 @@ namespace NLog.Config
                 fileMask = filename;
             }
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var files = Directory.EnumerateFiles(directory, fileMask);
-#else
             var files = Directory.GetFiles(directory, fileMask);
-#endif
             foreach (var file in files)
             {
                 //note we exclude our self in ConfigureFromFile
@@ -607,12 +573,7 @@ namespace NLog.Config
 
         private static string GetFileLookupKey([NotNull] string fileName)
         {
-#if SILVERLIGHT && !WINDOWS_PHONE
-            // file names are relative to XAP
-            return fileName;
-#else
             return Path.GetFullPath(fileName);
-#endif
         }
 
         /// <inheritdoc />

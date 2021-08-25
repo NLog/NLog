@@ -150,7 +150,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
             else
             {
-                if (_groupMatchEvaluator == null)
+                if (_groupMatchEvaluator is null)
                     _groupMatchEvaluator = m => ReplaceNamedGroup(ReplaceGroupName, ReplaceWith, m);
                 return _regexHelper.Regex?.Replace(text, _groupMatchEvaluator) ?? text;
             }
@@ -163,13 +163,11 @@ namespace NLog.LayoutRenderers.Wrappers
         [Obsolete("This class should not be used. Marked obsolete on NLog 4.7")]
         public class Replacer
         {
-            private readonly string _text;
             private readonly string _replaceGroupName;
             private readonly string _replaceWith;
 
             internal Replacer(string text, string replaceGroupName, string replaceWith)
             {
-                _text = text;
                 _replaceGroupName = replaceGroupName;
                 _replaceWith = replaceWith;
             }

@@ -33,13 +33,13 @@
 
 namespace NLog.Internal.NetworkSenders
 {
-#if !NETSTANDARD1_0 && !SILVERLIGHT
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System;
     using System.Net.Security;
     using System.Net.Sockets;
     using System.Security.Authentication;
 
-    class SslSocketProxy : ISocket, IDisposable
+    internal sealed class SslSocketProxy : ISocket, IDisposable
     {
         readonly AsyncCallback _sendCompleted;
         readonly SocketProxy _socketProxy;

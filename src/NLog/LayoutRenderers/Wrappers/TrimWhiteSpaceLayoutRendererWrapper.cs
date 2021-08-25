@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TrimWhiteSpaceLayoutRendererWrapper" /> class.
@@ -76,9 +76,9 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        protected override string Transform(string text)
         {
+            throw new NotSupportedException();
         }
 
         private static void TransformTrimWhiteSpaces(StringBuilder builder, int startPos)

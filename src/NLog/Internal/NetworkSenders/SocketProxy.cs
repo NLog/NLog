@@ -87,7 +87,6 @@ namespace NLog.Internal.NetworkSenders
             return _socket.SendAsync(args);
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Invokes SendToAsync method on the wrapped socket.
         /// </summary>
@@ -97,7 +96,6 @@ namespace NLog.Internal.NetworkSenders
         {
             return _socket.SendToAsync(args);
         }
-#endif
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

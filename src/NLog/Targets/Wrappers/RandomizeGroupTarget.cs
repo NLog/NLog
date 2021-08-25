@@ -89,7 +89,6 @@ namespace NLog.Targets.Wrappers
         public RandomizeGroupTarget(params Target[] targets)
             : base(targets)
         {
-            OptimizeBufferReuse = GetType() == typeof(RandomizeGroupTarget);    // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

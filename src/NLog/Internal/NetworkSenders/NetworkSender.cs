@@ -167,9 +167,6 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Parsed endpoint.</returns>
         protected virtual EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
         {
-#if SILVERLIGHT
-            return new DnsEndPoint(uri.Host, uri.Port, addressFamily);
-#else
             switch (uri.HostNameType)
             {
                 case UriHostNameType.IPv4:
@@ -178,10 +175,10 @@ namespace NLog.Internal.NetworkSenders
 
                 default:
                     {
-#if NETSTANDARD1_0
-                        var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList;
+#else
+                        var addresses = Dns.GetHostAddressesAsync(uri.Host).ConfigureAwait(false).GetAwaiter().GetResult();
 #endif
                         foreach (var addr in addresses)
                         {
@@ -194,7 +191,6 @@ namespace NLog.Internal.NetworkSenders
                         throw new IOException($"Cannot resolve '{uri.Host}' to an address in '{addressFamily}'");
                     }
             }
-#endif
         }
 
         public virtual void CheckSocket()

@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+
+    <TargetFrameworks>net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+
+    <Title>NLog Database Target</Title>
+    <Company>NLog</Company>
+    <Description>NLog.Database includes DatabaseTarget for writing to any database with DbProvider support</Description>
+    <Product>NLog Database v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
+
+    <PackageReleaseNotes>
+      Docs:
+      https://github.com/nlog/NLog/wiki/Database-target
+    </PackageReleaseNotes>
+    <PackageTags>NLog;Database;SQL;logging;log</PackageTags>
+    <PackageIcon>N.png</PackageIcon>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>NLog.Database for .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog.Database for .NET Framework 4.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+ 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog.Database for .NET Framework 3.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+    <Title>NLog.Database for NetStandard 1.3</Title>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+    <Title>NLog.Database for NetStandard 1.5</Title>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.Database for NetStandard 2.0</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net35' ">
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />    
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' or '$(TargetFramework)' == 'netstandard1.3' ">
+    <PackageReference Include="System.Data.Common" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
+  </ItemGroup>
+  <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
+    <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
+  </Target>
+
+</Project>

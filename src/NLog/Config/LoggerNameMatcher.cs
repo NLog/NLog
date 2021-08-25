@@ -35,7 +35,6 @@ namespace NLog.Config
 {
     using System;
     using System.Text.RegularExpressions;
-    using NLog.Common;
 
     /// <summary>
     /// Encapsulates <see cref="LoggingRule.LoggerNamePattern"/> and the logic to match the actual logger name
@@ -73,16 +72,17 @@ namespace NLog.Config
         /// <returns>A concrete <see cref="LoggerNameMatcher"/></returns>
         public static LoggerNameMatcher Create(string loggerNamePattern)
         {
-            if (loggerNamePattern == null)
+            if (loggerNamePattern is null)
                 return NoneLoggerNameMatcher.Instance;
+            if (loggerNamePattern.Trim()=="*")
+                return AllLoggerNameMatcher.Instance;
 
             int starPos1 = loggerNamePattern.IndexOf('*');
             int starPos2 = loggerNamePattern.IndexOf('*', starPos1 + 1);
             int questionPos = loggerNamePattern.IndexOf('?');
             if (starPos1 < 0 && questionPos < 0)
                 return new EqualsLoggerNameMatcher(loggerNamePattern);
-            if (loggerNamePattern == "*")
-                return AllLoggerNameMatcher.Instance;
+
             if (questionPos < 0)
             {
                 if (starPos1 == 0 && starPos2 == loggerNamePattern.Length - 1)
@@ -119,13 +119,13 @@ namespace NLog.Config
         {
             Pattern = pattern;
             _matchingArgument = matchingArgument;
-            _toString = "logNamePattern: (" + matchingArgument + ":" + Name + ")";
+            _toString = $"logNamePattern: ({matchingArgument}:{MatchMode})";
         }
         public override string ToString()
         {
             return _toString;
         }
-        protected abstract string Name { get; }
+        protected abstract string MatchMode { get; }
 
         /// <summary>
         /// Checks whether given name matches the logger name pattern.
@@ -140,7 +140,7 @@ namespace NLog.Config
         /// </summary>
         class NoneLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "None";
+            protected override string MatchMode => "None";
             public static readonly NoneLoggerNameMatcher Instance = new NoneLoggerNameMatcher();
             private NoneLoggerNameMatcher() 
                 : base(null, null)
@@ -159,7 +159,7 @@ namespace NLog.Config
         /// </summary>
         class AllLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "All";
+            protected override string MatchMode => "All";
             public static readonly AllLoggerNameMatcher Instance = new AllLoggerNameMatcher();
             private AllLoggerNameMatcher() 
                 : base("*", null) { }
@@ -175,12 +175,12 @@ namespace NLog.Config
         /// </summary>
         class EqualsLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "Equals";
+            protected override string MatchMode => "Equals";
             public EqualsLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.Equals(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -191,12 +191,12 @@ namespace NLog.Config
         /// </summary>
         class StartsWithLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "StartsWith";
+            protected override string MatchMode => "StartsWith";
             public StartsWithLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern.Substring(0, pattern.Length - 1)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.StartsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -207,12 +207,12 @@ namespace NLog.Config
         /// </summary>
         class EndsWithLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "EndsWith";
+            protected override string MatchMode => "EndsWith";
             public EndsWithLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern.Substring(1)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.EndsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -223,12 +223,12 @@ namespace NLog.Config
         /// </summary>
         class ContainsLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "Contains";
+            protected override string MatchMode => "Contains";
             public ContainsLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern.Substring(1, pattern.Length - 2)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.IndexOf(_matchingArgument, StringComparison.Ordinal) >= 0;
             }
         }
@@ -244,7 +244,7 @@ namespace NLog.Config
         /// </summary>
         class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "MultiplePattern";
+            protected override string MatchMode => "MultiplePattern";
             private readonly Regex _regex;
             private static string ConvertToRegex(string wildcardsPattern)
             {
@@ -262,7 +262,7 @@ namespace NLog.Config
             }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return false;
+                if (loggerName is null) return false;
                 return _regex.IsMatch(loggerName);
             }
         }

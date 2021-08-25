@@ -40,7 +40,7 @@ namespace NLog.Targets
     /// Marks class as a logging target and assigns a name to it.
     /// </summary>
     /// <remarks>This attribute is not required when registering the target in the API.</remarks>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class TargetAttribute : NameBaseAttribute
     {
         /// <summary>

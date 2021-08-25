@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Internal.NetworkSenders
 {
     using System;
@@ -190,20 +188,15 @@ namespace NLog.Internal.NetworkSenders
 
             e.Dispose();
 
-            if (asyncContinuation != null)
-            {
-                asyncContinuation(error);
-            }
+            asyncContinuation?.Invoke(error);
         }
 
         public override void CheckSocket()
         {
-            if (_socket == null)
+            if (_socket is null)
             {
                 DoInitialize();
             }
         }
     }
 }
-
-#endif

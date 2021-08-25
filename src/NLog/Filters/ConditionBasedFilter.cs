@@ -33,8 +33,8 @@
 
 namespace NLog.Filters
 {
-    using Conditions;
-    using Config;
+    using NLog.Conditions;
+    using NLog.Config;
 
     /// <summary>
     /// Matches when the specified condition is met.
@@ -46,8 +46,6 @@ namespace NLog.Filters
     [Filter("when")]
     public class ConditionBasedFilter : Filter
     {
-        private static readonly object boxedTrue = true;
-
         /// <summary>
         /// Gets or sets the condition expression.
         /// </summary>
@@ -55,7 +53,7 @@ namespace NLog.Filters
         [RequiredParameter]
         public ConditionExpression Condition { get; set; }
 
-        internal FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
+        internal FilterResult FilterDefaultAction { get; set; } = FilterResult.Neutral;
 
         /// <summary>
         /// Checks whether log event should be logged or not.
@@ -69,12 +67,12 @@ namespace NLog.Filters
         protected override FilterResult Check(LogEventInfo logEvent)
         {
             object val = Condition.Evaluate(logEvent);
-            if (boxedTrue.Equals(val))
+            if (ConditionExpression.BoxedTrue.Equals(val))
             {
                 return Action;
             }
 
-            return DefaultFilterResult;
+            return FilterDefaultAction;
         }
     }
 }

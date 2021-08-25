@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
     using NLog.Config;
     using NLog.Internal;
 
@@ -74,11 +75,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public bool EscapeDataNLogLegacy { get; set; }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             if (!string.IsNullOrEmpty(text))
@@ -89,6 +86,19 @@ namespace NLog.LayoutRenderers.Wrappers
                 return sb.ToString();
             }
             return string.Empty;
+        }
+
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        {
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > orgLength)
+            {
+                var text = builder.ToString(orgLength, builder.Length - orgLength);
+                builder.Length = orgLength;
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
+                UrlHelper.EscapeDataEncode(text, builder, encodingOptions);
+            }
         }
     }
 }

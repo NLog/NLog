@@ -34,10 +34,10 @@
 
 namespace NLog.Internal
 {
-#if NETSTANDARD1_0
-    using AsyncDelegate = System.Action<object>;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using AsyncDelegate = System.Threading.WaitCallback;
+#else
+    using AsyncDelegate = System.Action<object>;
 #endif
 
     /// <summary>

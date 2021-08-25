@@ -42,7 +42,7 @@ namespace NLog
     /// <remarks>Use this only when a custom Logger type is defined.</remarks>
     /// <typeparam name="T">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
     public class LogFactory<T> : LogFactory 
-        where T : Logger
+        where T : Logger, new()
     {
         /// <summary>
         /// Gets the logger with type <typeparamref name="T"/>.
@@ -51,7 +51,7 @@ namespace NLog
         /// <returns>An instance of <typeparamref name="T"/>.</returns>
         public new T GetLogger(string name)
         {
-            return (T)GetLogger(name, typeof(T));
+            return GetLogger<T>(name);
         }
 
         /// <summary>
@@ -64,12 +64,10 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public new T GetCurrentClassLogger()
         {
-#if NETSTANDARD1_0
-            var className = Internal.StackTraceUsageUtils.GetClassFullName();
-#elif SILVERLIGHT
-            var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
+#else
+            var className = Internal.StackTraceUsageUtils.GetClassFullName();            
 #endif
             return GetLogger(className);
         }

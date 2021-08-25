@@ -45,7 +45,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="TargetWithLayoutHeaderAndFooter" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         protected TargetWithLayoutHeaderAndFooter()
         {
@@ -54,6 +54,9 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the text to be rendered.
         /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
+        /// </remarks>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         public override Layout Layout
@@ -66,7 +69,7 @@ namespace NLog.Targets
                 {
                     base.Layout = value;
                 }
-                else if (LHF == null)
+                else if (LHF is null)
                 {
                     LHF = new LayoutWithHeaderAndFooter()
                     {
@@ -109,5 +112,5 @@ namespace NLog.Targets
             get => (LayoutWithHeaderAndFooter)base.Layout;
             set => base.Layout = value;
         }
-   }
+    }
 }

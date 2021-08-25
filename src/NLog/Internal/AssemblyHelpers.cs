@@ -38,10 +38,6 @@ namespace NLog.Internal
     using System.Reflection;
     using NLog.Common;
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-using System.Windows;
-#endif
-
     /// <summary>
     /// Helpers for <see cref="Assembly"/>.
     /// </summary>
@@ -56,7 +52,7 @@ using System.Windows;
         /// <returns></returns>
         public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
         {
-            string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
+            string fullFileName = baseDirectory is null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
 
             InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 #if NETSTANDARD1_5
@@ -71,11 +67,6 @@ using System.Windows;
                 InternalLogger.Warn(ex, "Fallback to AssemblyLoadContext.Default.LoadFromAssemblyPath for file: {0}", fullFileName);
                 return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
             }
-#elif SILVERLIGHT && !WINDOWS_PHONE
-            var stream = Application.GetResourceStream(new Uri(assemblyFileName, UriKind.Relative));
-            var assemblyPart = new AssemblyPart();
-            Assembly assembly = assemblyPart.Load(stream.Stream);
-            return assembly;
 #else
             Assembly asm = Assembly.LoadFrom(fullFileName);
             return asm;
@@ -92,17 +83,7 @@ using System.Windows;
         {
             InternalLogger.Info("Loading assembly: {0}", assemblyName);
 
-#if NETSTANDARD1_0 || WINDOWS_PHONE
-            var name = new AssemblyName(assemblyName);
-            return Assembly.Load(name);
-#elif SILVERLIGHT && !WINDOWS_PHONE
-            //as embedded resource
-            var assemblyFile = assemblyName + ".dll";
-            var stream = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-            var assemblyPart = new AssemblyPart();
-            Assembly assembly = assemblyPart.Load(stream.Stream);
-            return assembly;
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             try
             {
                 Assembly assembly = Assembly.Load(assemblyName);
@@ -122,6 +103,9 @@ using System.Windows;
                 InternalLogger.Trace("Haven't found' '{0}' in current domain", assemblyName);
                 throw;
             }
+#else
+            var name = new AssemblyName(assemblyName);
+            return Assembly.Load(name);
 #endif
         }
 
@@ -136,18 +120,18 @@ using System.Windows;
                 return false;
 #endif
             var expectedKeyToken = expected.GetPublicKeyToken();
-            var correctToken = expectedKeyToken == null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
+            var correctToken = expectedKeyToken is null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
             return correctToken;
         }
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         public static string GetAssemblyFileLocation(Assembly assembly)
         {
             string fullName = string.Empty;
 
             try
             {
-                if (assembly == null)
+                if (assembly is null)
                 {
                     return string.Empty;
                 }

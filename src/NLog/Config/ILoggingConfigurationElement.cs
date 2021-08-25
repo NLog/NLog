@@ -41,7 +41,7 @@ namespace NLog.Config
     public interface ILoggingConfigurationElement
     {
         /// <summary>
-        /// Name of the config section
+        /// Name of this configuration element
         /// </summary>
         string Name { get; }
         /// <summary>
@@ -49,7 +49,7 @@ namespace NLog.Config
         /// </summary>
         IEnumerable<KeyValuePair<string, string>> Values { get; }
         /// <summary>
-        /// Child config sections
+        /// Child configuration elements
         /// </summary>
         IEnumerable<ILoggingConfigurationElement> Children { get; }
     }

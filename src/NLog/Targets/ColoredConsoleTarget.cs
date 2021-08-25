@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Targets
 {
@@ -75,14 +75,13 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public ColoredConsoleTarget()
         {
             WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             UseDefaultRowHighlightingRules = true;
-            OptimizeBufferReuse = true;
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
 
@@ -90,7 +89,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public ColoredConsoleTarget(string name) : this()
@@ -103,7 +102,15 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
-        public bool ErrorStream { get; set; }
+        [Obsolete("Replaced by StdErr to align with ConsoleTarget. Marked obsolete on NLog 5.0")]
+        public bool ErrorStream { get => StdErr; set => StdErr = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        [DefaultValue(false)]
+        public bool StdErr { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use default row highlighting rules.
@@ -152,7 +159,6 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -168,7 +174,6 @@ namespace NLog.Targets
             }
         }
         private Encoding _encoding;
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
@@ -232,24 +237,22 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("ColoredConsole(Name={0}): Console detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", Name, reason);
+                    InternalLogger.Info("{0}: Console detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", this, reason);
                 }
             }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (_encoding != null)
                 ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
-#endif
 
-#if NET4_5
+#if !NET35 && !NET40
             if (DetectOutputRedirected)
             {
                 try
                 {
-                    _disableColors = ErrorStream ? Console.IsErrorRedirected : Console.IsOutputRedirected;
+                    _disableColors = StdErr ? Console.IsErrorRedirected : Console.IsOutputRedirected;
                     if (_disableColors)
                     {
-                        InternalLogger.Info("ColoredConsole(Name={0}): Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", Name);
+                        InternalLogger.Info("{0}: Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", this);
                         if (!AutoFlush && GetOutput() is StreamWriter streamWriter && !streamWriter.AutoFlush)
                         {
                             AutoFlush = true;
@@ -258,7 +261,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "ColoredConsole(Name={0}): Failed checking if Console Output Redirected.", Name);
+                    InternalLogger.Error(ex, "{0}: Failed checking if Console Output Redirected.", this);
                 }
             }
 #endif
@@ -276,11 +279,9 @@ namespace NLog.Targets
 
         private static IColoredConsolePrinter CreateConsolePrinter(bool enableAnsiOutput)
         {
-#if !__IOS__ && !__ANDROID__
             if (!enableAnsiOutput)
                 return new ColoredConsoleSystemPrinter();
             else
-#endif
                 return new ColoredConsoleAnsiPrinter();
         }
 
@@ -347,8 +348,8 @@ namespace NLog.Targets
             {
                 // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "ColoredConsole(Name={0}): {1} has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
+                InternalLogger.Warn(ex, "{0}: {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", this, ex.GetType());
             }
         }
 
@@ -389,7 +390,7 @@ namespace NLog.Targets
 
         private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor, bool wordHighlighting)
         {
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 TextWriter consoleWriter = _consolePrinter.AcquireTextWriter(consoleStream, targetBuilder.Result);
 
@@ -434,7 +435,7 @@ namespace NLog.Targets
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
         {
             var matchingRule = GetMatchingRowHighlightingRule(RowHighlightingRules, logEvent);
-            if (matchingRule == null && UseDefaultRowHighlightingRules)
+            if (matchingRule is null && UseDefaultRowHighlightingRules)
             {
                 matchingRule = GetMatchingRowHighlightingRule(_consolePrinter.DefaultConsoleRowHighlightingRules, logEvent);
             }
@@ -459,7 +460,7 @@ namespace NLog.Targets
 
             message = EscapeColorCodes(message);
 
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result;
 
@@ -467,7 +468,7 @@ namespace NLog.Targets
                 {
                     var hl = WordHighlightingRules[i];
                     var matches = hl.Matches(logEvent, message);
-                    if (matches == null || matches.Count == 0)
+                    if (matches is null || matches.Count == 0)
                         continue;
 
                     if (sb != null)
@@ -630,7 +631,7 @@ namespace NLog.Targets
 
         private TextWriter GetOutput()
         {
-            return ErrorStream ? Console.Error : Console.Out;
+            return StdErr ? Console.Error : Console.Out;
         }
     }
 }

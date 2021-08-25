@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.ComponentModel;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -44,6 +45,8 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public class TargetPropertyWithContext
     {
+        private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
         /// </summary>
@@ -72,18 +75,42 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Property Options' order='10' />
         [RequiredParameter]
-        public Layout Layout { get; set; }
-
-        /// <summary>
-        /// Gets or sets when an empty value should cause the property to be included
-        /// </summary>
-        [DefaultValue(true)]
-        public bool IncludeEmptyValue { get; set; } = true;
+        public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the type of the property.
         /// </summary>
         [DefaultValue(typeof(string))]
-        public Type PropertyType { get; set; } = typeof(string);
+        public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
+
+        /// <summary>
+        /// Gets or sets the fallback value when result value is not available
+        /// </summary>
+        public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
+
+        /// <summary>
+        /// Gets or sets when an empty value should cause the property to be included
+        /// </summary>
+        [DefaultValue(true)]
+        public bool IncludeEmptyValue
+        {
+            get => _includeEmptyValue;
+            set
+            {
+                _includeEmptyValue = value;
+                if (!value)
+                    DefaultValue = new Layout<string>(null);
+                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
+                    DefaultValue = null;
+            }
+        }
+        private bool _includeEmptyValue = true;
+
+        /// <summary>
+        /// Render Result Value
+        /// </summary>
+        /// <param name="logEvent">Log event for rendering</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        public object RenderValue(LogEventInfo logEvent) => _layoutInfo.RenderValue(logEvent);
     }
 }

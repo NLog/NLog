@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog
 {
     using System;
@@ -3317,7 +3315,88 @@ namespace NLog
         #endregion
 
         // end of generated code
+
+        void ILoggerBase.LogException(LogLevel level, [Localizable(false)] string message, Exception exception)
+        {
+            Log(level, exception, message, NLog.Internal.ArrayHelper.Empty<object>());
+        }
+
+        void ILoggerBase.Log(LogLevel level, [Localizable(false)] string message, Exception exception)
+        {
+            Log(level, exception, message, NLog.Internal.ArrayHelper.Empty<object>());
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        public void TraceException([Localizable(false)] string message, Exception exception)
+        {
+            Trace(exception, message);
+        }
+
+        void ILogger.Trace([Localizable(false)] string message, Exception exception)
+        {
+            Trace(exception, message);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+
+        public void DebugException([Localizable(false)] string message, Exception exception)
+        {
+            Debug(exception, message);
+        }
+
+        void ILogger.Debug([Localizable(false)] string message, Exception exception)
+        {
+            Debug(exception, message);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        public void  InfoException([Localizable(false)] string message, Exception exception)
+        {
+            Info(exception, message);
+        }
+
+        void ILogger.Info([Localizable(false)] string message, Exception exception)
+        {
+            Info(exception, message);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        public void  WarnException([Localizable(false)] string message, Exception exception)
+        {
+            Warn(exception, message);
+        }
+
+        void ILogger.Warn([Localizable(false)] string message, Exception exception)
+        {
+            Warn(exception, message);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        public void ErrorException([Localizable(false)] string message, Exception exception)
+        {
+            Error(exception, message);
+        }
+
+        void ILogger.Error([Localizable(false)] string message, Exception exception)
+        {
+            Error(exception, message);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        public void FatalException([Localizable(false)] string message, Exception exception)
+        {
+            Fatal(exception, message);
+        }
+
+        void ILogger.Fatal([Localizable(false)] string message, Exception exception)
+        {
+            Fatal(exception, message);
+        }
     }
 }
-
-#endif

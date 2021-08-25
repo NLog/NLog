@@ -52,7 +52,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
             logger.Debug("a{0}", 1);
@@ -74,7 +74,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
             logger.Debug("a{0}", 1);
@@ -97,7 +97,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
             logger.Debug("a{0}", 1);
@@ -119,7 +119,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
             logger.Debug("a{0}", 1);
@@ -141,7 +141,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
             logger.Debug("a{0}", 1);
@@ -163,7 +163,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
             logger.Debug("a{0}", 1);
@@ -185,7 +185,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
             logger.Debug("a{0}", 1);
@@ -194,38 +194,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", ":00");
-        }
-
-        [Fact]
-        public void MessageWithExceptionTest()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog exceptionLoggingOldStyle='true'>
-                <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            ILogger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugLastMessage("debug", "a");
-
-            var ex = new InvalidOperationException("Exception message.");
-            
-            string newline = Environment.NewLine;
-
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.DebugException("Foo", ex);
-            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
-#pragma warning restore 0618
-
-            logger.Debug(ex, "Foo");
-            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
-
-            logger.Debug( "Foo", ex);
-            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
         [Fact]
@@ -239,22 +207,47 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
 
             var ex = new InvalidOperationException("Exception message.");
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.DebugException("Foo", ex);
-            AssertDebugLastMessage("debug", "Foo," + ex.ToString());
-#pragma warning restore 0618
 
             logger.Debug(ex, "Foo");
             AssertDebugLastMessage("debug", "Foo," + ex.ToString());
 
             logger.Debug(ex);
             AssertDebugLastMessage("debug", ex.ToString());
+        }
+
+        [Fact]
+        public void SingleParameterException_OutputsSingleStackTrace()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+            var logTarget = new NLog.Targets.DebugTarget("debug") { Layout = "${message}|${exception}" };
+            logConfig.AddRuleForAllLevels(logTarget);
+            logFactory.Configuration = logConfig;
+            var logger = logFactory.GetLogger("SingleParameterException");
+
+            // Act
+            try
+            {
+                logger.Info("Hello");
+                Exception argumentException = new ArgumentException("Holy Moly");
+#if !NET35
+                argumentException = new AggregateException(argumentException);
+#endif
+                throw argumentException;
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+            }
+
+            // Assert
+            Assert.StartsWith("System.ArgumentException: Holy Moly|System.ArgumentException", logTarget.LastMessage);
         }
     }
 }

@@ -50,6 +50,14 @@ namespace NLog.UnitTests.Targets
         private const int MaxMessageLength = EventLogTarget.EventLogMaxMessageLength;
 
         [Fact]
+        public void EventLogSource_AppDomainFriendlyName()
+        {
+            var eventLogTarget = new EventLogTarget();
+            var eventLogSource = eventLogTarget.Source?.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal(AppDomain.CurrentDomain.FriendlyName, eventLogSource);
+        }
+
+        [Fact]
         public void MaxMessageLengthShouldBe16384_WhenNotSpecifyAnyOption()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -245,7 +253,6 @@ namespace NLog.UnitTests.Targets
             Layout entryTypeLayout = layoutString != null ? new SimpleLayout(layoutString) : null;
 
             var eventRecords = WriteWithMock(logLevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout).ToList();
-
             Assert.Single(eventRecords);
             AssertWrittenMessage(eventRecords, expectedMessage);
         }
@@ -271,7 +278,6 @@ namespace NLog.UnitTests.Targets
             string messagePart2 = "this part must be split";
             string testMessage = messagePart1 + messagePart2;
             var entries = WriteWithMock(logLevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
-
             Assert.Equal(expectedEntryCount, entries.Count);
         }
 
@@ -506,8 +512,8 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = new SimpleLayout(eventId.ToString());
-            target.Category = new SimpleLayout(category.ToString());
+            target.EventId = eventId;
+            target.Category = (short)category;
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(LogLevel.Error, "Simple Test Message");
@@ -531,8 +537,8 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = new SimpleLayout("${event-properties:EventId}");
-            target.Category = new SimpleLayout("${event-properties:Category}");
+            target.EventId = "${event-properties:EventId}";
+            target.Category = "${event-properties:Category}";
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             LogEventInfo theEvent = new LogEventInfo(LogLevel.Error, "TestLoggerName", "Simple Message");
@@ -620,7 +626,7 @@ namespace NLog.UnitTests.Targets
 
             if (entryType != null)
             {
-                target.EntryType = entryType;
+                target.EntryType = new Layout<EventLogEntryType>(entryType);
             }
 
             return target;

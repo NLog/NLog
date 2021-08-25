@@ -116,8 +116,8 @@ namespace NLog.UnitTests.Layouts
             var innerJsonLayout = (JsonLayout)layouts[2];
             Assert.Equal(typeof(JsonLayout), innerJsonLayout.GetType());
             Assert.Equal(2, innerJsonLayout.Attributes.Count);
-            Assert.Equal("'${shortdate}'", innerJsonLayout.Attributes[0].Layout.ToString());
-            Assert.Equal("'${message}'", innerJsonLayout.Attributes[1].Layout.ToString());
+            Assert.Equal("${shortdate}", innerJsonLayout.Attributes[0].Layout.ToString());
+            Assert.Equal("${message}", innerJsonLayout.Attributes[1].Layout.ToString());
             Assert.Equal(typeof(SimpleLayout), layouts[3].GetType());
             Assert.Equal(typeof(SimpleLayout), layouts[4].GetType());
 

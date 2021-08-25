@@ -76,7 +76,7 @@ namespace NLog.UnitTests.Filters
             var config = new LoggingConfiguration(logFactory);
             var target = new NLog.Targets.DebugTarget() { Layout = "${message}" };
             config.AddRuleForAllLevels(target);
-            config.LoggingRules.Last().Filters.Add(new WhenMethodFilter((l) => l.LoggerName == logger1.Name ? FilterResult.Ignore : FilterResult.Neutral));
+            config.LoggingRules.Last().Filters.Add(new WhenMethodFilter((l) => l.LoggerName == logger1.Name ? FilterResult.Ignore : FilterResult.Log));
             logFactory.Configuration = config;
 
             // Act 1

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Config
 {
@@ -135,7 +135,7 @@ namespace NLog.Config
 
         internal void ReloadConfigOnTimer(object state)
         {
-            if (_reloadTimer == null && _isDisposing)
+            if (_reloadTimer is null && _isDisposing)
             {
                 return; //timer was disposed already. 
             }
@@ -169,9 +169,15 @@ namespace NLog.Config
                         return;
                     }
 
-                    newConfig = oldConfig.ReloadNewConfig();
-                    if (newConfig == null || ReferenceEquals(newConfig, oldConfig))
+                    newConfig = oldConfig.Reload();
+                    if (ReferenceEquals(newConfig, oldConfig))
                         return;
+
+                    if (newConfig is IInitializeSucceeded config2 && config2.InitializeSucceeded != true)
+                    {
+                        InternalLogger.Warn("NLog Config Reload() failed. Invalid XML?");
+                        return;
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -223,7 +229,7 @@ namespace NLog.Config
                     return;
                 }
 
-                if (_reloadTimer == null)
+                if (_reloadTimer is null)
                 {
                     var configuration = _logFactory._config;
                     if (configuration != null)
@@ -251,7 +257,7 @@ namespace NLog.Config
                 var fileNamesToWatch = config.FileNamesToWatch?.ToList();
                 if (fileNamesToWatch?.Count > 0)
                 {
-                    if (_watcher == null)
+                    if (_watcher is null)
                     {
                         _watcher = new MultiFileWatcher();
                         _watcher.FileChanged += ConfigFileChanged;

@@ -33,36 +33,53 @@
 
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Value indicating how stack trace should be captured when processing the log event.
     /// </summary>
+    [Flags]
     public enum StackTraceUsage
     {
         /// <summary>
-        /// Stack trace should not be captured.
+        /// No Stack trace needs to be captured.
         /// </summary>
-        None = 0, 
+        None = 0,
 
         /// <summary>
-        /// Stack trace should be captured without source-level information.
+        /// Stack trace should be captured. This option won't add the filenames and linenumbers
         /// </summary>
-        WithoutSource = 1,
+        WithStackTrace = 1,
 
-#if !SILVERLIGHT
         /// <summary>
-        /// Stack trace should be captured including source-level information such as line numbers.
+        /// Capture also filenames and linenumbers
         /// </summary>
-        WithSource = 2,
+        WithFileNameAndLineNumber = 2,
+
+        /// <summary>
+        /// Capture the location of the call
+        /// </summary>
+        WithCallSite = 4,
+
+        /// <summary>
+        /// Capture the class name for location of the call
+        /// </summary>
+        WithCallSiteClassName = 8,
+
+        /// <summary>
+        /// Stack trace should be captured. This option won't add the filenames and linenumbers.
+        /// </summary>
+        [Obsolete("Replace with `WithStackTrace`. Marked obsolete on NLog 5.0")]
+        WithoutSource = WithStackTrace,
+
+        /// <summary>
+        /// Stack trace should be captured including filenames and linenumbers.
+        /// </summary>
+        WithSource = WithStackTrace | WithFileNameAndLineNumber,
 
         /// <summary>
         /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
-        Max = 2,
-#else
-        /// <summary>
-        /// Capture maximum amount of the stack trace information supported on the platform.
-        /// </summary>
-        Max = 1,
-#endif
+        Max = WithSource,
     }
 }

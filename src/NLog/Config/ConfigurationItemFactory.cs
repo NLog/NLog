@@ -56,6 +56,7 @@ namespace NLog.Config
     {
         private static ConfigurationItemFactory _defaultInstance;
 
+        private readonly ServiceRepository _serviceRepository;
         private readonly IFactory[] _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
         private readonly Factory<Filter, FilterAttribute> _filters;
@@ -64,9 +65,6 @@ namespace NLog.Config
         private readonly MethodFactory _conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> _ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
-
-        private IJsonConverter _jsonSerializer = DefaultJsonSerializer.Instance;
-        private IObjectTypeTransformer _objectTypeTransformer = ObjectReflectionCache.Instance;
 
         /// <summary>
         /// Called before the assembly will be loaded.
@@ -78,15 +76,20 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
+            :this(new ServiceRepositoryInternal(), null, assemblies)
         {
-            CreateInstance = FactoryHelper.CreateInstance;
-            _targets = new Factory<Target, TargetAttribute>(this);
-            _filters = new Factory<Filter, FilterAttribute>(this);
-            _layoutRenderers = new LayoutRendererFactory(this);
-            _layouts = new Factory<Layout, LayoutAttribute>(this);
-            _conditionMethods = new MethodFactory(classType => MethodFactory.ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(classType));
-            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
-            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
+        }
+
+        internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
+        {
+            _serviceRepository = serviceRepository ?? throw new ArgumentNullException(nameof(serviceRepository));
+            _targets = new Factory<Target, TargetAttribute>(serviceRepository, globalDefaultFactory?._targets);
+            _filters = new Factory<Filter, FilterAttribute>(serviceRepository, globalDefaultFactory?._filters);
+            _layoutRenderers = new LayoutRendererFactory(serviceRepository, globalDefaultFactory?._layoutRenderers);
+            _layouts = new Factory<Layout, LayoutAttribute>(serviceRepository, globalDefaultFactory?._layouts);
+            _conditionMethods = new MethodFactory(globalDefaultFactory?._conditionMethods, classType => MethodFactory.ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(classType));
+            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(serviceRepository, globalDefaultFactory?._ambientProperties);
+            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(serviceRepository, globalDefaultFactory?._timeSources);
             _allFactories = new IFactory[]
             {
                 _targets,
@@ -114,7 +117,15 @@ namespace NLog.Config
         public static ConfigurationItemFactory Default
         {
             get => _defaultInstance ?? (_defaultInstance = BuildDefaultFactory());
-            set => _defaultInstance = value;
+            set
+            {
+                _defaultInstance = value;
+                if (value?._serviceRepository != null)
+                {
+                    value._serviceRepository.ConfigurationItemFactory = null;   // Reset local ServiceRepository-instance
+                }
+                LogManager.LogFactory.ServiceRepository.ConfigurationItemFactory = null;   // Reset global ServiceRepository-instance
+            }
         }
 
         /// <summary>
@@ -123,7 +134,12 @@ namespace NLog.Config
         /// <remarks>
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
-        public ConfigurationItemCreator CreateInstance { get; set; }
+        [Obsolete("Use LogFactory.ServiceRepository.RegisterService() instead for later resolve. Marked obsolete on NLog 5.0")]
+        public ConfigurationItemCreator CreateInstance
+        {
+            get => _serviceRepository.ConfigurationItemCreator;
+            set => _serviceRepository.ConfigurationItemCreator = value;
+        }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
@@ -166,47 +182,35 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
 
         /// <summary>
-        /// Legacy interface, no longer used by the NLog engine
+        /// Gets or sets the JSON serializer to use with <see cref="JsonLayout"/>
         /// </summary>
-        [Obsolete("Use JsonConverter property instead. Marked obsolete on NLog 4.5")]
-        public IJsonSerializer JsonSerializer
-        {
-            get => _jsonSerializer as IJsonSerializer;
-            set => _jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance;
-        }
-
-        /// <summary>
-        /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/> or <see cref="JsonLayout"/>
-        /// </summary>
+        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
         public IJsonConverter JsonConverter
         {
-            get => _jsonSerializer;
-            set => _jsonSerializer = value ?? DefaultJsonSerializer.Instance;
+            get => _serviceRepository.GetService<IJsonConverter>();
+            set => _serviceRepository.RegisterJsonConverter(value);
         }
 
         /// <summary>
         /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
+        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IValueFormatter)). Marked obsolete on NLog 5.0")]
         public IValueFormatter ValueFormatter
         {
-            get => MessageTemplates.ValueFormatter.Instance;
-            set => MessageTemplates.ValueFormatter.Instance = value;
+            get => _serviceRepository.GetService<IValueFormatter>();
+            set => _serviceRepository.RegisterValueFormatter(value);
         }
 
         /// <summary>
-        /// Gets or sets the custom object-type transformation for use in <see cref="JsonLayout"/>, <see cref="XmlLayout"/> or <see cref="NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper"/>
+        /// Gets or sets the parameter converter to use with <see cref="TargetWithContext"/> or <see cref="Layout{T}"/>
         /// </summary>
-        internal IObjectTypeTransformer ObjectTypeTransformer
+        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IPropertyTypeConverter)). Marked obsolete on NLog 5.0")]
+        public IPropertyTypeConverter PropertyTypeConverter
         {
-            get => _objectTypeTransformer;
-            set => _objectTypeTransformer = value ?? ObjectReflectionCache.Instance;
+            get => _serviceRepository.GetService<IPropertyTypeConverter>();
+            set => _serviceRepository.RegisterPropertyTypeConverter(value);
         }
-
-        /// <summary>
-        /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/>, <see cref="WebServiceTarget"/> or <see cref="TargetWithContext"/>
-        /// </summary>
-        public IPropertyTypeConverter PropertyTypeConverter { get; set; } = new PropertyTypeConverter();
-
+       
         /// <summary>
         /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
@@ -219,11 +223,12 @@ namespace NLog.Config
         {
             get
             {
-                if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogEventInfo.StringFormatMessageFormatter))
+                var messageFormatter = _serviceRepository.GetService<ILogMessageFormatter>();
+                if (ReferenceEquals(messageFormatter, LogMessageStringFormatter.Default))
                 {
                     return false;
                 }
-                else if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogMessageTemplateFormatter.Default.MessageFormatter))
+                else if ((messageFormatter as LogMessageTemplateFormatter)?.ForceTemplateRenderer == true)
                 {
                     return true;
                 }
@@ -232,7 +237,25 @@ namespace NLog.Config
                     return null;
                 }
             }
-            set => LogEventInfo.SetDefaultMessageFormatter(value);
+            set
+            {
+                if (value == false)
+                {
+                    InternalLogger.Info("Message Template String Format always enabled");
+                    _serviceRepository.RegisterSingleton<ILogMessageFormatter>(LogMessageStringFormatter.Default);
+                }
+                else if (value == true)
+                {
+                    InternalLogger.Info("Message Template Format always enabled");
+                    _serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(_serviceRepository, true, false));
+                }
+                else
+                {
+                    //null = auto
+                    InternalLogger.Info("Message Template Auto Format enabled");
+                    _serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(_serviceRepository, false, false));
+                }
+            }
         }
 
         /// <summary>
@@ -282,10 +305,14 @@ namespace NLog.Config
 
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
             var typesToScan = assembly.SafeGetTypes();
-            PreloadAssembly(typesToScan);
-            foreach (IFactory f in _allFactories)
+            if (typesToScan?.Length > 0)
             {
-                f.ScanTypes(typesToScan, itemNamePrefix);
+                var assemblyName = new AssemblyName(assembly.FullName).Name;
+                PreloadAssembly(typesToScan);
+                foreach (IFactory f in _allFactories)
+                {
+                    f.ScanTypes(typesToScan, assemblyName, itemNamePrefix);
+                }
             }
         }
 
@@ -313,7 +340,7 @@ namespace NLog.Config
         /// <param name="type"></param>
         private void CallPreload(Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 return;
             }
@@ -392,13 +419,19 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var nlogAssembly = typeof(ILogger).GetAssembly();
-            var factory = new ConfigurationItemFactory(nlogAssembly);
-            factory.RegisterExtendedItems();
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
+            factory.RegisterExternalItems();
+            return factory;
+        }
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+        internal static void ScanForAutoLoadExtensions(LogFactory logFactory)
+        {
+#if !NETSTANDARD1_3
             try
             {
+                var factory = logFactory.ServiceRepository.ConfigurationItemFactory;
+                var nlogAssembly = typeof(LogFactory).GetAssembly();
                 var assemblyLocation = string.Empty;
                 var extensionDlls = ArrayHelper.Empty<string>();
                 var fileLocations = GetAutoLoadingFileLocations();
@@ -419,7 +452,8 @@ namespace NLog.Config
                 }
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-                LoadNLogExtensionAssemblies(factory, nlogAssembly, extensionDlls);
+                var alreadyRegistered = LoadNLogExtensionAssemblies(factory, nlogAssembly, extensionDlls);
+                RegisterAppDomainAssemblies(factory, nlogAssembly, alreadyRegistered);
             }
             catch (System.Security.SecurityException ex)
             {
@@ -438,12 +472,13 @@ namespace NLog.Config
                 }
             }
             InternalLogger.Debug("Auto loading done");
+#else
+            // Nothing to do for Sonar Cube
 #endif
-            return factory;
         }
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
-        private static void LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
+#if !NETSTANDARD1_3
+        private static HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
                 {
@@ -470,7 +505,10 @@ namespace NLog.Config
                     }
 
                     InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
-                    //TODO NLog 5, check MustBeRethrown()
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
                 if (success)
                 {
@@ -478,8 +516,18 @@ namespace NLog.Config
                 }
             }
 
-#if !NETSTANDARD1_0
-            var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
+            return alreadyRegistered;
+        }
+
+        private static void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
+        {
+            alreadyRegistered.Add(nlogAssembly.FullName);
+
+#if !NETSTANDARD1_5
+            var allAssemblies = LogFactory.DefaultAppEnvironment.GetAppDomainRuntimeAssemblies();
+#else
+            var allAssemblies = new [] { nlogAssembly };
+#endif
             foreach (var assembly in allAssemblies)
             {
                 if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
@@ -487,39 +535,57 @@ namespace NLog.Config
                     factory.RegisterItemsFromAssembly(assembly);
                 }
 
-                if (assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase)
-                  || assembly.FullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
+                if (IncludeAsHiddenAssembly(assembly.FullName))
                 {
                     LogManager.AddHiddenAssembly(assembly);
                 }
             }
-#endif
         }
 
-        internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
+        private static bool IncludeAsHiddenAssembly(string assemblyFullName)
         {
-            var nlogAssembly = typeof(ILogger).GetAssembly();
-            var assemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
-            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", assemblyLocation);
-            if (!string.IsNullOrEmpty(assemblyLocation))
-                yield return new KeyValuePair<string, Assembly>(assemblyLocation, nlogAssembly);
+            if (assemblyFullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase))
+                return true;
 
-            var entryAssembly = Assembly.GetEntryAssembly();
-            var entryLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(entryAssembly));
-            InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryLocation);
-            if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
-                yield return new KeyValuePair<string, Assembly>(entryLocation, entryAssembly);
+            if (assemblyFullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (assemblyFullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return false;
+        }
+
+        internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
+        {
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
+            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyLocation);
+            if (!string.IsNullOrEmpty(nlogAssemblyLocation))
+                yield return new KeyValuePair<string, string>(nlogAssemblyLocation, nameof(nlogAssemblyLocation));
+
+            var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.EntryAssemblyLocation);
+            InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryAssemblyLocation);
+            if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
+                yield return new KeyValuePair<string, string>(entryAssemblyLocation, nameof(entryAssemblyLocation));
 
             // TODO Consider to prioritize AppDomain.PrivateBinPath
-            var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.CurrentAppDomain.BaseDirectory);
+            var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory);
             InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
-            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
-                yield return new KeyValuePair<string, Assembly>(baseDirectory, null);
+            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
+                yield return new KeyValuePair<string, string>(baseDirectory, nameof(baseDirectory));
         }
 
         private static string[] GetNLogExtensionFiles(string assemblyLocation)
@@ -536,7 +602,6 @@ namespace NLog.Config
                 .Select(Path.GetFileName)
                 .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
                 .Select(x => Path.Combine(assemblyLocation, x));
                 return extensionDlls.ToArray();
             }
@@ -570,25 +635,13 @@ namespace NLog.Config
         }
 #endif
 
-        /// <summary>
-        /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
-        /// </summary>
-        private void RegisterExtendedItems()
+            /// <summary>
+            /// Registers items in using late-bound types, so that we don't need a reference to the dll.
+            /// </summary>
+            private void RegisterExternalItems()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            string suffix = typeof(ILogger).AssemblyQualifiedName;
-            string myAssemblyName = "NLog,";
-            var p = suffix?.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);
-            if (p >= 0)
-            {
-                // register types
-                string extendedAssemblySuffix = ", NLog.Extended," + suffix.Substring(p.Value + myAssemblyName.Length);
-                string targetsNamespace = typeof(DebugTarget).Namespace;
-                _targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + extendedAssemblySuffix);
-            }
-#endif
 
-#if !SILVERLIGHT && !NET3_5 && !NET4_0
+#if !NET35 && !NET40
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
 #endif
         }

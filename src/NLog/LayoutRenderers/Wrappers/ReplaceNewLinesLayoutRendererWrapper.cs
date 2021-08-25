@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         private const string WindowsNewLine = "\r\n";
         private const string UnixNewLine = "\n";
@@ -87,9 +87,9 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        protected override string Transform(string text)
         {
+            throw new NotSupportedException();
         }
     }
 }

@@ -206,7 +206,7 @@ namespace MakeNLogXSD
 
                 result.Add(new XAttribute("type", enumType));
             }
-            else 
+            else
             {
                 string xsdType = GetXsdType(propertyType, true);
                 if (xsdType == null)
@@ -303,7 +303,7 @@ namespace MakeNLogXSD
         {
             if (string.IsNullOrWhiteSpace(apiTypeName))
             {
-                throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
+                throw new NotSupportedException("Unknown API empty type '" + apiTypeName + "'.");
             }
 
             if (IgnoreTypes.Contains(apiTypeName))
@@ -314,7 +314,7 @@ namespace MakeNLogXSD
             switch (apiTypeName)
             {
                 case "Layout":
-                    return attribute ? "SimpleLayoutAttribute" : "Layout";
+                    return GetLayoutType(attribute);
 
                 case "NLog.Filters.Filter":
                     return attribute ? null : "Filter";
@@ -360,7 +360,7 @@ namespace MakeNLogXSD
 
                 default:
                     if (
-                        apiTypeName.StartsWith("System.Collections.Generic.ISet")|| 
+                        apiTypeName.StartsWith("System.Collections.Generic.ISet") ||
                         apiTypeName.StartsWith("System.Collections.Generic.HashSet") ||
                         apiTypeName.StartsWith("System.Collections.Generic.IList") ||
                         apiTypeName.StartsWith("System.Collections.Generic.List") ||
@@ -371,8 +371,19 @@ namespace MakeNLogXSD
                         return "xs:string";
                     }
 
+                    if (apiTypeName.StartsWith("NLog.Layouts.Layout`1"))
+                    {
+                        // Layout<T>
+                        return GetLayoutType(attribute);
+                    }
+
                     throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
             }
+        }
+
+        private static string GetLayoutType(bool attribute)
+        {
+            return attribute ? "SimpleLayoutAttribute" : "Layout";
         }
     }
 }

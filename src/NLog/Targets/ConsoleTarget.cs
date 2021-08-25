@@ -90,9 +90,16 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
-        public bool Error { get; set; }
+        [Obsolete("Replaced by StdErr to align with ColoredConsoleTarget. Marked obsolete on NLog 5.0")]
+        public bool Error { get => StdErr; set => StdErr = value; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        [DefaultValue(false)]
+        public bool StdErr { get; set; }
+
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         /// </summary>
@@ -108,7 +115,6 @@ namespace NLog.Targets
             }
         }
         private Encoding _encoding;
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available
@@ -130,7 +136,7 @@ namespace NLog.Targets
         public bool AutoFlush { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to enable batch writing using char[]-buffers, instead of using <see cref="Console.WriteLine()"/>
+        /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
@@ -140,11 +146,10 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public ConsoleTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -152,7 +157,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public ConsoleTarget(string name) : this()
@@ -172,14 +177,12 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("Console(Name={0}): Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", Name, reason);
+                    InternalLogger.Info("{0}: Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", this, reason);
                 }
             }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (_encoding != null)
                 ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
-#endif
 
             base.InitializeTarget();
             if (Header != null)
@@ -355,8 +358,8 @@ namespace NLog.Targets
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "Console(Name={0}): {1} has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
+                InternalLogger.Warn(ex, "{0}: {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", this, ex.GetType());
             }
         }
 
@@ -370,14 +373,14 @@ namespace NLog.Targets
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "Console(Name={0}): {1} has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
+                InternalLogger.Warn(ex, "{0}: {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", this, ex.GetType());
             }
         }
 
         private TextWriter GetOutput()
         {
-            return Error ? Console.Error : Console.Out;
+            return StdErr ? Console.Error : Console.Out;
         }
     }
 }

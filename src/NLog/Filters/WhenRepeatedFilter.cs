@@ -101,8 +101,10 @@ namespace NLog.Filters
         /// Reuse internal buffers, and doesn't have to constantly allocate new buffers
         /// </summary>
         /// <docgen category='Performance Options' order='10' />
+        [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
         [DefaultValue(true)]
-        public bool OptimizeBufferReuse { get; set; }
+        public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
+        private bool? _optimizeBufferReuse;
 
         /// <summary>
         /// Default buffer size for the internal buffers
@@ -111,9 +113,6 @@ namespace NLog.Filters
         [DefaultValue(1000)]
         public int OptimizeBufferDefaultLength { get; set; }
 
-        /// <summary>
-        /// Can be used if <see cref="OptimizeBufferReuse"/> has been enabled.
-        /// </summary>
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
         private readonly Dictionary<FilterInfoKey, FilterInfo> _repeatFilter = new Dictionary<FilterInfoKey, FilterInfo>(1000);
@@ -128,7 +127,6 @@ namespace NLog.Filters
             MaxLength = 1000;
             DefaultFilterCacheSize = 1000;
             MaxFilterCacheSize = 50000;
-            OptimizeBufferReuse = true;
             OptimizeBufferDefaultLength = MaxLength;
         }
 
@@ -148,9 +146,9 @@ namespace NLog.Filters
 
             lock (_repeatFilter)
             {
-                using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                 {
-                    if (OptimizeBufferReuse && targetBuilder.Result.Capacity != OptimizeBufferDefaultLength)
+                    if (targetBuilder.Result.Capacity != OptimizeBufferDefaultLength)
                     {
                         // StringBuilder.Equals only works when StringBuilder.Capacity is the same
                         if (OptimizeBufferDefaultLength < MaxInitialRenderBufferLength)
@@ -164,13 +162,13 @@ namespace NLog.Filters
                         targetBuilder.Result.Capacity = OptimizeBufferDefaultLength;
                     }
 
-                    FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, OptimizeBufferReuse ? targetBuilder.Result : null);
+                    FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, targetBuilder.Result);
 
                     FilterInfo filterInfo;
                     if (!_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
                     {
                         filterInfo = CreateFilterInfo(logEvent);
-                        if (OptimizeBufferReuse && filterInfo.StringBuffer != null)
+                        if (filterInfo.StringBuffer != null)
                         {
                             filterInfo.StringBuffer.ClearBuilder();
                             int length = Math.Min(targetBuilder.Result.Length, MaxLength);
@@ -220,13 +218,13 @@ namespace NLog.Filters
 
             if (_objectPool.Count == 0)
             {
-                reusableObject = new FilterInfo(OptimizeBufferReuse ? new StringBuilder(OptimizeBufferDefaultLength) : null);
+                reusableObject = new FilterInfo(new StringBuilder(OptimizeBufferDefaultLength));
             }
             else
             {
                 reusableObject = _objectPool.Pop().Value;
                 // StringBuilder.Equals only works when StringBuilder.Capacity is the same
-                if (OptimizeBufferReuse && reusableObject.StringBuffer != null && reusableObject.StringBuffer.Capacity != OptimizeBufferDefaultLength)
+                if (reusableObject.StringBuffer != null && reusableObject.StringBuffer.Capacity != OptimizeBufferDefaultLength)
                 {
                     reusableObject.StringBuffer.Capacity = OptimizeBufferDefaultLength;
                 }
@@ -337,7 +335,7 @@ namespace NLog.Filters
                     LastLogTime = logTimeStamp;
                     LogLevel = logLevel;
                 }
-                else if (LogLevel == null || logLevel.Ordinal > LogLevel.Ordinal)
+                else if (LogLevel is null || logLevel.Ordinal > LogLevel.Ordinal)
                 {
                     LogLevel = logLevel;
                 }

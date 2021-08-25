@@ -33,7 +33,7 @@
 
 #define TRACE
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Targets
 {
@@ -60,6 +60,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Trace/Simple/Example.cs" />
     /// </example>
     [Target("Trace")]
+    [Target("TraceSystem")]
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
@@ -83,18 +84,17 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="TraceTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public TraceTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public TraceTarget(string name) : this()

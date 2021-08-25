@@ -44,16 +44,22 @@ namespace NLog.LayoutRenderers
     /// Render environmental information related to logging events.
     /// </summary>
     [NLogConfigurationItem]
-    public abstract class LayoutRenderer : ISupportsInitialize, IRenderable, IDisposable
+    public abstract class LayoutRenderer : ISupportsInitialize, IRenderable
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int _maxRenderedLength;
         private bool _isInitialized;
+        private IValueFormatter _valueFormatter;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
+
+        /// <summary>
+        /// Value formatter
+        /// </summary>
+        protected IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
@@ -63,22 +69,13 @@ namespace NLog.LayoutRenderers
         /// </returns>
         public override string ToString()
         {
-            var lra = GetType().GetCustomAttribute<LayoutRendererAttribute>();
+            var lra = GetType().GetFirstCustomAttribute<LayoutRendererAttribute>();
             if (lra != null)
             {
                 return $"Layout Renderer: ${{{lra.Name}}}";
             }
 
             return GetType().Name;
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -127,14 +124,30 @@ namespace NLog.LayoutRenderers
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (LoggingConfiguration == null)
+            if (LoggingConfiguration is null)
                 LoggingConfiguration = configuration;
 
             if (!_isInitialized)
             {
                 _isInitialized = true;
+                Initialize();
+            }
+        }
+
+        private void Initialize()
+        {
+            try
+            {
                 PropertyHelper.CheckRequiredParameters(this);
                 InitializeLayoutRenderer();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Exception in layout renderer initialization.");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
             }
         }
 
@@ -146,6 +159,7 @@ namespace NLog.LayoutRenderers
             if (_isInitialized)
             {
                 LoggingConfiguration = null;
+                _valueFormatter = null;
                 _isInitialized = false;
                 CloseLayoutRenderer();
             }
@@ -161,7 +175,7 @@ namespace NLog.LayoutRenderers
             if (!_isInitialized)
             {
                 _isInitialized = true;
-                InitializeLayoutRenderer();
+                Initialize();
             }
 
             try
@@ -198,18 +212,6 @@ namespace NLog.LayoutRenderers
         /// </summary>      
         protected virtual void CloseLayoutRenderer()
         {
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Close();
-            }
         }
 
         /// <summary>
@@ -291,6 +293,14 @@ namespace NLog.LayoutRenderers
         public static void Register(FuncLayoutRenderer layoutRenderer)
         {
             ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
+        }
+
+        /// <summary>
+        /// Resolves the interface service-type from the service-repository
+        /// </summary>
+        protected T ResolveService<T>() where T : class
+        {
+            return LoggingConfiguration.GetServiceProvider().ResolveService<T>(_isInitialized);
         }
     }
 }

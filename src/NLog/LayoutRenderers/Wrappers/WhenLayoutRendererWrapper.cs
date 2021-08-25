@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("When")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue
+    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
@@ -84,19 +84,19 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        private bool ShouldRenderInner(LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override string Transform(string text)
         {
-            return When == null || true.Equals(When.Evaluate(logEvent));
+            throw new NotSupportedException();
         }
 
-        /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        private bool ShouldRenderInner(LogEventInfo logEvent)
         {
+            return When is null || true.Equals(When.Evaluate(logEvent));
         }
 
         /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             if (ShouldRenderInner(logEvent))
             {
@@ -108,7 +108,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object value)
         {
-            if (layout == null)
+            if (layout is null)
             {
                 value = null;
                 return false;

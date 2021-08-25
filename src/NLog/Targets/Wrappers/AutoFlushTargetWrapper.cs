@@ -88,9 +88,6 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
         public AutoFlushTargetWrapper()
             : this(null)
         {
@@ -99,9 +96,6 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="name">Name of the target</param>
         public AutoFlushTargetWrapper(string name, Target wrappedTarget)
@@ -136,7 +130,7 @@ namespace NLog.Targets.Wrappers
             if (wrappedTarget is BufferingTargetWrapper)
                 return false;
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET35
             if (wrappedTarget is AsyncTaskTarget)
                 return false;
 #endif
@@ -152,14 +146,14 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (Condition == null || Condition.Evaluate(logEvent.LogEvent).Equals(true))
+            if (Condition is null || Condition.Evaluate(logEvent.LogEvent).Equals(true))
             {
                 if (AsyncFlush)
                 {
                     AsyncContinuation currentContinuation = logEvent.Continuation;
                     AsyncContinuation wrappedContinuation = (ex) =>
                     {
-                        if (ex == null)
+                        if (ex is null)
                             FlushOnCondition();
                         _pendingManualFlushList.CompleteOperation(ex);
                         currentContinuation(ex);
@@ -210,7 +204,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            _pendingManualFlushList.Clear();    // Maybe consider to wait a short while if pending requests?
+            _pendingManualFlushList.Clear(); // Maybe consider to wait a short while if pending requests?
             base.CloseTarget();
         }
     }

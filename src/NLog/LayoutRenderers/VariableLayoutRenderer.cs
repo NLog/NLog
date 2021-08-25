@@ -34,12 +34,11 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
     /// <summary>
-    /// Render a NLog variable (xml or config)
+    /// Render a NLog Configuration variable assigned from API or loaded from config-file
     /// </summary>
     [LayoutRenderer("var")]
     [ThreadSafe]
@@ -61,36 +60,34 @@ namespace NLog.LayoutRenderers
         public string Default { get; set; }
 
         /// <summary>
+        /// Gets the configuration variable layout matching the configured Name
+        /// </summary>
+        /// <remarks>Mostly relevant for the scanning of active NLog Layouts (Ex. CallSite capture)</remarks>
+        public Layout ActiveLayout => TryGetLayout(out var layout) ? layout : null;
+
+        /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
         protected override void InitializeLayoutRenderer()
         {
-            SimpleLayout layout;
-            if (TryGetLayout(out layout) && layout != null)
+            if (TryGetLayout(out var layout) && layout != null)
             {
                 //pass loggingConfiguration to layout
                 layout.Initialize(LoggingConfiguration);
-                if (!layout.ThreadSafe)
-                {
-                    InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${{var_{0}}}. Because of unsafe Layout={1}", Name, layout);
-                }
             }
 
             base.InitializeLayoutRenderer();
         }
 
         /// <summary>
-        /// Try get the 
+        /// Try lookup the configuration variable layout matching the configured Name
         /// </summary>
-        /// <param name="layout"></param>
-        /// <returns></returns>
-        private bool TryGetLayout(out SimpleLayout layout)
+        private bool TryGetLayout(out Layout layout)
         {
             layout = null;
             //Note: don't use LogManager (locking, recursion)
-            return Name != null && LoggingConfiguration?.Variables?.TryGetValue(Name, out layout) == true;
+            return Name != null && LoggingConfiguration?.TryLookupDynamicVariable(Name, out layout) == true;
         }
-
 
         /// <summary>
         /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
@@ -101,15 +98,10 @@ namespace NLog.LayoutRenderers
         {
             if (Name != null)
             {
-                SimpleLayout layout;
-                if (TryGetLayout(out layout))
+                if (TryGetLayout(out var layout))
                 {
-                    //todo in later stage also layout as values?
                     //ignore NULL, but it set, so don't use default.
-                    if (layout != null)
-                    { 
-                        layout.RenderAppendBuilder(logEvent, builder);
-                    }
+                    layout?.RenderAppendBuilder(logEvent, builder);
                 }
                 else if (Default != null)
                 {

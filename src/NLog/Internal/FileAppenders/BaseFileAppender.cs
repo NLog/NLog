@@ -167,10 +167,10 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
         protected FileStream CreateFileStream(bool allowFileSharedWriting, int overrideBufferSize = 0)
         {
-            int currentDelay = CreateFileParameters.ConcurrentWriteAttemptDelay;
+            int currentDelay = CreateFileParameters.FileOpenRetryDelay;
 
-            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", FileName, allowFileSharedWriting);
-            for (int i = 0; i < CreateFileParameters.ConcurrentWriteAttempts; ++i)
+            InternalLogger.Trace("{0}: Opening {1} with allowFileSharedWriting={2}", CreateFileParameters, FileName, allowFileSharedWriting);
+            for (int i = 0; i <= CreateFileParameters.FileOpenRetryCount; ++i)
             {
                 try
                 {
@@ -185,29 +185,33 @@ namespace NLog.Internal.FileAppenders
                         {
                             throw;
                         }
+
+                        InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for FileName: {1}", CreateFileParameters, FileName);
+
                         var directoryName = Path.GetDirectoryName(FileName);
+
                         try
                         {
                             Directory.CreateDirectory(directoryName);
                         }
                         catch (DirectoryNotFoundException)
                         {
-                            //if creating a directory failed, don't retry for this message (e.g the ConcurrentWriteAttempts below)
+                            //if creating a directory failed, don't retry for this message (e.g the FileOpenRetryCount below)
                             throw new NLogRuntimeException("Could not create directory {0}", directoryName);
                         }
-                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
 
+                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
                     }
                 }
-                catch (IOException)
+                catch (IOException ex)
                 {
-                    if (!CreateFileParameters.ConcurrentWrites || i + 1 == CreateFileParameters.ConcurrentWriteAttempts)
+                    if (i + 1 >= CreateFileParameters.FileOpenRetryCount)
                     {
                         throw; // rethrow
                     }
 
                     int actualDelay = _random.Next(currentDelay);
-                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, FileName, actualDelay);
+                    InternalLogger.Warn("{0}: Attempt #{1} to open {2} failed - {3} {4}. Sleeping for {5}ms", CreateFileParameters, i, FileName, ex.GetType(), ex.Message, actualDelay);
                     currentDelay *= 2;
                     AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(actualDelay));
                 }
@@ -216,7 +220,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__  && !NETSTANDARD
+#if !MONO && !NETSTANDARD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting, int overrideBufferSize)
         {
@@ -271,7 +275,7 @@ namespace NLog.Internal.FileAppenders
         {
             UpdateCreationTime();
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__  && !NETSTANDARD
+#if !MONO && !NETSTANDARD
             try
             {
                 if (!CreateFileParameters.ForceManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
@@ -281,7 +285,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch (SecurityException)
             {
-                InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream: {0}", FileName);
+                InternalLogger.Debug("{0}: Could not use native Windows create file, falling back to managed filestream: {1}", CreateFileParameters, FileName);
             }
 #endif
 
@@ -311,13 +315,34 @@ namespace NLog.Internal.FileAppenders
                 File.Create(FileName).Dispose();
                 CreationTimeUtc = DateTime.UtcNow;
 
-#if !SILVERLIGHT
                 // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
                 File.SetCreationTimeUtc(FileName, CreationTimeUtc);
-#endif
             }
         }
 
+        protected static void CloseFileSafe(ref FileStream fileStream, string fileName)
+        {
+            if (fileStream is null)
+            {
+                return;
+            }
+
+            InternalLogger.Trace("FileTarget: Closing '{0}'", fileName);
+            try
+            {
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                InternalLogger.Warn(ex, "FileTarget: Failed to close file '{0}'", fileName);
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));    // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                fileStream = null;
+            }
+        }
 
         protected static bool MonitorForEnableFileDeleteEvent(string fileName, ref DateTime lastSimpleMonitorCheckTimeUtc)
         {
@@ -334,7 +359,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed to check if File.Exists {0}", fileName);
+                    InternalLogger.Error(ex, "FileTarget: Failed to check if File.Exists {0}", fileName);
                     return true;
                 }
             }

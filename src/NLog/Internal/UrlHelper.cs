@@ -101,11 +101,11 @@ namespace NLog.Internal
                     continue;
                 }
 
-                if (charArray == null)
+                if (charArray is null)
                     charArray = new char[1];
                 charArray[0] = ch;
 
-                if (byteArray == null)
+                if (byteArray is null)
                     byteArray = new byte[8];
 
                 
@@ -193,7 +193,16 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool IsSimpleCharOrNumber(char ch)
         {
-            return ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch >= '0' && ch <= '9';
+            if (ch >= 'a' && ch <= 'z')
+                return true;
+
+            if (ch >= 'A' && ch <= 'Z')
+                return true;
+
+            if (ch >= '0' && ch <= '9')
+                return true;
+
+            return false;
         }
 
         private const string RFC2396ReservedMarks = @";/?:@&=+$,";

@@ -31,11 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET35 && !NET40
+
 namespace NLog.Targets
 {
-#if NET4_5
-using System.IO;
-using System.IO.Compression;
+    using System.IO;
+    using System.IO.Compression;
 
     /// <summary>
     /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/> 
@@ -43,18 +44,24 @@ using System.IO.Compression;
     /// So log files created via <see cref="FileTarget"/> can be zipped when archived
     /// w/o 3rd party zip library when run on .Net4.5 or higher.
     /// </summary>
-    internal class ZipArchiveFileCompressor : IFileCompressor
+    internal class ZipArchiveFileCompressor : IArchiveFileCompressor
     {
         /// <summary>
         /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
+            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+            CompressFile(fileName, archiveFileName, entryName);
+        }
+
+        public void CompressFile(string fileName, string archiveFileName, string entryName)
+        {
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
             {
-                var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                var zipArchiveEntry = archive.CreateEntry(entryName);
                 using (var destination = zipArchiveEntry.Open())
                 {
                     originalFileStream.CopyTo(destination);
@@ -62,5 +69,6 @@ using System.IO.Compression;
             }
         }
     }
-#endif
 }
+
+#endif

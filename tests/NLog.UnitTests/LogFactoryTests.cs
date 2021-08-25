@@ -285,13 +285,16 @@ namespace NLog.UnitTests
         [Fact]
         public void NewAttrOnNLogLevelShouldNotThrowError()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true' imAnewAttribute='noError'>
-                <targets><target type='file' name='f1' filename='test.log' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeto='f1'></logger>
-                </rules>
-            </nlog>");
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog imAnewAttribute='noError'>
+                    <targets><target type='file' name='f1' filename='test.log' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeto='f1'></logger>
+                    </rules>
+                </nlog>");
+            }
         }
 
         [Fact]
@@ -320,20 +323,6 @@ namespace NLog.UnitTests
             {
                 File.Delete(filename);
             }
-        }
-
-        [Fact]
-        public void EnableAndDisableLogging()
-        {
-            LogFactory factory = new LogFactory();
-#pragma warning disable 618
-            // In order Suspend => Resume 
-            Assert.True(factory.IsLoggingEnabled());
-            factory.DisableLogging();
-            Assert.False(factory.IsLoggingEnabled());
-            factory.EnableLogging();
-            Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618
         }
 
         [Fact]

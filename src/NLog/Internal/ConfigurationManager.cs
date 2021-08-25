@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !NETSTANDARD
 
 namespace NLog.Internal
 {
@@ -42,7 +42,7 @@ namespace NLog.Internal
     /// Just a wrapper around the BCL ConfigurationManager, but used to enable
     /// unit testing.
     /// </summary>
-    public class ConfigurationManager : IConfigurationManager
+    internal class ConfigurationManager : IConfigurationManager
     {
         /// <summary>
         /// Gets the wrapper around ConfigurationManager.AppSettings.

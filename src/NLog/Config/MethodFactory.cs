@@ -44,16 +44,17 @@ namespace NLog.Config
     /// </summary>
     internal class MethodFactory : INamedItemFactory<MethodInfo, MethodInfo>, INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>, IFactory
     {
-        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
-        private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>();
+        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>(StringComparer.OrdinalIgnoreCase);
         private readonly Func<Type, IList<KeyValuePair<string, MethodInfo>>> _methodExtractor;
+        private readonly MethodFactory _globalDefaultFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodFactory"/> class.
         /// </summary>
-        /// <param name="methodExtractor">Helper method to extract relevant methods from type</param>
-        public MethodFactory(Func<Type, IList<KeyValuePair<string, MethodInfo>>> methodExtractor)
+        public MethodFactory(MethodFactory globalDefaultFactory, Func<Type, IList<KeyValuePair<string, MethodInfo>>> methodExtractor)
         {
+            _globalDefaultFactory = globalDefaultFactory;
             _methodExtractor = methodExtractor;
         }
 
@@ -63,8 +64,9 @@ namespace NLog.Config
         /// to the factory.
         /// </summary>
         /// <param name="types">The types to scan.</param>
-        /// <param name="prefix">The prefix to use for names.</param>
-        public void ScanTypes(Type[] types, string prefix)
+        /// <param name="assemblyName">The assembly name for the type.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
         {
             foreach (Type t in types)
             {
@@ -72,7 +74,7 @@ namespace NLog.Config
                 {
                     if (t.IsClass() || t.IsAbstract())
                     {
-                        RegisterType(t, prefix);
+                        RegisterType(t, assemblyName, itemNamePrefix);
                     }
                 }
                 catch (Exception exception)
@@ -94,12 +96,23 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
+            RegisterType(type, string.Empty, itemNamePrefix);
+        }
+
+        /// <summary>
+        /// Registers the type.
+        /// </summary>
+        /// <param name="type">The type to register.</param>
+        /// <param name="assemblyName">The assembly name for the type.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterType(Type type, string assemblyName, string itemNamePrefix)
+        {
             var extractedMethods = _methodExtractor(type);
             if (extractedMethods?.Count > 0)
             {
                 for (int i = 0; i < extractedMethods.Count; ++i)
                 {
-                    RegisterDefinition(itemNamePrefix + extractedMethods[i].Key, extractedMethods[i].Value);
+                    RegisterDefinition(extractedMethods[i].Key, extractedMethods[i].Value, assemblyName, itemNamePrefix);
                 }
             }
         }
@@ -148,9 +161,31 @@ namespace NLog.Config
         /// <param name="itemDefinition">The method info.</param>
         public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
         {
-            _nameToMethodInfo[itemName] = itemDefinition;
+            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+        }
+
+        /// <summary>
+        /// Registers the definition of a single method.
+        /// </summary>
+        /// <param name="itemName">The method name.</param>
+        /// <param name="itemDefinition">The method info.</param>
+        /// <param name="assemblyName">The assembly name for the method.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterDefinition(string itemName, MethodInfo itemDefinition, string assemblyName, string itemNamePrefix)
+        {
+            _nameToMethodInfo[itemName + itemNamePrefix] = itemDefinition;
+            if (!string.IsNullOrEmpty(assemblyName))
+            {
+                _nameToMethodInfo[itemName + ", " + assemblyName] = itemDefinition;
+            }
             lock (_nameToLateBoundMethod)
-                _nameToLateBoundMethod.Remove(itemName);
+            {
+                _nameToLateBoundMethod.Remove(itemName + itemNamePrefix);
+                if (!string.IsNullOrEmpty(assemblyName))
+                {
+                    _nameToMethodInfo.Remove(itemName + ", " + assemblyName);
+                }
+            }
         }
 
         /// <summary>
@@ -174,7 +209,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryCreateInstance(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(itemName, out result);
+            return TryGetDefinition(itemName, out result);
         }
 
         /// <summary>
@@ -201,7 +236,7 @@ namespace NLog.Config
                 return true;
             }
 
-            return false;
+            return _globalDefaultFactory?.TryCreateInstance(itemName, out result) ?? false;
         }
 
         /// <summary>
@@ -242,7 +277,12 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(itemName, out result);
+            if (_nameToMethodInfo.TryGetValue(itemName, out result))
+            {
+                return true;
+            }
+
+            return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
         }
     }
 }

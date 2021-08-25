@@ -41,6 +41,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// 
     /// This expects the transformation to work on a <see cref="StringBuilder"/>
     /// </summary>
+    [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 5.0")]
     public abstract class WrapperLayoutRendererBuilderBase : WrapperLayoutRendererBase
     {
         /// <inheritdoc/>
@@ -91,7 +92,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns></returns>
         protected sealed override string Transform(string text)
         {
-            throw new NotSupportedException("Use TransformFormattedMesssage");
+            throw new NotSupportedException("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform()");
         }
 
         /// <summary>
@@ -101,7 +102,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns></returns>
         protected sealed override string RenderInner(LogEventInfo logEvent)
         {
-            throw new NotSupportedException("Use RenderFormattedMessage");
+            throw new NotSupportedException("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform()");
         }
     }
 }

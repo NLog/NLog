@@ -110,13 +110,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 1/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 2/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 3/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 4/4") != -1);
-            Assert.True(result.IndexOf("Warn Too many retries. Aborting.") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 1/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 2/4") != -1);
+            Assert.True(result.IndexOf("Error while writing to 'MyTarget([unnamed])'. Try 1/4") != -1);
+            Assert.True(result.IndexOf("Error while writing to 'MyTarget([unnamed])'. Try 2/4") != -1);
+            Assert.True(result.IndexOf("Error while writing to 'MyTarget([unnamed])'. Try 3/4") != -1);
+            Assert.True(result.IndexOf("Error while writing to 'MyTarget([unnamed])'. Try 4/4") != -1);
+            Assert.True(result.IndexOf("Too many retries. Aborting.") != -1);
+            Assert.True(result.IndexOf("Error while writing to 'MyTarget([unnamed])'. Try 1/4") != -1);
+            Assert.True(result.IndexOf("Error while writing to 'MyTarget([unnamed])'. Try 2/4") != -1);
 
             // first event does not get to wrapped target because of too many attempts.
             // second event gets there in 3rd retry
@@ -184,6 +184,49 @@ namespace NLog.UnitTests.Targets.Wrappers
             });
         }
 
+        [Fact]
+        public void RetryingTargetWrapperBatchingTest()
+        {
+            var target = new MyTarget()
+            {
+                ThrowExceptions = 3,
+            };
+            var retryWrapper = new RetryingTargetWrapper()
+            {
+                WrappedTarget = target,
+                RetryCount = 2,
+                RetryDelayMilliseconds = 10,
+                EnableBatchWrite = true,
+            };
+            var asyncWrapper = new AsyncTargetWrapper(retryWrapper) { TimeToSleepBetweenBatches = 5000 };
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(asyncWrapper);
+            }).LogFactory;
+
+            // Verify that RetryingTargetWrapper is not sleeping for every LogEvent in single batch
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
+
+            var logger = logFactory.GetCurrentClassLogger();
+            for (int i = 1; i <= 500; ++i)
+                logger.Info("Test {0}", i);
+            logFactory.Flush();
+            Assert.Equal(1, target.WriteBatchCount);
+
+            for (int i = 0; i < 5000; ++i)
+            {
+                if (target.Events.Count >= 495)
+                    break;
+                System.Threading.Thread.Sleep(1);
+            }
+
+            Assert.Equal(1, target.WriteBatchCount);
+            Assert.InRange(target.Events.Count, 495, 500);
+            Assert.InRange(stopWatch.ElapsedMilliseconds, 0, 3000);
+        } 
+
         public class MyTarget : Target
         {
             public MyTarget()
@@ -196,9 +239,27 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Name = name;
             }
 
-            public List<LogEventInfo> Events { get; set; }
+            public List<LogEventInfo> Events { get; private set; }
 
             public int ThrowExceptions { get; set; }
+
+            public int WriteBatchCount { get; private set; }
+
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
+            {
+                if (logEvents.Count > 1)
+                {
+                    ++WriteBatchCount;
+                    if (ThrowExceptions-- > 0)
+                    {
+                        for (int i = 0; i < logEvents.Count; ++i)
+                            logEvents[i].Continuation(new ApplicationException("Some exception has occurred."));
+                        return;
+                    }
+                }
+
+                base.Write(logEvents);
+            }
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {

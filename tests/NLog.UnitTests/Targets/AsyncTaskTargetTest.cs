@@ -33,7 +33,7 @@
 
 namespace NLog.UnitTests.Targets
 {
-#if !NET3_5
+#if !NET35
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -53,6 +53,8 @@ namespace NLog.UnitTests.Targets
             internal int WriteTasks => _writeTasks;
             protected int _writeTasks;
 
+            public Type RequiredDependency { get; set; }
+
             public bool WaitForWriteEvent(int timeoutMilliseconds = 1000)
             {
                 if (_writeEvent.WaitOne(TimeSpan.FromMilliseconds(timeoutMilliseconds)))
@@ -61,6 +63,25 @@ namespace NLog.UnitTests.Targets
                     return true;
                 }
                 return false;
+            }
+
+            protected override void InitializeTarget()
+            {
+                base.InitializeTarget();
+
+                if (RequiredDependency != null)
+                {
+                    try
+                    {
+                        var resolveServiceMethod = typeof(Target).GetMethod(nameof(ResolveService), System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                        resolveServiceMethod = resolveServiceMethod.MakeGenericMethod(new[] { RequiredDependency });
+                        resolveServiceMethod.Invoke(this, NLog.Internal.ArrayHelper.Empty<object>());
+                    }
+                    catch (System.Reflection.TargetInvocationException ex)
+                    {
+                        throw ex.InnerException;
+                    }
+                }
             }
 
             protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken token)
@@ -102,10 +123,33 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        class AsyncTaskBatchExceptionTestTarget : AsyncTaskTestTarget
+        {
+            public List<int> retryDelayLog = new List<int>();
+
+            protected override async Task WriteAsyncTask(IList<LogEventInfo> logEvents, CancellationToken cancellationToken)
+            {
+                await Task.Delay(50);
+                throw new Exception("Failed to write to message queue, or something");
+            }
+
+            protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override bool RetryFailedAsyncTask(Exception exception, CancellationToken cancellationToken, int retryCountRemaining, out TimeSpan retryDelay)
+            {
+                var shouldRetry = base.RetryFailedAsyncTask(exception, cancellationToken, retryCountRemaining, out retryDelay);
+                retryDelayLog.Add((int)retryDelay.TotalMilliseconds);
+                return shouldRetry;
+            }
+        }
+
         [Fact]
         public void AsyncTaskTarget_TestLogging()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget { Layout = "${threadid}|${level}|${message}|${mdlc:item=Test}" };
 
@@ -114,7 +158,7 @@ namespace NLog.UnitTests.Targets
 
             int managedThreadId = 0;
             Task task;
-            using (MappedDiagnosticsLogicalContext.SetScoped("Test", 42))
+            using (ScopeContext.PushProperty("Test", 42))
             {
                 task = Task.Run(() =>
                 {
@@ -144,87 +188,69 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_SkipAsyncTargetWrapper()
         {
-            try
-            {
-                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets async='true'>
-                <target name='asyncDebug' type='AsyncTaskTest' />
-                <target name='debug' type='Debug' />
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<AsyncTaskTestTarget>("AsyncTaskTest"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                <targets async='true'>
+                    <target name='asyncDebug' type='AsyncTaskTest' />
+                    <target name='debug' type='Debug' />
+                </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
 
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;
-            }
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
         }
 
         [Fact]
         public void AsyncTaskTarget_SkipDefaultAsyncWrapper()
         {
-            try
-            {
-                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets>
-                <default-wrapper type='AsyncWrapper' />
-                <target name='asyncDebug' type='AsyncTaskTest' />
-                <target name='debug' type='Debug' />
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<AsyncTaskTestTarget>("AsyncTaskTest"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                <targets>
+                    <default-wrapper type='AsyncWrapper' />
+                    <target name='asyncDebug' type='AsyncTaskTest' />
+                    <target name='debug' type='Debug' />
+                </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
 
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;
-            }
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
         }
 
         [Fact]
         public void AsyncTaskTarget_AllowDefaultBufferWrapper()
         {
-            try
-            {
-                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets>
-                <default-wrapper type='BufferingWrapper' />
-                <target name='asyncDebug' type='AsyncTaskTest' />
-                <target name='debug' type='Debug' />
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterTarget<AsyncTaskTestTarget>("AsyncTaskTest"))
+                .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                <targets>
+                    <default-wrapper type='BufferingWrapper' />
+                    <target name='asyncDebug' type='AsyncTaskTest' />
+                    <target name='debug' type='Debug' />
+                </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
 
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("asyncDebug"));
-                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("debug"));
-            }
-            finally
-            {
-                ConfigurationItemFactory.Default = null;
-            }
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("asyncDebug"));
+            Assert.NotNull(logFactory.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("debug"));
         }
 
         [Fact]
         public void AsyncTaskTarget_TestAsyncException()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -259,7 +285,7 @@ namespace NLog.UnitTests.Targets
         {
             RetryingIntegrationTest(3, () =>
             {
-                ILogger logger = LogManager.GetCurrentClassLogger();
+                var logger = LogManager.GetCurrentClassLogger();
 
                 var asyncTarget = new AsyncTaskTestTarget
                 {
@@ -291,7 +317,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestRetryAsyncException()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -326,7 +352,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestRetryException()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -361,7 +387,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestBatchWriting()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -391,9 +417,35 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void AsyncTaskTarget_TestFakeBatchWriting()
+        public void AsyncTaskTarget_TestBatchRetryTimings()
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskBatchExceptionTestTarget
+            {
+                Layout = "${level}",
+                BatchSize = 10,
+                TaskDelayMilliseconds = 10,
+                RetryCount = 5,
+                RetryDelayMilliseconds = 3
+            };
+
+            SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
+
+            logger.Log(LogLevel.Info, "test");
+           
+            LogManager.Flush();
+
+            // The zero at the end of the array is used when there will be no more retries.
+            Assert.Equal(new[] { 3, 6, 12, 24, 48, 0 }, asyncTarget.retryDelayLog);
+
+            LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestFakeBatchWriting()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskTestTarget
             {
@@ -426,7 +478,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestSlowBatchWriting()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -454,7 +506,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncTaskTarget_TestThrottleOnTaskDelay()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -482,7 +534,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsynTaskTarget_AutoFlushWrapper()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
 
             var asyncTarget = new AsyncTaskBatchTestTarget
             {
@@ -527,6 +579,40 @@ namespace NLog.UnitTests.Targets
 
             // Assert
             Assert.Equal(1, asyncTarget.WriteTasks);
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_MissingDependency_EnqueueLogEvents()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+                logFactory.ThrowConfigExceptions = true;
+                var logConfig = new LoggingConfiguration(logFactory);
+                var asyncTarget = new AsyncTaskTestTarget() { Name = "asynctarget", RequiredDependency = typeof(IMisingDependencyClass) };
+                logConfig.AddRuleForAllLevels(asyncTarget);
+                logFactory.Configuration = logConfig;
+                var logger = logFactory.GetLogger(nameof(AsyncTaskTarget_MissingDependency_EnqueueLogEvents));
+
+                // Act
+                logger.Info("Hello World");
+                Assert.False(asyncTarget.WaitForWriteEvent(50));
+                logFactory.ServiceRepository.RegisterService(typeof(IMisingDependencyClass), new MisingDependencyClass());
+
+                // Assert
+                Assert.True(asyncTarget.WaitForWriteEvent());
+            }
+        }
+
+        private interface IMisingDependencyClass
+        {
+
+        }
+
+        private class MisingDependencyClass : IMisingDependencyClass
+        {
+
         }
     }
 #endif

@@ -72,14 +72,17 @@ namespace NLog.UnitTests.Config
 </rules>
 </nlog>";
 
-
                 // configuration with current culture
-                var configuration1 = XmlLoggingConfiguration.CreateFromXmlString(string.Format(configurationTemplate, false));
+                var logFactory1 = new LogFactory();
+                var configuration1 = XmlLoggingConfiguration.CreateFromXmlString(string.Format(configurationTemplate, false), logFactory1);
                 Assert.Null(configuration1.DefaultCultureInfo);
+                logFactory1.Configuration = configuration1;
 
                 // configuration with invariant culture
-                var configuration2 = XmlLoggingConfiguration.CreateFromXmlString(string.Format(configurationTemplate, true));
+                var logFactory2 = new LogFactory();
+                var configuration2 = XmlLoggingConfiguration.CreateFromXmlString(string.Format(configurationTemplate, true), logFactory2);
                 Assert.Equal(CultureInfo.InvariantCulture, configuration2.DefaultCultureInfo);
+                logFactory2.Configuration = configuration2;
 
                 Assert.NotEqual(configuration1.DefaultCultureInfo, configuration2.DefaultCultureInfo);
 
@@ -87,9 +90,8 @@ namespace NLog.UnitTests.Config
                 var testDate = DateTime.Now;
                 const string formatString = "{0},{1:d}";
 
-                AssertMessageFormattedWithCulture(configuration1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
-                AssertMessageFormattedWithCulture(configuration2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
-
+                AssertMessageFormattedWithCulture(logFactory1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
+                AssertMessageFormattedWithCulture(logFactory2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
             }
             finally
             {
@@ -98,15 +100,12 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
+        private void AssertMessageFormattedWithCulture(LogFactory logFactory, CultureInfo culture, string formatString, params object[] parameters)
         {
             var expected = string.Format(culture, formatString, parameters);
-            using (var logFactory = new LogFactory(configuration))
-            {
-                var logger = logFactory.GetLogger("test");
-                logger.Debug(formatString, parameters);
-                Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
-            }
+            var logger = logFactory.GetLogger("test");
+            logger.Debug(formatString, parameters);
+            Assert.Equal(expected, GetDebugLastMessage("debug", logFactory.Configuration));
         }
 
         [Fact]
@@ -126,24 +125,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void EventContextRendererCultureTest()
-        {
-            string cultureName = "de-DE";
-            string expected = "1,23";   // with decimal comma
-
-            var logEventInfo = CreateLogEventInfo(cultureName);
-            logEventInfo.Properties["ADouble"] = 1.23;
-
-#pragma warning disable 618
-            var renderer = new EventContextLayoutRenderer();
-#pragma warning restore 618
-            renderer.Item = "ADouble";
-            string output = renderer.Render(logEventInfo);
-
-            Assert.Equal(expected, output);
-        }
-
-        [Fact]
         public void ProcessInfoLayoutRendererCultureTest()
         {
             string cultureName = "de-DE";
@@ -152,7 +133,7 @@ namespace NLog.UnitTests.Config
 
             var logEventInfo = CreateLogEventInfo(cultureName);
 
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] CultureInfoTests.ProcessInfoLayoutRendererCultureTest because we are running in Travis");
             }

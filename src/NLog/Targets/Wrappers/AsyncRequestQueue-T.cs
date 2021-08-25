@@ -120,7 +120,7 @@ namespace NLog.Targets.Wrappers
         /// Dequeues a maximum of <c>count</c> items from the queue
         /// and adds returns the list containing them.
         /// </summary>
-        /// <param name="count">Maximum number of items to be dequeued (-1 means everything).</param>
+        /// <param name="count">Maximum number of items to be dequeued</param>
         /// <returns>The array of log events.</returns>
         public override AsyncLogEventInfo[] DequeueBatch(int count)
         {

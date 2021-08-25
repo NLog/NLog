@@ -36,35 +36,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using JetBrains.Annotations;
 using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Convert Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
+    /// Convert, Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {
-        public static IValueFormatter Instance
-        {
-            get => _instance ?? (_instance = new ValueFormatter());
-            set => _instance = value ?? new ValueFormatter();
-        }
-        private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
+        private readonly IServiceProvider _serviceProvider;
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceProvider.GetService<IJsonConverter>());
+        private IJsonConverter _jsonConverter;
 
-        /// <summary>Singleton</summary>
-        private ValueFormatter()
+        public ValueFormatter([NotNull] IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider; 
         }
 
         private const int MaxRecursionDepth = 2;
         private const int MaxValueLength = 512 * 1024;
         private const string LiteralFormatSymbol = "l";
-
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
-
         public const string FormatAsJson = "@";
         public const string FormatAsString = "$";
 
@@ -83,7 +79,7 @@ namespace NLog.MessageTemplates
             {
                 case CaptureType.Serialize:
                     {
-                        return ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
+                        return JsonConverter.SerializeObject(value, builder);
                     }
                 case CaptureType.Stringify:
                     {
@@ -135,7 +131,7 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            if (value == null)
+            if (value is null)
             {
                 builder.Append("NULL");
                 return true;
@@ -211,7 +207,7 @@ namespace NLog.MessageTemplates
                         }
                         else
                         {
-                            builder.AppendIntegerAsString(value, convertibleTypeCode);
+                            builder.AppendNumericInvariant(value, convertibleTypeCode);
                         }
                         break;
                     }

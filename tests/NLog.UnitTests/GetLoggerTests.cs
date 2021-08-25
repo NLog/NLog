@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -41,15 +43,15 @@ namespace NLog.UnitTests
         [Fact]
         public void GetCurrentClassLoggerTest()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
         [Fact]
         public void GetCurrentClassLoggerLambdaTest()
         {
-            System.Linq.Expressions.Expression<Func<ILogger>> sum = () => LogManager.GetCurrentClassLogger();
-            ILogger logger = sum.Compile().Invoke();
+            System.Linq.Expressions.Expression<Func<Logger>> sum = () => LogManager.GetCurrentClassLogger();
+            var logger = sum.Compile().Invoke();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
@@ -60,13 +62,11 @@ namespace NLog.UnitTests
 
             MyLogger l1 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
             MyLogger l2 = lf.GetLogger<MyLogger>("AAA");
-            ILogger l3 = lf.GetLogger("AAA", typeof(Logger));
-            ILogger l4 = lf.GetLogger<Logger>("AAA");
-            ILogger l5 = lf.GetLogger("AAA");
-            ILogger l6 = lf.GetLogger("AAA");
+            Logger l3 = lf.GetLogger("AAA", typeof(Logger));
+            Logger l5 = lf.GetLogger("AAA");
+            Logger l6 = lf.GetLogger("AAA");
 
             Assert.Same(l1, l2);
-            Assert.Same(l3, l4);
             Assert.Same(l5, l6);
             Assert.Same(l3, l5);
 
@@ -83,13 +83,12 @@ namespace NLog.UnitTests
 
             MyLogger l1 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
             MyLogger l2 = lf.GetCurrentClassLogger<MyLogger>();
-            ILogger l3 = lf.GetCurrentClassLogger(typeof(Logger));
-            ILogger l4 = lf.GetCurrentClassLogger<Logger>();
-            ILogger l5 = lf.GetCurrentClassLogger();
-            ILogger l6 = lf.GetCurrentClassLogger();
+            Logger l3 = lf.GetCurrentClassLogger(typeof(Logger));
+
+            Logger l5 = lf.GetCurrentClassLogger();
+            Logger l6 = lf.GetCurrentClassLogger();
 
             Assert.Same(l1, l2);
-            Assert.Same(l3, l4);
             Assert.Same(l5, l6);
             Assert.Same(l3, l5);
 
@@ -136,33 +135,29 @@ namespace NLog.UnitTests
 
 
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
+        public void InvalidLoggerConfiguration_NotThrowsThrowExceptions_NotThrows()
         {
             using (new NoThrowNLogExceptions())
             {
-                InvalidLoggerConfiguration_ThrowsConfigurationException(true);
+                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
         }
 
-
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
+        public void InvalidLoggerConfiguration_ThrowsThrowExceptions_Throws()
         {
             LogManager.ThrowExceptions = true;
-            InvalidLoggerConfiguration_ThrowsConfigurationException(null);
+            InvalidLoggerConfiguration_ThrowsNLogResolveException();
         }
 
-        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool? throwConfigExceptions)
+        private void InvalidLoggerConfiguration_ThrowsNLogResolveException()
         {
-            Assert.Throws<NLogConfigurationException>(() =>
+            Assert.Throws<NLogDependencyResolveException>(() =>
             {
-                LogManager.ThrowConfigExceptions = throwConfigExceptions;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });
 
         }
-
-
 
         public class MyLogger : Logger
         {

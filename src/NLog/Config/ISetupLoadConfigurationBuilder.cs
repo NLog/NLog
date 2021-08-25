@@ -34,7 +34,7 @@
 namespace NLog.Config
 {
     /// <summary>
-    /// Interface for fluent setup of LogFactory options
+    /// Interface for fluent setup of LoggingConfiguration for LogFactory 
     /// </summary>
     public interface ISetupLoadConfigurationBuilder
     {

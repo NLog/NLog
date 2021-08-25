@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -61,20 +60,6 @@ namespace NLog.Targets
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public IList<MethodCallParameter> Parameters { get; private set; }
 
-        private IPropertyTypeConverter PropertyTypeConverter
-        {
-            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
-            set => _propertyTypeConverter = value;
-        }
-        private IPropertyTypeConverter _propertyTypeConverter;
-
-        /// <inheritdoc/>
-        protected override void CloseTarget()
-        {
-            PropertyTypeConverter = null;
-            base.CloseTarget();
-        }
-
         /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().
         /// </summary>
@@ -93,7 +78,7 @@ namespace NLog.Targets
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to get parameter value {2}", GetType(), Name, Parameters[i].Name);
+                    InternalLogger.Warn(ex, "{0}: Failed to get parameter value {1}", this, Parameters[i].Name);
                     throw;
                 }
             }
@@ -103,18 +88,7 @@ namespace NLog.Targets
 
         private object GetParameterValue(LogEventInfo logEvent, MethodCallParameter param)
         {
-            var parameterType = param.ParameterType ?? typeof(string);
-
-            var parameterValue = RenderLogEvent(param.Layout, logEvent) ?? string.Empty;
-            if (parameterType == typeof(string) || parameterType == typeof(object))
-                return parameterValue;
-
-            if (string.IsNullOrEmpty(parameterValue) && parameterType.IsValueType())
-            {
-                return Activator.CreateInstance(param.ParameterType);
-            }
-
-            return PropertyTypeConverter.Convert(parameterValue, parameterType, null, CultureInfo.InvariantCulture);
+            return param.RenderValue(logEvent);
         }
 
         /// <summary>

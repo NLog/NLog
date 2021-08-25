@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Xml;
+    using NLog.Internal;
 
     /// <summary>
     /// Represents simple XML element with case-insensitive attribute semantics.
@@ -54,19 +54,10 @@ namespace NLog.Config
         }
 
         public NLogXmlElement(XmlReader reader, bool nestedElement)
-            : this()
         {
-            Parse(reader, nestedElement);
-        }
-
-        /// <summary>
-        /// Prevents a default instance of the <see cref="NLogXmlElement"/> class from being created.
-        /// </summary>
-        private NLogXmlElement()
-        {
-            AttributeValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            Children = new List<NLogXmlElement>();
-            _parsingErrors = new List<string>();
+            Parse(reader, nestedElement, out var attributes, out var children);
+            AttributeValues = attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
+            Children = children ?? ArrayHelper.Empty<NLogXmlElement>();
         }
 
         /// <summary>
@@ -77,7 +68,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the dictionary of attribute values.
         /// </summary>
-        public Dictionary<string, string> AttributeValues { get; }
+        public IList<KeyValuePair<string,string>> AttributeValues { get; }
 
         /// <summary>
         /// Gets the collection of child elements.
@@ -101,7 +92,7 @@ namespace NLog.Config
                     if (SingleValueElement(child))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)).Concat(AttributeValues);
+                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)));
                     }
                 }
                 return AttributeValues;
@@ -125,21 +116,16 @@ namespace NLog.Config
                         return Children.Where(item => !SingleValueElement(item)).Cast<ILoggingConfigurationElement>();
                 }
 
-                return NLog.Internal.ArrayHelper.Empty<ILoggingConfigurationElement>();
+                return ArrayHelper.Empty<ILoggingConfigurationElement>();
             }
         }
-
-        /// <summary>
-        /// Last error occured during configuration read
-        /// </summary>
-        private readonly List<string> _parsingErrors;
 
         /// <summary>
         /// Returns children elements with the specified element name.
         /// </summary>
         /// <param name="elementName">Name of the element.</param>
         /// <returns>Children elements with the specified element name.</returns>
-        public IEnumerable<NLogXmlElement> Elements(string elementName)
+        public List<NLogXmlElement> FilterChildren(string elementName)
         {
             var result = new List<NLogXmlElement>();
 
@@ -171,30 +157,13 @@ namespace NLog.Config
             throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + LocalName + "'.");
         }
 
-        /// <summary>
-        /// Returns all parsing errors from current and all child elements.
-        /// </summary>
-        public IEnumerable<string> GetParsingErrors()
+        private void Parse(XmlReader reader, bool topElement, out IList<KeyValuePair<string,string>> attributes, out IList<NLogXmlElement> children)
         {
-            foreach (var parsingError in _parsingErrors)
-            {
-                yield return parsingError;
-            }
-
-            foreach (var childElement in Children)
-            {
-                foreach (var parsingError in childElement.GetParsingErrors())
-                {
-                    yield return parsingError;
-                }
-            }
-        }
-
-        private void Parse(XmlReader reader, bool nestedElement)
-        {
-            ParseAttributes(reader, nestedElement);
+            ParseAttributes(reader, topElement, out attributes);
 
             LocalName = reader.LocalName;
+
+            children = null;
 
             if (!reader.IsEmptyElement)
             {
@@ -213,14 +182,16 @@ namespace NLog.Config
 
                     if (reader.NodeType == XmlNodeType.Element)
                     {
-                        Children.Add(new NLogXmlElement(reader, true));
+                        children = children ?? new List<NLogXmlElement>();
+                        children.Add(new NLogXmlElement(reader, true));
                     }
                 }
             }
         }
 
-        private void ParseAttributes(XmlReader reader, bool nestedElement)
+        private void ParseAttributes(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string, string>> attributes)
         {
+            attributes = null;
             if (reader.MoveToFirstAttribute())
             {
                 do
@@ -230,15 +201,8 @@ namespace NLog.Config
                         continue;
                     }
 
-                    if (!AttributeValues.ContainsKey(reader.LocalName))
-                    {
-                        AttributeValues.Add(reader.LocalName, reader.Value);
-                    }
-                    else
-                    {
-                        string message = $"Duplicate attribute detected. Attribute name: [{reader.LocalName}]. Duplicate value:[{reader.Value}], Current value:[{AttributeValues[reader.LocalName]}]";
-                        _parsingErrors.Add(message);
-                    }
+                    attributes = attributes ?? new List<KeyValuePair<string, string>>();
+                    attributes.Add(new KeyValuePair<string, string>(reader.LocalName, reader.Value));
                 }
                 while (reader.MoveToNextAttribute());
                 reader.MoveToElement();
@@ -252,11 +216,18 @@ namespace NLog.Config
         {
             if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
                 return true;
+            if (reader.LocalName?.Equals("schemaLocation", StringComparison.OrdinalIgnoreCase) == true && !StringHelpers.IsNullOrWhiteSpace(reader.Prefix))
+                return true;
             if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
                 return true;
             if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
                 return true;
             return false;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

@@ -122,7 +122,7 @@ namespace NLog.Targets
         /// <exception cref="ArgumentOutOfRangeException">There is no line ending mode with the specified name.</exception>
         public static LineEndingMode FromString([NotNull] string name)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (name is null) throw new ArgumentNullException(nameof(name));
 
             if (name.Equals(CRLF.Name, StringComparison.OrdinalIgnoreCase)) return CRLF;
             if (name.Equals(LF.Name, StringComparison.OrdinalIgnoreCase)) return LF;
@@ -131,11 +131,7 @@ namespace NLog.Targets
             if (name.Equals(Null.Name, StringComparison.OrdinalIgnoreCase)) return Null;
             if (name.Equals(None.Name, StringComparison.OrdinalIgnoreCase)) return None;
 
-#if !SILVERLIGHT
             throw new ArgumentOutOfRangeException(nameof(name), name, "LineEndingMode is out of range");
-#else
-            throw new ArgumentOutOfRangeException("name", "LineEndingMode is out of range");
-#endif
         }
 
         /// <summary>
@@ -147,12 +143,12 @@ namespace NLog.Targets
         /// <returns>The value of <c>mode1.NewLineCharacters == mode2.NewLineCharacters</c>.</returns>
         public static bool operator ==(LineEndingMode mode1, LineEndingMode mode2)
         {
-            if (ReferenceEquals(mode1, null))
+            if (mode1 is null)
             {
-                return ReferenceEquals(mode2, null);
+                return mode2 is null;
             }
 
-            if (ReferenceEquals(mode2, null))
+            if (mode2 is null)
             {
                 return false;
             }
@@ -169,12 +165,12 @@ namespace NLog.Targets
         /// <returns>The value of <c>mode1.NewLineCharacters != mode2.NewLineCharacters</c>.</returns>
         public static bool operator !=(LineEndingMode mode1, LineEndingMode mode2)
         {
-            if (ReferenceEquals(mode1, null))
+            if (mode1 is null)
             {
-                return !ReferenceEquals(mode2, null);
+                return !(mode2 is null);
             }
 
-            if (ReferenceEquals(mode2, null))
+            if (mode2 is null)
             {
                 return true;
             }
@@ -200,7 +196,7 @@ namespace NLog.Targets
         /// </returns>
         public override int GetHashCode()
         {
-            return (_newLineCharacters != null ? _newLineCharacters.GetHashCode() : 0);
+            return _newLineCharacters?.GetHashCode() ?? 0;
         }
 
         /// <summary>
@@ -218,8 +214,6 @@ namespace NLog.Targets
         /// </exception>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
             return obj is LineEndingMode mode && Equals(mode);
         }
 
@@ -228,9 +222,7 @@ namespace NLog.Targets
         /// <param name="other">An object to compare with this object.</param>
         public bool Equals(LineEndingMode other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return string.Equals(_newLineCharacters, other._newLineCharacters);
+            return ReferenceEquals(this, other) || string.Equals(_newLineCharacters, other?._newLineCharacters);
         }
 
 #if !NETSTANDARD1_3
@@ -245,7 +237,8 @@ namespace NLog.Targets
             /// <returns>
             /// true if this converter can perform the conversion; otherwise, false.
             /// </returns>
-            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param><param name="sourceType">A <see cref="T:System.Type"/> that represents the type you want to convert from. </param>
+            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
+            /// <param name="sourceType">A <see cref="T:System.Type"/> that represents the type you want to convert from. </param>
             public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
             {
                 return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
@@ -257,7 +250,10 @@ namespace NLog.Targets
             /// <returns>
             /// An <see cref="T:System.Object"/> that represents the converted value.
             /// </returns>
-            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param><param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture. </param><param name="value">The <see cref="T:System.Object"/> to convert. </param><exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
+            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
+            /// <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture. </param>
+            /// <param name="value">The <see cref="T:System.Object"/> to convert. </param>
+            /// <exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
                 var name = value as string;

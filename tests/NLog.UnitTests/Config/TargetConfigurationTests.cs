@@ -92,6 +92,24 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void TargetWithLayoutHasUniqueLayout()
+        {
+            var target1 = new StructuredDebugTarget();
+            var target2 = new StructuredDebugTarget();
+            var simpleLayout1 = target1.Layout as SimpleLayout;
+            var simpleLayout2 = target2.Layout as SimpleLayout;
+
+            // Ensure the default Layout for two Targets are not reusing objects
+            // As it would cause havoc with initializing / closing lifetime-events
+            Assert.NotSame(simpleLayout1, simpleLayout2);
+            Assert.Equal(simpleLayout1.Renderers.Count, simpleLayout1.Renderers.Count);
+            for (int i = 0; i < simpleLayout1.Renderers.Count; ++i)
+            {
+                Assert.NotSame(simpleLayout1.Renderers[i], simpleLayout2.Renderers[i]);
+            }
+        }
+
+        [Fact]
         public void NestedXmlConfigElementTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -134,13 +152,13 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t);
             Assert.Equal(3, t.Parameters.Count);
             Assert.Equal("p1", t.Parameters[0].Name);
-            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal("${message}", t.Parameters[0].Layout.ToString());
 
             Assert.Equal("p2", t.Parameters[1].Name);
-            Assert.Equal("'${level}'", t.Parameters[1].Layout.ToString());
+            Assert.Equal("${level}", t.Parameters[1].Layout.ToString());
 
             Assert.Equal("p3", t.Parameters[2].Name);
-            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("${logger}", t.Parameters[2].Layout.ToString());
         }
 
         [Fact]
@@ -173,7 +191,7 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t);
             Assert.Equal(3, t.Parameters.Count);
             Assert.Equal("p1", t.Parameters[0].Name);
-            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal("${message}", t.Parameters[0].Layout.ToString());
 
             Assert.Equal("p2", t.Parameters[1].Name);
             CsvLayout csvLayout = t.Parameters[1].Layout as CsvLayout;
@@ -183,7 +201,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("y", csvLayout.Columns[1].Name);
 
             Assert.Equal("p3", t.Parameters[2].Name);
-            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("${logger}", t.Parameters[2].Layout.ToString());
         }
 
         [Fact]
@@ -399,6 +417,27 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void UnnamedWrappedTargetTest()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets async='true'>
+                    <target type='AsyncWrapper' name='d'>
+                        <target type='Debug' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("d") as AsyncTargetWrapper;
+            Assert.NotNull(t);
+            Assert.Equal("d", t.Name);
+
+            var wrappedTarget = t.WrappedTarget as DebugTarget;
+            Assert.NotNull(wrappedTarget);
+            Assert.Equal("d_wrapped", wrappedTarget.Name);
+        }
+
+        [Fact]
         public void DefaultTargetParametersTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -412,11 +451,11 @@ namespace NLog.UnitTests.Config
 
             var t = c.FindTargetByName("d") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
 
             t = c.FindTargetByName("d2") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
         }
 
         [Fact]
@@ -438,7 +477,7 @@ namespace NLog.UnitTests.Config
 
             var t = wrap.WrappedTarget as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
         }
 
         [Fact]
@@ -465,7 +504,10 @@ namespace NLog.UnitTests.Config
             var debugTarget = retryingTargetWrapper.WrappedTarget as DebugTarget;
             Assert.NotNull(debugTarget);
             Assert.Equal("d_wrapped", debugTarget.Name);
-            Assert.Equal("'${level}'", debugTarget.Layout.ToString());
+            Assert.Equal("${level}", debugTarget.Layout.ToString());
+
+            var debugTarget2 = c.FindTargetByName<DebugTarget>("d");
+            Assert.Same(debugTarget, debugTarget2);
         }
 
         [Fact]
@@ -568,7 +610,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
-            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("${level}", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
             Assert.Equal(new Uri("http://nlog-project.org"), myTarget.UriProperty);
             Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty);
@@ -619,7 +661,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
-            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("${level}", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
         }
 

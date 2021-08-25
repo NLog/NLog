@@ -42,8 +42,8 @@ namespace NLog.Targets
     using System.Xml;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -100,12 +100,12 @@ namespace NLog.Targets
             const bool writeBOM = false;
             Encoding = new UTF8Encoding(writeBOM);
             IncludeBOM = writeBOM;
-            OptimizeBufferReuse = true;
 
             Headers = new List<MethodCallParameter>();
 
-#if NETSTANDARD
-            // WebRequest.GetSystemWebProxy throws PlatformNotSupportedException on NetCore, when Proxy is not configured
+#if NETSTANDARD1_3 || NETSTANDARD1_5
+            // NetCore1 throws PlatformNotSupportedException on WebRequest.GetSystemWebProxy, when using DefaultWebProxy
+            // Net5 (or newer) will turn off Http-connection-pooling if not using DefaultWebProxy
             ProxyType = WebServiceProxyType.NoProxy;
 #endif
         }
@@ -123,7 +123,7 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Uri Url { get; set; }
+        public Layout<Uri> Url { get; set; }
 
         /// <summary>
         /// Gets or sets the value of the User-agent HTTP header.
@@ -155,10 +155,12 @@ namespace NLog.Targets
         }
         private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol;
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets the proxy configuration when calling web service
         /// </summary>
+        /// <remarks>
+        /// Changing ProxyType on Net5 (or newer) will turn off Http-connection-pooling
+        /// </remarks>
         /// <docgen category='Web Service Options' order='10' />
         [DefaultValue("DefaultWebProxy")]
         public WebServiceProxyType ProxyType
@@ -167,13 +169,12 @@ namespace NLog.Targets
             set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
         }
         private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy;
-#endif
 
         /// <summary>
         /// Gets or sets the custom proxy address, include port separated by a colon
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public string ProxyAddress { get; set; }
+        public Layout ProxyAddress { get; set; }
 
         /// <summary>
         /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
@@ -227,13 +228,11 @@ namespace NLog.Targets
         [ArrayParameter(typeof(MethodCallParameter), "header")]
         public IList<MethodCallParameter> Headers { get; private set; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
         /// </summary>
         /// <docgen category='Web Service Options' order='100' />
         public bool PreAuthenticate { get; set; }
-#endif
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
@@ -254,7 +253,8 @@ namespace NLog.Targets
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            var url = BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
+            var webRequest = (HttpWebRequest)WebRequest.Create(url);
             DoInvoke(parameters, webRequest, continuation);
         }
 
@@ -265,14 +265,15 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            var url = BuildWebServiceUrl(logEvent.LogEvent, parameters);
+            var webRequest = (HttpWebRequest)WebRequest.Create(url);
 
             if (Headers?.Count > 0)
             {
                 for (int i = 0; i < Headers.Count; i++)
                 {
                     string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
-                    if (headerValue == null)
+                    if (headerValue is null)
                         continue;
 
                     webRequest.Headers[Headers[i].Name] = headerValue;
@@ -290,19 +291,18 @@ namespace NLog.Targets
             DoInvoke(parameters, webRequest, logEvent.Continuation);
         }
 
-        void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        private void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
         {
             Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
 
-#if !SILVERLIGHT
             switch (ProxyType)
             {
                 case WebServiceProxyType.DefaultWebProxy:
                     break;
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 case WebServiceProxyType.AutoProxy:
-                    if (_activeProxy.Value == null)
+                    if (_activeProxy.Value is null)
                     {
                         IWebProxy proxy = WebRequest.GetSystemWebProxy();
                         proxy.Credentials = CredentialCache.DefaultCredentials;
@@ -311,11 +311,11 @@ namespace NLog.Targets
                     webRequest.Proxy = _activeProxy.Value;
                     break;
                 case WebServiceProxyType.ProxyAddress:
-                    if (!string.IsNullOrEmpty(ProxyAddress))
+                    if (ProxyAddress != null)
                     {
-                        if (_activeProxy.Value == null)
+                        if (_activeProxy.Value is null)
                         {
-                            IWebProxy proxy = new WebProxy(ProxyAddress, true);
+                            IWebProxy proxy = new WebProxy(RenderLogEvent(ProxyAddress, LogEventInfo.CreateNullEvent()), true);
                             _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
                         }
                         webRequest.Proxy = _activeProxy.Value;
@@ -326,9 +326,8 @@ namespace NLog.Targets
                     webRequest.Proxy = null;
                     break;
             }
-#endif
 
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 webRequest.PreAuthenticate = true;
@@ -341,7 +340,7 @@ namespace NLog.Targets
         internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest,
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream)
         {
-            Stream postPayload = null;
+            MemoryStream postPayload = null;
 
             if (Protocol == WebServiceProtocol.HttpGet)
             {
@@ -349,120 +348,92 @@ namespace NLog.Targets
             }
             else
             {
-                if (_activeProtocol.Value == null)
+                if (_activeProtocol.Value is null)
                     _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(Protocol, _postFormatterFactories[Protocol](this));
                 postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
             }
 
-            var sendContinuation = CreateSendContinuation(continuation, webRequest);
+            _pendingManualFlushList.BeginOperation();
 
-            PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload, sendContinuation);
+            try
+            {
+                if (postPayload?.Length > 0)
+                {
+                    PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload);
+                }
+                else
+                {
+                    WaitForReponse(continuation, webRequest);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Error starting request", this);
+                if (ExceptionMustBeRethrown(ex))
+                {
+                    throw;
+                }
+
+                DoInvokeCompleted(continuation, ex);
+            }
         }
 
-        private AsyncContinuation CreateSendContinuation(AsyncContinuation continuation, HttpWebRequest webRequest)
+        private void WaitForReponse(AsyncContinuation continuation, HttpWebRequest webRequest)
         {
-            AsyncContinuation sendContinuation =
-                ex =>
+            webRequest.BeginGetResponse(
+                r =>
                 {
-                    if (ex != null)
-                    {
-                        DoInvokeCompleted(continuation, ex);
-                        return;
-                    }
-
                     try
                     {
-                        webRequest.BeginGetResponse(
-                            r =>
-                            {
-                                try
-                                {
-                                    using (var response = webRequest.EndGetResponse(r))
-                                    {
-                                        // Request successfully initialized
-                                    }
-
-                                    DoInvokeCompleted(continuation, null);
-                                }
-                                catch (Exception ex2)
-                                {
-                                    InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error sending request", Name);
-                                    if (ex2.MustBeRethrownImmediately())
-                                    {
-                                        throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                                    }
-
-                                    DoInvokeCompleted(continuation, ex2);
-                                }
-                            },
-                            null);
-                    }
-                    catch (Exception ex2)
-                    {
-                        InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error starting request", Name);
-                        if (ExceptionMustBeRethrown(ex2))
+                        using (var response = webRequest.EndGetResponse(r))
                         {
-                            throw;
+                            // Request successfully initialized
                         }
 
-                        DoInvokeCompleted(continuation, ex2);
+                        DoInvokeCompleted(continuation, null);
                     }
-                };
-            return sendContinuation;
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "{0}: Error receiving response", this);
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+
+                        DoInvokeCompleted(continuation, ex);
+                    }
+                },
+                null);
         }
 
-        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, Stream postPayload, AsyncContinuation sendContinuation)
+        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, MemoryStream postPayload)
         {
-            if (postPayload != null && postPayload.Length > 0)
-            {
-                postPayload.Position = 0;
-                try
+            beginGetRequest(webRequest,
+                result =>
                 {
-                    _pendingManualFlushList.BeginOperation();
-
-                    beginGetRequest(webRequest,
-                        result =>
-                        {
-                            try
-                            {
-                                using (Stream stream = getRequestStream(webRequest, result))
-                                {
-                                    WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
-
-                                    postPayload.Dispose();
-                                }
-
-                                sendContinuation(null);
-                            }
-                            catch (Exception ex)
-                            {
-                                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending post data", Name);
-                                if (ex.MustBeRethrownImmediately())
-                                {
-                                    throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                                }
-
-                                postPayload.Dispose();
-                                DoInvokeCompleted(continuation, ex);
-                            }
-                        });
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting post data", Name);
-                    if (ExceptionMustBeRethrown(ex))
+                    try
                     {
-                        throw;
-                    }
+                        using (Stream stream = getRequestStream(webRequest, result))
+                        {
+                            WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
 
-                    DoInvokeCompleted(continuation, ex);
-                }
-            }
-            else
-            {
-                _pendingManualFlushList.BeginOperation();
-                sendContinuation(null);
-            }
+                            postPayload.Dispose();
+                        }
+
+                        WaitForReponse(continuation, webRequest);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "{0}: Error sending payload", this);
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+
+                        postPayload.Dispose();
+                        DoInvokeCompleted(continuation, ex);
+                    }
+                });
         }
 
         private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
@@ -492,18 +463,17 @@ namespace NLog.Targets
         /// <summary>
         /// Builds the URL to use when calling the web service for a message, depending on the WebServiceProtocol.
         /// </summary>
-        /// <param name="parameterValues"></param>
-        /// <returns></returns>
-        private Uri BuildWebServiceUrl(object[] parameterValues)
+        private Uri BuildWebServiceUrl(LogEventInfo logEvent, object[] parameterValues)
         {
+            var uri = RenderLogEvent(Url, logEvent);
             if (Protocol != WebServiceProtocol.HttpGet)
             {
-                return Url;
+                return uri;
             }
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             string queryParameters;
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
                 UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
@@ -511,10 +481,10 @@ namespace NLog.Targets
                 queryParameters = sb.ToString();
             }
 
-            var builder = new UriBuilder(Url);
+            var builder = new UriBuilder(uri);
             //append our query string to the URL following 
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
-            if (builder.Query != null && builder.Query.Length > 1)
+            if (builder.Query?.Length > 1)
             {
                 builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters);
             }
@@ -551,14 +521,10 @@ namespace NLog.Targets
         /// <summary>
         /// Write from input to output. Fix the UTF-8 bom
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="writeUtf8BOM"></param>
-        /// <param name="encoding"></param>
-        private static void WriteStreamAndFixPreamble(Stream input, Stream output, bool? writeUtf8BOM, Encoding encoding)
+        private static void WriteStreamAndFixPreamble(MemoryStream postPayload, Stream output, bool? writeUtf8BOM, Encoding encoding)
         {
             //only when utf-8 encoding is used, the Encoding preamble is optional
-            var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
+            var nothingToDo = writeUtf8BOM is null || !(encoding is UTF8Encoding);
 
             const int preambleSize = 3;
             if (!nothingToDo)
@@ -572,8 +538,10 @@ namespace NLog.Targets
                 //Bom already not in Encoding
                 nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
             }
-            var offset = nothingToDo ? 0 : preambleSize;
-            input.CopyWithOffset(output, offset);
+
+            var byteArray = postPayload.GetBuffer();
+            int offset = nothingToDo ? 0 : preambleSize;
+            output.Write(byteArray, offset, (int)postPayload.Length - offset);
 
         }
 
@@ -640,12 +608,12 @@ namespace NLog.Targets
 
         private class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
-            private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
-            private IJsonConverter _jsonConverter;
+            private readonly IJsonConverter _jsonConverter;
 
             public HttpPostJsonFormatter(WebServiceTarget target)
                 : base(target)
             {
+                _jsonConverter = target.ResolveService<IJsonConverter>();
             }
 
             protected override string GetContentType(WebServiceTarget target)
@@ -671,7 +639,7 @@ namespace NLog.Targets
                         builder.Append('"');
                         builder.Append(parameter.Name);
                         builder.Append("\":");
-                        JsonConverter.SerializeObject(parameterValues[i], builder);
+                        _jsonConverter.SerializeObject(parameterValues[i], builder);
                         separator = ",";
                     }
                     builder.Append('}');
@@ -748,18 +716,19 @@ namespace NLog.Targets
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, _xmlWriterSettings);
+                using (var xtw = XmlWriter.Create(ms, _xmlWriterSettings))
+                {
+                    xtw.WriteStartElement(SoapName, "Envelope", SoapEnvelopeNamespace);
+                    xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
+                    xtw.WriteStartElement(Target.MethodName, Target.Namespace);
 
-                xtw.WriteStartElement(SoapName, "Envelope", SoapEnvelopeNamespace);
-                xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
-                xtw.WriteStartElement(Target.MethodName, Target.Namespace);
+                    WriteAllParametersToCurrenElement(xtw, parameterValues);
 
-                WriteAllParametersToCurrenElement(xtw, parameterValues);
-
-                xtw.WriteEndElement(); // method name
-                xtw.WriteEndElement(); // Body
-                xtw.WriteEndElement(); // soap:Envelope
-                xtw.Flush();
+                    xtw.WriteEndElement(); // method name
+                    xtw.WriteEndElement(); // Body
+                    xtw.WriteEndElement(); // soap:Envelope
+                    xtw.Flush();
+                }
             }
 
             protected static string GetDefaultSoapAction(WebServiceTarget target)
@@ -821,14 +790,15 @@ namespace NLog.Targets
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, _xmlWriterSettings);
+                using (var xtw = XmlWriter.Create(ms, _xmlWriterSettings))
+                {
+                    xtw.WriteStartElement(Target.XmlRoot, Target.XmlRootNamespace);
 
-                xtw.WriteStartElement(Target.XmlRoot, Target.XmlRootNamespace);
+                    WriteAllParametersToCurrenElement(xtw, parameterValues);
 
-                WriteAllParametersToCurrenElement(xtw, parameterValues);
-
-                xtw.WriteEndElement();
-                xtw.Flush();
+                    xtw.WriteEndElement();
+                    xtw.Flush();
+                }
             }
         }
 
@@ -842,8 +812,9 @@ namespace NLog.Targets
             {
                 for (int i = 0; i < Target.Parameters.Count; i++)
                 {
-                    string parameterValue = XmlHelper.XmlConvertToStringSafe(parameterValues[i]);
-                    currentXmlWriter.WriteElementString(Target.Parameters[i].Name, parameterValue);
+                    currentXmlWriter.WriteStartElement(Target.Parameters[i].Name);
+                    currentXmlWriter.WriteValue(parameterValues[i]);
+                    currentXmlWriter.WriteEndElement();
                 }
             }
         }

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
 
-  <UsingTask AssemblyFile="packages\xunit.1.9.1\lib\net20\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
-
   <PropertyGroup>
     <MajorMinorVersion>2.0</MajorMinorVersion>
     <BuildLabel Condition=" '$(BuildLabelOverride)' == '' "> (PrivateBuild)</BuildLabel>
@@ -25,256 +23,46 @@
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\nlog\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
-    <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
-    <BuildAllFrameworks>true</BuildAllFrameworks>
-    <!--disable "build all" if one or more build framework are passed-->
-    <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildWP8)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildXamarinAndroid)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildXamarinIOS)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks>false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
-    <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
-    <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
     <ToolsDir>$(MSBuildProjectDirectory)\..\build\bin\tools</ToolsDir>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
     <BuildDocPages>$(ToolsDir)\BuildDocPages.exe</BuildDocPages>
-    <SyncProjectItems>$(ToolsDir)\SyncProjectItems.exe</SyncProjectItems>
-    <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
     <Tar>$(MSBuildProjectDirectory)\..\tools\tar.exe</Tar>
     <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
     <Git Condition=" '$(Git)' == '' ">git</Git>
-    <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
     <NuGetOutputPath>$(MSBuildProjectDirectory)\..\artifacts</NuGetOutputPath>
-    <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
-    <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
-    <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
     <NuGetTool>$(MSBuildProjectDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
     <NuGetProperties>BuildVersion=$(NuGetVersion)</NuGetProperties>
   </PropertyGroup>
 
-  <!-- detect location of various SDKs and tools-->
-  <PropertyGroup>
-    <DotNet4Version>v4.0.30319</DotNet4Version>
-    <SL4RefPath Condition="'$(SL4RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0</SL4RefPath>
-    <SL5RefPath Condition="'$(SL5RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v5.0</SL5RefPath>
-
-    <!-- yes, this is broken but MSBuild does not support recursive registry access (where registry path is parameterized)
-    so this will have to do. -->
-    <MonoDefaultClr>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Novell\Mono@DefaultCLR)</MonoDefaultClr>
-    <MonoInstallLocation Condition="'$(MonoInstallLocation)' == '' and $(MonoDefaultClr) != ''">$(ProgramFiles)\Mono-$(MonoDefaultClr)</MonoInstallLocation>
-
-    <MSTest9>$(VS90COMNTOOLS)..\IDE\MSTest.exe</MSTest9>
-    <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
-
-    <StyleCopTargetsFile>$(MSBuildExtensionsPath)\StyleCop\v4.5\StyleCop.Targets</StyleCopTargetsFile>
-    <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
-  </PropertyGroup>
-
-  <!-- at this point, if $(BuildAllFrameworks)=='true' it means that the user has not requested 
-    any specific framework, so we build all that are available -->
-  <PropertyGroup Condition="'$(BuildAllFrameworks)' == 'true'">
-    <BuildMono2>true</BuildMono2>
-    <BuildSL4>true</BuildSL4>
-    <BuildSL5>true</BuildSL5>
-    <BuildNetFX35>true</BuildNetFX35>
-    <BuildNetFX40>true</BuildNetFX40>
-    <BuildNetFX45>true</BuildNetFX45>
-    <BuildWP8>true</BuildWP8>
-    <BuildXamarinAndroid>true</BuildXamarinAndroid>
-    <BuildXamarinIOS>true</BuildXamarinIOS>
-
-    <!-- now disable those that we know cannot be built -->
-    <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
-    <BuildSL4 Condition="!Exists('$(SL4RefPath)')">false</BuildSL4>
-    <BuildSL5 Condition="!Exists('$(SL5RefPath)')">false</BuildSL5>
-    <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
-    <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
-    <BuildNetFX45 Condition="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full@Release) == ''">false</BuildNetFX45>
-
-    <!-- don't build 4.0 or above if we're using MSBuild 3.5 -->
-    <BuildSL4 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL4>
-    <BuildSL5 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL5>
-    <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
-    <BuildNetFX45 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX45>
-  </PropertyGroup>
+  <Target Name="All" DependsOnTargets="Clean;Build;Documentation">
+  </Target>
 
   <ItemGroup>
     <!--The info for the nuspec-->
-    
-    <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
-        <ProjectFileSuffix>.mono2</ProjectFileSuffix>
-        <ToolsVersion>14.0</ToolsVersion>
-    </TargetFramework>
-    <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
-        <ProjectFileSuffix>.sl4</ProjectFileSuffix>
-        <NuGetDir>sl4</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include="Silverlight 5.0" Condition="'$(BuildSL5)'=='true'">
-        <ProjectFileSuffix>.sl5</ProjectFileSuffix>
-        <NuGetDir>sl5</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
-        <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
-        <ToolsVersion>14.0</ToolsVersion>
-        <NuGetDir>net35</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
-        <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
-        <ToolsVersion>14.0</ToolsVersion>
-        <NuGetDir>net40</NuGetDir>
-    </TargetFramework>
     <TargetFramework Include="net45" Condition="'$(BuildNetFX45)'=='true'">
-        <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
-        <ToolsVersion>15.0</ToolsVersion>
-        <NuGetDir>net45</NuGetDir>
-    </TargetFramework>
-    <!--the include attribute is the folder name-->
-    <TargetFramework Include="WindowsPhone8" Condition="'$(BuildWP8)'=='true'">
-        <ProjectFileSuffix>.wp8</ProjectFileSuffix>
-        <ToolsVersion>14.0</ToolsVersion>
-        <NuGetDir>wp8</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include="Xamarin.Android" Condition="'$(BuildXamarinAndroid)'=='true'">
-      <ProjectFileSuffix>.Xamarin.Android</ProjectFileSuffix>
-      <ToolsVersion>14.0</ToolsVersion>
-      <NuGetDir>MonoAndroid10</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include="Xamarin.iOS" Condition="'$(BuildXamarinIOS)'=='true'">
-      <ProjectFileSuffix>.Xamarin.iOs</ProjectFileSuffix>
-      <ToolsVersion>14.0</ToolsVersion>
-      <NuGetDir>Xamarin.iOS10</NuGetDir>
+      <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
+      <ToolsVersion>15.0</ToolsVersion>
+      <NuGetDir>net45</NuGetDir>
     </TargetFramework>
   </ItemGroup>
-
-  <ItemGroup>
-    <WebsiteFiles Include="..\Tools\WebsiteFiles\*.png" />
-    <WebsiteFiles Include="..\Tools\WebsiteFiles\*.css" />
-    <WebsiteGenFiles Include="..\Tools\WebsiteFiles\*.xsl" />
-  </ItemGroup>
-
-  <Target Name="All" DependsOnTargets="DeepClean;Clean;Build;BuildTests;RunTests;Documentation">
-  </Target>
-
-  <Target Name="NightlyBuild">
-     <PropertyGroup>
-       <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion);IsNightlyBuild=true</CommonProperties>
-     </PropertyGroup>
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests;Web" Properties="Configuration=Release;$(CommonProperties)" />
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests;RunNightlyTests" Properties="Configuration=Debug;$(CommonProperties)" />
-     <CallTarget Targets="SourceArchive" />
-  </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 
-  <Target Name="Build" DependsOnTargets="NuGetRestore">
-    <PropertyGroup>
-        <BuildInfoFileContent>
-// automatically generated
-[assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
-[assembly: System.Reflection.AssemblyVersion("$(BuildLastMajorVersion)")]
-[assembly: System.Reflection.AssemblyFileVersion("$(AssemblyFileVersion)")]
-[assembly: System.Reflection.AssemblyInformationalVersion("$(BuildVersion)")]
-</BuildInfoFileContent>
-    </PropertyGroup>
-
-    <MakeDir Directories="$(BaseOutputDirectory)\bin" />
-
-    <ReadLinesFromFile File="$(BuildInfoFile)" Condition="Exists('$(BuildInfoFile)')">
-        <Output TaskParameter="Lines" ItemName="CurrentBuildInfoFileContent" />
-    </ReadLinesFromFile>
-
-    <WriteLinesToFile File="$(BuildInfoFile)" 
-            Lines='$(BuildInfoFileContent)'
-            Overwrite="true" 
-            Condition="'$(BuildInfoFileContent)' != '@(CurrentBuildInfoFileContent)' " />
-    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" 
-             Targets="Build" 
-             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
-             ToolsVersion="%(TargetFramework.ToolsVersion)" 
-             ContinueOnError="$(IgnoreBuildFailures)" 
-             StopOnFirstFailure="false" />
-    <MSBuild Projects="NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj" 
-             Targets="Build" 
-             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
-             ToolsVersion="%(TargetFramework.ToolsVersion)" 
-             ContinueOnError="$(IgnoreBuildFailures)" 
-             StopOnFirstFailure="false"
-             Condition="Exists('NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
-  </Target>
-
-  <Target Name="BuildTests">
-    <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile);" />
-    <MSBuild Projects="..\tests\NLog.UnitTests\NLog.UnitTests%(TargetFramework.ProjectFileSuffix).csproj" 
-             Targets="Build" 
-             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
-             ContinueOnError="$(IgnoreBuildFailures)" 
-             StopOnFirstFailure="false" />
-  </Target>
-
-  <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
-    Inputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml;$(BuildDocPages);@(WebsiteFiles);@(WebsiteGenFiles)"
-    Outputs="$(WebsiteDir)\static.tar.bz2;$(WebsiteDir)\generated.tar.bz2;">
-
-    <Copy SourceFiles="@(WebsiteFiles)" DestinationFolder="$(WebsiteDir)\static" />
-    <Exec Command='"$(BuildDocPages)" "NLogMerged.api.xml" "$(MSBuildProjectDirectory)\..\tools\WebsiteFiles\style.xsl" "$(WebsiteDir)\generated" "$(MSBuildProjectDirectory)\.." html web'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)" />
-    <Exec Command='"$(Tar)" -c -f generated.tar generated' WorkingDirectory="$(WebsiteDir)" />
-    <Exec Command='"$(BZip2)" -f generated.tar' WorkingDirectory="$(WebsiteDir)" />
-    <Exec Command='"$(Tar)" -c -f ..\static.tar *' WorkingDirectory="$(WebsiteDir)\static" />
-    <Exec Command='"$(BZip2)" -f static.tar' WorkingDirectory="$(WebsiteDir)" />
-  </Target>
-
-  <Target Name="RunTests" >
-    <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
-    <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
-    <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
-    <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
-
-  </Target>
-
-  <Target Name="RunNightlyTests">
-    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
-          Condition="Exists('$(MSTest10)')" />
-  </Target>
-
-  <Target Name="NetFx35Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
-  </Target>
-
-  <Target Name="NetFx40Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
-  </Target>
-
-  <Target Name="NetFx45Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
-  </Target>
-
-
-  <Target Name="CheckinSuite">
-    <CallTarget Targets="SyncProjectItems" />
-    <CallTarget Targets="DeepClean" />
-    <CallTarget Targets="Rebuild" />
-    <CallTarget Targets="DumpApi" />
-    <CallTarget Targets="BuildTests" />
-    <CallTarget Targets="RunTests" />
+  <Target Name="Build">
   </Target>
 
   <Target Name="BuildMergedDocumentation">
-    <MSBuild Projects="NLog.Extended\NLog.Extended.doc.csproj" 
-             Targets="Build" 
-             Properties="$(StyleCopProperties);BaseOutputDirectory=$(BaseOutputDirectory)" 
-             ContinueOnError="$(BuildAllFrameworks)" 
+    <MSBuild Projects="NLog.Extended\NLog.Extended.doc.csproj"
+             Targets="Build"
+             Properties="$(StyleCopProperties);BaseOutputDirectory=$(BaseOutputDirectory)"
+             ContinueOnError="$(BuildAllFrameworks)"
              StopOnFirstFailure="false" />
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="Documentation" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
@@ -282,8 +70,8 @@
   <Target Name="BuildIndividualDocumentation">
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
-  
-    <Target Name="BuildDocumentationNetFX45">
+
+  <Target Name="BuildDocumentationNetFX45">
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="BuildNetFX45" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' />
   </Target>
 
@@ -307,155 +95,25 @@
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
   </Target>
 
-  <Target Name="NuGetPackage" DependsOnTargets="NuGetBasePackage;NuGetExtendedPackage;NuGetConfigPackage;NuGetSchemaPackage;NuGetSnippetsPackage">
-  </Target>
-
-  <Target Name="NuGetBasePackage">
-    <ItemGroup>
-      <NuGetFiles Include="NuGet/NLog/**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <NuGetSourceFiles Include="NLog/**/*.cs" />
-    </ItemGroup>
-	
-    <!-- prepare static files -->
-    <RemoveDir Directories="$(NuGetBuildPath)\NLog" />
-    <Copy SourceFiles="@(NuGetFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\%(RecursiveDir)" />
-	
-    <!-- copy binaries -->
-    <MakeDir Directories="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" />
-    <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.dll" Condition=" '%(TargetFramework.NuGetDir)' != '' "  />
-    <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.pdb"  Condition=" '%(TargetFramework.NuGetDir)' != '' " />
-    <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.xml"  Condition=" '%(TargetFramework.NuGetDir)' != '' " />
-
-    <!-- copy sources -->
-    <Copy SourceFiles="@(NuGetSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\src\src\NLog\%(RecursiveDir)" />
-    <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog\src\build\bin" />
-
-    <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
-    
-    <!-- package -->
-    <RemoveDir Directories="$(NuGetOutputPath)" />
-    <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog" />
-  </Target>
-
-  <Target Name="NuGetExtendedPackage">
-    <ItemGroup>
-      <NuGetExtendedFiles Include="NuGet/NLog.Extended/**" />
-    </ItemGroup>
-    <ItemGroup>
-      <NuGetExtendedSourceFiles Include="NLog.Extended/**/*.cs" />
-    </ItemGroup>
-	
-    <!-- prepare static files -->
-    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Extended" />
-    <Copy SourceFiles="@(NuGetExtendedFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\%(RecursiveDir)" />
-	
-    <!-- copy binaries -->
-    <MakeDir Directories="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
-          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
-    <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
-          SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.dll" 
-          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.dll')" />
-    <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
-          SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb"
-          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
-    <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
-          SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.xml"
-          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.xml')" />
-		  
-    <!-- copy sources -->
-    <Copy SourceFiles="@(NuGetExtendedSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\src\NLog.Extended\%(RecursiveDir)" />
-    <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\build\bin" />
-
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
-
-    <!-- package -->	  
-    <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Extended.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Extended" />
-  </Target>
-
-  <Target Name="NuGetRestore">
-   <Exec Command='"$(NuGetTool)" restore ..\..\src\NLog%(TargetFramework.ProjectFileSuffix).sln'  WorkingDirectory="NLog" />
-  </Target>
-
-  <Target Name="NuGetConfigPackage">
-    <ItemGroup>
-      <NuGetConfigFiles Include="NuGet/NLog.Config/**" />
-    </ItemGroup>
-	
-    <!-- prepare static files -->
-    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
-    <Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
-	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
-
-    <!-- package -->	  
-    <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
+  <Target Name="NuGetPackage" DependsOnTargets="NuGetSchemaPackage">
   </Target>
 
   <Target Name="NuGetSchemaPackage">
     <ItemGroup>
       <NuGetSchemaFiles Include="NuGet/NLog.Schema/**" />
     </ItemGroup>
-	
+
     <!-- prepare static files -->
     <RemoveDir Directories="$(NuGetBuildPath)\NLog.Schema" />
     <Copy SourceFiles="@(NuGetSchemaFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Schema\%(RecursiveDir)" />
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
-	
+
     <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
-    <!-- package -->	  
+    <!-- package -->
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
-  </Target>
-
-                                                                                 
-  <Target Name="NuGetSnippetsPackage">
-    <ItemGroup>
-      <NuGetSnippetsFiles Include="NuGet/NLog.Snippets/**" />
-    </ItemGroup>
-  
-    <!-- prepare static files -->
-    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Snippets" />
-    <Copy SourceFiles="@(NuGetSnippetsFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\%(RecursiveDir)" />
-    <Copy SourceFiles="$(BaseOutputDirectory)..\src\VSIntegration\Snippets\CSharpLogger.snippet"
-          DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\tools\Snippets" />
-    <Copy SourceFiles="$(BaseOutputDirectory)..\src\VSIntegration\Snippets\VBLogger.snippet"
-          DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\tools\Snippets" />
-  
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Snippets\NLog.Snippets.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
-
-    <!-- package -->    
-    <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Snippets.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Snippets" />
-  </Target> 
-
-  <Target Name="Installer">
-     <PropertyGroup>
-       <CommonInstallerProperties>Configuration=$(Configuration);BuildLabelDash=$(BuildLabelDash);BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonInstallerProperties>
-     </PropertyGroup>
-     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=NetFx;$(CommonInstallerProperties)" />
-     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=SL;$(CommonInstallerProperties)" />
-     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=All;$(CommonInstallerProperties)" />
-     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=Mono;$(CommonInstallerProperties)" />
-     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=WP;$(CommonInstallerProperties)" />
-  </Target>
-
-  <Target Name="BuildSyncProjectItemsTool">
-    <MSBuild Projects="..\tools\SyncProjectItems\SyncProjectItems.csproj" />
-  </Target>
-
-  <Target Name="SyncProjectItems" DependsOnTargets="BuildSyncProjectItemsTool">
-    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="NLog" />
-    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="NLog.Extended" />
-    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\NLog.UnitTests" />
-    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\SampleExtensions" />
   </Target>
 
   <Target Name="BuildApiDumpTool">
@@ -473,7 +131,7 @@
   <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
   </Target>
 
-  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildSyncProjectItemsTool;BuildMakeNLogXSDTool">
+  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildMakeNLogXSDTool">
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool"
@@ -504,29 +162,7 @@
   </Target>
 
   <Target Name="Clean">
-     <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)bin\$(Configuration)\%(Identity)')" />
-     <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)obj\$(Configuration)\%(Identity)')" />
   </Target>
-
-  <Target Name="BeforeArchive">
-    <PropertyGroup>
-      <ArchiveSuffix></ArchiveSuffix>
-      <ArchiveSuffix Condition=" '$(BuildLabelDash)' != '' ">$(BuildLabelDash)</ArchiveSuffix>
-    </PropertyGroup>
-    <MakeDir Directories="$(ArchiveOutputPath)" />
-  </Target>
-
-  <Target Name="Archive" DependsOnTargets="BeforeArchive">
-    <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.* -x *Test*' 
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
-    <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2.doc$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.chm'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
-  </Target>
-
-  <Target Name="SourceArchive" DependsOnTargets="BeforeArchive">
-    <Exec Command='"$(Git)" archive --format=zip --worktree-attributes -9 head -o build/bin/Release/Packages/NLog2.source$(ArchiveSuffix).zip' WorkingDirectory=".." />
-  </Target>
-
   <UsingTask TaskName="TokenReplace" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
       <Path ParameterType="System.String" Required="true" />
@@ -534,12 +170,14 @@
       <Replacement ParameterType="System.String" Required="true" />
     </ParameterGroup>
     <Task>
-      <Code Type="Fragment" Language="cs"><![CDATA[
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
 string content = File.ReadAllText(Path);
 content = content.Replace(Token, Replacement);
 File.WriteAllText(Path, content);
 
-]]></Code>
+]]>
+      </Code>
     </Task>
   </UsingTask>
 
@@ -555,24 +193,10 @@ File.WriteAllText(Path, content);
     <DirectoriesToCleanup Include="TestResults" />
     <ProjectsToCleanup Include="NLog" />
     <ProjectsToCleanup Include="Doc" />
-    <ProjectsToCleanup Include="..\tests\NLog.AsyncBenchmark" />
-    <ProjectsToCleanup Include="..\tests\NLog.Benchmark" />
-    <ProjectsToCleanup Include="..\tests\NLog.Test" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
-    <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
-    <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DumpApiXml" />
     <SolutionFiles Include="..\**\*.sln" />
   </ItemGroup>
 
-  <Target Name="DeepClean">
-     <Delete Files="@(FilesToCleanup)" />
-     <RemoveDir Directories="@(DirectoriesToCleanup)" />
-     <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\bin')" />
-     <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\obj')" />
-     <RemoveDir Directories="@(SolutionFiles -> '%(RelativeDir)_ReSharper.%(filename)')" />
-  </Target>
-
-  <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 </Project>

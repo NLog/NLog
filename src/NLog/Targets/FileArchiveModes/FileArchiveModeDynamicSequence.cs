@@ -36,7 +36,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using NLog.Common;
 using NLog.Internal;
 
 namespace NLog.Targets.FileArchiveModes
@@ -219,7 +218,7 @@ namespace NLog.Targets.FileArchiveModes
                         ++templatePos;
                     }
 
-                    if (fileNameChar == templateChar || char.ToLowerInvariant(fileNameChar) == char.ToLowerInvariant(templateChar))
+                    if (fileNameChar == templateChar || char.ToUpperInvariant(fileNameChar) == char.ToUpperInvariant(templateChar))
                     {
                         continue;
                     }
@@ -234,9 +233,9 @@ namespace NLog.Targets.FileArchiveModes
             }
 
             int sequenceNumber = ExtractArchiveNumberFromFileName(archiveFile.FullName);
-            InternalLogger.Trace("FileTarget: extracted sequenceNumber: {0} from file '{1}'", sequenceNumber, archiveFile.FullName);
             var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc();
-            return new DateAndSequenceArchive(archiveFile.FullName, creationTimeUtc, string.Empty, sequenceNumber > 0 ? sequenceNumber : 0);
+            var creationTime = creationTimeUtc > DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(creationTimeUtc) : DateTime.MinValue;
+            return new DateAndSequenceArchive(archiveFile.FullName, creationTime, _archiveDateFormat, sequenceNumber > 0 ? sequenceNumber : 0);
         }
 
         private static int ExtractArchiveNumberFromFileName(string archiveFileName)

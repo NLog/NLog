@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public MessageLayoutRenderer()
         {
-            ExceptionSeparator = EnvironmentHelper.NewLine;
+            ExceptionSeparator = "|";
         }
 
         /// <summary>
@@ -83,10 +83,9 @@ namespace NLog.LayoutRenderers
             }
             else if (!exceptionOnly)
             {
-                if (ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter))
+                if (logEvent.MessageFormatter?.Target is ILogMessageFormatter messageFormatter)
                 {
-                    // Skip string-allocation of LogEventInfo.FormattedMessage, but just write directly to StringBuilder
-                    logEvent.AppendFormattedMessage(LogMessageTemplateFormatter.DefaultAutoSingleTarget, builder);
+                    logEvent.AppendFormattedMessage(messageFormatter, builder);
                 }
                 else
                 {
@@ -97,7 +96,7 @@ namespace NLog.LayoutRenderers
             if (WithException && logEvent.Exception != null)
             {
                 var primaryException = logEvent.Exception;
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET35
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     aggregateException = aggregateException.Flatten();

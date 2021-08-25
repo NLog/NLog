@@ -66,8 +66,8 @@ namespace NLog.Targets
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        [DefaultValue(true)]
-        public bool EscapeForwardSlash { get; set; } = true; // todo NLog 5, default to false
+        [DefaultValue(false)]
+        public bool EscapeForwardSlash { get; set; }
         
         /// <summary>
         /// Serialize enum as string value

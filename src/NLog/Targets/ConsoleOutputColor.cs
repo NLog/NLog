@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Targets
 {
     /// <summary>
@@ -130,5 +128,3 @@ namespace NLog.Targets
         NoChange = 16,
     }
 }
-
-#endif

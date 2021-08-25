@@ -101,10 +101,10 @@ namespace NLog.Common
                 return false;
             }
 
-#if NET3_5
-            return TryParseEnum_net3(inputValue, ignoreCase, out resultValue);
-#else
+#if !NET35
             return Enum.TryParse(inputValue, ignoreCase, out resultValue);
+#else
+            return TryParseEnum_net3(inputValue, ignoreCase, out resultValue);            
 #endif
         }
 

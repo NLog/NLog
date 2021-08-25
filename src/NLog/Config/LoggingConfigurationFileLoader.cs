@@ -43,10 +43,6 @@ namespace NLog.Config
     using NLog.Internal.Fakeables;
     using NLog.Targets;
 
-#if SILVERLIGHT
-    using System.Windows;
-#endif
-
     /// <summary>
     /// Enables loading of NLog configuration from a file
     /// </summary>
@@ -77,34 +73,7 @@ namespace NLog.Config
         {
             // Nothing to do
         }
-
-#if __ANDROID__
-        private LoggingConfiguration TryLoadFromAndroidAssets(LogFactory logFactory)
-        {
-            //try nlog.config in assets folder
-            const string nlogConfigFilename = "NLog.config";
-            try
-            {
-                using (var stream = Android.App.Application.Context.Assets.Open(nlogConfigFilename))
-                {
-                    if (stream != null)
-                    {
-                        InternalLogger.Debug("Loading config from Assets {0}", nlogConfigFilename);
-                        using (var xmlReader = XmlReader.Create(stream))
-                        {
-                            return LoadXmlLoggingConfiguration(xmlReader, null, logFactory);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
-            }
-            return null;
-        }
-#endif
-
+        
         private LoggingConfiguration TryLoadFromFilePaths(LogFactory logFactory, string filename)
         {
             var configFileNames = logFactory.GetCandidateConfigFilePaths(filename);
@@ -114,36 +83,18 @@ namespace NLog.Config
                     return config;
             }
 
-#if __ANDROID__
-            return TryLoadFromAndroidAssets(logFactory);
-#else
             return null;
-#endif
         }
 
         private bool TryLoadLoggingConfiguration(LogFactory logFactory, string configFile, out LoggingConfiguration config)
         {
             try
             {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                var streamResourceInfo = Application.GetResourceStream(configFileUri);
-                if (streamResourceInfo != null)
-                {
-                    InternalLogger.Debug("Loading config from Resource {0}", configFileUri);
-                    using (var xmlReader = XmlReader.Create(streamResourceInfo.Stream))
-                    {
-                        config = LoadXmlLoggingConfiguration(xmlReader, null, logFactory);
-                        return true;
-                    }
-                }
-#else
                 if (_appEnvironment.FileExists(configFile))
                 {
                     config = LoadXmlLoggingConfigurationFile(logFactory, configFile);
                     return true;    // File exists, and maybe the config is valid, stop search
                 }
-#endif
             }
             catch (IOException ex)
             {
@@ -188,7 +139,6 @@ namespace NLog.Config
                 var newConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
                 if (newConfig.InitializeSucceeded != true)
                 {
-#if !SILVERLIGHT
                     if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
                     {
                         using (var xmlReaderRetry = _appEnvironment.LoadXmlFile(configFile))
@@ -200,7 +150,6 @@ namespace NLog.Config
                     {
                         return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
                     }
-#endif
                 }
                 return newConfig;
             }
@@ -208,18 +157,13 @@ namespace NLog.Config
             {
                 if (ex.MustBeRethrownImmediately() || ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
                     throw;
-#if !SILVERLIGHT
                 if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
                     throw;
 
                 return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
-#else
-                return null;
-#endif
             }
         }
 
-#if !SILVERLIGHT
         private static LoggingConfiguration CreateEmptyDefaultConfig(string configFile, LogFactory logFactory, bool autoReload)
         {
             return new XmlLoggingConfiguration($"<nlog autoReload='{autoReload}'></nlog>", configFile, logFactory);    // Empty default config, but monitors file
@@ -271,16 +215,27 @@ namespace NLog.Config
             return fileContent.IndexOf($"{parameterName}=\"{parameterValue}", StringComparison.OrdinalIgnoreCase) >= 0
                 || fileContent.IndexOf($"{parameterName}='{parameterValue}", StringComparison.OrdinalIgnoreCase) >= 0;
         }
-#endif
 
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files. 
         /// </summary>
         public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null)
         {
+            string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
+#if !NETSTANDARD1_3
+            string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
+#else
+            string entryAssemblyLocation = string.Empty;
+#endif
+            if (filename is null)
+            {
+                // Scan for process specific nlog-files
+                foreach (var filePath in GetAppSpecificNLogLocations(baseDirectory, entryAssemblyLocation))
+                    yield return filePath;
+            }
+
             // NLog.config from application directory
             string nlogConfigFile = filename ?? "NLog.config";
-            string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
             if (!string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nlogConfigFile);
 
@@ -289,11 +244,6 @@ namespace NLog.Config
             if (!platformFileSystemCaseInsensitive && !string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nLogConfigFileLowerCase);
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
-            string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
-#else
-            string entryAssemblyLocation = string.Empty;
-#endif
             if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
             {
                 yield return Path.Combine(entryAssemblyLocation, nlogConfigFile);
@@ -308,13 +258,6 @@ namespace NLog.Config
                     yield return nLogConfigFileLowerCase;
             }
 
-            if (filename == null)
-            {
-                // Scan for process specific nlog-files
-                foreach (var filePath in GetAppSpecificNLogLocations(baseDirectory, entryAssemblyLocation))
-                    yield return filePath;
-            }
-
             foreach (var filePath in GetPrivateBinPathNLogLocations(baseDirectory, nlogConfigFile, platformFileSystemCaseInsensitive ? nLogConfigFileLowerCase : string.Empty))
                 yield return filePath;
 
@@ -325,7 +268,7 @@ namespace NLog.Config
 
         private static string LookupNLogAssemblyLocation()
         {
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).GetAssembly();
             var nlogAssemblyLocation = nlogAssembly?.Location;
@@ -390,7 +333,7 @@ namespace NLog.Config
 
         private IEnumerable<string> GetPrivateBinPathNLogLocations(string baseDirectory, string nlogConfigFile, string nLogConfigFileLowerCase)
         {
-            IEnumerable<string> privateBinPaths = _appEnvironment.PrivateBinPath;
+            IEnumerable<string> privateBinPaths = _appEnvironment.AppDomainPrivateBinPath;
             if (privateBinPaths != null)
             {
                 foreach (var privatePath in privateBinPaths)

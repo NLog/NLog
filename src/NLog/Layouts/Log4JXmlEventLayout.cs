@@ -33,6 +33,7 @@
 
 namespace NLog.Layouts
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using NLog.Config;
@@ -75,56 +76,99 @@ namespace NLog.Layouts
         public IList<NLogViewerParameterInfo> Parameters { get => Renderer.Parameters; set => Renderer.Parameters = value;  }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdc
+        public bool IncludeEventProperties
         {
-            get => Renderer.IncludeMdc;
-            set => Renderer.IncludeMdc = value;
+            get => Renderer.IncludeEventProperties;
+            set => Renderer.IncludeEventProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties
+        {
+            get => Renderer.IncludeScopeProperties;
+            set => Renderer.IncludeScopeProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeNestedStates
+        {
+            get => Renderer.IncludeScopeNestedStates;
+            set => Renderer.IncludeScopeNestedStates = value;
         }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties
-        {
-            get => Renderer.IncludeAllProperties;
-            set => Renderer.IncludeAllProperties = value;
-        }
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdc { get => Renderer.IncludeMdc; set => Renderer.IncludeMdc = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdc
-        {
-            get => Renderer.IncludeNdc;
-            set => Renderer.IncludeNdc = value;
-        }
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdc { get => Renderer.IncludeNdc; set => Renderer.IncludeNdc = value; }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc
-        {
-            get => Renderer.IncludeMdlc;
-            set => Renderer.IncludeMdlc = value;
-        }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
+
+        /// <summary>
+        /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public Layout LoggerName
         {
-            get => Renderer.IncludeNdlc;
-            set => Renderer.IncludeNdlc = value;
+            get => Renderer.LoggerName;
+            set => Renderer.LoggerName = value;
         }
-#endif
+
+        /// <summary>
+        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public Layout AppInfo
+        {
+            get => Renderer.AppInfo;
+            set => Renderer.AppInfo = value;
+        }
+
+        /// <summary>
+        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool WriteThrowableCData
+        {
+            get => Renderer.WriteThrowableCData;
+            set => Renderer.WriteThrowableCData = value;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
 
 namespace NLog.Targets
 {
@@ -63,18 +63,17 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="DebuggerTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public DebuggerTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DebuggerTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public DebuggerTarget(string name) : this()
@@ -90,7 +89,7 @@ namespace NLog.Targets
             base.InitializeTarget();
             if (!Debugger.IsLogging())
             {
-                InternalLogger.Debug("Debugger(Name={0}): System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", Name);
+                InternalLogger.Debug("{0}: System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", this);
             }
 
             if (Header != null)
@@ -121,18 +120,11 @@ namespace NLog.Targets
             if (Debugger.IsLogging())
             {
                 string logMessage;
-                if (OptimizeBufferReuse)
+                using (var localTarget = ReusableLayoutBuilder.Allocate())
                 {
-                    using (var localTarget = ReusableLayoutBuilder.Allocate())
-                    {
-                        Layout.RenderAppendBuilder(logEvent, localTarget.Result);
-                        localTarget.Result.Append('\n');
-                        logMessage = localTarget.Result.ToString();
-                    }
-                }
-                else
-                {
-                    logMessage = RenderLogEvent(Layout, logEvent) + "\n";
+                    Layout.RenderAppendBuilder(logEvent, localTarget.Result);
+                    localTarget.Result.Append('\n');
+                    logMessage = localTarget.Result.ToString();
                 }
 
                 Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, logMessage);

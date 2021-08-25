@@ -1,0 +1,54 @@
+version: 2
+updates:
+
+- package-ecosystem: nuget
+  directory: "/tests/NLog.UnitTests"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.Extensions.PlatformAbstractions
+    versions:
+    - ">= 1.1.a, < 1.2"
+  - dependency-name: System.ComponentModel.Primitives
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.ComponentModel.TypeConverter
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Data.Common
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Diagnostics.Process
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Diagnostics.StackTrace
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Diagnostics.TraceSource
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.IO.FileSystem.Watcher
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Net.NameResolution
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Net.Requests
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Reflection.TypeExtensions
+    versions:
+    - ">= 4.3.a, < 4.7"
+  - dependency-name: System.Runtime.Loader
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Threading.Thread
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Xml.XmlDocument
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Xml.XmlSerializer
+    versions:
+    - ">= 4.3.a, < 4.4"

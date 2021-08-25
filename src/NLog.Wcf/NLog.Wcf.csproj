@@ -3,11 +3,11 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.WCF for .NET Standard</Title>
+    <Title>NLog WCF LogReceiverService Target</Title>
     <Company>NLog</Company>
-    <Description>NLog.WCF ServiceModel provides LogReceiverService target and the WCF contract interfaces/implementations for NetStandard</Description>
+    <Description>NLog.WCF ServiceModel provides LogReceiverService target and the WCF contract interfaces/implementations</Description>
     <Product>NLog WCF v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
@@ -19,14 +19,14 @@
       https://github.com/NLog/NLog/wiki/LogReceiverService-target
     </PackageReleaseNotes>
     <PackageTags>NLog;WCF;ServiceModel;logging;log</PackageTags>
-    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
@@ -34,48 +34,49 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>NLog.Wcf for .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog.Wcf for .NET Framework 4.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog.Wcf for .NET Framework 3.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <Title>NLog.Wcf for NetStandard 1.3</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_0;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <Title>NLog.Wcf for NetStandard 1.5</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_0;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog.Wcf for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
-
+ 
   <ItemGroup>
-    <Compile Include="..\NLog\LogReceiverService\BaseLogReceiverForwardingService.cs" Link="BaseLogReceiverForwardingService.cs" />
-    <Compile Include="..\NLog\LogReceiverService\ILogReceiverClient.cs" Link="ILogReceiverClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\ILogReceiverOneWayClient.cs" Link="ILogReceiverOneWayClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\ILogReceiverOneWayServer.cs" Link="ILogReceiverOneWayServer.cs" />
-    <Compile Include="..\NLog\LogReceiverService\ILogReceiverServer.cs" Link="ILogReceiverServer.cs" />
-    <Compile Include="..\NLog\LogReceiverService\ILogReceiverTwoWayClient.cs" Link="ILogReceiverTwoWayClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\IWcfLogReceiverClient.cs" Link="IWcfLogReceiverClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\LogReceiverForwardingService.cs" Link="LogReceiverForwardingService.cs" />
-    <Compile Include="..\NLog\LogReceiverService\LogReceiverOneWayForwardingService.cs" Link="LogReceiverOneWayForwardingService.cs" />
-    <Compile Include="..\NLog\LogReceiverService\LogReceiverServiceConfig.cs" Link="LogReceiverServiceConfig.cs" />
-    <Compile Include="..\NLog\LogReceiverService\NLogEvent.cs" Link="NLogEvent.cs" />
-    <Compile Include="..\NLog\LogReceiverService\NLogEvents.cs" Link="NLogEvents.cs" />
-    <Compile Include="..\NLog\LogReceiverService\SoapLogReceiverClient.cs" Link="SoapLogReceiverClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\StringCollection.cs" Link="StringCollection.cs" />
-    <Compile Include="..\NLog\LogReceiverService\WcfILogReceiverClient.cs" Link="WcfILogReceiverClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverClient.cs" Link="WcfLogReceiverClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverClientBase.cs" Link="WcfLogReceiverClientBase.cs" />
-    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverOneWayClient.cs" Link="WcfLogReceiverOneWayClient.cs" />
-    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverTwoWayClient.cs" Link="WcfLogReceiverTwoWayClient.cs" />
-    <Compile Include="..\NLog\Targets\LogReceiverWebServiceTarget.cs" Link="LogReceiverWebServiceTarget.cs" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net35' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' or '$(TargetFramework)' == 'netstandard1.3' ">
@@ -95,12 +96,15 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="..\NLog\Resources\NLog.ico" />
-  </ItemGroup>
-
   <PropertyGroup>
     <AssemblyTitle>$(Title)</AssemblyTitle>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
+  </ItemGroup>
+  <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
+    <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
+  </Target>
 
 </Project>

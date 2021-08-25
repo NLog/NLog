@@ -87,7 +87,6 @@ namespace NLog.Targets.Wrappers
         public FallbackGroupTarget(params Target[] targets)
             : base(targets)
         {
-            OptimizeBufferReuse = GetType() == typeof(FallbackGroupTarget); // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -125,20 +124,16 @@ namespace NLog.Targets.Wrappers
 
             continuation = ex =>
                 {
-                    if (ex == null)
+                    if (ex is null)
                     {
                         // success
                         if (ReturnToFirstOnSuccess)
                         {
 #pragma warning disable S1066 // Collapsible "if" statements should be merged
-#if !SILVERLIGHT || WINDOWS_PHONE
                             if (Interlocked.Read(ref _currentTarget) != 0)
-#else
-                            if (Interlocked.CompareExchange(ref _currentTarget, 0, 0) != 0)
-#endif
 #pragma warning restore S1066 // Collapsible "if" statements should be merged
                             {
-                                InternalLogger.Debug("FallbackGroup(Name={0}): Target '{1}' succeeded. Returning to the first one.", Name, Targets[targetToInvoke]);
+                                InternalLogger.Debug("{0}: Target '{1}' succeeded. Returning to the first one.", this, Targets[targetToInvoke]);
                                 Interlocked.Exchange(ref _currentTarget, 0);
                             }
                         }
@@ -148,7 +143,7 @@ namespace NLog.Targets.Wrappers
                     }
 
                     // failure
-                    InternalLogger.Warn(ex, "FallbackGroup(Name={0}): Target '{1}' failed. Proceeding to the next one.", Name, Targets[targetToInvoke]);
+                    InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Proceeding to the next one.", this, Targets[targetToInvoke]);
 
                     // error while writing, go to the next one
                     tryCounter++;
@@ -173,11 +168,7 @@ namespace NLog.Targets.Wrappers
                     }
                 };
 
-#if !SILVERLIGHT || WINDOWS_PHONE
             targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
-#else
-            targetToInvoke = (int)Interlocked.CompareExchange(ref _currentTarget, 0, 0);
-#endif
 
             for (int i = 0; i < Targets.Count; ++i)
             {

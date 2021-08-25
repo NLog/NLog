@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
+#if !MONO && !NETSTANDARD
 
 namespace NLog.Internal.FileAppenders
 {
@@ -66,9 +66,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (_fileStream != null)
-                    _fileStream.Dispose();
-                _fileStream = null;
+                CloseFileSafe(ref _fileStream, fileName);
                 throw;
             }
         }
@@ -141,9 +139,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (_fileStream != null)
-                    _fileStream.Dispose();
-                _fileStream = null;
+                CloseFileSafe(ref _fileStream, fileName);
                 throw;
             }
         }
@@ -156,10 +152,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (_fileStream != null)
-            {
-                _fileStream.Write(bytes, offset, count);
-            }
+            _fileStream?.Write(bytes, offset, count);
         }
 
         /// <summary>
@@ -167,19 +160,19 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (_fileStream == null)
+            if (_fileStream is null)
             {
                 return;
             }
 
-            InternalLogger.Trace("Closing '{0}'", FileName);
+            InternalLogger.Trace("{0}: Closing '{1}'", CreateFileParameters, FileName);
             try
             {
                 _fileStream?.Dispose();
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
+                InternalLogger.Warn(ex, "{0}: Failed to close file '{1}'", CreateFileParameters, FileName);
                 Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
             }
             finally

@@ -31,50 +31,62 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+using NLog.Internal;
+
+#if !NETSTANDARD
 
 namespace NLog.Config
 {
+    using Internal.Fakeables;
+    using NLog.Common;
     using System;
     using System.Configuration;
     using System.Xml;
-    using Internal.Fakeables;
-    using Common;
 
     /// <summary>
-    /// NLog configuration section handler class for configuring NLog from App.config.
+    /// Class for providing Nlog configuration xml code from app.config
+    /// to <see cref="XmlLoggingConfiguration"/>
     /// </summary>
-    public sealed class ConfigSectionHandler : IConfigurationSectionHandler
+    public sealed class ConfigSectionHandler : ConfigurationSection
     {
-        object Create(XmlNode section, IAppDomain appDomain)
+        private XmlLoggingConfiguration _config;
+
+        /// <summary>
+        /// Overriding base implementation to just store <see cref="XmlReader"/>
+        /// of the relevant app.config section.
+        /// </summary>
+        /// <param name="reader">The XmlReader that reads from the configuration file.</param>
+        /// <param name="serializeCollectionKey">true to serialize only the collection key properties; otherwise, false.</param>
+        protected override void DeserializeElement(XmlReader reader, bool serializeCollectionKey)
         {
             try
             {
-                string configFileName = appDomain.ConfigurationFile;
-
-                return new XmlLoggingConfiguration(section.OuterXml, configFileName, LogManager.LogFactory);
+                string configFileName = LogFactory.DefaultAppEnvironment.AppDomainConfigurationFile;
+                _config = new XmlLoggingConfiguration(reader, configFileName, LogManager.LogFactory);
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "ConfigSectionHandler error.");
-              
-                //TODO NLog 5, check MustBeRethrown()
-                throw;
+                InternalLogger.Error(exception, "ConfigSectionHandler DeserializeElement error");
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
             }
         }
 
         /// <summary>
-        /// Creates a configuration section handler.
+        /// Override base implementation to return a <see cref="LoggingConfiguration"/> object
+        /// for <see cref="ConfigurationManager.GetSection"/>
+        /// instead of the <see cref="ConfigSectionHandler"/> instance.
         /// </summary>
-        /// <param name="parent">Parent object.</param>
-        /// <param name="configContext">Configuration context object.</param>
-        /// <param name="section">Section XML node.</param>
-        /// <returns>The created section handler object.</returns>
-        object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
+        /// <returns>
+        /// A <see cref="LoggingConfiguration"/> instance, that has been deserialized from app.config.
+        /// </returns>
+        protected override object GetRuntimeObject()
         {
-            return Create(section, LogFactory.CurrentAppDomain);
+            return _config;
         }
     }
 }
-
 #endif

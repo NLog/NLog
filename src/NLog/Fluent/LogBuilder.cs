@@ -41,6 +41,7 @@ namespace NLog.Fluent
     /// <summary>
     /// A fluent class to build log events for NLog.
     /// </summary>
+    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;
@@ -64,9 +65,9 @@ namespace NLog.Fluent
         [CLSCompliant(false)]
         public LogBuilder(ILogger logger, LogLevel logLevel)
         {
-            if (logger == null)
+            if (logger is null)
                 throw new ArgumentNullException(nameof(logger));
-            if (logLevel == null)
+            if (logLevel is null)
                 throw new ArgumentNullException(nameof(logLevel));
 
             _logger = logger;
@@ -96,7 +97,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Level(LogLevel logLevel)
         {
-            if (logLevel == null)
+            if (logLevel is null)
                 throw new ArgumentNullException(nameof(logLevel));
 
             _logEvent.Level = logLevel;
@@ -107,7 +108,7 @@ namespace NLog.Fluent
         /// Sets the logger name of the logging event.
         /// </summary>
         /// <param name="loggerName">The logger name of the logging event.</param>
-            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder LoggerName(string loggerName)
         {
             _logEvent.LoggerName = loggerName;
@@ -118,7 +119,7 @@ namespace NLog.Fluent
         /// Sets the log message on the logging event.
         /// </summary>
         /// <param name="message">The log message for the logging event.</param>
-            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Message(string message)
         {
             _logEvent.Message = message;
@@ -232,7 +233,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Property(object name, object value)
         {
-            if (name == null)
+            if (name is null)
                 throw new ArgumentNullException(nameof(name));
 
             _logEvent.Properties[name] = value;
@@ -246,7 +247,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Properties(IDictionary properties)
         {
-            if (properties == null)
+            if (properties is null)
                 throw new ArgumentNullException(nameof(properties));
 
             foreach (var key in properties.Keys)
@@ -279,13 +280,13 @@ namespace NLog.Fluent
             return this;
         }
 
-#if NET4_5
         /// <summary>
         /// Writes the log event to the underlying logger.
         /// </summary>
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
+#if !NET35 && !NET40
         public void Write(
             [CallerMemberName]string callerMemberName = null,
             [CallerFilePath]string callerFilePath = null,
@@ -294,29 +295,20 @@ namespace NLog.Fluent
             if (!_logger.IsEnabled(_logEvent.Level))
                 return;
 
-            // TODO NLog ver. 5 - Remove these properties
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
-            if (callerFilePath != null)
-                Property("CallerFilePath", callerFilePath);
-            if (callerLineNumber != 0)
-                Property("CallerLineNumber", callerLineNumber);
-
-            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
 #else
-        /// <summary>
-        /// Writes the log event to the underlying logger.
-        /// </summary>
-        public void Write()
+        public void Write(
+            string callerMemberName = null,
+            string callerFilePath = null,
+            int callerLineNumber = 0)
         {
             _logger.Log(_logEvent);
         }
 #endif
 
-#if NET4_5
         /// <summary>
         /// Writes the log event to the underlying logger if the condition delegate is true.
         /// </summary>
@@ -324,41 +316,34 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
+#if !NET35 && !NET40
         public void WriteIf(
             Func<bool> condition,
             [CallerMemberName]string callerMemberName = null,
             [CallerFilePath]string callerFilePath = null,
             [CallerLineNumber]int callerLineNumber = 0)
         {
-            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
+            if (condition is null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
-            if (callerFilePath != null)
-                Property("CallerFilePath", callerFilePath);
-            if (callerLineNumber != 0)
-                Property("CallerLineNumber", callerLineNumber);
-
-            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
 #else
-        /// <summary>
-        /// Writes the log event to the underlying logger.
-        /// </summary>
-        /// <param name="condition">If condition is true, write log event; otherwise ignore event.</param>
-        public void WriteIf(Func<bool> condition)
+        public void WriteIf(
+            Func<bool> condition,
+            string callerMemberName = null,
+            string callerFilePath = null,
+            int callerLineNumber = 0)
         {
-            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
+            if (condition is null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             _logger.Log(_logEvent);
         }
 #endif
 
-#if NET4_5
         /// <summary>
         /// Writes the log event to the underlying logger if the condition is true.
         /// </summary>
@@ -366,32 +351,26 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
+#if !NET35 && !NET40
         public void WriteIf(
-            bool condition, 
-            [CallerMemberName]string callerMemberName = null, 
-            [CallerFilePath]string callerFilePath = null, 
+            bool condition,
+            [CallerMemberName]string callerMemberName = null,
+            [CallerFilePath]string callerFilePath = null,
             [CallerLineNumber]int callerLineNumber = 0)
         {
             if (!condition || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
-            if (callerFilePath != null)
-                Property("CallerFilePath", callerFilePath);
-            if (callerLineNumber != 0)
-                Property("CallerLineNumber", callerLineNumber);
-
-            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
 #else
-        /// <summary>
-        /// Writes the log event to the underlying logger.
-        /// </summary>
-        /// <param name="condition">If condition is true, write log event; otherwise ignore event.</param>
-        public void WriteIf(bool condition)
+        public void WriteIf(
+            bool condition,
+            string callerMemberName = null,
+            string callerFilePath = null,
+            int callerLineNumber = 0)
         {
             if (!condition || !_logger.IsEnabled(_logEvent.Level))
                 return;
@@ -400,5 +379,10 @@ namespace NLog.Fluent
         }
 #endif
 
+        private void SetCallerInfo(string callerMethodName, string callerFilePath, int callerLineNumber)
+        {
+            if (callerMethodName != null || callerFilePath != null || callerLineNumber != 0)
+                _logEvent.SetCallerInfo(null, callerMethodName, callerFilePath, callerLineNumber);
+        }
     }
 }

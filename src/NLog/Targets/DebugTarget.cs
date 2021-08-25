@@ -61,20 +61,19 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="DebugTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public DebugTarget()
         {
             LastMessage = string.Empty;
             Counter = 0;
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DebugTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public DebugTarget(string name) : this()

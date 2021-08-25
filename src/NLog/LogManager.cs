@@ -57,14 +57,6 @@ namespace NLog
 
         private static readonly object lockObject = new object();
 
-
-        /// <summary>
-        /// Delegate used to set/get the culture in use.
-        /// </summary>
-        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Marked obsolete before v4.3.11")]
-        public delegate CultureInfo GetCultureInfo();
-
         /// <summary>
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
@@ -80,7 +72,7 @@ namespace NLog
             remove => factory.ConfigurationChanged -= value;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -182,17 +174,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets the default culture to use.
-        /// </summary>
-        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
-        public static GetCultureInfo DefaultCultureInfo
-        {
-            get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
-            set => throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo.");
-        }
-
-        /// <summary>
         /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
@@ -252,7 +233,6 @@ namespace NLog
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns>Null logger which discards all log messages.</returns>
-        [CLSCompliant(false)]
         public static Logger CreateNullLogger()
         {
             return factory.CreateNullLogger();
@@ -263,7 +243,6 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        [CLSCompliant(false)]
         public static Logger GetLogger(string name)
         {
             return factory.GetLogger(name);
@@ -278,7 +257,6 @@ namespace NLog
         /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
-        [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
         {
             return factory.GetLogger(name, loggerType);
@@ -294,7 +272,6 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -320,7 +297,6 @@ namespace NLog
         {
             factory.Flush(timeoutMilliseconds);
         }
-#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -354,10 +330,15 @@ namespace NLog
         /// <summary>
         /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
         /// </summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <remarks>
+        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
+        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// 
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
+        /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
-        ///     To be used with C# <c>using ()</c> statement.</returns>
+        /// To be used with C# <c>using ()</c> statement.</returns>
+        [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 5.0")]
         public static IDisposable DisableLogging()
         {
             return factory.SuspendLogging();
@@ -366,9 +347,38 @@ namespace NLog
         /// <summary>
         /// Increases the log enable counter and if it reaches 0 the logs are disabled.
         /// </summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <remarks>
+        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
+        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// 
+        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
+        /// </remarks>
+        [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 5.0")]
         public static void EnableLogging()
+        {
+            factory.ResumeLogging();
+        }
+
+        /// <summary>
+        /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
+        /// </summary>
+        /// <remarks>
+        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
+        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// </remarks>
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
+        /// To be used with C# <c>using ()</c> statement.</returns>
+        public static IDisposable SuspendLogging()
+        {
+            return factory.SuspendLogging();
+        }
+
+        /// <summary>
+        /// Increases the log enable counter and if it reaches 0 the logs are disabled.
+        /// </summary>
+        /// <remarks>Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater 
+        /// than or equal to <see cref="SuspendLogging"/> calls.</remarks>
+        public static void ResumeLogging()
         {
             factory.ResumeLogging();
         }

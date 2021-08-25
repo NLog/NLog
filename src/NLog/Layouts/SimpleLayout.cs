@@ -34,6 +34,7 @@
 namespace NLog.Layouts
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Text;
     using NLog.Common;
@@ -103,7 +104,7 @@ namespace NLog.Layouts
         {
             _configurationItemFactory = configurationItemFactory;
             OriginalText = text;
-            SetRenderers(renderers, text);
+            SetLayoutRenderers(renderers, text);
         }
 
         /// <summary>
@@ -124,25 +125,8 @@ namespace NLog.Layouts
         private void SetLayoutText(string value, bool? throwConfigExceptions = null)
         {
             OriginalText = value;
-
-            LayoutRenderer[] renderers;
-            string txt;
-            if (value == null)
-            {
-                renderers = ArrayHelper.Empty<LayoutRenderer>();
-                txt = string.Empty;
-            }
-            else
-            {
-                renderers = LayoutParser.CompileLayout(
-                   _configurationItemFactory,
-                    new SimpleStringReader(value),
-                    throwConfigExceptions,
-                    false,
-                    out txt);
-            }
-
-            SetRenderers(renderers, txt);
+            var renderers = LayoutParser.CompileLayout(value, _configurationItemFactory, throwConfigExceptions, out var txt);
+            SetLayoutRenderers(renderers, txt);
         }
 
         /// <summary>
@@ -163,7 +147,15 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         /// </summary>
-        public ReadOnlyCollection<LayoutRenderer> Renderers { get; private set; }
+        [NLogConfigurationIgnoreProperty]
+        public ReadOnlyCollection<LayoutRenderer> Renderers => _renderers ?? (_renderers = new ReadOnlyCollection<LayoutRenderer>(_layoutRenderers));
+        private ReadOnlyCollection<LayoutRenderer> _renderers;
+        private LayoutRenderer[] _layoutRenderers;
+
+        /// <summary>
+        /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
+        /// </summary>
+        public IEnumerable<LayoutRenderer> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
@@ -177,7 +169,7 @@ namespace NLog.Layouts
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
         public static implicit operator SimpleLayout(string text)
         {
-            if (text == null) return null;
+            if (text is null) return null;
 
             return new SimpleLayout(text);
         }
@@ -224,50 +216,44 @@ namespace NLog.Layouts
             return Evaluate(text, LogEventInfo.CreateNullEvent());
         }
 
-        /// <summary>
-        /// Returns a <see cref="T:System.String"></see> that represents the current object.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"></see> that represents the current object.
-        /// </returns>
+        /// <inheritdoc />
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(Text) && Renderers?.Count > 0)
+            if (string.IsNullOrEmpty(Text) && _layoutRenderers.Length > 0)
             {
-                return ToStringWithNestedItems(Renderers, r => r.ToString());
+                return ToStringWithNestedItems(_layoutRenderers, r => r.ToString());
             }
 
-            return string.Concat("'", Text, "'");
+            return Text;
         }
 
-        internal void SetRenderers(LayoutRenderer[] renderers, string text)
+        internal void SetLayoutRenderers(LayoutRenderer[] layoutRenderers, string text)
         {
-            Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
+            _layoutRenderers = layoutRenderers ?? ArrayHelper.Empty<LayoutRenderer>();
+            _renderers = null;
 
             _fixedText = null;
             _rawValueRenderer = null;
             _stringValueRenderer = null;
 
-            if (Renderers.Count == 0)
+            if (_layoutRenderers.Length == 0)
             {
                 _fixedText = string.Empty;
             }
-            else if (Renderers.Count == 1)
+            else if (_layoutRenderers.Length == 1)
             {
-                if (Renderers[0] is LiteralLayoutRenderer renderer)
+                if (_layoutRenderers[0] is LiteralLayoutRenderer renderer)
                 {
                     _fixedText = renderer.Text;
                 }
-                else
+                else if (_layoutRenderers[0] is IStringValueRenderer stringValueRenderer)
                 {
-                    if (Renderers[0] is IRawValue rawValueRenderer)
-                    {
-                        _rawValueRenderer = rawValueRenderer;
-                    }
-                    if (Renderers[0] is IStringValueRenderer stringValueRenderer)
-                    {
-                        _stringValueRenderer = stringValueRenderer;
-                    }
+                    _stringValueRenderer = stringValueRenderer;
+                }
+
+                if (_layoutRenderers[0] is IRawValue rawValueRenderer)
+                {
+                    _rawValueRenderer = rawValueRenderer;
                 }
             }
 
@@ -282,9 +268,9 @@ namespace NLog.Layouts
         /// <inheritdoc />
         protected override void InitializeLayout()
         {
-            for (int i = 0; i < Renderers.Count; i++)
+            for (int i = 0; i < _layoutRenderers.Length; i++)
             {
-                LayoutRenderer renderer = Renderers[i];
+                LayoutRenderer renderer = _layoutRenderers[i];
                 try
                 {
                     renderer.Initialize(LoggingConfiguration);
@@ -420,7 +406,7 @@ namespace NLog.Layouts
                     //check for performance
                     if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
                     {
-                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", _stringValueRenderer?.GetType().FullName);
+                        InternalLogger.Warn(exception, "Exception in '{0}.GetFormattedString()'", _stringValueRenderer?.GetType().FullName);
                     }
 
                     if (exception.MustBeRethrown())
@@ -437,9 +423,9 @@ namespace NLog.Layouts
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Renderers.Count; i++)
+            for (int i = 0; i < _layoutRenderers.Length; i++)
             {
-                LayoutRenderer renderer = Renderers[i];
+                LayoutRenderer renderer = _layoutRenderers[i];
                 try
                 {
                     renderer.RenderAppendBuilder(logEvent, target);

@@ -286,7 +286,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 // no exceptions
                 for (var i = 0; i < 10; ++i)
                 {
-                    using (NestedDiagnosticsLogicalContext.Push("Hello World"))
+                    using (ScopeContext.PushNestedState("Hello World"))
                     {
                         wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
                     }

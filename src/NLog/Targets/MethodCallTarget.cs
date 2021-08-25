@@ -112,13 +112,15 @@ namespace NLog.Targets
 
             if (ClassName != null && MethodName != null)
             {
+                _logEventAction = null;
+
                 var targetType = Type.GetType(ClassName);
                 if (targetType != null)
                 {
                     var methodInfo = targetType.GetMethod(MethodName);
-                    if (methodInfo == null)
+                    if (methodInfo is null)
                     {
-                        InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", MethodName, ClassName);
+                        throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} not found in ClassName={ClassName} - it should be static");
                     }
                     else
                     {
@@ -126,9 +128,13 @@ namespace NLog.Targets
                     }
                 }
                 else
-                { 
-                    InternalLogger.Warn("Initialize MethodCallTarget, class '{0}' not found", ClassName);
+                {
+                    throw new NLogConfigurationException($"MethodCallTarget: failed to get type from ClassName={ClassName}");
                 }
+            }
+            else if (_logEventAction is null)
+            {
+                throw new NLogConfigurationException($"MethodCallTarget: Missing configuration of ClassName and MethodName");
             }
         }
 
@@ -193,7 +199,7 @@ namespace NLog.Targets
             }
             else
             {
-                InternalLogger.Trace("No invoke because class/method was not found or set");
+                InternalLogger.Trace("{0}: No invoke because class/method was not found or set", this);
             }
         }
     }

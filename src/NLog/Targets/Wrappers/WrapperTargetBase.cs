@@ -47,7 +47,16 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <docgen category='General Options' order='11' />
         [RequiredParameter]
-        public Target WrappedTarget { get; set; }
+        public Target WrappedTarget
+        {
+            get => _wrappedTarget;
+            set
+            {
+                _wrappedTarget = value;
+                _tostring = null;
+            }
+        }
+        private Target _wrappedTarget;
 
         /// <summary>
         /// Returns the text representation of the object. Used for diagnostics.
@@ -55,7 +64,17 @@ namespace NLog.Targets.Wrappers
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return $"{base.ToString()}({WrappedTarget})";
+            return _tostring ?? (_tostring = GenerateTargetToString());
+        }
+
+        private string GenerateTargetToString()
+        {
+            if (string.IsNullOrEmpty(Name))
+                return $"{GenerateTargetToString(true)}_{WrappedTarget}";
+            else if (WrappedTarget is null)
+                return GenerateTargetToString(true);
+            else
+                return $"{GenerateTargetToString(true, "")}_{WrappedTarget.GenerateTargetToString(false, Name)}";
         }
 
         /// <summary>

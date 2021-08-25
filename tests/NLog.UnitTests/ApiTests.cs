@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -130,6 +132,27 @@ namespace NLog.UnitTests
             Assert.Empty(unusedTypes);
         }
 
+        [Fact]
+        public void TypesInInternalNamespaceShouldBeInternalTest()
+        {
+            var excludes = new HashSet<Type>
+            {
+                typeof(NLog.Internal.Xamarin.PreserveAttribute),
+#pragma warning disable CS0618 // Type or member is obsolete
+                typeof(NLog.Internal.Fakeables.IAppDomain), // TODO NLog 5 - handle IAppDomain
+#pragma warning restore CS0618 // Type or member is obsolete
+            };
+
+            var notInternalTypes = allTypes
+                .Where(t => t.Namespace != null && t.Namespace.Contains(".Internal"))
+                .Where(t => !t.IsNested && (t.IsVisible || t.IsPublic))
+                .Where(n => !excludes.Contains(n))
+                .Select(t => t.FullName)
+                .ToList();
+
+            Assert.Empty(notInternalTypes);
+        }
+
         private void IncrementUsageCount(Type type)
         {
             if (type.IsArray)
@@ -166,7 +189,7 @@ namespace NLog.UnitTests
                 if (typeof(NLog.Internal.IRawValue).IsAssignableFrom(type) && !type.IsInterface)
                 {
                     var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
-                    Assert.True(!ReferenceEquals(threadAgnosticAttribute, null), $"{type.ToString()} cannot implement IRawValue");
+                    Assert.True(!(threadAgnosticAttribute is null), $"{type.ToString()} cannot implement IRawValue");
                 }
             }
         }
@@ -179,7 +202,7 @@ namespace NLog.UnitTests
                 if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface)
                 {
                     var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
-                    Assert.True(ReferenceEquals(appDomainFixedOutputAttribute, null), $"{type.ToString()} should not implement IStringValueRenderer");
+                    Assert.True(appDomainFixedOutputAttribute is null, $"{type.ToString()} should not implement IStringValueRenderer");
                 }
             }
         }
@@ -193,7 +216,7 @@ namespace NLog.UnitTests
                 if (appDomainFixedOutputAttribute != null)
                 {
                     var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
-                    Assert.True(!ReferenceEquals(threadAgnosticAttribute, null), $"{type.ToString()} should also have ThreadAgnostic");
+                    Assert.True(!(threadAgnosticAttribute is null), $"{type.ToString()} should also have ThreadAgnostic");
                 }
             }
         }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__&& !__ANDROID__ && !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
 
 namespace NLog
 {
@@ -388,12 +388,12 @@ namespace NLog
         /// <param name="arguments">The log parameters.</param>
         /// <param name="eventId">The event id.</param>
         /// <param name="eventType">The event type.</param>
-        /// <param name="relatedActiviyId">The related activity id.</param>
+        /// <param name="relatedActivityId">The related activity id.</param>
         /// </summary>
-        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
+        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
         {
             StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
-            ILogger logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
+            var logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
 
             logLevel = _forceLogLevel ?? logLevel;
             if (!logger.IsEnabled(logLevel))
@@ -409,9 +409,9 @@ namespace NLog
                 ev.Properties.Add("EventType", eventType.Value);
             }
 
-            if (relatedActiviyId.HasValue)
+            if (relatedActivityId.HasValue)
             {
-                ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
+                ev.Properties.Add("RelatedActivityID", relatedActivityId.Value);
             }
 
             ev.Message = message;
@@ -431,7 +431,7 @@ namespace NLog
             logger.Log(ev);
         }
 
-        private ILogger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
+        private Logger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
         {
             loggerName = (loggerName ?? Name) ?? string.Empty;
 

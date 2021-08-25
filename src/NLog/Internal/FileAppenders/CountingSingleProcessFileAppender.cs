@@ -72,25 +72,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (_file != null)
-            {
-                InternalLogger.Trace("Closing '{0}'", FileName);
-
-                try
-                {
-                    _file.Close();
-                }
-                catch (Exception ex)
-                {
-                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
-                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
-                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));    // Artificial delay to avoid hammering a bad file location
-                }
-                finally
-                {
-                    _file = null;
-                }
-            }
+            CloseFileSafe(ref _file, FileName);
         }
 
         /// <summary>
@@ -98,7 +80,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Flush()
         {
-            if (_file == null)
+            if (_file is null)
             {
                 return;
             }
@@ -133,14 +115,14 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (_file == null)
+            if (_file is null)
             {
                 return;
             }
 
             if (_enableFileDeleteSimpleMonitor && MonitorForEnableFileDeleteEvent(FileName, ref _lastSimpleMonitorCheckTimeUtc))
             {
-                _file.Dispose();
+                CloseFileSafe(ref _file, FileName);
                 _file = CreateFileStream(false);
                 _currentFileLength = _file.Length;
             }

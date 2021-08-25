@@ -83,49 +83,37 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void IExcludedInterfaceSerializer_RegistersSerializeAsToString_InvokesToString()
         {
-            try
-            {
-                var testObject = BuildSampleObject();
+            var testObject = BuildSampleObject();
 
-                var sb = new StringBuilder();
-                var options = new JsonSerializeOptions();
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions();
 
-                LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation<IExcludedInterface>(o => o.ToString()));
+            var logFactory = new LogFactory();
+            logFactory.Setup().SetupSerialization(s => s.RegisterObjectTransformation<IExcludedInterface>(o => o.ToString()));
 
-                var jsonSerializer = new DefaultJsonSerializer();
-                jsonSerializer.SerializeObject(testObject, sb, options);
-                const string expectedValue =
-                    @"{""S"":""sample"", ""Excluded"":""Skipped"", ""Included"":{""IncludedString"":""serialized""}}";
-                Assert.Equal(expectedValue, sb.ToString());
-            }
-            finally
-            {
-                NLog.Config.ConfigurationItemFactory.Default.ObjectTypeTransformer = null;
-            }
+            var jsonSerializer = new DefaultJsonSerializer(logFactory.ServiceRepository);
+            jsonSerializer.SerializeObject(testObject, sb, options);
+            const string expectedValue =
+                @"{""S"":""sample"", ""Excluded"":""Skipped"", ""Included"":{""IncludedString"":""serialized""}}";
+            Assert.Equal(expectedValue, sb.ToString());
         }
 
         [Fact]
         public void ExcludedClassSerializer_RegistersSerializeAsToString_InvokesToString()
         {
-            try
-            {
-                var testObject = BuildSampleObject();
+            var testObject = BuildSampleObject();
 
-                var sb = new StringBuilder();
-                var options = new JsonSerializeOptions();
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions();
 
-                LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(typeof(ExcludedClass), o => o.ToString()));
+            var logFactory = new LogFactory();
+            logFactory.Setup().SetupSerialization(s => s.RegisterObjectTransformation(typeof(ExcludedClass), o => o.ToString()));
 
-                var jsonSerializer = new DefaultJsonSerializer();
-                jsonSerializer.SerializeObject(testObject, sb, options);
-                const string expectedValue =
-                    @"{""S"":""sample"", ""Excluded"":""Skipped"", ""Included"":{""IncludedString"":""serialized""}}";
-                Assert.Equal(expectedValue, sb.ToString());
-            }
-            finally
-            {
-                NLog.Config.ConfigurationItemFactory.Default.ObjectTypeTransformer = null;
-            }
+            var jsonSerializer = new DefaultJsonSerializer(logFactory.ServiceRepository);
+            jsonSerializer.SerializeObject(testObject, sb, options);
+            const string expectedValue =
+                @"{""S"":""sample"", ""Excluded"":""Skipped"", ""Included"":{""IncludedString"":""serialized""}}";
+            Assert.Equal(expectedValue, sb.ToString());
         }
     }
 }

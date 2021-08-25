@@ -73,16 +73,16 @@ namespace NLog.LayoutRenderers
         private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
             "Type",
             nameof(Exception.Data),
-            "HelpLink",  // Not available on SILVERLIGHT
+            nameof(Exception.HelpLink),
             "HResult",   // Not available on NET35 + NET40
             nameof(Exception.InnerException),
             nameof(Exception.Message),
-            "Source",    // Not available on SILVERLIGHT
+            nameof(Exception.Source),
             nameof(Exception.StackTrace),
-            "TargetSite",// Not available on NETSTANDARD1_0
+            "TargetSite",// Not available on NETSTANDARD1_3 OR NETSTANDARD1_5
         }, StringComparer.Ordinal);
 
-        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache _objectReflectionCache;
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public ExceptionLayoutRenderer()
         {
-            Format = "message";
+            Format = "TOSTRING,DATA";
             Separator = " ";
             ExceptionDataSeparator = ";";
             InnerExceptionSeparator = EnvironmentHelper.NewLine;
@@ -182,7 +182,7 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool BaseException { get; set; }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET35
         /// <summary>
         /// Gets or sets whether to collapse exception tree using <see cref="AggregateException.Flatten()"/>
         /// </summary>
@@ -236,7 +236,7 @@ namespace NLog.LayoutRenderers
             {
                 int currentLevel = 0;
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET35
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     primaryException = FlattenException ? GetPrimaryException(aggregateException) : aggregateException;
@@ -262,7 +262,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET35
         private static Exception GetPrimaryException(AggregateException aggregateException)
         {
             if (aggregateException.InnerExceptions.Count == 1)
@@ -292,7 +292,7 @@ namespace NLog.LayoutRenderers
                     if (ReferenceEquals(currentException, primaryException.InnerException))
                         continue; // Skip firstException when it is innerException
 
-                    if (currentException == null)
+                    if (currentException is null)
                     {
                         InternalLogger.Debug("Skipping rendering exception as exception is null");
                         continue;
@@ -375,10 +375,10 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose method name should be appended.</param>        
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT || NETSTANDARD1_0
-            sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             sb.Append(ex.TargetSite?.ToString());
+#else
+            sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));            
 #endif
         }
 
@@ -399,7 +399,20 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose call to ToString() should be appended.</param>       
         protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
-            sb.Append(ex.ToString());
+
+            try
+            {
+                sb.Append(ex.ToString());
+            }
+            catch (Exception exception)
+            {
+                var message =
+                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendToString(): {exception.GetType().FullName}.";
+                sb.Append("NLog message: ");
+                sb.Append(message);
+                InternalLogger.Warn(exception, message);
+            }
+
         }
 
         /// <summary>
@@ -429,9 +442,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose source should be appended.</param>
         protected virtual void AppendSource(StringBuilder sb, Exception ex)
         {
-#if !SILVERLIGHT
             sb.Append(ex.Source);
-#endif
         }
 
         /// <summary>
@@ -441,7 +452,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose HResult should be appended.</param>
         protected virtual void AppendHResult(StringBuilder sb, Exception ex)
         {
-#if NET4_5
+#if !NET35 && !NET40
             const int S_OK = 0;     // Carries no information, so skip
             const int S_FALSE = 1;  // Carries no information, so skip
             if (ex.HResult != S_OK && ex.HResult != S_FALSE)
@@ -487,7 +498,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose properties should be appended.</param>
         protected virtual void AppendSerializeObject(StringBuilder sb, Exception ex)
         {
-            ConfigurationItemFactory.Default.ValueFormatter.FormatValue(ex, null, MessageTemplates.CaptureType.Serialize, null, sb);
+            ValueFormatter.FormatValue(ex, null, MessageTemplates.CaptureType.Serialize, null, sb);
         }
 
         /// <summary>
@@ -537,7 +548,7 @@ namespace NLog.LayoutRenderers
             return formats;
         }
 
-#if SILVERLIGHT || NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
         /// <summary>
         /// Find name of method on stracktrace.
         /// </summary>

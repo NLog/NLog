@@ -59,7 +59,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             for (int i = 0; i < 10; i++)
             {
                 logger.Debug("message {0}", i);
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             </nlog>");
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             for (int i = 0; i < 10; i++)
             {
                 logger.Debug("message {0}", i);
@@ -325,11 +325,9 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(TimeSpan.FromHours(1), limitingWrapper.Interval);
 
             LogManager.Configuration = config;
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
-
-
         }
 
         [Fact]
@@ -356,7 +354,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(TimeSpan.FromDays(1)+TimeSpan.FromHours(2)+TimeSpan.FromMinutes(5), limitingWrapper.Interval);
 
             LogManager.Configuration = config;
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
         }

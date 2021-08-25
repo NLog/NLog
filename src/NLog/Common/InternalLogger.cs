@@ -56,23 +56,13 @@ namespace NLog.Common
         private static readonly object LockObject = new object();
         private static string _logFile;
 
-        /// <summary>
-        /// Initializes static members of the InternalLogger class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static InternalLogger()
-        {
-            Reset();
-        }
-
-        /// <summary>
+       /// <summary>
         /// Set the config of the InternalLogger with defaults and config.
         /// </summary>
         public static void Reset()
         {
             // TODO: Extract class - InternalLoggerConfigurationReader
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
@@ -80,13 +70,7 @@ namespace NLog.Common
             LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
             IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
             Info("NLog internal logger initialized.");
-#else
-            LogLevel = LogLevel.Info;
-            LogToConsole = false;
-            LogToConsoleError = false;
-            LogFile = string.Empty;
-            IncludeTimestamp = true;
-#endif
+     
             ExceptionThrowWhenWriting = false;
             LogWriter = null;
             LogMessageReceived = null;
@@ -111,12 +95,10 @@ namespace NLog.Common
         /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics"/>.Trace
         /// </summary>
         public static bool LogToTrace { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -132,13 +114,10 @@ namespace NLog.Common
             set
             {
                 _logFile = value;
-
-#if !SILVERLIGHT
                 if (!string.IsNullOrEmpty(_logFile))
                 {
                     CreateDirectoriesIfNeeded(_logFile);
                 }
-#endif
             }
         }
 
@@ -149,8 +128,12 @@ namespace NLog.Common
 
         /// <summary>
         /// Event written to the internal log.
-        /// Please note that the event is not triggered when then event hasn't the minimal log level set by <see cref="LogLevel"/> 
         /// </summary>
+        /// <remarks>
+        /// EventHandler will only be triggered for events, where severity matches the configured <see cref="LogLevel"/>.
+        /// 
+        /// Avoid using/calling NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
+        /// </remarks>
         public static event EventHandler<InternalLoggerMessageEventArgs> LogMessageReceived;
 
         /// <summary>
@@ -277,7 +260,8 @@ namespace NLog.Common
                 if (hasEventListeners)
                 {
                     var loggerContext = args?.Length > 0 ? args[0] as IInternalLoggerContext : null;
-                    LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContext?.Name));
+                    var loggerContextName = string.IsNullOrEmpty(loggerContext?.Name) ? loggerContext?.ToString() : loggerContext.Name;
+                    LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContextName));
 
                     ex?.MarkAsLoggedToInternalLogger();
                 }
@@ -307,9 +291,6 @@ namespace NLog.Common
 #if !NETSTANDARD1_3
                 WriteToConsole(line);
                 WriteToErrorConsole(line);
-#endif
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                 WriteToTrace(line);
 #endif
 
@@ -361,7 +342,7 @@ namespace NLog.Common
         private static string CreateFullMessage(string message, object[] args)
         {
             var formattedMessage =
-                (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
+                (args is null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
             return formattedMessage;
         }
 
@@ -404,9 +385,7 @@ namespace NLog.Common
             return !string.IsNullOrEmpty(LogFile) ||
                    LogToConsole ||
                    LogToConsoleError ||
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                    LogToTrace ||
-#endif
                    LogWriter != null;
         }
 
@@ -446,7 +425,7 @@ namespace NLog.Common
         private static void WriteToTextWriter(string message)
         {
             var writer = LogWriter;
-            if (writer == null)
+            if (writer is null)
             {
                 return;
             }
@@ -495,9 +474,7 @@ namespace NLog.Common
 
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, message);
         }
-#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
         /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
@@ -527,16 +504,16 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD1_0
-                Info(assembly.FullName);
-#else
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
-                System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
+                    System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
                 Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
                     assembly.FullName,
                     fileVersionInfo?.FileVersion,
                     fileVersionInfo?.ProductVersion,
                     assembly.GlobalAssemblyCache);
+#else
+                Info(assembly.FullName);
 #endif
             }
             catch (Exception ex)
@@ -547,7 +524,7 @@ namespace NLog.Common
 
         private static string GetAppSettings(string configName)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !NETSTANDARD
             try
             {
                 return System.Configuration.ConfigurationManager.AppSettings[configName];
@@ -599,7 +576,7 @@ namespace NLog.Common
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
         {
             string value = GetSettingString(configName, envName);
-            if (value == null)
+            if (value is null)
             {
                 return defaultValue;
             }
@@ -622,7 +599,7 @@ namespace NLog.Common
         private static T GetSetting<T>(string configName, string envName, T defaultValue)
         {
             string value = GetSettingString(configName, envName);
-            if (value == null)
+            if (value is null)
             {
                 return defaultValue;
             }
@@ -642,7 +619,6 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try
@@ -668,6 +644,5 @@ namespace NLog.Common
                 }
             }
         }
-#endif
     }
 }

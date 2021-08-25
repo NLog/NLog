@@ -67,21 +67,14 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
         public NullTarget() : base()
         {
-            OptimizeBufferReuse = true;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
-        /// <param name="name"></param>
+        /// <param name="name">Name of the target.</param>
         public NullTarget(string name) : this()
         {
             Name = name;

@@ -137,7 +137,7 @@ namespace JetBrains.Annotations
     /// </summary>
     /// <example><code>
     /// void Foo(string param) {
-    ///   if (param == null)
+    ///   if (param is null)
     ///     throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
     /// }
     /// </code></example>
@@ -892,14 +892,6 @@ namespace JetBrains.Annotations
         /// <summary>Marked parameter should be evaluated to not null value.</summary>
         IS_NOT_NULL = 3,
     }
-
-    /// <summary>
-    /// Indicates that the marked method unconditionally terminates control flow execution.
-    /// For example, it could unconditionally throw exception.
-    /// </summary>
-    [Obsolete("Use [ContractAnnotation('=> halt')] instead")]
-    [AttributeUsage(AttributeTargets.Method)]
-    internal sealed class TerminatesProgramAttribute : Attribute { }
 
     /// <summary>
     /// Indicates that method is pure LINQ method, with postponed enumeration (like Enumerable.Select,

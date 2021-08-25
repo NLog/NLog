@@ -95,7 +95,7 @@ namespace NLog.Internal.NetworkSenders
                     dequeued.AsyncContinuation?.Invoke(null);
                 }
 
-                if (!_asyncOperationInProgress && _pendingError == null)
+                if (!_asyncOperationInProgress && _pendingError is null)
                 {
                     _asyncOperationInProgress = true;
                     BeginRequest(eventArgs);

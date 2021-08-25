@@ -106,17 +106,6 @@ namespace NLog.Targets.Wrappers
         [RequiredParameter]
         public Filter Filter { get; set; }
 
-        /// <inheritdoc/>
-        protected override void InitializeTarget()
-        {
-            base.InitializeTarget();
-
-            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
-            {
-                OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper); // Class not sealed, reduce breaking changes
-            }
-        }
-
         /// <summary>
         /// Checks the condition against the passed log event.
         /// If the condition is met, the log event is forwarded to
@@ -158,11 +147,11 @@ namespace NLog.Targets.Wrappers
 
         private static ConditionBasedFilter CreateFilter(ConditionExpression value)
         {
-            if (value == null)
+            if (value is null)
             {
                 return null;
             }
-            return new ConditionBasedFilter { Condition = value, DefaultFilterResult = FilterResult.Ignore };
+            return new ConditionBasedFilter { Condition = value, FilterDefaultAction = FilterResult.Ignore };
         }
     }
 }

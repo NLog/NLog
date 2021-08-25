@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
 
 namespace NLog.Internal
 {
@@ -79,7 +79,7 @@ namespace NLog.Internal
                     continue;
 
                 var parameters = method.GetParameters();
-                if (parameters == null || parameters.Length != types.Length)
+                if (parameters is null || parameters.Length != types.Length)
                     continue;
 
                 for (int i = 0; i < parameters.Length; ++i)

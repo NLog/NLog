@@ -42,16 +42,18 @@ namespace NLog.UnitTests.Config
 
     public class VariableTests : NLogTestBase
     {
-        [Fact]
-        public void VariablesTest1()
+        [Theory]
+        [InlineData("${prefix}${message}${suffix}", "prefix")]
+        [InlineData("${prefix}${message}${suffix}", "Prefix")]
+        [InlineData("${PreFix}${MessAGE}${SUFFIX}", "Prefix")]
+        public void VariablesTest1(string targetLayout, string variableName1)
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
 <nlog throwExceptions='true'>
-    <variable name='prefix' value='[[' />
+    <variable name='{variableName1}' value='[[' />
     <variable name='suffix' value=']]' />
-
     <targets>
-        <target name='d1' type='Debug' layout='${prefix}${message}${suffix}' />
+        <target name='d1' type='Debug' layout='{targetLayout}' />
     </targets>
 </nlog>");
 
@@ -80,15 +82,15 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
   <variable name='test' value='hello'/>
   <targets>
-    <target type='DataBase'  name='test' DBProvider='${test}'/>
+    <target type='File' name='test' ArchiveDateFormat='${test}'/>
   </targets>
 </nlog>");
 
-            var target = configuration.FindTargetByName("test") as DatabaseTarget;
+            var target = configuration.FindTargetByName("test") as FileTarget;
             Assert.NotNull(target);
             //dont change the ${test} as it isn't a Layout
-            Assert.NotEqual(typeof(Layout), target.DBProvider.GetType());
-            Assert.Equal("hello", target.DBProvider);
+            Assert.NotEqual(typeof(Layout), target.ArchiveDateFormat.GetType());
+            Assert.Equal("hello", target.ArchiveDateFormat);
         }
 
         [Fact]
@@ -111,8 +113,8 @@ namespace NLog.UnitTests.Config
             Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Error));
             Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
 
-        }        
-        
+        }
+
         /// <summary>
         /// Expand of level attributes
         /// </summary>
@@ -135,7 +137,6 @@ namespace NLog.UnitTests.Config
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Error));
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
-
         }
 
         [Fact]
@@ -143,18 +144,56 @@ namespace NLog.UnitTests.Config
         {
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
-    <variable name='prefix' value='[[' />
-    <variable name='suffix' value=']]' />
-
-    <targets>
-        <target name='d1' type='Debug' layout='${prefix}${message}${suffix}' />
-    </targets>
+    <variables>
+        <variable name='prefix' value='[[' />
+        <variable name='suffix' value=']]' />
+    </variables>
 </nlog>");
 
-            LogManager.Configuration = configuration;
 
-            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
-            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
+            var nullEvent = LogEventInfo.CreateNullEvent();
+
+            // Act & Assert
+            Assert.Equal("[[", configuration.Variables["prefix"].Render(nullEvent));
+            Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
+        }
+
+        [Fact]
+        public void Xml_configuration_with_inner_returns_defined_variables()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='prefix'><layout><![CDATA[
+newline
+]]></layout></variable>
+    <variable name='suffix'><layout>]]</layout></variable>
+</nlog>");
+
+            var nullEvent = LogEventInfo.CreateNullEvent();
+
+            // Act & Assert
+            Assert.Equal("\nnewline\n", configuration.Variables["prefix"].Render(nullEvent).Replace("\r", ""));
+            Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
+        }
+
+        [Fact]
+        public void Xml_configuration_with_innerLayouts_returns_defined_variables()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='myJson'  >
+        <layout type='JsonLayout'>
+            <attribute name='short date' layout='${shortdate}' />
+            <attribute name='message' layout='${message}' />
+        </layout>
+    </variable>
+</nlog>");
+
+            // Act & Assert
+            var jsonLayout = Assert.IsType<JsonLayout>(configuration.Variables["myJson"]);
+            Assert.Equal(2, jsonLayout.Attributes.Count);
+            Assert.Equal("short date", jsonLayout.Attributes[0].Name);
+            Assert.NotNull(jsonLayout.Attributes[0].Layout);
         }
 
         [Fact]
@@ -182,15 +221,17 @@ newline
         [Fact]
         public void Xml_configuration_variableWithInnerAndAttribute_attributeHasPrecedence()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
+            using (new NoThrowNLogExceptions())
+            {
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog>
     <variable name='var1' value='1'><value>2</value></variable>
 </nlog>");
+                var nullEvent = LogEventInfo.CreateNullEvent();
 
-            var nullEvent = LogEventInfo.CreateNullEvent();
-
-            // Act & Assert
-            Assert.Equal("1", configuration.Variables["var1"].FixedText);
+                // Act & Assert
+                Assert.Equal("1", configuration.Variables["var1"].Render(nullEvent));
+            }
         }
 
         [Fact]

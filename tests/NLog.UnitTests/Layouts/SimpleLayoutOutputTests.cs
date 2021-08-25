@@ -83,10 +83,10 @@ namespace NLog.UnitTests.Layouts
         public void SimpleLayoutToStringTest()
         {
             var l = new SimpleLayout("xx${level}yy");
-            Assert.Equal("'xx${level}yy'", l.ToString());
+            Assert.Equal("xx${level}yy", l.ToString());
 
             var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", ConfigurationItemFactory.Default);
-            Assert.Equal("'someFakeText'", l2.ToString());
+            Assert.Equal("someFakeText", l2.ToString());
         }
 
         [Fact]

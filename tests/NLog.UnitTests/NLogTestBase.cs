@@ -47,7 +47,7 @@ namespace NLog.UnitTests
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+#if !NETSTANDARD
     using Ionic.Zip;
 #endif
 
@@ -104,9 +104,7 @@ namespace NLog.UnitTests
 
         protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
-            var debugTarget = (DebugTarget)configuration.FindTargetByName(targetName);
-            Assert.NotNull(debugTarget);
-            return debugTarget;
+            return LogFactoryTestExtensions.GetDebugTarget(targetName, configuration);
         }
 
         protected void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
@@ -139,22 +137,29 @@ namespace NLog.UnitTests
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
         }
 
-        protected class CustomFileCompressor : IFileCompressor
+        protected class CustomFileCompressor : IArchiveFileCompressor
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+                string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+                CompressFile(fileName, archiveFileName, entryName);
+            }
+
+            public void CompressFile(string fileName, string archiveFileName, string entryName)
+            {
+#if !NETSTANDARD
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
-                    zip.AddFile(fileName);
+                    ZipEntry entry = zip.AddFile(fileName);
+                    entry.FileName = entryName;
                     zip.Save(archiveFileName);
                 }
 #endif
             }
         }
 
-#if NET3_5 || NET4_0
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+#if NET35 || NET40
+        protected void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
@@ -178,8 +183,8 @@ namespace NLog.UnitTests
                 }
             }
         }
-#elif NET4_5
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+#else
+        protected void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
@@ -190,6 +195,7 @@ namespace NLog.UnitTests
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
                 Assert.Single(zip.Entries);
+                Assert.Equal(expectedEntryName, zip.Entries[0].Name);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
                 byte[] buf = new byte[(int)zip.Entries[0].Length];
@@ -204,12 +210,12 @@ namespace NLog.UnitTests
                 }
             }
         }
-#else
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
-        {
-            Assert.True(false);
-        }
 #endif
+
+        protected void AssertFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
+        {
+            AssertFileContents(fileName, contents, encoding, false);
+        }
 
         protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
@@ -333,7 +339,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         /// <summary>
         /// Get line number of previous line.
         /// </summary>
@@ -453,13 +459,12 @@ namespace NLog.UnitTests
         }
 
         /// <summary>
-        /// Are we running on Travis?
+        /// Are we running on Linux environment or Windows environemtn ?
         /// </summary>
-        /// <returns></returns>
-        protected static bool IsTravis()
+        /// <returns>true when something else than Windows</returns>
+        protected static bool IsLinux()
         {
-            var val = Environment.GetEnvironmentVariable("TRAVIS");
-            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+            return !NLog.Internal.PlatformDetector.IsWin32;
         }
 
         /// <summary>
@@ -523,7 +528,7 @@ namespace NLog.UnitTests
 
             public void SetConsoleError(StringWriter consoleErrorWriter)
             {
-                if (ConsoleOutputWriter == null || consoleErrorWriter == null)
+                if (ConsoleOutputWriter is null || consoleErrorWriter is null)
                     throw new InvalidOperationException("Initialize with redirectConsole=true");
 
                 ConsoleErrorWriter = consoleErrorWriter;
@@ -532,7 +537,7 @@ namespace NLog.UnitTests
 
             public void SetConsoleOutput(StringWriter consoleOutputWriter)
             {
-                if (ConsoleOutputWriter == null || consoleOutputWriter == null)
+                if (ConsoleOutputWriter is null || consoleOutputWriter is null)
                     throw new InvalidOperationException("Initialize with redirectConsole=true");
 
                 ConsoleOutputWriter = consoleOutputWriter;

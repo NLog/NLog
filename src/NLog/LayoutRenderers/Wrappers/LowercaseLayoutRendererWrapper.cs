@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LowercaseLayoutRendererWrapper" /> class.
@@ -83,16 +83,16 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        protected override string Transform(string text)
         {
+            throw new NotSupportedException();
         }
 
         private void TransformToLowerCase(StringBuilder target, int startPos)
         {
             CultureInfo culture = Culture;
 
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
             string stringToLower = null;
             if (culture != null && culture != CultureInfo.InvariantCulture)
             {
@@ -103,7 +103,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
             for (int i = startPos; i < target.Length; ++i)
             {
-#if NETSTANDARD1_0
+#if NETSTANDARD1_3 || NETSTANDARD1_5
                 if (stringToLower != null)
                     target[i] = stringToLower[i];    //no char.ToLower with culture
                 else

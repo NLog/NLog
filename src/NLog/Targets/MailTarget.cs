@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
 
 namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Net;
     using System.Net.Mail;
     using System.Text;
@@ -49,11 +48,8 @@ namespace NLog.Targets
     using NLog.Internal;
     using NLog.Layouts;
 
-    // For issue #1351 - These are not available for Android or IOS
-#if !__ANDROID__ && !__IOS__ 
+#if !NETSTANDARD
     using System.Configuration;
-#endif
-#if !__ANDROID__ && !__IOS__&& !NETSTANDARD
     using System.Net.Configuration;
 #endif
 
@@ -90,6 +86,9 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
     /// </example>
     [Target("Mail")]
+    [Target("Email")]
+    [Target("Smtp")]
+    [Target("SmtpClient")]
     public class MailTarget : TargetWithLayoutHeaderAndFooter
     {
         private const string RequiredPropertyIsEmptyFormat = "After the processing of the MailTarget's '{0}' property it appears to be empty. The email message will not be sent.";
@@ -100,9 +99,8 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="MailTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "This one is safe.")]
         public MailTarget()
         {
             Body = "${message}${newline}";
@@ -113,7 +111,19 @@ namespace NLog.Targets
             Timeout = 10000;
         }
 
-#if !__ANDROID__ && !__IOS__ && !NETSTANDARD
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MailTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public MailTarget(string name) : this()
+        {
+            Name = name;
+        }
+
+#if !NETSTANDARD
         private SmtpSection _currentailSettings;
 
         /// <summary>
@@ -125,7 +135,7 @@ namespace NLog.Targets
         {
             get
             {
-                if (_currentailSettings == null)
+                if (_currentailSettings is null)
                 {
                     try
                     {
@@ -133,12 +143,11 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn(ex, "MailTarget(Name={0}): Reading 'From' from .config failed.", Name);
+                        InternalLogger.Warn(ex, "{0}: Reading 'From' from .config failed.", this);
 
-                        if (ExceptionMustBeRethrown(ex))
-                        {
+                        if (LogManager.ThrowExceptions)
                             throw;
-                        }
+
                         _currentailSettings = new SmtpSection();
                     }
                 }
@@ -150,33 +159,22 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MailTarget" /> class.
-        /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
-        /// <param name="name">Name of the target.</param>
-        public MailTarget(string name) : this()
-        {
-            Name = name;
-        }
-
-        /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='10' />
+        [RequiredParameter]
         public Layout From
         {
             get
             {
-#if !__ANDROID__ && !__IOS__ && !NETSTANDARD
+#if !NETSTANDARD
 
                 // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
                 // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
                 // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
 
                 //only use from config when not set in current
-                if (UseSystemNetMailSettings && _from == null)
+                if (UseSystemNetMailSettings && _from is null)
                 {
                     var from = SmtpSection.From;
                     return from;
@@ -284,7 +282,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='SMTP Options' order='15' />
         [DefaultValue(25)]
-        public int SmtpPort { get; set; }
+        public Layout<int> SmtpPort { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the default Settings from System.Net.MailSettings should be used.
@@ -305,13 +303,13 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='SMTP Options' order='17' />
         [DefaultValue(null)]
-        public string PickupDirectoryLocation { get; set; }
+        public Layout PickupDirectoryLocation { get; set; }
 
         /// <summary>
         /// Gets or sets the priority used for sending mails.
         /// </summary>
         /// <docgen category='Message Options' order='100' />
-        public Layout Priority { get; set; }
+        public Layout<MailPriority> Priority { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.
@@ -327,7 +325,7 @@ namespace NLog.Targets
         /// <remarks>Warning: zero is not infinite waiting</remarks>
         /// <docgen category='SMTP Options' order='100' />
         [DefaultValue(10000)]
-        public int Timeout { get; set; }
+        public Layout<int> Timeout { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
@@ -345,30 +343,23 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
-        /// 
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected override void Write(AsyncLogEventInfo[] logEvents)
-        {
-            Write((IList<AsyncLogEventInfo>)logEvents);
-        }
-
-        /// <summary>
-        /// Writes log events to the mail target.
+        /// Renders an array logging events.
         /// </summary>
         /// <param name="logEvents">Array of logging events.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var buckets = logEvents.BucketSort(c => GetSmtpSettingsKey(c.LogEvent));
-            foreach (var bucket in buckets)
+            if (logEvents.Count <= 1)
             {
-                var eventInfos = bucket.Value;
-                ProcessSingleMailMessage(eventInfos);
+                ProcessSingleMailMessage(logEvents);
+            }
+            else
+            {
+                var buckets = logEvents.GroupBy(l => GetSmtpSettingsKey(l.LogEvent));
+                foreach (var bucket in buckets)
+                {
+                    var eventInfos = bucket;
+                    ProcessSingleMailMessage(eventInfos);
+                }
             }
         }
 
@@ -387,17 +378,16 @@ namespace NLog.Targets
         /// Create mail and send with SMTP
         /// </summary>
         /// <param name="events">event printed in the body of the event</param>
-        private void ProcessSingleMailMessage([NotNull] IList<AsyncLogEventInfo> events)
+        private void ProcessSingleMailMessage(IEnumerable<AsyncLogEventInfo> events)
         {
             try
             {
-                if (events.Count == 0)
+                LogEventInfo firstEvent = events.FirstOrDefault().LogEvent;
+                LogEventInfo lastEvent = events.LastOrDefault().LogEvent;
+                if (firstEvent is null || lastEvent is null)
                 {
                     throw new NLogRuntimeException("We need at least one event.");
                 }
-
-                LogEventInfo firstEvent = events[0].LogEvent;
-                LogEventInfo lastEvent = events[events.Count - 1].LogEvent;
 
                 // unbuffered case, create a local buffer, append header, body and footer
                 var bodyBuffer = CreateBodyBuffer(events, firstEvent, lastEvent);
@@ -412,12 +402,12 @@ namespace NLog.Targets
                         }
 
                         if (client.EnableSsl)
-                            InternalLogger.Debug("MailTarget(Name={0}): Sending mail to {1} using {2}:{3} (ssl=true)", Name, msg.To, client.Host, client.Port);
+                            InternalLogger.Debug("{0}: Sending mail to {1} using {2}:{3} (ssl=true)", this, msg.To, client.Host, client.Port);
                         else
-                            InternalLogger.Debug("MailTarget(Name={0}): Sending mail to {1} using {2}:{3} (ssl=false)", Name, msg.To, client.Host, client.Port);
+                            InternalLogger.Debug("{0}: Sending mail to {1} using {2}:{3} (ssl=false)", this, msg.To, client.Host, client.Port);
 
-                        InternalLogger.Trace("MailTarget(Name={0}):   Subject: '{1}'", Name, msg.Subject);
-                        InternalLogger.Trace("MailTarget(Name={0}):   From: '{1}'", Name, msg.From.ToString());
+                        InternalLogger.Trace("{0}:   Subject: '{1}'", this, msg.Subject);
+                        InternalLogger.Trace("{0}:   From: '{1}'", this, msg.From);
 
                         client.Send(msg);
 
@@ -431,12 +421,10 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 //always log
-                InternalLogger.Error(exception, "MailTarget(Name={0}): Error sending mail.", Name);
+                InternalLogger.Error(exception, "{0}: Error sending mail.", this);
 
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
 
                 foreach (var ev in events)
                 {
@@ -494,56 +482,53 @@ namespace NLog.Targets
         {
             CheckRequiredParameters();
 
-            if (SmtpServer == null && string.IsNullOrEmpty(PickupDirectoryLocation))
+            if (DeliveryMethod == SmtpDeliveryMethod.Network)
             {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
-            }
-
-            if (DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
-            {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
-            }
-
-            if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(PickupDirectoryLocation))
-            {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
-            }
-
-            if (SmtpServer != null && DeliveryMethod == SmtpDeliveryMethod.Network)
-            {
-                var renderedSmtpServer = SmtpServer.Render(lastEvent);
-                if (string.IsNullOrEmpty(renderedSmtpServer))
+                var smtpServer = RenderLogEvent(SmtpServer, lastEvent);
+                if (string.IsNullOrEmpty(smtpServer))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
                 }
 
-                client.Host = renderedSmtpServer;
-                client.Port = SmtpPort;
+                var smtpPort = RenderLogEvent(SmtpPort, lastEvent, 25);
+                if (smtpPort <= 0)
+                {
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpPort"));
+                }
+
+                client.Host = smtpServer;
+                client.Port = smtpPort;
                 client.EnableSsl = EnableSsl;
 
                 if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
                 {
-                    InternalLogger.Trace("MailTarget(Name={0}):   Using NTLM authentication.", Name);
+                    InternalLogger.Trace("{0}:   Using NTLM authentication.", this);
                     client.Credentials = CredentialCache.DefaultNetworkCredentials;
                 }
                 else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 {
-                    string username = SmtpUserName.Render(lastEvent);
-                    string password = SmtpPassword.Render(lastEvent);
+                    string username = RenderLogEvent(SmtpUserName, lastEvent);
+                    string password = RenderLogEvent(SmtpPassword, lastEvent);
 
-                    InternalLogger.Trace("MailTarget(Name={0}):   Using basic authentication: Username='{1}' Password='{2}'", Name, username, new string('*', password.Length));
+                    InternalLogger.Trace("{0}:   Using basic authentication: Username='{1}' Password='{2}'", this, username, new string('*', password.Length));
                     client.Credentials = new NetworkCredential(username, password);
                 }
             }
-
-            if (!string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            
+            if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
+                var pickupDirectoryLocation = RenderLogEvent(PickupDirectoryLocation, lastEvent);
+                if (string.IsNullOrEmpty(pickupDirectoryLocation))
+                {
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
+                }
+
+                client.PickupDirectoryLocation = ConvertDirectoryLocation(pickupDirectoryLocation);
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
             client.DeliveryMethod = DeliveryMethod;
-            client.Timeout = Timeout;
+            client.Timeout = RenderLogEvent(Timeout, lastEvent, 10000);
         }
 
         /// <summary>
@@ -568,19 +553,14 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!UseSystemNetMailSettings && SmtpServer == null && DeliveryMethod == SmtpDeliveryMethod.Network)
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer is null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer");
             }
 
-            if (!UseSystemNetMailSettings && string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            if (!UseSystemNetMailSettings && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && PickupDirectoryLocation is null)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation");
-            }
-
-            if (From == null)
-            {
-                throw new NLogConfigurationException(RequiredPropertyIsEmptyFormat, "From");
             }
         }
 
@@ -617,8 +597,6 @@ namespace NLog.Targets
                 sb.Append(layout.Render(logEvent));
         }
 
-
-
         /// <summary>
         /// Create the mail message with the addresses, properties and body.
         /// </summary>
@@ -643,31 +621,18 @@ namespace NLog.Targets
                 throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc");
             }
 
-            msg.Subject = Subject == null ? string.Empty : Subject.Render(lastEvent).Trim();
+            msg.Subject = Subject is null ? string.Empty : Subject.Render(lastEvent).Trim();
             msg.BodyEncoding = Encoding;
             msg.IsBodyHtml = Html;
 
             if (Priority != null)
             {
-                var renderedPriority = Priority.Render(lastEvent);
-
-                if (string.IsNullOrEmpty(renderedPriority))
-                {
-                    msg.Priority = MailPriority.Normal;
-                }
-                else if (ConversionHelpers.TryParseEnum(renderedPriority, out MailPriority mailPriority))
-                {
-                    msg.Priority = mailPriority;
-                }
-                else
-                {
-                    msg.Priority = MailPriority.Normal;
-                    InternalLogger.Warn("MailTarget(Name={0}): Could not convert '{1}' to MailPriority, valid values are Low, Normal and High. Using normal priority as fallback.", Name, renderedPriority);
-                }
+                msg.Priority = RenderLogEvent(Priority, lastEvent, MailPriority.Normal);
             }
+
             msg.Body = body;
             if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null)
-                msg.Body = msg.Body.Replace(EnvironmentHelper.NewLine, "<br/>");
+                msg.Body = msg.Body.Replace(Environment.NewLine, "<br/>");
             return msg;
         }
 
@@ -683,9 +648,13 @@ namespace NLog.Targets
             var added = false;
             if (layout != null)
             {
-                foreach (string mail in layout.Render(logEvent).SplitAndTrimTokens(';'))
+                foreach (string mail in layout.Render(logEvent).Split(';'))
                 {
-                    mailAddressCollection.Add(mail);
+                    var mailAddress = mail.Trim();
+                    if (string.IsNullOrEmpty(mailAddress))
+                        continue;
+
+                    mailAddressCollection.Add(mailAddress);
                     added = true;
                 }
             }

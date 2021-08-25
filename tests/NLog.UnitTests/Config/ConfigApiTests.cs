@@ -68,7 +68,14 @@ namespace NLog.UnitTests.Config
         public void AddTarget_WithName_NullNameParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
+            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
+        }      
+        
+        [Fact]
+        public void AddTarget_WithName_EmptyPameParam()
+        {
+            var config = new LoggingConfiguration();
+            Exception ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: "", target: new FileTarget { Name = "name1" }));
         }
 
         [Fact]
@@ -222,7 +229,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", LogLevel.Error, target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:All) levels: [ Error Fatal ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:All) levels: [ Error Fatal ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -231,7 +238,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", LogLevel.Debug, LogLevel.Error, target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:All) levels: [ Debug Info Warn Error ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:All) levels: [ Debug Info Warn Error ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -240,7 +247,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:All) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:All) levels: [ ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -249,7 +256,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:Equals) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:Equals) levels: [ ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -258,7 +265,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("namespace.comp1", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -269,7 +276,7 @@ namespace NLog.UnitTests.Config
             var loggingRule = new LoggingRule("namespace.comp1", target);
             loggingRule.Targets.Add(target2);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 file2 ]", s);
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] writeTo: [ file1 file2 ]", s);
         }
 
         [Fact]

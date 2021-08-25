@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NET4_5
+#if !NET35 && !NET40
 
 namespace NLog.UnitTests.Internal
 {

@@ -50,14 +50,14 @@ namespace NLog.UnitTests.Filters
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzz");
@@ -77,14 +77,14 @@ namespace NLog.UnitTests.Filters
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug,debug2'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             AssertDebugCounter("debug2", 1);
@@ -104,14 +104,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' includeFirst='True' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("zzz");
@@ -128,7 +128,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' timeoutSeconds='10' />
                     </filters>
                     </logger>
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -176,7 +176,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' includeFirst='True' timeoutSeconds='10' />
                     </filters>
                     </logger>
@@ -191,7 +191,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 0);
                 logger.Debug("zzz");
@@ -224,7 +224,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' defaultFilterCacheSize='5' timeoutSeconds='10' />
                     </filters>
                     </logger>
@@ -239,7 +239,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -288,7 +288,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' maxFilterCacheSize='5' defaultFilterCacheSize='5' timeoutSeconds='10' />
                     </filters>
                     </logger>
@@ -303,7 +303,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -353,14 +353,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzz");
@@ -385,14 +385,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' maxLength='16' optimizeBufferDefaultLength='16' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
             logger.Debug("zzzzzzzzzzzzzzzz");
@@ -413,7 +413,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}${event-properties:item=hits}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' timeoutSeconds='5' filterCountPropertyName='hits' />
                     </filters>
                     </logger>
@@ -428,7 +428,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");
@@ -470,7 +470,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}${event-properties:item=hits}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <whenRepeated layout='${message}' action='Ignore' timeoutSeconds='5' filterCountMessageAppendFormat=' (Hits: {0})' />
                     </filters>
                     </logger>
@@ -485,7 +485,7 @@ namespace NLog.UnitTests.Filters
 
                 Time.TimeSource.Current = timeSource;
 
-                ILogger logger = LogManager.GetLogger("A");
+                var logger = LogManager.GetLogger("A");
                 logger.Debug("a");
                 AssertDebugCounter("debug", 1);
                 logger.Debug("zzz");

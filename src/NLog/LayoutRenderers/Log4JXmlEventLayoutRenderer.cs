@@ -63,38 +63,29 @@ namespace NLog.LayoutRenderers
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
-        private readonly NdcLayoutRenderer _ndcLayoutRenderer = new NdcLayoutRenderer() { Separator = " " };
-
-#if !SILVERLIGHT
-        private readonly NdlcLayoutRenderer _ndlcLayoutRenderer = new NdlcLayoutRenderer() { Separator = " " };
-#endif
+        private readonly ScopeContextNestedStatesLayoutRenderer _scopeNestedLayoutRenderer = new ScopeContextNestedStatesLayoutRenderer() { Separator = " " };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
+        public Log4JXmlEventLayoutRenderer() : this(LogFactory.DefaultAppEnvironment)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
+        internal Log4JXmlEventLayoutRenderer(IAppEnvironment appEnvironment)
         {
-            IncludeNLogData = true; // TODO NLog ver. 5 - Disable this by default, as mostly duplicate data is added
 
-#if SILVERLIGHT
-            AppInfo = "Silverlight Application";
-#elif NETSTANDARD1_3
+#if NETSTANDARD1_3
             AppInfo = "NetCore Application";
-#elif __IOS__
-            AppInfo = "MonoTouch Application";
 #else
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})",
-                appDomain.FriendlyName,
-                LogFactory.DefaultAppEnvironment.CurrentProcessId);
+                appEnvironment.AppDomainFriendlyName,
+                appEnvironment.CurrentProcessId);
 #endif
 
             Parameters = new List<NLogViewerParameterInfo>();
@@ -130,6 +121,9 @@ namespace NLog.LayoutRenderers
             {
                 Indent = IndentXml,
                 ConformanceLevel = ConformanceLevel.Fragment,
+#if !NET35
+                NamespaceHandling = NamespaceHandling.OmitDuplicates,
+#endif
                 IndentChars = "  ",
             };
         }
@@ -138,7 +132,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool IncludeNLogData { get; set; }
 
         /// <summary>
@@ -151,7 +145,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public string AppInfo { get; set; }
+        public Layout AppInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
@@ -169,59 +163,98 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdc { get; set; }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
+        private bool? _includeMdc;
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc { get; set; }
+        [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
+        private bool? _includeMdlc;
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc { get; set; }
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdlc { get => _includeNdlc ?? false; set => _includeNdlc = value; }
+        private bool? _includeNdlc;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        public bool IncludeNdc { get => _includeNdc ?? false; set => _includeNdc = value; }
+        private bool? _includeNdc;
+
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
+        private bool? _includeScopeProperties;
+
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeNestedStates { get => _includeScopeNestedStates ?? (_includeNdlc == true || _includeNdc == true); set => _includeScopeNestedStates = value; }
+        private bool? _includeScopeNestedStates;
+
+        /// <summary>
+        /// Gets or sets the stack separator for <see cref="ScopeContext"/> operation-call-stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [DefaultValue(" ")]
+        public string ScopeNestedStateSeparator
+        {
+            get => _scopeNestedLayoutRenderer.Separator;
+            set => _scopeNestedLayoutRenderer.Separator = value;
+        }
 
         /// <summary>
         /// Gets or sets the NDLC item separator.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdlcItemSeparator {
-            get => _ndlcLayoutRenderer.Separator;
-            set => _ndlcLayoutRenderer.Separator = value;
-        }
-#endif
+        [Obsolete("Replaced by ScopeNestedStateSeparator. Marked obsolete on NLog 5.0")]
+        public string NdlcItemSeparator { get => ScopeNestedStateSeparator; set => ScopeNestedStateSeparator = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties { get; set; }
+        [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
+        /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdc { get; set; }
+        public bool IncludeEventProperties { get; set; }
 
         /// <summary>   
         /// Gets or sets the NDC item separator.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
+        [Obsolete("Replaced by ScopeNestedStateSeparator. Marked obsolete on NLog 5.0")]
         [DefaultValue(" ")]
-        public string NdcItemSeparator {
-            get => _ndcLayoutRenderer.Separator;
-            set => _ndcLayoutRenderer.Separator = value;
-        }
+        public string NdcItemSeparator { get => ScopeNestedStateSeparator; set => ScopeNestedStateSeparator = value; }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public Layout LoggerName { get; set; }
+
+        /// <summary>
+        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
+        /// </summary>
+        public bool WriteThrowableCData { get; set; }
 
         private readonly string _machineName;
 
@@ -230,30 +263,9 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage
-        {
-            get
-            {
-                if (IncludeSourceInfo)
-                {
-                    return StackTraceUsage.Max;
-                }
-
-                if (IncludeCallSite)
-                {
-                    return StackTraceUsage.WithoutSource;
-                }
-
-                return StackTraceUsage.None;
-            }
-        }
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => (IncludeCallSite || IncludeSourceInfo) ? (StackTraceUsageUtils.GetStackTraceUsage(IncludeSourceInfo, 0, true) | StackTraceUsage.WithCallSiteClassName) : StackTraceUsage.None;
 
         internal IList<NLogViewerParameterInfo> Parameters { get; set; }
-
-        internal void AppendToStringBuilder(StringBuilder sb, LogEventInfo logEvent)
-        {
-            Append(sb, logEvent);
-        }
 
         /// <summary>
         /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.
@@ -266,113 +278,107 @@ namespace NLog.LayoutRenderers
             using (XmlWriter xtw = XmlWriter.Create(sb, _xmlWriterSettings))
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
-                xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
+                bool includeNLogCallsite = (IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null;
+                if (includeNLogCallsite && IncludeNLogData)
+                {
+                    xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
+                }
                 xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
-                xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
-                xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-                xtw.WriteAttributeSafeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpperInvariant());
+                xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
                 {
-                    // TODO Why twice the exception details?
-                    xtw.WriteElementSafeString("log4j", "throwable", dummyNamespace, logEvent.Exception.ToString());
+                    if (WriteThrowableCData)
+                    {
+                        // CDATA correctly preserves newlines and indention, but not all viewers support this
+                        xtw.WriteStartElement("log4j", "throwable", dummyNamespace);
+                        xtw.WriteSafeCData(logEvent.Exception.ToString());
+                        xtw.WriteEndElement();
+                    }
+                    else
+                    {
+                        xtw.WriteElementSafeString("log4j", "throwable", dummyNamespace, logEvent.Exception.ToString());
+                    }
                 }
 
-                AppendNdc(xtw, logEvent);
+                AppendScopeContextNestedStates(xtw, logEvent);
 
-                AppendException(logEvent, xtw);
-
-                AppendCallSite(logEvent, xtw);
-
-                AppendProperties(xtw);
-
-                AppendMdlc(xtw);
-
-                if (IncludeAllProperties)
+                if (includeNLogCallsite)
                 {
-                    AppendProperties("log4j", xtw, logEvent);
+                    AppendCallSite(logEvent, xtw);
+                }
+
+                xtw.WriteStartElement("log4j", "properties", dummyNamespace);
+
+                AppendScopeContextProperties("log4j", dummyNamespaceRemover, xtw);
+
+                if (IncludeEventProperties)
+                {
+                    AppendProperties("log4j", dummyNamespaceRemover, xtw, logEvent);
                 }
 
                 AppendParameters(logEvent, xtw);
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeSafeString("name", "log4japp");
-                xtw.WriteAttributeSafeString("value", AppInfo);
+                xtw.WriteAttributeString("name", "log4japp");
+                xtw.WriteAttributeSafeString("value", AppInfo?.Render(logEvent) ?? string.Empty);
                 xtw.WriteEndElement();
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeSafeString("name", "log4jmachinename");
+                xtw.WriteAttributeString("name", "log4jmachinename");
                 xtw.WriteAttributeSafeString("value", _machineName);
                 xtw.WriteEndElement();
 
-                xtw.WriteEndElement();
+                xtw.WriteEndElement();  // properties
 
-                xtw.WriteEndElement();
+                xtw.WriteEndElement();  // event
                 xtw.Flush();
 
                 // get rid of 'nlog' and 'log4j' namespace declarations
                 sb.Replace(dummyNamespaceRemover, string.Empty);
-                sb.Replace(dummyNLogNamespaceRemover, string.Empty);
+                if (includeNLogCallsite && IncludeNLogData)
+                {
+                    sb.Replace(dummyNLogNamespaceRemover, string.Empty);
+                }
                 sb.CopyTo(builder); // StringBuilder.Replace is not good when reusing the StringBuilder
             }
         }
 
-        private void AppendMdlc(XmlWriter xtw)
+        private void AppendScopeContextProperties(string prefix, string propertiesNamespace, XmlWriter xtw)
         {
-#if !SILVERLIGHT
-            if (IncludeMdlc)
+            if (IncludeScopeProperties)
             {
-                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
-                    string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
-                    if (propertyValue == null)
-                        continue;
+                    while (scopeEnumerator.MoveNext())
+                    {
+                        var scopeProperty = scopeEnumerator.Current;
+                        if (string.IsNullOrEmpty(scopeProperty.Key))
+                            continue;
 
-                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", key);
-                    xtw.WriteAttributeSafeString("value", propertyValue);
-                    xtw.WriteEndElement();
+                        string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
+                        if (propertyValue is null)
+                            continue;
+
+                        xtw.WriteStartElement(prefix, "data", propertiesNamespace);
+                        xtw.WriteAttributeSafeString("name", scopeProperty.Key);
+                        xtw.WriteAttributeString("value", propertyValue);
+                        xtw.WriteEndElement();
+                    }
                 }
             }
-#endif
         }
 
-        private void AppendNdc(XmlWriter xtw, LogEventInfo logEvent)
+        private void AppendScopeContextNestedStates(XmlWriter xtw, LogEventInfo logEvent)
         {
-            string ndcContent = null;
-            if (IncludeNdc)
+            if (IncludeScopeNestedStates)
             {
-                ndcContent = _ndcLayoutRenderer.Render(logEvent);
-            }
-
-#if !SILVERLIGHT
-            if (IncludeNdlc)
-            {
-                if (ndcContent != null)
-                {
-                    //extra separator
-                    ndcContent += NdcItemSeparator;
-                }
-                ndcContent += _ndlcLayoutRenderer.Render(logEvent);
-            }
-#endif
-
-            if (ndcContent != null)
-            {
+                var nestedStates = _scopeNestedLayoutRenderer.Render(logEvent);
                 //NDLC and NDC should be in the same element
-                xtw.WriteElementSafeString("log4j", "NDC", dummyNamespace, ndcContent);
-            }
-        }
-
-        private static void AppendException(LogEventInfo logEvent, XmlWriter xtw)
-        {
-            if (logEvent.Exception != null)
-            {
-                // TODO Why twice the exception details?
-                xtw.WriteStartElement("log4j", "throwable", dummyNamespace);
-                xtw.WriteSafeCData(logEvent.Exception.ToString());
-                xtw.WriteEndElement();
+                xtw.WriteElementSafeString("log4j", "NDC", dummyNamespace, nestedStates);
             }
         }
 
@@ -395,84 +401,62 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendProperties(XmlWriter xtw)
-        {
-            xtw.WriteStartElement("log4j", "properties", dummyNamespace);
-            if (IncludeMdc)
-            {
-                foreach (string key in MappedDiagnosticsContext.GetNames())
-                {
-                    string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsContext.GetObject(key));
-                    if (propertyValue == null)
-                        continue;
-
-                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", key);
-                    xtw.WriteAttributeSafeString("value", propertyValue);
-                    xtw.WriteEndElement();
-                }
-            }
-        }
-
         private void AppendCallSite(LogEventInfo logEvent, XmlWriter xtw)
         {
-            if ((IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null)
+            MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
+            string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
+            string callerMethodName = logEvent.CallSiteInformation.GetCallerMethodName(methodBase, true, true, true);
+
+            xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
+            if (!string.IsNullOrEmpty(callerClassName))
             {
-                MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
-                string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-                string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+                xtw.WriteAttributeSafeString("class", callerClassName);
+            }
 
-                xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                if (!string.IsNullOrEmpty(callerClassName))
-                {
-                    xtw.WriteAttributeSafeString("class", callerClassName);
-                }
+            xtw.WriteAttributeSafeString("method", callerMethodName);
 
-                xtw.WriteAttributeSafeString("method", callerMemberName);
-#if !SILVERLIGHT
-                if (IncludeSourceInfo)
+            if (IncludeSourceInfo)
+            {
+                xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
+                xtw.WriteAttributeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+            }
+
+            xtw.WriteEndElement();
+
+            if (IncludeNLogData)
+            {
+                xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                var type = methodBase?.DeclaringType;
+                if (type != null)
                 {
-                    xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
-                    xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+                    xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
                 }
-#endif
                 xtw.WriteEndElement();
 
-                if (IncludeNLogData)
-                {
-                    xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                    xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
-                    var type = methodBase?.DeclaringType;
-                    if (type != null)
-                    {
-                        xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
-                    }
-                    xtw.WriteEndElement();
-
-                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                    AppendProperties("nlog", xtw, logEvent);
-                    xtw.WriteEndElement();
-                }
+                xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                AppendProperties("nlog", dummyNLogNamespace, xtw, logEvent);
+                xtw.WriteEndElement();
             }
         }
 
-        private void AppendProperties(string prefix, XmlWriter xtw, LogEventInfo logEvent)
+        private void AppendProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
         {
             if (logEvent.HasProperties)
             {
                 foreach (var contextProperty in logEvent.Properties)
                 {
-                    string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
+                    string propertyKey = XmlHelper.XmlConvertToStringSafe(contextProperty.Key);
                     if (string.IsNullOrEmpty(propertyKey))
                         continue;
 
-                    string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
-                    if (propertyValue == null)
+                    string propertyValue = XmlHelper.XmlConvertToStringSafe(contextProperty.Value);
+                    if (propertyValue is null)
                         continue;
 
-                    xtw.WriteStartElement(prefix, "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", propertyKey);
-                    xtw.WriteAttributeSafeString("value", propertyValue);
+                    xtw.WriteStartElement(prefix, "data", propertiesNamespace);
+                    xtw.WriteAttributeString("name", propertyKey);
+                    xtw.WriteAttributeString("value", propertyValue);
                     xtw.WriteEndElement();
                 }
             }

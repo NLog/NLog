@@ -47,8 +47,6 @@ namespace NLog.Internal.NetworkSenders
 
         bool SendAsync(SocketAsyncEventArgs args);
 
-#if !SILVERLIGHT
         bool SendToAsync(SocketAsyncEventArgs args);
-#endif
     }
 }

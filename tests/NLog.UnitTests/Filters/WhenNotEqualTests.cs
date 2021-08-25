@@ -47,14 +47,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                    <filters defaultAction='log'>
                         <whenNotEqual layout='${message}' compareTo='skipme' action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("skipme");
@@ -71,14 +71,14 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                    <filters defaultAction='log'>
                         <whenNotEqual layout='${message}' compareTo='skipmetoo' action='Ignore' ignoreCase='true' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("skipMeToo");

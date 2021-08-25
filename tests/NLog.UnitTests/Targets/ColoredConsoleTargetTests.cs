@@ -270,7 +270,7 @@ namespace NLog.UnitTests.Targets
 
         }
 
-#if !NET3_5 && !MONO
+#if !MONO
         [Fact]
         public void ColoredConsoleRaceCondtionIgnoreTest()
         {
@@ -290,7 +290,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void ColoredConsoleDetectOutputRedirectedTest()
         {
@@ -314,7 +314,7 @@ namespace NLog.UnitTests.Targets
                 target.Close();
 
                 Assert.Single(exceptions);
-                Assert.True(exceptions.TrueForAll(e => e == null));
+                Assert.True(exceptions.TrueForAll(e => e is null));
             }
             finally
             {

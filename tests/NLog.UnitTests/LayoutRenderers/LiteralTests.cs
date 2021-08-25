@@ -50,9 +50,41 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "abcd");
+        }
+
+        [Fact]
+        public void LiteralExplicitTextTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${literal:text=a\=\:\}b\t\nc\u003ad}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "a=:}b\t\nc:d");
+        }
+
+        [Fact]
+        public void LiteralDefaultTextTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${literal:a\=\:\}b\t\nc\u003ad}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "a=:}b\t\nc:d");
         }
     }
 }

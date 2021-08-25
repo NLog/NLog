@@ -51,13 +51,12 @@ namespace NLog
         /// <param name="factory">The factory class to be used for the creation of this logger.</param>
         public NullLogger(LogFactory factory)
         {
-            if (factory == null)
+            if (factory is null)
             {
                 throw new ArgumentNullException(nameof(factory));
             }
 
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), factory);
+            Initialize(string.Empty, TargetWithFilterChain.NoTargetsByLevel, factory);
         }
     }
 }

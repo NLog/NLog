@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
+#if !NETSTANDARD1_3
 #define SupportsMutex
 #endif
 
@@ -73,7 +72,7 @@ namespace NLog.Internal.FileAppenders
         {
             if (createParameters.IsArchivingEnabled && createParameters.ConcurrentWrites)
             {
-                if (PlatformDetector.SupportsSharableMutex)
+                if (MutexDetector.SupportsSharableMutex)
                 {
 #if SupportsMutex
                     ArchiveMutex = CreateArchiveMutex();
@@ -81,7 +80,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 else
                 {
-                    InternalLogger.Debug("Mutex for file archive not supported");
+                    InternalLogger.Debug("{0}: Mutex for file archive not supported", CreateFileParameters);
                 }
             }
         }
@@ -104,11 +103,11 @@ namespace NLog.Internal.FileAppenders
             {
                 if (ex is SecurityException || ex is UnauthorizedAccessException || ex is NotSupportedException || ex is NotImplementedException || ex is PlatformNotSupportedException)
                 {
-                    InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
+                    InternalLogger.Warn(ex, "{0}: Failed to create global archive mutex: {1}", CreateFileParameters, FileName);
                     return new Mutex();
                 }
 
-                InternalLogger.Error(ex, "Failed to create global archive mutex: {0}", FileName);
+                InternalLogger.Error(ex, "{0}: Failed to create global archive mutex: {1}", CreateFileParameters, FileName);
                 if (ex.MustBeRethrown())
                     throw;
                 return new Mutex();
@@ -135,7 +134,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
-            if (!PlatformDetector.SupportsSharableMutex)
+            if (!MutexDetector.SupportsSharableMutex)
                 throw new NotSupportedException("Creating Mutex not supported");
 
             var name = GetMutexName(mutexNamePrefix);

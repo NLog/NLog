@@ -51,7 +51,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "Debug a");
             logger.Info("a");
@@ -65,6 +65,30 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void LogLevelUppercaseTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level:uppercase=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "DEBUG a");
+            logger.Info("a");
+            AssertDebugLastMessage("debug", "INFO a");
+            logger.Warn("a");
+            AssertDebugLastMessage("debug", "WARN a");
+            logger.Error("a");
+            AssertDebugLastMessage("debug", "ERROR a");
+            logger.Fatal("a");
+            AssertDebugLastMessage("debug", "FATAL a");
+        }
+
+        [Fact]
         public void LogLevelSingleCharacterTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -75,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Trace("a");
             AssertDebugLastMessage("debug", "T a");
             logger.Debug("a");
@@ -101,7 +125,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Trace("a");
             AssertDebugLastMessage("debug", "0 a");
             logger.Debug("a");
@@ -128,7 +152,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = LogManager.GetLogger("A");
             logger.Trace("a");
             AssertDebugLastMessage("debug", "Trace a");
             logger.Debug("a");

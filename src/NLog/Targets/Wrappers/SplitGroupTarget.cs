@@ -112,20 +112,6 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
-        ///
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected override void Write(AsyncLogEventInfo[] logEvents)
-        {
-            Write((IList<AsyncLogEventInfo>)logEvents);
-        }
-
-        /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
@@ -133,7 +119,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            InternalLogger.Trace("SplitGroup(Name={0}): Writing {1} events", Name, logEvents.Count);
+            InternalLogger.Trace("{0}: Writing {1} events", this, logEvents.Count);
 
             if (logEvents.Count == 1)
             {
@@ -159,12 +145,12 @@ namespace NLog.Targets.Wrappers
 
                 for (int i = 0; i < Targets.Count; ++i)
                 {
-                    InternalLogger.Trace("SplitGroup(Name={0}): Sending {1} events to {2}", Name, logEvents.Count, Targets[i]);
+                    InternalLogger.Trace("{0}: Sending {1} events to {2}", this, logEvents.Count, Targets[i]);
 
                     var targetLogEvents = logEvents;
                     if (i < Targets.Count - 1)
                     {
-                        // OptimizeBufferReuse = true, will change the input-array (so we make clones here)
+                        // WriteAsyncLogEvents will modify the input-array (so we make clones here)
                         AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
                         logEvents.CopyTo(cloneLogEvents, 0);
                         targetLogEvents = cloneLogEvents;
