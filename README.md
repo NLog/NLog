@@ -49,7 +49,7 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 -----
 
- ℹ️ NLog 5 pre-relesae
+ ℹ️ NLog 5 Preview!
 
 There is a new shiny NLog 5 Preview package. See [news post](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
 
