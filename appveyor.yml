@@ -1,4 +1,4 @@
-version: 5.0.0-{build} # change for NLog 6
+version: 5.0.0-{build} # Only change for mayor versions (e.g. 6.0)
 image:
   - Visual Studio 2019
   - Previous Ubuntu
