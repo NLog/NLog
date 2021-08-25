@@ -1,7 +1,9 @@
 ![NLog](https://raw.githubusercontent.com/NLog/NLog.github.io/master/images/NLog-logo-only_small.png)
 
 [![NuGet](https://img.shields.io/nuget/v/nlog.svg)](https://www.nuget.org/packages/NLog)
+[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](https://semver.org/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
 [![Twitter Follow](https://img.shields.io/twitter/follow/NLogOfficial.svg?style=social?maxAge=2592000)](https://twitter.com/NLogOfficial)
 
 <!--[![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000&label=stackoverflow)](https://stackoverflow.com/questions/tagged/nlog) -->
@@ -16,14 +18,6 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=coverage&branch=dev)](https://sonarcloud.io/dashboard?id=nlog2&branch=dev)
 
 
-<!--
-[![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
-
-[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)-->
-
-
-
-<!--[NLog is Looking for Developers!](https://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)-->
 
 [![](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)
 [![](https://img.shields.io/badge/Troubleshoot-Guide-orange)](https://github.com/nlog/nlog/wiki/Logging-troubleshooting)
@@ -55,9 +49,9 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 -----
 
- ℹ️ Looking for NLog 5? Just install NLog 4.5+! 
+ ℹ️ NLog 5 pre-relesae
 
-NLog 4.5 implements the platforms added in NLog 5 (.NET Standard 1, .NET Standard 2, UWP, etc) and added structural logging, *without breaking changes*!
+There is a new shiny NLog 5 Preview package. See [news post](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
 
 
 NLog Packages
@@ -115,7 +109,7 @@ See [LICENSE.txt](LICENSE.txt) for details.
 
 How to build
 ---
-Use Visual Studio 2017 and open the solution 'NLog.sln' - C# 7.2 support is required.
+Use Visual Studio 2019 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
 - AppVeyor for Windows builds, including Silverlight and Xamarin.

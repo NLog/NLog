@@ -12,9 +12,9 @@ NLog supports traditional logging, structured logging and the combination of bot
 
 Supported platforms:
 
-- .NET 5
+- .NET 5 and 6
 - .NET Core 1, 2 and 3
-- .NET Standard 1.3+ and 2.0+;
+- .NET Standard 1.3+ and 2.0+
 - .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
 - Mono 4
 
@@ -28,12 +28,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-## Bugfixes
-- JsonSerializer - Fix CultureNotFoundException with Globalization Invariant Mode (#4519) (@snakefoot)
+NLog 5.0 prerelease version 1.
 
-## Features
-- WebServiceTarget - Added support for assigning UserAgent-Header (#4475) (@snakefoot)
-      
+Release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
+
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
 For all config options and platform support, check https://nlog-project.org/config/
@@ -46,7 +44,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 

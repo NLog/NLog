@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
   </ItemGroup>
@@ -31,13 +31,15 @@
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
+    <Reference Include="System.Data.SQLite" />
+    <Reference Include="System.Transactions" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.114.3" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.7" />
   </ItemGroup>
 
   <ItemGroup>
