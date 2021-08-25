@@ -40,6 +40,11 @@ for:
         secure: N/3SLEg4r4QlbIVrI6epIHgv2KfwkwkrIUeLRyqS8D3AkC29Ql86NMkHxWOfcmUM
       on:
         branch: master
+    - provider: NuGet
+      api_key:
+        secure: N/3SLEg4r4QlbIVrI6epIHgv2KfwkwkrIUeLRyqS8D3AkC29Ql86NMkHxWOfcmUM
+      on:
+        branch: dev
     artifacts:
     - path: 'artifacts\*.nupkg'
       type: NuGetPackage
