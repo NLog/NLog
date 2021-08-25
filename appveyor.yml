@@ -1,4 +1,4 @@
-version: 5.0.0-{build} # Only change for mayor versions (e.g. 6.0)
+version: 4.7.0-{build}
 image:
   - Visual Studio 2019
   - Previous Ubuntu
