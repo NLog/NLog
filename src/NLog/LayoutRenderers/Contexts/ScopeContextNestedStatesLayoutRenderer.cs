@@ -102,9 +102,17 @@ namespace NLog.LayoutRenderers
                 startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
 
+            var formatProvider = GetFormatProvider(logEvent);
+            AppendNestedStates(builder, messages, startPos, endPos, formatProvider);
+        }
+
+        private void AppendNestedStates(StringBuilder builder, object[] messages, int startPos, int endPos, IFormatProvider formatProvider)
+        {
+            bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format);
+
             string separator = Separator ?? string.Empty;
             string itemSeparator = separator;
-            if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
+            if (formatAsJson)
             {
                 builder.Append("[");
                 builder.Append(separator);
@@ -113,34 +121,26 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                var formatProvider = GetFormatProvider(logEvent);
                 string currentSeparator = string.Empty;
                 for (int i = endPos - 1; i >= startPos; --i)
                 {
                     builder.Append(currentSeparator);
-                    AppendFormattedValue(messages[i], formatProvider, builder, separator, itemSeparator);
+                    if (formatAsJson)
+                        AppendJsonFormattedValue(messages[i], formatProvider, builder, separator, itemSeparator);
+                    else if (messages[i] is IEnumerable<KeyValuePair<string, object>>)
+                        builder.Append(Convert.ToString(messages[i]));   // Special support for Microsoft Extension Logging ILogger.BeginScope
+                    else
+                        builder.AppendFormattedValue(messages[i], Format, formatProvider, ValueFormatter);
                     currentSeparator = itemSeparator;
                 }
             }
             finally
             {
-                if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
+                if (formatAsJson)
                 {
                     builder.Append(separator);
                     builder.Append("]");
                 }
-            }
-        }
-
-        private void AppendFormattedValue(object nestedState, IFormatProvider formatProvider, StringBuilder builder, string separator, string itemSeparator)
-        {
-            if (Format == MessageTemplates.ValueFormatter.FormatAsJson)
-            {
-                AppendJsonFormattedValue(nestedState, formatProvider, builder, separator, itemSeparator);
-            }
-            else
-            {
-                builder.AppendFormattedValue(nestedState, Format, formatProvider, ValueFormatter);
             }
         }
 
