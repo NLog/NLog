@@ -273,6 +273,33 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(string.Format("[{0}{{{0}\"Hello\": 42,{0}\"Unlucky\": 13{0}}}{0}]", "\n"), target.LastMessage);
         }
 
+        [Fact]
+        public void ScopeNestedBeginScopeProperties()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${scopenested}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            var logger = logFactory.GetCurrentClassLogger();
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+
+            // Act
+            var scopeProperties = new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } };
+            using (ScopeContext.PushNestedState(scopeProperties))
+            {
+                logger.Debug("c");
+            }
+
+            // Assert
+            Assert.Equal(scopeProperties.ToString(), target.LastMessage);   // Avoid enumerating properties, since available from ScopeContext-Properties
+        }
+
 #if !NET35 && !NET40 && !NET45
         [Fact]
         public void ScopeNestedTimingTest()
