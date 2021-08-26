@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using NLog.Targets;
-
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -73,18 +68,16 @@ namespace NLog.UnitTests.Config
         {
             Directory.CreateDirectory(tempDir);
 
-            CreateConfigFile(tempDir, "included.nlog", @"<nlog>
+            CreateConfigFile(tempDir, "included.nlog", @"<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
             </nlog>");
 
-
-            CreateConfigFile(tempDir, "main.nlog", $@"<nlog>
+            CreateConfigFile(tempDir, "main.nlog", $@"<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'>
                 <include file='{includeAttrValue}' />
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
 
             string fileToLoad = Path.Combine(tempDir, "main.nlog");
             try
@@ -101,8 +94,6 @@ namespace NLog.UnitTests.Config
                     Directory.Delete(tempDir, true);
             }
         }
-
-
 
         [Fact]
         public void IncludeNotExistingTest()

@@ -379,7 +379,7 @@ namespace NLog.Config
                 using (var reader = LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName))
                 {
                     reader.MoveToContent();
-                    ParseTopLevel(new NLogXmlElement(reader, true), fileName, autoReloadDefault);
+                    ParseTopLevel(new NLogXmlElement(reader, false), fileName, autoReloadDefault);
                 }
             }
         }
