@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// DB null for a database
     /// </summary>
-    [LayoutRenderer("db-null")]
     [LayoutRenderer("dbnull")]
     [ThreadAgnostic]
     public class DbNullLayoutRenderer : LayoutRenderer, IRawValue
