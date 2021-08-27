@@ -544,21 +544,11 @@ namespace NLog.Common
         {
             try
             {
-                string settingValue = GetAppSettings(configName);
+                var settingValue = GetAppSettings(configName);
                 if (settingValue != null)
                     return settingValue;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-            }
 
-            try
-            {
-                string settingValue = EnvironmentHelper.GetSafeEnvironmentVariable(envName);
+                settingValue = EnvironmentHelper.GetSafeEnvironmentVariable(envName);
                 if (!string.IsNullOrEmpty(settingValue))
                     return settingValue;
             }
