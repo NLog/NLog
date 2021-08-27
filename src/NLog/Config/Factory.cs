@@ -52,11 +52,13 @@ namespace NLog.Config
         private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
         private readonly ServiceRepository _serviceRepository;
         private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
+        private List<string> _ignoreCharacters;
 
-        internal Factory(ServiceRepository serviceRepository, Factory<TBaseType, TAttributeType> globalDefaultFactory)
+        internal Factory(ServiceRepository serviceRepository, Factory<TBaseType, TAttributeType> globalDefaultFactory, List<string> ignoreCharacters = null)
         {
             _serviceRepository = serviceRepository;
             _globalDefaultFactory = globalDefaultFactory;
+            _ignoreCharacters = ignoreCharacters;
         }
 
         private delegate Type GetTypeDelegate();
@@ -125,6 +127,7 @@ namespace NLog.Config
         /// <param name="typeName">Name of the type.</param>
         public void RegisterNamedType(string itemName, string typeName)
         {
+            itemName = NormalizeName(itemName);
             _items[itemName] = () => Type.GetType(typeName, false);
         }
 
@@ -146,6 +149,22 @@ namespace NLog.Config
             RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
         }
 
+        private string NormalizeName(string itemName)
+        {
+            if (_ignoreCharacters == null)
+            {
+                return itemName;
+            }
+
+            for (int i = 0; i < _ignoreCharacters.Count; i++)
+            {
+                var ignoreCharacter = _ignoreCharacters[i];
+                itemName = itemName.Replace(ignoreCharacter, "");
+            }
+
+            return itemName;
+        }
+
         /// <summary>
         /// Registers a single type definition.
         /// </summary>
@@ -156,6 +175,7 @@ namespace NLog.Config
         private void RegisterDefinition(string itemName, Type itemDefinition, string assemblyName, string itemNamePrefix)
         {
             GetTypeDelegate typeLookup = () => itemDefinition;
+            itemName = NormalizeName(itemName);
             _items[itemNamePrefix + itemName] = typeLookup;
             if (!string.IsNullOrEmpty(assemblyName))
             {
@@ -174,6 +194,7 @@ namespace NLog.Config
         public bool TryGetDefinition(string itemName, out Type result)
         {
             GetTypeDelegate getTypeDelegate;
+            itemName = NormalizeName(itemName);
 
             if (!_items.TryGetValue(itemName, out getTypeDelegate))
             {
@@ -253,8 +274,10 @@ namespace NLog.Config
     {
         private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
         private readonly LayoutRendererFactory _globalDefaultFactory;
+        private static readonly List<string> IgnoreCharacters = new List<string> { "-" };
 
-        public LayoutRendererFactory(ServiceRepository serviceRepository, LayoutRendererFactory globalDefaultFactory) : base(serviceRepository, globalDefaultFactory)
+        public LayoutRendererFactory(ServiceRepository serviceRepository, LayoutRendererFactory globalDefaultFactory)
+            : base(serviceRepository, globalDefaultFactory, IgnoreCharacters)
         {
             _globalDefaultFactory = globalDefaultFactory;
         }
