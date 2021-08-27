@@ -43,25 +43,18 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
     public class WrapLineTests : NLogTestBase
     {
-        [Fact]
-        public void WrapLineWithInnerLayoutDefaultTest()
+        [Theory]
+        [InlineData("${wrapline:${scopeproperty:foo}:WrapLine=3}")]
+        [InlineData("${wrap-line:${scopeproperty:foo}:WrapLine=3}")] // Alias
+        [InlineData("${wrapline:Inner=${scopeproperty:foo}:WrapLine=3}")] // Inner syntax
+        public void WrapLineWithInnerLayoutDefaultTest(string layout)
         {
             ScopeContext.PushProperty("foo", "foobar");
 
-            SimpleLayout le = "${wrapline:${scopeproperty:foo}:WrapLine=3}";
+            SimpleLayout le = layout;
 
             Assert.Equal("foo" + System.Environment.NewLine + "bar", le.Render(LogEventInfo.CreateNullEvent()));
-        }
-
-        [Fact]
-        public void WrapLineWithInnerLayoutTest()
-        {
-            ScopeContext.PushProperty("foo", "foobar");
-
-            SimpleLayout le = "${wrapline:Inner=${scopeproperty:foo}:WrapLine=3}";
-
-            Assert.Equal("foo" + System.Environment.NewLine + "bar", le.Render(LogEventInfo.CreateNullEvent()));
-        }
+        }    
 
         [Fact]
         public void WrapLineAtPositionOnceTest()
