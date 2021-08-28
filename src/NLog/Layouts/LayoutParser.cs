@@ -235,7 +235,7 @@ namespace NLog.Layouts
             }
         }
 
-        private static string ParseParameterValue(SimpleStringReader sr)
+        private static string ParseParameterValue(SimpleStringReader sr, bool parseNewLine)
         {
             var value = sr.ReadUntilMatch(ch => EndOfLayout(ch) || ch == '\\');
             if (sr.Peek() == '\\')
@@ -247,7 +247,9 @@ namespace NLog.Layouts
                 while ((ch = sr.Peek()) != -1)
                 {
                     if (EndOfLayout(ch))
+                    {
                         break;
+                    }
 
                     if (ch == '\\')
                     {
@@ -279,6 +281,30 @@ namespace NLog.Layouts
                 }
             }
 
+            if (parseNewLine)
+            {
+                value = ParseNewlineParameterValue(sr, value);
+            }
+            return value;
+        }
+
+        private static string ParseNewlineParameterValue(SimpleStringReader sr, string value)
+        {
+            if (sr.Peek() == '}')
+            {
+                var newlineToken = "${newline";
+                if (value.Length >= newlineToken.Length)
+                {
+                    var newLineIndex = value.IndexOf(newlineToken, StringComparison.OrdinalIgnoreCase);
+                    if (newLineIndex >= 0)
+                    {
+                        sr.Read();
+                        value = value.Remove(newLineIndex, newlineToken.Length);
+                        value = value.Insert(newLineIndex, System.Environment.NewLine);
+                        value += ParseParameterValue(sr, true);
+                    }
+                }
+            }
             return value;
         }
 
@@ -435,7 +461,7 @@ namespace NLog.Layouts
 
                     if (propertyInfo is null)
                     {
-                        var value = ParseParameterValue(stringReader);
+                        var value = ParseParameterValue(stringReader, false);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
                             var configException = new NLogConfigurationException($"Unknown property '{parameterName}=' for ${{{typeName}}} ({layoutRenderer?.GetType()})");
@@ -461,7 +487,7 @@ namespace NLog.Layouts
                         }
                         else
                         {
-                            string value = ParseParameterValue(stringReader);
+                            string value = ParseParameterValue(stringReader, typeof(string).Equals(propertyInfo.PropertyType));
                             PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, configurationItemFactory);
                         }
                     }
