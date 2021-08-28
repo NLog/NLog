@@ -219,6 +219,26 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void ExceptionNewLineSeparatorTest2()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:separator= ${NewLine} :format=message,shorttype}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+
+            logger.Error(ex, "msg");
+            AssertDebugLastMessage("debug1", $"Test exception {System.Environment.NewLine} {typeof(CustomArgumentException).Name}");
+        }
+
+        [Fact]
         public void ExceptionUsingLogMethodTest()
         {
             SetConfigurationForExceptionUsingRootMethodTests();
@@ -372,7 +392,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
+            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator.Render(LogEventInfo.CreateNullEvent()));
 
             string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
@@ -894,7 +914,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as CustomExceptionLayoutRendrer;
-            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
+            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator.Render(LogEventInfo.CreateNullEvent()));
 
             string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
@@ -935,7 +955,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var exceptionLayoutRenderer = ((SimpleLayout)target.Layout).Renderers[0] as ExceptionLayoutRenderer;
             Assert.NotNull(exceptionLayoutRenderer);
-            Assert.Equal(defaultExceptionDataSeparator, exceptionLayoutRenderer.ExceptionDataSeparator);
+            Assert.Equal(defaultExceptionDataSeparator, exceptionLayoutRenderer.ExceptionDataSeparator.Render(LogEventInfo.CreateNullEvent()));
 
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
@@ -1084,7 +1104,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) +
                 "\r\nXXX" +
                 ex.GetType().FullName);
-    }
+        }
     }
 
     [LayoutRenderer("exception-custom")]

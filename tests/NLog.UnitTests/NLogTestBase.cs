@@ -77,7 +77,8 @@ namespace NLog.UnitTests
 
         protected void AssertDebugLastMessage(string targetName, string msg)
         {
-            Assert.Equal(msg, GetDebugLastMessage(targetName));
+            var debugLastMessage = GetDebugLastMessage(targetName);
+            Assert.Equal(msg, debugLastMessage);
         }
 
         protected void AssertDebugLastMessageContains(string targetName, string msg)

@@ -40,6 +40,8 @@ namespace NLog.LayoutRenderers
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
+
 
     /// <summary>
     /// Exception information provided through 
@@ -84,6 +86,9 @@ namespace NLog.LayoutRenderers
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));
         private ObjectReflectionCache _objectReflectionCache;
+        private string _separator;
+        private string _exceptionDataSeparator;
+        private string _innerExceptionSeparator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionLayoutRenderer" /> class.
@@ -153,14 +158,30 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" ")]
-        public string Separator { get; set; }
+        public Layout Separator
+        {
+            get => _separator;
+            set => _separator = HandleBreakingChange(value.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        private static string HandleBreakingChange(string render)
+        {
+            render = StringHelpers.Replace(render, "\\n", "\n", StringComparison.OrdinalIgnoreCase);
+            render = StringHelpers.Replace(render, "\\r", "\r", StringComparison.OrdinalIgnoreCase);
+
+            return render;
+        }
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(";")]
-        public string ExceptionDataSeparator { get; set; }
+        public Layout ExceptionDataSeparator
+        {
+            get => _exceptionDataSeparator;
+            set => _exceptionDataSeparator = HandleBreakingChange(value.Render(LogEventInfo.CreateNullEvent()));
+        }
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -174,7 +195,11 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string InnerExceptionSeparator { get; set; }
+        public Layout InnerExceptionSeparator
+        {
+            get => _innerExceptionSeparator;
+            set => _innerExceptionSeparator = HandleBreakingChange(value.Render(LogEventInfo.CreateNullEvent()));
+        }
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
@@ -261,7 +286,7 @@ namespace NLog.LayoutRenderers
                 }
             }
         }
-
+        
 #if !NET35
         private static Exception GetPrimaryException(AggregateException aggregateException)
         {
@@ -486,7 +511,7 @@ namespace NLog.LayoutRenderers
                 {
                     sb.Append(separator);
                     sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
-                    separator = ExceptionDataSeparator;
+                    separator = _exceptionDataSeparator;
                 }
             }
         }
@@ -521,7 +546,7 @@ namespace NLog.LayoutRenderers
 
                 sb.Append(separator);
                 sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
-                separator = ExceptionDataSeparator;
+                separator = _exceptionDataSeparator;
             }
         }
 
