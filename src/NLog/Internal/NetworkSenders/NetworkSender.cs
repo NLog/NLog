@@ -69,6 +69,11 @@ namespace NLog.Internal.NetworkSenders
         public int LastSendTime { get; private set; }
 
         /// <summary>
+        /// Indicates wether this sender should be released on error.
+        /// </summary>
+        protected internal bool ReleaseOnError { get; protected set; } = true;
+
+        /// <summary>
         /// Initializes this network sender.
         /// </summary>
         public void Initialize()

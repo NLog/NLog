@@ -103,6 +103,7 @@ namespace NLog.Targets
             MaxMessageSize = 65000;
             ConnectionCacheSize = 5;
             LineEnding = LineEndingMode.CRLF;
+            ConnectionTimeoutMilliseconds = 1000;
         }
 
         /// <summary>
@@ -218,6 +219,12 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         public int KeepAliveTimeSeconds { get; set; }
 
+        /// <summary>
+        /// Get or set the timeout in milliseconds for socket connection. Currently only implemented for TcpThreadNetworkSender.
+        /// </summary>
+        [DefaultValue(1000)]
+        public int ConnectionTimeoutMilliseconds { get; set; }
+
         internal INetworkSenderFactory SenderFactory { get; set; }
 
         /// <summary>
@@ -318,7 +325,8 @@ namespace NLog.Targets
                     if (ex != null)
                     {
                         InternalLogger.Error(ex, "{0}: Error when sending.", this);
-                        ReleaseCachedConnection(senderNode);
+                        if (senderNode.Value.ReleaseOnError)
+                            ReleaseCachedConnection(senderNode);
                     }
 
                     logEvent.Continuation(ex);
@@ -511,7 +519,7 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address)
         {
-            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
+            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromMilliseconds(ConnectionTimeoutMilliseconds));
             sender.Initialize();
 
             return sender;

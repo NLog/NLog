@@ -44,7 +44,7 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
+        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan connectionTimeout)
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
@@ -91,6 +91,41 @@ namespace NLog.Internal.NetworkSenders
                     KeepAliveTime = keepAliveTime,
                 };
             }
+
+#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+            if (url.StartsWith("tcp+thread://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpThreadNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    ConnectionTimeout = connectionTimeout,
+                    KeepAliveTime = keepAliveTime,
+                    SslProtocols = sslProtocols,
+                    MaxQueueSize = maxQueueSize,
+                };
+            }
+
+            if (url.StartsWith("tcp4+thread://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpThreadNetworkSender(url, AddressFamily.InterNetwork)
+                {
+                    ConnectionTimeout = connectionTimeout,
+                    KeepAliveTime = keepAliveTime,
+                    SslProtocols = sslProtocols,
+                    MaxQueueSize = maxQueueSize,
+                };
+            }
+
+            if (url.StartsWith("tcp6+thread://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpThreadNetworkSender(url, AddressFamily.InterNetworkV6)
+                {
+                    ConnectionTimeout = connectionTimeout,
+                    KeepAliveTime = keepAliveTime,
+                    SslProtocols = sslProtocols,
+                    MaxQueueSize = maxQueueSize,
+                };
+            }
+#endif
 
             if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {

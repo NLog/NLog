@@ -288,6 +288,8 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             private readonly StringWriter log;
             private bool faulted;
 
+            public bool Connected => throw new NotImplementedException();
+
             public MockSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, MyTcpNetworkSender sender)
             {
                 this.sender = sender;
@@ -375,6 +377,26 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     log.WriteLine("sendto async {0} {1} '{2}' {3}", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count), args.RemoteEndPoint);
                     return InvokeCallback(args);
                 }
+            }
+
+            public IAsyncResult BeginConnect(EndPoint remoteEP, AsyncCallback callback, object state)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void EndConnect(IAsyncResult asyncResult)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int Send(byte[] buffer, int offset, int size, SocketFlags socketFlags)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
             }
         }
 

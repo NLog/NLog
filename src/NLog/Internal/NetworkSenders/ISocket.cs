@@ -34,6 +34,8 @@
 
 namespace NLog.Internal.NetworkSenders
 {
+    using System;
+    using System.Net;
     using System.Net.Sockets;
 
     /// <summary>
@@ -48,5 +50,17 @@ namespace NLog.Internal.NetworkSenders
         bool SendAsync(SocketAsyncEventArgs args);
 
         bool SendToAsync(SocketAsyncEventArgs args);
+
+#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+        bool Connected { get; }
+
+        IAsyncResult BeginConnect(EndPoint remoteEP, AsyncCallback callback, object state);
+
+        void EndConnect(IAsyncResult asyncResult);
+
+        int Send(byte[] buffer, int offset, int size, SocketFlags socketFlags);
+#endif
+
+        void Dispose();
     }
 }

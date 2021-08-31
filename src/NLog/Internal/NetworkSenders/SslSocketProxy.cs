@@ -35,6 +35,7 @@ namespace NLog.Internal.NetworkSenders
 {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System;
+    using System.Net;
     using System.Net.Security;
     using System.Net.Sockets;
     using System.Security.Authentication;
@@ -189,6 +190,37 @@ namespace NLog.Internal.NetworkSenders
         {
             return SendAsync(args);
         }
+
+#if !NET35
+        /// <summary>
+        /// Gets the status connection of the wrapped socket.
+        /// </summary>
+        public bool Connected => _socketProxy.Connected;
+
+        /// <summary>
+        /// Invokes BeginConnect method on the wrapped socket.
+        /// </summary>
+        public IAsyncResult BeginConnect(EndPoint remoteEP, AsyncCallback callback, object state)
+        {
+            return _socketProxy.BeginConnect(remoteEP, callback, state);
+        }
+
+        /// <summary>
+        /// Invokes EndConnect method on the wrapped socket.
+        /// </summary>
+        public void EndConnect(IAsyncResult asyncResult)
+        {
+            _socketProxy.EndConnect(asyncResult);
+        }
+
+        /// <summary>
+        /// Invokes Send method on the wrapped socket.
+        /// </summary>
+        public int Send(byte[] buffer, int offset, int size, SocketFlags socketFlags)
+        {
+            return _socketProxy.Send(buffer, offset, size, socketFlags);
+        }
+#endif
 
         public void Dispose()
         {

@@ -34,6 +34,7 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
+    using System.Net;
     using System.Net.Sockets;
 
     /// <summary>
@@ -96,6 +97,37 @@ namespace NLog.Internal.NetworkSenders
         {
             return _socket.SendToAsync(args);
         }
+
+#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+        /// <summary>
+        /// Gets the status connection of the wrapped socket.
+        /// </summary>
+        public bool Connected => _socket.Connected;
+
+        /// <summary>
+        /// Invokes BeginConnect method on the wrapped socket.
+        /// </summary>
+        public IAsyncResult BeginConnect(EndPoint remoteEP, AsyncCallback callback, object state)
+        {
+            return _socket.BeginConnect(remoteEP, callback, state);
+        }
+
+        /// <summary>
+        /// Invokes EndConnect method on the wrapped socket.
+        /// </summary>
+        public void EndConnect(IAsyncResult asyncResult)
+        {
+            _socket.EndConnect(asyncResult);
+        }
+
+        /// <summary>
+        /// Invokes Send method on the wrapped socket.
+        /// </summary>
+        public int Send(byte[] buffer, int offset, int size, SocketFlags socketFlags)
+        {
+            return _socket.Send(buffer, offset, size, socketFlags);
+        }
+#endif
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
