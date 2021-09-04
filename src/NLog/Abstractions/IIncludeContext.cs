@@ -54,6 +54,6 @@ namespace NLog
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> nested-state-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        bool IncludeScopeNestedStates { get; set; }
+        bool IncludeScopeNested { get; set; }
     }
 }

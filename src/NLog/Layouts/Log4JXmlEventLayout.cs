@@ -99,10 +99,10 @@ namespace NLog.Layouts
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeScopeNestedStates
+        public bool IncludeScopeNested
         {
-            get => Renderer.IncludeScopeNestedStates;
-            set => Renderer.IncludeScopeNestedStates = value;
+            get => Renderer.IncludeScopeNested;
+            set => Renderer.IncludeScopeNested = value;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdc { get => Renderer.IncludeNdc; set => Renderer.IncludeNdc = value; }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>

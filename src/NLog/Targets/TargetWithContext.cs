@@ -70,7 +70,7 @@ namespace NLog.Targets
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeScopeNestedStates { get => _contextLayout.IncludeScopeNestedStates; set => _contextLayout.IncludeScopeNestedStates = value; }
+        public bool IncludeScopeNested { get => _contextLayout.IncludeScopeNested; set => _contextLayout.IncludeScopeNested = value; }
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
@@ -79,7 +79,7 @@ namespace NLog.Targets
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdc { get => _contextLayout.IncludeNdc; set => _contextLayout.IncludeNdc = value; }
 
         /// <inheritdoc/>
@@ -89,7 +89,7 @@ namespace NLog.Targets
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdlc { get => _contextLayout.IncludeNdlc; set => _contextLayout.IncludeNdlc = value; }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with NDC context if any, else null</returns>
-        [Obsolete("Replaced by GetScopeContextNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by GetScopeContextNested. Marked obsolete on NLog 5.0")]
         protected IList<object> GetContextNdc(LogEventInfo logEvent)
         {
             if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
@@ -337,13 +337,13 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection of nested state objects if any, else null</returns>
-        protected IList<object> GetScopeContextNestedStates(LogEventInfo logEvent)
+        protected IList<object> GetScopeContextNested(LogEventInfo logEvent)
         {
             if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
             {
                 return value as IList<object>;
             }
-            return CaptureScopeContextNestedStates(logEvent);
+            return CaptureScopeContextNested(logEvent);
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with NDLC context if any, else null</returns>
-        [Obsolete("Replaced by GetScopeContextNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by GetScopeContextNested. Marked obsolete on NLog 5.0")]
         protected IList<object> GetContextNdlc(LogEventInfo logEvent)
         {
             if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
@@ -552,7 +552,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with NDC context if any, else null</returns>
-        [Obsolete("Replaced by CaptureScopeContextNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by CaptureScopeContextNested. Marked obsolete on NLog 5.0")]
         protected virtual IList<object> CaptureContextNdc(LogEventInfo logEvent)
         {
             var stack = NestedDiagnosticsContext.GetAllObjects();
@@ -601,10 +601,10 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with NDLC context if any, else null</returns>
-        [Obsolete("Replaced by CaptureScopeContextNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by CaptureScopeContextNested. Marked obsolete on NLog 5.0")]
         protected virtual IList<object> CaptureContextNdlc(LogEventInfo logEvent)
         {
-            return CaptureScopeContextNestedStates(logEvent);
+            return CaptureScopeContextNested(logEvent);
         }
 
         /// <summary>
@@ -612,7 +612,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent"></param>
         /// <returns>Collection with <see cref="ScopeContext"/> stack items if any, else null</returns>
-        protected virtual IList<object> CaptureScopeContextNestedStates(LogEventInfo logEvent)
+        protected virtual IList<object> CaptureScopeContextNested(LogEventInfo logEvent)
         {
             var stack = ScopeContext.GetAllNestedStates();
             if (stack.Length == 0)
@@ -717,12 +717,12 @@ namespace NLog.Targets
             }
             private bool? _includeScopeProperties;
 
-            public bool IncludeScopeNestedStates
+            public bool IncludeScopeNested
             {
-                get => _includeScopeNestedStates ?? ScopeContextNestedStatesLayout.IsActive;
-                set => _includeScopeNestedStates = ScopeContextNestedStatesLayout.IsActive = value;
+                get => _includeScopeNested ?? ScopeContextNestedStatesLayout.IsActive;
+                set => _includeScopeNested = ScopeContextNestedStatesLayout.IsActive = value;
             }
-            private bool? _includeScopeNestedStates;
+            private bool? _includeScopeNested;
 
             [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
             public bool IncludeMdc
@@ -748,26 +748,26 @@ namespace NLog.Targets
             }
             private bool? _includeMdlc;
 
-            [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+            [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
             public bool IncludeNdc
             {
                 get => _includeNdc ?? false;
                 set
                 {
                     _includeNdc = value;
-                    ScopeContextNestedStatesLayout.IsActive = _includeScopeNestedStates ?? (_includeNdlc == true || value);
+                    ScopeContextNestedStatesLayout.IsActive = _includeScopeNested ?? (_includeNdlc == true || value);
                 }
             }
             private bool? _includeNdc;
 
-            [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+            [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
             public bool IncludeNdlc
             {
                 get => _includeNdlc ?? false;
                 set
                 {
                     _includeNdlc = value;
-                    ScopeContextNestedStatesLayout.IsActive = _includeScopeNestedStates ?? (_includeNdc == true || value);
+                    ScopeContextNestedStatesLayout.IsActive = _includeScopeNested ?? (_includeNdc == true || value);
                 }
             }
             private bool? _includeNdlc;
@@ -800,7 +800,7 @@ namespace NLog.Targets
             protected override void InitializeLayout()
             {
                 base.InitializeLayout();
-                if (IncludeScopeProperties || IncludeScopeNestedStates)
+                if (IncludeScopeProperties || IncludeScopeNested)
                     ThreadAgnostic = false;
                 if (IncludeEventProperties)
                     MutableUnsafe = true;   // TODO Need to convert Properties to an immutable state
@@ -845,7 +845,7 @@ namespace NLog.Targets
             {
                 if (IncludeScopeProperties)
                     ScopeContextPropertiesLayout.Precalculate(logEvent);
-                if (IncludeScopeNestedStates)
+                if (IncludeScopeNested)
                     ScopeContextNestedStatesLayout.Precalculate(logEvent);
             }
 
@@ -919,7 +919,7 @@ namespace NLog.Targets
                 {
                     if (IsActive)
                     {
-                        var nestedContext = _owner.CaptureScopeContextNestedStates(logEvent);
+                        var nestedContext = _owner.CaptureScopeContextNested(logEvent);
                         logEvent.AddCachedLayoutValue(this, nestedContext);
                     }
                 }
