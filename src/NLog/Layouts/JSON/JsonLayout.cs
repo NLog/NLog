@@ -288,12 +288,16 @@ namespace NLog.Layouts
 
             if (IncludeGdc)
             {
-                foreach (string key in GlobalDiagnosticsContext.GetNames())
+                var gdcKeys = GlobalDiagnosticsContext.GetNames();
+                if (gdcKeys.Count > 0)
                 {
-                    if (string.IsNullOrEmpty(key))
-                        continue;
-                    object propertyValue = GlobalDiagnosticsContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                    foreach (string key in gdcKeys)
+                    {
+                        if (string.IsNullOrEmpty(key))
+                            continue;
+                        object propertyValue = GlobalDiagnosticsContext.GetObject(key);
+                        AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                    }
                 }
             }
 
