@@ -99,22 +99,13 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
-            lock (_lockObject)
-            {
-                CloseSocket(continuation);
-            }
-        }
-
-        private void CloseSocket(AsyncContinuation continuation)
-        {
             try
             {
-                var sock = _socket;
-                _socket = null;
-
-                if (sock != null)
+                lock (_lockObject)
                 {
-                    sock.Close();
+                    var sock = _socket;
+                    _socket = null;
+                    sock?.Close();
                 }
 
                 continuation(null);
@@ -141,15 +132,16 @@ namespace NLog.Internal.NetworkSenders
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Dispose() is called in the event handler.")]
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
+            bool asyncOperation = false;
+
+            var args = new SocketAsyncEventArgs();
+            args.SetBuffer(bytes, offset, length);
+            args.UserToken = asyncContinuation;
+            args.Completed += SocketOperationCompleted;
+            args.RemoteEndPoint = _endpoint;
+
             lock (_lockObject)
             {
-                var args = new SocketAsyncEventArgs();
-                args.SetBuffer(bytes, offset, length);
-                args.UserToken = asyncContinuation;
-                args.Completed += SocketOperationCompleted;
-                args.RemoteEndPoint = _endpoint;
-
-                bool asyncOperation = false;
                 try
                 {
                     asyncOperation = _socket.SendToAsync(args);
@@ -167,11 +159,11 @@ namespace NLog.Internal.NetworkSenders
                     else
                         args.SocketError = SocketError.OperationAborted;
                 }
+            }
 
-                if (!asyncOperation)
-                {
-                    SocketOperationCompleted(_socket, args);
-                }
+            if (!asyncOperation)
+            {
+                SocketOperationCompleted(_socket, args);
             }
         }
 

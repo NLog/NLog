@@ -85,27 +85,42 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>To be overridden in inheriting classes.</remarks>
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            NetworkRequestArgs eventArgs = new NetworkRequestArgs(bytes, offset, length, asyncContinuation);
+            NetworkRequestArgs? eventArgs = new NetworkRequestArgs(bytes, offset, length, asyncContinuation);
+            AsyncContinuation failedContinuation = null;
 
             lock (_pendingRequests)
             {
-                if (MaxQueueSize > 0 && _pendingRequests.Count >= MaxQueueSize)
+                if (_pendingError is null)
                 {
-                    var dequeued = _pendingRequests.Dequeue();
-                    dequeued.AsyncContinuation?.Invoke(null);
-                }
+                    if (MaxQueueSize > 0 && _pendingRequests.Count >= MaxQueueSize)
+                    {
+                        var dequeued = _pendingRequests.Dequeue();
+                        failedContinuation = dequeued.AsyncContinuation;
+                    }
 
-                if (!_asyncOperationInProgress && _pendingError is null)
+                    if (!_asyncOperationInProgress)
+                    {
+                        _asyncOperationInProgress = true;
+                    }
+                    else
+                    {
+                        _pendingRequests.Enqueue(eventArgs.Value);
+                        eventArgs = null;
+                    }
+                }
+                else
                 {
-                    _asyncOperationInProgress = true;
-                    BeginRequest(eventArgs);
-                    return;
+                    failedContinuation = asyncContinuation;
+                    eventArgs = null;
                 }
-
-                _pendingRequests.Enqueue(eventArgs);
             }
 
-            ProcessNextQueuedItem();
+            if (eventArgs.HasValue)
+            {
+                BeginRequest(eventArgs.Value);
+            }
+
+            failedContinuation?.Invoke(_pendingError);
         }
 
         /// <summary>
@@ -116,11 +131,7 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (_pendingRequests)
             {
-                if (!_asyncOperationInProgress && _pendingRequests.Count == 0)
-                {
-                    continuation(null);
-                }
-                else
+                if (_asyncOperationInProgress || _pendingRequests.Count != 0)
                 {
                     if (_flushContinuation != null)
                     {
@@ -131,23 +142,25 @@ namespace NLog.Internal.NetworkSenders
                     {
                         _flushContinuation = continuation;
                     }
+                    return;
                 }
             }
+
+            continuation(null);
         }
 
         protected override void DoClose(AsyncContinuation continuation)
         {
             lock (_pendingRequests)
             {
-                if (!_asyncOperationInProgress)
-                {
-                    continuation(null);
-                }
-                else
+                if (_asyncOperationInProgress)
                 {
                     _closeContinuation = continuation;
+                    return;
                 }
             }
+
+            continuation(null);
         }
 
         protected void BeginInitialize()
@@ -158,68 +171,65 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        protected void EndRequest(AsyncContinuation asyncContinuation, Exception pendingException)
+        protected NetworkRequestArgs? EndRequest(AsyncContinuation asyncContinuation, Exception pendingException)
         {
-            lock (_pendingRequests)
+            if (pendingException != null)
             {
-                _asyncOperationInProgress = false;
-
-                if (pendingException != null)
+                lock (_pendingRequests)
                 {
                     _pendingError = pendingException;
                 }
-
-                asyncContinuation?.Invoke(pendingException);    // Will attempt to close socket on error
-
-                ProcessNextQueuedItem();
             }
+
+            asyncContinuation?.Invoke(pendingException);    // Will attempt to close socket on error
+
+            return DequeueNextItem();
         }
 
         protected abstract void BeginRequest(NetworkRequestArgs eventArgs);
 
-        private void ProcessNextQueuedItem()
+        private NetworkRequestArgs? DequeueNextItem()
         {
-            NetworkRequestArgs eventArgs;
+            AsyncContinuation closeContinuation;
+            AsyncContinuation flushContinuation;
 
             lock (_pendingRequests)
             {
-                if (_asyncOperationInProgress)
-                {
-                    return;
-                }
+                _asyncOperationInProgress = false;
 
                 if (_pendingError != null)
                 {
                     while (_pendingRequests.Count != 0)
                     {
-                        eventArgs = _pendingRequests.Dequeue();
+                        var eventArgs = _pendingRequests.Dequeue();
                         eventArgs.AsyncContinuation?.Invoke(_pendingError);
                     }
                 }
 
                 if (_pendingRequests.Count == 0)
                 {
-                    var fc = _flushContinuation;
-                    if (fc != null)
+                    flushContinuation = _flushContinuation;
+                    if (flushContinuation != null)
                     {
                         _flushContinuation = null;
-                        fc(_pendingError);
                     }
 
-                    var cc = _closeContinuation;
-                    if (cc != null)
+                    closeContinuation = _closeContinuation;
+                    if (closeContinuation != null)
                     {
                         _closeContinuation = null;
-                        cc(_pendingError);
                     }
-
-                    return;
                 }
-
-                eventArgs = _pendingRequests.Dequeue();
-                _asyncOperationInProgress = true;
-                BeginRequest(eventArgs);
+                else
+                {
+                    _asyncOperationInProgress = true;
+                    return _pendingRequests.Dequeue();
+                }
             }
+
+            flushContinuation?.Invoke(_pendingError);
+            closeContinuation?.Invoke(_pendingError);
+            return null;
         }
     }
 }

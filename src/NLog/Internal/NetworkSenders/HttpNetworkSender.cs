@@ -76,7 +76,7 @@ namespace NLog.Internal.NetworkSenders
                         }
 
                         // completed fine
-                        base.EndRequest(asyncContinuation, null);
+                        CompleteRequest(asyncContinuation);
                     }
                     catch (Exception ex)
                     {
@@ -85,7 +85,7 @@ namespace NLog.Internal.NetworkSenders
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
 
-                        base.EndRequest(_ => asyncContinuation(ex), null);    // pendingException = null to keep sender alive
+                        CompleteRequest(_ => asyncContinuation(ex));
                     }
                 };
 
@@ -108,11 +108,20 @@ namespace NLog.Internal.NetworkSenders
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
 
-                        base.EndRequest(_ => asyncContinuation(ex), null);    // pendingException = null to keep sender alive
+                        CompleteRequest(_ => asyncContinuation(ex));
                     }
                 };
 
             webRequest.BeginGetRequestStream(onRequestStream, null);
+        }
+
+        private void CompleteRequest(Common.AsyncContinuation asyncContinuation)
+        {
+            var nextRequest = base.EndRequest(asyncContinuation, null);    // pendingException = null to keep sender alive
+            if (nextRequest.HasValue)
+            {
+                BeginRequest(nextRequest.Value);
+            }
         }
     }
 }
