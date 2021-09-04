@@ -660,7 +660,7 @@ namespace NLog.Targets
                     for (int j = 0; j < i; ++j)
                         firstBucket.Add(logEvents[j]);
 
-                    dictionary = new Dictionary<string, IList<AsyncLogEventInfo>>() { { firstConnectionString, firstBucket } };
+                    dictionary = new Dictionary<string, IList<AsyncLogEventInfo>>(StringComparer.Ordinal) { { firstConnectionString, firstBucket } };
                 }
 
                 if (!dictionary.TryGetValue(connectionString, out var bucket))

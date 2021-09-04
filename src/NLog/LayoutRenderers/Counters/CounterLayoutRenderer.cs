@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
@@ -45,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("counter")]
     public class CounterLayoutRenderer : LayoutRenderer
     {
-        private static Dictionary<string, int> sequences = new Dictionary<string, int>();
+        private static Dictionary<string, int> sequences = new Dictionary<string, int>(StringComparer.Ordinal);
 
         /// <summary>
         /// Gets or sets the initial value of the counter.
