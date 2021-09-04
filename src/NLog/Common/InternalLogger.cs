@@ -80,8 +80,8 @@ namespace NLog.Common
         /// Gets or sets the minimal internal log level. 
         /// </summary>
         /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
-        public static LogLevel LogLevel { get => _logLevel; set => _logLevel = value ?? LogLevel.Info; }
-        private static LogLevel _logLevel;
+        public static LogLevel LogLevel { get => _logLevel; set => _logLevel = value ?? LogLevel.Off; }
+        private static LogLevel _logLevel = LogLevel.Off;
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
@@ -363,7 +363,7 @@ namespace NLog.Common
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
         private static bool IsLogLevelEnabled(LogLevel logLevel)
         {
-            return !ReferenceEquals(_logLevel, LogLevel.Off) && logLevel >= _logLevel;
+            return !ReferenceEquals(_logLevel, LogLevel.Off) && _logLevel.CompareTo(logLevel) <= 0;
         }
 
         /// <summary>
