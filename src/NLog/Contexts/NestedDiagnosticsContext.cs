@@ -41,7 +41,7 @@ namespace NLog
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
     /// of strings and provides methods to output them in layouts
     /// </summary>
-    [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+    [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
     public static class NestedDiagnosticsContext
     {
         /// <summary>
@@ -63,7 +63,7 @@ namespace NLog
         /// </summary>
         /// <param name="text">The text to be pushed.</param>
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public static IDisposable Push(string text)
         {
             return ScopeContext.PushNestedState(text);
@@ -74,7 +74,7 @@ namespace NLog
         /// </summary>
         /// <param name="value">The object to be pushed.</param>
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public static IDisposable Push(object value)
         {
             return ScopeContext.PushNestedState(value);
@@ -84,7 +84,7 @@ namespace NLog
         /// Pops the top message off the NDC stack.
         /// </summary>
         /// <returns>The top message which is no longer on the stack.</returns>
-        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
         public static string Pop()
         {
             return Pop(null);
@@ -95,7 +95,7 @@ namespace NLog
         /// </summary>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting the value to a string.</param>
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
-        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
         public static string Pop(IFormatProvider formatProvider)
         {
             return FormatHelper.ConvertToString(PopObject() ?? string.Empty, formatProvider);
@@ -105,7 +105,7 @@ namespace NLog
         /// Pops the top object off the NDC stack.
         /// </summary>
         /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
-        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
         public static object PopObject()
         {
             return ScopeContext.PopNestedContextLegacy();

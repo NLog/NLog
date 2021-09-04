@@ -162,7 +162,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
         public void TargetWithContextNdcSerializeTest()
         {
             NestedDiagnosticsContext.Clear();
@@ -174,7 +174,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeState. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
         public void TargetWithContextNdlcSerializeTest()
         {
             NestedDiagnosticsLogicalContext.Clear();

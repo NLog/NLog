@@ -2918,7 +2918,7 @@ namespace NLog.UnitTests
             var logger = logFactory.GetLogger(nameof(LoggerPushScopeContextUpdatesMDLC));
 
             // Act
-            using (logger.PushScopeState("hello world"))
+            using (logger.PushScopeNested("hello world"))
             {
                 logger.Info("Test");
             }
