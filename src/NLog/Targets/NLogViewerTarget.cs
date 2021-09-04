@@ -150,7 +150,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdc
         {
             get => Renderer.IncludeNdc;
@@ -167,13 +167,13 @@ namespace NLog.Targets
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeScopeNestedStates { get => Renderer.IncludeScopeNestedStates; set => Renderer.IncludeScopeNestedStates = value; }
+        public bool IncludeScopeNested { get => Renderer.IncludeScopeNested; set => Renderer.IncludeScopeNested = value; }
 
         /// <summary>
         /// Gets or sets the separator for <see cref="ScopeContext"/> operation-states-stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public string ScopeNestedStateSeparator { get => Renderer.ScopeNestedStateSeparator; set => Renderer.ScopeNestedStateSeparator = value; }
+        public string ScopeNestedSeparator { get => Renderer.ScopeNestedSeparator; set => Renderer.ScopeNestedSeparator = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -193,21 +193,21 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNestedStates. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>
         /// Gets or sets the NDLC item separator.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by ScopeNestedStateSeparator. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeNestedSeparator. Marked obsolete on NLog 5.0")]
         public string NdlcItemSeparator { get => Renderer.NdlcItemSeparator; set => Renderer.NdlcItemSeparator = value; }
 
         /// <summary>
         /// Gets or sets the NDC item separator.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by ScopeNestedStateSeparator. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeNestedSeparator. Marked obsolete on NLog 5.0")]
         public string NdcItemSeparator
         {
             get => Renderer.NdcItemSeparator;

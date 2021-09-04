@@ -78,7 +78,7 @@ namespace NLog.UnitTests.Targets
 
                 LastCombinedProperties = base.GetAllProperties(logEvent);
 
-                var nestedStates = base.GetScopeContextNestedStates(logEvent);
+                var nestedStates = base.GetScopeContextNested(logEvent);
                 if (nestedStates.Count != 0)
                     LastCombinedProperties["TestKey"] = nestedStates[0];
 
@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets
             target.ContextProperties.Add(new TargetPropertyWithContext("threadid", "${threadid}"));
             target.IncludeScopeProperties = true;
             target.IncludeGdc = true;
-            target.IncludeScopeNestedStates = true;
+            target.IncludeScopeNested = true;
             target.IncludeCallSite = true;
 
             AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
