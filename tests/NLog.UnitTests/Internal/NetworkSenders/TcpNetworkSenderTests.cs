@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                         mre.Set();
                     });
 
-                mre.WaitOne();
+                Assert.True(mre.WaitOne(10000), "Network Flush not completed");
 
                 var actual = sender.Log.ToString();
                 Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                         mre.Set();
                     });
 
-                mre.WaitOne();
+                Assert.True(mre.WaitOne(10000), "Network Close not completed");
 
                 actual = sender.Log.ToString();
                 
@@ -172,11 +172,12 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
             }
 
-            Assert.True(allSent.WaitOne(3000, false));
+
+            Assert.True(allSent.WaitOne(10000), "Network Write not completed");
 
             var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
-            mre.WaitOne(3000, false);
+            Assert.True(mre.WaitOne(10000), "Network Flush not completed");
 
             var actual = sender.Log.ToString();
 
@@ -227,9 +228,9 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             }
 
             var mre = new ManualResetEvent(false);
-            writeFinished.WaitOne();
+            Assert.True(writeFinished.WaitOne(10000), "Network Write not completed");
             sender.Close(ex => mre.Set());
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Flush not completed");
 
             var actual = sender.Log.ToString();
             Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);

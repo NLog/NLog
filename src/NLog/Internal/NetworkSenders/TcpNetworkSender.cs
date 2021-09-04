@@ -240,7 +240,11 @@ namespace NLog.Internal.NetworkSenders
             args.Completed -= _socketOperationCompleted;    // Maybe consider reusing for next request?
             args.Dispose();
 
-            base.EndRequest(asyncContinuation, pendingException);
+            var nextRequest = base.EndRequest(asyncContinuation, pendingException);
+            if (nextRequest.HasValue)
+            {
+                BeginRequest(nextRequest.Value);
+            }
         }
 
         protected override void BeginRequest(NetworkRequestArgs eventArgs)

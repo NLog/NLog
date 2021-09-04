@@ -99,7 +99,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "msg2").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "msg3").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
                 if (ex != null)
@@ -176,7 +176,8 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "msg2").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger3", "msg3").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+
             foreach (var ex in exceptions)
             {
                 if (ex != null)
@@ -192,7 +193,7 @@ namespace NLog.UnitTests.Targets
             };
 
             target.Flush(flushContinuation);
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Flush not completed");
             target.Close();
 
             var actual = senderFactory.Log.ToString();
@@ -229,7 +230,7 @@ namespace NLog.UnitTests.Targets
             };
 
             target.Flush(flushContinuation);
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Flush not completed");
             target.Close();
 
             string expectedLog = @"";
@@ -271,7 +272,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "msg2").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "msg3").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
                 if (ex != null)
@@ -332,7 +333,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "msg2").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "msg3").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
                 if (ex != null)
@@ -395,8 +396,8 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "012345678901234567890123456789").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "012345678901234").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "012345678901234567890123").WithContinuation(asyncContinuation));
-            
-            mre.WaitOne();
+
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
                 if (ex != null)
@@ -455,7 +456,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "012345678901234").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "01234").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
                 if (ex != null)
@@ -507,7 +508,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "012345678901234").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "01234").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             Assert.Null(exceptions[0]);
             Assert.NotNull(exceptions[1]);
             Assert.Equal("Attempted to send a message larger than MaxMessageSize (10). Actual size was: 15. Adjust OnOverflow and MaxMessageSize parameters accordingly.", exceptions[1].Message);
@@ -561,7 +562,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "0123456").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "01234").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             Assert.NotNull(exceptions[0]);
             Assert.NotNull(exceptions[1]);
             Assert.NotNull(exceptions[2]);
@@ -666,9 +667,9 @@ namespace NLog.UnitTests.Targets
                     expectedResult += "messagemessagemessagemessagemessage" + i + "\n";
                 }
 
-                Assert.True(writeCompleted.WaitOne(10000, false), "Writes did not complete");
+                Assert.True(writeCompleted.WaitOne(10000), "Writes did not complete");
                 target.Close();
-                Assert.True(receiveFinished.WaitOne(10000, false), "Receive did not complete");
+                Assert.True(receiveFinished.WaitOne(10000), "Receive did not complete");
                 string resultString = Encoding.UTF8.GetString(resultStream.GetBuffer(), 0, (int)resultStream.Length);
                 Assert.Null(receiveException);
                 Assert.Equal(expectedResult, resultString);
@@ -754,9 +755,9 @@ namespace NLog.UnitTests.Targets
                     expectedResult += "message" + i + "\n";
                 }
 
-                Assert.True(writeCompleted.WaitOne(10000, false));
+                Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
                 target.Close();
-                Assert.True(receiveFinished.WaitOne(10000, false));
+                Assert.True(receiveFinished.WaitOne(10000), "Network Receive not completed");
                 Assert.Equal(toWrite, receivedMessages.Count);
                 for (int i = 0; i < toWrite; ++i)
                 {
@@ -798,17 +799,26 @@ namespace NLog.UnitTests.Targets
                     }
                 };
 
-            for (int i = 0; i < toWrite; ++i)
+            var loggerTask = new NLog.Internal.AsyncHelpersTask(state =>
             {
-                var ev = new LogEventInfo(LogLevel.Info, "logger1", "message" + i).WithContinuation(writeFinished);
-                target.WriteAsyncLogEvent(ev);
-            }
+                for (int i = 0; i < toWrite; ++i)
+                {
+                    var ev = new LogEventInfo(LogLevel.Info, "logger1", "message" + i).WithContinuation(writeFinished);
+                    target.WriteAsyncLogEvent(ev);
+                }
+            });
+            AsyncHelpers.StartAsyncTask(loggerTask, null);
+            Assert.True(writeCompleted.WaitOne(100000), "Network Write not completed");
 
-            writeCompleted.WaitOne();
-
-
-            // no exception
-            target.Close();
+            var shutdownCompleted = new ManualResetEvent(false);
+            var closeTask = new NLog.Internal.AsyncHelpersTask(state =>
+            {
+                // no exception
+                target.Close();
+                shutdownCompleted.Set();
+            });
+            AsyncHelpers.StartAsyncTask(closeTask, null);
+            Assert.True(shutdownCompleted.WaitOne(100000), "Network Close not completed");
 
             Assert.Equal(toWrite, exceptions.Count);
             foreach (var ex in exceptions)
@@ -854,7 +864,7 @@ namespace NLog.UnitTests.Targets
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "0123456").WithContinuation(asyncContinuation));
             target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "01234").WithContinuation(asyncContinuation));
 
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
             Assert.NotNull(exceptions[0]);
             Assert.NotNull(exceptions[1]);
             Assert.NotNull(exceptions[2]);
@@ -882,6 +892,63 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("5: connect tcp://logger1.company.lan/") != -1);
             Assert.True(result.IndexOf("5: send 0 5") != -1);
             Assert.True(result.IndexOf("5: close") != -1);
+        }
+
+        [Fact]
+        public void AsyncConnectionFailureOnCloseShouldNotDeadlock()
+        {
+            const int total = 100;
+            var senderFactory = new MyQueudSenderFactory()
+            {
+                FailCounter = total,
+                AsyncMode = true,
+            };
+
+            var target = new NetworkTarget();
+            target.Address = "tcp://${logger}.company.lan/";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = true;
+            target.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            var writeCompleted = new ManualResetEvent(false);
+            var shutdownCompleted = new ManualResetEvent(false);
+            int remaining = total;
+            AsyncContinuation asyncContinuation = ex =>
+            {
+                lock (exceptions)
+                {
+                    exceptions.Add(ex);
+                    if (--remaining == 0)
+                    {
+                        writeCompleted.Set();
+                    }
+                }
+            };
+
+            var shutdownTask = new NLog.Internal.AsyncHelpersTask(state => {
+                Thread.Sleep(10);
+                target.Flush(ex => { });
+                target.Close();
+                shutdownCompleted.Set();
+            });
+            AsyncHelpers.StartAsyncTask(shutdownTask, null);
+
+            var loggerTask = new NLog.Internal.AsyncHelpersTask(state =>
+            {
+                for (int i = 0; i < total; ++i)
+                {
+                    target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, $"logger{i}", i.ToString()).WithContinuation(asyncContinuation));
+                    Thread.Sleep(1);
+                }
+
+                writeCompleted.Set();
+            });
+            AsyncHelpers.StartAsyncTask(loggerTask, null);
+
+            Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
+            Assert.True(shutdownCompleted.WaitOne(10000), "Network Shutdown not completed");
         }
 
         [Theory]
@@ -959,6 +1026,8 @@ namespace NLog.UnitTests.Targets
             }
 
             public int FailCounter { get; set; }
+
+            public bool AsyncMode { get; set; }
         }
 
         internal class MyNetworkSender : NetworkSender
@@ -966,7 +1035,7 @@ namespace NLog.UnitTests.Targets
             private readonly int id;
             private readonly TextWriter log;
             private readonly MySenderFactory senderFactory;
-            internal MemoryStream MemoryStream { get; set; }
+            internal MemoryStream MemoryStream { get; }
 
             public MyNetworkSender(string url, int id, TextWriter log, MySenderFactory senderFactory)
                 : base(url)
@@ -976,38 +1045,211 @@ namespace NLog.UnitTests.Targets
                 this.senderFactory = senderFactory;
                 MemoryStream = new MemoryStream();
             }
+
             protected override void DoInitialize()
             {
                 base.DoInitialize();
-                log.WriteLine("{0}: connect {1}", id, Address);
+                lock (log)
+                {
+                    log.WriteLine("{0}: connect {1}", id, Address);
+                }
             }
 
             protected override void DoFlush(AsyncContinuation continuation)
             {
-                log.WriteLine("{0}: flush", id);
+                if (senderFactory.AsyncMode)
+                {
+                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); FlushSync(continuation); });
+                    AsyncHelpers.StartAsyncTask(asyncTask, null);
+                }
+                else
+                {
+                    FlushSync(continuation);
+                }
+            }
+
+            private void FlushSync(AsyncContinuation continuation)
+            {
+                lock (log)
+                {
+                    log.WriteLine("{0}: flush", id);
+                }
                 continuation(null);
             }
 
             protected override void DoClose(AsyncContinuation continuation)
             {
-                log.WriteLine("{0}: close", id);
-                continuation(null);
-            }
-
-            protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
-            {
-                log.WriteLine("{0}: send {1} {2}", id, offset, length);
-                MemoryStream.Write(bytes, offset, length);
-                if (senderFactory.FailCounter > 0)
+                if (senderFactory.AsyncMode)
                 {
-                    log.WriteLine("{0}: failed", id);
-                    senderFactory.FailCounter--;
-                    asyncContinuation(new IOException("some IO error has occured"));
+                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); CloseSync(continuation); });
+                    AsyncHelpers.StartAsyncTask(asyncTask, null);
                 }
                 else
                 {
-                    asyncContinuation(null);
+                    CloseSync(continuation);
                 }
+            }
+
+            private void CloseSync(AsyncContinuation continuation)
+            {
+                lock (log)
+                {
+                    log.WriteLine("{0}: close", id);
+                }
+                continuation(null);
+            }
+
+            protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation continuation)
+            {
+                if (senderFactory.AsyncMode)
+                {
+                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); SendSync(bytes, offset, length, continuation); });
+                    AsyncHelpers.StartAsyncTask(asyncTask, null);
+                }
+                else
+                {
+                    SendSync(bytes, offset, length, continuation);
+                }
+            }
+
+            private void SendSync(byte[] bytes, int offset, int length, AsyncContinuation continuation)
+            {
+                var failedException = CheckForFailedException();
+                lock (log)
+                {
+                    log.WriteLine("{0}: send {1} {2}", id, offset, length);
+                    MemoryStream.Write(bytes, offset, length);
+                    if (failedException != null)
+                    {
+                        log.WriteLine("{0}: failed", id);
+                    }
+                }
+                continuation(failedException);
+            }
+
+            private Exception CheckForFailedException()
+            {
+                lock (senderFactory)
+                {
+                    if (senderFactory.FailCounter > 0)
+                    {
+                        senderFactory.FailCounter--;
+                        return new IOException("some IO error has occured");
+                    }
+                }
+
+                return null;
+            }
+        }
+
+        internal class MyQueudSenderFactory : INetworkSenderFactory
+        {
+            internal List<MyQueudNetworkSender> Senders = new List<MyQueudNetworkSender>();
+            internal StringWriter Log = new StringWriter();
+            private int idCounter;
+
+            public NetworkSender Create(string url, int maxQueueSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            {
+                var sender = new MyQueudNetworkSender(url, ++idCounter, Log, this);
+                Senders.Add(sender);
+                return sender;
+            }
+
+            public int FailCounter { get; set; }
+
+            public bool AsyncMode { get; set; }
+        }
+
+        internal class MyQueudNetworkSender : QueuedNetworkSender
+        {
+            private readonly int id;
+            private readonly TextWriter log;
+            private readonly MyQueudSenderFactory senderFactory;
+            internal MemoryStream MemoryStream { get; }
+
+            public MyQueudNetworkSender(string url, int id, TextWriter log, MyQueudSenderFactory senderFactory)
+                : base(url)
+            {
+                this.id = id;
+                this.log = log;
+                this.senderFactory = senderFactory;
+                MemoryStream = new MemoryStream();
+            }
+
+            protected override void DoInitialize()
+            {
+                base.DoInitialize();
+                lock (log)
+                {
+                    log.WriteLine("{0}: connect {1}", id, Address);
+                }
+            }
+
+            protected override void DoFlush(AsyncContinuation continuation)
+            {
+                lock (log)
+                {
+                    log.WriteLine("{0}: flush", id);
+                }
+
+                base.DoFlush(continuation);
+            }
+
+            protected override void DoClose(AsyncContinuation continuation)
+            {
+                lock (log)
+                {
+                    log.WriteLine("{0}: close", id);
+                }
+                base.DoClose(continuation);
+            }
+
+            protected override void BeginRequest(NetworkRequestArgs eventArgs)
+            {
+                if (senderFactory.AsyncMode)
+                {
+                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); SendSync(eventArgs); });
+                    AsyncHelpers.StartAsyncTask(asyncTask, null);
+                }
+                else
+                {
+                    SendSync(eventArgs);
+                }
+            }
+
+            private void SendSync(NetworkRequestArgs eventArgs)
+            {
+                var failedException = CheckForFailedException();
+
+                lock (log)
+                {
+                    log.WriteLine("{0}: send {1} {2}", id, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+                    MemoryStream.Write(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+                    if (failedException != null)
+                    {
+                        log.WriteLine("{0}: failed", id);
+                    }
+                }
+                
+                var nextRequest = EndRequest(eventArgs.AsyncContinuation, failedException);
+                if (nextRequest.HasValue)
+                {
+                    BeginRequest(nextRequest.Value);
+                }
+            }
+
+            private Exception CheckForFailedException()
+            {
+                lock (senderFactory)
+                {
+                    if (senderFactory.FailCounter > 0)
+                    {
+                        senderFactory.FailCounter--;
+                        return new IOException("some IO error has occured");
+                    }
+                }
+
+                return null;
             }
         }
     }
