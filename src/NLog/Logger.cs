@@ -203,7 +203,7 @@ namespace NLog
         /// </summary>
         /// <param name="nestedState">Value to added to the scope stack</param>
         /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
-        public IDisposable PushScopeState<T>(T nestedState)
+        public IDisposable PushScopeNested<T>(T nestedState)
         {
             return ScopeContext.PushNestedState(nestedState);
         }
@@ -213,7 +213,7 @@ namespace NLog
         /// </summary>
         /// <param name="nestedState">Value to added to the scope stack</param>
         /// <returns>A disposable object that pops the nested scope state on dispose.</returns>
-        public IDisposable PushScopeState(object nestedState)
+        public IDisposable PushScopeNested(object nestedState)
         {
             return ScopeContext.PushNestedState(nestedState);
         }

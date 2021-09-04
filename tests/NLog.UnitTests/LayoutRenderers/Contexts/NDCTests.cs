@@ -37,7 +37,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Config;
     using Xunit;
 
-    [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+    [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
     public class NDCTests : NLogTestBase
     {
         [Fact]

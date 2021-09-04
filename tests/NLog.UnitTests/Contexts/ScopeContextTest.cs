@@ -335,7 +335,7 @@ namespace NLog.UnitTests.Contexts
             var logger = new LogFactory().GetCurrentClassLogger();
 
             // Act
-            using (logger.PushScopeState(expectedNestedState))
+            using (logger.PushScopeNested(expectedNestedState))
             {
                 topNestedState = ScopeContext.PeekNestedState();
                 allNestedStates = ScopeContext.GetAllNestedStates();
@@ -360,7 +360,7 @@ namespace NLog.UnitTests.Contexts
             var logger = new LogFactory().GetCurrentClassLogger();
 
             // Act
-            using (logger.PushScopeState(expectedNestedState))
+            using (logger.PushScopeNested(expectedNestedState))
             {
                 topNestedState = ScopeContext.PeekNestedState();
                 allNestedStates = ScopeContext.GetAllNestedStates();
@@ -413,7 +413,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcPopShouldNotAffectProperties1()
         {
             // Arrange
@@ -435,7 +435,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcPopShouldNotAffectProperties2()
         {
             // Arrange
@@ -461,7 +461,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcPopShouldNotAffectProperties3()
         {
             // Arrange
@@ -502,7 +502,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcClearShouldNotAffectProperties1()
         {
             // Arrange
@@ -524,7 +524,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeState using ${scopenested}. Marked obsolete on NLog 5.0")]
+        [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
         public void LegacyNdlcClearShouldNotAffectProperties2()
         {
             // Arrange

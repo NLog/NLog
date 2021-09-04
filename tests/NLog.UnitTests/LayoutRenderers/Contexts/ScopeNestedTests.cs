@@ -55,9 +55,9 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState("ala"))
+            using (logger.PushScopeNested("ala"))
             {
-                using (logger.PushScopeState("ma"))
+                using (logger.PushScopeNested("ma"))
                 {
                     logger.Debug("b");
                 }
@@ -84,11 +84,11 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState("ala"))
+            using (logger.PushScopeNested("ala"))
             {
-                using (logger.PushScopeState("ma"))
+                using (logger.PushScopeNested("ma"))
                 {
-                    using (logger.PushScopeState("kota"))
+                    using (logger.PushScopeNested("kota"))
                     {
                         logger.Debug("c");
                     }
@@ -116,11 +116,11 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState("ala"))
+            using (logger.PushScopeNested("ala"))
             {
-                using (logger.PushScopeState("ma"))
+                using (logger.PushScopeNested("ma"))
                 {
-                    using (logger.PushScopeState("kota"))
+                    using (logger.PushScopeNested("kota"))
                     {
                         logger.Debug("c");
                     }
@@ -148,11 +148,11 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState("ala"))
+            using (logger.PushScopeNested("ala"))
             {
-                using (logger.PushScopeState("ma"))
+                using (logger.PushScopeNested("ma"))
                 {
-                    using (logger.PushScopeState("kota"))
+                    using (logger.PushScopeNested("kota"))
                     {
                         logger.Debug("c");
                     }
@@ -180,11 +180,11 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState("ala"))
+            using (logger.PushScopeNested("ala"))
             {
-                using (logger.PushScopeState("ma"))
+                using (logger.PushScopeNested("ma"))
                 {
-                    using (logger.PushScopeState("kota"))
+                    using (logger.PushScopeNested("kota"))
                     {
                         logger.Debug("c");
                     }
@@ -212,7 +212,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState(new[] { new KeyValuePair<string, object>("Hello", "World") }))
+            using (logger.PushScopeNested(new[] { new KeyValuePair<string, object>("Hello", "World") }))
             {
                 logger.Debug("c");
             }
@@ -238,7 +238,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState(new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } }))
+            using (logger.PushScopeNested(new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } }))
             {
                 logger.Debug("c");
             }
@@ -264,7 +264,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
 
             // Act
-            using (logger.PushScopeState(new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } }))
+            using (logger.PushScopeNested(new Dictionary<string, object>() { { "Hello", 42 }, { "Unlucky", 13 } }))
             {
                 logger.Debug("c");
             }
@@ -326,7 +326,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string messageSecondScopeSleep;
             Assert.Equal("|||||0", messageNoScope);
 
-            using (logger.PushScopeState("ala"))
+            using (logger.PushScopeNested("ala"))
             {
                 logger.Debug("a");
                 messageFirstScope = target.LastMessage;
@@ -336,7 +336,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 logger.Debug("b");
                 messageFirstScopeSleep = target.LastMessage;
 
-                using (logger.PushScopeState("ma"))
+                using (logger.PushScopeNested("ma"))
                 {
                     logger.Debug("a");
                     messageSecondScope = target.LastMessage;
