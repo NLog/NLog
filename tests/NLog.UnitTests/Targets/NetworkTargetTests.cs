@@ -366,65 +366,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void NetworkTargetMultipleConnectionsWithMessageSplitTest()
-        {
-            var senderFactory = new MySenderFactory();
-            var target = new NetworkTarget();
-            target.Address = "tcp://${logger}.company.lan/";
-            target.SenderFactory = senderFactory;
-            target.Layout = "${message}";
-            target.KeepConnection = true;
-            target.MaxMessageSize = 9;
-            target.OnOverflow = NetworkTargetOverflowAction.Split;
-            target.Initialize(null);
-
-            var exceptions = new List<Exception>();
-            var mre = new ManualResetEvent(false);
-            int remaining = 3;
-            AsyncContinuation asyncContinuation = ex =>
-            {
-                lock (exceptions)
-                {
-                    exceptions.Add(ex);
-                    if (--remaining == 0)
-                    {
-                        mre.Set();
-                    }
-                }
-            };
-
-            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "012345678901234567890123456789").WithContinuation(asyncContinuation));
-            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger1", "012345678901234").WithContinuation(asyncContinuation));
-            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger2", "012345678901234567890123").WithContinuation(asyncContinuation));
-
-            Assert.True(mre.WaitOne(10000), "Network Write not completed");
-            foreach (var ex in exceptions)
-            {
-                if (ex != null)
-                {
-                    Assert.True(false, ex.ToString());
-                }
-            }
-
-            target.Close();
-
-            var result = senderFactory.Log.ToString();
-            Assert.True(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
-            Assert.True(result.IndexOf("1: send 0 9") != -1);
-            Assert.True(result.IndexOf("1: send 9 9") != -1);
-            Assert.True(result.IndexOf("1: send 18 9") != -1);
-            Assert.True(result.IndexOf("1: send 27 3") != -1);
-            Assert.True(result.IndexOf("1: send 0 9") != -1);
-            Assert.True(result.IndexOf("1: send 9 6") != -1);
-            Assert.True(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
-            Assert.True(result.IndexOf("2: send 0 9") != -1);
-            Assert.True(result.IndexOf("2: send 9 9") != -1);
-            Assert.True(result.IndexOf("2: send 18 6") != -1);
-            Assert.True(result.IndexOf("1: close") != -1);
-            Assert.True(result.IndexOf("2: close") != -1);
-        }
-
-        [Fact]
         public void NetworkTargetMultipleConnectionsWithMessageDiscardTest()
         {
             var senderFactory = new MySenderFactory();
@@ -676,14 +617,17 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void NetworkTargetUdpTest()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void NetworkTargetUdpTest(bool splitMessage)
         {
             var target = new NetworkTarget()
             {
                 Address = "udp://127.0.0.1:3002",
                 Layout = "${message}\n",
                 KeepConnection = true,
+                MaxMessageSize = splitMessage ? 4 : short.MaxValue,
             };
 
             string expectedResult = string.Empty;
@@ -700,6 +644,9 @@ namespace NLog.UnitTests.Targets
                 EndPoint remoteEndPoint = null;
                 AsyncCallback receivedDatagram = null;
 
+                const int toWrite = 100;
+                int pendingWrites = toWrite;
+
                 receivedDatagram = result =>
                     {
                         try
@@ -708,8 +655,38 @@ namespace NLog.UnitTests.Targets
                             string message = Encoding.UTF8.GetString(receiveBuffer, 0, got);
                             lock (receivedMessages)
                             {
-                                receivedMessages.Add(message);
-                                if (receivedMessages.Count == 100)
+                                if (splitMessage)
+                                {
+                                    while (!string.IsNullOrEmpty(message))
+                                    {
+                                        var addMessage = message;
+                                        var newlineIndex = message.IndexOf('\n');
+                                        if (newlineIndex >= 0)
+                                        {
+                                            addMessage = message.Substring(0, newlineIndex + 1);
+                                            message = message.Substring(newlineIndex + 1);
+                                        }
+                                        else
+                                        {
+                                            message = null;
+                                        }
+
+                                        if (receivedMessages.Count > 0 && !receivedMessages[receivedMessages.Count - 1].Contains('\n'))
+                                        {
+                                            receivedMessages[receivedMessages.Count - 1] = receivedMessages[receivedMessages.Count - 1] + addMessage;
+                                        }
+                                        else
+                                        {
+                                            receivedMessages.Add(addMessage);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    receivedMessages.Add(message);
+                                }
+
+                                if (receivedMessages.Count == toWrite)
                                 {
                                     receiveFinished.Set();
                                 }
@@ -729,7 +706,7 @@ namespace NLog.UnitTests.Targets
 
                 target.Initialize(new LoggingConfiguration());
 
-                int pendingWrites = 100;
+
                 var writeCompleted = new ManualResetEvent(false);
                 var exceptions = new List<Exception>();
 
@@ -747,7 +724,6 @@ namespace NLog.UnitTests.Targets
                         }
                     };
 
-                int toWrite = pendingWrites;
                 for (int i = 0; i < toWrite; ++i)
                 {
                     var ev = new LogEventInfo(LogLevel.Info, "logger1", "message" + i).WithContinuation(writeFinished);
@@ -808,7 +784,7 @@ namespace NLog.UnitTests.Targets
                 }
             });
             AsyncHelpers.StartAsyncTask(loggerTask, null);
-            Assert.True(writeCompleted.WaitOne(100000), "Network Write not completed");
+            Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
 
             var shutdownCompleted = new ManualResetEvent(false);
             var closeTask = new NLog.Internal.AsyncHelpersTask(state =>
@@ -818,7 +794,7 @@ namespace NLog.UnitTests.Targets
                 shutdownCompleted.Set();
             });
             AsyncHelpers.StartAsyncTask(closeTask, null);
-            Assert.True(shutdownCompleted.WaitOne(100000), "Network Close not completed");
+            Assert.True(shutdownCompleted.WaitOne(10000), "Network Close not completed");
 
             Assert.Equal(toWrite, exceptions.Count);
             foreach (var ex in exceptions)
@@ -1018,7 +994,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maxQueueSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);
@@ -1148,7 +1124,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maxQueueSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyQueudNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);

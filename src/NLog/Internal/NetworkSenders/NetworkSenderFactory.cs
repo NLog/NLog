@@ -44,7 +44,7 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
+        public NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
@@ -94,17 +94,29 @@ namespace NLog.Internal.NetworkSenders
 
             if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
-                return new UdpNetworkSender(url, AddressFamily.Unspecified);
+                return new UdpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    MaxMessageSize = maxMessageSize,
+                };
             }
 
             if (url.StartsWith("udp4://", StringComparison.OrdinalIgnoreCase))
             {
-                return new UdpNetworkSender(url, AddressFamily.InterNetwork);
+                return new UdpNetworkSender(url, AddressFamily.InterNetwork)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    MaxMessageSize = maxMessageSize,
+                };
             }
 
             if (url.StartsWith("udp6://", StringComparison.OrdinalIgnoreCase))
             {
-                return new UdpNetworkSender(url, AddressFamily.InterNetworkV6);
+                return new UdpNetworkSender(url, AddressFamily.InterNetworkV6)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    MaxMessageSize = maxMessageSize,
+                };
             }
             throw new ArgumentException("Unrecognized network address", nameof(url));
         }
