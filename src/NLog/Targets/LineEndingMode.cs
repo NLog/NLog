@@ -42,9 +42,7 @@ namespace NLog.Targets
     /// <summary>
     /// Line ending mode.
     /// </summary>
-#if !NETSTANDARD1_3
     [TypeConverter(typeof(LineEndingModeConverter))]
-#endif
     public sealed class LineEndingMode : IEquatable<LineEndingMode>
     {
         /// <summary>
@@ -225,7 +223,6 @@ namespace NLog.Targets
             return ReferenceEquals(this, other) || string.Equals(_newLineCharacters, other?._newLineCharacters);
         }
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// Provides a type converter to convert <see cref="LineEndingMode"/> objects to and from other representations.
         /// </summary>
@@ -260,6 +257,5 @@ namespace NLog.Targets
                 return name != null ? FromString(name) : base.ConvertFrom(context, culture, value);
             }
         }
-#endif
     }
 }
