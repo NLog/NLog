@@ -159,7 +159,7 @@ namespace NLog.Targets
         public LineEndingMode LineEnding { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum message size in bytes. The action <see cref="OnOverflow"/> will be activated.
+        /// Gets or sets the maximum message size in bytes. On limit breach then <see cref="OnOverflow"/> action is activated.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultValue(65000)]
