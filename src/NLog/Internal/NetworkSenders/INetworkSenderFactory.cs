@@ -45,11 +45,12 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         /// <param name="url">URL that determines the network sender to be created.</param>
         /// <param name="maxQueueSize">The maximum queue size.</param>
+        /// <param name="maxMessageSize">The maximum message size.</param>
         /// <param name="sslProtocols">SSL protocols for TCP</param>
         /// <param name="keepAliveTime">KeepAliveTime for TCP</param>
         /// <returns>
         /// A newly created network sender.
         /// </returns>
-        NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime);
+        NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime);
     }
 }

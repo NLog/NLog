@@ -44,8 +44,12 @@ namespace NLog.Targets
         Error,
 
         /// <summary>
-        /// Split the message into smaller pieces.
+        /// Split the message into smaller pieces. Only relevant for UDP sockets, as TCP sockets does it automatically.
         /// </summary>
+        /// <remarks>
+        /// Udp-Network-Sender will split the message into smaller chunks that matches <see cref="NetworkTarget.MaxMessageSize"/>.
+        /// This can avoid network-package-drop when network uses DontFragment and message is larger than MTU-size (1472 bytes).
+        /// </remarks>
         Split,
 
         /// <summary>

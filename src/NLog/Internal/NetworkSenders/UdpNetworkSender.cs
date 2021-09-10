@@ -42,12 +42,11 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Sends messages over the network as UDP datagrams.
     /// </summary>
-    internal class UdpNetworkSender : NetworkSender
+    internal class UdpNetworkSender : QueuedNetworkSender
     {
-        private readonly object _lockObject = new object();
-
         private ISocket _socket;
         private EndPoint _endpoint;
+        private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompleted;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpNetworkSender"/> class.
@@ -58,9 +57,12 @@ namespace NLog.Internal.NetworkSenders
             : base(url)
         {
             AddressFamily = addressFamily;
+            _socketOperationCompleted = SocketOperationCompleted;
         }
 
         internal AddressFamily AddressFamily { get; set; }
+
+        internal int MaxMessageSize { get; set; }
 
         /// <summary>
         /// Creates the socket.
@@ -99,16 +101,18 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
+            base.DoClose(ex => CloseSocket(continuation, ex));
+        }
+
+        private void CloseSocket(AsyncContinuation continuation, Exception pendingException)
+        {
             try
             {
-                lock (_lockObject)
-                {
-                    var sock = _socket;
-                    _socket = null;
-                    sock?.Close();
-                }
+                var sock = _socket;
+                _socket = null;
+                sock?.Close();
 
-                continuation(null);
+                continuation(pendingException);
             }
             catch (Exception exception)
             {
@@ -121,44 +125,35 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        /// <summary>
-        /// Sends the specified text as a UDP datagram.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer.</param>
-        /// <param name="length">Number of bytes to send.</param>
-        /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Dispose() is called in the event handler.")]
-        protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
+        protected override void BeginRequest(NetworkRequestArgs eventArgs)
         {
-            bool asyncOperation = false;
-
             var args = new SocketAsyncEventArgs();
-            args.SetBuffer(bytes, offset, length);
-            args.UserToken = asyncContinuation;
-            args.Completed += SocketOperationCompleted;
+            if (eventArgs.RequestBufferLength > MaxMessageSize && MaxMessageSize > 0)
+            {
+                eventArgs = new NetworkRequestArgs(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, MaxMessageSize, eventArgs.AsyncContinuation);
+            }
+            args.SetBuffer(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+            args.UserToken = eventArgs.AsyncContinuation;
+            args.Completed += _socketOperationCompleted;
             args.RemoteEndPoint = _endpoint;
 
-            lock (_lockObject)
+            bool asyncOperation = false;
+            try
             {
-                try
-                {
-                    asyncOperation = _socket.SendToAsync(args);
-                }
-                catch (SocketException ex)
-                {
-                    InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
-                    args.SocketError = ex.SocketErrorCode;
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
-                    if (ex.InnerException is SocketException socketException)
-                        args.SocketError = socketException.SocketErrorCode;
-                    else
-                        args.SocketError = SocketError.OperationAborted;
-                }
+                asyncOperation = _socket.SendToAsync(args);
+            }
+            catch (SocketException ex)
+            {
+                InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
+                args.SocketError = ex.SocketErrorCode;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
+                if (ex.InnerException is SocketException socketException)
+                    args.SocketError = socketException.SocketErrorCode;
+                else
+                    args.SocketError = SocketError.OperationAborted;
             }
 
             if (!asyncOperation)
@@ -167,20 +162,32 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs e)
+        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs args)
         {
-            var asyncContinuation = e.UserToken as AsyncContinuation;
+            var asyncContinuation = args.UserToken as AsyncContinuation;
 
-            Exception error = null;
-
-            if (e.SocketError != SocketError.Success)
+            Exception pendingException = null;
+            if (args.SocketError != SocketError.Success)
             {
-                error = new IOException("Error: " + e.SocketError);
+                pendingException = new IOException("Error: " + args.SocketError);
             }
 
-            e.Dispose();
+            args.Completed -= _socketOperationCompleted;    // Maybe consider reusing for next request?
+            args.Dispose();
 
-            asyncContinuation?.Invoke(error);
+            if (pendingException is null && (args.Buffer.Length - args.Offset) > MaxMessageSize && MaxMessageSize > 0)
+            {
+                var eventArgs = new NetworkRequestArgs(args.Buffer, args.Offset + MaxMessageSize, args.Buffer.Length - args.Offset - MaxMessageSize, asyncContinuation);
+                BeginRequest(eventArgs);
+            }
+            else
+            {
+                var nextRequest = base.EndRequest(asyncContinuation, pendingException);
+                if (nextRequest.HasValue)
+                {
+                    BeginRequest(nextRequest.Value);
+                }
+            }
         }
 
         public override void CheckSocket()
