@@ -608,11 +608,11 @@ namespace NLog.UnitTests.Targets
                     expectedResult += "messagemessagemessagemessagemessage" + i + "\n";
                 }
 
-                Assert.True(writeCompleted.WaitOne(10000), "Writes did not complete");
+                Assert.True(writeCompleted.WaitOne(10000), "Network Writes did not complete");
                 target.Close();
-                Assert.True(receiveFinished.WaitOne(10000), "Receive did not complete");
+                Assert.True(receiveFinished.WaitOne(10000), "Network Receive did not complete");
+                Assert.True(receiveException == null, $"Network Exception: {receiveException?.ToString()}");
                 string resultString = Encoding.UTF8.GetString(resultStream.GetBuffer(), 0, (int)resultStream.Length);
-                Assert.Null(receiveException);
                 Assert.Equal(expectedResult, resultString);
             }
         }
@@ -657,28 +657,13 @@ namespace NLog.UnitTests.Targets
                             {
                                 if (splitMessage)
                                 {
-                                    while (!string.IsNullOrEmpty(message))
+                                    if (receivedMessages.Count > 0 && !receivedMessages[receivedMessages.Count - 1].Contains('\n'))
                                     {
-                                        var addMessage = message;
-                                        var newlineIndex = message.IndexOf('\n');
-                                        if (newlineIndex >= 0)
-                                        {
-                                            addMessage = message.Substring(0, newlineIndex + 1);
-                                            message = message.Substring(newlineIndex + 1);
-                                        }
-                                        else
-                                        {
-                                            message = null;
-                                        }
-
-                                        if (receivedMessages.Count > 0 && !receivedMessages[receivedMessages.Count - 1].Contains('\n'))
-                                        {
-                                            receivedMessages[receivedMessages.Count - 1] = receivedMessages[receivedMessages.Count - 1] + addMessage;
-                                        }
-                                        else
-                                        {
-                                            receivedMessages.Add(addMessage);
-                                        }
+                                        receivedMessages[receivedMessages.Count - 1] = receivedMessages[receivedMessages.Count - 1] + message;
+                                    }
+                                    else
+                                    {
+                                        receivedMessages.Add(message);
                                     }
                                 }
                                 else
@@ -686,7 +671,7 @@ namespace NLog.UnitTests.Targets
                                     receivedMessages.Add(message);
                                 }
 
-                                if (receivedMessages.Count == toWrite)
+                                if (receivedMessages.Count == toWrite && receivedMessages[receivedMessages.Count - 1].Contains('\n'))
                                 {
                                     receiveFinished.Set();
                                 }
@@ -705,7 +690,6 @@ namespace NLog.UnitTests.Targets
                 listener.BeginReceiveFrom(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, ref remoteEndPoint, receivedDatagram, null);
 
                 target.Initialize(new LoggingConfiguration());
-
 
                 var writeCompleted = new ManualResetEvent(false);
                 var exceptions = new List<Exception>();
@@ -734,13 +718,12 @@ namespace NLog.UnitTests.Targets
                 Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
                 target.Close();
                 Assert.True(receiveFinished.WaitOne(10000), "Network Receive not completed");
+                Assert.True(receiveException == null, $"Network Exception: {receiveException?.ToString()}");
                 Assert.Equal(toWrite, receivedMessages.Count);
                 for (int i = 0; i < toWrite; ++i)
                 {
-                    Assert.True(receivedMessages.Contains("message" + i + "\n"), "Message #" + i + " not received.");
+                    Assert.Equal(receivedMessages[i], $"message{i}\n");
                 }
-
-                Assert.Null(receiveException);
             }
         }
 
