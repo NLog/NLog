@@ -98,7 +98,6 @@ namespace NLog.Targets
         {
             SenderFactory = NetworkSenderFactory.Default;
             Encoding = Encoding.UTF8;
-            LineEnding = LineEndingMode.CRLF;
         }
 
         /// <summary>
@@ -152,7 +151,16 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultValue("CRLF")]
-        public LineEndingMode LineEnding { get; set; }
+        public LineEndingMode LineEnding
+        {
+            get => _lineEnding;
+            set 
+            {
+                _lineEnding = value;
+                NewLine = value != null;
+            }
+        }
+        private LineEndingMode _lineEnding = LineEndingMode.CRLF;
 
         /// <summary>
         /// Gets or sets the maximum message size in bytes. On limit breach then <see cref="OnOverflow"/> action is activated.
