@@ -141,8 +141,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("\r\n", target.LineEnding.NewLineCharacters);
             Assert.Equal(65000, target.MaxMessageSize);
             Assert.Equal(5, target.ConnectionCacheSize);
-            Assert.Equal(0, target.MaxConnections);
-            Assert.Equal(0, target.MaxQueueSize);
+            Assert.Equal(100, target.MaxConnections);
+            Assert.Equal(10000, target.MaxQueueSize);
             Assert.Equal(Encoding.UTF8, target.Encoding);
         }
 
@@ -977,7 +977,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);
@@ -1107,7 +1107,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyQueudNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);

@@ -77,8 +77,6 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
-            OnConnectionOverflow = NetworkTargetConnectionsOverflowAction.Block;
-            MaxConnections = 16;
             NewLine = false;
             IncludeNLogData = true;
         }

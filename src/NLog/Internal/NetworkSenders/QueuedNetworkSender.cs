@@ -36,6 +36,7 @@ namespace NLog.Internal.NetworkSenders
     using System;
     using System.Collections.Generic;
     using NLog.Common;
+    using NLog.Targets;
 
     /// <summary>
     /// A base class for network senders that can block or send out-of-order
@@ -59,6 +60,7 @@ namespace NLog.Internal.NetworkSenders
         }
 
         private readonly Queue<NetworkRequestArgs> _pendingRequests = new Queue<NetworkRequestArgs>();
+        private readonly Queue<NetworkRequestArgs> _activeRequests = new Queue<NetworkRequestArgs>();
         private Exception _pendingError;
         private bool _asyncOperationInProgress;
         private AsyncContinuation _closeContinuation;
@@ -73,7 +75,9 @@ namespace NLog.Internal.NetworkSenders
         {
         }
 
-        internal int MaxQueueSize { get; set; }
+        public int MaxQueueSize { get; set; }
+
+        public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; }
 
         /// <summary>
         /// Actually sends the given text over the specified protocol.
@@ -92,10 +96,32 @@ namespace NLog.Internal.NetworkSenders
             {
                 if (_pendingError is null)
                 {
-                    if (MaxQueueSize > 0 && _pendingRequests.Count >= MaxQueueSize)
+                    if (_pendingRequests.Count >= MaxQueueSize && MaxQueueSize > 0)
                     {
-                        var dequeued = _pendingRequests.Dequeue();
-                        failedContinuation = dequeued.AsyncContinuation;
+                        InternalLogger.Debug("Network request queue is full");
+                        switch (OnQueueOverflow)
+                        {
+                            case NetworkTargetQueueOverflowAction.Discard:
+                                InternalLogger.Debug("Discarding one element from network request queue");
+                                var dequeued = _pendingRequests.Dequeue();
+                                dequeued.AsyncContinuation?.Invoke(null);
+                                break;
+
+                            case NetworkTargetQueueOverflowAction.Grow:
+                                InternalLogger.Debug("The overflow action is Grow, adding network request anyway");
+                                MaxQueueSize *= 2;
+                                break;
+
+                            case NetworkTargetQueueOverflowAction.Block:
+                                while (_pendingRequests.Count >= MaxQueueSize && _pendingError is null)
+                                {
+                                    InternalLogger.Debug("Blocking network request because the overflow action is Block...");
+                                    System.Threading.Monitor.Wait(_pendingRequests);
+                                    InternalLogger.Trace("Entered critical section.");
+                                }
+                                InternalLogger.Trace("Async network request queue limit ok.");
+                                break;
+                        }
                     }
 
                     if (!_asyncOperationInProgress)
@@ -131,7 +157,7 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (_pendingRequests)
             {
-                if (_asyncOperationInProgress || _pendingRequests.Count != 0)
+                if (_asyncOperationInProgress || _pendingRequests.Count != 0 || _activeRequests.Count != 0)
                 {
                     if (_flushContinuation != null)
                     {
@@ -182,7 +208,6 @@ namespace NLog.Internal.NetworkSenders
             }
 
             asyncContinuation?.Invoke(pendingException);    // Will attempt to close socket on error
-
             return DequeueNextItem();
         }
 
@@ -193,43 +218,85 @@ namespace NLog.Internal.NetworkSenders
             AsyncContinuation closeContinuation;
             AsyncContinuation flushContinuation;
 
-            lock (_pendingRequests)
+            lock (_activeRequests)
             {
-                _asyncOperationInProgress = false;
-
-                if (_pendingError != null)
+                if (_pendingError is null)
                 {
-                    while (_pendingRequests.Count != 0)
+                    if (_activeRequests.Count != 0)
                     {
-                        var eventArgs = _pendingRequests.Dequeue();
-                        eventArgs.AsyncContinuation?.Invoke(_pendingError);
-                    }
-                }
-
-                if (_pendingRequests.Count == 0)
-                {
-                    flushContinuation = _flushContinuation;
-                    if (flushContinuation != null)
-                    {
-                        _flushContinuation = null;
-                    }
-
-                    closeContinuation = _closeContinuation;
-                    if (closeContinuation != null)
-                    {
-                        _closeContinuation = null;
+                        _asyncOperationInProgress = true;
+                        return _activeRequests.Dequeue();
                     }
                 }
                 else
                 {
-                    _asyncOperationInProgress = true;
-                    return _pendingRequests.Dequeue();
+                    SignalSocketFailedForPendingRequests(_pendingError);
+                }
+
+                lock (_pendingRequests)
+                {
+                    _asyncOperationInProgress = false;
+
+                    if (_pendingRequests.Count == 0)
+                    {
+                        flushContinuation = _flushContinuation;
+                        if (flushContinuation != null)
+                        {
+                            _flushContinuation = null;
+                        }
+
+                        closeContinuation = _closeContinuation;
+                        if (closeContinuation != null)
+                        {
+                            _closeContinuation = null;
+                        }
+                    }
+                    else
+                    {
+                        _asyncOperationInProgress = true;
+
+                        if (_pendingRequests.Count == 1)
+                        {
+                            return _pendingRequests.Dequeue();
+                        }
+                        else
+                        {
+                            int nextBatchSize = Math.Min(_pendingRequests.Count, MaxQueueSize / 2 + 1000);
+                            for (int i = 0; i < nextBatchSize; ++i)
+                            {
+                                _activeRequests.Enqueue(_pendingRequests.Dequeue());
+                            }
+
+                            if (OnQueueOverflow == NetworkTargetQueueOverflowAction.Block)
+                            {
+                                System.Threading.Monitor.PulseAll(_pendingRequests);
+                            }
+                            return _activeRequests.Dequeue();
+                        }
+                    }
                 }
             }
 
             flushContinuation?.Invoke(_pendingError);
             closeContinuation?.Invoke(_pendingError);
             return null;
+        }
+
+        private void SignalSocketFailedForPendingRequests(Exception pendingException)
+        {
+            lock (_pendingRequests)
+            {
+                while (_pendingRequests.Count != 0)
+                    _activeRequests.Enqueue(_pendingRequests.Dequeue());
+
+                System.Threading.Monitor.PulseAll(_pendingRequests);
+            }
+
+            while (_activeRequests.Count != 0)
+            {
+                var eventArgs = _activeRequests.Dequeue();
+                eventArgs.AsyncContinuation?.Invoke(pendingException);
+            }
         }
     }
 }
