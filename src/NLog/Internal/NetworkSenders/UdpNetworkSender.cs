@@ -46,7 +46,8 @@ namespace NLog.Internal.NetworkSenders
     {
         private ISocket _socket;
         private EndPoint _endpoint;
-        private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompleted;
+        private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompletedAsync;
+        private AsyncHelpersTask? _asyncBeginRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpNetworkSender"/> class.
@@ -57,7 +58,7 @@ namespace NLog.Internal.NetworkSenders
             : base(url)
         {
             AddressFamily = addressFamily;
-            _socketOperationCompleted = SocketOperationCompleted;
+            _socketOperationCompletedAsync = SocketOperationCompletedAsync;
         }
 
         internal AddressFamily AddressFamily { get; set; }
@@ -127,66 +128,93 @@ namespace NLog.Internal.NetworkSenders
 
         protected override void BeginRequest(NetworkRequestArgs eventArgs)
         {
-            var args = new SocketAsyncEventArgs();
-            if (eventArgs.RequestBufferLength > MaxMessageSize && MaxMessageSize > 0)
-            {
-                eventArgs = new NetworkRequestArgs(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, MaxMessageSize, eventArgs.AsyncContinuation);
-            }
-            args.SetBuffer(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
-            args.UserToken = eventArgs.AsyncContinuation;
-            args.Completed += _socketOperationCompleted;
-            args.RemoteEndPoint = _endpoint;
+            var socketEventArgs = new SocketAsyncEventArgs();
+            socketEventArgs.Completed += _socketOperationCompletedAsync;
+            socketEventArgs.RemoteEndPoint = _endpoint;
+            SetSocketNetworkRequest(socketEventArgs, eventArgs);
 
+            // Schedule async network operation to avoid blocking socket-operation (Allow adding more request)
+            if (_asyncBeginRequest is null)
+                _asyncBeginRequest = new AsyncHelpersTask(BeginRequestAsync);
+            AsyncHelpers.StartAsyncTask(_asyncBeginRequest.Value, socketEventArgs);
+        }
+
+        private void BeginRequestAsync(object state)
+        {
+            BeginSocketRequest((SocketAsyncEventArgs)state);
+        }
+
+        private void BeginSocketRequest(SocketAsyncEventArgs args)
+        {
             bool asyncOperation = false;
-            try
-            {
-                asyncOperation = _socket.SendToAsync(args);
-            }
-            catch (SocketException ex)
-            {
-                InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
-                args.SocketError = ex.SocketErrorCode;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
-                if (ex.InnerException is SocketException socketException)
-                    args.SocketError = socketException.SocketErrorCode;
-                else
-                    args.SocketError = SocketError.OperationAborted;
-            }
 
-            if (!asyncOperation)
+            do
             {
-                SocketOperationCompleted(_socket, args);
+                try
+                {
+                    asyncOperation = _socket.SendToAsync(args);
+                }
+                catch (SocketException ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
+                    args.SocketError = ex.SocketErrorCode;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget: Error sending udp request");
+                    if (ex.InnerException is SocketException socketException)
+                        args.SocketError = socketException.SocketErrorCode;
+                    else
+                        args.SocketError = SocketError.OperationAborted;
+                }
+
+                args = asyncOperation ? null : SocketOperationCompleted(args);
+            }
+            while (args != null);
+        }
+
+        private void SetSocketNetworkRequest(SocketAsyncEventArgs socketEventArgs, NetworkRequestArgs networkRequest)
+        {
+            var messageLength = MaxMessageSize > 0 ? Math.Min(networkRequest.RequestBufferLength, MaxMessageSize) : networkRequest.RequestBufferLength;
+            socketEventArgs.SetBuffer(networkRequest.RequestBuffer, networkRequest.RequestBufferOffset, messageLength);
+            socketEventArgs.UserToken = networkRequest.AsyncContinuation;
+        }
+        private void SocketOperationCompletedAsync(object sender, SocketAsyncEventArgs args)
+        {
+            var nextRequest = SocketOperationCompleted(args);
+            if (nextRequest != null)
+            {
+                BeginSocketRequest(nextRequest);
             }
         }
 
-        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs args)
+        private SocketAsyncEventArgs SocketOperationCompleted(SocketAsyncEventArgs args)
         {
-            var asyncContinuation = args.UserToken as AsyncContinuation;
-
-            Exception pendingException = null;
+            Exception socketException = null;
             if (args.SocketError != SocketError.Success)
             {
-                pendingException = new IOException("Error: " + args.SocketError);
+                socketException = new IOException("Error: " + args.SocketError);
             }
 
-            args.Completed -= _socketOperationCompleted;    // Maybe consider reusing for next request?
-            args.Dispose();
-
-            if (pendingException is null && (args.Buffer.Length - args.Offset) > MaxMessageSize && MaxMessageSize > 0)
+            if (socketException is null && (args.Buffer.Length - args.Offset) > MaxMessageSize && MaxMessageSize > 0)
             {
-                var eventArgs = new NetworkRequestArgs(args.Buffer, args.Offset + MaxMessageSize, args.Buffer.Length - args.Offset - MaxMessageSize, asyncContinuation);
-                BeginRequest(eventArgs);
+                var messageLength = Math.Min(args.Buffer.Length - args.Offset - MaxMessageSize, MaxMessageSize);
+                args.SetBuffer(args.Buffer, args.Offset + MaxMessageSize, messageLength);
+                return args;
+            }
+
+            var asyncContinuation = args.UserToken as AsyncContinuation;
+            var nextRequest = EndRequest(asyncContinuation, socketException);
+            if (nextRequest.HasValue)
+            {
+                SetSocketNetworkRequest(args, nextRequest.Value);
+                return args;
             }
             else
             {
-                var nextRequest = base.EndRequest(asyncContinuation, pendingException);
-                if (nextRequest.HasValue)
-                {
-                    BeginRequest(nextRequest.Value);
-                }
+                args.Completed -= _socketOperationCompletedAsync;
+                args.Dispose();
+                return null;
             }
         }
 

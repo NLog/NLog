@@ -35,6 +35,7 @@ namespace NLog.Internal.NetworkSenders
 {
     using System;
     using System.Net.Sockets;
+    using NLog.Targets;
 
     /// <summary>
     /// Default implementation of <see cref="INetworkSenderFactory"/>.
@@ -44,13 +45,14 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
+        public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
                 return new HttpNetworkSender(url)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                 };
             }
 
@@ -59,6 +61,7 @@ namespace NLog.Internal.NetworkSenders
                 return new HttpNetworkSender(url)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                 };
             }
 
@@ -67,6 +70,7 @@ namespace NLog.Internal.NetworkSenders
                 return new TcpNetworkSender(url, AddressFamily.Unspecified)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
                 };
@@ -77,6 +81,7 @@ namespace NLog.Internal.NetworkSenders
                 return new TcpNetworkSender(url, AddressFamily.InterNetwork)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
                 };
@@ -87,6 +92,7 @@ namespace NLog.Internal.NetworkSenders
                 return new TcpNetworkSender(url, AddressFamily.InterNetworkV6)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
                 };
@@ -97,6 +103,7 @@ namespace NLog.Internal.NetworkSenders
                 return new UdpNetworkSender(url, AddressFamily.Unspecified)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                     MaxMessageSize = maxMessageSize,
                 };
             }
@@ -106,6 +113,7 @@ namespace NLog.Internal.NetworkSenders
                 return new UdpNetworkSender(url, AddressFamily.InterNetwork)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                     MaxMessageSize = maxMessageSize,
                 };
             }
@@ -115,9 +123,11 @@ namespace NLog.Internal.NetworkSenders
                 return new UdpNetworkSender(url, AddressFamily.InterNetworkV6)
                 {
                     MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                     MaxMessageSize = maxMessageSize,
                 };
             }
+
             throw new ArgumentException("Unrecognized network address", nameof(url));
         }
     }

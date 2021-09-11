@@ -98,10 +98,6 @@ namespace NLog.Targets
         {
             SenderFactory = NetworkSenderFactory.Default;
             Encoding = Encoding.UTF8;
-            OnOverflow = NetworkTargetOverflowAction.Split;
-            KeepConnection = true;
-            MaxMessageSize = 65000;
-            ConnectionCacheSize = 5;
             LineEnding = LineEndingMode.CRLF;
         }
 
@@ -142,7 +138,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(true)]
-        public bool KeepConnection { get; set; }
+        public bool KeepConnection { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to append newline at the end of log message.
@@ -163,33 +159,46 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultValue(65000)]
-        public int MaxMessageSize { get; set; }
+        public int MaxMessageSize { get; set; } = 65000;
 
         /// <summary>
-        /// Gets or sets the size of the connection cache (number of connections which are kept alive).
+        /// Gets or sets the maximum simultaneous connections. Requires <see cref="KeepConnection"/> = false
+        /// </summary>
+        /// <remarks>
+        /// When having reached the maximum limit, then <see cref="OnConnectionOverflow"/> action will apply.
+        /// </remarks>
+        /// <docgen category="Connection Options" order="10"/>
+        [DefaultValue(100)]
+        public int MaxConnections { get; set; } = 100;
+
+        /// <summary>
+        /// Gets or sets the action that should be taken, when more connections than <see cref="MaxConnections"/>.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; } = NetworkTargetConnectionsOverflowAction.Discard;
+
+        /// <summary>
+        /// Gets or sets the maximum queue size for a single connection. Requires <see cref="KeepConnection"/> = true
+        /// </summary>
+        /// <remarks>
+        /// When having reached the maximum limit, then <see cref="OnQueueOverflow"/> action will apply.
+        /// </remarks>
+        /// <docgen category='Connection Options' order='10' />
+        [DefaultValue(10000)]
+        public int MaxQueueSize { get; set; } = 10000;
+
+        /// <summary>
+        /// Gets or sets the action that should be taken, when more pending messages than <see cref="MaxQueueSize"/>.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; } = NetworkTargetQueueOverflowAction.Discard;
+
+        /// <summary>
+        /// Gets or sets the size of the connection cache (number of connections which are kept alive). Requires <see cref="KeepConnection"/> = true
         /// </summary>
         /// <docgen category="Connection Options" order="10"/>
         [DefaultValue(5)]
-        public int ConnectionCacheSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum current connections. 0 = no maximum.
-        /// </summary>
-        /// <docgen category="Connection Options" order="10"/>
-        public int MaxConnections { get; set; }
-
-        /// <summary>
-        /// Gets or sets the action that should be taken if the will be more connections than <see cref="MaxConnections"/>.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum queue size.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(0)]
-        public int MaxQueueSize { get; set; }
+        public int ConnectionCacheSize { get; set; } = 5;
 
         /// <summary>
         /// Gets or sets the action that should be taken if the message is larger than <see cref="MaxMessageSize" />
@@ -204,7 +213,7 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(NetworkTargetOverflowAction.Split)]
-        public NetworkTargetOverflowAction OnOverflow { get; set; }
+        public NetworkTargetOverflowAction OnOverflow { get; set; } = NetworkTargetOverflowAction.Split;
 
         /// <summary>
         /// Gets or sets the encoding to be used.
@@ -352,6 +361,7 @@ namespace NLog.Targets
                             return;
 
                         case NetworkTargetConnectionsOverflowAction.Grow:
+                            MaxConnections = MaxConnections * 2;
                             InternalLogger.Debug("{0}: Too may connections, but this is allowed", this);
                             break;
 
@@ -519,7 +529,7 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address)
         {
-            var sender = SenderFactory.Create(address, MaxQueueSize, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
+            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
             sender.Initialize();
             return sender;
         }
