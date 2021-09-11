@@ -157,9 +157,9 @@ namespace NLog.Config
             throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + LocalName + "'.");
         }
 
-        private void Parse(XmlReader reader, bool topElement, out IList<KeyValuePair<string,string>> attributes, out IList<NLogXmlElement> children)
+        private void Parse(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string,string>> attributes, out IList<NLogXmlElement> children)
         {
-            ParseAttributes(reader, topElement, out attributes);
+            ParseAttributes(reader, nestedElement, out attributes);
 
             LocalName = reader.LocalName;
 
@@ -179,11 +179,12 @@ namespace NLog.Config
                         Value += reader.Value;
                         continue;
                     }
-
+                    
                     if (reader.NodeType == XmlNodeType.Element)
                     {
                         children = children ?? new List<NLogXmlElement>();
-                        children.Add(new NLogXmlElement(reader, true));
+                        var nestedChild = nestedElement || !string.Equals(reader.LocalName, "nlog", StringComparison.OrdinalIgnoreCase);
+                        children.Add(new NLogXmlElement(reader, nestedChild));
                     }
                 }
             }

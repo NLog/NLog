@@ -246,17 +246,21 @@ namespace NLog.UnitTests.Config
         }
 
         [Theory]
-        [InlineData("xsi")]
-        [InlineData("test")]
-        public void XmlConfig_attributes_shouldNotLogWarningsToInternalLog(string @namespace)
+        [InlineData("xsi", false)]
+        [InlineData("test", false)]
+        [InlineData("xsi", true)]
+        [InlineData("test", true)]
+        public void XmlConfig_attributes_shouldNotLogWarningsToInternalLog(string @namespace, bool nestedConfig)
         {
             // Arrange
             var xml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
+{(nestedConfig ? "<configuration>" : "")}
 <nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd"" 
       xmlns:{@namespace}=""http://www.w3.org/2001/XMLSchema-instance"" 
       {@namespace}:schemaLocation=""somewhere"" 
       internalLogToConsole=""true"" internalLogLevel=""Warn"">
-</nlog>";
+</nlog>
+{(nestedConfig ? "</configuration>" : "")}";
 
             try
             {
