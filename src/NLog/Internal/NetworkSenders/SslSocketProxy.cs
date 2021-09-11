@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+
 namespace NLog.Internal.NetworkSenders
 {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System;
     using System.Net.Security;
     using System.Net.Sockets;
@@ -198,5 +199,6 @@ namespace NLog.Internal.NetworkSenders
                 _socketProxy.Dispose();
         }
     }
-#endif
 }
+
+#endif
