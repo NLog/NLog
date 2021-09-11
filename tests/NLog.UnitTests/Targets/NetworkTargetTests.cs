@@ -53,29 +53,28 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void HappyPathDefaultsTest()
         {
-            HappyPathTest(false, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
+            HappyPathTest(null, "msg1", "msg2", "msg3");
         }
 
         [Fact]
         public void HappyPathCRLFTest()
         {
-            HappyPathTest(true, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
+            HappyPathTest(LineEndingMode.CRLF, "msg1", "msg2", "msg3");
         }
 
         [Fact]
         public void HappyPathLFTest()
         {
-            HappyPathTest(true, LineEndingMode.LF, "msg1", "msg2", "msg3");
+            HappyPathTest(LineEndingMode.LF, "msg1", "msg2", "msg3");
         }
 
-        private void HappyPathTest(bool newLine, LineEndingMode lineEnding, params string[] messages)
+        private void HappyPathTest(LineEndingMode lineEnding, params string[] messages)
         {
             var senderFactory = new MySenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://someaddress/";
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
-            target.NewLine = newLine;
             target.LineEnding = lineEnding;
             target.KeepConnection = true;
             target.Initialize(null);
@@ -114,7 +113,7 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             // Get the length of all the messages and their line endings
-            var eol = newLine ? lineEnding.NewLineCharacters : string.Empty;
+            var eol = lineEnding?.NewLineCharacters ?? string.Empty;
             var eolLength = eol.Length;
             var length = messages.Sum(m => m.Length) + (eolLength * messages.Length);
             Assert.Equal(length, sender.MemoryStream.Length);
