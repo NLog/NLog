@@ -716,7 +716,7 @@ namespace NLog.UnitTests.Targets
 
                 Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
                 target.Close();
-                Assert.True(receiveFinished.WaitOne(10000), "Network Receive not completed");
+                Assert.True(receiveFinished.WaitOne(10000), $"Network Receive not completed. Count={receivedMessages.Count}, LastMsg={receivedMessages.LastOrDefault()}");
                 Assert.True(receiveException == null, $"Network Exception: {receiveException?.ToString()}");
                 Assert.Equal(toWrite, receivedMessages.Count);
                 for (int i = 0; i < toWrite; ++i)
