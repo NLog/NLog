@@ -450,8 +450,14 @@ namespace NLog.Layouts
                         if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
                         {
                             LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
+                            Layout nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
 
-                            var nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
+                            if (propertyInfo.PropertyType.IsGenericType() && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
+                            {
+                                var concreteType = typeof(Layout<>).MakeGenericType(propertyInfo.PropertyType.GetGenericArguments());
+                                nestedLayout = (Layout)Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
+                            }
+
                             propertyInfo.SetValue(parameterTarget, nestedLayout, null);
                         }
                         else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
