@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     /// The log level.
     /// </summary>
     [LayoutRenderer("level")]
+    [LayoutRenderer("loglevel")]
     [ThreadAgnostic]
     public class LevelLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {

@@ -42,7 +42,8 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Converts the result of another layout output to lower case.
     /// </summary>
     [LayoutRenderer("lowercase")]
-    [AmbientProperty("Lowercase")]
+    [AmbientProperty(nameof(Lowercase))]
+    [AmbientProperty(nameof(ToLower))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBase
@@ -53,6 +54,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
         public bool Lowercase { get; set; } = true;
+
+        /// <summary>
+        /// Same as <see cref="Lowercase"/>-property, so it can be used as ambient property.
+        /// </summary>
+        /// <example>
+        /// ${level:tolower}
+        /// </example>
+        /// <docgen category="Transformation Options" order="10"/>
+        public bool ToLower { get => Lowercase; set => Lowercase = value; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 

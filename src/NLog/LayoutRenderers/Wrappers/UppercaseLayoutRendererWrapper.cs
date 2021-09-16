@@ -48,6 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </example>
     [LayoutRenderer("uppercase")]
     [AmbientProperty(nameof(Uppercase))]
+    [AmbientProperty(nameof(ToUpper))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
@@ -58,6 +59,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
         public bool Uppercase { get; set; } = true;
+
+        /// <summary>
+        /// Same as <see cref="Uppercase"/>-property, so it can be used as ambient property.
+        /// </summary>
+        /// <example>
+        /// ${level:toupper}
+        /// </example>
+        /// <docgen category="Transformation Options" order="10"/>
+        public bool ToUpper { get => Uppercase; set => Uppercase = value; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
