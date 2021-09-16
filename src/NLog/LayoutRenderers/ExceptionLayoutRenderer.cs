@@ -52,23 +52,37 @@ namespace NLog.LayoutRenderers
     {
         private string _format;
         private string _innerFormat = string.Empty;
-        private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception, Exception>> _renderingfunctions;
 
         private static readonly Dictionary<string, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
-                                                                                                    {
-                                                                                                        {"MESSAGE",ExceptionRenderingFormat.Message},
-                                                                                                        {"TYPE", ExceptionRenderingFormat.Type},
-                                                                                                        {"SHORTTYPE",ExceptionRenderingFormat.ShortType},
-                                                                                                        {"TOSTRING",ExceptionRenderingFormat.ToString},
-                                                                                                        {"METHOD",ExceptionRenderingFormat.Method},
-                                                                                                        {"TARGETSITE",ExceptionRenderingFormat.Method},
-                                                                                                        {"SOURCE",ExceptionRenderingFormat.Source},
-                                                                                                        {"STACKTRACE", ExceptionRenderingFormat.StackTrace},
-                                                                                                        {"DATA",ExceptionRenderingFormat.Data},
-                                                                                                        {"@",ExceptionRenderingFormat.Serialize},
-                                                                                                        {"HRESULT",ExceptionRenderingFormat.HResult},
-                                                                                                        {"PROPERTIES",ExceptionRenderingFormat.Properties},
-                                                                                                    };
+        {
+            {"MESSAGE",ExceptionRenderingFormat.Message},
+            {"TYPE", ExceptionRenderingFormat.Type},
+            {"SHORTTYPE",ExceptionRenderingFormat.ShortType},
+            {"TOSTRING",ExceptionRenderingFormat.ToString},
+            {"METHOD",ExceptionRenderingFormat.Method},
+            {"TARGETSITE",ExceptionRenderingFormat.Method},
+            {"SOURCE",ExceptionRenderingFormat.Source},
+            {"STACKTRACE", ExceptionRenderingFormat.StackTrace},
+            {"DATA",ExceptionRenderingFormat.Data},
+            {"@",ExceptionRenderingFormat.Serialize},
+            {"HRESULT",ExceptionRenderingFormat.HResult},
+            {"PROPERTIES",ExceptionRenderingFormat.Properties},
+        };
+
+        private static readonly Dictionary<ExceptionRenderingFormat, Action<ExceptionLayoutRenderer, StringBuilder, Exception, Exception>> _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<ExceptionLayoutRenderer, StringBuilder, Exception, Exception>>()
+        {
+            {ExceptionRenderingFormat.Message, (layout, sb, ex, aggex) => layout.AppendMessage(sb, ex)},
+            {ExceptionRenderingFormat.Type, (layout, sb, ex, aggex) => layout.AppendType(sb, ex)},
+            { ExceptionRenderingFormat.ShortType, (layout, sb, ex, aggex) => layout.AppendShortType(sb, ex)},
+            { ExceptionRenderingFormat.ToString, (layout, sb, ex, aggex) => layout.AppendToString(sb, ex)},
+            { ExceptionRenderingFormat.Method, (layout, sb, ex, aggex) => layout.AppendMethod(sb, ex)},
+            { ExceptionRenderingFormat.Source, (layout, sb, ex, aggex) => layout.AppendSource(sb, ex)},
+            { ExceptionRenderingFormat.StackTrace, (layout, sb, ex, aggex) => layout.AppendStackTrace(sb, ex)},
+            { ExceptionRenderingFormat.Data, (layout, sb, ex, aggex) => layout.AppendData(sb, ex, aggex)},
+            { ExceptionRenderingFormat.Serialize, (layout, sb, ex, aggex) => layout.AppendSerializeObject(sb, ex)},
+            { ExceptionRenderingFormat.HResult, (layout, sb, ex, aggex) => layout.AppendHResult(sb, ex)},
+            { ExceptionRenderingFormat.Properties, (layout, sb, ex, aggex) => layout.AppendProperties(sb, ex)},
+        };
 
         private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
             "Type",
@@ -91,24 +105,10 @@ namespace NLog.LayoutRenderers
         public ExceptionLayoutRenderer()
         {
             Format = "TOSTRING,DATA";
-            Separator = " ";
-            ExceptionDataSeparator = ";";
+            _seperator = " ";
+            _exceptionDataSeparator = ";";
             InnerExceptionSeparator = EnvironmentHelper.NewLine;
             MaxInnerExceptionLevel = 0;
-            _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception, Exception>>()
-                {
-                    {ExceptionRenderingFormat.Message, (sb, ex, aggex) => AppendMessage(sb, ex)},
-                    {ExceptionRenderingFormat.Type, (sb, ex, aggex) => AppendType(sb, ex)},
-                    {ExceptionRenderingFormat.ShortType, (sb, ex, aggex) => AppendShortType(sb, ex)},
-                    {ExceptionRenderingFormat.ToString, (sb, ex, aggex) => AppendToString(sb, ex)},
-                    {ExceptionRenderingFormat.Method, (sb, ex, aggex) => AppendMethod(sb, ex)},
-                    {ExceptionRenderingFormat.Source, (sb, ex, aggex) => AppendSource(sb, ex)},
-                    {ExceptionRenderingFormat.StackTrace, (sb, ex, aggex) => AppendStackTrace(sb, ex)},
-                    {ExceptionRenderingFormat.Data, (sb, ex, aggex) => AppendData(sb, ex, aggex)},
-                    {ExceptionRenderingFormat.Serialize, (sb, ex, aggex) => AppendSerializeObject(sb, ex)},
-                    {ExceptionRenderingFormat.HResult, (sb, ex, aggex) => AppendHResult(sb, ex)},
-                    {ExceptionRenderingFormat.Properties, (sb, ex, aggex) => AppendProperties(sb, ex)},
-                };
         }
 
         /// <summary>
@@ -153,14 +153,16 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" ")]
-        public string Separator { get; set; }
+        public string Separator { get => _seperator; set => _seperator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
+        private string _seperator;
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(";")]
-        public string ExceptionDataSeparator { get; set; }
+        public string ExceptionDataSeparator { get => _exceptionDataSeparator; set => _exceptionDataSeparator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
+        private string _exceptionDataSeparator;
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -335,7 +337,7 @@ namespace NLog.LayoutRenderers
                 int beforeRenderLength = builder.Length;
                 var currentRenderFunction = _renderingfunctions[renderingFormat];
 
-                currentRenderFunction(builder, currentException, aggregateException);
+                currentRenderFunction(this, builder, currentException, aggregateException);
 
                 if (builder.Length != beforeRenderLength)
                 {

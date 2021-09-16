@@ -100,6 +100,11 @@ namespace NLog.Internal
                 throw new NLogConfigurationException($"Unknown property '{propertyName}'='{value}' for '{objType.Name}'");
             }
 
+            SetPropertyFromString(obj, propertyName, value, propInfo, configurationItemFactory);
+        }
+
+        internal static void SetPropertyFromString(object obj, string propertyName, string value, PropertyInfo propInfo, ConfigurationItemFactory configurationItemFactory)
+        {
             try
             {
                 Type propertyType = propInfo.PropertyType;
@@ -108,7 +113,7 @@ namespace NLog.Internal
                 {
                     if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                     {
-                        throw new NotSupportedException($"Property {propertyName} on {objType.Name} is an array, and cannot be assigned a scalar value: '{value}'.");
+                        throw new NotSupportedException($"Property {propertyName} on {obj.GetType().Name} is an array, and cannot be assigned a scalar value: '{value}'.");
                     }
 
                     propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
@@ -124,7 +129,7 @@ namespace NLog.Internal
             }
             catch (TargetInvocationException ex)
             {
-                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {objType.Name}", ex.InnerException);
+                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {obj.GetType().Name}", ex.InnerException);
             }
             catch (Exception exception)
             {
@@ -133,7 +138,7 @@ namespace NLog.Internal
                     throw;
                 }
 
-                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {objType.Name}", exception);
+                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {obj.GetType().Name}", exception);
             }
         }
 
