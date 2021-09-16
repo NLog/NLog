@@ -36,6 +36,7 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -73,7 +74,7 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
-        public SimpleLayout(string txt)
+        public SimpleLayout([Localizable(false)] string txt)
             : this(txt, ConfigurationItemFactory.Default)
         {
         }
@@ -83,7 +84,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
-        public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
+        public SimpleLayout([Localizable(false)] string txt, ConfigurationItemFactory configurationItemFactory)
             :this(txt, configurationItemFactory, null)
         {
         }
@@ -94,13 +95,13 @@ namespace NLog.Layouts
         /// <param name="txt">The layout string to parse.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors.</param>
-        internal SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+        internal SimpleLayout([Localizable(false)] string txt, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
             _configurationItemFactory = configurationItemFactory;
             SetLayoutText(txt, throwConfigExceptions);
         }
 
-        internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
+        internal SimpleLayout(LayoutRenderer[] renderers, [Localizable(false)] string text, ConfigurationItemFactory configurationItemFactory)
         {
             _configurationItemFactory = configurationItemFactory;
             OriginalText = text;
@@ -167,7 +168,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns>A <see cref="SimpleLayout"/> object.</returns>
-        public static implicit operator SimpleLayout(string text)
+        public static implicit operator SimpleLayout([Localizable(false)] string text)
         {
             if (text is null) return null;
 
@@ -186,9 +187,9 @@ namespace NLog.Layouts
         /// Escaping is done by replacing all occurrences of
         /// '${' with '${literal:text=${}'
         /// </remarks>
-        public static string Escape(string text)
+        public static string Escape([Localizable(false)] string text)
         {
-            return text.Replace("${", "${literal:text=${}");
+            return text.Replace("${", @"${literal:text=\$\{}");
         }
 
         /// <summary>
@@ -198,7 +199,7 @@ namespace NLog.Layouts
         /// <param name="logEvent">Log event to be used for evaluation.</param>
         /// <returns>The input text with all occurrences of ${} replaced with
         /// values provided by the appropriate layout renderers.</returns>
-        public static string Evaluate(string text, LogEventInfo logEvent)
+        public static string Evaluate([Localizable(false)] string text, LogEventInfo logEvent)
         {
             var layout = new SimpleLayout(text);
             return layout.Render(logEvent);
@@ -211,7 +212,7 @@ namespace NLog.Layouts
         /// <param name="text">The text to be evaluated.</param>
         /// <returns>The input text with all occurrences of ${} replaced with
         /// values provided by the appropriate layout renderers.</returns>
-        public static string Evaluate(string text)
+        public static string Evaluate([Localizable(false)] string text)
         {
             return Evaluate(text, LogEventInfo.CreateNullEvent());
         }

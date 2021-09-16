@@ -179,18 +179,38 @@ namespace NLog.Layouts
             }
 
             var parameterValue = new StringBuilder(parameterName);
-            ParseLayoutParameterValue(sr, parameterValue);
+            ParseLayoutParameterValue(sr, parameterValue, chr => EndOfLayout(chr) || chr == '=');
             return parameterValue.ToString();
         }
 
-        private static void ParseLayoutParameterValue(SimpleStringReader sr, StringBuilder parameterValue)
+        private static string ParseParameterStringValue(SimpleStringReader sr)
         {
+            var parameterName = sr.ReadUntilMatch(chr => EndOfLayout(chr) || chr == '$' || chr == '\\');
+            if (sr.Peek() != '$' && sr.Peek() != '\\')
+            {
+                return parameterName;
+            }
+
+            var parameterValue = new StringBuilder(parameterName);
+            bool containsUnicodeEscape = ParseLayoutParameterValue(sr, parameterValue, chr => EndOfLayout(chr));
+            if (!containsUnicodeEscape)
+                return parameterValue.ToString();
+
+            var unescapedValue = parameterValue.ToString();
+            parameterValue.ClearBuilder();
+            return EscapeUnicodeStringValue(unescapedValue, parameterValue);
+        }
+
+        private static bool ParseLayoutParameterValue(SimpleStringReader sr, StringBuilder parameterValue, Func<int, bool> endOfLayout)
+        {
+            bool containsUnicodeEscape = false;
+
             int ch;
             int nestLevel = 0;
 
             while ((ch = sr.Peek()) != -1)
             {
-                if ((ch == '=' || EndOfLayout(ch)) && nestLevel == 0)
+                if (endOfLayout(ch) && nestLevel == 0)
                 {
                     break;
                 }
@@ -218,12 +238,13 @@ namespace NLog.Layouts
                 {
                     sr.Read();
                     ch = sr.Peek();
-                    if (nestLevel == 0 && (EndOfLayout(ch) || ch == '$' || ch == '='))
+                    if (nestLevel == 0 && (endOfLayout(ch) || ch == '$' || ch == '='))
                     {
                         parameterValue.Append((char)sr.Read());
                     }
                     else if (ch != -1)
                     {
+                        containsUnicodeEscape = true;
                         parameterValue.Append('\\');
                         parameterValue.Append((char)sr.Read());
                     }
@@ -233,6 +254,8 @@ namespace NLog.Layouts
                 parameterValue.Append((char)ch);
                 sr.Read();
             }
+
+            return containsUnicodeEscape;
         }
 
         private static string ParseParameterValue(SimpleStringReader sr)
@@ -465,10 +488,15 @@ namespace NLog.Layouts
                             var conditionExpression = ConditionParser.ParseExpression(stringReader, configurationItemFactory);
                             propertyInfo.SetValue(parameterTarget, conditionExpression, null);
                         }
+                        else if (typeof(string).IsAssignableFrom(propertyInfo.PropertyType))
+                        {
+                            string value = ParseParameterStringValue(stringReader);
+                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, propertyInfo, configurationItemFactory);
+                        }
                         else
                         {
                             string value = ParseParameterValue(stringReader);
-                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, configurationItemFactory);
+                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, propertyInfo, configurationItemFactory);
                         }
                     }
                 }
