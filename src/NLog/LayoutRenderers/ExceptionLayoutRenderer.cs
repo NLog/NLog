@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Exception information provided through 
@@ -104,10 +105,10 @@ namespace NLog.LayoutRenderers
                     {ExceptionRenderingFormat.Method, (evt, sb, ex, aggex) => AppendMethod(sb, ex)},
                     {ExceptionRenderingFormat.Source, (evt, sb, ex, aggex) => AppendSource(sb, ex)},
                     {ExceptionRenderingFormat.StackTrace, (evt, sb, ex, aggex) => AppendStackTrace(sb, ex)},
-                    {ExceptionRenderingFormat.Data, (evt, sb, ex, aggex) => AppendData(evt, sb, ex, aggex)},
+                    {ExceptionRenderingFormat.Data, (evt, sb, ex, aggex) => AppendData(sb, ex, aggex, evt)},
                     {ExceptionRenderingFormat.Serialize, (evt, sb, ex, aggex) => AppendSerializeObject(sb, ex)},
                     {ExceptionRenderingFormat.HResult, (evt, sb, ex, aggex) => AppendHResult(sb, ex)},
-                    {ExceptionRenderingFormat.Properties, (evt, sb, ex, aggex) => AppendProperties(sb, ex)},
+                    {ExceptionRenderingFormat.Properties, (evt, sb, ex, aggex) => AppendProperties(sb, ex, evt)},
                 };
         }
 
@@ -153,16 +154,16 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" ")]
-        public string Separator { get => _separator?.ToString(); set => _separator = value; }
-        private NLog.Layouts.SimpleLayout _separator;
+        public Layout Separator { get => _separator; set => _separator = LayoutParser.HandleMissingUnicodeStringEscape(value); }
+        private Layout _separator;
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(";")]
-        public string ExceptionDataSeparator { get => _exceptionDataSeparator?.ToString(); set => _exceptionDataSeparator = value; }
-        private NLog.Layouts.SimpleLayout _exceptionDataSeparator;
+        public Layout ExceptionDataSeparator { get => _exceptionDataSeparator; set => _exceptionDataSeparator = LayoutParser.HandleMissingUnicodeStringEscape(value); }
+        private Layout _exceptionDataSeparator;
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -176,8 +177,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string InnerExceptionSeparator { get => _innerExceptionSeparator?.ToString(); set => _innerExceptionSeparator = value; }
-        private NLog.Layouts.SimpleLayout _innerExceptionSeparator;
+        public Layout InnerExceptionSeparator { get => _innerExceptionSeparator; set => _innerExceptionSeparator = LayoutParser.HandleMissingUnicodeStringEscape(value); }
+        private Layout _innerExceptionSeparator;
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
@@ -465,32 +466,32 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        private void AppendData(LogEventInfo logEvent, StringBuilder builder, Exception ex, Exception aggregateException)
+        private void AppendData(StringBuilder builder, Exception ex, Exception aggregateException, LogEventInfo logEvent)
         {
             if (aggregateException?.Data?.Count > 0 && !ReferenceEquals(ex, aggregateException))
             {
-                AppendData(logEvent, builder, aggregateException);
+                AppendData(builder, aggregateException, logEvent);
                 builder.Append(_separator?.Render(logEvent));
             }
-            AppendData(logEvent, builder, ex);
+            AppendData(builder, ex, logEvent);
         }
 
         /// <summary>
         /// Appends the contents of an Exception's Data property to the specified <see cref="StringBuilder" />.
         /// </summary>
-        /// <param name="logEvent">The log event.</param>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose Data property elements should be appended.</param>
-        protected virtual void AppendData(LogEventInfo logEvent, StringBuilder sb, Exception ex)
+        /// <param name="logEvent">The log event.</param>
+        protected virtual void AppendData(StringBuilder sb, Exception ex, LogEventInfo logEvent)
         {
             if (ex.Data?.Count > 0)
             {
-                string separator = string.Empty;
+                string separator = null;
                 foreach (var key in ex.Data.Keys)
                 {
                     sb.Append(separator);
                     sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
-                    separator = _exceptionDataSeparator?.Render(logEvent);
+                    separator = separator ?? _exceptionDataSeparator?.Render(logEvent);
                 }
             }
         }
@@ -510,9 +511,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose properties should be appended.</param>
-        protected virtual void AppendProperties(StringBuilder sb, Exception ex)
+        /// <param name="logEvent">The log event.</param>
+        protected virtual void AppendProperties(StringBuilder sb, Exception ex, LogEventInfo logEvent)
         {
-            string separator = string.Empty;
+            string separator = null;
             var exceptionProperties = ObjectReflectionCache.LookupObjectProperties(ex);
             foreach (var property in exceptionProperties)
             {
@@ -525,7 +527,7 @@ namespace NLog.LayoutRenderers
 
                 sb.Append(separator);
                 sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
-                separator = ExceptionDataSeparator;
+                separator = separator ?? _exceptionDataSeparator?.Render(logEvent);
             }
         }
 

@@ -179,38 +179,18 @@ namespace NLog.Layouts
             }
 
             var parameterValue = new StringBuilder(parameterName);
-            ParseLayoutParameterValue(sr, parameterValue, chr => EndOfLayout(chr) || chr == '=');
+            ParseLayoutParameterValue(sr, parameterValue);
             return parameterValue.ToString();
         }
 
-        private static string ParseParameterStringValue(SimpleStringReader sr)
+        private static void ParseLayoutParameterValue(SimpleStringReader sr, StringBuilder parameterValue)
         {
-            var parameterName = sr.ReadUntilMatch(chr => EndOfLayout(chr) || chr == '$' || chr == '\\');
-            if (sr.Peek() != '$' && sr.Peek() != '\\')
-            {
-                return parameterName;
-            }
-
-            var parameterValue = new StringBuilder(parameterName);
-            bool containsUnicodeEscape = ParseLayoutParameterValue(sr, parameterValue, chr => EndOfLayout(chr));
-            if (!containsUnicodeEscape)
-                return parameterValue.ToString();
-
-            var unescapedValue = parameterValue.ToString();
-            parameterValue.ClearBuilder();
-            return EscapeUnicodeStringValue(unescapedValue, parameterValue);
-        }
-
-        private static bool ParseLayoutParameterValue(SimpleStringReader sr, StringBuilder parameterValue, Func<int, bool> endOfLayout)
-        {
-            bool containsUnicodeEscape = false;
-
             int ch;
             int nestLevel = 0;
 
             while ((ch = sr.Peek()) != -1)
             {
-                if (endOfLayout(ch) && nestLevel == 0)
+                if ((ch == '=' || EndOfLayout(ch)) && nestLevel == 0)
                 {
                     break;
                 }
@@ -238,13 +218,12 @@ namespace NLog.Layouts
                 {
                     sr.Read();
                     ch = sr.Peek();
-                    if (nestLevel == 0 && (endOfLayout(ch) || ch == '$' || ch == '='))
+                    if (nestLevel == 0 && (EndOfLayout(ch) || ch == '$' || ch == '='))
                     {
                         parameterValue.Append((char)sr.Read());
                     }
                     else if (ch != -1)
                     {
-                        containsUnicodeEscape = true;
                         parameterValue.Append('\\');
                         parameterValue.Append((char)sr.Read());
                     }
@@ -254,8 +233,6 @@ namespace NLog.Layouts
                 parameterValue.Append((char)ch);
                 sr.Read();
             }
-
-            return containsUnicodeEscape;
         }
 
         private static string ParseParameterValue(SimpleStringReader sr)
@@ -303,6 +280,30 @@ namespace NLog.Layouts
             }
 
             return value;
+        }
+
+        /// <summary>
+        /// NLog Layout does not support standard string-escape-logic. String-properties handles standard string-escape-logic,
+        /// but when used for Layout-properties then it fails miserably.
+        /// 
+        /// To reduce the user-pain when changing from string-property to Layout-property, then one should always consider
+        /// using this "fixer" method.
+        /// 
+        /// The most optimal solution would be that ALL layouts supported string-escape-logic, and Layout-properties for
+        /// specifying directory or filepath used their own NLog FilePathLayout (TODO for NLog 6.0)
+        /// </summary>
+        internal static Layout HandleMissingUnicodeStringEscape(Layout defaultLayout)
+        {
+            if (defaultLayout is SimpleLayout simpleLayout && simpleLayout.IsFixedText && simpleLayout.FixedText.IndexOf('\\') >= 0)
+            {
+                var newFixedText = EscapeUnicodeStringValue(simpleLayout.FixedText);
+                if (!newFixedText.Equals(simpleLayout.FixedText))
+                {
+                    return new SimpleLayout(new[] { new LiteralLayoutRenderer(newFixedText) }, newFixedText, ConfigurationItemFactory.Default);
+                }
+            }
+
+            return defaultLayout;
         }
 
         private static string EscapeUnicodeStringValue(string value, StringBuilder nameBuf = null)
@@ -487,11 +488,6 @@ namespace NLog.Layouts
                         {
                             var conditionExpression = ConditionParser.ParseExpression(stringReader, configurationItemFactory);
                             propertyInfo.SetValue(parameterTarget, conditionExpression, null);
-                        }
-                        else if (typeof(string).IsAssignableFrom(propertyInfo.PropertyType))
-                        {
-                            string value = ParseParameterStringValue(stringReader);
-                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, propertyInfo, configurationItemFactory);
                         }
                         else
                         {

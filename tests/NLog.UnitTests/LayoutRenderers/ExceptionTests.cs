@@ -392,7 +392,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
+            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator.Render(LogEventInfo.CreateNullEvent()));
 
             string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
@@ -914,7 +914,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as CustomExceptionLayoutRendrer;
-            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
+            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator.Render(LogEventInfo.CreateNullEvent()));
 
             string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
@@ -955,7 +955,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var target = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var exceptionLayoutRenderer = ((SimpleLayout)target.Layout).Renderers[0] as ExceptionLayoutRenderer;
             Assert.NotNull(exceptionLayoutRenderer);
-            Assert.Equal(defaultExceptionDataSeparator, exceptionLayoutRenderer.ExceptionDataSeparator);
+            Assert.Equal(defaultExceptionDataSeparator, exceptionLayoutRenderer.ExceptionDataSeparator.Render(LogEventInfo.CreateNullEvent()));
 
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
@@ -1117,9 +1117,9 @@ namespace NLog.UnitTests.LayoutRenderers
             sb.Append("\r\ncustom-exception-renderer");
         }
 
-        protected override void AppendData(LogEventInfo logEvent, System.Text.StringBuilder sb, Exception ex)
+        protected override void AppendData(System.Text.StringBuilder sb, Exception ex, LogEventInfo logEvent)
         {
-            base.AppendData(logEvent, sb, ex);
+            base.AppendData(sb, ex, logEvent);
             sb.Append("\r\ncustom-exception-renderer-data");
         }
     }

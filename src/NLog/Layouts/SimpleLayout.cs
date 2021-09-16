@@ -189,7 +189,7 @@ namespace NLog.Layouts
         /// </remarks>
         public static string Escape([Localizable(false)] string text)
         {
-            return text.Replace("${", @"${literal:text=\$\{}");
+            return text.Replace("${", "${literal:text=${}");
         }
 
         /// <summary>

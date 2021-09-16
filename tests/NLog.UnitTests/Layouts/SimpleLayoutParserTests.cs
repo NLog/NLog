@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Layouts
             ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
             Assert.NotNull(elr);
             Assert.Equal("message,type", elr.Format);
-            Assert.Equal("x", elr.Separator);
+            Assert.Equal("x", elr.Separator.Render(LogEventInfo.CreateNullEvent()));
         }
 
         [Fact]
