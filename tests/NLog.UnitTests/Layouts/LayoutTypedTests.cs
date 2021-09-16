@@ -902,6 +902,18 @@ namespace NLog.UnitTests.Layouts
             Assert.True(lineNumber > 0);
         }
 
+        [Fact]
+        public void LayoutRendererSupportTypedLayout()
+        {
+            var cif = new NLog.Config.ConfigurationItemFactory();
+            cif.RegisterType(typeof(LayoutTypedTestLayoutRenderer), string.Empty);
+
+            Layout l = new SimpleLayout("${LayoutTypedTestLayoutRenderer:IntProperty=42}", cif);
+            l.Initialize(null);
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("42", result);
+        }
+
         private class TestObject
         {
             public string Value { get; set; }
@@ -918,6 +930,17 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
             logEventInfo.Properties.Add("value1", value);
             return logEventInfo;
+        }
+
+        [NLog.LayoutRenderers.LayoutRenderer(nameof(LayoutTypedTestLayoutRenderer))]
+        public class LayoutTypedTestLayoutRenderer : NLog.LayoutRenderers.LayoutRenderer
+        {
+            public Layout<int> IntProperty { get; set; } = 0;
+
+            protected override void Append(System.Text.StringBuilder builder, LogEventInfo logEvent)
+            {
+                builder.Append(IntProperty.RenderValue(logEvent).ToString());
+            }
         }
     }
 }

@@ -448,14 +448,13 @@ namespace NLog.Internal
         {
             try
             {
-#if !NETSTANDARD1_3
                 var converter = TypeDescriptor.GetConverter(type);
                 if (converter.CanConvertFrom(typeof(string)))
                 {
                     newValue = converter.ConvertFromInvariantString(value);
                     return true;
                 }
-#endif
+
                 newValue = null;
                 return false;
             }
