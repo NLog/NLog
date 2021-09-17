@@ -419,7 +419,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetMultipleConnectionsWithMessageErrorTest()
         {
-            var senderFactory = new MyQueudSenderFactory();
+            var senderFactory = new MyQueudSenderFactory()
+            {
+                AsyncMode = false,  // Disable async, because unit-test cannot handle it
+            };
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -471,6 +474,7 @@ namespace NLog.UnitTests.Targets
             var senderFactory = new MyQueudSenderFactory()
             {
                 FailCounter = 3, // first 3 sends will fail
+                AsyncMode = false,  // Disable async, because unit-test cannot handle it
             };
 
             var target = new NetworkTarget();
@@ -799,6 +803,7 @@ namespace NLog.UnitTests.Targets
             var senderFactory = new MyQueudSenderFactory()
             {
                 FailCounter = 3, // first 3 sends will fail
+                AsyncMode = false,  // Disable async, because unit-test cannot handle it
             };
 
             var target = new NetworkTarget();
@@ -867,7 +872,6 @@ namespace NLog.UnitTests.Targets
             var senderFactory = new MyQueudSenderFactory()
             {
                 FailCounter = total,
-                AsyncMode = true,
             };
 
             var target = new NetworkTarget();
@@ -993,7 +997,7 @@ namespace NLog.UnitTests.Targets
 
             public int FailCounter { get; set; }
 
-            public bool AsyncMode { get; set; }
+            public bool AsyncMode { get; set; } = true;
         }
 
         internal class MyQueudNetworkSender : QueuedNetworkSender
@@ -1052,25 +1056,29 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            private void SendSync(NetworkRequestArgs eventArgs)
+            private void SendSync(NetworkRequestArgs? nextRequest)
             {
-                var failedException = CheckForFailedException();
+                do
+                {
+                    if (!nextRequest.HasValue)
+                        return;
 
-                lock (_log)
-                {
-                    _log.WriteLine("{0}: send {1} {2}", _id, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
-                    MemoryStream.Write(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
-                    if (failedException != null)
+                    var eventArgs = nextRequest.Value;
+
+                    var failedException = CheckForFailedException();
+
+                    lock (_log)
                     {
-                        _log.WriteLine("{0}: failed", _id);
+                        _log.WriteLine("{0}: send {1} {2}", _id, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+                        MemoryStream.Write(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+                        if (failedException != null)
+                        {
+                            _log.WriteLine("{0}: failed", _id);
+                        }
                     }
-                }
-                
-                var nextRequest = EndRequest(eventArgs.AsyncContinuation, failedException);
-                if (nextRequest.HasValue)
-                {
-                    BeginRequest(nextRequest.Value);
-                }
+
+                    nextRequest = EndRequest(eventArgs.AsyncContinuation, failedException);
+                } while (nextRequest != null);
             }
 
             private Exception CheckForFailedException()
