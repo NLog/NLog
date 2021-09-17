@@ -180,7 +180,8 @@ namespace NLog.Internal.NetworkSenders
 #else
                         var addresses = Dns.GetHostAddressesAsync(uri.Host).ConfigureAwait(false).GetAwaiter().GetResult();
 #endif
-                        foreach (var addr in addresses)
+                        // Only prioritize IPv6 addresses, when explictly specified or the only option
+                        foreach (var addr in System.Linq.Enumerable.OrderBy(addresses, a => a.AddressFamily))
                         {
                             if (addr.AddressFamily == addressFamily || addressFamily == AddressFamily.Unspecified)
                             {

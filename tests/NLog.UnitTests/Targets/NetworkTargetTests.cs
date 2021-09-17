@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Targets
 
         private void HappyPathTest(LineEndingMode lineEnding, params string[] messages)
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://someaddress/";
             target.SenderFactory = senderFactory;
@@ -148,7 +148,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetMultipleConnectionsTest()
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -213,7 +213,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NothingToFlushTest()
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -239,7 +239,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetMultipleConnectionsWithCacheOverflowTest()
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -302,7 +302,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetMultipleConnectionsWithoutKeepAliveTest()
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -367,7 +367,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetMultipleConnectionsWithMessageDiscardTest()
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -419,7 +419,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetMultipleConnectionsWithMessageErrorTest()
         {
-            var senderFactory = new MySenderFactory();
+            var senderFactory = new MyQueudSenderFactory()
+            {
+                AsyncMode = false,  // Disable async, because unit-test cannot handle it
+            };
             var target = new NetworkTarget();
             target.Address = "tcp://${logger}.company.lan/";
             target.SenderFactory = senderFactory;
@@ -468,9 +471,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetSendFailureTests()
         {
-            var senderFactory = new MySenderFactory()
+            var senderFactory = new MyQueudSenderFactory()
             {
                 FailCounter = 3, // first 3 sends will fail
+                AsyncMode = false,  // Disable async, because unit-test cannot handle it
             };
 
             var target = new NetworkTarget();
@@ -533,11 +537,13 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetTcpTest()
         {
-            NetworkTarget target;
+            var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
+            var tcpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "tcp4" : "tcp6";
+            var tcpPort = 3004;
 
-            target = new NetworkTarget()
+            var target = new NetworkTarget()
             {
-                Address = "tcp://127.0.0.1:3004",
+                Address = $"{tcpPrefix}://{loopBackIP}:{tcpPort}",
                 Layout = "${message}\n",
                 KeepConnection = true,
             };
@@ -550,7 +556,7 @@ namespace NLog.UnitTests.Targets
                 var resultStream = new MemoryStream();
                 var receiveFinished = new ManualResetEvent(false);
 
-                listener.Bind(new IPEndPoint(IPAddress.Loopback, 3004));
+                listener.Bind(new IPEndPoint(loopBackIP, tcpPort));
                 listener.Listen(10);
                 listener.BeginAccept(
                     result =>
@@ -624,9 +630,13 @@ namespace NLog.UnitTests.Targets
         [InlineData(true)]
         public void NetworkTargetUdpTest(bool splitMessage)
         {
+            var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
+            var udpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "udp4" : "udp6";
+            var udpPort = splitMessage ? 3002 : 3003;
+
             var target = new NetworkTarget()
             {
-                Address = "udp://127.0.0.1:3002",
+                Address = $"{udpPrefix}://{loopBackIP}:{udpPort}",
                 Layout = "${message}\n",
                 KeepConnection = true,
                 MaxMessageSize = splitMessage ? 4 : short.MaxValue,
@@ -642,11 +652,11 @@ namespace NLog.UnitTests.Targets
 
                 byte[] receiveBuffer = new byte[4096];
 
-                listener.Bind(new IPEndPoint(IPAddress.Loopback, 3002));
+                listener.Bind(new IPEndPoint(loopBackIP, udpPort));
                 EndPoint remoteEndPoint = null;
                 AsyncCallback receivedDatagram = null;
 
-                const int toWrite = 50;
+                const int toWrite = 100;
                 int pendingWrites = toWrite;
 
                 receivedDatagram = result =>
@@ -796,9 +806,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetSendFailureWithoutKeepAliveTests()
         {
-            var senderFactory = new MySenderFactory()
+            var senderFactory = new MyQueudSenderFactory()
             {
                 FailCounter = 3, // first 3 sends will fail
+                AsyncMode = false,  // Disable async, because unit-test cannot handle it
             };
 
             var target = new NetworkTarget();
@@ -867,7 +878,6 @@ namespace NLog.UnitTests.Targets
             var senderFactory = new MyQueudSenderFactory()
             {
                 FailCounter = total,
-                AsyncMode = true,
             };
 
             var target = new NetworkTarget();
@@ -978,184 +988,53 @@ namespace NLog.UnitTests.Targets
             Assert.NotNull(target);
         }
 
-        internal class MySenderFactory : INetworkSenderFactory
-        {
-            internal List<MyNetworkSender> Senders = new List<MyNetworkSender>();
-            internal StringWriter Log = new StringWriter();
-            private int idCounter;
-
-            public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
-            {
-                var sender = new MyNetworkSender(url, ++idCounter, Log, this);
-                Senders.Add(sender);
-                return sender;
-            }
-
-            public int FailCounter { get; set; }
-
-            public bool AsyncMode { get; set; }
-        }
-
-        internal class MyNetworkSender : NetworkSender
-        {
-            private readonly int id;
-            private readonly TextWriter log;
-            private readonly MySenderFactory senderFactory;
-            internal MemoryStream MemoryStream { get; }
-
-            public MyNetworkSender(string url, int id, TextWriter log, MySenderFactory senderFactory)
-                : base(url)
-            {
-                this.id = id;
-                this.log = log;
-                this.senderFactory = senderFactory;
-                MemoryStream = new MemoryStream();
-            }
-
-            protected override void DoInitialize()
-            {
-                base.DoInitialize();
-                lock (log)
-                {
-                    log.WriteLine("{0}: connect {1}", id, Address);
-                }
-            }
-
-            protected override void DoFlush(AsyncContinuation continuation)
-            {
-                if (senderFactory.AsyncMode)
-                {
-                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); FlushSync(continuation); });
-                    AsyncHelpers.StartAsyncTask(asyncTask, null);
-                }
-                else
-                {
-                    FlushSync(continuation);
-                }
-            }
-
-            private void FlushSync(AsyncContinuation continuation)
-            {
-                lock (log)
-                {
-                    log.WriteLine("{0}: flush", id);
-                }
-                continuation(null);
-            }
-
-            protected override void DoClose(AsyncContinuation continuation)
-            {
-                if (senderFactory.AsyncMode)
-                {
-                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); CloseSync(continuation); });
-                    AsyncHelpers.StartAsyncTask(asyncTask, null);
-                }
-                else
-                {
-                    CloseSync(continuation);
-                }
-            }
-
-            private void CloseSync(AsyncContinuation continuation)
-            {
-                lock (log)
-                {
-                    log.WriteLine("{0}: close", id);
-                }
-                continuation(null);
-            }
-
-            protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation continuation)
-            {
-                if (senderFactory.AsyncMode)
-                {
-                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); SendSync(bytes, offset, length, continuation); });
-                    AsyncHelpers.StartAsyncTask(asyncTask, null);
-                }
-                else
-                {
-                    SendSync(bytes, offset, length, continuation);
-                }
-            }
-
-            private void SendSync(byte[] bytes, int offset, int length, AsyncContinuation continuation)
-            {
-                var failedException = CheckForFailedException();
-                lock (log)
-                {
-                    log.WriteLine("{0}: send {1} {2}", id, offset, length);
-                    MemoryStream.Write(bytes, offset, length);
-                    if (failedException != null)
-                    {
-                        log.WriteLine("{0}: failed", id);
-                    }
-                }
-                continuation(failedException);
-            }
-
-            private Exception CheckForFailedException()
-            {
-                lock (senderFactory)
-                {
-                    if (senderFactory.FailCounter > 0)
-                    {
-                        senderFactory.FailCounter--;
-                        return new IOException("some IO error has occured");
-                    }
-                }
-
-                return null;
-            }
-        }
-
         internal class MyQueudSenderFactory : INetworkSenderFactory
         {
             internal List<MyQueudNetworkSender> Senders = new List<MyQueudNetworkSender>();
             internal StringWriter Log = new StringWriter();
-            private int idCounter;
+            private int _idCounter;
 
             public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
-                var sender = new MyQueudNetworkSender(url, ++idCounter, Log, this);
+                var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this);
                 Senders.Add(sender);
                 return sender;
             }
 
             public int FailCounter { get; set; }
 
-            public bool AsyncMode { get; set; }
+            public bool AsyncMode { get; set; } = true;
         }
 
         internal class MyQueudNetworkSender : QueuedNetworkSender
         {
-            private readonly int id;
-            private readonly TextWriter log;
-            private readonly MyQueudSenderFactory senderFactory;
-            internal MemoryStream MemoryStream { get; }
+            private readonly int _id;
+            private readonly TextWriter _log;
+            private readonly MyQueudSenderFactory _senderFactory;
+            public MemoryStream MemoryStream { get; } = new MemoryStream();
 
             public MyQueudNetworkSender(string url, int id, TextWriter log, MyQueudSenderFactory senderFactory)
                 : base(url)
             {
-                this.id = id;
-                this.log = log;
-                this.senderFactory = senderFactory;
-                MemoryStream = new MemoryStream();
+                _id = id;
+                _log = log;
+                _senderFactory = senderFactory;
             }
 
             protected override void DoInitialize()
             {
                 base.DoInitialize();
-                lock (log)
+                lock (_log)
                 {
-                    log.WriteLine("{0}: connect {1}", id, Address);
+                    _log.WriteLine("{0}: connect {1}", _id, Address);
                 }
             }
 
             protected override void DoFlush(AsyncContinuation continuation)
             {
-                lock (log)
+                lock (_log)
                 {
-                    log.WriteLine("{0}: flush", id);
+                    _log.WriteLine("{0}: flush", _id);
                 }
 
                 base.DoFlush(continuation);
@@ -1163,16 +1042,16 @@ namespace NLog.UnitTests.Targets
 
             protected override void DoClose(AsyncContinuation continuation)
             {
-                lock (log)
+                lock (_log)
                 {
-                    log.WriteLine("{0}: close", id);
+                    _log.WriteLine("{0}: close", _id);
                 }
                 base.DoClose(continuation);
             }
 
             protected override void BeginRequest(NetworkRequestArgs eventArgs)
             {
-                if (senderFactory.AsyncMode)
+                if (_senderFactory.AsyncMode)
                 {
                     var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); SendSync(eventArgs); });
                     AsyncHelpers.StartAsyncTask(asyncTask, null);
@@ -1183,34 +1062,38 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            private void SendSync(NetworkRequestArgs eventArgs)
+            private void SendSync(NetworkRequestArgs? nextRequest)
             {
-                var failedException = CheckForFailedException();
+                do
+                {
+                    if (!nextRequest.HasValue)
+                        return;
 
-                lock (log)
-                {
-                    log.WriteLine("{0}: send {1} {2}", id, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
-                    MemoryStream.Write(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
-                    if (failedException != null)
+                    var eventArgs = nextRequest.Value;
+
+                    var failedException = CheckForFailedException();
+
+                    lock (_log)
                     {
-                        log.WriteLine("{0}: failed", id);
+                        _log.WriteLine("{0}: send {1} {2}", _id, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+                        MemoryStream.Write(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+                        if (failedException != null)
+                        {
+                            _log.WriteLine("{0}: failed", _id);
+                        }
                     }
-                }
-                
-                var nextRequest = EndRequest(eventArgs.AsyncContinuation, failedException);
-                if (nextRequest.HasValue)
-                {
-                    BeginRequest(nextRequest.Value);
-                }
+
+                    nextRequest = EndRequest(eventArgs.AsyncContinuation, failedException);
+                } while (nextRequest != null);
             }
 
             private Exception CheckForFailedException()
             {
-                lock (senderFactory)
+                lock (_senderFactory)
                 {
-                    if (senderFactory.FailCounter > 0)
+                    if (_senderFactory.FailCounter > 0)
                     {
-                        senderFactory.FailCounter--;
+                        _senderFactory.FailCounter--;
                         return new IOException("some IO error has occured");
                     }
                 }
