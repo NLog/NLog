@@ -537,11 +537,13 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetTcpTest()
         {
-            NetworkTarget target;
+            var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
+            var tcpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "tcp4" : "tcp6";
+            var tcpPort = 3004;
 
-            target = new NetworkTarget()
+            var target = new NetworkTarget()
             {
-                Address = "tcp://127.0.0.1:3004",
+                Address = $"{tcpPrefix}://{loopBackIP}:{tcpPort}",
                 Layout = "${message}\n",
                 KeepConnection = true,
             };
@@ -554,7 +556,7 @@ namespace NLog.UnitTests.Targets
                 var resultStream = new MemoryStream();
                 var receiveFinished = new ManualResetEvent(false);
 
-                listener.Bind(new IPEndPoint(IPAddress.Loopback, 3004));
+                listener.Bind(new IPEndPoint(loopBackIP, tcpPort));
                 listener.Listen(10);
                 listener.BeginAccept(
                     result =>
@@ -628,9 +630,13 @@ namespace NLog.UnitTests.Targets
         [InlineData(true)]
         public void NetworkTargetUdpTest(bool splitMessage)
         {
+            var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
+            var udpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "udp4" : "udp6";
+            var udpPort = splitMessage ? 3002 : 3003;
+
             var target = new NetworkTarget()
             {
-                Address = "udp://127.0.0.1:3002",
+                Address = $"{udpPrefix}://{loopBackIP}:{udpPort}",
                 Layout = "${message}\n",
                 KeepConnection = true,
                 MaxMessageSize = splitMessage ? 4 : short.MaxValue,
@@ -646,11 +652,11 @@ namespace NLog.UnitTests.Targets
 
                 byte[] receiveBuffer = new byte[4096];
 
-                listener.Bind(new IPEndPoint(IPAddress.Loopback, 3002));
+                listener.Bind(new IPEndPoint(loopBackIP, udpPort));
                 EndPoint remoteEndPoint = null;
                 AsyncCallback receivedDatagram = null;
 
-                const int toWrite = 50;
+                const int toWrite = 100;
                 int pendingWrites = toWrite;
 
                 receivedDatagram = result =>

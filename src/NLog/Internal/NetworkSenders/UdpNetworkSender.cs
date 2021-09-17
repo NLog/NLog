@@ -179,6 +179,7 @@ namespace NLog.Internal.NetworkSenders
             socketEventArgs.SetBuffer(networkRequest.RequestBuffer, networkRequest.RequestBufferOffset, messageLength);
             socketEventArgs.UserToken = networkRequest.AsyncContinuation;
         }
+
         private void SocketOperationCompletedAsync(object sender, SocketAsyncEventArgs args)
         {
             var nextRequest = SocketOperationCompleted(args);
