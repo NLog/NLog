@@ -589,7 +589,6 @@ namespace NLog.UnitTests.Targets
                     {
                         lock (exceptions)
                         {
-                            // Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
                             exceptions.Add(ex);
                             pendingWrites--;
                             if (pendingWrites == 0)
@@ -609,8 +608,12 @@ namespace NLog.UnitTests.Targets
 
                 Assert.True(writeCompleted.WaitOne(10000), "Network Writes did not complete");
                 target.Close();
+                foreach (var ex in exceptions)
+                {
+                    Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+                }
                 Assert.True(receiveFinished.WaitOne(10000), "Network Receive did not complete");
-                Assert.True(receiveException == null, $"Network Exception: {receiveException?.ToString()}");
+                Assert.True(receiveException == null, $"Network Receive Exception: {receiveException?.ToString()}");
                 string resultString = Encoding.UTF8.GetString(resultStream.GetBuffer(), 0, (int)resultStream.Length);
                 Assert.Equal(expectedResult, resultString);
             }
@@ -643,7 +646,7 @@ namespace NLog.UnitTests.Targets
                 EndPoint remoteEndPoint = null;
                 AsyncCallback receivedDatagram = null;
 
-                const int toWrite = 100;
+                const int toWrite = 50;
                 int pendingWrites = toWrite;
 
                 receivedDatagram = result =>
@@ -682,6 +685,7 @@ namespace NLog.UnitTests.Targets
                         catch (Exception ex)
                         {
                             receiveException = ex;
+                            receiveFinished.Set();
                         }
                     };
 
@@ -716,8 +720,12 @@ namespace NLog.UnitTests.Targets
 
                 Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
                 target.Close();
+                foreach (var ex in exceptions)
+                {
+                    Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+                }
                 Assert.True(receiveFinished.WaitOne(10000), $"Network Receive not completed. Count={receivedMessages.Count}, LastMsg={receivedMessages.LastOrDefault()}");
-                Assert.True(receiveException == null, $"Network Exception: {receiveException?.ToString()}");
+                Assert.True(receiveException == null, $"Network Receive Exception: {receiveException?.ToString()}");
                 Assert.Equal(toWrite, receivedMessages.Count);
                 for (int i = 0; i < toWrite; ++i)
                 {
