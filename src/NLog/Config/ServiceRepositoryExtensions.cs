@@ -78,10 +78,10 @@ namespace NLog.Config
             try
             {
                 var service = (serviceProvider ?? LogManager.LogFactory.ServiceRepository).GetService(typeof(T)) as T;
-                if (service != null)
-                    return service;
+                if (service is null)
+                    throw new NLogDependencyResolveException($"Service type {typeof(T)} cannot be resolved", typeof(T));
                 
-                throw new NLogDependencyResolveException($"Service type {typeof(T)} cannot be resolved", typeof(T));
+                return service;
             }
             catch (NLogDependencyResolveException ex)
             {

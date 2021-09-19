@@ -457,9 +457,9 @@ namespace NLog.Config
             if (!AssertNonEmptyValue(variableName, "name", variableElement.Name, "variables"))
                 return;
 
-            Layout variableLayout = variableValue != null
-                ? CreateSimpleLayout(ExpandSimpleVariables(variableValue))
-                : ParseVariableLayoutValue(variableElement);
+            Layout variableLayout = variableValue is null
+                ? ParseVariableLayoutValue(variableElement)
+                : CreateSimpleLayout(ExpandSimpleVariables(variableValue));
 
             if (!AssertNotNullValue(variableLayout, "value", variableElement.Name, "variables"))
                 return;
@@ -527,10 +527,10 @@ namespace NLog.Config
         [ContractAnnotation("value:notnull => true")]
         private bool AssertNotNullValue(object value, string propertyName, string elementName, string sectionName)
         {
-            if (value != null)
-                return true;
+            if (value is null)
+                return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
 
-            return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
+            return true;
         }
 
         [ContractAnnotation("value:null => false")]
@@ -1454,10 +1454,10 @@ namespace NLog.Config
             {
                 get
                 {
-                    if (_validChildren != null)
-                        return _validChildren;
-                    else
+                    if (_validChildren is null)
                         return YieldAndCacheValidChildren();
+                    else
+                        return _validChildren;
                 }
             }
 

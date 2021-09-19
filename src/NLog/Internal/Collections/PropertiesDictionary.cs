@@ -519,12 +519,12 @@ namespace NLog.Internal
 
             private static bool HasMessageProperties(PropertiesDictionary propertiesDictionary)
             {
-                return propertiesDictionary._messageProperties != null && propertiesDictionary._messageProperties.Count > 0;
+                return propertiesDictionary._messageProperties?.Count > 0;
             }
 
             private static bool HasEventProperties(PropertiesDictionary propertiesDictionary)
             {
-                return propertiesDictionary._eventProperties != null && propertiesDictionary._eventProperties.Count > 0;
+                return propertiesDictionary._eventProperties?.Count > 0;
             }
 
             private bool MoveNextValidEventProperty()

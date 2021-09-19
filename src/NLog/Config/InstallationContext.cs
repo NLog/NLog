@@ -187,7 +187,7 @@ namespace NLog.Config
         {
             if (logLevel >= LogLevel)
             {
-                if (arguments != null && arguments.Length > 0)
+                if (arguments?.Length > 0)
                 {
                     message = string.Format(CultureInfo.InvariantCulture, message, arguments);
                 }

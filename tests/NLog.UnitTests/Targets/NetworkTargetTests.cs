@@ -656,7 +656,7 @@ namespace NLog.UnitTests.Targets
                 EndPoint remoteEndPoint = null;
                 AsyncCallback receivedDatagram = null;
 
-                const int toWrite = 100;
+                const int toWrite = 50;
                 int pendingWrites = toWrite;
 
                 receivedDatagram = result =>

@@ -261,7 +261,7 @@ namespace NLog.Config
             foreach (var filePath in GetPrivateBinPathNLogLocations(baseDirectory, nlogConfigFile, platformFileSystemCaseInsensitive ? nLogConfigFileLowerCase : string.Empty))
                 yield return filePath;
 
-            string nlogAssemblyLocation = filename != null ? null : LookupNLogAssemblyLocation();
+            string nlogAssemblyLocation = filename is null ? LookupNLogAssemblyLocation() : null;
             if (nlogAssemblyLocation != null)
                 yield return nlogAssemblyLocation + ".nlog";
         }
