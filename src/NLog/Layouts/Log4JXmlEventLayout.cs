@@ -96,7 +96,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> operation-call-stack.
+        /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeScopeNested
@@ -120,10 +120,9 @@ namespace NLog.Layouts
         public bool IncludeMdc { get => Renderer.IncludeMdc; set => Renderer.IncludeMdc = value; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
+        /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         public bool IncludeNdc { get => Renderer.IncludeNdc; set => Renderer.IncludeNdc = value; }
 
         /// <summary>
