@@ -52,10 +52,10 @@ namespace NLog.Targets
             get => _contextLayout;
             set
             {
-                if (_contextLayout != null)
-                    _contextLayout.TargetLayout = value;
-                else
+                if (_contextLayout is null)
                     _contextLayout = new TargetWithContextLayout(this, value);
+                else
+                    _contextLayout.TargetLayout = value;
             }
         }
         private TargetWithContextLayout _contextLayout;

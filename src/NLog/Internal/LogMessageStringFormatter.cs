@@ -68,8 +68,7 @@ namespace NLog.Internal
         internal static bool HasParameters(LogEventInfo logEvent)
         {
             //if message is empty, there no parameters
-            //null check cheapest, so in-front
-            return logEvent.Parameters != null && !string.IsNullOrEmpty(logEvent.Message) && logEvent.Parameters.Length > 0;
+            return logEvent.Parameters?.Length > 0 && !string.IsNullOrEmpty(logEvent.Message);
         }
 
         public bool HasProperties(LogEventInfo logEvent)

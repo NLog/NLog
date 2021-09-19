@@ -206,13 +206,13 @@ namespace NLog.Internal
         {
             _scopeProperties = scopeProperties;
             NestedState = nestedState;
-            NestedStateTimestamp = nestedState != null ? ScopeContext.GetNestedContextTimestampNow() : 0;
+            NestedStateTimestamp = nestedState is null ? 0 : ScopeContext.GetNestedContextTimestampNow();
         }
 
         object[] IScopeContextAsyncState.CaptureNestedContext(int initialCapacity, out object[] nestedContext)
         {
             nestedContext = null;
-            int extraCount = (NestedState != null ? 1 : 0);
+            int extraCount = NestedState is null ? 0 : 1;
             Parent?.CaptureNestedContext(initialCapacity + extraCount, out nestedContext);
             if (extraCount > 0)
             {

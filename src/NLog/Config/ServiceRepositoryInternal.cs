@@ -129,14 +129,16 @@ namespace NLog.Config
 
             // Do not hold lock while calling constructor (or resolving parameter values) to avoid deadlock
             var constructorParameters = compiledConstructor?.Parameters;
-            if (constructorParameters != null)
+            if (constructorParameters is null)
+            {
+                return objectResolver?.Invoke(itemType) ?? compiledConstructor?.Ctor(null);
+            }
+            else
             {
                 seenTypes = seenTypes ?? new HashSet<Type>();
                 var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
                 return compiledConstructor.Ctor(parameterValues);
             }
-
-            return objectResolver?.Invoke(itemType) ?? compiledConstructor?.Ctor(null);
         }
 
         private CompiledConstructor CreateCompiledConstructor(Type itemType)
@@ -144,18 +146,18 @@ namespace NLog.Config
             try
             {
                 var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
-                if (defaultConstructor != null)
-                {
-                    InternalLogger.Trace("Resolves default constructor for {0}", itemType);
-                    var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
-                    return new CompiledConstructor(constructorMethod);
-                }
-                else
+                if (defaultConstructor is null)
                 {
                     InternalLogger.Trace("Resolves parameterized constructor for {0}", itemType);
                     var ctor = GetParameterizedConstructor(itemType);
                     var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(ctor);
                     return new CompiledConstructor(constructorMethod, ctor.GetParameters());
+                }
+                else
+                {
+                    InternalLogger.Trace("Resolves default constructor for {0}", itemType);
+                    var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
+                    return new CompiledConstructor(constructorMethod);
                 }
             }
             catch (MissingMethodException exception)

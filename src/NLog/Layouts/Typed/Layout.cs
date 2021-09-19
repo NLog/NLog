@@ -227,10 +227,10 @@ namespace NLog.Layouts
         {
             if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
             {
-                if (cachedValue != null)
-                    return (TValueType)cachedValue;
-                else
+                if (cachedValue is null)
                     return defaultValue;
+                else
+                    return (TValueType)cachedValue;
             }
 
             if (TryRenderObjectValue(logEvent, stringBuilder, out var value))
@@ -299,7 +299,7 @@ namespace NLog.Layouts
         private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
         {
             SimpleLayout simpleLayout = _innerLayout as SimpleLayout;
-            if (simpleLayout != null && simpleLayout.IsSimpleStringText)
+            if (simpleLayout?.IsSimpleStringText == true)
             {
                 return simpleLayout.Render(logEvent);
             }
