@@ -529,8 +529,8 @@ namespace NLog.Config
         {
             if (value is null)
                 return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
-            
-            return true;            
+
+            return true;
         }
 
         [ContractAnnotation("value:null => false")]
