@@ -50,7 +50,7 @@ namespace NLog.Targets
     {
         internal string _tostring;
 
-        private List<Layout> _allLayouts;
+        private Layout[] _allLayouts = ArrayHelper.Empty<Layout>();
 
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
@@ -225,9 +225,6 @@ namespace NLog.Targets
             if (!IsInitialized)
                 return;
 
-            if (_allLayouts is null)
-                return;
-
             if (_precalculateStringBuilderPool is null)
             {
                 System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
@@ -248,9 +245,6 @@ namespace NLog.Targets
             lock (SyncRoot)
             {
                 if (!_isInitialized)
-                    return;
-
-                if (_allLayouts is null)
                     return;
 
                 using (var targetBuilder = ReusableLayoutBuilder.Allocate())
@@ -520,23 +514,20 @@ namespace NLog.Targets
 
         private void FindAllLayouts()
         {
-            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(false, this);
-            InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Count);
+            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(false, this).ToArray();
+            InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Length);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
             _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
             if (!_allLayoutsAreThreadAgnostic || _oneLayoutIsMutableUnsafe)
             {
-                _allLayoutsAreThreadSafe = _allLayouts.All(layout => layout.ThreadSafe);
+                var unsafeLayout = _allLayouts.FirstOrDefault(layout => !layout.ThreadSafe);
+                _allLayoutsAreThreadSafe = unsafeLayout is null;
+                if (unsafeLayout != null)
+                    InternalLogger.Debug("{0} has {1} layouts, but {2} is not threadsafe.", this, _allLayouts.Length, unsafeLayout.GetType());
             }
 
-            StackTraceUsage result = StackTraceUsage.None;
-            foreach (var layout in _allLayouts.DefaultIfEmpty())
-            {
-                result |= layout?.StackTraceUsage ?? StackTraceUsage.None;
-            }
-            StackTraceUsage = result;
-            if (this is IUsesStackTrace usesStackTrace)
-                StackTraceUsage |= usesStackTrace.StackTraceUsage;
+            var result = _allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
+            StackTraceUsage = result | ((this as IUsesStackTrace)?.StackTraceUsage ?? StackTraceUsage.None);
             _scannedForLayouts = true;
         }
 

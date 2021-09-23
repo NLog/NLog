@@ -34,10 +34,8 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
 
@@ -49,6 +47,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("exception-data")]
     [ThreadAgnostic]
     [ThreadSafe]
+    [MutableUnsafe]
     public class ExceptionDataLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -65,7 +64,6 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='50' />
         public string Format { get; set; }
 
-
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
@@ -81,7 +79,6 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-
             Exception primaryException = GetTopException(logEvent);
             if (primaryException != null)
             {
