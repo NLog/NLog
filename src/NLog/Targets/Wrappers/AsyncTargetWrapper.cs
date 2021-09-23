@@ -291,6 +291,7 @@ namespace NLog.Targets.Wrappers
             if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
             {
                 _missingServiceTypes = true;
+                InternalLogger.Debug("{0} WrappedTarget has unresolved missing dependencies.", this);
             }
 
             _requestQueue.Clear();
