@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("time")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class TimeLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>

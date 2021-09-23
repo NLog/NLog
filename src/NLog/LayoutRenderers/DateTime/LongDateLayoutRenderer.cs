@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("longdate")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class LongDateLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>

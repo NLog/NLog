@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("date")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class DateLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>

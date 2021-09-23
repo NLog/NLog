@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("onexception")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class OnExceptionLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <inheritdoc/>

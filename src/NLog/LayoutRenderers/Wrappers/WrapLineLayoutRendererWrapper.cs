@@ -42,10 +42,9 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Replaces newline characters from the result of another layout renderer with spaces.
     /// </summary>
     [LayoutRenderer("wrapline")]
-    [AmbientProperty("WrapLine")]
+    [AmbientProperty(nameof(WrapLine))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class WrapLineLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

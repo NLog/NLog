@@ -195,61 +195,6 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void Var_Layout_Target_ThreadSafe()
-        {
-            int checkThreadSafe = 1;
-
-            var logFactory = new LogFactory().Setup()
-                .SetupExtensions(ext => ext.RegisterLayoutRenderer("naked-runner", (evt) =>
-                {
-                    var orgValue = System.Threading.Interlocked.Exchange(ref checkThreadSafe, 0);
-                    if (orgValue == 0)
-                        throw new InvalidOperationException("Running naked in the woods");
-
-                    System.Threading.Thread.Sleep(10);
-                    System.Threading.Interlocked.Exchange(ref checkThreadSafe, orgValue);
-                    return "Running safely";
-                }))
-                .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
-                    <variable name='myvar' value='Hello' />
-                    <targets>
-                        <target name='debug1' type='Memory' layout='${logger}|${message}|${var:myvar}' />
-                        <target name='debug2' type='Memory' layout='${logger}|${message}|${var:myvar}' />
-                    </targets>
-                    <rules>
-                        <logger name='d1' minLevel='Debug' writeTo='debug1' />
-                        <logger name='d2' minLevel='Debug' writeTo='debug2' />
-                    </rules>
-                </nlog>")
-                .LoadConfiguration(cfg => cfg.Configuration.Variables["myvar"] = new SimpleLayout("${naked-runner}", cfg.LogFactory.ServiceRepository.ConfigurationItemFactory)).LogFactory;
-
-            // Act
-            int expectedLogCount = 100;
-            var manualEvent = new System.Threading.ManualResetEvent(false);
-            Action<Logger> runnerMethod = (logger) =>
-            {
-                manualEvent.WaitOne();
-                for (int i = 0; i < expectedLogCount / 2; ++i)
-                    logger.Info("Test {0}", i);
-            };
-
-            var logger1 = logFactory.GetLogger("d1");
-            var thread1 = new System.Threading.Thread((s) => runnerMethod((Logger)s)) { Name = logger1.Name, IsBackground = true };
-            thread1.Start(logger1);
-
-            var logger2 = logFactory.GetLogger("d2");
-            var thread2 = new System.Threading.Thread((s) => runnerMethod((Logger)s)) { Name = logger2.Name, IsBackground = true };
-            thread2.Start(logger2);
-
-            manualEvent.Set();
-            thread1.Join();
-            thread2.Join();
-
-            // Assert
-            Assert.Equal(expectedLogCount, logFactory.Configuration.AllTargets.OfType<MemoryTarget>().Sum(m => m.Logs.Count));
-        }
-
-        [Fact]
         public void Var_with_other_var()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"

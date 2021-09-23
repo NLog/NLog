@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers
     /// <see cref="NestedDiagnosticsLogicalContext"/> Timing Renderer (Async scope)
     /// </summary>
     [LayoutRenderer("ndlctiming")]
-    [ThreadSafe]
     [Obsolete("Replaced by ScopeContextTimingLayoutRenderer ${scopetiming}. Marked obsolete on NLog 5.0")]
     public class NdlcTimingLayoutRenderer : LayoutRenderer
     {

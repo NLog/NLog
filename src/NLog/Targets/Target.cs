@@ -54,7 +54,6 @@ namespace NLog.Targets
 
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
-        private bool _allLayoutsAreThreadSafe;
         private bool _oneLayoutIsMutableUnsafe;
         private bool _scannedForLayouts;
         private Exception _initializeException;
@@ -209,25 +208,12 @@ namespace NLog.Targets
                 return;
             }
 
-            // Not all Layouts support concurrent threads, so we have to protect them
-            if (_allLayoutsAreThreadSafe)
-            {
-                PrecalculateVolatileLayoutsConcurrent(logEvent);
-            }
-            else
-            {
-                PrecalculateVolatileLayoutsWithLock(logEvent);
-            }
-        }
-
-        private void PrecalculateVolatileLayoutsConcurrent(LogEventInfo logEvent)
-        {
             if (!IsInitialized)
                 return;
 
             if (_precalculateStringBuilderPool is null)
             {
-                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
+                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2, 16), null);
             }
 
             using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
@@ -236,24 +222,6 @@ namespace NLog.Targets
                 {
                     targetBuilder.Item.ClearBuilder();
                     layout.PrecalculateBuilder(logEvent, targetBuilder.Item);
-                }
-            }
-        }
-
-        private void PrecalculateVolatileLayoutsWithLock(LogEventInfo logEvent)
-        {
-            lock (SyncRoot)
-            {
-                if (!_isInitialized)
-                    return;
-
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                {
-                    foreach (Layout layout in _allLayouts)
-                    {
-                        targetBuilder.Result.ClearBuilder();
-                        layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
-                    }
                 }
             }
         }
@@ -518,13 +486,6 @@ namespace NLog.Targets
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Length);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
             _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
-            if (!_allLayoutsAreThreadAgnostic || _oneLayoutIsMutableUnsafe)
-            {
-                var unsafeLayout = _allLayouts.FirstOrDefault(layout => !layout.ThreadSafe);
-                _allLayoutsAreThreadSafe = unsafeLayout is null;
-                if (unsafeLayout != null)
-                    InternalLogger.Debug("{0} has {1} layouts, but {2} is not threadsafe.", this, _allLayouts.Length, unsafeLayout.GetType());
-            }
 
             var result = _allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
             StackTraceUsage = result | ((this as IUsesStackTrace)?.StackTraceUsage ?? StackTraceUsage.None);

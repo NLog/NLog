@@ -49,7 +49,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("substring")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class SubstringLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

@@ -41,6 +41,7 @@ namespace NLog.Config
     ///
     /// Without this attribute then the target concurrency will be reduced
     /// </summary>
+    [Obsolete("All LayoutRenderer's and Layout's should be ThreadSafe by default. Marked obsolete with NLog 5.0")]
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class ThreadSafeAttribute : Attribute
     {

@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("gdc")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>

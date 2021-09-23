@@ -41,7 +41,6 @@ namespace NLog.Layouts
     /// </summary>
     [Layout("LayoutWithHeaderAndFooter")]
     [ThreadAgnostic]
-    [ThreadSafe]
     [AppDomainFixedOutput]
     public class LayoutWithHeaderAndFooter : Layout
     {

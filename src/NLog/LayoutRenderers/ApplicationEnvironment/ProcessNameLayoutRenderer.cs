@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processname")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class ProcessNameLayoutRenderer : LayoutRenderer
     {
         private readonly string _processFilePath;

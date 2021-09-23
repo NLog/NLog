@@ -51,7 +51,6 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     [LayoutRenderer("assembly-version")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class AssemblyVersionLayoutRenderer : LayoutRenderer
     {
         /// <summary>

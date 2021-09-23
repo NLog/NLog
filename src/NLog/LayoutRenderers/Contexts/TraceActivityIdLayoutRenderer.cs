@@ -47,7 +47,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("activity-id")]
     [LayoutRenderer("activityid")]
-    [ThreadSafe]
     public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <inheritdoc />

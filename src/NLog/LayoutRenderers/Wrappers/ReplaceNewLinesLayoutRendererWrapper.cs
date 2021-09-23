@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("ReplaceNewLines")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         private const string WindowsNewLine = "\r\n";

@@ -48,10 +48,11 @@ namespace NLog.Layouts
         /// <summary>
         /// Layout renderer method can handle concurrent threads
         /// </summary>
+        [Obsolete("All LayoutRenderers and Layout should be ThreadSafe by default. Marked obsolete with NLog 5.0")]
         ThreadSafe = 1,
         /// <summary>
         /// Layout renderer method is agnostic to current thread context. This means it will render the same result indepdent of thread-context.
         /// </summary>
-        ThreadAgnostic = 2 | ThreadSafe,
+        ThreadAgnostic = 2 | 1,
     }
 }

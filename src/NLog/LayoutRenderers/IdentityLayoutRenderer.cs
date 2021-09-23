@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     /// Thread identity information (name and authentication information).
     /// </summary>
     [LayoutRenderer("identity")]
-    [ThreadSafe]
     public class IdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>

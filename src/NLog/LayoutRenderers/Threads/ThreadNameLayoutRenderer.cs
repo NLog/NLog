@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
-    [ThreadSafe]
     public class ThreadNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <inheritdoc />

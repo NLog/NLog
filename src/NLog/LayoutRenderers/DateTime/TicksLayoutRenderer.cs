@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("ticks")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class TicksLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <inheritdoc />

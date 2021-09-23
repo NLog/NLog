@@ -47,7 +47,6 @@ namespace NLog.Layouts
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [ThreadAgnostic]
-    [ThreadSafe]
     [AppDomainFixedOutput]
     public sealed class Layout<T> : Layout, ITypedLayout, IEquatable<T>
     {
@@ -181,7 +180,6 @@ namespace NLog.Layouts
         {
             base.InitializeLayout();
             _innerLayout?.Initialize(LoggingConfiguration ?? _innerLayout.LoggingConfiguration);
-            ThreadSafe = _innerLayout?.ThreadSafe ?? true;
             ThreadAgnostic = _innerLayout?.ThreadAgnostic ?? true;
             MutableUnsafe = _innerLayout?.MutableUnsafe ?? false;
             StackTraceUsage = _innerLayout?.StackTraceUsage ?? StackTraceUsage.None;

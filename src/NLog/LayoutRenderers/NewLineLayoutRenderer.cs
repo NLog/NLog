@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("newline")]
     [ThreadAgnostic]
-    [ThreadSafe]
     [AppDomainFixedOutput]
     public class NewLineLayoutRenderer : LayoutRenderer
     {

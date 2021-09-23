@@ -50,7 +50,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("ClearCache")]
     [AmbientProperty("CachedSeconds")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
     {
         /// <summary>

@@ -642,19 +642,6 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void FuncLayoutRendererFluentMethod_ThreadSafe_Test()
-        {
-            // Arrange
-            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.ThreadSafe);
-            // Act
-            var result = layout.Render(LogEventInfo.CreateNullEvent());
-            // Assert
-            Assert.Equal("42", result);
-            Assert.True(layout.ThreadSafe);
-            Assert.False(layout.ThreadAgnostic);
-        }
-
-        [Fact]
         void FuncLayoutRendererFluentMethod_ThreadAgnostic_Test()
         {
             // Arrange
@@ -663,12 +650,11 @@ namespace NLog.UnitTests.Layouts
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
             Assert.Equal("42", result);
-            Assert.True(layout.ThreadSafe);
             Assert.True(layout.ThreadAgnostic);
         }
 
         [Fact]
-        void FuncLayoutRendererFluentMethod_ThreadUnsafe_Test()
+        void FuncLayoutRendererFluentMethod_Test()
         {
             // Arrange
             var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.None);
@@ -676,7 +662,6 @@ namespace NLog.UnitTests.Layouts
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
             Assert.Equal("42", result);
-            Assert.False(layout.ThreadSafe);
             Assert.False(layout.ThreadAgnostic);
         }
 
@@ -733,6 +718,7 @@ namespace NLog.UnitTests.Layouts
         [InlineData(null, true)]
         [InlineData("'a'", true)]
         [InlineData("${gdc:a}", false)]
+        [InlineData("${threadname}", false)]
         public void FromString_isFixedText(string input, bool expected)
         {
             // Act
@@ -748,14 +734,15 @@ namespace NLog.UnitTests.Layouts
         [InlineData(null, true)]
         [InlineData("'a'", true)]
         [InlineData("${gdc:a}", true)]
-        public void FromString_isThreadSafe(string input, bool expected)
+        [InlineData("${threadname}", false)]
+        public void FromString_isThreadAgnostic(string input, bool expected)
         {
             // Act
             var layout = (SimpleLayout)Layout.FromString(input);
             layout.Initialize(null);
 
             // Assert
-            Assert.Equal(expected, layout.ThreadSafe);
+            Assert.Equal(expected, layout.ThreadAgnostic);
         }
 
         [Theory]
@@ -773,7 +760,6 @@ namespace NLog.UnitTests.Layouts
             // Assert
             Assert.Equal(expected, result);
         }
-
 
         [Fact]
         public void Parse_AppDomainFixedOutput_ConvertToLiteral()

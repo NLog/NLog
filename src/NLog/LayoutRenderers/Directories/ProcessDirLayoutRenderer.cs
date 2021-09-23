@@ -49,7 +49,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class ProcessDirLayoutRenderer : LayoutRenderer
     {
         private readonly string _processDir;

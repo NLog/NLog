@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
-    [ThreadSafe]
     public class PerformanceCounterLayoutRenderer : LayoutRenderer
     {
         private PerformanceCounterCached _fixedPerformanceCounter;

@@ -44,9 +44,8 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Only outputs the inner layout when the specified condition has been met.
     /// </summary>
     [LayoutRenderer("when")]
-    [AmbientProperty("When")]
+    [AmbientProperty(nameof(When))]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         /// <summary>

@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("logger-name")]
     [LayoutRenderer("loggername")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class LoggerNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

@@ -39,7 +39,6 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
-    [ThreadSafe]
     [ThreadAgnostic]
     internal class FuncThreadAgnosticLayoutRenderer : FuncLayoutRenderer
     {

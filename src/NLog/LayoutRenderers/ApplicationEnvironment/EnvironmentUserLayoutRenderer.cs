@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     /// Thread identity information (username).
     /// </summary>
     [LayoutRenderer("environment-user")]
-    [ThreadSafe]
     public class EnvironmentUserLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

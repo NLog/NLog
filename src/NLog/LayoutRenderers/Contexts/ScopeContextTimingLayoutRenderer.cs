@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers
     /// <see cref="ScopeContext"/> Timing Renderer (Async scope)
     /// </summary>
     [LayoutRenderer("scopetiming")]
-    [ThreadSafe]
     public sealed class ScopeContextTimingLayoutRenderer : LayoutRenderer
     {
         /// <summary>
