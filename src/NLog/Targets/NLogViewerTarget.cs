@@ -57,12 +57,6 @@ namespace NLog.Targets
     /// To set up the log target programmatically use code like this:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/NLogViewer/Simple/Example.cs" />
-    /// <p>
-    /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
-    /// or you'll get TCP timeouts and your application will crawl. 
-    /// Either switch to UDP transport or use <a href="target.AsyncWrapper.html">AsyncWrapper</a> target
-    /// so that your application threads will not be blocked by the timing-out connection attempts.
-    /// </p>
     /// </example>
     [Target("NLogViewer")]
     public class NLogViewerTarget : NetworkTarget, IIncludeContext
@@ -77,7 +71,6 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
-            NewLine = false;
             IncludeNLogData = true;
         }
 

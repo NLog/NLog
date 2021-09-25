@@ -194,7 +194,7 @@ namespace NLog.Internal.NetworkSenders
             Exception socketException = null;
             if (args.SocketError != SocketError.Success)
             {
-                socketException = new IOException("Error: " + args.SocketError);
+                socketException = new IOException($"Error: {args.SocketError.ToString()}, Address: {Address}");
             }
 
             if (socketException is null && (args.Buffer.Length - args.Offset) > MaxMessageSize && MaxMessageSize > 0)
