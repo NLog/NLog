@@ -90,6 +90,17 @@ namespace NLog.Targets
         private bool? _optimizeBufferReuse;
 
         /// <summary>
+        /// NLog Layout are by default threadsafe, so multiple threads can be rendering logevents at the same time.
+        /// This ensure high concurrency with no lock-congestion for the application-threads, especially when using <see cref="Wrappers.AsyncTargetWrapper"/>
+        /// or AsyncTaskTarget.
+        /// 
+        /// But if using custom <see cref="Layout" /> or <see cref="LayoutRenderers.LayoutRenderer"/> that are not
+        /// threadsafe, then this option can enabled to protect against thread-concurrency-issues. Allowing one
+        /// to update to NLog 5.0 without having to fix custom/external layout-dependencies.
+        /// </summary>
+        public bool LayoutWithLock { get; set; }
+
+        /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
         /// </summary>
         protected object SyncRoot { get; } = new object();
@@ -211,9 +222,24 @@ namespace NLog.Targets
             if (!IsInitialized)
                 return;
 
+            if (LayoutWithLock)
+            {
+                PrecalculateVolatileLayoutsWithLock(logEvent);
+            }
+            else
+            {
+                PrecalculateVolatileLayoutsConcurrent(logEvent);
+            }
+        }
+
+        private void PrecalculateVolatileLayoutsConcurrent(LogEventInfo logEvent)
+        {
+            if (!IsInitialized)
+                return;
+
             if (_precalculateStringBuilderPool is null)
             {
-                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2, 16), null);
+                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
             }
 
             using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
@@ -222,6 +248,24 @@ namespace NLog.Targets
                 {
                     targetBuilder.Item.ClearBuilder();
                     layout.PrecalculateBuilder(logEvent, targetBuilder.Item);
+                }
+            }
+        }
+
+        private void PrecalculateVolatileLayoutsWithLock(LogEventInfo logEvent)
+        {
+            lock (SyncRoot)
+            {
+                if (!_isInitialized)
+                    return;
+
+                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+                {
+                    foreach (Layout layout in _allLayouts)
+                    {
+                        targetBuilder.Result.ClearBuilder();
+                        layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
+                    }
                 }
             }
         }

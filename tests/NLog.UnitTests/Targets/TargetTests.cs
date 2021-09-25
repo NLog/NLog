@@ -877,6 +877,58 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(LineEndingMode.Default, logEvent.Properties["LineEndingModeProperty"]);
         }
 
+        [Fact]
+        public void Target_LayoutWithLock_Test()
+        {
+            int checkThreadSafe = 1;
+
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer("naked-runner", (evt) =>
+                {
+                    var orgValue = System.Threading.Interlocked.Exchange(ref checkThreadSafe, 0);
+                    if (orgValue == 0)
+                        throw new InvalidOperationException("Running naked in the woods");
+
+                    System.Threading.Thread.Sleep(10);
+                    System.Threading.Interlocked.Exchange(ref checkThreadSafe, orgValue);
+                    return "Running safely";
+                }))
+                .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
+                    <targets async='true'>
+                        <target name='debug1' type='Memory' layoutWithLock='true' layout='${logger}|${message}|${naked-runner}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minLevel='Debug' writeTo='debug1' />
+                    </rules>
+                </nlog>").LogFactory;
+
+            // Act
+            int expectedLogCount = 100;
+            var manualEvent = new System.Threading.ManualResetEvent(false);
+            Action<Logger> runnerMethod = (logger) =>
+            {
+                manualEvent.WaitOne();
+                for (int i = 0; i < expectedLogCount / 2; ++i)
+                    logger.Info("Test {0}", i);
+            };
+
+            var logger1 = logFactory.GetLogger("d1");
+            var thread1 = new System.Threading.Thread((s) => runnerMethod((Logger)s)) { Name = logger1.Name, IsBackground = true };
+            thread1.Start(logger1);
+
+            var logger2 = logFactory.GetLogger("d2");
+            var thread2 = new System.Threading.Thread((s) => runnerMethod((Logger)s)) { Name = logger2.Name, IsBackground = true };
+            thread2.Start(logger2);
+
+            manualEvent.Set();
+            thread1.Join();
+            thread2.Join();
+            logFactory.Flush();
+
+            // Assert
+            Assert.Equal(expectedLogCount, logFactory.Configuration.AllTargets.OfType<MemoryTarget>().Sum(m => m.Logs.Count));
+        }
+
         [Target("MyTypedLayoutTarget")]
         public class MyTypedLayoutTarget : Target
         {
