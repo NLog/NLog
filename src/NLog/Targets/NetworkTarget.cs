@@ -69,12 +69,6 @@ namespace NLog.Targets
     /// </p>
     /// <img src="examples/targets/Screenshots/Network/Output.gif" />
     /// <p>
-    /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
-    /// or you'll get TCP timeouts and your application will be very slow. 
-    /// Either switch to UDP transport or use <a href="target.AsyncWrapper.html">AsyncWrapper</a> target
-    /// so that your application threads will not be blocked by the timing-out connection attempts.
-    /// </p>
-    /// <p>
     /// There are two specialized versions of the Network target: <a href="target.Chainsaw.html">Chainsaw</a>
     /// and <a href="target.NLogViewer.html">NLogViewer</a> which write to instances of Chainsaw log4j viewer
     /// or NLogViewer application respectively.
@@ -288,14 +282,19 @@ namespace NLog.Targets
         {
             base.CloseTarget();
 
-            lock (_openNetworkSenders)
+            lock (_currentSenderCache)
             {
-                foreach (var openSender in _openNetworkSenders)
+                lock (_openNetworkSenders)
                 {
-                    openSender.Close(ex => { });
+                    foreach (var openSender in _openNetworkSenders)
+                    {
+                        openSender.Close(ex => { });
+                    }
+
+                    _openNetworkSenders.Clear();
                 }
 
-                _openNetworkSenders.Clear();
+                _currentSenderCache.Clear();
             }
         }
 

@@ -124,13 +124,21 @@ namespace NLog.Internal.NetworkSenders
                         }
                     }
 
-                    if (!_asyncOperationInProgress)
+                    if (_pendingError is null)
                     {
-                        _asyncOperationInProgress = true;
+                        if (!_asyncOperationInProgress)
+                        {
+                            _asyncOperationInProgress = true;
+                        }
+                        else
+                        {
+                            _pendingRequests.Enqueue(eventArgs.Value);
+                            eventArgs = null;
+                        }
                     }
                     else
                     {
-                        _pendingRequests.Enqueue(eventArgs.Value);
+                        failedContinuation = asyncContinuation;
                         eventArgs = null;
                     }
                 }
