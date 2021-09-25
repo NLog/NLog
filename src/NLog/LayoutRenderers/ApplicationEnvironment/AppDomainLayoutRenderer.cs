@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("appdomain")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class AppDomainLayoutRenderer : LayoutRenderer
     {
         private const string ShortFormat = "{0:00}";

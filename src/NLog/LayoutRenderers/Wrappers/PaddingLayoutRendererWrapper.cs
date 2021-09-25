@@ -41,13 +41,12 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Applies padding to another layout output.
     /// </summary>
     [LayoutRenderer("pad")]
-    [AmbientProperty("Padding")]
-    [AmbientProperty("PadCharacter")]
-    [AmbientProperty("FixedLength")]
-    [AmbientProperty("AlignmentOnTruncation")]
+    [AmbientProperty(nameof(Padding))]
+    [AmbientProperty(nameof(PadCharacter))]
+    [AmbientProperty(nameof(FixedLength))]
+    [AmbientProperty(nameof(AlignmentOnTruncation))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

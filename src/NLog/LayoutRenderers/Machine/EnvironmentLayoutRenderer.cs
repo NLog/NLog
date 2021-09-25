@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     /// The environment variable.
     /// </summary>
     [LayoutRenderer("environment")]
-    [ThreadSafe]
+    [ThreadAgnostic]
     public class EnvironmentLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

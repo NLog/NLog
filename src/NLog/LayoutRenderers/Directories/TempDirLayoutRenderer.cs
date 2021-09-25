@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("tempdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
         private static string tempDir;

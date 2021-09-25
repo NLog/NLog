@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("Truncate")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class LeftLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

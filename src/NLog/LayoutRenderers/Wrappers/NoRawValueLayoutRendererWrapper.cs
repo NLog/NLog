@@ -47,7 +47,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("NoRawValue")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class NoRawValueLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

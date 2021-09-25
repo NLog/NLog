@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </example>
     [LayoutRenderer("onhasproperties")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class OnHasPropertiesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <inheritdoc/>

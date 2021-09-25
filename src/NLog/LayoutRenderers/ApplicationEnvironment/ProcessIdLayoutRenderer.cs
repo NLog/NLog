@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processid")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class ProcessIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         private readonly int _processId;

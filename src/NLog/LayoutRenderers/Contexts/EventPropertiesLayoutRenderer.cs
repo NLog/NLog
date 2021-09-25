@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("event-properties")]
     [LayoutRenderer("event-context")]
     [ThreadAgnostic]
-    [ThreadSafe]
     [MutableUnsafe]
     public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {

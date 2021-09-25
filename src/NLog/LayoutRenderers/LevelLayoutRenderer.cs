@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("level")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class LevelLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         private static readonly string[] _upperCaseMapper = new string[]

@@ -48,8 +48,6 @@ namespace NLog.Layouts
     /// </remarks>
     [Layout("Log4JXmlEventLayout")]
     [ThreadAgnostic]
-    [ThreadSafe]
-    [AppDomainFixedOutput]
     public class Log4JXmlEventLayout : Layout, IIncludeContext
     {
         /// <summary>

@@ -42,7 +42,6 @@ namespace NLog.Layouts
     /// </summary>
     [Layout("XmlLayout")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class XmlLayout : XmlElementBase
     {
         private const string DefaultRootElementName = "logevent";

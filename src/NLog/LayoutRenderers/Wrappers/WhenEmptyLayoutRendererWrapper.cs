@@ -44,9 +44,8 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("when-empty")]
     [LayoutRenderer("whenEmpty")]
-    [AmbientProperty("WhenEmpty")]
+    [AmbientProperty(nameof(WhenEmpty))]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue, IStringValueRenderer
     {
         private bool _skipStringValueRenderer;

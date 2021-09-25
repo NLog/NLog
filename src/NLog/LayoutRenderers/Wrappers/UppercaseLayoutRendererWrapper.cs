@@ -48,10 +48,9 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${level:uppercase} // [AmbientProperty]
     /// </example>
     [LayoutRenderer("uppercase")]
-    [AmbientProperty("Uppercase")]
+    [AmbientProperty(nameof(Uppercase))]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

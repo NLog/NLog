@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("processtime")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class ProcessTimeLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>

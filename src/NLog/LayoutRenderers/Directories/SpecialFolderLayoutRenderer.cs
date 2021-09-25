@@ -47,7 +47,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("specialfolder")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class SpecialFolderLayoutRenderer : LayoutRenderer
     {
         /// <summary>

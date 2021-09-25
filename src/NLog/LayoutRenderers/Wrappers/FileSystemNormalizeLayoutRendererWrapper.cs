@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("FSNormalize")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class FileSystemNormalizeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

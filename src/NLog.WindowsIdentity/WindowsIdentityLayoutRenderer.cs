@@ -42,7 +42,6 @@ namespace NLog.LayoutRenderers
     /// Thread Windows identity information (username).
     /// </summary>
     [LayoutRenderer("windows-identity")]
-    [ThreadSafe]
     public class WindowsIdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>

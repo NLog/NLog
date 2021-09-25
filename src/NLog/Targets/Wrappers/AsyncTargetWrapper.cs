@@ -288,6 +288,8 @@ namespace NLog.Targets.Wrappers
                 BatchSize = QueueLimit;     // Avoid too much throttling 
             }
 
+            LayoutWithLock = LayoutWithLock || (WrappedTarget?.LayoutWithLock ?? false);
+
             if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
             {
                 _missingServiceTypes = true;

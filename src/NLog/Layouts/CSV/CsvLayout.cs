@@ -47,7 +47,6 @@ namespace NLog.Layouts
     /// <remarks>If <see cref="LayoutWithHeaderAndFooter.Header"/> is set, then the header generation with column names will be disabled.</remarks>
     [Layout("CsvLayout")]
     [ThreadAgnostic]
-    [ThreadSafe]
     [AppDomainFixedOutput]
     public class CsvLayout : LayoutWithHeaderAndFooter
     {
@@ -265,7 +264,6 @@ namespace NLog.Layouts
         /// Header with column names for CSV layout.
         /// </summary>
         [ThreadAgnostic]
-        [ThreadSafe]
         [AppDomainFixedOutput]
         private class CsvHeaderLayout : Layout
         {

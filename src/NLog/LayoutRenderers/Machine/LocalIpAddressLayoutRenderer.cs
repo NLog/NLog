@@ -52,7 +52,6 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     [LayoutRenderer("local-ip")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class LocalIpAddressLayoutRenderer : LayoutRenderer
     {
         private AddressFamily? _addressFamily;

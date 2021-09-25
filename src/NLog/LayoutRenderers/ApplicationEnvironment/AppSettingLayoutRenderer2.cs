@@ -52,7 +52,6 @@ namespace NLog.LayoutRenderers
     /// </code>
     [LayoutRenderer("appsetting")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class AppSettingLayoutRenderer2 : LayoutRenderer, IStringValueRenderer
     {
         private string _connectionStringName = null;

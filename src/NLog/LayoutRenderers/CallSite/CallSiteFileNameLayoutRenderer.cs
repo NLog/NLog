@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("callsite-filename")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace, IStringValueRenderer
     {
         /// <summary>

@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("TrimWhiteSpace")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

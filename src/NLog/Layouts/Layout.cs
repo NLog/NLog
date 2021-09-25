@@ -67,8 +67,6 @@ namespace NLog.Layouts
         /// </remarks>
         internal bool ThreadAgnostic { get; set; }
 
-        internal bool ThreadSafe { get; set; }
-
         internal bool MutableUnsafe { get; set; }
 
         /// <summary>
@@ -165,8 +163,6 @@ namespace NLog.Layouts
         {
             if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
                 return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, layoutMethod);
-            else if ((options & LayoutRenderOptions.ThreadSafe) != 0)
-                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, layoutMethod);
             else
                 return new LayoutRenderers.FuncLayoutRenderer(name, layoutMethod);
         }
@@ -353,7 +349,6 @@ namespace NLog.Layouts
             // layout is thread agnostic if it is thread-agnostic and 
             // all its nested objects are thread-agnostic.
             ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
-            ThreadSafe = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadSafeAttribute), true));
             MutableUnsafe = objectGraphTypes.Any(t => t.IsDefined(typeof(MutableUnsafeAttribute), true));
             if ((ThreadAgnostic || !MutableUnsafe) && objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
             {

@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// Installation parameter (passed to InstallNLogConfig).
     /// </summary>
     [LayoutRenderer("install-context")]
-    [ThreadSafe]
     public class InstallContextLayoutRenderer : LayoutRenderer
     {
         /// <summary>

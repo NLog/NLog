@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers
     /// Render a NLog Configuration variable assigned from API or loaded from config-file
     /// </summary>
     [LayoutRenderer("var")]
-    [ThreadSafe]
     public class VariableLayoutRenderer : LayoutRenderer
     {
         /// <summary>

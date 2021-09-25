@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// See <see cref="MappedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("mdlc")]
-    [ThreadSafe]
     [Obsolete("Replaced by ScopeContextPropertyLayoutRenderer ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MdlcLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {

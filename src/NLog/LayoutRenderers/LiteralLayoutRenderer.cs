@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     [LayoutRenderer("literal")]
     [ThreadAgnostic]
-    [ThreadSafe]
     [AppDomainFixedOutput]
     public class LiteralLayoutRenderer : LayoutRenderer
     {

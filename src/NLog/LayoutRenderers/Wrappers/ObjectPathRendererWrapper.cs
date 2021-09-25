@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("Object-Path")]
     [AmbientProperty(nameof(ObjectPath))]
-    [ThreadSafe]
     [ThreadAgnostic]
     public sealed class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {

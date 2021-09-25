@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("url-encode")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class UrlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

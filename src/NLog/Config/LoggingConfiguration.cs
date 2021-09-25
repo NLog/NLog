@@ -188,7 +188,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Look NLog Config Variable Layout without unwrapping <see cref="ConfigVariablesDictionary.ThreadSafeWrapLayout"/>
+        /// Lookup NLog Config Variable Layout
         /// </summary>
         internal bool TryLookupDynamicVariable(string key, out Layout value)
         {

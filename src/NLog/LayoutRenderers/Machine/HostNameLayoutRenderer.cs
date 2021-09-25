@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("hostname")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class HostNameLayoutRenderer : LayoutRenderer
     {
         private string _hostName;

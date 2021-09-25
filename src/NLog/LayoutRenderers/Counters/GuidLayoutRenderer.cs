@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
-    [ThreadSafe]
     [ThreadAgnostic]
     public class GuidLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {

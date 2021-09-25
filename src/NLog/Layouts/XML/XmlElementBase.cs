@@ -44,7 +44,6 @@ namespace NLog.Layouts
     /// A specialized layout that renders XML-formatted events.
     /// </summary>
     [ThreadAgnostic]
-    [ThreadSafe]
     public abstract class XmlElementBase : Layout
     {
         private const string DefaultPropertyName = "property";

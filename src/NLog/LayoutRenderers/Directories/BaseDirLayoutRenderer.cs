@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("basedir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
         private readonly string _baseDir;

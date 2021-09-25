@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// The information about the garbage collector.
     /// </summary>
     [LayoutRenderer("gc")]
-    [ThreadSafe]
     public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
     {
         /// <summary>

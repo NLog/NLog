@@ -54,7 +54,6 @@ namespace NLog.Targets
 
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
-        private bool _allLayoutsAreThreadSafe;
         private bool _oneLayoutIsMutableUnsafe;
         private bool _scannedForLayouts;
         private Exception _initializeException;
@@ -89,6 +88,17 @@ namespace NLog.Targets
         [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
         public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
         private bool? _optimizeBufferReuse;
+
+        /// <summary>
+        /// NLog Layout are by default threadsafe, so multiple threads can be rendering logevents at the same time.
+        /// This ensure high concurrency with no lock-congestion for the application-threads, especially when using <see cref="Wrappers.AsyncTargetWrapper"/>
+        /// or AsyncTaskTarget.
+        /// 
+        /// But if using custom <see cref="Layout" /> or <see cref="LayoutRenderers.LayoutRenderer"/> that are not
+        /// threadsafe, then this option can enabled to protect against thread-concurrency-issues. Allowing one
+        /// to update to NLog 5.0 without having to fix custom/external layout-dependencies.
+        /// </summary>
+        public bool LayoutWithLock { get; set; }
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -209,14 +219,16 @@ namespace NLog.Targets
                 return;
             }
 
-            // Not all Layouts support concurrent threads, so we have to protect them
-            if (_allLayoutsAreThreadSafe)
+            if (!IsInitialized)
+                return;
+
+            if (LayoutWithLock)
             {
-                PrecalculateVolatileLayoutsConcurrent(logEvent);
+                PrecalculateVolatileLayoutsWithLock(logEvent);
             }
             else
             {
-                PrecalculateVolatileLayoutsWithLock(logEvent);
+                PrecalculateVolatileLayoutsConcurrent(logEvent);
             }
         }
 
@@ -518,13 +530,6 @@ namespace NLog.Targets
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Length);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
             _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
-            if (!_allLayoutsAreThreadAgnostic || _oneLayoutIsMutableUnsafe)
-            {
-                var unsafeLayout = _allLayouts.FirstOrDefault(layout => !layout.ThreadSafe);
-                _allLayoutsAreThreadSafe = unsafeLayout is null;
-                if (unsafeLayout != null)
-                    InternalLogger.Debug("{0} has {1} layouts, but {2} is not threadsafe.", this, _allLayouts.Length, unsafeLayout.GetType());
-            }
 
             var result = _allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
             StackTraceUsage = result | ((this as IUsesStackTrace)?.StackTraceUsage ?? StackTraceUsage.None);

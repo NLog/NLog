@@ -41,7 +41,6 @@ namespace NLog.LayoutRenderers
     /// Renders specified property-item from <see cref="ScopeContext"/>
     /// </summary>
     [LayoutRenderer("scopeproperty")]
-    [ThreadSafe]
     public sealed class ScopeContextPropertyLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

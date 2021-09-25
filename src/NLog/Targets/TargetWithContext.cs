@@ -694,7 +694,6 @@ namespace NLog.Targets
             return true;
         }
 
-        [ThreadSafe]
         [ThreadAgnostic]
         private class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
         {
@@ -859,7 +858,6 @@ namespace NLog.Targets
                 TargetLayout?.RenderAppendBuilder(logEvent, target, false);
             }
 
-            [ThreadSafe]
             public class LayoutScopeContextProperties : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -892,7 +890,6 @@ namespace NLog.Targets
                 }
             }
 
-            [ThreadSafe]
             public class LayoutScopeContextNestedStates : Layout
             {
                 private readonly TargetWithContext _owner;

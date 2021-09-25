@@ -42,7 +42,6 @@ namespace NLog.LayoutRenderers
     /// The identifier of the current thread.
     /// </summary>
     [LayoutRenderer("threadid")]
-    [ThreadSafe]
     public class ThreadIdLayoutRenderer : LayoutRenderer
     {
         /// <inheritdoc />

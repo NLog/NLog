@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("message")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

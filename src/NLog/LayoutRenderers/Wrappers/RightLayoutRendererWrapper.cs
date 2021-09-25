@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("right")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    [ThreadSafe]
     public sealed class RightLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

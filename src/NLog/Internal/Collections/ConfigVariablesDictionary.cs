@@ -85,11 +85,6 @@ namespace NLog.Internal
                     if (dynamicLayout != null)
                     {
                         dynamicLayout.Initialize(_configuration);
-                        if (!dynamicLayout.ThreadSafe)
-                        {
-                            dynamicLayout = new ThreadSafeWrapLayout(dynamicLayout);
-                            dynamicLayout.Initialize(_configuration);
-                        }
                     }
                     
                     _dynamicVariables[key] = dynamicLayout;
@@ -181,61 +176,6 @@ namespace NLog.Internal
             }
             _apiVariables[key] = true;
             _dynamicVariables?.Remove(key);
-        }
-
-        [ThreadAgnostic]
-        [ThreadSafe]
-        [AppDomainFixedOutput]
-        class ThreadSafeWrapLayout : Layout
-        {
-            private readonly object _lockObject = new object();
-
-            public Layout Unsafe { get; }
-
-            public ThreadSafeWrapLayout(Layout layout)
-            {
-                Unsafe = layout;
-                ThreadSafe = true;
-                ThreadAgnostic = true;
-            }
-
-            protected override void InitializeLayout()
-            {
-                lock (_lockObject)
-                {
-                    base.InitializeLayout();
-                    ThreadSafe = true;
-                }
-            }
-
-            public override void Precalculate(LogEventInfo logEvent)
-            {
-                lock (_lockObject)
-                    Unsafe.Precalculate(logEvent);
-            }
-
-            internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
-            {
-                lock (_lockObject)
-                    Unsafe.PrecalculateBuilderInternal(logEvent, target);
-            }
-
-            protected override string GetFormattedMessage(LogEventInfo logEvent)
-            {
-                lock (_lockObject)
-                    return Unsafe.RenderAllocateBuilder(logEvent);
-            }
-
-            protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
-            {
-                lock (_lockObject)
-                    Unsafe.RenderAppendBuilder(logEvent, target);
-            }
-
-            public override string ToString()
-            {
-                return Unsafe.ToString();
-            }
         }
     }
 }
