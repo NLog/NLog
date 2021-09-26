@@ -74,9 +74,6 @@ namespace NLog.Layouts
         /// </summary>
         internal StackTraceUsage StackTraceUsage { get; set; }
 
-        private const int MaxInitialRenderBufferLength = 16384;
-        private int _maxRenderedLength;
-
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
@@ -183,7 +180,10 @@ namespace NLog.Layouts
         {
             if (!ThreadAgnostic || MutableUnsafe)
             {
-                Render(logEvent);
+                using (var localTarget = new AppendBuilderCreator(true))
+                {
+                    RenderAppendBuilder(logEvent, localTarget.Builder, true);
+                }
             }
         }
 
@@ -224,13 +224,24 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Optimized version of <see cref="Render(LogEventInfo)"/> for internal Layouts. Works best
-        /// when override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
+        /// Optimized version of <see cref="Render(LogEventInfo)"/> that works best when
+        /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
+        /// </summary>
+        /// <param name="logEvent">The event info.</param>
+        /// <param name="target">Appends the string representing log event to target</param>
+        public void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            RenderAppendBuilder(logEvent, target, false);
+        }
+
+        /// <summary>
+        /// Optimized version of <see cref="Render(LogEventInfo)"/> that works best when
+        /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
         /// <param name="logEvent">The event info.</param>
         /// <param name="target">Appends the string representing log event to target</param>
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
-        internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult = false)
+        private void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult)
         {
             if (!IsInitialized)
             {
@@ -242,7 +253,7 @@ namespace NLog.Layouts
                 object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
                 {
-                    target.Append(cachedValue?.ToString() ?? string.Empty);
+                    target.Append(cachedValue?.ToString());
                     return;
                 }
             }
@@ -266,24 +277,20 @@ namespace NLog.Layouts
         /// Valid default implementation of <see cref="GetFormattedMessage" />, when having implemented the optimized <see cref="RenderFormattedMessage"/>
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="reusableBuilder">StringBuilder to help minimize allocations [optional].</param>
         /// <returns>The rendered layout.</returns>
-        internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder reusableBuilder = null)
+        internal string RenderAllocateBuilder(LogEventInfo logEvent)
         {
-            int initialLength = _maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
+            using (var localTarget = new AppendBuilderCreator(true))
             {
-                initialLength = MaxInitialRenderBufferLength;
+                RenderFormattedMessage(logEvent, localTarget.Builder);
+                return localTarget.Builder.ToString();
             }
+        }
 
-            var sb = reusableBuilder ?? new StringBuilder(initialLength);
-            RenderFormattedMessage(logEvent, sb);
-            if (sb.Length > _maxRenderedLength)
-            {
-                _maxRenderedLength = sb.Length;
-            }
-
-            return sb.ToString();
+        internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            RenderFormattedMessage(logEvent, target);
+            return target.ToString();
         }
 
         /// <summary>
@@ -293,7 +300,7 @@ namespace NLog.Layouts
         /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            target.Append(GetFormattedMessage(logEvent) ?? string.Empty);
+            target.Append(GetFormattedMessage(logEvent));
         }
 
         /// <summary>

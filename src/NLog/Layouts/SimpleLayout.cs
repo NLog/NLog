@@ -297,6 +297,22 @@ namespace NLog.Layouts
         /// <inheritdoc />
         public override void Precalculate(LogEventInfo logEvent)
         {
+            if (!IsLogEventMutableSafe(logEvent))
+            {
+                Render(logEvent);
+            }
+        }
+
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!IsLogEventMutableSafe(logEvent))
+            {
+                PrecalculateBuilderInternal(logEvent, target);
+            }
+        }
+
+        private bool IsLogEventMutableSafe(LogEventInfo logEvent)
+        {
             if (_rawValueRenderer != null)
             {
                 try
@@ -311,8 +327,10 @@ namespace NLog.Layouts
                         // If raw value doesn't have the ability to mutate, then we can skip precalculate
                         var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
                         if (success && value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
-                            return;
+                            return true;
                     }
+
+                    return false;
                 }
                 catch (Exception exception)
                 {
@@ -331,12 +349,7 @@ namespace NLog.Layouts
                 }
             }
 
-            base.Precalculate(logEvent);
-        }
-
-        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
-        {
-            PrecalculateBuilderInternal(logEvent, target);
+            return ThreadAgnostic && !MutableUnsafe;
         }
 
         /// <inheritdoc />
