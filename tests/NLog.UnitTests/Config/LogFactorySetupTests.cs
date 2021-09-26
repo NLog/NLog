@@ -210,6 +210,25 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void SetupExtensionsRegisterLayoutMethodFluentTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            logFactory.Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42"))
+                .LoadConfiguration(builder =>
+                {
+                    builder.ForLogger().WriteTo(new DebugTarget() { Layout = "${myLayout}" });
+                });
+            logFactory.GetLogger("Hello").Info("World");
+
+            // Assert
+            Assert.Equal("42", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+        }
+
+        [Fact]
         public void SetupExtensionsRegisterLayoutMethodThreadUnsafeTest()
         {
             // Arrange
