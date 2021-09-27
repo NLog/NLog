@@ -53,11 +53,6 @@ namespace NLog.Config
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         public abstract object GetService(Type serviceType);
 
-        /// <summary>
-        /// Mapping of symbol name to actual <see cref="System.Type"/>
-        /// </summary>
-        public abstract ConfigurationItemFactory ConfigurationItemFactory { get; internal set; }
-
         internal abstract ConfigurationItemCreator ConfigurationItemCreator { get; set; }
 
         internal ServiceRepository()
