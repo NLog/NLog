@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (logEvent.HasProperties)
             {
-                Inner.RenderAppendBuilder(logEvent, builder);
+                Inner.Render(logEvent, builder);
             }
         }
 

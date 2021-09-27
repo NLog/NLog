@@ -1218,7 +1218,7 @@ namespace NLog.Targets
         /// <param name="target"><see cref="StringBuilder"/> for the result.</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            Layout.RenderAppendBuilder(logEvent, target);
+            Layout.Render(logEvent, target);
         }
 
         private void TransformBuilderToStream(LogEventInfo logEvent, StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
@@ -2493,7 +2493,7 @@ namespace NLog.Targets
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
                 var nullEvent = LogEventInfo.CreateNullEvent();
-                layout.RenderAppendBuilder(nullEvent, targetBuilder.Result);
+                layout.Render(nullEvent, targetBuilder.Result);
                 targetBuilder.Result.Append(NewLineChars);
                 using (MemoryStream ms = new MemoryStream(targetBuilder.Result.Length))
                 {

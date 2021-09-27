@@ -100,7 +100,7 @@ namespace NLog.LayoutRenderers
                 if (TryGetLayout(out var layout))
                 {
                     //ignore NULL, but it set, so don't use default.
-                    layout?.RenderAppendBuilder(logEvent, builder);
+                    layout?.Render(logEvent, builder);
                 }
                 else if (Default != null)
                 {

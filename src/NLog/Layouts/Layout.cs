@@ -218,20 +218,20 @@ namespace NLog.Layouts
             return layoutValue;
         }
 
-        internal virtual void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
-        {
-            Precalculate(logEvent); // Allow custom Layouts to also work
-        }
-
         /// <summary>
         /// Optimized version of <see cref="Render(LogEventInfo)"/> that works best when
         /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
         /// <param name="logEvent">The event info.</param>
         /// <param name="target">Appends the string representing log event to target</param>
-        public void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target)
+        public void Render(LogEventInfo logEvent, StringBuilder target)
         {
             RenderAppendBuilder(logEvent, target, false);
+        }
+
+        internal virtual void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            Precalculate(logEvent); // Allow custom Layouts to also work
         }
 
         /// <summary>

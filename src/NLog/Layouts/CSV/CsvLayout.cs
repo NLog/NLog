@@ -201,7 +201,7 @@ namespace NLog.Layouts
             }
 
             int orgLength = target.Length;
-            columnLayout.RenderAppendBuilder(logEvent, target);
+            columnLayout.Render(logEvent, target);
             if (orgLength != target.Length && ColumnValueRequiresQuotes(quoting, target, orgLength))
             {
                 string columnValue = target.ToString(orgLength, target.Length - orgLength);

@@ -185,7 +185,7 @@ namespace NLog.Internal
                     }
                 }
 
-                _layout.RenderAppendBuilder(logEvent, reusableBuilder);
+                _layout.Render(logEvent, reusableBuilder);
 
                 if (_cachedPrevRawFileName != null && reusableBuilder.EqualTo(_cachedPrevRawFileName))
                 {

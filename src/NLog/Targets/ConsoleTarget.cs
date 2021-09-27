@@ -328,7 +328,7 @@ namespace NLog.Targets
         private void RenderLogEventToWriteBuffer(TextWriter output, Layout layout, LogEventInfo logEvent, StringBuilder targetBuilder, char[] targetBuffer, ref int targetBufferPosition)
         {
             int environmentNewLineLength = System.Environment.NewLine.Length;
-            layout.RenderAppendBuilder(logEvent, targetBuilder);
+            layout.Render(logEvent, targetBuilder);
             if (targetBuilder.Length > targetBuffer.Length - targetBufferPosition - environmentNewLineLength)
             {
                 if (targetBufferPosition > 0)

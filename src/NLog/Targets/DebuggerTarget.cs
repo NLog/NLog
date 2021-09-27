@@ -122,7 +122,7 @@ namespace NLog.Targets
                 string logMessage;
                 using (var localTarget = ReusableLayoutBuilder.Allocate())
                 {
-                    Layout.RenderAppendBuilder(logEvent, localTarget.Result);
+                    Layout.Render(logEvent, localTarget.Result);
                     localTarget.Result.Append('\n');
                     logMessage = localTarget.Result.ToString();
                 }

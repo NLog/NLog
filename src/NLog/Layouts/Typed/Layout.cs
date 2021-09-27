@@ -304,7 +304,7 @@ namespace NLog.Layouts
 
             if (stringBuilder?.Length == 0)
             {
-                _innerLayout.RenderAppendBuilder(logEvent, stringBuilder);
+                _innerLayout.Render(logEvent, stringBuilder);
                 if (stringBuilder.Length == 0)
                     return string.Empty;
                 else if (!string.IsNullOrEmpty(previousStringValue) && stringBuilder.EqualTo(previousStringValue))

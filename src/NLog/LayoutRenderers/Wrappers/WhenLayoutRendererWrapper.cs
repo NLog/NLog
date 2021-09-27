@@ -69,11 +69,11 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 if (ShouldRenderInner(logEvent))
                 {
-                    Inner?.RenderAppendBuilder(logEvent, builder);
+                    Inner?.Render(logEvent, builder);
                 }
                 else
                 {
-                    Else?.RenderAppendBuilder(logEvent, builder);
+                    Else?.Render(logEvent, builder);
                 }
             }
             catch

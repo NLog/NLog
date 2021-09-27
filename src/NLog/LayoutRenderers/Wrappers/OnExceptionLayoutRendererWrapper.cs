@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (logEvent.Exception != null)
             {
-                Inner.RenderAppendBuilder(logEvent, builder);
+                Inner.Render(logEvent, builder);
             }
         }
 
