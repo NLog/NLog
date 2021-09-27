@@ -322,12 +322,19 @@ namespace NLog.Layouts
                         Initialize(LoggingConfiguration);
                     }
 
-                    if (ThreadAgnostic && MutableUnsafe)
+                    if (ThreadAgnostic)
                     {
-                        // If raw value doesn't have the ability to mutate, then we can skip precalculate
-                        var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
-                        if (success && value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
+                        if (MutableUnsafe)
+                        {
+                            // If raw value doesn't have the ability to mutate, then we can skip precalculate
+                            var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
+                            if (success && value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
+                                return true;
+                        }
+                        else
+                        {
                             return true;
+                        }
                     }
 
                     return false;
