@@ -48,14 +48,7 @@ namespace NLog.Config
         private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
         private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
         private readonly object _lockObject = new object();
-        private ConfigurationItemFactory _localItemFactory;
         public event EventHandler<ServiceRepositoryUpdateEventArgs> TypeRegistered;
-
-        public override ConfigurationItemFactory ConfigurationItemFactory
-        {
-            get => _localItemFactory ?? (_localItemFactory = new ConfigurationItemFactory(this, ConfigurationItemFactory.Default, ArrayHelper.Empty<Assembly>()));
-            internal set => _localItemFactory = value;
-        }
 
         internal override ConfigurationItemCreator ConfigurationItemCreator { get; set; }
 

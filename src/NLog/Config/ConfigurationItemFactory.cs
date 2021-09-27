@@ -76,7 +76,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
-            :this(new ServiceRepositoryInternal(), null, assemblies)
+            :this(LogManager.LogFactory.ServiceRepository, null, assemblies)
         {
         }
 
@@ -117,15 +117,7 @@ namespace NLog.Config
         public static ConfigurationItemFactory Default
         {
             get => _defaultInstance ?? (_defaultInstance = BuildDefaultFactory());
-            set
-            {
-                _defaultInstance = value;
-                if (value?._serviceRepository != null)
-                {
-                    value._serviceRepository.ConfigurationItemFactory = null;   // Reset local ServiceRepository-instance
-                }
-                LogManager.LogFactory.ServiceRepository.ConfigurationItemFactory = null;   // Reset global ServiceRepository-instance
-            }
+            set => _defaultInstance = value;
         }
 
         /// <summary>
@@ -210,7 +202,7 @@ namespace NLog.Config
             get => _serviceRepository.GetService<IPropertyTypeConverter>();
             set => _serviceRepository.RegisterPropertyTypeConverter(value);
         }
-       
+
         /// <summary>
         /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
@@ -221,41 +213,8 @@ namespace NLog.Config
         /// </remarks>
         public bool? ParseMessageTemplates
         {
-            get
-            {
-                var messageFormatter = _serviceRepository.GetService<ILogMessageFormatter>();
-                if (ReferenceEquals(messageFormatter, LogMessageStringFormatter.Default))
-                {
-                    return false;
-                }
-                else if ((messageFormatter as LogMessageTemplateFormatter)?.ForceTemplateRenderer == true)
-                {
-                    return true;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                if (value == false)
-                {
-                    InternalLogger.Info("Message Template String Format always enabled");
-                    _serviceRepository.RegisterSingleton<ILogMessageFormatter>(LogMessageStringFormatter.Default);
-                }
-                else if (value == true)
-                {
-                    InternalLogger.Info("Message Template Format always enabled");
-                    _serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(_serviceRepository, true, false));
-                }
-                else
-                {
-                    //null = auto
-                    InternalLogger.Info("Message Template Auto Format enabled");
-                    _serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(_serviceRepository, false, false));
-                }
-            }
+            get => _serviceRepository.ResolveMessageTemplateParser();
+            set => _serviceRepository.RegisterMessageTemplateParser(value);
         }
 
         /// <summary>
@@ -430,7 +389,7 @@ namespace NLog.Config
 #if !NETSTANDARD1_3
             try
             {
-                var factory = logFactory.ServiceRepository.ConfigurationItemFactory;
+                var factory = ConfigurationItemFactory.Default;
                 var nlogAssembly = typeof(LogFactory).GetAssembly();
                 var assemblyLocation = string.Empty;
                 var extensionDlls = ArrayHelper.Empty<string>();

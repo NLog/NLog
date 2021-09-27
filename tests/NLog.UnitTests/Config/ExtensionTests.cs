@@ -426,6 +426,8 @@ namespace NLog.UnitTests.Config
         [InlineData(false)]
         public void Extension_loading_could_be_canceled(bool cancel)
         {
+            ConfigurationItemFactory.Default = null;
+
             EventHandler<AssemblyLoadingEventArgs> onAssemblyLoading = (sender, e) =>
             {
                 if (e.Assembly.FullName.Contains("NLogAutoLoadExtension"))

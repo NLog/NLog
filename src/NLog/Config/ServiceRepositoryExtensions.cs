@@ -161,6 +161,44 @@ namespace NLog.Config
             return serviceRepository;
         }
 
+        public static ServiceRepository RegisterMessageTemplateParser(this ServiceRepository serviceRepository, bool? messageTemplateParser)
+        {
+            if (messageTemplateParser == false)
+            {
+                NLog.Common.InternalLogger.Info("Message Template String Format always enabled");
+                serviceRepository.RegisterSingleton<ILogMessageFormatter>(LogMessageStringFormatter.Default);
+            }
+            else if (messageTemplateParser == true)
+            {
+                NLog.Common.InternalLogger.Info("Message Template Format always enabled");
+                serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, true, false));
+            }
+            else
+            {
+                //null = auto
+                NLog.Common.InternalLogger.Info("Message Template Auto Format enabled");
+                serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
+            }
+            return serviceRepository;
+        }
+
+        public static bool? ResolveMessageTemplateParser(this ServiceRepository serviceRepository)
+        {
+            var messageFormatter = serviceRepository.GetService<ILogMessageFormatter>();
+            if (ReferenceEquals(messageFormatter, LogMessageStringFormatter.Default))
+            {
+                return false;
+            }
+            else if ((messageFormatter as LogMessageTemplateFormatter)?.ForceTemplateRenderer == true)
+            {
+                return true;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository)
         {
             serviceRepository.RegisterSingleton<IServiceProvider>(serviceRepository);

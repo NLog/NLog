@@ -77,7 +77,7 @@ namespace NLog
         /// </summary>
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, Assembly assembly)
         {
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(assembly);
+            ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
             return setupBuilder;
         }
 
@@ -87,7 +87,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, string assemblyName)
         {
             Assembly assembly = AssemblyHelpers.LoadFromName(assemblyName);
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(assembly);
+            ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
             return setupBuilder;
         }
 
@@ -114,7 +114,7 @@ namespace NLog
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("Missing type symbol name", nameof(name));
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.Targets.RegisterDefinition(name, targetType);
+            ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
             return setupBuilder;
         }
 
@@ -142,7 +142,7 @@ namespace NLog
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("Missing type symbol name", nameof(name));
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
             return setupBuilder;
         }
 
@@ -190,7 +190,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options)
         {
             FuncLayoutRenderer layoutRenderer = Layout.CreateFuncLayoutRenderer(layoutMethod, options, name);
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
+            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
             return setupBuilder;
         }
 
@@ -207,7 +207,7 @@ namespace NLog
             if (!conditionMethod.IsStatic)
                 throw new ArgumentException($"{conditionMethod.Name} must be static", nameof(conditionMethod));
 
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethods.RegisterDefinition(name, conditionMethod);
+            ConfigurationItemFactory.Default.ConditionMethods.RegisterDefinition(name, conditionMethod);
             return setupBuilder;
         }
 
@@ -241,7 +241,7 @@ namespace NLog
 
         private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Delegate conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
-            setupBuilder.LogFactory.ServiceRepository.ConfigurationItemFactory.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod.GetDelegateInfo(), lateBoundMethod);
+            ConfigurationItemFactory.Default.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod.GetDelegateInfo(), lateBoundMethod);
             return setupBuilder;
         }
 
