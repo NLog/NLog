@@ -34,8 +34,10 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Globalization;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// <see cref="ScopeContext"/> Timing Renderer (Async scope)
@@ -58,9 +60,17 @@ namespace NLog.LayoutRenderers
 
         /// <summary>
         /// Gets or sets the TimeSpan format. Can be any argument accepted by TimeSpan.ToString(format).
+        /// 
+        /// When Format has not been specified, then it will render TimeSpan.TotalMilliseconds
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <summary>
         /// Renders the timing details of the Nested Logical Context item and appends it to the specified <see cref="StringBuilder" />.
@@ -77,19 +87,48 @@ namespace NLog.LayoutRenderers
 
                 if (StartTime)
                 {
-                    var formatProvider = GetFormatProvider(logEvent, null);
                     var scopeBegin = Time.TimeSource.Current.Time.Subtract(scopeDuration.Value);
-                    builder.Append(scopeBegin.ToString(Format, formatProvider));
+                    builder.Append(scopeBegin.ToString(Format, Culture));
+                }
+                else if (string.IsNullOrEmpty(Format))
+                {
+                    var scopeDurationMs = scopeDuration.Value.TotalMilliseconds;
+                    if (ReferenceEquals(Culture, CultureInfo.InvariantCulture))
+                        RenderAppendDurationMs(builder, scopeDurationMs);
+                    else
+                        builder.Append(scopeDurationMs.ToString("0.###", Culture));
                 }
                 else
                 {
 #if !NET35
-                    var formatProvider = GetFormatProvider(logEvent, null);
-                    builder.Append(scopeDuration.Value.ToString(Format, formatProvider));
+                    builder.Append(scopeDuration.Value.ToString(Format, Culture));
 #else
                     builder.Append(scopeDuration.Value.ToString());
 #endif
                 }
+            }
+        }
+
+        private static void RenderAppendDurationMs(StringBuilder builder, double scopeDurationMs)
+        {
+            var truncateDurationMs = (long)scopeDurationMs;
+            if (truncateDurationMs >= uint.MinValue && truncateDurationMs < uint.MaxValue)
+                builder.AppendInvariant((uint)truncateDurationMs);
+            else
+                builder.Append(truncateDurationMs);
+            var preciseDurationMs = (int)((scopeDurationMs - truncateDurationMs) * 1000.0);
+            if (preciseDurationMs > 0)
+            {
+                builder.Append('.');
+                if (preciseDurationMs < 100)
+                    builder.Append('0');
+                if (preciseDurationMs < 10)
+                    builder.Append('0');
+                builder.AppendInvariant(preciseDurationMs);
+            }
+            else
+            {
+                builder.Append(".0");
             }
         }
     }
