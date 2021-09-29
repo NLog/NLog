@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            GetSimpleLayout()?.RenderAppendBuilder(logEvent, builder);
+            GetSimpleLayout()?.Render(logEvent, builder);
         }
 
         /// <inheritdoc/>

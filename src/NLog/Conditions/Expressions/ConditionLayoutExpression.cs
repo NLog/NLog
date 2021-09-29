@@ -84,7 +84,7 @@ namespace NLog.Conditions
             var stringBuilder = System.Threading.Interlocked.Exchange(ref _fastObjectPool, null) ?? new StringBuilder();
             try
             {
-                _simpleLayout.RenderAppendBuilder(context, stringBuilder);
+                _simpleLayout.Render(context, stringBuilder);
                 return stringBuilder.ToString();
             }
             finally

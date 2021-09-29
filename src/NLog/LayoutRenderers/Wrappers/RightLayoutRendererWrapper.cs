@@ -60,7 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 return;
             }
 
-            Inner.RenderAppendBuilder(logEvent, builder);
+            Inner.Render(logEvent, builder);
             var renderedLength = builder.Length - orgLength;
             if (renderedLength > Length)
             {

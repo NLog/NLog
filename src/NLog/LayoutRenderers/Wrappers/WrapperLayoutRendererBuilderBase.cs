@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers.Wrappers
         [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            Inner.RenderAppendBuilder(logEvent, target);
+            Inner.Render(logEvent, target);
         }
 
         /// <summary>

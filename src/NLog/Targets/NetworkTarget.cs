@@ -456,7 +456,7 @@ namespace NLog.Targets
                 {
                     using (var localBuilder = ReusableLayoutBuilder.Allocate())
                     {
-                        Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
+                        Layout.Render(logEvent, localBuilder.Result);
                         if (NewLine)
                         {
                             localBuilder.Result.Append(LineEnding.NewLineCharacters);

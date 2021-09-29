@@ -51,6 +51,12 @@ namespace NLog.Internal
 
         private StringBuilderPool.ItemHolder _builder;  // Not readonly to avoid struct-copy on Dispose(), and to avoid VerificationException when medium-trust AppDomain
 
+        public AppendBuilderCreator(bool mustBeEmpty)
+        {
+            _builder = _builderPool.Acquire();
+            _appendTarget = _builder.Item;
+        }
+
         public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
         {
             _appendTarget = appendTarget;

@@ -855,7 +855,7 @@ namespace NLog.Targets
 
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
-                TargetLayout?.RenderAppendBuilder(logEvent, target, false);
+                TargetLayout?.Render(logEvent, target);
             }
 
             public class LayoutScopeContextProperties : Layout

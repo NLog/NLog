@@ -68,12 +68,12 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            Inner.RenderAppendBuilder(logEvent, builder);
+            Inner.Render(logEvent, builder);
             if (builder.Length > orgLength)
                 return;
 
             // render WhenEmpty when the inner layout was empty
-            WhenEmpty.RenderAppendBuilder(logEvent, builder);
+            WhenEmpty.Render(logEvent, builder);
         }
 
         /// <inheritdoc/>

@@ -687,7 +687,7 @@ namespace NLog.Layouts
                 sb.Append("  ");
 
             int beforeValueLength = sb.Length;
-            xmlElement.RenderAppendBuilder(logEvent, sb);
+            xmlElement.Render(logEvent, sb);
             if (sb.Length == beforeValueLength && !xmlElement.IncludeEmptyValue)
                 return false;
 

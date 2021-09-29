@@ -79,7 +79,7 @@ namespace NLog.Layouts
         /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result.</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
         {
-            Layout.RenderAppendBuilder(logEvent, target);
+            Layout.Render(logEvent, target);
         }
     }
 }

@@ -98,7 +98,7 @@ namespace NLog.Layouts
             for (int i = 0; i < Layouts.Count; i++)
             {
                 Layout layout = Layouts[i];
-                layout.RenderAppendBuilder(logEvent, target);
+                layout.Render(logEvent, target);
             }
         }
 
