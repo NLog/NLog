@@ -57,9 +57,10 @@ namespace NLog.Config
 
                 try
                 {
-                    var service = serviceProvider.TryGetService(typeof(T)) as T;
-                    if (service != null)
+                    if (serviceProvider.TryGetService<T>(out var service))
+                    {
                         return service;
+                    }
                     
                     externalServiceProvider = serviceProvider.GetService<IServiceProvider>();
                 }

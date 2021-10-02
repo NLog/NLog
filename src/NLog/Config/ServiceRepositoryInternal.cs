@@ -83,17 +83,18 @@ namespace NLog.Config
 
         public override object GetService(Type serviceType)
         {
-            var service = DefaultResolveInstance(serviceType, null);
-            if (service is null && serviceType.IsAbstract())
+            var serviceInstance = DefaultResolveInstance(serviceType, null);
+            if (serviceInstance is null && serviceType.IsAbstract())
             {
                 throw new NLogDependencyResolveException("Instance of class must be registered", serviceType);
             }
-            return service;
+            return serviceInstance;
         }
 
-        internal override object TryGetService(Type serviceType)
+        internal override bool TryGetService<T>(out T serviceInstance)
         {
-            return DefaultResolveInstance(serviceType, null);
+            serviceInstance = DefaultResolveInstance(typeof(T), null) as T;
+            return !(serviceInstance is null);
         }
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
