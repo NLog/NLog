@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Stack trace renderer.
@@ -51,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public StackTraceLayoutRenderer()
         {
-            Separator = " => ";
+            _separator = new SimpleLayout(" => ");
             TopFrames = 3;
             Format = StackTraceFormat.Flat;
         }
@@ -82,8 +83,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" => ")]
-        public string Separator { get => _separator ?? " => "; set => _separator = value ?? ""; }
-        private string _separator;
+        public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? ""); }
+        private SimpleLayout _separator;
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
@@ -138,15 +139,15 @@ namespace NLog.LayoutRenderers
             switch (Format)
             {
                 case StackTraceFormat.Raw:
-                    AppendRaw(builder, stackFrameList);
+                    AppendRaw(builder, stackFrameList, logEvent);
                     break;
 
                 case StackTraceFormat.Flat:
-                    AppendFlat(builder, stackFrameList);
+                    AppendFlat(builder, stackFrameList, logEvent);
                     break;
 
                 case StackTraceFormat.DetailedFlat:
-                    AppendDetailedFlat(builder, stackFrameList);
+                    AppendDetailedFlat(builder, stackFrameList, logEvent);
                     break;
             }
         }
@@ -178,33 +179,36 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendRaw(StringBuilder builder, StackFrameList stackFrameList)
+        private void AppendRaw(StringBuilder builder, StackFrameList stackFrameList, LogEventInfo logEvent)
         {
-            string separator = string.Empty;
+            string separator = null;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
                 builder.Append(separator);
                 StackFrame f = stackFrameList[i];
                 builder.Append(f.ToString());
-                separator = _separator;
+                separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
             }
         }
 
-        private void AppendFlat(StringBuilder builder, StackFrameList stackFrameList)
+        private void AppendFlat(StringBuilder builder, StackFrameList stackFrameList, LogEventInfo logEvent)
         {
+            string separator = null;
+
             bool first = true;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
                 StackFrame f = stackFrameList[i];
-                if (!first)
-                {
-                    builder.Append(Separator);
-                }
-
                 var method = f.GetMethod();
                 if (method is null)
                 {
                     continue;   // Net Native can have StackFrames without managed methods
+                }
+
+                if (!first)
+                {
+                    separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
+                    builder.Append(separator);
                 }
 
                 var type = method.DeclaringType;
@@ -223,8 +227,10 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendDetailedFlat(StringBuilder builder, StackFrameList stackFrameList)
+        private void AppendDetailedFlat(StringBuilder builder, StackFrameList stackFrameList, LogEventInfo logEvent)
         {
+            string separator = null;
+
             bool first = true;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
@@ -237,7 +243,8 @@ namespace NLog.LayoutRenderers
 
                 if (!first)
                 {
-                    builder.Append(Separator);
+                    separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
+                    builder.Append(separator);
                 }
                 builder.Append("[");
                 builder.Append(method);
