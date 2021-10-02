@@ -34,8 +34,8 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
 
     /// <summary>
     /// Render a Nested Diagnostic Logical Context item (Async scope)
@@ -59,18 +59,21 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(-1)]
         public int TopFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(-1)]
         public int BottomFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(" ")]
         public string Separator { get; set; }
 
         /// <summary>

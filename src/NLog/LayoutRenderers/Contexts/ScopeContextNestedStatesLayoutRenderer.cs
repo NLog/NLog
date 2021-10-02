@@ -35,8 +35,8 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
 
@@ -50,24 +50,36 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(-1)]
         public int TopFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(-1)]
         public int BottomFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string Separator { get; set; } = " ";
+        [DefaultValue(" ")]
+        public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? string.Empty); } 
+        private SimpleLayout _separator;
 
         /// <summary>
         /// Gets or sets how to format each nested state. Ex. like JSON = @
         /// </summary>
         public string Format { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScopeContextNestedStatesLayoutRenderer" /> class.
+        /// </summary>
+        public ScopeContextNestedStatesLayoutRenderer()
+        {
+            _separator = new SimpleLayout(" ");
+        }
 
         /// <summary>
         /// Renders the specified Nested Logical Context item and appends it to the specified <see cref="StringBuilder" />.
@@ -101,18 +113,19 @@ namespace NLog.LayoutRenderers
                 startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
 
-            var formatProvider = GetFormatProvider(logEvent);
-            AppendNestedStates(builder, messages, startPos, endPos, formatProvider);
+            AppendNestedStates(builder, messages, startPos, endPos, logEvent);
         }
 
-        private void AppendNestedStates(StringBuilder builder, object[] messages, int startPos, int endPos, IFormatProvider formatProvider)
+        private void AppendNestedStates(StringBuilder builder, object[] messages, int startPos, int endPos, LogEventInfo logEvent)
         {
             bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format);
+            var formatProvider = GetFormatProvider(logEvent);
 
-            string separator = Separator ?? string.Empty;
-            string itemSeparator = separator;
+            string separator = null;
+            string itemSeparator = null;
             if (formatAsJson)
             {
+                separator = _separator?.Render(logEvent) ?? string.Empty;
                 builder.Append("[");
                 builder.Append(separator);
                 itemSeparator = "," + separator;
@@ -120,7 +133,7 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                string currentSeparator = string.Empty;
+                string currentSeparator = null;
                 for (int i = endPos - 1; i >= startPos; --i)
                 {
                     builder.Append(currentSeparator);
@@ -130,7 +143,7 @@ namespace NLog.LayoutRenderers
                         builder.Append(Convert.ToString(messages[i]));   // Special support for Microsoft Extension Logging ILogger.BeginScope
                     else
                         builder.AppendFormattedValue(messages[i], Format, formatProvider, ValueFormatter);
-                    currentSeparator = itemSeparator;
+                    currentSeparator = itemSeparator ?? _separator?.Render(logEvent) ?? string.Empty;
                 }
             }
             finally
