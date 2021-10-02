@@ -47,30 +47,50 @@ namespace NLog.Config
 
         internal static T ResolveService<T>(this ServiceRepository serviceProvider, bool ignoreExternalProvider = true) where T : class
         {
-            IServiceProvider externalServiceProvider;
-
-            try
+            if (ignoreExternalProvider)
             {
                 return serviceProvider.GetService<T>();
             }
-            catch (NLogDependencyResolveException)
+            else
             {
-                if (ignoreExternalProvider)
-                    throw;
+                IServiceProvider externalServiceProvider;
 
-                externalServiceProvider = serviceProvider.GetService<IServiceProvider>();
+                try
+                {
+                    var service = serviceProvider.TryGetService(typeof(T)) as T;
+                    if (service != null)
+                        return service;
+                    
+                    externalServiceProvider = serviceProvider.GetService<IServiceProvider>();
+                }
+                catch (NLogDependencyResolveException)
+                {
+                    externalServiceProvider = serviceProvider.GetService<IServiceProvider>();
+                    if (ReferenceEquals(externalServiceProvider, serviceProvider))
+                    {
+                        throw;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrown())
+                        throw;
+
+                    throw new NLogDependencyResolveException(ex.Message, ex, typeof(T));
+                }
+
                 if (ReferenceEquals(externalServiceProvider, serviceProvider))
                 {
-                    throw;
+                    throw new NLogDependencyResolveException("Instance of class must be registered", typeof(T));
                 }
-            }
 
-            // External IServiceProvider can be dangerous to use from Logging-library and can lead to deadlock or stackoverflow
-            // But during initialization of Logging-library then use of external IServiceProvider is probably safe
-            var service = externalServiceProvider.GetService<T>();
-            // Cache singleton so also available when logging-library has been fully initialized
-            serviceProvider.RegisterService(typeof(T), service);
-            return service;
+                // External IServiceProvider can be dangerous to use from Logging-library and can lead to deadlock or stackoverflow
+                // But during initialization of Logging-library then use of external IServiceProvider is probably safe
+                var externalService = externalServiceProvider.GetService<T>();
+                // Cache singleton so also available when logging-library has been fully initialized
+                serviceProvider.RegisterService(typeof(T), externalService);
+                return externalService;
+            }
         }
 
         internal static T GetService<T>(this IServiceProvider serviceProvider) where T : class
@@ -79,8 +99,8 @@ namespace NLog.Config
             {
                 var service = (serviceProvider ?? LogManager.LogFactory.ServiceRepository).GetService(typeof(T)) as T;
                 if (service is null)
-                    throw new NLogDependencyResolveException($"Service type {typeof(T)} cannot be resolved", typeof(T));
-                
+                    throw new NLogDependencyResolveException("Instance of class is unavailable", typeof(T));
+
                 return service;
             }
             catch (NLogDependencyResolveException ex)

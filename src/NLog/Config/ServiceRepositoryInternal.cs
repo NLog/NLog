@@ -83,6 +83,16 @@ namespace NLog.Config
 
         public override object GetService(Type serviceType)
         {
+            var service = DefaultResolveInstance(serviceType, null);
+            if (service is null && serviceType.IsAbstract())
+            {
+                throw new NLogDependencyResolveException("Instance of class must be registered", serviceType);
+            }
+            return service;
+        }
+
+        internal override object TryGetService(Type serviceType)
+        {
             return DefaultResolveInstance(serviceType, null);
         }
 
@@ -105,7 +115,12 @@ namespace NLog.Config
             if (objectResolver is null && compiledConstructor is null)
             {
                 if (itemType.IsAbstract())
-                    throw new NLogDependencyResolveException("Instance of class must be registered", itemType);
+                {
+                    if (seenTypes is null)
+                        return null;
+                    else
+                        throw new NLogDependencyResolveException("Instance of class must be registered", itemType);
+                }
 
                 // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
                 var newCompiledConstructor = CreateCompiledConstructor(itemType);
