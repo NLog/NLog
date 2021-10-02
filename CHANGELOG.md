@@ -4,7 +4,31 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### v5.0-Preview 1 (2021/08/)
+### v5.0-Preview 2 (2021/10/02)
+
+#### Bugfixes
+- [#4533](https://github.com/NLog/NLog/pull/4533) Fixed validation of nlog-element when using include-files (#4533) (@snakefoot)
+- [#4555](https://github.com/NLog/NLog/pull/4555) Fixed validation of nlog-element when nested within configuration-element (#4555) (@snakefoot)
+
+#### Features
+- [#4542](https://github.com/NLog/NLog/pull/4542) NetworkTarget - Added OnQueueOverflow with default Discard (#4542) (@snakefoot)
+
+#### Improvements
+- [#4544](https://github.com/NLog/NLog/pull/4544) ScopeContext - Renamed IncludeScopeNestedStates to IncludeScopeNested for consistency (#4544) (@snakefoot)
+- [#4545](https://github.com/NLog/NLog/pull/4545) ScopeContext - Renamed PushScopeState to PushScopeNested for consistency (#4545) (@snakefoot)
+- [#4556](https://github.com/NLog/NLog/pull/4556) NetworkTarget - Explicit assigning LineEnding activates NewLine automatically (#4556) (@snakefoot)
+- [#4549](https://github.com/NLog/NLog/pull/4549) NetworkTarget - UdpNetworkSender changed to QueuedNetworkSender with correct message split (#4549) (@snakefoot)
+- [#4542](https://github.com/NLog/NLog/pull/4542) NetworkTarget - Changed OnConnectionOverflow to discard by default (#4542) (@snakefoot)
+- [#4564](https://github.com/NLog/NLog/pull/4564) Fixed LayoutParser so Typed Layout works for LayoutRenderer (#4564) (@snakefoot)
+- [#4580](https://github.com/NLog/NLog/pull/4580) LayoutRenderer and Layout are now always threadsafe by default (#4580) (@snakefoot)
+- [#4586](https://github.com/NLog/NLog/pull/4586) ScopeTiming - No Format specified renders TimeSpan.TotalMilliseconds (#4586) (@snakefoot)
+- [#4583](https://github.com/NLog/NLog/pull/4583) ExceptionLayoutRenderer - Separator with basic layout support (#4583) (@snakefoot)
+- [#4588](https://github.com/NLog/NLog/pull/4588) StackTraceLayoutRenderer - Separator with basic layout support (#4588) (@snakefoot)
+- [#4589](https://github.com/NLog/NLog/pull/4589) ScopeNestedLayoutRenderer - Separator with basic layout support (#4589) (@snakefoot)
+
+### v5.0-Preview 1 (2021/08/25)
+
+See NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html 
 
 - [Breaking Changes](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22breaking%20change%22+is%3Amerged+milestone:%225.0%20%28new%29%22)
 
