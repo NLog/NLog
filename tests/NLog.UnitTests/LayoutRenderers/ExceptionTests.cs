@@ -219,6 +219,26 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void ExceptionNewLineSeparatorLayoutTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:separator= ${NewLine} :format=message,shorttype}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+
+            logger.Error(ex, "msg");
+            AssertDebugLastMessage("debug1", $"Test exception {System.Environment.NewLine} {typeof(CustomArgumentException).Name}");
+        }
+
+        [Fact]
         public void ExceptionUsingLogMethodTest()
         {
             SetConfigurationForExceptionUsingRootMethodTests();

@@ -95,7 +95,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>'
-        public static Layout FromString(string layoutText)
+        public static Layout FromString([Localizable(false)] string layoutText)
         {
             return FromString(layoutText, ConfigurationItemFactory.Default);
         }
@@ -106,7 +106,7 @@ namespace NLog.Layouts
         /// <param name="layoutText">The layout string.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when resolving layout renderers.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout FromString(string layoutText, ConfigurationItemFactory configurationItemFactory)
+        public static Layout FromString([Localizable(false)] string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
             return new SimpleLayout(layoutText, configurationItemFactory);
         }
@@ -117,7 +117,7 @@ namespace NLog.Layouts
         /// <param name="layoutText">The layout string.</param>
         /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (false = replace unrecognized tokens with a space).</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout FromString(string layoutText, bool throwConfigExceptions)
+        public static Layout FromString([Localizable(false)] string layoutText, bool throwConfigExceptions)
         {
             try
             {
