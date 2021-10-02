@@ -176,6 +176,26 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void HandleLayoutRendererDependency()
+        {
+            // Arrange
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext =>
+            {
+                ext.RegisterLayoutRenderer<LayoutRendererUsingDependency>();
+                ext.RegisterServiceProvider(new ExternalServiceRepository(t => t == typeof(IMisingDependencyClass) ? new MisingDependencyClass() : null));
+            }).LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(new MemoryTarget() { Layout = "${NeedDependency}" });
+            }).LogFactory;
+
+            // Act
+            logFactory.GetLogger("Test").Info("Test");
+
+            // Assert
+            Assert.Equal("Success", (logFactory.Configuration.AllTargets[0] as MemoryTarget).Logs[0]);
+        }
+
+        [Fact]
         public void ResolveShouldCheckExternalServiceProvider()
         {
             // Arrange
@@ -314,6 +334,23 @@ namespace NLog.UnitTests.Config
             protected override void Write(LogEventInfo logEvent)
             {
                 LastLogEvent = logEvent;
+            }
+        }
+
+        [NLog.LayoutRenderers.LayoutRenderer("needdependency")]
+        private class LayoutRendererUsingDependency : NLog.LayoutRenderers.LayoutRenderer
+        {
+            private object _wantedDependency;
+
+            protected override void InitializeLayoutRenderer()
+            {
+                _wantedDependency = ResolveService<IMisingDependencyClass>();
+                base.InitializeLayoutRenderer();
+            }
+
+            protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+            {
+                builder.Append(_wantedDependency != null ? "Success" : "Failed");
             }
         }
 

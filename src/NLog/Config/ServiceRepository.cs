@@ -53,6 +53,8 @@ namespace NLog.Config
         /// <remarks>Avoid calling this while handling a LogEvent, since random deadlocks can occur.</remarks>
         public abstract object GetService(Type serviceType);
 
+        internal abstract bool TryGetService<T>(out T serviceInstance) where T : class;
+
         internal abstract ConfigurationItemCreator ConfigurationItemCreator { get; set; }
 
         internal ServiceRepository()

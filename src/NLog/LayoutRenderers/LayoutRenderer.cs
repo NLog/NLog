@@ -129,7 +129,6 @@ namespace NLog.LayoutRenderers
 
             if (!_isInitialized)
             {
-                _isInitialized = true;
                 Initialize();
             }
         }
@@ -148,6 +147,10 @@ namespace NLog.LayoutRenderers
                 {
                     throw;
                 }
+            }
+            finally
+            {
+                _isInitialized = true;  // Only one attempt, must Close to retry
             }
         }
 
@@ -174,7 +177,6 @@ namespace NLog.LayoutRenderers
         {
             if (!_isInitialized)
             {
-                _isInitialized = true;
                 Initialize();
             }
 
