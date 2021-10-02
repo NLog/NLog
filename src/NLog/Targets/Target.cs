@@ -460,7 +460,7 @@ namespace NLog.Targets
                     }
                     finally
                     {
-                        _isInitialized = true;
+                        _isInitialized = true;  // Only one attempt, must Close to retry
                     }
                 }
             }

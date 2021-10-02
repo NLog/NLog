@@ -800,7 +800,7 @@ namespace NLog.Config
 
                         if (typeof(IServiceProvider).IsAssignableFrom(serviceType) || IsMissingServiceType(resolveException, serviceType))
                         {
-                            target.Close();
+                            target.Close(); // Close Target to allow re-initialize
                         }
                     }
                 }
