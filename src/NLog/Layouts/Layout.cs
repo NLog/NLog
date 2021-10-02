@@ -328,19 +328,25 @@ namespace NLog.Layouts
         {
             if (!IsInitialized)
             {
-                LoggingConfiguration = configuration;
-
-                IsInitialized = true;
-                _scannedForObjects = false;
-
-                PropertyHelper.CheckRequiredParameters(this);
-
-                InitializeLayout();
-
-                if (!_scannedForObjects)
+                try
                 {
-                    InternalLogger.Debug("{0} Initialized Layout done but not scanned for objects", GetType());
-                    PerformObjectScanning();
+                    LoggingConfiguration = configuration;
+
+                    _scannedForObjects = false;
+
+                    PropertyHelper.CheckRequiredParameters(this);
+
+                    InitializeLayout();
+
+                    if (!_scannedForObjects)
+                    {
+                        InternalLogger.Debug("{0} Initialized Layout done but not scanned for objects", GetType());
+                        PerformObjectScanning();
+                    }
+                }
+                finally
+                {
+                    IsInitialized = true;
                 }
             }
         }
