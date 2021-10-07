@@ -55,8 +55,6 @@ namespace NLog.Config
 
         internal abstract bool TryGetService<T>(out T serviceInstance) where T : class;
 
-        internal abstract ConfigurationItemCreator ConfigurationItemCreator { get; set; }
-
         internal ServiceRepository()
         {
         }

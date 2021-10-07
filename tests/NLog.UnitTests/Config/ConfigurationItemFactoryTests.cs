@@ -45,9 +45,7 @@ namespace NLog.UnitTests.Config
         public void ConfigurationItemFactoryDefaultTest()
         {
             var itemFactory = new ConfigurationItemFactory();
-#pragma warning disable CS0618 // Type or member is obsolete
             Assert.IsType<DebugTarget>(itemFactory.CreateInstance(typeof(DebugTarget)));
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Fact]
@@ -65,9 +63,7 @@ namespace NLog.UnitTests.Config
             var cif = new ConfigurationItemFactory();
             cif.RegisterType(typeof(DebugTarget), string.Empty);
             List<Type> resolvedTypes = new List<Type>();
-#pragma warning disable CS0618 // Type or member is obsolete
             cif.CreateInstance = t => { resolvedTypes.Add(t); return Activator.CreateInstance(t); };
-#pragma warning restore CS0618 // Type or member is obsolete
             Target target = cif.Targets.CreateInstance("Debug");
             Assert.NotNull(target);
             Assert.Single(resolvedTypes);

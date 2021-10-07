@@ -50,12 +50,12 @@ namespace NLog.Config
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
-        private readonly ServiceRepository _serviceRepository;
+        private readonly ConfigurationItemFactory _parentFactory;
         private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
 
-        internal Factory(ServiceRepository serviceRepository, Factory<TBaseType, TAttributeType> globalDefaultFactory)
+        internal Factory(ConfigurationItemFactory parentFactory, Factory<TBaseType, TAttributeType> globalDefaultFactory)
         {
-            _serviceRepository = serviceRepository;
+            _parentFactory = parentFactory;
             _globalDefaultFactory = globalDefaultFactory;
         }
 
@@ -218,7 +218,7 @@ namespace NLog.Config
                 return false;
             }
 
-            result = (TBaseType)_serviceRepository.ConfigurationItemCreator(itemType);
+            result = (TBaseType)_parentFactory.CreateInstance(itemType);
             return true;
         }
 
@@ -254,7 +254,8 @@ namespace NLog.Config
         private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
         private readonly LayoutRendererFactory _globalDefaultFactory;
 
-        public LayoutRendererFactory(ServiceRepository serviceRepository, LayoutRendererFactory globalDefaultFactory) : base(serviceRepository, globalDefaultFactory)
+        public LayoutRendererFactory(ConfigurationItemFactory parentFactory, LayoutRendererFactory globalDefaultFactory)
+            : base(parentFactory, globalDefaultFactory)
         {
             _globalDefaultFactory = globalDefaultFactory;
         }

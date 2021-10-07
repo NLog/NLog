@@ -82,14 +82,15 @@ namespace NLog.Config
 
         internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
         {
+            CreateInstance = FactoryHelper.CreateInstance;
             _serviceRepository = serviceRepository ?? throw new ArgumentNullException(nameof(serviceRepository));
-            _targets = new Factory<Target, TargetAttribute>(serviceRepository, globalDefaultFactory?._targets);
-            _filters = new Factory<Filter, FilterAttribute>(serviceRepository, globalDefaultFactory?._filters);
-            _layoutRenderers = new LayoutRendererFactory(serviceRepository, globalDefaultFactory?._layoutRenderers);
-            _layouts = new Factory<Layout, LayoutAttribute>(serviceRepository, globalDefaultFactory?._layouts);
+            _targets = new Factory<Target, TargetAttribute>(this, globalDefaultFactory?._targets);
+            _filters = new Factory<Filter, FilterAttribute>(this, globalDefaultFactory?._filters);
+            _layoutRenderers = new LayoutRendererFactory(this, globalDefaultFactory?._layoutRenderers);
+            _layouts = new Factory<Layout, LayoutAttribute>(this, globalDefaultFactory?._layouts);
             _conditionMethods = new MethodFactory(globalDefaultFactory?._conditionMethods, classType => MethodFactory.ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(classType));
-            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(serviceRepository, globalDefaultFactory?._ambientProperties);
-            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(serviceRepository, globalDefaultFactory?._timeSources);
+            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this, globalDefaultFactory?._ambientProperties);
+            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this, globalDefaultFactory?._timeSources);
             _allFactories = new IFactory[]
             {
                 _targets,
@@ -126,12 +127,7 @@ namespace NLog.Config
         /// <remarks>
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
-        [Obsolete("Use LogFactory.ServiceRepository.RegisterService() instead for later resolve. Marked obsolete on NLog 5.0")]
-        public ConfigurationItemCreator CreateInstance
-        {
-            get => _serviceRepository.ConfigurationItemCreator;
-            set => _serviceRepository.ConfigurationItemCreator = value;
-        }
+        public ConfigurationItemCreator CreateInstance { get; set; }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
