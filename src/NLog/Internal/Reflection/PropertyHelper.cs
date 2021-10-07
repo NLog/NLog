@@ -76,7 +76,7 @@ namespace NLog.Internal
                 { typeof(string), (stringvalue, factory) => stringvalue },
                 { typeof(int), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Int32, CultureInfo.InvariantCulture) },
                 { typeof(bool), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Boolean, CultureInfo.InvariantCulture) },
-                { typeof(CultureInfo), (stringvalue, factory) => new CultureInfo(stringvalue.Trim()) },
+                { typeof(CultureInfo), (stringvalue, factory) =>  TryParseCultureInfo(stringvalue) },
                 { typeof(Type),  (stringvalue, factory) => Type.GetType(stringvalue.Trim(), true) },
                 { typeof(LineEndingMode), (stringvalue, factory) => LineEndingMode.FromString(stringvalue.Trim()) },
                 { typeof(Uri), (stringvalue, factory) => new Uri(stringvalue.Trim()) }
@@ -327,6 +327,15 @@ namespace NLog.Internal
                 result = enumField.GetValue(null);
                 return true;
             }
+        }
+
+        private static object TryParseCultureInfo(string stringValue)
+        {
+            stringValue = stringValue?.Trim();
+            if (string.IsNullOrEmpty(stringValue))
+                return CultureInfo.InvariantCulture;
+            else
+                return new CultureInfo(stringValue);
         }
 
         private static object TryParseEncodingValue(string stringValue, ConfigurationItemFactory configurationItemFactory)

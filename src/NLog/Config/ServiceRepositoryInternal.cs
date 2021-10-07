@@ -50,8 +50,6 @@ namespace NLog.Config
         private readonly object _lockObject = new object();
         public event EventHandler<ServiceRepositoryUpdateEventArgs> TypeRegistered;
 
-        internal override ConfigurationItemCreator ConfigurationItemCreator { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceRepositoryInternal"/> class.
         /// </summary>
@@ -59,8 +57,6 @@ namespace NLog.Config
         {
             if (resetGlobalCache)
                 ConfigurationItemFactory.Default = null;    //build new global factory
-
-            ConfigurationItemCreator = GetService;
 
             this.RegisterDefaults();
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
