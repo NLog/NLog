@@ -41,6 +41,11 @@ namespace NLog.Internal
     internal interface ILogMessageFormatter
     {
         /// <summary>
+        /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
+        /// </summary>
+        bool? MessageTemplateParser { get; }
+
+        /// <summary>
         /// Format the message and return
         /// </summary>
         /// <param name="logEvent">LogEvent with message to be formatted</param>
