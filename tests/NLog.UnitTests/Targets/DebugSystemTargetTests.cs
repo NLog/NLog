@@ -50,15 +50,10 @@ namespace NLog.UnitTests.Targets
                 Debug.Listeners.Clear();
                 Debug.Listeners.Add(new TextWriterTraceListener(sw));
 #endif
-                var logger = new LogFactory().Setup().LoadConfigurationFromXml(@"
-                <nlog>
-                    <targets>
-                        <target type='debugsystem' name='Debug' layout='${message}' />
-                    </targets>
-                    <rules>
-                        <logger name='*' writeTo='Debug' />
-                    </rules>
-                </nlog>").GetCurrentClassLogger();
+                var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+                {
+                    builder.ForLogger().WriteToDebug();
+                }).GetCurrentClassLogger();
 
                 // Act
                 logger.Info("Hello World");
@@ -113,8 +108,6 @@ namespace NLog.UnitTests.Targets
                 logger.Factory.Shutdown();
                 Assert.Contains("Shutdown", sw.ToString());
 #endif
-
-
             }
             finally
             {

@@ -64,7 +64,7 @@ namespace NLog.Targets
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
-        /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
+        /// Force use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
         /// <docgen category='Output Options' order='100' />
         [DefaultValue(false)]
