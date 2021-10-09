@@ -590,15 +590,17 @@ namespace NLog.Config
         }
 #endif
 
-            /// <summary>
-            /// Registers items in using late-bound types, so that we don't need a reference to the dll.
-            /// </summary>
-            private void RegisterExternalItems()
+        /// <summary>
+        /// Registers items in using late-bound types, so that we don't need a reference to the dll.
+        /// </summary>
+        private void RegisterExternalItems()
         {
-
 #if !NET35 && !NET40
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
 #endif
+            _layoutRenderers.RegisterNamedType("windows-identity", "NLog.LayoutRenderers.WindowsIdentityLayoutRenderer, NLog.WindowsIdentity");
+            _targets.RegisterNamedType("database", "NLog.Targets.DatabaseTarget, NLog.Database");
+            _targets.RegisterNamedType("outputdebugstring", "NLog.Targets.OutputDebugStringTarget, NLog.OutputDebugString");
         }
     }
 }
