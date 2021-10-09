@@ -683,7 +683,7 @@ namespace NLog.Targets
                 return true;
             }
 
-            if (value is string || Convert.GetTypeCode(value) != TypeCode.Object || value is Guid || value is TimeSpan || value is DateTimeOffset)
+            if (value is string || Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType())
             {
                 serializedValue = value;    // Already immutable, snapshot is not needed
                 return true;

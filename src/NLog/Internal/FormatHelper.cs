@@ -67,9 +67,9 @@ namespace NLog.Internal
             return Convert.ToString(o, formatProvider);
         }
 
-        private static bool SkipFormattableToString(object o)
+        private static bool SkipFormattableToString(object value)
         {
-            switch (Convert.GetTypeCode(o))
+            switch (Convert.GetTypeCode(value))
             {
                 case TypeCode.String:   return true;
                 case TypeCode.Empty:    return true;

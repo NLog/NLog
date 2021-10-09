@@ -329,7 +329,7 @@ namespace NLog.Layouts
                         {
                             // If raw value doesn't have the ability to mutate, then we can skip precalculate
                             var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
-                            if (success && value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
+                            if (success && IsObjectValueMutableSafe(value))
                                 return true;
                         }
                         else
@@ -358,6 +358,11 @@ namespace NLog.Layouts
             }
 
             return ThreadAgnostic && !MutableUnsafe;
+        }
+
+        private static bool IsObjectValueMutableSafe(object value)
+        {
+            return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType());
         }
 
         /// <inheritdoc />
