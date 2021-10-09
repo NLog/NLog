@@ -206,18 +206,7 @@ namespace NLog.Config
         public static bool? ResolveMessageTemplateParser(this ServiceRepository serviceRepository)
         {
             var messageFormatter = serviceRepository.GetService<ILogMessageFormatter>();
-            if (ReferenceEquals(messageFormatter, LogMessageStringFormatter.Default))
-            {
-                return false;
-            }
-            else if ((messageFormatter as LogMessageTemplateFormatter)?.ForceTemplateRenderer == true)
-            {
-                return true;
-            }
-            else
-            {
-                return null;
-            }
+            return messageFormatter?.MessageTemplateParser;
         }
 
         public static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository)
