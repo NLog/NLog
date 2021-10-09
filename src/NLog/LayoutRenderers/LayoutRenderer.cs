@@ -228,7 +228,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Get the <see cref="CultureInfo"/> for rendering the messages to a <see cref="string"/>, needed for date and number formats
+        /// Get the <see cref="CultureInfo"/> for rendering the messages to a <see cref="string"/>
         /// </summary>
         /// <param name="logEvent">LogEvent with culture</param>
         /// <param name="layoutCulture">Culture in on Layout level</param>

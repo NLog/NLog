@@ -51,15 +51,21 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output in culture invariant format
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
-        public bool Invariant { get; set; }
+        [DefaultValue(true)]
+        public bool Invariant { get => ReferenceEquals(Culture, CultureInfo.InvariantCulture); set => Culture = value ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [RequiredParameter]
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var ts = GetValue(logEvent);
-            var culture = Invariant ? null : GetCulture(logEvent);
-            WritetTimestamp(builder, ts, culture);
+            WritetTimestamp(builder, ts, Culture);
         }
 
         /// <inheritdoc />
@@ -76,7 +82,7 @@ namespace NLog.LayoutRenderers
         {
             string timeSeparator = ":";
             string ticksSeparator = ".";
-            if (culture != null)
+            if (!ReferenceEquals(culture, CultureInfo.InvariantCulture))
             {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;

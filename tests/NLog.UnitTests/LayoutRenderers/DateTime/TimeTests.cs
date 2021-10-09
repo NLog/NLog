@@ -60,7 +60,17 @@ namespace NLog.UnitTests.LayoutRenderers
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
         }
-        
+
+        [Fact]
+        public void LocalTimeGermanTest()
+        {
+            var dt = new TimeLayoutRenderer() { Culture = new CultureInfo("de-DE") };
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.Equal(ei.TimeStamp.ToString("HH:mm:ss,ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+        }
+
         [Fact]
         public void TimeTest()
         {

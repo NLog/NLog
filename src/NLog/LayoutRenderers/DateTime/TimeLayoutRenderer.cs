@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
+    using System.Globalization;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -57,8 +58,15 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output in culture invariant format
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
-        public bool Invariant { get; set; }
+        [DefaultValue(true)]
+        public bool Invariant { get => ReferenceEquals(Culture, CultureInfo.InvariantCulture); set => Culture = value ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [RequiredParameter]
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -67,16 +75,12 @@ namespace NLog.LayoutRenderers
 
             string timeSeparator = ":";
             string ticksSeparator = ".";
-            if (!Invariant)
+            if (!ReferenceEquals(Culture, CultureInfo.InvariantCulture))
             {
-                var culture = GetCulture(logEvent);
-                if (culture != null)
-                {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-                    timeSeparator = culture.DateTimeFormat.TimeSeparator;
+                timeSeparator = Culture.DateTimeFormat.TimeSeparator;
 #endif
-                    ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
-                }
+                ticksSeparator = Culture.NumberFormat.NumberDecimalSeparator;
             }
 
             builder.Append2DigitsZeroPadded(dt.Hour);
@@ -102,7 +106,6 @@ namespace NLog.LayoutRenderers
             {
                 dt = dt.ToUniversalTime();
             }
-
             return dt;
         }
     }

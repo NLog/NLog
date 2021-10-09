@@ -172,24 +172,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, output);
         }
 
-        [Theory]
-        [InlineData(typeof(TimeLayoutRenderer))]
-        [InlineData(typeof(ProcessTimeLayoutRenderer))]
-        public void DateTimeCultureTest(Type rendererType)
-        {
-            string cultureName = "de-DE";
-            string expected = ",";   // decimal comma as separator for ticks
-
-            var logEventInfo = CreateLogEventInfo(cultureName);
-
-            var renderer = Activator.CreateInstance(rendererType) as LayoutRenderer;
-            Assert.NotNull(renderer);
-            string output = renderer.Render(logEventInfo);
-
-            Assert.Contains(expected, output);
-            Assert.DoesNotContain(".", output);
-        }
-
         private static LogEventInfo CreateLogEventInfo(string cultureName)
         {
             var logEventInfo = new LogEventInfo(
