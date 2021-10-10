@@ -35,7 +35,6 @@ namespace NLog
 {
     using System;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
 #if !NET40 && !NET35
     using System.Threading.Tasks;
 #endif
@@ -44,7 +43,6 @@ namespace NLog
     /// <summary>
     /// Extensions for NLog <see cref="ILogger"/>.
     /// </summary>
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
     [CLSCompliant(false)]
     public static class ILoggerExtensions
     {

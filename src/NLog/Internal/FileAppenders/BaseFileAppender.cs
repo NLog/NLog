@@ -221,7 +221,6 @@ namespace NLog.Internal.FileAppenders
         }
 
 #if !MONO && !NETSTANDARD
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting, int overrideBufferSize)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;

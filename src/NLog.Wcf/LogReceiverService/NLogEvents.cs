@@ -73,7 +73,6 @@ namespace NLog.LogReceiverService
         [DataMember(Name = "lts", Order = 100)]
         [XmlArray("lts", Order = 100)]
         [XmlArrayItem("l")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "This is needed for serialization.")]
         public StringCollection LayoutNames { get; set; }
 
         /// <summary>
@@ -83,7 +82,6 @@ namespace NLog.LogReceiverService
         [DataMember(Name = "str", Order = 200)]
         [XmlArray("str", Order = 200)]
         [XmlArrayItem("l")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "Setter is needed for serialization.")]
         public StringCollection Strings { get; set; }
 
         /// <summary>
@@ -93,8 +91,6 @@ namespace NLog.LogReceiverService
         [DataMember(Name = "ev", Order = 1000)]
         [XmlArray("ev", Order = 1000)]
         [XmlArrayItem("e")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "Setter is needed for serialization.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is for serialization")]
         public NLogEvent[] Events { get; set; }
 
         /// <summary>

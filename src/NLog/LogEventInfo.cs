@@ -148,7 +148,6 @@ namespace NLog
         /// Gets the unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Backwards compatibility")]
         // ReSharper disable once InconsistentNaming
         public int SequenceID
         {
@@ -163,7 +162,6 @@ namespace NLog
         /// <summary>
         /// Gets or sets the timestamp of the logging event.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp", Justification = "Backwards compatibility.")]
         public DateTime TimeStamp { get; set; }
 
         /// <summary>
@@ -246,7 +244,6 @@ namespace NLog
         /// <summary>
         /// Gets or sets the parameter values or null if no parameters have been specified.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
         public object[] Parameters
         {
             get => _parameters;

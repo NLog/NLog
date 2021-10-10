@@ -380,7 +380,6 @@ namespace NLog.Targets
         /// Initializes the target. Can be used by inheriting classes
         /// to initialize logging.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "connectionStrings", Justification = "Name of the config file section.")]
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -828,7 +827,6 @@ namespace NLog.Targets
             return CreateDbCommandWithParameters(logEvent, dbConnection, CommandType, commandText, Parameters);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private IDbCommand CreateDbCommandWithParameters(LogEventInfo logEvent, IDbConnection dbConnection, CommandType commandType, string dbCommandText, IList<DatabaseParameterInfo> databaseParameterInfos)
         {
             var dbCommand = dbConnection.CreateCommand();
@@ -981,7 +979,6 @@ namespace NLog.Targets
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private void RunInstallCommands(InstallationContext installationContext, IEnumerable<DatabaseCommandInfo> commands)
         {
             // create log event that will be used to render all layouts

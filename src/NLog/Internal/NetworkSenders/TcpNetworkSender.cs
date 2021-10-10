@@ -74,7 +74,6 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
         /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method")]
         protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
             var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
@@ -163,7 +162,6 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Performs sender-specific initialization.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Object is disposed in the event handler.")]
         protected override void DoInitialize()
         {
             var uri = new Uri(Address);

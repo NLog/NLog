@@ -46,7 +46,6 @@ namespace NLog.Layouts
     /// <summary>
     /// Abstract interface that layouts must implement.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Justification = "Few people will see this conflict.")]
     [NLogConfigurationItem]
     public abstract class Layout : ISupportsInitialize, IRenderable
     {

@@ -72,7 +72,6 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
         /// <returns>Implementation of <see cref="ISocket"/> to use.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Socket is disposed elsewhere.")]
         protected internal virtual ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
             var proxy = new SocketProxy(addressFamily, socketType, protocolType);

@@ -58,7 +58,6 @@ namespace NLog.Config
         /// the specified level are output to the console.
         /// </summary>
         /// <param name="minLevel">The minimal logging level.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         public static void ConfigureForConsoleLogging(LogLevel minLevel)
         {
             ConsoleTarget consoleTarget = new ConsoleTarget();
@@ -110,7 +109,6 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">Log file name.</param>
         /// <param name="minLevel">The minimal logging level.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         public static void ConfigureForFileLogging(string fileName, LogLevel minLevel)
         {
             FileTarget target = new FileTarget();

@@ -64,7 +64,6 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c>, case is ignored; if <c>false</c> (default), case is significant.</param>
         /// <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("strequals")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
         public static bool Equals2( string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
         {
             return firstValue.Equals(secondValue, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
@@ -78,7 +77,6 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
         public static bool Contains(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
             return haystack.IndexOf(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
@@ -92,7 +90,6 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
         public static bool StartsWith(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
             return haystack.StartsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
@@ -106,7 +103,6 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
         public static bool EndsWith(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
             return haystack.EndsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
@@ -131,7 +127,6 @@ namespace NLog.Conditions
         /// <param name="options">A string consisting of the desired options for the test. The possible values are those of the <see cref="RegexOptions"/> separated by commas.</param>
         /// <returns>true if the regular expression finds a match; otherwise, false.</returns>
         [ConditionMethod("regex-matches")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
         public static bool RegexMatches(string input, string pattern, [Optional, DefaultParameterValue("")] string options)
         {
             RegexOptions regexOpts = ParseRegexOptions(options);

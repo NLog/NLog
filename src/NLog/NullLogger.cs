@@ -35,7 +35,6 @@ namespace NLog
 {
     using Internal;
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// It works as a normal <see cref="T:NLog.Logger" /> but it discards all messages which an application requests 

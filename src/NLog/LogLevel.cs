@@ -46,49 +46,40 @@ namespace NLog
         /// <summary>
         /// Trace log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Trace = new LogLevel("Trace", 0);
 
         /// <summary>
         /// Debug log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Debug = new LogLevel("Debug", 1);
 
         /// <summary>
         /// Info log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Info = new LogLevel("Info", 2);
 
         /// <summary>
         /// Warn log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Warn = new LogLevel("Warn", 3);
 
         /// <summary>
         /// Error log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Error = new LogLevel("Error", 4);
 
         /// <summary>
         /// Fatal log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Fatal = new LogLevel("Fatal", 5);
 
         /// <summary>
         /// Off log level.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off }.AsReadOnly();
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal }.AsReadOnly();
 
         /// <summary>

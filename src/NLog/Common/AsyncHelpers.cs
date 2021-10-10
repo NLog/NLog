@@ -173,7 +173,6 @@ namespace NLog.Common
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <param name="timeout">The timeout.</param>
         /// <returns>Wrapped continuation.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Continuation will be disposed of elsewhere.")]
         public static AsyncContinuation WithTimeout(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             return new TimeoutContinuation(asyncContinuation, timeout).Function;

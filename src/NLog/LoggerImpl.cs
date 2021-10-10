@@ -53,7 +53,6 @@ namespace NLog
     {
         private const int StackTraceSkipMethods = 0;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory logFactory)
         {
             logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain is null ? logFactory.SingleTargetMessageFormatter : null);
