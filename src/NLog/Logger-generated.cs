@@ -111,7 +111,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, null, value);
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -142,7 +142,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.Trace, null, messageFunc());
+                WriteToTargets(LogLevel.Trace, messageFunc());
             }
         }
 
@@ -169,7 +169,7 @@ namespace NLog
         { 
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, null, message);
+                WriteToTargets(LogLevel.Trace, message);
             }
         }
 
@@ -352,7 +352,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, null, value);
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -383,7 +383,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.Debug, null, messageFunc());
+                WriteToTargets(LogLevel.Debug, messageFunc());
             }
         }
 
@@ -410,7 +410,7 @@ namespace NLog
         { 
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, null, message);
+                WriteToTargets(LogLevel.Debug, message);
             }
         }
 
@@ -593,7 +593,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, null, value);
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -624,7 +624,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.Info, null, messageFunc());
+                WriteToTargets(LogLevel.Info, messageFunc());
             }
         }
 
@@ -651,7 +651,7 @@ namespace NLog
         { 
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, null, message);
+                WriteToTargets(LogLevel.Info, message);
             }
         }
 
@@ -834,7 +834,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, null, value);
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -865,7 +865,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.Warn, null, messageFunc());
+                WriteToTargets(LogLevel.Warn, messageFunc());
             }
         }
 
@@ -892,7 +892,7 @@ namespace NLog
         { 
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, null, message);
+                WriteToTargets(LogLevel.Warn, message);
             }
         }
 
@@ -1075,7 +1075,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, null, value);
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -1106,7 +1106,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.Error, null, messageFunc());
+                WriteToTargets(LogLevel.Error, messageFunc());
             }
         }
 
@@ -1133,7 +1133,7 @@ namespace NLog
         { 
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, null, message);
+                WriteToTargets(LogLevel.Error, message);
             }
         }
 
@@ -1316,7 +1316,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, null, value);
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -1347,7 +1347,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.Fatal, null, messageFunc());
+                WriteToTargets(LogLevel.Fatal, messageFunc());
             }
         }
 
@@ -1374,7 +1374,7 @@ namespace NLog
         { 
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, null, message);
+                WriteToTargets(LogLevel.Fatal, message);
             }
         }
 

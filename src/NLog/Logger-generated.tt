@@ -87,7 +87,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, null, value);
+                WriteToTargets(LogLevel.<#=level#>, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -118,7 +118,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(LogLevel.<#=level#>, null, messageFunc());
+                WriteToTargets(LogLevel.<#=level#>, messageFunc());
             }
         }
 
@@ -145,7 +145,7 @@ namespace NLog
         { 
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, null, message);
+                WriteToTargets(LogLevel.<#=level#>, message);
             }
         }
 
