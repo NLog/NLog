@@ -229,6 +229,8 @@ namespace NLog
             {
                 if (logEvent.LoggerName is null)
                     logEvent.LoggerName = Name;
+                if (logEvent.FormatProvider is null)
+                    logEvent.FormatProvider = Factory.DefaultCultureInfo;
                 WriteToTargets(logEvent, targetsForLevel);
             }
         }
@@ -245,6 +247,8 @@ namespace NLog
             {
                 if (logEvent.LoggerName is null)
                     logEvent.LoggerName = Name;
+                if (logEvent.FormatProvider is null)
+                    logEvent.FormatProvider = Factory.DefaultCultureInfo;
                 WriteToTargets(wrapperType, logEvent, targetsForLevel);
             }
         }
@@ -264,7 +268,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, null, value);
+                WriteToTargets(level, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -297,7 +301,7 @@ namespace NLog
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
 
-                WriteToTargets(level, null, messageFunc());
+                WriteToTargets(level, messageFunc());
             }
         }
 
@@ -326,7 +330,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, null, message);
+                WriteToTargets(level, message);
             }
         }
 
@@ -491,10 +495,6 @@ namespace NLog
 
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
-            if (logEvent.FormatProvider is null)
-            {
-                logEvent.FormatProvider = Factory.DefaultCultureInfo;
-            }
             if (_contextProperties != null)
             {
                 foreach (var property in _contextProperties)
@@ -667,14 +667,14 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message)
+        private void WriteToTargets(LogLevel level, [Localizable(false)] string message)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
             {
                 // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
                 // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
-                var logEvent = LogEventInfo.Create(level, Name, formatProvider, message, (object[])null);
+                var logEvent = LogEventInfo.Create(level, Name, Factory.DefaultCultureInfo, message, (object[])null);
                 WriteToTargets(logEvent, targetsForLevel);
             }
         }
@@ -694,9 +694,9 @@ namespace NLog
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
             {
-                // Translate Exception with missing LogEvent message as log single value (See also ExceptionMessageFormatProvider)
+                // Translate Exception with missing LogEvent message as log single value
                 var logEvent = message is null && ex != null && !(args?.Length > 0) ? 
-                    LogEventInfo.Create(level, Name, null, ex) :
+                    LogEventInfo.Create(level, Name, ExceptionMessageFormatProvider.Instance, ex) :
                     LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
                 WriteToTargets(logEvent, targetsForLevel);
             }

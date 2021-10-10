@@ -55,7 +55,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, null, value);
+                WriteToTargets(level, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -547,7 +547,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, null, value);
+                WriteToTargets(LogLevel.Trace, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -1010,7 +1010,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, null, value);
+                WriteToTargets(LogLevel.Debug, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -1473,7 +1473,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, null, value);
+                WriteToTargets(LogLevel.Info, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -1936,7 +1936,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, null, value);
+                WriteToTargets(LogLevel.Warn, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -2399,7 +2399,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, null, value);
+                WriteToTargets(LogLevel.Error, Factory.DefaultCultureInfo, value);
             }
         }
 
@@ -2862,7 +2862,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, null, value);
+                WriteToTargets(LogLevel.Fatal, Factory.DefaultCultureInfo, value);
             }
         }
 
