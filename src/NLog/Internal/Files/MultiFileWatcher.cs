@@ -124,7 +124,6 @@ namespace NLog.Internal
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Watcher is released in Dispose()")]
         internal void Watch(string fileName)
         {
             var directory = Path.GetDirectoryName(fileName);

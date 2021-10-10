@@ -48,39 +48,32 @@ namespace NLog.Targets
         /// <summary>
         /// Insert platform-dependent end-of-line sequence after each line.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LineEndingMode Default = new LineEndingMode("Default", EnvironmentHelper.NewLine);
 
         /// <summary>
         /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LineEndingMode CRLF = new LineEndingMode("CRLF", "\r\n");
 
         /// <summary>
         /// Insert CR character (ASCII 13) after each line.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LineEndingMode CR = new LineEndingMode("CR", "\r");
 
         /// <summary>
         /// Insert LF character (ASCII 10) after each line.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LineEndingMode LF = new LineEndingMode("LF", "\n");
 
         /// <summary>
         /// Insert null terminator (ASCII 0) after each line.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LineEndingMode Null = new LineEndingMode("Null", "\0");
 
         /// <summary>
         /// Do not insert any line ending.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LineEndingMode None = new LineEndingMode("None", string.Empty);
-
 
         private readonly string _name;
         private readonly string _newLineCharacters;

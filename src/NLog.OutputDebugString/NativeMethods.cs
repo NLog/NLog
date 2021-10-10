@@ -33,12 +33,10 @@
 
 namespace NLog.Internal
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
 
     internal static class NativeMethods
     {
-        [SuppressMessage("Microsoft.Usage", "CA2205:UseManagedEquivalentsOfWin32Api", Justification = "We specifically need this API")]
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         internal static extern void OutputDebugString(string message);
     }

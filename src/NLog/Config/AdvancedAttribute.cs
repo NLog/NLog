@@ -40,9 +40,6 @@ namespace NLog.Config
     /// default in generated documentation.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-#endif
     public sealed class AdvancedAttribute : Attribute
     {
         /// <summary>

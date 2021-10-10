@@ -101,7 +101,6 @@ namespace NLog
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogFactory()
         {
             RegisterEvents(DefaultAppEnvironment);
