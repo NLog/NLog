@@ -100,7 +100,6 @@ namespace NLog.Targets
         /// Gets or sets the type of the parameter. Obsolete alias for <see cref="ParameterType"/>
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
         [Obsolete("Use property ParameterType instead. Marked obsolete on NLog 4.6")]
         public Type Type { get => ParameterType; set => ParameterType = value; }
 
