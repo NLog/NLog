@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Globalization;
     using System.Text;
     using NLog.Internal;
     using NLog.Layouts;
@@ -74,6 +75,12 @@ namespace NLog.LayoutRenderers
         public string Format { get; set; }
 
         /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScopeContextNestedStatesLayoutRenderer" /> class.
         /// </summary>
         public ScopeContextNestedStatesLayoutRenderer()
@@ -93,7 +100,7 @@ namespace NLog.LayoutRenderers
                 // Allows fast rendering of topframes=1
                 var topFrame = ScopeContext.PeekNestedState();
                 if (topFrame != null)
-                    builder.AppendFormattedValue(topFrame, Format, GetFormatProvider(logEvent), ValueFormatter);
+                    builder.AppendFormattedValue(topFrame, Format, GetFormatProvider(logEvent, Culture), ValueFormatter);
                 return;
             }
 
@@ -119,7 +126,7 @@ namespace NLog.LayoutRenderers
         private void AppendNestedStates(StringBuilder builder, object[] messages, int startPos, int endPos, LogEventInfo logEvent)
         {
             bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format);
-            var formatProvider = GetFormatProvider(logEvent);
+            var formatProvider = GetFormatProvider(logEvent, Culture);
 
             string separator = null;
             string itemSeparator = null;

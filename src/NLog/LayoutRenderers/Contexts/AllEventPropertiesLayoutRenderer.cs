@@ -39,6 +39,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
+    using System.Globalization;
 
     /// <summary>
     /// Log event context data.
@@ -134,6 +135,12 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+        /// <summary>
         /// Renders all log event's properties and appends them to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -143,7 +150,7 @@ namespace NLog.LayoutRenderers
             if (!logEvent.HasProperties && !IncludeScopeProperties)
                 return;
 
-            var formatProvider = GetFormatProvider(logEvent);
+            var formatProvider = GetFormatProvider(logEvent, Culture);
             bool checkForExclude = Exclude?.Count > 0;
             bool nonStandardFormat = _beforeKey is null || _afterKey is null || _afterValue is null;
 

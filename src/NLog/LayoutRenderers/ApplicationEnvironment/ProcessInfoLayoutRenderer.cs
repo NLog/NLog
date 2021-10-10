@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Reflection;
     using System.Text;
     using NLog.Config;
@@ -65,6 +66,12 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(null)]
         public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc />
         protected override void InitializeLayoutRenderer()
@@ -95,7 +102,7 @@ namespace NLog.LayoutRenderers
             var value = GetValue();
             if (value != null)
             {
-                var formatProvider = GetFormatProvider(logEvent);
+                var formatProvider = GetFormatProvider(logEvent, Culture);
                 builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
             }
         }
