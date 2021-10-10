@@ -241,34 +241,26 @@ namespace NLog.Conditions
             if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
             {
                 _tokenizer.Expect(ConditionTokenType.Dot);
-                {
-                    expression = new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
+                return true;
             }
 
             if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
+                return true;
             }
 
             if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
+                return true;
             }
 
             if (0 == string.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLiteralExpression(null);
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(null);
+                return true;
             }
 
             expression = null;

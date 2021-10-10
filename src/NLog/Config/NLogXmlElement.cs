@@ -154,7 +154,7 @@ namespace NLog.Config
                 }
             }
 
-            throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + LocalName + "'.");
+            throw new InvalidOperationException($"Assertion failed. Expected element name '{string.Join("|", allowedNames)}', actual: '{LocalName}'.");
         }
 
         private void Parse(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string,string>> attributes, out IList<NLogXmlElement> children)
