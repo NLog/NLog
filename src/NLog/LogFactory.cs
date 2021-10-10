@@ -377,7 +377,7 @@ namespace NLog
         /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
         /// </value>
         [CanBeNull]
-        public CultureInfo DefaultCultureInfo => _configLoaded ? _config?.DefaultCultureInfo : null;
+        public CultureInfo DefaultCultureInfo => _config?.DefaultCultureInfo;
 
         internal static void LogConfigurationInitialized()
         {

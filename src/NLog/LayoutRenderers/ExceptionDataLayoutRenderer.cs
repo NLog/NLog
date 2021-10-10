@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
+    using System.Globalization;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -58,17 +59,23 @@ namespace NLog.LayoutRenderers
         public string Item { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool BaseException { get; set; }
+
+        /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
         /// <docgen category='Rendering Options' order='50' />
         public string Format { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
+        /// Gets or sets the culture used for rendering. 
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
-        public bool BaseException { get; set; }
+        /// <docgen category='Rendering Options' order='100' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         private Exception GetTopException(LogEventInfo logEvent)
         {
@@ -84,7 +91,7 @@ namespace NLog.LayoutRenderers
                 var value = primaryException.Data[Item];
                 if (value != null)
                 {
-                    var formatProvider = GetFormatProvider(logEvent);
+                    var formatProvider = GetFormatProvider(logEvent, Culture);
                     builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
                 }
             }
