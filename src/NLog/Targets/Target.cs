@@ -98,6 +98,8 @@ namespace NLog.Targets
         /// threadsafe, then this option can enabled to protect against thread-concurrency-issues. Allowing one
         /// to update to NLog 5.0 without having to fix custom/external layout-dependencies.
         /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [Advanced]
         public bool LayoutWithLock { get; set; }
 
         /// <summary>
