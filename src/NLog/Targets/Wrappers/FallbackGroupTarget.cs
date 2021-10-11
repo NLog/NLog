@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace NLog.Targets.Wrappers
 {
     using System.Threading;
@@ -115,7 +113,6 @@ namespace NLog.Targets.Wrappers
         /// resets the target to the first target
         /// stored in <see cref="Targets"/>.
         /// </remarks>
-        [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             AsyncContinuation continuation = null;

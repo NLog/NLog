@@ -327,7 +327,6 @@ namespace NLog.Targets
         [DefaultValue(10000)]
         public Layout<int> Timeout { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
         {
             return new MySmtpClient();
