@@ -34,7 +34,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using NLog.Internal.Fakeables;
 using NLog.Layouts;
 using NLog.Targets;
 
@@ -154,8 +153,6 @@ namespace NLog.Internal
             return _layout;
         }
 
-        #region Implementation of IRenderable
-
         /// <summary>
         /// Render the raw filename from Layout
         /// </summary>
@@ -256,8 +253,6 @@ namespace NLog.Internal
             _cachedPrevRawFileName = rawFileName;
             return cleanFileName;
         }
-
-        #endregion
 
         /// <summary>
         /// Is this (templated/invalid) path an absolute, relative or unknown?

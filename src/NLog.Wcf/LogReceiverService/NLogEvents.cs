@@ -33,12 +33,10 @@
 
 namespace NLog.LogReceiverService
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
 
     using System.Runtime.Serialization;
-    using System.ServiceModel;
     using System.Xml.Serialization;
 
     /// <summary>

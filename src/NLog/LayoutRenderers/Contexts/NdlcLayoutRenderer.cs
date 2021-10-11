@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
 
     /// <summary>
@@ -46,35 +45,22 @@ namespace NLog.LayoutRenderers
     public class NdlcLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NdlcLayoutRenderer" /> class.
-        /// </summary>
-        public NdlcLayoutRenderer()
-        {
-            Separator = " ";
-            BottomFrames = -1;
-            TopFrames = -1;
-        }
-
-        /// <summary>
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(-1)]
-        public int TopFrames { get; set; }
+        public int TopFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(-1)]
-        public int BottomFrames { get; set; }
+        public int BottomFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(" ")]
-        public string Separator { get; set; }
+        public string Separator { get; set; } = " ";
 
         /// <summary>
         /// Renders the specified Nested Logical Context item and appends it to the specified <see cref="StringBuilder" />.

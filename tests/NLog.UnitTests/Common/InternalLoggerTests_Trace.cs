@@ -33,18 +33,15 @@
 
 #define DEBUG
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Common
 {
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using NLog.Common;
+    using NLog.Config;
     using Xunit;
-    using Xunit.Extensions;
 
     public class InternalLoggerTests_Trace : NLogTestBase
     {

@@ -38,7 +38,6 @@ namespace NLog.Targets
     using System;
     using System.Text;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.IO;
     using NLog.Config;
     using NLog.Common;
@@ -81,7 +80,6 @@ namespace NLog.Targets
         {
             WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
-            UseDefaultRowHighlightingRules = true;
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
 
@@ -101,7 +99,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         [Obsolete("Replaced by StdErr to align with ConsoleTarget. Marked obsolete on NLog 5.0")]
         public bool ErrorStream { get => StdErr; set => StdErr = value; }
 
@@ -109,7 +106,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool StdErr { get; set; }
 
         /// <summary>
@@ -156,8 +152,7 @@ namespace NLog.Targets
         /// </table>
         /// </remarks>
         /// <docgen category='Highlighting Rules' order='9' />
-        [DefaultValue(true)]
-        public bool UseDefaultRowHighlightingRules { get; set; }
+        public bool UseDefaultRowHighlightingRules { get; set; } = true;
 
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
@@ -181,7 +176,6 @@ namespace NLog.Targets
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
@@ -189,7 +183,6 @@ namespace NLog.Targets
         ///   - Disables coloring logic when System.Console.IsOutputRedirected = true
         /// </summary>
         /// <docgen category='Console Options' order='11' />
-        [DefaultValue(false)]
         public bool DetectOutputRedirected { get; set; }
 
         /// <summary>
@@ -199,14 +192,12 @@ namespace NLog.Targets
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         /// <docgen category='Console Options' order='11' />
-        [DefaultValue(false)]
         public bool AutoFlush { get; set; }
 
         /// <summary>
         /// Enables output using ANSI Color Codes
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool EnableAnsiOutput { get; set; }
 
         /// <summary>

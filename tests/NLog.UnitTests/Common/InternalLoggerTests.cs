@@ -31,19 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using Xunit;
-using NLog.Common;
-using System.Text;
-using NLog.Time;
-using Xunit.Extensions;
-
 namespace NLog.UnitTests.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Time;
+    using Xunit;
+
     public class InternalLoggerTests : NLogTestBase, IDisposable
     {
         /// <summary>

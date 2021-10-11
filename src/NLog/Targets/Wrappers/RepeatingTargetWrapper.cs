@@ -33,11 +33,7 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System;
-    using System.ComponentModel;
-    using System.Threading;
-    using Common;
-    using Internal;
+    using NLog.Common;
 
     /// <summary>
     /// Repeats each log event the specified number of times.
@@ -94,7 +90,6 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of times to repeat each log message.
         /// </summary>
         /// <docgen category='Repeating Options' order='10' />
-        [DefaultValue(3)]
         public int RepeatCount { get; set; }
 
         /// <summary>

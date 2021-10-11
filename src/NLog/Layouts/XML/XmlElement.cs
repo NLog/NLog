@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
-using NLog.Config;
-
 namespace NLog.Layouts
 {
+    using NLog.Config;
+
     /// <summary>
     /// A XML Element
     /// </summary>
@@ -58,7 +57,6 @@ namespace NLog.Layouts
         /// Name of the element
         /// </summary>
         /// <docgen category='Element Options' order='10' />
-        [DefaultValue(DefaultElementName)]
         public string Name
         {
             get => base.ElementNameInternal;
@@ -79,7 +77,6 @@ namespace NLog.Layouts
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
         /// <docgen category='Element Options' order='10' />
-        [DefaultValue(true)]
         public bool Encode
         {
             get => base.LayoutWrapper.XmlEncode;

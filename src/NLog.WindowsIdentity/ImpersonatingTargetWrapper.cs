@@ -35,12 +35,11 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Runtime.InteropServices;
     using System.Security;
     using System.Security.Principal;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Impersonates another user for the duration of the write.
@@ -77,10 +76,6 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public ImpersonatingTargetWrapper(Target wrappedTarget)
         {
-            Domain = ".";
-            LogOnType = SecurityLogOnType.Interactive;
-            LogOnProvider = LogOnProviderType.Default;
-            ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
             WrappedTarget = wrappedTarget;
         }
 
@@ -100,32 +95,30 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets Windows domain name to change context to.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        [DefaultValue(".")]
-        public string Domain { get; set; }
+        public string Domain { get; set; } = ".";
 
         /// <summary>
         /// Gets or sets the Logon Type.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        public SecurityLogOnType LogOnType { get; set; }
+        public SecurityLogOnType LogOnType { get; set; } = SecurityLogOnType.Interactive;
 
         /// <summary>
         /// Gets or sets the type of the logon provider.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        public LogOnProviderType LogOnProvider { get; set; }
+        public LogOnProviderType LogOnProvider { get; set; } = LogOnProviderType.Default;
 
         /// <summary>
         /// Gets or sets the required impersonation level.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        public SecurityImpersonationLevel ImpersonationLevel { get; set; }
+        public SecurityImpersonationLevel ImpersonationLevel { get; set; } = SecurityImpersonationLevel.Impersonation;
 
         /// <summary>
         /// Gets or sets a value indicating whether to revert to the credentials of the process instead of impersonating another user.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        [DefaultValue(false)]
         public bool RevertToSelf { get; set; }
 
         /// <summary>

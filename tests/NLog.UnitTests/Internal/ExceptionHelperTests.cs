@@ -38,7 +38,6 @@ using System.Threading;
 using NLog.Common;
 using NLog.Internal;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {

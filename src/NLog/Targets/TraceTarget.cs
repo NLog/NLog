@@ -37,7 +37,6 @@
 
 namespace NLog.Targets
 {
-    using System.ComponentModel;
     using System.Diagnostics;
 
     /// <summary>
@@ -67,7 +66,6 @@ namespace NLog.Targets
         /// Force use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
         /// <docgen category='Output Options' order='100' />
-        [DefaultValue(false)]
         public bool RawWrite { get; set; }
 
         /// <summary>
@@ -77,7 +75,6 @@ namespace NLog.Targets
         /// Trace.Fail can have special side-effects, and give fatal exceptions, message dialogs or Environment.FailFast
         /// </remarks>
         /// <docgen category='Output Options' order='100' />
-        [DefaultValue(false)]
         public bool EnableTraceFail { get; set; }
 
         /// <summary>

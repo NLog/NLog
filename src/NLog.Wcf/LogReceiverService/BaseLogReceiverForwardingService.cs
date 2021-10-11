@@ -34,7 +34,6 @@
 namespace NLog.LogReceiverService
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Base implementation of a log receiver server which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.

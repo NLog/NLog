@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -48,27 +47,16 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonEncodeLayoutRendererWrapper" /> class.
-        /// </summary>
-        public JsonEncodeLayoutRendererWrapper()
-        {
-            JsonEncode = true;
-            EscapeUnicode = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to apply JSON encoding.
         /// </summary>
         /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(true)]
-        public bool JsonEncode { get; set; }
+        public bool JsonEncode { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
         /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(true)]
-        public bool EscapeUnicode { get; set; }
+        public bool EscapeUnicode { get; set; } = true;
 
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
@@ -77,7 +65,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(false)]
         public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>

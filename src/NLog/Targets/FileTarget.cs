@@ -39,7 +39,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Globalization;
     using System.IO;
     using System.IO.Compression;
@@ -139,7 +138,7 @@ namespace NLog.Targets
         private bool _concurrentWrites;
         private bool _keepFileOpen;
         private bool _cleanupFileName;
-        private FilePathKind _fileNameKind;
+        private FilePathKind _fileNameKind = FilePathKind.Unknown;
         private FilePathKind _archiveFileKind;
 
         /// <summary>
@@ -158,28 +157,11 @@ namespace NLog.Targets
             _maxArchiveFiles = 0;
             _maxArchiveDays = 0;
 
-            ConcurrentWriteAttemptDelay = 1;
             ArchiveEvery = FileArchivePeriod.None;
             ArchiveAboveSize = ArchiveAboveSizeDisabled;
-            ArchiveOldFileOnStartupAboveSize = 0;
-            ConcurrentWriteAttempts = 10;
-            ConcurrentWrites = false;
-            Encoding = Encoding.UTF8;
-            BufferSize = 32768;
-            AutoFlush = true;
-            FileAttributes = Win32FileAttributes.Normal;
-            LineEnding = LineEndingMode.Default;
-            EnableFileDelete = true;
-            OpenFileCacheTimeout = -1;
-            OpenFileCacheSize = 5;
-            CreateDirs = true;
-            ForceManaged = false;
-            ArchiveDateFormat = string.Empty;
             _cleanupFileName = true;
 
             _fileAppenderCache = fileAppenderCache;
-
-            WriteFooterOnArchivingOnly = false;
         }
 
 #if !NET35 && !NET40
@@ -243,7 +225,6 @@ namespace NLog.Targets
         /// If set to <c>false</c>, nothing gets written when the filename is wrong.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(true)]
         public bool CleanupFileName
         {
             get => _cleanupFileName;
@@ -263,7 +244,6 @@ namespace NLog.Targets
         /// Is the  <see cref="FileName"/> an absolute or relative path?
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(FilePathKind.Unknown)]
         public FilePathKind FileNameKind
         {
             get => _fileNameKind;
@@ -286,9 +266,8 @@ namespace NLog.Targets
         /// when attempting to write to a directory that's not present.
         /// </remarks>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(true)]
         [Advanced]
-        public bool CreateDirs { get; set; }
+        public bool CreateDirs { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to delete old log file on startup.
@@ -297,14 +276,12 @@ namespace NLog.Targets
         /// This option works only when the "FileName" parameter denotes a single file.
         /// </remarks>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
         public bool DeleteOldFileOnStartup { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
         [Advanced]
         public bool ReplaceFileContentsOnEachWrite { get; set; }
 
@@ -315,7 +292,6 @@ namespace NLog.Targets
         /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(false)]
         public bool KeepFileOpen
         {
             get => _keepFileOpen;
@@ -333,15 +309,14 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(true)]
-        public bool EnableFileDelete { get; set; }
+        public bool EnableFileDelete { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [Advanced]
-        public Win32FileAttributes FileAttributes { get; set; }
+        public Win32FileAttributes FileAttributes { get; set; } = Win32FileAttributes.Normal;
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
@@ -354,14 +329,13 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Advanced]
-        public LineEndingMode LineEnding { get; set; }
+        public LineEndingMode LineEnding { get; set; } = LineEndingMode.Default;
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(true)]
-        public bool AutoFlush { get; set; }
+        public bool AutoFlush { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the number of files to be kept open. Setting this to a higher value may improve performance
@@ -376,18 +350,16 @@ namespace NLog.Targets
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(5)]
         [Advanced]
-        public int OpenFileCacheSize { get; set; }
+        public int OpenFileCacheSize { get; set; } = 5;
 
         /// <summary>
         /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are 
         /// not automatically closed after a period of inactivity.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(-1)]
         [Advanced]
-        public int OpenFileCacheTimeout { get; set; }
+        public int OpenFileCacheTimeout { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the maximum number of seconds before open files are flushed. If this number is negative or zero
@@ -400,21 +372,19 @@ namespace NLog.Targets
         /// Gets or sets the log file buffer size in bytes.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(32768)]
-        public int BufferSize { get; set; }
+        public int BufferSize { get; set; } = 32768;
 
         /// <summary>
         /// Gets or sets the file encoding.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Encoding Encoding { get; set; }
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>
         /// Gets or sets whether or not this target should just discard all data that its asked to write.
         /// Mostly used for when testing NLog Stack except final write
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(false)]
         [Advanced]
         public bool DiscardAll { get; set; }
 
@@ -426,7 +396,6 @@ namespace NLog.Targets
         /// that lets it keep the files open for writing.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(false)]
         public bool ConcurrentWrites
         {
             get => _concurrentWrites;
@@ -447,7 +416,6 @@ namespace NLog.Targets
         /// This effectively prevents files from being kept open.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(false)]
         public bool NetworkWrites { get; set; }
 
         private bool? _writeBom;
@@ -469,10 +437,9 @@ namespace NLog.Targets
         /// discards the log message.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(10)]
         [Advanced]
         public int ConcurrentWriteAttempts { get => _concurrentWriteAttempts ?? 10; set => _concurrentWriteAttempts = value; }
-        private int? _concurrentWriteAttempts;
+        private int? _concurrentWriteAttempts = 10;
 
         /// <summary>
         /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
@@ -492,9 +459,8 @@ namespace NLog.Targets
         /// and so on.
         /// </example>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(1)]
         [Advanced]
-        public int ConcurrentWriteAttemptDelay { get; set; }
+        public int ConcurrentWriteAttemptDelay { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets a value indicating whether to archive old log file on startup.
@@ -504,7 +470,6 @@ namespace NLog.Targets
         /// After archiving the old file, the current log file will be empty.
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(false)]
         public bool ArchiveOldFileOnStartup
         {
             get => _archiveOldFileOnStartup ?? false;
@@ -521,7 +486,6 @@ namespace NLog.Targets
         /// startup is enabled.
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(0)]
         public long ArchiveOldFileOnStartupAboveSize { get; set; }
 
         /// <summary>
@@ -531,7 +495,6 @@ namespace NLog.Targets
         /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue("")]
         public string ArchiveDateFormat
         {
             get => _archiveDateFormat;
@@ -544,7 +507,7 @@ namespace NLog.Targets
                 }
             }
         }
-        private string _archiveDateFormat;
+        private string _archiveDateFormat = string.Empty;
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
@@ -641,7 +604,6 @@ namespace NLog.Targets
         /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(0)]
         public int MaxArchiveFiles
         {
             get => _maxArchiveFiles;
@@ -659,7 +621,6 @@ namespace NLog.Targets
         /// Gets or sets the maximum days of archive files that should be kept.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(0)]
         public int MaxArchiveDays
         {
             get => _maxArchiveDays;
@@ -704,7 +665,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(false)]
         public bool EnableArchiveFileCompression
         {
             get => _enableArchiveFileCompression && FileCompressor != null;
@@ -722,7 +682,6 @@ namespace NLog.Targets
         /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
         public bool ForceManaged { get; set; }
 
 #if SupportsMutex
@@ -730,7 +689,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
         public bool ForceMutexConcurrentWrites { get; set; }
 #endif
 
@@ -738,7 +696,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(false)]
         public bool WriteFooterOnArchivingOnly { get; set; }
 
         /// <summary>

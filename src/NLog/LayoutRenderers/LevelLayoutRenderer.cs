@@ -34,8 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -62,15 +60,13 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating the output format of the level.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(LevelFormat.Name)]
-        public LevelFormat Format { get; set; }
+        public LevelFormat Format { get; set; } = LevelFormat.Name;
 
         /// <summary>
         /// Gets or sets a value indicating whether upper case conversion should be applied.
         /// </summary>
         /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool Uppercase { get; set; }
 
         /// <inheritdoc/>

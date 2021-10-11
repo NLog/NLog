@@ -33,9 +33,8 @@
 
 namespace NLog.Targets
 {
-    using System.ComponentModel;
-    using Conditions;
-    using Config;
+    using NLog.Conditions;
+    using NLog.Config;
 
     /// <summary>
     /// The row-highlighting condition.
@@ -88,14 +87,12 @@ namespace NLog.Targets
         /// Gets or sets the foreground color.
         /// </summary>
         /// <docgen category='Formatting Options' order='10' />
-        [DefaultValue("NoChange")]
         public ConsoleOutputColor ForegroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         /// <docgen category='Formatting Options' order='10' />
-        [DefaultValue("NoChange")]
         public ConsoleOutputColor BackgroundColor { get; set; }
 
         /// <summary>

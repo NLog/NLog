@@ -31,16 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using NLog.Config;
 using NLog.Targets;
 using Xunit;
-
-#endregion
 
 namespace NLog.UnitTests.Config
 {

@@ -33,9 +33,8 @@
 
 namespace NLog.Targets
 {
-    using System.ComponentModel;
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Represents target that supports string formatting using layouts.
@@ -73,7 +72,6 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        [DefaultValue(DefaultLayoutText)]
         public virtual Layout Layout { get; set; }
    }
 }

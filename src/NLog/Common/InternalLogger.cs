@@ -41,7 +41,6 @@ namespace NLog.Common
     using System.Reflection;
     using NLog.Internal;
     using NLog.Time;
-    using NLog.Targets;
 
     /// <summary>
     /// NLog internal logger.

@@ -652,12 +652,12 @@ namespace NLog
             SetConfiguration(targetsByLevel);
         }
 
-        private void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
+        private void WriteToTargets(LogLevel level, string message, object[] args)
         {
             WriteToTargets(level, Factory.DefaultCultureInfo, message, args);
         }
 
-        private void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
+        private void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
@@ -667,7 +667,7 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(LogLevel level, [Localizable(false)] string message)
+        private void WriteToTargets(LogLevel level, string message)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
@@ -689,7 +689,7 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(LogLevel level, Exception ex, [Localizable(false)] string message, object[] args)
+        private void WriteToTargets(LogLevel level, Exception ex, string message, object[] args)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)
@@ -702,7 +702,7 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
+        private void WriteToTargets(LogLevel level, Exception ex, IFormatProvider formatProvider, string message, object[] args)
         {
             var targetsForLevel = GetTargetsForLevel(level);
             if (targetsForLevel != null)

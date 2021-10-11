@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
@@ -73,26 +72,16 @@ namespace NLog.LayoutRenderers.Wrappers
         private TimeSpan? _cachedValueTimeout;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
-        /// </summary>
-        public CachedLayoutRendererWrapper()
-        {
-            Cached = true;
-            ClearCache = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CachedLayoutRendererWrapper"/> is enabled.
         /// </summary>
         /// <docgen category='Caching Options' order='10' />
-        [DefaultValue(true)]
-        public bool Cached { get; set; }
+        public bool Cached { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating when the cache is cleared.
         /// </summary>
         /// <docgen category='Caching Options' order='10' />
-        public ClearCacheOption ClearCache { get; set; }
+        public ClearCacheOption ClearCache { get; set; } = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
 
         /// <summary>
         /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s

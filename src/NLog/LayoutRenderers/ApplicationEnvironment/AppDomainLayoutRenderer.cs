@@ -68,7 +68,6 @@ namespace NLog.LayoutRenderers
         internal AppDomainLayoutRenderer(IAppEnvironment appEnvironment)
         {
             _currentAppEnvironment = appEnvironment;
-            Format = LongFormatCode;
         }
 
         /// <summary>
@@ -78,8 +77,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
-        [DefaultValue(LongFormatCode)]
-        public string Format { get; set; }
+        public string Format { get; set; } = LongFormatCode;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()

@@ -49,7 +49,6 @@ using Microsoft.Owin.Hosting;
 using Owin;
 #endif
 using NLog.Targets;
-using NLog.Config;
 using Xunit;
 
 namespace NLog.UnitTests.Targets

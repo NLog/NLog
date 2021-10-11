@@ -36,7 +36,6 @@ using NLog.Config;
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
-    using NLog.Fluent;
 
     public class CounterTests : NLogTestBase
     {

@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Diagnostics;
     using System.Linq;
     using NLog.Common;
@@ -81,10 +80,6 @@ namespace NLog.Targets
         /// </summary>
         public PerformanceCounterTarget()
         {
-            CounterType = PerformanceCounterType.NumberOfItems32;
-            IncrementValue = new SimpleLayout("1");
-            InstanceName = string.Empty;
-            CounterHelp = string.Empty;
         }
 
         /// <summary>
@@ -120,27 +115,25 @@ namespace NLog.Targets
         /// Gets or sets the performance counter instance name.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        public string InstanceName { get; set; }
+        public string InstanceName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the counter help text.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        public string CounterHelp { get; set; }
+        public string CounterHelp { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the performance counter type.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        [DefaultValue(PerformanceCounterType.NumberOfItems32)]
-        public PerformanceCounterType CounterType { get; set; }
+        public PerformanceCounterType CounterType { get; set; } = PerformanceCounterType.NumberOfItems32;
 
         /// <summary>
         /// The value by which to increment the counter.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        [DefaultValue(1)]
-        public Layout IncrementValue { get; set; }
+        public Layout IncrementValue { get; set; } = "1";
 
         /// <summary>
         /// Performs installation which requires administrative permissions.

@@ -35,7 +35,6 @@ namespace NLog
 {
     using System;
     using System.ComponentModel;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// Provides logging interface and utility functions.

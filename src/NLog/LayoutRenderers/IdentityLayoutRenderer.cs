@@ -35,12 +35,8 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System;
-    using System.ComponentModel;
     using System.Security.Principal;
     using System.Text;
-    using NLog.Config;
-	using NLog.Internal;
 
     /// <summary>
     /// Thread identity information (name and authentication information).
@@ -53,28 +49,24 @@ namespace NLog.LayoutRenderers
         /// parts of identity information.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(":")]
         public string Separator { get; set; } = ":";
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool Name { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool AuthType { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool IsAuthenticated { get; set; } = true;
 
         /// <inheritdoc />

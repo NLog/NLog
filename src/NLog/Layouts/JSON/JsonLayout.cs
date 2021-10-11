@@ -35,7 +35,6 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -92,9 +91,7 @@ namespace NLog.Layouts
         public JsonLayout()
         {
             Attributes = new List<JsonAttribute>();
-            RenderEmptyObject = true;
             ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            MaxRecursionLimit = 1;
         }
 
         /// <summary>
@@ -108,15 +105,13 @@ namespace NLog.Layouts
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
         /// <docgen category='JSON Formating' order='10' />
-        [DefaultValue(false)]
         public bool SuppressSpaces { get; set; }
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
         /// <docgen category='JSON Formating' order='10' />
-        [DefaultValue(true)]
-        public bool RenderEmptyObject { get; set; }
+        public bool RenderEmptyObject { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -128,7 +123,6 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
-        [DefaultValue(false)]
         public bool IncludeGdc { get; set; }
 
         /// <summary>
@@ -150,7 +144,6 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
-        [DefaultValue(false)]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
         private bool? _includeMdc;
 
@@ -166,7 +159,6 @@ namespace NLog.Layouts
         /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
-        [DefaultValue(false)]
         public bool ExcludeEmptyProperties { get; set; }
 
         /// <summary>
@@ -183,8 +175,7 @@ namespace NLog.Layouts
         /// How far should the JSON serializer follow object references before backing off
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
-        [DefaultValue(1)]
-        public int MaxRecursionLimit { get; set; }
+        public int MaxRecursionLimit { get; set; } = 1;
 
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
@@ -193,7 +184,6 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='JSON Formating' order='10' />
-        [DefaultValue(false)]
         public bool EscapeForwardSlash
         {
             get => _escapeForwardSlashInternal ?? false;

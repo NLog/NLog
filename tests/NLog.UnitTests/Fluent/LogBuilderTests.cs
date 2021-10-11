@@ -31,18 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Globalization;
-using NLog.Config;
-using NLog.Targets;
-using NLog.UnitTests.Common;
-
 namespace NLog.UnitTests.Fluent
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using Xunit;
+    using NLog.Config;
     using NLog.Fluent;
+    using NLog.Targets;
+    using Xunit;
 
     [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
     public class LogBuilderTests : NLogTestBase

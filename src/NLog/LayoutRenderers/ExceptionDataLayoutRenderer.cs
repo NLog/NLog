@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -62,7 +61,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool BaseException { get; set; }
 
         /// <summary>

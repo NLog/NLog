@@ -35,7 +35,6 @@ namespace NLog.UnitTests
 {
     using System;
     using System.Globalization;
-    using System.Reflection;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;

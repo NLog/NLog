@@ -33,10 +33,8 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.ComponentModel;
     using System.Security.Principal;
     using System.Text;
-    using NLog.Config;
 
     /// <summary>
     /// Thread Windows identity information (username).
@@ -45,27 +43,16 @@ namespace NLog.LayoutRenderers
     public class WindowsIdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WindowsIdentityLayoutRenderer" /> class.
-        /// </summary>
-        public WindowsIdentityLayoutRenderer()
-        {
-            UserName = true;
-            Domain = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether domain name should be included.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool Domain { get; set; }
+        public bool Domain { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether username should be included.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool UserName { get; set; }
+        public bool UserName { get; set; } = true;
 
         /// <summary>
         /// Renders the current thread windows identity information and appends it to the specified <see cref="StringBuilder" />.

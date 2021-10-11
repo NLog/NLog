@@ -33,7 +33,6 @@
 
 using NLog.Layouts;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {

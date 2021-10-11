@@ -38,8 +38,6 @@ namespace NLog.Internal.FileAppenders
     using System.IO;
     using System.Security;
 
-    using NLog.Common;
-
     /// <summary>
     /// Optimized single-process file appender which keeps the file open for exclusive write.
     /// </summary>

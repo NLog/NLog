@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using NLog.Targets;
     using Xunit;
-    using Xunit.Extensions;
 
     public class ColoredConsoleTargetTests : NLogTestBase
     {

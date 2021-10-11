@@ -36,7 +36,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
     using System.Reflection;
@@ -57,14 +56,13 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the property to retrieve.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue("Id"), DefaultParameter]
+        [DefaultParameter]
         public ProcessInfoProperty Property { get; set; } = ProcessInfoProperty.Id;
 
         /// <summary>
         /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
         public string Format { get; set; }
 
         /// <summary>

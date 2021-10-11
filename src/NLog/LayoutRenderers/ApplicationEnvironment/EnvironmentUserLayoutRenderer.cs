@@ -36,10 +36,8 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
@@ -49,40 +47,27 @@ namespace NLog.LayoutRenderers
     public class EnvironmentUserLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EnvironmentUserLayoutRenderer" /> class.
-        /// </summary>
-        public EnvironmentUserLayoutRenderer()
-        {
-            UserName = true;
-            Domain = false;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether username should be included.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool UserName { get; set; }
+        public bool UserName { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether domain name should be included.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool Domain { get; set; }
 
         /// <summary>
         /// Gets or sets the default value to be used when the User is not set.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue("UserUnknown")]
         public string DefaultUser { get; set; } = "UserUnknown";
 
         /// <summary>
         /// Gets or sets the default value to be used when the Domain is not set.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue("DomainUnknown")]
         public string DefaultDomain { get; set; } = "DomainUnknown";
 
         /// <inheritdoc/>

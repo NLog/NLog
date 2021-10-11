@@ -31,18 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.LayoutRenderers;
-using NLog.Targets;
-using Xunit.Extensions;
-
 namespace NLog.UnitTests.Config
 {
     using System;
     using System.Globalization;
     using System.Threading;
-    using Xunit;
-
     using NLog.Config;
+    using NLog.LayoutRenderers;
+    using NLog.Targets;
+    using Xunit;
 
     public class CultureInfoTests : NLogTestBase
     {

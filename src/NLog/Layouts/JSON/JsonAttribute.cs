@@ -34,7 +34,6 @@
 namespace NLog.Layouts
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -131,7 +130,6 @@ namespace NLog.Layouts
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
         /// <docgen category='JSON Attribute Options' order='100' />
-        [DefaultValue(false)]
         public bool EscapeForwardSlash { get => EscapeForwardSlashInternal ?? false; set => EscapeForwardSlashInternal = value; }
         internal bool? EscapeForwardSlashInternal { get; private set; }
 
@@ -139,7 +137,6 @@ namespace NLog.Layouts
         /// Gets or sets whether an attribute with empty value should be included in the output
         /// </summary>
         /// <docgen category='JSON Attribute Options' order='100' />
-        [DefaultValue(false)]
         public bool IncludeEmptyValue
         {
             get => _includeEmptyValue;

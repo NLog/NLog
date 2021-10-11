@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -147,13 +146,12 @@ namespace NLog.Targets
         /// Gets or sets the protocol to be used when calling web service.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        [DefaultValue("Soap11")]
         public WebServiceProtocol Protocol
         {
             get => _activeProtocol.Key;
             set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null);
         }
-        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol;
+        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(WebServiceProtocol.Soap11, null);
 
         /// <summary>
         /// Gets or sets the proxy configuration when calling web service
@@ -162,13 +160,12 @@ namespace NLog.Targets
         /// Changing ProxyType on Net5 (or newer) will turn off Http-connection-pooling
         /// </remarks>
         /// <docgen category='Web Service Options' order='10' />
-        [DefaultValue("DefaultWebProxy")]
         public WebServiceProxyType ProxyType
         {
             get => _activeProxy.Key;
             set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
         }
-        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy;
+        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(WebServiceProxyType.DefaultWebProxy, null);
 
         /// <summary>
         /// Gets or sets the custom proxy address, include port separated by a colon

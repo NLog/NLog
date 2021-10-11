@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -52,19 +51,10 @@ namespace NLog.LayoutRenderers.Wrappers
         private const string UnixNewLine = "\n";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReplaceNewLinesLayoutRendererWrapper" /> class.
-        /// </summary>
-        public ReplaceNewLinesLayoutRendererWrapper()
-        {
-            Replacement = " ";
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating the string that should be used for separating lines.
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(" ")]
-        public string Replacement { get; set; }
+        public string Replacement { get; set; } = " ";
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

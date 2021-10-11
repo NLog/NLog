@@ -35,7 +35,6 @@ namespace NLog
 {
     using System;
     using System.ComponentModel;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// Logger with only generic methods (passing 'LogLevel' to methods) and core properties.

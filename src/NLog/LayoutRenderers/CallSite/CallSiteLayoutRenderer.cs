@@ -33,8 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System;
-    using System.ComponentModel;
     using System.IO;
     using System.Text;
     using NLog.Config;
@@ -48,43 +46,27 @@ namespace NLog.LayoutRenderers
     public class CallSiteLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CallSiteLayoutRenderer" /> class.
-        /// </summary>
-        public CallSiteLayoutRenderer()
-        {
-            ClassName = true;
-            MethodName = true;
-            IncludeNamespace = true;
-            FileName = false;
-            IncludeSourcePath = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to render the class name.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool ClassName { get; set; }
+        public bool ClassName { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the include the namespace with <see cref="ClassName"/>.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool IncludeNamespace { get; set; }
+        public bool IncludeNamespace { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the method name.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool MethodName { get; set; }
+        public bool MethodName { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether the method name will be cleaned up if it is detected as an anonymous delegate.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool CleanNamesOfAnonymousDelegates { get; set; } = true;
 
         /// <summary>
@@ -92,34 +74,29 @@ namespace NLog.LayoutRenderers
         /// (everything after an await-statement inside of an async method).
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool CleanNamesOfAsyncContinuations { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the source file name and line number.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool FileName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include source file path.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
-        public bool IncludeSourcePath { get; set; }
+        public bool IncludeSourcePath { get; set; } = true;
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
-        [DefaultValue(true)]
         public bool CaptureStackTrace { get; set; } = true;
 
         /// <summary>

@@ -36,9 +36,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
@@ -51,7 +49,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the property to retrieve.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue("TotalMemory")]
         public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
 
         /// <inheritdoc />

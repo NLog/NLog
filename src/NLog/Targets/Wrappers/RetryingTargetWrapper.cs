@@ -35,10 +35,8 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
-    using NLog.Internal;
 
     /// <summary>
     /// Retries in case of write error.
@@ -99,21 +97,18 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of retries that should be attempted on the wrapped target in case of a failure.
         /// </summary>
         /// <docgen category='Retrying Options' order='10' />
-        [DefaultValue(3)]
         public int RetryCount { get; set; }
 
         /// <summary>
         /// Gets or sets the time to wait between retries in milliseconds.
         /// </summary>
         /// <docgen category='Retrying Options' order='10' />
-        [DefaultValue(100)]
         public int RetryDelayMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets whether to enable batching, and only apply single delay when a whole batch fails
         /// </summary>
         /// <docgen category='Retrying Options' order='10' />
-        [DefaultValue(true)]
         public bool EnableBatchWrite { get; set; } = true;
 
         /// <summary>

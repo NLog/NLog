@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Text;
     using System.Threading;
     using NLog.Common;
@@ -91,7 +90,6 @@ namespace NLog.Targets
         public NetworkTarget()
         {
             SenderFactory = NetworkSenderFactory.Default;
-            Encoding = Encoding.UTF8;
         }
 
         /// <summary>
@@ -130,21 +128,18 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to keep connection open whenever possible.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(true)]
         public bool KeepConnection { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to append newline at the end of log message.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultValue(false)]
         public bool NewLine { get; set; }
 
         /// <summary>
         /// Gets or sets the end of line value if a newline is appended at the end of log message <see cref="NewLine"/>.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultValue("CRLF")]
         public LineEndingMode LineEnding
         {
             get => _lineEnding;
@@ -160,7 +155,6 @@ namespace NLog.Targets
         /// Gets or sets the maximum message size in bytes. On limit breach then <see cref="OnOverflow"/> action is activated.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultValue(65000)]
         public int MaxMessageSize { get; set; } = 65000;
 
         /// <summary>
@@ -170,7 +164,6 @@ namespace NLog.Targets
         /// When having reached the maximum limit, then <see cref="OnConnectionOverflow"/> action will apply.
         /// </remarks>
         /// <docgen category="Connection Options" order="10"/>
-        [DefaultValue(100)]
         public int MaxConnections { get; set; } = 100;
 
         /// <summary>
@@ -186,7 +179,6 @@ namespace NLog.Targets
         /// When having reached the maximum limit, then <see cref="OnQueueOverflow"/> action will apply.
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(10000)]
         public int MaxQueueSize { get; set; } = 10000;
 
         /// <summary>
@@ -199,7 +191,6 @@ namespace NLog.Targets
         /// Gets or sets the size of the connection cache (number of connections which are kept alive). Requires <see cref="KeepConnection"/> = true
         /// </summary>
         /// <docgen category="Connection Options" order="10"/>
-        [DefaultValue(5)]
         public int ConnectionCacheSize { get; set; } = 5;
 
         /// <summary>
@@ -214,15 +205,13 @@ namespace NLog.Targets
         /// larger than MTU-size (1472 bytes).
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(NetworkTargetOverflowAction.Split)]
         public NetworkTargetOverflowAction OnOverflow { get; set; } = NetworkTargetOverflowAction.Split;
 
         /// <summary>
         /// Gets or sets the encoding to be used.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultValue("utf-8")]
-        public Encoding Encoding { get; set; }
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>
         /// Get or set the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.

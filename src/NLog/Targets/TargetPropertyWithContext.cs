@@ -34,8 +34,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.ComponentModel;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -80,7 +78,6 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the type of the property.
         /// </summary>
-        [DefaultValue(typeof(string))]
         public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
@@ -91,7 +88,6 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets when an empty value should cause the property to be included
         /// </summary>
-        [DefaultValue(true)]
         public bool IncludeEmptyValue
         {
             get => _includeEmptyValue;

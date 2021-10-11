@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using NLog.Config;
-
 namespace NLog.UnitTests.Config
 {
+    using System;
+    using System.IO;
+    using System.Text;
     using NLog.Common;
+    using NLog.Config;
     using Xunit;
 
     public class InternalLoggingTests : NLogTestBase

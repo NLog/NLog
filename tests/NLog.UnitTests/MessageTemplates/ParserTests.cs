@@ -36,7 +36,6 @@ namespace NLog.UnitTests.MessageTemplates
     using System;
     using NLog.MessageTemplates;
     using Xunit;
-    using Xunit.Extensions;
 
     public class ParserTests
     {

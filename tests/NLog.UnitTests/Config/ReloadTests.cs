@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Config
     using System;
     using System.IO;
     using System.Threading;
-    using System.Xml;
     using NLog.Config;
     using Xunit;
 

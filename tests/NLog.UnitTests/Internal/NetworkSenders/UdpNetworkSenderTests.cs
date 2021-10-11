@@ -38,7 +38,6 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using NLog.Internal.NetworkSenders;
 
     using Xunit;
-    using Xunit.Extensions;
 
     public class UdpNetworkSenderTests
     {

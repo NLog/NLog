@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -61,7 +60,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The text search for.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        [DefaultValue(null)]
         public string SearchFor { get; set; }
 
         /// <summary>
@@ -69,7 +67,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if regular expressions should be used otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        [DefaultValue(false)]
         public bool Regex { get; set; }
 
         /// <summary>
@@ -77,7 +74,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The replacement string.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        [DefaultValue(null)]
         public string ReplaceWith { get; set; }
 
         /// <summary>
@@ -86,7 +82,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The group name.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        [DefaultValue(null)]
         public string ReplaceGroupName { get; set; }
 
         /// <summary>
@@ -94,7 +89,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if case should be ignored when searching; otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        [DefaultValue(false)]
         public bool IgnoreCase { get; set; }
 
         /// <summary>
@@ -102,14 +96,12 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if whole words should be searched for; otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        [DefaultValue(false)]
         public bool WholeWords { get; set; }
 
         /// <summary>
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        [DefaultValue(false)]
         public bool CompileRegex { get; set; }
 
         /// <summary>

@@ -183,7 +183,7 @@ namespace NLog.Config
             return eventInfo;
         }
 
-        private void Log(LogLevel logLevel, [Localizable(false)] string message, object[] arguments)
+        private void Log(LogLevel logLevel, string message, object[] arguments)
         {
             if (logLevel >= LogLevel)
             {

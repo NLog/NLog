@@ -39,7 +39,6 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
-    using System.ComponentModel;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
@@ -89,7 +88,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         [Obsolete("Replaced by StdErr to align with ColoredConsoleTarget. Marked obsolete on NLog 5.0")]
         public bool Error { get => StdErr; set => StdErr = value; }
 
@@ -97,7 +95,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool StdErr { get; set; }
 
         /// <summary>
@@ -122,7 +119,6 @@ namespace NLog.Targets
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
@@ -132,15 +128,13 @@ namespace NLog.Targets
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool AutoFlush { get; set; }
 
         /// <summary>
         /// Gets or sets whether to activate internal buffering to allow batch writing, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
-        public bool WriteBuffer { get; set; } = false;
+        public bool WriteBuffer { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.

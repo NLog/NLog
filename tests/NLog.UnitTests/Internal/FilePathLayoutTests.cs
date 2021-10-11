@@ -31,15 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Layouts;
-
 namespace NLog.UnitTests.Internal
 {
-    using NLog.Targets;
-
-    using Xunit;
-    using Xunit.Extensions;
+    using NLog.Layouts;
     using NLog.Internal;
+    using NLog.Targets;
+    using Xunit;
 
     public class FilePathLayoutTests // Not needed as not using NLog-Core -> : NLogTestBase
     {

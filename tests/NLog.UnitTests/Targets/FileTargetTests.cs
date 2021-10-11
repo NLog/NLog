@@ -40,14 +40,12 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using Mocks;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using NLog.Time;
     using NSubstitute;
-    using NSubstitute.Core;
     using Xunit;
 
     public class FileTargetTests : NLogTestBase

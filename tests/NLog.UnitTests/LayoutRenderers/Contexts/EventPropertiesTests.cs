@@ -31,11 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Filters;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using NLog.Layouts;
     using Xunit;
 

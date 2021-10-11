@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -54,27 +53,17 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
-        /// </summary>
-        public UppercaseLayoutRendererWrapper()
-        {
-            Culture = CultureInfo.InvariantCulture;
-            Uppercase = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether upper case conversion should be applied.
         /// </summary>
         /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool Uppercase { get; set; }
+        public bool Uppercase { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
-        public CultureInfo Culture { get; set; }
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

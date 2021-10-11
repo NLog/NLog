@@ -33,7 +33,6 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
     using NLog.Config;
@@ -48,55 +47,39 @@ namespace NLog.LayoutRenderers
     public class StackTraceLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StackTraceLayoutRenderer" /> class.
-        /// </summary>
-        public StackTraceLayoutRenderer()
-        {
-            _separator = new SimpleLayout(" => ");
-            TopFrames = 3;
-            Format = StackTraceFormat.Flat;
-        }
-
-        /// <summary>
         /// Gets or sets the output format of the stack trace.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue("Flat")]
-        public StackTraceFormat Format { get; set; }
+        public StackTraceFormat Format { get; set; } = StackTraceFormat.Flat;
 
         /// <summary>
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(3)]
-        public int TopFrames { get; set; }
+        public int TopFrames { get; set; } = 3;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the stack frame separator string.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(" => ")]
         public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? ""); }
-        private SimpleLayout _separator;
+        private SimpleLayout _separator = new SimpleLayout(" => ");
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
-        [DefaultValue(true)]
         public bool CaptureStackTrace { get; set; } = true;
 
         /// <summary>
         /// Gets or sets whether to render StackFrames in reverse order
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool Reverse { get; set; }
 
         /// <summary>

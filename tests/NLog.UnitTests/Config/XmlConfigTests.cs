@@ -38,7 +38,6 @@ using NLog.Common;
 using NLog.Config;
 using NLog.Targets.Wrappers;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Config
 {

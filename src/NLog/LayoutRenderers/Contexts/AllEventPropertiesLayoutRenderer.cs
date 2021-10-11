@@ -36,7 +36,6 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Text;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
     using System.Globalization;
@@ -76,7 +75,6 @@ namespace NLog.LayoutRenderers
         /// A value is empty when null or in case of a string, null or empty string.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool IncludeEmptyValues { get; set; } = false;
 
         /// <summary>

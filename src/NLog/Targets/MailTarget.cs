@@ -37,7 +37,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using System.Net;
     using System.Net.Mail;
@@ -104,11 +103,6 @@ namespace NLog.Targets
         public MailTarget()
         {
             Body = "${message}${newline}";
-            Subject = "Message from NLog on ${machinename}";
-            Encoding = Encoding.UTF8;
-            SmtpPort = 25;
-            SmtpAuthentication = SmtpAuthenticationMode.None;
-            Timeout = 10000;
         }
 
         /// <summary>
@@ -215,16 +209,14 @@ namespace NLog.Targets
         /// Gets or sets the mail subject.
         /// </summary>
         /// <docgen category='Message Options' order='5' />
-        [DefaultValue("Message from NLog on ${machinename}")]
         [RequiredParameter]
-        public Layout Subject { get; set; }
+        public Layout Subject { get; set; } = "Message from NLog on ${machinename}";
 
         /// <summary>
         /// Gets or sets mail message body (repeated for each log message send in one mail).
         /// </summary>
         /// <remarks>Alias for the <c>Layout</c> property.</remarks>
         /// <docgen category='Message Options' order='6' />
-        [DefaultValue("${message}${newline}")]
         public Layout Body
         {
             get => Layout;
@@ -235,14 +227,12 @@ namespace NLog.Targets
         /// Gets or sets encoding to be used for sending e-mail.
         /// </summary>
         /// <docgen category='Message Options' order='20' />
-        [DefaultValue("UTF8")]
-        public Encoding Encoding { get; set; }
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>
         /// Gets or sets a value indicating whether to send message as HTML instead of plain text.
         /// </summary>
         /// <docgen category='Message Options' order='11' />
-        [DefaultValue(false)]
         public bool Html { get; set; }
 
         /// <summary>
@@ -255,8 +245,7 @@ namespace NLog.Targets
         /// Gets or sets SMTP Authentication mode.
         /// </summary>
         /// <docgen category='SMTP Options' order='11' />
-        [DefaultValue("None")]
-        public SmtpAuthenticationMode SmtpAuthentication { get; set; }
+        public SmtpAuthenticationMode SmtpAuthentication { get; set; } = SmtpAuthenticationMode.None;
 
         /// <summary>
         /// Gets or sets the username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
@@ -274,35 +263,30 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
         /// </summary>
         /// <docgen category='SMTP Options' order='14' />.
-        [DefaultValue(false)]
         public bool EnableSsl { get; set; }
 
         /// <summary>
         /// Gets or sets the port number that SMTP Server is listening on.
         /// </summary>
         /// <docgen category='SMTP Options' order='15' />
-        [DefaultValue(25)]
-        public Layout<int> SmtpPort { get; set; }
+        public Layout<int> SmtpPort { get; set; } = 25;
 
         /// <summary>
         /// Gets or sets a value indicating whether the default Settings from System.Net.MailSettings should be used.
         /// </summary>
         /// <docgen category='SMTP Options' order='16' />
-        [DefaultValue(false)]
         public bool UseSystemNetMailSettings { get; set; }
 
         /// <summary>
         /// Specifies how outgoing email messages will be handled.
         /// </summary>
         /// <docgen category='SMTP Options' order='18' />
-        [DefaultValue(SmtpDeliveryMethod.Network)]
-        public SmtpDeliveryMethod DeliveryMethod { get; set; }
+        public SmtpDeliveryMethod DeliveryMethod { get; set; } = SmtpDeliveryMethod.Network;
 
         /// <summary>
         /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
         /// </summary>
         /// <docgen category='SMTP Options' order='17' />
-        [DefaultValue(null)]
         public Layout PickupDirectoryLocation { get; set; }
 
         /// <summary>
@@ -316,7 +300,6 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Only happens when <see cref="Html"/> is set to true.</remarks>
         /// <docgen category='Message Options' order='100' />
-        [DefaultValue(false)]
         public bool ReplaceNewlineWithBrTagInHtml { get; set; }
 
         /// <summary>
@@ -324,8 +307,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Warning: zero is not infinite waiting</remarks>
         /// <docgen category='SMTP Options' order='100' />
-        [DefaultValue(10000)]
-        public Layout<int> Timeout { get; set; }
+        public Layout<int> Timeout { get; set; } = 10000;
 
         internal virtual ISmtpClient CreateSmtpClient()
         {

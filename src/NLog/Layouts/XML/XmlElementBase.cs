@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Layouts
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// A specialized layout that renders XML-formatted events.
     /// </summary>
@@ -83,7 +82,6 @@ namespace NLog.Layouts
         /// Auto indent and create new lines
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [DefaultValue(false)]
         public bool IndentXml { get; set; }
 
         /// <summary>
@@ -104,7 +102,6 @@ namespace NLog.Layouts
         /// Gets or sets whether a ElementValue with empty value should be included in the output
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [DefaultValue(false)]
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
@@ -124,7 +121,6 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        [DefaultValue(false)]
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
         private bool? _includeMdc;
@@ -133,7 +129,6 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        [DefaultValue(false)]
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
         private bool? _includeMdlc;
@@ -142,7 +137,6 @@ namespace NLog.Layouts
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        [DefaultValue(false)]
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 

@@ -34,8 +34,7 @@
 namespace NLog.Filters
 {
     using System;
-    using System.ComponentModel;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Matches when the calculated layout contains the specified substring. 
@@ -48,7 +47,6 @@ namespace NLog.Filters
         /// Gets or sets a value indicating whether to ignore case when comparing strings.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(false)]
         public bool IgnoreCase { get; set; }
         
         /// <summary>

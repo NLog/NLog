@@ -31,16 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Linq;
-using NLog.Internal.Fakeables;
-using NLog.Layouts;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.IO;
-    using System.Reflection;
+    using System.Linq;
+    using NLog.Layouts;
     using Xunit;
 
     public class BaseDirTests : NLogTestBase

@@ -37,7 +37,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Threading;
     using System.Threading.Tasks;
     using NLog.Common;
@@ -64,32 +63,27 @@ namespace NLog.Targets
         /// <summary>
         /// How many milliseconds to delay the actual write operation to optimize for batching
         /// </summary>
-        [DefaultValue(1)]
-        public int TaskDelayMilliseconds { get; set; }
+        public int TaskDelayMilliseconds { get; set; } = 1;
 
         /// <summary>
         /// How many seconds a Task is allowed to run before it is cancelled.
         /// </summary>
-        [DefaultValue(150)]
-        public int TaskTimeoutSeconds { get; set; }
+        public int TaskTimeoutSeconds { get; set; } = 150;
 
         /// <summary>
         /// How many attempts to retry the same Task, before it is aborted
         /// </summary>
-        [DefaultValue(0)]
         public int RetryCount { get; set; }
 
         /// <summary>
         /// How many milliseconds to wait before next retry (will double with each retry)
         /// </summary>
-        [DefaultValue(500)]
-        public int RetryDelayMilliseconds { get; set; }
+        public int RetryDelayMilliseconds { get; set; } = 500;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
         /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
         /// </summary>
-        [DefaultValue(false)]
         public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
         private bool? _forceLockingQueue;
 
@@ -98,7 +92,6 @@ namespace NLog.Targets
         /// exceeds the set limit.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue("Discard")]
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
             get => _requestQueue.OnOverflow;
@@ -109,7 +102,6 @@ namespace NLog.Targets
         /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(10000)]
         public int QueueLimit
         {
             get => _requestQueue.RequestLimit;
@@ -121,8 +113,7 @@ namespace NLog.Targets
         /// by the lazy writer thread.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(1)]
-        public int BatchSize { get; set; }
+        public int BatchSize { get; set; } = 1;
 
         /// <summary>
         /// Task Scheduler used for processing async Tasks
@@ -134,11 +125,6 @@ namespace NLog.Targets
         /// </summary>
         protected AsyncTaskTarget()
         {
-            TaskTimeoutSeconds = 150;
-            TaskDelayMilliseconds = 1;
-            BatchSize = 1;
-            RetryDelayMilliseconds = 500;
-
             _taskCompletion = TaskCompletion;
             _taskCancelledTokenReInit = TaskCancelledTokenReInit;
             _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
