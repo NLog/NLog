@@ -58,10 +58,9 @@ namespace NLog.Internal
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
         private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
         private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(null, string.Empty);
-        private static readonly DefaultValueAttribute _defaultValueAttribute = new DefaultValueAttribute(string.Empty);
-        private static readonly AdvancedAttribute _advancedAttribute = new AdvancedAttribute();
         private static readonly DefaultParameterAttribute _defaultParameterAttribute = new DefaultParameterAttribute();
         private static readonly NLogConfigurationIgnorePropertyAttribute _ignorePropertyAttribute = new NLogConfigurationIgnorePropertyAttribute();
+        private static readonly NLogConfigurationItemAttribute _configPropertyAttribute = new NLogConfigurationItemAttribute();
         private static readonly FlagsAttribute _flagsAttribute = new FlagsAttribute();
 #pragma warning restore S1144 // Unused private types or members should be removed
 
@@ -503,7 +502,7 @@ namespace NLog.Internal
 
             try
             {
-                if (!t.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+                if (!t.IsDefined(_configPropertyAttribute.GetType(), true))
                 {
                     return false;
                 }
