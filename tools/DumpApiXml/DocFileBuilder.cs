@@ -227,10 +227,6 @@
                 }
                 writer.WriteAttributeString("slug", this.GetSlug(name, kind));
                 writer.WriteAttributeString("title", titlePrefix + name + titleSuffix);
-                if (HasAttribute(type, "NLog.Config.AdvancedAttribute"))
-                {
-                    writer.WriteAttributeString("advanced", "1");
-                }
 
                 if (InheritsFrom(type, "CompoundTargetBase"))
                 {
@@ -313,7 +309,7 @@
 
                 if (HasAttribute(propInfo, "System.ObsoleteAttribute"))
                 {
-                    Console.WriteLine("SKIP {0}.{1}, it has [Obsolete]", type.Name, propInfo.Name);
+                    Console.WriteLine("SKIP [Obsolete] {0}.{1}", type.Name, propInfo.Name);
                     continue;
                 }
 
@@ -386,11 +382,6 @@
                     }
 
                     writer.WriteAttributeString("category", categoryName);
-
-                    if (HasAttribute(propInfo, "NLog.Config.AdvancedAttribute"))
-                    {
-                        writer.WriteAttributeString("advanced", "1");
-                    }
 
                     if (HasAttribute(propInfo, "NLog.Config.RequiredParameterAttribute"))
                     {
@@ -552,57 +543,6 @@
             xml = this.ReplaceAndCapitalize(xml, "Gets or sets ", "");
             xml = this.ReplaceAndCapitalize(xml, "Gets the ", "The ");
             return xml;
-        }
-
-        private int GetCategoryOrder(PropertyInfo propInfo, Dictionary<string, int> orders)
-        {
-            XmlElement memberDoc;
-
-            if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
-            {
-                string category = null;
-                var docgen = (XmlElement)memberDoc.SelectSingleNode("docgen");
-                if (docgen != null)
-                {
-                    category = docgen.GetAttribute("category");
-                }
-
-                if (string.IsNullOrEmpty(category))
-                {
-                    category = "General";
-                }
-
-                int categoryOrder;
-                if (!orders.TryGetValue(category, out categoryOrder))
-                {
-                    categoryOrder = 100 + orders.Count;
-                    orders.Add(category, categoryOrder);
-                }
-
-                return categoryOrder;
-            }
-
-            return 50;
-        }
-
-        private int GetOrder(PropertyInfo propInfo)
-        {
-            XmlElement memberDoc;
-
-            if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
-            {
-                var docgen = (XmlElement)memberDoc.SelectSingleNode("docgen");
-                if (docgen != null)
-                {
-                    string order = docgen.GetAttribute("order");
-                    if (!string.IsNullOrEmpty(order))
-                    {
-                        return Convert.ToInt32(order);
-                    }
-                }
-            }
-
-            return 100;
         }
 
         private IEnumerable<PropertyInfo> GetProperties(Type type)
