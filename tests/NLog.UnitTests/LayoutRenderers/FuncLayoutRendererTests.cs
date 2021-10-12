@@ -32,7 +32,6 @@
 // 
 
 using NLog.LayoutRenderers;
-using System;
 using NLog.Config;
 using Xunit;
 

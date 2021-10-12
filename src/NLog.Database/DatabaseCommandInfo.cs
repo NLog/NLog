@@ -34,7 +34,6 @@
 namespace NLog.Targets
 {
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Data;
     using NLog.Config;
     using NLog.Layouts;
@@ -51,7 +50,6 @@ namespace NLog.Targets
         public DatabaseCommandInfo()
         {
             Parameters = new List<DatabaseParameterInfo>();
-            CommandType = CommandType.Text;
         }
 
         /// <summary>
@@ -60,8 +58,7 @@ namespace NLog.Targets
         /// <value>The type of the command.</value>
         /// <docgen category='Command Options' order='10' />
         [RequiredParameter]
-        [DefaultValue(CommandType.Text)]
-        public CommandType CommandType { get; set; }
+        public CommandType CommandType { get; set; } = CommandType.Text;
 
         /// <summary>
         /// Gets or sets the connection string to run the command against. If not provided, connection string from the target is used.

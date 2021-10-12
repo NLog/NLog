@@ -35,7 +35,6 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using NLog.Common;
-    using NLog.Internal;
 
     /// <summary>
     /// Sends log messages to a randomly selected target.

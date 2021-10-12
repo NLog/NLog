@@ -33,7 +33,6 @@
 
 namespace NLog.LogReceiverService
 {
-    using System.ServiceModel.Description;
     using System;
     using System.ComponentModel;
     using System.Net;

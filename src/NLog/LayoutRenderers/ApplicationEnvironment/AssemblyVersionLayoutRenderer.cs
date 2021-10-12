@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -58,8 +57,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public AssemblyVersionLayoutRenderer()
         {
-            Type = AssemblyVersionType.Assembly;
-            Format = DefaultFormat;
+            _format = DefaultFormat;
         }
 
         /// <summary>
@@ -77,8 +75,7 @@ namespace NLog.LayoutRenderers
         /// - UWP earlier than .NET Standard 1.5: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless the <see cref="Name"/> parameter is specified.
         /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(nameof(AssemblyVersionType.Assembly))]
-        public AssemblyVersionType Type { get; set; }
+        public AssemblyVersionType Type { get; set; } = AssemblyVersionType.Assembly;
 
         private const string DefaultFormat = "major.minor.build.revision";
 
@@ -94,7 +91,6 @@ namespace NLog.LayoutRenderers
         /// for details.
         /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(DefaultFormat)]
         public string Format
         {
             get => _format;

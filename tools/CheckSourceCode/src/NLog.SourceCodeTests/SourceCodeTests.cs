@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace NLog.SourceCodeTests
 {
@@ -19,12 +15,10 @@ namespace NLog.SourceCodeTests
         private static readonly Regex ClassNameRegex = new Regex(@"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b", RegexOptions.Compiled);
         private static readonly Regex DelegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
         private static List<string> _directoriesToVerify;
-        private static readonly XNamespace MsBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
         private readonly bool _verifyNamespaces;
 
         private readonly IList<string> _fileNamesToIgnore;
 
-        private readonly List<string> _projectFolders;
         private readonly string _rootDir;
         private string _licenseFile;
         private readonly string[] _licenseLines;
@@ -34,7 +28,6 @@ namespace NLog.SourceCodeTests
             _rootDir = FindRootDir();
             _directoriesToVerify = GetAppSettingAsList("VerifyFiles.Paths");
             _fileNamesToIgnore = GetAppSettingAsList("VerifyFiles.IgnoreFiles");
-            _projectFolders = GetAppSettingAsList("projectFolders");
             _verifyNamespaces = false; //off for now (april 2019) - so we could create folders and don't break stuff
             if (_rootDir != null)
             {
@@ -74,11 +67,8 @@ namespace NLog.SourceCodeTests
 
         public bool VerifyFileHeaders()
         {
-
             var missing = FindFilesWithMissingHeaders().ToList();
             return ReportErrors(missing, "Missing headers (copy them form other another file).");
-
-
         }
 
         private IEnumerable<string> FindFilesWithMissingHeaders()
@@ -97,91 +87,6 @@ namespace NLog.SourceCodeTests
                         yield return file;
                     }
                 }
-            }
-        }
-
-     
-
-
-        /// <summary>assemblyToCheckPath
-        /// Verify that all projects has the needed files.
-        /// </summary>
-        public bool VerifyProjectsInSync()
-        {
-            var success = true;
-            foreach (var folder in _projectFolders)
-            {
-                success = success & CheckProjects(folder);
-            }
-            return success;
-        }
-
-        private bool CheckProjects(string projectDir)
-        {
-            var success = true;
-
-            var root = Path.Combine(_rootDir, projectDir);
-            List<string> filesToCompile = new List<string>(1024);
-            GetAllFilesToCompileInDirectory(filesToCompile, root, "*.cs", "");
-
-            var projects = new DirectoryInfo(root).GetFiles("*.csproj", SearchOption.AllDirectories);
-            foreach (var project in projects)
-            {
-                success = success & CompareDirectoryWithProjects(filesToCompile, project.FullName, project.Name);
-            }
-            return success;
-        }
-
-        private static bool CompareDirectoryWithProjects(List<string> filesToCompile, string projectFullPath, string projectFileName)
-        {
-            var filesInProject = new List<string>();
-            GetCompileItemsFromProjects(filesInProject, projectFullPath);
-
-            var missingFiles = filesToCompile.Except(filesInProject).ToList();
-           return ReportErrors(missingFiles, $"project '{projectFileName}' is missing files.\nRun 'msbuild NLog.proj /t:SyncProjectItems'.");
-
-        }
-
-        private static void GetCompileItemsFromProjects(List<string> filesInProject, string projectFullPath)
-        {
-            GetCompileItemsFromProject(filesInProject, projectFullPath);
-        }
-
-        private static void GetCompileItemsFromProject(List<string> filesInProject, string csproj)
-        {
-            XElement contents = XElement.Load(csproj);
-            filesInProject.AddRange(contents.Descendants(MsBuildNamespace + "Compile").Select(c => (string)c.Attribute("Include")));
-        }
-
-        private static void GetAllFilesToCompileInDirectory(List<string> output, string path, string pattern, string prefix)
-        {
-            foreach (string file in Directory.GetFiles(path, pattern))
-            {
-                if (file.EndsWith(".xaml.cs"))
-                {
-                    continue;
-                }
-
-                if (file.Contains(".g."))
-                {
-                    continue;
-                }
-                if (file.IndexOf(".designer.", StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    continue;
-                }
-
-                if (FileInObjFolder(prefix + file))
-                {
-                    continue;
-                }
-
-                output.Add(prefix + Path.GetFileName(file));
-            }
-
-            foreach (string dir in Directory.GetDirectories(path))
-            {
-                GetAllFilesToCompileInDirectory(output, dir, pattern, prefix + Path.GetFileName(dir) + "\\");
             }
         }
 
@@ -327,7 +232,6 @@ namespace NLog.SourceCodeTests
                     {
                         if (_verifyNamespaces)
                         {
-
                             if (line.StartsWith("namespace ", StringComparison.Ordinal))
                             {
                                 string ns = line.Substring(10);
@@ -360,178 +264,22 @@ namespace NLog.SourceCodeTests
                 }
                 else if (!classNames.Contains(expectedClassName))
                 {
-
-
                     yield return $"Invalid class name. Expected '{expectedClassName}', actual: '{string.Join(",", classNames)}'";
                 }
             }
         }
 
-        /// <summary>
-        /// Vertify that all properties with the <see cref="DefaultValueAttribute"/> are set with the default ctor.
-        /// </summary>
-        public bool VerifyDefaultValues()
-        {
-            var assemblyToCheck = ConfigurationManager.AppSettings["assemblyToCheckPath"];
-            var assemblyToCheck2 = Path.GetFullPath(Path.Combine(_rootDir, assemblyToCheck));
-            if (!File.Exists(assemblyToCheck2))
-            {
-                throw new FileNotFoundException(string.Format("Failed loading DLL from path: {0}", assemblyToCheck2));
-            }
-
-            var ass = Assembly.LoadFile(assemblyToCheck2);
-            //var types = AppDomain.CurrentDomain.GetAssemblies()
-            //    .SelectMany(s => s.GetTypes());
-            var types = ass.GetTypes();
-
-            //  VerifyDefaultValuesType(typeof(MailTarget));
-            List<string> errors = new List<string>();
-
-            foreach (var type in types)
-            {
-                VerifyDefaultValuesType(type, errors);
-            }
-
-            //one message for all failing properties
-            return ReportErrors(errors, "DefaultValueAttribute not in sync with initial value.");
-        }
-
         private static bool ReportErrors(List<string> errors, string globalErrorMessage)
         {
-
             var count = errors.Count;
-
             if (count == 0)
             {
                 return true;
             }
 
-      
             var fullMessage = $"{globalErrorMessage}\n{count} errors: \n -------- \n-{string.Join("\n- ", errors)} \n\n";
             Console.Error.WriteLine(fullMessage);
-                
             return false;
         }
-
-        ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
-        ///<remarks>Note: Xunit dont like overloads</remarks>
-        private static void VerifyDefaultValuesType(Type type, List<string> errors)
-        {
-            var props = type.GetProperties();
-
-            var defaultValuesDict = new Dictionary<string, object>();
-
-            //find first [DefaultValue] values of all props
-            foreach (var propertyInfo in props)
-            {
-
-                var defaultValues = propertyInfo.GetCustomAttributes(typeof(DefaultValueAttribute), true);
-                if (defaultValues.Any())
-                {
-                    var firstDefaultValueAttr = (DefaultValueAttribute)defaultValues.First();
-
-                    defaultValuesDict.Add(propertyInfo.Name, firstDefaultValueAttr.Value);
-                }
-            }
-            if (defaultValuesDict.Any())
-            {
-                //find first ctor without parameters
-                var ctor = type.GetConstructors().FirstOrDefault(c => !c.GetParameters().Any());
-                if (ctor != null)
-                {
-                    var newObject = ctor.Invoke(null);
-
-                    //check al needed props
-                    foreach (var propertyInfo in props.Where(p => defaultValuesDict.ContainsKey(p.Name)))
-                    {
-                        var neededVal = defaultValuesDict[propertyInfo.Name];
-                        var currentVal = propertyInfo.GetValue(newObject, null);
-
-
-                        var eq = AreDefaultValuesEqual(neededVal, currentVal, propertyInfo);
-                        if (!eq)
-                        {
-                            //report
-                            string message =
-                                $"{type.FullName}.{propertyInfo.Name} . DefaultValueAttribute = {PrintValForMessage(neededVal)}, ctor = {PrintValForMessage(currentVal)}";
-                            errors.Add(message);
-                        }
-                    }
-                }
-
-            }
-
-        }
-
-        /// <summary>
-        /// Are the values equal?
-        /// </summary>
-        /// <param name="neededVal">the val from the <see cref="DefaultValueAttribute"/></param>
-        /// <param name="currentVal">the val from the empty ctor</param>
-        /// <param name="propertyInfo">the prop where the value came from</param>
-        /// <returns>equals</returns>
-        private static bool AreDefaultValuesEqual(object neededVal, object currentVal, PropertyInfo propertyInfo)
-        {
-            if (neededVal == null)
-            {
-                if (currentVal != null)
-                {
-                    return false;
-
-                }
-                //both null, OK, next
-                return true;
-            }
-            if (currentVal == null)
-            {
-                //needed was null, so wrong
-                return false;
-            }
-            //try as strings first
-
-
-
-            var propType = propertyInfo.PropertyType;
-            var neededString = neededVal.ToString();
-            var currentString = currentVal.ToString();
-
-            var eqstring = neededString.Equals(currentString);
-            if (eqstring)
-            {
-                //ok, so next
-                return true;
-            }
-
-
-
-            //handle UTF-8 properly
-            if (propType == typeof(Encoding))
-            {
-
-                if (currentVal is UTF8Encoding && (neededString.Equals("utf-8", StringComparison.InvariantCultureIgnoreCase) || neededString.Equals("utf8", StringComparison.InvariantCultureIgnoreCase)))
-                    return true;
-
-            }
-
-
-
-            //nulls or not string equals, fallback
-            //Assert.Equal(neededVal, currentVal);
-            return neededVal.Equals(currentVal);
-
-        }
-
-        /// <summary>
-        /// print value quoted or as NULL
-        /// </summary>
-        /// <param name="o"></param>
-        /// <returns></returns>
-        private static string PrintValForMessage(object o)
-        {
-            if (o == null) return "NULL";
-            return "'" + o + "'";
-        }
-
-
     }
 }

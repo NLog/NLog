@@ -34,7 +34,6 @@
 namespace NLog.Internal
 {
     using System;
-    using NLog.Config;
 
     internal static class FormatHelper
     {

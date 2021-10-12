@@ -47,7 +47,7 @@ using Xunit.Sdk;
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("1.0.0.0")]
 
 [assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]

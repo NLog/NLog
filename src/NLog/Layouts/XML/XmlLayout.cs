@@ -33,8 +33,6 @@
 
 namespace NLog.Layouts
 {
-    using System;
-    using System.ComponentModel;
     using NLog.Config;
 
     /// <summary>
@@ -63,7 +61,6 @@ namespace NLog.Layouts
         /// Name of the root XML element
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [DefaultValue(DefaultRootElementName)]
         public string ElementName
         {
             get => base.ElementNameInternal;
@@ -84,7 +81,6 @@ namespace NLog.Layouts
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
         /// <docgen category='XML Options' order='100' />
-        [DefaultValue(true)]
         public bool ElementEncode
         {
             get => base.LayoutWrapper.XmlEncode;

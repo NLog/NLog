@@ -33,10 +33,8 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System;
     using System.Threading;
     using NLog.Common;
-    using NLog.Internal;
 
     /// <summary>
     /// Distributes log events to targets in a round-robin fashion.

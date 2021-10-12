@@ -34,7 +34,6 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
-    using System.Net;
 
     /// <summary>
     /// Network sender which uses HTTP or HTTPS POST.

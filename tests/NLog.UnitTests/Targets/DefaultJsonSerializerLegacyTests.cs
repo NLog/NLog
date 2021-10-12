@@ -39,7 +39,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Targets
 {
-    
+
     /// <summary>
     /// Test via <see cref="DefaultJsonSerializer"/> / <see cref="IJsonSerializer"/> path
     /// </summary>

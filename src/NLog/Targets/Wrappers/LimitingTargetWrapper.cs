@@ -34,10 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using System.ComponentModel;
-    using Common;
-    using Time;
-
+    using NLog.Common;
+    using NLog.Time;
 
     /// <summary>
     /// Limits the number of messages written per timespan to the wrapped target.
@@ -95,7 +93,6 @@ namespace NLog.Targets.Wrappers
         /// Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.
         /// </remarks>
         /// <docgen category='General Options' order='10' />
-        [DefaultValue(1000)]
         public int MessageLimit { get; set; }
 
         /// <summary>
@@ -105,7 +102,6 @@ namespace NLog.Targets.Wrappers
         /// Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.
         /// </remarks>
         /// <docgen category='General Options' order='10' />
-        [DefaultValue(typeof(TimeSpan), "01:00")]
         public TimeSpan Interval { get; set; }
 
         /// <summary>

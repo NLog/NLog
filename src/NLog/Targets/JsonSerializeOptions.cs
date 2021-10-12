@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-
 namespace NLog.Targets
 {
+    using System;
+
     /// <summary>
     /// Options for JSON serialisation
     /// </summary>
@@ -44,8 +43,7 @@ namespace NLog.Targets
         /// <summary>
         /// Add quotes around object keys?
         /// </summary>
-        [DefaultValue(true)]
-        public bool QuoteKeys { get; set; }
+        public bool QuoteKeys { get; set; } = true;
 
         /// <summary>
         /// Format provider for value
@@ -60,19 +58,16 @@ namespace NLog.Targets
         /// <summary>
         /// Should non-ascii characters be encoded
         /// </summary>
-        [DefaultValue(false)]
         public bool EscapeUnicode { get; set; }
 
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        [DefaultValue(false)]
         public bool EscapeForwardSlash { get; set; }
         
         /// <summary>
         /// Serialize enum as string value
         /// </summary>
-        [DefaultValue(false)]
         public bool EnumAsInteger { get; set; }
 
         /// <summary>
@@ -80,20 +75,11 @@ namespace NLog.Targets
         /// 
         /// Any other characters will be converted to underscore character (_)
         /// </summary>
-        [DefaultValue(false)]
         public bool SanitizeDictionaryKeys { get; set; }
 
         /// <summary>
         /// How far down the rabbit hole should the Json Serializer go with object-reflection before stopping
         /// </summary>
-        [DefaultValue(10)]
-        public int MaxRecursionLimit { get; set; }
-
-        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-        public JsonSerializeOptions()
-        {
-            QuoteKeys = true;
-            MaxRecursionLimit = 10;
-        }
+        public int MaxRecursionLimit { get; set; } = 10;
     }
 }

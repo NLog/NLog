@@ -34,7 +34,6 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
@@ -130,9 +129,6 @@ namespace NLog.Targets.Wrappers
 #else
             _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #endif
-            TimeToSleepBetweenBatches = 1;
-            BatchSize = 200;
-            FullBatchSizeWriteLimit = 5;
             WrappedTarget = wrappedTarget;
             QueueLimit = queueLimit;
             OverflowAction = overflowAction;
@@ -143,16 +139,13 @@ namespace NLog.Targets.Wrappers
         /// by the lazy writer thread.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(200)]
-        public int BatchSize { get; set; }
+        public int BatchSize { get; set; } = 200;
 
         /// <summary>
         /// Gets or sets the time in milliseconds to sleep between batches. (1 or less means trigger on new activity)
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(1)]
-        public int TimeToSleepBetweenBatches { get; set; }
-
+        public int TimeToSleepBetweenBatches { get; set; } = 1;
         
         /// <summary>
         /// Raise event when Target cannot store LogEvent.
@@ -211,7 +204,6 @@ namespace NLog.Targets.Wrappers
         /// exceeds the set limit.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue("Discard")]
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
             get => _requestQueue.OnOverflow;
@@ -222,7 +214,6 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(10000)]
         public int QueueLimit
         {
             get => _requestQueue.RequestLimit;
@@ -234,15 +225,13 @@ namespace NLog.Targets.Wrappers
         /// Performance is better when writing many small batches, than writing a single large batch
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(5)]
-        public int FullBatchSizeWriteLimit { get; set; }
+        public int FullBatchSizeWriteLimit { get; set; } = 5;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
         /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(false)]
         public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
         private bool? _forceLockingQueue;
 

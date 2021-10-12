@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -51,7 +50,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output in culture invariant format
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool Invariant { get => ReferenceEquals(Culture, CultureInfo.InvariantCulture); set => Culture = value ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture; }
 
         /// <summary>

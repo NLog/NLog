@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -49,26 +48,16 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="XmlEncodeLayoutRendererWrapper" /> class.
-        /// </summary>
-        public XmlEncodeLayoutRendererWrapper()
-        {
-            XmlEncode = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to apply XML encoding.
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(true)]
-        public bool XmlEncode { get; set; }
+        public bool XmlEncode { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to transform newlines (\r\n) into (&#13;&#10;)
         /// </summary>
         /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(false)]
         public bool XmlEncodeNewlines { get; set; }
 
         /// <inheritdoc/>

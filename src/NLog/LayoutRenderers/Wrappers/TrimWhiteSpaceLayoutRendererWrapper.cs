@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -49,20 +48,11 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrimWhiteSpaceLayoutRendererWrapper" /> class.
-        /// </summary>
-        public TrimWhiteSpaceLayoutRendererWrapper()
-        {
-            TrimWhiteSpace = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether lower case conversion should be applied.
         /// </summary>
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool TrimWhiteSpace { get; set; }
+        public bool TrimWhiteSpace { get; set; } = true;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

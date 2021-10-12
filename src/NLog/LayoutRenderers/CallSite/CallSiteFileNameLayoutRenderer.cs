@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
 using System.IO;
 using System.Text;
 using NLog.Config;
@@ -50,20 +49,17 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include source file path.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(true)]
         public bool IncludeSourcePath { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
-        [DefaultValue(true)]
         public bool CaptureStackTrace { get; set; } = true;
 
         /// <summary>

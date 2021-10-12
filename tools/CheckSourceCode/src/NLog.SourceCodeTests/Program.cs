@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace NLog.SourceCodeTests
 {
@@ -11,10 +8,8 @@ namespace NLog.SourceCodeTests
         static int Main(string[] args)
         {
             var tests = new SourceCodeTests();
-            var success = tests.VerifyDefaultValues();
-            success = success & tests.VerifyFileHeaders();
+            var success = tests.VerifyFileHeaders();
             success = success & tests.VerifyNamespacesAndClassNames();
-            //success = success & tests.VerifyProjectsInSync();
 
             var noInteractive = args.FirstOrDefault() == "no-interactive";
 

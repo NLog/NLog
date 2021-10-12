@@ -43,12 +43,9 @@ namespace NLog.Database.Tests
     using System.Data.Common;
     using System.Globalization;
     using System.IO;
-    using System.Linq;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
-    using Xunit.Extensions;
 
 #if MONO
     using Mono.Data.Sqlite;

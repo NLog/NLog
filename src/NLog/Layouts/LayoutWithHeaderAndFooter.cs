@@ -34,7 +34,6 @@
 namespace NLog.Layouts
 {
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// A specialized layout that supports header and footer.

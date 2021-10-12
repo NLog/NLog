@@ -35,7 +35,6 @@ namespace NLog.WindowsRegistry.Tests
 {
     using System;
     using Microsoft.Win32;
-    using NLog.Config;
     using Xunit;
 
     public sealed class RegistryTests : IDisposable

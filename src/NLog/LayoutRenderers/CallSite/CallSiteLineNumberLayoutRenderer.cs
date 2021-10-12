@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
 using System.Text;
 using NLog.Config;
 using NLog.Internal;
@@ -50,13 +48,11 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the number of frames to skip.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
-        [DefaultValue(true)]
         public bool CaptureStackTrace { get; set; } = true;
 
         /// <summary>

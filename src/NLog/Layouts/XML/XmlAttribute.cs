@@ -34,7 +34,6 @@
 namespace NLog.Layouts
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -101,14 +100,12 @@ namespace NLog.Layouts
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
         /// <docgen category='XML Attribute Options' order='100' />
-        [DefaultValue(true)]
         public bool Encode { get; set; }
 
         /// <summary>
         /// Gets or sets whether an attribute with empty value should be included in the output
         /// </summary>
         /// <docgen category='XML Attribute Options' order='100' />
-        [DefaultValue(false)]
         public bool IncludeEmptyValue
         {
             get => _includeEmptyValue;

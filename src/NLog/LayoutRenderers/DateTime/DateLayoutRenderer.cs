@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -53,14 +52,13 @@ namespace NLog.LayoutRenderers
         public DateLayoutRenderer()
         {
             Format = "yyyy/MM/dd HH:mm:ss.fff";
-            Culture = CultureInfo.InvariantCulture;
         }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public CultureInfo Culture { get; set; }
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <summary>
         /// Gets or sets the date format. Can be any argument accepted by DateTime.ToString(format).
@@ -89,7 +87,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool UniversalTime { get; set; }
 
         /// <inheritdoc/>

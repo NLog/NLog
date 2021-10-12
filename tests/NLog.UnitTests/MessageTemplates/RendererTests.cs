@@ -35,9 +35,7 @@ namespace NLog.UnitTests.MessageTemplates
 {
     using System;
     using System.Globalization;
-    using NLog.MessageTemplates;
     using Xunit;
-    using Xunit.Extensions;
 
     public class RendererTests
     {

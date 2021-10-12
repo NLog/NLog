@@ -31,10 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Text;
     using NLog.Common;
     using NLog.Config;

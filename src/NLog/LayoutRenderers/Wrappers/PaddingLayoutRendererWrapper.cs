@@ -33,8 +33,6 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using System;
-    using System.ComponentModel;
     using NLog.Config;
 
     /// <summary>
@@ -50,14 +48,6 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaddingLayoutRendererWrapper" /> class.
-        /// </summary>
-        public PaddingLayoutRendererWrapper()
-        {
-            PadCharacter = ' ';
-        }
-
-        /// <summary>
         /// Gets or sets the number of characters to pad the output to. 
         /// </summary>
         /// <remarks>
@@ -71,15 +61,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the padding character.
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(' ')]
-        public char PadCharacter { get; set; }
+        public char PadCharacter { get; set; } = ' ';
 
         /// <summary>
         /// Gets or sets a value indicating whether to trim the 
         /// rendered text to the absolute value of the padding length.
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(false)]
         public bool FixedLength { get; set; }
 
         /// <summary>
@@ -90,8 +78,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// default is left alignment.
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />RegistryLayoutRenderer
-        [DefaultValue(PaddingHorizontalAlignment.Left)]
-        public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; }
+        public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; } = PaddingHorizontalAlignment.Left;
 
         /// <summary>
         /// Transforms the output of another layout.

@@ -34,7 +34,6 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
@@ -111,7 +110,6 @@ namespace NLog.Targets.Wrappers
             WrappedTarget = wrappedTarget;
             BufferSize = bufferSize;
             FlushTimeout = flushTimeout;
-            SlidingTimeout = true;
             OverflowAction = overflowAction;
         }
 
@@ -119,7 +117,6 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of log events to be buffered.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(100)]
         public int BufferSize { get; set; }
 
         /// <summary>
@@ -127,7 +124,6 @@ namespace NLog.Targets.Wrappers
         /// if there's no write in the specified period of time. Use -1 to disable timed flushes.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(-1)]
         public int FlushTimeout { get; set; }
 
         /// <summary>
@@ -139,8 +135,7 @@ namespace NLog.Targets.Wrappers
         /// count from the first event written to the buffer. 
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(true)]
-        public bool SlidingTimeout { get; set; }
+        public bool SlidingTimeout { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the action to take if the buffer overflows.
@@ -152,7 +147,6 @@ namespace NLog.Targets.Wrappers
         /// entire buffer to the wrapped target.
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue("Flush")]
         public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }
 
         /// <summary>

@@ -34,10 +34,8 @@
 namespace NLog.LogReceiverService
 {
     using System;
-    using System.ComponentModel;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-    using System.Net;
 
     /// <summary>
     /// Log Receiver Client using WCF.

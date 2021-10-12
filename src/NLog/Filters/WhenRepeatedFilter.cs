@@ -35,7 +35,6 @@ namespace NLog.Filters
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Internal;
 
@@ -51,50 +50,43 @@ namespace NLog.Filters
         /// How long before a filter expires, and logging is accepted again
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(10)]
-        public int TimeoutSeconds { get; set; }
+        public int TimeoutSeconds { get; set; } = 10;
 
         /// <summary>
         /// Max length of filter values, will truncate if above limit
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(1000)]
-        public int MaxLength { get; set; }
+        public int MaxLength { get; set; } = 1000;
 
         /// <summary>
         /// Applies the configured action to the initial logevent that starts the timeout period.
         /// Used to configure that it should ignore all events until timeout.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(false)]
         public bool IncludeFirst { get; set; }
 
         /// <summary>
         /// Max number of unique filter values to expect simultaneously
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(50000)]
-        public int MaxFilterCacheSize { get; set; }
+        public int MaxFilterCacheSize { get; set; } = 50000;
 
         /// <summary>
         /// Default number of unique filter values to expect, will automatically increase if needed
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(1000)]
-        public int DefaultFilterCacheSize { get; set; }
+        public int DefaultFilterCacheSize { get; set; } = 1000;
 
         /// <summary>
         /// Insert FilterCount value into <see cref="LogEventInfo.Properties"/> when an event is no longer filtered
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
         public string FilterCountPropertyName { get; set; }
 
         /// <summary>
         /// Append FilterCount to the <see cref="LogEventInfo.Message"/> when an event is no longer filtered
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
         public string FilterCountMessageAppendFormat { get; set; }
 
         /// <summary>
@@ -102,7 +94,6 @@ namespace NLog.Filters
         /// </summary>
         /// <docgen category='Performance Options' order='10' />
         [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
-        [DefaultValue(true)]
         public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
         private bool? _optimizeBufferReuse;
 
@@ -110,25 +101,12 @@ namespace NLog.Filters
         /// Default buffer size for the internal buffers
         /// </summary>
         /// <docgen category='Performance Options' order='10' />
-        [DefaultValue(1000)]
-        public int OptimizeBufferDefaultLength { get; set; }
+        public int OptimizeBufferDefaultLength { get; set; } = 1000;
 
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
         private readonly Dictionary<FilterInfoKey, FilterInfo> _repeatFilter = new Dictionary<FilterInfoKey, FilterInfo>(1000);
         private readonly Stack<KeyValuePair<FilterInfoKey, FilterInfo>> _objectPool = new Stack<KeyValuePair<FilterInfoKey, FilterInfo>>(1000);
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WhenRepeatedFilter" /> class.
-        /// </summary>
-        public WhenRepeatedFilter()
-        {
-            TimeoutSeconds = 10;
-            MaxLength = 1000;
-            DefaultFilterCacheSize = 1000;
-            MaxFilterCacheSize = 50000;
-            OptimizeBufferDefaultLength = MaxLength;
-        }
 
         /// <summary>
         /// Checks whether log event should be logged or not. In case the LogEvent has just been repeated.

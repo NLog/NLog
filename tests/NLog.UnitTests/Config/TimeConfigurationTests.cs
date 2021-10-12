@@ -31,12 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Config
 {
     using System;
-    using Time;
+    using NLog.Config;
+    using NLog.Time;
     using Xunit;
     
     public class TimeConfigurationTests : NLogTestBase, IDisposable

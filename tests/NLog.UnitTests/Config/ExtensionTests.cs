@@ -31,18 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using NLog.Common;
-using NLog.Config;
-using Xunit.Extensions;
-
 namespace NLog.UnitTests.Config
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text.RegularExpressions;
     using System.IO;
     using MyExtensionNamespace;
+    using NLog.Common;
+    using NLog.Config;
     using NLog.Filters;
     using NLog.Layouts;
     using NLog.Targets;

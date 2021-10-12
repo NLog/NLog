@@ -35,7 +35,6 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Internal;
@@ -51,23 +50,20 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(-1)]
         public int TopFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(-1)]
         public int BottomFrames { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(" ")]
         public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? string.Empty); } 
-        private SimpleLayout _separator;
+        private SimpleLayout _separator = new SimpleLayout(" ");
 
         /// <summary>
         /// Gets or sets how to format each nested state. Ex. like JSON = @
@@ -79,14 +75,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ScopeContextNestedStatesLayoutRenderer" /> class.
-        /// </summary>
-        public ScopeContextNestedStatesLayoutRenderer()
-        {
-            _separator = new SimpleLayout(" ");
-        }
 
         /// <summary>
         /// Renders the specified Nested Logical Context item and appends it to the specified <see cref="StringBuilder" />.

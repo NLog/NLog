@@ -34,7 +34,6 @@
 namespace NLog.Internal
 {
     using System;
-    using System.Reflection;
 
     /// <summary>
     /// Object construction helper.

@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -49,27 +48,17 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LowercaseLayoutRendererWrapper" /> class.
-        /// </summary>
-        public LowercaseLayoutRendererWrapper()
-        {
-            Culture = CultureInfo.InvariantCulture;
-            Lowercase = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether lower case conversion should be applied.
         /// </summary>
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool Lowercase { get; set; }
+        public bool Lowercase { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
-        public CultureInfo Culture { get; set; }
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

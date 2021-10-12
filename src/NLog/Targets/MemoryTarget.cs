@@ -34,7 +34,6 @@
 namespace NLog.Targets
 {
     using System.Collections.Generic;
-    using System.ComponentModel;
 
     /// <summary>
     /// Writes log messages to <see cref="Logs"/> in memory for programmatic retrieval.
@@ -90,7 +89,6 @@ namespace NLog.Targets
         /// Gets or sets the max number of items to have in memory
         /// </summary>
         /// <docgen category='Buffering Options' order='10' />
-        [DefaultValue(0)]
         public int MaxLogsCount { get; set; }
 
         /// <summary>

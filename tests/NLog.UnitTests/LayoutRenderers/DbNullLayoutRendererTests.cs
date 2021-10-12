@@ -32,10 +32,8 @@
 // 
 
 using System;
-using System.Linq;
 using NLog.Internal;
 using NLog.LayoutRenderers;
-using NLog.Layouts;
 using Xunit;
 
 namespace NLog.UnitTests.LayoutRenderers

@@ -34,10 +34,8 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// Render the non-raw value of an object.
@@ -54,7 +52,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if IRawValue-interface should be ignored; otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
         public bool NoRawValue { get; set; } = true;
 
         /// <inheritdoc/>

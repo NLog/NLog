@@ -34,7 +34,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Reflection;
     using NLog.Config;
@@ -74,21 +73,18 @@ namespace NLog.Targets
         /// Gets or sets the type of the object-property
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(typeof(string))]
         public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets convert format of the property value
         /// </summary>
         /// <docgen category='Connection Options' order='8' />
-        [DefaultValue(null)]
         public string Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing property string-value for type-conversion
         /// </summary>
         /// <docgen category='Connection Options' order='9' />
-        [DefaultValue(null)]
         public CultureInfo Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
 
         /// <summary>

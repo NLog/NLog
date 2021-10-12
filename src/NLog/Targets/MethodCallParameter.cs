@@ -34,8 +34,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.ComponentModel;
-    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -107,7 +105,6 @@ namespace NLog.Targets
         /// Gets or sets the type of the parameter. 
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
-        [DefaultValue(typeof(string))]
         public Type ParameterType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>

@@ -35,7 +35,6 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -104,10 +103,6 @@ namespace NLog.LayoutRenderers
         public ExceptionLayoutRenderer()
         {
             Format = "TOSTRING,DATA";
-            _seperator = " ";
-            _exceptionDataSeparator = ";";
-            InnerExceptionSeparator = EnvironmentHelper.NewLine;
-            MaxInnerExceptionLevel = 0;
         }
 
         /// <summary>
@@ -151,36 +146,32 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator used to concatenate parts specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(" ")]
         public string Separator { get => _seperator; set => _seperator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
-        private string _seperator;
+        private string _seperator = " ";
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(";")]
         public string ExceptionDataSeparator { get => _exceptionDataSeparator; set => _exceptionDataSeparator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
-        private string _exceptionDataSeparator;
+        private string _exceptionDataSeparator = ";";
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
         /// By default inner exceptions are not enabled for compatibility with NLog 1.0.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
         public int MaxInnerExceptionLevel { get; set; }
 
         /// <summary>
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string InnerExceptionSeparator { get; set; }
+        public string InnerExceptionSeparator { get; set; } = EnvironmentHelper.NewLine;
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
-        [DefaultValue(false)]
         public bool BaseException { get; set; }
 
 #if !NET35
@@ -192,7 +183,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets whether to collapse exception tree using AggregateException.Flatten()
         /// </summary>
 #endif
-        [DefaultValue(true)]
         public bool FlattenException { get; set; } = true;
 
         /// <summary>

@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -52,19 +51,10 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class SubstringLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
-        /// </summary>
-        public SubstringLayoutRendererWrapper()
-        {
-            Start = 0;
-        }
-
-        /// <summary>
         /// Gets or sets the start index. 
         /// </summary>
         /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(0)]
         public int Start { get; set; }
 
         /// <summary>
@@ -72,9 +62,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(null)]
         public int? Length { get; set; }
-
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

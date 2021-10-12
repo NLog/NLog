@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -50,14 +49,12 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the GUID format as accepted by Guid.ToString() method.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue("N")]
         public string Format { get; set; } = "N";
 
         /// <summary>
         /// Generate the Guid from the NLog LogEvent (Will be the same for all targets)
         /// </summary>
         /// <docgen category='Rendering Options' order='100' />
-        [DefaultValue(false)]
         public bool GeneratedFromLogEvent { get; set; }
 
         /// <inheritdoc/>

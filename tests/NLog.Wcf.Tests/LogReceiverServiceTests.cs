@@ -45,7 +45,6 @@ namespace NLog.Wcf.Tests
     using System.ServiceModel.Description;
     using System.Xml;
     using System.Xml.Serialization;
-    using NLog.Config;
     using NLog.Layouts;
     using NLog.LogReceiverService;
 

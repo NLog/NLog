@@ -33,9 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -60,10 +58,6 @@ namespace NLog.Layouts
         public CsvLayout()
         {
             Columns = new List<CsvColumn>();
-            WithHeader = true;
-            Delimiter = CsvColumnDelimiterMode.Auto;
-            Quoting = CsvQuotingMode.Auto;
-            QuoteChar = "\"";
             Layout = this;
             Header = new CsvHeaderLayout(this);
             Footer = null;
@@ -81,28 +75,25 @@ namespace NLog.Layouts
         /// </summary>
         /// <value>A value of <c>true</c> if CVS should include header; otherwise, <c>false</c>.</value>
         /// <docgen category='CSV Options' order='10' />
-        public bool WithHeader { get; set; }
+        public bool WithHeader { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the column delimiter.
         /// </summary>
         /// <docgen category='CSV Options' order='10' />
-        [DefaultValue("Auto")]
-        public CsvColumnDelimiterMode Delimiter { get; set; }
+        public CsvColumnDelimiterMode Delimiter { get; set; } = CsvColumnDelimiterMode.Auto;
 
         /// <summary>
         /// Gets or sets the quoting mode.
         /// </summary>
         /// <docgen category='CSV Options' order='10' />
-        [DefaultValue("Auto")]
-        public CsvQuotingMode Quoting { get; set; }
+        public CsvQuotingMode Quoting { get; set; } = CsvQuotingMode.Auto;
 
         /// <summary>
         /// Gets or sets the quote Character.
         /// </summary>
         /// <docgen category='CSV Options' order='10' />
-        [DefaultValue("\"")]
-        public string QuoteChar { get; set; }
+        public string QuoteChar { get; set; } = "\"";
 
         /// <summary>
         /// Gets or sets the custom column delimiter value (valid when ColumnDelimiter is set to 'Custom').

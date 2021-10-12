@@ -33,11 +33,10 @@
 
 namespace NLog.Targets
 {
-    using System.ComponentModel;
     using System.Messaging;
     using System.Text;
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Writes log message to the specified message queue handled by MSMQ.
@@ -76,9 +75,6 @@ namespace NLog.Targets
         public MessageQueueTarget()
         {
             MessageQueueProxy = new MessageQueueProxy();
-            Label = "NLog";
-            Encoding = Encoding.UTF8;
-            CheckIfQueueExists = true;
         }
 
         /// <summary>
@@ -111,43 +107,38 @@ namespace NLog.Targets
         /// By default no label is associated.
         /// </remarks>
         /// <docgen category='Queue Options' order='10' />
-        [DefaultValue("NLog")]
-        public Layout Label { get; set; }
+        public Layout Label { get; set; } = "NLog";
 
         /// <summary>
         /// Gets or sets a value indicating whether to create the queue if it doesn't exists.
         /// </summary>
         /// <docgen category='Queue Options' order='10' />
-        [DefaultValue(false)]
         public bool CreateQueueIfNotExists { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use recoverable messages (with guaranteed delivery).
         /// </summary>
         /// <docgen category='Queue Options' order='10' />
-        [DefaultValue(false)]
         public bool Recoverable { get; set; }
 
         /// <summary>
         /// Gets or sets the encoding to be used when writing text to the queue.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Encoding Encoding { get; set; }
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the XML format when serializing message.
         /// This will also disable creating queues.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultValue(false)]
         public bool UseXmlEncoding { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to check if a queue exists before writing to it.
         /// </summary>
         /// <docgen category='Layout Options' order='11' />
-        [DefaultValue(true)]
-        public bool CheckIfQueueExists { get; set; }
+        public bool CheckIfQueueExists { get; set; } = true;
         
         internal MessageQueueProxy MessageQueueProxy { get; set; }
 

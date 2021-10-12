@@ -33,8 +33,6 @@
 
 namespace NLog.Targets
 {
-    using System.ComponentModel;
-
     /// <summary>
     /// Discards log messages. Used mainly for debugging and benchmarking.
     /// </summary>
@@ -61,7 +59,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to perform layout calculation.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultValue(false)]
         public bool FormatMessage { get; set; }
 
         /// <summary>

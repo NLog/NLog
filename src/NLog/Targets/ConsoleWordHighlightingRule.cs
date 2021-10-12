@@ -35,8 +35,6 @@
 
 namespace NLog.Targets
 {
-    using System;
-    using System.ComponentModel;
     using System.Text.RegularExpressions;
     using NLog.Conditions;
     using NLog.Config;
@@ -92,7 +90,6 @@ namespace NLog.Targets
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        [DefaultValue(false)]
         public bool CompileRegex
         {
             get => _regexHelper.CompileRegex;
@@ -113,7 +110,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        [DefaultValue(false)]
         public bool WholeWords
         {
             get => _regexHelper.WholeWords;
@@ -124,7 +120,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        [DefaultValue(false)]
         public bool IgnoreCase
         {
             get => _regexHelper.IgnoreCase;
@@ -135,14 +130,12 @@ namespace NLog.Targets
         /// Gets or sets the foreground color.
         /// </summary>
         /// <docgen category='Formatting Options' order='10' />
-        [DefaultValue("NoChange")]
         public ConsoleOutputColor ForegroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         /// <docgen category='Formatting Options' order='10' />
-        [DefaultValue("NoChange")]
         public ConsoleOutputColor BackgroundColor { get; set; }
 
         /// <summary>

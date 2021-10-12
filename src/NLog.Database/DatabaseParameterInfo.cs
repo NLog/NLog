@@ -34,7 +34,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.ComponentModel;
     using System.Data;
     using System.Globalization;
     using System.Reflection;
@@ -88,7 +87,6 @@ namespace NLog.Targets
         /// Gets or sets the database parameter DbType.
         /// </summary>
         /// <docgen category='Parameter Options' order='2' />
-        [DefaultValue(null)]
         public string DbType
         {
             get => _dbType;
@@ -120,21 +118,18 @@ namespace NLog.Targets
         /// Gets or sets the database parameter size.
         /// </summary>
         /// <docgen category='Parameter Options' order='3' />
-        [DefaultValue(0)]
         public int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter precision.
         /// </summary>
         /// <docgen category='Parameter Options' order='4' />
-        [DefaultValue(0)]
         public byte Precision { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter scale.
         /// </summary>
         /// <docgen category='Parameter Options' order='5' />
-        [DefaultValue(0)]
         public byte Scale { get; set; }
 
         /// <summary>
@@ -160,21 +155,18 @@ namespace NLog.Targets
         /// Gets or sets convert format of the database parameter value.
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />
-        [DefaultValue(null)]
         public string Format { get => _layoutInfo.ValueParseFormat; set => _layoutInfo.ValueParseFormat = value; }
 
         /// <summary>
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
         /// <docgen category='Parameter Options' order='9' />
-        [DefaultValue(null)]
         public CultureInfo Culture { get => _layoutInfo.ValueParseCulture; set => _layoutInfo.ValueParseCulture = value; }
 
         /// <summary>
         /// Gets or sets whether empty value should translate into DbNull. Requires database column to allow NULL values.
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />
-        [DefaultValue(false)]
         public bool AllowDbNull
         {
             get => _allowDbNull;

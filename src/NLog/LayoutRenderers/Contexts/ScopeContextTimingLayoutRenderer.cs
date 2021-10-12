@@ -36,7 +36,6 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
     using NLog.Internal;
 
     /// <summary>

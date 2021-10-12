@@ -36,7 +36,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.ComponentModel;
     using System.Diagnostics;
     using NLog.Common;
     using NLog.Config;
@@ -96,17 +95,13 @@ namespace NLog.Targets
         {
             _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
             Source = sourceName ?? AppDomain.CurrentDomain.FriendlyName;
-            Log = "Application";
-            MachineName = ".";
-            MaxMessageLength = EventLogMaxMessageLength;
         }
 
         /// <summary>
         /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        [DefaultValue(".")]
-        public string MachineName { get; set; }
+        public string MachineName { get; set; } = ".";
 
         /// <summary>
         /// Gets or sets the layout that renders event ID.
@@ -140,15 +135,13 @@ namespace NLog.Targets
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or any user-defined name.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        [DefaultValue("Application")]
-        public string Log { get; set; }
+        public string Log { get; set; } = "Application";
 
         /// <summary>
         /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
         /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
         /// <docgen category='Event Log Options' order='10' />
-        [DefaultValue(EventLogMaxMessageLength)]
         public int MaxMessageLength
         {
             get => _maxMessageLength;
@@ -160,7 +153,7 @@ namespace NLog.Targets
                 _maxMessageLength = value;
             }
         }
-        private int _maxMessageLength;
+        private int _maxMessageLength = EventLogMaxMessageLength;
 
         /// <summary>
         /// Gets or sets the maximum Event log size in kilobytes.
@@ -170,7 +163,6 @@ namespace NLog.Targets
         /// If <c>null</c>, the value will not be specified while creating the Event log.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        [DefaultValue(null)]
         public long? MaxKilobytes
         {
             get => _maxKilobytes;
@@ -188,8 +180,7 @@ namespace NLog.Targets
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
         /// </summary>
         /// <docgen category='Event Log Overflow Action' order='10' />
-        [DefaultValue(EventLogTargetOverflowAction.Truncate)]
-        public EventLogTargetOverflowAction OnOverflow { get; set; }
+        public EventLogTargetOverflowAction OnOverflow { get; set; } = EventLogTargetOverflowAction.Truncate;
 
         /// <summary>
         /// Performs installation which requires administrative permissions.

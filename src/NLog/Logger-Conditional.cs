@@ -31,18 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#region
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using JetBrains.Annotations;
-
-#endregion
-
 namespace NLog
 {
+    using System;
+    using System.Diagnostics;
+
     /// <content>
     /// Logging methods which only are executed when the DEBUG conditional compilation symbol is set.
     ///

@@ -36,7 +36,6 @@ namespace NLog.Internal.FileAppenders
     using System;
     using System.IO;
     using System.Security;
-    using NLog.Common;
 
     /// <summary>
     /// Implementation of <see cref="BaseFileAppender"/> which caches 

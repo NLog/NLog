@@ -35,7 +35,6 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal.Fakeables;
@@ -55,7 +54,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to write the full path to the process executable.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
         public bool FullName { get; set; }
 
         /// <summary>

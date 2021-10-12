@@ -34,9 +34,6 @@
 
 namespace NLog.UnitTests.Internal
 {
-    using System;
-    using System.Threading;
-    using NLog.Config;
     using Xunit;
 
     public class StringBuilderPoolTests : NLogTestBase

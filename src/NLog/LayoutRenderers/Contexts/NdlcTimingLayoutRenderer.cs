@@ -35,7 +35,6 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
-    using NLog.Config;
 
     /// <summary>
     /// <see cref="NestedDiagnosticsLogicalContext"/> Timing Renderer (Async scope)
