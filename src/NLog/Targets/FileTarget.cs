@@ -266,7 +266,6 @@ namespace NLog.Targets
         /// when attempting to write to a directory that's not present.
         /// </remarks>
         /// <docgen category='Output Options' order='10' />
-        [Advanced]
         public bool CreateDirs { get; set; } = true;
 
         /// <summary>
@@ -282,7 +281,6 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [Advanced]
         public bool ReplaceFileContentsOnEachWrite { get; set; }
 
         /// <summary>
@@ -315,7 +313,6 @@ namespace NLog.Targets
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        [Advanced]
         public Win32FileAttributes FileAttributes { get; set; } = Win32FileAttributes.Normal;
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
@@ -328,7 +325,6 @@ namespace NLog.Targets
         /// Gets or sets the line ending mode.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [Advanced]
         public LineEndingMode LineEnding { get; set; } = LineEndingMode.Default;
 
         /// <summary>
@@ -350,7 +346,6 @@ namespace NLog.Targets
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [Advanced]
         public int OpenFileCacheSize { get; set; } = 5;
 
         /// <summary>
@@ -358,7 +353,6 @@ namespace NLog.Targets
         /// not automatically closed after a period of inactivity.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [Advanced]
         public int OpenFileCacheTimeout { get; set; } = -1;
 
         /// <summary>
@@ -385,7 +379,6 @@ namespace NLog.Targets
         /// Mostly used for when testing NLog Stack except final write
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [Advanced]
         public bool DiscardAll { get; set; }
 
         /// <summary>
@@ -437,7 +430,6 @@ namespace NLog.Targets
         /// discards the log message.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [Advanced]
         public int ConcurrentWriteAttempts { get => _concurrentWriteAttempts ?? 10; set => _concurrentWriteAttempts = value; }
         private int? _concurrentWriteAttempts = 10;
 
@@ -459,7 +451,6 @@ namespace NLog.Targets
         /// and so on.
         /// </example>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [Advanced]
         public int ConcurrentWriteAttemptDelay { get; set; } = 1;
 
         /// <summary>
