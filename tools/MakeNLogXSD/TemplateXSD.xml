@@ -185,6 +185,12 @@
         <xs:documentation>Rule identifier to allow rule lookup with Configuration.FindRuleByName and Configuration.RemoveRuleByName.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    
+    <xs:attribute name="finalMinLevel" type="NLogLevel" use="optional">
+      <xs:annotation>
+        <xs:documentation>Loggers matching will be restricted to specified minimum level for following rules.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="NLogFilters">
