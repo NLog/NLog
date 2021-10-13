@@ -144,7 +144,7 @@ namespace NLog.Config
         /// Gets or sets the <see cref="NLog.LogLevel"/> whether to quit processing any following rules when lower severity and this one matches.
         /// </summary>
         /// <remarks>
-        /// Becomes the final minimum level for any following rules when this one matches.
+        /// Loggers matching will be restricted to specified minimum level for following rules.
         /// </remarks>
         public LogLevel FinalMinLevel { get; set; }
 
