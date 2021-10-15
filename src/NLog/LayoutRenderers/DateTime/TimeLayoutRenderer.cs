@@ -69,15 +69,16 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var dt = GetValue(logEvent);
+            var culture = GetCulture(logEvent, Culture);
 
             string timeSeparator = ":";
             string ticksSeparator = ".";
-            if (!ReferenceEquals(Culture, CultureInfo.InvariantCulture))
+            if (!ReferenceEquals(culture, CultureInfo.InvariantCulture))
             {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-                timeSeparator = Culture.DateTimeFormat.TimeSeparator;
+                timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #endif
-                ticksSeparator = Culture.NumberFormat.NumberDecimalSeparator;
+                ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
             }
 
             builder.Append2DigitsZeroPadded(dt.Hour);

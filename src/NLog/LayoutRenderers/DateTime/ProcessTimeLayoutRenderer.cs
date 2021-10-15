@@ -63,7 +63,8 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var ts = GetValue(logEvent);
-            WritetTimestamp(builder, ts, Culture);
+            var culture = GetCulture(logEvent, Culture);
+            WritetTimestamp(builder, ts, culture);
         }
 
         /// <inheritdoc />
