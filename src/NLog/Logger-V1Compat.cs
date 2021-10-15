@@ -3327,6 +3327,7 @@ namespace NLog
 
         /// <inheritdoc/>
         [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
             Trace(exception, message);
@@ -3339,7 +3340,7 @@ namespace NLog
 
         /// <inheritdoc/>
         [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
-
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DebugException([Localizable(false)] string message, Exception exception)
         {
             Debug(exception, message);
@@ -3352,6 +3353,7 @@ namespace NLog
 
         /// <inheritdoc/>
         [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void  InfoException([Localizable(false)] string message, Exception exception)
         {
             Info(exception, message);
@@ -3364,6 +3366,7 @@ namespace NLog
 
         /// <inheritdoc/>
         [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void  WarnException([Localizable(false)] string message, Exception exception)
         {
             Warn(exception, message);
@@ -3376,6 +3379,7 @@ namespace NLog
 
         /// <inheritdoc/>
         [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ErrorException([Localizable(false)] string message, Exception exception)
         {
             Error(exception, message);
@@ -3388,6 +3392,7 @@ namespace NLog
 
         /// <inheritdoc/>
         [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void FatalException([Localizable(false)] string message, Exception exception)
         {
             Fatal(exception, message);
