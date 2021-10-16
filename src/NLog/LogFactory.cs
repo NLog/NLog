@@ -101,6 +101,7 @@ namespace NLog
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogFactory()
         {
             RegisterEvents(DefaultAppEnvironment);
@@ -530,7 +531,7 @@ namespace NLog
         /// target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
-        public void ReconfigExistingLoggers()
+        public void ReconfigExistingLoggers(bool purgeObsoleteLoggers = false)
         {
             List<Logger> loggers;
 
@@ -543,6 +544,17 @@ namespace NLog
             foreach (var logger in loggers)
             {
                 logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
+            }
+
+            if (!purgeObsoleteLoggers)
+                return;
+
+            var loggerKeys = _loggerCache.GetLoggerKeys();
+            foreach (var key in loggerKeys)
+            {
+                var logger = _loggerCache.Retrieve(key);
+                if (logger == null)
+                    _loggerCache.RemoveLoggerEntryByKey(key);
             }
         }
 
@@ -1390,9 +1402,20 @@ namespace NLog
 
                 return values;
             }
+
+            public List<LoggerCacheKey> GetLoggerKeys()
+            {
+                return _loggerCache.Keys.ToList();
+            }
+
             public void Reset()
             {
                 _loggerCache.Clear();
+            }
+
+            internal void RemoveLoggerEntryByKey(LoggerCacheKey key)
+            {
+                _loggerCache.Remove(key);
             }
         }
 

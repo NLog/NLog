@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
@@ -266,10 +267,11 @@ namespace NLog
         /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
-        public static void ReconfigExistingLoggers()
+        public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers = false)
         {
-            factory.ReconfigExistingLoggers();
+            factory.ReconfigExistingLoggers(purgeObsoleteLoggers);
         }
+
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
