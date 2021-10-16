@@ -267,9 +267,22 @@ namespace NLog
         /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
-        public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers = false)
+        public static void ReconfigExistingLoggers()
         {
-            factory.ReconfigExistingLoggers(purgeObsoleteLoggers);
+            factory.ReconfigExistingLoggers();
+        }
+
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger.
+        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// <param name="purgeObsoleteLoggers"> if the purgeObsoleteLoggers parameter is set true, it will purge all obsoleted loggers from the cache.</param>
+        /// </summary>
+        public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
+        {
+            ReconfigExistingLoggers();
+            if (purgeObsoleteLoggers)
+                factory.PurgeObsoleteLoggers();
         }
 
 

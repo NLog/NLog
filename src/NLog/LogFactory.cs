@@ -531,7 +531,7 @@ namespace NLog
         /// target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
-        public void ReconfigExistingLoggers(bool purgeObsoleteLoggers = false)
+        public void ReconfigExistingLoggers()
         {
             List<Logger> loggers;
 
@@ -545,10 +545,16 @@ namespace NLog
             {
                 logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
             }
+          
+        }
 
-            if (!purgeObsoleteLoggers)
-                return;
-
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger and checks if the logger cache is null
+        /// if the logger cache is null it will be deleted 
+        /// this will avoid growing logger cache infinitely
+        /// </summary>
+        public void PurgeObsoleteLoggers()
+        {
             var loggerKeys = _loggerCache.GetLoggerKeys();
             foreach (var key in loggerKeys)
             {
