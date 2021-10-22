@@ -79,14 +79,6 @@ namespace NLog.Internal.NetworkSenders
 
         public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; }
 
-        /// <summary>
-        /// Actually sends the given text over the specified protocol.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer.</param>
-        /// <param name="length">Number of bytes to send.</param>
-        /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
             NetworkRequestArgs? eventArgs = new NetworkRequestArgs(bytes, offset, length, asyncContinuation);
@@ -157,10 +149,6 @@ namespace NLog.Internal.NetworkSenders
             failedContinuation?.Invoke(_pendingError);
         }
 
-        /// <summary>
-        /// Performs sender-specific flush.
-        /// </summary>
-        /// <param name="continuation">The continuation.</param>
         protected override void DoFlush(AsyncContinuation continuation)
         {
             lock (_pendingRequests)

@@ -104,9 +104,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Rule Matching Options' order='10' />
         public bool CompileRegex { get; set; }
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -128,11 +126,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Post-processed text.</returns>
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             if (string.IsNullOrEmpty(ReplaceGroupName))

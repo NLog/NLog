@@ -58,10 +58,7 @@ namespace NLog.Targets.Wrappers
         }
         private Target _wrappedTarget;
 
-        /// <summary>
-        /// Returns the text representation of the object. Used for diagnostics.
-        /// </summary>
-        /// <returns>A string that describes the target.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return _tostring ?? (_tostring = GenerateTargetToString());

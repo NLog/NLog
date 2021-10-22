@@ -63,7 +63,7 @@ namespace NLog.Targets
             Name = name;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -74,7 +74,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             if (Footer != null)

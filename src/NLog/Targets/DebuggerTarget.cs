@@ -81,9 +81,7 @@ namespace NLog.Targets
             Name = name;
         }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -98,9 +96,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             if (Footer != null)
@@ -111,10 +107,7 @@ namespace NLog.Targets
             base.CloseTarget();
         }
 
-        /// <summary>
-        /// Writes the specified logging event to the attached debugger.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             if (Debugger.IsLogging())

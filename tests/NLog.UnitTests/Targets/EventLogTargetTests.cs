@@ -705,19 +705,19 @@ namespace NLog.UnitTests.Targets
 
             internal List<EventRecord> WrittenEntries { get; } = new List<EventRecord>();
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string Source { get; set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string Log { get; set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string MachineName { get; set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public long MaximumKilobytes { get; set; } = EventLogDefaultMaxKilobytes;
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category)
             {
                 if (!IsEventLogAssociated)
@@ -735,10 +735,10 @@ namespace NLog.UnitTests.Targets
                 });
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public bool IsEventLogAssociated { get; private set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void AssociateNewEventLog(string logName, string machineName, string source)
             {
                 Log = logName;
@@ -751,16 +751,16 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void DeleteEventSource(string source, string machineName) => DeleteEventSourceFunction(source, machineName);
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public bool SourceExists(string source, string machineName) => SourceExistsFunction(source, machineName);
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string LogNameFromSourceName(string source, string machineName) => LogNameFromSourceNameFunction(source, machineName);
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void CreateEventSource(EventSourceCreationData sourceData) => CreateEventSourceFunction(sourceData);
         }
     }

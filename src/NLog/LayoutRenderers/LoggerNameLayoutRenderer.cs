@@ -67,7 +67,6 @@ namespace NLog.LayoutRenderers
             builder.Append(logEvent.LoggerName);
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (ShortName)

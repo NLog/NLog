@@ -47,14 +47,12 @@ namespace NLog.UnitTests.Mocks
         public MemoryStream RequestStream => _requestStream;
         private readonly ManualDisposableMemoryStream _requestStream = new ManualDisposableMemoryStream();
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public WebRequestMock()
         {
         }
 
-        #region Overrides of WebRequest
-
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override WebResponse EndGetResponse(IAsyncResult asyncResult)
         {
             if (FirstRequestMustFail)
@@ -72,7 +70,7 @@ namespace NLog.UnitTests.Mocks
             return webResponseMock;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override IAsyncResult BeginGetRequestStream(AsyncCallback callback, object state)
         {
             var result = CreateAsyncResultMock(state);
@@ -80,13 +78,13 @@ namespace NLog.UnitTests.Mocks
             return result;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override Stream EndGetRequestStream(IAsyncResult asyncResult)
         {
             return RequestStream;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override IAsyncResult BeginGetResponse(AsyncCallback callback, object state)
         {
             var result = CreateAsyncResultMock(state);
@@ -94,10 +92,8 @@ namespace NLog.UnitTests.Mocks
             return result;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override string Method { get; set; }
-
-        #endregion
 
         public string GetRequestContentAsString()
         {
@@ -113,14 +109,10 @@ namespace NLog.UnitTests.Mocks
             return asyncResult;
         }
 
-        #region IDisposable
-
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Dispose()
         {
             _requestStream?.RealDispose();
         }
-
-        #endregion
     }
 }

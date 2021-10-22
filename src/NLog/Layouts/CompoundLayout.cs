@@ -61,9 +61,7 @@ namespace NLog.Layouts
         [ArrayParameter(typeof(Layout), "layout")]
         public IList<Layout> Layouts { get; private set; }
 
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
@@ -76,21 +74,13 @@ namespace NLog.Layouts
             PrecalculateBuilderInternal(logEvent, target);
         }
 
-        /// <summary>
-        /// Formats the log event relying on inner layouts.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A string representation of the log event.</returns>
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return RenderAllocateBuilder(logEvent);
         }
 
-        /// <summary>
-        /// Formats the log event relying on inner layouts.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
@@ -102,9 +92,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <summary>
-        /// Closes the layout.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseLayout()
         {
             foreach (var layout in Layouts)
@@ -112,10 +100,7 @@ namespace NLog.Layouts
             base.CloseLayout();
         }
 
-        /// <summary>
-        /// Generate description of Compound Layout
-        /// </summary>
-        /// <returns>Compound Layout String Description</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return ToStringWithNestedItems(Layouts, l => l.ToString());

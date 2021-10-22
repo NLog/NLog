@@ -55,11 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public int WrapLine { get; set; } = 80;
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Post-processed text.</returns>
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             if (WrapLine <= 0)

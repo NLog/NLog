@@ -82,7 +82,7 @@ namespace NLog.Conditions
         /// <summary>
         /// Evaluates the expression.
         /// </summary>
-        /// <param name="context">Evaluation context.</param>
+        /// <param name="context">Evaluation context. Ignored.</param>
         /// <returns>The literal value as passed in the constructor.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {

@@ -86,19 +86,12 @@ namespace NLog.Internal.NetworkSenders
             return proxy;
         }
 
-        /// <summary>
-        /// Performs sender-specific initialization.
-        /// </summary>
         protected override void DoInitialize()
         {
             _endpoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
             _socket = CreateSocket(_endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
         }
 
-        /// <summary>
-        /// Closes the socket.
-        /// </summary>
-        /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
             base.DoClose(ex => CloseSocket(continuation, ex));

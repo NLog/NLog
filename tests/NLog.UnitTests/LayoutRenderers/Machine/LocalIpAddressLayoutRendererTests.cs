@@ -254,7 +254,7 @@ namespace NLog.UnitTests.LayoutRenderers
         private IList<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)> _networkInterfaces = new List<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)>();
         private readonly INetworkInterfaceRetriever _networkInterfaceRetrieverMock;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public NetworkInterfaceRetrieverBuilder()
         {
             _networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();

@@ -44,7 +44,7 @@ namespace NLog.Internal.NetworkSenders
     {
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))

@@ -52,11 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             return text;

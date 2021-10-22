@@ -43,12 +43,12 @@ namespace NLog.Layouts
     {
         private const string DefaultElementName = "item";
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public XmlElement() : this(DefaultElementName, null)
         {
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public XmlElement(string elementName, Layout elementValue) : base(elementName, elementValue)
         {
         }

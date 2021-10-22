@@ -376,10 +376,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Initializes the target. Can be used by inheriting classes
-        /// to initialize logging.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -581,9 +578,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             base.CloseTarget();

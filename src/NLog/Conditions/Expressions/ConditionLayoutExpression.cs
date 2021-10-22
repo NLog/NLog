@@ -71,11 +71,11 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Evaluates the expression by calculating the value
-        /// of the layout in the specified evaluation context.
+        /// Evaluates the expression by rendering the formatted output from
+        /// the <see cref="Layout"/>
         /// </summary>
         /// <param name="context">Evaluation context.</param>
-        /// <returns>The value of the layout.</returns>
+        /// <returns>The output rendered from the layout.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
             if (_simpleLayout.IsSimpleStringText || !_simpleLayout.ThreadAgnostic)

@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("threadname")]
     public class ThreadNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(GetStringValue());

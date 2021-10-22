@@ -50,31 +50,31 @@ namespace NLog.Internal.Fakeables
         private string _currentProcessBaseName;
         private int? _currentProcessId;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string EntryAssemblyLocation => _entryAssemblyLocation ?? (_entryAssemblyLocation = LookupEntryAssemblyLocation());
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string EntryAssemblyFileName => _entryAssemblyFileName ?? (_entryAssemblyFileName = LookupEntryAssemblyFileName());
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string CurrentProcessFilePath => _currentProcessFilePath ?? (_currentProcessFilePath = LookupCurrentProcessFilePathWithFallback());
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback());
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
 #endif
 #pragma warning disable CS0618 // Type or member is obsolete
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string AppDomainBaseDirectory => AppDomain.BaseDirectory;
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string AppDomainConfigurationFile => AppDomain.ConfigurationFile;
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string AppDomainFriendlyName => AppDomain.FriendlyName;
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public int AppDomainId => AppDomain.Id;
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IEnumerable<string> AppDomainPrivateBinPath => AppDomain.PrivateBinPath;
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => AppDomain.GetAssemblies();
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public event EventHandler<EventArgs> ProcessExit
         {
             add
@@ -90,7 +90,7 @@ namespace NLog.Internal.Fakeables
         }
 #pragma warning restore CS0618 // Type or member is obsolete
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string UserTempFilePath => Path.GetTempPath();
         
         [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
@@ -103,13 +103,13 @@ namespace NLog.Internal.Fakeables
         }
 #pragma warning restore CS0618 // Type or member is obsolete
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool FileExists(string path)
         {
             return File.Exists(path);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public XmlReader LoadXmlFile(string path)
         {
             return XmlReader.Create(path);

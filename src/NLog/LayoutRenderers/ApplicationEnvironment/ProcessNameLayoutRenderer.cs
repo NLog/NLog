@@ -73,11 +73,7 @@ namespace NLog.LayoutRenderers
             _processBaseName = appEnvironment.CurrentProcessBaseName;
         }
 
-        /// <summary>
-        /// Renders the current process name (optionally with a full path).
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var output = FullName ? _processFilePath : _processBaseName;

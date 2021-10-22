@@ -64,11 +64,7 @@ namespace NLog.Conditions
             return $"(not {Expression})";
         }
 
-        /// <summary>
-        /// Evaluates the expression.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>Expression result.</returns>
+        /// <inheritdoc/>
         protected override object EvaluateNode(LogEventInfo context)
         {
             return (bool)Expression.Evaluate(context) ? BoxedFalse : BoxedTrue;

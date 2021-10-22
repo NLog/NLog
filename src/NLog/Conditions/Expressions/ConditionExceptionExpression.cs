@@ -48,10 +48,10 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Evaluates to the logger message.
+        /// Evaluates the current <see cref="LogEventInfo.Exception"/>.
         /// </summary>
         /// <param name="context">Evaluation context.</param>
-        /// <returns>The logger message.</returns>
+        /// <returns>The <see cref="LogEventInfo.Exception"/> object.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
             return context.Exception;

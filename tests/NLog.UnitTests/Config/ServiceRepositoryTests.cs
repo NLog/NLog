@@ -271,7 +271,7 @@ namespace NLog.UnitTests.Config
         {
             public ClassWithInjection Helper { get; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public TargetWithNestedInjection([NotNull] ClassWithInjection helper)
             {
                 Helper = helper ?? throw new ArgumentNullException(nameof(helper));
@@ -280,7 +280,7 @@ namespace NLog.UnitTests.Config
 
         private class TargetWithDirectCycleInjection : Target
         {
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public TargetWithDirectCycleInjection(TargetWithDirectCycleInjection cycle1)
             {
             }
@@ -288,7 +288,7 @@ namespace NLog.UnitTests.Config
 
         private class TargetWithIndirectCycleInjection : Target
         {
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public TargetWithIndirectCycleInjection(CycleHelperClass1 helper)
             {
             }
@@ -296,7 +296,7 @@ namespace NLog.UnitTests.Config
 
         private class CycleHelperClass1
         {
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public CycleHelperClass1(CycleHelperClass2 helper)
             {
             }
@@ -304,7 +304,7 @@ namespace NLog.UnitTests.Config
 
         private class CycleHelperClass2
         {
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public CycleHelperClass2(CycleHelperClass1 helper)
             {
             }
@@ -314,7 +314,7 @@ namespace NLog.UnitTests.Config
         {
             public IJsonConverter JsonConverter { get; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public ClassWithInjection(IJsonConverter jsonConverter)
             {
                 JsonConverter = jsonConverter;

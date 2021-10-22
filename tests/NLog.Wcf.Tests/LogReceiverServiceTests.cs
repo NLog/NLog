@@ -367,7 +367,7 @@ namespace NLog.Wcf.Tests
         {
             public CountdownEvent CountdownEvent { get; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public LogReceiverMock(CountdownEvent countdownEvent)
             {
                 CountdownEvent = countdownEvent;

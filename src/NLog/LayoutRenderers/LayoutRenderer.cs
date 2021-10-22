@@ -61,12 +61,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         protected IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = ResolveService<IValueFormatter>());
 
-        /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
-        /// </returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             var lra = GetType().GetFirstCustomAttribute<LayoutRendererAttribute>();
@@ -101,18 +96,13 @@ namespace NLog.LayoutRenderers
             return builder.ToString();
         }
 
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        /// <param name="configuration">The configuration.</param>
+        /// <inheritdoc/>
         void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
             Initialize(configuration);
         }
 
-        /// <summary>
-        /// Closes this instance.
-        /// </summary>
+        /// <inheritdoc/>
         void ISupportsInitialize.Close()
         {
             Close();

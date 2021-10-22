@@ -85,13 +85,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Transformation Options" order="100"/>
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             throw new NotSupportedException();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             if (TryGetRawValue(logEvent, out object rawValue))
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         private bool TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             if (Inner != null &&

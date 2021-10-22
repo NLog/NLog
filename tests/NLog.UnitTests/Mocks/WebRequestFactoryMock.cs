@@ -39,23 +39,19 @@ namespace NLog.UnitTests.Mocks
 {
     class WebRequestFactoryMock : IWebRequestFactory
     {
-        #region Implementation of IWebRequestFactory
-
         private readonly WebRequestMock _mock;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public WebRequestFactoryMock(WebRequestMock mock)
         {
             _mock = mock;
         }
         
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public WebRequest CreateWebRequest(Uri address)
         {
             _mock.RequestedAddress = address;
             return _mock;
         }
-
-        #endregion
     }
 }

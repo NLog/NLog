@@ -159,9 +159,6 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        /// <summary>
-        /// Performs sender-specific initialization.
-        /// </summary>
         protected override void DoInitialize()
         {
             var uri = new Uri(Address);
@@ -196,10 +193,6 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        /// <summary>
-        /// Closes the socket.
-        /// </summary>
-        /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
             base.DoClose(ex => CloseSocket(continuation, ex));

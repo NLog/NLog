@@ -159,9 +159,7 @@ namespace NLog.Targets.Wrappers
             base.FlushAsync(asyncContinuation);
         }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();

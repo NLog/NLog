@@ -131,22 +131,13 @@ namespace NLog.Targets
             return true;
         }
 
-        /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
+        /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             Write((IList<AsyncLogEventInfo>)new[] { logEvent });
         }
 
-        /// <summary>
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Append" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
+        /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             // if web service call is being processed, buffer new events and return

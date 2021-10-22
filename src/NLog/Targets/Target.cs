@@ -271,12 +271,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
-        /// </returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return _tostring ?? (_tostring = GenerateTargetToString(false));
@@ -516,8 +511,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes the target. Can be used by inheriting classes
-        /// to initialize logging.
+        /// Initializes the target before writing starts
         /// </summary>
         protected virtual void InitializeTarget()
         {
@@ -538,24 +532,24 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Closes the target and releases any unmanaged resources.
+        /// Closes the target to release any initialized resources
         /// </summary>
         protected virtual void CloseTarget()
         {
         }
 
         /// <summary>
-        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// Flush any pending log messages
         /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <remarks>The asynchronous continuation parameter must be called on flush completed</remarks>
+        /// <param name="asyncContinuation">The asynchronous continuation to be called on flush completed.</param>
         protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
         {
             asyncContinuation(null);
         }
 
         /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
+        /// Writes logging event to the target destination
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
         protected virtual void Write(LogEventInfo logEvent)

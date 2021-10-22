@@ -46,13 +46,13 @@ namespace NLog.Config
         /// </summary>
         [NotNull] public Type ServiceType { get; }
         
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public NLogDependencyResolveException(string message, [NotNull] Type serviceType) : base(CreateFullMessage(serviceType, message))
         {
             ServiceType = serviceType ?? throw new ArgumentNullException(nameof(serviceType));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public NLogDependencyResolveException(string message, Exception innerException, [NotNull] Type serviceType) : base(CreateFullMessage(serviceType, message), innerException)
         {
             ServiceType = serviceType ?? throw new ArgumentNullException(nameof(serviceType));

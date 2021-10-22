@@ -108,7 +108,6 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (WithException)

@@ -103,12 +103,7 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         public Layout Key { get; set; }
 
-        /// <summary>
-        /// Reads the specified registry key and value and appends it to
-        /// the passed <see cref="StringBuilder"/>.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event. Ignored.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             object registryValue = null;

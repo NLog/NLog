@@ -107,14 +107,12 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        /// <inheritdoc/>
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = GetValue(logEvent);
             return true;
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (Format == LevelFormat.Name)

@@ -214,9 +214,7 @@ namespace NLog.Targets
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
         public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             _pauseLogging = false;
@@ -276,9 +274,7 @@ namespace NLog.Targets
                 return new ColoredConsoleAnsiPrinter();
         }
 
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             if (Footer != null)
@@ -290,7 +286,7 @@ namespace NLog.Targets
             base.CloseTarget();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             try
@@ -313,11 +309,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Writes the specified log event to the console highlighting entries
-        /// and words based on a set of defined rules.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             if (_pauseLogging)

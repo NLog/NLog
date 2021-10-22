@@ -229,9 +229,7 @@ namespace NLog.Targets
             return null; //unclear!
         }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -239,10 +237,7 @@ namespace NLog.Targets
             CreateEventSourceIfNeeded(GetFixedSource(), false);
         }
 
-        /// <summary>
-        /// Writes the specified logging event to the event log.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             string message = RenderLogEvent(Layout, logEvent);
@@ -502,36 +497,22 @@ namespace NLog.Targets
         {
             private EventLog _windowsEventLog;
 
-            #region Instance methods
-
-            /// <inheritdoc />
             public string Source { get; private set; }
 
-            /// <inheritdoc />
             public string Log { get; private set; }
 
-            /// <inheritdoc />
             public string MachineName { get; private set; }
 
-            /// <inheritdoc />
             public long MaximumKilobytes
             {
                 get => _windowsEventLog.MaximumKilobytes;
                 set => _windowsEventLog.MaximumKilobytes = value;
             }
-
-            /// <inheritdoc />
             public bool IsEventLogAssociated => _windowsEventLog != null;
 
-            /// <inheritdoc />
             public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category) =>
                 _windowsEventLog.WriteEntry(message, entryType, eventId, category);
 
-            #endregion
-
-            #region "Static" methods
-
-            /// <inheritdoc />
             /// <summary>
             /// Creates a new association with an instance of Windows <see cref="EventLog"/>.
             /// </summary>
@@ -545,19 +526,15 @@ namespace NLog.Targets
                 windowsEventLog?.Dispose();
             }
 
-            /// <inheritdoc />
             public void DeleteEventSource(string source, string machineName) =>
                 EventLog.DeleteEventSource(source, machineName);
 
-            /// <inheritdoc />
             public bool SourceExists(string source, string machineName) =>
                 EventLog.SourceExists(source, machineName);
 
-            /// <inheritdoc />
             public string LogNameFromSourceName(string source, string machineName) =>
                 EventLog.LogNameFromSourceName(source, machineName);
 
-            /// <inheritdoc />
             public void CreateEventSource(EventSourceCreationData sourceData) =>
                 EventLog.CreateEventSource(sourceData);
 
@@ -566,8 +543,6 @@ namespace NLog.Targets
                 _windowsEventLog?.Dispose();
                 _windowsEventLog = null;
             }
-
-            #endregion
         }
     }
 }

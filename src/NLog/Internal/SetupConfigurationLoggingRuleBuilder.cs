@@ -47,13 +47,13 @@ namespace NLog.Internal
             LogFactory = logFactory;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public LoggingRule LoggingRule { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public LoggingConfiguration Configuration { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public LogFactory LogFactory { get; }
 
         /// <summary>

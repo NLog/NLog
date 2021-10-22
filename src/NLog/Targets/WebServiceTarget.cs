@@ -448,9 +448,7 @@ namespace NLog.Targets
             _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
         }
 
-        /// <summary>
-        /// Closes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             _pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?

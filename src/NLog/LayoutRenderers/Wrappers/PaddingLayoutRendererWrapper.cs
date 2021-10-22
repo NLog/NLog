@@ -80,11 +80,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />RegistryLayoutRenderer
         public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; } = PaddingHorizontalAlignment.Left;
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             string s = text ?? string.Empty;

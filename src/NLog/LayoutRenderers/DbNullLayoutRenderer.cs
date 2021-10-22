@@ -46,12 +46,11 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class DbNullLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = DBNull.Value;

@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             return text;

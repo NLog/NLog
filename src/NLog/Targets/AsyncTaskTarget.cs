@@ -144,9 +144,7 @@ namespace NLog.Targets
             TaskCancelledTokenReInit();
         }
 
-        /// <summary>
-        /// Initializes the internal queue for pending logevents
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             _missingServiceTypes = false;
@@ -263,10 +261,7 @@ namespace NLog.Targets
             base.Write(logEvents);
         }
 
-        /// <summary>
-        /// Schedules the LogEventInfo for async writing
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
+        /// <inheritdoc/>
         protected override sealed void Write(AsyncLogEventInfo logEvent)
         {
             if (_cancelTokenSource.IsCancellationRequested)

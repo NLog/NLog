@@ -191,9 +191,7 @@ namespace NLog.Layouts
         }
         private bool? _escapeForwardSlashInternal;
 
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
@@ -219,9 +217,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <summary>
-        /// Closes the layout.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseLayout()
         {
             JsonConverter = null;
@@ -234,11 +230,7 @@ namespace NLog.Layouts
             PrecalculateBuilderInternal(logEvent, target);
         }
 
-        /// <summary>
-        /// Formats the log event as a JSON document for writing.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             int orgLength = target.Length;
@@ -249,11 +241,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <summary>
-        /// Formats the log event as a JSON document for writing.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A JSON string representation of the log event.</returns>
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return RenderAllocateBuilder(logEvent);
@@ -418,10 +406,7 @@ namespace NLog.Layouts
             return true;
         }
 
-        /// <summary>
-        /// Generate description of JSON Layout
-        /// </summary>
-        /// <returns>JSON Layout String Description</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return ToStringWithNestedItems(Attributes, a => string.Concat(a.Name, "-", a.Layout?.ToString()));
