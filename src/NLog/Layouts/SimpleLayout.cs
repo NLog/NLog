@@ -216,7 +216,7 @@ namespace NLog.Layouts
             return Evaluate(text, LogEventInfo.CreateNullEvent());
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (string.IsNullOrEmpty(Text) && _layoutRenderers.Length > 0)
@@ -265,7 +265,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             for (int i = 0; i < _layoutRenderers.Length; i++)
@@ -295,7 +295,7 @@ namespace NLog.Layouts
             base.InitializeLayout();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override void Precalculate(LogEventInfo logEvent)
         {
             if (!IsLogEventMutableSafe(logEvent))
@@ -365,7 +365,7 @@ namespace NLog.Layouts
             return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType());
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
             if (_rawValueRenderer != null)
@@ -407,7 +407,7 @@ namespace NLog.Layouts
             return false;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             if (IsFixedText)
@@ -473,7 +473,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             if (IsFixedText)

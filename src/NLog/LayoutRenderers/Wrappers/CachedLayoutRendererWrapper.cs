@@ -104,9 +104,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -114,9 +112,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 _cachedValue = null;
         }
 
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
@@ -124,21 +120,13 @@ namespace NLog.LayoutRenderers.Wrappers
                 _cachedValue = null;
         }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="text">Output to be transform.</param>
-        /// <returns>Transformed text.</returns>
+        /// <inheritdoc/>
         protected override string Transform(string text)
         {
             return text;
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <returns>Contents of inner layout.</returns>
+        /// <inheritdoc/>
         protected override string RenderInner(LogEventInfo logEvent)
         {
             if (Cached)
@@ -180,7 +168,6 @@ namespace NLog.LayoutRenderers.Wrappers
             return _cachedValue;
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;
     }
 }

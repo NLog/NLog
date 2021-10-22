@@ -264,9 +264,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Closes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             base.CloseTarget();

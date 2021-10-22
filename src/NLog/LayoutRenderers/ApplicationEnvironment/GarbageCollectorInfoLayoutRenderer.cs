@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var value = GetValue();

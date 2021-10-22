@@ -59,7 +59,6 @@ namespace NLog.LayoutRenderers
             Text = text;
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = _rawValue;

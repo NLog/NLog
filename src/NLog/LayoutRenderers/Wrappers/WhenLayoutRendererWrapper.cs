@@ -94,7 +94,6 @@ namespace NLog.LayoutRenderers.Wrappers
             return When is null || true.Equals(When.Evaluate(logEvent));
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             if (ShouldRenderInner(logEvent))

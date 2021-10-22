@@ -71,7 +71,6 @@ namespace NLog.Common
         [CanBeNull]
         public string SenderName { get; }
 
-        /// <inheritdoc />
         internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
         {
             Message = message;

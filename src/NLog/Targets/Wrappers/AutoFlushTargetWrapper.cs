@@ -113,9 +113,7 @@ namespace NLog.Targets.Wrappers
             WrappedTarget = wrappedTarget;
         }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
@@ -199,9 +197,7 @@ namespace NLog.Targets.Wrappers
             WrappedTarget.Flush(wrappedContinuation);
         }
 
-        /// <summary>
-        /// Closes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             _pendingManualFlushList.Clear(); // Maybe consider to wait a short while if pending requests?

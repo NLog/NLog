@@ -61,21 +61,13 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         public Layout Footer { get; set; }
 
-        /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return Layout.Render(logEvent);
         }
 
-        /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result.</param>
+        /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
         {
             Layout.Render(logEvent, target);

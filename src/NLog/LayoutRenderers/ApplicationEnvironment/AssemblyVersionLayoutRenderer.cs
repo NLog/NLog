@@ -97,18 +97,14 @@ namespace NLog.LayoutRenderers
             set => _format = value?.ToLowerInvariant();
         }
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             _assemblyVersion = null;
             base.InitializeLayoutRenderer();
         }
 
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseLayoutRenderer()
         {
             _assemblyVersion = null;
@@ -117,11 +113,7 @@ namespace NLog.LayoutRenderers
 
         private string _assemblyVersion;
 
-        /// <summary>
-        /// Renders an assembly version and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var version = _assemblyVersion ?? (_assemblyVersion = ApplyFormatToVersion(GetVersion()));

@@ -103,9 +103,7 @@ namespace NLog.Targets
             _logEventAction = logEventAction;
         }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();

@@ -81,11 +81,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Advanced Options' order='10' />
         public string Dir { get; set; }
 
-        /// <summary>
-        /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             string basePath = Environment.GetFolderPath(Folder);

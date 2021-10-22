@@ -49,13 +49,12 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("activityid")]
     public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(GetStringValue());
         }
 
-        /// <inheritdoc />
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
 
         private static string GetStringValue()

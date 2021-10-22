@@ -86,7 +86,7 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
-        /// Flushes any pending messages and invokes a continuation.
+        /// Flushes any pending messages and invokes the <paramref name="continuation"/> on completion.
         /// </summary>
         /// <param name="continuation">The continuation.</param>
         public void FlushAsync(AsyncContinuation continuation)
@@ -125,14 +125,14 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
-        /// Performs sender-specific initialization.
+        /// Initializes resources for the protocol specific implementation.
         /// </summary>
         protected virtual void DoInitialize()
         {
         }
 
         /// <summary>
-        /// Performs sender-specific close operation.
+        /// Closes resources for the protocol specific implementation.
         /// </summary>
         /// <param name="continuation">The continuation.</param>
         protected virtual void DoClose(AsyncContinuation continuation)
@@ -141,7 +141,7 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
-        /// Performs sender-specific flush.
+        /// Performs the flush and invokes the <paramref name="continuation"/> on completion.
         /// </summary>
         /// <param name="continuation">The continuation.</param>
         protected virtual void DoFlush(AsyncContinuation continuation)
@@ -150,13 +150,12 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
-        /// Actually sends the given text over the specified protocol.
+        /// Sends the payload using the protocol specific implementation.
         /// </summary>
         /// <param name="bytes">The bytes to be sent.</param>
         /// <param name="offset">Offset in buffer.</param>
         /// <param name="length">Number of bytes to send.</param>
         /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
         protected abstract void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation);
 
         /// <summary>

@@ -65,20 +65,16 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class MyFuncLayoutRenderer : FuncLayoutRenderer
         {
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public MyFuncLayoutRenderer(string layoutRendererName) : base(layoutRendererName)
             {
             }
 
-            #region Overrides of FuncLayoutRenderer
-
-            /// <inheritdoc />
+            /// <inheritdoc/>
             protected override object RenderValue(LogEventInfo logEvent)
             {
                 return 42;
             }
-
-            #endregion
         }
     }
 }

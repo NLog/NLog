@@ -583,7 +583,7 @@ namespace NLog.Internal
             {
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public override DynamicMetaObject FallbackGetMember(DynamicMetaObject target, DynamicMetaObject errorSuggestion)
             {
                 return target;

@@ -66,13 +66,12 @@ namespace NLog.LayoutRenderers
             _processId = appEnvironment.CurrentProcessId;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.AppendInvariant(_processId);
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = _processId;

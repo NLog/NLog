@@ -56,15 +56,7 @@ namespace NLog.Filters
         /// <docgen category='Filtering Options' order='10' />
         public bool IgnoreCase { get; set; }
 
-        /// <summary>
-        /// Checks whether log event should be logged or not.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
-        /// <returns>
-        /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
-        /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
-        /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// .</returns>
+        /// <inheritdoc/>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
             StringComparison comparison = IgnoreCase

@@ -66,11 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner?.Initialize(LoggingConfiguration);
         }
 
-        /// <summary>
-        /// Renders the inner message, processes it and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (Inner is null)

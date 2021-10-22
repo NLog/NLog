@@ -63,13 +63,13 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public AddressFamily AddressFamily { get => _addressFamily ?? AddressFamily.InterNetwork; set => _addressFamily = value; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public LocalIpAddressLayoutRenderer()
         {
             _networkInterfaceRetriever = new NetworkInterfaceRetriever();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         internal LocalIpAddressLayoutRenderer(INetworkInterfaceRetriever networkInterfaceRetriever)
         {
             _networkInterfaceRetriever = networkInterfaceRetriever;

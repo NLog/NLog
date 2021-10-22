@@ -45,14 +45,13 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class TicksLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture expected here
             builder.Append(GetValue(logEvent).ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = GetValue(logEvent);

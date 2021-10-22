@@ -51,11 +51,7 @@ namespace NLog.LayoutRenderers
         [DefaultParameter]
         public string Parameter { get; set; }
 
-        /// <summary>
-        /// Renders the specified installation parameter and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var value = GetValue(logEvent);

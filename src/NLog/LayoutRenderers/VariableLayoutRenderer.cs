@@ -64,9 +64,7 @@ namespace NLog.LayoutRenderers
         /// <remarks>Mostly relevant for the scanning of active NLog Layouts (Ex. CallSite capture)</remarks>
         public Layout ActiveLayout => TryGetLayout(out var layout) ? layout : null;
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             if (TryGetLayout(out var layout) && layout != null)
@@ -88,11 +86,7 @@ namespace NLog.LayoutRenderers
             return Name != null && LoggingConfiguration?.TryLookupDynamicVariable(Name, out layout) == true;
         }
 
-        /// <summary>
-        /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (Name != null)

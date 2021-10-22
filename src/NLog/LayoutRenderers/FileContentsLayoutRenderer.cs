@@ -79,11 +79,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='File Options' order='10' />
         public Encoding Encoding { get; set; }
 
-        /// <summary>
-        /// Renders the contents of the specified file and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             lock (_lockObject)

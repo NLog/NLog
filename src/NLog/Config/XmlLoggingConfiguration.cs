@@ -576,7 +576,7 @@ namespace NLog.Config
             return Path.GetFullPath(fileName);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{base.ToString()}, FilePath={_originalFileName}";

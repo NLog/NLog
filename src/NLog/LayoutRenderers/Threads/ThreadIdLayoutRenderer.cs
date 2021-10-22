@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("threadid")]
     public class ThreadIdLayoutRenderer : LayoutRenderer
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints

@@ -101,9 +101,7 @@ namespace NLog.Layouts
         /// <docgen category='CSV Options' order='10' />
         public string CustomColumnDelimiter { get; set; }
 
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             if (!WithHeader)
@@ -153,21 +151,13 @@ namespace NLog.Layouts
             PrecalculateBuilderInternal(logEvent, target);
         }
 
-        /// <summary>
-        /// Formats the log event for write.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A string representation of the log event.</returns>
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return RenderAllocateBuilder(logEvent);
         }
 
-        /// <summary>
-        /// Formats the log event for write.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
@@ -270,6 +260,7 @@ namespace NLog.Layouts
                 _parent = parent;
             }
 
+            /// <inheritdoc/>
             protected override void InitializeLayout()
             {
                 _headerOutput = null;
@@ -293,31 +284,20 @@ namespace NLog.Layouts
                 // Precalculation and caching is not needed
             }
 
-            /// <summary>
-            /// Renders the layout for the specified logging event by invoking layout renderers.
-            /// </summary>
-            /// <param name="logEvent">The logging event.</param>
-            /// <returns>The rendered layout.</returns>
+            /// <inheritdoc/>
             protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
                 return GetHeaderOutput();
             }
 
-            /// <summary>
-            /// Renders the layout for the specified logging event by invoking layout renderers.
-            /// </summary>
-            /// <param name="logEvent">The logging event.</param>
-            /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+            /// <inheritdoc/>
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
                 target.Append(GetHeaderOutput());
             }
         }
 
-        /// <summary>
-        /// Generate description of CSV Layout
-        /// </summary>
-        /// <returns>CSV Layout String Description</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return ToStringWithNestedItems(Columns, c => c.Name);

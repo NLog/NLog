@@ -138,11 +138,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <summary>
-        /// Renders all log event's properties and appends them to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (!logEvent.HasProperties && !IncludeScopeProperties)

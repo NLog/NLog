@@ -93,13 +93,13 @@ namespace NLog.Targets.Wrappers
             Key = key;
         }
 
-        // <inheritdoc />
+        /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             WrappedTarget.WriteAsyncLogEvent(logEvent);
         }
 
-        // <inheritdoc />
+        /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             if (_buildKeyStringDelegate is null)

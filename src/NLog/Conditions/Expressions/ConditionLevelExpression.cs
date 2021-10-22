@@ -50,7 +50,7 @@ namespace NLog.Conditions
         /// <summary>
         /// Evaluates to the current log level.
         /// </summary>
-        /// <param name="context">Evaluation context. Ignored.</param>
+        /// <param name="context">Evaluation context.</param>
         /// <returns>The <see cref="LogLevel"/> object representing current log level.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {

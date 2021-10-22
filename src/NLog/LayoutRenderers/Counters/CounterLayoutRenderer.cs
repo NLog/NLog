@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Counter Options' order='10' />
         public Layout Sequence { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             int v = GetNextValue(logEvent);

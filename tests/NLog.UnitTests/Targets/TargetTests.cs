@@ -373,26 +373,26 @@ namespace NLog.UnitTests.Targets
 
             #region Overrides of Target
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public ThrowingInitializeTarget(bool throwsOnInit)
             {
                 _throwsOnInit = throwsOnInit;
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             protected override void InitializeTarget()
             {
                 if (_throwsOnInit)
                     throw new TestException("Initialize says no");
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 throw new TestException("No flush");
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
             {
                 throw new TestException("Write oops");
@@ -403,7 +403,7 @@ namespace NLog.UnitTests.Targets
 
         private class TestException : Exception
         {
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public TestException(string message) : base(message)
             {
             }

@@ -187,10 +187,10 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Renders the event info in layout.
+        /// Renders formatted output using the log event as context.
         /// </summary>
-        /// <param name="logEvent">The event info.</param>
-        /// <returns>String representing log event.</returns>
+        /// <param name="logEvent">The logging event.</param>
+        /// <returns>The formatted output as string.</returns>
         public string Render(LogEventInfo logEvent)
         {
             if (!IsInitialized)
@@ -221,8 +221,8 @@ namespace NLog.Layouts
         /// Optimized version of <see cref="Render(LogEventInfo)"/> that works best when
         /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
-        /// <param name="logEvent">The event info.</param>
-        /// <param name="target">Appends the string representing log event to target</param>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Appends the formatted output to target</param>
         public void Render(LogEventInfo logEvent, StringBuilder target)
         {
             RenderAppendBuilder(logEvent, target, false);
@@ -237,7 +237,7 @@ namespace NLog.Layouts
         /// Optimized version of <see cref="Render(LogEventInfo)"/> that works best when
         /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
-        /// <param name="logEvent">The event info.</param>
+        /// <param name="logEvent">The logging event.</param>
         /// <param name="target">Appends the string representing log event to target</param>
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         private void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult)
@@ -293,10 +293,10 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// Renders formatted output using the log event as context.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        /// <param name="target">Appends the formatted output to target</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             target.Append(GetFormattedMessage(logEvent));
@@ -411,10 +411,10 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// Renders formatted output using the log event as context.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
+        /// <returns>The formatted output.</returns>
         protected abstract string GetFormattedMessage(LogEventInfo logEvent);
 
         /// <summary>

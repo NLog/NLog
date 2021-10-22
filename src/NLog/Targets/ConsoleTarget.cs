@@ -159,9 +159,7 @@ namespace NLog.Targets
             Name = name;
         }
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             _pauseLogging = false;
@@ -185,9 +183,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             if (Footer != null)
@@ -198,7 +194,7 @@ namespace NLog.Targets
             base.CloseTarget();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             try
@@ -221,14 +217,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Writes the specified logging event to the Console.Out or
-        /// Console.Error depending on the value of the Error flag.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <remarks>
-        /// Note that the Error option is not supported on .NET Compact Framework.
-        /// </remarks>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             if (_pauseLogging)
@@ -258,9 +247,6 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Write to output
-        /// </summary>
         private void RenderToOutput(Layout layout, LogEventInfo logEvent)
         {
             if (_pauseLogging)

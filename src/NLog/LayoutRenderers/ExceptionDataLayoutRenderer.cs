@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
             return BaseException ? logEvent.Exception?.GetBaseException() : logEvent.Exception;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             Exception primaryException = GetTopException(logEvent);

@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers
             _process = Process.GetCurrentProcess();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void CloseLayoutRenderer()
         {
             _process?.Close();
@@ -94,7 +94,7 @@ namespace NLog.LayoutRenderers
             base.CloseLayoutRenderer();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var value = GetValue();

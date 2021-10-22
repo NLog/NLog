@@ -55,12 +55,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public bool CaptureStackTrace { get; set; } = true;
 
-        /// <summary>
-        /// Gets the level of stack trace information required by the implementing class.
-        /// </summary>
+        /// <inheritdoc/>
         StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsageUtils.GetStackTraceUsage(true, SkipFrames, CaptureStackTrace);
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var lineNumber = GetLineNumber(logEvent);
@@ -68,7 +66,6 @@ namespace NLog.LayoutRenderers
                 builder.AppendInvariant(lineNumber.Value);
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = GetLineNumber(logEvent);

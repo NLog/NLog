@@ -99,9 +99,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public bool CaptureStackTrace { get; set; } = true;
 
-        /// <summary>
-        /// Gets the level of stack trace information required by the implementing class.
-        /// </summary>
+        /// <inheritdoc/>
         StackTraceUsage IUsesStackTrace.StackTraceUsage
         {
             get
@@ -113,11 +111,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        /// <summary>
-        /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (logEvent.CallSiteInformation != null)

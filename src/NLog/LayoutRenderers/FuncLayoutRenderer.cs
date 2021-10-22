@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var value = RenderValue(logEvent);
@@ -98,7 +98,6 @@ namespace NLog.LayoutRenderers
             builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)
@@ -115,7 +114,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the value for this log event
         /// </summary>
-        /// <param name="logEvent">The event info.</param>
+        /// <param name="logEvent">The logging event.</param>
         /// <returns>The value.</returns>
         protected virtual object RenderValue(LogEventInfo logEvent)
         {

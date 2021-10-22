@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var dt = GetValue(logEvent);
@@ -90,7 +90,6 @@ namespace NLog.LayoutRenderers
             builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = GetValue(logEvent);

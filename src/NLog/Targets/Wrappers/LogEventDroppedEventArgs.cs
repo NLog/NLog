@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
     /// </summary>
     public class LogEventDroppedEventArgs : EventArgs
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public LogEventDroppedEventArgs(LogEventInfo logEventInfo) => DroppedLogEventInfo = logEventInfo;
 
         /// <summary>

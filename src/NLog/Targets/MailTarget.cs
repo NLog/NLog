@@ -314,19 +314,13 @@ namespace NLog.Targets
             return new MySmtpClient();
         }
 
-        /// <summary>
-        /// Writes async log event to the mail target.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
+        /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             Write((IList<AsyncLogEventInfo>)new[] { logEvent });
         }
 
-        /// <summary>
-        /// Renders an array logging events.
-        /// </summary>
-        /// <param name="logEvents">Array of logging events.</param>
+        /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             if (logEvents.Count <= 1)
@@ -344,10 +338,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Initializes the target. Can be used by inheriting classes
-        /// to initialize logging.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             CheckRequiredParameters();

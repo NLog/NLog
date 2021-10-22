@@ -175,7 +175,7 @@ namespace NLog.Layouts
             return Convert.ToString(value, formatProvider);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
@@ -188,7 +188,7 @@ namespace NLog.Layouts
             _previousValue = null;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void CloseLayout()
         {
             _innerLayout?.Close();
@@ -198,13 +198,13 @@ namespace NLog.Layouts
             base.CloseLayout();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override void Precalculate(LogEventInfo logEvent)
         {
             PrecalculateInnerLayout(logEvent, null);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
             PrecalculateInnerLayout(logEvent, target);
@@ -349,13 +349,13 @@ namespace NLog.Layouts
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override string ToString()
         {
             return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : (_innerLayout?.ToString() ?? base.ToString());
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (IsFixed)
@@ -383,7 +383,7 @@ namespace NLog.Layouts
             return IsFixed && object.Equals(FixedObjectValue, other);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             if (IsFixed)

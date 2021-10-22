@@ -91,10 +91,7 @@ namespace NLog.Targets
         /// <docgen category='Debugging Options' order='10' />
         public string LastMessage { get; private set; }
 
-        /// <summary>
-        /// Increases the number of messages.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             Counter++;

@@ -44,13 +44,12 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class SequenceIdLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.AppendInvariant(GetValue(logEvent));
         }
 
-        /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             value = GetValue(logEvent);

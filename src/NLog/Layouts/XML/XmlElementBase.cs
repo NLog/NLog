@@ -215,9 +215,7 @@ namespace NLog.Layouts
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private const int MaxXmlLength = 512 * 1024;
 
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
@@ -254,11 +252,7 @@ namespace NLog.Layouts
             PrecalculateBuilderInternal(logEvent, target);
         }
 
-        /// <summary>
-        /// Formats the log event as a XML document for writing.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             int orgLength = target.Length;
@@ -269,11 +263,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <summary>
-        /// Formats the log event as a XML document for writing.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A XML string representation of the log event.</returns>
+        /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return RenderAllocateBuilder(logEvent);
@@ -725,10 +715,7 @@ namespace NLog.Layouts
             RenderEndElement(sb, elementName);
         }
 
-        /// <summary>
-        /// Generate description of XML Layout
-        /// </summary>
-        /// <returns>XML Layout String Description</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (Elements.Count > 0)

@@ -52,7 +52,7 @@ namespace NLog.Layouts
         {
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public XmlLayout(string elementName, Layout elementValue) : base(elementName, elementValue)
         {
         }

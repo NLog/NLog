@@ -93,10 +93,7 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Fallback Options' order='10' />
         public bool ReturnToFirstOnSuccess { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="logEvent"></param>
+        /// <inheritdoc/>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             Write(logEvent);

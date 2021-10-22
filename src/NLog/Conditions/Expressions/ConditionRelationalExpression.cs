@@ -86,11 +86,7 @@ namespace NLog.Conditions
             return $"({LeftExpression} {GetOperatorString()} {RightExpression})";
         }
 
-        /// <summary>
-        /// Evaluates the expression.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>Expression result.</returns>
+        /// <inheritdoc/>
         protected override object EvaluateNode(LogEventInfo context)
         {
             object v1 = LeftExpression.Evaluate(context);

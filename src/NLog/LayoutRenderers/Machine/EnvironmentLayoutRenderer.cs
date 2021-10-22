@@ -67,7 +67,6 @@ namespace NLog.LayoutRenderers
             GetSimpleLayout()?.Render(logEvent, builder);
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             var simpleLayout = GetSimpleLayout();

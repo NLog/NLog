@@ -62,9 +62,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public bool CaptureStackTrace { get; set; } = true;
 
-        /// <summary>
-        /// Gets the level of stack trace information required by the implementing class.
-        /// </summary>
+        /// <inheritdoc/>
         StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsageUtils.GetStackTraceUsage(true, SkipFrames, CaptureStackTrace);
 
         /// <inheritdoc/>
@@ -73,7 +71,6 @@ namespace NLog.LayoutRenderers
             builder.Append(GetStringValue(logEvent));
         }
 
-        /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)

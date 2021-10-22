@@ -169,40 +169,19 @@ namespace NLog.Targets
             return mode1.NewLineCharacters != mode2.NewLineCharacters;
         }
 
-        /// <summary>
-        /// Returns a string representation of the log level.
-        /// </summary>
-        /// <returns>Log level name.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name;
         }
 
-        /// <summary>
-        /// Returns a hash code for this instance.
-        /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms 
-        /// and data structures like a hash table. 
-        /// </returns>
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return _newLineCharacters?.GetHashCode() ?? 0;
         }
 
-        /// <summary>
-        /// Determines whether the specified <see cref="System.Object"/> is 
-        /// equal to this instance.
-        /// </summary>
-        /// <param name="obj">The <see cref="System.Object"/> to compare with 
-        /// this instance.</param>
-        /// <returns>
-        /// Value of <c>true</c> if the specified <see cref="System.Object"/> 
-        /// is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="T:System.NullReferenceException">
-        /// The <paramref name="obj"/> parameter is null.
-        /// </exception>
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             return obj is LineEndingMode mode && Equals(mode);
@@ -221,29 +200,13 @@ namespace NLog.Targets
         /// </summary>
         public class LineEndingModeConverter : TypeConverter
         {
-            /// <summary>
-            /// Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context.
-            /// </summary>
-            /// <returns>
-            /// true if this converter can perform the conversion; otherwise, false.
-            /// </returns>
-            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-            /// <param name="sourceType">A <see cref="T:System.Type"/> that represents the type you want to convert from. </param>
+            /// <inheritdoc/>
             public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
             {
                 return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
             }
 
-            /// <summary>
-            /// Converts the given object to the type of this converter, using the specified context and culture information.
-            /// </summary>
-            /// <returns>
-            /// An <see cref="T:System.Object"/> that represents the converted value.
-            /// </returns>
-            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-            /// <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture. </param>
-            /// <param name="value">The <see cref="T:System.Object"/> to convert. </param>
-            /// <exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
+            /// <inheritdoc/>
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
                 var name = value as string;

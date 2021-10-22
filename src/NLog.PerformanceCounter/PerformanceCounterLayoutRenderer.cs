@@ -106,7 +106,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -119,7 +119,7 @@ namespace NLog.LayoutRenderers
             LookupPerformanceCounter(LogEventInfo.CreateNullEvent());
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
@@ -128,7 +128,7 @@ namespace NLog.LayoutRenderers
             ResetPerformanceCounters();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var performanceCounter = LookupPerformanceCounter(logEvent);
