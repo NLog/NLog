@@ -144,7 +144,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (Condition is null || Condition.Evaluate(logEvent.LogEvent).Equals(true))
+            if (Condition is null || Condition.Evaluate(logEvent.LogEvent).Equals(ConditionExpression.BoxedTrue))
             {
                 if (AsyncFlush)
                 {

@@ -51,7 +51,7 @@ namespace NLog.Conditions
         /// Gets the expression to be negated.
         /// </summary>
         /// <value>The expression.</value>
-        public ConditionExpression Expression { get; private set; }
+        public ConditionExpression Expression { get; }
 
         /// <summary>
         /// Returns a string representation of the expression.
