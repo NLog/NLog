@@ -54,7 +54,7 @@ namespace NLog.Conditions
         /// Gets the literal value.
         /// </summary>
         /// <value>The literal value.</value>
-        public object LiteralValue { get; private set; }
+        public object LiteralValue { get; }
 
         /// <summary>
         /// Returns a string representation of the expression.

@@ -52,12 +52,12 @@ namespace NLog.Conditions
         /// <summary>
         /// Gets the left hand side of the AND expression.
         /// </summary>
-        public ConditionExpression Left { get; private set; }
+        public ConditionExpression Left { get; }
 
         /// <summary>
         /// Gets the right hand side of the AND expression.
         /// </summary>
-        public ConditionExpression Right { get; private set; }
+        public ConditionExpression Right { get; }
 
         /// <summary>
         /// Returns a string representation of this expression.

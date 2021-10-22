@@ -335,7 +335,7 @@ namespace NLog.Filters
                 return (logEventTime - LastLogTime).TotalSeconds > timeoutSeconds;
             }
 
-            public StringBuilder StringBuffer { get; private set; }
+            public StringBuilder StringBuffer { get; }
             public LogLevel LogLevel { get; private set; }
             private DateTime LastLogTime { get; set; }
             private DateTime LastFilterTime { get; set; }

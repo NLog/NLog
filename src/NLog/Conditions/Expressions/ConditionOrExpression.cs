@@ -53,13 +53,13 @@ namespace NLog.Conditions
         /// Gets the left expression.
         /// </summary>
         /// <value>The left expression.</value>
-        public ConditionExpression LeftExpression { get; private set; }
+        public ConditionExpression LeftExpression { get; }
 
         /// <summary>
         /// Gets the right expression.
         /// </summary>
         /// <value>The right expression.</value>
-        public ConditionExpression RightExpression { get; private set; }
+        public ConditionExpression RightExpression { get; }
 
         /// <summary>
         /// Returns a string representation of the expression.
