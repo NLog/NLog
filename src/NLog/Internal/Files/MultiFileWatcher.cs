@@ -82,9 +82,9 @@ namespace NLog.Internal
         {
             lock (_watcherMap)
             {
-                foreach (FileSystemWatcher watcher in _watcherMap.Values)
+                foreach (var watcher in _watcherMap)
                 {
-                    StopWatching(watcher);
+                    StopWatching(watcher.Value);
                 }
                 _watcherMap.Clear();
             }
@@ -98,8 +98,7 @@ namespace NLog.Internal
         {
             lock (_watcherMap)
             {
-                FileSystemWatcher watcher;
-                if (_watcherMap.TryGetValue(fileName, out watcher))
+                if (_watcherMap.TryGetValue(fileName, out var watcher))
                 {
                     StopWatching(watcher);
                     _watcherMap.Remove(fileName);
@@ -124,21 +123,35 @@ namespace NLog.Internal
             }
         }
 
-        internal void Watch(string fileName)
+        public void Watch(string fileName)
         {
-            var directory = Path.GetDirectoryName(fileName);
-            if (!Directory.Exists(directory))
+            try
             {
-                InternalLogger.Warn("Cannot watch file {0} for changes as directory {1} doesn't exist", fileName, directory);
-                return;
+                var directory = Path.GetDirectoryName(fileName);
+                if (!Directory.Exists(directory))
+                {
+                    InternalLogger.Warn("Cannot watch file {0} for changes as directory {1} doesn't exist", fileName, directory);
+                    return;
+                }
+
+                var fileFilter = Path.GetFileName(fileName);
+                if (TryAddWatch(fileName, directory, fileFilter))
+                {
+                    InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", directory, fileFilter);
+                }
             }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Debug(ex, "Cannot watch for file changes: {0}", fileName);
+            }
+        }
 
-            var fileFilter = Path.GetFileName(fileName);
-
+        private bool TryAddWatch(string fileName, string directory, string fileFilter)
+        {
             lock (_watcherMap)
             {
                 if (_watcherMap.ContainsKey(fileName))
-                    return;
+                    return false;
 
                 FileSystemWatcher watcher = null;
 
@@ -158,9 +171,8 @@ namespace NLog.Internal
                     watcher.Error += OnWatcherError;
                     watcher.EnableRaisingEvents = true;
 
-                    InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
-
                     _watcherMap.Add(fileName, watcher);
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -172,6 +184,8 @@ namespace NLog.Internal
                     {
                         StopWatching(watcher);
                     }
+
+                    return false;
                 }
             }
         }
