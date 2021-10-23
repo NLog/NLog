@@ -639,7 +639,7 @@ namespace NLog
                     throw;
                 }
 
-                InternalLogger.Error(ex, "Error with flush.");
+                InternalLogger.Error(ex, "LogFactory failed to flush targets.");
                 asyncContinuation?.Invoke(ex);
             }
         }
@@ -723,7 +723,7 @@ namespace NLog
                     throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
 #endif
 
-                InternalLogger.Error(ex, "Error during flush.");
+                InternalLogger.Error(ex, "LogFactory failed to flush targets.");
 
                 if (throwExceptions)
                     throw new NLogRuntimeException("Asynchronous exception has occurred.", ex);
@@ -1041,13 +1041,10 @@ namespace NLog
             {
                 bool attemptClose = true;
 
-#if !NETSTANDARD1_3 && !MONO
-                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono && !PlatformDetector.IsUnix)
+                if (flushTimeout > TimeSpan.Zero)
                 {
-                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown
                     attemptClose = FlushAllTargetsSync(oldConfig, flushTimeout, false);
                 }
-#endif
 
                 // Disable all loggers, so things become quiet
                 _config = null;
@@ -1066,7 +1063,7 @@ namespace NLog
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "Error with close.");
+                InternalLogger.Error(ex, "LogFactory failed to close NLog LoggingConfiguration.");
             }
         }
 
@@ -1079,7 +1076,7 @@ namespace NLog
         {
             if (disposing)
             {
-                Close(TimeSpan.Zero);
+                Close(DefaultFlushTimeout);
             }
         }
 
@@ -1465,7 +1462,7 @@ namespace NLog
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
-                InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
+                InternalLogger.Error(ex, "LogFactory failed to shutdown properly.");
             }
             finally
             {
@@ -1484,16 +1481,23 @@ namespace NLog
                 //stop timer on domain unload, otherwise: 
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
-                InternalLogger.Info("AppDomain Shutting down. Logger closing...");
-                // Finalizer thread has about 2 secs, before being terminated
-                Close(TimeSpan.FromMilliseconds(1500));
-                InternalLogger.Info("Logger has been shut down.");
+                InternalLogger.Info("AppDomain Shutting down. LogFactory closing...");
+                // Finalizer thread has about 2 secs on Windows-platform, before being terminated
+                // MONO (and friends) have a hard time with spinning up flush threads/timers during domain unload
+                var flushTimeout =
+#if !NETSTANDARD1_3 && !MONO
+                    PlatformDetector.IsWin32 && !PlatformDetector.IsMono ? TimeSpan.FromMilliseconds(1500) :
+#endif
+                    TimeSpan.Zero;
+                Close(flushTimeout);
+                InternalLogger.Info("LogFactory has been closed.");
             }
             catch (Exception ex)
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
-                InternalLogger.Error(ex, "Logger failed to shut down properly.");
+
+                InternalLogger.Error(ex, "LogFactory failed to close properly.");
             }
         }
     }
