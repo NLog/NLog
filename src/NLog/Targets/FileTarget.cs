@@ -136,7 +136,6 @@ namespace NLog.Targets
         private string _previousLogFileName;
 
         private bool _concurrentWrites;
-        private bool _keepFileOpen;
         private bool _cleanupFileName;
         private FilePathKind _fileNameKind = FilePathKind.Unknown;
         private FilePathKind _archiveFileKind;
@@ -287,7 +286,8 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to keep log file open instead of opening and closing it on each logging event.
         /// </summary>
         /// <remarks>
-        /// Setting this property to <c>True</c> helps improve performance.
+        /// KeepFileOpen = true gives the best performance, and ensure the file-lock is not lost to other applications.<br/>
+        /// KeepFileOpen = false gives the best compability, but slow performance and lead to file-locking issues with other applications.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
         public bool KeepFileOpen
@@ -302,6 +302,7 @@ namespace NLog.Targets
                 }
             }
         }
+        private bool _keepFileOpen = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
@@ -1326,6 +1327,10 @@ namespace NLog.Targets
             try
             {
                 InternalLogger.Info("{0}: Deleting old archive file: '{1}'.", this, fileName);
+                if (_initializedFiles.ContainsKey(fileName))
+                {
+                    FinalizeFile(fileName, false);
+                }
                 File.Delete(fileName);
                 return true;
             }

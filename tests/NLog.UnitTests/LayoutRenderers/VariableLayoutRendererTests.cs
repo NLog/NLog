@@ -146,12 +146,12 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_in_file_target()
         {
-            string folderPath = Path.GetTempPath();
-            string logFilePath = Path.Combine(folderPath, "test.log");
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string logFilePath = Path.Combine(tempPath, "test.log");
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog>
-                <variable name='dir' value='{folderPath}' />
+                <variable name='dir' value='{tempPath}' />
                 <targets>
                     <target name='f' type='file' fileName='${{var:dir}}/test.log' layout='${{message}}' lineEnding='LF' />
                 </targets>
@@ -164,7 +164,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 LogManager.GetLogger("A").Debug("msg");
 
                 Assert.True(File.Exists(logFilePath), "Log file was not created at expected file path.");
-                Assert.Equal("msg\n", File.ReadAllText(logFilePath));
+                AssertFileContents(logFilePath, "msg\n", System.Text.Encoding.UTF8);
             }
             finally
             {
