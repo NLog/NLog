@@ -714,12 +714,41 @@ namespace NLog
 
         private void WriteToTargets([NotNull] LogEventInfo logEvent, [NotNull] TargetWithFilterChain targetsForLevel)
         {
-            LoggerImpl.Write(DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+            try
+            {
+                LoggerImpl.Write(DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                if (ex.MustBeRethrownImmediately())
+                    throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
+
+#endif
+                if (Factory.ThrowExceptions || LogManager.ThrowExceptions)
+                    throw;
+
+                Common.InternalLogger.Error(ex, "Failed to write LogEvent");
+            }
         }
 
         private void WriteToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] TargetWithFilterChain targetsForLevel)
         {
-            LoggerImpl.Write(wrapperType ?? DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+            try
+            {
+                LoggerImpl.Write(wrapperType ?? DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                if (ex.MustBeRethrownImmediately())
+                    throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
+#endif
+                if (Factory.ThrowExceptions || LogManager.ThrowExceptions)
+                    throw;
+
+                Common.InternalLogger.Error(ex, "Failed to write LogEvent");
+            }
         }
 
         internal void SetConfiguration(TargetWithFilterChain[] targetsByLevel)

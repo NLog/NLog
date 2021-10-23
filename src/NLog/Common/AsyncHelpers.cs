@@ -81,6 +81,7 @@ namespace NLog.Common
         /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
         /// have been iterated.</param>
         /// <param name="action">The action to invoke for each item.</param>
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public static void ForEachItemSequentially<T>(IEnumerable<T> items, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
@@ -145,6 +146,7 @@ namespace NLog.Common
         /// <param name="asyncContinuation">The async continuation.</param>
         /// <param name="action">The action to pre-pend.</param>
         /// <returns>Continuation which will execute the given action before forwarding to the actual continuation.</returns>
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public static AsyncContinuation PrecededBy(AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
@@ -236,12 +238,13 @@ namespace NLog.Common
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(ex, "ForEachItemInParallel - Unhandled Exception");
+#if DEBUG
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
-
+#endif
+                        InternalLogger.Error(ex, "ForEachItemInParallel - Unhandled Exception");
                         preventMultipleCalls.Invoke(ex);
                     }
                 }), null);
@@ -256,6 +259,7 @@ namespace NLog.Common
         /// <remarks>
         /// Using this method is not recommended because it will block the calling thread.
         /// </remarks>
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public static void RunSynchronously(AsynchronousAction action)
         {
             var ev = new ManualResetEvent(false);

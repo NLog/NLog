@@ -929,6 +929,67 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedLogCount, logFactory.Configuration.AllTargets.OfType<MemoryTarget>().Sum(m => m.Logs.Count));
         }
 
+        [Fact]
+        public void LogEvent_OutOfMemoryException_EarlyAbort()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+                {
+                    builder.ForLogger().WriteTo(new NoMemoryTarget() { Name = "LowMem" }).WithBuffering(bufferSize: 3);
+                }).LogFactory;
+                var logger = logFactory.GetCurrentClassLogger();
+                var target = logFactory.Configuration.FindTargetByName<NoMemoryTarget>("LowMem");
+
+                logger.Info("Testing1");
+                logger.Info("Testing2");
+#if DEBUG
+                Assert.Throws<OutOfMemoryException>(() => logger.Info("Testing3"));
+#else
+                logger.Info("Testing3");    // Flushes and writes
+#endif
+                Assert.Equal(1, target.FailedCount);
+            }
+        }
+
+        [Fact]
+        public void LogEvent_OutOfMemoryException_AsyncNotCrash()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+                {
+                    builder.ForLogger().WriteTo(new NoMemoryTarget() { Name = "LowMem" }).WithAsync();
+                }).LogFactory;
+                var logger = logFactory.GetCurrentClassLogger();
+                var target = logFactory.Configuration.FindTargetByName<NoMemoryTarget>("LowMem");
+
+                logger.Info("Testing1");
+                logFactory.Flush();
+                Assert.Equal(1, target.FailedCount);
+
+                logger.Info("Testing2");
+                for (int i = 0; i < 5000; ++i)
+                {
+                    if (target.WriteCount != 1)
+                        break;
+                    Thread.Sleep(1);
+                }
+                Assert.Equal(2, target.FailedCount);
+
+                target.LowMemory = false;
+                logger.Info("Testing3");
+                for (int i = 0; i < 5000; ++i)
+                {
+                    if (target.WriteCount != 2)
+                        break;
+                    Thread.Sleep(1);
+                }
+                Assert.Equal(2, target.FailedCount);
+                Assert.Equal(3, target.WriteCount);
+            }
+        }
+
         [Target("MyTypedLayoutTarget")]
         public class MyTypedLayoutTarget : Target
         {
@@ -979,6 +1040,26 @@ namespace NLog.UnitTests.Targets
                 logEvent.Properties[nameof(TypeProperty)] = RenderLogEvent(TypeProperty, logEvent);
                 logEvent.Properties[nameof(UriProperty)] = RenderLogEvent(UriProperty, logEvent);
                 logEvent.Properties[nameof(LineEndingModeProperty)] = RenderLogEvent(LineEndingModeProperty, logEvent);
+            }
+        }
+
+        [Target("NoMemoryTarget")]
+        public class NoMemoryTarget : Target
+        {
+            public int FailedCount { get; set; }
+
+            public int WriteCount { get; set; }
+
+            public bool LowMemory { get; set; } = true;
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                ++WriteCount;
+                if (LowMemory)
+                {
+                    ++FailedCount;
+                    throw new OutOfMemoryException("LogEvent is too big");
+                }
             }
         }
     }

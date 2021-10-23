@@ -2050,10 +2050,12 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
+#if DEBUG
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+#endif
 
                 InternalLogger.Warn(exception, "{0}: Exception in AutoCloseAppendersAfterArchive", this);
             }
@@ -2090,10 +2092,12 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
+#if DEBUG
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+#endif
 
                 InternalLogger.Warn(exception, "{0}: Exception in AutoClosingTimerCallback", this);
             }

@@ -38,6 +38,7 @@ namespace NLog.Internal.Fakeables
     using System.Diagnostics;
     using System.IO;
     using System.Xml;
+    using NLog.Common;
 
     internal class AppEnvironmentWrapper : IAppEnvironment
     {
@@ -131,7 +132,8 @@ namespace NLog.Internal.Fakeables
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
-
+                
+                InternalLogger.Debug("LookupEntryAssemblyFileName Failed - {0}", ex.Message);
                 return string.Empty;
             }
         }
@@ -148,6 +150,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
+                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
                 return LookupCurrentProcessFilePathNative();
             }
         }
@@ -165,6 +168,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 // May throw a SecurityException or Access Denied when running from an IIS app. pool process
+                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
                 return null;
             }
         }
@@ -182,6 +186,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 // May throw a SecurityException if running from an IIS app. pool process (Cannot compile method)
+                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
                 return LookupCurrentProcessIdNative();
             }
         }
@@ -199,6 +204,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 // May throw a SecurityException or Access Denied when running from an IIS app. pool process
+                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
                 return null;
             }
         }
@@ -216,6 +222,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 // May throw a SecurityException if running from an IIS app. pool process (Cannot compile method)
+                InternalLogger.Debug("LookupCurrentProcessName Failed - {0}", ex.Message);
                 return LookupCurrentProcessNameNative();
             }
         }
@@ -233,6 +240,8 @@ namespace NLog.Internal.Fakeables
             {
                 if (ex.MustBeRethrownImmediately())
                     throw;
+
+                InternalLogger.Debug("LookupCurrentProcessName Failed - {0}", ex.Message);
             }
 
             return null;
@@ -267,6 +276,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
+                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
                 return string.Empty;
             }
         }
@@ -289,6 +299,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
+                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
                 return string.Empty;
             }
         }
@@ -307,6 +318,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
+                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
                 return 0;
             }
         }
@@ -323,6 +335,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
+                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
                 return 0;
             }
         }

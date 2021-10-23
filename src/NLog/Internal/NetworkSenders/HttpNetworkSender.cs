@@ -79,10 +79,12 @@ namespace NLog.Internal.NetworkSenders
                     }
                     catch (Exception ex)
                     {
+#if DEBUG
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
+#endif
 
                         CompleteRequest(_ => asyncContinuation(ex));
                     }
@@ -102,10 +104,12 @@ namespace NLog.Internal.NetworkSenders
                     }
                     catch (Exception ex)
                     {
+#if DEBUG
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
+#endif
 
                         CompleteRequest(_ => asyncContinuation(ex));
                     }

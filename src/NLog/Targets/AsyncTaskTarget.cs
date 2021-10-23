@@ -612,11 +612,18 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
+#if DEBUG
                 if (ex.MustBeRethrownImmediately())
-                    throw;
+                    throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
+#endif
 
                 InternalLogger.Error(ex, "{0}: WriteAsyncTask failed on creation", this);
+
+#if !NET35 && !NET45
+                return Task.FromException(ex);
+#else
                 return Task.Factory.StartNew(e => throw (Exception)e, new AggregateException(ex), _cancelTokenSource.Token, TaskCreationOptions.None, TaskScheduler);
+#endif
             }
         }
 

@@ -391,12 +391,13 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(ex, "{0}: Error receiving response", this);
+#if DEBUG
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
-
+#endif
+                        InternalLogger.Error(ex, "{0}: Error receiving response", this);
                         DoInvokeCompleted(continuation, ex);
                     }
                 },
@@ -421,12 +422,13 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(ex, "{0}: Error sending payload", this);
+#if DEBUG
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
-
+#endif
+                        InternalLogger.Error(ex, "{0}: Error sending payload", this);
                         postPayload.Dispose();
                         DoInvokeCompleted(continuation, ex);
                     }
