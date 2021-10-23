@@ -225,9 +225,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a data object and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="data">The trace data to emit.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
@@ -238,9 +238,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, an array of data objects and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="data">An array of objects to emit as data.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data)
@@ -279,9 +279,9 @@ namespace NLog
         /// <summary>
         /// Writes trace and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
         {
@@ -294,9 +294,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a formatted array of objects and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="format">A format string that contains zero or more format items, which correspond to objects in the <paramref name="args"/> array.</param>
         /// <param name="args">An object array containing zero or more objects to format.</param>
@@ -311,9 +311,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a message, and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="message">A message to write.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
@@ -327,11 +327,11 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a message, a related activity identity and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="message">A message to write.</param>
-        /// <param name="relatedActivityId">A <see cref="T:System.Guid"/>  object identifying a related activity.</param>
+        /// <param name="relatedActivityId">A <see cref="System.Guid"/>  object identifying a related activity.</param>
         public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
         {
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, TraceEventType.Transfer, id, message, null, null, null))

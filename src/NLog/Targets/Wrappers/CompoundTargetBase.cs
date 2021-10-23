@@ -71,7 +71,7 @@ namespace NLog.Targets.Wrappers
                 string separator = string.Empty;
                 var sb = new StringBuilder();
                 sb.Append(GenerateTargetToString(true));
-                sb.Append("[");
+                sb.Append('[');
 
                 foreach (var t in Targets)
                 {
@@ -80,7 +80,7 @@ namespace NLog.Targets.Wrappers
                     separator = ", ";
                 }
 
-                sb.Append("]");
+                sb.Append(']');
                 return sb.ToString();
             }
 

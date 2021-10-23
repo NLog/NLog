@@ -335,12 +335,10 @@ namespace NLog.Targets
         /// <param name="logEvents">The log events.</param>
         public void WriteAsyncLogEvents(params AsyncLogEventInfo[] logEvents)
         {
-            if (logEvents is null || logEvents.Length == 0)
+            if (logEvents?.Length > 0)
             {
-                return;
+                WriteAsyncLogEvents((IList<AsyncLogEventInfo>)logEvents);
             }
-
-            WriteAsyncLogEvents((IList<AsyncLogEventInfo>)logEvents);
         }
 
         /// <summary>

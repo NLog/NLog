@@ -118,7 +118,7 @@ namespace NLog.Layouts
                     DefaultValue = null;
             }
         }
-        private bool _includeEmptyValue = false;
+        private bool _includeEmptyValue;
 
         internal bool RenderAppendXmlValue(LogEventInfo logEvent, StringBuilder builder)
         {

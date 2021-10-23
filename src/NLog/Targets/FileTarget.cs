@@ -1379,12 +1379,12 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets the correct formatting <see langword="String"/> to be used based on the value of <see
-        /// cref="P:ArchiveEvery"/> for converting <see langword="DateTime"/> values which will be inserting into file
+        /// cref="ArchiveEvery"/> for converting <see langword="DateTime"/> values which will be inserting into file
         /// names during archiving.
         /// 
         /// This value will be computed only when a empty value or <see langword="null"/> is passed into <paramref name="defaultFormat"/>
         /// </summary>
-        /// <param name="defaultFormat">Date format to used irrespectively of <see cref="P:ArchiveEvery"/> value.</param>
+        /// <param name="defaultFormat">Date format to used irrespectively of <see cref="ArchiveEvery"/> value.</param>
         /// <returns>Formatting <see langword="String"/> for dates.</returns>
         private string GetArchiveDateFormatString(string defaultFormat)
         {

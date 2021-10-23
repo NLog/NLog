@@ -64,6 +64,9 @@ namespace NLog.Internal
         }
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+#if !NET35
+        [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+#endif
         public static extern Microsoft.Win32.SafeHandles.SafeFileHandle CreateFile(
             string lpFileName,
             FileAccess dwDesiredAccess,

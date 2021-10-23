@@ -66,13 +66,13 @@ namespace NLog.Config
         /// Gets a value indicating whether configuration reload has succeeded.
         /// </summary>
         /// <value>A value of <c>true</c> if succeeded; otherwise, <c>false</c>.</value>
-        public bool Succeeded { get; private set; }
+        public bool Succeeded { get; }
 
         /// <summary>
         /// Gets the exception which occurred during configuration reload.
         /// </summary>
         /// <value>The exception.</value>
-        public Exception Exception { get; private set; }
+        public Exception Exception { get; }
     }
 }
 

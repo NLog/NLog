@@ -75,13 +75,13 @@ namespace NLog.LayoutRenderers
         /// A value is empty when null or in case of a string, null or empty string.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public bool IncludeEmptyValues { get; set; } = false;
+        public bool IncludeEmptyValues { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public bool IncludeScopeProperties { get; set; } = false;
+        public bool IncludeScopeProperties { get; set; }
 
         /// <summary>
         /// Gets or sets the keys to exclude from the output. If omitted, none are excluded.

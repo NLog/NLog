@@ -90,7 +90,7 @@ namespace NLog.Internal
             if (fullpath.StartsWith(tempDir, System.StringComparison.OrdinalIgnoreCase))
                 return true;
 
-            if (tempDir.StartsWith("/tmp") && directory.StartsWith("/var/tmp/"))
+            if (tempDir.StartsWith("/tmp", System.StringComparison.Ordinal) && directory.StartsWith("/var/tmp/", System.StringComparison.Ordinal))
                 return true;    // Microsoft has made a funny joke on Linux. Path.GetTempPath() uses /tmp/ as fallback, but single-publish uses /var/tmp/ as first fallback
 
             return false;

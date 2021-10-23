@@ -420,7 +420,7 @@ namespace NLog.Targets
                 bodyBuffer.Append(Header.Render(firstEvent));
                 if (AddNewLines)
                 {
-                    bodyBuffer.Append("\n");
+                    bodyBuffer.Append('\n');
                 }
             }
 
@@ -429,7 +429,7 @@ namespace NLog.Targets
                 bodyBuffer.Append(Layout.Render(eventInfo.LogEvent));
                 if (AddNewLines)
                 {
-                    bodyBuffer.Append("\n");
+                    bodyBuffer.Append('\n');
                 }
             }
 
@@ -438,7 +438,7 @@ namespace NLog.Targets
                 bodyBuffer.Append(Footer.Render(lastEvent));
                 if (AddNewLines)
                 {
-                    bodyBuffer.Append("\n");
+                    bodyBuffer.Append('\n');
                 }
             }
             return bodyBuffer;
@@ -511,7 +511,7 @@ namespace NLog.Targets
         internal static string ConvertDirectoryLocation(string pickupDirectoryLocation)
         {
             const string virtualPathPrefix = "~/";
-            if (!pickupDirectoryLocation.StartsWith(virtualPathPrefix))
+            if (!pickupDirectoryLocation.StartsWith(virtualPathPrefix, StringComparison.Ordinal))
             {
                 return pickupDirectoryLocation;
             }
@@ -564,7 +564,7 @@ namespace NLog.Targets
         /// <param name="layout">append if not <c>null</c></param>
         private static void AppendLayout(StringBuilder sb, LogEventInfo logEvent, Layout layout)
         {
-            sb.Append("|");
+            sb.Append('|');
             if (layout != null)
                 sb.Append(layout.Render(logEvent));
         }

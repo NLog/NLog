@@ -341,7 +341,7 @@ namespace NLog.Targets
 
             if (Protocol == WebServiceProtocol.HttpGet)
             {
-                PrepareGetRequest(webRequest);
+                webRequest.Method = "GET";
             }
             else
             {
@@ -498,7 +498,7 @@ namespace NLog.Targets
             {
                 sb.Append(separator);
                 sb.Append(Parameters[i].Name);
-                sb.Append("=");
+                sb.Append('=');
                 string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
                 if (!string.IsNullOrEmpty(parameterValue))
                 {
@@ -506,11 +506,6 @@ namespace NLog.Targets
                 }
                 separator = "&";
             }
-        }
-
-        private void PrepareGetRequest(HttpWebRequest webRequest)
-        {
-            webRequest.Method = "GET";
         }
 
         /// <summary>
@@ -625,7 +620,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    builder.Append("{");
+                    builder.Append('{');
                     string separator = string.Empty;
                     for (int i = 0; i < Target.Parameters.Count; ++i)
                     {

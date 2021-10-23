@@ -197,7 +197,7 @@ namespace NLog.LayoutRenderers
                     builder.Append(type.Name);
                 }
 
-                builder.Append(".");
+                builder.Append('.');
                 builder.Append(method.Name);
                 first = false;
             }
@@ -222,9 +222,9 @@ namespace NLog.LayoutRenderers
                     separator = separator ?? _separator?.Render(logEvent) ?? string.Empty;
                     builder.Append(separator);
                 }
-                builder.Append("[");
+                builder.Append('[');
                 builder.Append(method);
-                builder.Append("]");
+                builder.Append(']');
                 first = false;
             }
         }

@@ -50,8 +50,8 @@ namespace NLog.Targets.FileArchiveModes
     /// 
     /// The most recent archive has the highest number. 
     /// 
-    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
+    /// When the number of archive files exceed <see cref="FileTarget.MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// When the age of archive files exceed <see cref="FileTarget.MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
     internal sealed class FileArchiveModeDynamicSequence : FileArchiveModeBase
     {
@@ -158,9 +158,9 @@ namespace NLog.Targets.FileArchiveModes
                         {
                             if (digitsRemoved <= 1)
                             {
-                                sb.Append("{");
-                                sb.Append("#");
-                                sb.Append("}");
+                                sb.Append('{');
+                                sb.Append('#');
+                                sb.Append('}');
                             }
                             else
                             {

@@ -151,8 +151,8 @@ namespace NLog.Internal
         /// <summary>Concatenates all the elements of a string array, using the specified separator between each element. </summary>
         /// <param name="separator">The string to use as a separator. <paramref name="separator" /> is included in the returned string only if <paramref name="values" /> has more than one element.</param>
         /// <param name="values">An collection that contains the elements to concatenate. </param>
-        /// <returns>A string that consists of the elements in <paramref name="values" /> delimited by the <paramref name="separator" /> string. If <paramref name="values" /> is an empty array, the method returns <see cref="F:System.String.Empty" />.</returns>
-        /// <exception cref="T:System.ArgumentNullException">
+        /// <returns>A string that consists of the elements in <paramref name="values" /> delimited by the <paramref name="separator" /> string. If <paramref name="values" /> is an empty array, the method returns <see cref="System.String.Empty" />.</returns>
+        /// <exception cref="System.ArgumentNullException">
         /// <paramref name="values" /> is <see langword="null" />. </exception>
         internal static string Join(string separator, IEnumerable<string> values)
         {
