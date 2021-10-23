@@ -155,8 +155,9 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrownImmediately() || ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
+                if (ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
                     throw;
+
                 if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
                     throw;
 

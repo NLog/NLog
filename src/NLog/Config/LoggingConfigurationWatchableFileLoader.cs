@@ -181,11 +181,12 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+#if DEBUG
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     }
-
+#endif
                     InternalLogger.Warn(exception, "NLog configuration failed to reload");
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
                     return;
@@ -201,11 +202,12 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+#if DEBUG
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     }
-
+#endif
                     InternalLogger.Warn(exception, "NLog configuration reloaded, failed to be assigned");
                     _watcher.Watch(oldConfig.FileNamesToWatch);
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));

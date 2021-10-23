@@ -222,9 +222,11 @@ namespace NLog.Internal
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Error Handling File Changed");
+#if DEBUG
                     if (ex.MustBeRethrownImmediately())
-                        throw;
+                        throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
+#endif
+                    InternalLogger.Error(ex, "Error Handling File Changed");
                 }
             }
         }

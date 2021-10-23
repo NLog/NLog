@@ -472,13 +472,13 @@ namespace NLog.Targets.Wrappers
             catch (Exception exception)
             {
                 wroteFullBatchSize = false; // Something went wrong, lets throttle retry
-
-                InternalLogger.Error(exception, "{0}: Error in lazy writer timer procedure.", this);
-
+#if DEBUG
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+#endif
+                InternalLogger.Error(exception, "{0}: Error in lazy writer timer procedure.", this);
             }
             finally
             {
@@ -515,12 +515,13 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
-
+#if DEBUG
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+#endif
+                InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
             }
         }
 

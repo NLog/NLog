@@ -308,6 +308,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void ForEachItemSequentiallyTest1()
         {
             bool finalContinuationInvoked = false;
@@ -336,6 +337,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void ForEachItemSequentiallyTest2()
         {
             bool finalContinuationInvoked = false;
@@ -365,6 +367,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void ForEachItemSequentiallyTest3()
         {
             using (new NoThrowNLogExceptions())
@@ -527,6 +530,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void PrecededByTest1()
         {
             int invokedCount1 = 0;
@@ -561,6 +565,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void PrecededByTest2()
         {
             int invokedCount1 = 0;
