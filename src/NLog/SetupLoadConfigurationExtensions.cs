@@ -440,7 +440,7 @@ namespace NLog
         /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
-        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = false, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
         {
             if (fileName is null)
                 throw new ArgumentNullException(nameof(fileName));

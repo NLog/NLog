@@ -168,7 +168,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 // May throw a SecurityException or Access Denied when running from an IIS app. pool process
-                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessFilePath Managed Failed - {0}", ex.Message);
                 return null;
             }
         }
@@ -204,7 +204,7 @@ namespace NLog.Internal.Fakeables
                     throw;
 
                 // May throw a SecurityException or Access Denied when running from an IIS app. pool process
-                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessId Managed Failed - {0}", ex.Message);
                 return null;
             }
         }
@@ -241,7 +241,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Debug("LookupCurrentProcessName Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessName Managed Failed - {0}", ex.Message);
             }
 
             return null;
@@ -276,7 +276,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessFilePath Native Failed - {0}", ex.Message);
                 return string.Empty;
             }
         }
@@ -299,7 +299,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Debug("LookupCurrentProcessFilePath Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessFilePath Win32 Failed - {0}", ex.Message);
                 return string.Empty;
             }
         }
@@ -318,7 +318,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessId Native Failed - {0}", ex.Message);
                 return 0;
             }
         }
@@ -335,7 +335,7 @@ namespace NLog.Internal.Fakeables
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Debug("LookupCurrentProcessId Failed - {0}", ex.Message);
+                InternalLogger.Debug("LookupCurrentProcessId Win32 Failed - {0}", ex.Message);
                 return 0;
             }
         }

@@ -314,7 +314,19 @@ namespace NLog.Targets
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        public Win32FileAttributes FileAttributes { get; set; } = Win32FileAttributes.Normal;
+        public Win32FileAttributes FileAttributes
+        {
+            get => _fileAttributes;
+            set
+            {
+                if (value != Win32FileAttributes.Normal && PlatformDetector.IsWin32)
+                {
+                    ForceManaged = false;
+                }
+                _fileAttributes = value;
+            }
+        }
+        Win32FileAttributes _fileAttributes = Win32FileAttributes.Normal;
 
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
@@ -432,7 +444,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
         public int ConcurrentWriteAttempts { get => _concurrentWriteAttempts ?? 10; set => _concurrentWriteAttempts = value; }
-        private int? _concurrentWriteAttempts = 10;
+        private int? _concurrentWriteAttempts;
 
         /// <summary>
         /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
@@ -674,7 +686,7 @@ namespace NLog.Targets
         /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
-        public bool ForceManaged { get; set; }
+        public bool ForceManaged { get; set; } = true;
 
 #if SupportsMutex
         /// <summary>
@@ -707,7 +719,7 @@ namespace NLog.Targets
                 _fileAppenderCache.CheckCloseAppenders -= AutoCloseAppendersAfterArchive;
 
                 bool mustWatchArchiving = IsArchivingEnabled && KeepFileOpen && ConcurrentWrites;
-                bool mustWatchActiveFile = KeepFileOpen && EnableFileDelete && !NetworkWrites && !ReplaceFileContentsOnEachWrite && !EnableFileDeleteSimpleMonitor;
+                bool mustWatchActiveFile = EnableFileDelete && ((KeepFileOpen && ConcurrentWrites) || (IsSimpleKeepFileOpen && !EnableFileDeleteSimpleMonitor));
                 if (mustWatchArchiving || mustWatchActiveFile)
                 {
                     _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
@@ -881,7 +893,11 @@ namespace NLog.Targets
 
         private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !NetworkWrites && !ReplaceFileContentsOnEachWrite;
 
-        private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && !PlatformDetector.IsWin32 && IsSimpleKeepFileOpen;
+        private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && IsSimpleKeepFileOpen
+#if !NETSTANDARD
+            && !PlatformDetector.IsWin32
+#endif
+            ;
 
         bool ICreateFileParameters.EnableFileDeleteSimpleMonitor => EnableFileDeleteSimpleMonitor;
 

@@ -83,10 +83,11 @@ namespace NLog.UnitTests.Targets
         public void SetupBuilder_WriteToFile()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            LogFactory logFactory = null;
 
             try
             {
-                var logFactory = new LogFactory().Setup().LoadConfiguration(c =>
+                logFactory = new LogFactory().Setup().LoadConfiguration(c =>
                 {
                     c.ForLogger().WriteToFile(Path.Combine(tempPath, "${logger}.txt"), "${message}", Encoding.UTF8, LineEndingMode.LF);
                 }).LogFactory;
@@ -97,6 +98,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                logFactory?.Shutdown();
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -143,7 +145,7 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsLinux();
+            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites;
 #if MONO
             if (IsLinux() && concurrentWrites && keepFileOpen && !networkWrites)
             {
