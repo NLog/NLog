@@ -55,7 +55,7 @@ namespace NLog.UnitTests.Layouts
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"'>
+                  <target name='f' type='File' fileName='" + tempFile + @"' keepFileOpen='false'>
                     <layout type='CSVLayout'>
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
@@ -107,7 +107,7 @@ namespace NLog.UnitTests.Layouts
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"'>
+                  <target name='f' type='File' fileName='" + tempFile + @"' keepFileOpen='false'>
                     <layout type='CSVLayout'>
                       <header>headertest</header>
                       <column name='level' layout='${level}' quoting='Nothing' />
@@ -156,7 +156,7 @@ namespace NLog.UnitTests.Layouts
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"'>
+                  <target name='f' type='File' fileName='" + tempFile + @"' keepFileOpen='false'>
                     <layout type='CSVLayout' withHeader='false'>
                       <delimiter>Comma</delimiter>
                       <column name='level' layout='${level}' />
