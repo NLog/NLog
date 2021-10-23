@@ -44,7 +44,7 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
+    /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
     /// </summary>
     public static class LogManager
     {

@@ -42,8 +42,8 @@ namespace NLog.Targets.FileArchiveModes
     /// Archives the log-files using a date style numbering. Archives will be stamped with the
     /// prior period (Year, Month, Day, Hour, Minute) datetime.
     /// 
-    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
+    /// When the number of archive files exceed <see cref="FileTarget.MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// When the age of archive files exceed <see cref="FileTarget.MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
     internal sealed class FileArchiveModeDate : FileArchiveModeBase
     {

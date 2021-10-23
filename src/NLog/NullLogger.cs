@@ -37,10 +37,10 @@ namespace NLog
     using System;
 
     /// <summary>
-    /// It works as a normal <see cref="T:NLog.Logger" /> but it discards all messages which an application requests 
+    /// It works as a normal <see cref="Logger" /> but it discards all messages which an application requests 
     /// to be logged.
     /// 
-    /// It effectively implements the "Null Object" pattern for <see cref="T:NLog.Logger" /> objects.  
+    /// It effectively implements the "Null Object" pattern for <see cref="Logger" /> objects.  
     /// </summary>
     public sealed class NullLogger : Logger
     {

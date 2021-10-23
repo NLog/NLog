@@ -247,7 +247,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
+        /// Returns the <see cref="NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
         /// </summary>
         /// <param name="levelName">The textual representation of the log level.</param>
         /// <returns>The enumeration value.</returns>

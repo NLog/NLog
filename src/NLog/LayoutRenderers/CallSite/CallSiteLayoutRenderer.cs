@@ -134,7 +134,7 @@ namespace NLog.LayoutRenderers
 
                         if (ClassName)
                         {
-                            builder.Append(".");
+                            builder.Append('.');
                         }
                         builder.Append(methodName);
                     }
@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
 
         private void AppendFileName(StringBuilder builder, string fileName, int lineNumber)
         {
-            builder.Append("(");
+            builder.Append('(');
             if (IncludeSourcePath)
             {
                 builder.Append(fileName);
@@ -164,9 +164,9 @@ namespace NLog.LayoutRenderers
                 builder.Append(Path.GetFileName(fileName));
             }
 
-            builder.Append(":");
+            builder.Append(':');
             builder.AppendInvariant(lineNumber);
-            builder.Append(")");
+            builder.Append(')');
         }
     }
 }

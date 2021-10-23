@@ -207,12 +207,12 @@ namespace NLog.Targets.FileArchiveModes
         internal sealed class FileNameTemplate
         {
             /// <summary>
-            /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// Characters determining the start of the <see cref="FileNameTemplate.Template"/>.
             /// </summary>
             public const string PatternStartCharacters = "{#";
 
             /// <summary>
-            /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// Characters determining the end of the <see cref="FileNameTemplate.Template"/>.
             /// </summary>
             public const string PatternEndCharacters = "#}";
 
@@ -223,15 +223,15 @@ namespace NLog.Targets.FileArchiveModes
             public string Template { get; private set; }
 
             /// <summary>
-            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// The beginning position of the <see cref="FileNameTemplate.PatternStartCharacters"/> 
+            /// within the <see cref="FileNameTemplate.Template"/>. -1 is returned 
             /// when no pattern can be found.
             /// </summary>
             public int BeginAt { get; private set; }
 
             /// <summary>
-            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// The ending position of the <see cref="FileNameTemplate.PatternEndCharacters"/> 
+            /// within the <see cref="FileNameTemplate.Template"/>. -1 is returned 
             /// when no pattern can be found.
             /// </summary>
             public int EndAt { get; private set; }

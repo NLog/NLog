@@ -199,9 +199,6 @@ namespace NLog.Internal
             /// <summary>
             /// Serves as a hash function for a particular type.
             /// </summary>
-            /// <returns>
-            /// A hash code for the current <see cref="T:System.Object"/>.
-            /// </returns>
             public override int GetHashCode()
             {
                 return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;

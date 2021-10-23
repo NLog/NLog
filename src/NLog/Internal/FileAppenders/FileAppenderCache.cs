@@ -216,9 +216,6 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="fileName">File name associated with a single appender.</param>
         /// <returns>The allocated appender.</returns>
-        /// <exception cref="NullReferenceException">
-        /// Thrown when <see cref="M:AllocateAppender"/> is called on an <c>Empty</c><see cref="FileAppenderCache"/> instance.
-        /// </exception>
         public BaseFileAppender AllocateAppender(string fileName)
         {
             //

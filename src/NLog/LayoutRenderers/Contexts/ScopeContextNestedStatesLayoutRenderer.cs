@@ -109,7 +109,7 @@ namespace NLog.LayoutRenderers
 
         private void AppendNestedStates(StringBuilder builder, object[] messages, int startPos, int endPos, LogEventInfo logEvent)
         {
-            bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format);
+            bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format, StringComparison.Ordinal);
             var formatProvider = GetFormatProvider(logEvent, Culture);
 
             string separator = null;
@@ -117,7 +117,7 @@ namespace NLog.LayoutRenderers
             if (formatAsJson)
             {
                 separator = _separator?.Render(logEvent) ?? string.Empty;
-                builder.Append("[");
+                builder.Append('[');
                 builder.Append(separator);
                 itemSeparator = "," + separator;
             }
@@ -142,7 +142,7 @@ namespace NLog.LayoutRenderers
                 if (formatAsJson)
                 {
                     builder.Append(separator);
-                    builder.Append("]");
+                    builder.Append(']');
                 }
             }
         }
@@ -152,7 +152,7 @@ namespace NLog.LayoutRenderers
             if (nestedState is IEnumerable<KeyValuePair<string, object>> propertyList && HasUniqueCollectionKeys(propertyList))
             {
                 // Special support for Microsoft Extension Logging ILogger.BeginScope where property-states are rendered as expando-objects
-                builder.Append("{");
+                builder.Append('{');
                 builder.Append(separator);
 
                 string currentSeparator = string.Empty;
@@ -175,7 +175,7 @@ namespace NLog.LayoutRenderers
                 }
 
                 builder.Append(separator);
-                builder.Append("}");
+                builder.Append('}');
             }
             else
             {

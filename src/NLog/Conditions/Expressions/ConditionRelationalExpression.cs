@@ -78,9 +78,6 @@ namespace NLog.Conditions
         /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the condition expression.
-        /// </returns>
         public override string ToString()
         {
             return $"({LeftExpression} {GetOperatorString()} {RightExpression})";
@@ -237,9 +234,9 @@ namespace NLog.Conditions
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                InternalLogger.Debug("conversion of {0} to {1} failed", val, type1.Name);
+                InternalLogger.Debug("conversion of {0} to {1} failed - {2}", val, type1.Name, ex.Message);
             }
             return false;
         }

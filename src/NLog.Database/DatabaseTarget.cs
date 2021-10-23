@@ -899,36 +899,36 @@ namespace NLog.Targets
             if (string.IsNullOrEmpty(value))
                 return value;
 
-            const string singleQuote = "'";
-
-            if (value.StartsWith(singleQuote) && value.EndsWith(singleQuote))
-            {
-                // already escaped
-                return value;
-            }
-            const string doubleQuote = "\"";
-            if (value.StartsWith(doubleQuote) && value.EndsWith(doubleQuote))
+            const char singleQuote = '\'';
+            if (value.IndexOf(singleQuote) == 0 && (value.LastIndexOf(singleQuote) == value.Length - 1))
             {
                 // already escaped
                 return value;
             }
 
-            var containsSingle = value.Contains(singleQuote);
-            var containsDouble = value.Contains(doubleQuote);
-            if (value.Contains(";") || containsSingle || containsDouble)
+            const char doubleQuote = '\"';
+            if (value.IndexOf(doubleQuote) == 0 && (value.LastIndexOf(doubleQuote) == value.Length - 1))
+            {
+                // already escaped
+                return value;
+            }
+
+            var containsSingle = value.IndexOf(singleQuote) >= 0;
+            var containsDouble = value.IndexOf(doubleQuote) >= 0;
+            if (containsSingle || containsDouble || value.IndexOf(';') >= 0)
             {
                 if (!containsSingle)
                 {
-                    return string.Concat(singleQuote, value, singleQuote);
+                    return singleQuote + value + singleQuote;
                 }
                 if (!containsDouble)
                 {
-                    return string.Concat(doubleQuote, value, doubleQuote);
+                    return doubleQuote + value + doubleQuote;
                 }
 
                 // both single and double
-                var escapedValue = value.Replace(doubleQuote, doubleQuote + doubleQuote);
-                return string.Concat(doubleQuote, escapedValue, doubleQuote);
+                var escapedValue = value.Replace("\"", "\"\"");
+                return doubleQuote + escapedValue + doubleQuote;
             }
 
             return value;

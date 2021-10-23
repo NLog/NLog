@@ -59,11 +59,11 @@ namespace NLog.Config
         /// <summary>
         /// Gets the .NET type of the array item.
         /// </summary>
-        public Type ItemType { get; private set; }
+        public Type ItemType { get; }
 
         /// <summary>
         /// Gets the XML element name.
         /// </summary>
-        public string ElementName { get; private set; }
+        public string ElementName { get; }
     }
 }

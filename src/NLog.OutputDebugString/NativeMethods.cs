@@ -38,6 +38,9 @@ namespace NLog.Internal
     internal static class NativeMethods
     {
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+#if !NET35
+        [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+#endif
         internal static extern void OutputDebugString(string message);
     }
 }

@@ -50,7 +50,7 @@ namespace NLog
     using System.Linq;
 
     /// <summary>
-    /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
+    /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory : IDisposable
     {
@@ -1316,9 +1316,6 @@ namespace NLog
             /// <summary>
             /// Serves as a hash function for a particular type.
             /// </summary>
-            /// <returns>
-            /// A hash code for the current <see cref="T:System.Object"/>.
-            /// </returns>
             public override int GetHashCode()
             {
                 return ConcreteType.GetHashCode() ^ Name.GetHashCode();

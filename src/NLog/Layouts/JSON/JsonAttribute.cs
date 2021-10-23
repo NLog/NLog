@@ -149,7 +149,7 @@ namespace NLog.Layouts
                     DefaultValue = null;
             }
         }
-        private bool _includeEmptyValue = false;
+        private bool _includeEmptyValue;
 
         internal bool RenderAppendJsonValue(LogEventInfo logEvent, IJsonConverter jsonConverter, StringBuilder builder)
         {

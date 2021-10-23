@@ -147,14 +147,11 @@ namespace NLog.Conditions
         /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the condition expression.
-        /// </returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
             sb.Append(_conditionMethodName);
-            sb.Append("(");
+            sb.Append('(');
 
             string separator = string.Empty;
 
@@ -165,7 +162,7 @@ namespace NLog.Conditions
                 separator = ", ";
             }
 
-            sb.Append(")");
+            sb.Append(')');
             return sb.ToString();
         }
 

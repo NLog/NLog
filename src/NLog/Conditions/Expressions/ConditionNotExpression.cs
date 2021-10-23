@@ -56,9 +56,6 @@ namespace NLog.Conditions
         /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the condition expression.
-        /// </returns>
         public override string ToString()
         {
             return $"(not {Expression})";

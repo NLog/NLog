@@ -192,7 +192,7 @@ namespace NLog.Targets
         /// <param name="other">An object to compare with this object.</param>
         public bool Equals(LineEndingMode other)
         {
-            return ReferenceEquals(this, other) || string.Equals(_newLineCharacters, other?._newLineCharacters);
+            return ReferenceEquals(this, other) || string.Equals(_newLineCharacters, other?._newLineCharacters, StringComparison.Ordinal);
         }
 
         /// <summary>

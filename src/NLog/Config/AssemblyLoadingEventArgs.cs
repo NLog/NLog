@@ -53,6 +53,6 @@ namespace NLog.Config
         /// <summary>
         /// The assembly that is trying to load.
         /// </summary>
-        public Assembly Assembly { get; private set; }
+        public Assembly Assembly { get; }
     }
 }

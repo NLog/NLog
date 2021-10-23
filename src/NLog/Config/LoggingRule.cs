@@ -273,9 +273,6 @@ namespace NLog.Config
         /// <summary>
         /// Returns a string representation of <see cref="LoggingRule"/>. Used for debugging.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -299,7 +296,7 @@ namespace NLog.Config
                 sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", targetName);
             }
 
-            sb.Append("]");
+            sb.Append(']');
             return sb.ToString();
         }
 
