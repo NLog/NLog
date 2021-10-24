@@ -106,18 +106,7 @@ namespace NLog.Internal
             {
                 if (_eventProperties == null)
                 {
-                    if (_messageProperties != null && _messageProperties.Count > 0)
-                    {
-                        _eventProperties = new Dictionary<object, PropertyValue>(_messageProperties.Count);
-                        if (!InsertMessagePropertiesIntoEmptyDictionary(_messageProperties, _eventProperties))
-                        {
-                            _messageProperties = CreateUniqueMessagePropertiesListSlow(_messageProperties, _eventProperties);
-                        }
-                    }
-                    else
-                    {
-                        _eventProperties = new Dictionary<object, PropertyValue>();
-                    }
+                    System.Threading.Interlocked.CompareExchange(ref _eventProperties, BuildEventProperties(_messageProperties), null);
                 }
                 return _eventProperties;
             }
@@ -166,6 +155,23 @@ namespace NLog.Internal
                 {
                     _eventProperties.Remove(oldMessageProperties[i].Name);
                 }
+            }
+        }
+
+        private static Dictionary<object, PropertyValue> BuildEventProperties(IList<MessageTemplateParameter> messageProperties)
+        {
+            if (messageProperties?.Count > 0)
+            {
+                var eventProperties = new Dictionary<object, PropertyValue>(messageProperties.Count);
+                if (!InsertMessagePropertiesIntoEmptyDictionary(messageProperties, eventProperties))
+                {
+                    CreateUniqueMessagePropertiesListSlow(messageProperties, eventProperties);  // Should never happen
+                }
+                return eventProperties;
+            }
+            else
+            {
+                return new Dictionary<object, PropertyValue>();
             }
         }
 
@@ -329,10 +335,24 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool TryGetValue(object key, out object value)
         {
-            if (!IsEmpty && EventProperties.TryGetValue(key, out var valueItem))
+            if (!IsEmpty)
             {
-                value = valueItem.Value;
-                return true;
+                if (_eventProperties is null && key is string keyString && _messageProperties?.Count < 5)
+                {
+                    for (int i = 0; i < _messageProperties.Count; ++i)
+                    {
+                        if (keyString.Equals(_messageProperties[i].Name, StringComparison.Ordinal))
+                        {
+                            value = _messageProperties[i].Value;
+                            return true;
+                        }
+                    }
+                }
+                else if (EventProperties.TryGetValue(key, out var valueItem))
+                {
+                    value = valueItem.Value;
+                    return true;
+                }
             }
 
             value = null;
