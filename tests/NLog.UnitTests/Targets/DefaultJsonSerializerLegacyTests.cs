@@ -62,82 +62,12 @@ namespace NLog.UnitTests.Targets
             return _serializer.SerializeObject(o, options); //calls IJsonSerializer
         }
 
-        [Theory]
-        [InlineData((int)177, "177.00")]
-        [InlineData((long)32711520331, "32711520331.00")]
-        [InlineData(3.14159265, "3.14")]
-        [InlineData(2776145.7743, "2776145.77")]
-        public void SerializeNumber_format_Test(object o, string expected)
-        {
-            var actual = SerializeObjectWithOptions(o, new JsonSerializeOptions() { Format = "N2" });
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData((int)177, "177")]
-        [InlineData((long)32711520331, "32711520331")]
-        [InlineData(3.14159265, "3,14159265")]
-        [InlineData(2776145.7743, "2776145,7743")]
-        public void SerializeNumber_nl_Test(object o, string expected)
-        {
-            var actual = SerializeObjectWithOptions(o, new JsonSerializeOptions() { FormatProvider = new CultureInfo("nl-nl") });
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData((int)177, "177,00")]
-        [InlineData((long)32711520331, "32.711.520.331,00")]
-        [InlineData(3.14159265, "3,14")]
-        [InlineData(2776145.7743, "2.776.145,77")]
-        public void SerializeNumber_formatNL_Test(object o, string expected)
-        {
-            var actual = SerializeObjectWithOptions(o, new JsonSerializeOptions() { Format = "N2", FormatProvider = new CultureInfo("nl-nl") });
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void SerializeDateTime_isoformat_Test()
-        {
-            var val = new DateTime(2016, 12, 31);
-            var actual = SerializeObjectWithOptions(val, new JsonSerializeOptions { Format = "O" });
-            Assert.Equal("\"2016-12-31T00:00:00.0000000\"", actual);
-        }
-
-        [Fact]
-        public void SerializeDateTime_format_Test()
-        {
-            DateTime utcNow = DateTime.UtcNow;
-            utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
-            var actual = SerializeObjectWithOptions(utcNow, new JsonSerializeOptions { Format = "dddd d M" });
-            Assert.Equal("\"" + utcNow.ToString("dddd d M", CultureInfo.InvariantCulture) + "\"", actual);
-        }
-
-        [Fact]
-        public void SerializeDateTime_formatNl_Test()
-        {
-            DateTime utcNow = DateTime.UtcNow;
-            utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
-            var actual = SerializeObjectWithOptions(utcNow, new JsonSerializeOptions { Format = "dddd d M", FormatProvider = new CultureInfo("nl-nl") });
-            Assert.Equal("\"" + utcNow.ToString("dddd d M", new CultureInfo("nl-nl")) + "\"", actual);
-        }
-
         [Fact]
         public void SerializeEnumInt_Test()
         {
             var val = ExceptionRenderingFormat.Method;
             var actual = SerializeObjectWithOptions(val, new JsonSerializeOptions() { EnumAsInteger = true });
             Assert.Equal("4", actual);
-        }
-
-        [Fact]
-        public void SerializeObject_noQuote_Test()
-        {
-            var object1 = new TestObject("object1");
-            var object2 = new TestObject("object2");
-
-            object1.Linked = object2;
-            var actual = SerializeObjectWithOptions(object1, new JsonSerializeOptions { QuoteKeys = false });
-            Assert.Equal("{Name:\"object1\", Linked:{Name:\"object2\"}}", actual);
         }
     }
 }

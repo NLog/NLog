@@ -43,16 +43,19 @@ namespace NLog.Targets
         /// <summary>
         /// Add quotes around object keys?
         /// </summary>
+        [Obsolete("Marked obsolete on NLog 5.0.")]
         public bool QuoteKeys { get; set; } = true;
 
         /// <summary>
         /// Format provider for value
         /// </summary>
+        [Obsolete("Marked obsolete on NLog 5.0. Should always be InvariantCulture.")]
         public IFormatProvider FormatProvider { get; set; }
 
         /// <summary>
         /// Format string for value
         /// </summary>
+        [Obsolete("Marked obsolete on NLog 5.0. Should always be InvariantCulture.")]
         public string Format { get; set; }
 
         /// <summary>

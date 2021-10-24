@@ -47,7 +47,6 @@ namespace NLog.Targets
     {
         private readonly ObjectReflectionCache _objectReflectionCache;
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
-        private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxJsonLength = 512 * 1024;
 
@@ -111,7 +110,7 @@ namespace NLog.Targets
             {
                 IConvertible convertibleValue = value as IConvertible;
                 TypeCode objTypeCode = convertibleValue?.GetTypeCode() ?? TypeCode.Object;
-                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider is null)
+                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char)
                 {
                     Enum enumValue;
                     if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && (enumValue = value as Enum) != null)
@@ -264,8 +263,7 @@ namespace NLog.Targets
 
             if (value is IFormattable formattable)
             {
-                var hasFormat = !StringHelpers.IsNullOrWhiteSpace(options.Format);
-                SerializeWithFormatProvider(formattable, true, destination, options, hasFormat);
+                SerializeWithFormatProvider(formattable, destination, options);
                 return true;
             }
 
@@ -277,24 +275,12 @@ namespace NLog.Targets
             return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
         }
 
-        private void SerializeWithFormatProvider(IFormattable formattable, bool includeQuotes, StringBuilder destination, JsonSerializeOptions options, bool hasFormat)
+        private void SerializeWithFormatProvider(IFormattable formattable, StringBuilder destination, JsonSerializeOptions options)
         {
-            if (includeQuotes)
-            {
-                destination.Append('"');
-            }
-
-            var formatProvider = options.FormatProvider ?? (hasFormat ? _defaultFormatProvider : null);
-            var str = formattable.ToString(hasFormat ? options.Format : "", formatProvider);
-            if (includeQuotes)
-                AppendStringEscape(destination, str, options);
-            else
-                destination.Append(str);
-
-            if (includeQuotes)
-            {
-                destination.Append('"');
-            }
+            var str = formattable.ToString(null, CultureInfo.InvariantCulture);
+            destination.Append('"');
+            AppendStringEscape(destination, str, options);
+            destination.Append('"');
         }
 
         private void SerializeDictionaryObject(IDictionary dictionary, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
@@ -323,28 +309,17 @@ namespace NLog.Targets
                 }
 
                 var itemKey = item.Key;
-                if (options.QuoteKeys)
+
+                if (!SerializeObjectAsString(itemKey, destination, options))
                 {
-                    if (!SerializeObjectAsString(itemKey, destination, options))
-                    {
-                        destination.Length = originalLength;
-                        continue;
-                    }
-                }
-                else
-                {
-                    if (!SerializeObject(itemKey, destination, options, objectsInPath, nextDepth))
-                    {
-                        destination.Length = originalLength;
-                        continue;
-                    }
+                    destination.Length = originalLength;
+                    continue;
                 }
 
                 if (options.SanitizeDictionaryKeys)
                 {
-                    int quoteSkipCount = options.QuoteKeys ? 1 : 0;
-                    int keyEndIndex = destination.Length - quoteSkipCount;
-                    int keyStartIndex = originalLength + (first ? 0 : 1) + quoteSkipCount;
+                    int keyEndIndex = destination.Length - 1;
+                    int keyStartIndex = originalLength + (first ? 0 : 1) + 1;
                     if (!SanitizeDictionaryKey(destination, keyStartIndex, keyEndIndex - keyStartIndex))
                     {
                         destination.Length = originalLength;    // Empty keys are not allowed
@@ -462,16 +437,7 @@ namespace NLog.Targets
             }
             else
             {
-                var hasFormat = !StringHelpers.IsNullOrWhiteSpace(options.Format);
-                if ((options.FormatProvider != null || hasFormat) && (value is IFormattable formattable))
-                {
-                    bool includeQuotes = forceToString || objTypeCode == TypeCode.Object || !SkipQuotes(value, objTypeCode);
-                    SerializeWithFormatProvider(formattable, includeQuotes, destination, options, hasFormat);
-                }
-                else
-                {
-                    SerializeSimpleTypeCodeValueNoEscape(value, objTypeCode, destination, options, forceToString);
-                }
+                SerializeSimpleTypeCodeValueNoEscape(value, objTypeCode, destination, options, forceToString);
             }
         }
 
@@ -519,18 +485,6 @@ namespace NLog.Targets
             destination.AppendNumericInvariant(value, objTypeCode);
             if (forceToString)
                 destination.Append('"');
-        }
-
-        private static CultureInfo CreateFormatProvider()
-        {
-            var culture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
-            var numberFormat = culture.NumberFormat;
-            numberFormat.NumberGroupSeparator = string.Empty;
-            numberFormat.NumberDecimalSeparator = ".";
-            numberFormat.NumberGroupSizes = new int[] { 0 };
-            numberFormat.NegativeInfinitySymbol = "Infinity";
-            numberFormat.PositiveInfinitySymbol = "Infinity";
-            return culture;
         }
 
         private static string QuoteValue(string value)
@@ -774,14 +728,7 @@ namespace NLog.Targets
                         destination.Append(", ");
                     }
 
-                    if (options.QuoteKeys)
-                    {
-                        QuoteValue(destination, propertyValue.Name);
-                    }
-                    else
-                    {
-                        destination.Append(propertyValue.Name);
-                    }
+                    QuoteValue(destination, propertyValue.Name);
                     destination.Append(':');
 
                     var objTypeCode = propertyValue.TypeCode;
@@ -821,13 +768,6 @@ namespace NLog.Targets
             {
                 if (SerializeSimpleObjectValue(value, destination, options, true))
                 {
-                    return true;
-                }
-
-                var hasFormat = !StringHelpers.IsNullOrWhiteSpace(options.Format);
-                if ((options.FormatProvider != null || hasFormat) && (value is IFormattable formattable))
-                {
-                    SerializeWithFormatProvider(formattable, true, destination, options, hasFormat);
                     return true;
                 }
 
