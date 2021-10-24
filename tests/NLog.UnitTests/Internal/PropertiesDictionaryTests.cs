@@ -444,7 +444,7 @@ namespace NLog.UnitTests.Internal
         public void NonUniqueMessagePropertiesDictionary()
         {
             LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
-{
+            {
                 new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
                 new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal)
             });
@@ -465,5 +465,21 @@ namespace NLog.UnitTests.Internal
             Assert.Single(dictionary);
             Assert.Equal(42, dictionary["Hello World"]);
         }
+
+#if !NET35
+        [Fact]
+        public void NonUniqueEventPropertiesDictionary()
+        {
+            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
+            {
+                new KeyValuePair<object,object>("Hello World", 42),
+                new KeyValuePair<object,object>("Hello World", 666),
+            });
+            IDictionary<object, object> dictionary = logEvent.Properties;
+
+            Assert.Single(dictionary);
+            Assert.Equal(666, dictionary["Hello World"]);   // Last one wins
+        }
+#endif
     }
 }
