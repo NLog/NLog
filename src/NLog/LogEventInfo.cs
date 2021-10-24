@@ -161,9 +161,9 @@ namespace NLog
         {
             Level = level;
             LoggerName = loggerName;
-            Message = message;
+            _formatProvider = formatProvider;
+            _message = message;
             Parameters = parameters;
-            FormatProvider = formatProvider;
             Exception = exception;
          
             if (NeedToPreformatMessage(parameters))
