@@ -85,16 +85,36 @@ namespace NLog.Internal
         private IDictionary _eventContextAdapter;
 
         /// <summary>
-        /// Injects the list of message-template-parameter into the IDictionary-interface
+        /// Wraps the list of message-template-parameters into the IDictionary-interface
         /// </summary>
-        /// <param name="parameterList">Message-template-parameters</param>
-        public PropertiesDictionary(IList<MessageTemplateParameter> parameterList = null)
+        /// <param name="messageParameters">Message-template-parameters</param>
+        public PropertiesDictionary(IList<MessageTemplateParameter> messageParameters = null)
         {
-            if (parameterList?.Count > 0)
+            if (messageParameters?.Count > 0)
             {
-                MessageProperties = parameterList;
+                MessageProperties = messageParameters;
             }
         }
+
+#if !NET3_5 && !NET4_0 && !SILVERLIGHT
+        /// <summary>
+        /// Transforms the list of event-properties into IDictionary-interface
+        /// </summary>
+        /// <param name="eventProperties">Message-template-parameters</param>
+        public PropertiesDictionary(IReadOnlyList<KeyValuePair<object, object>> eventProperties)
+        {
+            var propertyCount = eventProperties.Count;
+            if (propertyCount > 0)
+            {
+                _eventProperties = new Dictionary<object, PropertyValue>(propertyCount);
+                for (int i = 0; i < propertyCount; ++i)
+                {
+                    var property = eventProperties[i];
+                    _eventProperties[property.Key] = new PropertyValue(property.Value, false);
+                }
+            }
+        }
+#endif
 
         private bool IsEmpty => (_eventProperties == null || _eventProperties.Count == 0) && (_messageProperties == null || _messageProperties.Count == 0);
 
@@ -106,7 +126,7 @@ namespace NLog.Internal
             {
                 if (_eventProperties == null)
                 {
-                    if (_messageProperties != null && _messageProperties.Count > 0)
+                    if (_messageProperties?.Count > 0)
                     {
                         _eventProperties = new Dictionary<object, PropertyValue>(_messageProperties.Count);
                         if (!InsertMessagePropertiesIntoEmptyDictionary(_messageProperties, _eventProperties))
