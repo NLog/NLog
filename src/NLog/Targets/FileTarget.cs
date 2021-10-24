@@ -812,7 +812,17 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles()
         {
-            CleanupInitializedFiles(TimeSource.Current.Time.AddDays(-InitializedFilesCleanupPeriod));
+            try
+            {
+                CleanupInitializedFiles(TimeSource.Current.Time.AddDays(-InitializedFilesCleanupPeriod));
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Error(exception, "{0}: Exception in CleanupInitializedFiles", this);
+            }
         }
 
         /// <summary>
@@ -2350,12 +2360,18 @@ namespace NLog.Targets
         /// <param name="isArchiving">Indicates if the file is being finalized for archiving.</param>
         private void FinalizeFile(string fileName, bool isArchiving = false)
         {
-            InternalLogger.Trace("FileTarget(Name={0}): FinalizeFile '{1}, isArchiving: {2}'", Name, fileName, isArchiving);
-            if ((isArchiving) || (!WriteFooterOnArchivingOnly))
-                WriteFooter(fileName);
+            try
+            {
+                InternalLogger.Trace("FileTarget(Name={0}): FinalizeFile '{1}, isArchiving: {2}'", Name, fileName, isArchiving);
+                if ((isArchiving) || (!WriteFooterOnArchivingOnly))
+                    WriteFooter(fileName);
 
-            _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
-            _initializedFiles.Remove(fileName);
+                _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
+            }
+            finally
+            {
+                _initializedFiles.Remove(fileName);
+            }
         }
 
         /// <summary>
