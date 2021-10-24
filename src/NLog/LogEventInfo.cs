@@ -98,7 +98,7 @@ namespace NLog
         /// <param name="level">Log level.</param>
         /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
         /// <param name="message">Log message including parameter placeholders.</param>
-        /// <param name="messageTemplateParameters">Log message including parameter placeholders.</param>
+        /// <param name="messageTemplateParameters">Already parsed message template parameters.</param>
         public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message, IList<MessageTemplateParameter> messageTemplateParameters)
             : this(level, loggerName, null, message, null, null)
         {
@@ -110,6 +110,24 @@ namespace NLog
                 _properties = new PropertiesDictionary(messageProperties);
             }
         }
+
+#if !NET35
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
+        /// <param name="message">Log message.</param>
+        /// <param name="eventProperties">List of event-properties</param>
+        public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message, IReadOnlyList<KeyValuePair<object, object>> eventProperties)
+            : this(level, loggerName, null, message, null, null)
+        {
+            if (eventProperties?.Count > 0)
+            {
+                _properties = new PropertiesDictionary(eventProperties);
+            }
+        }
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
