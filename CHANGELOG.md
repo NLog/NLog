@@ -42,6 +42,15 @@ See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-previ
 
 - [Performance](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22Performance%22+is%3Amerged+milestone:%225.0%20%28new%29%22)
 
+### v4.7.12 (2021/10/24)
+
+#### Bugfixes
+- [#4627](https://github.com/NLog/NLog/pull/4627) PropertiesDictionary - Fixed threading issue in EventProperties (#4627) (@snakefoot)
+- [#4631](https://github.com/NLog/NLog/pull/4631) FileTarget - Failing to CleanupInitializedFiles should not stop logging (#4631) (@snakefoot)
+
+#### Features
+- [#4629](https://github.com/NLog/NLog/pull/4629) LogEventInfo constructor with eventProperties as IReadOnlyList (#4629) (@snakefoot)
+
 ### v4.7.11 (2021/08/18)
 
 #### Bugfixes
