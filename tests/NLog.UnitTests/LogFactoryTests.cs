@@ -377,5 +377,28 @@ namespace NLog.UnitTests
                 Thread.Sleep(5000);
             }
         }
+
+
+        [Fact]
+        public void PurgeObsoleteLoggersTest()
+        {
+            var factory = new LogFactory();
+            var firstLogger = factory.GetLogger("firstLogger");
+            Assert.NotNull(firstLogger);
+            var secondLogger = factory.GetLogger("secondLogger");
+            Assert.NotNull(secondLogger);
+            var loggersCount = factory.GetLoggersCount();
+            var loggerCacheKeysCount = factory.GetLoggerCacheKeysCount();
+            Assert.Equal(2, loggersCount);
+            Assert.Equal(loggerCacheKeysCount, loggersCount);
+            firstLogger = null; // for disposing weakReference of first logger by GC.Collect()
+            GC.Collect();
+            factory.ReconfigExistingLoggers();
+            loggersCount = factory.GetLoggersCount();
+            loggerCacheKeysCount = factory.GetLoggerCacheKeysCount();
+            Assert.Equal(1, loggersCount);
+            Assert.Equal(loggersCount, loggerCacheKeysCount);
+
+        }
     }
 }

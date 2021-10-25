@@ -35,7 +35,6 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
@@ -271,20 +270,6 @@ namespace NLog
         {
             factory.ReconfigExistingLoggers();
         }
-
-        /// <summary>
-        /// Loops through all loggers previously returned by GetLogger.
-        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
-        /// to ensure that all loggers have been properly configured.
-        /// <param name="purgeObsoleteLoggers"> if the purgeObsoleteLoggers parameter is set true, it will purge all obsoleted loggers from the cache.</param>
-        /// </summary>
-        public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
-        {
-            ReconfigExistingLoggers();
-            if (purgeObsoleteLoggers)
-                factory.PurgeObsoleteLoggers();
-        }
-
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.

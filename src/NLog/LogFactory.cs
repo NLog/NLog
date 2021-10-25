@@ -101,7 +101,6 @@ namespace NLog
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogFactory()
         {
             RegisterEvents(DefaultAppEnvironment);
@@ -534,35 +533,31 @@ namespace NLog
         public void ReconfigExistingLoggers()
         {
             List<Logger> loggers;
+            int loggerCacheCount;
 
             lock (_syncRoot)
             {
                 _config?.InitializeAll();
                 loggers = _loggerCache.GetLoggers();
+                loggerCacheCount = _loggerCache.GetLoggerKeysCount();
             }
 
             foreach (var logger in loggers)
             {
                 logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
             }
-          
+
+            if (loggers.Count != loggerCacheCount)
+            {
+                lock (_syncRoot)
+                {
+                    _loggerCache.PurgeObsoleteLoggers();
+                }
+            }
+
         }
 
-        /// <summary>
-        /// Loops through all loggers previously returned by GetLogger and checks if the logger cache is null
-        /// if the logger cache is null it will be deleted 
-        /// this will avoid growing logger cache infinitely
-        /// </summary>
-        public void PurgeObsoleteLoggers()
-        {
-            var loggerKeys = _loggerCache.GetLoggerKeys();
-            foreach (var key in loggerKeys)
-            {
-                var logger = _loggerCache.Retrieve(key);
-                if (logger == null)
-                    _loggerCache.RemoveLoggerEntryByKey(key);
-            }
-        }
+
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
@@ -1409,9 +1404,9 @@ namespace NLog
                 return values;
             }
 
-            public List<LoggerCacheKey> GetLoggerKeys()
+            public int GetLoggerKeysCount()
             {
-                return _loggerCache.Keys.ToList();
+                return _loggerCache.Keys.Count();
             }
 
             public void Reset()
@@ -1419,9 +1414,22 @@ namespace NLog
                 _loggerCache.Clear();
             }
 
-            internal void RemoveLoggerEntryByKey(LoggerCacheKey key)
+            /// <summary>
+            /// Loops through all loggers in loggerCache and checks if the logger cache is null
+            /// if the logger cache is null it will be deleted 
+            /// this will avoid growing logger cache infinitely
+            /// </summary>
+            public void PurgeObsoleteLoggers()
             {
-                _loggerCache.Remove(key);
+                var loggerKeys = _loggerCache.Keys.ToList();
+
+                foreach (var key in loggerKeys)
+                {
+                    var logger = Retrieve(key);
+                    if (logger != null)
+                        continue;
+                    _loggerCache.Remove(key);
+                }
             }
         }
 
@@ -1432,6 +1440,32 @@ namespace NLog
         {
             _loggerCache.Reset();
         }
+
+
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal int GetLoggersCount()
+        {
+            lock (_syncRoot)
+            {
+                _config?.InitializeAll();
+                var loggers = _loggerCache.GetLoggers();
+                return loggers.Count();
+            }
+        }
+
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal int GetLoggerCacheKeysCount()
+        {
+            lock (_syncRoot)
+            {
+                return _loggerCache.GetLoggerKeysCount();
+            }
+        }
+
 
         /// <summary>
         /// Enables logging in <see cref="IDisposable.Dispose"/> implementation.
