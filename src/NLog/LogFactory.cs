@@ -525,19 +525,17 @@ namespace NLog
             return GetLoggerThreadSafe(name, loggerType);
         }
 
-        /// <summary>
-        /// Loops through all loggers previously returned by GetLogger and recalculates their 
-        /// target and filter list. Useful after modifying the configuration programmatically
-        /// to ensure that all loggers have been properly configured.
-        /// </summary>
-        public void ReconfigExistingLoggers()
+
+        private bool RefreshExistingLoggers()
         {
+            bool purgeObsoleteLoggers;
             List<Logger> loggers;
 
             lock (_syncRoot)
             {
                 _config?.InitializeAll();
                 loggers = _loggerCache.GetLoggers();
+                purgeObsoleteLoggers = loggers.Count != _loggerCache.Count;
             }
 
             foreach (var logger in loggers)
@@ -545,7 +543,20 @@ namespace NLog
                 logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
             }
 
+            return purgeObsoleteLoggers;
         }
+
+
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger and recalculates their 
+        /// target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// </summary>
+        public void ReconfigExistingLoggers()
+        {
+            RefreshExistingLoggers();
+        }
+
 
         /// <summary>
         /// Loops through all loggers previously returned by GetLogger and recalculates their 
@@ -555,21 +566,12 @@ namespace NLog
         /// <param name="purgeObsoleteLoggers">Purge null-referenced loggers in cache</param>
         public void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
         {
-            ReconfigExistingLoggers();
-
-            if (!purgeObsoleteLoggers)
-                return;
-
-            lock (_syncRoot)
+            purgeObsoleteLoggers = RefreshExistingLoggers() && purgeObsoleteLoggers;
+            if (purgeObsoleteLoggers)
             {
-                var loggers = _loggerCache.GetLoggers();
-                var loggerCacheCount = _loggerCache.Count;
-                if (loggers.Count != loggerCacheCount)
-                {
+                lock (_syncRoot)
                     _loggerCache.PurgeObsoleteLoggers();
-                }
             }
-
         }
 
 
