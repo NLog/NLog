@@ -40,7 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
     public class EventPropertiesTests : NLogTestBase
     {
         [Fact]
-        public void Test1()
+        public void TestNoProperty()
         {
             Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "prop1", "bbb");
@@ -48,42 +48,31 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("", layout.Render(logEvent));
         } 
         
-        /// <summary>
-        /// Test with alias
-        /// </summary>
         [Fact]
-        public void TestAlias1()
-        {
-            Layout layout = "${event-property:prop1}";
-            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "prop1", "bbb");
-            // empty
-            Assert.Equal("", layout.Render(logEvent));
-        }
-
-        [Fact]
-        public void Test2()
+        public void TestProperty()
         {
             Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
             logEvent.Properties["prop1"] = "bbb";
 
-            // empty
+            Assert.Equal("bbb", layout.Render(logEvent));
+        }
+
+        /// <summary>
+        /// Test with alias
+        /// </summary>
+        [Fact]
+        public void TestPropertyAlias()
+        {
+            Layout layout = "${event-property:prop1}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = "bbb";
+
             Assert.Equal("bbb", layout.Render(logEvent));
         }
 
         [Fact]
-        public void NoSet()
-        {
-            Layout layout = "${event-properties:prop1}";
-            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-
-            // empty
-            Assert.Equal("", layout.Render(logEvent));
-        }
-
-
-        [Fact]
-        public void Null()
+        public void TestNullProperty()
         {
             Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
@@ -91,6 +80,38 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // empty
             Assert.Equal("", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void TestPropertyIgnoreCase()
+        {
+            Layout layout1 = "${event-property:prop1}";
+            Layout layout2 = "${event-property:Prop1}";
+            Layout layout3 = "${event-property:PROP1}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["PROP1"] = "bbb";
+
+            Assert.Equal("bbb", layout1.Render(logEvent));
+            Assert.Equal("bbb", layout2.Render(logEvent));
+            Assert.Equal("bbb", layout3.Render(logEvent));
+        }
+
+        [Fact]
+        public void TestPropertyCaseSensitive()
+        {
+            Layout layout1 = "${event-property:prop1:ignoreCase=false}";
+            Layout layout2 = "${event-property:Prop1:ignoreCase=false}";
+            Layout layout3 = "${event-property:PROP1:ignoreCase=false}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["Prop1"] = "aaa";
+            logEvent.Properties["PROP1"] = "bbb";
+
+            Assert.Equal(2, logEvent.Properties.Count);
+            Assert.Equal("aaa", logEvent.Properties["Prop1"]);
+            Assert.Equal("bbb", logEvent.Properties["PROP1"]);
+            Assert.Equal("", layout1.Render(logEvent));
+            Assert.Equal("aaa", layout2.Render(logEvent));
+            Assert.Equal("bbb", layout3.Render(logEvent));
         }
 
         [Fact]

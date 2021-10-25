@@ -59,7 +59,8 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
-        public string Item { get; set; }
+        public string Item { get => _item?.ToString(); set => _item = (value != null && IgnoreCase) ? new PropertiesDictionary.IgnoreCasePropertyKey(value) : (object)value; }
+        private object _item;
 
         /// <summary>
         /// Format string for conversion from object to string.
@@ -82,6 +83,23 @@ namespace NLog.LayoutRenderers
             get => _objectPropertyPath.Value;
             set => _objectPropertyPath.Value = value;
         }
+
+        /// <summary>
+        /// Gets or sets whether to perform case-sensitive property-name lookup
+        /// </summary>
+        public bool IgnoreCase
+        {
+            get => _ignoreCase;
+            set
+            {
+                if (value != _ignoreCase)
+                {
+                    _ignoreCase = value;
+                    Item = _item?.ToString();
+                }
+            }
+        }
+        private bool _ignoreCase = true;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -108,7 +126,7 @@ namespace NLog.LayoutRenderers
             if (!logEvent.HasProperties)
                 return false;
 
-            if (!logEvent.Properties.TryGetValue(Item, out value))
+            if (!logEvent.Properties.TryGetValue(_item, out value))
                 return false;
 
             if (_objectPropertyPath.PathNames != null)

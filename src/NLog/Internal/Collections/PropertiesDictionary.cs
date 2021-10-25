@@ -37,7 +37,7 @@ namespace NLog.Internal
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using MessageTemplates;
+    using NLog.MessageTemplates;
 
     /// <summary>
     /// Dictionary that combines the standard <see cref="LogEventInfo.Properties" /> with the
@@ -57,34 +57,30 @@ namespace NLog.Internal
             public readonly object Value;
 
             /// <summary>
-            /// Is this a property of the message?
+            /// Has property been captured from message-template ?
             /// </summary>
             public readonly bool IsMessageProperty;
 
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="value">Value of the property</param>
-            /// <param name="isMessageProperty">Is this a property of the message?</param>
             public PropertyValue(object value, bool isMessageProperty)
             {
                 Value = value;
                 IsMessageProperty = isMessageProperty;
             }
         }
+
         /// <summary>
         /// The properties of the logEvent
         /// </summary>
         private Dictionary<object, PropertyValue> _eventProperties;
         /// <summary>
-        /// The properties extracted from the message
+        /// The properties extracted from the message-template
         /// </summary>
         private IList<MessageTemplateParameter> _messageProperties;
         private DictionaryCollection _keyCollection;
         private DictionaryCollection _valueCollection;
 
         /// <summary>
-        /// Wraps the list of message-template-parameters into the IDictionary-interface
+        /// Wraps the list of message-template-parameters as IDictionary-interface
         /// </summary>
         /// <param name="messageParameters">Message-template-parameters</param>
         public PropertiesDictionary(IList<MessageTemplateParameter> messageParameters = null)
@@ -105,7 +101,7 @@ namespace NLog.Internal
             var propertyCount = eventProperties.Count;
             if (propertyCount > 0)
             {
-                _eventProperties = new Dictionary<object, PropertyValue>(propertyCount);
+                _eventProperties = new Dictionary<object, PropertyValue>(propertyCount, PropertyKeyComparer.Default);
                 for (int i = 0; i < propertyCount; ++i)
                 {
                     var property = eventProperties[i];
@@ -145,7 +141,7 @@ namespace NLog.Internal
             {
                 if (_eventProperties is null)
                 {
-                    _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count);
+                    _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count, PropertyKeyComparer.Default);
                 }
 
                 if (oldMessageProperties != null && _eventProperties.Count > 0)
@@ -179,7 +175,7 @@ namespace NLog.Internal
         {
             if (messageProperties?.Count > 0)
             {
-                var eventProperties = new Dictionary<object, PropertyValue>(messageProperties.Count);
+                var eventProperties = new Dictionary<object, PropertyValue>(messageProperties.Count, PropertyKeyComparer.Default);
                 if (!InsertMessagePropertiesIntoEmptyDictionary(messageProperties, eventProperties))
                 {
                     CreateUniqueMessagePropertiesListSlow(messageProperties, eventProperties);  // Should never happen
@@ -188,7 +184,7 @@ namespace NLog.Internal
             }
             else
             {
-                return new Dictionary<object, PropertyValue>();
+                return new Dictionary<object, PropertyValue>(PropertyKeyComparer.Default);
             }
         }
 
@@ -284,11 +280,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool ContainsKey(object key)
         {
-            if (!IsEmpty)
-            {
-                return EventProperties.ContainsKey(key);
-            }
-            return false;
+            return TryGetValue(key, out var _);
         }
 
         /// <inheritDoc/>
@@ -354,16 +346,9 @@ namespace NLog.Internal
         {
             if (!IsEmpty)
             {
-                if (_eventProperties is null && key is string keyString && _messageProperties?.Count < 5)
+                if (_eventProperties is null && _messageProperties?.Count < 5)
                 {
-                    for (int i = 0; i < _messageProperties.Count; ++i)
-                    {
-                        if (keyString.Equals(_messageProperties[i].Name, StringComparison.Ordinal))
-                        {
-                            value = _messageProperties[i].Value;
-                            return true;
-                        }
-                    }
+                    return TryLookupMessagePropertyValue(key, out value);
                 }
                 else if (EventProperties.TryGetValue(key, out var valueItem))
                 {
@@ -373,6 +358,35 @@ namespace NLog.Internal
             }
 
             value = null;
+            return false;
+        }
+
+        private bool TryLookupMessagePropertyValue(object key, out object propertyValue)
+        {
+            if (key is string keyString)
+            {
+                for (int i = 0; i < _messageProperties.Count; ++i)
+                {
+                    if (keyString.Equals(_messageProperties[i].Name, StringComparison.Ordinal))
+                    {
+                        propertyValue = _messageProperties[i].Value;
+                        return true;
+                    }
+                }
+            }
+            else if (key is IgnoreCasePropertyKey keyIgnoreCase)
+            {
+                for (int i = 0; i < _messageProperties.Count; ++i)
+                {
+                    if (keyIgnoreCase.Equals(_messageProperties[i].Name))
+                    {
+                        propertyValue = _messageProperties[i].Value;
+                        return true;
+                    }
+                }
+            }
+
+            propertyValue = null;
             return false;
         }
 
@@ -721,6 +735,81 @@ namespace NLog.Internal
 
                 /// <inheritDoc/>
                 public object Current => _keyCollection ? CurrentProperty.Key : CurrentProperty.Value;
+            }
+        }
+
+        /// <summary>
+        /// Special property-key for lookup without being case-sensitive
+        /// </summary>
+        internal class IgnoreCasePropertyKey
+        {
+            private readonly string _propertyName;
+
+            public IgnoreCasePropertyKey(string propertyName)
+            {
+                _propertyName = propertyName;
+            }
+
+            public bool Equals(string propertyName) => Equals(_propertyName, propertyName);
+
+            public override bool Equals(object obj)
+            {
+                if (obj is string stringObj)
+                    return Equals(_propertyName, stringObj);
+                else if (obj is IgnoreCasePropertyKey ignoreCase)
+                    return Equals(_propertyName, ignoreCase._propertyName);
+                else
+                    return false;
+            }
+
+            public override int GetHashCode()
+            {
+                return GetHashCode(_propertyName);
+            }
+
+            public override string ToString() => _propertyName;
+
+            internal static int GetHashCode(string propertyName)
+            {
+                return StringComparer.OrdinalIgnoreCase.GetHashCode(propertyName);
+            }
+
+            internal static bool Equals(string x, string y)
+            {
+                return string.Equals(x, y, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        /// <summary>
+        /// Property-Key equality-comparer that uses string-hashcode from OrdinalIgnoreCase
+        /// Enables case-insensitive lookup using <see cref="IgnoreCasePropertyKey"/>
+        /// </summary>
+        private class PropertyKeyComparer : IEqualityComparer<object>
+        {
+            public static readonly PropertyKeyComparer Default = new PropertyKeyComparer();
+
+            public new bool Equals(object x, object y)
+            {
+                if (y is IgnoreCasePropertyKey ynocase && x is string xstring)
+                {
+                    return ynocase.Equals(xstring);
+                }
+                else if (x is IgnoreCasePropertyKey xnocase && y is string ystring)
+                {
+                    return xnocase.Equals(ystring);
+                }
+                else
+                {
+                    return EqualityComparer<object>.Default.Equals(x, y);
+                }
+            }
+
+            public int GetHashCode(object obj)
+            {
+                if (obj is string objstring)
+                    return IgnoreCasePropertyKey.GetHashCode(objstring);
+                else
+                    return EqualityComparer<object>.Default.GetHashCode(obj);
             }
         }
     }
