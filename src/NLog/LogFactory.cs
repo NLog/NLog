@@ -563,7 +563,7 @@ namespace NLog
             lock (_syncRoot)
             {
                 var loggers = _loggerCache.GetLoggers();
-                var loggerCacheCount = _loggerCache.GetLoggerKeysCount();
+                var loggerCacheCount = _loggerCache.Count;
                 if (loggers.Count != loggerCacheCount)
                 {
                     _loggerCache.PurgeObsoleteLoggers();
@@ -1382,6 +1382,15 @@ namespace NLog
             private readonly Dictionary<LoggerCacheKey, WeakReference> _loggerCache =
                     new Dictionary<LoggerCacheKey, WeakReference>();
 
+            public int Count
+            {
+                get
+                {
+                    return _loggerCache.Keys.Count;
+                }
+            }
+
+
             /// <summary>
             /// Inserts or updates. 
             /// </summary>
@@ -1419,10 +1428,6 @@ namespace NLog
                 return values;
             }
 
-            public int GetLoggerKeysCount()
-            {
-                return _loggerCache.Keys.Count();
-            }
 
             public void Reset()
             {
@@ -1453,7 +1458,7 @@ namespace NLog
         /// </remarks>
         internal int ResetLoggerCache()
         {
-            var keysCount = _loggerCache.GetLoggerKeysCount();
+            var keysCount = _loggerCache.Count;
             _loggerCache.Reset();
             return keysCount;
         }
