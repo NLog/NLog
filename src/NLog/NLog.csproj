@@ -28,21 +28,24 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog 5.0 prerelease version 2 with additional improvements:
-- Fixed validation of nlog-element when using include-files (#4533)
-- Fixed validation of nlog-element when nested within configuration-element (#4555)
-- ScopeContext - Renamed IncludeScopeNestedStates to IncludeScopeNested for consistency (#4544)
-- ScopeContext - Renamed PushScopeState to PushScopeNested for consistency (#4545)
-- NetworkTarget - Explicit assigning LineEnding activates NewLine automatically (#4556)
-- NetworkTarget - UdpNetworkSender changed to QueuedNetworkSender with correct message split (#4549)
-- NetworkTarget - Added OnQueueOverflow with default Discard (#4542)
-- NetworkTarget - Updated OnConnectionOverflow to Discard by default (#4542)
-- Fixed LayoutParser so Typed Layout works for LayoutRenderer (#4564)
-- LayoutRenderer and Layout are now always threadsafe by default (#4580)
-- ScopeTiming - No Format specified renders TimeSpan.TotalMilliseconds (#4586)
-- ExceptionLayoutRenderer - Separator with basic layout support (#4583)
-- StackTraceLayoutRenderer - Separator with basic layout support (#4588)
-- ScopeNestedLayoutRenderer - Separator with basic layout suppor (#4589)
+NLog 5.0 Preview 3 with more improvements:
+      
+## Bugfixes
+- PropertiesDictionary - Fixed threading issue in EventProperties (#4627) (@snakefoot)
+
+## Features
+- LogFactory fluent Setup with WriteToTrace + WriteToDebug (#4598) (@snakefoot)
+- LogEventInfo constructor with eventProperties as IReadOnlyList (#4628) (@snakefoot)
+- ${event-properties} now ignore case when doing property lookup (#4633) (@snakefoot)
+
+## Improvements
+- FileTarget - KeepFileOpen = true by default to avoid loosing file handle (#4623) (@snakefoot)
+- FileTarget - Only enable FileSystemWatcher when ConcurrentWrites = true (#4624) (@snakefoot)
+- FileTarget - Attempt to write footer, before closing file appender (#4634) (@snakefoot)
+- JsonSerializeOptions - Marked Format + FormatProvider + QuoteKeys as obsolete (#4632) (@snakefoot)
+- Handle OutOfMemoryException instead of crashing the application (#4622) (@snakefoot)
+- Removed DefaultValue-attribute as it is only used for docs-generator (#4605) (@snakefoot)
+- Removed Advanced-attribute as it has no meaning (#4606) (@snakefoot)
 
 NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
 
