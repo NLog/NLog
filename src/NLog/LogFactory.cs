@@ -240,7 +240,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
-        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
+        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers()" />
         /// manually.
         /// </summary>
         public LoggingConfiguration Configuration
@@ -533,13 +533,11 @@ namespace NLog
         public void ReconfigExistingLoggers()
         {
             List<Logger> loggers;
-            int loggerCacheCount;
 
             lock (_syncRoot)
             {
                 _config?.InitializeAll();
                 loggers = _loggerCache.GetLoggers();
-                loggerCacheCount = _loggerCache.GetLoggerKeysCount();
             }
 
             foreach (var logger in loggers)
@@ -547,9 +545,26 @@ namespace NLog
                 logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
             }
 
-            if (loggers.Count != loggerCacheCount)
+        }
+
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger and recalculates their 
+        /// target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// </summary>
+        /// <param name="purgeObsoleteLoggers">Purge null-referenced loggers in cache</param>
+        public void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
+        {
+            ReconfigExistingLoggers();
+
+            if (!purgeObsoleteLoggers)
+                return;
+
+            lock (_syncRoot)
             {
-                lock (_syncRoot)
+                var loggers = _loggerCache.GetLoggers();
+                var loggerCacheCount = _loggerCache.GetLoggerKeysCount();
+                if (loggers.Count != loggerCacheCount)
                 {
                     _loggerCache.PurgeObsoleteLoggers();
                 }
@@ -1436,34 +1451,11 @@ namespace NLog
         /// <remarks>
         /// Internal for unit tests
         /// </remarks>
-        internal void ResetLoggerCache()
+        internal int ResetLoggerCache()
         {
+            var keysCount = _loggerCache.GetLoggerKeysCount();
             _loggerCache.Reset();
-        }
-
-
-        /// <remarks>
-        /// Internal for unit tests
-        /// </remarks>
-        internal int GetLoggersCount()
-        {
-            lock (_syncRoot)
-            {
-                _config?.InitializeAll();
-                var loggers = _loggerCache.GetLoggers();
-                return loggers.Count();
-            }
-        }
-
-        /// <remarks>
-        /// Internal for unit tests
-        /// </remarks>
-        internal int GetLoggerCacheKeysCount()
-        {
-            lock (_syncRoot)
-            {
-                return _loggerCache.GetLoggerKeysCount();
-            }
+            return keysCount;
         }
 
 
