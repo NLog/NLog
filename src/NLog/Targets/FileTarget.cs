@@ -66,12 +66,6 @@ namespace NLog.Targets
         private const int InitializedFilesCleanupPeriod = 2;
 
         /// <summary>
-        /// The maximum number of initialized files before clean up procedures are initiated,
-        /// to keep the number of initialized files to a minimum. Chose 25 to cater for monthly rolling of log-files.
-        /// </summary>
-        private const int InitializedFilesCounterMax = 25;
-
-        /// <summary>
         /// This value disables file archiving based on the size. 
         /// </summary>
         private const long ArchiveAboveSizeDisabled = -1L;
@@ -362,15 +356,13 @@ namespace NLog.Targets
         public int OpenFileCacheSize { get; set; } = 5;
 
         /// <summary>
-        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are 
-        /// not automatically closed after a period of inactivity.
+        /// Gets or sets the maximum number of seconds that files are kept open. Zero or negative means disabled.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        public int OpenFileCacheTimeout { get; set; } = -1;
+        public int OpenFileCacheTimeout { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum number of seconds before open files are flushed. If this number is negative or zero
-        /// the files are not flushed by timer.
+        /// Gets or sets the maximum number of seconds before open files are flushed. Zero or negative means disabled.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
         public int OpenFileFlushTimeout { get; set; }
@@ -774,10 +766,7 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace("{0}: Cleanup Initialized Files with cleanupThreshold {1}", this, cleanupThreshold);
-            }
+            InternalLogger.Trace("{0}: CleanupInitializedFiles with cleanupThreshold {1}", this, cleanupThreshold);
 
             List<string> filesToFinalize = null;
 
@@ -803,7 +792,7 @@ namespace NLog.Targets
                 }
             }
 
-            InternalLogger.Trace("{0}: CleanupInitializedFiles Done", this);
+            InternalLogger.Trace("{0}: CleanupInitializedFiles Completed and finalized {0} files", this, filesToFinalize?.Count ?? 0);
         }
 
         /// <summary>
@@ -1343,10 +1332,7 @@ namespace NLog.Targets
             try
             {
                 InternalLogger.Info("{0}: Deleting old archive file: '{1}'.", this, fileName);
-                if (_initializedFiles.ContainsKey(fileName))
-                {
-                    FinalizeFile(fileName, false);
-                }
+                CloseInvalidFileHandle(fileName);
                 File.Delete(fileName);
                 return true;
             }
@@ -1552,8 +1538,7 @@ namespace NLog.Targets
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists)
             {
-                // Close possible stale file handles
-                _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
+                CloseInvalidFileHandle(fileName);   // Close possible stale file handles
                 return;
             }
 
@@ -2202,10 +2187,12 @@ namespace NLog.Targets
                 PrepareForNewFile(fileName, logEvent);
 
                 _initializedFilesCounter++;
-                if (_initializedFilesCounter >= InitializedFilesCounterMax)
+                if (_initializedFilesCounter > OpenFileCacheSize)
                 {
+                    // Attempt to write footer, before closing file appender
                     _initializedFilesCounter = 0;
                     CleanupInitializedFiles();
+                    _initializedFilesCounter = Math.Min(_initializedFiles.Count, OpenFileCacheSize / 2);
                 }
 
                 _initializedFiles[fileName] = now;
@@ -2240,6 +2227,18 @@ namespace NLog.Targets
             return logEventTimeStamp;
         }
 
+        private void CloseInvalidFileHandle(string fileName)
+        {
+            try
+            {
+                _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
+            }
+            finally
+            {
+                _initializedFiles.Remove(fileName); // Skip finalize non-existing file
+            }
+        }
+
         /// <summary>
         /// Writes the file footer and finalizes the file in <see cref="FileTarget"/> instance internal structures.
         /// </summary>
@@ -2252,12 +2251,10 @@ namespace NLog.Targets
                 InternalLogger.Trace("{0}: FinalizeFile '{1}, isArchiving: {2}'", this, fileName, isArchiving);
                 if ((isArchiving) || (!WriteFooterOnArchivingOnly))
                     WriteFooter(fileName);
-
-                _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
             }
             finally
             {
-                _initializedFiles.Remove(fileName);
+                CloseInvalidFileHandle(fileName);
             }
         }
 
