@@ -1384,13 +1384,7 @@ namespace NLog
             private readonly Dictionary<LoggerCacheKey, WeakReference> _loggerCache =
                     new Dictionary<LoggerCacheKey, WeakReference>();
 
-            public int Count
-            {
-                get
-                {
-                    return _loggerCache.Keys.Count;
-                }
-            }
+            public int Count => _loggerCache.Keys.Count;
 
 
             /// <summary>

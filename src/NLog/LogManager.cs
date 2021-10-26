@@ -271,6 +271,18 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
+
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger.
+        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// </summary>
+        /// <param name="purgeObsoleteLoggers">Purge null-referenced loggers in cache</param>
+        public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
+        {
+            factory.ReconfigExistingLoggers(purgeObsoleteLoggers);
+        }
+
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
