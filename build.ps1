@@ -3,7 +3,7 @@
 dotnet --version
 
 $versionPrefix = "5.0.0"
-$versionSuffix = "preview.2"
+$versionSuffix = "preview.3"
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
 if (-Not $versionSuffix.Equals(""))
