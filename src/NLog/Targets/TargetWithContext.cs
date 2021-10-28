@@ -118,11 +118,22 @@ namespace NLog.Targets
         public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
         /// <summary>
+        /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+#if !NET35
+        public ISet<string> ExcludeProperties { get; set; }
+#else
+        public HashSet<string> ExcludeProperties { get; set; }        
+#endif
+
+        /// <summary>
         /// Constructor
         /// </summary>
         protected TargetWithContext()
         {
             _contextLayout = _contextLayout ?? new TargetWithContextLayout(this, base.Layout);
+            ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -199,7 +210,7 @@ namespace NLog.Targets
                 foreach (var property in logEvent.Properties)
                 {
                     string propertyKey = property.Key.ToString();
-                    if (string.IsNullOrEmpty(propertyKey))
+                    if (string.IsNullOrEmpty(propertyKey) || ExcludeProperties.Contains(propertyKey))
                         continue;
 
                     AddContextProperty(logEvent, propertyKey, property.Value, checkForDuplicates, combinedProperties);
@@ -416,6 +427,9 @@ namespace NLog.Targets
             bool checkForDuplicates = contextProperties.Count > 0;
             foreach (string propertyName in globalNames)
             {
+                if (string.IsNullOrEmpty(propertyName) || ExcludeProperties.Contains(propertyName))
+                    continue;
+
                 var propertyValue = GlobalDiagnosticsContext.GetObject(propertyName);
                 if (SerializeItemValue(logEvent, propertyName, propertyValue, out propertyValue))
                 {
@@ -497,11 +511,15 @@ namespace NLog.Targets
                 bool checkForDuplicates = contextProperties?.Count > 0;
                 while (scopeEnumerator.MoveNext())
                 {
-                    contextProperties = contextProperties ?? CreateNewDictionary(0);
                     var scopeProperty = scopeEnumerator.Current;
                     var name = scopeProperty.Key;
                     if (string.IsNullOrEmpty(name))
                         continue;
+
+                    if (ExcludeProperties.Contains(name))
+                        continue;
+
+                    contextProperties = contextProperties ?? CreateNewDictionary(0);
 
                     object value = scopeProperty.Value;
                     if (SerializeScopeContextProperty(logEvent, name, value, out var serializedValue))

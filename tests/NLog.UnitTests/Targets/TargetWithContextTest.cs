@@ -236,7 +236,7 @@ namespace NLog.UnitTests.Targets
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
-                        <target name='debug' type='contexttarget' includeCallSite='true' includeEventProperties='true' />
+                        <target name='debug' type='contexttarget' includeCallSite='true' includeEventProperties='true' excludeProperties='password' />
                     </targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
@@ -248,17 +248,19 @@ namespace NLog.UnitTests.Targets
 
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Error, logger.Name, "Hello");
             logEvent.Properties["name"] = "Kenny";
+            logEvent.Properties["password"] = "123Password";
             logger.Error(logEvent);
             LogManager.Flush();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
-            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Single(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("name", "Kenny"), lastCombinedProperties);
 
             logger.Error("Hello {name}", "Cartman");
+            logEvent.Properties["Password"] = "123Password";
             LogManager.Flush();
             lastCombinedProperties = target.LastCombinedProperties;
-            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Single(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("name", "Cartman"), lastCombinedProperties);
         }
 
