@@ -121,12 +121,12 @@ namespace NLog.Internal
 #if !NETSTANDARD1_0
             if (exception is StackOverflowException)
             {
-                return true;
+                return true; // StackOverflowException cannot be caught since .NetFramework 2.0
             }
 
             if (exception is ThreadAbortException)
             {
-                return true;
+                return true; // ThreadAbortException will automatically be rethrown at end of catch-block
             }
 #endif
 
