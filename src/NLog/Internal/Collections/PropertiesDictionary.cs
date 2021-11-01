@@ -139,34 +139,33 @@ namespace NLog.Internal
             }
             else
             {
-                if (_eventProperties is null)
+                var eventProperties = _eventProperties;
+                if (eventProperties is null)
                 {
-                    _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count, PropertyKeyComparer.Default);
+                    eventProperties = _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count, PropertyKeyComparer.Default);
                 }
 
-                if (oldMessageProperties != null && _eventProperties.Count > 0)
+                if (oldMessageProperties != null && eventProperties.Count > 0)
                 {
-                    RemoveOldMessageProperties(oldMessageProperties);
+                    RemoveOldMessageProperties(oldMessageProperties, eventProperties);
                 }
 
-                if (newMessageProperties != null && (_eventProperties.Count > 0 || !InsertMessagePropertiesIntoEmptyDictionary(newMessageProperties, _eventProperties)))
+                if (newMessageProperties != null)
                 {
-                    return CreateUniqueMessagePropertiesListSlow(newMessageProperties, _eventProperties);
+                    InsertMessagePropertiesIntoEmptyDictionary(newMessageProperties, eventProperties);
                 }
-                else
-                {
-                    return newMessageProperties;
-                }
+
+                return newMessageProperties;
             }
         }
 
-        private void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties)
+        private void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties, Dictionary<object, PropertyValue> eventProperties)
         {
             for (int i = 0; i < oldMessageProperties.Count; ++i)
             {
-                if (_eventProperties.TryGetValue(oldMessageProperties[i].Name, out var propertyValue) && propertyValue.IsMessageProperty)
+                if (eventProperties.TryGetValue(oldMessageProperties[i].Name, out var propertyValue) && propertyValue.IsMessageProperty)
                 {
-                    _eventProperties.Remove(oldMessageProperties[i].Name);
+                    eventProperties.Remove(oldMessageProperties[i].Name);
                 }
             }
         }
@@ -176,10 +175,7 @@ namespace NLog.Internal
             if (messageProperties?.Count > 0)
             {
                 var eventProperties = new Dictionary<object, PropertyValue>(messageProperties.Count, PropertyKeyComparer.Default);
-                if (!InsertMessagePropertiesIntoEmptyDictionary(messageProperties, eventProperties))
-                {
-                    CreateUniqueMessagePropertiesListSlow(messageProperties, eventProperties);  // Should never happen
-                }
+                InsertMessagePropertiesIntoEmptyDictionary(messageProperties, eventProperties);
                 return eventProperties;
             }
             else
@@ -193,9 +189,9 @@ namespace NLog.Internal
         {
             get
             {
-                if (!IsEmpty && EventProperties.TryGetValue(key, out var valueItem))
+                if (TryGetValue(key, out var valueItem))
                 {
-                    return valueItem.Value;
+                    return valueItem;
                 }
 
                 throw new KeyNotFoundException();
@@ -258,7 +254,8 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public void Clear()
         {
-            _eventProperties?.Clear();
+            if (_eventProperties != null)
+                _eventProperties = null;
             if (_messageProperties != null)
                 _messageProperties = ArrayHelper.Empty<MessageTemplateParameter>();
         }
@@ -419,59 +416,40 @@ namespace NLog.Internal
         /// Attempt to insert the message-template-parameters into an empty dictionary
         /// </summary>
         /// <param name="messageProperties">Message-template-parameters</param>
-        /// <param name="eventProperties">The initially empty dictionary</param>
-        /// <returns>Message-template-parameters was inserted into dictionary without trouble (true/false)</returns>
-        private static bool InsertMessagePropertiesIntoEmptyDictionary(IList<MessageTemplateParameter> messageProperties, Dictionary<object, PropertyValue> eventProperties)
+        /// <param name="eventProperties">The dictionary that initially contains no message-template-parameters</param>
+        private static void InsertMessagePropertiesIntoEmptyDictionary(IList<MessageTemplateParameter> messageProperties, Dictionary<object, PropertyValue> eventProperties)
         {
-            try
+            for (int i = 0; i < messageProperties.Count; ++i)
             {
-                for (int i = 0; i < messageProperties.Count; ++i)
+                try
                 {
                     eventProperties.Add(messageProperties[i].Name, new PropertyValue(messageProperties[i].Value, true));
                 }
-                return true; // We are done
-            }
-            catch (ArgumentException)
-            {
-                // Duplicate keys found, lets try again
-                for (int i = 0; i < messageProperties.Count; ++i)
+                catch (ArgumentException)
                 {
-                    //remove the duplicates
-                    eventProperties.Remove(messageProperties[i].Name);
+                    var duplicateProperty = messageProperties[i];
+                    if (eventProperties.TryGetValue(duplicateProperty.Name, out var propertyValue) && propertyValue.IsMessageProperty)
+                    {
+                        var uniqueName = GenerateUniquePropertyName(duplicateProperty.Name, eventProperties, (newkey, props) => props.ContainsKey(newkey));
+                        eventProperties.Add(uniqueName, new PropertyValue(messageProperties[i].Value, true));
+                        messageProperties[i] = new MessageTemplateParameter(uniqueName, duplicateProperty.Value, duplicateProperty.Format, duplicateProperty.CaptureType);
+                    }
                 }
-                return false;
             }
         }
 
-        /// <summary>
-        /// Attempt to override the existing dictionary values using the message-template-parameters 
-        /// </summary>
-        /// <param name="messageProperties">Message-template-parameters</param>
-        /// <param name="eventProperties">The already filled dictionary</param>
-        /// <returns>List of unique message-template-parameters</returns>
-        private static IList<MessageTemplateParameter> CreateUniqueMessagePropertiesListSlow(IList<MessageTemplateParameter> messageProperties, Dictionary<object, PropertyValue> eventProperties)
+        internal static string GenerateUniquePropertyName<TKey, TValue>(string originalName, IDictionary<TKey, TValue> properties, Func<string, IDictionary<TKey, TValue>, bool> containsKey)
         {
-            List<MessageTemplateParameter> messagePropertiesUnique = null;
-            for (int i = 0; i < messageProperties.Count; ++i)
-            {
-                if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
-                {
-                    if (messagePropertiesUnique is null)
-                    {
-                        messagePropertiesUnique = new List<MessageTemplateParameter>(messageProperties.Count);
-                        for (int j = 0; j < i; ++j)
-                        {
-                            messagePropertiesUnique.Add(messageProperties[j]);
-                        }
-                    }
-                    continue;   // Skip already exists
-                }
+            originalName = originalName ?? string.Empty;
 
-                eventProperties[messageProperties[i].Name] = new PropertyValue(messageProperties[i].Value, true);
-                messagePropertiesUnique?.Add(messageProperties[i]);
+            int newNameIndex = 1;
+            var newItemName = string.Concat(originalName, "_1");
+            while (containsKey(newItemName, properties))
+            {
+                newItemName = string.Concat(originalName, "_", (++newNameIndex).ToString());
             }
 
-            return messagePropertiesUnique ?? messageProperties;
+            return newItemName;
         }
 
         IEnumerator<MessageTemplateParameter> IEnumerable<MessageTemplateParameter>.GetEnumerator()
@@ -547,10 +525,12 @@ namespace NLog.Internal
 
                     return false;
                 }
+                
                 if (_eventEnumeratorCreated)
                 {
                     return MoveNextValidEventProperty();
                 }
+
                 if (HasMessageProperties(_dictionary))
                 {
                     // Move forward to a key that is not overriden
@@ -593,12 +573,13 @@ namespace NLog.Internal
 
             private int? FindNextValidMessagePropertyIndex(int startIndex)
             {
-                if (_dictionary._eventProperties is null)
+                var eventProperties = _dictionary._eventProperties;
+                if (eventProperties is null)
                     return startIndex;
 
                 for (int i = startIndex; i < _dictionary._messageProperties.Count; ++i)
                 {
-                    if (_dictionary._eventProperties.TryGetValue(_dictionary._messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
+                    if (eventProperties.TryGetValue(_dictionary._messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
                     {
                         return i;
                     }

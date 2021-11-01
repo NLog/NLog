@@ -511,7 +511,7 @@ namespace NLog
         /// <returns>String representation of the log event.</returns>
         public override string ToString()
         {
-            return $"Log Event: Logger='{LoggerName}' Level={Level} Message='{FormattedMessage}' SequenceID={SequenceID}";
+            return $"Log Event: Logger='{LoggerName}' Level={Level} Message='{FormattedMessage}'";
         }
 
         /// <summary>

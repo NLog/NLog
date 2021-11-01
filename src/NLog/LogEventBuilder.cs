@@ -177,8 +177,8 @@ namespace NLog
         {
             if (_logEvent != null)
             {
-                _logEvent.Parameters = new object[] { argument };
                 _logEvent.Message = message;
+                _logEvent.Parameters = new object[] { argument };
             }
             return this;
         }
@@ -196,8 +196,8 @@ namespace NLog
         {
             if (_logEvent != null)
             {
-                _logEvent.Parameters = new object[] { argument1, argument2 };
                 _logEvent.Message = message;
+                _logEvent.Parameters = new object[] { argument1, argument2 };
             }
             return this;
         }
@@ -217,8 +217,8 @@ namespace NLog
         {
             if (_logEvent != null)
             {
-                _logEvent.Parameters = new object[] { argument1, argument2, argument3 };
                 _logEvent.Message = message;
+                _logEvent.Parameters = new object[] { argument1, argument2, argument3 };
             }
             return this;
         }
@@ -233,8 +233,8 @@ namespace NLog
         {
             if (_logEvent != null)
             {
-                _logEvent.Parameters = args;
                 _logEvent.Message = message;
+                _logEvent.Parameters = args;
             }
             return this;
         }
@@ -251,8 +251,8 @@ namespace NLog
             if (_logEvent != null)
             {
                 _logEvent.FormatProvider = formatProvider;
-                _logEvent.Parameters = args;
                 _logEvent.Message = message;
+                _logEvent.Parameters = args;
             }
             return this;
         }

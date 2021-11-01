@@ -353,8 +353,6 @@ namespace NLog.UnitTests.Internal
             Assert.Empty(dictionary);
         }
 
-
-
         [Fact]
         public void OverrideMessagePropertiesDictionary()
         {
@@ -450,20 +448,19 @@ namespace NLog.UnitTests.Internal
             });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
-            Assert.Single(dictionary);
+            Assert.Equal(2, dictionary.Count);
             Assert.Equal(42, dictionary["Hello World"]);
+            Assert.Equal(666, dictionary["Hello World_1"]);
 
-            List<MessageTemplateParameter> parameters = new List<MessageTemplateParameter>();
-            parameters.Add(new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal));
-            for (int i = 1; i < 100; ++i)
-                parameters.Add(new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal));
-            logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
+            foreach (var property in dictionary)
             {
-                new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
-                new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal)
-            });
-            Assert.Single(dictionary);
-            Assert.Equal(42, dictionary["Hello World"]);
+                if (property.Value.Equals(42))
+                    Assert.Equal("Hello World", property.Key);
+                else if (property.Value.Equals(666))
+                    Assert.Equal("Hello World_1", property.Key);
+                else
+                    Assert.Null(property.Key);
+            }
         }
 
 #if !NET35
