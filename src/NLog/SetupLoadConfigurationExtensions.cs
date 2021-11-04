@@ -156,6 +156,9 @@ namespace NLog
         /// <summary>
         /// Apply dynamic filtering logic for advanced control of when to redirect output to target.
         /// </summary>
+        /// <remarks>
+        /// Slower than using Logger-name or LogLevel-severity, because of <see cref="LogEventInfo"/> allocation.
+        /// </remarks>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="filter">Filter for controlling whether to write</param>
         /// <param name="filterDefaultAction">Default action if none of the filters match</param>
@@ -173,15 +176,50 @@ namespace NLog
         /// <summary>
         /// Apply dynamic filtering logic for advanced control of when to redirect output to target.
         /// </summary>
+        /// <remarks>
+        /// Slower than using Logger-name or LogLevel-severity, because of <see cref="LogEventInfo"/> allocation.
+        /// </remarks>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="filterMethod">Delegate for controlling whether to write</param>
-        /// <param name="defaultFilterResult">Default action if none of the filters match</param>
-        public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Func<LogEventInfo, FilterResult> filterMethod, FilterResult? defaultFilterResult = null)
+        /// <param name="filterDefaultAction">Default action if none of the filters match</param>
+        public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Func<LogEventInfo, FilterResult> filterMethod, FilterResult? filterDefaultAction = null)
         {
             if (filterMethod is null)
                 throw new ArgumentNullException(nameof(filterMethod));
 
-            return configBuilder.FilterDynamic(new WhenMethodFilter(filterMethod), defaultFilterResult);
+            return configBuilder.FilterDynamic(new WhenMethodFilter(filterMethod), filterDefaultAction);
+        }
+
+        /// <summary>
+        /// Dynamic filtering of LogEvent, where it will be ignored when matching filter-method-delegate
+        /// </summary>
+        /// <remarks>
+        /// Slower than using Logger-name or LogLevel-severity, because of <see cref="LogEventInfo"/> allocation.
+        /// </remarks>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="filterMethod">Delegate for controlling whether to write</param>
+        /// <param name="final">LogEvent will on match also be ignored by following logging-rules</param>
+        public static ISetupConfigurationLoggingRuleBuilder FilterDynamicIgnore(this ISetupConfigurationLoggingRuleBuilder configBuilder, Func<LogEventInfo, bool> filterMethod, bool final = false)
+        {
+            var matchResult = final ? FilterResult.IgnoreFinal : FilterResult.Ignore;
+            var whenMethodFilter = new WhenMethodFilter((evt) => filterMethod(evt) ? matchResult : FilterResult.Neutral) { Action = matchResult };
+            return configBuilder.FilterDynamic(whenMethodFilter, FilterResult.Neutral);
+        }
+
+        /// <summary>
+        /// Dynamic filtering of LogEvent, where it will be logged when matching filter-method-delegate
+        /// </summary>
+        /// <remarks>
+        /// Slower than using Logger-name or LogLevel-severity, because of <see cref="LogEventInfo"/> allocation.
+        /// </remarks>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="filterMethod">Delegate for controlling whether to write</param>
+        /// <param name="final">LogEvent will not be evaluated by following logging-rules</param>
+        public static ISetupConfigurationLoggingRuleBuilder FilterDynamicLog(this ISetupConfigurationLoggingRuleBuilder configBuilder, Func<LogEventInfo, bool> filterMethod, bool final = false)
+        {
+            var matchResult = final ? FilterResult.LogFinal : FilterResult.Log;
+            var whenMethodFilter = new WhenMethodFilter((evt) => filterMethod(evt) ? matchResult : FilterResult.Neutral) { Action = matchResult };
+            return configBuilder.FilterDynamic(whenMethodFilter, final ? FilterResult.IgnoreFinal : FilterResult.Ignore);
         }
 
         /// <summary>
@@ -279,6 +317,7 @@ namespace NLog
                 {
                     loggingRule = configBuilder.FilterMinLevel(finalMinLevel).LoggingRule;
                 }
+
                 loggingRule.FinalMinLevel = finalMinLevel;
             }
             else
@@ -287,7 +326,32 @@ namespace NLog
                 {
                     loggingRule = configBuilder.FilterMaxLevel(LogLevel.MaxLevel).LoggingRule;
                 }
-                loggingRule.Final = true;
+
+                if (loggingRule.Filters.Count == 0)
+                {
+                    loggingRule.Final = true;
+                }
+            }
+
+            if (loggingRule.Filters.Count > 0)
+            {
+                if (loggingRule.FilterDefaultAction == FilterResult.Ignore)
+                {
+                    loggingRule.FilterDefaultAction = FilterResult.IgnoreFinal;
+                }
+
+                for (int i = 0; i < loggingRule.Filters.Count; ++i)
+                {
+                    if (loggingRule.Filters[i].Action == FilterResult.Ignore)
+                    {
+                        loggingRule.Filters[i].Action = FilterResult.IgnoreFinal;
+                    }
+                }
+
+                if (loggingRule.Targets.Count == 0)
+                {
+                    loggingRule.Targets.Add(new NullTarget());
+                }
             }
 
             if (!configBuilder.Configuration.LoggingRules.Contains(loggingRule))

@@ -752,12 +752,53 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterMethod()
+        void SetupBuilder_FilterDynamicMethod()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterMinLevel(LogLevel.Debug).FilterDynamic(evt => evt.Properties.ContainsKey("Enabled") ? NLog.Filters.FilterResult.Log : NLog.Filters.FilterResult.Ignore).WriteTo(new DebugTarget() { Layout = "${message}" })).GetCurrentClassLogger();
             var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
             Assert.Single(logFactory.Configuration.AllTargets);
+            Assert.NotNull(target);
+
+            logger.Debug("Debug Level {Enabled:l}", "Yes");
+            Assert.Equal("Debug Level Yes", target.LastMessage);
+
+            logger.Info("Info Level No");
+            Assert.Equal("Debug Level Yes", target.LastMessage);
+
+            logger.Info("Info Level {Enabled:l}", "Yes");
+            Assert.Equal("Info Level Yes", target.LastMessage);
+        }
+
+        [Fact]
+        void SetupBuilder_FilterDynamicLog()
+        {
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterDynamicLog(evt => evt.Properties.ContainsKey("Enabled")).WriteTo(new DebugTarget() { Layout = "${message}" })).GetCurrentClassLogger();
+            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
+            Assert.Single(logFactory.Configuration.AllTargets);
+            Assert.NotNull(target);
+
+            logger.Debug("Debug Level {Enabled:l}", "Yes");
+            Assert.Equal("Debug Level Yes", target.LastMessage);
+
+            logger.Info("Info Level No");
+            Assert.Equal("Debug Level Yes", target.LastMessage);
+
+            logger.Info("Info Level {Enabled:l}", "Yes");
+            Assert.Equal("Info Level Yes", target.LastMessage);
+        }
+
+        [Fact]
+        void SetupBuilder_FilterDynamicIgnore()
+        {
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c =>
+            {
+                c.ForLogger().FilterDynamicIgnore(evt => !evt.Properties.ContainsKey("Enabled")).WriteToNil();
+                c.ForLogger().WriteTo(new DebugTarget() { Layout = "${message}" });
+            }).GetCurrentClassLogger();
+            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
             Assert.NotNull(target);
 
             logger.Debug("Debug Level {Enabled:l}", "Yes");
