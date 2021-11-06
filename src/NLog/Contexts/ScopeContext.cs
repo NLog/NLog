@@ -104,7 +104,7 @@ namespace NLog
         {
 #if !NET45
             var parent = GetAsyncLocalContext();
-            
+
             var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
             if (allProperties != null)
             {
@@ -207,6 +207,7 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             SetAsyncLocalContext(null);
+            ScopeContextAsyncPropertyCollector.Clear();
 #else
             ClearMappedContextCallContext();
             ClearNestedContextCallContext();
@@ -221,7 +222,8 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             var contextState = GetAsyncLocalContext();
-            return contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            var res = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            return System.Linq.Enumerable.Union(res, ScopeContextAsyncPropertyCollector.GetAllProperties());
 #else
             var mappedContext = GetMappedContextCallContext();
             if (mappedContext?.Count > 0)
@@ -258,13 +260,13 @@ namespace NLog
             if (contextState != null)
             {
                 var mappedContext = contextState?.CaptureContextProperties(0, out var _);
-                if (mappedContext != null)
+                if (mappedContext != null && TryLookupProperty(mappedContext, key, out value))
                 {
-                    return TryLookupProperty(mappedContext, key, out value);
+                    return true;
                 }
             }
-            value = null;
-            return false;
+            // Property collectors - being less specific - have lower priority than other contexts.
+            return ScopeContextAsyncPropertyCollector.TryGetProperty(key, out value);
 #else
             var mappedContext = GetMappedContextCallContext();
             if (mappedContext != null && mappedContext.TryGetValue(key, out value))
@@ -278,6 +280,41 @@ namespace NLog
             return false;
 #endif
         }
+
+#if !NET35 && !NET40 && !NET45
+        /// <summary>
+        /// Create a new property collector and push it onto the collector stack.
+        /// If the stack is empty then the new collector is empty, otherwise it inherits all values from the top-stack item which becomes its parent.
+        /// Modifying the new collector has no influence on its parent.
+        /// </summary>
+        /// <returns>A scope object. Its disposal means popping the collector stack.</returns>
+        public static IDisposable PushPropertyCollector()
+        {
+            return ScopeContextAsyncPropertyCollector.PushSnapshot();
+        }
+
+        /// <summary>
+        /// Add a property to the property collector.
+        /// A collector is created if needed.
+        /// If the key already exists inside the collector, the value is replaced by the new one.
+        /// </summary>
+        /// <param name="key">Name of property</param>
+        /// <param name="value">Value of property</param>
+        public static void CollectProperty(string key, object value)
+        {
+            ScopeContextAsyncPropertyCollector.CollectProperty(key, value);
+        }
+
+        /// <summary>
+        /// Removes a property from the property collector.
+        /// No error if the key does not exist inside the collector.
+        /// </summary>
+        /// <param name="key">Name of property</param>
+        public static void RemoveProperty(string key)
+        {
+            ScopeContextAsyncPropertyCollector.RemoveProperty(key);
+        }
+#endif
 
         /// <summary>
         /// Retrieves all nested states inside the logical context scope stack

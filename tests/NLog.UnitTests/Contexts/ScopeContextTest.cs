@@ -194,7 +194,7 @@ namespace NLog.UnitTests.Contexts
 
             // Assert
 #if !NET35 && !NET40 && !NET45
-            Assert.Same(expectedProperties, allPropertiesState);
+            Assert.Equal(expectedProperties, allPropertiesState);
 #endif
             Assert.Equal(2, allProperties.Count);
             Assert.Equal(expectedString, allProperties["Hello"]);
@@ -242,7 +242,7 @@ namespace NLog.UnitTests.Contexts
             ScopeContext.Clear();
             var expectedString = "World";
             var expectedId = 42;
-            IReadOnlyCollection<KeyValuePair<string,IConvertible>> expectedProperties = new[] { new KeyValuePair<string, IConvertible>("Hello", expectedString), new KeyValuePair<string, IConvertible>("RequestId", expectedId) };
+            IReadOnlyCollection<KeyValuePair<string, IConvertible>> expectedProperties = new[] { new KeyValuePair<string, IConvertible>("Hello", expectedString), new KeyValuePair<string, IConvertible>("RequestId", expectedId) };
             if (convertDictionary)
                 expectedProperties = expectedProperties.ToDictionary(i => i.Key, i => i.Value);
             Dictionary<string, object> allProperties = null;
@@ -311,7 +311,7 @@ namespace NLog.UnitTests.Contexts
                 {
                     topNestedState2 = ScopeContext.PeekNestedState();
                     allNestedStates = ScopeContext.GetAllNestedStates();
-                }                   
+                }
             }
             var failed = ScopeContext.PeekNestedState() != null;
 
@@ -747,5 +747,51 @@ namespace NLog.UnitTests.Contexts
             Assert.False(success2);
             Assert.Null(propertyValue2);
         }
+
+#if !NET35 && !NET40 && !NET45
+        [Fact]
+        public async System.Threading.Tasks.Task PropertyCollectorBasicTests()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            object expectedValueBeforeFirstCollection = null;
+            var expectedValueAfterFirstCollection = "Bob";
+            var expectedValueAfterSecondCollection = "Alice";
+            object collectedBeforeFirstPush, collectedAfterFirstPush, collectedInNestedCall = null, collectedAfterSecondPush = null, collectedAfterComingBackToParent, collectedAfterUsing;
+            Dictionary<string, object> allValuesBeforePush, allValuesAfterFirstPush;
+
+            // Act
+            using (ScopeContext.PushPropertyCollector())
+            {
+                allValuesBeforePush = ScopeContext.GetAllProperties().ToDictionary(k => k.Key, k => k.Value);
+                ScopeContext.TryGetProperty("name", out collectedBeforeFirstPush);
+                ScopeContext.CollectProperty("name", expectedValueAfterFirstCollection);
+                ScopeContext.TryGetProperty("name", out collectedAfterFirstPush);
+                allValuesAfterFirstPush = ScopeContext.GetAllProperties().ToDictionary(k => k.Key, k => k.Value);
+
+                await System.Threading.Tasks.Task.Run(() =>
+                {
+                    ScopeContext.TryGetProperty("name", out collectedInNestedCall);
+                    ScopeContext.CollectProperty("name", expectedValueAfterSecondCollection);
+                    ScopeContext.TryGetProperty("name", out collectedAfterSecondPush);
+                });
+
+                ScopeContext.TryGetProperty("name", out collectedAfterComingBackToParent);
+            }
+            ScopeContext.TryGetProperty("name", out collectedAfterUsing);
+
+            // Assert
+            Assert.Equal(expectedValueBeforeFirstCollection, collectedBeforeFirstPush);
+            Assert.Equal(expectedValueAfterFirstCollection, collectedAfterFirstPush);
+            Assert.Equal(expectedValueAfterFirstCollection, collectedInNestedCall);
+            Assert.Equal(expectedValueAfterSecondCollection, collectedAfterSecondPush);
+            Assert.Equal(expectedValueAfterSecondCollection, collectedAfterComingBackToParent); // The actual goal of this type of context: async child to parent sharing. 
+            Assert.Equal(expectedValueBeforeFirstCollection, collectedAfterUsing);
+
+            Assert.Equal(0, allValuesBeforePush.Count());
+            Assert.Equal(1, allValuesAfterFirstPush.Count());
+            Assert.Equal("name", allValuesAfterFirstPush.First().Key);
+        }
+#endif
     }
 }
