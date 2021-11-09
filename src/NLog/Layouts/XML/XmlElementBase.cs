@@ -368,6 +368,9 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
+                        if (ExcludeProperties.Contains(scopeProperty.Key))
+                            continue;
+
                         AppendXmlPropertyValue(scopeProperty.Key, scopeProperty.Value, sb, orgLength);
                     }
                 }
