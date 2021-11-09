@@ -154,21 +154,23 @@ namespace NLog.UnitTests.Targets.Wrappers
             myTarget.Close();
         }
 
-        [Fact]
-        public void BufferingTargetWithFallbackGroupAndFirstTargetFails_Write_SecondTargetWritesEvents()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void BufferingTargetWithFallbackGroupAndFirstTargetFails_Write_SecondTargetWritesEvents(bool enableBatchWrite)
         {
-            var myTarget = new MyTarget { FailCounter = 1 };
+            const int totalEvents = 10;
+
+            var myTarget = new MyTarget { FailCounter = totalEvents / 2 };
             var myTarget2 = new MyTarget();
-            var fallbackGroup = new FallbackGroupTarget(myTarget, myTarget2);
+            var fallbackGroup = new FallbackGroupTarget(myTarget, myTarget2) { EnableBatchWrite = enableBatchWrite };
             var targetWrapper = new BufferingTargetWrapper
             {
                 WrappedTarget = fallbackGroup,
-                BufferSize = 10,
+                BufferSize = totalEvents,
             };
 
             InitializeTargets(myTarget, targetWrapper, myTarget2, fallbackGroup);
-
-            const int totalEvents = 100;
 
             var continuationHit = new bool[totalEvents];
             var lastException = new Exception[totalEvents];
@@ -187,7 +189,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 // write 9 events - they will all be buffered and no final continuation will be reached
                 var eventCounter = 0;
-                for (var i = 0; i < 9; ++i)
+                for (var i = 0; i < totalEvents - 1; ++i)
                 {
                     targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
                 }
@@ -196,8 +198,20 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 // write one more event - everything will be flushed
                 targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-                Assert.Equal(1, myTarget.WriteCount);
-                Assert.Equal(10, myTarget2.WriteCount);
+                if (enableBatchWrite)
+                {
+                    Assert.Equal(1, myTarget.BufferedWriteCount);
+                    Assert.Equal(totalEvents, myTarget.BufferedTotalEvents);
+                    Assert.Equal(totalEvents, myTarget.WriteCount);
+                    Assert.Equal(totalEvents / 2, myTarget2.WriteCount);
+                }
+                else
+                {
+                    Assert.Equal(0, myTarget.BufferedTotalEvents);
+                    Assert.Equal(0, myTarget.BufferedWriteCount);
+                    Assert.Equal(1, myTarget.WriteCount);
+                    Assert.Equal(totalEvents, myTarget2.WriteCount);
+                }
 
                 targetWrapper.Close();
                 myTarget.Close();
