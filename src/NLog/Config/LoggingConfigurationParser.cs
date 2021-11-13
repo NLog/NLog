@@ -690,7 +690,7 @@ namespace NLog.Config
                 if (enableLevels.IndexOf('{') >= 0)
                 {
                     SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
-                    rule.EnableLoggingForLevels(simpleLayout);
+                    rule.EnableLoggingForLevelLayout(simpleLayout);
                 }
                 else
                 {
@@ -708,7 +708,7 @@ namespace NLog.Config
                 {
                     SimpleLayout minLevelLayout = ParseLevelLayout(minLevel);
                     SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
-                    rule.EnableLoggingForRange(minLevelLayout, maxLevelLayout);
+                    rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout);
                 }
                 else
                 {

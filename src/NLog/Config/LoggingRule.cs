@@ -100,7 +100,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> or see cref="EnableLoggingForLevels"/> to enable logging.
+        /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> or <see cref="EnableLoggingForLevels"/> to enable logging.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern used for <see cref="LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
@@ -226,12 +226,12 @@ namespace NLog.Config
             _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, true);
         }
 
-        internal void EnableLoggingForLevels(NLog.Layouts.SimpleLayout simpleLayout)
+        internal void EnableLoggingForLevelLayout(NLog.Layouts.SimpleLayout simpleLayout)
         {
             _logLevelFilter = new DynamicLogLevelFilter(this, simpleLayout);
         }
 
-        internal void EnableLoggingForRange(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel)
+        internal void EnableLoggingForLevelsLayout(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel)
         {
             _logLevelFilter = new DynamicRangeLevelFilter(this, minLevel, maxLevel);
         }
@@ -263,7 +263,7 @@ namespace NLog.Config
         /// <summary>
         /// Enables logging the levels between (included) <paramref name="minLevel"/> and <paramref name="maxLevel"/>. All the other levels will be disabled.
         /// </summary>
-        /// <param name="minLevel">>Minimum log level needed to trigger this rule.</param>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         public void SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel)
         {
