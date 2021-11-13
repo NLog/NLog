@@ -33,6 +33,7 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
 
@@ -93,6 +94,42 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Fallback Options' order='10' />
         public bool ReturnToFirstOnSuccess { get; set; }
 
+        /// <summary>
+        /// Gets or sets whether to enable batching, but fallback will be handled individually
+        /// </summary>
+        /// <docgen category='Retrying Options' order='10' />
+        public bool EnableBatchWrite { get; set; } = true;
+
+        /// <summary>
+        /// Forwards the log event to the sub-targets until one of them succeeds.
+        /// </summary>
+        /// <param name="logEvents">The log event.</param>
+        protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (logEvents.Count == 1)
+            {
+                WriteAsyncThreadSafe(logEvents[0]);
+            }
+            else if (EnableBatchWrite)
+            {
+                var targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
+
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    logEvents[i] = WrapWithFallback(logEvents[i], targetToInvoke);
+                }
+
+                Targets[targetToInvoke].WriteAsyncLogEvents(logEvents);
+            }
+            else
+            {
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    WriteAsyncThreadSafe(logEvents[i]);
+                }
+            }
+        }
+
         /// <inheritdoc/>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
@@ -102,68 +139,15 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Forwards the log event to the sub-targets until one of them succeeds.
         /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// The method remembers the last-known-successful target
-        /// and starts the iteration from it.
-        /// If <see cref="ReturnToFirstOnSuccess"/> is set, the method
-        /// resets the target to the first target
-        /// stored in <see cref="Targets"/>.
-        /// </remarks>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncContinuation continuation = null;
-            int tryCounter = 0;
-            int targetToInvoke = 0;
+            var targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
+            var result = WrapWithFallback(logEvent, targetToInvoke);
+            Targets[targetToInvoke].WriteAsyncLogEvent(result);
+        }
 
-            continuation = ex =>
-                {
-                    if (ex is null)
-                    {
-                        // success
-                        if (ReturnToFirstOnSuccess)
-                        {
-#pragma warning disable S1066 // Collapsible "if" statements should be merged
-                            if (Interlocked.Read(ref _currentTarget) != 0)
-#pragma warning restore S1066 // Collapsible "if" statements should be merged
-                            {
-                                InternalLogger.Debug("{0}: Target '{1}' succeeded. Returning to the first one.", this, Targets[targetToInvoke]);
-                                Interlocked.Exchange(ref _currentTarget, 0);
-                            }
-                        }
-
-                        logEvent.Continuation(null);
-                        return;
-                    }
-
-                    // failure
-                    InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Proceeding to the next one.", this, Targets[targetToInvoke]);
-
-                    // error while writing, go to the next one
-                    tryCounter++;
-                    int nextTarget = (targetToInvoke + 1) % Targets.Count;
-                    Interlocked.CompareExchange(ref _currentTarget, nextTarget, targetToInvoke);
-                    if (tryCounter >= Targets.Count)
-                    {
-                        targetToInvoke = -1;
-                    }
-                    else
-                    {
-                        targetToInvoke = nextTarget;
-                    }
-
-                    if (targetToInvoke >= 0)
-                    {
-                        Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
-                    }
-                    else
-                    {
-                        logEvent.Continuation(ex);
-                    }
-                };
-
-            targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
-
+        private AsyncLogEventInfo WrapWithFallback(AsyncLogEventInfo logEvent, int targetToInvoke)
+        {
             for (int i = 0; i < Targets.Count; ++i)
             {
                 if (i != targetToInvoke)
@@ -172,7 +156,55 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+            AsyncContinuation continuation = null;
+            int tryCounter = 0;
+            continuation = ex =>
+            {
+                if (ex is null)
+                {
+                    // success
+                    if (ReturnToFirstOnSuccess)
+                    {
+#pragma warning disable S1066 // Collapsible "if" statements should be merged
+                        if (Interlocked.Read(ref _currentTarget) != 0)
+#pragma warning restore S1066 // Collapsible "if" statements should be merged
+                        {
+                            InternalLogger.Debug("{0}: Target '{1}' succeeded. Returning to the first one.", this, Targets[targetToInvoke]);
+                            Interlocked.Exchange(ref _currentTarget, 0);
+                        }
+                    }
+
+                    logEvent.Continuation(null);
+                    return;
+                }
+
+                // failure
+                InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Proceeding to the next one.", this, Targets[targetToInvoke]);
+
+                // error while writing, go to the next one
+                tryCounter++;
+                int nextTarget = (targetToInvoke + 1) % Targets.Count;
+                Interlocked.CompareExchange(ref _currentTarget, nextTarget, targetToInvoke);
+                if (tryCounter >= Targets.Count)
+                {
+                    targetToInvoke = -1;
+                }
+                else
+                {
+                    targetToInvoke = nextTarget;
+                }
+
+                if (targetToInvoke >= 0)
+                {
+                    Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                }
+                else
+                {
+                    logEvent.Continuation(ex);
+                }
+            };
+
+            return logEvent.LogEvent.WithContinuation(continuation);
         }
     }
 }
