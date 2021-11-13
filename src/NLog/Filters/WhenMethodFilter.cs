@@ -55,7 +55,13 @@ namespace NLog.Filters
         /// <inheritdoc/>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
-            return _filterMethod(logEvent);
+            var result = _filterMethod(logEvent);
+            if (Action == FilterResult.Neutral)
+                return result;
+            else if (result != FilterResult.Neutral)
+                return Action;
+            else
+                return FilterResult.Neutral;
         }
     }
 }
