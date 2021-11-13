@@ -235,16 +235,7 @@ namespace NLog.Targets
         /// <returns>New (unique) value (or null to skip value). If the same value is used then the item will be overwritten</returns>
         protected virtual string GenerateUniqueItemName(LogEventInfo logEvent, string itemName, object itemValue, IDictionary<string, object> combinedProperties)
         {
-            itemName = itemName ?? string.Empty;
-
-            int newNameIndex = 1;
-            var newItemName = string.Concat(itemName, "_1");
-            while (combinedProperties.ContainsKey(newItemName))
-            {
-                newItemName = string.Concat(itemName, "_", (++newNameIndex).ToString());
-            }
-
-            return newItemName;
+            return PropertiesDictionary.GenerateUniquePropertyName(itemName, combinedProperties, (newKey, props) => props.ContainsKey(newKey));
         }
 
         private bool CombineProperties(LogEventInfo logEvent, Layout contextLayout, ref IDictionary<string, object> combinedProperties)
