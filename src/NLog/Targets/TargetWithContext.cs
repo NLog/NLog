@@ -217,12 +217,12 @@ namespace NLog.Targets
                 }
             }
             combinedProperties = GetContextProperties(logEvent, combinedProperties);
-            return combinedProperties ?? new Dictionary<string, object>();
+            return combinedProperties ?? new Dictionary<string, object>(StringComparer.Ordinal);
         }
 
         private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
         {
-            return new Dictionary<string, object>(Math.Max(initialCapacity, 3));
+            return new Dictionary<string, object>(Math.Max(initialCapacity, 3), StringComparer.Ordinal);
         }
 
         /// <summary>

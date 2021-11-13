@@ -68,6 +68,7 @@ namespace NLog.Layouts
             Name = name;
             Layout = layout;
             Encode = encode;
+            IncludeEmptyValue = false;
         }
 
         /// <summary>
@@ -143,10 +144,7 @@ namespace NLog.Layouts
             set
             {
                 _includeEmptyValue = value;
-                if (!value)
-                    DefaultValue = new Layout<string>(null);
-                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
-                    DefaultValue = null;
+                _layoutInfo.ForceDefaultValueNull = !value;
             }
         }
         private bool _includeEmptyValue;

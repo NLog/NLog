@@ -67,6 +67,6 @@ namespace NLog.Targets
         /// Gets or sets whether an attribute with empty value should be included in the output
         /// </summary>
         /// <docgen category='Parameter Options' order='100' />
-        public bool IncludeEmptyValue { get; set; } = true;
+        public bool IncludeEmptyValue { get; set; }
     }
 }

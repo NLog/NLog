@@ -44,6 +44,8 @@ namespace NLog.Layouts
     [NLogConfigurationItem]
     public sealed class ValueTypeLayoutInfo
     {
+        private static readonly Layout<string> _fixedNullValue = new Layout<string>(null);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ValueTypeLayoutInfo" /> class.
         /// </summary>
@@ -114,6 +116,23 @@ namespace NLog.Layouts
         private object _defaultValueObject;
 
         /// <summary>
+        /// Gets or sets the fallback value should be null (instead of default value of <see cref="ValueType"/>) when result value is not available
+        /// </summary>
+        public bool ForceDefaultValueNull
+        {
+            get => _forceDefaultValueNull;
+            set
+            {
+                _forceDefaultValueNull = value;
+                if (value)
+                    DefaultValue = _fixedNullValue;
+                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
+                    DefaultValue = null;
+            }
+        }
+        private bool _forceDefaultValueNull;
+
+        /// <summary>
         /// Gets or sets format used for parsing parameter string-value for type-conversion
         /// </summary>
         public string ValueParseFormat
@@ -153,11 +172,10 @@ namespace NLog.Layouts
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         public object RenderValue(LogEventInfo logEvent)
         {
-            var defaultValue = _defaultValueObject ?? (_defaultValueObject = CreateTypedDefaultValue());
-
             var layout = Layout;
             if (_typedLayout != null)
             {
+                var defaultValue = GetTypedDefaultValue();
                 return _typedLayout.RenderValue(logEvent, defaultValue);
             }
             else if (layout != null)
@@ -171,7 +189,7 @@ namespace NLog.Layouts
                 var stringValue = layout.Render(logEvent) ?? string.Empty;
                 if (string.IsNullOrEmpty(stringValue))
                 {
-                    return defaultValue;
+                    return GetTypedDefaultValue();
                 }
 
                 return stringValue;
@@ -180,6 +198,11 @@ namespace NLog.Layouts
             {
                 return null;
             }
+        }
+
+        private object GetTypedDefaultValue()
+        {
+            return _defaultValueObject ?? (_defaultValueObject = CreateTypedDefaultValue());
         }
 
         private Layout CreateTypedLayout(Type valueType, object existingValue)
