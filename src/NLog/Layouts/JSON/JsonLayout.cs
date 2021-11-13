@@ -288,6 +288,9 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
+                        if (ExcludeProperties.Contains(scopeProperty.Key))
+                            continue;
+
                         AppendJsonPropertyValue(scopeProperty.Key, scopeProperty.Value, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                     }
                 }
