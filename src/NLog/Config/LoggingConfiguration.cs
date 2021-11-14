@@ -82,6 +82,7 @@ namespace NLog.Config
             LogFactory = logFactory ?? LogManager.LogFactory;
             LoggingRules = new List<LoggingRule>();
             _variables = new ConfigVariablesDictionary(this);
+            DefaultCultureInfo = LogFactory._defaultCultureInfo;
         }
 
         /// <summary>

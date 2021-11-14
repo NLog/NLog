@@ -370,13 +370,18 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
+        /// Gets or sets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
         /// </summary>
         /// <value>
         /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
         /// </value>
         [CanBeNull]
-        public CultureInfo DefaultCultureInfo => _config?.DefaultCultureInfo;
+        public CultureInfo DefaultCultureInfo
+        {
+            get => _config is null ? _defaultCultureInfo : _config.DefaultCultureInfo;
+            set => _defaultCultureInfo = value;
+        }
+        internal CultureInfo _defaultCultureInfo;
 
         internal static void LogConfigurationInitialized()
         {
@@ -1128,7 +1133,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Overwrite the paths (including filename) for the possible NLog config files.
+        /// Overwrite the candidates paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
         public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)

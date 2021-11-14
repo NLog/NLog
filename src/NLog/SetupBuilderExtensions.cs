@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using NLog.Config;
     using NLog.Internal;
@@ -58,6 +59,15 @@ namespace NLog
         public static Logger GetLogger(this ISetupBuilder setupBuilder, string name)
         {
             return setupBuilder.LogFactory.GetLogger(name);
+        }
+
+        /// <summary>
+        /// Configures general options for NLog LogFactory before loading NLog config
+        /// </summary>
+        public static ISetupBuilder SetupLogFactory(this ISetupBuilder setupBuilder, Action<ISetupLogFactoryBuilder> logfactoryBuilder)
+        {
+            logfactoryBuilder(new SetupLogFactoryBuilder(setupBuilder.LogFactory));
+            return setupBuilder;
         }
 
         /// <summary>
@@ -122,10 +132,25 @@ namespace NLog
         /// <summary>
         /// Loads NLog config from filename <paramref name="configFile"/> if provided, else fallback to scanning for NLog.config
         /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="configFile">Explicit configuration file to be read (Default NLog.config from candidates paths)</param>
+        /// <param name="optional">Whether to allow application to run when NLog config is not available</param>
         public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, string configFile = null, bool optional = true)
         {
             setupBuilder.LogFactory.LoadConfiguration(configFile, optional);
             return setupBuilder;
+        }
+
+        /// <summary>
+        /// Loads NLog config from file-paths <paramref name="candidateFilePaths"/> if provided, else fallback to scanning for NLog.config
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="candidateFilePaths">Candidates file paths (including filename) where to scan for NLog config files</param>
+        /// <param name="optional">Whether to allow application to run when NLog config is not available</param>
+        public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, IEnumerable<string> candidateFilePaths, bool optional = true)
+        {
+            setupBuilder.LogFactory.SetCandidateConfigFilePaths(candidateFilePaths);
+            return setupBuilder.LoadConfigurationFromFile(default(string), optional);
         }
 
         /// <summary>
