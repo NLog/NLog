@@ -120,6 +120,7 @@ namespace NLog.Config
         {
             var sortedList = CreateUniqueSortedListFromConfig(nlogConfig);
 
+            CultureInfo defaultCultureInfo = DefaultCultureInfo ?? LogFactory._defaultCultureInfo;
             bool? parseMessageTemplates = null;
             bool internalLoggerEnabled = false;
             bool autoLoadExtensions = false;
@@ -139,7 +140,7 @@ namespace NLog.Config
                         break;
                     case "USEINVARIANTCULTURE":
                         if (ParseBooleanValue(configItem.Key, configItem.Value, false))
-                            DefaultCultureInfo = CultureInfo.InvariantCulture;
+                            defaultCultureInfo = DefaultCultureInfo = CultureInfo.InvariantCulture;
                         break;
                     case "KEEPVARIABLESONRELOAD":
                         LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
@@ -184,6 +185,11 @@ namespace NLog.Config
                             throw configException;
                         break;
                 }
+            }
+
+            if (defaultCultureInfo != null && !ReferenceEquals(DefaultCultureInfo, defaultCultureInfo))
+            {
+                DefaultCultureInfo = defaultCultureInfo;
             }
 
             if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())

@@ -76,6 +76,127 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void SetupExtensionsSetTimeSourcAccurateUtcTest()
+        {
+            var currentTimeSource = NLog.Time.TimeSource.Current;
+            try
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupLogFactory(builder => builder.SetTimeSourcAccurateUtc());
+
+                // Assert
+                Assert.Same(NLog.Time.AccurateUtcTimeSource.Current, NLog.Time.TimeSource.Current);
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = currentTimeSource;
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsSetTimeSourcAccurateLocalTest()
+        {
+            var currentTimeSource = NLog.Time.TimeSource.Current;
+            try
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupLogFactory(builder => builder.SetTimeSourcAccurateLocal());
+
+                // Assert
+                Assert.Same(NLog.Time.AccurateLocalTimeSource.Current, NLog.Time.TimeSource.Current);
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = currentTimeSource;
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsSetGlobalContextPropertyTest()
+        {
+            // Arrange
+            NLog.GlobalDiagnosticsContext.Clear();
+
+            try
+            {
+                // Act
+                var logFactory = new LogFactory();
+                logFactory.Setup().SetupLogFactory(builder => builder.SetGlobalContextProperty(nameof(SetupExtensionsSetGlobalContextPropertyTest), "Yes"));
+
+                // Assert
+                Assert.Equal("Yes", NLog.GlobalDiagnosticsContext.Get(nameof(SetupExtensionsSetGlobalContextPropertyTest)));
+            }
+            finally
+            {
+                NLog.GlobalDiagnosticsContext.Clear();
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsSetAutoShutdownTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            Assert.True(logFactory.AutoShutdown);
+
+            // Act
+            logFactory.Setup().SetupLogFactory(builder => builder.SetAutoShutdown(false));
+
+            // Assert
+            Assert.False(logFactory.AutoShutdown);
+        }
+
+        [Fact]
+        public void SetupExtensionsSetDefaultCultureInfoTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            Assert.Null(logFactory.DefaultCultureInfo);
+
+            // Act
+            logFactory.Setup().SetupLogFactory(builder => builder.SetDefaultCultureInfo(System.Globalization.CultureInfo.InvariantCulture));
+            logFactory.Setup().LoadConfigurationFromXml("<nlog></nlog>");
+
+            // Assert
+            Assert.Same(System.Globalization.CultureInfo.InvariantCulture, logFactory.DefaultCultureInfo);
+            Assert.Same(System.Globalization.CultureInfo.InvariantCulture, logFactory.Configuration.DefaultCultureInfo);
+        }
+
+        [Fact]
+        public void SetupExtensionsSetGlobalThresholdTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            Assert.Equal(LogLevel.Trace, logFactory.GlobalThreshold);
+
+            // Act
+            logFactory.Setup().SetupLogFactory(builder => builder.SetGlobalThreshold(LogLevel.Error));
+
+            // Assert
+            Assert.Equal(LogLevel.Error, logFactory.GlobalThreshold);
+        }
+
+        [Fact]
+        public void SetupExtensionsSetThrowConfigExceptionsTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            Assert.Equal(default(bool?), logFactory.ThrowConfigExceptions);
+
+            // Act
+            logFactory.Setup().SetupLogFactory(builder => builder.SetThrowConfigExceptions(true));
+
+            // Assert
+            Assert.True(logFactory.ThrowConfigExceptions);
+        }
+
+        [Fact]
         public void SetupExtensionsAutoLoadExtensionsTest()
         {
             // Arrange

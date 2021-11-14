@@ -129,7 +129,7 @@ namespace NLog.Config
         /// <typeparam name="T">Type of interface</typeparam>
         /// <param name="serviceRepository">The repo</param>
         /// <param name="singleton">Singleton object to use for override</param>
-        public static ServiceRepository RegisterSingleton<T>(this ServiceRepository serviceRepository, T singleton) where T : class
+        internal static ServiceRepository RegisterSingleton<T>(this ServiceRepository serviceRepository, T singleton) where T : class
         {
             serviceRepository.RegisterService(typeof(T), singleton);
             return serviceRepository;
@@ -138,7 +138,7 @@ namespace NLog.Config
         /// <summary>
         /// Registers the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
-        public static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
+        internal static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
         {
             if (valueFormatter is null)
             {
@@ -149,7 +149,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        public static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
+        internal static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
         {
             if (jsonConverter is null)
             {
@@ -160,7 +160,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        public static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
+        internal static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
         {
             if (converter is null)
             {
@@ -171,7 +171,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        public static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
+        internal static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
         {
             if (transformer is null)
             {
@@ -182,7 +182,7 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        public static ServiceRepository RegisterMessageTemplateParser(this ServiceRepository serviceRepository, bool? messageTemplateParser)
+        internal static ServiceRepository RegisterMessageTemplateParser(this ServiceRepository serviceRepository, bool? messageTemplateParser)
         {
             if (messageTemplateParser == false)
             {
@@ -203,13 +203,13 @@ namespace NLog.Config
             return serviceRepository;
         }
 
-        public static bool? ResolveMessageTemplateParser(this ServiceRepository serviceRepository)
+        internal static bool? ResolveMessageTemplateParser(this ServiceRepository serviceRepository)
         {
             var messageFormatter = serviceRepository.GetService<ILogMessageFormatter>();
             return messageFormatter?.MessageTemplateParser;
         }
 
-        public static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository)
+        internal static ServiceRepository RegisterDefaults(this ServiceRepository serviceRepository)
         {
             serviceRepository.RegisterSingleton<IServiceProvider>(serviceRepository);
             serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
