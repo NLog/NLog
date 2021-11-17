@@ -41,7 +41,7 @@ namespace NLog
     /// Defines available log levels.
     /// </summary>
     [TypeConverter(typeof(Attributes.LogLevelTypeConverter))]
-    public sealed class LogLevel : IComparable<LogLevel>, IComparable, IEquatable<LogLevel>, IConvertible
+    public sealed class LogLevel : IComparable<LogLevel>, IComparable, IEquatable<LogLevel>, IFormattable
     {
         /// <summary>
         /// Trace log level.
@@ -320,6 +320,14 @@ namespace NLog
             return _name;
         }
 
+        string IFormattable.ToString(string format, IFormatProvider formatProvider)
+        {
+            if (string.IsNullOrEmpty(format) || (!"D".Equals(format, StringComparison.OrdinalIgnoreCase)))
+                return _name;
+            else
+                return _ordinal.ToString(); // Like Enum.ToString()
+        }
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
@@ -372,97 +380,5 @@ namespace NLog
         {
             return _ordinal - (other ?? LogLevel.Off)._ordinal;
         }
-
-        #region Implementation of IConvertible
-
-        TypeCode IConvertible.GetTypeCode()
-        {
-            return TypeCode.Object;
-        }
-
-        byte IConvertible.ToByte(IFormatProvider provider)
-        {
-            return Convert.ToByte(_ordinal);
-        }
-
-        bool IConvertible.ToBoolean(IFormatProvider provider)
-        {
-            throw new InvalidCastException();
-        }
-
-        char IConvertible.ToChar(IFormatProvider provider)
-        {
-            return Convert.ToChar(_ordinal);
-        }
-
-        DateTime IConvertible.ToDateTime(IFormatProvider provider)
-        {
-            throw new InvalidCastException();
-        }
-
-        decimal IConvertible.ToDecimal(IFormatProvider provider)
-        {
-            return Convert.ToDecimal(_ordinal);
-        }
-
-        double IConvertible.ToDouble(IFormatProvider provider)
-        {
-            return _ordinal;
-        }
-
-        short IConvertible.ToInt16(IFormatProvider provider)
-        {
-            return Convert.ToInt16(_ordinal);
-        }
-
-        int IConvertible.ToInt32(IFormatProvider provider)
-        {
-            return Convert.ToInt32(_ordinal);
-        }
-
-        long IConvertible.ToInt64(IFormatProvider provider)
-        {
-            return Convert.ToInt64(_ordinal);
-        }
-
-        sbyte IConvertible.ToSByte(IFormatProvider provider)
-        {
-            return Convert.ToSByte(_ordinal);
-        }
-
-        float IConvertible.ToSingle(IFormatProvider provider)
-        {
-            return Convert.ToSingle(_ordinal);
-        }
-
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return _name;
-        }
-
-        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
-        {
-            if (conversionType == typeof(string))
-                return _name;
-            else
-                return Convert.ChangeType(_ordinal, conversionType, provider);
-        }
-
-        ushort IConvertible.ToUInt16(IFormatProvider provider)
-        {
-            return Convert.ToUInt16(_ordinal);
-        }
-
-        uint IConvertible.ToUInt32(IFormatProvider provider)
-        {
-            return Convert.ToUInt32(_ordinal);
-        }
-
-        ulong IConvertible.ToUInt64(IFormatProvider provider)
-        {
-            return Convert.ToUInt64(_ordinal);
-        }
-
-        #endregion
     }
 }

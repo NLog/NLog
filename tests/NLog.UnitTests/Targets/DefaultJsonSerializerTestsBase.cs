@@ -368,17 +368,17 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeExpandoDict_Test()
         {
-            IDictionary<string, IConvertible> dictionary = new Internal.ExpandoTestDictionary();
+            IDictionary<string, IFormattable> dictionary = new Internal.ExpandoTestDictionary();
             dictionary.Add("key 2", 1.3m);
             dictionary.Add("level", LogLevel.Info);
             var actual = SerializeObject(dictionary);
-            Assert.Equal("{\"key 2\":1.3, \"level\":{\"Name\":\"Info\", \"Ordinal\":2}}", actual);
+            Assert.Equal("{\"key 2\":1.3, \"level\":\"Info\"}", actual);
         }
 
         [Fact]
         public void SerializEmptyExpandoDict_Test()
         {
-            IDictionary<string, IConvertible> dictionary = new Internal.ExpandoTestDictionary();
+            IDictionary<string, IFormattable> dictionary = new Internal.ExpandoTestDictionary();
             var actual = SerializeObject(dictionary);
             Assert.Equal("{}", actual);
         }
@@ -393,7 +393,7 @@ namespace NLog.UnitTests.Targets
 
             var readonlyDictionary = new Internal.ReadOnlyExpandoTestDictionary(dictionary);
             var actual = SerializeObject(readonlyDictionary);
-            Assert.Equal("{\"key 2\":1.3, \"level\":{\"Name\":\"Info\", \"Ordinal\":2}}", actual);
+            Assert.Equal("{\"key 2\":1.3, \"level\":\"Info\"}", actual);
         }
 #endif
 

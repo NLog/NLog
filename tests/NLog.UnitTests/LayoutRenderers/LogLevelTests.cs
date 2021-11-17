@@ -187,18 +187,14 @@ namespace NLog.UnitTests.LayoutRenderers
         public void LogLevelConvertTest(Type type, object expected)
         {
             // Arrange
-            IConvertible logLevel = LogLevel.Info;
+            IFormattable logLevel = LogLevel.Info;
             var logConverter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(LogLevel));
                 
             // Act
-            var changeTypeResult = Convert.ChangeType(logLevel, type);
-            var changeToResult = logLevel.ToType(type, System.Globalization.CultureInfo.CurrentCulture);
             var convertToResult = logConverter.CanConvertTo(type) ? logConverter.ConvertTo(logLevel, type) : null;
             var convertFromResult = logConverter.CanConvertFrom(expected.GetType()) ? logConverter.ConvertFrom(expected) : null;
 
             // Assert
-            Assert.Equal(expected, changeTypeResult);
-            Assert.Equal(expected, changeToResult);
             Assert.Equal(expected, convertToResult);
             Assert.Equal(logLevel, convertFromResult);
         }
