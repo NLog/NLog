@@ -81,6 +81,22 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SimpleValue_RegistersSerializeAsToString_ConvertsValue()
+        {
+            var logFactory = new LogFactory();
+            logFactory.Setup().SetupSerialization(s => s.RegisterObjectTransformation<System.IO.MemoryStream>(o => o.Capacity));
+
+            var testObject = new System.IO.MemoryStream(42);
+            
+            var sb = new StringBuilder();
+            var options = new JsonSerializeOptions();
+            var jsonSerializer = new DefaultJsonSerializer(logFactory.ServiceRepository);
+            jsonSerializer.SerializeObject(testObject, sb, options);
+
+            Assert.Equal($"{testObject.Capacity}", sb.ToString());
+        }
+
+        [Fact]
         public void IExcludedInterfaceSerializer_RegistersSerializeAsToString_InvokesToString()
         {
             var testObject = BuildSampleObject();

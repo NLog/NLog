@@ -218,30 +218,23 @@ namespace NLog.Targets
 
             if (value is IEnumerable enumerable)
             {
-                if (_objectReflectionCache.TryLookupExpandoObject(value, out var propertyValues))
+                if (_objectReflectionCache.TryLookupExpandoObject(value, out var objectPropertyList))
                 {
-                    if (propertyValues.ConvertToString || depth >= options.MaxRecursionLimit)
-                    {
-                        return SerializeObjectAsString(value, destination, options);
-                    }
-                    else
-                    {
-                        using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
-                        {
-                            return SerializeObjectProperties(propertyValues, destination, options, objectsInPath, depth);
-                        }
-                    }
+                    return SerializeObjectPropertyList(value, ref objectPropertyList, destination, options, ref objectsInPath, depth);
                 }
-
-                using (StartCollectionScope(ref objectsInPath, value))
+                else
                 {
-                    SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
-                    return true;
+                    using (StartCollectionScope(ref objectsInPath, value))
+                    {
+                        SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
+                        return true;
+                    }
                 }
             }
             else
             {
-                return SerializeObjectWithProperties(value, destination, options, ref objectsInPath, depth);
+                var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
+                return SerializeObjectPropertyList(value, ref objectPropertyList, destination, options, ref objectsInPath, depth);
             }
         }
 
@@ -400,23 +393,27 @@ namespace NLog.Targets
             destination.Append(']');
         }
 
-        private bool SerializeObjectWithProperties(object value, StringBuilder destination, JsonSerializeOptions options, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeObjectPropertyList(object value, ref ObjectReflectionCache.ObjectPropertyList objectPropertyList, StringBuilder destination, JsonSerializeOptions options, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
-            if (depth < options.MaxRecursionLimit)
+            if (objectPropertyList.IsSimpleValue)
             {
-                var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
-                if (!objectPropertyList.ConvertToString)
+                value = objectPropertyList.ObjectValue;
+                if (SerializeSimpleObjectValue(value, destination, options))
                 {
-                    if (ReferenceEquals(options, DefaultSerializerOptions) && value is Exception)
-                    {
-                        // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
-                        options = DefaultExceptionSerializerOptions;
-                    }
+                    return true;
+                }
+            }
+            else if (depth < options.MaxRecursionLimit)
+            {
+                if (ReferenceEquals(options, DefaultSerializerOptions) && value is Exception)
+                {
+                    // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
+                    options = DefaultExceptionSerializerOptions;
+                }
 
-                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
-                    {
-                        return SerializeObjectProperties(objectPropertyList, destination, options, objectsInPath, depth);
-                    }
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
+                {
+                    return SerializeObjectProperties(objectPropertyList, destination, options, objectsInPath, depth);
                 }
             }
 
