@@ -517,9 +517,9 @@ namespace NLog.Layouts
 
         private void AppendXmlObjectPropertyValues(string propName, ref ObjectReflectionCache.ObjectPropertyList propertyValues, StringBuilder sb, int orgLength, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
         {
-            if (propertyValues.ConvertToString)
+            if (propertyValues.IsSimpleValue)
             {
-                AppendXmlPropertyValue(propName, propertyValues.ToString(), sb, orgLength, false, ignorePropertiesElementName);
+                AppendXmlPropertyValue(propName, propertyValues.ObjectValue, sb, orgLength, false, ignorePropertiesElementName);
             }
             else
             {

@@ -336,7 +336,9 @@ namespace NLog.Internal
                 }
             }
 
-            public bool ConvertToString => _properties?.Length == 0;
+            public bool IsSimpleValue => _properties?.Length == 0;
+
+            public object ObjectValue => _object;
 
             internal ObjectPropertyList(object value, PropertyInfo[] properties, FastPropertyLookup[] fastLookup)
             {
