@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.Text;
     using NLog.Config;
 
     /// <summary>
@@ -81,20 +83,12 @@ namespace NLog.LayoutRenderers.Wrappers
         public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; } = PaddingHorizontalAlignment.Left;
 
         /// <inheritdoc/>
-        protected override string Transform(string text)
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            string s = text ?? string.Empty;
-
+            Inner.Render(logEvent, builder);
             if (Padding != 0)
             {
-                if (Padding > 0)
-                {
-                    s = s.PadLeft(Padding, PadCharacter);
-                }
-                else
-                {
-                    s = s.PadRight(-Padding, PadCharacter);
-                }
+                int deltaLength = builder.Length - orgLength;
 
                 int absolutePadding = Padding;
                 if (absolutePadding < 0)
@@ -102,21 +96,44 @@ namespace NLog.LayoutRenderers.Wrappers
                     absolutePadding = -absolutePadding;
                 }
 
-                if (FixedLength && s.Length > absolutePadding)
+                if (Padding > 0)
                 {
-                    if (AlignmentOnTruncation == PaddingHorizontalAlignment.Right)
+                    // Pad Left
+                    for (int i = deltaLength; i < absolutePadding; ++i)
                     {
-                        s = s.Substring(s.Length - absolutePadding);
+                        builder.Insert(orgLength, PadCharacter);
+                        ++deltaLength;
+                    }
+                }
+                else
+                {
+                    // Pad Right
+                    for (int i = deltaLength; i < absolutePadding; ++i)
+                    {
+                        builder.Append(PadCharacter);
+                        ++deltaLength;
+                    }
+                }
+
+                if (FixedLength && deltaLength > absolutePadding)
+                {
+                    if (AlignmentOnTruncation == PaddingHorizontalAlignment.Left)
+                    {
+                        // Keep left side
+                        builder.Length = orgLength + absolutePadding;
                     }
                     else
                     {
-                        //left
-                        s = s.Substring(0, absolutePadding);
+                        builder.Remove(orgLength, deltaLength - absolutePadding);
                     }
                 }
             }
+        }
 
-            return s;
+        /// <inheritdoc/>
+        protected override string Transform(string text)
+        {
+            throw new NotSupportedException();
         }
     }
 }
