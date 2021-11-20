@@ -51,9 +51,10 @@ namespace NLog.Attributes
         /// <inheritdoc/>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value?.GetType() == typeof(string))
-                return LogLevel.FromString(value.ToString());
-            else if (IsNumericType(value?.GetType()))
+            var valueType = value?.GetType();
+            if (typeof(string).Equals(valueType))
+                return LogLevel.FromString(value?.ToString());
+            else if (IsNumericType(valueType))
                 return LogLevel.FromOrdinal(Convert.ToInt32(value));
             else 
                 return base.ConvertFrom(context, culture, value);
@@ -80,19 +81,18 @@ namespace NLog.Attributes
 
         private static bool IsNumericType(Type sourceType)
         {
-            if (sourceType == typeof(int))
+            if (typeof(int).Equals(sourceType))
                 return true;
-            if (sourceType == typeof(uint))
+            if (typeof(uint).Equals(sourceType))
                 return true;
-            if (sourceType == typeof(long))
+            if (typeof(long).Equals(sourceType))
                 return true;
-            if (sourceType == typeof(ulong))
+            if (typeof(ulong).Equals(sourceType))
                 return true;
-            if (sourceType == typeof(short))
+            if (typeof(short).Equals(sourceType))
                 return true;
-            if (sourceType == typeof(ushort))
+            if (typeof(ushort).Equals(sourceType))
                 return true;
-
             return false;
         }
     }

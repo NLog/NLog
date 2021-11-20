@@ -40,73 +40,73 @@ namespace NLog.UnitTests.Internal
     /// <summary>
     /// Special Expando-Object that has custom object-value (Similar to JObject)
     /// </summary>
-    internal class ExpandoTestDictionary : IDictionary<string, IConvertible>
+    internal class ExpandoTestDictionary : IDictionary<string, IFormattable>
     {
-        private readonly Dictionary<string, IConvertible> _properties = new Dictionary<string, IConvertible>();
+        private readonly Dictionary<string, IFormattable> _properties = new Dictionary<string, IFormattable>();
 
-        public IConvertible this[string key] { get => ((IDictionary<string, IConvertible>)_properties)[key]; set => ((IDictionary<string, IConvertible>)_properties)[key] = value; }
+        public IFormattable this[string key] { get => ((IDictionary<string, IFormattable>)_properties)[key]; set => ((IDictionary<string, IFormattable>)_properties)[key] = value; }
 
-        public ICollection<string> Keys => ((IDictionary<string, IConvertible>)_properties).Keys;
+        public ICollection<string> Keys => ((IDictionary<string, IFormattable>)_properties).Keys;
 
-        public ICollection<IConvertible> Values => ((IDictionary<string, IConvertible>)_properties).Values;
+        public ICollection<IFormattable> Values => ((IDictionary<string, IFormattable>)_properties).Values;
 
-        public int Count => ((IDictionary<string, IConvertible>)_properties).Count;
+        public int Count => ((IDictionary<string, IFormattable>)_properties).Count;
 
-        public bool IsReadOnly => ((IDictionary<string, IConvertible>)_properties).IsReadOnly;
+        public bool IsReadOnly => ((IDictionary<string, IFormattable>)_properties).IsReadOnly;
 
-        public void Add(string key, IConvertible value)
+        public void Add(string key, IFormattable value)
         {
-            ((IDictionary<string, IConvertible>)_properties).Add(key, value);
+            ((IDictionary<string, IFormattable>)_properties).Add(key, value);
         }
 
-        public void Add(KeyValuePair<string, IConvertible> item)
+        public void Add(KeyValuePair<string, IFormattable> item)
         {
-            ((IDictionary<string, IConvertible>)_properties).Add(item);
+            ((IDictionary<string, IFormattable>)_properties).Add(item);
         }
 
         public void Clear()
         {
-            ((IDictionary<string, IConvertible>)_properties).Clear();
+            ((IDictionary<string, IFormattable>)_properties).Clear();
         }
 
-        public bool Contains(KeyValuePair<string, IConvertible> item)
+        public bool Contains(KeyValuePair<string, IFormattable> item)
         {
-            return ((IDictionary<string, IConvertible>)_properties).Contains(item);
+            return ((IDictionary<string, IFormattable>)_properties).Contains(item);
         }
 
         public bool ContainsKey(string key)
         {
-            return ((IDictionary<string, IConvertible>)_properties).ContainsKey(key);
+            return ((IDictionary<string, IFormattable>)_properties).ContainsKey(key);
         }
 
-        public void CopyTo(KeyValuePair<string, IConvertible>[] array, int arrayIndex)
+        public void CopyTo(KeyValuePair<string, IFormattable>[] array, int arrayIndex)
         {
-            ((IDictionary<string, IConvertible>)_properties).CopyTo(array, arrayIndex);
+            ((IDictionary<string, IFormattable>)_properties).CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<KeyValuePair<string, IConvertible>> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, IFormattable>> GetEnumerator()
         {
-            return ((IDictionary<string, IConvertible>)_properties).GetEnumerator();
+            return ((IDictionary<string, IFormattable>)_properties).GetEnumerator();
         }
 
         public bool Remove(string key)
         {
-            return ((IDictionary<string, IConvertible>)_properties).Remove(key);
+            return ((IDictionary<string, IFormattable>)_properties).Remove(key);
         }
 
-        public bool Remove(KeyValuePair<string, IConvertible> item)
+        public bool Remove(KeyValuePair<string, IFormattable> item)
         {
-            return ((IDictionary<string, IConvertible>)_properties).Remove(item);
+            return ((IDictionary<string, IFormattable>)_properties).Remove(item);
         }
 
-        public bool TryGetValue(string key, out IConvertible value)
+        public bool TryGetValue(string key, out IFormattable value)
         {
-            return ((IDictionary<string, IConvertible>)_properties).TryGetValue(key, out value);
+            return ((IDictionary<string, IFormattable>)_properties).TryGetValue(key, out value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IDictionary<string, IConvertible>)_properties).GetEnumerator();
+            return ((IDictionary<string, IFormattable>)_properties).GetEnumerator();
         }
     }
 }
