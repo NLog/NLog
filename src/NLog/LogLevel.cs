@@ -322,10 +322,10 @@ namespace NLog
 
         string IFormattable.ToString(string format, IFormatProvider formatProvider)
         {
-            if (string.IsNullOrEmpty(format) || (!"D".Equals(format, StringComparison.OrdinalIgnoreCase)))
+            if (format is null || (!"D".Equals(format, StringComparison.OrdinalIgnoreCase)))
                 return _name;
             else
-                return _ordinal.ToString(); // Like Enum.ToString()
+                return _ordinal.ToString(); // Like Enum.ToString("D")
         }
 
         /// <inheritdoc/>

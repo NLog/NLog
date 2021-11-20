@@ -330,7 +330,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (TimeToSleepBetweenBatches <= 1)
                     {
-                        InternalLogger.Trace("{0}: Throttled timer scheduled", this);
+                        InternalLogger.Trace("{0}: Timer scheduled throttled", this);
                         _lazyWriterTimer.Change(1, Timeout.Infinite);
                     }
                     else
@@ -368,6 +368,7 @@ namespace NLog.Targets.Wrappers
                             {
                                 // Not optimal to schedule timer-worker-thread while holding lock,
                                 // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
+                                InternalLogger.Trace("{0}: Timer scheduled instantly", this);
                                 _lazyWriterTimer.Change(0, Timeout.Infinite);
                                 return true;
                             }
@@ -379,6 +380,8 @@ namespace NLog.Targets.Wrappers
                         return true;
                     }
                 }
+
+                InternalLogger.Trace("{0}: Timer not scheduled, since already active", this);
             }
             finally
             {
@@ -484,11 +487,18 @@ namespace NLog.Targets.Wrappers
             {
                 if (TimeToSleepBetweenBatches <= 1)
                 {
-                    if (!wroteFullBatchSize && !_requestQueue.IsEmpty)
+                    if (!wroteFullBatchSize)
                     {
-                        // If queue was not empty, then more might have arrived while writing the first batch
-                        // Do not use instant timer, so we can process in larger batches (faster)
-                        StartTimerUnlessWriterActive(false);
+                        if (!_requestQueue.IsEmpty)
+                        {
+                            // If queue was not empty, then more might have arrived while writing the first batch
+                            // Do not use instant timer, so we can process in larger batches (faster)
+                            StartTimerUnlessWriterActive(false);
+                        }
+                        else
+                        {
+                            InternalLogger.Trace("{0}: Timer not scheduled, since queue empty", this);
+                        }
                     }
                 }
                 else
