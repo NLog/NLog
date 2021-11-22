@@ -1733,7 +1733,8 @@ namespace NLog.Targets
                     // See: https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
                 }
 #endif
-                ArchiveFileAfterCloseFileAppender(archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp);
+
+                ArchiveFileAfterCloseFileAppender(archivedAppender, archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp);
                 return true;
             }
             finally
@@ -1769,12 +1770,27 @@ namespace NLog.Targets
             return archivedAppender;
         }
 
-        private void ArchiveFileAfterCloseFileAppender(string archiveFile, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp)
+        private void ArchiveFileAfterCloseFileAppender(BaseFileAppender archivedAppender, string archiveFile, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp)
         {
             try
             {
+                DateTime fallbackFileCreationTimeSource = previousLogEventTimestamp;
+
+                if (archivedAppender != null && IsSimpleKeepFileOpen)
+                {
+                    var fileCreationTimeUtc = archivedAppender.GetFileCreationTimeUtc();
+                    if (fileCreationTimeUtc > DateTime.MinValue)
+                    {
+                        var fileCreationTimeSource = Time.TimeSource.Current.FromSystemTime(fileCreationTimeUtc.Value);
+                        if (fileCreationTimeSource < fallbackFileCreationTimeSource || fallbackFileCreationTimeSource == DateTime.MinValue)
+                        {
+                            fallbackFileCreationTimeSource = fileCreationTimeSource;
+                        }
+                    }
+                }
+
                 // Check again if archive is needed. We could have been raced by another process
-                var validatedArchiveFile = GetArchiveFileName(archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp, false);
+                var validatedArchiveFile = GetArchiveFileName(archiveFile, ev, upcomingWriteSize, fallbackFileCreationTimeSource, false);
                 if (string.IsNullOrEmpty(validatedArchiveFile))
                 {
                     InternalLogger.Debug("{0}: Skip archiving '{1}' because no longer necessary", this, archiveFile);
@@ -1980,7 +1996,7 @@ namespace NLog.Targets
             if (!creationTimeSource.HasValue)
                 return null;
 
-            if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
+            if (previousLogEventTimestamp > DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
             {
                 if (TruncateArchiveTime(previousLogEventTimestamp, FileArchivePeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchivePeriod.Minute) && PlatformDetector.IsUnix)
                 {
