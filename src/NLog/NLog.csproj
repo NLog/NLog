@@ -28,24 +28,24 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog 5.0 Preview 3 with more improvements:
-      
-## Bugfixes
-- PropertiesDictionary - Fixed threading issue in EventProperties (#4627) (@snakefoot)
+NLog 5.0 RC1 with more improvements:
 
 ## Features
-- LogFactory fluent Setup with WriteToTrace + WriteToDebug (#4598) (@snakefoot)
-- LogEventInfo constructor with eventProperties as IReadOnlyList (#4628) (@snakefoot)
-- ${event-properties} now ignore case when doing property lookup (#4633) (@snakefoot)
+- LogFactory Setup fluent with SetupLogFactory for general options (#4662) (@snakefoot)
+- LogFactory fluent Setup with FilterDynamicIgnore + FilterDynamicLog (#4648) (@snakefoot)
+- TargetWithContext - Added support for ExcludeProperties (#4642) (@snakefoot)
 
 ## Improvements
-- FileTarget - KeepFileOpen = true by default to avoid loosing file handle (#4623) (@snakefoot)
-- FileTarget - Only enable FileSystemWatcher when ConcurrentWrites = true (#4624) (@snakefoot)
-- FileTarget - Attempt to write footer, before closing file appender (#4634) (@snakefoot)
-- JsonSerializeOptions - Marked Format + FormatProvider + QuoteKeys as obsolete (#4632) (@snakefoot)
-- Handle OutOfMemoryException instead of crashing the application (#4622) (@snakefoot)
-- Removed DefaultValue-attribute as it is only used for docs-generator (#4605) (@snakefoot)
-- Removed Advanced-attribute as it has no meaning (#4606) (@snakefoot)
+- FallbackGroupTarget - Added support for EnableBatchWrite (#4656) (@snakefoot)
+- JsonLayout - ExcludeProperties should also handle IncludeScopeProperties (#4655) (@snakefoot)
+- TargetWithContext - IncludeEmptyValue false by default (#4645) (@snakefoot)
+- PropertiesDictionary - Generate unique message-template-names on duplicate keys (#4646) (@snakefoot)
+- LoggingRule - Fix XML documentation (#4661) (@GitHubPang)
+- Fixed RegisterObjectTransformation to handle conversion to simple values (#4671) (@snakefoot)
+- PaddingLayoutRendererWrapper - Pad operation with reduced string allocation (#4672) (@snakefoot)
+- LogLevel - Replaced IConvertible with IFormattable for better Json output (#4669) (@snakefoot)
+- FileTarget - Improve fallback logic when running on Linux without File BirthTIme (#4675) (@snakefoot)
+- NLog.Wcf - Updated nuget dependencies to System.ServiceModel ver. 4.4.4 (#4676) (@snakefoot)
 
 NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
 

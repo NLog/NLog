@@ -4,25 +4,24 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### v5.0-Preview 3 (2021/10/26)
-
-#### Bugfixes
-- [#4627](https://github.com/NLog/NLog/pull/4627) PropertiesDictionary - Fixed threading issue in EventProperties (#4627) (@snakefoot)
+### v5.0-RC1 (2021/11/23)
 
 #### Features
-- [#4598](https://github.com/NLog/NLog/pull/4598) LogFactory fluent Setup with WriteToTrace + WriteToDebug (#4598) (@snakefoot)
-- [#4628](https://github.com/NLog/NLog/pull/4628) LogEventInfo constructor with eventProperties as IReadOnlyList (#4628) (@snakefoot)
-- [#4633](https://github.com/NLog/NLog/pull/4633) ${event-properties} now ignore case when doing property lookup (#4633) (@snakefoot)
+- [#4662](https://github.com/NLog/NLog/pull/4662) LogFactory Setup fluent with SetupLogFactory for general options (#4662) (@snakefoot)
+- [#4648](https://github.com/NLog/NLog/pull/4648) LogFactory fluent Setup with FilterDynamicIgnore + FilterDynamicLog (#4648) (@snakefoot)
+- [#4642](https://github.com/NLog/NLog/pull/4642) TargetWithContext - Added support for ExcludeProperties (#4642) (@snakefoot)
 
 #### Improvements
-- [#4623](https://github.com/NLog/NLog/pull/4623) FileTarget - KeepFileOpen = true by default to avoid loosing file handle (#4623) (@snakefoot)
-- [#4624](https://github.com/NLog/NLog/pull/4624) FileTarget - Only enable FileSystemWatcher when ConcurrentWrites = true (#4624) (@snakefoot)
-- [#4634](https://github.com/NLog/NLog/pull/4634) FileTarget - Attempt to write footer, before closing file appender (#4634) (@snakefoot)
-- [#4632](https://github.com/NLog/NLog/pull/4632) JsonSerializeOptions - Marked Format + FormatProvider + QuoteKeys as obsolete (#4632) (@snakefoot)
-- [#4622](https://github.com/NLog/NLog/pull/4622) Handle OutOfMemoryException instead of crashing the application (#4622) (@snakefoot)
-- [#4605](https://github.com/NLog/NLog/pull/4605) Removed DefaultValue-attribute as it is only used for docs-generator (#4605) (@snakefoot)
-- [#4606](https://github.com/NLog/NLog/pull/4606) Removed Advanced-attribute as it has no meaning (#4606) (@snakefoot)
-
+- [#4656](https://github.com/NLog/NLog/pull/4656) FallbackGroupTarget - Added support for EnableBatchWrite (#4656) (@snakefoot)
+- [#4655](https://github.com/NLog/NLog/pull/4655) JsonLayout - ExcludeProperties should also handle IncludeScopeProperties (#4655) (@snakefoot)
+- [#4645](https://github.com/NLog/NLog/pull/4645) TargetWithContext - IncludeEmptyValue false by default (#4645) (@snakefoot)
+- [#4646](https://github.com/NLog/NLog/pull/4646) PropertiesDictionary - Generate unique message-template-names on duplicate keys (#4646) (@snakefoot)
+- [#4661](https://github.com/NLog/NLog/pull/4661) LoggingRule - Fix XML documentation (#4661) (@GitHubPang)
+- [#4671](https://github.com/NLog/NLog/pull/4671) Fixed RegisterObjectTransformation to handle conversion to simple values (#4671) (@snakefoot)
+- [#4672](https://github.com/NLog/NLog/pull/4672) PaddingLayoutRendererWrapper - Pad operation with reduced string allocation (#4672) (@snakefoot)
+- [#4669](https://github.com/NLog/NLog/pull/4669) LogLevel - Replaced IConvertible with IFormattable for better Json output (#4669) (@snakefoot)
+- [#4675](https://github.com/NLog/NLog/pull/4675) FileTarget - Improve fallback logic when running on Linux without File BirthTIme (#4675) (@snakefoot)
+- [#4676](https://github.com/NLog/NLog/pull/4676) NLog.Wcf - Updated nuget dependencies to System.ServiceModel ver. 4.4.4 (#4676) (@snakefoot)
 
 ### v5.0-Preview 2 (2021/10/02)
 
