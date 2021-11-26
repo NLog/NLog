@@ -70,12 +70,12 @@ namespace NLog.UnitTests.Targets
 
         private static bool UniqueBaseAppender(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceMutexConcurrentWrites)
         {
-            if (!concurrentWrites && !networkWrites && !forceMutexConcurrentWrites)
-                return true;    // Allow keepFileOpen = true / false, Allow forceManaged = true / false
-            if (concurrentWrites && !networkWrites && keepFileOpen)
-                return true;    // Allow forceManaged = true / false, forceMutexConcurrentWrites = true / false
-            if (networkWrites && keepFileOpen && !concurrentWrites && !forceMutexConcurrentWrites)
-                return true;    // Allow forceManaged = true / false
+            if (networkWrites && !keepFileOpen && !concurrentWrites && !forceMutexConcurrentWrites)
+                return true;
+            if (concurrentWrites && !networkWrites && !keepFileOpen && !forceMutexConcurrentWrites)
+                return true;
+            if (keepFileOpen && !networkWrites && !forceMutexConcurrentWrites)
+                return true;
             return false;
         }
 
@@ -145,7 +145,12 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites;
+            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites
+#if !NETSTANDARD && !MONO
+              && !IsLinux()
+#endif
+              ;
+
 #if MONO
             if (IsLinux() && concurrentWrites && keepFileOpen && !networkWrites)
             {
@@ -156,14 +161,17 @@ namespace NLog.UnitTests.Targets
 
             RetryingIntegrationTest(3, () =>
             {
-                var logFile = Path.GetTempFileName();
-                var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
+                var logPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
+                var logFile = Path.Combine(logPath, "..", "nlog.txt");
+                var logFile2 = Path.Combine(logPath, Path.GetFileName(logFile));
 
                 try
                 {
                     var fileTarget = new FileTarget
                     {
                         FileName = SimpleLayout.Escape(logFile),
+                        ArchiveFileName = SimpleLayout.Escape(logFile2),
+                        ArchiveEvery = FileArchivePeriod.Year,
                         LineEnding = LineEndingMode.LF,
                         Layout = "${level} ${message}",
                         OpenFileCacheTimeout = 0,
@@ -204,7 +212,10 @@ namespace NLog.UnitTests.Targets
                     }
 
                     if (File.Exists(logFile))
+                    {
                         File.Delete(logFile);
+                        Directory.Delete(Path.GetDirectoryName(logFile));
+                    }
                 }
             });
         }

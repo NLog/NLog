@@ -128,16 +128,17 @@ namespace NLog.Internal
             try
             {
                 var directory = Path.GetDirectoryName(fileName);
+                directory = Path.GetFullPath(directory);
                 if (!Directory.Exists(directory))
                 {
-                    InternalLogger.Warn("Cannot watch file {0} for changes as directory {1} doesn't exist", fileName, directory);
+                    InternalLogger.Warn("Cannot watch file {0} for non-existing directory: {1}", fileName, directory);
                     return;
                 }
 
                 var fileFilter = Path.GetFileName(fileName);
                 if (TryAddWatch(fileName, directory, fileFilter))
                 {
-                    InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", directory, fileFilter);
+                    InternalLogger.Debug("Watching file-filter '{0}' in directory: {1}", fileFilter, directory);
                 }
             }
             catch (System.Security.SecurityException ex)
@@ -176,7 +177,7 @@ namespace NLog.Internal
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed Watching path '{0}' with file '{1}' for changes.", directory, fileName);
+                    InternalLogger.Error(ex, "Failed to setup FileSystemWatcher for file `{0}` with directory: {1}", fileName, directory);
                     if (ex.MustBeRethrown())
                         throw;
 
