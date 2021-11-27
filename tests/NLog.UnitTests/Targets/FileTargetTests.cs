@@ -147,7 +147,7 @@ namespace NLog.UnitTests.Targets
         {
             bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites
 #if !NETSTANDARD && !MONO
-              && !IsLinux()
+              && IsLinux()
 #endif
               ;
 
