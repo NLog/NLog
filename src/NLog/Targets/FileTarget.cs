@@ -377,7 +377,17 @@ namespace NLog.Targets
         /// Gets or sets the file encoding.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public Encoding Encoding { get; set; } = Encoding.UTF8;
+        public Encoding Encoding
+        {
+            get => _encoding;
+            set
+            {
+                _encoding = value;
+                if (!_writeBom.HasValue && InitialValueBom(value))
+                    _writeBom = true;
+            }
+        }
+        private Encoding _encoding = Encoding.UTF8;
 
         /// <summary>
         /// Gets or sets whether or not this target should just discard all data that its asked to write.
@@ -416,8 +426,6 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         public bool NetworkWrites { get; set; }
 
-        private bool? _writeBom;
-
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
         ///
@@ -426,9 +434,10 @@ namespace NLog.Targets
         /// <docgen category='Output Options' order='10' />
         public bool WriteBom
         {
-            get => _writeBom ?? InitialValueBom(Encoding);
+            get => _writeBom ?? false;
             set => _writeBom = value;
         }
+        private bool? _writeBom;
 
         /// <summary>
         /// Gets or sets the number of times the write is appended on the file before NLog
@@ -2421,11 +2430,11 @@ namespace NLog.Targets
             const int utf16Be = 1201;
             const int utf32 = 12000;
             const int urf32Be = 12001;
-
-            return encoding.CodePage == utf16
-                   || encoding.CodePage == utf16Be
-                   || encoding.CodePage == utf32
-                   || encoding.CodePage == urf32Be;
+            var codePage = encoding?.CodePage ?? 0;
+            return codePage == utf16
+                   || codePage == utf16Be
+                   || codePage == utf32
+                   || codePage == urf32Be;
         }
 
         /// <summary>
