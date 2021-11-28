@@ -49,18 +49,12 @@ Multiple .NET versions
 Keep in mind that multiple versions of .NET are supported. Some methods are not available in all .NET versions. The following conditional compilation symbols can be used:
 
 ```
-#if NET3_5
-#if NET4_0
-#if NET4_5
-#if SILVERLIGHT
-#if SILVERLIGHT5
-#if MONO
-#if MONO_2_0
-#if WINDOWS_PHONE
-#if WINDOWS_PHONE_7
-#if WINDOWS_PHONE_7_1
-#if __IOS__
-#if __ANDROID__
+#if NET35
+#if NET45
+#if NET46
+#if NETSTANDARD
+#if NETSTANDARD1_3
+#if NETSTANDARD1_5
 ```
 
 Update your fork
