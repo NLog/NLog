@@ -32,11 +32,6 @@
     <None Include="configuration.aml" />
     <None Include="Content Layout.content" />
     <None Include="filters.aml" />
-    <None Include="Frameworks\.NET Compact Framework 2.0.shfbproj" />
-    <None Include="Frameworks\.NET Compact Framework 3.5.shfbproj" />
-    <None Include="Frameworks\Mono 2.x.shfbproj" />
-    <None Include="Frameworks\Silverlight 2.0.shfbproj" />
-    <None Include="Frameworks\Silverlight 3.0.shfbproj" />
     <None Include="glossary.aml" />
     <None Include="how-to.aml" />
     <None Include="include-files.aml" />
