@@ -58,15 +58,6 @@
   <Target Name="Build">
   </Target>
 
-  <Target Name="BuildMergedDocumentation">
-    <MSBuild Projects="NLog.Extended\NLog.Extended.doc.csproj"
-             Targets="Build"
-             Properties="$(StyleCopProperties);BaseOutputDirectory=$(BaseOutputDirectory)"
-             ContinueOnError="$(BuildAllFrameworks)"
-             StopOnFirstFailure="false" />
-    <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="Documentation" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
-  </Target>
-
   <Target Name="BuildIndividualDocumentation">
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
@@ -91,7 +82,7 @@
   <Target Name="IndividualDocumentation" DependsOnTargets="BuildIndividualDocumentation;PostProcessDocumentation">
   </Target>
 
-  <Target Name="Documentation" DependsOnTargets="BuildMergedDocumentation">
+  <Target Name="Documentation">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
   </Target>
 
@@ -138,7 +129,7 @@
     Inputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\NLog.dll');$(DumpApiXml);$(MergeApiXml)"
     Outputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml"
     >
-    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output API\NLog.api'
+    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -output API\NLog.api'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
     <Exec Command='"$(MergeApiXml)" "$(BaseOutputDirectory)\bin\$(Configuration)"' />
