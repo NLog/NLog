@@ -1,7 +1,0 @@
-<rules>
-    <logger name="FooBar*" minlevel="Trace" writeTo="" final="true" />
-    <logger name="*" levels="Warn,Error" writeTo="bledy,bazaDanych" />
-    <logger name="Gizmo*" minlevel="Info" writeTo="bazaDanych" />
-    <logger name="*" minlevel="Info" writeTo="codziennyPlik" />
-    <logger name="*" minlevel="Trace" writeTo="konsola" />
-</rules>
