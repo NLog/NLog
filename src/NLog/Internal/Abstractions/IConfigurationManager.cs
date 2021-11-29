@@ -46,6 +46,8 @@ namespace NLog.Internal
         /// Gets the wrapper around ConfigurationManager.AppSettings.
         /// </summary>
         NameValueCollection AppSettings { get; }
+
+        System.Configuration.ConnectionStringSettings LookupConnectionString(string name);
     }
 }
 
