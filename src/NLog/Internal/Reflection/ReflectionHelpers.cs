@@ -104,8 +104,6 @@ namespace NLog.Internal
         /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
-        public delegate object LateBoundMethodSingle(object target, object argument);
-
         /// <summary>
         /// Optimized delegate for calling a constructor
         /// </summary>
@@ -149,43 +147,6 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
-        /// </summary>
-        /// <param name="methodInfo">Method to optimize</param>
-        /// <returns>Optimized delegate for invoking the MethodInfo</returns>
-        public static LateBoundMethodSingle CreateLateBoundMethodSingle(MethodInfo methodInfo)
-        {
-            // parameters to execute
-            var instanceParameter = Expression.Parameter(typeof(object), "instance");
-            var parametersParameter = Expression.Parameter(typeof(object), "parameters");
-
-            var parameterExpressions = BuildParameterListSingle(methodInfo, parametersParameter);
-            var methodCall = BuildMethodCall(methodInfo, instanceParameter, parameterExpressions);
-
-            // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
-            if (methodCall.Type == typeof(void))
-            {
-                var lambda = Expression.Lambda<Action<object, object>>(
-                    methodCall, instanceParameter, parametersParameter);
-
-                Action<object, object> execute = lambda.Compile();
-                return (instance, parameters) =>
-                {
-                    execute(instance, parameters);
-                    return null;    // There is no return-type, so we return null-object
-                };
-            }
-            else
-            {
-                var castMethodCall = Expression.Convert(methodCall, typeof(object));
-                var lambda = Expression.Lambda<LateBoundMethodSingle>(
-                    castMethodCall, instanceParameter, parametersParameter);
-
-                return lambda.Compile();
-            }
-        }
-
-        /// <summary>
         /// Creates an optimized delegate for calling the constructors using Expression-Trees
         /// </summary>
         /// <param name="constructor">Constructor to optimize</param>
@@ -217,18 +178,6 @@ namespace NLog.Internal
                 parameterExpressions.Add(valueCast);
             }
 
-            return parameterExpressions;
-        }
-
-        private static IEnumerable<Expression> BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression parameterParameter)
-        {
-            var parameterExpressions = new List<Expression>();
-            var paramInfos = methodInfo.GetParameters().Single();
-            {
-                // (Ti)parameters[i]
-                var parameterExpression = CreateParameterExpression(paramInfos, parameterParameter);
-                parameterExpressions.Add(parameterExpression);
-            }
             return parameterExpressions;
         }
 

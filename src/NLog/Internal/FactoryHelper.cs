@@ -38,12 +38,8 @@ namespace NLog.Internal
     /// <summary>
     /// Object construction helper.
     /// </summary>
-    internal class FactoryHelper
+    internal static class FactoryHelper
     {
-        private FactoryHelper()
-        {
-        }
-
         internal static object CreateInstance(Type t)
         {
             try
