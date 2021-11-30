@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -44,10 +44,12 @@ namespace NLog.Internal
     /// </summary>
     internal class ConfigurationManager : IConfigurationManager
     {
-        /// <summary>
-        /// Gets the wrapper around ConfigurationManager.AppSettings.
-        /// </summary>
         public NameValueCollection AppSettings => System.Configuration.ConfigurationManager.AppSettings;
+
+        public System.Configuration.ConnectionStringSettings LookupConnectionString(string name)
+        {
+            return System.Configuration.ConfigurationManager.ConnectionStrings[name];
+        }
     }
 }
 

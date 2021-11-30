@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
     /// </code>
     [LayoutRenderer("appsetting")]
     [ThreadAgnostic]
-    public sealed class AppSettingLayoutRenderer2 : LayoutRenderer, IStringValueRenderer
+    public sealed class AppSettingLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         private string _connectionStringName = null;
 
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string Default { get; set; }
 
-        internal IConfigurationManager2 ConfigurationManager { get; set; } = new ConfigurationManager2();
+        internal IConfigurationManager ConfigurationManager { get; set; } = new ConfigurationManager();
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()

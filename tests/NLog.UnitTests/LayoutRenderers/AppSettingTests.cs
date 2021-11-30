@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var configurationManager = new MockConfigurationManager();
             const string expected = "appSettingTestValue";
             configurationManager.AppSettings["appSettingTestKey"] = expected;
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
             {
                 ConfigurationManager = configurationManager,
                 Item = "appSettingTestKey",
@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var configurationManager = new MockConfigurationManager();
             const string expected = "appSettingTestValue";
             configurationManager.AppSettings["appSettingTestKey"] = expected;
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
             {
                 ConfigurationManager = configurationManager,
                 Item = "appSettingTestKey",
@@ -84,7 +84,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var configurationManager = new MockConfigurationManager();
             const string expected = "UseDefault";
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
             {
                 ConfigurationManager = configurationManager,
                 Item = "notFound",
@@ -100,7 +100,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void NoAppSettingTest()
         {
             var configurationManager = new MockConfigurationManager();
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
             {
                 ConfigurationManager = configurationManager,
                 Item = "notFound",
@@ -117,7 +117,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var configurationManager = new MockConfigurationManager();
             const string expected = "Hello Connection";
             configurationManager.ConnectionStrings["myConnection"] = new ConnectionStringSettings() { ConnectionString = expected };
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
             {
                 ConfigurationManager = configurationManager,
                 Item = "ConnectionStrings.myConnection",
@@ -128,7 +128,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(expected, rendered);
         }
 
-        private class MockConfigurationManager : IConfigurationManager2
+        private class MockConfigurationManager : IConfigurationManager
         {
             public NameValueCollection AppSettings { get; } = new NameValueCollection();
 
