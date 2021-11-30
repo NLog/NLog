@@ -33,9 +33,9 @@ Build Pipeline
 
 
 For developing: the following platforms will be used:
-- net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0 (see nlog.csproj)
+- net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0 (see nlog.csproj)
 
-For releasing, the following additional platfoms will be used: sl4;sl5;wp8;monoandroid44;xamarinios10 - see build.ps1
+The build server will run unit-tests on both Windows and Linux platforms (see build.ps1 + run-tests.ps1)
 
 NuGet package management
 ===
