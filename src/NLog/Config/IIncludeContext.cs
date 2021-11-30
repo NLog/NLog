@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog
+namespace NLog.Config
 {
     /// <summary>
     /// Include context properties
