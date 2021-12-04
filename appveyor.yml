@@ -1,6 +1,6 @@
 version: 5.0.0-{build} # Only change for mayor versions (e.g. 6.0)
 image:
-  - Visual Studio 2019
+  - Visual Studio 2022
   - Previous Ubuntu
 configuration: Release
 build: no
@@ -18,7 +18,7 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2019
+        - image: Visual Studio 2022
     init:
         - net start MSSQL$SQL2019
     environment:
