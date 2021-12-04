@@ -543,7 +543,7 @@ namespace NLog.UnitTests.Config
 #else
                     nlogDirectory.Name,
 #endif
-                    "ManuallyLoadedExtension.dll");
+                    "Manually-Loaded-Extension.dll");
                 Assembly.LoadFrom(manuallyLoadedAssemblyPath);
 
                 InternalLogger.LogLevel = LogLevel.Trace;
@@ -553,7 +553,7 @@ namespace NLog.UnitTests.Config
                 var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
-        <add assembly='ManuallyLoadedExtension' />
+        <add assembly='Manually-Loaded-Extension' />
     </extensions>
 
     <targets>
@@ -564,7 +564,7 @@ namespace NLog.UnitTests.Config
                 // We get Exception for normal Assembly-Load only in net452.
 #if !NETSTANDARD && !MONO
                 var logs = writer.ToString();
-                Assert.Contains("Try find 'ManuallyLoadedExtension' in current domain", logs);
+                Assert.Contains("Try find 'Manually-Loaded-Extension' in current domain", logs);
 #endif
 
                 // Was AssemblyLoad successful?

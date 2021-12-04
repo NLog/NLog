@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0;net452</TargetFrameworks>
+    <AssemblyName>Manually-Loaded-Extension</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
