@@ -60,6 +60,15 @@ See NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-r
 
 - [Performance](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22Performance%22+is%3Amerged+milestone:%225.0%20%28new%29%22)
 
+### v4.7.13 (2021/12/05)
+
+### Bugfixes
+- [#4700](https://github.com/NLog/NLog/pull/4700) AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4700) (@snakefoot)
+- [#4644](https://github.com/NLog/NLog/pull/4644) AsyncTargetWrapper - Swallow OutOfMemoryException instead of crashing (#4644) (@snakefoot)
+
+### Improvements
+- [#4649](https://github.com/NLog/NLog/pull/4649) Fix broken XML doc comment (#4649) (@GitHubPang)
+
 ### v4.7.12 (2021/10/24)
 
 #### Bugfixes
