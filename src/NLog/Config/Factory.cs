@@ -244,31 +244,25 @@ namespace NLog.Config
                                  itemName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
 #if NETSTANDARD
-                //common mistake and probably missing NLog.Web
                 message += ". Extension NLog.Web.AspNetCore not included?";
 #else
-                //common mistake and probably missing NLog.Web
                 message += ". Extension NLog.Web not included?";
 #endif
             }
             else if (itemName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)
             {
-                //common mistake and probably missing NLog.Web
                 message += ". Extension NLog.Database not included?";
             }
             else if (itemName?.StartsWith("windows-identity", StringComparison.OrdinalIgnoreCase) == true)
             {
-                //common mistake and probably missing NLog.Web
                 message += ". Extension NLog.WindowsIdentity not included?";
             }
             else if (itemName?.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase) == true)
             {
-                //common mistake and probably missing NLog.Web
                 message += ". Extension NLog.OutputDebugString not included?";
             }
             else if (itemName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
             {
-                //common mistake and probably missing NLog.Web
                 message += ". Extension NLog.PerformanceCounter not included?";
             }
 
