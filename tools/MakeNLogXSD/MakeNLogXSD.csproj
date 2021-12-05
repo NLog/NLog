@@ -10,7 +10,7 @@
     <AssemblyName>MakeNLogXSD</AssemblyName>
     <OutputPath>..\..\build\bin\Tools\</OutputPath>
     <IntermediateOutputPath>..\..\build\obj\Tools\</IntermediateOutputPath>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
