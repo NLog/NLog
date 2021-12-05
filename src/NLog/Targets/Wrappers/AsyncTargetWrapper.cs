@@ -436,7 +436,7 @@ namespace NLog.Targets.Wrappers
                 if (TimeToSleepBetweenBatches == 0)
                     StartInstantWriterTimer();
                 else if (TimeToSleepBetweenBatches <= 1)
-                    StartLazyWriterTimer();
+                    StartTimerUnlessWriterActive(false);
             }
         }
 
