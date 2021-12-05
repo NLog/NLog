@@ -104,8 +104,9 @@ namespace NLog
         {
             if (messageTemplateParameters?.Count > 0)
             {
-                var messageProperties = new MessageTemplateParameter[messageTemplateParameters.Count];
-                for (int i = 0; i < messageTemplateParameters.Count; ++i)
+                var messagePropertyCount = messageTemplateParameters.Count;
+                var messageProperties = new MessageTemplateParameter[messagePropertyCount];
+                for (int i = 0; i < messagePropertyCount; ++i)
                     messageProperties[i] = messageTemplateParameters[i];
                 _properties = new PropertiesDictionary(messageProperties);
             }
