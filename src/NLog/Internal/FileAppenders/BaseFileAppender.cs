@@ -343,12 +343,12 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-        protected static bool MonitorForEnableFileDeleteEvent(string fileName, ref DateTime lastSimpleMonitorCheckTimeUtc)
+        protected static bool MonitorForEnableFileDeleteEvent(string fileName, ref int lastSimpleMonitorCheckTickCount)
         {
-            long ticksDelta = DateTime.UtcNow.Ticks - lastSimpleMonitorCheckTimeUtc.Ticks;
-            if (ticksDelta > TimeSpan.TicksPerSecond || ticksDelta < -TimeSpan.TicksPerSecond)
+            int ticksDelta = Environment.TickCount - lastSimpleMonitorCheckTickCount;
+            if (ticksDelta > 1000 || ticksDelta < -1000)
             {
-                lastSimpleMonitorCheckTimeUtc = DateTime.UtcNow;
+                lastSimpleMonitorCheckTickCount = Environment.TickCount;
                 try
                 {
                     if (!File.Exists(fileName))
