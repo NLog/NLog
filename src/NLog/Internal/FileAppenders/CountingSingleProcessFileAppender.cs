@@ -49,7 +49,7 @@ namespace NLog.Internal.FileAppenders
         private FileStream _file;
         private long _currentFileLength;
         private readonly bool _enableFileDeleteSimpleMonitor;
-        private DateTime _lastSimpleMonitorCheckTimeUtc;
+        private int _lastSimpleMonitorCheckTickCount;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CountingSingleProcessFileAppender" /> class.
@@ -63,7 +63,7 @@ namespace NLog.Internal.FileAppenders
             _currentFileLength = fileInfo.Exists ? fileInfo.Length : 0;
             _file = CreateFileStream(false);
             _enableFileDeleteSimpleMonitor = parameters.EnableFileDeleteSimpleMonitor;
-            _lastSimpleMonitorCheckTimeUtc = OpenTimeUtc;
+            _lastSimpleMonitorCheckTickCount = Environment.TickCount;
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            if (_enableFileDeleteSimpleMonitor && MonitorForEnableFileDeleteEvent(FileName, ref _lastSimpleMonitorCheckTimeUtc))
+            if (_enableFileDeleteSimpleMonitor && MonitorForEnableFileDeleteEvent(FileName, ref _lastSimpleMonitorCheckTickCount))
             {
                 CloseFileSafe(ref _file, FileName);
                 _file = CreateFileStream(false);
