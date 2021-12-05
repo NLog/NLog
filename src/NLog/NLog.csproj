@@ -34,11 +34,11 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 ## Bugfixes
-- PropertiesDictionary - Fixed threading issue in EventProperties (#4627) (@snakefoot)
-- FileTarget - Failing to CleanupInitializedFiles should not stop logging (#4631) (@snakefoot)
+- AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4700) (@snakefoot)
+- AsyncTargetWrapper - Swallow OutOfMemoryException instead of crashing (#4644) (@snakefoot)
 
-## Features
-- LogEventInfo constructor with eventProperties as IReadOnlyList (#4629) (@snakefoot)
+## Improvements
+- Fix broken XML doc comment (#4649) (@GitHubPang)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
