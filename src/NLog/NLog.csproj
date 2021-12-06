@@ -42,10 +42,21 @@ NLog 5.0 RC1 with more improvements:
 - PropertiesDictionary - Generate unique message-template-names on duplicate keys (#4646) (@snakefoot)
 - LoggingRule - Fix XML documentation (#4661) (@GitHubPang)
 - Fixed RegisterObjectTransformation to handle conversion to simple values (#4671) (@snakefoot)
-- PaddingLayoutRendererWrapper - Pad operation with reduced string allocation (#4672) (@snakefoot)
 - LogLevel - Replaced IConvertible with IFormattable for better Json output (#4669) (@snakefoot)
-- FileTarget - Improve fallback logic when running on Linux without File BirthTIme (#4675) (@snakefoot)
 - NLog.Wcf - Updated nuget dependencies to System.ServiceModel ver. 4.4.4 (#4676) (@snakefoot)
+- FileTarget - Improve fallback logic when running on Linux without File BirthTIme (#4675) (@snakefoot)
+- FileTarget - Better handling of relative paths with FileSystemWatcher (#4680) (@snakefoot)
+- Renamed AppSettingLayoutRenderer2 to AppSettingLayoutRenderer after removing NLog.Extended (#4689) (@snakefoot)
+- Added alias ToUpper and ToLower as alternative to UpperCase and LowerCase (#4563) (@snakefoot)
+- Ignore dash (-) when parsing layouts, layoutrenderers and targets (#4695) (@304NotModified)
+- Logger SetProperty marked as obsolete, instead use WithProperty or the unsafe Properties-property (#4713) (@snakefoot)
+- Hide obsolete methods from intellisense (#4714) (@snakefoot)
+
+## Performance
+- PaddingLayoutRendererWrapper - Pad operation with reduced string allocation (#4672) (@snakefoot)
+- FileTarget - Use Environment.TickCount to trigger File.Exists checks (#4698) (@snakefoot)
+- AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4699) (@snakefoot)
+- LogEventInfo - Faster clone of messageTemplateParameters by caching Count (#4705) (@snakefoot)
 
 NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
 
