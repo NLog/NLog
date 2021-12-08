@@ -383,13 +383,11 @@ namespace NLog.UnitTests
         public void PurgeObsoleteLoggersTest()
         {
             var factory = new LogFactory();
-            {
-                var firstLogger = factory.GetLogger("firstLogger");
-                Assert.NotNull(firstLogger);
-                firstLogger = null; // for disposing weakReference of first logger by GC.Collect()
-            }
+            var firstLogger = factory.GetLogger("firstLogger");
+            Assert.NotNull(firstLogger);
             var secondLogger = factory.GetLogger("secondLogger");
             Assert.NotNull(secondLogger);
+            firstLogger = null; // for disposing weakReference of first logger by GC.Collect()
             GC.Collect();
             factory.ReconfigExistingLoggers(true);
             var loggerKeysCount = factory.ResetLoggerCache();
