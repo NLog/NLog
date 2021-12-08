@@ -389,6 +389,7 @@ namespace NLog.UnitTests
             Assert.NotNull(secondLogger);
             firstLogger = null; // for disposing weakReference of first logger by GC.Collect()
             GC.Collect();
+            GC.WaitForPendingFinalizers();
             factory.ReconfigExistingLoggers(true);
             var loggerKeysCount = factory.ResetLoggerCache();
             Assert.Equal(1, loggerKeysCount);
