@@ -438,7 +438,7 @@ namespace NLog.UnitTests.Config
             {
                 ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
 
-                using(new NoThrowNLogExceptions())
+                using (new NoThrowNLogExceptions())
                 {
                     var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='false' autoLoadExtensions='true'>
@@ -475,7 +475,6 @@ namespace NLog.UnitTests.Config
         {
             try
             {
-
                 var writer = new StringWriter();
                 InternalLogger.LogWriter = writer;
                 InternalLogger.LogLevel = LogLevel.Debug;
@@ -497,7 +496,6 @@ namespace NLog.UnitTests.Config
 
                 //4 times successful
                 Assert.Equal(4, Regex.Matches(logs, Regex.Escape("Preload successfully invoked for '")).Count);
-
             }
             finally
             {
@@ -531,20 +529,7 @@ namespace NLog.UnitTests.Config
         {
             try
             {
-                // ...\NLog\tests\NLog.UnitTests\bin\Debug\netcoreapp2.0\nlog.dll
-                var nlogDirectory = new DirectoryInfo(ConfigurationItemFactory.GetAutoLoadingFileLocations().First().Key);
-                var configurationDirectory = nlogDirectory.Parent;
-                var testsDirectory = configurationDirectory.Parent.Parent.Parent;
-                var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
-#if NETSTANDARD
-                    "netstandard2.0",
-#elif NET35 || NET40 || NET45
-                    "net461",
-#else
-                    nlogDirectory.Name,
-#endif
-                    "Manually-Loaded-Extension.dll");
-                Assembly.LoadFrom(manuallyLoadedAssemblyPath);
+                LoadManuallyLoadedExtensionDll();
 
                 InternalLogger.LogLevel = LogLevel.Trace;
                 var writer = new StringWriter();
@@ -575,6 +560,44 @@ namespace NLog.UnitTests.Config
             {
                 InternalLogger.Reset();
             }
+        }
+
+        [Fact]
+        public void FullyQualifiedExtensionTest()
+        {
+            // Arrange
+
+            LoadManuallyLoadedExtensionDll();
+
+            // Act
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"<nlog throwConfigExceptions='true'>
+                <targets>
+                    <target name='t' type='ManuallyLoadedTarget, Manually-Loaded-Extension' />
+                </targets>
+            </nlog>").LogFactory;
+
+
+            // Assert
+            Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
+        }
+
+        private static void LoadManuallyLoadedExtensionDll()
+        {
+            // ...\NLog\tests\NLog.UnitTests\bin\Debug\netcoreapp2.0\nlog.dll
+            var nlogDirectory = new DirectoryInfo(ConfigurationItemFactory.GetAutoLoadingFileLocations().First().Key);
+            var configurationDirectory = nlogDirectory.Parent;
+            var testsDirectory = configurationDirectory.Parent.Parent.Parent;
+            var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
+#if NETSTANDARD
+                    "netstandard2.0",
+#elif NET35 || NET40 || NET45
+                    "net461",
+#else
+                nlogDirectory.Name,
+#endif
+                "Manually-Loaded-Extension.dll");
+            Assembly.LoadFrom(manuallyLoadedAssemblyPath);
+
         }
     }
 }
