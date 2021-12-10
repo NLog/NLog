@@ -385,6 +385,7 @@ namespace NLog.UnitTests
             var factory = new LogFactory();
             var logger = factory.GetLogger("logger");
             Assert.NotNull(logger);
+            logger = null;
             GC.Collect();
             GC.WaitForPendingFinalizers();
             factory.ReconfigExistingLoggers(true);
