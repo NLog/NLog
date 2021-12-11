@@ -383,15 +383,21 @@ namespace NLog.UnitTests
         public void PurgeObsoleteLoggersTest()
         {
             var factory = new LogFactory();
-            var logger = factory.GetLogger("logger");
+            var logger = GetWeakReferenceToTemporaryLogger(factory);
             Assert.NotNull(logger);
             logger = null;
-            GC.Collect();
+            GC.Collect(2, GCCollectionMode.Forced, true);
             GC.WaitForPendingFinalizers();
             factory.ReconfigExistingLoggers(true);
             var loggerKeysCount = factory.ResetLoggerCache();
             Assert.Equal(0, loggerKeysCount);
 
+        }
+
+        static WeakReference GetWeakReferenceToTemporaryLogger(LogFactory factory)
+        {
+            string uniqueLoggerName = Guid.NewGuid().ToString();
+            return new WeakReference(factory.GetLogger(uniqueLoggerName));
         }
     }
 }
