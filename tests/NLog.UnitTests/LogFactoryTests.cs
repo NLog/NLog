@@ -386,7 +386,7 @@ namespace NLog.UnitTests
             var logger = GetWeakReferenceToTemporaryLogger(factory);
             Assert.NotNull(logger);
             logger = null;
-            GC.Collect(2, GCCollectionMode.Forced, true);
+            GC.Collect();
             GC.WaitForPendingFinalizers();
             factory.ReconfigExistingLoggers(true);
             var loggerKeysCount = factory.ResetLoggerCache();
