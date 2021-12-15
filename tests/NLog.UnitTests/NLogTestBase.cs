@@ -80,9 +80,21 @@ namespace NLog.UnitTests
             Assert.Equal(msg, GetDebugLastMessage(targetName));
         }
 
+        protected void AssertDebugLastMessage(string targetName, string msg, LogFactory logFactory)
+        {
+            Assert.Equal(msg, GetDebugLastMessage(targetName, logFactory.Configuration));
+        }
+
         protected void AssertDebugLastMessageContains(string targetName, string msg)
         {
             string debugLastMessage = GetDebugLastMessage(targetName);
+            Assert.True(debugLastMessage.Contains(msg),
+                $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
+        }
+
+        protected void AssertDebugLastMessageContains(string targetName, string msg, LogFactory logFactory)
+        {
+            string debugLastMessage = GetDebugLastMessage(targetName, logFactory.Configuration);
             Assert.True(debugLastMessage.Contains(msg),
                 $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
         }
