@@ -370,6 +370,25 @@ namespace NLog.UnitTests
             Assert.Throws<ArgumentNullException>(() => factory.GetLogger(null));
         }
 
+        [Theory]
+        [InlineData(null, null)]
+        [InlineData("", "")]
+        [InlineData("name", "name")]
+        [InlineData("name-two", "nametwo")]
+        [InlineData("name-two, my-assembly", "nametwo, my-assembly")]
+        [InlineData(", my-assembly", ", my-assembly")] // border case
+        [InlineData("name,", "name,")] // border case
+        public void NormalizeNameTest(string input, string expected)
+        {
+            // Arrange
+
+            // Act
+            var result = LayoutRendererFactory.NormalizeName(input);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
         private class TestClass
         {
             public static void GenerateTimeout()

@@ -125,7 +125,7 @@ namespace NLog.Config
         /// <param name="typeName">Name of the type.</param>
         public void RegisterNamedType(string itemName, string typeName)
         {
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             _items[itemName] = () => Type.GetType(typeName, false);
         }
 
@@ -157,7 +157,7 @@ namespace NLog.Config
         private void RegisterDefinition(string itemName, Type itemDefinition, string assemblyName, string itemNamePrefix)
         {
             GetTypeDelegate typeLookup = () => itemDefinition;
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             _items[itemNamePrefix + itemName] = typeLookup;
             if (!string.IsNullOrEmpty(assemblyName))
             {
@@ -177,7 +177,7 @@ namespace NLog.Config
         {
             GetTypeDelegate getTypeDelegate;
 
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             if (!_items.TryGetValue(itemName, out getTypeDelegate))
             {
                 if (_globalDefaultFactory != null && _globalDefaultFactory.TryGetDefinition(itemName, out result))
@@ -215,7 +215,7 @@ namespace NLog.Config
         /// <returns>True if instance was created successfully, false otherwise.</returns>
         public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             if (!TryGetDefinition(itemName, out var itemType))
             {
                 result = null;
@@ -233,7 +233,7 @@ namespace NLog.Config
         /// <returns>Created item.</returns>
         public virtual TBaseType CreateInstance(string itemName)
         {
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             if (TryCreateInstance(itemName, out TBaseType result))
             {
                 return result;
@@ -268,7 +268,34 @@ namespace NLog.Config
 
             throw new ArgumentException(message);
         }
+
+        internal static string NormalizeName(string itemName)
+        {
+            if (itemName == null)
+            {
+                return null;
+            }
+
+            var itemToBeRemoved = "-";
+            if (!itemName.Contains(itemToBeRemoved))
+            {
+                return itemName;
+            }
+
+            // Only for the first comma
+            var commaIndex = itemName.IndexOf(',');
+            if (commaIndex >= 0)
+            {
+                var left = itemName.Substring(0, commaIndex).Replace(itemToBeRemoved, string.Empty);
+                var right = itemName.Substring(commaIndex);
+                return left + right;
+            }
+
+            return itemName.Replace(itemToBeRemoved, string.Empty);
+        }
     }
+
+
 
     /// <summary>
     /// Factory specialized for <see cref="LayoutRenderer"/>s. 
@@ -299,7 +326,7 @@ namespace NLog.Config
         /// <param name="renderer">the renderer that renders the value.</param>
         public void RegisterFuncLayout(string itemName, FuncLayoutRenderer renderer)
         {
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             _funcRenderers = _funcRenderers ?? new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
 
             //overwrite current if there is one
@@ -316,7 +343,7 @@ namespace NLog.Config
         {
             //first try func renderers, as they should have the possibility to overwrite a current one.
             FuncLayoutRenderer funcResult;
-            itemName = NameNormalizer.NormalizeName(itemName);
+            itemName = NormalizeName(itemName);
             if (_funcRenderers != null)
             {
                 var successAsFunc = _funcRenderers.TryGetValue(itemName, out funcResult);
