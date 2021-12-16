@@ -80,10 +80,13 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             }
         }
 
-        [Fact]
-        public void WhenDbNullRawValueShouldWork()
+        [Theory]
+        [InlineData("${db-null}")]
+        [InlineData("${dbnull}")]
+        [InlineData("${db-n-u-l-l}")]
+        public void WhenDbNullRawValueShouldWork(string layoutRenderer)
         {
-            SimpleLayout l = @"${event-properties:prop1:whenEmpty=${db-null}}";
+            SimpleLayout l = $@"${{event-properties:prop1:whenEmpty={layoutRenderer}}}";
             {
                 var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
                 le.Properties["prop1"] = 1;

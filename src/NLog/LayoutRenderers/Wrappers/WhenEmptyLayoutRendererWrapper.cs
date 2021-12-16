@@ -42,7 +42,6 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Outputs alternative layout when the inner layout produces empty result.
     /// </summary>
-    [LayoutRenderer("when-empty")]
     [LayoutRenderer("whenEmpty")]
     [AmbientProperty(nameof(WhenEmpty))]
     [ThreadAgnostic]
