@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.ComponentModel;
+
     /// <summary>
     /// The action to be taken when there are more connections then the max.
     /// </summary>
@@ -49,6 +50,7 @@ namespace NLog.Targets
         /// Just allow it.
         /// </summary>
         [Obsolete("Replaced by Grow. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         AllowNewConnnection = 0,
 
         /// <summary>
@@ -60,6 +62,7 @@ namespace NLog.Targets
         /// Discard the connection item.
         /// </summary>
         [Obsolete("Replaced by Discard. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         DiscardMessage = 1,
 
         /// <summary>

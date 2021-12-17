@@ -37,6 +37,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Text;
     using NLog.Common;
@@ -89,6 +90,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [Obsolete("Replaced by StdErr to align with ColoredConsoleTarget. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Error { get => StdErr; set => StdErr = value; }
 
         /// <summary>

@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
@@ -338,6 +339,7 @@ namespace NLog
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
         [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static IDisposable DisableLogging()
         {
             return factory.SuspendLogging();
@@ -353,6 +355,7 @@ namespace NLog
         /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
         /// </remarks>
         [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableLogging()
         {
             factory.ResumeLogging();

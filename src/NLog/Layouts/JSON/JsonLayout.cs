@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -137,6 +138,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
@@ -144,6 +146,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='JSON Output' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
         private bool? _includeMdc;
 
@@ -152,6 +155,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
         private bool? _includeMdlc;
 

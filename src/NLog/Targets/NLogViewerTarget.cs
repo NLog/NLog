@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
@@ -131,6 +132,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc
         {
             get => Renderer.IncludeMdc;
@@ -172,6 +174,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
@@ -179,6 +182,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
 
         /// <summary>
@@ -186,6 +190,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeNdc. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>
@@ -193,6 +198,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by NdcItemSeparator. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string NdlcItemSeparator { get => Renderer.NdlcItemSeparator; set => Renderer.NdlcItemSeparator = value; }
 
         /// <summary>

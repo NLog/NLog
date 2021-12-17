@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
     using System.Runtime.CompilerServices;
@@ -47,7 +48,6 @@ namespace NLog
     using NLog.Internal;
     using NLog.Internal.Fakeables;
     using NLog.Targets;
-    using System.Linq;
 
     /// <summary>
     /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
@@ -126,6 +126,7 @@ namespace NLog
         /// </summary>
         /// <param name="config">The config.</param>
         [Obsolete("Constructor with LoggingConfiguration as parameter should not be used. Instead provide LogFactory as parameter when constructing LoggingConfiguration. Marked obsolete in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LogFactory(LoggingConfiguration config)
             : this()
         {

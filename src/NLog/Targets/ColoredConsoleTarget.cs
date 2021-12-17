@@ -38,9 +38,10 @@ namespace NLog.Targets
     using System;
     using System.Text;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
-    using NLog.Config;
     using NLog.Common;
+    using NLog.Config;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -100,6 +101,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [Obsolete("Replaced by StdErr to align with ConsoleTarget. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ErrorStream { get => StdErr; set => StdErr = value; }
 
         /// <summary>
