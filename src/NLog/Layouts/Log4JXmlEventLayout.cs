@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.LayoutRenderers;
@@ -108,6 +109,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => Renderer.IncludeMdc; set => Renderer.IncludeMdc = value; }
 
         /// <summary>
@@ -128,6 +131,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
 
         /// <summary>
@@ -135,6 +139,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>

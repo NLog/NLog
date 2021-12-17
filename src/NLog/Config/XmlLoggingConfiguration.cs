@@ -35,13 +35,14 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Linq;
     using System.Xml;
+    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
@@ -91,6 +92,7 @@ namespace NLog.Config
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors)
             : this(fileName, ignoreErrors, LogManager.LogFactory)
         { }
@@ -146,6 +148,7 @@ namespace NLog.Config
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
             : this(reader, fileName, ignoreErrors, LogManager.LogFactory)
         { }
@@ -158,6 +161,7 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {

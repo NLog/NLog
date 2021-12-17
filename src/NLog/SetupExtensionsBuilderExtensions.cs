@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.ComponentModel;
     using System.Reflection;
     using NLog.Config;
     using NLog.Internal;
@@ -53,6 +54,7 @@ namespace NLog
         /// Disabled by default as it can give a huge performance hit during startup. Recommended to keep it disabled especially when running in the cloud.
         /// </remarks>
         [Obsolete("AutoLoadAssemblies(true) has been replaced by AutoLoadExtensions(), that matches the name of nlog-attribute in NLog.config. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ISetupExtensionsBuilder AutoLoadAssemblies(this ISetupExtensionsBuilder setupBuilder, bool enable)
         {
             if (enable)

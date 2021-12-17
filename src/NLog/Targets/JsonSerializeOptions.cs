@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// Options for JSON serialisation
@@ -44,18 +45,21 @@ namespace NLog.Targets
         /// Add quotes around object keys?
         /// </summary>
         [Obsolete("Marked obsolete on NLog 5.0.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool QuoteKeys { get; set; } = true;
 
         /// <summary>
         /// Format provider for value
         /// </summary>
         [Obsolete("Marked obsolete on NLog 5.0. Should always be InvariantCulture.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IFormatProvider FormatProvider { get; set; }
 
         /// <summary>
         /// Format string for value
         /// </summary>
         [Obsolete("Marked obsolete on NLog 5.0. Should always be InvariantCulture.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Format { get; set; }
 
         /// <summary>
