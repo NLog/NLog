@@ -2818,6 +2818,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Instead use WithProperty which is safe. If really necessary then one can use Properties-property. Marked obsolete on NLog 5.0")]
         public void LoggerSetPropertyChangesCurrentLogger()
         {
             string uniqueLoggerName = Guid.NewGuid().ToString();

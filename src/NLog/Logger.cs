@@ -134,6 +134,7 @@ namespace NLog
         /// </remarks>
         /// <param name="propertyKey">Property Name</param>
         /// <param name="propertyValue">Property Value</param>
+        [Obsolete("Instead use WithProperty which is safe. If really necessary then one can use Properties-property. Marked obsolete on NLog 5.0")]
         public void SetProperty(string propertyKey, object propertyValue)
         {
             if (string.IsNullOrEmpty(propertyKey))
