@@ -324,19 +324,15 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StartLazyWriterTimer()
         {
-            lock (_timerLockObject)
+            if (TimeToSleepBetweenBatches <= 1)
             {
-                if (_lazyWriterTimer != null)
+                StartTimerUnlessWriterActive(false);
+            }
+            else
+            {
+                lock (_timerLockObject)
                 {
-                    if (TimeToSleepBetweenBatches <= 1)
-                    {
-                        InternalLogger.Trace("{0}: Timer scheduled throttled", this);
-                        _lazyWriterTimer.Change(1, Timeout.Infinite);
-                    }
-                    else
-                    {
-                        _lazyWriterTimer.Change(TimeToSleepBetweenBatches, Timeout.Infinite);
-                    }
+                    _lazyWriterTimer?.Change(TimeToSleepBetweenBatches, Timeout.Infinite);
                 }
             }
         }
@@ -359,25 +355,25 @@ namespace NLog.Targets.Wrappers
                 lockTaken = Monitor.TryEnter(_writeLockObject);
                 if (lockTaken)
                 {
-                    // Lock taken means no other timer-worker-thread is trying to write, schedule timer now
-                    if (instant)
+                    lock (_timerLockObject)
                     {
-                        lock (_timerLockObject)
+                        if (_lazyWriterTimer != null)
                         {
-                            if (_lazyWriterTimer != null)
+                            // Lock taken means no other timer-worker-thread is trying to write, schedule timer now
+                            if (instant)
                             {
                                 // Not optimal to schedule timer-worker-thread while holding lock,
                                 // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
                                 InternalLogger.Trace("{0}: Timer scheduled instantly", this);
                                 _lazyWriterTimer.Change(0, Timeout.Infinite);
-                                return true;
                             }
+                            else
+                            {
+                                InternalLogger.Trace("{0}: Timer scheduled throttled", this);
+                                _lazyWriterTimer.Change(1, Timeout.Infinite);
+                            }
+                            return true;
                         }
-                    }
-                    else
-                    {
-                        StartLazyWriterTimer();
-                        return true;
                     }
                 }
 
@@ -428,7 +424,7 @@ namespace NLog.Targets.Wrappers
                 if (TimeToSleepBetweenBatches == 0)
                     StartInstantWriterTimer();
                 else if (TimeToSleepBetweenBatches <= 1)
-                    StartTimerUnlessWriterActive(false);
+                    StartLazyWriterTimer();
             }
         }
 
@@ -493,7 +489,7 @@ namespace NLog.Targets.Wrappers
                         {
                             // If queue was not empty, then more might have arrived while writing the first batch
                             // Do not use instant timer, so we can process in larger batches (faster)
-                            StartTimerUnlessWriterActive(false);
+                            StartLazyWriterTimer();
                         }
                         else
                         {
@@ -519,9 +515,6 @@ namespace NLog.Targets.Wrappers
                     if (asyncContinuation != null)
                         base.FlushAsync(asyncContinuation);
                 }
-
-                if (TimeToSleepBetweenBatches <= 1 && !_requestQueue.IsEmpty)
-                    StartTimerUnlessWriterActive(false);
             }
             catch (Exception exception)
             {
@@ -532,6 +525,13 @@ namespace NLog.Targets.Wrappers
                 }
 #endif
                 InternalLogger.Error(exception, "{0}: Error in flush procedure.", this);
+            }
+            finally
+            {
+                if (TimeToSleepBetweenBatches <= 1 && !_requestQueue.IsEmpty)
+                {
+                    StartLazyWriterTimer();
+                }
             }
         }
 
