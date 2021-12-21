@@ -114,11 +114,28 @@ namespace NLog
             if (string.IsNullOrEmpty(propertyKey))
                 throw new ArgumentException(nameof(propertyKey));
 
-            Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
-            newLogger.Initialize(Name, _targetsByLevel, Factory);
-            newLogger._contextProperties = CreateContextPropertiesDictionary(_contextProperties);
+            Logger newLogger = CreateChildLogger();
             newLogger._contextProperties[propertyKey] = propertyValue;
-            newLogger._contextLogger = _contextLogger;  // Use the GetTargetsForLevel() of the parent Logger
+            return newLogger;
+        }
+
+        /// <summary>
+        /// Creates new logger that automatically appends the specified properties to all log events (without changing current logger)
+        /// 
+        /// With <see cref="Properties"/> property, all properties can be enumerated. 
+        /// </summary>
+        /// <param name="properties">Collection of key-value pair properties</param>
+        /// <returns>New Logger object that automatically appends specified properties</returns>
+        public Logger WithProperties(IEnumerable<KeyValuePair<string, object>> properties)
+        {
+            if (properties == null)
+                throw new ArgumentException(nameof(properties));
+
+            Logger newLogger = CreateChildLogger();
+            foreach (KeyValuePair<string, object> property in properties)
+            {
+                newLogger._contextProperties[property.Key] = property.Value;
+            }
             return newLogger;
         }
 
@@ -793,6 +810,15 @@ namespace NLog
         protected virtual void OnLoggerReconfigured(EventArgs e)
         {
             LoggerReconfigured?.Invoke(this, e);
+        }
+
+        private Logger CreateChildLogger()
+        {
+            Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
+            newLogger.Initialize(Name, _targetsByLevel, Factory);
+            newLogger._contextProperties = CreateContextPropertiesDictionary(_contextProperties);
+            newLogger._contextLogger = _contextLogger;  // Use the GetTargetsForLevel() of the parent Logger
+            return newLogger;
         }
     }
 }
