@@ -239,7 +239,7 @@ namespace NLog.Targets
         private static Type TryParseDbType(string dbTypeName)
         {
             // retrieve the type name if a full name is given
-            dbTypeName = dbTypeName?.Substring(dbTypeName.LastIndexOf('.') + 1);
+            dbTypeName = dbTypeName?.Substring(dbTypeName.LastIndexOf('.') + 1).Trim();
 
             if (string.IsNullOrEmpty(dbTypeName))
                 return null;
