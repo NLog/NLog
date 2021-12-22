@@ -49,15 +49,9 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public class DatabaseParameterInfo
     {
-        /// <summary>
-        /// Mapping of System.Data.DbType, System.Data.SqlDbType and NpgsqlTypes.NpgsqlDbType members names
-        /// to their corresponding CLR types.
-        /// </summary>
         private static readonly Dictionary<string, Type> _typesByDbTypeName =
             new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
             {
-                // Members from System.Data.DbType
-
                 { nameof(System.Data.DbType.AnsiString), typeof(string) },
                 // { nameof(System.Data.DbType.Binary), typeof(byte[]) },  // not supported
                 { nameof(System.Data.DbType.Byte), typeof(byte) },
@@ -84,123 +78,7 @@ namespace NLog.Targets
                 { nameof(System.Data.DbType.StringFixedLength), typeof(string) },
                 { nameof(System.Data.DbType.Xml), typeof(string) },
                 { nameof(System.Data.DbType.DateTime2), typeof(DateTime) },
-                { nameof(System.Data.DbType.DateTimeOffset), typeof(DateTimeOffset) },
-
-
-                // Members from System.Data.SqlDbType
-
-                { "BigInt", typeof(long) },
-                // { "Binary", typeof(byte[]) }, // not supported
-                { "Bit", typeof(bool?) },
-                { "Char", typeof(string) },
-                // { "DateTime", typeof(DateTime) }, // already been added
-                // { "Decimal", typeof(decimal) }, // already been added
-                { "Float", typeof(float) },
-                // { "Image", typeof() }, // not supported
-                { "Int", typeof(int) },
-                { "Money", typeof(decimal) },
-                { "NChar", typeof(string) },
-                { "NText", typeof(string) },
-                { "NVarChar", typeof(string) },
-                { "Real", typeof(float) },
-                { "UniqueIdentifier", typeof(Guid) },
-                { "SmallDateTime", typeof(DateTime) },
-                { "SmallInt", typeof(short) },
-                { "SmallMoney", typeof(decimal) },
-                { "Text", typeof(string) },
-                // { "Timestamp", typeof(byte[]) }, // not supported (actually not a Timestamp)
-                { "TinyInt", typeof(byte) },
-                // { "VarBinary", typeof(byte[]) }, // not supported
-                { "VarChar", typeof(string) },
-                { "Variant", typeof(object) }, // not sure if we should support this
-                // { "Xml", typeof(string) }, // already been added
-                // { "Udt", typeof() }, // not supported
-                // { "Structured", typeof() }, // not supported
-                // { "Date", typeof(DateTime) }, // already been added
-                // { "Time", typeof(TimeSpan) }, // already been added
-                // { "DateTime2", typeof(DateTime) }, // already been added
-                // { "DateTimeOffset", typeof(DateTimeOffset) } // already been added
-
-
-                // Members from NpgsqlTypes.NpgsqlDbType
-
-                // { "Bigint", typeof(long) }, // already been added
-                // { "Double", typeof(double) }, // already been added
-                { "Integer", typeof(int) },
-                { "Numeric", typeof(decimal) },
-                // { "Real", typeof(float) }, // already been added
-                // { "Smallint", typeof(short) }, // already been added
-                // { "Money", typeof(decimal) }, // already been added
-                // { "Boolean", typeof(bool) }, // already been added
-                // { "Box", typeof() }, // not supported
-                // { "Circle", typeof() }, // not supported
-                // { "Line", typeof() }, // not supported
-                // { "LSeg", typeof() }, // not supported
-                // { "Path", typeof() }, // not supported
-                // { "Point", typeof() }, // not supported
-                // { "Polygon", typeof() }, // not supported
-                // { "Char", typeof(string) }, // already been added
-                // { "Text", typeof(string) }, // already been added
-                // { "Varchar", typeof(string) }, // already been added
-                // { "Name", typeof() }, // not supported (internal)
-                // { "Citext", typeof() }, // not supported
-                // { "InternalChar", typeof() }, // not supported (internal)
-                // { "Bytea", typeof(byte[]) }, // not supported
-                // { "Date", typeof(DateTime) }, // already been added
-                // { "Time", typeof(TimeSpan) }, // already been added
-                { "Timestamp", typeof(DateTime) },// ** COLLIDE with System.Data.SqlDbType.Timestamp **
-                { "TimestampTZ", typeof(DateTimeOffset) },
-                // { "TimestampTz", typeof(DateTimeOffset) }, // already been added
-                { "Interval", typeof(TimeSpan) },
-                // { "TimeTZ", typeof() }, // not supported
-                // { "TimeTz", typeof() }, // not supported
-                // { "Abstime", typeof() }, // obshowlete
-                // { "Inet", typeof() }, // not supported
-                // { "Cidr", typeof() }, // not supported
-                // { "MacAddr", typeof() }, // not supported
-                // { "MacAddr8", typeof() }, // not supported
-                // { "Bit", typeof(bool[]) }, // not supported ** COLLIDE with System.Data.SqlDbType.Bit ** 
-                // { "Varbit", typeof(bool[]) }, // not supported
-                // { "TsVector", typeof() }, // not supported
-                // { "TsQuery", typeof() }, // not supported
-                // { "Regconfig", typeof() }, // not supported
-                { "Uuid", typeof(Guid) },
-                // { "Xml", typeof(string) }, // already been added
-                { "Json", typeof(string) },
-                // { "Jsonb", typeof(byte[]) }, // not supported
-                { "JsonPath", typeof(string) },
-                // { "Hstore", typeof(Dictionary<string, string>) },  // not supported
-                // { "Refcursor", typeof() }, // not supported
-                // { "Oidvector", typeof() }, // not supported
-                // { "Int2Vector", typeof() }, // not supported
-                // { "Oid", typeof() }, // not supported
-                // { "Xid", typeof() }, // not supported
-                // { "Xid8", typeof() }, // not supported
-                // { "Cid", typeof() }, // not supported
-                // { "Regtype", typeof() }, // not supported
-                // { "Tid", typeof() }, // not supported
-                // { "PgLsn", typeof() }, // not supported
-                // { "Unknown", typeof() }, // not supported
-                // { "Geometry", typeof() }, // not supported
-                // { "Geography", typeof() }, // not supported
-                // { "LTree", typeof() }, // not supported
-                // { "LQuery", typeof() }, // not supported
-                // { "LTxtQuery", typeof() }, // not supported
-                // { "IntegerRange", typeof() }, // not supported
-                // { "BigIntRange", typeof() }, // not supported
-                // { "NumericRange", typeof() }, // not supported
-                // { "TimestampRange", typeof() }, // not supported
-                // { "TimestampTzRange", typeof() }, // not supported
-                // { "DateRange", typeof() }, // not supported
-                // { "IntegerMultirange", typeof() }, // not supported
-                // { "BigIntMultirange", typeof() }, // not supported
-                // { "NumericMultirange", typeof() }, // not supported
-                // { "TimestampMultirange", typeof() }, // not supported
-                // { "TimestampTzMultirange", typeof() }, // not supported
-                // { "DateMultirange", typeof() }, // not supported
-                // { "Array", typeof() }, // not supported
-                // { "Range", typeof() }, // not supported
-                // { "Multirange", typeof() } // not supported
+                { nameof(System.Data.DbType.DateTimeOffset), typeof(DateTimeOffset) }
             };
 
         private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
