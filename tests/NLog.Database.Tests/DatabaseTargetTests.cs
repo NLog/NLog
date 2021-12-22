@@ -868,7 +868,7 @@ CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=@level
 Parameter #1 MockDbType=Int32
-Parameter #1 Value=""{0}""
+Parameter #1 Value={0}
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input
