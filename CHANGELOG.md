@@ -4,6 +4,38 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v5.0-RC1 (2021/12/20)
+
+#### Features
+- [#4662](https://github.com/NLog/NLog/pull/4662) LogFactory Setup fluent with SetupLogFactory for general options (#4662) (@snakefoot)
+- [#4648](https://github.com/NLog/NLog/pull/4648) LogFactory fluent Setup with FilterDynamicIgnore + FilterDynamicLog (#4648) (@snakefoot)
+- [#4642](https://github.com/NLog/NLog/pull/4642) TargetWithContext - Added support for ExcludeProperties (#4642) (@snakefoot)
+
+#### Improvements
+- [#4656](https://github.com/NLog/NLog/pull/4656) FallbackGroupTarget - Added support for EnableBatchWrite (#4656) (@snakefoot)
+- [#4655](https://github.com/NLog/NLog/pull/4655) JsonLayout - ExcludeProperties should also handle IncludeScopeProperties (#4655) (@snakefoot)
+- [#4645](https://github.com/NLog/NLog/pull/4645) TargetWithContext - IncludeEmptyValue false by default (#4645) (@snakefoot)
+- [#4646](https://github.com/NLog/NLog/pull/4646) PropertiesDictionary - Generate unique message-template-names on duplicate keys (#4646) (@snakefoot)
+- [#4661](https://github.com/NLog/NLog/pull/4661) LoggingRule - Fix XML documentation (#4661) (@GitHubPang)
+- [#4671](https://github.com/NLog/NLog/pull/4671) Fixed RegisterObjectTransformation to handle conversion to simple values (#4671) (@snakefoot)
+- [#4669](https://github.com/NLog/NLog/pull/4669) LogLevel - Replaced IConvertible with IFormattable for better Json output (#4669) (@snakefoot)
+- [#4676](https://github.com/NLog/NLog/pull/4676) NLog.Wcf - Updated nuget dependencies to System.ServiceModel ver. 4.4.4 (#4676) (@snakefoot)
+- [#4675](https://github.com/NLog/NLog/pull/4675) FileTarget - Improve fallback logic when running on Linux without File BirthTIme (#4675) (@snakefoot)
+- [#4680](https://github.com/NLog/NLog/pull/4680) FileTarget - Better handling of relative paths with FileSystemWatcher (#4680) (@snakefoot)
+- [#4689](https://github.com/NLog/NLog/pull/4689) Renamed AppSettingLayoutRenderer2 to AppSettingLayoutRenderer after removing NLog.Extended (#4689) (@snakefoot)
+- [#4563](https://github.com/NLog/NLog/pull/4563) Added alias ToUpper and ToLower as alternative to UpperCase and LowerCase (#4563) (@snakefoot)
+- [#4695](https://github.com/NLog/NLog/pull/4695) Ignore dash (-) when parsing layouts, layoutrenderers and targets (#4695) (@304NotModified)
+- [#4713](https://github.com/NLog/NLog/pull/4713) Logger SetProperty marked as obsolete, instead use WithProperty or the unsafe Properties-property (#4713) (@snakefoot)
+- [#4714](https://github.com/NLog/NLog/pull/4714) Hide obsolete methods from intellisense (#4714) (@snakefoot)
+
+#### Performance
+- [#4672](https://github.com/NLog/NLog/pull/4672) PaddingLayoutRendererWrapper - Pad operation with reduced string allocation (#4672) (@snakefoot)
+- [#4698](https://github.com/NLog/NLog/pull/4698) FileTarget - Use Environment.TickCount to trigger File.Exists checks (#4698) (@snakefoot)
+- [#4699](https://github.com/NLog/NLog/pull/4699) AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4699) (@snakefoot)
+- [#4705](https://github.com/NLog/NLog/pull/4705) LogEventInfo - Faster clone of messageTemplateParameters by caching Count (#4705) (@snakefoot)
+
+See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
+
 ### v5.0-Preview 3 (2021/10/26)
 
 #### Bugfixes
@@ -23,9 +55,9 @@ Date format: (year/month/day)
 - [#4605](https://github.com/NLog/NLog/pull/4605) Removed DefaultValue-attribute as it is only used for docs-generator (#4605) (@snakefoot)
 - [#4606](https://github.com/NLog/NLog/pull/4606) Removed Advanced-attribute as it has no meaning (#4606) (@snakefoot)
 
-### v5.0-Preview 2 (2021/10/02)
-
 See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
+
+### v5.0-Preview 2 (2021/10/02)
 
 #### Bugfixes
 - [#4533](https://github.com/NLog/NLog/pull/4533) Fixed validation of nlog-element when using include-files (#4533) (@snakefoot)
@@ -46,6 +78,8 @@ See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-previ
 - [#4583](https://github.com/NLog/NLog/pull/4583) ExceptionLayoutRenderer - Separator with basic layout support (#4583) (@snakefoot)
 - [#4588](https://github.com/NLog/NLog/pull/4588) StackTraceLayoutRenderer - Separator with basic layout support (#4588) (@snakefoot)
 - [#4589](https://github.com/NLog/NLog/pull/4589) ScopeNestedLayoutRenderer - Separator with basic layout support (#4589) (@snakefoot)
+
+See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
 
 ### v5.0-Preview 1 (2021/08/25)
 
