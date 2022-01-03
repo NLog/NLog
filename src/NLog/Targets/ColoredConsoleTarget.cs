@@ -488,7 +488,7 @@ namespace NLog.Targets
 
         private static string EscapeColorCodes(string message)
         {
-            if (message.IndexOf("\a", StringComparison.Ordinal) >= 0)
+            if (message.IndexOf('\a') >= 0)
                 message = message.Replace("\a", "\a\a");
             return message;
         }
