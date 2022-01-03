@@ -826,6 +826,43 @@ Dispose()
             AssertLog(expectedLog);
         }
 
+        [Theory]
+        [InlineData(nameof(DbType.AnsiString), typeof(string))]
+        [InlineData(nameof(DbType.Byte), typeof(byte))]
+        [InlineData(nameof(DbType.Boolean), typeof(bool))]
+        [InlineData(nameof(DbType.Currency), typeof(decimal))]
+        [InlineData(nameof(DbType.Date), typeof(DateTime))]
+        [InlineData(nameof(DbType.DateTime), typeof(DateTime))]
+        [InlineData(nameof(DbType.Decimal), typeof(decimal))]
+        [InlineData(nameof(DbType.Double), typeof(double))]
+        [InlineData(nameof(DbType.Guid), typeof(Guid))]
+        [InlineData(nameof(DbType.Int16), typeof(short))]
+        [InlineData(nameof(DbType.Int32), typeof(int))]
+        [InlineData(nameof(DbType.Int64), typeof(long))]
+        [InlineData(nameof(DbType.Object), typeof(object))]
+        [InlineData(nameof(DbType.SByte), typeof(sbyte))]
+        [InlineData(nameof(DbType.Single), typeof(float))]
+        [InlineData(nameof(DbType.String), typeof(string))]
+        [InlineData(nameof(DbType.Time), typeof(TimeSpan))]
+        [InlineData(nameof(DbType.UInt16), typeof(ushort))]
+        [InlineData(nameof(DbType.UInt32), typeof(uint))]
+        [InlineData(nameof(DbType.UInt64), typeof(ulong))]
+        [InlineData(nameof(DbType.VarNumeric), typeof(decimal))]
+        [InlineData(nameof(DbType.AnsiStringFixedLength), typeof(string))]
+        [InlineData(nameof(DbType.StringFixedLength), typeof(string))]
+        [InlineData(nameof(DbType.Xml), typeof(string))]
+        [InlineData(nameof(DbType.DateTime2), typeof(DateTime))]
+        [InlineData(nameof(DbType.DateTimeOffset), typeof(DateTimeOffset))]
+        [InlineData(".Int32.", null)]
+        [InlineData(" . Int32 . ", null)]
+        [InlineData("MockSql.Int32", typeof(int))]
+        public void ParameterDbTypeParsingTest(string dbType, Type expectedParameterType)
+        {
+            var dataBaseParameterInfo = new DatabaseParameterInfo("", null) { DbType = dbType };
+            var actualParameterType = dataBaseParameterInfo.ParameterType;
+            Assert.Equal(expectedParameterType, actualParameterType);
+        }
+
         [Fact]
         public void ParameterDbTypePropertyNameTest()
         {
@@ -868,7 +905,7 @@ CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=@level
 Parameter #1 MockDbType=Int32
-Parameter #1 Value=""{0}""
+Parameter #1 Value={0}
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input

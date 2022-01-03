@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using System.Globalization;
     using System.Reflection;
@@ -48,6 +49,38 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public class DatabaseParameterInfo
     {
+        private static readonly Dictionary<string, Type> _typesByDbTypeName =
+            new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+            {
+                { nameof(System.Data.DbType.AnsiString), typeof(string) },
+                // { nameof(System.Data.DbType.Binary), typeof(byte[]) },  // not supported
+                { nameof(System.Data.DbType.Byte), typeof(byte) },
+                { nameof(System.Data.DbType.Boolean), typeof(bool) },
+                { nameof(System.Data.DbType.Currency), typeof(decimal) },
+                { nameof(System.Data.DbType.Date), typeof(DateTime) }, // DateOnly when .net framework will be deprecated
+                { nameof(System.Data.DbType.DateTime), typeof(DateTime) },
+                { nameof(System.Data.DbType.Decimal), typeof(decimal) },
+                { nameof(System.Data.DbType.Double), typeof(double) },
+                { nameof(System.Data.DbType.Guid), typeof(Guid) },
+                { nameof(System.Data.DbType.Int16), typeof(short) },
+                { nameof(System.Data.DbType.Int32), typeof(int) },
+                { nameof(System.Data.DbType.Int64), typeof(long) },
+                { nameof(System.Data.DbType.Object), typeof(object) }, // not sure if we should support this
+                { nameof(System.Data.DbType.SByte), typeof(sbyte) },
+                { nameof(System.Data.DbType.Single), typeof(float) },
+                { nameof(System.Data.DbType.String), typeof(string) },
+                { nameof(System.Data.DbType.Time), typeof(TimeSpan) }, // TimeOnly when .net framework will be deprecated
+                { nameof(System.Data.DbType.UInt16), typeof(ushort) },
+                { nameof(System.Data.DbType.UInt32), typeof(uint) },
+                { nameof(System.Data.DbType.UInt64), typeof(ulong) },
+                { nameof(System.Data.DbType.VarNumeric), typeof(decimal) },
+                { nameof(System.Data.DbType.AnsiStringFixedLength), typeof(string) },
+                { nameof(System.Data.DbType.StringFixedLength), typeof(string) },
+                { nameof(System.Data.DbType.Xml), typeof(string) },
+                { nameof(System.Data.DbType.DateTime2), typeof(DateTime) },
+                { nameof(System.Data.DbType.DateTimeOffset), typeof(DateTimeOffset) }
+            };
+
         private readonly ValueTypeLayoutInfo _layoutInfo = new ValueTypeLayoutInfo();
 
         /// <summary>
@@ -203,61 +236,15 @@ namespace NLog.Targets
             return true;    // DbType not in use
         }
 
-        private static Type TryParseDbType(string dbTypeString)
+        private static Type TryParseDbType(string dbTypeName)
         {
-            string[] dbTypeNames = dbTypeString?.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            dbTypeString = dbTypeNames?.Length > 0 ? dbTypeNames[dbTypeNames.Length - 1] : dbTypeString;
+            // retrieve the type name if a full name is given
+            dbTypeName = dbTypeName?.Substring(dbTypeName.LastIndexOf('.') + 1).Trim();
 
-            if (string.IsNullOrEmpty(dbTypeString))
+            if (string.IsNullOrEmpty(dbTypeName))
                 return null;
-            if (dbTypeString.IndexOf("Bool", StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(bool);
-            if (dbTypeString.IndexOf("Timestamp", StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(DateTime);
-            if (dbTypeString.IndexOf(nameof(System.Data.DbType.DateTimeOffset), StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(DateTimeOffset);
-            if (dbTypeString.IndexOf(nameof(System.Data.DbType.DateTime), StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(DateTime);
-            if (dbTypeString.IndexOf(nameof(System.Data.DbType.Date), StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(DateTime);
-            if (dbTypeString.IndexOf(nameof(System.Data.DbType.Decimal), StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(decimal);
-            if (dbTypeString.IndexOf(nameof(System.Data.DbType.Guid), StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(Guid);
-            if (dbTypeString.IndexOf(nameof(System.Data.DbType.String), StringComparison.OrdinalIgnoreCase) >= 0)
-                return typeof(string);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Xml), StringComparison.OrdinalIgnoreCase))
-                return typeof(string);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.UInt16), StringComparison.OrdinalIgnoreCase))
-                return typeof(ushort);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.UInt32), StringComparison.OrdinalIgnoreCase))
-                return typeof(uint);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.UInt64), StringComparison.OrdinalIgnoreCase))
-                return typeof(ulong);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Int16), StringComparison.OrdinalIgnoreCase))
-                return typeof(short);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Int32), StringComparison.OrdinalIgnoreCase))
-                return typeof(int);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Int64), StringComparison.OrdinalIgnoreCase))
-                return typeof(long);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Double), StringComparison.OrdinalIgnoreCase))
-                return typeof(double);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Single), StringComparison.OrdinalIgnoreCase))
-                return typeof(float);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Object), StringComparison.OrdinalIgnoreCase))
-                return typeof(object);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.SByte), StringComparison.OrdinalIgnoreCase))
-                return typeof(sbyte);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Byte), StringComparison.OrdinalIgnoreCase))
-                return typeof(byte);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.VarNumeric), StringComparison.OrdinalIgnoreCase))
-                return typeof(decimal);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Currency), StringComparison.OrdinalIgnoreCase))
-                return typeof(decimal);
-            if (dbTypeString.Equals(nameof(System.Data.DbType.Time), StringComparison.OrdinalIgnoreCase))
-                return typeof(TimeSpan);
 
-            return null;
+            return _typesByDbTypeName.TryGetValue(dbTypeName, out var type) ? type : null;
         }
 
         DbTypeSetter _cachedDbTypeSetter;
