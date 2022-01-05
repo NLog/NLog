@@ -397,20 +397,25 @@ namespace NLog.UnitTests
             }
         }
 
-
         [Fact]
         public void PurgeObsoleteLoggersTest()
         {
             var factory = new LogFactory();
             var logger = GetWeakReferenceToTemporaryLogger(factory);
             Assert.NotNull(logger);
-            logger = null;
             GC.Collect();
             GC.WaitForPendingFinalizers();
             factory.ReconfigExistingLoggers(true);
             var loggerKeysCount = factory.ResetLoggerCache();
             Assert.Equal(0, loggerKeysCount);
 
+            logger = GetWeakReferenceToTemporaryLogger(factory);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            factory.ReconfigExistingLoggers();
+            factory.ReconfigExistingLoggers(false);
+            loggerKeysCount = factory.ResetLoggerCache();
+            Assert.Equal(1, loggerKeysCount);
         }
 
         static WeakReference GetWeakReferenceToTemporaryLogger(LogFactory factory)
