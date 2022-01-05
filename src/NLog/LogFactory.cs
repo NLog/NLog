@@ -38,6 +38,7 @@ namespace NLog
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Security;
     using System.Text;
@@ -531,7 +532,6 @@ namespace NLog
             return GetLoggerThreadSafe(name, loggerType);
         }
 
-
         private bool RefreshExistingLoggers()
         {
             bool purgeObsoleteLoggers;
@@ -552,7 +552,6 @@ namespace NLog
             return purgeObsoleteLoggers;
         }
 
-
         /// <summary>
         /// Loops through all loggers previously returned by GetLogger and recalculates their 
         /// target and filter list. Useful after modifying the configuration programmatically
@@ -562,7 +561,6 @@ namespace NLog
         {
             RefreshExistingLoggers();
         }
-
 
         /// <summary>
         /// Loops through all loggers previously returned by GetLogger and recalculates their 
@@ -579,8 +577,6 @@ namespace NLog
                     _loggerCache.PurgeObsoleteLoggers();
             }
         }
-
-
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
@@ -1387,8 +1383,7 @@ namespace NLog
             private readonly Dictionary<LoggerCacheKey, WeakReference> _loggerCache =
                     new Dictionary<LoggerCacheKey, WeakReference>();
 
-            public int Count => _loggerCache.Keys.Count;
-
+            public int Count => _loggerCache.Count;
 
             /// <summary>
             /// Inserts or updates. 
@@ -1416,9 +1411,9 @@ namespace NLog
                 // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
                 List<Logger> values = new List<Logger>(_loggerCache.Count);
 
-                foreach (WeakReference loggerReference in _loggerCache.Values)
+                foreach (var item in _loggerCache)
                 {
-                    if (loggerReference.Target is Logger logger)
+                    if (item.Value.Target is Logger logger)
                     {
                         values.Add(logger);
                     }
@@ -1426,7 +1421,6 @@ namespace NLog
 
                 return values;
             }
-
 
             public void Reset()
             {
