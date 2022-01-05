@@ -241,7 +241,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
-        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
+        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers()" />
         /// manually.
         /// </summary>
         public LoggingConfiguration Configuration
@@ -531,6 +531,28 @@ namespace NLog
             return GetLoggerThreadSafe(name, loggerType);
         }
 
+
+        private bool RefreshExistingLoggers()
+        {
+            bool purgeObsoleteLoggers;
+            List<Logger> loggers;
+
+            lock (_syncRoot)
+            {
+                _config?.InitializeAll();
+                loggers = _loggerCache.GetLoggers();
+                purgeObsoleteLoggers = loggers.Count != _loggerCache.Count;
+            }
+
+            foreach (var logger in loggers)
+            {
+                logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
+            }
+
+            return purgeObsoleteLoggers;
+        }
+
+
         /// <summary>
         /// Loops through all loggers previously returned by GetLogger and recalculates their 
         /// target and filter list. Useful after modifying the configuration programmatically
@@ -538,19 +560,27 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            List<Logger> loggers;
+            RefreshExistingLoggers();
+        }
 
-            lock (_syncRoot)
-            {
-                _config?.InitializeAll();
-                loggers = _loggerCache.GetLoggers();
-            }
 
-            foreach (var logger in loggers)
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger and recalculates their 
+        /// target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// </summary>
+        /// <param name="purgeObsoleteLoggers">Purge null-referenced loggers in cache</param>
+        public void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
+        {
+            purgeObsoleteLoggers = RefreshExistingLoggers() && purgeObsoleteLoggers;
+            if (purgeObsoleteLoggers)
             {
-                logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
+                lock (_syncRoot)
+                    _loggerCache.PurgeObsoleteLoggers();
             }
         }
+
+
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
@@ -1357,6 +1387,9 @@ namespace NLog
             private readonly Dictionary<LoggerCacheKey, WeakReference> _loggerCache =
                     new Dictionary<LoggerCacheKey, WeakReference>();
 
+            public int Count => _loggerCache.Keys.Count;
+
+
             /// <summary>
             /// Inserts or updates. 
             /// </summary>
@@ -1393,19 +1426,42 @@ namespace NLog
 
                 return values;
             }
+
+
             public void Reset()
             {
                 _loggerCache.Clear();
+            }
+
+            /// <summary>
+            /// Loops through all loggers in loggerCache and checks if the logger cache is null
+            /// if the logger cache is null it will be deleted 
+            /// this will avoid growing logger cache infinitely
+            /// </summary>
+            public void PurgeObsoleteLoggers()
+            {
+                var loggerKeys = _loggerCache.Keys.ToList();
+
+                foreach (var key in loggerKeys)
+                {
+                    var logger = Retrieve(key);
+                    if (logger != null)
+                        continue;
+                    _loggerCache.Remove(key);
+                }
             }
         }
 
         /// <remarks>
         /// Internal for unit tests
         /// </remarks>
-        internal void ResetLoggerCache()
+        internal int ResetLoggerCache()
         {
+            var keysCount = _loggerCache.Count;
             _loggerCache.Reset();
+            return keysCount;
         }
+
 
         /// <summary>
         /// Enables logging in <see cref="IDisposable.Dispose"/> implementation.
