@@ -191,16 +191,17 @@ namespace NLog.UnitTests.Config
                             <logger name='*' minlevel='debug' appendto='debug' />
                          </rules>
                     </nlog>";
-                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
-                LogManager.Configuration = config;
-                var logger = LogManager.GetLogger("InvalidInternalLogLevel_shouldNotBreakLogging");
+
+                var logFactory = new LogFactory();
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml, logFactory);
+                logFactory.Configuration = config;
+                var logger = logFactory.GetLogger("InvalidInternalLogLevel_shouldNotBreakLogging");
 
                 // Act
                 logger.Debug("message 1");
 
                 // Assert
-                var message = GetDebugLastMessage("debug");
-                Assert.Equal("message 1", message);
+                logFactory.AssertDebugLastMessage("message 1");
             }
         }
 
@@ -281,6 +282,110 @@ namespace NLog.UnitTests.Config
                 // cleanup
                 InternalLogger.LogWriter = null;
             }
+        }
+
+        [Fact]
+        public void RulesBeforeTargetsTest()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <rules>
+                    <logger name='*' minLevel='Info' writeTo='d1' />
+                </rules>
+
+                <targets>
+                    <target name='d1' type='Debug' />
+                </targets>
+            </nlog>");
+
+            Assert.Equal(1, c.LoggingRules.Count);
+            var rule = c.LoggingRules[0];
+            Assert.Equal("*", rule.LoggerNamePattern);
+            Assert.Equal(4, rule.Levels.Count);
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
+            Assert.Contains(LogLevel.Error, rule.Levels);
+            Assert.Contains(LogLevel.Fatal, rule.Levels);
+            Assert.Equal(1, rule.Targets.Count);
+            Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
+            Assert.False(rule.Final);
+            Assert.Equal(0, rule.Filters.Count);
+        }
+
+        [Fact]
+        public void LowerCaseParserTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='debug' layout='${level}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='info' appendto='debug'>
+                        <filters defaultAction='log'>
+                            <whencontains layout='${message}' substring='msg' action='ignore' />
+                        </filters>
+                    </logger>
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+
+            logger.Fatal("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Fatal));
+
+            logger.Error("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Error));
+
+            logger.Warn("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Warn));
+
+            logger.Info("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
+
+            logger.Debug("message");
+            logger.Debug("msg");
+            logger.Info("msg");
+            logger.Warn("msg");
+            logger.Error("msg");
+            logger.Fatal("msg");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
+        }
+
+        [Fact]
+        public void UpperCaseParserTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <TARGETS><TARGET NAME='DEBUG' TYPE='DEBUG' LAYOUT='${LEVEL}' /></TARGETS>
+                <RULES>
+                    <LOGGER NAME='*' MINLEVEL='INFO' APPENDTO='DEBUG'>
+                        <FILTERS DEFAULTACTION='LOG'>
+                            <WHENCONTAINS LAYOUT='${MESSAGE}' SUBSTRING='msg' ACTION='IGNORE' />
+                        </FILTERS>
+                    </LOGGER>
+                </RULES>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+
+            logger.Fatal("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Fatal));
+
+            logger.Error("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Error));
+
+            logger.Warn("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Warn));
+
+            logger.Info("message");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
+
+            logger.Debug("message");
+            logger.Debug("msg");
+            logger.Info("msg");
+            logger.Warn("msg");
+            logger.Error("msg");
+            logger.Fatal("msg");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
         }
     }
 }
