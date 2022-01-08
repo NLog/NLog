@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Filters
 {
     using Xunit;
@@ -42,7 +40,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenNotEqualTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -52,21 +50,23 @@ namespace NLog.UnitTests.Filters
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
+            var logger = logFactory.GetLogger("A");
             logger.Debug("skipme");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("skipme");
+
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("skipme");
+
             logger.Debug("SkipMe");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("skipme");
         }
 
         [Fact]
         public void WhenNotEqualInsensitiveTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -76,17 +76,20 @@ namespace NLog.UnitTests.Filters
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
+            var logger = logFactory.GetLogger("A");
             logger.Debug("skipMeToo");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("skipMeToo");
+
             logger.Debug("skipmetoo");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("skipmetoo");
+
             logger.Debug("dontskipme");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("skipmetoo");
+
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("skipmetoo");
         }
     }
 }

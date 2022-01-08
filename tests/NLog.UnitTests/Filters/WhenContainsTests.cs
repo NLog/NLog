@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Filters
 {
+    using NLog.Filters;
+    using NLog.Layouts;
     using Xunit;
 
     public class WhenContainsTests : NLogTestBase
@@ -42,106 +42,138 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenContainsTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                   <filters defaultAction='log'>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <whenContains layout='${message}' substring='zzz' action='Ignore' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("ZzzZ");
         }
 
         [Fact]
         public void WhenContainsInsensitiveTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                   <filters defaultAction='log'>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("aaa");
         }
 
         [Fact]
         public void WhenContainsQuoteTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                   <filters defaultAction='log'>
-                        <whenContains layout='${message}' substring='&apos;' action='Ignore' ignoreCase='true' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <whenContains layout='${message}' substring='&apos;' action='Ignore' ignoreCase='true' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("'");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("a'a");
-            AssertDebugCounter("debug", 0);
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
+            logger.Debug("'");
+            logFactory.AssertDebugLastMessage("a");
+            logger.Debug("a'a");
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("aaa");
         }
 
         [Fact]
         public void WhenContainsQuoteTestComplex()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                   <filters defaultAction='log'>
-                        <when condition=""contains('${message}', 'Cannot insert the value NULL into column ''Col1')"" action=""Log""></when>
-                        <when condition='true' action='Ignore' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <when condition=""contains('${message}', 'Cannot insert the value NULL into column ''Col1')"" action=""Log""></when>
+                            <when condition='true' action='Ignore' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("Test");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("Cannot insert the value NULL into column 'Col1");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("Cannot insert the value NULL into column 'Col1'");
-            AssertDebugCounter("debug", 2);
+            var logger = logFactory.GetLogger("A");
+
+            var expectedMessage = "Cannot insert the value NULL into column 'Col1";
+            logger.Debug(expectedMessage);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
+            expectedMessage = "Cannot insert the value NULL into column 'Col1'";
+            logger.Debug(expectedMessage);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
+            expectedMessage = "Cannot insert the value NULL into column 'COL1'";
+            logger.Debug(expectedMessage);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
             logger.Debug("Cannot insert the value NULL into column Col1");
-            AssertDebugCounter("debug", 2);
-            logger.Debug("Cannot insert the value NULL into column 'COL1'");
-            AssertDebugCounter("debug", 3);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
+            logger.Debug("Test");
+            logFactory.AssertDebugLastMessage(expectedMessage);
+        }
+
+        [Fact]
+        public void WhenContainsAPITest()
+        {
+            // this is mostly to make Clover happy
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
+                        <filters>
+                            <whenContains layout='${message}' substring='zzz' action='Ignore' />
+                        </filters>
+                    </logger>
+                </rules>
+            </nlog>").LogFactory;
+
+            Assert.True(logFactory.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
+            var wcf = (WhenContainsFilter)logFactory.Configuration.LoggingRules[0].Filters[0];
+            Assert.IsType<SimpleLayout>(wcf.Layout);
+            Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
+            Assert.Equal("zzz", wcf.Substring);
+            Assert.Equal(FilterResult.Ignore, wcf.Action);
         }
     }
 }

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -35,39 +35,13 @@ namespace NLog.UnitTests.Filters
 {
     using System.Linq;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Filters;
     using Xunit;
 
-    public class APITests : NLogTestBase
+    public class WhenMethodFilterTests : NLogTestBase
     {
         [Fact]
-        public void APITest()
-        {
-            // this is mostly to make Clover happy
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
-                    </filters>
-                    </logger>
-                </rules>
-            </nlog>");
-
-            Assert.True(LogManager.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
-            var wcf = (WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
-            Assert.IsType<SimpleLayout>(wcf.Layout);
-            Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
-            Assert.Equal("zzz", wcf.Substring);
-            Assert.Equal(FilterResult.Ignore, wcf.Action);
-        }
-
-        [Fact]
-        public void WhenMethodFilterApiTest()
+        public void WhenMethodFilterAPITest()
         {
             // Stage
             var logFactory = new LogFactory();

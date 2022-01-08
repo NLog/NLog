@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Filters
 {
     using Xunit;
@@ -42,7 +40,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenNotContainsTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -52,21 +50,21 @@ namespace NLog.UnitTests.Filters
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
+            var logger = logFactory.GetLogger("A");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("zzz");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("zzz");
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("zzz");
         }
 
         [Fact]
         public void WhenNotContainsInsensitiveTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -76,17 +74,17 @@ namespace NLog.UnitTests.Filters
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
+            var logger = logFactory.GetLogger("A");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("zzz");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("ZzzZ");
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("ZzzZ");
             logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("ZzzZ");
         }
     }
 }
