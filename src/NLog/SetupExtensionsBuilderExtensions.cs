@@ -102,7 +102,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name = null) where T : Target
         {
             var targetType = typeof(T);
-            name = string.IsNullOrEmpty(name) ? targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name : name;
+            name = string.IsNullOrEmpty(name) ? (targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name ?? typeof(T).Name) : name;
             return RegisterTarget(setupBuilder, name, targetType);
         }
 
@@ -130,7 +130,7 @@ namespace NLog
             where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);
-            name = string.IsNullOrEmpty(name) ? layoutRendererType.GetFirstCustomAttribute<LayoutRendererAttribute>()?.Name : name;
+            name = string.IsNullOrEmpty(name) ? (layoutRendererType.GetFirstCustomAttribute<LayoutRendererAttribute>()?.Name ?? typeof(T).Name) : name;
             return RegisterLayoutRenderer(setupBuilder, name, layoutRendererType);
         }
 

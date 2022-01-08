@@ -187,8 +187,10 @@ namespace NLog.UnitTests.Config
         public void ExceptionTest()
         {
             var target = new MemoryTarget { Layout = @"${exception:format=tostring}" };
-            SimpleConfigurator.ConfigureForTargetLogging(target);
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(target);
+            }).GetCurrentClassLogger();
 
             try
             {

@@ -644,8 +644,11 @@ namespace NLog.UnitTests.Targets
         public void WriteFormattedStringEvent_WithNullArgument()
         {
             var target = new MyTarget();
-            SimpleConfigurator.ConfigureForTargetLogging(target);
-            var logger = LogManager.GetLogger("WriteFormattedStringEvent_EventWithNullArguments");
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(target);
+            }).GetLogger(nameof(WriteFormattedStringEvent_WithNullArgument));
+
             string t = null;
             logger.Info("Testing null:{0}", t);
             Assert.Equal(1, target.WriteCount);
@@ -734,9 +737,10 @@ namespace NLog.UnitTests.Targets
         {
             using (new NoThrowNLogExceptions())
             {
-                var target = new WrongMyTarget();
-                SimpleConfigurator.ConfigureForTargetLogging(target);
-                var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
+                var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+                {
+                    builder.ForLogger().WriteTo(new WrongMyTarget());
+                }).GetLogger("WrongMyTargetShouldThrowException");
                 logger.Info("Testing");
             }
         }

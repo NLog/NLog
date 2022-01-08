@@ -46,18 +46,21 @@ namespace NLog.UnitTests
             var debugTarget1 = new DebugTarget();
             var debugTarget2 = new DebugTarget();
 
-            SimpleConfigurator.ConfigureForTargetLogging(debugTarget1, LogLevel.Debug);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(debugTarget1);
+            }).LogFactory;
 
-            var logger = LogManager.GetLogger(Guid.NewGuid().ToString("N"));
+            var logger = logFactory.GetLogger(Guid.NewGuid().ToString("N"));
 
             logger.Info("foo");
 
             Assert.Equal(1, debugTarget1.Counter);
             Assert.Equal(0, debugTarget2.Counter);
 
-            LogManager.Configuration.AddTarget("DesktopConsole", debugTarget2);
-            LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, debugTarget2));
-            LogManager.ReconfigExistingLoggers();
+            logFactory.Configuration.AddTarget("DesktopConsole", debugTarget2);
+            logFactory.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, debugTarget2));
+            logFactory.ReconfigExistingLoggers();
 
             logger.Info("foo");
 
@@ -68,7 +71,7 @@ namespace NLog.UnitTests
         [Fact]
         public void Bug5965StackOverflow()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   
@@ -88,14 +91,12 @@ namespace NLog.UnitTests
     <logger name='*' minlevel='Trace' writeTo='file' />
   </rules>
 
+</nlog>").LogFactory;
 
-</nlog>
-");
-
-            var log = LogManager.GetLogger("x");
+            var log = logFactory.GetLogger("x");
             log.Fatal("Test");
 
-            LogManager.Configuration = null;
+            logFactory.Configuration = null;
         }
     }
 }

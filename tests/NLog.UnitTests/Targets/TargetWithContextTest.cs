@@ -37,7 +37,6 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using System.Collections.Generic;
     using Xunit;
-    using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
@@ -100,9 +99,10 @@ namespace NLog.UnitTests.Targets
             wrapper.WrappedTarget = target;
             wrapper.TimeToSleepBetweenBatches = 0;
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(wrapper, LogLevel.Debug);
-
-            Logger logger = LogManager.GetLogger("Example");
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(wrapper);
+            }).GetLogger("Example");
 
             GlobalDiagnosticsContext.Clear();
             ScopeContext.Clear();
@@ -189,9 +189,10 @@ namespace NLog.UnitTests.Targets
         {
             AsyncTargetWrapper wrapper = new AsyncTargetWrapper { WrappedTarget = target, TimeToSleepBetweenBatches = 0 };
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(wrapper, LogLevel.Debug);
-
-            Logger logger = LogManager.GetLogger("Example");
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(wrapper);
+            }).GetLogger("Example");
 
             logger.Debug("log message");
 
@@ -203,9 +204,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextConfigTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='contexttarget' includeCallSite='true'>
@@ -215,12 +216,12 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             ScopeContext.Clear();
             logger.Error("log message");
-            var target = LogManager.Configuration.FindTargetByName("debug") as CustomTargetWithContext;
+            var target = logFactory.Configuration.FindTargetByName("debug") as CustomTargetWithContext;
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.NotEmpty(lastCombinedProperties);
@@ -230,9 +231,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextAsyncPropertyTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
@@ -241,16 +242,16 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            var logger = logFactory.GetLogger("A");
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
 
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Error, logger.Name, "Hello");
             logEvent.Properties["name"] = "Kenny";
             logEvent.Properties["password"] = "123Password";
             logger.Error(logEvent);
-            LogManager.Flush();
+            logFactory.Flush();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.Single(lastCombinedProperties);
@@ -258,7 +259,7 @@ namespace NLog.UnitTests.Targets
 
             logger.Error("Hello {name}", "Cartman");
             logEvent.Properties["Password"] = "123Password";
-            LogManager.Flush();
+            logFactory.Flush();
             lastCombinedProperties = target.LastCombinedProperties;
             Assert.Single(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("name", "Cartman"), lastCombinedProperties);
@@ -267,9 +268,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextJsonTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
@@ -285,14 +286,14 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             ScopeContext.Clear();
             ScopeContext.PushProperty("TestKey", "Hello Thread World");
             logger.Error("log message");
-            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
             System.Threading.Thread.Sleep(1);
             for (int i = 0; i < 1000; ++i)
             {
@@ -311,9 +312,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextPropertyTypeTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
@@ -330,15 +331,15 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             ScopeContext.Clear();
 
             var logEvent = new LogEventInfo() { Message = "log message" };
             logger.Error(logEvent);
-            LogManager.Flush();
-            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            logFactory.Flush();
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.NotEmpty(lastCombinedProperties);

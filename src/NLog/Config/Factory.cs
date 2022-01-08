@@ -239,7 +239,7 @@ namespace NLog.Config
                 return result;
             }
 
-            var message = typeof(TBaseType).Name + " cannot be found: '" + itemName + "'";
+            var message = typeof(TBaseType).Name + " symbol-name is unknown: '" + itemName + "'";
             if (itemName != null && (itemName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
                                  itemName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
