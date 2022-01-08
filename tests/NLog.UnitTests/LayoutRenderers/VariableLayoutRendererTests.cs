@@ -144,35 +144,6 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void Var_in_file_target()
-        {
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string logFilePath = Path.Combine(tempPath, "test.log");
-
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"<nlog>
-                <variable name='dir' value='{tempPath}' />
-                <targets>
-                    <target name='f' type='file' fileName='${{var:dir}}/test.log' layout='${{message}}' lineEnding='LF' />
-                </targets>
-                <rules>
-                    <logger name='*' writeTo='f' />
-                </rules>
-            </nlog>");
-
-            try
-            {
-                logFactory.GetLogger("A").Debug("msg");
-
-                Assert.True(File.Exists(logFilePath), "Log file was not created at expected file path.");
-                AssertFileContents(logFilePath, "msg\n", System.Text.Encoding.UTF8);
-            }
-            finally
-            {
-                File.Delete(logFilePath);
-            }
-        }
-
-        [Fact]
         public void Var_Layout_Target_CallSite()
         {
             var logFactory = new LogFactory().Setup()

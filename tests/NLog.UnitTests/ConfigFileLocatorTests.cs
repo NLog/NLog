@@ -269,6 +269,29 @@ namespace NLog.UnitTests
             AssertResult(tmpDir, "TempProcessDir", "ProcessDir", "Entry", result);
         }
 
+        [Fact]
+        public void ValueWithVariableMustNotCauseInfiniteRecursion()
+        {
+            // Header will be printed during initialization, before config fully loaded, verify config is not loaded again
+            var nlogConfigXml = @"<nlog throwExceptions='true'>
+                <variable name='hello' value='header' />
+                <targets>
+                    <target name='debug' type='DebugSystem' header='${var:hello}' />
+                </targets>
+                <rules>
+                    <logger name='*' minLevel='trace' writeTo='debug' />
+                </rules>
+            </nlog>";
+
+            // Arrange
+            var appEnvMock = new AppEnvironmentMock(f => true, f => throw new NLogConfigurationException("Never allow loading config"));
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+            var logFactory = new LogFactory(fileLoader).Setup().LoadConfigurationFromXml(nlogConfigXml).LogFactory;
+
+            // Assert
+            Assert.NotNull(logFactory.Configuration.FindTargetByName("debug"));
+        }
+
         private static void AssertResult(string tmpDir, string appDir, string processDir, string appName, List<string> result)
         {
 #if NETSTANDARD

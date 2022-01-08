@@ -295,25 +295,6 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void ValueWithVariableMustNotCauseInfiniteRecursion()
-        {
-            var nlogConfigXml = @"
-            <nlog>
-                <variable name='dir' value='c:\mylogs' />
-                <targets>
-                    <target name='f' type='file' fileName='${var:dir}\test.log' />
-                </targets>
-                <rules>
-                    <logger name='*' writeTo='f' />
-                </rules>
-            </nlog>";
-
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(nlogConfigXml).LogFactory;   //1st call
-            var newXmlConfig = XmlLoggingConfiguration.CreateFromXmlString(nlogConfigXml, logFactory);      //2nd call
-            Assert.True(newXmlConfig.InitializeSucceeded);
-        }
-
-        [Fact]
         public void SuspendAndResumeLogging_InOrder()
         {
             LogFactory factory = new LogFactory();
