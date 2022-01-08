@@ -45,7 +45,7 @@ namespace NLog.UnitTests
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
             <nlog throwExceptions='false'>
                 <targets>
                     <target type='BufferingWrapper' name='test'>
@@ -55,9 +55,9 @@ namespace NLog.UnitTests
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            Logger logger = LogManager.GetCurrentClassLogger();
+            Logger logger = logFactory.GetCurrentClassLogger();
             logger.Info("Prepare Timeout");
 
             Exception timeoutException = null;
@@ -77,7 +77,7 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='Debug' name='test' /></targets>
                 <rules>
@@ -93,9 +93,7 @@ namespace NLog.UnitTests
             Boolean ExceptionThrown = false;
             try
             {
-                LogManager.ThrowExceptions = true;
-
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='Debug' name='test' /></targets>
                 <rules>
@@ -286,7 +284,7 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog imAnewAttribute='noError'>
                     <targets><target type='file' name='f1' filename='test.log' /></targets>
                     <rules>
@@ -299,10 +297,7 @@ namespace NLog.UnitTests
         [Fact]
         public void ValueWithVariableMustNotCauseInfiniteRecursion()
         {
-            LogManager.Configuration = null;
-
-            var filename = "NLog.config";
-            File.WriteAllText(filename, @"
+            var nlogConfigXml = @"
             <nlog>
                 <variable name='dir' value='c:\mylogs' />
                 <targets>
@@ -311,17 +306,11 @@ namespace NLog.UnitTests
                 <rules>
                     <logger name='*' writeTo='f' />
                 </rules>
-            </nlog>");
-            try
-            {
-                var x = LogManager.Configuration;
-                //2nd call
-                var config = new XmlLoggingConfiguration(filename);
-            }
-            finally
-            {
-                File.Delete(filename);
-            }
+            </nlog>";
+
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(nlogConfigXml).LogFactory;   //1st call
+            var newXmlConfig = XmlLoggingConfiguration.CreateFromXmlString(nlogConfigXml, logFactory);      //2nd call
+            Assert.True(newXmlConfig.InitializeSucceeded);
         }
 
         [Fact]
@@ -368,25 +357,6 @@ namespace NLog.UnitTests
         {
             LogFactory factory = new LogFactory();
             Assert.Throws<ArgumentNullException>(() => factory.GetLogger(null));
-        }
-
-        [Theory]
-        [InlineData(null, null)]
-        [InlineData("", "")]
-        [InlineData("name", "name")]
-        [InlineData("name-two", "nametwo")]
-        [InlineData("name-two, my-assembly", "nametwo, my-assembly")]
-        [InlineData(", my-assembly", ", my-assembly")] // border case
-        [InlineData("name,", "name,")] // border case
-        public void NormalizeNameTest(string input, string expected)
-        {
-            // Arrange
-
-            // Act
-            var result = LayoutRendererFactory.NormalizeName(input);
-
-            // Assert
-            Assert.Equal(expected, result);
         }
 
         private class TestClass
