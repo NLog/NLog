@@ -1470,8 +1470,11 @@ namespace NLog.UnitTests.LayoutRenderers
         public void CallsiteTargetUsesStackTraceTest(bool includeStackTraceUsage)
         {
             var target = new MyTarget() { StackTraceUsage = includeStackTraceUsage ? StackTraceUsage.WithStackTrace : StackTraceUsage.None };
-            SimpleConfigurator.ConfigureForTargetLogging(target);
-            var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(target);
+            }).GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
+
             string t = null;
             logger.Info("Testing null:{0}", t);
             Assert.NotNull(target.LastEvent);
@@ -1489,8 +1492,11 @@ namespace NLog.UnitTests.LayoutRenderers
         public void CallsiteTargetSkipsStackTraceTest(bool includeLogEventCallSite, StackTraceUsage stackTraceUsage)
         {
             var target = new MyTarget() { StackTraceUsage = stackTraceUsage };
-            SimpleConfigurator.ConfigureForTargetLogging(target);
-            var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(target);
+            }).GetLogger(nameof(CallsiteTargetSkipsStackTraceTest));
+
             var logEvent = LogEventInfo.Create(LogLevel.Info, logger.Name, "Hello");
             if (includeLogEventCallSite)
                 logEvent.SetCallerInfo(nameof(CallSiteTests), nameof(CallsiteTargetSkipsStackTraceTest), string.Empty, 0);
