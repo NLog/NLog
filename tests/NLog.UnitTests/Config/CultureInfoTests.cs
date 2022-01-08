@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Config
             var expected = string.Format(culture, formatString, parameters);
             var logger = logFactory.GetLogger("test");
             logger.Debug(formatString, parameters);
-            Assert.Equal(expected, GetDebugLastMessage("debug", logFactory.Configuration));
+            Assert.Equal(expected, GetDebugLastMessage("debug", logFactory));
         }
 
         [Fact]
