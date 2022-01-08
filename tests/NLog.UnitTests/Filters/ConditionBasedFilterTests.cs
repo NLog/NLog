@@ -31,11 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Filters
 {
-    using NLog;
     using Xunit;
 
     public class ConditionBasedFilterTests : NLogTestBase
@@ -43,7 +40,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -53,17 +50,17 @@ namespace NLog.UnitTests.Filters
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("Zz");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("Zz");
         }
 
         [Fact]
