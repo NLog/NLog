@@ -1434,9 +1434,7 @@ namespace NLog
             /// </summary>
             public void PurgeObsoleteLoggers()
             {
-                var loggerKeys = _loggerCache.Keys.ToList();
-
-                foreach (var key in loggerKeys)
+                foreach (var key in _loggerCache.Keys.ToList())
                 {
                     var logger = Retrieve(key);
                     if (logger != null)

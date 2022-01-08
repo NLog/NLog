@@ -43,7 +43,6 @@ namespace NLog.UnitTests
     using System.Runtime.CompilerServices;
     using System.Text;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -82,7 +81,7 @@ namespace NLog.UnitTests
 
         protected void AssertDebugLastMessage(string targetName, string msg, LogFactory logFactory)
         {
-            Assert.Equal(msg, GetDebugLastMessage(targetName, logFactory.Configuration));
+            Assert.Equal(msg, GetDebugLastMessage(targetName, logFactory));
         }
 
         protected void AssertDebugLastMessageContains(string targetName, string msg)
@@ -94,29 +93,29 @@ namespace NLog.UnitTests
 
         protected void AssertDebugLastMessageContains(string targetName, string msg, LogFactory logFactory)
         {
-            string debugLastMessage = GetDebugLastMessage(targetName, logFactory.Configuration);
+            string debugLastMessage = GetDebugLastMessage(targetName, logFactory);
             Assert.True(debugLastMessage.Contains(msg),
                 $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
         }
 
         protected string GetDebugLastMessage(string targetName)
         {
-            return GetDebugLastMessage(targetName, LogManager.Configuration);
+            return GetDebugLastMessage(targetName, LogManager.LogFactory);
         }
 
-        protected string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
+        protected string GetDebugLastMessage(string targetName, LogFactory logFactory)
         {
-            return GetDebugTarget(targetName, configuration).LastMessage;
+            return GetDebugTarget(targetName, logFactory).LastMessage;
         }
 
         public DebugTarget GetDebugTarget(string targetName)
         {
-            return GetDebugTarget(targetName, LogManager.Configuration);
+            return GetDebugTarget(targetName, LogManager.LogFactory);
         }
 
-        protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        protected DebugTarget GetDebugTarget(string targetName, LogFactory logFactory)
         {
-            return LogFactoryTestExtensions.GetDebugTarget(targetName, configuration);
+            return LogFactoryTestExtensions.GetDebugTarget(targetName, logFactory.Configuration);
         }
 
         protected void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)

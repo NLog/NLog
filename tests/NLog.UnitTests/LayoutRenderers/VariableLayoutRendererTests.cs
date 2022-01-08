@@ -95,23 +95,23 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_with_layout_renderers()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name='user' value='logger=${logger}' />
-    <variable name='password' value='realgoodpassword' />
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <variable name='user' value='logger=${logger}' />
+                <variable name='password' value='realgoodpassword' />
             
                 <targets>
                     <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration.Variables["password"] = "123";
-            var logger = LogManager.GetLogger("A");
-
+            logFactory.Configuration.Variables["password"] = "123";
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
+
+            var lastMessage = GetDebugLastMessage("debug", logFactory);
             Assert.Equal("msg and logger=A=123", lastMessage);
         }
 
@@ -120,26 +120,26 @@ namespace NLog.UnitTests.LayoutRenderers
         [InlineData("myJson", "${var:myJSON}")]
         public void Var_with_layout(string variableName, string layoutStyle)
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
-<nlog throwExceptions='true'>
-    <variable name='{variableName}'  >
-        <layout type='JsonLayout'>
-            <attribute name='short date' layout='${{level}}' />
-            <attribute name='message' layout='${{message}}' />
-        </layout>
-    </variable>
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
+            <nlog throwExceptions='true'>
+                <variable name='{variableName}'  >
+                    <layout type='JsonLayout'>
+                        <attribute name='short date' layout='${{level}}' />
+                        <attribute name='message' layout='${{message}}' />
+                    </layout>
+                </variable>
             
                 <targets>
                     <target name='debug' type='Debug' layout='{layoutStyle}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
+
+            var lastMessage = GetDebugLastMessage("debug", logFactory);
             Assert.Equal("{ \"short date\": \"Debug\", \"message\": \"msg\" }", lastMessage);
         }
 
@@ -149,8 +149,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string logFilePath = Path.Combine(tempPath, "test.log");
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
-            <nlog>
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"<nlog>
                 <variable name='dir' value='{tempPath}' />
                 <targets>
                     <target name='f' type='file' fileName='${{var:dir}}/test.log' layout='${{message}}' lineEnding='LF' />
@@ -159,9 +158,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger name='*' writeTo='f' />
                 </rules>
             </nlog>");
+
             try
             {
-                LogManager.GetLogger("A").Debug("msg");
+                logFactory.GetLogger("A").Debug("msg");
 
                 Assert.True(File.Exists(logFilePath), "Log file was not created at expected file path.");
                 AssertFileContents(logFilePath, "msg\n", System.Text.Encoding.UTF8);
@@ -175,7 +175,6 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_Layout_Target_CallSite()
         {
-
             var logFactory = new LogFactory().Setup()
                 .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
                     <variable name='myvar' value='${callsite}' />
@@ -197,92 +196,85 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_with_other_var()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name='user' value='${var:password}=' />
-    <variable name='password' value='realgoodpassword' />
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <variable name='user' value='${var:password}=' />
+                <variable name='password' value='realgoodpassword' />
             
                 <targets>
                     <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration.Variables["password"] = "123";
-            var logger = LogManager.GetLogger("A");
-            // LogManager.ReconfigExistingLoggers();
+            logFactory.Configuration.Variables["password"] = "123";
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
-            Assert.Equal("msg and 123==123", lastMessage);
+
+            logFactory.AssertDebugLastMessage("msg and 123==123");
         }
 
         [Fact]
         public void Var_from_api()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-           
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>           
                 <targets>
                     <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration.Variables["user"] = "admin";
-            LogManager.Configuration.Variables["password"] = "123";
-            var logger = LogManager.GetLogger("A");
+            logFactory.Configuration.Variables["user"] = "admin";
+            logFactory.Configuration.Variables["password"] = "123";
+            var logger = logFactory.GetLogger("A");
 
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
-            Assert.Equal("msg and admin=123", lastMessage);
+            logFactory.AssertDebugLastMessage("msg and admin=123");
         }
 
         [Fact]
         public void Var_default()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name='user' value='admin' />
- 
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <variable name='user' value='admin' />
             
                 <targets>
                     <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password:default=unknown}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
-            Assert.Equal("msg and admin=unknown", lastMessage);
+
+            logFactory.AssertDebugLastMessage("msg and admin=unknown");
         }
 
         [Fact]
         public void Var_default_after_clear()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name='user' value='admin' />
-    <variable name='password' value='realgoodpassword' />
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <variable name='user' value='admin' />
+                <variable name='password' value='realgoodpassword' />
             
                 <targets>
                     <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password:default=unknown}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-
-            LogManager.Configuration.Variables.Remove("password");
-
+            var logger = logFactory.GetLogger("A");
+            logFactory.Configuration.Variables.Remove("password");
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
-            Assert.Equal("msg and admin=unknown", lastMessage);
+
+            logFactory.AssertDebugLastMessage("msg and admin=unknown");
         }
 
         [Fact]
@@ -318,23 +310,22 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_default_after_xml_emptyString()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name='user' value='admin' />
-    <variable name='password' value='' />
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <variable name='user' value='admin' />
+                <variable name='password' value='' />
             
                 <targets>
                     <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            var lastMessage = GetDebugLastMessage("debug");
-            Assert.Equal("msg and admin=", lastMessage);
+
+            logFactory.AssertDebugLastMessage("msg and admin=");
         }
 
         [Fact]
@@ -371,20 +362,20 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void test_with_mockLogManager()
         {
-            LogFactory logFactory = new LogFactory();
-            var logConfig = new LoggingConfiguration();
-            var debugTarget = new DebugTarget
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                Name = "t1",
-                Layout = "${message}|${var:var1:default=x}"
-            };
-            logConfig.AddRuleForAllLevels(debugTarget);
-            logConfig.Variables["var1"] = "my-mocking-manager";
-            logFactory.Configuration = logConfig;
+                builder.ForLogger().WriteTo(new DebugTarget
+                {
+                    Name = "Debug",
+                    Layout = "${message}|${var:var1:default=x}"
+                });
+                builder.Configuration.Variables["var1"] = "my-mocking-manager";
+            }).LogFactory;
 
             var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            Assert.Equal("msg|my-mocking-manager", debugTarget.LastMessage);
+
+            logFactory.AssertDebugLastMessage("msg|my-mocking-manager");
         }
 
         private LogFactory CreateConfigFromXml()
