@@ -213,6 +213,184 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogThresholdTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Info' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+
+            logger.Fatal("hello");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Fatal));
+
+            logger.Error("hello");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Error));
+
+            logger.Warn("hello");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Warn));
+
+            logger.Info("hello");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
+
+            logger.Debug("hello");
+            logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
+        }
+
+        [Fact]
+        public void LogThresholdTest2()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${level}' />
+                    <target name='debug2' type='Debug' layout='${level}' />
+                    <target name='debug3' type='Debug' layout='${level}' />
+                    <target name='debug4' type='Debug' layout='${level}' />
+                    <target name='debug5' type='Debug' layout='${level}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug1' />
+                    <logger name='*' minlevel='Info' writeTo='debug2' />
+                    <logger name='*' minlevel='Warn' writeTo='debug3' />
+                    <logger name='*' minlevel='Error' writeTo='debug4' />
+                    <logger name='*' minlevel='Fatal' writeTo='debug5' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+
+            logger.Fatal("hello");
+            logFactory.AssertDebugLastMessage("Debug1", nameof(LogLevel.Fatal));
+            logFactory.AssertDebugLastMessage("Debug2", nameof(LogLevel.Fatal));
+            logFactory.AssertDebugLastMessage("Debug3", nameof(LogLevel.Fatal));
+            logFactory.AssertDebugLastMessage("Debug4", nameof(LogLevel.Fatal));
+            logFactory.AssertDebugLastMessage("Debug5", nameof(LogLevel.Fatal));
+
+            logger.Error("hello");
+            logFactory.AssertDebugLastMessage("Debug1", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug2", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug3", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug4", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug5", nameof(LogLevel.Fatal));
+
+            logger.Warn("hello");
+            logFactory.AssertDebugLastMessage("Debug1", nameof(LogLevel.Warn));
+            logFactory.AssertDebugLastMessage("Debug2", nameof(LogLevel.Warn));
+            logFactory.AssertDebugLastMessage("Debug3", nameof(LogLevel.Warn));
+            logFactory.AssertDebugLastMessage("Debug4", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug5", nameof(LogLevel.Fatal));
+
+            logger.Info("hello");
+            logFactory.AssertDebugLastMessage("Debug1", nameof(LogLevel.Info));
+            logFactory.AssertDebugLastMessage("Debug2", nameof(LogLevel.Info));
+            logFactory.AssertDebugLastMessage("Debug3", nameof(LogLevel.Warn));
+            logFactory.AssertDebugLastMessage("Debug4", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug5", nameof(LogLevel.Fatal));
+
+            logger.Debug("hello");
+            logFactory.AssertDebugLastMessage("Debug1", nameof(LogLevel.Debug));
+            logFactory.AssertDebugLastMessage("Debug2", nameof(LogLevel.Info));
+            logFactory.AssertDebugLastMessage("Debug3", nameof(LogLevel.Warn));
+            logFactory.AssertDebugLastMessage("Debug4", nameof(LogLevel.Error));
+            logFactory.AssertDebugLastMessage("Debug5", nameof(LogLevel.Fatal));
+        }
+
+        [Fact]
+        public void LoggerNameMatchTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${logger}' />
+                    <target name='debug2' type='Debug' layout='${logger}' />
+                    <target name='debug3' type='Debug' layout='${logger}' />
+                    <target name='debug4' type='Debug' layout='${logger}' />
+                </targets>
+                <rules>
+                    <logger name='A' minlevel='Info' writeTo='debug1' />
+                    <logger name='A*' minlevel='Info' writeTo='debug2' />
+                    <logger name='*A*' minlevel='Info' writeTo='debug3' />
+                    <logger name='*A' minlevel='Info' writeTo='debug4' />
+                </rules>
+            </nlog>").LogFactory;
+
+            logFactory.GetLogger("A").Info("message"); // matches 1st, 2nd, 3rd and 4th rule
+            logFactory.AssertDebugLastMessage("Debug1", "A");
+            logFactory.AssertDebugLastMessage("Debug2", "A");
+            logFactory.AssertDebugLastMessage("Debug3", "A");
+            logFactory.AssertDebugLastMessage("Debug4", "A");
+
+            logFactory.GetLogger("A2").Info("message"); // matches 2nd rule and 3rd rule
+            logFactory.AssertDebugLastMessage("Debug1", "A");
+            logFactory.AssertDebugLastMessage("Debug2", "A2");
+            logFactory.AssertDebugLastMessage("Debug3", "A2");
+            logFactory.AssertDebugLastMessage("Debug4", "A");
+
+            logFactory.GetLogger("BAD").Info("message"); // matches 3rd rule
+            logFactory.AssertDebugLastMessage("Debug1", "A");
+            logFactory.AssertDebugLastMessage("Debug2", "A2");
+            logFactory.AssertDebugLastMessage("Debug3", "BAD");
+            logFactory.AssertDebugLastMessage("Debug4", "A");
+
+            logFactory.GetLogger("BA").Info("message"); // matches 3rd and 4th rule
+            logFactory.AssertDebugLastMessage("Debug1", "A");
+            logFactory.AssertDebugLastMessage("Debug2", "A2");
+            logFactory.AssertDebugLastMessage("Debug3", "BA");
+            logFactory.AssertDebugLastMessage("Debug4", "BA");
+        }
+
+        [Fact]
+        public void MultiAppenderTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${logger}' />
+                    <target name='debug2' type='Debug' layout='${logger}' />
+                    <target name='debug3' type='Debug' layout='${logger}' />
+                    <target name='debug4' type='Debug' layout='${logger}' />
+                </targets>
+                <rules>
+                    <logger name='A' minlevel='Info' writeTo='debug1' />
+                    <logger name='A' minlevel='Info' writeTo='debug2' />
+                    <logger name='B' minlevel='Info' writeTo='debug1,debug2' />
+                    <logger name='C' minlevel='Info' writeTo='debug1,debug2,debug3' />
+                    <logger name='D' minlevel='Info' writeTo='debug1,debug2' />
+                    <logger name='D' minlevel='Info' writeTo='debug3,debug4' />
+                </rules>
+            </nlog>").LogFactory;
+
+            logFactory.GetLogger("D").Info("message");
+            logFactory.AssertDebugLastMessage("Debug1", "D");
+            logFactory.AssertDebugLastMessage("Debug2", "D");
+            logFactory.AssertDebugLastMessage("Debug3", "D");
+            logFactory.AssertDebugLastMessage("Debug4", "D");
+
+            logFactory.GetLogger("C").Info("message");
+            logFactory.AssertDebugLastMessage("Debug1", "C");
+            logFactory.AssertDebugLastMessage("Debug2", "C");
+            logFactory.AssertDebugLastMessage("Debug3", "C");
+            logFactory.AssertDebugLastMessage("Debug4", "D");
+
+            logFactory.GetLogger("B").Info("message");
+            logFactory.AssertDebugLastMessage("Debug1", "B");
+            logFactory.AssertDebugLastMessage("Debug2", "B");
+            logFactory.AssertDebugLastMessage("Debug3", "C");
+            logFactory.AssertDebugLastMessage("Debug4", "D");
+
+            logFactory.GetLogger("A").Info("message");
+            logFactory.AssertDebugLastMessage("Debug1", "A");
+            logFactory.AssertDebugLastMessage("Debug2", "A");
+            logFactory.AssertDebugLastMessage("Debug3", "C");
+            logFactory.AssertDebugLastMessage("Debug4", "D");
+        }
+
+        [Fact]
         public void MultipleTargetsTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -371,7 +549,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void FiltersTest_ignoreFinal()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -380,31 +558,29 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                       <filters defaultAction='log'>
+                        <filters defaultAction='log'>
                             <when condition=""starts-with(message, 'x')"" action='IgnoreFinal' />
-                      
                         </filters>
                     </logger>
                      <logger name='*' level='Warn' writeTo='d2'>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            var logger = LogManager.GetLogger("logger1");
+            var logger = logFactory.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "test 1");
-            AssertDebugLastMessage("d2", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
+            AssertDebugLastMessage("d2", "test 1", logFactory);
 
             logger.Warn("x-mass");
-            AssertDebugLastMessage("d1", "test 1");
-            AssertDebugLastMessage("d2", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
+            AssertDebugLastMessage("d2", "test 1", logFactory);
         }
 
         [Fact]
         public void FiltersTest_logFinal()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -413,31 +589,30 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                       <filters>
+                        <filters>
                             <when condition=""starts-with(message, 'x')"" action='LogFinal' />                      
                         </filters>
                     </logger>
                      <logger name='*' level='Warn' writeTo='d2'>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            var logger = LogManager.GetLogger("logger1");
+            var logger = logFactory.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "");
-            AssertDebugLastMessage("d2", "test 1");
+            AssertDebugLastMessage("d1", "", logFactory);
+            AssertDebugLastMessage("d2", "test 1", logFactory);
 
             logger.Warn("x-mass");
-            AssertDebugLastMessage("d1", "x-mass");
-            AssertDebugLastMessage("d2", "test 1");
+            AssertDebugLastMessage("d1", "x-mass", logFactory);
+            AssertDebugLastMessage("d2", "test 1", logFactory);
         }
 
 
         [Fact]
         public void FiltersTest_ignore()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -454,24 +629,22 @@ namespace NLog.UnitTests.Config
                      <logger name='*' level='Warn' writeTo='d2'>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            var logger = LogManager.GetLogger("logger1");
+            var logger = logFactory.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "test 1");
-            AssertDebugLastMessage("d2", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
+            AssertDebugLastMessage("d2", "test 1", logFactory);
 
             logger.Warn("x-mass");
-            AssertDebugLastMessage("d1", "test 1");
-            AssertDebugLastMessage("d2", "x-mass");
-
+            AssertDebugLastMessage("d1", "test 1", logFactory);
+            AssertDebugLastMessage("d2", "x-mass", logFactory);
         }
 
         [Fact]
         public void FiltersTest_DefaultAction()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -479,27 +652,25 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                       <filters>
+                        <filters>
                             <when condition=""starts-with(message, 't')"" action='Log' />
-                      
                         </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            var logger = LogManager.GetLogger("logger1");
+            var logger = logFactory.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
 
             logger.Warn("x-mass");
-            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
         }
 
         [Fact]
         public void FiltersTest_FilterDefaultAction()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -512,21 +683,20 @@ namespace NLog.UnitTests.Config
                         </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            var logger = LogManager.GetLogger("logger1");
+            var logger = logFactory.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
 
             logger.Warn("x-mass");
-            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
         }
 
         [Fact]
         public void FiltersTest_DefaultAction_noRules()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -539,18 +709,17 @@ namespace NLog.UnitTests.Config
                         </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            var logger = LogManager.GetLogger("logger1");
+            var logger = logFactory.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d1", "test 1", logFactory);
         }
 
         [Fact]
         public void LoggingRule_Final_SuppressesOnlyMatchingLevels()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -560,19 +729,18 @@ namespace NLog.UnitTests.Config
                     <logger name='a' level='Debug' final='true' />
                     <logger name='*' minlevel='Debug' writeTo='d1' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            Logger a = LogManager.GetLogger("a");
+            Logger a = logFactory.GetLogger("a");
             Assert.False(a.IsDebugEnabled);
             Assert.True(a.IsInfoEnabled);
             a.Info("testInfo");
             a.Debug("suppressedDebug");
-            AssertDebugLastMessage("d1", "testInfo");
+            AssertDebugLastMessage("d1", "testInfo", logFactory);
 
-            Logger b = LogManager.GetLogger("b");
+            Logger b = logFactory.GetLogger("b");
             b.Debug("testDebug");
-            AssertDebugLastMessage("d1", "testDebug");
+            AssertDebugLastMessage("d1", "testDebug", logFactory);
         }
 
         [Fact]
@@ -665,7 +833,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LoggingRule_LevelOff_NotSetAsActualLogLevel()
         {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='l1' type='Debug' layout='${message}' />
@@ -676,10 +844,10 @@ namespace NLog.UnitTests.Config
                     <logger name='a' level='Off' appendTo='l1' />
                     <logger name='a' minlevel='Debug' appendTo='l2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = c;
-            LogManager.GetLogger("a");
+            var c = logFactory.Configuration;
+            logFactory.GetLogger("a");
 
             Assert.Equal(2, c.LoggingRules.Count);
             Assert.False(c.LoggingRules[0].IsLoggingEnabledForLevel(LogLevel.Off), "Log level Off should always return false.");
@@ -702,7 +870,7 @@ namespace NLog.UnitTests.Config
         [InlineData("Wrong")]
         public void LoggingRule_LevelLayout_ParseLevel(string levelVariable)
         {
-            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>"
                 + (levelVariable != null ? $"<variable name='var_level' value='{levelVariable}'/>" : "") +
                 @"<targets>
@@ -711,18 +879,17 @@ namespace NLog.UnitTests.Config
                 <rules>
                     <logger name='*' level='${var:var_level}' writeTo='d1' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = config;
-            Logger logger = LogManager.GetLogger(nameof(LoggingRule_LevelLayout_ParseLevel));
+            Logger logger = logFactory.GetLogger(nameof(LoggingRule_LevelLayout_ParseLevel));
 
             LogLevel expectedLogLevel = (NLog.Internal.StringHelpers.IsNullOrWhiteSpace(levelVariable) || levelVariable == "Wrong") ? LogLevel.Off : LogLevel.FromString(levelVariable.Trim());
 
             AssertLogLevelEnabled(logger, expectedLogLevel);
 
             // Verify that runtime override also works
-            LogManager.Configuration.Variables["var_level"] = LogLevel.Fatal.ToString();
-            LogManager.ReconfigExistingLoggers();
+            logFactory.Configuration.Variables["var_level"] = LogLevel.Fatal.ToString();
+            logFactory.ReconfigExistingLoggers();
 
             AssertLogLevelEnabled(logger, LogLevel.Fatal);
         }
@@ -731,7 +898,7 @@ namespace NLog.UnitTests.Config
         [MemberData(nameof(LoggingRule_LevelsLayout_ParseLevel_TestCases))]
         public void LoggingRule_LevelsLayout_ParseLevel(string levelsVariable, LogLevel[] expectedLevels)
         {
-            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>"
     + (!string.IsNullOrEmpty(levelsVariable) ? $"<variable name='var_levels' value='{levelsVariable}'/>" : "") +
     @"<targets>
@@ -740,16 +907,15 @@ namespace NLog.UnitTests.Config
                     <rules>
                         <logger name='*' levels='${var:var_levels}' writeTo='d1' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            LogManager.Configuration = config;
-            var logger = LogManager.GetLogger(nameof(LoggingRule_LevelsLayout_ParseLevel));
+            var logger = logFactory.GetLogger(nameof(LoggingRule_LevelsLayout_ParseLevel));
 
             AssertLogLevelEnabled(logger, expectedLevels);
 
             // Verify that runtime override also works
-            LogManager.Configuration.Variables["var_levels"] = LogLevel.Fatal.ToString();
-            LogManager.ReconfigExistingLoggers();
+            logFactory.Configuration.Variables["var_levels"] = LogLevel.Fatal.ToString();
+            logFactory.ReconfigExistingLoggers();
 
             AssertLogLevelEnabled(logger, LogLevel.Fatal);
         }
@@ -773,7 +939,7 @@ namespace NLog.UnitTests.Config
         [MemberData(nameof(LoggingRule_MinMaxLayout_ParseLevel_TestCases2))]
         public void LoggingRule_MinMaxLayout_ParseLevel(string minLevel, string maxLevel, LogLevel[] expectedLevels)
         {
-            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>"
                 + (!string.IsNullOrEmpty(minLevel) ? $"<variable name='var_minlevel' value='{minLevel}'/>" : "")
                 + (!string.IsNullOrEmpty(maxLevel) ? $"<variable name='var_maxlevel' value='{maxLevel}'/>" : "") +
@@ -783,17 +949,16 @@ namespace NLog.UnitTests.Config
                 <rules>
                     <logger name='*' minlevel='${var:var_minlevel}' maxlevel='${var:var_maxlevel}' writeTo='d1' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.Configuration = config;
-            var logger = LogManager.GetLogger(nameof(LoggingRule_MinMaxLayout_ParseLevel));
+            var logger = logFactory.GetLogger(nameof(LoggingRule_MinMaxLayout_ParseLevel));
 
             AssertLogLevelEnabled(logger, expectedLevels);
 
             // Verify that runtime override also works
-            LogManager.Configuration.Variables["var_minlevel"] = LogLevel.Fatal.ToString();
-            LogManager.Configuration.Variables["var_maxlevel"] = LogLevel.Fatal.ToString();
-            LogManager.ReconfigExistingLoggers();
+            logFactory.Configuration.Variables["var_minlevel"] = LogLevel.Fatal.ToString();
+            logFactory.Configuration.Variables["var_maxlevel"] = LogLevel.Fatal.ToString();
+            logFactory.ReconfigExistingLoggers();
 
             AssertLogLevelEnabled(logger, LogLevel.Fatal);
         }
