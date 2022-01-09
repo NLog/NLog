@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Memory/Simple/Example.cs" />
     /// </example>
     [Target("Memory")]
-    public sealed class MemoryTarget : TargetWithLayout
+    public sealed class MemoryTarget : TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
@@ -90,6 +90,28 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Buffering Options' order='10' />
         public int MaxLogsCount { get; set; }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (Header != null)
+            {
+                Logs.Add(RenderLogEvent(Header, LogEventInfo.CreateNullEvent()));
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseTarget()
+        {
+            if (Footer != null)
+            {
+                Logs.Add(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+            }
+
+            base.CloseTarget();
+        }
 
         /// <summary>
         /// Renders the logging event message and adds to <see cref="Logs"/>
