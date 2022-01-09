@@ -60,7 +60,7 @@ namespace NLog.Targets
     /// </example>
     [Target("Trace")]
     [Target("TraceSystem")]
-    public sealed class TraceTarget : TargetWithLayout
+    public sealed class TraceTarget : TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
         /// Force use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
@@ -97,6 +97,28 @@ namespace NLog.Targets
         public TraceTarget(string name) : this()
         {
             Name = name;
+        }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (Header != null)
+            {
+                Trace.WriteLine(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseTarget()
+        {
+            if (Footer != null)
+            {
+                Trace.WriteLine(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+            }
+
+            base.CloseTarget();
         }
 
         /// <summary>
