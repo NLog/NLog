@@ -31,14 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Layouts
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.IO;
     using NLog.Layouts;
     using Xunit;
 
@@ -47,15 +44,10 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void EndToEndTest()
         {
-            string tempFile = string.Empty;
-
-            try
-            {
-                tempFile = Path.GetTempFileName();
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"' keepFileOpen='false'>
+                  <target name='m' type='Memory'>
                     <layout type='CSVLayout'>
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
@@ -65,30 +57,22 @@ namespace NLog.UnitTests.Layouts
                   </target>
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='f' />
+                    <logger name='*' minlevel='Debug' writeTo='m' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("msg");
-                logger.Info("msg2");
-                logger.Warn("Message with, a comma");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText(tempFile))
-                {
-                    Assert.Equal("level,message,counter", sr.ReadLine());
-                    Assert.Equal("Debug,msg,1", sr.ReadLine());
-                    Assert.Equal("Info,msg2,2", sr.ReadLine());
-                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
-                }
-            }
-            finally
-            {
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-            }
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.MemoryTarget>("m");
+            Assert.NotNull(target);
+            Assert.Equal(4, target.Logs.Count);
+            Assert.Equal("level,message,counter", target.Logs[0]);
+            Assert.Equal("Debug,msg,1", target.Logs[1]);
+            Assert.Equal("Info,msg2,2", target.Logs[2]);
+            Assert.Equal("Warn,\"Message with, a comma\",3", target.Logs[3]);
         }
 
         /// <summary>
@@ -99,15 +83,10 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void CustomHeaderTest()
         {
-            string tempFile = string.Empty;
-
-            try
-            {
-                tempFile = Path.GetTempFileName();
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"' keepFileOpen='false'>
+                  <target name='m' type='Memory'>
                     <layout type='CSVLayout'>
                       <header>headertest</header>
                       <column name='level' layout='${level}' quoting='Nothing' />
@@ -118,45 +97,31 @@ namespace NLog.UnitTests.Layouts
                   </target>
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='f' />
+                    <logger name='*' minlevel='Debug' writeTo='m' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("msg");
-                logger.Info("msg2");
-                logger.Warn("Message with, a comma");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText(tempFile))
-                {
-                    Assert.Equal("headertest", sr.ReadLine());
-                    //   Assert.Equal("level,message,counter", sr.ReadLine());
-                    Assert.Equal("Debug,msg,1", sr.ReadLine());
-                    Assert.Equal("Info,msg2,2", sr.ReadLine());
-                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
-                }
-            }
-            finally
-            {
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-            }
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.MemoryTarget>("m");
+            Assert.NotNull(target);
+            Assert.Equal(4, target.Logs.Count);
+            Assert.Equal("headertest", target.Logs[0]);
+            Assert.Equal("Debug,msg,1", target.Logs[1]);
+            Assert.Equal("Info,msg2,2", target.Logs[2]);
+            Assert.Equal("Warn,\"Message with, a comma\",3", target.Logs[3]);
         }
 
         [Fact]
         public void NoHeadersTest()
         {
-            string tempFile = string.Empty;
-
-            try
-            {
-                tempFile = Path.GetTempFileName();
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"' keepFileOpen='false'>
+                  <target name='m' type='Memory'>
                     <layout type='CSVLayout' withHeader='false'>
                       <delimiter>Comma</delimiter>
                       <column name='level' layout='${level}' />
@@ -166,29 +131,21 @@ namespace NLog.UnitTests.Layouts
                   </target>
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='f' />
+                    <logger name='*' minlevel='Debug' writeTo='m' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("msg");
-                logger.Info("msg2");
-                logger.Warn("Message with, a comma");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText(tempFile))
-                {
-                    Assert.Equal("Debug,msg,1", sr.ReadLine());
-                    Assert.Equal("Info,msg2,2", sr.ReadLine());
-                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
-                }
-            }
-            finally
-            {
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-            }
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.MemoryTarget>("m");
+            Assert.NotNull(target);
+            Assert.Equal(3, target.Logs.Count);
+            Assert.Equal("Debug,msg,1", target.Logs[0]);
+            Assert.Equal("Info,msg2,2", target.Logs[1]);
+            Assert.Equal("Warn,\"Message with, a comma\",3", target.Logs[2]);
         }
 
         [Fact]
