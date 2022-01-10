@@ -33,7 +33,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using NLog.Config;
 using NLog.Targets;
 using Xunit;
 
@@ -157,37 +156,38 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FluentDelegateConfiguration()
         {
-            var configuration = new LoggingConfiguration();
-
             string expectedMessage = "Hello World";
             string actualMessage = string.Empty;
-            configuration.AddRuleForAllLevels(new MethodCallTarget("Hello", (logEvent, parameters) => { actualMessage = logEvent.Message; }));
-            LogManager.Configuration = configuration;
 
-            LogManager.GetCurrentClassLogger().Debug(expectedMessage);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                var target = new MethodCallTarget("Hello", (logEvent, parameters) => { actualMessage = logEvent.Message; });
+                builder.ForLogger().WriteTo(target);
+            }).LogFactory;
+
+            logFactory.GetCurrentClassLogger().Debug(expectedMessage);
 
             Assert.Equal(expectedMessage, actualMessage);
         }
 
         private static void TestMethodCall(MethodCallRecord expected, string methodName, string className)
         {
-            var target = new MethodCallTarget
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                Name = "t1",
-                ClassName = className,
-                MethodName = methodName
-            };
-            target.Parameters.Add(new MethodCallParameter("param1", "test1"));
-            target.Parameters.Add(new MethodCallParameter("param2", "2", typeof(int)));
-
-            var configuration = new LoggingConfiguration();
-            configuration.AddTarget(target);
-            configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, target));
-            LogManager.Configuration = configuration;
+                var target = new MethodCallTarget
+                {
+                    Name = "t1",
+                    ClassName = className,
+                    MethodName = methodName
+                };
+                target.Parameters.Add(new MethodCallParameter("param1", "test1"));
+                target.Parameters.Add(new MethodCallParameter("param2", "2", typeof(int)));
+                builder.ForLogger().WriteTo(target);
+            }).LogFactory;
 
             LastCallTest = null;
 
-            LogManager.GetCurrentClassLogger().Debug("test method 1");
+            logFactory.GetCurrentClassLogger().Debug("test method 1");
 
             Assert.Equal(expected, LastCallTest);
         }
