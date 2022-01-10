@@ -31,15 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Filters;
-
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
     using NLog.Common;
     using NLog.Conditions;
-    using NLog.Config;
+    using NLog.Filters;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
@@ -273,7 +271,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void FilteringTargetWrapperWhenRepeatedFilter()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <variable name='test' value='${message}' />
                 <targets>
@@ -287,20 +285,20 @@ namespace NLog.UnitTests.Targets.Wrappers
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'/>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var myTarget = LogManager.Configuration.FindTargetByName<MemoryTarget>("memory");
-            var logger = LogManager.GetLogger(nameof(FilteringTargetWrapperWhenRepeatedFilter));
+            var myTarget = logFactory.Configuration.FindTargetByName<MemoryTarget>("memory");
+            var logger = logFactory.GetLogger(nameof(FilteringTargetWrapperWhenRepeatedFilter));
             logger.Info("Hello World");
             logger.Info("Hello World");     // Will be ignored
             logger.Info("Goodbye World");
             logger.Warn("Goodbye World");
-            LogManager.Flush();
+            logFactory.Flush();
             Assert.Equal(3, myTarget.Logs.Count);
             logger.Info("Hello World");     // Will be ignored
             logger.Error("Goodbye World");
             logger.Fatal("Goodbye World");
-            LogManager.Flush();
+            logFactory.Flush();
             Assert.Equal(5, myTarget.Logs.Count);
         }
 
@@ -308,15 +306,15 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void FilteringTargetWrapperWithConditionAttribute_correctBehavior()
         {
             // Arrange
-            LogManager.Configuration = CreateConfigWithCondition();
-            var myTarget = LogManager.Configuration.FindTargetByName<MemoryTarget>("memory");
+            var logFactory = CreateConfigWithCondition();
+            var myTarget = logFactory.Configuration.FindTargetByName<MemoryTarget>("memory");
 
             // Act
-            var logger = LogManager.GetLogger(nameof(FilteringTargetWrapperWhenRepeatedFilter));
+            var logger = logFactory.GetLogger(nameof(FilteringTargetWrapperWhenRepeatedFilter));
             logger.Info("Hello World");
             logger.Info("2");     // Will be ignored
             logger.Info("3");     // Will be ignored
-            LogManager.Flush();
+            logFactory.Flush();
 
             // Assert
             Assert.Equal(1, myTarget.Logs.Count);
@@ -329,19 +327,19 @@ namespace NLog.UnitTests.Targets.Wrappers
             var expectedCondition = "(length(message) > 2)";
 
             // Act
-            var config = CreateConfigWithCondition();
+            var logFactory = CreateConfigWithCondition();
 
             // Assert
-            var myTarget = config.FindTargetByName<FilteringTargetWrapper>("target1");
+            var myTarget = logFactory.Configuration.FindTargetByName<FilteringTargetWrapper>("target1");
 
             Assert.Equal(expectedCondition, myTarget.Condition?.ToString());
             var conditionBasedFilter = Assert.IsType<ConditionBasedFilter>(myTarget.Filter);
             Assert.Equal(expectedCondition, conditionBasedFilter.Condition?.ToString());
         }
 
-        private static XmlLoggingConfiguration CreateConfigWithCondition()
+        private static LogFactory CreateConfigWithCondition()
         {
-            return XmlLoggingConfiguration.CreateFromXmlString(@"
+            return new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                       <target name='target1' type='FilteringWrapper' condition='length(message) &gt; 2' >
@@ -351,9 +349,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='target1'/>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
         }
-
 
         class MyAsyncTarget : Target
         {
