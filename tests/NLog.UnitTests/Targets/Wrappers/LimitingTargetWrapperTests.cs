@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -47,7 +45,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void WriteMoreMessagesThanLimitOnlyWritesLimitMessages()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'>
@@ -57,23 +55,24 @@ namespace NLog.UnitTests.Targets.Wrappers
                 <rules>
                     <logger name='*' level='Debug' writeTo='limiting' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            for (int i = 0; i < 10; i++)
+            const int messagelimit = 5;
+            var logger = logFactory.GetLogger("A");
+            for (int i = 1; i <= 10; i++)
             {
                 logger.Debug("message {0}", i);
+                //Should have only written 5 messages, since limit is 5.
+                if (i <= messagelimit)
+                    logFactory.AssertDebugLastMessage($"message {i}");
             }
-
-            //Should have only written 5 messages, since limit is 5.
-            AssertDebugCounter("debug", 5);
-            AssertDebugLastMessage("debug", "message 4");
+            logFactory.AssertDebugLastMessage("debug", $"message {messagelimit}");
         }
 
         [Fact]
         public void WriteMessagesAfterLimitExpiredWritesMessages()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5' interval='0:0:0:0.100'>
@@ -83,27 +82,30 @@ namespace NLog.UnitTests.Targets.Wrappers
                 <rules>
                     <logger name='*' level='Debug' writeTo='limiting' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-
-            var logger = LogManager.GetLogger("A");
-            for (int i = 0; i < 10; i++)
+            const int messagelimit = 5;
+            var logger = logFactory.GetLogger("A");
+            for (int i = 1; i <= 10; i++)
             {
                 logger.Debug("message {0}", i);
+                if (i <= messagelimit)
+                    logFactory.AssertDebugLastMessage($"message {i}");
             }
 
             //Wait for the interval to expire.
             Thread.Sleep(100);
 
-            for (int i = 10; i < 20; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                logger.Debug("message {0}", i);
+                logger.Debug("message {0}", i + 10);
+                if (i <= messagelimit)
+                    logFactory.AssertDebugLastMessage($"message {i + 10}");
             }
 
             //Should have written 10 messages.
             //5 from the first interval and 5 from the second.
-            AssertDebugCounter("debug", 10);
-            AssertDebugLastMessage("debug", "message 14");
+            logFactory.AssertDebugLastMessage("debug", "message 15");
         }
 
         [Fact]
@@ -304,7 +306,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void CreatingFromConfigSetsMessageLimitCorrectly()
         {
-            LoggingConfiguration config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='50'>
@@ -314,26 +316,24 @@ namespace NLog.UnitTests.Targets.Wrappers
                 <rules>
                     <logger name='*' level='Debug' writeTo='limiting' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-
-            LimitingTargetWrapper limitingWrapper = (LimitingTargetWrapper) config.FindTargetByName("limiting");
-            DebugTarget debugTarget = (DebugTarget) config.FindTargetByName("debug");
+            LimitingTargetWrapper limitingWrapper = logFactory.Configuration.FindTargetByName<LimitingTargetWrapper>("limiting");
+            DebugTarget debugTarget = logFactory.Configuration.FindTargetByName<DebugTarget>("debug");
             Assert.NotNull(limitingWrapper);
             Assert.NotNull(debugTarget);
             Assert.Equal(50, limitingWrapper.MessageLimit);
             Assert.Equal(TimeSpan.FromHours(1), limitingWrapper.Interval);
 
-            LogManager.Configuration = config;
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "a");
+            logFactory.AssertDebugLastMessage("a");
         }
 
         [Fact]
         public void CreatingFromConfigSetsIntervalCorrectly()
         {
-            LoggingConfiguration config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' interval='1:2:5:00'>
@@ -343,20 +343,19 @@ namespace NLog.UnitTests.Targets.Wrappers
                 <rules>
                     <logger name='*' level='Debug' writeTo='limiting' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
 
-            LimitingTargetWrapper limitingWrapper = (LimitingTargetWrapper)config.FindTargetByName("limiting");
-            DebugTarget debugTarget = (DebugTarget)config.FindTargetByName("debug");
+            LimitingTargetWrapper limitingWrapper = logFactory.Configuration.FindTargetByName<LimitingTargetWrapper>("limiting");
+            DebugTarget debugTarget = logFactory.Configuration.FindTargetByName<DebugTarget>("debug");
             Assert.NotNull(limitingWrapper);
             Assert.NotNull(debugTarget);
             Assert.Equal(1000, limitingWrapper.MessageLimit);
             Assert.Equal(TimeSpan.FromDays(1)+TimeSpan.FromHours(2)+TimeSpan.FromMinutes(5), limitingWrapper.Interval);
 
-            LogManager.Configuration = config;
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "a");
+            logFactory.AssertDebugLastMessage("a");
         }
 
         private static void InitializeTargets(params Target[] targets)
