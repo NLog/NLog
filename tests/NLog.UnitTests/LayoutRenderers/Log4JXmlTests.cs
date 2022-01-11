@@ -40,7 +40,6 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Reflection;
     using System.Threading;
     using System.Xml;
-    using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
@@ -51,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Log4JXmlTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets>
                     <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />
@@ -59,7 +58,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             ScopeContext.Clear();
 
@@ -71,11 +70,11 @@ namespace NLog.UnitTests.LayoutRenderers
             ScopeContext.PushNestedState("baz2");
             ScopeContext.PushNestedState("baz3");
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);
-            string result = GetDebugLastMessage("debug");
+            string result = GetDebugLastMessage("debug", logFactory);
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
 
             Assert.NotEqual("", result);
