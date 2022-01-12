@@ -387,6 +387,64 @@ namespace NLog.UnitTests.Config
             logger.Fatal("msg");
             logFactory.AssertDebugLastMessage(nameof(LogLevel.Info));
         }
+
+        [Fact]
+        public void ShouldWriteLogsOnDuplicateAttributeTest()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                    <nlog>
+                        <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                        <rules>
+                            <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
+                               <filters defaultAction='log'>
+                                    <whencontains layout='${message}' substring='msg' action='ignore' />
+                                </filters>
+                            </logger>
+                        </rules>
+                    </nlog>").LogFactory;
+
+                var logger = logFactory.GetLogger("A");
+                string expectedMesssage = "some message";
+                logger.Info(expectedMesssage);
+                logFactory.AssertDebugLastMessage(expectedMesssage);
+            }
+        }
+
+        [Fact]
+        public void ShoudThrowExceptionOnDuplicateAttributeWhenOptionIsEnabledTest()
+        {
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                    <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
+                           <filters defaultAction='log'>
+                                <whencontains layout='${message}' substring='msg' action='ignore' />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>");
+            });
+
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog throwConfigExceptions='true'>
+                    <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
+                           <filters defaultAction='log'>
+                                <whencontains layout='${message}' substring='msg' action='ignore' />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>");
+            });
+        }
     }
 }
 
