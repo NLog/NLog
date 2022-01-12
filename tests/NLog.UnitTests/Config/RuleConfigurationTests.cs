@@ -447,8 +447,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void MultipleRulesSameTargetTest()
         {
-            LogFactory logFactory = new LogFactory();
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}' />
@@ -462,25 +461,22 @@ namespace NLog.UnitTests.Config
                     <logger name='*' level='Warn' writeTo='d2' />
                     <logger name='*' level='Warn' writeTo='d3' />
                 </rules>
-            </nlog>", logFactory);
+            </nlog>").LogFactory;
 
-            logFactory.Configuration = c;
-            var loggerConfig = logFactory.GetLoggerConfiguration("AAA", c);
+            var loggerConfig = logFactory.GetLoggerConfiguration("AAA", logFactory.Configuration);
             var targets = loggerConfig[LogLevel.Warn.Ordinal];
             Assert.Equal("d1", targets.Target.Name);
             Assert.Equal("d2", targets.NextInChain.Target.Name);
             Assert.Equal("d3", targets.NextInChain.NextInChain.Target.Name);
             Assert.Null(targets.NextInChain.NextInChain.NextInChain);
 
-            LogManager.Configuration = c;
-
-            var logger = LogManager.GetLogger("BBB");
+            var logger = logFactory.GetLogger("BBB");
             logger.Warn("test1234");
 
-            AssertDebugLastMessage("d1", "test1234");
-            AssertDebugLastMessage("d2", "test1234");
-            AssertDebugLastMessage("d3", "test1234");
-            AssertDebugLastMessage("d4", string.Empty);
+            logFactory.AssertDebugLastMessage("d1", "test1234");
+            logFactory.AssertDebugLastMessage("d2", "test1234");
+            logFactory.AssertDebugLastMessage("d3", "test1234");
+            logFactory.AssertDebugLastMessage("d4", string.Empty);
         }
 
         [Fact]

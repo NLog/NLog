@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-
 namespace NLog.UnitTests.Config
 {
     using NLog.Conditions;
@@ -43,6 +41,7 @@ namespace NLog.UnitTests.Config
     using NLog.Targets.Wrappers;
     using System;
     using System.Globalization;
+    using System.IO;
     using System.Text;
     using Xunit;
 
@@ -513,8 +512,11 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DontThrowExceptionWhenArchiveEverySetByDefaultParameters()
         {
+            var fileName = Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".log";
 
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            try
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
 <nlog throwExceptions='true'>
     <targets>
         <default-target-parameters 
@@ -525,19 +527,23 @@ namespace NLog.UnitTests.Config
             archiveNumbering='Rolling'
             archiveEvery='Day' />
 
-          <target fileName='" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + @".log'
+          <target fileName='{fileName}'
                 name = 'file'
-                type = 'File'
-                layout = '${message}' />
+                type = 'File' />
     </targets>
 
     <rules>
         <logger name='*' writeTo='file'/>
     </rules>
-</nlog> ");
+</nlog> ").LogFactory;
 
-            LogManager.Configuration = configuration;
-            LogManager.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+                logFactory.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+            }
+            finally
+            {
+                if (File.Exists(fileName))
+                    File.Delete(fileName);
+            }
         }
 
         [Fact]
@@ -545,7 +551,7 @@ namespace NLog.UnitTests.Config
         {
             using (new NoThrowNLogExceptions())
             {
-                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
 <nlog>
     <targets>
         <target type='bufferingwrapper' name='mytarget'>
@@ -555,11 +561,9 @@ namespace NLog.UnitTests.Config
     <rules>
         <logger name='*' writeTo='mytarget'/>
     </rules>
-</nlog> ");
+</nlog>").LogFactory;
 
-                LogManager.Configuration = configuration;
-                LogManager.GetLogger(nameof(DontThrowExceptionsWhenMissingRequiredParameters)).Info("Test");
-                LogManager.Configuration = null;
+                logFactory.GetLogger(nameof(DontThrowExceptionsWhenMissingRequiredParameters)).Info("Test");
             }
         }
 
