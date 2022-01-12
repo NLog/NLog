@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests
 {
     using NLog.MessageTemplates;
@@ -58,7 +56,7 @@ namespace NLog.UnitTests
                 return logEvent.Message;
             };
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug'  >
@@ -70,12 +68,11 @@ namespace NLog.UnitTests
                     <rules>
                         <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logEventInfo.LoggerName = logger.Name;
+            var logger = logFactory.GetLogger("A");
             logger.Log(logEventInfo);
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
 
             Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
 
@@ -95,7 +92,7 @@ namespace NLog.UnitTests
                 "BestApplicationEver"
             });
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug'  >
@@ -107,12 +104,11 @@ namespace NLog.UnitTests
                     <rules>
                         <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logEventInfo.LoggerName = logger.Name;
+            var logger = logFactory.GetLogger("A");
             logger.Log(logEventInfo);
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"{0:X} - Login request from {1} for {2} with userid {0}\" }");
+            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"{0:X} - Login request from {1} for {2} with userid {0}\" }");
 
             Assert.Equal("2A - Login request from John for BestApplicationEver with userid 42", logEventInfo.FormattedMessage);
 
@@ -131,7 +127,7 @@ namespace NLog.UnitTests
                 "BestApplicationEver"
             });
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug'  >
@@ -143,12 +139,11 @@ namespace NLog.UnitTests
                     <rules>
                         <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logEventInfo.LoggerName = logger.Name;
+            var logger = logFactory.GetLogger("A");
             logger.Log(logEventInfo);
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {Application:l}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"Login request from {@Username} for {Application:l}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
 
             Assert.Equal("Login request from \"John\" for BestApplicationEver", logEventInfo.FormattedMessage);
 
