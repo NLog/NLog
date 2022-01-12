@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Config;
-
 namespace NLog.UnitTests.Layouts
 {
     using System;
+    using System.Collections.Generic;
     using NLog.Layouts;
     using Xunit;
 
@@ -71,7 +69,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayoutLog4j()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>
@@ -89,7 +87,7 @@ namespace NLog.UnitTests.Layouts
                     <rules>
                         <logger name='*' minlevel='debug' appendto='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
             ScopeContext.Clear();
 
@@ -97,14 +95,14 @@ namespace NLog.UnitTests.Layouts
             ScopeContext.PushProperty("foo2", "bar2");
             ScopeContext.PushProperty("foo3", "bar3");
 
-            var logger = LogManager.GetLogger("hello");
+            var logger = logFactory.GetLogger("hello");
 
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", null, null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "<nlog\r\nPropertyValue>";
             logEventInfo.Properties["badPropertyKey"] = "NOT ME";
             logger.Log(logEventInfo);
 
-            var target = LogManager.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
             Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class=""NLog.UnitTests.Layouts.XmlLayoutTests""/><log4j:data name=""foo1"" value=""bar1""/><log4j:data name=""foo2"" value=""bar2""/><log4j:data name=""foo3"" value=""bar3""/><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;""/></log4j:event>", target.LastMessage);
         }
 
