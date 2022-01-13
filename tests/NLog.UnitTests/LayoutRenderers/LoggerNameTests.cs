@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -42,66 +40,66 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LoggerNameTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "A a");
+            logFactory.AssertDebugLastMessage("A a");
         }
 
 
         [Fact]
         public void LoggerShortNameTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger:ShortName=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A.B.C");
+            var logger = logFactory.GetLogger("A.B.C");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "C a");
+            logFactory.AssertDebugLastMessage("C a");
         }
 
         [Fact]
         public void LoggerShortNameTest2()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger:ShortName=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("C");
+            var logger = logFactory.GetLogger("C");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "C a");
+            logFactory.AssertDebugLastMessage("C a");
         }
 
         [Fact]
         public void LoggerShortNameTest_false()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger:ShortName=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A.B.C");
+            var logger = logFactory.GetLogger("A.B.C");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "A.B.C a");
+            logFactory.AssertDebugLastMessage("A.B.C a");
         }    
         
         [Theory]
@@ -110,17 +108,17 @@ namespace NLog.UnitTests.LayoutRenderers
         [InlineData("loggername")]
         public void LoggerNameAliasTest(string loggerLayout)
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${{{loggerLayout}}} ${{message}}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A.B.C");
+            var logger = logFactory.GetLogger("A.B.C");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "A.B.C a");
+            logFactory.AssertDebugLastMessage("A.B.C a");
         }
     }
 }
