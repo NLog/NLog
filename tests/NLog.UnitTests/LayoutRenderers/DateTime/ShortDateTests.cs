@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -64,16 +62,16 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ShortDateTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
+            logFactory.GetLogger("d").Debug("zzz");
+            logFactory.AssertDebugLastMessage(DateTime.Now.ToString("yyyy-MM-dd"));
         }
 
         [Fact]

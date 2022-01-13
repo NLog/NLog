@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -45,16 +43,16 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DefaultDateTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.GetLogger("d").Debug("zzz");
-            DateTime dt = DateTime.ParseExact(GetDebugLastMessage("debug"), "yyyy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            logFactory.GetLogger("d").Debug("zzz");
+            DateTime dt = DateTime.ParseExact(GetDebugLastMessage("debug", logFactory), "yyyy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
             DateTime now = DateTime.Now;
 
             Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
@@ -111,32 +109,32 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DateFormatExplicitTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date:format=yyyy-MM-dd}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
+            logFactory.GetLogger("d").Debug("zzz");
+            logFactory.AssertDebugLastMessage(DateTime.Now.ToString("yyyy-MM-dd"));
         }
 
         [Fact]
         public void DateFormatDefaultTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date:\thh\:mm\:ss:UniversalTime=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             var dateTimeUtc = DateTime.UtcNow;
-            LogManager.GetLogger("d").Log(new LogEventInfo(LogLevel.Info, null, "Hello") { TimeStamp = dateTimeUtc });
-            AssertDebugLastMessage("debug", dateTimeUtc.ToString("\thh:mm:ss", CultureInfo.InvariantCulture));
+            logFactory.GetLogger("d").Log(new LogEventInfo(LogLevel.Info, null, "Hello") { TimeStamp = dateTimeUtc });
+            logFactory.AssertDebugLastMessage(dateTimeUtc.ToString("\thh:mm:ss", CultureInfo.InvariantCulture));
         }
 
         [Fact]
@@ -144,7 +142,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Assert.Throws<NLogConfigurationException>(() =>
             {
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                new LogFactory().Setup().LoadConfigurationFromXml(@"
                     <nlog throwConfigExceptions='true'>
                         <variable name='logDate' value='${date:format=hh:mm}' />
                     </nlog>");
