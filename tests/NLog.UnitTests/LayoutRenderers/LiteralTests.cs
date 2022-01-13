@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -42,49 +40,49 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LiteralTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='abcd' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "abcd");
+            logFactory.AssertDebugLastMessage("abcd");
         }
 
         [Fact]
         public void LiteralExplicitTextTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${literal:text=a\=\:\}b\t\nc\u003ad}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "a=:}b\t\nc:d");
+            logFactory.AssertDebugLastMessage("a=:}b\t\nc:d");
         }
 
         [Fact]
         public void LiteralDefaultTextTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${literal:a\=\:\}b\t\nc\u003ad}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "a=:}b\t\nc:d");
+            logFactory.AssertDebugLastMessage("a=:}b\t\nc:d");
         }
     }
 }
