@@ -46,13 +46,12 @@ namespace NLog.UnitTests.LayoutRenderers
     {
         const int E_FAIL = 80004005;
 
-        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
         private const string ExceptionDataFormat = "{0}: {1}";
 
         [Fact]
         public void ExceptionWithStackTraceTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -70,34 +69,33 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex, "msg");
-            var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
-            AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
-            AssertDebugLastMessage("debug2", ex.StackTrace);
-            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
-            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug5", ex.ToString());
-            AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug10", GetType().ToString());
-#if !NET35 && !NET40
-            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
-#endif
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
 
-            AssertDebugLastMessage("debug9", dataText);
+            var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
+            logFactory.AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
+            logFactory.AssertDebugLastMessage("debug2", ex.StackTrace);
+            logFactory.AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            logFactory.AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
+            logFactory.AssertDebugLastMessage("debug5", ex.ToString());
+            logFactory.AssertDebugLastMessage("debug6", exceptionMessage);
+            logFactory.AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
+            logFactory.AssertDebugLastMessage("debug9", dataText);
+            logFactory.AssertDebugLastMessage("debug10", GetType().ToString());
+#if !NET35 && !NET40
+            logFactory.AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+#endif
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = logFactory.Configuration.FindTargetByName<DebugTarget>("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
-
-            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
         }
 
         /// <summary>
@@ -106,7 +104,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutMessageParam()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -124,39 +122,39 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "I don't like nullref exception!";
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
+
             var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
-            AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
-            AssertDebugLastMessage("debug2", ex.StackTrace);
-            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
-            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug5", ex.ToString());
-            AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug9", dataText);
-            AssertDebugLastMessage("debug10", GetType().ToString());
+            logFactory.AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
+            logFactory.AssertDebugLastMessage("debug2", ex.StackTrace);
+            logFactory.AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            logFactory.AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
+            logFactory.AssertDebugLastMessage("debug5", ex.ToString());
+            logFactory.AssertDebugLastMessage("debug6", exceptionMessage);
+            logFactory.AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
+            logFactory.AssertDebugLastMessage("debug9", dataText);
+            logFactory.AssertDebugLastMessage("debug10", GetType().ToString());
 #if !NET35 && !NET40
-            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+            logFactory.AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = logFactory.Configuration.FindTargetByName<DebugTarget>("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
-
-            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionWithoutStackTraceTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -174,179 +172,181 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex, "msg");
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+
             var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
-            AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
-            AssertDebugLastMessage("debug2", "");
-            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
-            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug5", ex.ToString());
-            AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug7", "");
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug9", dataText);
-            AssertDebugLastMessage("debug10", "");
+            logFactory.AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
+            logFactory.AssertDebugLastMessage("debug2", "");
+            logFactory.AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            logFactory.AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
+            logFactory.AssertDebugLastMessage("debug5", ex.ToString());
+            logFactory.AssertDebugLastMessage("debug6", exceptionMessage);
+            logFactory.AssertDebugLastMessage("debug7", "");
+            logFactory.AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.AssertDebugLastMessage("debug9", dataText);
+            logFactory.AssertDebugLastMessage("debug10", "");
 #if !NET35 && !NET40
-            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+            logFactory.AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
         }
 
         [Fact]
         public void ExceptionNewLineSeparatorTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:separator=&#13;&#10;}' />
+                    <target name='debug' type='Debug' layout='${exception:format=message,shorttype:separator=&#13;&#10;}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
 
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("Test exception\r\n" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionNewLineSeparatorLayoutTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:separator= ${NewLine} :format=message,shorttype}' />
+                    <target name='debug' type='Debug' layout='${exception:separator= ${NewLine} :format=message,shorttype}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
 
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", $"Test exception {System.Environment.NewLine} {typeof(CustomArgumentException).Name}");
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage($"Test exception {System.Environment.NewLine} {typeof(CustomArgumentException).Name}");
         }
 
         [Fact]
         public void ExceptionUsingLogMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
+
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Log(LogLevel.Error, ex, "msg");
-            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Log(LogLevel.Error, ex, "msg");
+            logFactory.AssertDebugLastMessage("ERROR*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Log(LogLevel.Error, ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Log(LogLevel.Error, ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("ERROR*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionUsingTraceMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Trace(ex, "msg");
-            AssertDebugLastMessage("debug1", "TRACE*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Trace(ex, "msg");
+            logFactory.AssertDebugLastMessage("TRACE*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Trace(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "TRACE*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Trace(ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("TRACE*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionUsingDebugMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Debug(ex, "msg");
-            AssertDebugLastMessage("debug1", "DEBUG*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Debug(ex, "msg");
+            logFactory.AssertDebugLastMessage("DEBUG*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Debug(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "DEBUG*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Debug(ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("DEBUG*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionUsingInfoMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Info(ex, "msg");
-            AssertDebugLastMessage("debug1", "INFO*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Info(ex, "msg");
+            logFactory.AssertDebugLastMessage("INFO*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Info(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "INFO*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Info(ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("INFO*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionUsingWarnMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Warn(ex, "msg");
-            AssertDebugLastMessage("debug1", "WARN*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Warn(ex, "msg");
+            logFactory.AssertDebugLastMessage("WARN*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Warn(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "WARN*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Warn(ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("WARN*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionUsingErrorMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("ERROR*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Error(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Error(ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("ERROR*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void ExceptionUsingFatalMethodTest()
         {
-            SetConfigurationForExceptionUsingRootMethodTests();
+            var logFactory = BuildConfigurationForExceptionTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Fatal(ex, "msg");
-            AssertDebugLastMessage("debug1", "FATAL*msg*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Fatal(ex, "msg");
+            logFactory.AssertDebugLastMessage("FATAL*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
-            logger.Fatal(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "FATAL*msg func*Test exception*" + typeof(CustomArgumentException).Name);
+            logFactory.GetCurrentClassLogger().Fatal(ex, () => "msg func");
+            logFactory.AssertDebugLastMessage("FATAL*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
         public void InnerExceptionTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3}' />
+                    <target name='debug' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
         }
@@ -354,21 +354,22 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTest_Serialize()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=@}' />
+                    <target name='debug' type='Debug' layout='${exception:format=@}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
-            logger.Error(ex, "msg");
-            var lastMessage = GetDebugLastMessage("debug1");
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+
+            var lastMessage = logFactory.AssertDebugLastMessageNotEmpty();
             Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage);
             Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage);
@@ -378,7 +379,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomInnerExceptionTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -388,9 +389,9 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger minlevel='Info' writeTo='debug1' />
                     <logger minlevel='Info' writeTo='debug2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
@@ -399,11 +400,12 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue = "testvalue";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
             ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" +
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+
+            logFactory.AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" +
                                              "\r\n----INNER----\r\n" +
                                              "System.ArgumentException Wrapper1");
-            AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" +
+            logFactory.AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" +
                                                            "\r\n----INNER----\r\n" +
                                                            "System.ArgumentException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
@@ -411,15 +413,16 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception}' />
+                    <target name='debug' type='Debug' layout='${exception}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
+            var logger = logFactory.GetCurrentClassLogger();
 
             var ex = new ExceptionWithBrokenMessagePropertyException();
             var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
@@ -429,15 +432,16 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception_serialize()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=@}' />
+                    <target name='debug' type='Debug' layout='${exception:format=@}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
+            var logger = logFactory.GetCurrentClassLogger();
 
             var ex = new ExceptionWithBrokenMessagePropertyException();
             var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
@@ -451,15 +455,15 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void AggregateExceptionMultiTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=5}' />
+                    <target name='debug' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=5}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             var task1 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 1", new Exception("Test Inner 1")); },
                 System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
@@ -474,7 +478,7 @@ namespace NLog.UnitTests.LayoutRenderers
             catch (AggregateException ex)
             {
                 aggregateExceptionMessage = ex.ToString();
-                logger.Error(ex, "msg");
+                logFactory.GetCurrentClassLogger().Error(ex, "msg");
             }
 
             Assert.Contains("Test exception 1", aggregateExceptionMessage);
@@ -482,12 +486,12 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains("Test Inner 1", aggregateExceptionMessage);
             Assert.Contains("Test Inner 2", aggregateExceptionMessage);
 
-            AssertDebugLastMessageContains("debug1", "AggregateException");
-            AssertDebugLastMessageContains("debug1", "One or more errors occurred");
-            AssertDebugLastMessageContains("debug1", "Test exception 1");
-            AssertDebugLastMessageContains("debug1", "Test exception 2");
-            AssertDebugLastMessageContains("debug1", "Test Inner 1");
-            AssertDebugLastMessageContains("debug1", "Test Inner 2");
+            logFactory.AssertDebugLastMessageContains("AggregateException");
+            logFactory.AssertDebugLastMessageContains("One or more errors occurred");
+            logFactory.AssertDebugLastMessageContains("Test exception 1");
+            logFactory.AssertDebugLastMessageContains("Test exception 2");
+            logFactory.AssertDebugLastMessageContains("Test Inner 1");
+            logFactory.AssertDebugLastMessageContains("Test Inner 2");
         }
 
 #if NET35
@@ -497,15 +501,15 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void AggregateExceptionWithExceptionDataMultiTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,data,message:maxInnerExceptionLevel=5}' />
+                    <target name='debug' type='Debug' layout='${exception:format=shorttype,data,message:maxInnerExceptionLevel=5}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionData1Key = "ex1Key";
             string exceptionData1Value = "ex1Value";
@@ -538,7 +542,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 ex.Data.Add(aggregateExceptionDataKey, aggregateExceptionDataValue);
                 aggregateExceptionMessage = ex.ToString();
-                logger.Error(ex, "msg");
+                logFactory.GetCurrentClassLogger().Error(ex, "msg");
             }
 
             Assert.Contains("Test exception 1", aggregateExceptionMessage);
@@ -546,15 +550,15 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains("Test Inner 1", aggregateExceptionMessage);
             Assert.Contains("Test Inner 2", aggregateExceptionMessage);
 
-            AssertDebugLastMessageContains("debug1", "AggregateException");
-            AssertDebugLastMessageContains("debug1", "One or more errors occurred");
-            AssertDebugLastMessageContains("debug1", "Test exception 1");
-            AssertDebugLastMessageContains("debug1", "Test exception 2");
-            AssertDebugLastMessageContains("debug1", "Test Inner 1");
-            AssertDebugLastMessageContains("debug1", "Test Inner 2");
-            AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, exceptionData1Key, exceptionData1Value));
-            AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, exceptionData2Key, exceptionData2Value));
-            AssertDebugLastMessageContains("debug1", string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue));
+            logFactory.AssertDebugLastMessageContains("AggregateException");
+            logFactory.AssertDebugLastMessageContains("One or more errors occurred");
+            logFactory.AssertDebugLastMessageContains("Test exception 1");
+            logFactory.AssertDebugLastMessageContains("Test exception 2");
+            logFactory.AssertDebugLastMessageContains("Test Inner 1");
+            logFactory.AssertDebugLastMessageContains("Test Inner 2");
+            logFactory.AssertDebugLastMessageContains(string.Format(ExceptionDataFormat, exceptionData1Key, exceptionData1Value));
+            logFactory.AssertDebugLastMessageContains(string.Format(ExceptionDataFormat, exceptionData2Key, exceptionData2Value));
+            logFactory.AssertDebugLastMessageContains(string.Format(ExceptionDataFormat, aggregateExceptionDataKey, aggregateExceptionDataValue));
         }
 
 #if NET35
@@ -564,15 +568,15 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void AggregateExceptionSingleTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:maxInnerExceptionLevel=5}' />
+                    <target name='debug' type='Debug' layout='${exception:format=message,shorttype:maxInnerExceptionLevel=5}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             var task1 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 1", new Exception("Test Inner 1")); },
                 System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
@@ -585,14 +589,14 @@ namespace NLog.UnitTests.LayoutRenderers
             catch (AggregateException ex)
             {
                 aggregateExceptionMessage = ex.ToString();
-                logger.Error(ex, "msg");
+                logFactory.GetCurrentClassLogger().Error(ex, "msg");
             }
 
             Assert.Contains(typeof(AggregateException).Name, aggregateExceptionMessage);
             Assert.Contains("Test exception 1", aggregateExceptionMessage);
             Assert.Contains("Test Inner 1", aggregateExceptionMessage);
 
-            var lastMessage = GetDebugLastMessage("debug1");
+            var lastMessage = logFactory.AssertDebugLastMessageNotEmpty();
             Assert.StartsWith("Test exception 1", lastMessage);
             Assert.Contains("Test Inner 1", lastMessage);
         }
@@ -604,15 +608,15 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void AggregateExceptionWithExceptionDataSingleTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=message,data,shorttype:maxInnerExceptionLevel=5}' />
+                    <target name='debug' type='Debug' layout='${exception:format=message,data,shorttype:maxInnerExceptionLevel=5}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionDataKey = "ex1Key";
             string exceptionDataValue = "ex1Value";
@@ -635,14 +639,14 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 ex.Data.Add(aggregateExceptionDataKey, aggregateExceptionDataValue);
                 aggregateExceptionMessage = ex.ToString();
-                logger.Error(ex, "msg");
+                logFactory.GetCurrentClassLogger().Error(ex, "msg");
             }
 
             Assert.Contains(typeof(AggregateException).Name, aggregateExceptionMessage);
             Assert.Contains("Test exception 1", aggregateExceptionMessage);
             Assert.Contains("Test Inner 1", aggregateExceptionMessage);
 
-            var lastMessage = GetDebugLastMessage("debug1");
+            var lastMessage = logFactory.AssertDebugLastMessageNotEmpty();
             Assert.StartsWith("Test exception 1", lastMessage);
             Assert.Contains("Test Inner 1", lastMessage);
             Assert.Contains(string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue), lastMessage);
@@ -652,37 +656,37 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomExceptionProperties_Layout_Test()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=Properties}' />
+                    <target name='debug' type='Debug' layout='${exception:format=Properties}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             var ex = new CustomArgumentException("Goodbye World", "Nuke");
-            logger.Fatal(ex, "msg");
-            AssertDebugLastMessage("debug1", $"{nameof(CustomArgumentException.ParamName)}: Nuke");
+            logFactory.GetCurrentClassLogger().Fatal(ex, "msg");
+            logFactory.AssertDebugLastMessage($"{nameof(CustomArgumentException.ParamName)}: Nuke");
         }
 
         [Fact]
         public void BaseExceptionTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=Message:BaseException=true}' />
+                    <target name='debug' type='Debug' layout='${exception:format=Message:BaseException=true}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             var ex = GetNestedExceptionWithStackTrace("Goodbye World");
-            logger.Fatal(ex, "msg");
-            AssertDebugLastMessage("debug1", "Goodbye World");
+            logFactory.GetCurrentClassLogger().Fatal(ex, "msg");
+            logFactory.AssertDebugLastMessage("Goodbye World");
         }
 
 #if NET35
@@ -724,17 +728,17 @@ namespace NLog.UnitTests.LayoutRenderers
             public override string Message => throw new Exception("Exception from Message property");
         }
 
-        private void SetConfigurationForExceptionUsingRootMethodTests()
+        private LogFactory BuildConfigurationForExceptionTests()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            return new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${level:uppercase=true}*${message}*${exception:format=message,shorttype:separator=*}' />
+                    <target name='debug' type='Debug' layout='${level:uppercase=true}*${message}*${exception:format=message,shorttype:separator=*}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Trace' writeTo='debug1' />
+                    <logger minlevel='Trace' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
         }
 
         /// <summary>
@@ -837,28 +841,23 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExcpetionTestAPI()
         {
-            var config = new LoggingConfiguration();
-
-            var debugTarget = new DebugTarget();
-            config.AddTarget("debug1", debugTarget);
-            debugTarget.Layout = @"${exception:format=shorttype,message:maxInnerExceptionLevel=3}";
-
-            var rule = new LoggingRule("*", LogLevel.Info, debugTarget);
-            config.LoggingRules.Add(rule);
-
-            LogManager.Configuration = config;
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                var debugTarget = new DebugTarget("debug");
+                debugTarget.Layout = @"${exception:format=shorttype,message:maxInnerExceptionLevel=3}";
+                builder.ForLogger().WriteTo(debugTarget);
+            }).LogFactory;
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 
-            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-
 
             Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
             Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
@@ -867,27 +866,26 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTestAPI()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3:innerFormat=message}' />
+                    <target name='debug' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3:innerFormat=message}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
-            logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+            logFactory.AssertDebugLastMessage("ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "Wrapper1" + EnvironmentHelper.NewLine +
                                              "Test exception");
 
-            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var t = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-
 
             Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
             Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
@@ -933,7 +931,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionDataWithDifferentSeparators()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>                    
                     <target name='debug1' type='Debug' layout='${exception:format=data}' />
@@ -943,7 +941,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger minlevel='Info' writeTo='debug1, debug2, debug3' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string defaultExceptionDataSeparator = ";";
             const string exceptionMessage = "message for exception";
@@ -952,7 +950,7 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataKey2 = "testkey2";
             const string exceptionDataValue2 = "testvalue2";
 
-            var target = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var target = (DebugTarget)logFactory.Configuration.AllTargets[0];
             var exceptionLayoutRenderer = ((SimpleLayout)target.Layout).Renderers[0] as ExceptionLayoutRenderer;
             Assert.NotNull(exceptionLayoutRenderer);
             Assert.Equal(defaultExceptionDataSeparator, exceptionLayoutRenderer.ExceptionDataSeparator);
@@ -961,17 +959,17 @@ namespace NLog.UnitTests.LayoutRenderers
             ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
             ex.Data.Add(exceptionDataKey2, exceptionDataValue2);
 
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + defaultExceptionDataSeparator + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "*" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "## **" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            logFactory.AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + defaultExceptionDataSeparator + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            logFactory.AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "*" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            logFactory.AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "## **" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
         }
 
         [Fact]
         public void ExceptionDataWithNewLineSeparator()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=\r\n}' />
@@ -981,7 +979,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger minlevel='Info' writeTo='debug1, debug2, debug3' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "message for exception";
             const string exceptionDataKey1 = "testkey1";
@@ -993,26 +991,26 @@ namespace NLog.UnitTests.LayoutRenderers
             ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
             ex.Data.Add(exceptionDataKey2, exceptionDataValue2);
 
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            logFactory.AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            logFactory.AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            logFactory.AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
         }
 
 
         [Fact]
         public void ExceptionWithSeparatorForExistingRender()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>                                        
-                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
+                    <target name='debug' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "message for exception";
             const string exceptionDataKey1 = "testkey1";
@@ -1021,23 +1019,23 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
 
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) + "\r\nXXX" + string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1));
+            logFactory.AssertDebugLastMessage(string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) + "\r\nXXX" + string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1));
         }
 
         [Fact]
         public void ExceptionWithSeparatorForExistingBetweenRender()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>                                        
-                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data,type:separator=\r\nXXX}' />
+                    <target name='debug' type='Debug' layout='${exception:format=tostring,data,type:separator=\r\nXXX}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "message for exception";
             const string exceptionDataKey1 = "testkey1";
@@ -1046,10 +1044,9 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
 
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
 
-            AssertDebugLastMessage(
-                "debug1",
+            logFactory.AssertDebugLastMessage(
                 string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) +
                 "\r\nXXX" +
                 string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) +
@@ -1060,47 +1057,46 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutSeparatorForNoRender()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>                                        
-                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
+                    <target name='debug' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "message for exception";
 
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
 
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage));
+            logFactory.AssertDebugLastMessage(string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage));
         }
 
 
         [Fact]
         public void ExceptionWithoutSeparatorForNoBetweenRender()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data,type:separator=\r\nXXX}' />
+                    <target name='debug' type='Debug' layout='${exception:format=tostring,data,type:separator=\r\nXXX}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             const string exceptionMessage = "message for exception";
 
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
 
-            logger.Error(ex);
+            logFactory.GetCurrentClassLogger().Error(ex);
 
-            AssertDebugLastMessage(
-                "debug1",
+            logFactory.AssertDebugLastMessage(
                 string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) +
                 "\r\nXXX" +
                 ex.GetType().FullName);
