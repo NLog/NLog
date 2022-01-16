@@ -716,7 +716,7 @@ namespace NLog
 
         private static string GenerateTargetName(Type targetType)
         {
-            var targetName = targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name ?? string.Empty;
+            var targetName = targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name ?? targetType.Name;
             if (string.IsNullOrEmpty(targetName))
                 targetName = targetType.ToString();
 
