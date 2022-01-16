@@ -44,7 +44,7 @@ namespace NLog.UnitTests
 
     public class LoggerTests : NLogTestBase
     {
-        private CultureInfo NLCulture = GetCultureInfo("nl-nl");
+        private static readonly CultureInfo NLCulture = GetCultureInfo("nl-nl");
 
         [Fact]
         public void TraceTest()
@@ -2669,36 +2669,6 @@ namespace NLog.UnitTests
             public List<Person> Childs { get; set; }
 
             public override string ToString() { return Name; }
-        }
-
-        public abstract class BaseWrapper
-        {
-            public void Log(string what)
-            {
-                InternalLog(what);
-            }
-
-            protected abstract void InternalLog(string what);
-        }
-
-        public class MyWrapper : BaseWrapper
-        {
-            private readonly ILogger _wrapperLogger;
-
-            public MyWrapper()
-            {
-                _wrapperLogger = LogManager.GetLogger("WrappedLogger");
-            }
-
-            protected override void InternalLog(string what)
-            {
-                LogEventInfo info = new LogEventInfo(LogLevel.Warn, _wrapperLogger.Name, what);
-
-                // Provide BaseWrapper as wrapper type.
-                // Expected: UserStackFrame should point to the method that calls a 
-                // method of BaseWrapper.
-                _wrapperLogger.Log(typeof(BaseWrapper), info);
-            }
         }
 
         public class MyTarget : TargetWithLayout

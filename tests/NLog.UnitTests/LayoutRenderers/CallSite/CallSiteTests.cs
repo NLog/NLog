@@ -123,21 +123,21 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void LineNumberTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:filename=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 #if DEBUG
 #line 100000
 #endif
             logger.Debug("msg");
             var linenumber = GetPrevLineNumber();
-            string lastMessage = GetDebugLastMessage("debug");
+            string lastMessage = GetDebugLastMessage("debug", logFactory);
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
             Assert.True(lastMessage.IndexOf("callsitetests.cs:" + linenumber, StringComparison.OrdinalIgnoreCase) >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
@@ -149,24 +149,24 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+            logFactory.AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 
         [Fact]
         public void MethodNameInChainTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -175,253 +175,253 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg2");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
+            logFactory.AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
         }
 
         [Fact]
         public void MethodNameNoCaptureStackTraceTest()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:captureStackTrace=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             // Act
-            LogManager.GetLogger("A").Debug("msg");
+            logFactory.GetLogger("A").Debug("msg");
 
             // Assert
-            AssertDebugLastMessage("debug", " msg");
+            logFactory.AssertDebugLastMessage(" msg");
         }
 
         [Fact]
         public void MethodNameNoCaptureStackTraceWithStackTraceTest()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:captureStackTrace=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
 
             // Act
             var logEvent = new LogEventInfo(LogLevel.Info, null, "msg");
             logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
-            LogManager.GetLogger("A").Log(logEvent);
+            logFactory.GetLogger("A").Log(logEvent);
 
             // Assert
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+            logFactory.AssertDebugLastMessage(currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 
         [Fact]
         public void ClassNameTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests msg");
+            logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests msg");
         }
 
         [Fact]
         public void ClassNameTestWithoutNamespace()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:includeNamespace=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "CallSiteTests msg");
+            logFactory.AssertDebugLastMessage("CallSiteTests msg");
         }
 
         [Fact]
         public void ClassNameTestWithOverride()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:includeNamespace=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             var logEvent = LogEventInfo.Create(LogLevel.Debug, logger.Name, "msg");
             logEvent.SetCallerInfo("NLog.UnitTests.LayoutRenderers.OverrideClassName", nameof(ClassNameTestWithOverride), null, 0);
             logger.Log(logEvent);
-            AssertDebugLastMessage("debug", "OverrideClassName msg");
+            logFactory.AssertDebugLastMessage("OverrideClassName msg");
         }
 
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
+            logFactory.AssertDebugLastMessage(currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             var typeName = currentMethod.DeclaringType.FullName;
-            AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
+            logFactory.AssertDebugLastMessage(typeName.Substring(typeName.Length - 3) + " msg");
         }
 
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignLeftTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
+            logFactory.AssertDebugLastMessage(currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignRightTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             var typeName = currentMethod.DeclaringType.FullName;
-            AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
+            logFactory.AssertDebugLastMessage(typeName.Substring(typeName.Length - 3) + " msg");
         }
 
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "MethodNameWithPa msg");
+            logFactory.AssertDebugLastMessage("MethodNameWithPa msg");
         }
 
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignRightTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "ftAlignRightTest msg");
+            logFactory.AssertDebugLastMessage("ftAlignRightTest msg");
         }
 
         [Fact]
         public void MethodNameWithPaddingTestPadRightAlignLeftTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "MethodNameWithPa msg");
+            logFactory.AssertDebugLastMessage("MethodNameWithPa msg");
         }
 
         [Fact]
         public void MethodNameWithPaddingTestPadRightAlignRightTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "htAlignRightTest msg");
+            logFactory.AssertDebugLastMessage("htAlignRightTest msg");
         }
 
         [Fact]
         public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
+            logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
 
 #if !DEBUG
@@ -431,32 +431,32 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:skipframes=1} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             Action action = () => logger.Debug("msg");
             action.Invoke();
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
+            logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
         [Fact]
         public void CleanMethodNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -474,22 +474,22 @@ namespace NLog.UnitTests.LayoutRenderers
 
             if (done == true)
             {
-                AssertDebugLastMessage("debug", "CleanMethodNamesOfAnonymousDelegatesTest");
+                logFactory.AssertDebugLastMessage("CleanMethodNamesOfAnonymousDelegatesTest");
             }
         }
 
         [Fact]
         public void DontCleanMethodNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -507,7 +507,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             if (done == true)
             {
-                string lastMessage = GetDebugLastMessage("debug");
+                string lastMessage = GetDebugLastMessage("debug", logFactory);
                 Assert.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>", lastMessage);
             }
         }
@@ -515,15 +515,15 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CleanClassNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -541,22 +541,22 @@ namespace NLog.UnitTests.LayoutRenderers
 
             if (done == true)
             {
-                AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
+                logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests");
             }
         }
 
         [Fact]
         public void DontCleanClassNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -574,23 +574,22 @@ namespace NLog.UnitTests.LayoutRenderers
 
             if (done == true)
             {
-                string lastMessage = GetDebugLastMessage("debug");
-                Assert.Contains("+<>", lastMessage);
+                logFactory.AssertDebugLastMessageContains("+<>");
             }
         }
 
         [Fact]
         public void When_NotIncludeNameSpace_Then_CleanAnonymousDelegateClassNameShouldReturnParentClassName()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:IncludeNamespace=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -608,7 +607,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             if (done == true)
             {
-                AssertDebugLastMessage("debug", "CallSiteTests");
+                logFactory.AssertDebugLastMessage("CallSiteTests");
             }
         }
 
@@ -619,27 +618,27 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                <nlog>
                    <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                    <rules>
                        <logger name='*' levels='Warn' writeTo='debug' />
                    </rules>
-               </nlog>");
+               </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|direct");
 
-            LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
+            var wrappedLogger = new MyWrapper(logFactory);
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|wrapped");
         }
 
         [Fact]
         public void CheckStackTraceUsageForTwoRules()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -649,18 +648,18 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                     <logger name='*' minlevel='Debug' writeTo='debug2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules msg");
+            logFactory.AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules msg");
         }
 
 
         [Fact]
         public void CheckStackTraceUsageForTwoRules_chained()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -670,18 +669,18 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                     <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules_chained msg");
+            logFactory.AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules_chained msg");
         }
 
 
         [Fact]
         public void CheckStackTraceUsageForMultipleRules()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -693,15 +692,12 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForMultipleRules msg");
+            logFactory.AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForMultipleRules msg");
         }
-
-
-        #region Compositio unit test
 
         [Fact]
         public void When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack()
@@ -709,21 +705,21 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Warn' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|direct");
 
-            CompositeWrapper wrappedLogger = new CompositeWrapper();
+            CompositeWrapper wrappedLogger = new CompositeWrapper(logFactory);
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|wrapped");
         }
 
 #if NET35
@@ -736,24 +732,24 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Warn' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            AsyncMethod().Wait();
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+            AsyncMethod(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|direct");
 
-            new InnerClassAsyncMethod().AsyncMethod().Wait();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod).ToString()}.AsyncMethod|direct");
+            new InnerClassAsyncMethod().AsyncMethod(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod).ToString()}.AsyncMethod|direct");
         }
 
-        private async Task AsyncMethod()
+        private async Task AsyncMethod(LogFactory logFactory)
         {
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("direct");
             var reader = new StreamReader(new MemoryStream(new byte[0]));
             await reader.ReadLineAsync();
@@ -761,9 +757,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class InnerClassAsyncMethod
         {
-            public async Task AsyncMethod()
+            public async Task AsyncMethod(LogFactory logFactory)
             {
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Warn("direct");
                 var reader = new StreamReader(new MemoryStream(new byte[0]));
                 await reader.ReadLineAsync();
@@ -779,17 +775,17 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void Show_correct_filename_with_async()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite:className=False:fileName=True:includeSourcePath=False:methodName=False}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Warn' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            AsyncMethod().Wait();
-            Assert.Contains("CallSiteTests.cs", GetDebugLastMessage("debug"));
-            Assert.Contains("|direct", GetDebugLastMessage("debug"));
+            AsyncMethod(logFactory).Wait();
+            logFactory.AssertDebugLastMessageContains("CallSiteTests.cs");
+            logFactory.AssertDebugLastMessageContains("|direct");
         }
 
 #if NET35
@@ -802,29 +798,29 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod2b";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Warn' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            AsyncMethod2a().Wait();
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+            AsyncMethod2a(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|direct");
 
-            new InnerClassAsyncMethod2().AsyncMethod2a().Wait();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod2).ToString()}.AsyncMethod2b|direct");
+            new InnerClassAsyncMethod2().AsyncMethod2a(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod2).ToString()}.AsyncMethod2b|direct");
         }
 
-        private async Task AsyncMethod2a()
+        private async Task AsyncMethod2a(LogFactory logFactory)
         {
-            await AsyncMethod2b();
+            await AsyncMethod2b(logFactory);
         }
 
-        private async Task AsyncMethod2b()
+        private async Task AsyncMethod2b(LogFactory logFactory)
         {
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("direct");
             var reader = new StreamReader(new MemoryStream(new byte[0]));
             await reader.ReadLineAsync();
@@ -832,14 +828,14 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class InnerClassAsyncMethod2
         {
-            public async Task AsyncMethod2a()
+            public async Task AsyncMethod2a(LogFactory logFactory)
             {
-                await AsyncMethod2b();
+                await AsyncMethod2b(logFactory);
             }
 
-            public async Task AsyncMethod2b()
+            public async Task AsyncMethod2b(LogFactory logFactory)
             {
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Warn("direct");
                 var reader = new StreamReader(new MemoryStream(new byte[0]));
                 await reader.ReadLineAsync();
@@ -858,46 +854,46 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod3b";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Warn' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            AsyncMethod3a().Wait();
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+            AsyncMethod3a(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|direct");
 
-            new InnerClassAsyncMethod3().AsyncMethod3a().Wait();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod3).ToString()}.AsyncMethod3b|direct");
+            new InnerClassAsyncMethod3().AsyncMethod3a(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod3).ToString()}.AsyncMethod3b|direct");
         }
 
-        private async Task AsyncMethod3a()
+        private async Task AsyncMethod3a(LogFactory logFactory)
         {
             var reader = new StreamReader(new MemoryStream(new byte[0]));
             await reader.ReadLineAsync();
-            AsyncMethod3b();
+            AsyncMethod3b(logFactory);
         }
 
-        private void AsyncMethod3b()
+        private void AsyncMethod3b(LogFactory logFactory)
         {
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("direct");
         }
 
         private class InnerClassAsyncMethod3
         {
-            public async Task AsyncMethod3a()
+            public async Task AsyncMethod3a(LogFactory logFactory)
             {
                 var reader = new StreamReader(new MemoryStream(new byte[0]));
                 await reader.ReadLineAsync();
-                AsyncMethod3b();
+                AsyncMethod3b(logFactory);
             }
 
-            public void AsyncMethod3b()
+            public void AsyncMethod3b(LogFactory logFactory)
             {
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Warn("direct");
             }
         }
@@ -914,24 +910,24 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod4";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Info' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            AsyncMethod4().Wait();
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|Direct, async method");
+            AsyncMethod4(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|Direct, async method");
 
-            new InnerClassAsyncMethod4().AsyncMethod4().Wait();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod4).ToString()}.AsyncMethod4|Direct, async method");
+            new InnerClassAsyncMethod4().AsyncMethod4(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod4).ToString()}.AsyncMethod4|Direct, async method");
        }
 
-        private async Task<IEnumerable<string>> AsyncMethod4()
+        private async Task<IEnumerable<string>> AsyncMethod4(LogFactory logFactory)
         {
-            Logger logger = LogManager.GetLogger("AnnonTest");
+            Logger logger = logFactory.GetLogger("AnnonTest");
             logger.Info("Direct, async method");
 
             return await Task.FromResult(new string[] { "value1", "value2" });
@@ -939,9 +935,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class InnerClassAsyncMethod4
         {
-            public async Task<IEnumerable<string>> AsyncMethod4()
+            public async Task<IEnumerable<string>> AsyncMethod4(LogFactory logFactory)
             {
-                Logger logger = LogManager.GetLogger("AnnonTest");
+                Logger logger = logFactory.GetLogger("AnnonTest");
                 logger.Info("Direct, async method");
 
                 return await Task.FromResult(new string[] { "value1", "value2" });
@@ -985,21 +981,21 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.MoveNext";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Warn' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            MoveNext();
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+            MoveNext(logFactory);
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|direct");
         }
 
-        private void MoveNext()
+        private void MoveNext(LogFactory logFactory)
         {
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("direct");
         }
 
@@ -1007,9 +1003,9 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             private readonly MyWrapper wrappedLogger;
 
-            public CompositeWrapper()
+            public CompositeWrapper(LogFactory logFactory)
             {
-                wrappedLogger = new MyWrapper();
+                wrappedLogger = new MyWrapper(logFactory);
             }
 
             [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1038,9 +1034,9 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             private readonly Logger _wrapperLogger;
 
-            public MyWrapper()
+            public MyWrapper(LogFactory logFactory)
             {
-                _wrapperLogger = LogManager.GetLogger("WrappedLogger");
+                _wrapperLogger = logFactory.GetLogger("WrappedLogger");
             }
 
             protected override void InternalLog(Type type, string what) //added type for composition
@@ -1054,8 +1050,6 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        #endregion
-
         private class MyLogger : Logger
         {
         }
@@ -1063,104 +1057,96 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CallsiteBySubclass_interface()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
+            var logger = logFactory.GetLogger("mylogger", typeof(MyLogger));
 
             Assert.True(logger is MyLogger, "logger isn't MyLogger");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_interface msg");
+            logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_interface msg");
         }
 
         [Fact]
         public void CallsiteBySubclass_mylogger()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            MyLogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
+            MyLogger logger = logFactory.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
 
             Assert.NotNull(logger);
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_mylogger msg");
+            logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_mylogger msg");
         }
 
         [Fact]
         public void CallsiteBySubclass_logger()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            Logger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as Logger;
+            Logger logger = logFactory.GetLogger("mylogger", typeof(MyLogger)) as Logger;
 
             Assert.NotNull(logger);
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_logger msg");
+            logFactory.AssertDebugLastMessage("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_logger msg");
         }
 
         [Fact]
         public void Should_preserve_correct_callsite_information()
         {
-            // Step 1. Create configuration object 
-            var config = new LoggingConfiguration();
-
-            // Step 2. Create targets and add them to the configuration 
             var target = new MemoryTarget();
-            var wrapper = new NLog.Targets.Wrappers.AsyncTargetWrapper(target) { TimeToSleepBetweenBatches = 0 };
-            config.AddTarget("target", wrapper);
-
-            // Step 3. Set target properties 
             target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                var wrapper = new NLog.Targets.Wrappers.AsyncTargetWrapper(target) { TimeToSleepBetweenBatches = 0 };
+                builder.ForLogger().WriteTo(wrapper);
+            }).LogFactory;
 
-            // Step 4. Define rules
-            var rule = new LoggingRule("*", LogLevel.Debug, wrapper);
-            config.LoggingRules.Add(rule);
-
-            LogManager.Configuration = config;
-            var factory = new NLogFactory(config);
+            var factory = new NLogFactory(logFactory);
             var logger = factory.Create("MyLoggerName");
 
             WriteLogMessage(logger);
-            LogManager.Flush();
+            logFactory.Flush();
             var logMessage = target.Logs[0];
             Assert.Contains("MyLoggerName", logMessage);
 
             // See that LogManager.ReconfigExistingLoggers() is able to upgrade the Logger
             target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message}";
-            LogManager.ReconfigExistingLoggers();
+            logFactory.ReconfigExistingLoggers();
             WriteLogMessage(logger);
-            LogManager.Flush();
+            logFactory.Flush();
             logMessage = target.Logs[1];
             Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
 
             // See that LogManager.ReconfigExistingLoggers() is able to upgrade the Logger
             target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message} ThreadId=${threadid}";
-            LogManager.ReconfigExistingLoggers();
+            logFactory.ReconfigExistingLoggers();
             WriteLogMessage(logger);
-            LogManager.Flush();
+            logFactory.Flush();
             logMessage = target.Logs[2];
             Assert.Contains("ThreadId=" + Thread.CurrentThread.ManagedThreadId.ToString(), logMessage);
 
             // See that interface logging also works (Improve support for Microsoft.Extension.Logging.ILogger replacement)
             INLogLogger ilogger = logger;
             WriteLogMessage(ilogger);
-            LogManager.Flush();
+            logFactory.Flush();
             logMessage = target.Logs[3];
             Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
         }
@@ -1182,15 +1168,15 @@ namespace NLog.UnitTests.LayoutRenderers
         /// </summary>
         public class NLogFactory
         {
-            internal const string defaultConfigFileName = "nlog.config";
+            private readonly LogFactory LogFactory;
 
             /// <summary>
             ///   Initializes a new instance of the <see cref="NLogFactory" /> class.
             /// </summary>
             /// <param name="loggingConfiguration"> The NLog Configuration </param>
-            public NLogFactory(LoggingConfiguration loggingConfiguration)
+            public NLogFactory(LogFactory logFactory)
             {
-                LogManager.Configuration = loggingConfiguration;
+                LogFactory = logFactory;
             }
 
             /// <summary>
@@ -1200,7 +1186,7 @@ namespace NLog.UnitTests.LayoutRenderers
             /// <returns> </returns>
             public NLogLogger Create(string name)
             {
-                var log = LogManager.GetLogger(name);
+                var log = LogFactory.GetLogger(name);
                 return new NLogLogger(log);
             }
         }
@@ -1240,36 +1226,36 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
                    <logger name='*' levels='Debug' writeTo='debug' />
                </rules>
-           </nlog>");
+           </nlog>").LogFactory;
 
-            AsyncMethod5().Wait();
-            AssertDebugLastMessage("debug", $"{currentMethodFullName}|dude");
+            AsyncMethod5(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|dude");
 
-            new InnerClassAsyncMethod5().AsyncMethod5().Wait();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod5).ToString()}.AsyncMethod5|dude");
+            new InnerClassAsyncMethod5().AsyncMethod5(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod5).ToString()}.AsyncMethod5|dude");
         }
 
-        private async Task AsyncMethod5()
+        private async Task AsyncMethod5(LogFactory logFactory)
         {
             await AMinimalAsyncMethod();
 
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Debug("dude");
         }
 
         private class InnerClassAsyncMethod5
         {
-            public async Task AsyncMethod5()
+            public async Task AsyncMethod5(LogFactory logFactory)
             {
                 await AMinimalAsyncMethod();
 
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Debug("dude");
             }
 
@@ -1296,21 +1282,21 @@ namespace NLog.UnitTests.LayoutRenderers
             // name of the logging method
             const string callsiteMethodName = nameof(LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName);
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
             Task.Run(async () => {
                 await AMinimalAsyncMethod();
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Debug("dude");
             }).Wait();
 
-            AssertDebugLastMessage("debug", callsiteMethodName);
+            logFactory.AssertDebugLastMessage(callsiteMethodName);
         }
 
 #if NET35
@@ -1325,28 +1311,28 @@ namespace NLog.UnitTests.LayoutRenderers
             // full name of the logging method
             string callsiteMethodFullName = $"{GetType()}.{nameof(LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName)}";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true:cleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
             Task.Run(async () =>
             {
                 await AMinimalAsyncMethod();
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Debug("dude");
             }).Wait();
 
-            AssertDebugLastMessage("debug", callsiteMethodFullName);
+            logFactory.AssertDebugLastMessage(callsiteMethodFullName);
 
-            new InnerClassAsyncMethod6().AsyncMethod6a().Wait();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6a");
+            new InnerClassAsyncMethod6().AsyncMethod6a(logFactory).Wait();
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6a");
 
-            new InnerClassAsyncMethod6().AsyncMethod6b();
-            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6b");
+            new InnerClassAsyncMethod6().AsyncMethod6b(logFactory);
+            logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6b");
         }
 
 #if NET35
@@ -1358,43 +1344,43 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 await AMinimalAsyncMethod();
-                var logger = LogManager.GetCurrentClassLogger();
+                var logger = logFactory.GetCurrentClassLogger();
                 logger.Debug("dude");
             }).Wait();
 
-            AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
-            AssertDebugLastMessageContains("debug", "MoveNext");
-            AssertDebugLastMessageContains("debug", "b__");
+            logFactory.AssertDebugLastMessageContains("NLog.UnitTests.LayoutRenderers.CallSiteTests");
+            logFactory.AssertDebugLastMessageContains("MoveNext");
         }
 
         private class InnerClassAsyncMethod6
         {
-            public virtual async Task AsyncMethod6a()
+            public virtual async Task AsyncMethod6a(LogFactory logFactory)
             {
                 await Task.Run(async () =>
                 {
                     await AMinimalAsyncMethod();
-                    var logger = LogManager.GetCurrentClassLogger();
+                    var logger = logFactory.GetCurrentClassLogger();
                     logger.Debug("dude");
                 });
             }
 
-            public virtual void AsyncMethod6b()
+            public virtual void AsyncMethod6b(LogFactory logFactory)
             {
                 Task.Run(async () =>
                 {
                     await AMinimalAsyncMethod();
-                    var logger = LogManager.GetCurrentClassLogger();
+                    var logger = logFactory.GetCurrentClassLogger();
                     logger.Debug("dude");
                 }).Wait();
             }

@@ -47,22 +47,22 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void LineNumberOnlyTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite-linenumber} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
 #if DEBUG
 #line 100000
 #endif
             logger.Debug("msg");
             var linenumber = GetPrevLineNumber();
-            var lastMessage = GetDebugLastMessage("debug");
+            var lastMessage = GetDebugLastMessage("debug", logFactory);
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
             Assert.True(lastMessage.IndexOf(linenumber.ToString(), StringComparison.OrdinalIgnoreCase) == 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
@@ -78,16 +78,16 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void LineNumberOnlyAsyncTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
         <nlog>
             <targets><target name='debug' type='Debug' layout='${callsite-linenumber}' /></targets>
             <rules>
                 <logger name='*' minlevel='Debug' writeTo='debug' />
             </rules>
-        </nlog>");
+        </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            Func<string> getLastMessage = () => GetDebugLastMessage("debug");
+            var logger = logFactory.GetLogger("A");
+            Func<string> getLastMessage = () => GetDebugLastMessage("debug", logFactory);
             logger.Debug("msg");
             var lastMessage = getLastMessage();
             Assert.NotEqual(0, int.Parse(lastMessage));
@@ -98,41 +98,41 @@ namespace NLog.UnitTests.LayoutRenderers
         public void LineNumberNoCaptureStackTraceTest()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
         <nlog>
             <targets><target name='debug' type='Debug' layout='${callsite-linenumber:captureStackTrace=false} ${message}' /></targets>
             <rules>
                 <logger name='*' minlevel='Debug' writeTo='debug' />
             </rules>
-        </nlog>");
+        </nlog>").LogFactory;
 
             // Act
-            LogManager.GetLogger("A").Debug("msg");
+            logFactory.GetLogger("A").Debug("msg");
 
             // Assert
-            AssertDebugLastMessage("debug", " msg");
+            logFactory.AssertDebugLastMessage(" msg");
         }
 
         [Fact]
         public void LineNumberNoCaptureStackTraceWithStackTraceTest()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
         <nlog>
             <targets><target name='debug' type='Debug' layout='${callsite-linenumber:captureStackTrace=false} ${message}' /></targets>
             <rules>
                 <logger name='*' minlevel='Debug' writeTo='debug' />
             </rules>
-        </nlog>");
+        </nlog>").LogFactory;
 
             // Act
             var logEvent = new LogEventInfo(LogLevel.Info, null, "msg");
             logEvent.SetStackTrace(new System.Diagnostics.StackTrace(true), 0);
-            LogManager.GetLogger("A").Log(logEvent);
+            logFactory.GetLogger("A").Log(logEvent);
 
             // Assert
-            AssertDebugLastMessageContains("debug", " msg");
-            Assert.NotEqual(" msg", GetDebugLastMessage("debug"));
+            logFactory.AssertDebugLastMessageContains(" msg");
+            Assert.NotEqual(" msg", GetDebugLastMessage("debug", logFactory));
         }
 
         private static async Task WriteMessages(Logger logger, Func<string> getLastMessage)
