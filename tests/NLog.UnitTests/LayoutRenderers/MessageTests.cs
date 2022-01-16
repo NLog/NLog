@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -44,191 +42,192 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageWithoutPaddingTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "a");
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", "a1");
+            logFactory.AssertDebugLastMessage("a1");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
+            logFactory.AssertDebugLastMessage("a01/01/2005 00:00:00");
         }
 
         [Fact]
         public void MessageRightPaddingTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "  a");
+            logFactory.AssertDebugLastMessage("  a");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", " a1");
+            logFactory.AssertDebugLastMessage(" a1");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
+            logFactory.AssertDebugLastMessage("a01/01/2005 00:00:00");
         }
 
 
         [Fact]
         public void MessageFixedLengthRightPaddingLeftAlignmentTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "  a");
+            logFactory.AssertDebugLastMessage("  a");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", " a1");
+            logFactory.AssertDebugLastMessage(" a1");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", "a01");
+            logFactory.AssertDebugLastMessage("a01");
         }
 
         [Fact]
         public void MessageFixedLengthRightPaddingRightAlignmentTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true:alignmentOnTruncation=right}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "  a");
+            logFactory.AssertDebugLastMessage("  a");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", " a1");
+            logFactory.AssertDebugLastMessage(" a1");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", ":00");
+            logFactory.AssertDebugLastMessage(":00");
         }
 
         [Fact]
         public void MessageLeftPaddingTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "axx");
+            logFactory.AssertDebugLastMessage("axx");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", "a1x");
+            logFactory.AssertDebugLastMessage("a1x");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
+            logFactory.AssertDebugLastMessage("a01/01/2005 00:00:00");
         }
 
         [Fact]
         public void MessageFixedLengthLeftPaddingLeftAlignmentTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "axx");
+            logFactory.AssertDebugLastMessage("axx");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", "a1x");
+            logFactory.AssertDebugLastMessage("a1x");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", "a01");
+            logFactory.AssertDebugLastMessage("a01");
         }
 
         [Fact]
         public void MessageFixedLengthLeftPaddingRightAlignmentTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true:alignmentOnTruncation=right}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "axx");
+            logFactory.AssertDebugLastMessage("axx");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", "a1x");
+            logFactory.AssertDebugLastMessage("a1x");
             logger.Debug("a{0}{1}", 1, "2");
-            AssertDebugLastMessage("debug", "a12");
+            logFactory.AssertDebugLastMessage("a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
-            AssertDebugLastMessage("debug", ":00");
+            logFactory.AssertDebugLastMessage(":00");
         }
 
         [Fact]
         public void MessageWithExceptionAndCustomSeparatorTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:withException=true:exceptionSeparator=,}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "a");
+            logFactory.AssertDebugLastMessage("a");
 
             var ex = new InvalidOperationException("Exception message.");
 
             logger.Debug(ex, "Foo");
-            AssertDebugLastMessage("debug", "Foo," + ex.ToString());
+            logFactory.AssertDebugLastMessage("Foo," + ex.ToString());
 
             logger.Debug(ex);
-            AssertDebugLastMessage("debug", ex.ToString());
+            logFactory.AssertDebugLastMessage(ex.ToString());
         }
 
         [Fact]
         public void SingleParameterException_OutputsSingleStackTrace()
         {
             // Arrange
-            var logFactory = new LogFactory();
-            var logConfig = new LoggingConfiguration(logFactory);
             var logTarget = new NLog.Targets.DebugTarget("debug") { Layout = "${message}|${exception}" };
-            logConfig.AddRuleForAllLevels(logTarget);
-            logFactory.Configuration = logConfig;
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(logTarget);
+            }).LogFactory;
+
             var logger = logFactory.GetLogger("SingleParameterException");
 
             // Act
