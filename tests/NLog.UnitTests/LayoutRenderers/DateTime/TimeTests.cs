@@ -31,11 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System.Globalization;
     using NLog.LayoutRenderers;
     using Xunit;
 
@@ -74,88 +72,20 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void TimeTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${time}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            LogManager.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug");
+            logFactory.GetLogger("d").Debug("zzz");
+            string date = GetDebugLastMessage("debug", logFactory);
             Assert.Equal(13, date.Length);
             Assert.Equal(':', date[2]);
             Assert.Equal(':', date[5]);
             Assert.Equal('.', date[8]);
-        }
-
-        [Fact]
-        public void LongDateWithPaddingPadLeftAlignLeft()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${longdate:padding=5:fixedlength=true}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug");
-            Assert.Equal(5, date.Length);
-            Assert.Equal('-', date[4]);
-        }
-
-        [Fact]
-        public void LongDateWithPaddingPadLeftAlignRight()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${longdate:padding=5:fixedlength=true:alignmentOnTruncation=right}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug");
-            Assert.Equal(5, date.Length);
-            Assert.Equal('.', date[0]);
-        }
-
-        [Fact]
-        public void LongDateWithPaddingPadRightAlignLeft()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${longdate:padding=-5:fixedlength=true:alignmentOnTruncation=left}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug");
-            Assert.Equal(5, date.Length);
-            Assert.Equal('-', date[4]);
-        }
-
-        [Fact]
-        public void LongDateWithPaddingPadRightAlignRight()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${longdate:padding=-5:fixedlength=true:alignmentOnTruncation=right}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug");
-            Assert.Equal(5, date.Length);
-            Assert.Equal('.', date[0]);
         }
     }
 }
