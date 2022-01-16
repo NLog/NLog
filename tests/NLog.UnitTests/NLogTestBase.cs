@@ -91,13 +91,6 @@ namespace NLog.UnitTests
                 $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
         }
 
-        protected void AssertDebugLastMessageContains(string targetName, string msg, LogFactory logFactory)
-        {
-            string debugLastMessage = GetDebugLastMessage(targetName, logFactory);
-            Assert.True(debugLastMessage.Contains(msg),
-                $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
-        }
-
         protected string GetDebugLastMessage(string targetName)
         {
             return GetDebugLastMessage(targetName, LogManager.LogFactory);

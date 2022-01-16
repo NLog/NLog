@@ -35,7 +35,6 @@ namespace NLog.UnitTests.Layouts
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Targets;
     using Xunit;
@@ -148,7 +147,7 @@ namespace NLog.UnitTests.Layouts
                 .Setup()
                 .LoadConfiguration(builder => 
                 { 
-                    builder.ForLogger().WriteTo(new DebugTarget("m") { Layout = "${all-event-properties}" });
+                    builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = "${all-event-properties}" });
                 })
                 .LogFactory;
 
@@ -160,7 +159,7 @@ namespace NLog.UnitTests.Layouts
                 .Debug("This is a test message '{0}'.", DateTime.Now.Ticks);
 
             //Assert
-            AssertDebugLastMessage("m", "Test=InfoWrite, coolness=200%, a=not b", logFactory);
+            logFactory.AssertDebugLastMessage("Test=InfoWrite, coolness=200%, a=not b");
         }
 
         [Fact]
@@ -171,7 +170,7 @@ namespace NLog.UnitTests.Layouts
                 .Setup()
                 .LoadConfiguration(builder =>
                 {
-                    builder.ForLogger().WriteTo(new DebugTarget("m") { Layout = "${all-event-properties}" });
+                    builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = "${all-event-properties}" });
                 })
                 .LogFactory;
 
@@ -187,7 +186,7 @@ namespace NLog.UnitTests.Layouts
                 .Debug("This is a test message '{0}'.", DateTime.Now.Ticks);
 
             //Assert
-            AssertDebugLastMessage("m", "TestString=myString, TestInt=999", logFactory);
+            logFactory.AssertDebugLastMessage("TestString=myString, TestInt=999");
         }
 
 #if NET35 || NET40
@@ -202,7 +201,7 @@ namespace NLog.UnitTests.Layouts
                 .Setup()
                 .LoadConfiguration(builder =>
                 {
-                    builder.ForLogger().WriteTo(new DebugTarget("m") { Layout = "${all-event-properties}${callsite}" });
+                    builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = "${all-event-properties}${callsite}" });
                 })
                 .LogFactory;
 
@@ -214,8 +213,8 @@ namespace NLog.UnitTests.Layouts
                 .Debug("This is a test message '{0}'.", DateTime.Now.Ticks);
 
             //Assert
-            AssertDebugLastMessageContains("m", nameof(AllEventWithFluent_with_callerInformation), logFactory);
-            AssertDebugLastMessageContains("m", nameof(AllEventPropertiesTests), logFactory);
+            logFactory.AssertDebugLastMessageContains(nameof(AllEventWithFluent_with_callerInformation));
+            logFactory.AssertDebugLastMessageContains(nameof(AllEventPropertiesTests));
         }
 
         [Theory]
@@ -252,27 +251,26 @@ namespace NLog.UnitTests.Layouts
         public void ExcludeSingleProperty(string exclude, string result)
         {
             // Arrange
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog throwExceptions='true' >
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
                     <targets>
                         <target type='Debug'
-                                name='m'
+                                name='debug'
                                 layout='${all-event-properties:Exclude=" + exclude + @"}'
                                 />
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='m' />
+                      <logger name='*' writeTo='debug' />
                     </rules>
-                </nlog>");
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+                </nlog>").LogFactory;
+            var logger = logFactory.GetCurrentClassLogger();
 
             // Act
             var ev = BuildLogEventWithProperties();
             logger.Log(ev);
 
             // Assert
-            AssertDebugLastMessageContains("m", result);
+            logFactory.AssertDebugLastMessageContains(result);
         }
 
         private static LogEventInfo BuildLogEventWithProperties()
