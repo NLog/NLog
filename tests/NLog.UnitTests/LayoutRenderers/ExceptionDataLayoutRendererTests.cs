@@ -35,12 +35,9 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using Xunit;
-    using NLog.Config;
 
     public class ExceptionDataLayoutRendererTests : NLogTestBase
     {
-        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionDataLayoutRendererTests");
-
         [Fact]
         public void ExceptionWithDataItemIsLoggedTest()
         {
@@ -48,21 +45,21 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:"+exceptionDataKey+@"}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:" + exceptionDataKey + @"}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
             Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
 
-            logger.Error(ex, "msg");
-            
-            AssertDebugLastMessage("debug1", exceptionDataValue);
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
+
+            logFactory.AssertDebugLastMessage("debug", exceptionDataValue);
         }
 
         [Fact]
@@ -70,23 +67,21 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             const string exceptionMessage = "Test exception";
             const string exceptionDataKey = "testkey";
-            const string exceptionDataValue = "testvalue";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:" + exceptionDataKey + @"}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:" + exceptionDataKey + @"}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
-
+            </nlog>").LogFactory;
 
             Exception ex = new ArgumentException(exceptionMessage);
-            logger.Error(ex, "msg");
+            logFactory.GetCurrentClassLogger().Error(ex, "msg");
 
-            Assert.NotEqual(GetDebugLastMessage("debug1"), exceptionDataValue);
+            logFactory.AssertDebugLastMessage("");
         }
 
         [Fact]
@@ -96,21 +91,20 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
 
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:item="+exceptionDataKey+@"}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:item=" + exceptionDataKey + @"}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
-
+            </nlog>").LogFactory;
 
             Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex);
-            AssertDebugLastMessage("debug1", exceptionDataValue);
+            logFactory.GetCurrentClassLogger().Error(ex);
+            logFactory.AssertDebugLastMessage(exceptionDataValue);
         }
 
         [Fact]
@@ -119,20 +113,21 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionMessage = "I don't like nullref exception!";
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:item=@}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:item=@}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex);
-            AssertDebugLastMessage("debug1", "");
+            logFactory.GetCurrentClassLogger().Error(ex);
+            logFactory.AssertDebugLastMessage("");
         }
 
         [Fact]
@@ -141,20 +136,20 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionMessage = "I don't like nullref exception!";
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex);
-            AssertDebugLastMessage("debug1", "");
+            logFactory.GetCurrentClassLogger().Error(ex);
+            logFactory.AssertDebugLastMessage("");
         }
 
         [Fact]
@@ -163,20 +158,20 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionMessage = "I don't like nullref exception!";
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:item=}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:item=}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             Exception ex = new ArgumentException(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error(ex);
-            AssertDebugLastMessage("debug1", "");
+            logFactory.GetCurrentClassLogger().Error(ex);
+            logFactory.AssertDebugLastMessage("");
         }
 
         [Fact]
@@ -184,15 +179,15 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             const string exceptionDataKey = "testkey";
             const string exceptionDataValue = "testvalue";
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exceptiondata:item=" + exceptionDataKey + @":BaseException=true}' />
+                    <target name='debug' type='Debug' layout='${exceptiondata:item=" + exceptionDataKey + @":BaseException=true}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             Exception exceptionToTest;
             try
@@ -220,9 +215,9 @@ namespace NLog.UnitTests.LayoutRenderers
                 exceptionToTest = ex;
             }
 
-            logger.Fatal(exceptionToTest, "msg");
+            logFactory.GetCurrentClassLogger().Fatal(exceptionToTest, "msg");
 
-            AssertDebugLastMessage("debug1", exceptionDataValue);
+            logFactory.AssertDebugLastMessage(exceptionDataValue);
         }
     }
 }

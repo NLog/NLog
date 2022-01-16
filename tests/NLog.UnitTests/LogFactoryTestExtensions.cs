@@ -68,7 +68,7 @@ namespace NLog.UnitTests
             var debugTarget = configuration.FindTargetByName<DebugTarget>(targetName);
             if (debugTarget is null)
             {
-                throw new Exception($"debugtarget with name {targetName} not found in configuration");
+                throw new Exception($"DebugTarget(Name={targetName}) not found in configuration");
             }
             return debugTarget;
         }
