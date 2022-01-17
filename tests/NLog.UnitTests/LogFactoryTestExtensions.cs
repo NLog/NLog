@@ -63,6 +63,14 @@ namespace NLog.UnitTests
                 $"Expected to find '{message}' in last message value on '{targetName}', but found '{debugTarget.LastMessage}'");
         }
 
+        public static string AssertDebugLastMessageNotEmpty(this LogFactory logFactory)
+        {
+            var debugTarget = GetDebugTarget("Debug", logFactory.Configuration);
+            var lastMessage = debugTarget.LastMessage;
+            Assert.False(string.IsNullOrEmpty(lastMessage));
+            return lastMessage;
+        }
+
         public static DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
             var debugTarget = configuration.FindTargetByName<DebugTarget>(targetName);
