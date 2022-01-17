@@ -385,7 +385,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": {  } }", json);
+            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { } }", json);
 
         }
 
