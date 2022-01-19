@@ -129,7 +129,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#>(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
+        public void <#=level#>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         { 
             if (Is<#=level#>Enabled)
             {
@@ -155,7 +155,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#>([Localizable(false)] string message, params object[] args) 
+        public void <#=level#>([Localizable(false)][StructuredMessageTemplate] string message, params object[] args) 
         { 
             if (Is<#=level#>Enabled)
             {
@@ -183,7 +183,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#>(Exception exception, [Localizable(false)] string message, params object[] args)
+        public void <#=level#>(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             if (Is<#=level#>Enabled)
             {
@@ -199,7 +199,7 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#>(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
+        public void <#=level#>(Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             if (Is<#=level#>Enabled)
             {
@@ -215,7 +215,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
+        public void <#=level#><TArgument>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         { 
             if (Is<#=level#>Enabled)
             {
@@ -230,7 +230,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument>([Localizable(false)] string message, TArgument argument)
+        public void <#=level#><TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         { 
             if (Is<#=level#>Enabled)
             {
@@ -248,7 +248,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
+        public void <#=level#><TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (Is<#=level#>Enabled)
             {
@@ -265,7 +265,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
+        public void <#=level#><TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (Is<#=level#>Enabled)
             {
@@ -285,7 +285,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
+        public void <#=level#><TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (Is<#=level#>Enabled)
             {
@@ -304,7 +304,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void <#=level#><TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (Is<#=level#>Enabled)
             {

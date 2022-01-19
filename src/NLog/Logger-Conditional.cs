@@ -34,7 +34,9 @@
 namespace NLog
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics;
+    using JetBrains.Annotations;
 
     /// <content>
     /// Logging methods which only are executed when the DEBUG conditional compilation symbol is set.
@@ -95,7 +97,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(Exception exception, string message, params object[] args)
+        public void ConditionalDebug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Debug(exception, message, args);
         }
@@ -109,7 +111,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(Exception exception, IFormatProvider formatProvider, string message, params object[] args)
+        public void ConditionalDebug(Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Debug(exception, formatProvider, message, args);
         }
@@ -122,7 +124,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, params object[] args)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Debug(formatProvider, message, args);
         }
@@ -132,7 +134,7 @@ namespace NLog
         /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
-        public void ConditionalDebug(string message)
+        public void ConditionalDebug([Localizable(false)] string message)
         {
             Debug(message);
         }
@@ -144,7 +146,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, params object[] args)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Debug(message, args);
         }
@@ -159,7 +161,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
+        public void ConditionalDebug<TArgument>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -172,7 +174,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument>(string message, TArgument argument)
+        public void ConditionalDebug<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
             Debug(message, argument);
         }
@@ -188,7 +190,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalDebug<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
             Debug(formatProvider, message, argument1, argument2);
         }
@@ -203,7 +205,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalDebug<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
             Debug(message, argument1, argument2);
         }
@@ -221,7 +223,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
             Debug(formatProvider, message, argument1, argument2, argument3);
         }
@@ -238,7 +240,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalDebug<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
             Debug(message, argument1, argument2, argument3);
         }
@@ -272,7 +274,7 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, object arg1, object arg2)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
         {
             Debug(message, arg1, arg2);
         }
@@ -286,7 +288,7 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, object arg1, object arg2, object arg3)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
         {
             Debug(message, arg1, arg2, arg3);
         }
@@ -299,7 +301,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, bool argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -311,7 +313,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, bool argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             Debug(message, argument);
         }
@@ -324,7 +326,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, char argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -336,7 +338,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, char argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             Debug(message, argument);
         }
@@ -349,7 +351,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, byte argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -361,7 +363,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, byte argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             Debug(message, argument);
         }
@@ -374,7 +376,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, string argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -386,7 +388,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, string argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
             Debug(message, argument);
         }
@@ -399,7 +401,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, int argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -411,7 +413,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, int argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             Debug(message, argument);
         }
@@ -424,7 +426,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, long argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -436,7 +438,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, long argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             Debug(message, argument);
         }
@@ -449,7 +451,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, float argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -461,7 +463,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, float argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             Debug(message, argument);
         }
@@ -474,7 +476,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, double argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -486,7 +488,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, double argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             Debug(message, argument);
         }
@@ -499,7 +501,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, decimal argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -511,7 +513,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, decimal argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             Debug(message, argument);
         }
@@ -524,7 +526,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(IFormatProvider formatProvider, string message, object argument)
+        public void ConditionalDebug(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
             Debug(formatProvider, message, argument);
         }
@@ -536,7 +538,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalDebug(string message, object argument)
+        public void ConditionalDebug([Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
             Debug(message, argument);
         }
@@ -589,7 +591,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(Exception exception, string message, params object[] args)
+        public void ConditionalTrace(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Trace(exception, message, args);
         }
@@ -603,7 +605,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(Exception exception, IFormatProvider formatProvider, string message, params object[] args)
+        public void ConditionalTrace(Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Trace(exception, formatProvider, message, args);
         }
@@ -617,7 +619,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, params object[] args)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Trace(formatProvider, message, args);
         }
@@ -627,7 +629,7 @@ namespace NLog
         /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
-        public void ConditionalTrace(string message)
+        public void ConditionalTrace([Localizable(false)] string message)
         {
             Trace(message);
         }
@@ -638,7 +640,8 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
-        public void ConditionalTrace(string message, params object[] args)
+        [MessageTemplateFormatMethod("message")]
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             Trace(message, args);
         }
@@ -652,7 +655,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
+        public void ConditionalTrace<TArgument>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -665,7 +668,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument>(string message, TArgument argument)
+        public void ConditionalTrace<TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
             Trace(message, argument);
         }
@@ -681,7 +684,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalTrace<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
             Trace(formatProvider, message, argument1, argument2);
         }
@@ -696,7 +699,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
+        public void ConditionalTrace<TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
             Trace(message, argument1, argument2);
         }
@@ -714,7 +717,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
             Trace(formatProvider, message, argument1, argument2, argument3);
         }
@@ -731,7 +734,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void ConditionalTrace<TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
             Trace(message, argument1, argument2, argument3);
         }
@@ -765,7 +768,7 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, object arg1, object arg2)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2)
         {
             Trace(message, arg1, arg2);
         }
@@ -779,7 +782,7 @@ namespace NLog
         /// <param name="arg3">Third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, object arg1, object arg2, object arg3)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object arg1, object arg2, object arg3)
         {
             Trace(message, arg1, arg2, arg3);
         }
@@ -792,7 +795,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, bool argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -804,7 +807,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, bool argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, bool argument)
         {
             Trace(message, argument);
         }
@@ -817,7 +820,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, char argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -829,7 +832,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, char argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, char argument)
         {
             Trace(message, argument);
         }
@@ -842,7 +845,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, byte argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -854,7 +857,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, byte argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, byte argument)
         {
             Trace(message, argument);
         }
@@ -867,7 +870,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, string argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -879,7 +882,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, string argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, string argument)
         {
             Trace(message, argument);
         }
@@ -892,7 +895,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, int argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -904,7 +907,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, int argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, int argument)
         {
             Trace(message, argument);
         }
@@ -917,7 +920,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, long argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -929,7 +932,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, long argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, long argument)
         {
             Trace(message, argument);
         }
@@ -942,7 +945,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, float argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -954,7 +957,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, float argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, float argument)
         {
             Trace(message, argument);
         }
@@ -967,7 +970,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, double argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -979,7 +982,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, double argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, double argument)
         {
             Trace(message, argument);
         }
@@ -992,7 +995,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, decimal argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -1004,7 +1007,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, decimal argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, decimal argument)
         {
             Trace(message, argument);
         }
@@ -1017,7 +1020,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(IFormatProvider formatProvider, string message, object argument)
+        public void ConditionalTrace(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
             Trace(formatProvider, message, argument);
         }
@@ -1029,7 +1032,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public void ConditionalTrace(string message, object argument)
+        public void ConditionalTrace([Localizable(false)][StructuredMessageTemplate] string message, object argument)
         {
             Trace(message, argument);
         }
