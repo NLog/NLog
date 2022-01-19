@@ -56,10 +56,7 @@ namespace NLog.Internal
 
                 if (o is IFormattable)
                 {
-                    // Lookup / loading global configuration can be dangerous and can lead to deadlocks
-                    var loggingConfiguration = LogManager.Configuration;
-                    if (loggingConfiguration != null)
-                        formatProvider = loggingConfiguration.DefaultCultureInfo;
+                    formatProvider = LogManager.LogFactory.DefaultCultureInfo;
                 }
             }
 
