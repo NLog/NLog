@@ -54,6 +54,8 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout.IsFixed);
             Assert.Equal(5, layout.FixedValue);
             Assert.Equal("5", layout.ToString());
+            Assert.Equal(5, layout);
+            Assert.NotEqual(0, layout);
         }
 
         [Fact]
@@ -71,6 +73,9 @@ namespace NLog.UnitTests.Layouts
             Assert.True(layout.IsFixed);
             Assert.Equal(5, layout.FixedValue);
             Assert.Equal("5", layout.ToString());
+            Assert.Equal(5, layout);
+            Assert.NotEqual(0, layout);
+            Assert.NotEqual(default(int?), layout);
         }
 
         [Fact]
@@ -88,10 +93,11 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(result);
             Assert.Null(result5);
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
-            Assert.Equal(nullValue, layout);
             Assert.True(layout.IsFixed);
             Assert.Null(layout.FixedValue);
             Assert.Equal("null", layout.ToString());
+            Assert.Equal(nullValue, layout);
+            Assert.NotEqual(0, layout);
         }
 
         [Fact]
@@ -113,6 +119,9 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, layout.FixedValue);
             Assert.Same(layout.FixedValue, layout.FixedValue);
             Assert.Equal(uri.ToString(), layout.ToString());
+            Assert.Equal(uri, layout);
+            Assert.NotEqual(new Uri("//other"), layout);
+            Assert.NotEqual(default(Uri), layout);
         }
 
         [Fact]
@@ -135,6 +144,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, layout.FixedValue);
             Assert.Same(layout.FixedValue, layout.FixedValue);
             Assert.Equal("null", layout.ToString());
+            Assert.NotEqual(new Uri("//other"), layout);
         }
 
         [Fact]

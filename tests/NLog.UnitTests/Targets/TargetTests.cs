@@ -31,23 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using NLog.Conditions;
-using NLog.Config;
-using NLog.Internal;
-using NLog.Layouts;
-using NLog.Targets.Wrappers;
-using NLog.UnitTests.Config;
-
 namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
     using System.Threading;
     using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
     using NLog.Targets;
+    using NLog.Targets.Wrappers;
+    using NLog.UnitTests.Config;
     using Xunit;
 
     public class TargetTests : NLogTestBase
@@ -371,8 +370,6 @@ namespace NLog.UnitTests.Targets
         {
             private readonly bool _throwsOnInit;
 
-            #region Overrides of Target
-
             /// <inheritdoc/>
             public ThrowingInitializeTarget(bool throwsOnInit)
             {
@@ -397,8 +394,6 @@ namespace NLog.UnitTests.Targets
             {
                 throw new TestException("Write oops");
             }
-
-            #endregion
         }
 
         private class TestException : Exception
@@ -544,6 +539,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("TRACE")]
         [InlineData("TraceSystem")]
         [InlineData("TraceSYSTEM")]
+        [InlineData("Trace--SYSTEM")]
         public void TargetAliasShouldWork(string typeName)
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString($@"
