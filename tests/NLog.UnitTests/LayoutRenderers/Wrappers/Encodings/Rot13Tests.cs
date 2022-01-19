@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.Layouts;
@@ -81,7 +79,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Test5()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets>
                         <target name='debug' type='Debug' layout='${rot13:${mdc:A}}' />
@@ -90,16 +88,18 @@ namespace NLog.UnitTests.LayoutRenderers
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug,debug2' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            ScopeContext.PushProperty("A", "Foo.Bar!");
-            var l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
-            l.Trace("aaa");
+            var logger = logFactory.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
+            using (logger.PushScopeProperty("A", "Foo.Bar!"))
+            {
+                logger.Trace("aaa");
+            }
 
-            AssertDebugLastMessage("debug", "Sbb.One!");
+            logFactory.AssertDebugLastMessage("Debug", "Sbb.One!");
 
             // double rot-13 should be identity
-            AssertDebugLastMessage("debug2", "Foo.Bar!");
+            logFactory.AssertDebugLastMessage("debug2", "Foo.Bar!");
         }
     }
 }
