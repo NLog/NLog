@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### v5.0-RC2 (2021/01/19)
+### v5.0-RC2 (2022/01/19)
 
 #### Features
 - [#4761](https://github.com/NLog/NLog/pull/4761) LogFactory fluent Setup with AddCallSiteHiddenAssembly (#4761) (@snakefoot)
