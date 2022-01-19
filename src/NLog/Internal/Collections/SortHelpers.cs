@@ -139,9 +139,10 @@ namespace NLog.Internal
                 }
             }
 
-            return buckets is null ? 
-                new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs), keyComparer) :
-                new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets, keyComparer);
+            if (buckets is null)
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs), keyComparer);
+            else
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets, keyComparer);
         }
 
         private static Dictionary<TKey, IList<TValue>> CreateBucketDictionaryWithValue<TValue, TKey>(IList<TValue> inputs, IEqualityComparer<TKey> keyComparer, int currentIndex, TKey firstBucketKey, TKey nextBucketKey)
