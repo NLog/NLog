@@ -15,7 +15,7 @@ Supported platforms:
 - .NET 5 and 6
 - .NET Core 1, 2 and 3
 - .NET Standard 1.3+ and 2.0+
-- .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
+- .NET Framework 3.5 - 4.8
 - Mono 4
 
 For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
@@ -28,35 +28,19 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog 5.0 RC1 with more improvements:
+NLog 5.0 RC2 with more improvements:
 
 ## Features
-- LogFactory Setup fluent with SetupLogFactory for general options (#4662) (@snakefoot)
-- LogFactory fluent Setup with FilterDynamicIgnore + FilterDynamicLog (#4648) (@snakefoot)
-- TargetWithContext - Added support for ExcludeProperties (#4642) (@snakefoot)
+- LogFactory fluent Setup with AddCallSiteHiddenAssembly (#4761) (@snakefoot)
+- Updated JetBrains Annotations with StructuredMessageTemplateAttribute (#4757) (@snakefoot)
+- JsonArrayLayout - Render LogEvent in Json-Array format (#4754) (@snakefoot)
+- Added LogFactory.ReconfigureExistingLoggers with purgeObsoleteLoggers option (#4613) (@sjafarianm)
+- Added WithProperties-method for Logger-class (#4711) (@simoneserra93)
 
 ## Improvements
-- FallbackGroupTarget - Added support for EnableBatchWrite (#4656) (@snakefoot)
-- JsonLayout - ExcludeProperties should also handle IncludeScopeProperties (#4655) (@snakefoot)
-- TargetWithContext - IncludeEmptyValue false by default (#4645) (@snakefoot)
-- PropertiesDictionary - Generate unique message-template-names on duplicate keys (#4646) (@snakefoot)
-- LoggingRule - Fix XML documentation (#4661) (@GitHubPang)
-- Fixed RegisterObjectTransformation to handle conversion to simple values (#4671) (@snakefoot)
-- LogLevel - Replaced IConvertible with IFormattable for better Json output (#4669) (@snakefoot)
-- NLog.Wcf - Updated nuget dependencies to System.ServiceModel ver. 4.4.4 (#4676) (@snakefoot)
-- FileTarget - Improve fallback logic when running on Linux without File BirthTIme (#4675) (@snakefoot)
-- FileTarget - Better handling of relative paths with FileSystemWatcher (#4680) (@snakefoot)
-- Renamed AppSettingLayoutRenderer2 to AppSettingLayoutRenderer after removing NLog.Extended (#4689) (@snakefoot)
-- Added alias ToUpper and ToLower as alternative to UpperCase and LowerCase (#4563) (@snakefoot)
-- Ignore dash (-) when parsing layouts, layoutrenderers and targets (#4695) (@304NotModified)
-- Logger SetProperty marked as obsolete, instead use WithProperty or the unsafe Properties-property (#4713) (@snakefoot)
-- Hide obsolete methods from intellisense (#4714) (@snakefoot)
-
-## Performance
-- PaddingLayoutRendererWrapper - Pad operation with reduced string allocation (#4672) (@snakefoot)
-- FileTarget - Use Environment.TickCount to trigger File.Exists checks (#4698) (@snakefoot)
-- AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4699) (@snakefoot)
-- LogEventInfo - Faster clone of messageTemplateParameters by caching Count (#4705) (@snakefoot)
+- MemoryTarget - Updated to implement TargetWithLayoutHeaderAndFooter (#4730) (@snakefoot)
+- TraceTarget - Updated to implement TargetWithLayoutHeaderAndFooter (#4730) (@snakefoot)
+- DatabaseTarget - Improved parsing of DbType (#4717) (@Orace)
 
 NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
 
