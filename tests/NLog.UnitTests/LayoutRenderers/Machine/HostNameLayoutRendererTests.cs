@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -43,20 +41,20 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void HostNameTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${hostname} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
             // Get the actual hostname that the code would use            
             string h = Environment.GetEnvironmentVariable("HOSTNAME")
                 ?? System.Net.Dns.GetHostName()
                 ?? Environment.GetEnvironmentVariable("COMPUTERNAME");
-            LogManager.GetLogger("A").Debug("a log message");
-            AssertDebugLastMessage("debug", h + " a log message");
+            logFactory.GetLogger("A").Debug("a log message");
+            logFactory.AssertDebugLastMessage(h + " a log message");
         }
     }
 }
