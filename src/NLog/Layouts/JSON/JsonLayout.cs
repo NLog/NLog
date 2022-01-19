@@ -241,7 +241,7 @@ namespace NLog.Layouts
             RenderJsonFormattedMessage(logEvent, target);
             if (target.Length == orgLength && RenderEmptyObject)
             {
-                target.Append(SuppressSpaces ? "{}" : "{  }");
+                target.Append(SuppressSpaces ? "{}" : "{ }");
             }
         }
 
