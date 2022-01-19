@@ -539,18 +539,17 @@ namespace NLog.UnitTests.Targets
         {
             var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
             var tcpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "tcp4" : "tcp6";
-            var tcpPort = 3004;
-
-            var target = new NetworkTarget()
-            {
-                Address = $"{tcpPrefix}://{loopBackIP}:{tcpPort}",
-                Layout = "${message}\n",
-                KeepConnection = true,
-            };
+            var tcpPort = getNewNetworkPort();
 
             string expectedResult = string.Empty;
 
             using (var listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            using (var target = new NetworkTarget()
+            {
+                Address = $"{tcpPrefix}://{loopBackIP}:{tcpPort}",
+                Layout = "${message}\n",
+                KeepConnection = true,
+            })
             {
                 Exception receiveException = null;
                 var resultStream = new MemoryStream();
@@ -625,26 +624,40 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Theory]
-        [InlineData(false)]
-        [InlineData(true)]
-        public void NetworkTargetUdpTest(bool splitMessage)
+        [Fact]
+        public void NetworkTargetUdpSplitEnabledTest()
+        {
+            RetryingIntegrationTest(3, () => NetworkTargetUdpTest(true));
+        }
+
+        [Fact]
+        public void NetworkTargetUdpSplitDisabledTest()
+        {
+            RetryingIntegrationTest(3, () => NetworkTargetUdpTest(false));
+        }
+
+        private static int getNewNetworkPort()
+        {
+            return 9500 + System.Threading.Interlocked.Increment(ref _portOffset);
+        }
+        private static int _portOffset;
+
+        private void NetworkTargetUdpTest(bool splitMessage)
         {
             var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
             var udpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "udp4" : "udp6";
-            var udpPort = splitMessage ? 3002 : 3003;
+            var udpPort = getNewNetworkPort();
 
-            var target = new NetworkTarget()
+            string expectedResult = string.Empty;
+
+            using (var listener = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
+            using (var target = new NetworkTarget()
             {
                 Address = $"{udpPrefix}://{loopBackIP}:{udpPort}",
                 Layout = "${message}\n",
                 KeepConnection = true,
                 MaxMessageSize = splitMessage ? 4 : short.MaxValue,
-            };
-
-            string expectedResult = string.Empty;
-
-            using (var listener = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
+            })
             {
                 Exception receiveException = null;
                 var receivedMessages = new List<string>();
@@ -955,17 +968,16 @@ namespace NLog.UnitTests.Targets
                 return;
             }
 
-            var config = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
             <nlog>
                 <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' keepAliveTimeSeconds='{keepAliveTimeSeconds}' /></targets>
                 <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var target = config.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("target1").WrappedTarget as NetworkTarget;
+            var target = logFactory.Configuration.FindTargetByName<NetworkTarget>("target1");
             Assert.Equal(expected, target.KeepAliveTimeSeconds);
 
-            LogManager.Configuration = config;
-            var logger = LogManager.GetLogger("keepAliveTimeSeconds");
+            var logger = logFactory.GetLogger("keepAliveTimeSeconds");
             logger.Info("Hello");
         }
 
