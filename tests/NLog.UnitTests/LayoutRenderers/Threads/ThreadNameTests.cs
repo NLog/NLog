@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -42,19 +40,19 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ThreadNameTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${threadname} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            if (System.Threading.Thread.CurrentThread.Name is null)
+            if (string.IsNullOrEmpty(System.Threading.Thread.CurrentThread.Name))
                 System.Threading.Thread.CurrentThread.Name = "mythreadname";
 
-            LogManager.GetLogger("A").Debug("a");
-            AssertDebugLastMessage("debug", System.Threading.Thread.CurrentThread.Name + " a");
+            logFactory.GetLogger("A").Debug("a");
+            logFactory.AssertDebugLastMessage(System.Threading.Thread.CurrentThread.Name + " a");
         }
     }
 }
