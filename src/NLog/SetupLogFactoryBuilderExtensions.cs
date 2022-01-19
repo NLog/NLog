@@ -112,5 +112,14 @@ namespace NLog
             configBuilder.LogFactory.ThrowConfigExceptions = enabled;
             return configBuilder;
         }
+
+        /// <summary>
+        /// Mark Assembly as hidden, so Assembly methods are excluded when resolving ${callsite} from StackTrace
+        /// </summary>
+        public static ISetupLogFactoryBuilder AddCallSiteHiddenAssembly(this ISetupLogFactoryBuilder configBuilder, System.Reflection.Assembly assembly)
+        {
+            LogManager.AddHiddenAssembly(assembly);
+            return configBuilder;
+        }
     }
 }
