@@ -31,11 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System;
     using NLog;
     using NLog.Layouts;
     using Xunit;
@@ -147,15 +145,14 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                 var le = LogEventInfo.Create(LogLevel.Error, "logger1", "message");
                 Assert.Equal("Bad", l.Render(le));
             }
-
         }
 
         [Fact]
         public void WhenLogLevelConditionTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
-                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${level} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Trace' writeTo='debug'>
                     <filters>
@@ -164,25 +161,22 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetLogger("A");
-            logger.Trace("Test");
-           
-            AssertDebugCounter("debug", 0);
-            logger.Debug("Test");
-            AssertDebugCounter("debug", 0);
-            logger.Info("Test");
-            AssertDebugCounter("debug", 1);
-            logger.Warn("Test");
-            AssertDebugCounter("debug", 2);
-            logger.Error("Test");
-            AssertDebugCounter("debug", 3);
+            var logger = logFactory.GetLogger("A");
             logger.Fatal("Test");
-            AssertDebugCounter("debug", 4);
-          
+            logFactory.AssertDebugLastMessage("Fatal Test");
+            logger.Error("Test");
+            logFactory.AssertDebugLastMessage("Error Test");
+            logger.Warn("Test");
+            logFactory.AssertDebugLastMessage("Warn Test");
+            logger.Info("Test");
+            logFactory.AssertDebugLastMessage("Info Test");
+            logger.Debug("Test");
+            logFactory.AssertDebugLastMessage("Info Test");
+            logger.Trace("Test");
+            logFactory.AssertDebugLastMessage("Info Test");
         }
-
 
         [Fact]
         public void WhenNumericAndPropertyConditionTest()
