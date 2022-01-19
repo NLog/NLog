@@ -33,8 +33,10 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace NLog.Fluent
 {
@@ -109,7 +111,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="loggerName">The logger name of the logging event.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        public LogBuilder LoggerName(string loggerName)
+        public LogBuilder LoggerName([Localizable(false)] string loggerName)
         {
             _logEvent.LoggerName = loggerName;
             return this;
@@ -120,7 +122,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="message">The log message for the logging event.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        public LogBuilder Message(string message)
+        public LogBuilder Message([Localizable(false)] string message)
         {
             _logEvent.Message = message;
 
@@ -134,7 +136,7 @@ namespace NLog.Fluent
         /// <param name="arg0">The object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0 };
@@ -150,7 +152,7 @@ namespace NLog.Fluent
         /// <param name="arg1">The second object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0, object arg1)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0, object arg1)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0, arg1 };
@@ -167,7 +169,7 @@ namespace NLog.Fluent
         /// <param name="arg2">The third object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0, object arg1, object arg2)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0, object arg1, object arg2)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0, arg1, arg2 };
@@ -185,7 +187,7 @@ namespace NLog.Fluent
         /// <param name="arg3">The fourth object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0, object arg1, object arg2, object arg3)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0, object arg1, object arg2, object arg3)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0, arg1, arg2, arg3 };
@@ -200,7 +202,7 @@ namespace NLog.Fluent
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, params object[] args)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, params object[] args)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = args;
@@ -216,7 +218,7 @@ namespace NLog.Fluent
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(IFormatProvider provider, string format, params object[] args)
+        public LogBuilder Message(IFormatProvider provider, [Localizable(false)][StructuredMessageTemplate] string format, params object[] args)
         {
             _logEvent.FormatProvider = provider;
             _logEvent.Message = format;

@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics;
 #if !NET40 && !NET35
     using System.Threading.Tasks;
@@ -179,7 +180,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, Exception exception, string message, params object[] args)
+        public static void ConditionalDebug([NotNull] this ILogger logger, Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Debug(exception, message, args);
         }
@@ -194,7 +195,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, Exception exception, IFormatProvider formatProvider, string message, params object[] args)
+        public static void ConditionalDebug([NotNull] this ILogger logger, Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Debug(exception, formatProvider, message, args);
         }
@@ -205,7 +206,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, string message)
+        public static void ConditionalDebug([NotNull] this ILogger logger, [Localizable(false)] string message)
         {
             logger.Debug(message, default(object[]));
         }
@@ -218,7 +219,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, string message, params object[] args)
+        public static void ConditionalDebug([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Debug(message, args);
         }
@@ -232,7 +233,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug([NotNull] this ILogger logger, IFormatProvider formatProvider, string message, params object[] args)
+        public static void ConditionalDebug([NotNull] this ILogger logger, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Debug(formatProvider, message, args);
         }
@@ -246,7 +247,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug<TArgument>([NotNull] this ILogger logger, string message, TArgument argument)
+        public static void ConditionalDebug<TArgument>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
             if (logger.IsDebugEnabled)
             {
@@ -265,7 +266,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug<TArgument1, TArgument2>([NotNull] this ILogger logger, string message, TArgument1 argument1, TArgument2 argument2)
+        public static void ConditionalDebug<TArgument1, TArgument2>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
             if (logger.IsDebugEnabled)
             {
@@ -286,7 +287,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalDebug<TArgument1, TArgument2, TArgument3>([NotNull] this ILogger logger, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public static void ConditionalDebug<TArgument1, TArgument2, TArgument3>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
             if (logger.IsDebugEnabled)
             {
@@ -346,7 +347,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, Exception exception, string message, params object[] args)
+        public static void ConditionalTrace([NotNull] this ILogger logger, Exception exception, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Trace(exception, message, args);
         }
@@ -361,7 +362,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, Exception exception, IFormatProvider formatProvider, string message, params object[] args)
+        public static void ConditionalTrace([NotNull] this ILogger logger, Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Trace(exception, formatProvider, message, args);
         }
@@ -372,7 +373,7 @@ namespace NLog
         /// <param name="logger">A logger implementation that will handle the message.</param>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, string message)
+        public static void ConditionalTrace([NotNull] this ILogger logger, [Localizable(false)] string message)
         {
             logger.Trace(message, default(object[]));
         }
@@ -385,7 +386,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, string message, params object[] args)
+        public static void ConditionalTrace([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Trace(message, args);
         }
@@ -399,7 +400,7 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace([NotNull] this ILogger logger, IFormatProvider formatProvider, string message, params object[] args)
+        public static void ConditionalTrace([NotNull] this ILogger logger, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
         {
             logger.Trace(formatProvider, message, args);
         }
@@ -413,7 +414,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace<TArgument>([NotNull] this ILogger logger, string message, TArgument argument)
+        public static void ConditionalTrace<TArgument>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
         {
             if (logger.IsTraceEnabled)
             {
@@ -432,7 +433,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace<TArgument1, TArgument2>([NotNull] this ILogger logger, string message, TArgument1 argument1, TArgument2 argument2)
+        public static void ConditionalTrace<TArgument1, TArgument2>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
         {
             if (logger.IsTraceEnabled)
             {
@@ -453,7 +454,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [Conditional("DEBUG")]
         [MessageTemplateFormatMethod("message")]
-        public static void ConditionalTrace<TArgument1, TArgument2, TArgument3>([NotNull] this ILogger logger, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public static void ConditionalTrace<TArgument1, TArgument2, TArgument3>([NotNull] this ILogger logger, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         {
             if (logger.IsTraceEnabled)
             {
