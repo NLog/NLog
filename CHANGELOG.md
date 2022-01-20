@@ -4,6 +4,20 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v5.0-RC2 (2022/01/19)
+
+#### Features
+- [#4761](https://github.com/NLog/NLog/pull/4761) LogFactory fluent Setup with AddCallSiteHiddenAssembly (#4761) (@snakefoot)
+- [#4757](https://github.com/NLog/NLog/pull/4757) Updated JetBrains Annotations with StructuredMessageTemplateAttribute (#4757) (@snakefoot)
+- [#4754](https://github.com/NLog/NLog/pull/4754) JsonArrayLayout - Render LogEvent in Json-Array format (#4754) (@snakefoot)
+- [#4613](https://github.com/NLog/NLog/pull/4613) Added LogFactory.ReconfigureExistingLoggers with purgeObsoleteLoggers option (#4613) (@sjafarianm)
+- [#4711](https://github.com/NLog/NLog/pull/4711) Added WithProperties-method for Logger-class (#4711) (@simoneserra93)
+
+#### Improvements
+- [#4730](https://github.com/NLog/NLog/pull/4730) MemoryTarget - Updated to implement TargetWithLayoutHeaderAndFooter (#4730) (@snakefoot)
+- [#4730](https://github.com/NLog/NLog/pull/4730) TraceTarget - Updated to implement TargetWithLayoutHeaderAndFooter (#4730) (@snakefoot)
+- [#4717](https://github.com/NLog/NLog/pull/4717) DatabaseTarget - Improved parsing of DbType (#4717) (@Orace)
+
 ### v5.0-RC1 (2021/12/20)
 
 #### Features
