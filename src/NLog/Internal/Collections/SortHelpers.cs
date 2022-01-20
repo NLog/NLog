@@ -110,14 +110,12 @@ namespace NLog.Internal
         public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector, IEqualityComparer<TKey> keyComparer)
         {
             Dictionary<TKey, IList<TValue>> buckets = null;
-            bool singleBucketFirstKey = false;
             TKey singleBucketKey = default(TKey);
             for (int i = 0; i < inputs.Count; i++)
             {
                 TKey keyValue = keySelector(inputs[i]);
-                if (!singleBucketFirstKey)
+                if (i == 0)
                 {
-                    singleBucketFirstKey = true;
                     singleBucketKey = keyValue;
                 }
                 else if (buckets is null)
