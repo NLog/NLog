@@ -381,7 +381,12 @@ namespace NLog
         public CultureInfo DefaultCultureInfo
         {
             get => _config is null ? _defaultCultureInfo : _config.DefaultCultureInfo;
-            set => _defaultCultureInfo = value;
+            set
+            {
+                if (_config != null && (ReferenceEquals(_config.DefaultCultureInfo, _defaultCultureInfo) || _config.DefaultCultureInfo is null))
+                    _config.DefaultCultureInfo = value;
+                _defaultCultureInfo = value;
+            }
         }
         internal CultureInfo _defaultCultureInfo;
 
