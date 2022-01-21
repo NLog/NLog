@@ -64,7 +64,7 @@ namespace NLog.Common
 
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
-            LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
+            LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Off);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
             LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
             IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
@@ -138,7 +138,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
         /// </summary>
-        public static bool IncludeTimestamp { get; set; }
+        public static bool IncludeTimestamp { get; set; } = true;
 
         /// <summary>
         /// Is there an <see cref="Exception"/> thrown when writing the message?
