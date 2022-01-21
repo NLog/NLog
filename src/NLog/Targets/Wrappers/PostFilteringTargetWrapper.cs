@@ -43,6 +43,9 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Filters buffered log entries based on a set of conditions that are evaluated on a group of events.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/PostFilteringWrapper-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/PostFilteringWrapper-target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// PostFilteringWrapper must be used with some type of buffering target or wrapper, such as
@@ -57,21 +60,18 @@ namespace NLog.Targets.Wrappers
     /// functionality.
     /// </p>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>, 
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/PostFilteringWrapper/NLog.config" />
     /// <p>
-    /// The above examples assume just one target and a single rule. See below for
-    /// a programmatic configuration that's equivalent to the above config file:
+    /// To set up the log target programmatically use code like this:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/PostFilteringWrapper/Simple/Example.cs" />
     /// </example>
     [Target("PostFilteringWrapper", IsWrapper = true)]
     public class PostFilteringTargetWrapper : WrapperTargetBase
     {
-        private static object boxedTrue = true;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
@@ -153,7 +153,7 @@ namespace NLog.Targets.Wrappers
         private static bool ApplyFilter(AsyncLogEventInfo logEvent, ConditionExpression resultFilter)
         {
             object v = resultFilter.Evaluate(logEvent.LogEvent);
-            if (boxedTrue.Equals(v))
+            if (ConditionExpression.BoxedTrue.Equals(v))
             {
                 return true;
             }
@@ -180,7 +180,7 @@ namespace NLog.Targets.Wrappers
                 {
                     var rule = Rules[j];
                     object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
-                    if (boxedTrue.Equals(v))
+                    if (ConditionExpression.BoxedTrue.Equals(v))
                     {
                         InternalLogger.Trace("{0}: Rule matched: {1}", this, rule.Exists);
                         return rule.Filter;

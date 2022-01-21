@@ -40,6 +40,10 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Limits the number of messages written per timespan to the wrapped target.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/LimitingWrappers-target">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/LimitingWrapper-target">Documentation on NLog Wiki</seealso>
     [Target("LimitingWrapper", IsWrapper = true)]
     public class LimitingTargetWrapper : WrapperTargetBase
     {

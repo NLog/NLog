@@ -59,7 +59,10 @@ namespace NLog.Targets
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <remarks>
-    /// - NETSTANDARD cannot load connectionstrings from .config
+    /// <para>
+    /// Note .NET Core application cannot load connectionstrings from app.config / web.config. Instead use ${configsetting}
+    /// </para>
+    /// <a href="https://github.com/nlog/nlog/wiki/Database-target">See NLog Wiki</a>
     /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
     /// <example>
@@ -78,7 +81,6 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
-    [Target("DB")]
     public class DatabaseTarget : Target, IInstallable
     {
         private IDbConnection _activeConnection;

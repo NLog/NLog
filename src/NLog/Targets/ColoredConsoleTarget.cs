@@ -46,7 +46,21 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/ColoredConsole-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/ColoredConsole-target">Documentation on NLog Wiki</seealso>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" source="examples/targets/Configuration File/ColoredConsole/NLog.config" />
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Simple/Example.cs" />
+    /// </example>
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {

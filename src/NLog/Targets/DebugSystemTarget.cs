@@ -38,6 +38,10 @@ namespace NLog.Targets
     /// <summary>
     /// Outputs log messages through <see cref="System.Diagnostics.Debug.WriteLine(string)" />
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/DebugSystem-target">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/DebugSystem-target">Documentation on NLog Wiki</seealso>
     [Target("DebugSystem")]
     public sealed class DebugSystemTarget : TargetWithLayoutHeaderAndFooter
     {

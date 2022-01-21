@@ -44,6 +44,10 @@ namespace NLog.Targets
     /// <summary>
     /// Represents target that supports context capture of <see cref="ScopeContext"/> Properties + Nested-states
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-target-for-structured-logging">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-target-for-structured-logging">Documentation on NLog Wiki</seealso>
     public abstract class TargetWithContext : TargetWithLayout, IIncludeContext
     {
         /// <inheritdoc/>

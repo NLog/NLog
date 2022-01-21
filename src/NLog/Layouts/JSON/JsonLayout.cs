@@ -42,6 +42,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders JSON-formatted events.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/JsonLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/JsonLayout">Documentation on NLog Wiki</seealso>
     [Layout("JsonLayout")]
     [ThreadAgnostic]
     public class JsonLayout : Layout

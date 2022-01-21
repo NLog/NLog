@@ -46,6 +46,10 @@ namespace NLog.Targets
     /// <summary>
     /// Abstract Target with async Task support
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-async-target">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-async-target">Documentation on NLog Wiki</seealso>
     public abstract class AsyncTaskTarget : TargetWithContext
     {
         private readonly Timer _taskTimeoutTimer;
