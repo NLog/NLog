@@ -454,7 +454,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
             Assert.Null(exceptions[0]);
             Assert.NotNull(exceptions[1]);
-            Assert.Equal("Attempted to send a message larger than MaxMessageSize (10). Actual size was: 15. Adjust OnOverflow and MaxMessageSize parameters accordingly.", exceptions[1].Message);
+            Assert.Equal("NetworkTarget: Discarded LogEvent because MessageSize=15 is above MaxMessageSize=10", exceptions[1].Message);
             Assert.Null(exceptions[2]);
 
             target.Close();

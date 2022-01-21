@@ -552,31 +552,31 @@ namespace NLog.Targets
 
         private void WriteBytesToNetworkSender(NetworkSender sender, byte[] buffer, AsyncContinuation continuation)
         {
-            int tosend = buffer.Length;
-            if (tosend > MaxMessageSize)
+            int messageSize = buffer.Length;
+            if (messageSize > MaxMessageSize)
             {
                 if (OnOverflow == NetworkTargetOverflowAction.Discard)
                 {
-                    InternalLogger.Trace("{0}: Discard because chunksize > this.MaxMessageSize", this);
+                    InternalLogger.Trace("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
                     continuation(null);
                     return;
                 }
 
                 if (OnOverflow == NetworkTargetOverflowAction.Error)
                 {
-                    continuation(new OverflowException($"Attempted to send a message larger than MaxMessageSize ({MaxMessageSize}). Actual size was: {buffer.Length}. Adjust OnOverflow and MaxMessageSize parameters accordingly."));
+                    continuation(new InvalidOperationException($"NetworkTarget: Discarded LogEvent because MessageSize={messageSize} is above MaxMessageSize={MaxMessageSize}"));
                     return;
                 }
             }
 
-            InternalLogger.Trace("{0}: Sending chunk, position: {1}, length: {2}", this, 0, tosend);
-            if (tosend <= 0)
+            InternalLogger.Trace("{0}: Sending LogEvent MessageSize={1}", this, messageSize);
+            if (messageSize <= 0)
             {
                 continuation(null);
                 return;
             }
 
-            sender.Send(buffer, 0, tosend, continuation);
+            sender.Send(buffer, 0, messageSize, continuation);
         }
     }
 }

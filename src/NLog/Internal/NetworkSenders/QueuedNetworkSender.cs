@@ -90,28 +90,27 @@ namespace NLog.Internal.NetworkSenders
                 {
                     if (_pendingRequests.Count >= MaxQueueSize && MaxQueueSize > 0)
                     {
-                        InternalLogger.Debug("Network request queue is full");
                         switch (OnQueueOverflow)
                         {
                             case NetworkTargetQueueOverflowAction.Discard:
-                                InternalLogger.Debug("Discarding one element from network request queue");
+                                InternalLogger.Debug("NetworkQueue - Discarding single item, because queue is full");
                                 var dequeued = _pendingRequests.Dequeue();
                                 dequeued.AsyncContinuation?.Invoke(null);
                                 break;
 
                             case NetworkTargetQueueOverflowAction.Grow:
-                                InternalLogger.Debug("The overflow action is Grow, adding network request anyway");
+                                InternalLogger.Debug("NetworkQueue - Growing the size of queue, because queue is full");
                                 MaxQueueSize *= 2;
                                 break;
 
                             case NetworkTargetQueueOverflowAction.Block:
                                 while (_pendingRequests.Count >= MaxQueueSize && _pendingError is null)
                                 {
-                                    InternalLogger.Debug("Blocking network request because the overflow action is Block...");
+                                    InternalLogger.Debug("NetworkQueue - Blocking until ready, because queue is full");
                                     System.Threading.Monitor.Wait(_pendingRequests);
-                                    InternalLogger.Trace("Entered critical section.");
+                                    InternalLogger.Trace("NetworkQueue - Entered critical section.");
                                 }
-                                InternalLogger.Trace("Async network request queue limit ok.");
+                                InternalLogger.Trace("NetworkQueue - Limit ok.");
                                 break;
                         }
                     }

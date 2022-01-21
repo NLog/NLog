@@ -82,7 +82,6 @@ namespace NLog.Targets.Wrappers
             bool queueWasEmpty = currentCount == 1;  // Inserted first item in empty queue
             if (currentCount > RequestLimit)
             {
-                InternalLogger.Debug("Async queue is full");
                 switch (OnOverflow)
                 {
                     case AsyncTargetWrapperOverflowAction.Discard:
@@ -97,7 +96,7 @@ namespace NLog.Targets.Wrappers
                         break;
                     case AsyncTargetWrapperOverflowAction.Grow:
                         {
-                            InternalLogger.Debug("The overflow action is Grow, adding element anyway");
+                            InternalLogger.Debug("AsyncQueue - Growing the size of queue, because queue is full");
                             OnLogEventQueueGrows(currentCount);
                             RequestLimit *= 2;
                         }
@@ -117,7 +116,7 @@ namespace NLog.Targets.Wrappers
             {
                 if (_logEventInfoQueue.TryDequeue(out var lostItem))
                 {
-                    InternalLogger.Debug("Discarding one element from queue");
+                    InternalLogger.Debug("AsyncQueue - Discarding single item, because queue is full");
                     queueWasEmpty = Interlocked.Decrement(ref _count) == 1 || queueWasEmpty;
                     OnLogEventDropped(lostItem.LogEvent);
                     break;
@@ -137,22 +136,22 @@ namespace NLog.Targets.Wrappers
             // If yield did not help, then wait on a lock
             if (currentCount > RequestLimit)
             {
-                InternalLogger.Debug("Blocking because the overflow action is Block...");
+                InternalLogger.Debug("AsyncQueue - Blocking until ready, because queue is full");
                 lock (_logEventInfoQueue)
                 {
-                    InternalLogger.Trace("Entered critical section.");
+                    InternalLogger.Trace("AsyncQueue - Entered critical section.");
                     currentCount = Interlocked.Read(ref _count);
                     while (currentCount > RequestLimit)
                     {
                         Interlocked.Decrement(ref _count);
                         Monitor.Wait(_logEventInfoQueue);
-                        InternalLogger.Trace("Entered critical section.");
+                        InternalLogger.Trace("AsyncQueue - Entered critical section.");
                         currentCount = Interlocked.Increment(ref _count);
                     }
                 }
             }
 
-            InternalLogger.Trace("Async queue limit ok.");
+            InternalLogger.Trace("AsyncQueue - Limit ok.");
             return true;
         }
 
@@ -166,7 +165,7 @@ namespace NLog.Targets.Wrappers
                 if (spinWait.NextSpinWillYield)
                 {
                     if (firstYield)
-                        InternalLogger.Debug("Yielding because the overflow action is Block...");
+                        InternalLogger.Debug("AsyncQueue - Blocking with yield, because queue is full");
                     firstYield = false;
                 }
 

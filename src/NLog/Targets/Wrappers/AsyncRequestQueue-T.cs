@@ -83,17 +83,16 @@ namespace NLog.Targets.Wrappers
             {
                 if (_logEventInfoQueue.Count >= RequestLimit)
                 {
-                    InternalLogger.Debug("Async queue is full");
                     switch (OnOverflow)
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
-                            InternalLogger.Debug("Discarding one element from queue");
+                            InternalLogger.Debug("AsyncQueue - Discarding single item, because queue is full");
                             var lostItem = _logEventInfoQueue.Dequeue();
                             OnLogEventDropped(lostItem.LogEvent);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
-                            InternalLogger.Debug("The overflow action is Grow, adding element anyway");
+                            InternalLogger.Debug("AsyncQueue - Growing the size of queue, because queue is full");
                             OnLogEventQueueGrows(RequestCount + 1);
                             RequestLimit *= 2;
                             break;
@@ -101,12 +100,12 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (_logEventInfoQueue.Count >= RequestLimit)
                             {
-                                InternalLogger.Debug("Blocking because the overflow action is Block...");
+                                InternalLogger.Debug("AsyncQueue - Blocking until ready, because queue is full");
                                 System.Threading.Monitor.Wait(_logEventInfoQueue);
-                                InternalLogger.Trace("Entered critical section.");
+                                InternalLogger.Trace("AsyncQueue - Entered critical section.");
                             }
 
-                            InternalLogger.Trace("Async queue limit ok.");
+                            InternalLogger.Trace("AsyncQueue - Limit ok.");
                             break;
                     }
                 }
