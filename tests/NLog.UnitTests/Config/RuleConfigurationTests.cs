@@ -140,13 +140,21 @@ namespace NLog.UnitTests.Config
                 </targets>
 
                 <rules>
-                    <logger name='RequestLogger' minLevel='Info' finalMinLevel='Error' writeTo='requestTarget' />
-                    <logger name='*' minLevel='Info' writeTo='defaultTarget' />
+                    <logger name='*' finalMinLevel='Info' />
+                    <logger name='Microsoft*' finalMinLevel='Warn' />
+                    <logger name='Microsoft.Hosting.Lifetime*' finalMinLevel='Info' />
+                    <logger name='System*' finalMinLevel='Warn' />
+
+                    <logger name='RequestLogger' minLevel='Debug' finalMinLevel='Error' writeTo='requestTarget' />
+
+                    <logger writeTo='defaultTarget' />
                 </rules>
             </nlog>").LogFactory;
 
             var requestLogger = logFactory.GetLogger("RequestLogger");
             var defaultLogger = logFactory.GetLogger("DefaultLogger");
+            var microsoftLogger = logFactory.GetLogger("Microsoft.Hosting");
+            var lifetimeLogger = logFactory.GetLogger("Microsoft.Hosting.Lifetime");
 
             requestLogger.Error("Important Noise");
             logFactory.AssertDebugLastMessage("defaultTarget", "Important Noise");
@@ -156,12 +164,40 @@ namespace NLog.UnitTests.Config
             logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
             logFactory.AssertDebugLastMessage("requestTarget", "Request-Important Noise");
 
+            requestLogger.Debug("Debug Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Debug Noise");
+
             requestLogger.Warn("Good Noise");
             logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
             logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
 
-            requestLogger.Debug("Unwanted Noise");
+            requestLogger.Trace("Unwanted Noise");
             logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            lifetimeLogger.Error("Important Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Important Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            lifetimeLogger.Info("Other Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Other Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            lifetimeLogger.Warn("Good Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Good Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            microsoftLogger.Error("Important Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Important Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            microsoftLogger.Info("Other Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Important Noise");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+
+            microsoftLogger.Warn("Good Noise");
+            logFactory.AssertDebugLastMessage("defaultTarget", "Good Noise");
             logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
         }
 
