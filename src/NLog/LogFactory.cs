@@ -929,14 +929,21 @@ namespace NLog
 
         private bool SuppressLogLevel(LoggingRule rule, int logLevelOrdinal, ref bool suppressedLevels)
         {
-            if (logLevelOrdinal < GlobalThreshold.Ordinal || suppressedLevels)
+            if (logLevelOrdinal < GlobalThreshold.Ordinal)
             {
                 return true;
             }
 
-            if (rule.FinalMinLevel?.Ordinal > logLevelOrdinal)
+            if (rule.FinalMinLevel is null)
             {
-                suppressedLevels = true;
+                if (suppressedLevels)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                suppressedLevels = rule.FinalMinLevel.Ordinal > logLevelOrdinal;
             }
 
             if (!rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(logLevelOrdinal)))
