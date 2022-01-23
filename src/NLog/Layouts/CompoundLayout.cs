@@ -41,6 +41,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A layout containing one or more nested layouts.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/CompoundLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/CompoundLayout">Documentation on NLog Wiki</seealso>
     [Layout("CompoundLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]

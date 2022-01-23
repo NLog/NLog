@@ -40,6 +40,10 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders LogEvent as JSON-Array
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/JsonArrayLayout">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/JsonArrayLayout">Documentation on NLog Wiki</seealso>
     [Layout("JsonArrayLayout")]
     [ThreadAgnostic]
     public class JsonArrayLayout : Layout

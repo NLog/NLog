@@ -39,6 +39,10 @@ namespace NLog.Targets
     /// <summary>
     /// Represents target that supports string formatting using layouts.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-target">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-target">Documentation on NLog Wiki</seealso>
     public abstract class TargetWithLayout : Target
     {
         private const string DefaultLayoutText = "${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}";

@@ -44,7 +44,7 @@ namespace NLog.Targets
     /// <seealso href="https://github.com/nlog/nlog/wiki/MessageQueue-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>, 
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/MSMQ/Simple/NLog.config" />
@@ -52,10 +52,6 @@ namespace NLog.Targets
     /// You can use a single target to write to multiple queues (similar to writing to multiple files with the File target).
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/MSMQ/Multiple/NLog.config" />
-    /// <p>
-    /// The above examples assume just one target and a single rule. 
-    /// More configuration options are described <a href="config.html">here</a>.
-    /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>

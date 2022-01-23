@@ -45,17 +45,16 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages over the network.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/Network-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Network-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>, 
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/Network/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
@@ -68,8 +67,8 @@ namespace NLog.Targets
     /// </p>
     /// <img src="examples/targets/Screenshots/Network/Output.gif" />
     /// <p>
-    /// There are two specialized versions of the Network target: <a href="target.Chainsaw.html">Chainsaw</a>
-    /// and <a href="target.NLogViewer.html">NLogViewer</a> which write to instances of Chainsaw log4j viewer
+    /// There are two specialized versions of the Network target: <a href="T_NLog_Targets_ChainsawTarget.htm">Chainsaw</a>
+    /// and <a href="T_NLog_Targets_NLogViewerTarget.htm">NLogViewer</a> which write to instances of Chainsaw log4j viewer
     /// or NLogViewer application respectively.
     /// </p>
     /// </example>
