@@ -248,25 +248,31 @@ namespace NLog.Internal.NetworkSenders
                     }
                     else
                     {
-                        _asyncOperationInProgress = true;
+                        try
+                        {
+                            _asyncOperationInProgress = true;
 
-                        if (_pendingRequests.Count == 1)
-                        {
-                            return _pendingRequests.Dequeue();
-                        }
-                        else
-                        {
-                            int nextBatchSize = Math.Min(_pendingRequests.Count, MaxQueueSize / 2 + 1000);
-                            for (int i = 0; i < nextBatchSize; ++i)
+                            if (_pendingRequests.Count == 1)
                             {
-                                _activeRequests.Enqueue(_pendingRequests.Dequeue());
+                                return _pendingRequests.Dequeue();
                             }
+                            else
+                            {
+                                int nextBatchSize = Math.Min(_pendingRequests.Count, MaxQueueSize / 2 + 1000);
+                                for (int i = 0; i < nextBatchSize; ++i)
+                                {
+                                    _activeRequests.Enqueue(_pendingRequests.Dequeue());
+                                }
 
+                                return _activeRequests.Dequeue();
+                            }
+                        }
+                        finally
+                        {
                             if (OnQueueOverflow == NetworkTargetQueueOverflowAction.Block)
                             {
                                 System.Threading.Monitor.PulseAll(_pendingRequests);
                             }
-                            return _activeRequests.Dequeue();
                         }
                     }
                 }

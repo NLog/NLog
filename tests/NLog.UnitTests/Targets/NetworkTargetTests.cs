@@ -101,10 +101,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
-                if (ex != null)
-                {
-                    Assert.True(false, ex.ToString());
-                }
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
             Assert.Single(senderFactory.Senders);
@@ -179,10 +176,7 @@ namespace NLog.UnitTests.Targets
 
             foreach (var ex in exceptions)
             {
-                if (ex != null)
-                {
-                    Assert.True(false, ex.ToString());
-                }
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
             mre.Reset();
@@ -274,10 +268,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
-                if (ex != null)
-                {
-                    Assert.True(false, ex.ToString());
-                }
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
             target.Close();
@@ -335,10 +326,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
-                if (ex != null)
-                {
-                    Assert.True(false, ex.ToString());
-                }
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
             target.Close();
@@ -399,10 +387,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
             foreach (var ex in exceptions)
             {
-                if (ex != null)
-                {
-                    Assert.True(false, ex.ToString());
-                }
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
             target.Close();
@@ -817,6 +802,170 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void NetworkTargetQueueDiscardTest()
+        {
+            var senderFactory = new MyQueudSenderFactory();
+            var target = new NetworkTarget();
+            target.MaxQueueSize = 1;
+            target.Address = "tcp://someaddress/";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = true;
+            target.Initialize(null);
+
+            int pendingWrites = 1;
+            var exceptions = new List<Exception>();
+            var mre = new ManualResetEvent(false);
+            AsyncContinuation asyncContinuation = ex =>
+            {
+                lock (exceptions)
+                {
+                    exceptions.Add(ex);
+                    if (--pendingWrites == 0)
+                        mre.Set();
+                }
+            };
+
+            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "msg0").WithContinuation(asyncContinuation));
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            Assert.Equal(1, senderFactory.BeginRequestCounter);
+            Assert.Single(exceptions);
+
+            foreach (var ex in exceptions)
+            {
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+            }
+
+            senderFactory.FailCounter = 1;
+            senderFactory.AsyncSlowCounter = 1;
+
+            pendingWrites = 5;  // 1st = Block, 2nd = Queue Pending
+            mre.Reset();
+            for (int i = 1; i <= 5 + 2; ++i)
+            {
+                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", $"msg{i}").WithContinuation(asyncContinuation));
+            }
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            Assert.True(exceptions.Count >= 6, $"Network write not discarding: {exceptions.Count}");
+            Assert.True(senderFactory.BeginRequestCounter >= 2, $"Network write not starting: {senderFactory.BeginRequestCounter}");
+
+            foreach (var ex in exceptions.Take(6))
+            {
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+            }
+        }
+
+        [Fact]
+        public void NetworkTargetQueueGrowTest()
+        {
+            var senderFactory = new MyQueudSenderFactory();
+            var target = new NetworkTarget();
+            target.MaxQueueSize = 1;
+            target.OnQueueOverflow = NetworkTargetQueueOverflowAction.Grow;
+            target.Address = "tcp://someaddress/";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = true;
+            target.Initialize(null);
+
+            int pendingWrites = 1;
+            var exceptions = new List<Exception>();
+            var mre = new ManualResetEvent(false);
+            AsyncContinuation asyncContinuation = ex =>
+            {
+                lock (exceptions)
+                {
+                    exceptions.Add(ex);
+                    if (--pendingWrites == 0)
+                        mre.Set();
+                }
+            };
+
+            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "msg0").WithContinuation(asyncContinuation));
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            Assert.Equal(1, senderFactory.BeginRequestCounter);
+            Assert.Single(exceptions);
+
+            foreach (var ex in exceptions)
+            {
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+            }
+
+            senderFactory.AsyncSlowCounter = 1;
+
+            pendingWrites = 5;
+            mre.Reset();
+            for (int i = 1; i <= 5; ++i)
+            {
+                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", $"msg{i}").WithContinuation(asyncContinuation));
+            }
+            Assert.True(exceptions.Count < 4, $"Network write not growing: {exceptions.Count}");
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            Assert.Equal(6, exceptions.Count);
+            Assert.Equal(6, senderFactory.BeginRequestCounter);
+
+            foreach (var ex in exceptions)
+            {
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+            }
+        }
+
+        [Fact]
+        public void NetworkTargetQueueBlockTest()
+        {
+            var senderFactory = new MyQueudSenderFactory();
+            var target = new NetworkTarget();
+            target.MaxQueueSize = 1;
+            target.OnQueueOverflow = NetworkTargetQueueOverflowAction.Block;
+            target.Address = "tcp://someaddress/";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = true;
+            target.Initialize(null);
+
+            int pendingWrites = 1;
+            var exceptions = new List<Exception>();
+            var mre = new ManualResetEvent(false);
+            AsyncContinuation asyncContinuation = ex =>
+            {
+                lock (exceptions)
+                {
+                    exceptions.Add(ex);
+                    if (--pendingWrites == 0)
+                        mre.Set();
+                }
+            };
+
+            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "msg0").WithContinuation(asyncContinuation));
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            Assert.Equal(1, senderFactory.BeginRequestCounter);
+            Assert.Single(exceptions);
+
+            foreach (var ex in exceptions)
+            {
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+            }
+
+            senderFactory.AsyncSlowCounter = 1;
+
+            pendingWrites = 5;
+            mre.Reset();
+            for (int i = 1; i <= 5; ++i)
+            {
+                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", $"msg{i}").WithContinuation(asyncContinuation));
+            }
+            Assert.True(exceptions.Count >= 4, $"Network write not blocking: {exceptions.Count}");
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            Assert.Equal(6, exceptions.Count);
+            Assert.Equal(6, senderFactory.BeginRequestCounter);
+
+            foreach (var ex in exceptions)
+            {
+                Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
+            }
+        }
+
+        [Fact]
         public void NetworkTargetSendFailureWithoutKeepAliveTests()
         {
             var senderFactory = new MyQueudSenderFactory()
@@ -1008,12 +1157,16 @@ namespace NLog.UnitTests.Targets
 
             public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
-                var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this);
+                var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = maxQueueSize, OnQueueOverflow = onQueueOverflow };
                 Senders.Add(sender);
                 return sender;
             }
 
+            public int BeginRequestCounter { get; set; }
+
             public int FailCounter { get; set; }
+
+            public int AsyncSlowCounter { get; set; }
 
             public bool AsyncMode { get; set; } = true;
         }
@@ -1063,9 +1216,11 @@ namespace NLog.UnitTests.Targets
 
             protected override void BeginRequest(NetworkRequestArgs eventArgs)
             {
+                RegisterNextRequest();
+
                 if (_senderFactory.AsyncMode)
                 {
-                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { Thread.Sleep(1); SendSync(eventArgs); });
+                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { SendSync(eventArgs); });
                     AsyncHelpers.StartAsyncTask(asyncTask, null);
                 }
                 else
@@ -1076,10 +1231,9 @@ namespace NLog.UnitTests.Targets
 
             private void SendSync(NetworkRequestArgs? nextRequest)
             {
-                do
+                while (nextRequest.HasValue)
                 {
-                    if (!nextRequest.HasValue)
-                        return;
+                    Thread.Sleep(CheckSendThrottleTimeMs());
 
                     var eventArgs = nextRequest.Value;
 
@@ -1096,7 +1250,19 @@ namespace NLog.UnitTests.Targets
                     }
 
                     nextRequest = EndRequest(eventArgs.AsyncContinuation, failedException);
-                } while (nextRequest != null);
+                    if (nextRequest.HasValue)
+                    {
+                        RegisterNextRequest();
+                    }
+                } 
+            }
+
+            private void RegisterNextRequest()
+            {
+                lock (_senderFactory)
+                {
+                    _senderFactory.BeginRequestCounter++;
+                }
             }
 
             private Exception CheckForFailedException()
@@ -1111,6 +1277,20 @@ namespace NLog.UnitTests.Targets
                 }
 
                 return null;
+            }
+
+            private int CheckSendThrottleTimeMs()
+            {
+                lock (_senderFactory)
+                {
+                    if (_senderFactory.AsyncSlowCounter > 0)
+                    {
+                        _senderFactory.AsyncSlowCounter--;
+                        return 250;
+                    }
+
+                    return _senderFactory.AsyncMode ? 1 : 0;
+                }
             }
         }
     }
