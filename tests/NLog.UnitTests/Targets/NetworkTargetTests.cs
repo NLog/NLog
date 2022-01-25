@@ -846,8 +846,8 @@ namespace NLog.UnitTests.Targets
                 target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", $"msg{i}").WithContinuation(asyncContinuation));
             }
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
-            Assert.True(exceptions.Count >= 6, $"Network write not discarding: {exceptions.Count}");
-            Assert.True(senderFactory.BeginRequestCounter >= 2, $"Network write not starting: {senderFactory.BeginRequestCounter}");
+            Assert.True(exceptions.Count >= 6, $"Network write not completed: {exceptions.Count}");
+            Assert.True(senderFactory.BeginRequestCounter <= 3, $"Network write not discarded: {senderFactory.BeginRequestCounter}");
 
             foreach (var ex in exceptions.Take(6))
             {
