@@ -269,15 +269,15 @@ namespace NLog.Config
             throw new ArgumentException(message);
         }
 
-        internal static string NormalizeName(string itemName)
+        protected static string NormalizeName(string itemName)
         {
             if (itemName == null)
             {
-                return null;
+                return string.Empty;
             }
 
-            var itemToBeRemoved = "-";
-            if (!itemName.Contains(itemToBeRemoved))
+            var delimitIndex = itemName.IndexOf('-');
+            if (delimitIndex < 0)
             {
                 return itemName;
             }
@@ -286,16 +286,14 @@ namespace NLog.Config
             var commaIndex = itemName.IndexOf(',');
             if (commaIndex >= 0)
             {
-                var left = itemName.Substring(0, commaIndex).Replace(itemToBeRemoved, string.Empty);
+                var left = itemName.Substring(0, commaIndex).Replace("-", string.Empty);
                 var right = itemName.Substring(commaIndex);
                 return left + right;
             }
 
-            return itemName.Replace(itemToBeRemoved, string.Empty);
+            return itemName.Replace("-", string.Empty);
         }
     }
-
-
 
     /// <summary>
     /// Factory specialized for <see cref="LayoutRenderer"/>s. 

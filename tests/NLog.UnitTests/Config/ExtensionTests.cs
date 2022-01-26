@@ -581,7 +581,35 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(logFactory.Configuration.FindTargetByName("t"));
         }
 
-        private static void LoadManuallyLoadedExtensionDll()
+        [Theory]
+        [InlineData(null, null)]
+        [InlineData("", null)]
+        [InlineData("ManuallyLoadedTarget", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
+        [InlineData("ManuallyLoaded-Target", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
+        [InlineData("ManuallyLoadedTarget, Manually-Loaded-Extension", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
+        [InlineData("ManuallyLoaded-Target, Manually-Loaded-Extension", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
+        [InlineData(", Manually-Loaded-Extension", null)] // border case
+        [InlineData("ManuallyLoadedTarget,", null)] // border case
+        public void NormalizeNameTest(string input, string expected)
+        {
+            // Arrange
+            var assembly = LoadManuallyLoadedExtensionDll();
+            var configFactory = new ConfigurationItemFactory(assembly);
+
+            // Act
+            var foundDefinition = configFactory.Targets.TryGetDefinition(input, out var outputDefinition);
+            var foundInstance = configFactory.Targets.TryCreateInstance(input, out var outputInstance);
+            var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.Targets.CreateInstance(input) : null;
+
+            // Assert
+            Assert.Equal(expected != null, foundInstance);
+            Assert.Equal(expected != null, foundDefinition);
+            Assert.Equal(expected, instance?.GetType().ToString());
+            Assert.Equal(expected, outputInstance?.GetType().ToString());
+            Assert.Equal(expected, outputDefinition?.ToString());
+        }
+
+        private static Assembly LoadManuallyLoadedExtensionDll()
         {
             // ...\NLog\tests\NLog.UnitTests\bin\Debug\netcoreapp2.0\nlog.dll
             var nlogDirectory = new DirectoryInfo(ConfigurationItemFactory.GetAutoLoadingFileLocations().First().Key);
@@ -596,7 +624,7 @@ namespace NLog.UnitTests.Config
                 nlogDirectory.Name,
 #endif
                 "Manually-Loaded-Extension.dll");
-            Assembly.LoadFrom(manuallyLoadedAssemblyPath);
+            return Assembly.LoadFrom(manuallyLoadedAssemblyPath);
 
         }
     }
