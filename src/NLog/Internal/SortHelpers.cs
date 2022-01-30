@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Provides helpers to sort log events and associated continuations.
@@ -110,14 +110,12 @@ namespace NLog.Internal
         public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector, IEqualityComparer<TKey> keyComparer)
         {
             Dictionary<TKey, IList<TValue>> buckets = null;
-            bool singleBucketFirstKey = false;
             TKey singleBucketKey = default(TKey);
             for (int i = 0; i < inputs.Count; i++)
             {
                 TKey keyValue = keySelector(inputs[i]);
-                if (!singleBucketFirstKey)
+                if (i == 0)
                 {
-                    singleBucketFirstKey = true;
                     singleBucketKey = keyValue;
                 }
                 else if (buckets == null)
@@ -149,18 +147,18 @@ namespace NLog.Internal
             }
         }
 
-        private static Dictionary<TKey, IList<TValue>> CreateBucketDictionaryWithValue<TValue, TKey>(IList<TValue> inputs, IEqualityComparer<TKey> keyComparer, int currentIndex, TKey singleBucketKey, TKey keyValue)
+        private static Dictionary<TKey, IList<TValue>> CreateBucketDictionaryWithValue<TValue, TKey>(IList<TValue> inputs, IEqualityComparer<TKey> keyComparer, int currentIndex, TKey firstBucketKey, TKey nextBucketKey)
         {
             var buckets = new Dictionary<TKey, IList<TValue>>(keyComparer);
-            var bucket = new List<TValue>(currentIndex);
+            var firstBucket = new List<TValue>(currentIndex);
             for (int i = 0; i < currentIndex; i++)
             {
-                bucket.Add(inputs[i]);
+                firstBucket.Add(inputs[i]);
             }
+            buckets[firstBucketKey] = firstBucket;
 
-            buckets[singleBucketKey] = bucket;
-            bucket = new List<TValue> {inputs[currentIndex]};
-            buckets[keyValue] = bucket;
+            var nextBucket = new List<TValue> { inputs[currentIndex] };
+            buckets[nextBucketKey] = nextBucket;
             return buckets;
         }
 
