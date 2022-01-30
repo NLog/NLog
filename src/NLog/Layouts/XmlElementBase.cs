@@ -70,8 +70,8 @@ namespace NLog.Layouts
         /// </summary>
         /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
         /// <docgen category='XML Options' order='10' />
-        internal string ElementNameInternal { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
-        private string _elementName;
+        internal string ElementNameInternal { get => _elementNameInternal; set => _elementNameInternal = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
+        private string _elementNameInternal;
 
         /// <summary>
         /// Value inside the XML element
