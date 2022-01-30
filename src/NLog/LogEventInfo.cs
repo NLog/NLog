@@ -443,7 +443,8 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
+        [MessageTemplateFormatMethod("message")]
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object[] parameters)
         {
             return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters, null);
         }
@@ -494,7 +495,8 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
+        [MessageTemplateFormatMethod("message")]
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, object[] parameters)
         {
             return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters, exception);
         }
