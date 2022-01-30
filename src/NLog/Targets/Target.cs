@@ -290,7 +290,7 @@ namespace NLog.Targets
             }
             targetName = targetName ?? Name;
             if (string.IsNullOrEmpty(targetName))
-                return string.IsNullOrEmpty(Name) ? $"{targetType}([unnamed])" : targetType;
+                return targetWrapper ? targetType : $"{targetType}([unnamed])";
             else
                 return $"{targetType}(Name={targetName})";
         }
