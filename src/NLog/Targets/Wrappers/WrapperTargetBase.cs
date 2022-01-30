@@ -66,10 +66,10 @@ namespace NLog.Targets.Wrappers
 
         private string GenerateTargetToString()
         {
-            if (string.IsNullOrEmpty(Name))
-                return $"{GenerateTargetToString(true)}_{WrappedTarget}";
-            else if (WrappedTarget is null)
+            if (WrappedTarget is null)
                 return GenerateTargetToString(true);
+            else if (string.IsNullOrEmpty(Name))
+                return $"{GenerateTargetToString(true, "")}_{WrappedTarget}";
             else
                 return $"{GenerateTargetToString(true, "")}_{WrappedTarget.GenerateTargetToString(false, Name)}";
         }
@@ -80,10 +80,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            if (WrappedTarget != null)
-                WrappedTarget.Flush(asyncContinuation);
-            else
+            if (WrappedTarget is null)
                 asyncContinuation(null);
+            else
+                WrappedTarget.Flush(asyncContinuation);
         }
 
         /// <summary>
