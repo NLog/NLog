@@ -556,13 +556,14 @@ namespace NLog.Targets
             {
                 if (OnOverflow == NetworkTargetOverflowAction.Discard)
                 {
-                    InternalLogger.Trace("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
+                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
                     continuation(null);
                     return;
                 }
 
                 if (OnOverflow == NetworkTargetOverflowAction.Error)
                 {
+                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
                     continuation(new InvalidOperationException($"NetworkTarget: Discarded LogEvent because MessageSize={messageSize} is above MaxMessageSize={MaxMessageSize}"));
                     return;
                 }
