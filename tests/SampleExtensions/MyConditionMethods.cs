@@ -43,7 +43,7 @@ namespace MyExtensionNamespace
         [ConditionMethod("myrandom")]
         public static int Random(int max)
         {
-            return new Random().Next(max);
+            return new Random().Next(max);  // NOSONAR
         }
     }
 }

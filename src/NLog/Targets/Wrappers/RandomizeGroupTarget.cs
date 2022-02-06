@@ -61,7 +61,7 @@ namespace NLog.Targets.Wrappers
     public class RandomizeGroupTarget : CompoundTargetBase
     {
 #pragma warning disable S2245   // Make sure that using this pseudorandom number generator is safe here (Not security sensitive)
-        private readonly Random _random = new Random();
+        private readonly Random _random = new Random(); //NOSONAR
 #pragma warning restore S2245   // Make sure that using this pseudorandom number generator is safe here
 
         /// <summary>
