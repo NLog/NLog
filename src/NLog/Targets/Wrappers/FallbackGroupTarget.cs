@@ -165,43 +165,29 @@ namespace NLog.Targets.Wrappers
                 if (ex is null)
                 {
                     // success
-                    if (ReturnToFirstOnSuccess)
+                    if (ReturnToFirstOnSuccess && Interlocked.Read(ref _currentTarget) != 0)
                     {
-#pragma warning disable S1066 // Collapsible "if" statements should be merged
-                        if (Interlocked.Read(ref _currentTarget) != 0)
-#pragma warning restore S1066 // Collapsible "if" statements should be merged
-                        {
-                            InternalLogger.Debug("{0}: Target '{1}' succeeded. Returning to the first one.", this, Targets[targetToInvoke]);
-                            Interlocked.Exchange(ref _currentTarget, 0);
-                        }
+                        InternalLogger.Debug("{0}: Target '{1}' succeeded. Returning to the first one.", this, Targets[targetToInvoke]);
+                        Interlocked.Exchange(ref _currentTarget, 0);
                     }
 
                     logEvent.Continuation(null);
                     return;
                 }
 
-                // failure
-                InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Proceeding to the next one.", this, Targets[targetToInvoke]);
-
-                // error while writing, go to the next one
+                // error while writing, fallback to next one
                 tryCounter++;
                 int nextTarget = (targetToInvoke + 1) % Targets.Count;
                 Interlocked.CompareExchange(ref _currentTarget, nextTarget, targetToInvoke);
-                if (tryCounter >= Targets.Count)
+                if (tryCounter < Targets.Count)
                 {
-                    targetToInvoke = -1;
-                }
-                else
-                {
+                    InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Fallback to next: `{2}`", this, Targets[targetToInvoke], Targets[nextTarget]);
                     targetToInvoke = nextTarget;
-                }
-
-                if (targetToInvoke >= 0)
-                {
                     Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                 }
                 else
                 {
+                    InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Fallback not possible", this, Targets[targetToInvoke]);
                     logEvent.Continuation(ex);
                 }
             };
