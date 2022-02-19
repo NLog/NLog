@@ -65,7 +65,7 @@ namespace NLog.Targets
         bool IIncludeContext.IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeEventProperties { get => _contextLayout.IncludeAllProperties; set => _contextLayout.IncludeAllProperties = value; }
+        public bool IncludeEventProperties { get => _contextLayout.IncludeEventProperties; set => _contextLayout.IncludeEventProperties = value; }
 
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
@@ -76,6 +76,10 @@ namespace NLog.Targets
         public bool IncludeNdc { get => _contextLayout.IncludeNdc; set => _contextLayout.IncludeNdc = value; }
 
 #if !SILVERLIGHT
+        /// <inheritdoc/>
+        /// <docgen category='Layout Options' order='10' />
+        public bool IncludeScopeProperties { get => _contextLayout.IncludeScopeProperties; set => _contextLayout.IncludeScopeProperties = value; }
+
         /// <inheritdoc/>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeMdlc { get => _contextLayout.IncludeMdlc; set => _contextLayout.IncludeMdlc = value; }
@@ -679,6 +683,7 @@ namespace NLog.Targets
 #endif
 
             public bool IncludeAllProperties { get; set; }
+            public bool IncludeEventProperties { get => IncludeAllProperties; set => IncludeAllProperties = value; }
             public bool IncludeCallSite { get; set; }
             public bool IncludeCallSiteStackTrace { get; set; }
 
@@ -688,6 +693,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT
             public bool IncludeMdlc { get => MdlcLayout.IsActive; set => MdlcLayout.IsActive = value; }
             public bool IncludeNdlc { get => NdlcLayout.IsActive; set => NdlcLayout.IsActive = value; }
+            public bool IncludeScopeProperties { get => IncludeMdlc; set => IncludeMdlc = value; }
 #endif
 
             StackTraceUsage IUsesStackTrace.StackTraceUsage

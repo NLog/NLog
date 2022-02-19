@@ -176,6 +176,12 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties { get => IncludeMdlc; set => IncludeMdlc = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdlc { get; set; }
 
         /// <summary>
@@ -194,6 +200,12 @@ namespace NLog.LayoutRenderers
             set => _ndlcLayoutRenderer.Separator = value;
         }
 #endif
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        public bool IncludeEventProperties { get => IncludeAllProperties; set => IncludeAllProperties = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events

@@ -88,6 +88,16 @@ namespace NLog.Layouts
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
+        public bool IncludeEventProperties
+        {
+            get => Renderer.IncludeEventProperties;
+            set => Renderer.IncludeEventProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeAllProperties
         {
             get => Renderer.IncludeAllProperties;
@@ -105,6 +115,16 @@ namespace NLog.Layouts
         }
 
 #if !SILVERLIGHT
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties
+        {
+            get => Renderer.IncludeScopeProperties;
+            set => Renderer.IncludeScopeProperties = value;
+        }
+
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
