@@ -65,7 +65,7 @@ https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
