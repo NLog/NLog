@@ -42,6 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\build.ps1 = ..\build.ps1
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\.github\dependabot.yml = ..\.github\dependabot.yml
+		..\README.md = ..\README.md
 		..\run-tests.ps1 = ..\run-tests.ps1
 	EndProjectSection
 EndProject

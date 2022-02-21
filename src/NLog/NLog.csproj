@@ -16,6 +16,7 @@ Supported platforms:
 - .NET Core 1, 2 and 3
 - .NET Standard 1.3+ and 2.0+
 - .NET Framework 3.5 - 4.8
+- Xamarin Android + iOS (.NET Standard)
 - Mono 4
 
 For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
@@ -28,21 +29,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-NLog 5.0 RC2 with more improvements:
-
-## Features
-- LogFactory fluent Setup with AddCallSiteHiddenAssembly (#4761) (@snakefoot)
-- Updated JetBrains Annotations with StructuredMessageTemplateAttribute (#4757) (@snakefoot)
-- JsonArrayLayout - Render LogEvent in Json-Array format (#4754) (@snakefoot)
-- Added LogFactory.ReconfigureExistingLoggers with purgeObsoleteLoggers option (#4613) (@sjafarianm)
-- Added WithProperties-method for Logger-class (#4711) (@simoneserra93)
-
-## Improvements
-- MemoryTarget - Updated to implement TargetWithLayoutHeaderAndFooter (#4730) (@snakefoot)
-- TraceTarget - Updated to implement TargetWithLayoutHeaderAndFooter (#4730) (@snakefoot)
-- DatabaseTarget - Improved parsing of DbType (#4717) (@Orace)
-
-NLog 5 release post: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
+List of major changes in NLog 5.0: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
