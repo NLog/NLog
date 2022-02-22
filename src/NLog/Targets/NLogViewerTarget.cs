@@ -164,6 +164,16 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
+        public bool IncludeScopeProperties
+        {
+            get => Renderer.IncludeScopeProperties;
+            set => Renderer.IncludeScopeProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdlc
         {
             get => Renderer.IncludeMdlc;
@@ -199,6 +209,16 @@ namespace NLog.Targets
         {
             get => Renderer.IncludeAllProperties;
             set => Renderer.IncludeAllProperties = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeEventProperties
+        {
+            get => Renderer.IncludeEventProperties;
+            set => Renderer.IncludeEventProperties = value;
         }
 
         /// <summary>

@@ -122,6 +122,13 @@ namespace NLog.Layouts
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeMdlc { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        [DefaultValue(false)]
+        public bool IncludeScopeProperties { get => IncludeMdlc; set => IncludeMdlc = value; }
 #endif
 
         /// <summary>
@@ -130,6 +137,13 @@ namespace NLog.Layouts
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeAllProperties { get; set; }
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log event (as XML)
+        /// </summary>
+        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        [DefaultValue(false)]
+        public bool IncludeEventProperties { get => IncludeAllProperties; set => IncludeAllProperties = value; }
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true

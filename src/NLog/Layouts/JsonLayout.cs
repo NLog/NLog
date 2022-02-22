@@ -141,6 +141,13 @@ namespace NLog.Layouts
         /// <docgen category='JSON Output' order='10' />
         [DefaultValue(false)]
         public bool IncludeMdlc { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
+        public bool IncludeScopeProperties { get => IncludeMdlc; set => IncludeMdlc = value; }
 #endif
 
         /// <summary>
@@ -149,6 +156,13 @@ namespace NLog.Layouts
         /// <docgen category='JSON Output' order='10' />
         [DefaultValue(false)]
         public bool IncludeAllProperties { get; set; }
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log event (as JSON)
+        /// </summary>
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
+        public bool IncludeEventProperties { get => IncludeAllProperties; set => IncludeAllProperties = value; }
 
         /// <summary>
         /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)

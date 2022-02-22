@@ -54,9 +54,20 @@ namespace NLog
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
+        bool IncludeEventProperties { get; set; }
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         bool IncludeAllProperties { get; set; }
 
 #if !SILVERLIGHT
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        bool IncludeScopeProperties { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
@@ -69,7 +80,6 @@ namespace NLog
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         bool IncludeNdlc { get; set; }
-
 #endif
     }
 }
