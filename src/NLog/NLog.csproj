@@ -12,12 +12,12 @@ NLog supports traditional logging, structured logging and the combination of bot
 
 Supported platforms:
 
-- .NET 5
+- .NET 5 and 6
 - .NET Core 1, 2 and 3
 - .NET Standard 1.3+ and 2.0+;
 - .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
 - .NET Framework 4 client profile
-- Xamarin Android, Xamarin iOs
+- Xamarin Android, Xamarin iOS
 - UWP
 - Windows Phone 8
 - Silverlight 4 and 5
@@ -33,12 +33,9 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-## Bugfixes
-- AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4700) (@snakefoot)
-- AsyncTargetWrapper - Swallow OutOfMemoryException instead of crashing (#4644) (@snakefoot)
-
 ## Improvements
-- Fix broken XML doc comment (#4649) (@GitHubPang)
+- Added IncludeEventProperties + IncludeScopeProperties to improve transition (#4799) (@snakefoot)
+- Refactored code to remove false positives from code analysis (#4786) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
