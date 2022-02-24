@@ -286,9 +286,8 @@ namespace NLog.Config
                 if (exception.MustBeRethrownImmediately())
                     throw;
 
-                const string message = "attribute '{0}': '{1}' isn't valid LogLevel. {2} will be used.";
                 var configException =
-                    new NLogConfigurationException(exception, message, attributeName, attributeValue, @default);
+                    new NLogConfigurationException($"attribute '{attributeName}': '{attributeValue}' isn't valid LogLevel. {@default} will be used.", exception);
                 if (MustThrowConfigException(configException))
                     throw configException;
 
@@ -1058,7 +1057,7 @@ namespace NLog.Config
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    var configException = new NLogConfigurationException(ex, $"Error when setting value '{childValue}' for property '{childName}' on element '{element}'");
+                    var configException = new NLogConfigurationException($"Error when setting value '{childValue}' for property '{childName}' on element '{element}'", ex);
                     if (MustThrowConfigException(configException))
                         throw;
                 }
@@ -1291,7 +1290,7 @@ namespace NLog.Config
                 if (exception.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException(exception, $"'{propertyName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
+                var configException = new NLogConfigurationException($"'{propertyName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used", exception);
                 if (MustThrowConfigException(configException))
                     throw configException;
                 return defaultValue;
