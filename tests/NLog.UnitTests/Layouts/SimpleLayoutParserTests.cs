@@ -66,6 +66,12 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void UnknownLayoutRenderer()
+        {
+            Assert.Throws<NLogConfigurationException>(() => new SimpleLayout("'${{unknown-type}}'"));
+        }
+
+        [Fact]
         public void SingleParamTest()
         {
             SimpleLayout l = "${event-property:item=AAA}";
@@ -441,8 +447,6 @@ namespace NLog.UnitTests.Layouts
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Log_{#}.log", l.Render(le));
         }
-
-
 
         [Fact]
         public void InnerLayoutWithHashTest_need_escape()
