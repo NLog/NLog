@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
 namespace NLog
 {
     using System;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Exception thrown during NLog configuration.
@@ -69,6 +68,16 @@ namespace NLog
         [StringFormatMethod("message")]
         public NLogConfigurationException(string message, params object[] messageParameters)
             : base(string.Format(message, messageParameters))
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
+        /// </summary>
+        /// <param name="innerException">The inner exception.</param>
+        /// <param name="message">The message.</param>
+        public NLogConfigurationException(Exception innerException, string message)
+            : base(message, innerException)
         {
         }
 
