@@ -65,6 +65,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="messageParameters">Parameters for the message</param>
+        [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
         public NLogConfigurationException(string message, params object[] messageParameters)
             : base(string.Format(message, messageParameters))
@@ -76,17 +77,8 @@ namespace NLog
         /// </summary>
         /// <param name="innerException">The inner exception.</param>
         /// <param name="message">The message.</param>
-        public NLogConfigurationException(Exception innerException, string message)
-            : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
-        /// </summary>
-        /// <param name="innerException">The inner exception.</param>
-        /// <param name="message">The message.</param>
         /// <param name="messageParameters">Parameters for the message</param>
+        [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
         public NLogConfigurationException(Exception innerException, string message, params object[] messageParameters)
             : base(string.Format(message, messageParameters), innerException)
