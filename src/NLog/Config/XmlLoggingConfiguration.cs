@@ -364,7 +364,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Exception when loading configuration {0}", fileName);
+                var configurationException = new NLogConfigurationException($"Exception when loading configuration {fileName}", exception);
                 InternalLogger.Error(exception, configurationException.Message);
                 if (!ignoreErrors && (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions || configurationException.MustBeRethrown()))
                     throw configurationException;
@@ -530,7 +530,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Error when including '{0}'.", newFileName);
+                var configurationException = new NLogConfigurationException($"Error when including '{newFileName}'.", exception);
                 InternalLogger.Error(exception, configurationException.Message);
                 if (!ignoreErrors)
                     throw configurationException;

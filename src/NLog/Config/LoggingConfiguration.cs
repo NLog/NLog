@@ -341,7 +341,7 @@ namespace NLog.Config
             var target = FindTargetByName(targetName);
             if (target is null)
             {
-                throw new NLogConfigurationException("Target '{0}' not found", targetName);
+                throw new NLogConfigurationException($"Target '{targetName}' not found");
             }
 
             AddRuleForOneLevel(level, target, loggerNamePattern, false);

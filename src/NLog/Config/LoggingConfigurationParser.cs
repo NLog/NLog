@@ -290,7 +290,7 @@ namespace NLog.Config
                 if (exception.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException(exception, $"Property '{propertyName}' assigned invalid LogLevel value '{propertyValue}'. Fallback to '{fallbackValue}'");
+                var configException = new NLogConfigurationException($"Property '{propertyName}' assigned invalid LogLevel value '{propertyValue}'. Fallback to '{fallbackValue}'", exception);
                 if (MustThrowConfigException(configException))
                     throw configException;
 
@@ -1069,7 +1069,7 @@ namespace NLog.Config
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException(ex, $"Error when setting value '{propertyValue}' for property '{propertyName}' on {targetObject?.GetType()} in section '{element.Name}'");
+                var configException = new NLogConfigurationException($"Error when setting value '{propertyValue}' for property '{propertyName}' on {targetObject?.GetType()} in section '{element.Name}'", ex);
                 if (MustThrowConfigException(configException))
                     throw;
             }
@@ -1372,7 +1372,7 @@ namespace NLog.Config
                 if (exception.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException(exception, $"'{propertyName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
+                var configException = new NLogConfigurationException($"'{propertyName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used", exception);
                 if (MustThrowConfigException(configException))
                     throw configException;
                 return defaultValue;

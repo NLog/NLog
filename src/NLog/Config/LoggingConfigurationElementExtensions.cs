@@ -104,7 +104,7 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                var configException = new NLogConfigurationException(exception, $"'{attributeName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
+                var configException = new NLogConfigurationException($"'{attributeName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used", exception);
                 if (configException.MustBeRethrown())
                 {
                     throw configException;
