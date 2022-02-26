@@ -96,7 +96,7 @@ namespace NLog.Internal
 
             if (!TryGetPropertyInfo(objType, propertyName, out var propInfo))
             {
-                throw new NLogConfigurationException($"Unknown property '{propertyName}'='{value}' for '{objType.Name}'");
+                throw new NLogConfigurationException($"'{objType?.Name}' cannot assign unknown property '{propertyName}'='{value}'");
             }
 
             SetPropertyFromString(obj, propertyName, value, propInfo, configurationItemFactory);
@@ -112,7 +112,7 @@ namespace NLog.Internal
                 {
                     if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                     {
-                        throw new NotSupportedException($"Property {propertyName} on {obj.GetType().Name} is an array, and cannot be assigned a scalar value: '{value}'.");
+                        throw new NotSupportedException($"'{obj?.GetType()?.Name}' cannot assign property '{propertyName}', because property of type array and not scalar value: '{value}'.");
                     }
 
                     propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
@@ -128,7 +128,7 @@ namespace NLog.Internal
             }
             catch (TargetInvocationException ex)
             {
-                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {obj.GetType().Name}", ex.InnerException);
+                throw new NLogConfigurationException($"'{obj?.GetType()?.Name}' cannot assign property '{propInfo.Name}'='{value}'", ex.InnerException ?? ex);
             }
             catch (Exception exception)
             {
@@ -137,7 +137,7 @@ namespace NLog.Internal
                     throw;
                 }
 
-                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}'='{value}' on {obj.GetType().Name}", exception);
+                throw new NLogConfigurationException($"'{obj?.GetType()?.Name}' cannot assign property '{propInfo.Name}'='{value}'. Error={exception.Message}", exception);
             }
         }
 

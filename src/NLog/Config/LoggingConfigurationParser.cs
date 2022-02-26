@@ -1069,7 +1069,7 @@ namespace NLog.Config
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException($"Error when setting value '{propertyValue}' for property '{propertyName}' on {targetObject?.GetType()} in section '{element.Name}'", ex);
+                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propertyName}'='{propertyValue}' in section '{element.Name}'. Error: {ex.Message}", ex);
                 if (MustThrowConfigException(configException))
                     throw;
             }
@@ -1090,7 +1090,7 @@ namespace NLog.Config
         {
             if (!PropertyHelper.TryGetPropertyInfo(o, childElement.Name, out var propInfo))
             {
-                var configException = new NLogConfigurationException($"Unknown property '{childElement.Name}' for '{o?.GetType()}' in section '{parentElement.Name}'");
+                var configException = new NLogConfigurationException($"'{o?.GetType()?.Name}' cannot assign unknown property '{childElement.Name}' in section '{parentElement.Name}'");
                 if (MustThrowConfigException(configException))
                     throw configException;
 
