@@ -579,7 +579,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(renderedFrom))
             {
-                throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "From");
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "From"));
             }
             msg.From = new MailAddress(renderedFrom);
 
@@ -589,7 +589,7 @@ namespace NLog.Targets
 
             if (!addedTo && !addedCc && !addedBcc)
             {
-                throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc");
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc"));
             }
 
             msg.Subject = Subject is null ? string.Empty : Subject.Render(lastEvent).Trim();

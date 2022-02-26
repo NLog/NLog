@@ -66,6 +66,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="messageParameters">Parameters for the message</param>
+        [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
         public NLogRuntimeException(string message, params object[] messageParameters)
             : base(string.Format(message, messageParameters))
