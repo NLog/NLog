@@ -548,7 +548,7 @@
         private IEnumerable<PropertyInfo> GetProperties(Type type)
         {
             return type.GetProperties()
-                .Where(c => this.IncludeProperty(c));
+                .Where(c => this.IncludeProperty(c)).OrderBy(p => p.Name);
         }
 
         private string GetSlug(string name, string kind)
