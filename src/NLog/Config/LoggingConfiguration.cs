@@ -296,7 +296,7 @@ namespace NLog.Config
             var target = FindTargetByName(targetName);
             if (target is null)
             {
-                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+                throw new NLogRuntimeException($"Target '{targetName}' not found");
             }
 
             AddRule(minLevel, maxLevel, target, loggerNamePattern, false);
@@ -385,7 +385,7 @@ namespace NLog.Config
             var target = FindTargetByName(targetName);
             if (target is null)
             {
-                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+                throw new NLogRuntimeException($"Target '{targetName}' not found");
             }
 
             AddRuleForAllLevels(target, loggerNamePattern, false);

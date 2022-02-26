@@ -61,7 +61,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="messageParameters">Parameters for the message</param>
@@ -73,7 +73,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         /// <param name="innerException">The inner exception.</param>
         /// <param name="message">The message.</param>

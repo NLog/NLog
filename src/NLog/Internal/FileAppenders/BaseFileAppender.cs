@@ -197,7 +197,7 @@ namespace NLog.Internal.FileAppenders
                         catch (DirectoryNotFoundException)
                         {
                             //if creating a directory failed, don't retry for this message (e.g the FileOpenRetryCount below)
-                            throw new NLogRuntimeException("Could not create directory {0}", directoryName);
+                            throw new NLogRuntimeException($"Could not create directory {directoryName}");
                         }
 
                         return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
