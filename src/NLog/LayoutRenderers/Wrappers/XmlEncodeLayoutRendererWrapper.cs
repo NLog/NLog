@@ -51,13 +51,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether to apply XML encoding.
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public bool XmlEncode { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to transform newlines (\r\n) into (&#13;&#10;)
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public bool XmlEncodeNewlines { get; set; }
 
         /// <inheritdoc/>

@@ -49,25 +49,25 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether username should be included.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool UserName { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether domain name should be included.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool Domain { get; set; }
 
         /// <summary>
         /// Gets or sets the default value to be used when the User is not set.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string DefaultUser { get; set; } = "UserUnknown";
 
         /// <summary>
         /// Gets or sets the default value to be used when the Domain is not set.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string DefaultDomain { get; set; } = "DomainUnknown";
 
         /// <inheritdoc/>

@@ -48,25 +48,25 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator to be used when concatenating 
         /// parts of identity information.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public string Separator { get; set; } = ":";
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool Name { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool AuthType { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IsAuthenticated { get; set; } = true;
 
         /// <inheritdoc/>

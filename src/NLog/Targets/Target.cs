@@ -69,7 +69,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the target.
         /// </summary>
-        /// <docgen category='General Options' order='10' />
+        /// <docgen category='General Options' order='1' />
         public string Name
         {
             get => _name;

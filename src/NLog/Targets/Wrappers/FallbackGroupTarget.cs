@@ -99,7 +99,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets whether to enable batching, but fallback will be handled individually
         /// </summary>
-        /// <docgen category='Retrying Options' order='10' />
+        /// <docgen category='Fallback Options' order='50' />
         public bool EnableBatchWrite { get; set; } = true;
 
         /// <summary>

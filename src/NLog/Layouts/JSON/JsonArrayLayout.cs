@@ -58,20 +58,20 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the array of items to include in JSON-Array
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(Layout), "item")]
         public IList<Layout> Items { get; } = new List<Layout>();
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
-        /// <docgen category='JSON Formating' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool SuppressSpaces { get; set; }
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
-        /// <docgen category='JSON Formating' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool RenderEmptyObject { get; set; } = true;
 
         /// <inheritdoc/>

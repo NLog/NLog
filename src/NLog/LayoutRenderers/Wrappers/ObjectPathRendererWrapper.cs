@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers.Wrappers
         ///
         /// Shortcut for <see cref="ObjectPath"/>
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public string Path
         {
             get => ObjectPath;
@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the object-property-navigation-path for lookup of nested property
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public string ObjectPath
         {
             get => _objectPropertyPath.Value;
@@ -76,13 +76,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
-        /// <docgen category="Transformation Options" order="100"/>
+        /// <docgen category="Layout Options" order="100"/>
         public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
-        /// <docgen category="Transformation Options" order="100"/>
+        /// <docgen category="Layout Options" order="100"/>
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>

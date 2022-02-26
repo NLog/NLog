@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets string that will be used to separate key/value pairs.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Separator { get; set; }
 
         /// <summary>
@@ -74,19 +74,19 @@ namespace NLog.LayoutRenderers
         ///
         /// A value is empty when null or in case of a string, null or empty string.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeEmptyValues { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get; set; }
 
         /// <summary>
         /// Gets or sets the keys to exclude from the output. If omitted, none are excluded.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
 #if !NET35
         public ISet<string> Exclude { get; set; }
 #else
@@ -96,13 +96,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Enables capture of ScopeContext-properties from active thread context
         /// </summary>
+        [NLogConfigurationIgnoreProperty]
         public LayoutRenderer FixScopeContext => IncludeScopeProperties ? _fixScopeContext : null;
         private static readonly LayoutRenderer _fixScopeContext = new ScopeContextPropertyLayoutRenderer() { Item = string.Empty };
 
         /// <summary>
         /// Gets or sets how key/value pairs will be formatted.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Format
         {
             get => _format;
@@ -135,7 +136,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
-        /// <docgen category='Rendering Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>

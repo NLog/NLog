@@ -55,20 +55,20 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public ProcessInfoProperty Property { get; set; } = ProcessInfoProperty.Id;
 
         /// <summary>
         /// Gets or sets the format-string to use if the property supports it (Ex. DateTime / TimeSpan / Enum)
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
-        /// <docgen category='Rendering Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>

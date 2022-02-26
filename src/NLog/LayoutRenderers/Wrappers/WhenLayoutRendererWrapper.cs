@@ -51,14 +51,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Condition Options" order="10"/>
         [RequiredParameter]
         public ConditionExpression When { get; set; }
 
         /// <summary>
         /// If <see cref="When"/> is not met, print this layout.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Condition Options" order="10"/>
         public Layout Else { get; set; }
 
         /// <inheritdoc/>

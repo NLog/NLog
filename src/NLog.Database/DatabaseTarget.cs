@@ -146,7 +146,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the connection string (as specified in <see href="https://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         public string ConnectionStringName { get; set; }
 #endif
 
@@ -160,20 +160,20 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the connection string using for installation and uninstallation. If not provided, regular ConnectionString is being used.
         /// </summary>
-        /// <docgen category='Installation Options' order='10' />
+        /// <docgen category='Installation Options' order='100' />
         public Layout InstallConnectionString { get; set; }
 
         /// <summary>
         /// Gets the installation DDL commands.
         /// </summary>
-        /// <docgen category='Installation Options' order='10' />
+        /// <docgen category='Installation Options' order='100' />
         [ArrayParameter(typeof(DatabaseCommandInfo), "install-command")]
         public IList<DatabaseCommandInfo> InstallDdlCommands { get; private set; }
 
         /// <summary>
         /// Gets the uninstallation DDL commands.
         /// </summary>
-        /// <docgen category='Installation Options' order='10' />
+        /// <docgen category='Installation Options' order='100' />
         [ArrayParameter(typeof(DatabaseCommandInfo), "uninstall-command")]
         public IList<DatabaseCommandInfo> UninstallDdlCommands { get; private set; }
 
@@ -190,7 +190,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         public Layout DBHost { get; set; }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "User ID=" part of the
         /// connection string.
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         public Layout DBUserName { get; set; }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "Password=" part of the
         /// connection string.
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         public Layout DBPassword
         {
             get => _dbPassword;
@@ -227,7 +227,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         public Layout DBDatabase { get; set; }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace NLog.Targets
         /// Gets the collection of properties. Each item contains a mapping
         /// between NLog layout and a property on the DbConnection instance
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         [ArrayParameter(typeof(DatabaseObjectPropertyInfo), "connectionproperty")]
         public IList<DatabaseObjectPropertyInfo> ConnectionProperties { get; } = new List<DatabaseObjectPropertyInfo>();
 
@@ -277,7 +277,7 @@ namespace NLog.Targets
         /// Gets the collection of properties. Each item contains a mapping
         /// between NLog layout and a property on the DbCommand instance
         /// </summary>
-        /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='50' />
         [ArrayParameter(typeof(DatabaseObjectPropertyInfo), "commandproperty")]
         public IList<DatabaseObjectPropertyInfo> CommandProperties { get; } = new List<DatabaseObjectPropertyInfo>();
 

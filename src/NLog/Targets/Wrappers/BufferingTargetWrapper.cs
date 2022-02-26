@@ -119,7 +119,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the number of log events to be buffered.
         /// </summary>
-        /// <docgen category='Buffering Options' order='100' />
+        /// <docgen category='Buffering Options' order='10' />
         public int BufferSize { get; set; }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace NLog.Targets.Wrappers
         /// setting to <see cref="BufferingTargetWrapperOverflowAction.Flush"/> will flush the
         /// entire buffer to the wrapped target.
         /// </remarks>
-        /// <docgen category='Buffering Options' order='100' />
+        /// <docgen category='Buffering Options' order='50' />
         public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }
 
         /// <summary>

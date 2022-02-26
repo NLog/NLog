@@ -102,45 +102,45 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the array of attributes' configurations.
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(JsonAttribute), "attribute")]
         public IList<JsonAttribute> Attributes { get; private set; }
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
-        /// <docgen category='JSON Formating' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool SuppressSpaces { get; set; }
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
-        /// <docgen category='JSON Formating' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool RenderEmptyObject { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeGdc { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
         private bool? _includeScopeProperties;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
@@ -148,7 +148,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
@@ -157,7 +157,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
@@ -166,13 +166,13 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to exclude null/empty properties from the log event (as JSON)
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool ExcludeEmptyProperties { get; set; }
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='100' />
 #if !NET35
         public ISet<string> ExcludeProperties { get; set; }
 #else
@@ -182,7 +182,7 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the JSON serializer follow object references before backing off
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public int MaxRecursionLimit { get; set; } = 1;
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
-        /// <docgen category='JSON Formating' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool EscapeForwardSlash
         {
             get => _escapeForwardSlashInternal ?? false;

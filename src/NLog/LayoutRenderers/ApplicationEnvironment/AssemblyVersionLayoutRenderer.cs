@@ -63,7 +63,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The (full) name of the assembly. If <c>null</c>, using the entry assembly.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Name { get; set; }
 
@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// Some version type and platform combinations are not fully supported.
         /// - UWP earlier than .NET Standard 1.5: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless the <see cref="Name"/> parameter is specified.
         /// </remarks>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public AssemblyVersionType Type { get; set; } = AssemblyVersionType.Assembly;
 
         private const string DefaultFormat = "major.minor.build.revision";
@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
         /// https://docs.microsoft.com/en-gb/dotnet/api/system.version?view=netframework-4.7.2#remarks
         /// for details.
         /// </remarks>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Format
         {
             get => _format;

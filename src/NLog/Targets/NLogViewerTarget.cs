@@ -89,7 +89,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeNLogData
         {
             get => Renderer.IncludeNLogData;
@@ -99,7 +99,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public Layout AppInfo
         {
             get => Renderer.AppInfo;
@@ -109,7 +109,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeCallSite
         {
             get => Renderer.IncludeCallSite;
@@ -119,7 +119,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeSourceInfo
         {
             get => Renderer.IncludeSourceInfo;
@@ -129,7 +129,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsContext"/> dictionary contents.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc
@@ -141,7 +141,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets whether to include log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeNdc
         {
             get => Renderer.IncludeNdc;
@@ -165,13 +165,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the separator for <see cref="ScopeContext"/> operation-states-stack.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string ScopeNestedSeparator { get => Renderer.ScopeNestedSeparator; set => Renderer.ScopeNestedSeparator = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
@@ -179,7 +179,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
@@ -187,7 +187,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeNdc. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
@@ -195,7 +195,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by NdcItemSeparator. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string NdlcItemSeparator { get => Renderer.NdlcItemSeparator; set => Renderer.NdlcItemSeparator = value; }
@@ -203,7 +203,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string NdcItemSeparator
         {
             get => Renderer.NdcItemSeparator;
@@ -213,7 +213,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the renderer for log4j:event logger-xml-attribute (Default ${logger})
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public Layout LoggerName
         {
             get => Renderer.LoggerName;
@@ -224,7 +224,7 @@ namespace NLog.Targets
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
         public IList<NLogViewerParameterInfo> Parameters => _log4JLayout.Parameters;
 
@@ -237,7 +237,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Layout Options' order='1' />
         public override Layout Layout
         {
             get

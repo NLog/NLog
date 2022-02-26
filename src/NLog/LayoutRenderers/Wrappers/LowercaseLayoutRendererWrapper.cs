@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether lower case conversion should be applied.
         /// </summary>
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool Lowercase { get; set; } = true;
 
         /// <summary>
@@ -61,13 +61,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <example>
         /// ${level:tolower}
         /// </example>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public bool ToLower { get => Lowercase; set => Lowercase = value; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
         /// <inheritdoc/>

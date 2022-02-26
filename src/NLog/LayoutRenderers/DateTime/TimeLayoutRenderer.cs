@@ -49,19 +49,19 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public bool UniversalTime { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to output in culture invariant format
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool Invariant { get => ReferenceEquals(Culture, CultureInfo.InvariantCulture); set => Culture = value ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         [RequiredParameter]
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 

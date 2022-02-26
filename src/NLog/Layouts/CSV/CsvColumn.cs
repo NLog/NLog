@@ -63,13 +63,13 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the column.
         /// </summary>
-        /// <docgen category='CSV Column Options' order='10' />
+        /// <docgen category='Layout Options' order='1' />
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout of the column.
         /// </summary>
-        /// <docgen category='CSV Column Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 
@@ -79,7 +79,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// <see cref="CsvQuotingMode.All"/> and <see cref="CsvQuotingMode.Nothing"/> are faster than the default <see cref="CsvQuotingMode.Auto"/>
         /// </remarks>
-        /// <docgen category='CSV Column Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public CsvQuotingMode Quoting { get => _quoting ?? CsvQuotingMode.Auto; set => _quoting = value; }
         internal CsvQuotingMode? _quoting;
     }

@@ -75,7 +75,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the attribute.
         /// </summary>
-        /// <docgen category='XML Attribute Options' order='10' />
+        /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         public string Name { get => _name; set => _name = XmlHelper.XmlConvertToElementName(value?.Trim()); }
         private string _name;
@@ -83,30 +83,32 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
-        /// <docgen category='XML Attribute Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
         public Type ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
-        /// <docgen category='XML Attribute Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public bool Encode { get; set; }
 
         /// <summary>
         /// Gets or sets whether an attribute with empty value should be included in the output
         /// </summary>
-        /// <docgen category='XML Attribute Options' order='100' />
+        /// <docgen category='Layout Options' order='50' />
         public bool IncludeEmptyValue
         {
             get => _includeEmptyValue;

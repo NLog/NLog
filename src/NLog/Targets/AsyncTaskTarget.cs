@@ -67,27 +67,32 @@ namespace NLog.Targets
         /// <summary>
         /// How many milliseconds to delay the actual write operation to optimize for batching
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         public int TaskDelayMilliseconds { get; set; } = 1;
 
         /// <summary>
         /// How many seconds a Task is allowed to run before it is cancelled.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         public int TaskTimeoutSeconds { get; set; } = 150;
 
         /// <summary>
         /// How many attempts to retry the same Task, before it is aborted
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         public int RetryCount { get; set; }
 
         /// <summary>
         /// How many milliseconds to wait before next retry (will double with each retry)
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         public int RetryDelayMilliseconds { get; set; } = 500;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
         /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
         private bool? _forceLockingQueue;
 

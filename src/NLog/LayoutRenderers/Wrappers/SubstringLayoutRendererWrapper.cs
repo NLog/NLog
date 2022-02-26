@@ -54,14 +54,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the start index. 
         /// </summary>
         /// <value>Index</value>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int Start { get; set; }
 
         /// <summary>
         /// Gets or sets the length in characters. If <c>null</c>, then the whole string
         /// </summary>
         /// <value>Index</value>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int? Length { get; set; }
 
         /// <inheritdoc/>

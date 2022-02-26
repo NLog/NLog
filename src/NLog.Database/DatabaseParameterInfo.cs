@@ -182,6 +182,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <docgen category='Parameter Options' order='7' />
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets whether empty value should translate into DbNull. Requires database column to allow NULL values.
         /// </summary>
-        /// <docgen category='Parameter Options' order='8' />
+        /// <docgen category='Parameter Options' order='10' />
         public bool AllowDbNull
         {
             get => _allowDbNull;

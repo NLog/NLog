@@ -132,13 +132,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to append newline at the end of log message.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Payload Options' order='10' />
         public bool NewLine { get; set; }
 
         /// <summary>
         /// Gets or sets the end of line value if a newline is appended at the end of log message <see cref="NewLine"/>.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Payload Options' order='10' />
         public LineEndingMode LineEnding
         {
             get => _lineEnding;
@@ -153,7 +153,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum message size in bytes. On limit breach then <see cref="OnOverflow"/> action is activated.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Payload Options' order='10' />
         public int MaxMessageSize { get; set; } = 65000;
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the encoding to be used.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Payload Options' order='10' />
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>

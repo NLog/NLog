@@ -49,37 +49,38 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the output format of the stack trace.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public StackTraceFormat Format { get; set; } = StackTraceFormat.Flat;
 
         /// <summary>
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int TopFrames { get; set; } = 3;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int SkipFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the stack frame separator string.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? ""); }
         private SimpleLayout _separator = new SimpleLayout(" => ");
 
         /// <summary>
         /// Logger should capture StackTrace, if it was not provided manually
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public bool CaptureStackTrace { get; set; } = true;
 
         /// <summary>
         /// Gets or sets whether to render StackFrames in reverse order
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool Reverse { get; set; }
 
         /// <inheritdoc/>

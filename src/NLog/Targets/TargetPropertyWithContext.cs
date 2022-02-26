@@ -65,30 +65,33 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the attribute.
         /// </summary>
-        /// <docgen category='Property Options' order='10' />
+        /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
-        /// <docgen category='Property Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the type of the property.
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public Type PropertyType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Gets or sets when an empty value should cause the property to be included
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue
         {
             get => _includeEmptyValue;

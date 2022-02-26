@@ -68,31 +68,31 @@ namespace NLog.Filters
         /// <summary>
         /// Max number of unique filter values to expect simultaneously
         /// </summary>
-        /// <docgen category='Filtering Options' order='10' />
+        /// <docgen category='Filtering Options' order='100' />
         public int MaxFilterCacheSize { get; set; } = 50000;
 
         /// <summary>
         /// Default number of unique filter values to expect, will automatically increase if needed
         /// </summary>
-        /// <docgen category='Filtering Options' order='10' />
+        /// <docgen category='Filtering Options' order='100' />
         public int DefaultFilterCacheSize { get; set; } = 1000;
 
         /// <summary>
         /// Insert FilterCount value into <see cref="LogEventInfo.Properties"/> when an event is no longer filtered
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Filtering Options' order='10' />
         public string FilterCountPropertyName { get; set; }
 
         /// <summary>
         /// Append FilterCount to the <see cref="LogEventInfo.Message"/> when an event is no longer filtered
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Filtering Options' order='10' />
         public string FilterCountMessageAppendFormat { get; set; }
 
         /// <summary>
         /// Reuse internal buffers, and doesn't have to constantly allocate new buffers
         /// </summary>
-        /// <docgen category='Performance Options' order='10' />
+        /// <docgen category='Filtering Options' order='100' />
         [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
         public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
         private bool? _optimizeBufferReuse;
@@ -100,7 +100,7 @@ namespace NLog.Filters
         /// <summary>
         /// Default buffer size for the internal buffers
         /// </summary>
-        /// <docgen category='Performance Options' order='10' />
+        /// <docgen category='Filtering Options' order='100' />
         public int OptimizeBufferDefaultLength { get; set; } = 1000;
 
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();

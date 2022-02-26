@@ -73,7 +73,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public string Regex
         {
             get => _regexHelper.RegexPattern;
@@ -83,13 +83,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the condition that must be met before scanning the row for highlight of words
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public ConditionExpression Condition { get; set; }
 
         /// <summary>
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public bool CompileRegex
         {
             get => _regexHelper.CompileRegex;
@@ -99,7 +99,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public string Text
         {
             get => _regexHelper.SearchText;
@@ -109,7 +109,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public bool WholeWords
         {
             get => _regexHelper.WholeWords;
@@ -119,7 +119,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public bool IgnoreCase
         {
             get => _regexHelper.IgnoreCase;
@@ -129,13 +129,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
-        /// <docgen category='Formatting Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public ConsoleOutputColor ForegroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
-        /// <docgen category='Formatting Options' order='10' />
+        /// <docgen category='Highlighting Rules' order='10' />
         public ConsoleOutputColor BackgroundColor { get; set; }
 
         /// <summary>
