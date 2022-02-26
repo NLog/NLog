@@ -72,6 +72,18 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void UnknownLayoutRendererProperty()
+        {
+            Assert.Throws<NLogConfigurationException>(() => new SimpleLayout("'${message:unknown_item=${unknown-value}}'"));
+        }
+
+        [Fact]
+        public void UnknownLayoutRendererPropertyValue()
+        {
+            Assert.Throws<NLogConfigurationException>(() => new SimpleLayout("'${message:withexception=${unknown-value}}'"));
+        }
+
+        [Fact]
         public void SingleParamTest()
         {
             SimpleLayout l = "${event-property:item=AAA}";

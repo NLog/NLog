@@ -62,7 +62,7 @@ namespace NLog.UnitTests.Internal.Reflection
             // Assert
             Assert.IsType<NLogConfigurationException>(ex.InnerException);
             Assert.IsType<NotSupportedException>(ex.InnerException.InnerException);
-            Assert.Contains("is an array, and cannot be assigned a scalar value", ex.InnerException.InnerException.Message);
+            Assert.Contains("because property of type array and not scalar value", ex.InnerException.InnerException.Message);
         }
     }
 }

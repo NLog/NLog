@@ -461,7 +461,7 @@ namespace NLog.Layouts
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            var configException = new NLogConfigurationException($"Unknown property '{parameterName}=' for ${{{typeName}}} ({layoutRenderer?.GetType()})");
+                            var configException = new NLogConfigurationException($"${{{typeName}}} cannot assign unknown property '{parameterName}='");
                             if (throwConfigExceptions ?? configException.MustBeRethrown())
                             {
                                 throw configException;
@@ -522,7 +522,7 @@ namespace NLog.Layouts
         {
             if (parameterName?.Equals(previousParameterName, StringComparison.OrdinalIgnoreCase) == true)
             {
-                var configException = new NLogConfigurationException($"Same property '{parameterName}' assigned twice for {layoutRenderer?.GetType()} ");
+                var configException = new NLogConfigurationException($"'{layoutRenderer?.GetType()?.Name}' has same property '{parameterName}=' assigned twice");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
@@ -590,7 +590,7 @@ namespace NLog.Layouts
             }
             else
             {
-                var configException = new NLogConfigurationException($"{layoutRenderer.GetType()} has no default property to assign value {value}");
+                var configException = new NLogConfigurationException($"'{layoutRenderer?.GetType()?.Name}' has no default property to assign value {value}");
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
