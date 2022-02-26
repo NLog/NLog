@@ -74,25 +74,25 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CachedLayoutRendererWrapper"/> is enabled.
         /// </summary>
-        /// <docgen category='Caching Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool Cached { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating when the cache is cleared.
         /// </summary>
-        /// <docgen category='Caching Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public ClearCacheOption ClearCache { get; set; } = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
 
         /// <summary>
         /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
         /// </summary>
-        /// <docgen category='Caching Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public Layout CacheKey { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating how many seconds the value should stay cached until it expires
         /// </summary>
-        /// <docgen category='Caching Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int CachedSeconds
         {
             get => (int)(_cachedValueTimeout?.TotalSeconds ?? 0.0);

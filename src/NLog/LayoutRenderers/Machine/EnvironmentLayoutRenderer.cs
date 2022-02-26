@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the environment variable.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
         public string Variable { get; set; }
@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the default value to be used when the environment variable is not set.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Default { get; set; }
 
         private System.Collections.Generic.KeyValuePair<string, SimpleLayout> _cachedValue;

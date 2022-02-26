@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         /// <li><b>System</b> - System directory</li>
         /// </ul>
         /// </remarks>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public Environment.SpecialFolder Folder { get; set; }
 

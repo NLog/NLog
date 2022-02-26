@@ -49,13 +49,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to apply JSON encoding.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public bool JsonEncode { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public bool EscapeUnicode { get; set; } = true;
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <remarks>
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         public bool EscapeForwardSlash { get; set; }
 
         /// <inheritdoc/>

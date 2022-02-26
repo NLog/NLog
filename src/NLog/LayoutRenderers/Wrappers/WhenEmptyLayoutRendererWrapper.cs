@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the layout to be rendered when original layout produced empty result.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Layout Options" order="10"/>
         [RequiredParameter]
         public Layout WhenEmpty { get; set; }
 

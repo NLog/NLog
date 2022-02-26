@@ -56,6 +56,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout that will render the result value
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public Layout Layout
         {
@@ -84,6 +85,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
         public Type ValueType
         {
             get => _valueType;
@@ -101,6 +103,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
         public Layout DefaultValue
         {
             get => _defaultValue;
@@ -118,6 +121,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the fallback value should be null (instead of default value of <see cref="ValueType"/>) when result value is not available
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public bool ForceDefaultValueNull
         {
             get => _forceDefaultValueNull;
@@ -135,6 +139,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets format used for parsing parameter string-value for type-conversion
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public string ValueParseFormat
         {
             get => _valueParseFormat;
@@ -151,7 +156,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the culture used for parsing parameter string-value for type-conversion
         /// </summary>
-        /// <docgen category='Parameter Options' order='9' />
+        /// <docgen category='Layout Options' order='100' />
         public CultureInfo ValueParseCulture
         {
             get => _valueParseCulture;

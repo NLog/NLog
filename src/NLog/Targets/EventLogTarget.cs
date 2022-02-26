@@ -178,7 +178,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
         /// </summary>
-        /// <docgen category='Event Log Overflow Action' order='10' />
+        /// <docgen category='Event Log Options' order='100' />
         public EventLogTargetOverflowAction OnOverflow { get; set; } = EventLogTargetOverflowAction.Truncate;
 
         /// <summary>

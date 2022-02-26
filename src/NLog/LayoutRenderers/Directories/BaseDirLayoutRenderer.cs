@@ -61,13 +61,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Use base dir of current process. Alternative one can just use ${processdir}
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool ProcessDir { get; set; }
 
         /// <summary>
         /// Fallback to the base dir of current process, when AppDomain.BaseDirectory is Temp-Path (.NET Core 3 - Single File Publish)
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool FixTempDir { get; set; }
 
         /// <summary>
@@ -91,13 +91,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
+        /// <docgen category='Advanced Options' order='50' />
         public string File { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the directory to be Path.Combine()'d with with the base directory.
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
+        /// <docgen category='Advanced Options' order='50' />
         public string Dir { get; set; }
 
         /// <inheritdoc/>

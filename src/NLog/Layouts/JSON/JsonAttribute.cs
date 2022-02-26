@@ -74,7 +74,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the attribute.
         /// </summary>
-        /// <docgen category='JSON Attribute Options' order='10' />
+        /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         public string Name
         {
@@ -98,30 +98,32 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
-        /// <docgen category='JSON Attribute Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public Type ValueType { get => _layoutInfo.ValueType; set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
         /// Determines whether or not this attribute will be Json encoded.
         /// </summary>
-        /// <docgen category='JSON Attribute Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public bool Encode { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
-        /// <docgen category='JSON Attribute Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public bool EscapeUnicode { get; set; }
 
         /// <summary>
@@ -130,14 +132,14 @@ namespace NLog.Layouts
         /// <remarks>
         /// If not set explicitly then the value of the parent will be used as default.
         /// </remarks>
-        /// <docgen category='JSON Attribute Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public bool EscapeForwardSlash { get => EscapeForwardSlashInternal ?? false; set => EscapeForwardSlashInternal = value; }
         internal bool? EscapeForwardSlashInternal { get; private set; }
 
         /// <summary>
         /// Gets or sets whether an attribute with empty value should be included in the output
         /// </summary>
-        /// <docgen category='JSON Attribute Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue
         {
             get => _includeEmptyValue;

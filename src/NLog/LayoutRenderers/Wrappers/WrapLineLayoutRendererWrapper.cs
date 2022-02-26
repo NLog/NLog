@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <remarks>
         /// Only positive values are allowed
         /// </remarks>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int WrapLine { get; set; } = 80;
 
         /// <inheritdoc/>

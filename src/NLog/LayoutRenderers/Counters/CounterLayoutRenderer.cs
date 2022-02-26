@@ -50,19 +50,19 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the initial value of the counter.
         /// </summary>
-        /// <docgen category='Counter Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int Value { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the value to be added to the counter after each layout rendering.
         /// </summary>
-        /// <docgen category='Counter Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int Increment { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the name of the sequence. Different named sequences can have individual values.
         /// </summary>
-        /// <docgen category='Counter Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public Layout Sequence { get; set; }
 
         /// <inheritdoc/>

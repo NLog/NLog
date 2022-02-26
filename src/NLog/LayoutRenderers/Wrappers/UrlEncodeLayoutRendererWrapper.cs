@@ -57,21 +57,21 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether spaces should be translated to '+' or '%20'.
         /// </summary>
         /// <value>A value of <c>true</c> if space should be translated to '+'; otherwise, <c>false</c>.</value>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool SpaceAsPlus { get; set; }
 
         /// <summary>
         /// Gets or sets a value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
         /// </summary>
         /// <value>A value of <c>true</c> if Rfc3986; otherwise, <c>false</c> for legacy Rfc2396.</value>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public bool EscapeDataRfc3986 { get; set; }
 
         /// <summary>
         /// Gets or sets a value whether escaping be done according to the old NLog style (Very non-standard)
         /// </summary>
         /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool EscapeDataNLogLegacy { get; set; }
 
         /// <inheritdoc/>

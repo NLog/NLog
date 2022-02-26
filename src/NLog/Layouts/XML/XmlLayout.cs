@@ -64,7 +64,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the root XML element
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string ElementName
         {
             get => base.ElementNameInternal;
@@ -74,7 +74,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Value inside the root XML element
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public Layout ElementValue
         {
             get => base.LayoutWrapper.Inner;
@@ -84,7 +84,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
-        /// <docgen category='XML Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public bool ElementEncode
         {
             get => base.LayoutWrapper.XmlEncode;

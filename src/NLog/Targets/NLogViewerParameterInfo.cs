@@ -52,21 +52,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets viewer parameter name.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 
         /// <summary>
         /// Gets or sets whether an attribute with empty value should be included in the output
         /// </summary>
-        /// <docgen category='Parameter Options' order='100' />
+        /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue { get; set; }
     }
 }

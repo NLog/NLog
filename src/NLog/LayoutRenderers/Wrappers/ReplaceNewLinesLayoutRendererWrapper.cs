@@ -53,7 +53,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating the string that should be used for separating lines.
         /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Replacement { get; set; } = " ";
 
         /// <inheritdoc/>

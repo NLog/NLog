@@ -68,7 +68,6 @@ namespace NLog.Layouts
         /// Name of the XML element
         /// </summary>
         /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
-        /// <docgen category='XML Options' order='10' />
         internal string ElementNameInternal { get => _elementNameInternal; set => _elementNameInternal = XmlHelper.XmlConvertToElementName(value?.Trim()); }
         private string _elementNameInternal;
 
@@ -76,52 +75,51 @@ namespace NLog.Layouts
         /// Value inside the XML element
         /// </summary>
         /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
-        /// <docgen category='XML Options' order='10' />
         internal readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper LayoutWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
 
         /// <summary>
         /// Auto indent and create new lines
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool IndentXml { get; set; }
 
         /// <summary>
         /// Gets the array of xml 'elements' configurations.
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(XmlElement), "element")]
         public IList<XmlElement> Elements { get; private set; }
 
         /// <summary>
         /// Gets the array of 'attributes' configurations for the element
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(XmlAttribute), "attribute")]
         public IList<XmlAttribute> Attributes { get; private set; }
 
         /// <summary>
         /// Gets or sets whether a ElementValue with empty value should be included in the output
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Output' order='10' />
         public bool IncludeEventProperties { get; set; }
 
         /// <summary>
         /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> dictionary.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _includeScopeProperties ?? (_includeMdlc == true || _includeMdc == true); set => _includeScopeProperties = value; }
         private bool? _includeScopeProperties;
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
@@ -130,7 +128,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
@@ -139,7 +137,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
@@ -147,7 +145,7 @@ namespace NLog.Layouts
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
 #if !NET35
         public ISet<string> ExcludeProperties { get; set; }
 #else
@@ -162,7 +160,7 @@ namespace NLog.Layouts
         /// 
         /// Skips closing element tag when having configured <see cref="PropertiesElementValueAttribute"/>
         /// </remarks>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public string PropertiesElementName
         {
             get => _propertiesElementName;
@@ -185,7 +183,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public string PropertiesElementKeyAttribute { get; set; } = DefaultPropertyKeyAttribute;
 
         /// <summary>
@@ -199,19 +197,19 @@ namespace NLog.Layouts
         ///
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public string PropertiesElementValueAttribute { get; set; }
 
         /// <summary>
         /// XML element name to use for rendering IList-collections items
         /// </summary>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public string PropertiesCollectionItemName { get; set; } = DefaultCollectionItemName;
 
         /// <summary>
         /// How far should the XML serializer follow object references before backing off
         /// </summary>
-        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        /// <docgen category='Layout Options' order='100' />
         public int MaxRecursionLimit { get; set; } = 1;
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));

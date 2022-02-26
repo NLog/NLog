@@ -56,20 +56,20 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Positive padding values cause left padding, negative values 
         /// cause right padding to the desired width.
         /// </remarks>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public int Padding { get; set; }
 
         /// <summary>
         /// Gets or sets the padding character.
         /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public char PadCharacter { get; set; } = ' ';
 
         /// <summary>
         /// Gets or sets a value indicating whether to trim the 
         /// rendered text to the absolute value of the padding length.
         /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool FixedLength { get; set; }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// or right-aligned (characters removed from the left). The
         /// default is left alignment.
         /// </summary>
-        /// <docgen category='Transformation Options' order='10' />RegistryLayoutRenderer
+        /// <docgen category='Layout Options' order='10' />
         public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; } = PaddingHorizontalAlignment.Left;
 
         /// <inheritdoc/>

@@ -75,7 +75,7 @@ namespace NLog.LayoutRenderers
         /// The first parameter is the AppDomain.Id, the second the second the AppDomain.FriendlyName
         /// This string is used in <see cref="string.Format(string,object[])"/>
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Format { get; set; } = LongFormatCode;
 

@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
 
         /// <inheritdoc/>

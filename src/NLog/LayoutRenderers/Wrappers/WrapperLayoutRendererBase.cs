@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// 
         /// [DefaultParameter] so Inner: is not required if it's the first
         /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public Layout Inner { get; set; }
 

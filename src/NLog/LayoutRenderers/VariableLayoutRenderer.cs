@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the NLog variable.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
         public string Name { get; set; }
@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the default value to be used when the variable is not set.
         /// </summary>
         /// <remarks>Not used if Name is <c>null</c></remarks>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Default { get; set; }
 
         /// <summary>

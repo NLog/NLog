@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The layout to be wrapped.</value>
         /// <remarks>This variable is for backwards compatibility</remarks>
-        /// <docgen category='Transformation Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public Layout Text
         {
             get => Inner;

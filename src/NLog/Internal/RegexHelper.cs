@@ -70,13 +70,11 @@ namespace NLog.Internal
         /// <summary>
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
         public bool CompileRegex { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
         public bool WholeWords
         {
             get => _wholeWords;
@@ -93,7 +91,6 @@ namespace NLog.Internal
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
         public bool IgnoreCase
         {
             get => _ignoreCase;

@@ -129,7 +129,7 @@ namespace NLog.Targets
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeEventProperties"/> is true
         /// </summary>
-        /// <docgen category='JSON Output' order='10' />
+        /// <docgen category='Layout Options' order='50' />
 #if !NET35
         public ISet<string> ExcludeProperties { get; set; }
 #else

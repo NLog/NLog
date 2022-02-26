@@ -193,7 +193,7 @@ namespace NLog.Targets
         /// All <c>Debug</c> messages will go to <c>Debug.log</c>, all <c>Info</c> messages will go to <c>Info.log</c> and so on.
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
-        /// <docgen category='Output Options' order='1' />
+        /// <docgen category='General Options' order='2' />
         [RequiredParameter]
         public Layout FileName
         {
@@ -220,7 +220,7 @@ namespace NLog.Targets
         /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
         /// If set to <c>false</c>, nothing gets written when the filename is wrong.
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public bool CleanupFileName
         {
             get => _cleanupFileName;
@@ -239,7 +239,7 @@ namespace NLog.Targets
         /// <summary>
         /// Is the  <see cref="FileName"/> an absolute or relative path?
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public FilePathKind FileNameKind
         {
             get => _fileNameKind;
@@ -261,7 +261,7 @@ namespace NLog.Targets
         /// Setting this to false may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='50' />
         public bool CreateDirs { get; set; } = true;
 
         /// <summary>
@@ -270,13 +270,13 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "FileName" parameter denotes a single file.
         /// </remarks>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='50' />
         public bool DeleteOldFileOnStartup { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public bool ReplaceFileContentsOnEachWrite { get; set; }
 
         /// <summary>
@@ -304,13 +304,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='50' />
         public bool EnableFileDelete { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public Win32FileAttributes FileAttributes
         {
             get => _fileAttributes;
@@ -334,13 +334,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the line ending mode.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public LineEndingMode LineEnding { get; set; } = LineEndingMode.Default;
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
         /// </summary>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='50' />
         public bool AutoFlush { get; set; } = true;
 
         /// <summary>
@@ -361,25 +361,25 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum number of seconds that files are kept open. Zero or negative means disabled.
         /// </summary>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='50' />
         public int OpenFileCacheTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of seconds before open files are flushed. Zero or negative means disabled.
         /// </summary>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='50' />
         public int OpenFileFlushTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the log file buffer size in bytes.
         /// </summary>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='50' />
         public int BufferSize { get; set; } = 32768;
 
         /// <summary>
         /// Gets or sets the file encoding.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Output Options' order='10' />
         public Encoding Encoding
         {
             get => _encoding;
@@ -396,7 +396,7 @@ namespace NLog.Targets
         /// Gets or sets whether or not this target should just discard all data that its asked to write.
         /// Mostly used for when testing NLog Stack except final write
         /// </summary>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='100' />
         public bool DiscardAll { get; set; }
 
         /// <summary>
@@ -426,7 +426,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This effectively prevents files from being kept open.
         /// </remarks>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='50' />
         public bool NetworkWrites { get; set; }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace NLog.Targets
         ///
         /// Defaults to true for UTF-16 and UTF-32
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='50' />
         public bool WriteBom
         {
             get => _writeBom ?? false;
@@ -446,7 +446,7 @@ namespace NLog.Targets
         /// Gets or sets the number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='100' />
         public int ConcurrentWriteAttempts { get => _concurrentWriteAttempts ?? 10; set => _concurrentWriteAttempts = value; }
         private int? _concurrentWriteAttempts;
 
@@ -467,7 +467,7 @@ namespace NLog.Targets
         /// ...<p/>
         /// and so on.
         /// </example>
-        /// <docgen category='Performance Tuning Options' order='10' />
+        /// <docgen category='Performance Tuning Options' order='100' />
         public int ConcurrentWriteAttemptDelay { get; set; } = 1;
 
         /// <summary>
@@ -477,7 +477,7 @@ namespace NLog.Targets
         /// This option works only when the "FileName" parameter denotes a single file.
         /// After archiving the old file, the current log file will be empty.
         /// </remarks>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public bool ArchiveOldFileOnStartup
         {
             get => _archiveOldFileOnStartup ?? false;
@@ -493,7 +493,7 @@ namespace NLog.Targets
         /// Default value is 0 which means that the file is archived as soon as archival on
         /// startup is enabled.
         /// </remarks>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public long ArchiveOldFileOnStartupAboveSize { get; set; }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
         /// </remarks>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public string ArchiveDateFormat
         {
             get => _archiveDateFormat;
@@ -524,7 +524,7 @@ namespace NLog.Targets
         /// Notice when combined with <see cref="ArchiveNumberingMode.Date"/> then it will attempt to append to any existing
         /// archive file if grown above size multiple times. New archive file will be created when using <see cref="ArchiveNumberingMode.DateAndSequence"/>
         /// </remarks>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public long ArchiveAboveSize
         {
             get => _archiveAboveSize;
@@ -551,7 +551,7 @@ namespace NLog.Targets
         /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
         /// on or after 11:00 will trigger the archiving.
         /// </remarks>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public FileArchivePeriod ArchiveEvery
         {
             get => _archiveEvery;
@@ -568,7 +568,7 @@ namespace NLog.Targets
         /// <summary>
         /// Is the  <see cref="ArchiveFileName"/> an absolute or relative path?
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public FilePathKind ArchiveFileKind
         {
             get => _archiveFileKind;
@@ -592,7 +592,7 @@ namespace NLog.Targets
         /// the archiving strategy. The number of hash characters used determines
         /// the number of numerical digits to be used for numbering files.
         /// </remarks>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public Layout ArchiveFileName
         {
             get
@@ -611,7 +611,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public int MaxArchiveFiles
         {
             get => _maxArchiveFiles;
@@ -628,7 +628,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the maximum days of archive files that should be kept.
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public int MaxArchiveDays
         {
             get => _maxArchiveDays;
@@ -645,7 +645,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the way file archives are numbered. 
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public ArchiveNumberingMode ArchiveNumbering
         {
             get => _archiveNumbering;
@@ -666,13 +666,13 @@ namespace NLog.Targets
         /// on platforms other than .Net4.5.
         /// Defaults to ZipArchiveFileCompressor on .Net4.5 and to null otherwise.
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public static IFileCompressor FileCompressor { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public bool EnableArchiveFileCompression
         {
             get => _enableArchiveFileCompression && FileCompressor != null;
@@ -689,21 +689,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public bool ForceManaged { get; set; } = true;
 
 #if SupportsMutex
         /// <summary>
         /// Gets or sets a value indicating whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
-        /// <docgen category='Output Options' order='10' />
+        /// <docgen category='Output Options' order='100' />
         public bool ForceMutexConcurrentWrites { get; set; }
 #endif
 
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
         /// </summary>
-        /// <docgen category='Archival Options' order='10' />
+        /// <docgen category='Archival Options' order='50' />
         public bool WriteFooterOnArchivingOnly { get; set; }
 
         /// <summary>

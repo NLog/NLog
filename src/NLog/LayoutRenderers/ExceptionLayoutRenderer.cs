@@ -112,7 +112,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <see cref="Formats"/>
         /// <see cref="ExceptionRenderingFormat"/>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [DefaultParameter]
         public string Format
         {
@@ -130,7 +130,7 @@ namespace NLog.LayoutRenderers
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public string InnerFormat
         {
             get => _innerFormat;
@@ -145,14 +145,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the separator used to concatenate parts specified in the Format.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public string Separator { get => _seperator; set => _seperator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
         private string _seperator = " ";
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public string ExceptionDataSeparator { get => _exceptionDataSeparator; set => _exceptionDataSeparator = new NLog.Layouts.SimpleLayout(value).Render(LogEventInfo.CreateNullEvent()); }
         private string _exceptionDataSeparator = ";";
 
@@ -160,36 +160,38 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the maximum number of inner exceptions to include in the output.
         /// By default inner exceptions are not enabled for compatibility with NLog 1.0.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public int MaxInnerExceptionLevel { get; set; }
 
         /// <summary>
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='50' />
         public string InnerExceptionSeparator { get; set; } = EnvironmentHelper.NewLine;
 
         /// <summary>
         /// Gets or sets whether to render innermost Exception from <see cref="Exception.GetBaseException()"/>
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
         public bool BaseException { get; set; }
 
 #if !NET35
         /// <summary>
         /// Gets or sets whether to collapse exception tree using <see cref="AggregateException.Flatten()"/>
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
 #else
         /// <summary>
         /// Gets or sets whether to collapse exception tree using AggregateException.Flatten()
         /// </summary>
+        /// <docgen category='Layout Options' order='50' />
 #endif
         public bool FlattenException { get; set; } = true;
 
         /// <summary>
-        ///  Gets the formats of the output of inner exceptions to be rendered in target.
+        /// Gets the formats of the output of inner exceptions to be rendered in target. <see cref="ExceptionRenderingFormat"/>
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        /// <see cref="ExceptionRenderingFormat"/>
+        /// <docgen category='Layout Options' order='50' />
         public List<ExceptionRenderingFormat> Formats
         {
             get;
@@ -197,10 +199,9 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        ///  Gets the formats of the output to be rendered in target.
+        ///  Gets the formats of the output to be rendered in target. <see cref="ExceptionRenderingFormat"/>
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        /// <see cref="ExceptionRenderingFormat"/>
+        /// <docgen category='Layout Options' order='50' />
         public List<ExceptionRenderingFormat> InnerFormats
         {
             get;

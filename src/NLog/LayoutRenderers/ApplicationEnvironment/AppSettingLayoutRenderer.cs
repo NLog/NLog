@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
         ///<summary>
         /// The AppSetting item-name
         ///</summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
         public string Item { get; set; }
@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers
         ///<summary>
         /// The default value to render if the AppSetting value is null.
         ///</summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public string Default { get; set; }
 
         internal IConfigurationManager ConfigurationManager { get; set; } = new ConfigurationManager();

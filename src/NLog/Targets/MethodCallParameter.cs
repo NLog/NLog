@@ -92,22 +92,8 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the parameter.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='1' />
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the parameter. Obsolete alias for <see cref="ParameterType"/>
-        /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
-        [Obsolete("Use property ParameterType instead. Marked obsolete on NLog 4.6")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Type Type { get => ParameterType; set => ParameterType = value; }
-
-        /// <summary>
-        /// Gets or sets the type of the parameter. 
-        /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
-        public Type ParameterType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
@@ -117,8 +103,23 @@ namespace NLog.Targets
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
+        /// Gets or sets the type of the parameter. Obsolete alias for <see cref="ParameterType"/>
+        /// </summary>
+        /// <docgen category='Parameter Options' order='50' />
+        [Obsolete("Use property ParameterType instead. Marked obsolete on NLog 4.6")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Type Type { get => ParameterType; set => ParameterType = value; }
+
+        /// <summary>
+        /// Gets or sets the type of the parameter. 
+        /// </summary>
+        /// <docgen category='Parameter Options' order='50' />
+        public Type ParameterType { get => _layoutInfo.ValueType ?? typeof(string); set => _layoutInfo.ValueType = value; }
+
+        /// <summary>
         /// Gets or sets the fallback value when result value is not available
         /// </summary>
+        /// <docgen category='Parameter Options' order='50' />
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>

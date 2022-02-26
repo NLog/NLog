@@ -45,13 +45,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether domain name should be included.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool Domain { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether username should be included.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         public bool UserName { get; set; } = true;
 
         /// <inheritdoc/>

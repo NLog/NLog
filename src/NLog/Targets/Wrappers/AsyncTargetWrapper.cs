@@ -205,7 +205,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the action to be taken when the lazy writer thread request queue count
         /// exceeds the set limit.
         /// </summary>
-        /// <docgen category='Buffering Options' order='100' />
+        /// <docgen category='Buffering Options' order='10' />
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
             get => _requestQueue.OnOverflow;
@@ -215,7 +215,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
-        /// <docgen category='Buffering Options' order='100' />
+        /// <docgen category='Buffering Options' order='10' />
         public int QueueLimit
         {
             get => _requestQueue.RequestLimit;
