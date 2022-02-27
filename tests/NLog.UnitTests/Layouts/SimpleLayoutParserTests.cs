@@ -74,7 +74,13 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void UnknownLayoutRendererProperty()
         {
-            Assert.Throws<NLogConfigurationException>(() => new SimpleLayout("'${message:unknown_item=${unknown-value}}'"));
+            Assert.Throws<NLogConfigurationException>(() => new SimpleLayout("${message:unknown_item=${unknown-value}}"));
+        }
+
+        [Fact]
+        public void UnknownConditionLayoutRenderer()
+        {
+            Assert.Throws<NLogConfigurationException>(() => new SimpleLayout("${when:when=Levl==LogLevel.Info:inner=Unknown}"));
         }
 
         [Fact]

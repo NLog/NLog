@@ -470,33 +470,14 @@ namespace NLog.Layouts
                     }
                     else
                     {
-                        if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
+                        var propertyValue = ParseLayoutRendererPropertyValue(configurationItemFactory, stringReader, throwConfigExceptions, typeName, propertyInfo);
+                        if (propertyValue is string propertyStringValue)
                         {
-                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
-                            Layout nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
-
-                            if (propertyInfo.PropertyType.IsGenericType() && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
-                            {
-                                var concreteType = typeof(Layout<>).MakeGenericType(propertyInfo.PropertyType.GetGenericArguments());
-                                nestedLayout = (Layout)Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
-                            }
-
-                            propertyInfo.SetValue(parameterTarget, nestedLayout, null);
+                            PropertyHelper.SetPropertyFromString(parameterTarget, propertyInfo, propertyStringValue, configurationItemFactory);
                         }
-                        else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
+                        else if (propertyValue != null)
                         {
-                            var conditionExpression = ConditionParser.ParseExpression(stringReader, configurationItemFactory);
-                            propertyInfo.SetValue(parameterTarget, conditionExpression, null);
-                        }
-                        else if (typeof(string).IsAssignableFrom(propertyInfo.PropertyType))
-                        {
-                            string value = ParseParameterStringValue(stringReader);
-                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, propertyInfo, configurationItemFactory);
-                        }
-                        else
-                        {
-                            string value = ParseParameterValue(stringReader);
-                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, propertyInfo, configurationItemFactory);
+                            PropertyHelper.SetPropertyValueForObject(parameterTarget, propertyValue, propertyInfo);
                         }
                     }
                 }
@@ -516,6 +497,48 @@ namespace NLog.Layouts
             }
 
             return layoutRenderer;
+        }
+
+        private static object ParseLayoutRendererPropertyValue(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader, bool? throwConfigExceptions, string targetTypeName, PropertyInfo propertyInfo)
+        {
+            if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
+            {
+                LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
+                Layout nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
+
+                if (propertyInfo.PropertyType.IsGenericType() && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
+                {
+                    var concreteType = typeof(Layout<>).MakeGenericType(propertyInfo.PropertyType.GetGenericArguments());
+                    nestedLayout = (Layout)Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
+                }
+
+                return nestedLayout;
+            }
+            else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
+            {
+                try
+                {
+                    return ConditionParser.ParseExpression(stringReader, configurationItemFactory);
+                }
+                catch (ConditionParseException ex)
+                {
+                    var configException = new NLogConfigurationException($"${{{targetTypeName}}} cannot parse ConditionExpression for property '{propertyInfo.Name}='. Error: {ex.Message}", ex);
+                    if (throwConfigExceptions ?? configException.MustBeRethrown())
+                    {
+                        throw configException;
+                    }
+
+                    return null;
+                }
+            }
+            else if (typeof(string).IsAssignableFrom(propertyInfo.PropertyType))
+            {
+                return ParseParameterStringValue(stringReader);
+            }
+            else
+            {
+                return ParseParameterValue(stringReader);
+            }
         }
 
         private static string ValidatePreviousParameterName(string previousParameterName, string parameterName, LayoutRenderer layoutRenderer, bool? throwConfigExceptions)

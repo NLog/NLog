@@ -85,59 +85,76 @@ namespace NLog.Internal
         /// <summary>
         /// Set value parsed from string.
         /// </summary>
-        /// <param name="obj">object instance to set with property <paramref name="propertyName"/></param>
-        /// <param name="propertyName">name of the property on <paramref name="obj"/></param>
-        /// <param name="value">The value to be parsed.</param>
+        /// <param name="targetObject">object instance to set with property <paramref name="propertyName"/></param>
+        /// <param name="propertyName">name of the property on <paramref name="targetObject"/></param>
+        /// <param name="stringValue">The value to be parsed.</param>
         /// <param name="configurationItemFactory"></param>
-        internal static void SetPropertyFromString(object obj, string propertyName, string value, ConfigurationItemFactory configurationItemFactory)
+        internal static void SetPropertyFromString(object targetObject, string propertyName, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
-            var objType = obj.GetType();
-            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", objType, propertyName, value);
+            var objType = targetObject.GetType();
+            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", objType, propertyName, stringValue);
 
             if (!TryGetPropertyInfo(objType, propertyName, out var propInfo))
             {
-                throw new NLogConfigurationException($"'{objType?.Name}' cannot assign unknown property '{propertyName}'='{value}'");
+                throw new NLogConfigurationException($"'{objType?.Name}' cannot assign unknown property '{propertyName}'='{stringValue}'");
             }
 
-            SetPropertyFromString(obj, propertyName, value, propInfo, configurationItemFactory);
+            SetPropertyFromString(targetObject, propInfo, stringValue, configurationItemFactory);
         }
 
-        internal static void SetPropertyFromString(object obj, string propertyName, string value, PropertyInfo propInfo, ConfigurationItemFactory configurationItemFactory)
+        internal static void SetPropertyFromString(object targetObject, PropertyInfo propInfo, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
+            object propertyValue = null;
+
             try
             {
-                Type propertyType = propInfo.PropertyType;
+                var propertyType = Nullable.GetUnderlyingType(propInfo.PropertyType) ?? propInfo.PropertyType;
 
-                if (!TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out var newValue))
+                if (!TryNLogSpecificConversion(propertyType, stringValue, configurationItemFactory, out propertyValue))
                 {
                     if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                     {
-                        throw new NotSupportedException($"'{obj?.GetType()?.Name}' cannot assign property '{propertyName}', because property of type array and not scalar value: '{value}'.");
+                        throw new NotSupportedException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}', because property of type array and not scalar value: '{stringValue}'.");
                     }
 
-                    propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
-
-                    if (!(TryGetEnumValue(propertyType, value, out newValue, true)
-                        || TryImplicitConversion(propertyType, value, out newValue)
-                        || TryFlatListConversion(obj, propInfo, value, configurationItemFactory, out newValue)
-                        || TryTypeConverterConversion(propertyType, value, out newValue)))
-                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                    if (!(TryGetEnumValue(propertyType, stringValue, out propertyValue, true)
+                        || TryImplicitConversion(propertyType, stringValue, out propertyValue)
+                        || TryFlatListConversion(targetObject, propInfo, stringValue, configurationItemFactory, out propertyValue)
+                        || TryTypeConverterConversion(propertyType, stringValue, out propertyValue)))
+                        propertyValue = Convert.ChangeType(stringValue, propertyType, CultureInfo.InvariantCulture);
                 }
-
-                propInfo.SetValue(obj, newValue, null);
             }
-            catch (TargetInvocationException ex)
+            catch (Exception ex)
             {
-                throw new NLogConfigurationException($"'{obj?.GetType()?.Name}' cannot assign property '{propInfo.Name}'='{value}'", ex.InnerException ?? ex);
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrownImmediately())
+                if (ex.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                throw new NLogConfigurationException($"'{obj?.GetType()?.Name}' cannot assign property '{propInfo.Name}'='{value}'. Error={exception.Message}", exception);
+                throw new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}'='{stringValue}'. Error: {ex.Message}", ex);
+            }
+
+            SetPropertyValueForObject(targetObject, propertyValue, propInfo);
+        }
+
+        internal static void SetPropertyValueForObject(object targetObject, object value, PropertyInfo propInfo)
+        {
+            try
+            {
+                propInfo.SetValue(targetObject, value, null);
+            }
+            catch (TargetInvocationException ex)
+            {
+                throw new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}'", ex.InnerException ?? ex);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                throw new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}'. Error={ex.Message}", ex);
             }
         }
 
@@ -353,7 +370,14 @@ namespace NLog.Internal
 
         private static object TryParseConditionValue(string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
-            return ConditionParser.ParseExpression(stringValue, configurationItemFactory);
+            try
+            {
+                return ConditionParser.ParseExpression(stringValue, configurationItemFactory);
+            }
+            catch (ConditionParseException ex)
+            {
+                throw new NLogConfigurationException($"Cannot parse ConditionExpression '{stringValue}'. Error: {ex.Message}", ex);
+            }
         }
 
         /// <summary>
