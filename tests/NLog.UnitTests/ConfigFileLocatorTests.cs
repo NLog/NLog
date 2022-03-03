@@ -181,6 +181,33 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void LoadConfigFile_NetCorePublished_UseBaseDirectory()
+        {
+            // Arrange
+            var tmpDir = Path.GetTempPath();
+            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            {
+                AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
+#if NETSTANDARD
+                AppDomainConfigurationFile = string.Empty,                  // .NET 6 single-publish-style
+#else
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "BaseDir", "Entry.exe.config"),
+#endif
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Entry.exe"),
+                EntryAssemblyLocation = string.Empty,                       // .NET 6 single-publish-style
+                EntryAssemblyFileName = "Entry.dll",
+            };
+
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+
+            // Act
+            var result = fileLoader.GetDefaultCandidateConfigFilePaths().ToList();
+
+            // Assert base-directory + process-directory + nlog-assembly-directory
+            AssertResult(tmpDir, "BaseDir", null, "Entry", result);
+        }
+
+        [Fact]
         public void LoadConfigFile_NetCorePublished_UseProcessDirectory()
         {
             // Arrange
@@ -295,11 +322,13 @@ namespace NLog.UnitTests
         private static void AssertResult(string tmpDir, string appDir, string processDir, string appName, List<string> result)
         {
 #if NETSTANDARD
-            Assert.Contains(Path.Combine(tmpDir, processDir, appName + ".exe.nlog"), result, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains(Path.Combine(tmpDir, processDir ?? appDir, appName + ".exe.nlog"), result, StringComparer.OrdinalIgnoreCase);
             Assert.Contains(Path.Combine(tmpDir, appDir, "Entry.dll.nlog"), result, StringComparer.OrdinalIgnoreCase);
             if (NLog.Internal.PlatformDetector.IsWin32)
             {
-                if (appDir != processDir)
+                if (processDir is null)
+                    Assert.Equal(4, result.Count);  // Single File Publish on .NET 6 - Case insensitive
+                else if (appDir != processDir)
                     Assert.Equal(6, result.Count);  // Single File Publish on NetCore 3.1 - Case insensitive
                 else
                     Assert.Equal(5, result.Count);  // Case insensitive
@@ -311,7 +340,12 @@ namespace NLog.UnitTests
 #else
             Assert.Equal(Path.Combine(tmpDir, appDir, appName + ".exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
             if (NLog.Internal.PlatformDetector.IsWin32)
-                Assert.Equal(4, result.Count);  // Case insensitive
+            {
+                if (processDir is null)
+                    Assert.Equal(3, result.Count);  // Case insensitive - No Assembly/Process-Directory
+                else
+                    Assert.Equal(4, result.Count);  // Case insensitive
+            }
 #endif
             Assert.Contains(Path.Combine(tmpDir, "BaseDir", "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
             Assert.Contains(Path.Combine(tmpDir, appDir, "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
