@@ -99,7 +99,19 @@ namespace NLog.Internal.Fakeables
         {
             try
             {
-                return Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly()?.Location ?? string.Empty);
+                var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
+                var assemblyLocation = entryAssembly?.Location;
+                if (!string.IsNullOrEmpty(assemblyLocation))
+                {
+                    return Path.GetFileName(assemblyLocation);
+                }
+
+                // Fallback to the Assembly-Name when unable to extract FileName from Location
+                var assemblyName = entryAssembly?.GetName()?.Name;
+                if (!string.IsNullOrEmpty(assemblyName))
+                    return assemblyName + ".dll";
+                else
+                    return string.Empty;
             }
             catch (Exception ex)
             {
