@@ -307,7 +307,7 @@ namespace NLog.Config
 
                 if (PathHelpers.IsTempDir(entryAssemblyLocation, _appEnvironment.UserTempFilePath))
                 {
-                    // Handle Single File Published on NetCore 3.1 and loading side-by-side exe.nlog (Not relevant for Net5.0)
+                    // Handle Single File Published on NetCore 3.1 and loading side-by-side exe.nlog (Not relevant for Net5.0 and newer)
                     string processFilePath = _appEnvironment.CurrentProcessFilePath;
                     if (!string.IsNullOrEmpty(processFilePath))
                     {
@@ -320,10 +320,12 @@ namespace NLog.Config
                     string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
                     if (!string.IsNullOrEmpty(assemblyFileName))
                     {
-                        // Handle unpublished .NET Core Application
                         var assemblyBaseName = Path.GetFileNameWithoutExtension(assemblyFileName);
                         if (!string.IsNullOrEmpty(assemblyBaseName))
+                        {
+                            // Handle unpublished .NET Core Application, where assembly-filename has dll-extension
                             yield return Path.Combine(entryAssemblyLocation, assemblyBaseName + ".exe.nlog");
+                        }
 
                         yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
                     }
