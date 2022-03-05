@@ -84,6 +84,11 @@ namespace NLog.Internal
         /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
         /// </summary>
         string PickupDirectoryLocation { get; set; }
+
+        /// <summary>
+        /// Authenticate using the default network credentials of the currently logged on user
+        /// </summary>
+        bool UseDefaultCredentials { get; set; }
     }
 }
 

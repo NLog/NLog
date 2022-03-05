@@ -920,6 +920,7 @@ namespace NLog.UnitTests.Targets
             public int Timeout { get; set; }
             public string PickupDirectoryLocation { get; set; }
 
+            public bool UseDefaultCredentials { get; set; }
 
             public ICredentialsByHost Credentials { get; set; }
             public bool EnableSsl { get; set; }

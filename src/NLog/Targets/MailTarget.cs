@@ -302,6 +302,11 @@ namespace NLog.Targets
         public bool ReplaceNewlineWithBrTagInHtml { get; set; }
 
         /// <summary>
+        /// Authenticate using the default network credentials of the currently logged on user
+        /// </summary>
+        public bool UseDefaultCredentials { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating the SMTP client timeout.
         /// </summary>
         /// <remarks>Warning: zero is not infinite waiting</remarks>
@@ -483,6 +488,10 @@ namespace NLog.Targets
 
                     InternalLogger.Trace("{0}:   Using basic authentication: Username='{1}' Password='{2}'", this, username, new string('*', password.Length));
                     client.Credentials = new NetworkCredential(username, password);
+                }
+                else if (UseDefaultCredentials)
+                {
+                    client.UseDefaultCredentials = true;
                 }
             }
             
