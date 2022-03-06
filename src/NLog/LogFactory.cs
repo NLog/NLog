@@ -1219,6 +1219,10 @@ namespace NLog
 
                 var config = _config ?? (_loggerCache.Count == 0 ? Configuration : null);   // Only force load NLog-config with first logger
                 newLogger.Initialize(name, GetLoggerConfiguration(name, config), this);
+                if (config is null && _loggerCache.Count == 0)
+                {
+                    InternalLogger.Info("NLog Configuration has not be loaded.");
+                }
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
@@ -1267,8 +1271,7 @@ namespace NLog
             }
             else
             {
-                var instance = ServiceRepository.GetService(customLoggerType);
-                var newLogger = instance as Logger;
+                var newLogger = ServiceRepository.GetService(customLoggerType) as Logger;
                 if (newLogger is null)
                 {
                     //well, it's not a Logger, and we should return a Logger.
