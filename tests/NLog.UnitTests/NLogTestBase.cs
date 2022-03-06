@@ -365,10 +365,22 @@ namespace NLog.UnitTests
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
             var stringWriter = new Logger();
-            InternalLogger.LogWriter = stringWriter;
-            InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.IncludeTimestamp = false;
-            action();
+            var orgWriter = InternalLogger.LogWriter;
+            var orgTimestamp = InternalLogger.IncludeTimestamp;
+            var orgLevel = InternalLogger.LogLevel;
+            try
+            {
+                InternalLogger.LogWriter = stringWriter;
+                InternalLogger.IncludeTimestamp = false;
+                InternalLogger.LogLevel = internalLogLevel;
+                action();
+            }
+            finally
+            {
+                InternalLogger.LogWriter = orgWriter;
+                InternalLogger.IncludeTimestamp = orgTimestamp;
+                InternalLogger.LogLevel = orgLevel;
+            }
 
             return stringWriter.ToString();
         }
