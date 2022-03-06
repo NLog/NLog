@@ -319,6 +319,30 @@ namespace NLog.UnitTests
             Assert.NotNull(logFactory.Configuration.FindTargetByName("debug"));
         }
 
+        [Fact]
+        public void CandidateConfigurationFileOnlyLoadedInitially()
+        {
+            // Arrange
+            var intialLoad = true;
+            var appEnvMock = new AppEnvironmentMock(f => true, f => {
+                if (intialLoad)
+                    throw new System.IO.IOException("File not found");  // Non-fatal mock failure
+                else
+                    throw new NLogConfigurationException("Never allow loading config"); // Fatal mock failure
+            });
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+            var logFactory = new LogFactory(fileLoader);
+
+            // Act
+            var firstLogger = logFactory.GetLogger("FirstLogger");
+            var configuration = logFactory.Configuration;
+            intialLoad = false; // Change mock to fail fatally, if trying to load NLog config again
+            var secondLogger = logFactory.GetLogger("SecondLogger");
+
+            // Assert
+            Assert.Null(configuration);
+        }
+
         private static void AssertResult(string tmpDir, string appDir, string processDir, string appName, List<string> result)
         {
 #if NETSTANDARD

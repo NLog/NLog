@@ -310,6 +310,7 @@ namespace NLog
                             _configLoaded = true;
                         }
                     }
+
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
             }
@@ -445,8 +446,8 @@ namespace NLog
         /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
@@ -465,8 +466,8 @@ namespace NLog
         /// </summary>
         /// <returns>The logger with type <typeparamref name="T"/>.</returns>
         /// <typeparam name="T">Type of the logger</typeparam>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T GetCurrentClassLogger<T>() where T : Logger, new()
         {
@@ -485,8 +486,8 @@ namespace NLog
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
-        /// loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
@@ -1216,7 +1217,8 @@ namespace NLog
                     newLogger = new Logger();
                 }
 
-                newLogger.Initialize(name, GetLoggerConfiguration(name, Configuration), this);
+                var config = _config ?? (_loggerCache.Count == 0 ? Configuration : null);   // Only force load NLog-config with first logger
+                newLogger.Initialize(name, GetLoggerConfiguration(name, config), this);
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
