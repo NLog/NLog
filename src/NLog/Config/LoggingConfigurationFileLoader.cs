@@ -95,6 +95,10 @@ namespace NLog.Config
                     config = LoadXmlLoggingConfigurationFile(logFactory, configFile);
                     return true;    // File exists, and maybe the config is valid, stop search
                 }
+                else
+                {
+                    InternalLogger.Debug("No file exists for candidate config file location: {0}", configFile);
+                }
             }
             catch (IOException ex)
             {

@@ -142,7 +142,7 @@ namespace NLog.Internal
                 if (string.IsNullOrEmpty(assembly.Location))
                 {
                     // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)
-                    InternalLogger.Warn("Ignoring assembly location because location is empty: {0}", fullName);
+                    InternalLogger.Debug("Ignoring assembly location because location is empty: {0}", fullName);
                     return string.Empty;
                 }
 #endif
@@ -150,21 +150,21 @@ namespace NLog.Internal
                 Uri assemblyCodeBase;
                 if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
-                    InternalLogger.Warn("Ignoring assembly location because code base is unknown: '{0}' ({1})", assembly.CodeBase, fullName);
+                    InternalLogger.Debug("Ignoring assembly location because code base is unknown: '{0}' ({1})", assembly.CodeBase, fullName);
                     return string.Empty;
                 }
 
                 var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
                 if (string.IsNullOrEmpty(assemblyLocation))
                 {
-                    InternalLogger.Warn("Ignoring assembly location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, fullName);
+                    InternalLogger.Debug("Ignoring assembly location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, fullName);
                     return string.Empty;
                 }
 
                 DirectoryInfo directoryInfo = new DirectoryInfo(assemblyLocation);
                 if (!directoryInfo.Exists)
                 {
-                    InternalLogger.Warn("Ignoring assembly location because directory doesn't exists: '{0}' ({1})", assemblyLocation, fullName);
+                    InternalLogger.Debug("Ignoring assembly location because directory doesn't exists: '{0}' ({1})", assemblyLocation, fullName);
                     return string.Empty;
                 }
 
