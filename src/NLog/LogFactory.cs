@@ -1221,7 +1221,7 @@ namespace NLog
                 newLogger.Initialize(name, GetLoggerConfiguration(name, config), this);
                 if (config is null && _loggerCache.Count == 0)
                 {
-                    InternalLogger.Info("NLog Configuration has not be loaded.");
+                    InternalLogger.Info("NLog Configuration has not been loaded.");
                 }
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
