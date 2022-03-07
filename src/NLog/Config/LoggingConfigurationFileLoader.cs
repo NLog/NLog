@@ -97,7 +97,7 @@ namespace NLog.Config
                 }
                 else
                 {
-                    InternalLogger.Debug("No file exists for candidate config file location: {0}", configFile);
+                    InternalLogger.Debug("No file exists at candidate config file location: {0}", configFile);
                 }
             }
             catch (IOException ex)
