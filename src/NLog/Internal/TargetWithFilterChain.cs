@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Filters;
     using NLog.Targets;
@@ -48,7 +49,7 @@ namespace NLog.Internal
     {
         internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggingConfiguration();
 
-        internal static TargetWithFilterChain[] CreateLoggingConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
+        private static TargetWithFilterChain[] CreateLoggingConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
 
         private MruCache<CallSiteKey, string> _callSiteClassNameCache;
 
@@ -116,6 +117,144 @@ namespace NLog.Internal
             StackTraceUsage = stackTraceUsage;
             return stackTraceUsage;
         }
+
+        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LoggingConfiguration configuration, LogLevel globalLogLevel)
+        {
+            if (configuration is null || LogLevel.Off.Equals(globalLogLevel))
+                return TargetWithFilterChain.NoTargetsByLevel;
+
+            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
+            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
+            bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+
+            //no "System.InvalidOperationException: Collection was modified"
+            var loggingRules = configuration.GetLoggingRulesThreadSafe();
+            bool targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels);
+            return targetsFound ? targetsByLevel : TargetWithFilterChain.NoTargetsByLevel;
+        }
+
+        static private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        {
+            bool targetsFound = false;
+            foreach (LoggingRule rule in loggingRules)
+            {
+                if (!rule.NameMatches(name))
+                {
+                    continue;
+                }
+
+                targetsFound = AddTargetsFromLoggingRule(rule, name, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
+
+                // Recursively analyze the child rules.
+                if (rule.ChildRules.Count != 0)
+                {
+                    targetsFound = GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
+                }
+            }
+
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                TargetWithFilterChain tfc = targetsByLevel[i];
+                tfc?.PrecalculateStackTraceUsage();
+            }
+
+            return targetsFound;
+        }
+
+        private static bool AddTargetsFromLoggingRule(LoggingRule rule, string loggerName, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        {
+            bool targetsFound = false;
+            bool duplicateTargetsFound = false;
+
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (SuppressLogLevel(rule, globalLogLevel, i, ref suppressedLevels[i]))
+                {
+                    continue;
+                }
+
+                foreach (Target target in rule.GetTargetsThreadSafe())
+                {
+                    targetsFound = true;
+
+                    var awf = CreateTargetChainFromLoggingRule(rule, target, targetsByLevel[i]);
+                    if (awf is null)
+                    {
+                        if (!duplicateTargetsFound)
+                        {
+                            InternalLogger.Warn("Logger: {0} configured with duplicate output to target: {1}. LoggingRule with NamePattern='{2}' and Level={3} has been skipped.", loggerName, target, rule.LoggerNamePattern, LogLevel.FromOrdinal(i));
+                        }
+                        duplicateTargetsFound = true;
+                        continue;
+                    }
+
+                    if (lastTargetsByLevel[i] != null)
+                    {
+                        lastTargetsByLevel[i].NextInChain = awf;
+                    }
+                    else
+                    {
+                        targetsByLevel[i] = awf;
+                    }
+
+                    lastTargetsByLevel[i] = awf;
+                }
+            }
+
+            return targetsFound;
+        }
+
+        private static bool SuppressLogLevel(LoggingRule rule, LogLevel globalLogLevel, int logLevelOrdinal, ref bool suppressedLevels)
+        {
+            if (logLevelOrdinal < globalLogLevel.Ordinal)
+            {
+                return true;
+            }
+
+            if (rule.FinalMinLevel is null)
+            {
+                if (suppressedLevels)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                suppressedLevels = rule.FinalMinLevel.Ordinal > logLevelOrdinal;
+            }
+
+            if (!rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(logLevelOrdinal)))
+            {
+                return true;
+            }
+
+            if (rule.Final)
+            {
+                suppressedLevels = true;
+            }
+
+            return false;
+        }
+
+        private static TargetWithFilterChain CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)
+        {
+            var filterChain = rule.Filters.Count == 0 ? ArrayHelper.Empty<NLog.Filters.Filter>() : rule.Filters;
+            var newTarget = new TargetWithFilterChain(target, filterChain, rule.FilterDefaultAction);
+
+            if (existingTargets != null && newTarget.FilterChain.Count == 0)
+            {
+                for (TargetWithFilterChain afc = existingTargets; afc != null; afc = afc.NextInChain)
+                {
+                    if (ReferenceEquals(target, afc.Target) && afc.FilterChain.Count == 0)
+                    {
+                        return null;    // Duplicate Target
+                    }
+                }
+            }
+
+            return newTarget;
+        }
+
 
         internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
         {

@@ -552,7 +552,7 @@ namespace NLog
 
             foreach (var logger in loggers)
             {
-                logger.SetConfiguration(GetLoggerConfiguration(logger.Name, _config));
+                logger.SetConfiguration(BuildLoggerConfiguration(logger.Name, _config));
             }
 
             return purgeObsoleteLoggers;
@@ -857,155 +857,21 @@ namespace NLog
         }
 #endif
 
-        private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LoggingConfiguration configuration)
         {
-            bool targetsFound = false;
-            foreach (LoggingRule rule in loggingRules)
-            {
-                if (!rule.NameMatches(name))
-                {
-                    continue;
-                }
-
-                targetsFound = AddTargetsFromLoggingRule(rule, name, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
-
-                // Recursively analyze the child rules.
-                if (rule.ChildRules.Count != 0)
-                {
-                    targetsFound = GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
-                }
-            }
-
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                TargetWithFilterChain tfc = targetsByLevel[i];
-                tfc?.PrecalculateStackTraceUsage();
-            }
-
-            return targetsFound;
-        }
-
-        private bool AddTargetsFromLoggingRule(LoggingRule rule, string loggerName, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
-        {
-            bool targetsFound = false;
-            bool duplicateTargetsFound = false;
-
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                if (SuppressLogLevel(rule, i, ref suppressedLevels[i]))
-                {
-                    continue;
-                }
-
-                foreach (Target target in rule.GetTargetsThreadSafe())
-                {
-                    targetsFound = true;
-
-                    var awf = CreateTargetChainFromLoggingRule(rule, target, targetsByLevel[i]);
-                    if (awf is null)
-                    {
-                        if (!duplicateTargetsFound)
-                        {
-                            InternalLogger.Warn("Logger: {0} configured with duplicate output to target: {1}. LoggingRule with NamePattern='{2}' and Level={3} has been skipped.", loggerName, target, rule.LoggerNamePattern, LogLevel.FromOrdinal(i));
-                        }
-                        duplicateTargetsFound = true;
-                        continue;
-                    }
-
-                    if (lastTargetsByLevel[i] != null)
-                    {
-                        lastTargetsByLevel[i].NextInChain = awf;
-                    }
-                    else
-                    {
-                        targetsByLevel[i] = awf;
-                    }
-
-                    lastTargetsByLevel[i] = awf;
-                }
-            }
-
-            return targetsFound;
-        }
-
-        private bool SuppressLogLevel(LoggingRule rule, int logLevelOrdinal, ref bool suppressedLevels)
-        {
-            if (logLevelOrdinal < GlobalThreshold.Ordinal)
-            {
-                return true;
-            }
-
-            if (rule.FinalMinLevel is null)
-            {
-                if (suppressedLevels)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                suppressedLevels = rule.FinalMinLevel.Ordinal > logLevelOrdinal;
-            }
-
-            if (!rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(logLevelOrdinal)))
-            {
-                return true;
-            }
-
-            if (rule.Final)
-            {
-                suppressedLevels = true;
-            }
-
-            return false;
-        }
-
-        private static TargetWithFilterChain CreateTargetChainFromLoggingRule(LoggingRule rule, Target target, TargetWithFilterChain existingTargets)
-        {
-            var filterChain = rule.Filters.Count == 0 ? ArrayHelper.Empty<NLog.Filters.Filter>() : rule.Filters;
-            var newTarget = new TargetWithFilterChain(target, filterChain, rule.FilterDefaultAction);
-
-            if (existingTargets != null && newTarget.FilterChain.Count == 0)
-            {
-                for (TargetWithFilterChain afc = existingTargets; afc != null; afc = afc.NextInChain)
-                {
-                    if (ReferenceEquals(target, afc.Target) && afc.FilterChain.Count == 0)
-                    {
-                        return null;    // Duplicate Target
-                    }
-                }
-            }
-
-            return newTarget;
-        }
-
-        internal TargetWithFilterChain[] GetLoggerConfiguration(string loggerName, LoggingConfiguration configuration)
-        {
-            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
-            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
-            bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
-
-            bool targetsFound = false;
-            if (configuration != null && IsLoggingEnabled())
-            {
-                //no "System.InvalidOperationException: Collection was modified"
-                var loggingRules = configuration.GetLoggingRulesThreadSafe();
-                targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
-            }
-
-            if (InternalLogger.IsDebugEnabled && !targetsFound && !DumpTargetConfigurationForLogger(loggerName, targetsByLevel))
+            var targetsByLevel = TargetWithFilterChain.BuildLoggerConfiguration(loggerName, configuration, IsLoggingEnabled() ? GlobalThreshold : LogLevel.Off);
+            if (InternalLogger.IsDebugEnabled && !DumpTargetConfigurationForLogger(loggerName, targetsByLevel))
             {
                 InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
             }
-
-            if (targetsFound)
-                return targetsByLevel;
-            else
-                return TargetWithFilterChain.NoTargetsByLevel;
+            return targetsByLevel;
         }
 
         private static bool DumpTargetConfigurationForLogger(string loggerName, TargetWithFilterChain[] targetsByLevel)
         {
+            if (ReferenceEquals(targetsByLevel, TargetWithFilterChain.NoTargetsByLevel))
+                return false;
+
             StringBuilder sb = null;
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
@@ -1218,7 +1084,7 @@ namespace NLog
                 }
 
                 var config = _config ?? (_loggerCache.Count == 0 ? Configuration : null);   // Only force load NLog-config with first logger
-                newLogger.Initialize(name, GetLoggerConfiguration(name, config), this);
+                newLogger.Initialize(name, BuildLoggerConfiguration(name, config), this);
                 if (config is null && _loggerCache.Count == 0)
                 {
                     InternalLogger.Info("NLog Configuration has not been loaded.");
