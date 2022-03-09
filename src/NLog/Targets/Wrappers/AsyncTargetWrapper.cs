@@ -34,6 +34,7 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
@@ -304,7 +305,7 @@ namespace NLog.Targets.Wrappers
             {
                 try
                 {
-                    WriteEventsInQueue(int.MaxValue, "Closing Target");
+                    WriteLogEventsInQueue(int.MaxValue, "Closing Target");
                 }
                 finally
                 {
@@ -462,9 +463,8 @@ namespace NLog.Targets.Wrappers
             {
                 lock (_writeLockObject)
                 {
-                    int count = WriteEventsInQueue(BatchSize, "Timer");
-                    if (count == BatchSize)
-                        wroteFullBatchSize = true;
+                    int lastBatchSize = WriteLogEventsInQueue(BatchSize, "Timer");
+                    wroteFullBatchSize = lastBatchSize == BatchSize;
 
                     if (wroteFullBatchSize && TimeToSleepBetweenBatches <= 1)
                         StartInstantWriterTimer(); // Found full batch, fast schedule to take next batch (within lock to avoid pile up)
@@ -513,7 +513,7 @@ namespace NLog.Targets.Wrappers
                 var asyncContinuation = state as AsyncContinuation;
                 lock (_writeLockObject)
                 {
-                    WriteEventsInQueue(int.MaxValue, "Flush Async");
+                    WriteLogEventsInQueue(int.MaxValue, "Flush Async");
                     if (asyncContinuation != null)
                         base.FlushAsync(asyncContinuation);
                 }
@@ -537,7 +537,7 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private int WriteEventsInQueue(int batchSize, string reason)
+        private int WriteLogEventsInQueue(int batchSize, string reason)
         {
             if (WrappedTarget is null)
             {
@@ -556,39 +556,43 @@ namespace NLog.Targets.Wrappers
                 InternalLogger.Debug("{0}: WrappedTarget has resolved missing dependency", this);
             }
 
-            int count = 0;
-            for (int i = 0; i < FullBatchSizeWriteLimit; ++i)
+            if (batchSize == int.MaxValue)
             {
-                if (batchSize == int.MaxValue)
-                {
-                    var logEvents = _requestQueue.DequeueBatch(batchSize);
-                    if (logEvents.Length > 0)
-                    {
-                        if (reason != null)
-                            InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Length, reason);
-                        WrappedTarget.WriteAsyncLogEvents(logEvents);
-                    }
-                    count = logEvents.Length;
-                }
-                else
+                var logEvents = _requestQueue.DequeueBatch(int.MaxValue);
+                return WriteLogEventsToTarget(logEvents, reason);
+            }
+            else
+            {
+                int lastBatchSize = 0;
+
+                for (int i = 0; i < FullBatchSizeWriteLimit; ++i)
                 {
                     using (var targetList = _reusableAsyncLogEventList.Allocate())
                     {
                         var logEvents = targetList.Result;
                         _requestQueue.DequeueBatch(batchSize, logEvents);
-                        if (logEvents.Count > 0)
-                        {
-                            if (reason != null)
-                                InternalLogger.Trace("{0}: Writing {1} events ({2})", this, logEvents.Count, reason);
-                            WrappedTarget.WriteAsyncLogEvents(logEvents);
-                        }
-                        count = logEvents.Count;
+                        lastBatchSize = WriteLogEventsToTarget(logEvents, reason);
                     }
+
+                    if (lastBatchSize < batchSize)
+                        break;
                 }
-                if (count < batchSize)
-                    break;
+
+                return lastBatchSize;
             }
-            return count;
+        }
+
+        private int WriteLogEventsToTarget(IList<AsyncLogEventInfo> logEvents, string reason)
+        {
+            int batchSize = logEvents.Count;
+            if (batchSize > 0)
+            {
+                if (reason != null)
+                    InternalLogger.Trace("{0}: Writing {1} events ({2})", this, batchSize, reason);
+                WrappedTarget.WriteAsyncLogEvents(logEvents);
+            }
+
+            return batchSize;
         }
 
         private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs) 
