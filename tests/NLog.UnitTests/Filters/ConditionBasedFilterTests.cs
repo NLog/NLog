@@ -46,11 +46,12 @@ namespace NLog.UnitTests.Filters
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
                    <filters defaultAction='log'>
-                        <when condition=""contains(message,'zzz')"" action='Ignore' />
+                        <when condition=""contains(message, '${var:environment}')"" action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
             </nlog>").LogFactory;
+            logFactory.Configuration.Variables["environment"] = "zzz";  // Veriy that method-parameters are scanned and initialized with active config
 
             var logger = logFactory.GetLogger("A");
             logger.Debug("a");
