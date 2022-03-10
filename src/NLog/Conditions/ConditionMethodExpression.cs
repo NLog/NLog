@@ -114,6 +114,11 @@ namespace NLog.Conditions
         /// </summary>
         public MethodInfo MethodInfo { get; }
 
+        /// <summary>
+        /// Gets the method parameters
+        /// </summary>
+        public IList<ConditionExpression> MethodParameters => _methodParameters;
+
         private static object[] CreateMethodDefaultParameters(ParameterInfo[] formalParameters, ConditionExpression[] methodParameters, int parameterOffset)
         {
             var defaultParameterCount = formalParameters.Length - methodParameters.Length - parameterOffset;
