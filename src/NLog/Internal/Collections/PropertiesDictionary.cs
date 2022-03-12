@@ -142,7 +142,7 @@ namespace NLog.Internal
                 var eventProperties = _eventProperties;
                 if (eventProperties is null)
                 {
-                    eventProperties = _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count, PropertyKeyComparer.Default);
+                    eventProperties = _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties?.Count ?? 0, PropertyKeyComparer.Default);
                 }
 
                 if (oldMessageProperties != null && eventProperties.Count > 0)
