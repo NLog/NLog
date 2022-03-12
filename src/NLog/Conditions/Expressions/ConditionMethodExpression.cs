@@ -117,7 +117,7 @@ namespace NLog.Conditions
         /// <summary>
         /// Gets the method parameters
         /// </summary>
-        public IList<ConditionExpression> MethodParameters => _methodParameters;
+        public IEnumerable<ConditionExpression> MethodParameters => _methodParameters;
 
         private static object[] CreateMethodDefaultParameters(ParameterInfo[] formalParameters, ConditionExpression[] methodParameters, int parameterOffset)
         {

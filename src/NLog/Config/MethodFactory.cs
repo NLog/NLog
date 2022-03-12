@@ -132,7 +132,7 @@ namespace NLog.Config
                 return ArrayHelper.Empty<KeyValuePair<string, MethodInfo>>();
 
             var conditionMethods = new List<KeyValuePair<string, MethodInfo>>();
-            foreach (MethodInfo mi in type.GetMethods())
+            foreach (MethodInfo mi in type.GetMethods(BindingFlags.Public | BindingFlags.Static))
             {
                 var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
                 foreach (var attr in methodAttributes)
@@ -178,6 +178,7 @@ namespace NLog.Config
             {
                 _nameToMethodInfo[itemName + ", " + assemblyName] = itemDefinition;
             }
+
             lock (_nameToLateBoundMethod)
             {
                 _nameToLateBoundMethod.Remove(itemName + itemNamePrefix);
