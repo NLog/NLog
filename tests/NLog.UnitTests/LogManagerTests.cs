@@ -91,40 +91,37 @@ namespace NLog.UnitTests
             Assert.Equal(String.Empty, logger.Name);
         }
 
-        [Fact(Skip="Side effects to other unit tests.")]
+        [Fact]
         public void GlobalThresholdTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog globalThreshold='Info'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            Assert.Equal(LogLevel.Info, LogManager.GlobalThreshold);
+            Assert.Equal(LogLevel.Info, logFactory.GlobalThreshold);
 
             // nothing gets logged because of globalThreshold
-            LogManager.GetLogger("A").Debug("xxx");
-            AssertDebugLastMessage("debug", "");
+            logFactory.GetLogger("A").Debug("xxx");
+            logFactory.AssertDebugLastMessage("debug", "");
 
             // lower the threshold
-            LogManager.GlobalThreshold = LogLevel.Trace;
+            logFactory.GlobalThreshold = LogLevel.Trace;
 
-            LogManager.GetLogger("A").Debug("yyy");
-            AssertDebugLastMessage("debug", "yyy");
+            logFactory.GetLogger("A").Debug("yyy");
+            logFactory.AssertDebugLastMessage("debug", "yyy");
 
             // raise the threshold
-            LogManager.GlobalThreshold = LogLevel.Info;
+            logFactory.GlobalThreshold = LogLevel.Info;
 
             // this should be yyy, meaning that the target is in place
             // only rules have been modified.
 
-            LogManager.GetLogger("A").Debug("zzz");
-            AssertDebugLastMessage("debug", "yyy");
-
-            LogManager.Shutdown();
-            LogManager.Configuration = null;
+            logFactory.GetLogger("A").Debug("zzz");
+            logFactory.AssertDebugLastMessage("debug", "yyy");
         }
 
         [Fact]
