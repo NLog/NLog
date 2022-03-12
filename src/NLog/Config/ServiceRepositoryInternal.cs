@@ -142,7 +142,7 @@ namespace NLog.Config
             {
                 seenTypes = seenTypes ?? new HashSet<Type>();
                 var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
-                return compiledConstructor.Ctor(parameterValues);
+                return compiledConstructor?.Ctor(parameterValues);
             }
         }
 
