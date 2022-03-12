@@ -88,7 +88,7 @@ namespace NLog.Internal
             }
             else
             {
-                return value.ToString() ?? string.Empty;
+                return value?.ToString() ?? string.Empty;
             }
         }
     }
