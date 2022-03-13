@@ -73,8 +73,7 @@ namespace NLog
         internal LogMessageFormatter SingleTargetMessageFormatter;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
-        // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
-        private int _logsEnabled;
+        private int _supendLoggingCounter;
 
         /// <summary>
         /// Overwrite possible file paths (including filename) for possible NLog config files. 
@@ -113,7 +112,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
 #if !NETSTANDARD1_3
-            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))  // TODO NLog 5 -Move file-watcher logic into XmlLoggingConfiguration
+            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))  // TODO Move file-watcher logic into XmlLoggingConfiguration
 #else
             : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
 #endif
@@ -793,8 +792,8 @@ namespace NLog
         {
             lock (_syncRoot)
             {
-                _logsEnabled--;
-                if (_logsEnabled == -1)
+                _supendLoggingCounter++;
+                if (_supendLoggingCounter == 1)
                 {
                     ReconfigExistingLoggers();
                 }
@@ -812,8 +811,8 @@ namespace NLog
         {
             lock (_syncRoot)
             {
-                _logsEnabled++;
-                if (_logsEnabled == 0)
+                _supendLoggingCounter--;
+                if (_supendLoggingCounter == 0)
                 {
                     ReconfigExistingLoggers();
                 }
@@ -829,7 +828,7 @@ namespace NLog
         /// than or equal to <see cref="SuspendLogging"/> calls.</remarks>
         public bool IsLoggingEnabled()
         {
-            return _logsEnabled >= 0;
+            return _supendLoggingCounter <= 0;
         }
 
         /// <summary>
@@ -1291,7 +1290,6 @@ namespace NLog
 
             public List<Logger> GetLoggers()
             {
-                // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
                 List<Logger> values = new List<Logger>(_loggerCache.Count);
 
                 foreach (var item in _loggerCache)
