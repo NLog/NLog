@@ -52,18 +52,6 @@ namespace NLog.LayoutRenderers
     public class NLogDirLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes static members of the NLogDirLayoutRenderer class.
-        /// </summary>
-        static NLogDirLayoutRenderer()
-        {
-            var assembly = typeof(LogManager).GetAssembly();
-            var location = !string.IsNullOrEmpty(assembly.Location)
-                ? assembly.Location
-                : new Uri(assembly.CodeBase).LocalPath;
-            NLogDir = Path.GetDirectoryName(location);
-        }
-
-        /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
         /// <docgen category='Advanced Options' order='50' />
@@ -75,8 +63,8 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Advanced Options' order='50' />
         public string Dir { get; set; }
 
-        private static string NLogDir { get; set; }
-
+        private static string NLogDir => _nlogDir ?? (_nlogDir = AssemblyHelpers.GetAssemblyFileLocation(typeof(LogManager).GetAssembly()) ?? string.Empty);
+        private static string _nlogDir;
         private string _nlogCombinedPath;
 
         /// <inheritdoc/>
