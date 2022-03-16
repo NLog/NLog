@@ -119,7 +119,7 @@ namespace NLog.Internal.Fakeables
 #if !NETSTANDARD1_3
         private static string LookupEntryAssemblyLocation()
         {
-            return AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly());
+            return AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly()) ?? string.Empty;
         }
 
         private static string LookupEntryAssemblyFileName()
