@@ -63,6 +63,7 @@ namespace NLog.Config
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
         /// </summary>
+        /// <param name="ruleName">The name of the logging rule. This name can be used to identify the rule.</param>
         public LoggingRule(string ruleName)
         {
             RuleName = ruleName;
@@ -74,8 +75,8 @@ namespace NLog.Config
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> and  <paramref name="maxLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern used for <see cref="LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
-        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
-        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule. Log levels range from <see cref="LogLevel.Trace"/> (lowest) to <see cref="LogLevel.Fatal"/> (highest).</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule. Log levels range from <see cref="LogLevel.Trace"/> (lowest) to <see cref="LogLevel.Fatal"/> (highest).</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, LogLevel maxLevel, Target target)
             : this()

@@ -38,43 +38,43 @@ namespace NLog
     using System.ComponentModel;
 
     /// <summary>
-    /// Defines available log levels.
+    /// Defines the available log levels. They range from the lowest level <see cref="Trace"/> to highest log level <see cref="Fatal"/>.
     /// </summary>
     [TypeConverter(typeof(Attributes.LogLevelTypeConverter))]
     public sealed class LogLevel : IComparable<LogLevel>, IComparable, IEquatable<LogLevel>, IFormattable
     {
         /// <summary>
-        /// Trace log level.
+        /// 'Trace' log level. This is the 1st log level, which is the lowest log level.
         /// </summary>
         public static readonly LogLevel Trace = new LogLevel("Trace", 0);
 
         /// <summary>
-        /// Debug log level.
+        /// 'Debug' log level. This is the 2nd log level (lowest log level = <see cref="Trace"/>).
         /// </summary>
         public static readonly LogLevel Debug = new LogLevel("Debug", 1);
 
         /// <summary>
-        /// Info log level.
+        /// 'Info' log level. This is the 3rd log level (lowest log level = <see cref="Trace"/>).
         /// </summary>
         public static readonly LogLevel Info = new LogLevel("Info", 2);
 
         /// <summary>
-        /// Warn log level.
+        /// 'Warn' log level. This is the 4th log level (lowest log level = <see cref="Trace"/>).
         /// </summary>
         public static readonly LogLevel Warn = new LogLevel("Warn", 3);
 
         /// <summary>
-        /// Error log level.
+        /// 'Error' log level. This is the 5th log level (lowest log level = <see cref="Trace"/>).
         /// </summary>
         public static readonly LogLevel Error = new LogLevel("Error", 4);
 
         /// <summary>
-        /// Fatal log level.
+        /// 'Fatal' log level. This is the 6th log level, which is the highest log level.
         /// </summary>
         public static readonly LogLevel Fatal = new LogLevel("Fatal", 5);
 
         /// <summary>
-        /// Off log level.
+        /// 'Off' log level. This is the highest level. It is no log level (logging is off).
         /// </summary>
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 
@@ -83,13 +83,13 @@ namespace NLog
         private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal }.AsReadOnly();
 
         /// <summary>
-        /// Gets all the available log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
+        /// Gets all the available log levels (<see cref="Trace"/>, <see cref="Debug"/>, <see cref="Info"/>, <see cref="Warn"/>, <see cref="Error"/>, <see cref="Fatal"/>, <see cref="Off"/>).
         /// </summary>
         public static IEnumerable<LogLevel> AllLevels => allLevels;
 
         /// <summary>
-        ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal) 
-        ///  i.e <c>LogLevel.Off</c> is excluded.
+        /// Gets all the log levels that can be used to log events (<see cref="Trace"/>, <see cref="Debug"/>, <see cref="Info"/>, <see cref="Warn"/>, <see cref="Error"/>, <see cref="Fatal"/>)
+        /// i.e <see cref="Off"/> is excluded.
         /// </summary>
         public static IEnumerable<LogLevel> AllLoggingLevels => allLoggingLevels;
 

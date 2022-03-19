@@ -67,7 +67,7 @@ namespace NLog.Config
         public LogFactory LogFactory { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
+        /// Initializes a new instance of the <see cref="LoggingConfiguration"/> class, which uses the <see cref="LogFactory"/> from the <see cref="LogManager"/>.
         /// </summary>
         public LoggingConfiguration()
             : this(LogManager.LogFactory)
@@ -75,8 +75,12 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
+        /// Initializes a new instance of the <see cref="LoggingConfiguration"/> class, which uses the given <paramref name="logFactory"/>.
         /// </summary>
+        /// <param name="logFactory">
+        /// The <see cref="LogFactory"/> that will be used in this configuration.
+        /// If <see langword="null"/>, the <see cref="LogFactory"/> from the <see cref="LogManager"/> will be used.
+        /// </param>
         public LoggingConfiguration(LogFactory logFactory)
         {
             LogFactory = logFactory ?? LogManager.LogFactory;
@@ -285,7 +289,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule with min- and maxLevel.
+        /// Add a rule with <paramref name="minLevel"/> and <paramref name="maxLevel"/>. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
@@ -303,7 +309,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule with min- and maxLevel.
+        /// Add a rule with <paramref name="minLevel"/> and <paramref name="maxLevel"/>. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
@@ -316,7 +324,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule with min- and maxLevel.
+        /// Add a rule with <paramref name="minLevel"/> and <paramref name="maxLevel"/>. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
@@ -331,9 +341,11 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for one loglevel.
+        /// Add a rule for the given <paramref name="level"/>. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
-        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="level">The log level needed to trigger this rule.</param>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*")
@@ -348,9 +360,11 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for one loglevel.
+        /// Add a rule for the given <paramref name="level"/>. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
-        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="level"> The log level needed to trigger this rule. </param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*")
@@ -360,9 +374,11 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for one loglevel.
+        /// Add a rule for the given <paramref name="level"/>. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
-        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="level"> The log level needed to trigger this rule. </param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
@@ -376,7 +392,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for all loglevels.
+        /// Add a rule for all levels. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
@@ -392,7 +410,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for all loglevels.
+        /// Add a rule for all levels. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
@@ -403,7 +423,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for all loglevels.
+        /// Add a rule for all levels. The rule will NOT have a name.<br/>
+        /// If a name is required, use <see cref="LoggingRule(string)"/> instead and add the created rule to the
+        /// <see cref="LoggingRules"/> collection of this class.
         /// </summary>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
@@ -439,10 +461,12 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Removes the specified named logging rule.
+        /// Removes the logging rule with the specified name.
+        /// This method only works if the rule, which shall be removed, has a name.
+        /// If it has no name, edit the <see cref="LoggingRules"/> collection of this class instead.
         /// </summary>
-        /// <param name="ruleName">The name of the logging rule to be removed.</param>
-        /// <returns>Found one or more logging rule to remove, or <see langword="false"/> when not found.</returns>
+        /// <param name="ruleName"> The name of the logging rule to remove. </param>
+        /// <returns><see langword="true"/> if one or more logging rules were removed, or <see langword="false"/> if no rule was found.</returns>
         public bool RemoveRuleByName(string ruleName)
         {
             if (ruleName is null)
