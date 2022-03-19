@@ -37,6 +37,7 @@ namespace NLog.Fluent
     /// <summary>
     /// Extension methods for NLog <see cref="Logger"/>.
     /// </summary>
+    [Obsolete("Obsoleted since all members are obsolete. Obsoleted in NLog 5.0")]
     public static class LoggerExtensions
     {
         /// <summary>

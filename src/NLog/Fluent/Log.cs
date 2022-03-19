@@ -43,6 +43,7 @@ namespace NLog.Fluent
     /// <summary>
     /// A global logging class using caller info to find the logger.
     /// </summary>
+    [Obsolete("Obsoleted since all members are obsolete. Obsoleted in NLog 5.0")]
     public static class Log
     {
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
