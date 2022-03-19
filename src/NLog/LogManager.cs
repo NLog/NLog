@@ -45,7 +45,11 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
+    /// Creates and manages instances of <see cref="NLog.Logger"/> objects.<br/>
+    /// The purpose of LogManager is that one <see cref="LogFactory"/> can be easily used without having to carry around an instance of it.
+    /// As such, this class works as a static wrapper around the internal LogFactory instance. The LogFactory instance can be retrieved by the property of the same name.
+    /// Basically, every method and property of LogManager redirects to the method and property of the same name in the internal LogFactory instance.
+    /// The methods and properties of LogManager ONLY affect the internal LogFactory instance (and of course all references to it in variables in the user's code), but NOT other LogFactory objects, that were created independently.
     /// </summary>
     public static class LogManager
     {
