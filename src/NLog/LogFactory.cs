@@ -784,16 +784,40 @@ namespace NLog
         /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
         /// </summary>
         /// <remarks>
-        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
-        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// The logging is disabled if the number of <see cref="SuspendLogging()"/> calls is greater than
+        /// the number of <see cref="ResumeLogging()"/> calls, or if <see cref="SuspendLogging(bool)"/> is
+        /// called with <see langword="true"/>.
         /// </remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
-        /// To be used with C# <c>using ()</c> statement.</returns>
+        /// <returns>
+        /// An object that implements IDisposable whose Dispose() method re-enables logging.
+        /// To be used with C# <c>using ()</c> statement.
+        /// </returns>
         public IDisposable SuspendLogging()
+        {
+            return SuspendLogging(false);
+        }
+
+        /// <summary>
+        /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
+        /// </summary>
+        /// <remarks>
+        /// The logging is disabled if the number of <see cref="SuspendLogging()"/> calls is greater than
+        /// the number of <see cref="ResumeLogging()"/> calls, or if <see cref="SuspendLogging(bool)"/> is
+        /// called with <see langword="true"/>.
+        /// </remarks>
+        /// <returns>
+        /// An object that implements IDisposable whose Dispose() method re-enables logging.
+        /// To be used with C# <c>using ()</c> statement.
+        /// </returns>
+        public IDisposable SuspendLogging(bool force)
         {
             lock (_syncRoot)
             {
-                _logsEnabled--;
+                if (force)
+                    _logsEnabled = Math.Min(-1, _logsEnabled - 1);
+                else
+                    _logsEnabled--;
+
                 if (_logsEnabled == -1)
                 {
                     ReconfigExistingLoggers();
@@ -806,13 +830,33 @@ namespace NLog
         /// <summary>
         /// Increases the log enable counter and if it reaches 0 the logs are disabled.
         /// </summary>
-        /// <remarks>Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater 
-        /// than or equal to <see cref="SuspendLogging"/> calls.</remarks>
+        /// <remarks>
+        /// The logging is enabled if the number of <see cref="ResumeLogging()"/> calls is greater
+        /// than or equal to <see cref="SuspendLogging()"/> calls, or if <see cref="ResumeLogging(bool)"/> is
+        /// called with <see langword="true"/>.
+        /// </remarks>
         public void ResumeLogging()
+        {
+            ResumeLogging(false);
+        }
+
+        /// <summary>
+        /// Increases the log enable counter and if it reaches 0 the logs are disabled.
+        /// </summary>
+        /// <remarks>
+        /// The logging is enabled if the number of <see cref="ResumeLogging()"/> calls is greater
+        /// than or equal to <see cref="SuspendLogging()"/> calls, or if <see cref="ResumeLogging(bool)"/> is
+        /// called with <see langword="true"/>.
+        /// </remarks>
+        public void ResumeLogging(bool force)
         {
             lock (_syncRoot)
             {
-                _logsEnabled++;
+                if (force)
+                    _logsEnabled = Math.Max(0, _logsEnabled + 1);
+                else
+                    _logsEnabled++;
+
                 if (_logsEnabled == 0)
                 {
                     ReconfigExistingLoggers();
@@ -821,12 +865,20 @@ namespace NLog
         }
 
         /// <summary>
-        /// Returns <see langword="true" /> if logging is currently enabled.
+        /// Returns <see langword="true"/> if logging is currently enabled.
         /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
-        /// <see langword="false"/> otherwise.</returns>
-        /// <remarks>Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater 
-        /// than or equal to <see cref="SuspendLogging"/> calls.</remarks>
+        /// <returns>
+        /// A value of <see langword="true"/> if logging is currently enabled,
+        /// <see langword="false"/> otherwise.
+        /// </returns>
+        /// <remarks>
+        /// The logging is enabled if the number of <see cref="ResumeLogging()"/> calls was greater
+        /// than or equal to <see cref="SuspendLogging()"/> calls, or if <see cref="ResumeLogging(bool)"/> is
+        /// called with <see langword="true"/>.<br/>
+        /// The logging is disabled if the number of <see cref="SuspendLogging()"/> calls is greater than
+        /// the number of <see cref="ResumeLogging()"/> calls, or if <see cref="SuspendLogging(bool)"/> is
+        /// called with <see langword="true"/>.
+        /// </remarks>
         public bool IsLoggingEnabled()
         {
             return _logsEnabled >= 0;
