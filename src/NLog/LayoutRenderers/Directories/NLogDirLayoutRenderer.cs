@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 #if !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
@@ -40,8 +38,8 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The directory where NLog.dll is located.
@@ -63,7 +61,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Advanced Options' order='50' />
         public string Dir { get; set; }
 
-        private static string NLogDir => _nlogDir ?? (_nlogDir = AssemblyHelpers.GetAssemblyFileLocation(typeof(LogManager).GetAssembly()) ?? string.Empty);
+        private static string NLogDir => _nlogDir ?? (_nlogDir = ResolveNLogDir());
         private static string _nlogDir;
         private string _nlogCombinedPath;
 
@@ -86,6 +84,15 @@ namespace NLog.LayoutRenderers
         {
             var path = _nlogCombinedPath ?? (_nlogCombinedPath = PathHelpers.CombinePaths(NLogDir, Dir, File));
             builder.Append(path);
+        }
+
+        private static string ResolveNLogDir()
+        {
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            if (!string.IsNullOrEmpty(nlogAssembly.Location))
+                return Path.GetDirectoryName(nlogAssembly.Location);
+            else
+                return AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly) ?? string.Empty;
         }
     }
 }
