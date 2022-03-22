@@ -216,7 +216,7 @@ namespace NLog.Config
             return parameterValues;
         }
 
-        private class CompiledConstructor
+        private sealed class CompiledConstructor
         {
             [NotNull] public ReflectionHelpers.LateBoundConstructor Ctor { get; }
             [CanBeNull] public ParameterInfo[] Parameters { get; }
