@@ -119,7 +119,14 @@ namespace NLog.Internal.Fakeables
 #if !NETSTANDARD1_3
         private static string LookupEntryAssemblyLocation()
         {
-            return AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly()) ?? string.Empty;
+            var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
+            var entryLocation = entryAssembly?.Location;
+            if (!string.IsNullOrEmpty(entryLocation))
+            {
+                return Path.GetDirectoryName(entryLocation);
+            }
+
+            return AssemblyHelpers.GetAssemblyFileLocation(entryAssembly);
         }
 
         private static string LookupEntryAssemblyFileName()
@@ -127,10 +134,10 @@ namespace NLog.Internal.Fakeables
             try
             {
                 var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
-                var assemblyLocation = entryAssembly?.Location;
-                if (!string.IsNullOrEmpty(assemblyLocation))
+                var entryLocation = entryAssembly?.Location;
+                if (!string.IsNullOrEmpty(entryLocation))
                 {
-                    return Path.GetFileName(assemblyLocation);
+                    return Path.GetFileName(entryLocation);
                 }
                 
                 // Fallback to the Assembly-Name when unable to extract FileName from Location

@@ -138,9 +138,8 @@ namespace NLog.Internal
 
                 assemblyFullName = assembly.FullName;
 
-                var assemblyLocation = assembly.Location;
 #if NETSTANDARD
-                if (string.IsNullOrEmpty(assemblyLocation))
+                if (string.IsNullOrEmpty(assembly.Location))
                 {
                     // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)
                     InternalLogger.Debug("Ignoring assembly location because location is empty: {0}", assemblyFullName);
@@ -148,29 +147,29 @@ namespace NLog.Internal
                 }
 #endif
 
-                var assemblyFilePath = string.Empty;
-                if (Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out var assemblyCodeBase))
+                Uri assemblyCodeBase;
+                if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
-                    assemblyFilePath = assemblyCodeBase.LocalPath;
-                }
-                else
-                {
-                    assemblyFilePath = assemblyLocation;
+                    InternalLogger.Debug("Ignoring assembly location because code base is unknown: '{0}' ({1})", assembly.CodeBase, assemblyFullName);
+                    return string.Empty;
                 }
 
-                var directoryFullName = ResolveAssemblyLocationDirectory(assemblyFilePath);
-                if (string.IsNullOrEmpty(directoryFullName))
+                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
+                if (string.IsNullOrEmpty(assemblyLocation))
                 {
-                    directoryFullName = ResolveAssemblyLocationDirectory(assemblyLocation);
-                    if (string.IsNullOrEmpty(directoryFullName))
-                    {
-                        InternalLogger.Debug("Ignoring assembly location because directory doesn't exists: '{0}' ({1})", assemblyFilePath, assemblyFullName);
-                        return string.Empty;
-                    }
+                    InternalLogger.Debug("Ignoring assembly location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, assemblyFullName);
+                    return string.Empty;
                 }
-                
-                InternalLogger.Debug("Found assembly location directory: '{0}' ({1})", directoryFullName, assemblyFullName);
-                return directoryFullName;
+
+                DirectoryInfo directoryInfo = new DirectoryInfo(assemblyLocation);
+                if (!directoryInfo.Exists)
+                {
+                    InternalLogger.Debug("Ignoring assembly location because directory doesn't exists: '{0}' ({1})", assemblyLocation, assemblyFullName);
+                    return string.Empty;
+                }
+
+                InternalLogger.Debug("Found assembly location directory: '{0}' ({1})", directoryInfo.FullName, assemblyFullName);
+                return directoryInfo.FullName;
             }
             catch (System.PlatformNotSupportedException ex)
             {
@@ -199,24 +198,6 @@ namespace NLog.Internal
                 }
                 return string.Empty;
             }
-        }
-
-        private static string ResolveAssemblyLocationDirectory(string assemblyLocation)
-        {
-            if (!string.IsNullOrEmpty(assemblyLocation))
-            {
-                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                if (!string.IsNullOrEmpty(assemblyDirectory))
-                {
-                    var directoryInfo = new DirectoryInfo(assemblyDirectory);
-                    if (directoryInfo.Exists)
-                    {
-                        return directoryInfo.FullName;
-                    }
-                }
-            }
-
-            return null;
         }
 #endif
     }
