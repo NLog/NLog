@@ -273,21 +273,22 @@ namespace NLog.Config
 
         private string LookupNLogAssemblyLocation()
         {
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
 #if !NETSTANDARD1_3
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssemblyLocation = nlogAssembly.Location;
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
             {
 #if !NETSTANDARD
-                if (!nlogAssembly.GlobalAssemblyCache)
-#endif
+                if (nlogAssembly.GlobalAssemblyCache)
                 {
-                    return nlogAssemblyLocation;
+                    return null;
                 }
+#endif
+                return nlogAssemblyLocation;
             }
 #endif
-            return Path.Combine(_appEnvironment.AppDomainBaseDirectory, nlogAssembly.GetName().Name + ".dll");
+            return null;
         }
 
         /// <summary>
