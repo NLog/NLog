@@ -506,11 +506,16 @@ namespace NLog.Common
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
                     System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
+                var globalAssemblyCache = false;
+#if !NETSTANDARD
+                if (assembly.GlobalAssemblyCache)
+                    globalAssemblyCache = true;
+#endif
                 Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
                     assembly.FullName,
                     fileVersionInfo?.FileVersion,
                     fileVersionInfo?.ProductVersion,
-                    assembly.GlobalAssemblyCache);
+                    globalAssemblyCache);
 #else
                 Info(assembly.FullName);
 #endif
