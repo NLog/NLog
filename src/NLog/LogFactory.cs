@@ -572,7 +572,7 @@ namespace NLog
         /// target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
-        /// <param name="purgeObsoleteLoggers">Purge null-referenced loggers in cache</param>
+        /// <param name="purgeObsoleteLoggers">Purge garbage collected logger-items from the cache</param>
         public void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
         {
             purgeObsoleteLoggers = RefreshExistingLoggers() && purgeObsoleteLoggers;
@@ -780,11 +780,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
+        /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="ResumeLogging"/>
         /// </summary>
         /// <remarks>
-        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
-        /// or equal to <see cref="SuspendLogging"/> calls.
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// than the number fo <see cref="ResumeLogging"/> calls.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
@@ -803,10 +803,12 @@ namespace NLog
         }
 
         /// <summary>
-        /// Increases the log enable counter and if it reaches 0 the logs are disabled.
+        /// Resumes logging if having called <see cref="SuspendLogging"/>.
         /// </summary>
-        /// <remarks>Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater 
-        /// than or equal to <see cref="SuspendLogging"/> calls.</remarks>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// </remarks>
         public void ResumeLogging()
         {
             lock (_syncRoot)
@@ -822,10 +824,12 @@ namespace NLog
         /// <summary>
         /// Returns <see langword="true" /> if logging is currently enabled.
         /// </summary>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// </remarks>
         /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
         /// <see langword="false"/> otherwise.</returns>
-        /// <remarks>Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater 
-        /// than or equal to <see cref="SuspendLogging"/> calls.</remarks>
         public bool IsLoggingEnabled()
         {
             return _supendLoggingCounter <= 0;
@@ -1259,7 +1263,7 @@ namespace NLog
         /// <summary>
         /// Logger cache.
         /// </summary>
-        private class LoggerCache
+        private sealed class LoggerCache
         {
             // The values of WeakReferences are of type Logger i.e. Directory<LoggerCacheKey, Logger>.
             private readonly Dictionary<LoggerCacheKey, WeakReference> _loggerCache =
@@ -1309,9 +1313,7 @@ namespace NLog
             }
 
             /// <summary>
-            /// Loops through all loggers in loggerCache and checks if the logger cache is null
-            /// if the logger cache is null it will be deleted 
-            /// this will avoid growing logger cache infinitely
+            /// Loops through all cached loggers and removes dangling loggers that have been garbage collected.
             /// </summary>
             public void PurgeObsoleteLoggers()
             {
