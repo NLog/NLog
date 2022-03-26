@@ -109,6 +109,14 @@ See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-previ
 
 - [Performance](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22Performance%22+is%3Amerged+milestone:%225.0%20%28new%29%22)
 
+### v4.7.15 (2022/03/26)
+
+#### Improvements
+- [#4836](https://github.com/NLog/NLog/pull/4836) Fixed missing initialization of layout-parameters for ConditionMethodExpression (#4836) (@snakefoot)
+- [#4821](https://github.com/NLog/NLog/pull/4821) LogEventInfo - Optimize copy messageTemplateParameters by caching Count (#4821) (@snakefoot)
+- [#4820](https://github.com/NLog/NLog/pull/4820) Improve loading of AppName.exe.nlog with .NET6 single file publish (#4820) (@snakefoot)
+- [#4806](https://github.com/NLog/NLog/pull/4806) NLogConfigurationException - Skip string.Format when no args (#4806) (@snakefoot)
+
 ### v4.7.14 (2022/02/22)
 
 #### Improvements
