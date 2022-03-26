@@ -110,7 +110,11 @@ namespace NLog
 
             if (ReferenceEquals(newConfig, setupBuilder.LogFactory._config))
             {
-                setupBuilder.LogFactory.ReconfigExistingLoggers();
+                // New config has already been assigned or unchanged, check if refresh is needed
+                if (!ReferenceEquals(config, newConfig) || !ReferenceEquals(newConfig, null))
+                {
+                    setupBuilder.LogFactory.ReconfigExistingLoggers();
+                }
             }
             else if (!configHasChanged || !ReferenceEquals(config, newConfig))
             {
