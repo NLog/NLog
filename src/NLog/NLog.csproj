@@ -34,8 +34,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 ## Improvements
-- Added IncludeEventProperties + IncludeScopeProperties to improve transition (#4799) (@snakefoot)
-- Refactored code to remove false positives from code analysis (#4786) (@snakefoot)
+- Fixed missing initialization of layout-parameters for ConditionMethodExpression (#4836) (@snakefoot)
+- LogEventInfo - Optimize copy messageTemplateParameters by caching Count (#4821) (@snakefoot)
+- Improve loading of AppName.exe.nlog with .NET6 single file publish (#4820) (@snakefoot)
+- NLogConfigurationException - Skip string.Format when no args (#4806) (@snakefoot)
       
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
