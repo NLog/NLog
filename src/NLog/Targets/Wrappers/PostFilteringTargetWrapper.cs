@@ -140,7 +140,7 @@ namespace NLog.Targets.Wrappers
             else
             {
                 InternalLogger.Trace("{0}: Filter to apply: {1}", this, resultFilter);
-                var resultBuffer = logEvents.Filter(resultFilter, (logEvent, filter) => ApplyFilter(logEvent, filter));
+                var resultBuffer = logEvents.Filter(resultFilter, (logEvent, filter) => ShouldLogEvent(logEvent, filter));
                 InternalLogger.Trace("{0}: After filtering: {1} events.", this, resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {
@@ -150,7 +150,7 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private static bool ApplyFilter(AsyncLogEventInfo logEvent, ConditionExpression resultFilter)
+        private static bool ShouldLogEvent(AsyncLogEventInfo logEvent, ConditionExpression resultFilter)
         {
             object v = resultFilter.Evaluate(logEvent.LogEvent);
             if (ConditionExpression.BoxedTrue.Equals(v))
