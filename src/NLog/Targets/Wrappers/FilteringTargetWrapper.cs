@@ -120,17 +120,16 @@ namespace NLog.Targets.Wrappers
             {
                 WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
-            else
-            {
-                logEvent.Continuation(null);
-            }
         }
 
         /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
             var filterLogEvents = logEvents.Filter(Filter, (logEvent, filter) => ShouldLogEvent(logEvent, filter));
-            WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
+            if (filterLogEvents.Count > 0)
+            {
+                WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
+            }
         }
 
         private static bool ShouldLogEvent(AsyncLogEventInfo logEvent, Filter filter)
