@@ -1261,6 +1261,7 @@ namespace NLog.Config
             {
                 try
                 {
+                    InternalLogger.Debug("Loading Assembly-Name '{0}' for type: {1}", assemblyName, classType);
                     ParseExtensionWithAssembly(assemblyName, string.Empty);
                     return classType.Substring(0, classType.IndexOf(',')).Trim() + ", " + assemblyName; // uniform format
                 }
