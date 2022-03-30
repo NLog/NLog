@@ -37,6 +37,7 @@ namespace NLog.Targets.Wrappers
     using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
+    using NLog.Layouts;
 
     /// <summary>
     /// Retries in case of write error.
@@ -99,13 +100,13 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of retries that should be attempted on the wrapped target in case of a failure.
         /// </summary>
         /// <docgen category='Retrying Options' order='10' />
-        public int RetryCount { get; set; }
+        public Layout<int> RetryCount { get; set; }
 
         /// <summary>
         /// Gets or sets the time to wait between retries in milliseconds.
         /// </summary>
         /// <docgen category='Retrying Options' order='10' />
-        public int RetryDelayMilliseconds { get; set; }
+        public Layout<int> RetryDelayMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets whether to enable batching, and only apply single delay when a whole batch fails
@@ -190,10 +191,12 @@ namespace NLog.Targets.Wrappers
                 }
 
                 int retryNumber = Interlocked.Increment(ref counter);
-                InternalLogger.Warn(ex, "{0}: Error while writing to '{1}'. Try {2}/{3}", this, WrappedTarget, retryNumber, RetryCount);
+                var retryCount = RetryCount.RenderValue(logEvent.LogEvent);
+                var retryDelayMilliseconds = RetryDelayMilliseconds.RenderValue(logEvent.LogEvent);
+                InternalLogger.Warn(ex, "{0}: Error while writing to '{1}'. Try {2}/{3}", this, WrappedTarget, retryNumber, retryCount);
 
                 // exceeded retry count
-                if (retryNumber >= RetryCount)
+                if (retryNumber >= retryCount)
                 {
                     InternalLogger.Warn("{0}: Too many retries. Aborting.", this);
                     logEvent.Continuation(ex);
@@ -203,9 +206,9 @@ namespace NLog.Targets.Wrappers
                 // sleep and try again (Check every 100 ms if target have been closed)
                 if (sleepBeforeRetry(retryNumber))
                 {
-                    for (int i = 0; i < RetryDelayMilliseconds;)
+                    for (int i = 0; i < retryDelayMilliseconds;)
                     {
-                        int retryDelay = Math.Min(100, RetryDelayMilliseconds - i);
+                        int retryDelay = Math.Min(100, retryDelayMilliseconds - i);
                         AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(retryDelay));
                         i += retryDelay;
                         if (!IsInitialized)
