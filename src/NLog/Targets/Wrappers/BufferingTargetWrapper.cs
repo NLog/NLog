@@ -37,6 +37,7 @@ namespace NLog.Targets.Wrappers
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
@@ -120,14 +121,14 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of log events to be buffered.
         /// </summary>
         /// <docgen category='Buffering Options' order='10' />
-        public int BufferSize { get; set; }
+        public Layout<int> BufferSize { get; set; }
 
         /// <summary>
         /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed 
         /// if there's no write in the specified period of time. Use -1 to disable timed flushes.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        public int FlushTimeout { get; set; }
+        public Layout<int> FlushTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use sliding timeout.
@@ -166,9 +167,14 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            _buffer = new AsyncRequestQueue(BufferSize, AsyncTargetWrapperOverflowAction.Discard);
+
+            var bufferSize = RenderLogEvent(BufferSize, LogEventInfo.CreateNullEvent());
+
+            _buffer = new AsyncRequestQueue(bufferSize, AsyncTargetWrapperOverflowAction.Discard);
             InternalLogger.Trace("{0}: Create Timer", this);
-            _flushTimer = new Timer(FlushCallback, null, Timeout.Infinite, Timeout.Infinite);
+
+            var flushTimeout = RenderLogEvent(FlushTimeout, LogEventInfo.CreateNullEvent());
+            _flushTimer = new Timer(FlushCallback, (int?)flushTimeout, Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <summary>
@@ -206,7 +212,7 @@ namespace NLog.Targets.Wrappers
             PrecalculateVolatileLayouts(logEvent.LogEvent);
 
             var firstEventInQueue = _buffer.Enqueue(logEvent);
-            if (_buffer.RequestCount >= BufferSize)
+            if (_buffer.RequestCount >= _buffer.RequestLimit)
             {
                 // If the OverflowAction action is set to "Discard", the buffer will automatically
                 // roll over the oldest item.
@@ -217,10 +223,14 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                if (FlushTimeout > 0 && (SlidingTimeout || firstEventInQueue))
+                if (SlidingTimeout || firstEventInQueue)
                 {
-                    // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
-                    _flushTimer.Change(FlushTimeout, -1);
+                    var flushTimeout = RenderLogEvent(FlushTimeout, logEvent.LogEvent);
+                    if (flushTimeout > 0)
+                    {
+                        // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
+                        _flushTimer.Change(flushTimeout, -1);
+                    }
                 }
             }
         }
@@ -231,7 +241,8 @@ namespace NLog.Targets.Wrappers
 
             try
             {
-                int timeoutMilliseconds = Math.Min(FlushTimeout / 2, 100);
+                var flushTimeout = (state as int?) ?? 0;
+                int timeoutMilliseconds = Math.Min(flushTimeout / 2, 100);
                 lockTaken = Monitor.TryEnter(_lockObject, timeoutMilliseconds);
                 if (lockTaken)
                 {
@@ -243,7 +254,7 @@ namespace NLog.Targets.Wrappers
                 else
                 {
                     if (!_buffer.IsEmpty)
-                        _flushTimer?.Change(FlushTimeout, -1);   // Schedule new retry timer
+                        _flushTimer?.Change(timeoutMilliseconds, -1);   // Schedule new retry timer
                 }
             }
             catch (Exception exception)
