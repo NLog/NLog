@@ -117,6 +117,29 @@ namespace NLog.UnitTests.Config
             }
 #endif
 
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog internalLogFile='${ApplicationDataDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), InternalLogger.LogFile);
+            }
+
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog internalLogFile='${CommonApplicationDataDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), InternalLogger.LogFile);
+            }
+
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog internalLogFile='${LocalApplicationDataDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), InternalLogger.LogFile);
+            }
+#endif
+
             using (new InternalLoggerScope(true))
             {
                 var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
