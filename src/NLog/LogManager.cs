@@ -47,6 +47,9 @@ namespace NLog
     /// <summary>
     /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
     /// </summary>
+    /// <remarks>
+    /// LogManager wraps a singleton instance of <see cref="NLog.LogFactory" />.
+    /// </remarks>
     public static class LogManager
     {
         /// <remarks>
@@ -109,7 +112,6 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
-        /// Default value - false.
         /// </summary>
         public static bool KeepVariablesOnReload
         {
@@ -129,8 +131,10 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration.
-        /// <see cref="NLog.LogFactory.Configuration" />
         /// </summary>
+        /// <remarks>
+        /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
+        /// </remarks>
         public static LoggingConfiguration Configuration
         {
             get => factory.Configuration;
@@ -272,7 +276,6 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-
         /// <summary>
         /// Loops through all loggers previously returned by GetLogger.
         /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
@@ -340,13 +343,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
+        /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="EnableLogging"/>
         /// </summary>
         /// <remarks>
-        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
-        /// or equal to <see cref="SuspendLogging"/> calls.
-        /// 
-        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
+        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater 
+        /// than the number of <see cref="EnableLogging"/> calls.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
@@ -358,13 +359,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Increases the log enable counter and if it reaches 0 the logs are disabled.
+        /// Resumes logging if having called <see cref="DisableLogging"/>.
         /// </summary>
         /// <remarks>
-        /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
-        /// or equal to <see cref="SuspendLogging"/> calls.
-        /// 
-        /// This method was marked as obsolete on NLog 4.0 and it may be removed in a future release.
+        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater 
+        /// than the number of <see cref="EnableLogging"/> calls.
         /// </remarks>
         [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -378,7 +377,7 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
-        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
@@ -392,7 +391,7 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
-        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         public static void ResumeLogging()
         {
@@ -404,7 +403,7 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
-        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
         /// <see langword="false"/> otherwise.</returns>
