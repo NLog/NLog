@@ -213,7 +213,6 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
-        /// Default value - false.
         /// </summary>
         public bool KeepVariablesOnReload { get; set; } = true;
 
@@ -240,10 +239,11 @@ namespace NLog
         private bool _autoShutdown = true;
 
         /// <summary>
-        /// Gets or sets the current logging configuration. After setting this property all
-        /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers()" />
-        /// manually.
+        /// Gets or sets the current logging configuration.
         /// </summary>
+        /// <remarks>
+        /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
+        /// </remarks>
         public LoggingConfiguration Configuration
         {
             get
@@ -784,7 +784,7 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
-        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
@@ -807,7 +807,7 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
-        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         public void ResumeLogging()
         {
@@ -826,7 +826,7 @@ namespace NLog
         /// </summary>
         /// <remarks>
         /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
-        /// than the number fo <see cref="ResumeLogging"/> calls.
+        /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
         /// <see langword="false"/> otherwise.</returns>

@@ -724,10 +724,10 @@ namespace NLog.Targets
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {
-                if (value != null)
-                    return (T)value;
-                else
+                if (value is null)
                     return defaultValue;
+                else
+                    return (T)value;
             }
 
             using (var localTarget = ReusableLayoutBuilder.Allocate())
