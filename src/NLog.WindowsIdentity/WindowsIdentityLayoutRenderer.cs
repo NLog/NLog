@@ -57,72 +57,30 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var currentIdentity = GetValue();
-            if (currentIdentity != null)
+            using (var currentIdentity = WindowsIdentity.GetCurrent())
             {
-                string output;
-
-                if (UserName)
+                var identityName = currentIdentity?.Name ?? string.Empty;
+                if (UserName && Domain)
                 {
-                    output = Domain ? GetUserNameWithDomain(currentIdentity) : GetUserNameWithoutDomain(currentIdentity);
+                    builder.Append(identityName);
                 }
-                else
+                else if (UserName)
                 {
-                    // no username
-                    if (!Domain)
-                    {
-                        // nothing to output
-                        return;
-                    }
-
-                    output = GetDomainOnly(currentIdentity);
+                    int pos = identityName.LastIndexOf('\\');
+                    if (pos >= 0)
+                        builder.Append(identityName, pos + 1, identityName.Length - (pos + 1));
+                    else
+                        builder.Append(identityName);
                 }
-
-                builder.Append(output);
+                else if (Domain)
+                {
+                    int pos = identityName.IndexOf('\\');
+                    if (pos >= 0)
+                        builder.Append(identityName, 0, pos);
+                    else
+                        builder.Append(identityName);
+                }
             }
-        }
-
-        private static string GetDomainOnly(WindowsIdentity currentIdentity)
-        {
-            string output;
-            int pos = currentIdentity.Name.IndexOf('\\');
-            if (pos >= 0)
-            {
-                output = currentIdentity.Name.Substring(0, pos);
-            }
-            else
-            {
-                output = currentIdentity.Name;
-            }
-
-            return output;
-        }
-
-        private static string GetUserNameWithoutDomain(WindowsIdentity currentIdentity)
-        {
-            string output;
-            int pos = currentIdentity.Name.LastIndexOf('\\');
-            if (pos >= 0)
-            {
-                output = currentIdentity.Name.Substring(pos + 1);
-            }
-            else
-            {
-                output = currentIdentity.Name;
-            }
-
-            return output;
-        }
-
-        private static string GetUserNameWithDomain(WindowsIdentity currentIdentity)
-        {
-            return currentIdentity.Name;
-        }
-
-        private static WindowsIdentity GetValue()
-        {
-            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
-            return currentIdentity;
         }
     }
 }
