@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// System special folder path from <see cref="Environment.SpecialFolder.ApplicationData"/>
     /// </summary>
-    [LayoutRenderer("applicationDataDir")]
+    [LayoutRenderer("userApplicationDataDir")]
     public class SpecialFolderApplicationDataLayoutRenderer : SpecialFolderLayoutRenderer
     {
         /// <summary>

@@ -255,11 +255,11 @@ namespace NLog.Config
                     internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
 #endif
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${applicationDataDir}", out string appDataDirToken))
-                    internalLogFile = internalLogFile.Replace(appDataDirToken, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out string commonAppDataDirToken))
                     internalLogFile = internalLogFile.Replace(commonAppDataDirToken, Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
-                if (ContainsSubStringIgnoreCase(internalLogFile, "${localApplicationDataDir}", out string localapplicationdatadir))
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out string appDataDirToken))
+                    internalLogFile = internalLogFile.Replace(appDataDirToken, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userLocalApplicationDataDir}", out string localapplicationdatadir))
                     internalLogFile = internalLogFile.Replace(localapplicationdatadir, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
 #endif
                 if (internalLogFile.IndexOf('%') >= 0)
