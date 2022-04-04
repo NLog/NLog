@@ -75,21 +75,21 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void SpecialFolderApplicationDataTest()
-        {
-            AssertLayoutRendererOutput("${ApplicationDataDir}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
-        }
-
-        [Fact]
         public void SpecialFolderCommonApplicationDataTest()
         {
             AssertLayoutRendererOutput("${CommonApplicationDataDir}", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
         }
 
         [Fact]
-        public void SpecialFolderLocalApplicationDataTest()
+        public void SpecialFolderUserApplicationDataTest()
         {
-            AssertLayoutRendererOutput("${LocalApplicationDataDir}", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+            AssertLayoutRendererOutput("${UserApplicationDataDir}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+        }
+
+        [Fact]
+        public void SpecialFolderUserLocalApplicationDataTest()
+        {
+            AssertLayoutRendererOutput("${UserLocalApplicationDataDir}", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
         }
     }
 #endif
