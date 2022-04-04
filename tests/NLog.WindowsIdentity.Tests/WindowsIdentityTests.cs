@@ -46,16 +46,15 @@ namespace NLog.WindowsIdentity.Tests
         [Fact]
         public void WindowsIdentityTest()
         {
-            var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
+            var userDomain = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
             var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
-            if (!string.IsNullOrEmpty(userDomainName))
-                userName = userDomainName + "\\" + userName;
+            var fullName = !string.IsNullOrEmpty(userDomain) ? (userDomain + "\\" + userName) : userName;
 
             var logFactory = new LogFactory().Setup()
                 .SetupExtensions(ext => ext.RegisterAssembly(typeof(NLog.LayoutRenderers.WindowsIdentityLayoutRenderer).Assembly))
                 .LoadConfigurationFromXml(@"
                 <nlog>
-                    <targets><target type='debug' name='debug' layout='${windows-identity}' /></targets>
+                    <targets><target type='debug' name='debug' layout='${windows-identity} - ${windows-identity:domain=false} - ${windows-identity:username=false}' /></targets>
                     <rules><logger name='*' writeTo='debug' /></rules>
                 </nlog>").LogFactory;
 
@@ -65,7 +64,7 @@ namespace NLog.WindowsIdentity.Tests
 #if !DEBUG
             if (!string.IsNullOrEmpty(debugTarget.LastMessage))
 #endif
-                Assert.Equal(userName, debugTarget.LastMessage);
+                Assert.Equal($"{fullName} - {userName} - {userDomain}", debugTarget.LastMessage);
         }
     }
 }
