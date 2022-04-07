@@ -222,17 +222,19 @@ namespace NLog.Internal
         {
             int charCount;
             int byteCount = encoding.GetMaxByteCount(builder.Length);
-            ms.SetLength(ms.Position + byteCount);
+            long position = ms.Position;
+            ms.SetLength(position + byteCount);
             for (int i = 0; i < builder.Length; i += transformBuffer.Length)
             {
                 charCount = Math.Min(builder.Length - i, transformBuffer.Length);
                 builder.CopyTo(i, transformBuffer, 0, charCount);
-                byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
-                ms.Position += byteCount;
+                byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)position);
+                position += byteCount;
             }
-            if (ms.Position != ms.Length)
+            ms.Position = position;
+            if (position != ms.Length)
             {
-                ms.SetLength(ms.Position);
+                ms.SetLength(position);
             }
         }
 
