@@ -394,15 +394,19 @@ namespace NLog.Internal
         /// <returns>Are all parameter names unique (true / false)</returns>
         private static bool VerifyUniqueMessageTemplateParametersFast(IList<MessageTemplateParameter> parameterList)
         {
-            if (parameterList is null || parameterList.Count == 0)
+            if (parameterList is null)
+                return true;
+            
+            var parameterCount = parameterList.Count;
+            if (parameterCount <= 1)
                 return true;
 
-            if (parameterList.Count > 10)
+            if (parameterCount > 10)
                 return false;
 
-            for (int i = 0; i < parameterList.Count - 1; ++i)
+            for (int i = 0; i < parameterCount - 1; ++i)
             {
-                for (int j = i + 1; j < parameterList.Count; ++j)
+                for (int j = i + 1; j < parameterCount; ++j)
                 {
                     if (parameterList[i].Name == parameterList[j].Name)
                         return false;
