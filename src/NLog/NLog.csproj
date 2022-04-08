@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net35-client;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
     <Title>NLog for .NET Framework and .NET Standard</Title>
     <Company>NLog</Company>
@@ -76,8 +76,11 @@ For all config options and platform support, check https://nlog-project.org/conf
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35-client' ">
     <Title>NLog for .NET Framework 3.5</Title>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
   </PropertyGroup>
@@ -121,7 +124,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Xml" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35-client' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
