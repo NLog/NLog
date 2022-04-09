@@ -61,25 +61,17 @@ namespace NLog.Internal
             }
             catch (ReflectionTypeLoadException typeLoadException)
             {
-                foreach (var ex in typeLoadException.LoaderExceptions)
+                var result = typeLoadException.Types?.Where(t => t != null)?.ToArray() ?? ArrayHelper.Empty<Type>();
+                InternalLogger.Warn(typeLoadException, "Loaded {0} valid types from Assembly: {1}", result.Length, assembly.FullName);
+                foreach (var ex in typeLoadException.LoaderExceptions ?? ArrayHelper.Empty<Exception>())
                 {
                     InternalLogger.Warn(ex, "Type load exception.");
                 }
-
-                var loadedTypes = new List<Type>();
-                foreach (var t in typeLoadException.Types)
-                {
-                    if (t != null)
-                    {
-                        loadedTypes.Add(t);
-                    }
-                }
-
-                return loadedTypes.ToArray();
+                return result;
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn(ex, "Type load exception.");
+                InternalLogger.Warn(ex, "Failed to load types from Assembly: {0}", assembly.FullName);
                 return ArrayHelper.Empty<Type>();
             }
         }
