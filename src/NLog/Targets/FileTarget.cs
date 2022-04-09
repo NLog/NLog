@@ -1130,6 +1130,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A string representation of the log event.</returns>
+        [Obsolete("No longer used and replaced by RenderFormattedMessage. Marked obsolete on NLog 5.0")]
         protected virtual string GetFormattedMessage(LogEventInfo logEvent)
         {
             return Layout.Render(logEvent);
@@ -1140,7 +1141,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">Log event.</param>
         /// <returns>Array of bytes that are ready to be written.</returns>
-        [Obsolete("No longer used and replaced by RenderFormattedMessageToStream. Marked obsolete on NLog 5.0")]
+        [Obsolete("No longer used and replaced by RenderFormattedMessage. Marked obsolete on NLog 5.0")]
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
             string text = GetFormattedMessage(logEvent);
@@ -1157,7 +1158,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The byte array.</param>
         /// <returns>The modified byte array. The function can do the modification in-place.</returns>
-        [Obsolete("No longer used and replaced by RenderFormattedMessageToStream. Marked obsolete on NLog 5.0")]
+        [Obsolete("No longer used and replaced by TransformStream. Marked obsolete on NLog 5.0")]
         protected virtual byte[] TransformBytes(byte[] value)
         {
             return value;
