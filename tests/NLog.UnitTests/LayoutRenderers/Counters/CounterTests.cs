@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using NLog.Config;
+    using NLog.Layouts;
     using Xunit;
 
     public class CounterTests : NLogTestBase
@@ -132,6 +132,25 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug2", "a 1");
             LogManager.GetLogger("debug3").Debug("a");
             AssertDebugLastMessage("debug3", "a 2");
+        }
+
+        [Fact]
+        public void CounterRawValueTest()
+        {
+            // Arrange
+            SimpleLayout l = "${counter}";
+
+            // Act
+            var success1 = l.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var value1);
+            var success2 = l.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var value2);
+
+            // Assert
+            Assert.True(success1, "success1");
+            Assert.True(success2, "success2");
+            Assert.IsType<long>(value1);
+            Assert.IsType<long>(value2);
+            Assert.Equal(1L, value1);
+            Assert.Equal(2L, value2);
         }
     }
 }

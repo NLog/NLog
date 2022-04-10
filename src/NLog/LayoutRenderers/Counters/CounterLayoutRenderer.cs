@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
 
@@ -43,15 +44,16 @@ namespace NLog.LayoutRenderers
     /// A counter value (increases on each layout rendering).
     /// </summary>
     [LayoutRenderer("counter")]
-    public class CounterLayoutRenderer : LayoutRenderer
+    [ThreadAgnostic]
+    public class CounterLayoutRenderer : LayoutRenderer, IRawValue
     {
-        private static Dictionary<string, int> sequences = new Dictionary<string, int>(StringComparer.Ordinal);
+        private static Dictionary<string, long> sequences = new Dictionary<string, long>(StringComparer.Ordinal);
 
         /// <summary>
         /// Gets or sets the initial value of the counter.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public int Value { get; set; } = 1;
+        public long Value { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the value to be added to the counter after each layout rendering.
@@ -68,13 +70,16 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            int v = GetNextValue(logEvent);
-            builder.AppendInvariant(v);
+            var v = GetNextValue(logEvent);
+            if (v < int.MaxValue && v > int.MinValue)
+                builder.AppendInvariant((int)v);
+            else
+                builder.Append(v);
         }
 
-        private int GetNextValue(LogEventInfo logEvent)
+        private long GetNextValue(LogEventInfo logEvent)
         {
-            int v;
+            long v;
 
             if (Sequence is null)
             {
@@ -89,23 +94,26 @@ namespace NLog.LayoutRenderers
             return v;
         }
 
-        private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)
+        private static long GetNextSequenceValue(string sequenceName, long defaultValue, int increment)
         {
             lock (sequences)
             {
-                int val;
-
-                if (!sequences.TryGetValue(sequenceName, out val))
+                if (!sequences.TryGetValue(sequenceName, out var val))
                 {
                     val = defaultValue;
                 }
 
-                int retVal = val;
-
+                var retVal = val;
                 val += increment;
                 sequences[sequenceName] = val;
                 return retVal;
             }
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetNextValue(logEvent);
+            return true;
         }
     }
 }
