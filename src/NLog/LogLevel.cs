@@ -40,41 +40,68 @@ namespace NLog
     /// <summary>
     /// Defines available log levels.
     /// </summary>
+    /// <remarks>
+    /// Log levels ordered by severity:<br/>
+    /// - <see cref="LogLevel.Trace"/> (Ordinal = 0) : Most verbose level. Used for development and seldom enabled in production.<br/>
+    /// - <see cref="LogLevel.Debug"/> (Ordinal = 1) : Debugging the application behavior from internal events of interest.<br/>
+    /// - <see cref="LogLevel.Info"/>  (Ordinal = 2) : Information that highlights progress or application lifetime events.<br/>
+    /// - <see cref="LogLevel.Warn"/>  (Ordinal = 3) : Warnings about validation issues or temporary failures that can be recovered.<br/>
+    /// - <see cref="LogLevel.Error"/> (Ordinal = 4) : Errors where functionality has failed or <see cref="System.Exception"/> have been caught.<br/>
+    /// - <see cref="LogLevel.Fatal"/> (Ordinal = 5) : Most critical level. Application is about to abort.<br/>
+    /// </remarks>
     [TypeConverter(typeof(Attributes.LogLevelTypeConverter))]
     public sealed class LogLevel : IComparable<LogLevel>, IComparable, IEquatable<LogLevel>, IFormattable
     {
         /// <summary>
-        /// Trace log level.
+        /// Trace log level (Ordinal = 0)
         /// </summary>
+        /// <remarks>
+        /// Most verbose level. Used for development and seldom enabled in production.
+        /// </remarks>
         public static readonly LogLevel Trace = new LogLevel("Trace", 0);
 
         /// <summary>
-        /// Debug log level.
+        /// Debug log level (Ordinal = 1)
         /// </summary>
+        /// <remarks>
+        /// Debugging the application behavior from internal events of interest.
+        /// </remarks>
         public static readonly LogLevel Debug = new LogLevel("Debug", 1);
 
         /// <summary>
-        /// Info log level.
+        /// Info log level (Ordinal = 2)
         /// </summary>
+        /// <remarks>
+        /// Information that highlights progress or application lifetime events.
+        /// </remarks>
         public static readonly LogLevel Info = new LogLevel("Info", 2);
 
         /// <summary>
-        /// Warn log level.
+        /// Warn log level (Ordinal = 3)
         /// </summary>
+        /// <remarks>
+        /// Warnings about validation issues or temporary failures that can be recovered.
+        /// </remarks>
         public static readonly LogLevel Warn = new LogLevel("Warn", 3);
 
         /// <summary>
-        /// Error log level.
+        /// Error log level (Ordinal = 4)
         /// </summary>
+        /// <remarks>
+        /// Errors where functionality has failed or <see cref="System.Exception"/> have been caught.
+        /// </remarks>
         public static readonly LogLevel Error = new LogLevel("Error", 4);
 
         /// <summary>
-        /// Fatal log level.
+        /// Fatal log level (Ordinal = 5)
         /// </summary>
+        /// <remarks>
+        /// Most critical level. Application is about to abort.
+        /// </remarks>
         public static readonly LogLevel Fatal = new LogLevel("Fatal", 5);
 
         /// <summary>
-        /// Off log level.
+        /// Off log level (Ordinal = 6)
         /// </summary>
         public static readonly LogLevel Off = new LogLevel("Off", 6);
 

@@ -418,7 +418,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Finds the logging rule with the specified name.
+        /// Lookup the logging rule with matching <see cref="LoggingRule.RuleName"/>
         /// </summary>
         /// <param name="ruleName">The name of the logging rule to be found.</param>
         /// <returns>Found logging rule or <see langword="null"/> when not found.</returns>
@@ -439,7 +439,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Removes the specified named logging rule.
+        /// Removes the specified named logging rule with matching <see cref="LoggingRule.RuleName"/>
         /// </summary>
         /// <param name="ruleName">The name of the logging rule to be removed.</param>
         /// <returns>Found one or more logging rule to remove, or <see langword="false"/> when not found.</returns>
