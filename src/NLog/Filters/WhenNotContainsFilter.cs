@@ -38,7 +38,7 @@ namespace NLog.Filters
 
     /// <summary>
     /// Matches when the calculated layout does NOT contain the specified substring.
-    /// This filter is deprecated in favor of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">conditions</a>.
+    /// This filter is deprecated in favor of <c>&lt;when /&gt;</c> which is based on <a href="https://github.com/NLog/NLog/wiki/Conditions">conditions</a>.
     /// </summary>
     [Filter("whenNotContains")]
     public class WhenNotContainsFilter : LayoutBasedFilter
