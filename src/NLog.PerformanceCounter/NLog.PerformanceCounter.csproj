@@ -61,7 +61,7 @@ https://github.com/NLog/NLog/wiki/PerformanceCounter-Layout-Renderer
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.7.0" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
