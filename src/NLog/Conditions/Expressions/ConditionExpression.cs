@@ -41,6 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
     /// </summary>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Conditions">Documentation on NLog Wiki</seealso>
     [NLogConfigurationItem]
     public abstract class ConditionExpression
     {
