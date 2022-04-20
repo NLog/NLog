@@ -341,12 +341,12 @@ namespace NLog.Config
             try
             {
                 InitializeSucceeded = null;
-                _originalFileName = fileName;
+                _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
                 reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
-                if (!string.IsNullOrEmpty(fileName))
+                if (!string.IsNullOrEmpty(_originalFileName))
                 {
-                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
+                    InternalLogger.Info("Loading config from XML file: {0}", _originalFileName);
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
                 }
                 else

@@ -128,7 +128,7 @@ namespace NLog.Config
 
         private LoggingConfiguration LoadXmlLoggingConfigurationFile(LogFactory logFactory, string configFile)
         {
-            InternalLogger.Debug("Loading config from {0}", configFile);
+            InternalLogger.Debug("Reading config from XML file: {0}", configFile);
 
             using (var xmlReader = _appEnvironment.LoadXmlFile(configFile))
             {
