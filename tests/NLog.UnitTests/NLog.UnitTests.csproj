@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
-
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" /> <!-- Because of NSubstitute + Castle.Core-->
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
