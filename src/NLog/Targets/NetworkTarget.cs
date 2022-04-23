@@ -78,7 +78,7 @@ namespace NLog.Targets
         private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>(StringComparer.Ordinal);
         private readonly LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
 
-        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(16 * 1024);
+        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(32 * 1024);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -223,6 +223,16 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public int KeepAliveTimeSeconds { get; set; }
+
+        /// <summary>
+        /// Type of compression for protocol payload. Useful for UDP where datagram max-size is 8192 bytes.
+        /// </summary>
+        public NetworkTargetCompressionType Compress { get; set; }
+
+        /// <summary>
+        /// Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
+        /// </summary>
+        public int CompressMinBytes { get; set; }
 
         internal INetworkSenderFactory SenderFactory { get; set; }
 
@@ -432,8 +442,20 @@ namespace NLog.Targets
         /// <returns>Byte array.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
+            var payload = RenderBytesToWrite(logEvent);
+
+            if (Compress != NetworkTargetCompressionType.None)
+            {
+                payload = CompressBytesToWrite(payload);
+            }
+
+            return payload;
+        }
+
+        private byte[] RenderBytesToWrite(LogEventInfo logEvent)
+        {
             using (var localBuffer = _reusableEncodingBuffer.Allocate())
-            { 
+            {
                 if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
                 {
                     return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
@@ -474,6 +496,27 @@ namespace NLog.Targets
                 return Encoding.GetBytes(charBuffer, 0, layoutMessage.Length);
             }
             return Encoding.GetBytes(layoutMessage);
+        }
+
+        private byte[] CompressBytesToWrite(byte[] payload)
+        {
+            if (payload.Length > CompressMinBytes)
+            {
+                using (var outputStream = new System.IO.MemoryStream(Math.Max(payload.Length / 10, 256)))
+                {
+#if !NET35
+                    using (var gzipStream = new System.IO.Compression.GZipStream(outputStream, Compress == NetworkTargetCompressionType.GZip ? System.IO.Compression.CompressionLevel.Optimal : System.IO.Compression.CompressionLevel.Fastest, true))
+#else
+                    using (var gzipStream = new System.IO.Compression.GZipStream(outputStream, System.IO.Compression.CompressionMode.Compress, true))
+#endif
+                    {
+                        gzipStream.Write(payload, 0, payload.Length);
+                    }
+                    payload = outputStream.ToArray();
+                }
+            }
+
+            return payload;
         }
 
         private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)
