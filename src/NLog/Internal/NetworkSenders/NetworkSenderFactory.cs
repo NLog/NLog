@@ -47,24 +47,6 @@ namespace NLog.Internal.NetworkSenders
         /// <inheritdoc/>
         public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
         {
-            if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
-            {
-                return new HttpNetworkSender(url)
-                {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                };
-            }
-
-            if (url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            {
-                return new HttpNetworkSender(url)
-                {
-                    MaxQueueSize = maxQueueSize,
-                    OnQueueOverflow = onQueueOverflow,
-                };
-            }
-
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new TcpNetworkSender(url, AddressFamily.Unspecified)
@@ -125,6 +107,24 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
                     OnQueueOverflow = onQueueOverflow,
                     MaxMessageSize = maxMessageSize,
+                };
+            }
+
+            if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new HttpNetworkSender(url)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
+                };
+            }
+
+            if (url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new HttpNetworkSender(url)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    OnQueueOverflow = onQueueOverflow,
                 };
             }
 

@@ -747,7 +747,7 @@ namespace NLog.UnitTests.Targets
         {
             var target = new NetworkTarget()
             {
-                Address = "tcp4://127.0.0.1:33415",
+                Address = "tcp4://localhost:33415",
                 Layout = "${message}\n",
                 KeepConnection = true,
             };
