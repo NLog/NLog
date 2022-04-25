@@ -1149,6 +1149,51 @@ namespace NLog.UnitTests.Targets
             Assert.NotNull(target);
         }
 
+        [Fact]
+        public void GzipCompressionTest()
+        {
+            var senderFactory = new MyQueudSenderFactory();
+            var target = new NetworkTarget();
+            target.Address = "tcp://someaddress/";
+            target.SenderFactory = senderFactory;
+            target.Layout = "${message}";
+            target.KeepConnection = false;
+            target.Compress = NetworkTargetCompressionType.GZip;
+            target.CompressMinBytes = 15;
+            target.LineEnding = LineEndingMode.CRLF;
+            target.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            var mre = new ManualResetEvent(false);
+            AsyncContinuation asyncContinuation = ex =>
+            {
+                lock (exceptions)
+                {
+                    exceptions.Add(ex);
+                    mre.Set();
+                }
+            };
+
+            mre.Reset();
+            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "smallmessage").WithContinuation(asyncContinuation));
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            var smallMessage = target.Encoding.GetString(senderFactory.Senders.Last().MemoryStream.GetBuffer(), 0, (int)senderFactory.Senders.Last().MemoryStream.Length);
+            Assert.Equal("smallmessage\r\n", smallMessage);
+
+            mre.Reset();
+            target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", "superbigmessage").WithContinuation(asyncContinuation));
+            Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            senderFactory.Senders.Last().MemoryStream.Position = 0;
+            using (var unzipper = new System.IO.Compression.GZipStream(senderFactory.Senders.Last().MemoryStream, System.IO.Compression.CompressionMode.Decompress, true))
+            using (var outstream = new MemoryStream())
+            {
+                unzipper.CopyTo(outstream);
+                unzipper.Flush();
+                var bigMessage = target.Encoding.GetString(outstream.GetBuffer(), 0, (int)outstream.Length);
+                Assert.Equal("superbigmessage\r\n", bigMessage);
+            } 
+        }
+
         internal class MyQueudSenderFactory : INetworkSenderFactory
         {
             internal List<MyQueudNetworkSender> Senders = new List<MyQueudNetworkSender>();
