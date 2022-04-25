@@ -227,7 +227,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool IncludeEventProperties { get; set; }
+        public bool IncludeEventProperties { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.

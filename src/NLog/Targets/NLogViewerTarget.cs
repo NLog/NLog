@@ -72,6 +72,7 @@ namespace NLog.Targets
         public NLogViewerTarget()
         {
             IncludeNLogData = true;
+            IncludeEventProperties = false; // Already included when IncludeNLogData = true
         }
 
         /// <summary>
