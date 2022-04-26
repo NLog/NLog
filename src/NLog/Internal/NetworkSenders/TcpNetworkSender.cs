@@ -163,7 +163,8 @@ namespace NLog.Internal.NetworkSenders
         {
             var uri = new Uri(Address);
             var args = new MySocketAsyncEventArgs();
-            args.RemoteEndPoint = ParseEndpointAddress(uri, AddressFamily);
+            var ipAddress = ResolveIpAddress(uri, AddressFamily);
+            args.RemoteEndPoint = new System.Net.IPEndPoint(ipAddress, uri.Port);
             args.Completed += _socketOperationCompletedAsync;
             args.UserToken = null;
 
@@ -303,12 +304,13 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        public override void CheckSocket()
+        public override ISocket CheckSocket()
         {
             if (_socket is null)
             {
                 DoInitialize();
             }
+            return _socket;
         }
 
         /// <summary>

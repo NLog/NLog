@@ -159,32 +159,36 @@ namespace NLog.Internal.NetworkSenders
         protected abstract void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation);
 
         /// <summary>
-        /// Parses the URI into an endpoint address.
+        /// Parses the URI into an IP address.
         /// </summary>
         /// <param name="uri">The URI to parse.</param>
         /// <param name="addressFamily">The address family.</param>
         /// <returns>Parsed endpoint.</returns>
-        protected virtual EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
+        protected virtual IPAddress ResolveIpAddress(Uri uri, AddressFamily addressFamily)
         {
             switch (uri.HostNameType)
             {
                 case UriHostNameType.IPv4:
                 case UriHostNameType.IPv6:
-                    return new IPEndPoint(IPAddress.Parse(uri.Host), uri.Port);
+                    return IPAddress.Parse(uri.Host);
 
                 default:
                     {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-                        var addresses = Dns.GetHostEntry(uri.Host).AddressList;
+                        var addresses = Dns.GetHostEntry(uri.Host).AddressList; // Dns.GetHostEntry returns IPv6 + IPv4 addresses, but Dns.GetHostAddresses() might only return IPv6 addresses
 #else
-                        var addresses = Dns.GetHostAddressesAsync(uri.Host).ConfigureAwait(false).GetAwaiter().GetResult();
+                        var addresses = Dns.GetHostEntryAsync(uri.Host).ConfigureAwait(false).GetAwaiter().GetResult().AddressList;
 #endif
-                        // Only prioritize IPv6 addresses, when explictly specified or the only option
-                        foreach (var addr in System.Linq.Enumerable.OrderBy(addresses, a => a.AddressFamily))
+                        if (addressFamily == AddressFamily.Unspecified && addresses.Length > 1)
                         {
-                            if (addr.AddressFamily == addressFamily || addressFamily == AddressFamily.Unspecified)
+                            Array.Sort(addresses, IPAddressComparer.Default);   // Prioritize IPv4 addresses over IPv6, unless explictly specified
+                        }
+
+                        foreach (var addr in addresses)
+                        {
+                            if (addr.AddressFamily == addressFamily || (addressFamily == AddressFamily.Unspecified && (addr.AddressFamily == AddressFamily.InterNetwork || addr.AddressFamily == AddressFamily.InterNetworkV6)))
                             {
-                                return new IPEndPoint(addr, uri.Port);
+                                return addr;
                             }
                         }
 
@@ -193,8 +197,9 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        public virtual void CheckSocket()
+        public virtual ISocket CheckSocket()
         {
+            return null;
         }
 
         private void Dispose(bool disposing)
@@ -202,6 +207,16 @@ namespace NLog.Internal.NetworkSenders
             if (disposing)
             {
                 Close(ex => { });
+            }
+        }
+
+        private sealed class IPAddressComparer : System.Collections.Generic.IComparer<IPAddress>
+        {
+            public static readonly IPAddressComparer Default = new IPAddressComparer();
+
+            public int Compare(IPAddress x, IPAddress y)
+            {
+                return ((int)x.AddressFamily).CompareTo((int)y.AddressFamily);
             }
         }
     }

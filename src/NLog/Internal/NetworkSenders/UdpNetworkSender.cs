@@ -68,28 +68,24 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Creates the socket.
         /// </summary>
-        /// <param name="addressFamily">The address family.</param>
-        /// <param name="socketType">Type of the socket.</param>
-        /// <param name="protocolType">Type of the protocol.</param>
+        /// <param name="ipAddress">The IP address.</param>
         /// <returns>Implementation of <see cref="ISocket"/> to use.</returns>
-        protected internal virtual ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+        protected internal virtual ISocket CreateSocket(IPAddress ipAddress)
         {
-            var proxy = new SocketProxy(addressFamily, socketType, protocolType);
-
-            Uri uri;
-            if (Uri.TryCreate(Address, UriKind.Absolute, out uri)
-                && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.OrdinalIgnoreCase))
+            var proxy = new SocketProxy(ipAddress.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            if (ipAddress.Equals(IPAddress.Broadcast))
             {
                 proxy.UnderlyingSocket.EnableBroadcast = true;
             }
-
             return proxy;
         }
 
         protected override void DoInitialize()
         {
-            _endpoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
-            _socket = CreateSocket(_endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            var uri = new Uri(Address);
+            var address = ResolveIpAddress(uri, AddressFamily);
+            _endpoint = new IPEndPoint(address, uri.Port);
+            _socket = CreateSocket(address);
         }
 
         protected override void DoClose(AsyncContinuation continuation)
@@ -211,12 +207,13 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        public override void CheckSocket()
+        public override ISocket CheckSocket()
         {
             if (_socket is null)
             {
                 DoInitialize();
             }
+            return _socket;
         }
     }
 }
