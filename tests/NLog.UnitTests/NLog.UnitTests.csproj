@@ -98,4 +98,8 @@
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="NLog.UnitTests.config" />
+  </ItemGroup>
+
 </Project>
