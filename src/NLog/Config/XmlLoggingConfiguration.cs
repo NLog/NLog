@@ -346,7 +346,7 @@ namespace NLog.Config
                 var content = new NLogXmlElement(reader);
                 if (!string.IsNullOrEmpty(_originalFileName))
                 {
-                    InternalLogger.Info("Loading config from XML file: {0}", _originalFileName);
+                    InternalLogger.Info("Loading NLog config from XML file: {0}", _originalFileName);
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
                 }
                 else

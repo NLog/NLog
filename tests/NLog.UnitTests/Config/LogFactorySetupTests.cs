@@ -751,7 +751,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_TimeSource()
+        public void SetupBuilder_TimeSource()
         {
             // Arrange
             var originalTimeSource = NLog.Time.TimeSource.Current;
@@ -772,7 +772,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_GlobalDiagnosticContext()
+        public void SetupBuilder_GlobalDiagnosticContext()
         {
             // Arrange
             NLog.GlobalDiagnosticsContext.Clear();
@@ -793,7 +793,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterMinLevel()
+        public void SetupBuilder_FilterMinLevel()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterMinLevel(LogLevel.Debug).WriteTo(new DebugTarget() { Layout = "${message}" })).GetCurrentClassLogger();
@@ -812,7 +812,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterBlackHole()
+        public void SetupBuilder_FilterBlackHole()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c =>
@@ -832,7 +832,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterLevels()
+        public void SetupBuilder_FilterLevels()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterLevels(LogLevel.Debug, LogLevel.Info).WriteTo(new DebugTarget() { Layout = "${message}" })).GetCurrentClassLogger();
@@ -854,7 +854,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterLevel()
+        public void SetupBuilder_FilterLevel()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterLevel(LogLevel.Debug).WriteTo(new DebugTarget() { Layout = "${message}" })).GetCurrentClassLogger();
@@ -892,7 +892,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterDynamicLog()
+        public void SetupBuilder_FilterDynamicLog()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterDynamicLog(evt => evt.Properties.ContainsKey("Enabled")).WriteTo(new DebugTarget() { Layout = "${message}" })).GetCurrentClassLogger();
@@ -911,7 +911,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_FilterDynamicIgnore()
+        public void SetupBuilder_FilterDynamicIgnore()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c =>
@@ -933,7 +933,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_MultipleTargets()
+        public void SetupBuilder_MultipleTargets()
         {
             string lastMessage = null;
 
@@ -955,7 +955,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_MultipleTargets2()
+        public void SetupBuilder_MultipleTargets2()
         {
             string lastMessage = null;
 
@@ -976,7 +976,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_MultipleTargets3()
+        public void SetupBuilder_MultipleTargets3()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c =>
@@ -999,7 +999,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_ForTarget_WithName()
+        public void SetupBuilder_ForTarget_WithName()
         {
             string lastMessage = null;
             var logFactory = new LogFactory();
@@ -1027,7 +1027,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_ForTarget_Group()
+        public void SetupBuilder_ForTarget_Group()
         {
             string lastMessage = null;
             var logFactory = new LogFactory();
@@ -1051,7 +1051,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_ForTargetWithName_ShouldFailForGroup()
+        public void SetupBuilder_ForTargetWithName_ShouldFailForGroup()
         {
             var logFactory = new LogFactory();
             Assert.Throws<ArgumentException>(() =>
@@ -1060,7 +1060,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_WithWrapperFirst_ShouldFail()
+        public void SetupBuilder_WithWrapperFirst_ShouldFail()
         {
             var logFactory = new LogFactory();
             Assert.Throws<ArgumentException>(() =>
@@ -1069,7 +1069,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_WriteToWithBuffering()
+        public void SetupBuilder_WriteToWithBuffering()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(new DebugTarget() { Layout = "${message}" }).WithBuffering()).GetCurrentClassLogger();
@@ -1086,7 +1086,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_WriteToWithAutoFlush()
+        public void SetupBuilder_WriteToWithAutoFlush()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(new DebugTarget() { Layout = "${message}" }).WithBuffering().WithAutoFlush(evt => evt.Level == LogLevel.Error)).GetCurrentClassLogger();
@@ -1106,7 +1106,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_WriteToWithAsync()
+        public void SetupBuilder_WriteToWithAsync()
         {
             var logFactory = new LogFactory();
             var logger = logFactory.Setup().LoadConfiguration(c => c.ForLogger().FilterLevel(LogLevel.Debug).WriteTo(new DebugTarget() { Layout = "${message}" }).WithAsync()).GetCurrentClassLogger();
@@ -1122,7 +1122,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_WriteToWithFallback()
+        public void SetupBuilder_WriteToWithFallback()
         {
             bool exceptionWasThrown = false;
 
@@ -1148,7 +1148,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        void SetupBuilder_WriteToWithRetry()
+        public void SetupBuilder_WriteToWithRetry()
         {
             int methodCalls = 0;
 
@@ -1162,6 +1162,16 @@ namespace NLog.UnitTests.Config
                 logger.Debug("Debug Level");
                 Assert.Equal(2, methodCalls);
             }
+        }
+
+        [Fact]
+        public void SetupBuilder_LoadConfigEmbeddedResource()
+        {
+            var logFactory = new LogFactory();
+            var config = logFactory.Setup().LoadConfigurationFromAssemblyResource(typeof(LogFactorySetupTests).Assembly, "NLog.UnitTests.config").LogFactory.Configuration;
+
+            Assert.NotNull(logFactory.Configuration);
+            Assert.NotEmpty(logFactory.Configuration.Variables);
         }
     }
 }

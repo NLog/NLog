@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using NLog.Config;
     using NLog.Internal;
@@ -167,9 +168,48 @@ namespace NLog
         }
 
         /// <summary>
+        /// Loads NLog config located in embedded resource from main application assembly.
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="applicationAssembly">Assembly for the main Application project with embedded resource</param>
+        /// <param name="resourceName">Name of the manifest resource for NLog config XML</param>
+        public static ISetupBuilder LoadConfigurationFromAssemblyResource(this ISetupBuilder setupBuilder, System.Reflection.Assembly applicationAssembly, string resourceName = "NLog.config")
+        {
+            if (applicationAssembly is null) throw new ArgumentNullException(nameof(applicationAssembly));
+            if (string.IsNullOrEmpty(resourceName)) throw new ArgumentNullException(nameof(resourceName));
+
+            var resourcePaths = applicationAssembly.GetManifestResourceNames().Where(x => x.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (resourcePaths.Count == 1)
+            {
+                var nlogConfigStream = applicationAssembly.GetManifestResourceStream(resourcePaths[0]);
+                if (nlogConfigStream?.Length > 0)
+                {
+                    NLog.Common.InternalLogger.Info("Loading NLog XML config from assemly embedded resource '{0}'", resourceName);
+                    using (var xmlReader = System.Xml.XmlReader.Create(nlogConfigStream))
+                    {
+                        setupBuilder.LoadConfiguration(new XmlLoggingConfiguration(xmlReader, null, setupBuilder.LogFactory));
+                    }
+                }
+                else
+                {
+                    NLog.Common.InternalLogger.Debug("No NLog config loaded. Empty Embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
+                }
+            }
+            else if (resourcePaths.Count == 0)
+            {
+                NLog.Common.InternalLogger.Debug("No NLog config loaded. No matching embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
+            }
+            else
+            {
+                NLog.Common.InternalLogger.Error("No NLog config loaded. Multiple matching embedded resource '{0}' found in assembly: {1}", resourceName, applicationAssembly.FullName);
+            }
+            return setupBuilder;
+        }
+
+        /// <summary>
         /// Reloads the current logging configuration and activates it
         /// </summary>
-        /// <remarks>Logevents can become lost because targets will be unavailable, while closing the old config and initializing the new config.</remarks>
+        /// <remarks>Logevents produced during the configuration-reload can become lost, as targets are unavailable while closing and initializing.</remarks>
         public static ISetupBuilder ReloadConfiguration(this ISetupBuilder setupBuilder)
         {
             var newConfig = setupBuilder.LogFactory._config?.Reload();
