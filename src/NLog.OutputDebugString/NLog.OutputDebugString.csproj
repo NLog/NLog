@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net45;net46</TargetFrameworks>
+    <TargetFrameworks>net35;net45;net46;netstandard2.0</TargetFrameworks>
 
     <Title>NLog.OutputDebugString</Title>
     <Company>NLog</Company>
@@ -30,6 +30,10 @@
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.OutputDebugString for .NET Standard 2.0</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
