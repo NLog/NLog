@@ -365,7 +365,11 @@ namespace NLog
             {
                 lock (_syncRoot)
                 {
-                    _globalThreshold = value;
+                    if (_globalThreshold != value)
+                    {
+                        InternalLogger.Info("LogFactory GlobalThreshold changing to LogLevel: {0}", value);
+                    }
+                    _globalThreshold = value ?? LogLevel.MinLevel;
                     ReconfigExistingLoggers();
                 }
             }
