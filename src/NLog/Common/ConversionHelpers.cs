@@ -46,9 +46,20 @@ namespace NLog.Common
         /// </summary>
         /// <param name="inputValue">Input value</param>
         /// <param name="resultValue">Output value</param>
+        /// <returns>Returns false if the input value could not be parsed</returns>
+        public static bool TryParseEnum<TEnum>(string inputValue, out TEnum resultValue) where TEnum : struct
+        {
+            return TryParseEnum(inputValue, out resultValue, default(TEnum));
+        }
+
+        /// <summary>
+        /// Converts input string value into <see cref="System.Enum"/>. Parsing is case-insensitive.
+        /// </summary>
+        /// <param name="inputValue">Input value</param>
+        /// <param name="resultValue">Output value</param>
         /// <param name="defaultValue">Default value</param>
         /// <returns>Returns false if the input value could not be parsed</returns>
-        public static bool TryParseEnum<TEnum>(string inputValue, out TEnum resultValue, TEnum defaultValue = default(TEnum)) where TEnum : struct
+        public static bool TryParseEnum<TEnum>(string inputValue, out TEnum resultValue, TEnum defaultValue) where TEnum : struct
         {
             if (!TryParseEnum(inputValue, true, out resultValue))
             {

@@ -47,9 +47,21 @@ namespace NLog
         /// <typeparam name="T"></typeparam>
         /// <param name="layout">The layout.</param>
         /// <param name="logEvent">The logevent info.</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        public static T RenderValue<T>([CanBeNull] this Layout<T> layout, [CanBeNull] LogEventInfo logEvent)
+        {
+            return RenderValue<T>(layout, logEvent, default(T));
+        }
+
+        /// <summary>
+        /// Renders the logevent into a result-value by using the provided layout
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="layout">The layout.</param>
+        /// <param name="logEvent">The logevent info.</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        public static T RenderValue<T>([CanBeNull] this Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
+        public static T RenderValue<T>([CanBeNull] this Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue)
         {
             if (layout is null)
                 return defaultValue;

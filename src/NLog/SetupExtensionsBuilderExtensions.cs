@@ -98,8 +98,18 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder) where T : Target
+        {
+            return RegisterTarget<T>(setupBuilder, null);
+        }
+
+        /// <summary>
+        /// Register a custom Target.
+        /// </summary>
+        /// <typeparam name="T">Type of the Target.</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Type name of the Target. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name = null) where T : Target
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name) where T : Target
         {
             var targetType = typeof(T);
             name = string.IsNullOrEmpty(name) ? (targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name ?? typeof(T).Name) : name;
@@ -125,8 +135,19 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder)
+            where T : LayoutRenderer
+        {
+            return RegisterLayoutRenderer<T>(setupBuilder, null);
+        }
+
+        /// <summary>
+        /// Register a custom layout renderer.
+        /// </summary>
+        /// <typeparam name="T">Type of the layout renderer.</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name = null)
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name)
             where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);

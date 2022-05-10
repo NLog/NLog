@@ -210,11 +210,34 @@ namespace NLog.LayoutRenderers
         /// Get the <see cref="IFormatProvider"/> for rendering the messages to a <see cref="string"/>
         /// </summary>
         /// <param name="logEvent">LogEvent with culture</param>
+        /// <returns></returns>
+        protected IFormatProvider GetFormatProvider(LogEventInfo logEvent)
+        {
+            return GetFormatProvider(logEvent, null);
+        }
+
+        /// <summary>
+        /// Get the <see cref="IFormatProvider"/> for rendering the messages to a <see cref="string"/>
+        /// </summary>
+        /// <param name="logEvent">LogEvent with culture</param>
         /// <param name="layoutCulture">Culture in on Layout level</param>
         /// <returns></returns>
-        protected IFormatProvider GetFormatProvider(LogEventInfo logEvent, IFormatProvider layoutCulture = null)
+        protected IFormatProvider GetFormatProvider(LogEventInfo logEvent, IFormatProvider layoutCulture)
         {
             return logEvent.FormatProvider ?? layoutCulture ?? LoggingConfiguration?.DefaultCultureInfo;
+        }
+
+        /// <summary>
+        /// Get the <see cref="CultureInfo"/> for rendering the messages to a <see cref="string"/>
+        /// </summary>
+        /// <param name="logEvent">LogEvent with culture</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// <see cref="GetFormatProvider(LogEventInfo)"/> is preferred
+        /// </remarks>
+        protected CultureInfo GetCulture(LogEventInfo logEvent)
+        {
+            return GetCulture(logEvent, null);
         }
 
         /// <summary>
@@ -224,9 +247,9 @@ namespace NLog.LayoutRenderers
         /// <param name="layoutCulture">Culture in on Layout level</param>
         /// <returns></returns>
         /// <remarks>
-        /// <see cref="GetFormatProvider"/> is preferred
+        /// <see cref="GetFormatProvider(LogEventInfo, IFormatProvider)"/> is preferred
         /// </remarks>
-        protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
+        protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture)
         {
             return logEvent.FormatProvider as CultureInfo ?? layoutCulture ?? LoggingConfiguration?.DefaultCultureInfo;
         }

@@ -139,9 +139,19 @@ namespace NLog.Layouts
         /// Create a <see cref="SimpleLayout"/> from a lambda method.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod)
+        {
+            return FromMethod(layoutMethod, LayoutRenderOptions.None);
+        }
+
+        /// <summary>
+        /// Create a <see cref="SimpleLayout"/> from a lambda method.
+        /// </summary>
+        /// <param name="layoutMethod">Method that renders the layout.</param>
         /// <param name="options">Tell if method is safe for concurrent threading.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
+        public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options)
         {
             if (layoutMethod is null)
                 throw new ArgumentNullException(nameof(layoutMethod));

@@ -36,7 +36,7 @@ namespace NLog.Layouts
     using System;
 
     /// <summary>
-    /// Options available for <see cref="Layout.FromMethod"/>
+    /// Options available for <see cref="Layout.FromMethod(Func{LogEventInfo, object}, LayoutRenderOptions)"/>
     /// </summary>
     [Flags]
     public enum LayoutRenderOptions

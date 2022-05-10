@@ -51,9 +51,19 @@ namespace NLog
         /// Starts building a log event with the specified <see cref="LogLevel"/>.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
+        /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
+        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger)
+        {
+            return ForLogEvent(logger, null);
+        }
+
+        /// <summary>
+        /// Starts building a log event with the specified <see cref="LogLevel"/>.
+        /// </summary>
+        /// <param name="logger">The logger to write the log event to.</param>
         /// <param name="logLevel">The log level. When not</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger, LogLevel logLevel = null)
+        public static LogEventBuilder ForLogEvent([NotNull] this ILogger logger, LogLevel logLevel)
         {
             return logLevel is null ? new LogEventBuilder(logger) : new LogEventBuilder(logger, logLevel);
         }
@@ -123,9 +133,20 @@ namespace NLog
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <param name="exception">The exception information of the logging event.</param>
+        /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
+        public static LogEventBuilder ForExceptionEvent([NotNull] this ILogger logger, Exception exception)
+        {
+            return ForExceptionEvent(logger, exception, null);
+        }
+
+        /// <summary>
+        /// Starts building a log event at the <c>Exception</c> level.
+        /// </summary>
+        /// <param name="logger">The logger to write the log event to.</param>
+        /// <param name="exception">The exception information of the logging event.</param>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event. Defaults to <see cref="LogLevel.Error"/> when not specified.</param>
         /// <returns><see cref="LogEventBuilder"/> for chaining calls.</returns>
-        public static LogEventBuilder ForExceptionEvent([NotNull] this ILogger logger, Exception exception, LogLevel logLevel = null)
+        public static LogEventBuilder ForExceptionEvent([NotNull] this ILogger logger, Exception exception, LogLevel logLevel)
         {
             return ForLogEvent(logger, logLevel ?? LogLevel.Error).Exception(exception);
         }

@@ -712,9 +712,21 @@ namespace NLog.Targets
         /// <typeparam name="T"></typeparam>
         /// <param name="layout">The layout.</param>
         /// <param name="logEvent">The logevent info.</param>
+        /// <returns>Result value when available, else fallback to defaultValue</returns>
+        protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent)
+        {
+            return RenderLogEvent<T>(layout, logEvent, default(T));
+        }
+
+        /// <summary>
+        /// Renders the logevent into a result-value by using the provided layout
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="layout">The layout.</param>
+        /// <param name="logEvent">The logevent info.</param>
         /// <param name="defaultValue">Fallback value when no value available</param>
         /// <returns>Result value when available, else fallback to defaultValue</returns>
-        protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
+        protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue)
         {
             if (layout is null || logEvent is null)
                 return defaultValue;
