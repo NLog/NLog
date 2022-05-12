@@ -38,6 +38,7 @@ namespace NLog.UnitTests.Internal
 {
     public class PlatformDetectorTests
     {
+#if !NETSTANDARD
         [Fact]
         public void IsMonoTest()
         {
@@ -47,6 +48,7 @@ namespace NLog.UnitTests.Internal
             Assert.False(PlatformDetector.IsMono);
 #endif
         }
+#endif
 
         [Fact]
         public void GetCurrentOSTest()
