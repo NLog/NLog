@@ -1423,11 +1423,11 @@ namespace NLog
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
                 InternalLogger.Info("AppDomain Shutting down. LogFactory closing...");
-                // Finalizer thread has about 2 secs on Windows-platform, before being terminated
-                // MONO (and friends) have a hard time with spinning up flush threads/timers during domain unload
+                // Domain-Unload has to complete in about 2 secs on Windows-platform, before being terminated.
+                // Other platforms like Linux will fail when trying to spin up new threads at domain unload.
                 var flushTimeout =
-#if !NETSTANDARD1_3 && !MONO
-                    PlatformDetector.IsWin32 && !PlatformDetector.IsMono ? TimeSpan.FromMilliseconds(1500) :
+#if !NETSTANDARD1_3
+                    PlatformDetector.IsWin32 ? TimeSpan.FromMilliseconds(1500) :
 #endif
                     TimeSpan.Zero;
                 Close(flushTimeout);

@@ -40,28 +40,29 @@ namespace NLog.Internal
     /// </summary>
     internal static class PlatformDetector
     {
-        private static readonly RuntimeOS currentOS = GetCurrentRuntimeOS();
-
         /// <summary>
         /// Gets the current runtime OS.
         /// </summary>
-        public static RuntimeOS CurrentOS => currentOS;
+        public static RuntimeOS CurrentOS => _currentOS ?? (_currentOS = GetCurrentRuntimeOS()).Value;
+        private static RuntimeOS? _currentOS;
 
         /// <summary>
         /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
         /// </summary>
-        public static bool IsWin32 => currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT;
+        public static bool IsWin32 => CurrentOS == RuntimeOS.Windows || CurrentOS == RuntimeOS.WindowsNT;
 
         /// <summary>
         /// Gets a value indicating whether current OS is Unix-based.
         /// </summary>
-        public static bool IsUnix => currentOS == RuntimeOS.Linux || currentOS == RuntimeOS.MacOSX;
+        public static bool IsUnix => CurrentOS == RuntimeOS.Linux || CurrentOS == RuntimeOS.MacOSX;
 
+#if !NETSTANDARD
         /// <summary>
         /// Gets a value indicating whether current runtime is Mono-based
         /// </summary>
         public static bool IsMono => _isMono ?? (_isMono = Type.GetType("Mono.Runtime") != null).Value;
         private static bool? _isMono;
+#endif
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {

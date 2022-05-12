@@ -49,62 +49,32 @@ namespace NLog.Internal
         /// <summary>
         /// Gets a value indicating whether current runtime supports use of mutex
         /// </summary>
-        public static bool SupportsSharableMutex
-        {
-            get
-            {
-#if NETSTANDARD1_5
-                return RunTimeSupportsSharableMutex;
-#elif !NETSTANDARD1_3
-                if (PlatformDetector.IsMono && Environment.Version.Major < 4)
-                    return false;   // MONO ver. 4 is needed for named Mutex to work
-                else
-                    return RunTimeSupportsSharableMutex;
-#else
-                return false;
-#endif
-            }
-        }
-
-        /// <summary>
-        ///  Will creating a mutex succeed runtime?
-        /// "Cached" detection
-        /// </summary>
-        private static bool? _runTimeSupportsSharableMutex;
+        public static bool SupportsSharableMutex => _supportsSharableMutex ?? (_supportsSharableMutex = ResolveSupportsSharableMutex()).Value;
+        private static bool? _supportsSharableMutex;
 
         /// <summary>
         /// Will creating a mutex succeed runtime?
         /// </summary>
-        private static bool RunTimeSupportsSharableMutex
+        private static bool ResolveSupportsSharableMutex()
         {
-            get
+            try
             {
-                if (_runTimeSupportsSharableMutex.HasValue)
-                {
-                    return _runTimeSupportsSharableMutex.Value;
-                }
-
-
-                try
-                {
 #if SupportsMutex
-                    var mutex = BaseMutexFileAppender.ForceCreateSharableMutex("NLogMutexTester");
-                    mutex.Close(); //"dispose"
-
-                    _runTimeSupportsSharableMutex = true;
-#else
-                    _runTimeSupportsSharableMutex = false;
+#if !NETSTANDARD
+                if (Environment.Version.Major < 4 && PlatformDetector.IsMono)
+                    return false;   // MONO ver. 4 is needed for named Mutex to work
 #endif
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Debug(ex, "Failed to create sharable mutex processes");
-                    _runTimeSupportsSharableMutex = false;
-                }
-
-                return _runTimeSupportsSharableMutex.Value;
+                var mutex = BaseMutexFileAppender.ForceCreateSharableMutex("NLogMutexTester");
+                mutex.Close(); //"dispose"
+                return true;
+#endif
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Debug(ex, "Failed to create sharable mutex processes");
             }
 
+            return false;
         }
     }
 }
