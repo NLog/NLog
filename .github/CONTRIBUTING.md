@@ -14,11 +14,9 @@ Questions
 ----
 Please provide the following information:
 - The current NLog version
-- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
-- If relevant: the current result
+- The current config (xml or code). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
+- If relevant: the current result (Including full exception details if any)
 - If relevant: the expected result
-
- 
 
 Bug reports
 ----
@@ -29,9 +27,8 @@ Please provide the following information:
 - The current result
 - The expected result 
 - Any current work-arounds
-- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
+- The current config (xml or code). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
 - Pull requests and unit tests are welcome!
-
 
 
 Pull requests

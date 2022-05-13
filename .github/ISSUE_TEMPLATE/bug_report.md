@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report any issues found in NLog functionality or source-code to help us improve
 
 ---
 
@@ -10,7 +10,7 @@ Please keep / fill in the relevant info from this template so that we can help y
 
 **NLog version**: (e.g. 4.4.13)
 
-**Platform**: .Net 3.5 / .Net 4.0 / .Net 4.5 / Mono 4 / Xamarin Android / Xamarin iOs / .NET Core 1 / .NET Core 2 / .NET Core 3
+**Platform**: .Net 3.5 / .Net 4.0 / .Net 4.5 / Mono 4 / Xamarin Android / Xamarin iOS / .NET Core / .NET5 / .NET6
 
 **Current NLog config** (xml or C#, if relevant)
 
