@@ -73,7 +73,7 @@ namespace NLog.Internal.NetworkSenders
         protected internal virtual ISocket CreateSocket(IPAddress ipAddress)
         {
             var proxy = new SocketProxy(ipAddress.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
-            if (ipAddress.Equals(IPAddress.Broadcast))
+            if (ipAddress.AddressFamily != AddressFamily.InterNetworkV6 && ipAddress.Equals(IPAddress.Broadcast))
             {
                 proxy.UnderlyingSocket.EnableBroadcast = true;
             }
