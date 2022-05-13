@@ -49,6 +49,13 @@ if ($isWindows -or $Env:WinDir)
 	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
+
+	dotnet list ./src package --vulnerable --include-transitive | findstr /S /c:"has the following vulnerable packages"
+	if (-Not $LastExitCode -eq 1)
+	{
+		dotnet list ./src package --vulnerable --include-transitive
+		exit 1
+	}
 }
 else
 {
