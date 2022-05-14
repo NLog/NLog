@@ -60,6 +60,7 @@ namespace NLog.Targets
         public ChainsawTarget()
         {
             IncludeNLogData = false;
+            IncludeEventProperties = true;
         }
 
         /// <summary>
