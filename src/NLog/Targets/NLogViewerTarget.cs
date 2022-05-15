@@ -149,11 +149,15 @@ namespace NLog.Targets
             set => Renderer.IncludeNdc = value;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties { get => Renderer.IncludeEventProperties; set => Renderer.IncludeEventProperties = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => Renderer.IncludeScopeProperties; set => Renderer.IncludeScopeProperties = value; }
 
