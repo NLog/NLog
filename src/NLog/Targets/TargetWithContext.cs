@@ -47,6 +47,31 @@ namespace NLog.Targets
     /// <remarks>
     /// <a href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-target-for-structured-logging">See NLog Wiki</a>
     /// </remarks>
+    /// <example><code>
+    /// [Target("MyFirst")]
+    /// public sealed class MyFirstTarget : TargetWithContext
+    /// {
+    ///    public MyFirstTarget()
+    ///    {
+    ///        this.Host = "localhost";
+    ///    }
+    ///     
+    ///    [RequiredParameter]
+    ///    public Layout Host { get; set; }
+    ///
+    ///    protected override void Write(LogEventInfo logEvent) 
+    ///    {
+    ///        string logMessage = this.RenderLogEvent(this.Layout, logEvent);
+    ///        string hostName = this.RenderLogEvent(this.Host, logEvent);
+    ///        return SendTheMessageToRemoteHost(hostName, logMessage);
+    ///    }
+    ///
+    ///    private void SendTheMessageToRemoteHost(string hostName, string message)
+    ///    {
+    ///        // To be implemented
+    ///    }
+    /// }
+    /// </code></example>
     /// <seealso href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-target-for-structured-logging">Documentation on NLog Wiki</seealso>
     public abstract class TargetWithContext : TargetWithLayout, IIncludeContext
     {
@@ -65,15 +90,21 @@ namespace NLog.Targets
         }
         private TargetWithContextLayout _contextLayout;
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeEventProperties { get => _contextLayout.IncludeEventProperties; set => _contextLayout.IncludeEventProperties = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> properties-dictionary.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeProperties { get => _contextLayout.IncludeScopeProperties; set => _contextLayout.IncludeScopeProperties = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets or sets whether to include the contents of the <see cref="ScopeContext"/> nested-state-stack.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeNested { get => _contextLayout.IncludeScopeNested; set => _contextLayout.IncludeScopeNested = value; }
 

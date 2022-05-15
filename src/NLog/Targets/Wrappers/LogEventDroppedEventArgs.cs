@@ -40,7 +40,10 @@ namespace NLog.Targets.Wrappers
     /// </summary>
     public class LogEventDroppedEventArgs : EventArgs
     {
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogEventDroppedEventArgs" /> class.
+        /// </summary>
+        /// <param name="logEventInfo">LogEvent that have been dropped</param>
         public LogEventDroppedEventArgs(LogEventInfo logEventInfo) => DroppedLogEventInfo = logEventInfo;
 
         /// <summary>

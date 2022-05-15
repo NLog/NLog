@@ -43,6 +43,7 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceRepositoryUpdateEventArgs" /> class.
         /// </summary>
+        /// <param name="serviceType">Type of service that have been registered</param>
         public ServiceRepositoryUpdateEventArgs(Type serviceType)
         {
             ServiceType = serviceType;

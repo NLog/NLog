@@ -41,10 +41,11 @@ namespace NLog.Config
     /// An assembly is trying to load. 
     /// </summary>
     public class AssemblyLoadingEventArgs : CancelEventArgs
-    {/// <summary>
-     /// New event args
-     /// </summary>
-     /// <param name="assembly"></param>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssemblyLoadingEventArgs" /> class.
+        /// </summary>
+        /// <param name="assembly">Assembly that have been loaded</param>
         public AssemblyLoadingEventArgs(Assembly assembly)
         {
             Assembly = assembly;

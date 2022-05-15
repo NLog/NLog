@@ -38,13 +38,13 @@ using NLog.Internal;
 namespace NLog
 {
     /// <summary>
-    /// <see cref="ScopeContext"/> allows one to store state in the thread execution context. All LogEvents created
-    /// within a scope can include the scope state when wanted. The logical context scope supports both
-    /// scope-properties and scope-nested-state-stack (Similar to log4j2 ThreadContext)
+    /// <see cref="ScopeContext"/> stores state in the async thread execution context. All LogEvents created
+    /// within a scope can include the scope state in the target output. The logical context scope supports
+    /// both scope-properties and scope-nested-state-stack (Similar to log4j2 ThreadContext)
     /// </summary>
     /// <remarks>
     /// <see cref="MappedDiagnosticsLogicalContext"/> (MDLC), <see cref="MappedDiagnosticsContext"/> (MDC), <see cref="NestedDiagnosticsLogicalContext"/> (NDLC)
-    /// and <see cref="NestedDiagnosticsContext"/> (NDC) has been deprecated and replaced by <see cref="ScopeContext"/>.
+    /// and <see cref="NestedDiagnosticsContext"/> (NDC) have been deprecated and replaced by <see cref="ScopeContext"/>.
     /// 
     /// .NetCore (and .Net46) uses AsyncLocal for handling the thread execution context. Older .NetFramework uses System.Runtime.Remoting.CallContext
     /// </remarks>

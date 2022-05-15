@@ -49,6 +49,31 @@ namespace NLog.Targets
     /// <remarks>
     /// <a href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-async-target">See NLog Wiki</a>
     /// </remarks>
+    /// <example><code>
+    /// [Target("MyFirst")]
+    /// public sealed class MyFirstTarget : AsyncTaskTarget
+    /// {
+    ///    public MyFirstTarget()
+    ///    {
+    ///        this.Host = "localhost";
+    ///    }
+    ///     
+    ///    [RequiredParameter]
+    ///    public Layout Host { get; set; }
+    ///
+    ///    protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken token)
+    ///    {
+    ///        string logMessage = this.RenderLogEvent(this.Layout, logEvent);
+    ///        string hostName = this.RenderLogEvent(this.Host, logEvent);
+    ///        return SendTheMessageToRemoteHost(hostName, logMessage);
+    ///    }
+    ///
+    ///    private async Task SendTheMessageToRemoteHost(string hostName, string message)
+    ///    {
+    ///        // To be implemented
+    ///    }
+    /// }
+    /// </code></example>
     /// <seealso href="https://github.com/NLog/NLog/wiki/How-to-write-a-custom-async-target">Documentation on NLog Wiki</seealso>
     public abstract class AsyncTaskTarget : TargetWithContext
     {
@@ -186,7 +211,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Override this to create the actual logging task
+        /// Override this to provide async task for writing a single logevent.
         /// <example>
         /// Example of how to override this method, and call custom async method
         /// <code>
@@ -207,7 +232,7 @@ namespace NLog.Targets
         protected abstract Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Override this to create the actual logging task for handling batch of logevents
+        /// Override this to provide async task for writing a batch of logevents.
         /// </summary>
         /// <param name="logEvents">A batch of logevents.</param>
         /// <param name="cancellationToken">The cancellation token</param>
