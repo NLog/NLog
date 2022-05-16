@@ -29,7 +29,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-List of major changes in NLog 5.0: https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html
+List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.md
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
