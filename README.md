@@ -49,10 +49,9 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 -----
 
- ℹ️ NLog 5 Preview!
+ ℹ️ NLog 5.0 Released!
 
-There is a new shiny NLog 5 Preview package. See [news post](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
-
+ NLog 5.0 is finally here. See [List of major changes in NLog 5.0](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
 
 NLog Packages
 ---
