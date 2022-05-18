@@ -4,6 +4,44 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v5.0 (2022/05/16)
+
+See [List of major changes in NLog 5.0](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html).
+
+#### Improvements
+- [#4922](https://github.com/NLog/NLog/pull/4922) NetworkTarget - Dual Mode IPv4 mapped addresses over IPv6 (#4922) (@snakefoot)
+- [#4895](https://github.com/NLog/NLog/pull/4895) LogManager.Setup().LoadConfigurationFromAssemblyResource() can load config from embedded resource (#4895) (@snakefoot)
+- [#4893](https://github.com/NLog/NLog/pull/4893) NetworkTarget - Reduce memory allocations in UdpNetworkSender (#4893) (@snakefoot)
+- [#4891](https://github.com/NLog/NLog/pull/4891) + [#4924](https://github.com/NLog/NLog/pull/4924) Log4JXmlEventLayoutRenderer - IncludeEventProperties default = true (#4891 + #4924) (@snakefoot)
+- [#4887](https://github.com/NLog/NLog/pull/4887) NetworkTarget - Support Compress = GZip for UDP with GELF to GrayLog (#4887) (@snakefoot)
+- [#4882](https://github.com/NLog/NLog/pull/4882) Updated dependencies for NetStandard1.x to fix warnings (#4882) (@snakefoot)
+- [#4877](https://github.com/NLog/NLog/pull/4877) CounterLayoutRenderer - Support 64 bit integer and raw value (#4877) (@snakefoot)
+- [#4867](https://github.com/NLog/NLog/pull/4867) WindowsIdentityLayoutRenderer - Dispose WindowsIdentity after use (#4867) (@snakefoot)
+- [#4863](https://github.com/NLog/NLog/pull/4863) + [#4868](https://github.com/NLog/NLog/pull/4868) Support SpecialFolder UserApplicationDataDir for internalLogFile when parsing nlog.config (#4863 + #4868) (@snakefoot)
+- [#4859](https://github.com/NLog/NLog/pull/4859) RetryingTargetWrapper - Changed RetryCount and RetryDelay to typed Layout (#4859) (@snakefoot)
+- [#4858](https://github.com/NLog/NLog/pull/4858) BufferingTargetWrapper - Changed BufferSize + FlushTimeout to typed Layout (#4858) (@snakefoot)
+- [#4857](https://github.com/NLog/NLog/pull/4857) LimitingTargetWrapper - Changed MessageLimit + Interval to typed Layout (#4857) (@snakefoot)
+- [#4838](https://github.com/NLog/NLog/pull/4838) Added various null checks to improve code quality (#4838) (@KurnakovMaksim)
+- [#4835](https://github.com/NLog/NLog/pull/4835) Fixed missing initialization of layout-parameters for ConditionMethodExpression (#4835) (@snakefoot)
+- [#4824](https://github.com/NLog/NLog/pull/4824) LogFactory - Avoid checking candidate NLog-config files for every Logger created (#4824) (@snakefoot)
+- [#4823](https://github.com/NLog/NLog/pull/4823) Improve InternalLogger output when testing candidate config file locations (#4823) (@snakefoot)
+- [#4819](https://github.com/NLog/NLog/pull/4819) Improve loading of AppName.exe.nlog with .NET6 single file publish (#4819) (@snakefoot)
+- [#4812](https://github.com/NLog/NLog/pull/4812) Translate ConditionParseException into NLogConfigurationException (#4812) (@snakefoot)
+- [#4809](https://github.com/NLog/NLog/pull/4809) NLogConfigurationException - Improve styling of error-message when failing to assign property (#4809) (@snakefoot)
+- [#4808](https://github.com/NLog/NLog/pull/4808) NLogRuntimeException constructor with string.Format marked obsolete (#4808) (@snakefoot)
+- [#4807](https://github.com/NLog/NLog/pull/4807) NLogConfigurationException constructor with string.Format marked obsolete (#4807) (@snakefoot)
+- [#4789](https://github.com/NLog/NLog/pull/4789) FallbackGroupTarget - Improve InternalLogger output when no more fallback (#4789) (@snakefoot)
+- [#4788](https://github.com/NLog/NLog/pull/4788) NetworkTarget - Report to InternalLogger at Debug-level when discarding huge LogEvents (#4788) (@snakefoot)
+- [#4787](https://github.com/NLog/NLog/pull/4787) Added extra JetBrains Annotations with StructuredMessageTemplateAttribute (#4787) (@snakefoot)
+- [#4785](https://github.com/NLog/NLog/pull/4785) Improve InternalLogger output for unnamed nested wrapper targets (#4785) (@snakefoot)
+- [#4784](https://github.com/NLog/NLog/pull/4784) Improve InternalLogger output for named nested wrapper targets (#4784) (@snakefoot)
+- [#4777](https://github.com/NLog/NLog/pull/4777) DatabaseTarget - Removed alias DB to avoid promoting acronyms (#4777) (@snakefoot)
+- [#4776](https://github.com/NLog/NLog/pull/4776) LoggingRule - Allow FinalMinLevel to override previous rules (#4776) (@snakefoot)
+- [#4775](https://github.com/NLog/NLog/pull/4775) InternalLogger IncludeTimestamp = true by default to restore original behavior (#4775) (@snakefoot)
+- [#4773](https://github.com/NLog/NLog/pull/4773) Fix xml-docs and replaced broken link config.html with wiki-link (#4773) (@snakefoot)
+- [#4772](https://github.com/NLog/NLog/pull/4772) Improve InternalLogger output when queue OnOverflow (#4772) (@snakefoot)
+- [#4770](https://github.com/NLog/NLog/pull/4770) LogFactory DefaultCultureInfo-setter should also update active config (#4770) (@snakefoot)
+
 ### v5.0-RC2 (2022/01/19)
 
 #### Features
@@ -48,8 +86,6 @@ Date format: (year/month/day)
 - [#4699](https://github.com/NLog/NLog/pull/4699) AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4699) (@snakefoot)
 - [#4705](https://github.com/NLog/NLog/pull/4705) LogEventInfo - Faster clone of messageTemplateParameters by caching Count (#4705) (@snakefoot)
 
-See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
-
 ### v5.0-Preview 3 (2021/10/26)
 
 #### Bugfixes
@@ -68,8 +104,6 @@ See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-previ
 - [#4622](https://github.com/NLog/NLog/pull/4622) Handle OutOfMemoryException instead of crashing the application (#4622) (@snakefoot)
 - [#4605](https://github.com/NLog/NLog/pull/4605) Removed DefaultValue-attribute as it is only used for docs-generator (#4605) (@snakefoot)
 - [#4606](https://github.com/NLog/NLog/pull/4606) Removed Advanced-attribute as it has no meaning (#4606) (@snakefoot)
-
-See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
 
 ### v5.0-Preview 2 (2021/10/02)
 
@@ -93,11 +127,9 @@ See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-previ
 - [#4588](https://github.com/NLog/NLog/pull/4588) StackTraceLayoutRenderer - Separator with basic layout support (#4588) (@snakefoot)
 - [#4589](https://github.com/NLog/NLog/pull/4589) ScopeNestedLayoutRenderer - Separator with basic layout support (#4589) (@snakefoot)
 
-See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
-
 ### v5.0-Preview 1 (2021/08/25)
 
-See [Release post for NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
+See [List of major changes in NLog 5](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
 
 - [Breaking Changes](https://github.com/NLog/NLog/pulls?q=is%3Apr+label%3A%22breaking%20change%22+is%3Amerged+milestone:%225.0%20%28new%29%22)
 
