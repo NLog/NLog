@@ -4,7 +4,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <!-- TargetFrameworkVersion is required for nuget-package restore -->
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <PublishableProject>false</PublishableProject>
     <!-- The configuration and platform will be used to determine which
          assemblies to include from solution and project documentation
@@ -20,8 +20,8 @@
     <SHFBSchemaVersion>2017.9.26.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
-    <AssemblyName>NLog</AssemblyName>
-    <RootNamespace>NLog</RootNamespace>
+    <AssemblyName>NLogDocs</AssemblyName>
+    <RootNamespace>NLogDocs</RootNamespace>
     <Name>Documentation</Name>
     <NLogDllPath>dll_to_doc</NLogDllPath>
     <!-- SHFB properties -->
@@ -34,8 +34,8 @@
       <DocumentationSource sourceFile="..\NLog.Database\bin\Release\netstandard2.0\NLog.Database.xml" />
       <DocumentationSource sourceFile="..\NLog.OutputDebugString\bin\Release\netstandard2.0\NLog.OutputDebugString.dll" />
       <DocumentationSource sourceFile="..\NLog.OutputDebugString\bin\Release\netstandard2.0\NLog.OutputDebugString.xml" />
-      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.dll" platform=".NET Framework 4.5" />
-      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.xml" platform=".NET Framework 4.5" />
+      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.dll" />
+      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.xml" />
       <DocumentationSource sourceFile="..\NLog.PerformanceCounter\bin\Release\netstandard2.0\NLog.PerformanceCounter.dll" />
       <DocumentationSource sourceFile="..\NLog.PerformanceCounter\bin\Release\netstandard2.0\NLog.PerformanceCounter.xml" />
       <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.dll" />
@@ -44,24 +44,22 @@
       <DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.xml" />
       <DocumentationSource sourceFile="..\NLog.WindowsRegistry\bin\Release\netstandard2.0\NLog.WindowsRegistry.dll" />
       <DocumentationSource sourceFile="..\NLog.WindowsRegistry\bin\Release\netstandard2.0\NLog.WindowsRegistry.xml" />
-      <!--
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.XML" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Hosting.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Hosting.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.xml" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.DiagnosticSource.dll" />
-      <DocumentationSource sourceFile="dll_to_doc\NLog.DiagnosticSource.xml" />
-      -->
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Windows.Forms.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Windows.Forms.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Hosting.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Hosting.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MailKit.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MailKit.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Owin.Logging.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Owin.Logging.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.AspNetCore.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.AspNetCore.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Web.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.xml" />
     </DocumentationSources>
     <HelpTitle>NLog $(BuildVersion)</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2021 NLog</CopyrightText>
@@ -91,6 +89,8 @@
     <NamespaceSummaries>
       <NamespaceSummaryItem name="NLog" isDocumented="True">Logging interface, context classes</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Internal" isDocumented="False">Components used internally for NLog.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
+      <NamespaceSummaryItem name="NLog.Internal.Xamarin" isDocumented="False" />
       <NamespaceSummaryItem name="NLog.Config" isDocumented="True">Reading XML/API config</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Non-wrapper targets</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Targets which wraps other targets</NamespaceSummaryItem>
@@ -103,12 +103,10 @@
       <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Web" isDocumented="True">Integration with ASP.NET.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
+      <NamespaceSummaryItem name="NLog.Fluent" isDocumented="False">Fluent logging API (obsolete)</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Internal.Xamarin" isDocumented="False" />
     </NamespaceSummaries>
     <PlugInConfigurations>
       <PlugInConfig id="Assembly Binding Redirection" enabled="True">
@@ -118,11 +116,11 @@
             <assemblyIdentity name="BusinessObjects.Licensing.KeycodeDecoder" />
             <assemblyIdentity name="MailKit" />
             <assemblyIdentity name="Microsoft.*" />
-            <assemblyIdentity name="Microsoft.VisualStudio.TestTools.UITest.Playback" />
             <assemblyIdentity name="MimeKit" />
             <assemblyIdentity name="MiMeKit" />
             <assemblyIdentity name="Owin" />
             <assemblyIdentity name="netstandard" />
+            <assemblyIdentity name="System.*" />
           </ignoreIfUnresolved>
         </configuration>
       </PlugInConfig>
