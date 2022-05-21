@@ -1,11 +1,8 @@
-rem @echo off
-rem First rebuild Nlog and update BuildVersion in this script
+@echo off
 
-set FRAMEWORK1=.NET Framework 4.5
-set FRAMEWORK="%FRAMEWORK1%"
-set BuildVersion=4.4
-set Configuration=Release
+set BuildVersion=5.0
 
+msbuild /t:restore,build %~dp0\..\NLog.sln /p:Configuration=Release /verbosity:minimal
 msbuild /t:restore %~dp0NLog.shfbproj /p:Configuration=Release
 msbuild %~dp0NLog.shfbproj /p:Configuration=Release /p:Framework=%FRAMEWORK% /p:AssemblyName=NLog /p:BuildVersion=%BuildVersion%
 
