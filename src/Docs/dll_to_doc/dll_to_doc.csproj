@@ -17,7 +17,7 @@
 		<None Include="$(PkgNLog_Database)\lib\net46\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<PackageReference Include="NLog.DiagnosticSource" version="1.2.0" GeneratePathProperty="true" />
+		<PackageReference Include="NLog.DiagnosticSource" version="1.*" GeneratePathProperty="true" />
 		<None Include="$(PkgNLog_DiagnosticSource)\lib\net45\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -29,7 +29,7 @@
 		<None Include="$(PkgNLog_Extensions_Logging)\lib\netstandard2.0\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<PackageReference Include="NLog.MailKit" version="4.1.0" GeneratePathProperty="true" />
+		<PackageReference Include="NLog.MailKit" version="5.*" GeneratePathProperty="true" />
 		<None Include="$(PkgNLog_MailKit)\lib\netstandard2.0\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -41,7 +41,7 @@
 		<None Include="$(PkgNLog_OutputDebugString)\lib\net46\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<PackageReference Include="NLog.Owin.Logging" version="1.1.0" GeneratePathProperty="true" />
+		<PackageReference Include="NLog.Owin.Logging" version="1.*" GeneratePathProperty="true" />
 		<None Include="$(PkgNLog_Owin_Logging)\lib\net45\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
