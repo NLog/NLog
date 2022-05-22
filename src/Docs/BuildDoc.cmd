@@ -1,16 +1,11 @@
-rem @echo off
-rem First rebuild Nlog and update BuildVersion in this script
+@echo off
 
-rem install SHFB
-..\..\tools\nuget.exe install EWSoftware.SHFB -excludeversion -OutputDirectory ..\..\tools\
-..\..\tools\nuget.exe install EWSoftware.SHFB.NETFramework -excludeversion -OutputDirectory ..\..\tools\
+set BuildVersion=5.0
 
-set FRAMEWORK1=.NET Framework 4.5
-set FRAMEWORK="%FRAMEWORK1%"
-set BuildVersion=4.4
+msbuild /t:restore,build %~dp0\..\NLog.sln /p:Configuration=Release /verbosity:minimal
+msbuild /t:restore,build %~dp0\dll_to_doc /p:RestorePackagesConfig=true /p:Configuration=Release /verbosity:minimal
+msbuild /t:restore %~dp0NLog.shfbproj /p:Configuration=Release /verbosity:minimal
+msbuild %~dp0NLog.shfbproj /p:Configuration=Release /p:Framework=%FRAMEWORK% /p:AssemblyName=NLog /p:BuildVersion=%BuildVersion%
 
-set Configuration=Release
-
-msbuild.exe %~dp0NLog.shfbproj /p:Configuration=Release /p:Framework=%FRAMEWORK% /p:AssemblyName=NLog /p:BuildVersion=%BuildVersion% /p:BuildLabelOverride=NONE
 rem copy favicon
 copy favicon.ico ".\Doc\icons\favicon.ico"
