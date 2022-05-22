@@ -1,4 +1,5 @@
 @echo off
+rem Run this file in Developer Command Prompt for VS 2022
 
 set BuildVersion=5.0
 
