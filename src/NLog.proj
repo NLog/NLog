@@ -29,7 +29,6 @@
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
-    <BuildDocPages>$(ToolsDir)\BuildDocPages.exe</BuildDocPages>
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
     <Tar>$(MSBuildProjectDirectory)\..\tools\tar.exe</Tar>
     <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
@@ -115,14 +114,7 @@
     <MSBuild Projects="..\tools\MergeApiXml\MergeApiXml.csproj" />
   </Target>
 
-  <Target Name="BuildDocPagesTool">
-    <MSBuild Projects="..\tools\BuildDocPages\BuildDocPages.csproj" />
-  </Target>
-
-  <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
-  </Target>
-
-  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildMakeNLogXSDTool">
+  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool;BuildMakeNLogXSDTool">
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool"
