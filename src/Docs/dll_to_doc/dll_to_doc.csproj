@@ -35,6 +35,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.5.0.0\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Database, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.Database.5.0.0\lib\net46\NLog.Database.dll</HintPath>
+    </Reference>
     <Reference Include="NLog.DiagnosticSource, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.DiagnosticSource.1.2.0\lib\net45\NLog.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -47,8 +53,20 @@
     <Reference Include="NLog.MailKit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.MailKit.4.1.0\lib\netstandard2.0\NLog.MailKit.dll</HintPath>
     </Reference>
+    <Reference Include="NLog.MSMQ, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.MSMQ.5.0.0\lib\net46\NLog.MSMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.OutputDebugString, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.OutputDebugString.5.0.0\lib\net46\NLog.OutputDebugString.dll</HintPath>
+    </Reference>
     <Reference Include="NLog.Owin.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.Owin.Logging.1.1.0\lib\net45\NLog.Owin.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.PerformanceCounter, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.PerformanceCounter.5.0.0\lib\net46\NLog.PerformanceCounter.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Wcf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.Wcf.5.0.0\lib\net46\NLog.Wcf.dll</HintPath>
     </Reference>
     <Reference Include="NLog.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.Web.5.0.0\lib\net46\NLog.Web.dll</HintPath>
@@ -57,11 +75,25 @@
       <HintPath>packages\NLog.Web.AspNetCore.5.0.0\lib\net461\NLog.Web.AspNetCore.dll</HintPath>
     </Reference>
     <Reference Include="NLog.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Windows.Forms.4.5.0\lib\net35\NLog.Windows.Forms.dll</HintPath>
+      <HintPath>packages\NLog.Windows.Forms.4.6.0\lib\net35\NLog.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.WindowsIdentity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.WindowsIdentity.5.0.0\lib\net46\NLog.WindowsIdentity.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.WindowsRegistry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.WindowsRegistry.5.0.0\lib\net46\NLog.WindowsRegistry.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

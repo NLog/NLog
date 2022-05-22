@@ -28,22 +28,22 @@
     <OutputPath>Doc\</OutputPath>
     <HtmlHelpName>NLog</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.dll" platform=".NET Framework 4.5" />
-      <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.xml" platform=".NET Framework 4.5" />
-      <DocumentationSource sourceFile="..\NLog.Database\bin\Release\netstandard2.0\NLog.Database.dll" />
-      <DocumentationSource sourceFile="..\NLog.Database\bin\Release\netstandard2.0\NLog.Database.xml" />
-      <DocumentationSource sourceFile="..\NLog.OutputDebugString\bin\Release\netstandard2.0\NLog.OutputDebugString.dll" />
-      <DocumentationSource sourceFile="..\NLog.OutputDebugString\bin\Release\netstandard2.0\NLog.OutputDebugString.xml" />
-      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.dll" />
-      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.xml" />
-      <DocumentationSource sourceFile="..\NLog.PerformanceCounter\bin\Release\netstandard2.0\NLog.PerformanceCounter.dll" />
-      <DocumentationSource sourceFile="..\NLog.PerformanceCounter\bin\Release\netstandard2.0\NLog.PerformanceCounter.xml" />
-      <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.dll" />
-      <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.xml" />
-      <DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.dll" />
-      <DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.xml" />
-      <DocumentationSource sourceFile="..\NLog.WindowsRegistry\bin\Release\netstandard2.0\NLog.WindowsRegistry.dll" />
-      <DocumentationSource sourceFile="..\NLog.WindowsRegistry\bin\Release\netstandard2.0\NLog.WindowsRegistry.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Database.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Database.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.OutputDebugString.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.OutputDebugString.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MSMQ.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.MSMQ.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.PerformanceCounter.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.PerformanceCounter.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Wcf.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Wcf.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.WindowsIdentity.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.WindowsIdentity.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.WindowsRegistry.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.WindowsRegistry.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Windows.Forms.dll" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Windows.Forms.xml" />
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.Extensions.Logging.dll" />
@@ -70,12 +70,12 @@
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
         <component id="Code Block Component">
-  <basePath value="{@HtmlEncProjectFolder}..\..\" />
-  <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
-  <allowMissingSource value="true" />
-  <removeRegionMarkers value="false" />
-  <colorizer syntaxFile="{@CoreComponentsFolder}Colorizer\highlight.xml" styleFile="{@CoreComponentsFolder}Colorizer\highlight.xsl" stylesheet="{@CoreComponentsFolder}Colorizer\highlight.css" scriptFile="{@CoreComponentsFolder}Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="0" numberLines="true" outlining="true" keepSeeTags="true" defaultTitle="true" />
-</component>
+          <basePath value="{@HtmlEncProjectFolder}..\..\" />
+          <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
+          <allowMissingSource value="true" />
+          <removeRegionMarkers value="false" />
+          <colorizer syntaxFile="{@CoreComponentsFolder}Colorizer\highlight.xml" styleFile="{@CoreComponentsFolder}Colorizer\highlight.xsl" stylesheet="{@CoreComponentsFolder}Colorizer\highlight.css" scriptFile="{@CoreComponentsFolder}Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="0" numberLines="true" outlining="true" keepSeeTags="true" defaultTitle="true" />
+        </component>
       </ComponentConfig>
     </ComponentConfigurations>
     <ApiFilter>
@@ -164,8 +164,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EWSoftware.SHFB" Version="2019.9.15" />
-    <PackageReference Include="EWSoftware.SHFB.NETFramework" Version="4.8.0" />
+    <PackageReference Include="EWSoftware.SHFB" Version="2022.2.6" />
+    <PackageReference Include="EWSoftware.SHFB.NETFramework" Version="4.8.0.2" />
   </ItemGroup>
   <!-- Import the common build targets during NuGet restore because before the packages are being installed, $(SHFBROOT) is not set yet -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="'$(MSBuildRestoreSessionId)' != ''" />
