@@ -6,6 +6,6 @@ Generated docs for https://nlog-project.org/documentation/
 1. Perhaps update the year. Search for `2004-` for in [NLog.shfbproj](NLog.shfbproj).
 1. Start *Developer Command Prompt for VS 2022*
 1. Run [BuildDoc.cmd](BuildDoc.cmd)
-1. Copy the [Doc](Doc) folder to documentation folder of nlog.github.io
+1. Copy the Doc folder to the documentation folder of nlog.github.io
 1. Remove unneeded files: .config, .aspx. .php, WebKI.xml, WebTOC.xml and LastBuild.log
 
