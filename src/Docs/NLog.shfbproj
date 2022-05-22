@@ -62,7 +62,7 @@
       <DocumentationSource sourceFile="dll_to_doc\bin\Release\NLog.DiagnosticSource.xml" />
     </DocumentationSources>
     <HelpTitle>NLog $(BuildVersion)</HelpTitle>
-    <CopyrightText>Copyright %28c%29 2004-2021 NLog</CopyrightText>
+    <CopyrightText>Copyright %28c%29 2004-2022 NLog</CopyrightText>
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
     <CopyrightHref>https://nlog-project.org/</CopyrightHref>
