@@ -61,6 +61,13 @@ namespace NLog.UnitTests.Filters
             logFactory.AssertDebugLastMessage("a");
             logger.Debug("ZzzZ");
             logFactory.AssertDebugLastMessage("ZzzZ");
+
+            Assert.True(logFactory.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
+            var wcf = (WhenContainsFilter)logFactory.Configuration.LoggingRules[0].Filters[0];
+            Assert.IsType<SimpleLayout>(wcf.Layout);
+            Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
+            Assert.Equal("zzz", wcf.Substring);
+            Assert.Equal(FilterResult.Ignore, wcf.Action);
         }
 
         [Fact]
@@ -153,27 +160,23 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenContainsAPITest()
+        public void WhenContainsFilterActionMustOverrideDefault()
         {
-            // this is mostly to make Clover happy
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug'>
-                        <filters>
-                            <whenContains layout='${message}' substring='zzz' action='Ignore' />
-                        </filters>
-                    </logger>
-                </rules>
-            </nlog>").LogFactory;
-
-            Assert.True(logFactory.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
-            var wcf = (WhenContainsFilter)logFactory.Configuration.LoggingRules[0].Filters[0];
-            Assert.IsType<SimpleLayout>(wcf.Layout);
-            Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
-            Assert.Equal("zzz", wcf.Substring);
-            Assert.Equal(FilterResult.Ignore, wcf.Action);
+            var ex = Assert.Throws<NLogConfigurationException>(() =>
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug'>
+                            <filters defaultAction='Ignore'>
+                                <whenContains layout='${message}' substring='zzz' action='Ignore' />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>").LogFactory;
+            });
+            Assert.Contains("FilterDefaultAction=Ignore", ex.InnerException?.Message ?? ex.Message);
         }
     }
 }

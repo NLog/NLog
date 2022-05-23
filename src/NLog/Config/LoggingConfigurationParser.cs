@@ -693,6 +693,8 @@ namespace NLog.Config
 
             ParseLoggingRuleChildren(loggerElement, rule, filterDefaultAction);
 
+            ValidateLoggingRuleFilters(rule);
+
             return rule;
         }
 
@@ -769,7 +771,7 @@ namespace NLog.Config
                 LoggingRule childRule = null;
                 if (child.MatchesName("filters"))
                 {
-                    ParseFilters(rule, child, filterDefaultAction);
+                    ParseLoggingRuleFilters(rule, child, filterDefaultAction);
                 }
                 else if (child.MatchesName("logger") && loggerElement.MatchesName("logger"))
                 {
@@ -788,6 +790,8 @@ namespace NLog.Config
 
                 if (childRule != null)
                 {
+                    ValidateLoggingRuleFilters(rule);
+
                     lock (rule.ChildRules)
                     {
                         rule.ChildRules.Add(childRule);
@@ -796,7 +800,7 @@ namespace NLog.Config
             }
         }
 
-        private void ParseFilters(LoggingRule rule, ValidatedConfigurationElement filtersElement, string filterDefaultAction = null)
+        private void ParseLoggingRuleFilters(LoggingRule rule, ValidatedConfigurationElement filtersElement, string filterDefaultAction = null)
         {
             filtersElement.AssertName("filters");
 
@@ -812,6 +816,22 @@ namespace NLog.Config
                 Filter filter = FactoryCreateInstance(filterType, ConfigurationItemFactory.Default.Filters);
                 ConfigureFromAttributesAndElements(filter, filterElement, true);
                 rule.Filters.Add(filter);
+            }
+        }
+
+        private void ValidateLoggingRuleFilters(LoggingRule rule)
+        {
+            bool overridesDefaultAction = rule.Filters.Count == 0 || rule.FilterDefaultAction != FilterResult.Ignore;
+            for (int i = 0; i < rule.Filters.Count; ++i)
+            {
+                if (rule.Filters[i].Action != FilterResult.Ignore && rule.Filters[i].Action != FilterResult.IgnoreFinal && rule.Filters[i].Action != FilterResult.Neutral)
+                    overridesDefaultAction = true;
+            }
+            if (!overridesDefaultAction)
+            {
+                var configException = new NLogConfigurationException($"LoggingRule where all filters and FilterDefaultAction=Ignore : {rule}");
+                if (MustThrowConfigException(configException))
+                    throw configException;
             }
         }
 
