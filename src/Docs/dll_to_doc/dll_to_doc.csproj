@@ -1,99 +1,78 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ProjectGuid>{AA900992-9A6B-44F4-B891-193531554B55}</ProjectGuid>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.5.0.0\lib\net46\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Database, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Database.5.0.0\lib\net46\NLog.Database.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.DiagnosticSource, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.DiagnosticSource.1.2.0\lib\net45\NLog.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Extensions.Hosting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Extensions.Hosting.5.0.0\lib\netstandard2.0\NLog.Extensions.Hosting.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Extensions.Logging.5.0.0\lib\net461\NLog.Extensions.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.MailKit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.MailKit.4.1.0\lib\netstandard2.0\NLog.MailKit.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.MSMQ, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.MSMQ.5.0.0\lib\net46\NLog.MSMQ.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.OutputDebugString, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.OutputDebugString.5.0.0\lib\net46\NLog.OutputDebugString.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Owin.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Owin.Logging.1.1.0\lib\net45\NLog.Owin.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.PerformanceCounter, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.PerformanceCounter.5.0.0\lib\net46\NLog.PerformanceCounter.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Wcf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Wcf.5.0.0\lib\net46\NLog.Wcf.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Web.5.0.0\lib\net46\NLog.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Web.AspNetCore.5.0.0\lib\net461\NLog.Web.AspNetCore.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.Windows.Forms.4.6.0\lib\net35\NLog.Windows.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.WindowsIdentity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.WindowsIdentity.5.0.0\lib\net46\NLog.WindowsIdentity.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.WindowsRegistry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.WindowsRegistry.5.0.0\lib\net46\NLog.WindowsRegistry.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net472</TargetFramework>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Include the packages needed for the API docs -->
+		<PackageReference Include="NLog" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog)\lib\net46\NLog.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Database" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Database)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.DiagnosticSource" version="1.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_DiagnosticSource)\lib\net45\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Extensions.Hosting" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Extensions_Hosting)\lib\netstandard2.0\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Extensions.Logging" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Extensions_Logging)\lib\netstandard2.0\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.MailKit" version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_MailKit)\lib\netstandard2.0\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.MSMQ" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_MSMQ)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.OutputDebugString" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_OutputDebugString)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Owin.Logging" version="1.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Owin_Logging)\lib\net45\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.PerformanceCounter" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_PerformanceCounter)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Wcf" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Wcf)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Web" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Web)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Web_AspNetCore)\lib\net461\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Windows.Forms" version="4.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Windows_Forms)\lib\net35\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.WindowsIdentity" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_WindowsIdentity)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.WindowsRegistry" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_WindowsRegistry)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>
