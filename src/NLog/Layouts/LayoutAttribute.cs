@@ -37,7 +37,7 @@ namespace NLog.Layouts
     using Config;
 
     /// <summary>
-    /// Marks class as a layout renderer and assigns a format string to it.
+    /// Marks class as Layout and attaches a type-alias name for use in NLog configuration.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class LayoutAttribute : NameBaseAttribute
@@ -45,7 +45,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutAttribute" /> class.
         /// </summary>
-        /// <param name="name">Layout name.</param>
+        /// <param name="name">The Layout type-alias for use in NLog configuration.</param>
         public LayoutAttribute(string name)
             : base(name)
         {

@@ -98,7 +98,7 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="name">Type name of the Target. Will extract from class-attribute when unassigned.</param>
+        /// <param name="name">The target type-alias for use in NLog configuration. Will extract from class-attribute when unassigned.</param>
         public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name = null) where T : Target
         {
             var targetType = typeof(T);
@@ -111,11 +111,11 @@ namespace NLog
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Type name of the Target</param>
-        /// <param name="targetType">Type of the Target.</param>
+        /// <param name="targetType">The target type-alias for use in NLog configuration</param>
         public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, string name, Type targetType)
         {
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentException("Missing type symbol name", nameof(name));
+                throw new ArgumentException("Missing target type-alias", nameof(name));
             ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
             return setupBuilder;
         }
@@ -125,7 +125,7 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="name">Symbol-name of the layout renderer - without ${}. Will extract from class-attribute when unassigned.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'. Will extract from class-attribute when unassigned.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name = null)
             where T : LayoutRenderer
         {
@@ -139,11 +139,11 @@ namespace NLog
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="layoutRendererType">Type of the layout renderer.</param>
-        /// <param name="name">Symbol-name of the layout renderer</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Type layoutRendererType)
         {
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentException("Missing type symbol name", nameof(name));
+                throw new ArgumentException("Missing layout-renderer type-alias", nameof(name));
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
             return setupBuilder;
         }
@@ -152,7 +152,7 @@ namespace NLog
         /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> layoutMethod)
         {
@@ -163,7 +163,7 @@ namespace NLog
         /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod)
         {
@@ -174,7 +174,7 @@ namespace NLog
         /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
         /// <param name="options">Options of the layout renderer.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options)
@@ -186,7 +186,7 @@ namespace NLog
         /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
-        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
         /// <param name="options">Options of the layout renderer.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options)

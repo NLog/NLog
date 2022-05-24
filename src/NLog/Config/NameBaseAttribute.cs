@@ -41,7 +41,7 @@ namespace NLog.Config
     using Targets;
 
     /// <summary>
-    /// Attaches a simple name to an item (such as <see cref="Target"/>, 
+    /// Attaches a type-alias for an item (such as <see cref="Target"/>, 
     /// <see cref="LayoutRenderer"/>, <see cref="Layout"/>, etc.).
     /// </summary>
     [MeansImplicitUse]
@@ -50,16 +50,15 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="NameBaseAttribute" /> class.
         /// </summary>
-        /// <param name="name">The name of the item.</param>
+        /// <param name="name">The type-alias for use in NLog configuration.</param>
         protected NameBaseAttribute(string name)
         {
             Name = name;
         }
 
         /// <summary>
-        /// Gets the name of the item.
+        /// Gets the name of the type-alias
         /// </summary>
-        /// <value>The name of the item.</value>
         public string Name { get; }
     }
 }
