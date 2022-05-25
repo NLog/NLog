@@ -883,6 +883,7 @@ namespace NLog.Config
                     if (layout is SimpleLayout simpleLayout)
                     {
                         output = StringHelpers.Replace(output, layoutText, simpleLayout.OriginalText, culture);
+                        matchingVariableName = null;
                     }
                     else
                     {
