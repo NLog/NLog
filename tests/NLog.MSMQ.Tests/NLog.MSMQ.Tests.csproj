@@ -8,6 +8,8 @@
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">Full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
