@@ -101,7 +101,9 @@ namespace NLog.Targets
         /// to update to NLog 5.0 without having to fix custom/external layout-dependencies.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
-        public bool LayoutWithLock { get; set; }
+        [Obsolete("Temporary workaround for broken Layout Renderers that are not threadsafe. Marked obsolete on NLog 5.0")]
+        public bool LayoutWithLock { get => _layoutWithLock ?? false; set => _layoutWithLock = value; }
+        internal bool? _layoutWithLock;
 
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
@@ -225,7 +227,7 @@ namespace NLog.Targets
             if (!IsInitialized)
                 return;
 
-            if (LayoutWithLock)
+            if (_layoutWithLock == true)
             {
                 PrecalculateVolatileLayoutsWithLock(logEvent);
             }

@@ -280,7 +280,7 @@ namespace NLog.Targets.Wrappers
                 BatchSize = QueueLimit;     // Avoid too much throttling 
             }
 
-            LayoutWithLock = LayoutWithLock || (WrappedTarget?.LayoutWithLock ?? false);
+            _layoutWithLock = _layoutWithLock ?? WrappedTarget?._layoutWithLock;
 
             if (WrappedTarget != null && WrappedTarget.InitializeException is Config.NLogDependencyResolveException && OverflowAction == AsyncTargetWrapperOverflowAction.Discard)
             {
