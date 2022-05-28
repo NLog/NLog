@@ -213,7 +213,7 @@ namespace NLog.Targets
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>
-        /// Get or set the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
+        /// Gets or sets the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
