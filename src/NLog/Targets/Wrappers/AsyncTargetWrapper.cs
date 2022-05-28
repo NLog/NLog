@@ -224,16 +224,20 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Gets or sets the limit of full <see cref="BatchSize"/>s to write before yielding into <see cref="TimeToSleepBetweenBatches"/> 
-        /// Performance is better when writing many small batches, than writing a single large batch
+        /// Gets or sets the number of batches of <see cref="BatchSize"/> to write before yielding into <see cref="TimeToSleepBetweenBatches"/>
         /// </summary>
+        /// <remarks>
+        /// Performance is better when writing many small batches, than writing a single large batch
+        /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
         public int FullBatchSizeWriteLimit { get; set; } = 5;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
-        /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
         /// </summary>
+        /// <remarks>
+        /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
+        /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
         public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
         private bool? _forceLockingQueue;
