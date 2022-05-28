@@ -221,9 +221,23 @@ namespace MakeNLogXSD
                 var summary = doc.Element("summary");
                 if (summary != null)
                 {
+                    var summaryDoc = summary.Value;
+                    if (summary.HasElements)
+                    {
+                        summaryDoc = string.Empty;
+                        foreach (var item in summary.Nodes())
+                        {
+                            var element = item as XElement;
+                            if (element?.HasAttributes == true)
+                                summaryDoc += element.FirstAttribute.Value;
+                            else
+                                summaryDoc += item.ToString();
+                        }
+                    }
+
                     result.Add(new XElement(xsd + "annotation",
                         new XElement(xsd + "documentation",
-                            summary.Value)));
+                            summaryDoc)));
                 }
             }
 
