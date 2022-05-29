@@ -44,6 +44,13 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.7" />
   </ItemGroup>
 
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+		<!-- System.Net.Http vulnerabilities, see  https://github.com/advisories/GHSA-7jgj-8wvc-jh57 -->
+		<PackageReference Include="System.Net.Http" Version="4.*" />
+		<!-- System.Text.RegularExpressions    vulnerabilities, see  https://github.com/advisories/GHSA-cmhx-cq75-c4mj -->
+		<PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog.Database\NLog.Database.csproj" />
   </ItemGroup>
