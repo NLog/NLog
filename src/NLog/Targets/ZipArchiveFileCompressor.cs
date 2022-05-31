@@ -50,9 +50,9 @@ using System.IO.Compression;
         /// </summary>
         public void CompressFile(string fileName, string archiveFileName)
         {
+            using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-            using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
             {
                 var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
                 using (var destination = zipArchiveEntry.Open())
