@@ -1240,17 +1240,14 @@ namespace NLog.Targets
             else if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("{0}: Archiving {1} to compressed {2}", this, fileName, archiveFileName);
-                if (FileCompressor is IArchiveFileCompressor archiveFileCompressor)
+                if (File.Exists(archiveFileName))
                 {
-                    string entryName = (ArchiveNumbering != ArchiveNumberingMode.Rolling) ? (Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName)) : Path.GetFileName(fileName);
-                    archiveFileCompressor.CompressFile(fileName, archiveFileName, entryName);
+                    InternalLogger.Warn("{0}: Cannot created new compressed file, when file already exists: {1}", this, archiveFileName);
                 }
                 else
                 {
-                    FileCompressor.CompressFile(fileName, archiveFileName);
+                    ArchiveFileCompress(fileName, archiveFileName);
                 }
-
-                DeleteAndWaitForFileDelete(fileName);
             }
             else
             {
@@ -1264,6 +1261,47 @@ namespace NLog.Targets
                     ArchiveFileMove(fileName, archiveFileName);
                 }
             }
+        }
+
+        private void ArchiveFileCompress(string fileName, string archiveFileName)
+        {
+            int fileCompressRetryCount = ConcurrentWrites ? ConcurrentWriteAttempts : 2;
+            for (int i = 1; i <= fileCompressRetryCount; ++i)
+            {
+                try
+                {
+                    if (FileCompressor is IArchiveFileCompressor archiveFileCompressor)
+                    {
+                        string entryName = (ArchiveNumbering != ArchiveNumberingMode.Rolling) ? (Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName)) : Path.GetFileName(fileName);
+                        archiveFileCompressor.CompressFile(fileName, archiveFileName, entryName);
+                    }
+                    else
+                    {
+                        FileCompressor.CompressFile(fileName, archiveFileName);
+                    }
+
+                    break;  // Success
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    throw;  // Skip retry when directory does not exist
+                }
+                catch (FileNotFoundException)
+                {
+                    throw;  // Skip retry when file does not exist
+                }
+                catch (IOException ex)
+                {
+                    if (i == fileCompressRetryCount)
+                        throw;
+
+                    int sleepTimeMs = i * 50;
+                    InternalLogger.Warn("{0}: Attempt #{1} to compress {2} to {3} failed - {4} {5}. Sleeping for {6}ms", this, i, fileName, archiveFileName, ex.GetType(), ex.Message, sleepTimeMs);
+                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(sleepTimeMs));
+                }
+            }
+
+            DeleteAndWaitForFileDelete(fileName);
         }
 
         private void ArchiveFileAppendExisting(string fileName, string archiveFileName)
