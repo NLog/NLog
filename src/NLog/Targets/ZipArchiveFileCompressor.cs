@@ -58,7 +58,7 @@ namespace NLog.Targets
         public void CompressFile(string fileName, string archiveFileName, string entryName)
         {
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
+            using (var archiveStream = new FileStream(archiveFileName, FileMode.CreateNew))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             {
                 var zipArchiveEntry = archive.CreateEntry(entryName);
