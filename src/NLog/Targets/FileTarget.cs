@@ -1295,6 +1295,9 @@ namespace NLog.Targets
                     if (i == fileCompressRetryCount)
                         throw;
 
+                    if (File.Exists(archiveFileName))
+                        throw;
+
                     int sleepTimeMs = i * 50;
                     InternalLogger.Warn("{0}: Attempt #{1} to compress {2} to {3} failed - {4} {5}. Sleeping for {6}ms", this, i, fileName, archiveFileName, ex.GetType(), ex.Message, sleepTimeMs);
                     AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(sleepTimeMs));
