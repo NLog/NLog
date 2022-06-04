@@ -224,14 +224,32 @@ namespace MakeNLogXSD
                     var summaryDoc = summary.Value;
                     if (summary.HasElements)
                     {
+                        // Try to expand <see cref="..." />
                         summaryDoc = string.Empty;
                         foreach (var item in summary.Nodes())
                         {
                             var element = item as XElement;
                             if (element?.HasAttributes == true)
-                                summaryDoc += element.FirstAttribute.Value;
+                            {
+                                if (element?.IsEmpty == true)
+                                {
+                                    summaryDoc += element.FirstAttribute.Value;
+                                }
+                                else
+                                {
+                                    // Something else, abort the attempt to expand
+                                    summaryDoc = summary.Value;
+                                    break;
+                                }
+                            }
+                            else if (element != null)
+                            {
+                                summaryDoc += element.Value.ToString();
+                            }
                             else
+                            {
                                 summaryDoc += item.ToString();
+                            }
                         }
                     }
 
