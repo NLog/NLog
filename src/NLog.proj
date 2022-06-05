@@ -117,7 +117,7 @@
     Inputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\NLog.dll');$(DumpApiXml);$(MergeApiXml)"
     Outputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml"
     >
-    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly $(MSBuildProjectDirectory)\NLog.Database\Bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Database.dll -assembly $(MSBuildProjectDirectory)\NLog.WindowsIdentity\Bin\$(Configuration)\%(TargetFramework.Identity)\NLog.WindowsIdentity.dll -output API\NLog.api'
+    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly $(MSBuildProjectDirectory)\NLog.Database\Bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Database.dll -output API\NLog.api'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
     <Exec Command='"$(MergeApiXml)" "$(BaseOutputDirectory)\bin\$(Configuration)"' />

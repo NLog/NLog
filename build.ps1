@@ -40,7 +40,6 @@ function create-package($packageName)
 create-package('NLog.Database')
 create-package('NLog.OutputDebugString')
 create-package('NLog.WindowsEventLog')
-create-package('NLog.WindowsIdentity')
 create-package('NLog.WindowsRegistry')
 
 msbuild /t:xsd /t:NuGetSchemaPackage .\src\NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
