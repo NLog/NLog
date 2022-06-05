@@ -776,8 +776,8 @@ namespace NLog.Targets
         /// Register a custom Target.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <typeparam name="T"> Type of the Target.</typeparam>
-        /// <param name="name"> Name of the Target.</param>
+        /// <typeparam name="T">Type of the Target.</typeparam>
+        /// <param name="name">The target type-alias for use in NLog configuration</param>
         public static void Register<T>(string name)
             where T : Target
         {
@@ -789,8 +789,8 @@ namespace NLog.Targets
         /// Register a custom Target.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <param name="targetType"> Type of the Target.</param>
-        /// <param name="name"> Name of the Target.</param>
+        /// <param name="targetType">Type of the Target.</param>
+        /// <param name="name">The target type-alias for use in NLog configuration</param>
         public static void Register(string name, Type targetType)
         {
             ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);

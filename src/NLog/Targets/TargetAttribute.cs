@@ -37,16 +37,15 @@ namespace NLog.Targets
     using Config;
 
     /// <summary>
-    /// Marks class as a logging target and assigns a name to it.
+    /// Marks class as logging target and attaches a type-alias name for use in NLog configuration.
     /// </summary>
-    /// <remarks>This attribute is not required when registering the target in the API.</remarks>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class TargetAttribute : NameBaseAttribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetAttribute" /> class.
         /// </summary>
-        /// <param name="name">Name of the target.</param>
+        /// <param name="name">The target type-alias for use in NLog configuration.</param>
         public TargetAttribute(string name)
             : base(name)
         {

@@ -37,16 +37,15 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// Marks class as a layout renderer and assigns a name to it.
+    /// Marks class as layout-renderer and attaches a type-alias name for use in NLog configuration.
     /// </summary>
-    /// <remarks>This attribute is not required when registering the layout in the API.</remarks>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class LayoutRendererAttribute : NameBaseAttribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutRendererAttribute" /> class.
         /// </summary>
-        /// <param name="name">Name of the layout renderer, without the `${ }`</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         public LayoutRendererAttribute(string name)
             : base(name)
         {

@@ -239,7 +239,7 @@ namespace NLog.Config
                 return result;
             }
 
-            var message = typeof(TBaseType).Name + " symbol-name is unknown: '" + itemName + "'";
+            var message = typeof(TBaseType).Name + " type-alias is unknown: '" + itemName + "'";
             if (itemName != null && (itemName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
                                  itemName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {

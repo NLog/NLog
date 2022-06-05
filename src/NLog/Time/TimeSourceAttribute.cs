@@ -45,7 +45,7 @@ namespace NLog.Time
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeSourceAttribute" /> class.
         /// </summary>
-        /// <param name="name">Name of the time source.</param>
+        /// <param name="name">The Time type-alias for use in NLog configuration.</param>
         public TimeSourceAttribute(string name)
             : base(name)
         {

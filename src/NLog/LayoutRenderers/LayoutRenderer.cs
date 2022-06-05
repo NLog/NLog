@@ -235,8 +235,8 @@ namespace NLog.LayoutRenderers
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <typeparam name="T"> Type of the layout renderer.</typeparam>
-        /// <param name="name"> Name of the layout renderer - without ${}.</param>
+        /// <typeparam name="T">Type of the layout renderer.</typeparam>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         public static void Register<T>(string name)
             where T : LayoutRenderer
         {
@@ -249,7 +249,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="layoutRendererType"> Type of the layout renderer.</param>
-        /// <param name="name"> Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         public static void Register(string name, Type layoutRendererType)
         {
             ConfigurationItemFactory.Default.LayoutRenderers
@@ -259,7 +259,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent.
         /// </summary>
-        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         public static void Register(string name, Func<LogEventInfo, object> func)
         {
@@ -269,7 +269,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
-        /// <param name="name">Name of the layout renderer - without ${}.</param>
+        /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         public static void Register(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
         {
