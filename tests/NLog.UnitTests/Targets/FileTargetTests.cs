@@ -892,6 +892,60 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void ArchiveOldFileOnStartupAboveSizeWhenFileLocked()
+        {
+            var logFile = Path.GetTempFileName();
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var archiveTempName = Path.Combine(tempArchiveFolder, "archive_size_threshold.zip");
+
+            FileTarget CreateTestTarget(long threshold)
+            {
+                return new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    ArchiveOldFileOnStartupAboveSize = threshold,
+                    ArchiveFileName = archiveTempName,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    EnableArchiveFileCompression = true,
+                    MaxArchiveFiles = 1
+                };
+            }
+
+            try
+            {
+                // No archive on startup (ignoring threshold)
+                SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(1000));
+                logger.Info("aaa");
+                LogManager.Flush();
+                AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
+                Assert.False(File.Exists(archiveTempName));
+
+                NLog.LogManager.ThrowExceptions = false;
+                SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(3));
+
+                using (var fileStream = new FileStream(logFile, FileMode.Open, FileAccess.Write, FileShare.None))
+                {
+                    // Archive on startup with small threshold -> Must be archived
+                    logger.Info("ccc");
+                    LogManager.Flush();
+                    fileStream.Close();
+                    AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
+                    Assert.False(File.Exists(archiveTempName));
+                }
+            }
+            finally
+            {
+                NLog.LogManager.ThrowExceptions = true;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempArchiveFolder))
+                    Directory.Delete(tempArchiveFolder, true);
+            }
+        }
+
         public static IEnumerable<object[]> ReplaceFileContentsOnEachWriteTest_TestParameters
         {
             get
