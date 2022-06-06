@@ -115,7 +115,7 @@ namespace NLog.Layouts
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
-        /// Determines whether or not this attribute will be Json encoded.
+        /// Gets or sets whether output should be encoded as Json-String-Property, or be treated as valid json.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public bool Encode { get; set; }

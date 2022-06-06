@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to apply JSON encoding.
+        /// Gets or sets whether output should be encoded with Json-string escaping.
         /// </summary>
         /// <docgen category="Layout Options" order="10"/>
         public bool JsonEncode { get; set; } = true;

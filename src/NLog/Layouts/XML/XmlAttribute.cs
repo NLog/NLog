@@ -100,7 +100,7 @@ namespace NLog.Layouts
         public Layout DefaultValue { get => _layoutInfo.DefaultValue; set => _layoutInfo.DefaultValue = value; }
 
         /// <summary>
-        /// Determines whether or not this attribute will be Xml encoded.
+        /// Gets or sets whether output should be encoded with Xml-string escaping, or be treated as valid xml-attribute-value
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
         public bool Encode { get; set; }
