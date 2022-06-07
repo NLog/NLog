@@ -74,7 +74,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Determines whether or not this attribute will be Xml encoded.
+        /// Gets or sets whether output should be encoded with Xml-string escaping, or be treated as valid xml-element-value
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
         public bool Encode

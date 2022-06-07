@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to apply XML encoding.
+        /// Gets or sets whether output should be encoded with Xml-string escaping.
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category="Layout Options" order="10"/>
