@@ -55,7 +55,7 @@ namespace NLog.UnitTests.Layouts
                     {
                         Attributes =
                         {
-                            new JsonAttribute("short date", "${shortdate}"),
+                            new JsonAttribute("short_date", "${shortdate}"),
                             new JsonAttribute("message", "${message}"),
                         }
                     },
@@ -71,11 +71,78 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello, world"
             };
 
-            const string expected = "Long date - 2010-01-20 12:34:56.0000|Before| { \"short date\": \"2010-01-20\", \"message\": \"hello, world\" } |After|Last - Info";
+            const string expected = "Long date - 2010-01-20 12:34:56.0000|Before| { \"short_date\": \"2010-01-20\", \"message\": \"hello, world\" } |After|Last - Info";
             var actual = compoundLayout.Render(logEventInfo);
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void XmlCompoundLayoutWithVariables()
+        {
+            const string configXml = @"
+<nlog>
+    <variable name='jsonLayoutv0.1'>
+        <layout type='JsonLayout'>
+          <attribute name='short_date' layout='${shortdate}' />
+          <attribute name='message' layout='${message}' />
+        </layout>
+    </variable>
+    <variable name='compoundLayoutv0.1'>
+      <layout type='CompoundLayout'>
+        <layout type='SimpleLayout' text='|Before| ' />
+        <layout type='${jsonLayoutv0.1}' />
+        <layout type='SimpleLayout' text=' |After|' />
+      </layout>
+    </variable>
+    <targets>
+    <target name='compoundFile1' type='File' fileName='log.txt'>
+      <layout type='CompoundLayout'>
+        <layout type='SimpleLayout' text='|Before| ' />
+        <layout type='${jsonLayoutv0.1}' />
+        <layout type='SimpleLayout' text=' |After|' />
+      </layout>
+    </target>
+    <target name='compoundFile2' type='file' fileName='other.txt'>
+      <layout type='${compoundLayoutv0.1}' />
+    </target>
+  </targets>
+  <rules>
+  </rules>
+</nlog>
+";
+
+            var config = XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            Assert.NotNull(config);
+            var target = config.FindTargetByName<FileTarget>("compoundFile1");
+            Assert.NotNull(target);
+            var compoundLayout = target.Layout as CompoundLayout;
+            Assert.NotNull(compoundLayout);
+            var layouts = compoundLayout.Layouts;
+            Assert.Equal(3, layouts.Count);
+            Assert.Equal(typeof(SimpleLayout), layouts[0].GetType());
+            Assert.Equal(typeof(JsonLayout), layouts[1].GetType());
+            Assert.Equal(typeof(SimpleLayout), layouts[2].GetType());
+            var innerJsonLayout = (JsonLayout)layouts[1];
+            Assert.Equal(typeof(JsonLayout), innerJsonLayout.GetType());
+            Assert.Equal(2, innerJsonLayout.Attributes.Count);
+            Assert.Equal("${shortdate}", innerJsonLayout.Attributes[0].Layout.ToString());
+            Assert.Equal("${message}", innerJsonLayout.Attributes[1].Layout.ToString());
+
+            target = config.FindTargetByName<FileTarget>("compoundFile2");
+            Assert.NotNull(target);
+            compoundLayout = target.Layout as CompoundLayout;
+            Assert.NotNull(compoundLayout);
+            layouts = compoundLayout.Layouts;
+            Assert.Equal(3, layouts.Count);
+            Assert.Equal(typeof(SimpleLayout), layouts[0].GetType());
+            Assert.Equal(typeof(JsonLayout), layouts[1].GetType());
+            Assert.Equal(typeof(SimpleLayout), layouts[2].GetType());
+            innerJsonLayout = (JsonLayout)layouts[1];
+            Assert.Equal(typeof(JsonLayout), innerJsonLayout.GetType());
+            Assert.Equal(2, innerJsonLayout.Attributes.Count);
+            Assert.Equal("${shortdate}", innerJsonLayout.Attributes[0].Layout.ToString());
+            Assert.Equal("${message}", innerJsonLayout.Attributes[1].Layout.ToString());
+        }
 
         [Fact]
         public void XmlCompoundLayoutIsRenderedCorrectly()
@@ -88,7 +155,7 @@ namespace NLog.UnitTests.Layouts
         <layout type='SimpleLayout' text='Long date - ${longdate}' />
         <layout type='SimpleLayout' text='|Before| ' />
         <layout type='JsonLayout'>
-          <attribute name='short date' layout='${shortdate}' />
+          <attribute name='short_date' layout='${shortdate}' />
           <attribute name='message' layout='${message}' />
         </layout>
         <layout type='SimpleLayout' text=' |After|' />
@@ -128,7 +195,7 @@ namespace NLog.UnitTests.Layouts
                 Message = "hello, world"
             };
 
-            const string expected = "Long date - 2010-01-20 12:34:56.0000|Before| { \"short date\": \"2010-01-20\", \"message\": \"hello, world\" } |After|Last - Info";
+            const string expected = "Long date - 2010-01-20 12:34:56.0000|Before| { \"short_date\": \"2010-01-20\", \"message\": \"hello, world\" } |After|Last - Info";
             var actual = compoundLayout.Render(logEventInfo);
             Assert.Equal(expected, actual);
         }

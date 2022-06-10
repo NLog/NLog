@@ -486,12 +486,7 @@ namespace NLog.Config
             var childElement = variableElement.ValidChildren.FirstOrDefault();
             if (childElement != null)
             {
-                var variableLayout = TryCreateLayoutInstance(childElement, typeof(Layout));
-                if (variableLayout != null)
-                {
-                    ConfigureFromAttributesAndElements(variableLayout, childElement);
-                    return variableLayout;
-                }
+                return TryCreateLayoutInstance(childElement, typeof(Layout));
             }
 
             return null;
@@ -1082,8 +1077,14 @@ namespace NLog.Config
             try
             {
                 var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingVariableName);
-                if (matchingVariableName != null && propertyValueExpanded == propertyValue && TrySetPropertyFromConfigVariableLayout(targetObject, propertyName, matchingVariableName))
-                    return;
+                if (matchingVariableName != null && TryLookupDynamicVariable(matchingVariableName, out var matchingLayout))
+                {
+                    if (PropertyHelper.TryGetPropertyInfo(targetObject, propertyName, out var propInfo) && propInfo.PropertyType.IsAssignableFrom(matchingLayout.GetType()))
+                    {
+                        PropertyHelper.SetPropertyValueForObject(targetObject, matchingLayout, propInfo);
+                        return;
+                    }
+                }
 
                 PropertyHelper.SetPropertyFromString(targetObject, propertyName, propertyValueExpanded, ConfigurationItemFactory.Default);
             }
@@ -1101,17 +1102,6 @@ namespace NLog.Config
                 if (MustThrowConfigException(configException))
                     throw;
             }
-        }
-
-        private bool TrySetPropertyFromConfigVariableLayout(object targetObject, string propertyName, string configVariableName)
-        {
-            if (TryLookupDynamicVariable(configVariableName, out var matchingLayout) && PropertyHelper.TryGetPropertyInfo(targetObject, propertyName, out var propInfo) && propInfo.PropertyType.IsAssignableFrom(matchingLayout.GetType()))
-            {
-                propInfo.SetValue(targetObject, matchingLayout, null);
-                return true;
-            }
-
-            return false;
         }
 
         private void SetPropertyValuesFromElement(object o, ValidatedConfigurationElement childElement, ILoggingConfigurationElement parentElement)
@@ -1176,20 +1166,20 @@ namespace NLog.Config
             object arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
             if (arrayItem is null)
+            {
                 arrayItem = _serviceRepository.GetService(elementType);
-
-            ConfigureFromAttributesAndElements(arrayItem, element);
+                ConfigureFromAttributesAndElements(arrayItem, element);
+            }
             return arrayItem;
         }
 
         private bool SetLayoutFromElement(object o, PropertyInfo propInfo, ValidatedConfigurationElement element)
         {
             var layout = TryCreateLayoutInstance(element, propInfo.PropertyType);
-
             // and is a Layout and 'type' attribute has been specified
             if (layout != null)
             {
-                SetItemOnProperty(o, propInfo, element, layout);
+                PropertyHelper.SetPropertyValueForObject(o, layout, propInfo);
                 return true;
             }
 
@@ -1198,13 +1188,11 @@ namespace NLog.Config
 
         private bool SetFilterFromElement(object o, PropertyInfo propInfo, ValidatedConfigurationElement element)
         {
-            var type = propInfo.PropertyType;
-
-            Filter filter = TryCreateFilterInstance(element, type);
+            Filter filter = TryCreateFilterInstance(element, propInfo.PropertyType);
             // and is a Filter and 'type' attribute has been specified
             if (filter != null)
             {
-                SetItemOnProperty(o, propInfo, element, filter);
+                PropertyHelper.SetPropertyValueForObject(o, filter, propInfo);
                 return true;
             }
 
@@ -1218,12 +1206,44 @@ namespace NLog.Config
 
         private Layout TryCreateLayoutInstance(ValidatedConfigurationElement element, Type type)
         {
-            return TryCreateInstance(element, type, ConfigurationItemFactory.Default.Layouts);
+            // Check if Layout type
+            if (!typeof(Layout).IsAssignableFrom(type))
+                return null;
+
+            // Check if the 'type' attribute has been specified
+            string classType = element.GetConfigItemTypeAttribute();
+            if (classType is null)
+                return null;
+
+            var expandedClassType = ExpandSimpleVariables(classType, out var matchingVariableName);
+            if (matchingVariableName != null && TryLookupDynamicVariable(matchingVariableName, out var matchingLayout))
+            {
+                if (type.IsAssignableFrom(matchingLayout.GetType()))
+                {
+                    return matchingLayout;
+                }
+            }
+
+            var layoutInstance = FactoryCreateInstance(expandedClassType, ConfigurationItemFactory.Default.Layouts);
+            if (layoutInstance != null)
+            {
+                ConfigureFromAttributesAndElements(layoutInstance, element);
+                return layoutInstance;
+            }
+
+            return null;
         }
 
         private Filter TryCreateFilterInstance(ValidatedConfigurationElement element, Type type)
         {
-            return TryCreateInstance(element, type, ConfigurationItemFactory.Default.Filters);
+            var filter = TryCreateInstance(element, type, ConfigurationItemFactory.Default.Filters);
+            if (filter != null)
+            {
+                ConfigureFromAttributesAndElements(filter, element);
+                return filter;
+            }
+
+            return null;
         }
 
         private T TryCreateInstance<T>(ValidatedConfigurationElement element, Type type, INamedItemFactory<T, Type> factory)
@@ -1301,12 +1321,6 @@ namespace NLog.Config
             }
 
             return classType;
-        }
-
-        private void SetItemOnProperty(object o, PropertyInfo propInfo, ValidatedConfigurationElement element, object properyValue)
-        {
-            ConfigureFromAttributesAndElements(properyValue, element);
-            propInfo.SetValue(o, properyValue, null);
         }
 
         private void ConfigureFromAttributesAndElements(object targetObject, ValidatedConfigurationElement element, bool ignoreTypeProperty = true)
@@ -1496,14 +1510,15 @@ namespace NLog.Config
 
             IEnumerable<ValidatedConfigurationElement> YieldAndCacheValidChildren()
             {
+                IList<ValidatedConfigurationElement> validChildren = null;
                 foreach (var child in _element.Children)
                 {
-                    _validChildren = _validChildren ?? new List<ValidatedConfigurationElement>();
+                    validChildren = validChildren ?? new List<ValidatedConfigurationElement>();
                     var validChild = new ValidatedConfigurationElement(child, _throwConfigExceptions);
-                    _validChildren.Add(validChild);
+                    validChildren.Add(validChild);
                     yield return validChild;
                 }
-                _validChildren = _validChildren ?? ArrayHelper.Empty<ValidatedConfigurationElement>();
+                _validChildren = validChildren ?? ArrayHelper.Empty<ValidatedConfigurationElement>();
             }
 
             public IEnumerable<KeyValuePair<string, string>> Values => ValueLookup;
