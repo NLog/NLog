@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Config
     <rules>
       <logger name='*' writeTo='t'>
         <filters>
-           <whenFoo x='44' action='Ignore' />
+           <whenFoo x='44' action='Log' />
         </filters>
       </logger>
     </rules>
@@ -174,7 +174,7 @@ namespace NLog.UnitTests.Config
     <rules>
       <logger name='*' writeTo='t'>
         <filters>
-           <myprefix.whenFoo x='44' action='Ignore' />
+           <myprefix.whenFoo x='44' action='Log' />
         </filters>
       </logger>
     </rules>
@@ -222,7 +222,7 @@ namespace NLog.UnitTests.Config
     <rules>
       <logger name='*' writeTo='t'>
         <filters>
-           <whenFoo x='44' action='Ignore' />
+           <whenFoo x='44' action='Log' />
         </filters>
       </logger>
     </rules>
@@ -264,7 +264,7 @@ namespace NLog.UnitTests.Config
     <rules>
       <logger name='*' writeTo='t'>
         <filters>
-           <whenFoo x='44' action='Ignore' />
+           <whenFoo x='44' action='Log' />
         </filters>
       </logger>
     </rules>
