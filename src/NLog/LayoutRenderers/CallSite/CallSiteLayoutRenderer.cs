@@ -108,7 +108,7 @@ namespace NLog.LayoutRenderers
                 return StackTraceUsageUtils.GetStackTraceUsage(
                     FileName,
                     SkipFrames,
-                    CaptureStackTrace) | ((ClassName || IncludeNamespace) ? StackTraceUsage.WithCallSiteClassName : StackTraceUsage.None);
+                    CaptureStackTrace) | (ClassName ? StackTraceUsage.WithCallSiteClassName : StackTraceUsage.None);
             }
         }
 

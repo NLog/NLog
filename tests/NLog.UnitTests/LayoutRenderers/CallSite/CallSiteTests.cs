@@ -1471,13 +1471,16 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Theory]
+        [InlineData(false, StackTraceUsage.WithCallSite)]
         [InlineData(true, StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName)]
         [InlineData(false, StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName)]   // Will capture StackTrace automatically
+        [InlineData(false, StackTraceUsage.WithStackTrace)]
         [InlineData(true, StackTraceUsage.WithCallSiteClassName)]
         [InlineData(false, StackTraceUsage.WithCallSiteClassName)]  // Will NOT capture StackTrace automatically
         public void CallsiteTargetSkipsStackTraceTest(bool includeLogEventCallSite, StackTraceUsage stackTraceUsage)
         {
             var target = new MyTarget() { StackTraceUsage = stackTraceUsage };
+            var target2 = new MyTarget() { StackTraceUsage = StackTraceUsage.WithCallSite };
             var logger = new LogFactory().Setup().LoadConfiguration(builder =>
             {
                 builder.ForLogger().WriteTo(target);

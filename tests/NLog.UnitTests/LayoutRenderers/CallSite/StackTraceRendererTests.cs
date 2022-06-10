@@ -54,6 +54,22 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void RenderStackTraceAndCallsite()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message} ${stacktrace} ${callsite:className=false}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            RenderMe(logFactory, "I am:");
+
+            logFactory.AssertDebugLastMessageContains(" => StackTraceRendererTests.RenderStackTraceAndCallsite => StackTraceRendererTests.RenderMe");
+        }
+
+        [Fact]
         public void RenderStackTraceReversed()
         {
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
@@ -239,7 +255,7 @@ namespace NLog.UnitTests.LayoutRenderers
         private void RenderMe(LogFactory logFactory, string message)
         {
             var logger = logFactory.GetCurrentClassLogger();
-            logger.Info(message);
+            logger.ForInfoEvent().Message(message).Log();
         }
     }
 
