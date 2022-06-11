@@ -360,7 +360,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// LogEvent is written to target, but target failed to succesfully initialize
+        /// LogEvent is written to target, but target failed to successfully initialize
         /// 
         /// Enqueue logevent for later processing when target failed to initialize because of unresolved service dependency.
         /// </summary>
