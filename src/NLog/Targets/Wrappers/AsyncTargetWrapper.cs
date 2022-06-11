@@ -48,7 +48,7 @@ namespace NLog.Targets.Wrappers
     /// <seealso href="https://github.com/nlog/nlog/wiki/AsyncWrapper-target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// <p>
-    /// Asynchronous target wrapper allows the logger code to execute more quickly, by queueing
+    /// Asynchronous target wrapper allows the logger code to execute more quickly, by queuing
     /// messages and processing them in a separate thread. You should wrap targets
     /// that spend a non-trivial amount of time in their Write() method with asynchronous
     /// target to speed up logging.
