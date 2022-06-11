@@ -184,7 +184,7 @@ namespace NLog
                 var nlogConfigStream = applicationAssembly.GetManifestResourceStream(resourcePaths[0]);
                 if (nlogConfigStream?.Length > 0)
                 {
-                    NLog.Common.InternalLogger.Info("Loading NLog XML config from assemly embedded resource '{0}'", resourceName);
+                    NLog.Common.InternalLogger.Info("Loading NLog XML config from assembly embedded resource '{0}'", resourceName);
                     using (var xmlReader = System.Xml.XmlReader.Create(nlogConfigStream))
                     {
                         setupBuilder.LoadConfiguration(new XmlLoggingConfiguration(xmlReader, null, setupBuilder.LogFactory));

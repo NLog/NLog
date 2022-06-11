@@ -167,7 +167,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Creates the log event which can be used to render layouts during installation/uninstallations.
+        /// Creates the log event which can be used to render layouts during install/uninstall.
         /// </summary>
         /// <returns>Log event info object.</returns>
         public LogEventInfo CreateLogEvent()

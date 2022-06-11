@@ -181,7 +181,7 @@ namespace NLog.Internal.NetworkSenders
 #endif
                         if (addressFamily == AddressFamily.Unspecified && addresses.Length > 1)
                         {
-                            Array.Sort(addresses, IPAddressComparer.Default);   // Prioritize IPv4 addresses over IPv6, unless explictly specified
+                            Array.Sort(addresses, IPAddressComparer.Default);   // Prioritize IPv4 addresses over IPv6, unless explicitly specified
                         }
 
                         foreach (var addr in addresses)

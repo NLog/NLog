@@ -34,7 +34,7 @@
 namespace NLog.Internal
 {
     /// <summary>
-    /// Get the Raw, unformatted and unstrinyfied, value
+    /// Get the Raw, unformatted value without stringify
     /// </summary>
     /// <remarks>
     /// Implementors must has the  [ThreadAgnostic] attribute

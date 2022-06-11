@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Renders the the value of layout renderer in the context of the specified log event.
+        /// Renders the value of layout renderer in the context of the specified log event.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <returns>String representation of a layout renderer.</returns>

@@ -96,7 +96,7 @@ namespace NLog.Internal
                 return;
             }
 
-            //do we have to the the layout?
+            //do we have to the layout?
             if (cleanupInvalidChars || _filePathKind == FilePathKind.Unknown)
             {
                 _cleanedFixedResult = CreateCleanedFixedResult(cleanupInvalidChars, layout);

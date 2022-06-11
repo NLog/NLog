@@ -406,7 +406,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// LogEvent is written to target, but target failed to succesfully initialize
+        /// LogEvent is written to target, but target failed to successfully initialize
         /// </summary>
         protected virtual void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
         {

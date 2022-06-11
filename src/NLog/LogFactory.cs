@@ -690,7 +690,7 @@ namespace NLog
         /// </summary>
         /// <param name="loggingConfiguration">Config containing Targets to Flush</param>
         /// <param name="asyncContinuation">Flush completed notification (success / timeout)</param>
-        /// <param name="asyncTimeout">Optional timeout that guarantees that completed notication is called.</param>
+        /// <param name="asyncTimeout">Optional timeout that guarantees that completed notification is called.</param>
         /// <returns></returns>
         private static AsyncContinuation FlushAllTargetsAsync(LoggingConfiguration loggingConfiguration, AsyncContinuation asyncContinuation, TimeSpan? asyncTimeout)
         {
@@ -1112,7 +1112,7 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor.", loggerType);
+                    InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default constructor.", loggerType);
                     if (ex.MustBeRethrown())
                     {
                         throw;

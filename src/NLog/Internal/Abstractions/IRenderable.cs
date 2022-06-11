@@ -39,7 +39,7 @@ namespace NLog.Internal
     internal interface IRenderable
     {
         /// <summary>
-        /// Renders the the value of layout or layout renderer in the context of the specified log event.
+        /// Renders the value of layout or layout renderer in the context of the specified log event.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <returns>String representation of a layout.</returns>

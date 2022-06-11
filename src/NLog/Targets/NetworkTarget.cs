@@ -371,7 +371,7 @@ namespace NLog.Targets
                         case NetworkTargetConnectionsOverflowAction.Block:
                             while (_openNetworkSenders.Count >= MaxConnections)
                             {
-                                InternalLogger.Debug("{0}: Blocking networktarget otherwhise too many connections.", this);
+                                InternalLogger.Debug("{0}: Blocking networktarget otherwise too many connections.", this);
                                 Monitor.Wait(_openNetworkSenders);
                                 InternalLogger.Trace("{0}: Entered critical section.", this);
                             }

@@ -156,7 +156,7 @@ namespace NLog.Common
                 {
                     if (ex != null)
                     {
-                        // if got exception from from original invocation, don't execute action
+                        // if got exception from original invocation, don't execute action
                         asyncContinuation(ex);
                         return;
                     }

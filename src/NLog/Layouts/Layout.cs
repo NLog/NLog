@@ -211,7 +211,7 @@ namespace NLog.Layouts
             if (!ThreadAgnostic || MutableUnsafe)
             {
                 // Would be nice to only do this in Precalculate(), but we need to ensure internal cache
-                // is updated for for custom Layouts that overrides Precalculate (without calling base.Precalculate)
+                // is updated for custom Layouts that overrides Precalculate (without calling base.Precalculate)
                 logEvent.AddCachedLayoutValue(this, layoutValue);
             }
             return layoutValue;
