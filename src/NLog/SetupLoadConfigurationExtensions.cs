@@ -592,7 +592,7 @@ namespace NLog
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="bufferSize">Buffer size limit for pending logevents</param>
         /// <param name="flushTimeout">Timeout for when the buffer will flush automatically using background thread</param>
-        /// <param name="slidingTimeout">Restart timeout when when logevent is written</param>
+        /// <param name="slidingTimeout">Restart timeout when logevent is written</param>
         /// <param name="overflowAction">Action to take when buffer overflows</param>
         public static ISetupConfigurationTargetBuilder WithBuffering(this ISetupConfigurationTargetBuilder configBuilder, int? bufferSize = null, TimeSpan? flushTimeout = null, bool? slidingTimeout = null, BufferingTargetWrapperOverflowAction? overflowAction = null)
         {

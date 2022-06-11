@@ -37,7 +37,7 @@ namespace NLog.Targets
     using System.ComponentModel;
 
     /// <summary>
-    /// Options for JSON serialisation
+    /// Options for JSON serialization
     /// </summary>
     public class JsonSerializeOptions
     {

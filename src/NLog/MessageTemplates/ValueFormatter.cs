@@ -276,7 +276,7 @@ namespace NLog.MessageTemplates
         /// "FirstOrder"=true, "Previous login"=20-12-2017 14:55:32, "number of tries"=1
         /// </example>
         /// <param name="dictionary"></param>
-        /// <param name="format">formatstring of an item</param>
+        /// <param name="format">format string of an item</param>
         /// <param name="formatProvider"></param>
         /// <param name="builder"></param>
         /// <param name="objectsInPath"></param>

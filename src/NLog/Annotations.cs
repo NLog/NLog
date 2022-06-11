@@ -247,8 +247,8 @@ namespace JetBrains.Annotations
 
     /// <summary>
     /// Indicates that the function argument should be a string literal and match
-    /// one of the parameters of the caller function. This annotation is used for paramerers
-    /// like 'string paramName' parameter of the <see cref="System.ArgumentNullException"/> constuctor.
+    /// one of the parameters of the caller function. This annotation is used for parameters
+    /// like 'string paramName' parameter of the <see cref="System.ArgumentNullException"/> constructor.
     /// </summary>
     /// <example><code>
     /// void Foo(string param) {

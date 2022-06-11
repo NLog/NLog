@@ -511,7 +511,7 @@ namespace NLog.Internal
                 {
                     if (_messagePropertiesEnumerator.Value + 1 < _dictionary._messageProperties.Count)
                     {
-                        // Move forward to a key that is not overriden
+                        // Move forward to a key that is not overridden
                         _messagePropertiesEnumerator = FindNextValidMessagePropertyIndex(_messagePropertiesEnumerator.Value + 1);
                         if (_messagePropertiesEnumerator.HasValue)
                             return true;
@@ -537,7 +537,7 @@ namespace NLog.Internal
 
                 if (HasMessageProperties(_dictionary))
                 {
-                    // Move forward to a key that is not overriden
+                    // Move forward to a key that is not overridden
                     _messagePropertiesEnumerator = FindNextValidMessagePropertyIndex(0);
                     if (_messagePropertiesEnumerator.HasValue)
                     {

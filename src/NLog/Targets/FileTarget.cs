@@ -1565,8 +1565,8 @@ namespace NLog.Targets
         /// Calculate the DateTime of the requested day of the week.
         /// </summary>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event.</param>
-        /// <param name="dayOfWeek">The next occuring day of the week to return a DateTime for.</param>
-        /// <returns>The DateTime of the next occuring dayOfWeek.</returns>
+        /// <param name="dayOfWeek">The next occurring day of the week to return a DateTime for.</param>
+        /// <returns>The DateTime of the next occurring dayOfWeek.</returns>
         /// <remarks>For example: if previousLogEventTimestamp is Thursday 2017-03-02 and dayOfWeek is Sunday, this will return
         ///  Sunday 2017-03-05. If dayOfWeek is Thursday, this will return *next* Thursday 2017-03-09.</remarks>
         public static DateTime CalculateNextWeekday(DateTime previousLogEventTimestamp, DayOfWeek dayOfWeek)
@@ -2238,7 +2238,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initialise a file to be used by the <see cref="FileTarget"/> instance. Based on the number of initialized
+        /// Initialize a file to be used by the <see cref="FileTarget"/> instance. Based on the number of initialized
         /// files and the values of various instance properties clean up and/or archiving processes can be invoked.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>

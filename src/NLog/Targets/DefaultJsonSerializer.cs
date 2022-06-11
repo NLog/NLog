@@ -83,7 +83,7 @@ namespace NLog.Targets
         /// Returns a serialization of an object into JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <param name="options">serialisation options</param>
+        /// <param name="options">serialization options</param>
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value, JsonSerializeOptions options)
         {
@@ -158,7 +158,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="destination">Write the resulting JSON to this destination.</param>
-        /// <param name="options">serialisation options</param>
+        /// <param name="options">serialization options</param>
         /// <returns>Object serialized successfully (true/false).</returns>
         public bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options)
         {
@@ -170,7 +170,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="destination">Write the resulting JSON to this destination.</param>
-        /// <param name="options">serialisation options</param>
+        /// <param name="options">serialization options</param>
         /// <param name="objectsInPath">The objects in path (Avoid cyclic reference loop).</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
         /// <returns>Object serialized successfully (true/false).</returns>
@@ -579,7 +579,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="destination">Destination Builder</param>
         /// <param name="text">Input string</param>
-        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="escapeUnicode">Should non-ASCII characters be encoded</param>
         /// <param name="escapeForwardSlash"></param>
         /// <returns>JSON escaped string</returns>
         internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode, bool escapeForwardSlash)

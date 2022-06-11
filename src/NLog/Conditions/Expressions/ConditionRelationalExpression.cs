@@ -133,7 +133,7 @@ namespace NLog.Conditions
         }
         
         /// <summary>
-        /// Promote values to the type needed for the comparision, e.g. parse a string to int.
+        /// Promote values to the type needed for the comparison, e.g. parse a string to int.
         /// </summary>
         /// <param name="leftValue"></param>
         /// <param name="rightValue"></param>
@@ -230,7 +230,7 @@ namespace NLog.Conditions
                 if (type1 == typeof(string))
                 {
                     val = Convert.ToString(val, CultureInfo.InvariantCulture);
-                    InternalLogger.Debug("Using string comparision");
+                    InternalLogger.Debug("Using string comparison");
                     return true;
                 }
             }
@@ -252,7 +252,7 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Get the order for the type for comparision.
+        /// Get the order for the type for comparison.
         /// </summary>
         /// <param name="type1"></param>
         /// <returns>index, 0 to max int. Lower is first</returns>

@@ -1270,7 +1270,7 @@ namespace NLog.Config
                 classType = ExpandSimpleVariables(classType);
                 if (classType.Contains(','))
                 {
-                    // Possible specification of assemlby-name detected
+                    // Possible specification of assembly-name detected
                     if (factory.TryCreateInstance(classType, out newInstance) && newInstance != null)
                         return newInstance;
 

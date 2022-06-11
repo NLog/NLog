@@ -75,7 +75,7 @@ namespace NLog.Targets
         ///             
         /// Full error: 
         ///   Error during session close: System.IndexOutOfRangeException: Probable I/ O race condition detected while copying memory.
-        ///   The I/ O package is not thread safe by default. In multi threaded applications, 
+        ///   The I/ O package is not thread safe by default. In multi-threaded applications, 
         ///   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or 
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
         /// 
