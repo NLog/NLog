@@ -55,7 +55,8 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 NLog Packages
 ---
-NLog consists of multiple packages. Most of the functionality is inside the NLog (core) package. What's inside the packages? See [targets](https://github.com/NLog/NLog/wiki/Targets) and [layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers) overview!
+The NLog-nuget-package provides everything needed for doing file- and console-logging. But there are also multiple NLog extension packages,
+that provides additional target- and layout-output. See [targets](https://nlog-project.org/config/?tab=targets) and [layout renderers](https://nlog-project.org/config/?tab=layout-renderers) overview!
 
 See Nuget/build status of all official packages [here](https://github.com/NLog/NLog/blob/dev/packages-and-status.md)
 
