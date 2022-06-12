@@ -3,23 +3,14 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net461;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net461;netcoreapp3.1</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-
-    <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">Full</DebugType>
-    <DisableImplicitFrameworkReferences Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">True</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TestTargetFramework)' != '' ">
@@ -27,15 +18,15 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' == 'net35' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TestTargetFramework)' == 'net35' ">
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' == 'net45' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TestTargetFramework)' == 'net45' ">
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
   </PropertyGroup>
   
@@ -45,17 +36,18 @@
   
   <ItemGroup>
     <PackageReference Include="NSubstitute" Version="4.2.2" />
-    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.2.0" Condition="'$(OS)' != 'Windows_NT'" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" /> <!-- Because of NSubstitute + Castle.Core-->
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -72,7 +64,7 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.9" />
   </ItemGroup>
  
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog">
       <HintPath>../../src/NLog/bin/$(Configuration)/$(TestTargetFramework)/NLog.dll</HintPath>
       <Private>True</Private>

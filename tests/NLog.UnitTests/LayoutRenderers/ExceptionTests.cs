@@ -370,8 +370,8 @@ namespace NLog.UnitTests.LayoutRenderers
             logFactory.GetCurrentClassLogger().Error(ex, "msg");
 
             var lastMessage = logFactory.AssertDebugLastMessageNotEmpty();
-            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage);
-            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage);
+            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", ", lastMessage);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", ", lastMessage);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage);
             Assert.Contains("1Really_Bad_Boy_", lastMessage);
         }

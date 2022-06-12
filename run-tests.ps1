@@ -2,7 +2,7 @@ dotnet restore ./tests/NLog.UnitTests/
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-dotnet test ./tests/NLog.UnitTests/ --framework netcoreapp2.1 --configuration release --no-restore
+dotnet test ./tests/NLog.UnitTests/ --framework netcoreapp3.1 --configuration release --no-restore
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -61,7 +61,7 @@ else
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
 
-	dotnet test ./tests/NLog.Database.Tests/ --framework netcoreapp2.1 --configuration release
+	dotnet test ./tests/NLog.Database.Tests/ --framework netcoreapp3.1 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 }
