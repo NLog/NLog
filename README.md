@@ -38,7 +38,7 @@ Getting started
 ---
 
   * [.NET Framework](https://github.com/NLog/NLog/wiki/Tutorial)
-  * [ASP.NET Core](https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-5)
+  * [ASP.NET Core](https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-6)
   * [.NET Core Console](https://github.com/NLog/NLog/wiki/Getting-started-with-.NET-Core-2---Console-application)
 
 For the possible options in the config, check the [Options list](https://nlog-project.org/config/)
