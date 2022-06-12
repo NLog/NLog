@@ -29,6 +29,14 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
+- LoggingConfigurationParser should alert when LoggingRule filters are bad (#4938) (@snakefoot)
+- CompoundLayout with layout from config variable (#4940) (@snakefoot)
+- Mark Target LayoutWithLock as obsolete, since only temporary workaround (#4944) (@snakefoot)
+- FileTarget - First acquire file-handle to compress before creating zip-file (#4950) (@snakefoot)
+- FileTarget - Zip compression should not truncate when zip-file already exists (#4953) (@snakefoot)
+- Max StackTraceUsage should be computed using bitwise OR (#4965) (@martinzding)
+- Improved source-code documentation by fixing spelling errors (#4963) (@KurnakovMaksim)
+      
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.md
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
