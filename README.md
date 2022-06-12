@@ -41,7 +41,7 @@ Getting started
   * [ASP.NET Core](https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-6)
   * [.NET Core Console](https://github.com/NLog/NLog/wiki/Getting-started-with-.NET-Core-2---Console-application)
 
-For the possible options in the config, check the [Options list](https://nlog-project.org/config/) and (API Reference)(https://nlog-project.org/documentation/)
+For the possible options in the config, check the [Options list](https://nlog-project.org/config/) and [API Reference](https://nlog-project.org/documentation/)
 
 Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
 
