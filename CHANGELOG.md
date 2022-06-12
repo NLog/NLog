@@ -4,6 +4,17 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v5.0.1 (2022/06/12)
+
+#### Improvements
+- [#4938](https://github.com/NLog/NLog/pull/4938) LoggingConfigurationParser should alert when LoggingRule filters are bad (#4938) (@snakefoot)
+- [#4940](https://github.com/NLog/NLog/pull/4940) CompoundLayout with layout from config variable (#4940) (@snakefoot)
+- [#4944](https://github.com/NLog/NLog/pull/4944) Mark Target LayoutWithLock as obsolete, since only temporary workaround (#4944) (@snakefoot)
+- [#4950](https://github.com/NLog/NLog/pull/4950) FileTarget - First acquire file-handle to compress before creating zip-file (#4950) (@snakefoot)
+- [#4953](https://github.com/NLog/NLog/pull/4953) FileTarget - Zip compression should not truncate when zip-file already exists (#4953) (@snakefoot)
+- [#4965](https://github.com/NLog/NLog/pull/4965) Max StackTraceUsage should be computed using bitwise OR (#4965) (@martinzding)
+- [#4963](https://github.com/NLog/NLog/pull/4963) Improved source-code documentation by fixing spelling errors (#4963) (@KurnakovMaksim)
+
 ### v5.0 (2022/05/16)
 
 See [List of major changes in NLog 5.0](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html).
