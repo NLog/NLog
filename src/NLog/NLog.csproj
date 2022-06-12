@@ -37,7 +37,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - Max StackTraceUsage should be computed using bitwise OR (#4965) (@martinzding)
 - Improved source-code documentation by fixing spelling errors (#4963) (@KurnakovMaksim)
       
-List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.md
+List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
