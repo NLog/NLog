@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using NLog.Config;
 using NLog.Targets;
@@ -126,6 +125,35 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
             Assert.Equal("*a", rule1.LoggerNamePattern);
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Off));
+        }
+
+        [Fact]
+        public void AddRule_ruleobject()
+        {
+            var config = new LoggingConfiguration();
+            config.AddTarget(new FileTarget { Name = "File" });
+            LoggingRule rule = new LoggingRule("testRule")
+            {
+                LoggerNamePattern = "testRulePattern"
+            };
+            rule.EnableLoggingForLevels(LogLevel.Info, LogLevel.Error);
+            rule.Targets.Add(config.FindTargetByName("File"));
+            rule.Final = true;
+            config.AddRule(rule);
+            Assert.NotNull(config.LoggingRules);
+            Assert.Equal(1, config.LoggingRules.Count);
+            var rule1 = config.LoggingRules.FirstOrDefault();
+            Assert.NotNull(rule1);
+            Assert.Equal("testRule", rule1.RuleName);
+            Assert.Equal("testRulePattern", rule1.LoggerNamePattern);
+            Assert.True(rule1.Final);
             Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
             Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Error));
             Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
