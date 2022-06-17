@@ -331,28 +331,6 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule with min- and maxLevel.
-        /// </summary>
-        /// <param name="ruleName">Name of the rule.</param>
-        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
-        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
-        /// <param name="target">Target to be written to when the rule matches.</param>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
-        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRule(string ruleName, LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern, bool final)
-        {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
-            LoggingRule rule = new LoggingRule(ruleName)
-            {
-                LoggerNamePattern = loggerNamePattern
-            };
-            rule.EnableLoggingForLevels(minLevel, maxLevel);
-            rule.Targets.Add(target);
-            rule.Final = final;
-            AddRule(rule);
-        }
-
-        /// <summary>
         /// Add a rule object.
         /// </summary>
         /// <param name="rule">rule object to add</param>
