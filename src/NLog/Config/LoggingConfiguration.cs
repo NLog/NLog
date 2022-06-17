@@ -331,6 +331,15 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Add a rule object.
+        /// </summary>
+        /// <param name="rule">rule object to add</param>
+        public void AddRule(LoggingRule rule)
+        {
+            AddLoggingRulesThreadSafe(rule);
+        }
+
+        /// <summary>
         /// Add a rule for one loglevel.
         /// </summary>
         /// <param name="level">log level needed to trigger this rule. </param>

@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using NLog.Config;
 using NLog.Targets;
@@ -133,6 +132,25 @@ namespace NLog.UnitTests.Config
             Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
             Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
             Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Off));
+        }
+
+        [Fact]
+        public void AddRule_ruleobject()
+        {
+            var config = new LoggingConfiguration();
+            config.AddTarget(new FileTarget { Name = "File" });
+            LoggingRule rule = new LoggingRule("testRule")
+            {
+                LoggerNamePattern = "testRulePattern"
+            };
+            rule.EnableLoggingForLevels(LogLevel.Info, LogLevel.Error);
+            rule.Targets.Add(config.FindTargetByName("File"));
+            rule.Final = true;
+            config.AddRule(rule);
+            Assert.NotNull(config.LoggingRules);
+            Assert.Equal(1, config.LoggingRules.Count);
+            var lastRule = config.LoggingRules.LastOrDefault();
+            Assert.Same(rule, lastRule);
         }
 
         [Fact]
