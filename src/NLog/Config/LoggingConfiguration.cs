@@ -341,14 +341,15 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRule(string ruleName, LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern, bool final)
         {
-            if (target is null)
-            { throw new ArgumentNullException(nameof(target)); }
-            LoggingRule rule = new LoggingRule(ruleName);
-            rule.LoggerNamePattern = loggerNamePattern;
+            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            LoggingRule rule = new LoggingRule(ruleName)
+            {
+                LoggerNamePattern = loggerNamePattern
+            };
             rule.EnableLoggingForLevels(minLevel, maxLevel);
             rule.Targets.Add(target);
             rule.Final = final;
-            AddLoggingRulesThreadSafe(rule);
+            AddRule(rule);
         }
 
         /// <summary>
