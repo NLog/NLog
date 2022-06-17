@@ -149,18 +149,8 @@ namespace NLog.UnitTests.Config
             config.AddRule(rule);
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
-            var rule1 = config.LoggingRules.FirstOrDefault();
-            Assert.NotNull(rule1);
-            Assert.Equal("testRule", rule1.RuleName);
-            Assert.Equal("testRulePattern", rule1.LoggerNamePattern);
-            Assert.True(rule1.Final);
-            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
-            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Error));
-            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
-            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Info));
-            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
-            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
-            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Off));
+            var lastRule = config.LoggingRules.LastOrDefault();
+            Assert.Same(rule, lastRule);
         }
 
         [Fact]
