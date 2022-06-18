@@ -117,31 +117,7 @@ namespace NLog.Config
         public static string GetConfigItemTypeAttribute(this ILoggingConfigurationElement element, string sectionNameForRequiredValue = null)
         {
             var typeAttributeValue = sectionNameForRequiredValue != null ? element.GetRequiredValue("type", sectionNameForRequiredValue) : element.GetOptionalValue("type", null);
-            return StripOptionalNamespacePrefix(typeAttributeValue)?.Trim();
-        }
-
-        /// <summary>
-        /// Remove the namespace (before :)
-        /// </summary>
-        /// <example>
-        /// x:a, will be a
-        /// </example>
-        /// <param name="attributeValue"></param>
-        /// <returns></returns>
-        private static string StripOptionalNamespacePrefix(string attributeValue)
-        {
-            if (attributeValue is null)
-            {
-                return null;
-            }
-
-            int p = attributeValue.IndexOf(':');
-            if (p < 0)
-            {
-                return attributeValue;
-            }
-
-            return attributeValue.Substring(p + 1);
+            return typeAttributeValue?.Trim();
         }
     }
 }

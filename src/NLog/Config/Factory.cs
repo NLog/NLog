@@ -159,11 +159,15 @@ namespace NLog.Config
             GetTypeDelegate typeLookup = () => itemDefinition;
             itemName = NormalizeName(itemName);
             _items[itemNamePrefix + itemName] = typeLookup;
-            if (!string.IsNullOrEmpty(assemblyName))
+            if (!string.IsNullOrEmpty(assemblyName) && !string.Equals(assemblyName, "nlog", StringComparison.OrdinalIgnoreCase))
             {
                 _items[itemName + ", " + assemblyName] = typeLookup;
                 _items[itemDefinition.Name + ", " + assemblyName] = typeLookup;
                 _items[itemDefinition.ToString() + ", " + assemblyName] = typeLookup;
+
+                _items[assemblyName + ":" + itemName] = typeLookup;
+                _items[assemblyName + ":" + itemDefinition.Name] = typeLookup;
+                _items[assemblyName + ":" + itemDefinition.ToString()] = typeLookup;
             }
         }
 
@@ -288,6 +292,14 @@ namespace NLog.Config
             {
                 var left = itemName.Substring(0, commaIndex).Replace("-", string.Empty);
                 var right = itemName.Substring(commaIndex);
+                return left + right;
+            }
+
+            var colonIndex = itemName.IndexOf(':');
+            if (colonIndex >= 0)
+            {
+                var right = itemName.Substring(colonIndex).Replace("-", string.Empty);
+                var left = itemName.Substring(0, colonIndex);
                 return left + right;
             }
 

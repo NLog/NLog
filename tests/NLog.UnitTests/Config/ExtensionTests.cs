@@ -405,10 +405,31 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTypeWithAssemblyNameCanLoad()
         {
+            ConfigurationItemFactory.Default = null;
+
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>
 <targets>
-    <target name='t' type='AutoLoadTarget,  NLogAutoLoadExtension' />
+    <target name='t' type='AutoLoadTarget ,  NLogAutoLoadExtension' />
+</targets>
+<rules>
+    <logger name='*' writeTo='t' />
+</rules>
+</nlog>").LogFactory;
+
+            var autoLoadedTarget = logFactory.Configuration.FindTargetByName("t");
+            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().ToString());
+        }
+
+        [Fact]
+        public void ExtensionTypeWithAssemblyNameCanLoad_XmlPrefix()
+        {
+            ConfigurationItemFactory.Default = null;
+
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+<nlog throwExceptions='true'>
+<targets>
+    <target name='t' type='NLogAutoLoadExtension:AutoLoadTarget' />
 </targets>
 <rules>
     <logger name='*' writeTo='t' />
@@ -586,6 +607,7 @@ namespace NLog.UnitTests.Config
         [InlineData("", null)]
         [InlineData("ManuallyLoadedTarget", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData("ManuallyLoaded-Target", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
+        [InlineData("Manually-Loaded-Extension:ManuallyLoadedTarget", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData("ManuallyLoadedTarget, Manually-Loaded-Extension", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData("ManuallyLoaded-Target, Manually-Loaded-Extension", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData(", Manually-Loaded-Extension", null)] // border case

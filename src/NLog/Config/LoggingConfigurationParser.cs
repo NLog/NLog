@@ -1211,11 +1211,11 @@ namespace NLog.Config
                 return null;
 
             // Check if the 'type' attribute has been specified
-            string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            string typeAlias = element.GetConfigItemTypeAttribute();
+            if (typeAlias is null)
                 return null;
 
-            var expandedClassType = ExpandSimpleVariables(classType, out var matchingVariableName);
+            typeAlias = ExpandSimpleVariables(typeAlias, out var matchingVariableName);
             if (matchingVariableName != null && TryLookupDynamicVariable(matchingVariableName, out var matchingLayout))
             {
                 if (type.IsAssignableFrom(matchingLayout.GetType()))
@@ -1224,7 +1224,7 @@ namespace NLog.Config
                 }
             }
 
-            var layoutInstance = FactoryCreateInstance(expandedClassType, ConfigurationItemFactory.Default.Layouts);
+            var layoutInstance = FactoryCreateInstance(typeAlias, ConfigurationItemFactory.Default.Layouts);
             if (layoutInstance != null)
             {
                 ConfigureFromAttributesAndElements(layoutInstance, element);
@@ -1254,34 +1254,45 @@ namespace NLog.Config
                 return null;
 
             // Check if the 'type' attribute has been specified
-            string classType = element.GetConfigItemTypeAttribute();
-            if (classType is null)
+            string typeAlias = element.GetConfigItemTypeAttribute();
+            if (typeAlias is null)
                 return null;
 
-            return FactoryCreateInstance(classType, factory);
+            return FactoryCreateInstance(typeAlias, factory);
         }
 
-        private T FactoryCreateInstance<T>(string classType, INamedItemFactory<T, Type> factory) where T : class
+        private T FactoryCreateInstance<T>(string typeAlias, INamedItemFactory<T, Type> factory) where T : class
         {
             T newInstance = null;
 
             try
             {
-                classType = ExpandSimpleVariables(classType);
-                if (classType.Contains(','))
+                typeAlias = ExpandSimpleVariables(typeAlias);
+
+                if (TryParseAssemblyNameFromTypeAlias(typeAlias, out var fullTypeAlias, out var shortTypeAlias, out var assemblyName))
                 {
                     // Possible specification of assembly-name detected
-                    if (factory.TryCreateInstance(classType, out newInstance) && newInstance != null)
+                    if (factory.TryCreateInstance(fullTypeAlias, out newInstance) && newInstance != null)
+                        return newInstance;
+
+                    // Legacy NLog always ignored type-prefix, so also try without prefix (short prefix is unlikely an assemblyname)
+                    if (assemblyName.Length <= 4 && factory.TryCreateInstance(shortTypeAlias, out newInstance) && newInstance != null)
                         return newInstance;
 
                     // Attempt to load the assembly name extracted from the prefix
-                    classType = RegisterExtensionFromAssemblyName(classType);
+                    RegisterExtensionFromAssemblyName(assemblyName, typeAlias);
+
+                    // Legacy NLog always ignored type-prefix, so also try without prefix
+                    if (factory.TryCreateInstance(shortTypeAlias, out newInstance) && newInstance != null)
+                        return newInstance;
+
+                    typeAlias = fullTypeAlias;
                 }
 
-                newInstance = factory.CreateInstance(classType);
+                newInstance = factory.CreateInstance(typeAlias);
                 if (newInstance is null)
                 {
-                    throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {classType}");
+                    throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {typeAlias}");
                 }
             }
             catch (NLogConfigurationException configException)
@@ -1294,7 +1305,7 @@ namespace NLog.Config
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                var configException = new NLogConfigurationException($"Failed to create {typeof(T).Name} of type: {classType}", ex);
+                var configException = new NLogConfigurationException($"Failed to create {typeof(T).Name} of type: {typeAlias}", ex);
                 if (MustThrowConfigException(configException))
                     throw configException;
             }
@@ -1302,25 +1313,43 @@ namespace NLog.Config
             return newInstance;
         }
 
-        private string RegisterExtensionFromAssemblyName(string classType)
+        private bool TryParseAssemblyNameFromTypeAlias(string typeAlias, out string fullTypeAlias, out string shortTypeAlias, out string assemblyName)
         {
-            var assemblyName = classType.Substring(classType.IndexOf(',') + 1).Trim();
-            if (!string.IsNullOrEmpty(assemblyName))
+            if (typeAlias.Contains(','))
             {
-                try
-                {
-                    InternalLogger.Debug("Loading Assembly-Name '{0}' for type: {1}", assemblyName, classType);
-                    ParseExtensionWithAssembly(assemblyName, string.Empty);
-                    return classType.Substring(0, classType.IndexOf(',')).Trim() + ", " + assemblyName; // uniform format
-                }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
-                        throw;
-                }
+                // type-alias , assembly-name
+                assemblyName = typeAlias.Substring(typeAlias.IndexOf(',') + 1).Trim();
+                shortTypeAlias = typeAlias.Substring(0, typeAlias.IndexOf(',')).Trim();
+                fullTypeAlias = shortTypeAlias + ", " + assemblyName;
+                return !string.IsNullOrEmpty(assemblyName) && !string.IsNullOrEmpty(shortTypeAlias);
+            }
+            else if (typeAlias.Contains(':'))
+            {
+                // assembly-name : type-alias
+                assemblyName = typeAlias.Substring(0, typeAlias.IndexOf(':')).Trim();
+                shortTypeAlias = typeAlias.Substring(typeAlias.IndexOf(':') + 1).Trim();
+                fullTypeAlias = assemblyName + ":" + shortTypeAlias;
+                return !string.IsNullOrEmpty(assemblyName) && !string.IsNullOrEmpty(shortTypeAlias);
             }
 
-            return classType;
+            assemblyName = null;
+            shortTypeAlias = null;
+            fullTypeAlias = null;
+            return false;
+        }
+
+        private void RegisterExtensionFromAssemblyName(string assemblyName, string typeAlias)
+        {
+            try
+            {
+                InternalLogger.Debug("Loading Assembly-Name '{0}' for type: {1}", assemblyName, typeAlias);
+                ParseExtensionWithAssembly(assemblyName, string.Empty);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+            }
         }
 
         private void ConfigureFromAttributesAndElements(object targetObject, ValidatedConfigurationElement element, bool ignoreTypeProperty = true)
