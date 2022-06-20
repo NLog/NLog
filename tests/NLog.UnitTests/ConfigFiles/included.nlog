@@ -1,5 +1,0 @@
-﻿<nlog>
-  <targets>
-    <target name='debug' type='Debug' layout='${message}' />
-  </targets>
-</nlog>

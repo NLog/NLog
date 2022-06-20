@@ -1,3 +1,0 @@
-Extract from nupkg, place .DLL and .XML files.  
-
-if not there add to NLog.shfbproj
