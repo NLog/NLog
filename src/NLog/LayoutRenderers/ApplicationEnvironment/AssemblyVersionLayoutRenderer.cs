@@ -53,14 +53,6 @@ namespace NLog.LayoutRenderers
     public class AssemblyVersionLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblyVersionLayoutRenderer" /> class.
-        /// </summary>
-        public AssemblyVersionLayoutRenderer()
-        {
-            _format = DefaultFormat;
-        }
-
-        /// <summary>
         /// The (full) name of the assembly. If <c>null</c>, using the entry assembly.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -77,9 +69,12 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Layout Options' order='10' />
         public AssemblyVersionType Type { get; set; } = AssemblyVersionType.Assembly;
 
-        private const string DefaultFormat = "major.minor.build.revision";
-
-        private string _format;
+        ///<summary>
+        /// The default value to render if the Version is not available
+        ///</summary>
+        /// <docgen category='Layout Options' order='10' />
+        public string Default { get => _default ?? GenerateDefaultValue(); set => _default = value; }
+        private string _default;
 
         /// <summary>
         /// Gets or sets the custom format of the assembly version output.
@@ -94,8 +89,11 @@ namespace NLog.LayoutRenderers
         public string Format
         {
             get => _format;
-            set => _format = value?.ToLowerInvariant();
+            set => _format = value?.ToLowerInvariant() ?? string.Empty;
         }
+        private string _format = DefaultFormat;
+
+        private const string DefaultFormat = "major.minor.build.revision";
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -117,17 +115,26 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var version = _assemblyVersion ?? (_assemblyVersion = ApplyFormatToVersion(GetVersion()));
-
-            if (string.IsNullOrEmpty(version))
-            {
-                version = $"Could not find value for {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly and version type {Type}";
-            }
-
+            if (version is null)
+                version = GenerateDefaultValue();
             builder.Append(version);
         }
 
         private string ApplyFormatToVersion(string version)
         {
+            if (version is null)
+            {
+                return _default;
+            }
+            else if (StringHelpers.IsNullOrWhiteSpace(version))
+            {
+                return _default ?? GenerateDefaultValue();
+            }
+            else if (version == "0.0.0.0" && _default != null)
+            {
+                return _default;
+            }
+
             if (Format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(version))
             {
                 return version;
@@ -140,6 +147,11 @@ namespace NLog.LayoutRenderers
                 .Replace("revision", versionParts.Length > 3 ? versionParts[3] : "0");
 
             return version;
+        }
+
+        private string GenerateDefaultValue()
+        {
+            return $"Could not find value for {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly and version type {Type}";
         }
 
 #if NETSTANDARD1_3
@@ -166,8 +178,18 @@ namespace NLog.LayoutRenderers
 
         private string GetVersion()
         {
-            var assembly = GetAssembly();
-            return GetVersion(assembly);
+            try
+            {
+                var assembly = GetAssembly();
+                return GetVersion(assembly) ?? string.Empty;
+            }
+            catch (Exception ex)
+            {
+                NLog.Common.InternalLogger.Warn(ex, "${assembly-version} - Failed to load assembly {0}", Name);
+                if (ex.MustBeRethrown())
+                    throw;
+                return null;
+            }
         }
 
         /// <summary>
