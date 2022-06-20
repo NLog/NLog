@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers
         File,
 
         /// <summary>
-        /// Gets additional version information.
+        /// Gets the product version, extracted from the additional version information.
         /// </summary>
         Informational
     }

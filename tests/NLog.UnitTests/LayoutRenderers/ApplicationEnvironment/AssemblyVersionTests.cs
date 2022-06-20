@@ -64,10 +64,28 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void EntryAssemblyVersionDefaultTest()
+        {
+            var assembly = Assembly.GetEntryAssembly();
+            var assemblyVersion = assembly is null
+                ? "1.2.3.4"
+                : assembly.GetName().Version.ToString();
+            AssertLayoutRendererOutput("${assembly-version:default=1.2.3.4}", assemblyVersion);
+        }
+
+        [Fact]
         public void AssemblyNameVersionTest()
         {
             AssertLayoutRendererOutput("${assembly-version:NLogAutoLoadExtension}", "2.0.0.0");
         }
+
+        [Fact]
+        public void AssemblyNameUnknownVersionTest()
+        {
+            using (new NoThrowNLogExceptions())
+                AssertLayoutRendererOutput("${assembly-version:FooBar:default=1.2.3.4}", "1.2.3.4");
+        }
+
 
         [Fact]
         public void AssemblyNameVersionTypeTest()
