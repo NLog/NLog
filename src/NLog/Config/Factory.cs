@@ -233,15 +233,15 @@ namespace NLog.Config
         /// <returns>Created item.</returns>
         public virtual TBaseType CreateInstance(string itemName)
         {
-            itemName = NormalizeName(itemName);
-            if (TryCreateInstance(itemName, out TBaseType result))
+            var normalName = NormalizeName(itemName);
+            if (TryCreateInstance(normalName, out TBaseType result))
             {
                 return result;
             }
 
             var message = typeof(TBaseType).Name + " type-alias is unknown: '" + itemName + "'";
-            if (itemName != null && (itemName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
-                                 itemName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
+            if (normalName != null && (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
+                                 normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
 #if NETSTANDARD
                 message += ". Extension NLog.Web.AspNetCore not included?";
@@ -249,19 +249,19 @@ namespace NLog.Config
                 message += ". Extension NLog.Web not included?";
 #endif
             }
-            else if (itemName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += ". Extension NLog.Database not included?";
             }
-            else if (itemName?.StartsWith("windows-identity", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName?.StartsWith("windowsidentity", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += ". Extension NLog.WindowsIdentity not included?";
             }
-            else if (itemName?.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName?.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += ". Extension NLog.OutputDebugString not included?";
             }
-            else if (itemName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
+            else if (normalName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += ". Extension NLog.PerformanceCounter not included?";
             }

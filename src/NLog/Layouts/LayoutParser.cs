@@ -586,11 +586,12 @@ namespace NLog.Layouts
             }
             catch (Exception ex)
             {
-                var configException = new NLogConfigurationException($"Error parsing layout {typeName}", ex);
+                var configException = new NLogConfigurationException($"Failed to parse layout containing type: {typeName}", ex);
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
                 }
+
                 // replace with empty values
                 layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
