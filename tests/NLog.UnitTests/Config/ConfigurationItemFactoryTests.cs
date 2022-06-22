@@ -58,6 +58,14 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void ConfigurationItemFactoryFailsTest()
+        {
+            var cif = new ConfigurationItemFactory();
+            var ex = Assert.ThrowsAny<Exception>(() => cif.Targets.CreateInstance("Debug-Target") as DebugTarget);
+            Assert.Contains("Debug-Target", ex.Message);
+        }
+
+        [Fact]
         public void ConfigurationItemFactoryUsesSuppliedDelegateToResolveObject()
         {
             var cif = new ConfigurationItemFactory();
