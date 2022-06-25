@@ -97,6 +97,25 @@ See [List of major changes in NLog 5.0](https://nlog-project.org/2021/08/25/nlog
 - [#4699](https://github.com/NLog/NLog/pull/4699) AsyncTargetWrapper - Fix performance for OverflowAction Block on NetCore (#4699) (@snakefoot)
 - [#4705](https://github.com/NLog/NLog/pull/4705) LogEventInfo - Faster clone of messageTemplateParameters by caching Count (#4705) (@snakefoot)
 
+### Version 5.0-Preview 3 (2021/10/26)
+
+#### Bugfixes
+- [#4627](https://github.com/NLog/NLog/pull/4627) PropertiesDictionary - Fixed threading issue in EventProperties (#4627) (@snakefoot)
+
+#### Features
+- [#4598](https://github.com/NLog/NLog/pull/4598) LogFactory fluent Setup with WriteToTrace + WriteToDebug (#4598) (@snakefoot)
+- [#4628](https://github.com/NLog/NLog/pull/4628) LogEventInfo constructor with eventProperties as IReadOnlyList (#4628) (@snakefoot)
+- [#4633](https://github.com/NLog/NLog/pull/4633) ${event-properties} now ignore case when doing property lookup (#4633) (@snakefoot)
+
+#### Improvements
+- [#4623](https://github.com/NLog/NLog/pull/4623) FileTarget - KeepFileOpen = true by default to avoid loosing file handle (#4623) (@snakefoot)
+- [#4624](https://github.com/NLog/NLog/pull/4624) FileTarget - Only enable FileSystemWatcher when ConcurrentWrites = true (#4624) (@snakefoot)
+- [#4634](https://github.com/NLog/NLog/pull/4634) FileTarget - Attempt to write footer, before closing file appender (#4634) (@snakefoot)
+- [#4632](https://github.com/NLog/NLog/pull/4632) JsonSerializeOptions - Marked Format + FormatProvider + QuoteKeys as obsolete (#4632) (@snakefoot)
+- [#4622](https://github.com/NLog/NLog/pull/4622) Handle OutOfMemoryException instead of crashing the application (#4622) (@snakefoot)
+- [#4605](https://github.com/NLog/NLog/pull/4605) Removed DefaultValue-attribute as it is only used for docs-generator (#4605) (@snakefoot)
+- [#4606](https://github.com/NLog/NLog/pull/4606) Removed Advanced-attribute as it has no meaning (#4606) (@snakefoot)
+
 ### Version 5.0-Preview 2 (2021/10/02)
 
 #### Bugfixes
