@@ -41,6 +41,7 @@ namespace NLog.Layouts
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
+    using NLog.Targets;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -189,6 +190,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Renders formatted output using the log event as context.
         /// </summary>
+        /// <remarks>Inside a <see cref="Target"/>, <see cref="Target.RenderLogEvent"/> is preferred for performance reasons.</remarks>
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The formatted output as string.</returns>
         public string Render(LogEventInfo logEvent)

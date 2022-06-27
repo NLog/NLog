@@ -33,6 +33,7 @@
 
 using JetBrains.Annotations;
 using NLog.Layouts;
+using NLog.Targets;
 
 namespace NLog
 {
@@ -44,6 +45,7 @@ namespace NLog
         /// <summary>
         /// Renders the logevent into a result-value by using the provided layout
         /// </summary>
+        /// <remarks>Inside a <see cref="Target"/>, <see cref="Target.RenderLogEvent"/> is preferred for performance reasons.</remarks>
         /// <typeparam name="T"></typeparam>
         /// <param name="layout">The layout.</param>
         /// <param name="logEvent">The logevent info.</param>
