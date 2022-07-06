@@ -40,8 +40,8 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The logger name.
     /// </summary>
-    [LayoutRenderer("logger")]
     [LayoutRenderer("loggername")]
+    [LayoutRenderer("logger")]
     [ThreadAgnostic]
     public class LoggerNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
