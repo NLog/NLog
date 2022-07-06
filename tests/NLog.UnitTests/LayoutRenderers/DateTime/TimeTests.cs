@@ -42,21 +42,43 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void UniversalTimeTest()
         {
-            var dt = new TimeLayoutRenderer();
-            dt.UniversalTime = true;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
 
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateLocalTimeSource();
+
+                var dt = new TimeLayoutRenderer();
+                dt.UniversalTime = true;
+
+                var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
         [Fact]
         public void LocalTimeTest()
         {
-            var dt = new TimeLayoutRenderer();
-            dt.UniversalTime = false;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
 
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
+
+                var dt = new TimeLayoutRenderer();
+                dt.UniversalTime = false;
+
+                var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(ei.TimeStamp.ToLocalTime().ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
         [Fact]
@@ -72,20 +94,31 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void TimeTest()
         {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${time}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
 
-            logFactory.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug", logFactory);
-            Assert.Equal(13, date.Length);
-            Assert.Equal(':', date[2]);
-            Assert.Equal(':', date[5]);
-            Assert.Equal('.', date[8]);
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
+
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${time}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
+
+                logFactory.GetLogger("d").Debug("zzz");
+                string date = GetDebugLastMessage("debug", logFactory);
+                Assert.Equal(13, date.Length);
+                Assert.Equal(':', date[2]);
+                Assert.Equal(':', date[5]);
+                Assert.Equal('.', date[8]);
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
     }
 }

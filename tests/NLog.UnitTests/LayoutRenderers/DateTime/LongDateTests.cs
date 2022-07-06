@@ -66,11 +66,22 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void UniversalTimeTest()
         {
-            var dt = new LongDateLayoutRenderer();
-            dt.UniversalTime = true;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
+
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateLocalTimeSource();
+
+                var dt = new LongDateLayoutRenderer();
+                dt.UniversalTime = true;
             
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+                var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
 
@@ -95,11 +106,42 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LocalTimeTest()
         {
-            var dt = new LongDateLayoutRenderer();
-            dt.UniversalTime = false;
-            
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            var orgTimeSource = NLog.Time.TimeSource.Current;
+
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
+
+                var dt = new LongDateLayoutRenderer();
+                dt.UniversalTime = false;
+
+                var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(ei.TimeStamp.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
+        }
+
+        [Fact]
+        public void DefaultTimeTest()
+        {
+            var orgTimeSource = NLog.Time.TimeSource.Current;
+
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
+
+                var dt = new LongDateLayoutRenderer();
+
+                var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
         [Fact]
