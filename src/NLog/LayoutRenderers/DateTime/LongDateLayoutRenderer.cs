@@ -49,7 +49,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool UniversalTime { get; set; }
+        public bool UniversalTime { get => _universalTime ?? false; set => _universalTime = value; }
+        private bool? _universalTime;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -81,12 +82,15 @@ namespace NLog.LayoutRenderers
 
         private DateTime GetValue(LogEventInfo logEvent)
         {
-            DateTime dt = logEvent.TimeStamp;
-            if (UniversalTime)
+            DateTime timestamp = logEvent.TimeStamp;
+            if (_universalTime.HasValue)
             {
-                dt = dt.ToUniversalTime();
+                if (_universalTime.Value)
+                    timestamp = timestamp.ToUniversalTime();
+                else
+                    timestamp = timestamp.ToLocalTime();
             }
-            return dt;
+            return timestamp;
         }
     }
 }

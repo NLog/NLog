@@ -42,36 +42,70 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void UniversalTimeTest()
         {
-            var layoutRenderer = new ShortDateLayoutRenderer();
-            layoutRenderer.UniversalTime = true;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
 
-            var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(logEvent.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd"), layoutRenderer.Render(logEvent));
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateLocalTimeSource();
+
+                var layoutRenderer = new ShortDateLayoutRenderer();
+                layoutRenderer.UniversalTime = true;
+
+                var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(logEvent.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd"), layoutRenderer.Render(logEvent));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
         [Fact]
         public void LocalTimeTest()
         {
-            var layoutRenderer = new ShortDateLayoutRenderer();
-            layoutRenderer.UniversalTime = false;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
 
-            var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(logEvent.TimeStamp.ToString("yyyy-MM-dd"), layoutRenderer.Render(logEvent));
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
+                
+                var layoutRenderer = new ShortDateLayoutRenderer();
+                layoutRenderer.UniversalTime = false;
+
+                var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                Assert.Equal(logEvent.TimeStamp.ToLocalTime().ToString("yyyy-MM-dd"), layoutRenderer.Render(logEvent));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
         [Fact]
         public void ShortDateTest()
         {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
+            var orgTimeSource = NLog.Time.TimeSource.Current;
 
-            logFactory.GetLogger("d").Debug("zzz");
-            logFactory.AssertDebugLastMessage(DateTime.Now.ToString("yyyy-MM-dd"));
+            try
+            {
+                NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
+
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
+
+                var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
+                logFactory.GetLogger("d").Debug(logEvent);
+                logFactory.AssertDebugLastMessage(logEvent.TimeStamp.ToString("yyyy-MM-dd"));
+            }
+            finally
+            {
+                NLog.Time.TimeSource.Current = orgTimeSource;
+            }
         }
 
         [Fact]

@@ -50,7 +50,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public bool UniversalTime { get; set; }
+        public bool UniversalTime { get => _universalTime ?? false; set => _universalTime = value; }
+        private bool? _universalTime;
 
         private CachedDateFormatted _cachedDateFormatted = new CachedDateFormatted(DateTime.MaxValue, string.Empty);
 
@@ -77,10 +78,13 @@ namespace NLog.LayoutRenderers
 
         private DateTime GetValue(LogEventInfo logEvent)
         {
-            var timestamp = logEvent.TimeStamp;
-            if (UniversalTime)
+            DateTime timestamp = logEvent.TimeStamp;
+            if (_universalTime.HasValue)
             {
-                timestamp = timestamp.ToUniversalTime();
+                if (_universalTime.Value)
+                    timestamp = timestamp.ToUniversalTime();
+                else
+                    timestamp = timestamp.ToLocalTime();
             }
             return timestamp;
         }
@@ -93,7 +97,7 @@ namespace NLog.LayoutRenderers
 
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
-        private class CachedDateFormatted
+        private sealed class CachedDateFormatted
         {
             public CachedDateFormatted(DateTime date, string formattedDate)
             {
