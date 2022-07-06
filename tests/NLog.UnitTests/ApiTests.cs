@@ -220,5 +220,62 @@ namespace NLog.UnitTests
                 }
             }
         }
+
+        [Fact]
+        public void ValidateLayoutRendererTypeAlias()
+        {
+            // These class-names should be repaired with next major version bump
+            // Do NOT add more incorrect class-names to this exlusion-list
+            HashSet<string> oldFaultyClassNames = new HashSet<string>()
+            {
+                "GarbageCollectorInfoLayoutRenderer",
+                "ScopeContextNestedStatesLayoutRenderer",
+                "ScopeContextPropertyLayoutRenderer",
+                "ScopeContextTimingLayoutRenderer",
+                "TraceActivityIdLayoutRenderer",
+                "SpecialFolderApplicationDataLayoutRenderer",
+                "SpecialFolderCommonApplicationDataLayoutRenderer",
+                "SpecialFolderLocalApplicationDataLayoutRenderer",
+                "DirectorySeparatorLayoutRenderer",
+                "LiteralWithRawValueLayoutRenderer",
+                "LocalIpAddressLayoutRenderer",
+                "VariableLayoutRenderer",
+                "ObjectPathRendererWrapper",
+                "PaddingLayoutRendererWrapper",
+            };
+
+            foreach (Type type in allTypes)
+            {
+                if (type.IsSubclassOf(typeof(NLog.LayoutRenderers.LayoutRenderer)))
+                {
+                    var layoutRendererAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>()?.ToArray() ?? new NLog.LayoutRenderers.LayoutRendererAttribute[0];
+                    if (layoutRendererAttributes.Length == 0)
+                    {
+                        if (type != typeof(NLog.LayoutRenderers.FuncLayoutRenderer) && type != typeof(NLog.LayoutRenderers.FuncThreadAgnosticLayoutRenderer))
+                        {
+                            Assert.True(type.IsAbstract, $"{type} without LayoutRendererAttribute must be abstract");
+                        }
+                    }
+                    else
+                    {
+                        Assert.False(type.IsAbstract, $"{type} with LayoutRendererAttribute cannot be abstract");
+
+                        if (!oldFaultyClassNames.Contains(type.Name))
+                        {
+                            if (type.IsSubclassOf(typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase)))
+                            {
+                                var typeAlias = layoutRendererAttributes.First().Name.Replace("-", "");
+                                Assert.Equal(typeAlias + "LayoutRendererWrapper", type.Name, StringComparer.OrdinalIgnoreCase);
+                            }
+                            else
+                            {
+                                var typeAlias = layoutRendererAttributes.First().Name.Replace("-", "");
+                                Assert.Equal(typeAlias + "LayoutRenderer", type.Name, StringComparer.OrdinalIgnoreCase);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

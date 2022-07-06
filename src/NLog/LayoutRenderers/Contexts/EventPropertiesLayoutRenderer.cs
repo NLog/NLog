@@ -42,8 +42,8 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Log event context data. See <see cref="LogEventInfo.Properties"/>.
     /// </summary>
-    [LayoutRenderer("event-property")]
     [LayoutRenderer("event-properties")]
+    [LayoutRenderer("event-property")]
     [LayoutRenderer("event-context")]
     [ThreadAgnostic]
     [MutableUnsafe]
