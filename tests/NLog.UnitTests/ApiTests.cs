@@ -208,6 +208,46 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void RequiredConfigOptionMustBeClass()
+        {
+            foreach (Type type in allTypes)
+            {
+                var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                foreach (var prop in properties)
+                {
+                    var requiredParameter = prop.GetCustomAttribute<NLog.Config.RequiredParameterAttribute>();
+                    if (requiredParameter != null)
+                    {
+                        Assert.True(prop.PropertyType.IsClass, type.Name);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void SingleDefaultConfigOption()
+        {
+            string prevDefaultPropertyName = null;
+
+            foreach (Type type in allTypes)
+            {
+                prevDefaultPropertyName = null;
+
+                var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                foreach (var prop in properties)
+                {
+                    var defaultParameter = prop.GetCustomAttribute<DefaultParameterAttribute>();
+                    if (defaultParameter != null)
+                    {
+                        Assert.True(prevDefaultPropertyName == null, prevDefaultPropertyName?.ToString());
+                        prevDefaultPropertyName = prop.Name;
+                        Assert.True(type.IsSubclassOf(typeof(NLog.LayoutRenderers.LayoutRenderer)), type.ToString());
+                    }
+                }
+            }
+        }
+
+        [Fact]
         public void AppDomainFixedOutput_Attribute_EnsureThreadAgnostic()
         {
             foreach (Type type in allTypes)

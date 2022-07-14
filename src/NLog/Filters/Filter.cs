@@ -33,7 +33,7 @@
 
 namespace NLog.Filters
 {
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// An abstract filter class. Provides a way to eliminate log messages
@@ -54,7 +54,6 @@ namespace NLog.Filters
         /// Gets or sets the action to be taken when filter matches.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
         public FilterResult Action { get; set; }
 
         /// <summary>

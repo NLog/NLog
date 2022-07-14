@@ -49,7 +49,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets the length in characters. 
         /// </summary>
         /// <docgen category="Layout Options" order="10"/>
-        [RequiredParameter]
         public int Length { get; set; }
 
         /// <inheritdoc/>
