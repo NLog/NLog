@@ -63,7 +63,7 @@
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
     <CopyrightHref>https://nlog-project.org/</CopyrightHref>
-    <FrameworkVersion>.NET Framework/.NET Standard</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.5.2</FrameworkVersion>
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
         <component id="Code Block Component">
