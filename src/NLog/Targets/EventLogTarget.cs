@@ -65,7 +65,8 @@ namespace NLog.Targets
         /// <summary>
         /// Max size in characters (limitation of the EventLog API).
         /// </summary>
-        internal const int EventLogMaxMessageLength = 16384;
+        /// <seealso href="https://docs.microsoft.com/en-gb/windows/win32/api/winbase/nf-winbase-reporteventw"/>
+        internal const int EventLogMaxMessageLength = 30000;
 
         private readonly IEventLogWrapper _eventLogWrapper;
 
