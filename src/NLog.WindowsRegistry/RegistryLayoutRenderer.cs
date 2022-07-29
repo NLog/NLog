@@ -158,7 +158,7 @@ namespace NLog.LayoutRenderers
             builder.Append(value);
         }
 
-        private class ParseResult
+        private sealed class ParseResult
         {
             public string SubKey { get; set; }
 

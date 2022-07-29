@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>net461;netstandard2.0;net452</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>

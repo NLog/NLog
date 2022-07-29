@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>net46;net45;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net35;net46;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
     <Title>NLog Database Target</Title>
     <Company>NLog</Company>

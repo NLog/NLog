@@ -51,16 +51,6 @@ else
     if (-Not $LastExitCode -eq 0)
 	    { exit $LastExitCode }
 
-    dotnet msbuild /t:Build /p:targetFramework=net45 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 ./src/NLog/
-    if (-Not $LastExitCode -eq 0)
-	    { exit $LastExitCode }
-    dotnet msbuild /t:Build /p:targetFramework=net461 /p:Configuration=Release /p:DebugType=Full /p:monobuild=1 /p:TestTargetFramework=net45 tests/NLog.UnitTests
-    if (-Not $LastExitCode -eq 0)
-	    { exit $LastExitCode }
-	dotnet vstest ./tests/NLog.UnitTests/bin/Release/net45/NLog.UnitTests.dll
-    if (-Not $LastExitCode -eq 0)
-	    { exit $LastExitCode }
-
 	dotnet test ./tests/NLog.Database.Tests/ --framework netcoreapp3.1 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
