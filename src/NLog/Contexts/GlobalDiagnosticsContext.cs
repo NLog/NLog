@@ -131,7 +131,10 @@ namespace NLog
         {
             lock (_lockObject)
             {
-                GetWritableDict().Remove(item);
+                if (_dict.ContainsKey(item))
+                {
+                    GetWritableDict().Remove(item);
+                }
             }
         }
 
@@ -142,7 +145,10 @@ namespace NLog
         {
             lock (_lockObject)
             {
-                GetWritableDict(true).Clear();
+                if (_dict.Count != 0)
+                {
+                    GetWritableDict(true).Clear();
+                }
             }
         }
 
@@ -172,9 +178,6 @@ namespace NLog
 
         private static Dictionary<string, object> CopyDictionaryOnWrite(bool clearDictionary)
         {
-            if (clearDictionary && _dict.Count == 0)
-                return _dict;
-
             var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
             if (!clearDictionary)
             {
