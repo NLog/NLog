@@ -46,6 +46,8 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
+        private CachedLookup _cachedLookup = new CachedLookup(null, null);
+
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -98,8 +100,28 @@ namespace NLog.LayoutRenderers
 
         private object GetValue()
         {
-            //don't use GlobalDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            return GlobalDiagnosticsContext.GetObject(Item);
+            var cachedLookup = _cachedLookup;
+            var cachedDictionary = GlobalDiagnosticsContext.GetReadOnlyDict();
+            if (ReferenceEquals(cachedLookup.CachedDictionary, cachedDictionary))
+            {
+                return cachedLookup.CachedItemValue;
+            }
+
+            cachedDictionary.TryGetValue(Item, out var cachedItemValue);
+            _cachedLookup = new CachedLookup(cachedDictionary, cachedItemValue);
+            return cachedItemValue;
+        }
+
+        private sealed class CachedLookup
+        {
+            internal readonly object CachedDictionary;
+            internal readonly object CachedItemValue;
+
+            public CachedLookup(object cachedDictionary, object cachedItemValue)
+            {
+                CachedDictionary = cachedDictionary;
+                CachedItemValue = cachedItemValue;
+            }
         }
     }
 }
