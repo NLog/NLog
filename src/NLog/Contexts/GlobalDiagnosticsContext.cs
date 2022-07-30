@@ -66,8 +66,7 @@ namespace NLog
         {
             lock (_lockObject)
             {
-                bool requireCopyOnWrite = _dictReadOnly != null && !_dict.ContainsKey(item); // Overwrite existing value is ok (no resize)
-                GetWritableDict(requireCopyOnWrite)[item] = value;
+                GetWritableDict()[item] = value;
             }
         }
 
@@ -132,8 +131,7 @@ namespace NLog
         {
             lock (_lockObject)
             {
-                bool requireCopyOnWrite = _dictReadOnly != null && _dict.ContainsKey(item);
-                GetWritableDict(requireCopyOnWrite).Remove(item);
+                GetWritableDict().Remove(item);
             }
         }
 
@@ -144,12 +142,11 @@ namespace NLog
         {
             lock (_lockObject)
             {
-                bool requireCopyOnWrite = _dictReadOnly != null && _dict.Count > 0;
-                GetWritableDict(requireCopyOnWrite, true).Clear();
+                GetWritableDict(true).Clear();
             }
         }
 
-        private static Dictionary<string, object> GetReadOnlyDict()
+        internal static Dictionary<string, object> GetReadOnlyDict()
         {
             var readOnly = _dictReadOnly;
             if (readOnly is null)
@@ -162,9 +159,9 @@ namespace NLog
             return readOnly;
         }
 
-        private static Dictionary<string, object> GetWritableDict(bool requireCopyOnWrite, bool clearDictionary = false)
+        private static Dictionary<string, object> GetWritableDict(bool clearDictionary = false)
         {
-            if (requireCopyOnWrite)
+            if (_dictReadOnly != null)
             {
                 Dictionary<string, object> newDict = CopyDictionaryOnWrite(clearDictionary);
                 _dict = newDict;
@@ -175,6 +172,9 @@ namespace NLog
 
         private static Dictionary<string, object> CopyDictionaryOnWrite(bool clearDictionary)
         {
+            if (clearDictionary && _dict.Count == 0)
+                return _dict;
+
             var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
             if (!clearDictionary)
             {
