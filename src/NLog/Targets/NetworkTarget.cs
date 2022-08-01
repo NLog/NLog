@@ -359,19 +359,19 @@ namespace NLog.Targets
                     switch (OnConnectionOverflow)
                     {
                         case NetworkTargetConnectionsOverflowAction.Discard:
-                            InternalLogger.Warn("{0}: Discarding message otherwise to many connections.", this);
+                            InternalLogger.Debug("{0}: Discarding message, because too many open connections.", this);
                             logEvent.Continuation(null);
                             return;
 
                         case NetworkTargetConnectionsOverflowAction.Grow:
                             MaxConnections = MaxConnections * 2;
-                            InternalLogger.Debug("{0}: Too may connections, but this is allowed", this);
+                            InternalLogger.Debug("{0}: Growing max connections limit, because many open connections.", this);
                             break;
 
                         case NetworkTargetConnectionsOverflowAction.Block:
                             while (_openNetworkSenders.Count >= MaxConnections)
                             {
-                                InternalLogger.Debug("{0}: Blocking networktarget otherwise too many connections.", this);
+                                InternalLogger.Debug("{0}: Blocking until ready, because too many open connections.", this);
                                 Monitor.Wait(_openNetworkSenders);
                                 InternalLogger.Trace("{0}: Entered critical section.", this);
                             }
