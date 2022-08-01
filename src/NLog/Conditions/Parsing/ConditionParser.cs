@@ -138,7 +138,7 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                InternalLogger.Warn(exception, "Cannot resolve function '{0}'", functionName);
+                InternalLogger.Warn(exception, "Failed to resolve condition method: '{0}'", functionName);
 
                 if (exception.MustBeRethrownImmediately())
                 {

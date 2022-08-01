@@ -230,7 +230,7 @@ namespace NLog.Conditions
                 if (type1 == typeof(string))
                 {
                     val = Convert.ToString(val, CultureInfo.InvariantCulture);
-                    InternalLogger.Debug("Using string comparison");
+                    InternalLogger.Trace("Using string comparison");
                     return true;
                 }
             }

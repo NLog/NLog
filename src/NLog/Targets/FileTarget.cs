@@ -1242,7 +1242,7 @@ namespace NLog.Targets
                 InternalLogger.Info("{0}: Archiving {1} to compressed {2}", this, fileName, archiveFileName);
                 if (File.Exists(archiveFileName))
                 {
-                    InternalLogger.Warn("{0}: Cannot created new compressed file, when file already exists: {1}", this, archiveFileName);
+                    InternalLogger.Warn("{0}: Failed archiving because compressed file already exists: {1}", this, archiveFileName);
                 }
                 else
                 {
@@ -1299,7 +1299,7 @@ namespace NLog.Targets
                         throw;
 
                     int sleepTimeMs = i * 50;
-                    InternalLogger.Warn("{0}: Attempt #{1} to compress {2} to {3} failed - {4} {5}. Sleeping for {6}ms", this, i, fileName, archiveFileName, ex.GetType(), ex.Message, sleepTimeMs);
+                    InternalLogger.Warn("{0}: Archiving Attempt #{1} to compress {2} to {3} failed - {4} {5}. Sleeping for {6}ms", this, i, fileName, archiveFileName, ex.GetType(), ex.Message, sleepTimeMs);
                     AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(sleepTimeMs));
                 }
             }
