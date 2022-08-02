@@ -61,6 +61,30 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void WebServiceWithEmptyUrl()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.SetGlobalContextProperty("Url", "");
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "" });
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${gdc:Url}" });
+            }).LogFactory;
+            logFactory.GetCurrentClassLogger().Info("Test");
+        }
+
+        [Fact]
+        public void WebServiceWithInvalidUrl()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.SetGlobalContextProperty("Url", "!");
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "!" });
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${gdc:Url}" });
+            }).LogFactory;
+            logFactory.GetCurrentClassLogger().Info("Test");
+        }
+
+        [Fact]
         public void WebserviceTest_httppost_utf8_default_no_bom()
         {
             WebserviceTest_httppost_utf8("", false);

@@ -250,7 +250,7 @@ namespace NLog.Targets
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
             var url = BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
-            var webRequest = (HttpWebRequest)WebRequest.Create(url);
+            var webRequest = CreateHttpWebRequest(url);
             DoInvoke(parameters, webRequest, continuation);
         }
 
@@ -261,36 +261,53 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
         {
-            var url = BuildWebServiceUrl(logEvent.LogEvent, parameters);
-            var webRequest = (HttpWebRequest)WebRequest.Create(url);
+            Uri url = null;
+            HttpWebRequest webRequest = null;
 
-            if (Headers?.Count > 0)
+            try
             {
-                for (int i = 0; i < Headers.Count; i++)
+                url = BuildWebServiceUrl(logEvent.LogEvent, parameters);
+                if (url == null)
                 {
-                    string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
-                    if (headerValue is null)
-                        continue;
-
-                    webRequest.Headers[Headers[i].Name] = headerValue;
+                    InternalLogger.Error("{0}: Error creating request with invalid url={1}", this, Url);
+                    logEvent.Continuation(new ArgumentException("Invalid Url for WebRequest"));
+                    return;
                 }
-            }
+
+                webRequest = CreateHttpWebRequest(url);
+
+                if (Headers?.Count > 0)
+                {
+                    for (int i = 0; i < Headers.Count; i++)
+                    {
+                        string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
+                        if (headerValue is null)
+                            continue;
+
+                        webRequest.Headers[Headers[i].Name] = headerValue;
+                    }
+                }
 
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var userAgent = RenderLogEvent(UserAgent, logEvent.LogEvent);
-            if (!string.IsNullOrEmpty(userAgent))
-            {
-                webRequest.UserAgent = userAgent;
-            }
+                var userAgent = RenderLogEvent(UserAgent, logEvent.LogEvent);
+                if (!string.IsNullOrEmpty(userAgent))
+                {
+                    webRequest.UserAgent = userAgent;
+                }
 #endif
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Error creating request for url={1}", this, url);
+                throw;
+            }
 
             DoInvoke(parameters, webRequest, logEvent.Continuation);
         }
 
-        private void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        private HttpWebRequest CreateHttpWebRequest(Uri url)
         {
-            Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
-            Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
+            var webRequest = (HttpWebRequest)WebRequest.Create(url);
 
             switch (ProxyType)
             {
@@ -330,6 +347,14 @@ namespace NLog.Targets
             }
 #endif
 
+            return webRequest;
+        }
+
+        private void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        {
+            Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
+            Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
+
             DoInvoke(parameters, continuation, webRequest, beginGetRequest, getRequestStream);
         }
 
@@ -364,7 +389,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "{0}: Error starting request", this);
+                InternalLogger.Error(ex, "{0}: Error starting request for url={1}", this, webRequest.RequestUri);
                 if (ExceptionMustBeRethrown(ex))
                 {
                     throw;
@@ -396,7 +421,7 @@ namespace NLog.Targets
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
 #endif
-                        InternalLogger.Error(ex, "{0}: Error receiving response", this);
+                        InternalLogger.Error(ex, "{0}: Error receiving response for url={1}", this, webRequest.RequestUri);
                         DoInvokeCompleted(continuation, ex);
                     }
                 },
@@ -427,7 +452,7 @@ namespace NLog.Targets
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
 #endif
-                        InternalLogger.Error(ex, "{0}: Error sending payload", this);
+                        InternalLogger.Error(ex, "{0}: Error sending payload for url={1}", this, webRequest.RequestUri);
                         postPayload.Dispose();
                         DoInvokeCompleted(continuation, ex);
                     }
