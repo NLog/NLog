@@ -121,6 +121,7 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
+        [RequiredParameter]
         public Layout<Uri> Url { get; set; }
 
         /// <summary>
@@ -558,7 +559,6 @@ namespace NLog.Targets
             var byteArray = postPayload.GetBuffer();
             int offset = nothingToDo ? 0 : preambleSize;
             output.Write(byteArray, offset, (int)postPayload.Length - offset);
-
         }
 
         /// <summary>
@@ -602,7 +602,7 @@ namespace NLog.Targets
             protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);
         }
 
-        private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
+        private sealed class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
             readonly UrlHelper.EscapeEncodingOptions _encodingOptions;
 
@@ -622,7 +622,7 @@ namespace NLog.Targets
             }
         }
 
-        private class HttpPostJsonFormatter : HttpPostTextFormatterBase
+        private sealed class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
             private readonly IJsonConverter _jsonConverter;
 
@@ -663,7 +663,7 @@ namespace NLog.Targets
             }
         }
 
-        private class HttpPostSoap11Formatter : HttpPostSoapFormatterBase
+        private sealed class HttpPostSoap11Formatter : HttpPostSoapFormatterBase
         {
             private readonly string _defaultSoapAction;
 
@@ -689,7 +689,7 @@ namespace NLog.Targets
             }
         }
 
-        private class HttpPostSoap12Formatter : HttpPostSoapFormatterBase
+        private sealed class HttpPostSoap12Formatter : HttpPostSoapFormatterBase
         {
             public HttpPostSoap12Formatter(WebServiceTarget target) : base(target)
             {
@@ -787,7 +787,7 @@ namespace NLog.Targets
             protected abstract void WriteStringContent(StringBuilder builder, object[] parameterValues);
         }
 
-        private class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase
+        private sealed class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase
         {
             private readonly XmlWriterSettings _xmlWriterSettings;
 
