@@ -146,6 +146,10 @@ namespace NLog.Internal
             {
                 return true;
             }
+            if (exception is ArgumentNullException)
+            {
+                return true;
+            }
             if (exception is DivideByZeroException)
             {
                 return true;

@@ -37,8 +37,8 @@ function create-package($packageName, $targetFrameworks)
 
 create-package 'NLog.Database' '"net35;net45;net46;netstandard1.3;netstandard1.5;netstandard2.0"'
 create-package 'NLog.OutputDebugString' '"net35;net45;net46;netstandard2.0"'
-create-package 'NLog.WindowsEventLog' '"netstandard2.0"'
 create-package 'NLog.WindowsRegistry' '"net35;net45;net46;netstandard2.0"'
+create-package 'NLog.WindowsEventLog' '"netstandard2.0"'
 
 msbuild /t:xsd /t:NuGetSchemaPackage .\src\NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
 
