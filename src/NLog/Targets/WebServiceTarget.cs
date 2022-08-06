@@ -77,7 +77,7 @@ namespace NLog.Targets
         /// dictionary that maps a concrete <see cref="HttpPostFormatterBase"/> implementation
         /// to a specific <see cref="WebServiceProtocol"/>-value.
         /// </summary>
-        private static Dictionary<WebServiceProtocol, Func<WebServiceTarget, HttpPostFormatterBase>> _postFormatterFactories =
+        private static readonly Dictionary<WebServiceProtocol, Func<WebServiceTarget, HttpPostFormatterBase>> _postFormatterFactories =
             new Dictionary<WebServiceProtocol, Func<WebServiceTarget, HttpPostFormatterBase>>()
             {
                 { WebServiceProtocol.Soap11, t => new HttpPostSoap11Formatter(t)},

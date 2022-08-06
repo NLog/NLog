@@ -252,6 +252,8 @@ namespace NLog.LayoutRenderers
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         public static void Register(string name, Type layoutRendererType)
         {
+            if (layoutRendererType is null) throw new ArgumentNullException(nameof(layoutRendererType));
+            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
             ConfigurationItemFactory.Default.LayoutRenderers
                 .RegisterDefinition(name, layoutRendererType);
         }
@@ -263,6 +265,7 @@ namespace NLog.LayoutRenderers
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         public static void Register(string name, Func<LogEventInfo, object> func)
         {
+            if (func is null) throw new ArgumentNullException(nameof(func));
             Register(name, (info, configuration) => func(info));
         }
 
@@ -273,8 +276,8 @@ namespace NLog.LayoutRenderers
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         public static void Register(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
         {
+            if (func is null) throw new ArgumentNullException(nameof(func));
             var layoutRenderer = new FuncLayoutRenderer(name, func);
-
             Register(layoutRenderer);
         }
 
@@ -284,6 +287,7 @@ namespace NLog.LayoutRenderers
         /// <param name="layoutRenderer">Renderer with callback func</param>
         public static void Register(FuncLayoutRenderer layoutRenderer)
         {
+            if (layoutRenderer is null) throw new ArgumentNullException(nameof(layoutRenderer));
             ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
         }
 

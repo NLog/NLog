@@ -66,7 +66,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="FallbackGroupTarget"/> class.
         /// </summary>
         public FallbackGroupTarget()
-            : this(new Target[0])
+            : this(NLog.Internal.ArrayHelper.Empty<Target>())
         {
         }
 

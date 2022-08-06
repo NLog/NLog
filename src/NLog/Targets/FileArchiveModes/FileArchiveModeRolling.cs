@@ -41,7 +41,7 @@ namespace NLog.Targets.FileArchiveModes
     /// Archives the log-files using a rolling style numbering (the most recent is always #0 then
     /// #1, ..., #N. 
     /// 
-    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives
+    /// When the number of archive files exceed <see cref="FileTarget.MaxArchiveFiles"/> the obsolete archives
     /// are deleted.
     /// </summary>
     internal sealed class FileArchiveModeRolling : IFileArchiveMode

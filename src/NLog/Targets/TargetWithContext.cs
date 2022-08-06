@@ -435,7 +435,7 @@ namespace NLog.Targets
             return combinedProperties;
         }
 
-        private bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
+        private static bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
         {
             propertyValue = contextProperty.RenderValue(logEvent);
             if (!contextProperty.IncludeEmptyValue && (propertyValue is null || string.Empty.Equals(propertyValue)))
@@ -756,7 +756,7 @@ namespace NLog.Targets
         }
 
         [ThreadAgnostic]
-        private class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
+        private sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
         {
             public Layout TargetLayout { get => _targetLayout; set => _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value; }
             private Layout _targetLayout;
