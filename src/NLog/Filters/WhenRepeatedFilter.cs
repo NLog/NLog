@@ -35,6 +35,7 @@ namespace NLog.Filters
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Internal;
 
@@ -94,6 +95,7 @@ namespace NLog.Filters
         /// </summary>
         /// <docgen category='Filtering Options' order='100' />
         [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
         private bool? _optimizeBufferReuse;
 
