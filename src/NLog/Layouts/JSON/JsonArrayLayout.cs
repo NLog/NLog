@@ -147,13 +147,13 @@ namespace NLog.Layouts
             }
             else
             {
-                sb.Append("\"");
+                sb.Append('"');
                 beforeValueLength = sb.Length;
                 layout.Render(logEvent, sb);
                 if (beforeValueLength != sb.Length)
                 {
                     NLog.Targets.DefaultJsonSerializer.PerformJsonEscapeWhenNeeded(sb, beforeValueLength, true, false);
-                    sb.Append("\"");
+                    sb.Append('"');
                 }
             }
 

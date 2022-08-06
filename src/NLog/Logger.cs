@@ -129,7 +129,7 @@ namespace NLog
         public Logger WithProperties(IEnumerable<KeyValuePair<string, object>> properties)
         {
             if (properties == null)
-                throw new ArgumentException(nameof(properties));
+                throw new ArgumentNullException(nameof(properties));
 
             Logger newLogger = CreateChildLogger();
             foreach (KeyValuePair<string, object> property in properties)

@@ -214,50 +214,50 @@ namespace NLog.Conditions
         /// <returns>success?</returns>
         private bool TryPlainKeywordToExpression(string keyword, out ConditionExpression expression)
         {
-            if (0 == string.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "level", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionLevelExpression();
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "logger", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionLoggerNameExpression();
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "message", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionMessageExpression();
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "exception", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "exception", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionExceptionExpression();
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
             {
                 _tokenizer.Expect(ConditionTokenType.Dot);
                 expression = new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "true", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "false", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
                 return true;
             }
 
-            if (0 == string.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "null", StringComparison.OrdinalIgnoreCase))
             {
                 expression = new ConditionLiteralExpression(null);
                 return true;

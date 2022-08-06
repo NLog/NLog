@@ -68,7 +68,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
         public RandomizeGroupTarget()
-            : this(new Target[0])
+            : this(NLog.Internal.ArrayHelper.Empty<Target>())
         {
         }
 

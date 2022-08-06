@@ -109,10 +109,10 @@ namespace NLog.LayoutRenderers
             get => _format;
             set
             {
-                if (!value.Contains("[key]"))
+                if (string.IsNullOrEmpty(value) || value.IndexOf("[key]", StringComparison.Ordinal) < 0)
                     throw new ArgumentException("Invalid format: [key] placeholder is missing.");
 
-                if (!value.Contains("[value]"))
+                if (value.IndexOf("[value]", StringComparison.Ordinal) < 0)
                     throw new ArgumentException("Invalid format: [value] placeholder is missing.");
 
                 _format = value;

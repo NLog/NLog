@@ -293,7 +293,7 @@ namespace NLog.MessageTemplates
                 if (separator) builder.Append(", ");
 
                 SerializeCollectionItem(item.Key, format, formatProvider, builder, ref objectsInPath, depth);
-                builder.Append("=");
+                builder.Append('=');
                 SerializeCollectionItem(item.Value, format, formatProvider, builder, ref objectsInPath, depth);
                 separator = true;
             }

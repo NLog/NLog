@@ -53,7 +53,7 @@ namespace NLog.Conditions
         [ConditionMethod("equals")]
         public static bool Equals2(object firstValue, object secondValue)
         {
-            return firstValue.Equals(secondValue);
+            return ReferenceEquals(firstValue, secondValue) || firstValue?.Equals(secondValue) == true;
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c>, case is ignored; if <c>false</c> (default), case is significant.</param>
         /// <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("strequals")]
-        public static bool Equals2( string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
+        public static bool Equals2(string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
         {
-            return firstValue.Equals(secondValue, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            return string.Equals(firstValue, secondValue, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace NLog.Conditions
         [ConditionMethod("contains")]
         public static bool Contains(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
-            return haystack.IndexOf(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
+            return haystack?.IndexOf(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.Conditions
         [ConditionMethod("starts-with")]
         public static bool StartsWith(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
-            return haystack.StartsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            return haystack?.StartsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) == true;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace NLog.Conditions
         [ConditionMethod("ends-with")]
         public static bool EndsWith(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
         {
-            return haystack.EndsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            return haystack?.EndsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) == true;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace NLog.Conditions
         [ConditionMethod("length")]
         public static int Length(string text)
         {
-            return text.Length;
+            return text?.Length ?? 0;
         }
 
         /// <summary>

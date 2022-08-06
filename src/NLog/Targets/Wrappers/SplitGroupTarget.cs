@@ -65,7 +65,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="SplitGroupTarget" /> class.
         /// </summary>
         public SplitGroupTarget()
-            : this(new Target[0])
+            : this(NLog.Internal.ArrayHelper.Empty<Target>())
         {
         }
 

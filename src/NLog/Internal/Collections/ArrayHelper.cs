@@ -35,15 +35,20 @@ namespace NLog.Internal
 {
     internal static class ArrayHelper
     {
+#if NET35 || NET45
         private static class EmptyArray<T>
         {
             internal static readonly T[] Instance = new T[0];
         }
+#endif
 
         internal static T[] Empty<T>()
         {
-            // TODO Use Array.Empty<T> in NET 4.6 when we are ready
+#if NET35 || NET45
             return EmptyArray<T>.Instance;
+#else
+            return System.Array.Empty<T>();
+#endif
         }
     }
 }
