@@ -36,6 +36,7 @@ using JetBrains.Annotations;
 namespace NLog
 {
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// Exception thrown during log event processing.
@@ -68,6 +69,7 @@ namespace NLog
         /// <param name="messageParameters">Parameters for the message</param>
         [Obsolete("Instead use string interpolation. Marked obsolete with NLog 5.0")]
         [StringFormatMethod("message")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public NLogRuntimeException(string message, params object[] messageParameters)
             : base(string.Format(message, messageParameters))
         {

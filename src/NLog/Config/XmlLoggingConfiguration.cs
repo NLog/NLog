@@ -104,6 +104,7 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {

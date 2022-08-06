@@ -36,6 +36,7 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
     using System.Text;
@@ -195,6 +196,7 @@ namespace NLog.Config
         /// Default action if none of the filters match
         /// </summary>
         [Obsolete("Replaced by FilterDefaultAction. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public FilterResult DefaultFilterResult { get => FilterDefaultAction; set => FilterDefaultAction = value; }
 
         /// <summary>

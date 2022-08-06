@@ -151,6 +151,7 @@ namespace NLog
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
         [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static IAppDomain CurrentAppDomain
         {
             get => currentAppDomain ?? DefaultAppEnvironment.AppDomain;

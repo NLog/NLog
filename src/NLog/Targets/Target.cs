@@ -653,6 +653,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">The event info object to perform the merge to.</param>
         [Obsolete("Logger.Trace(logEvent) now automatically captures the logEvent Properties. Marked obsolete on NLog 4.6")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MergeEventProperties(LogEventInfo logEvent)
         {
             if (logEvent.Parameters is null || logEvent.Parameters.Length == 0)
