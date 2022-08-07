@@ -1287,11 +1287,11 @@ Dispose()
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 CommandText = "command1",
             };
-            databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = "abc", PropertyType = typeof(int) });
+            databaseTarget.ConnectionProperties.Add(new DatabaseObjectPropertyInfo() { Name = "AccessToken", Layout = "${eventProperty:accessToken}", PropertyType = typeof(int) });
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(databaseTarget)).LogFactory;
 
             // Act + Assert
-            Assert.Throws<InvalidCastException>(() => logFactory.GetCurrentClassLogger().Info("Hello"));
+            Assert.Throws<InvalidCastException>(() => logFactory.GetCurrentClassLogger().WithProperty("accessToken", "abc").Info("Hello"));
         }
 
         [Fact]

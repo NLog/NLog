@@ -65,11 +65,11 @@ namespace NLog.UnitTests.Targets
         {
             var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                builder.SetGlobalContextProperty("Url", "");
                 builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "" });
-                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${gdc:Url}" });
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${eventproperty:Url}" });
             }).LogFactory;
-            logFactory.GetCurrentClassLogger().Info("Test");
+            
+            logFactory.GetCurrentClassLogger().WithProperty("Url", "").Info("Test");
         }
 
         [Fact]
@@ -77,11 +77,16 @@ namespace NLog.UnitTests.Targets
         {
             var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                builder.SetGlobalContextProperty("Url", "!");
-                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "!" });
-                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${gdc:Url}" });
+                var configException = Assert.Throws<NLogConfigurationException>(() => builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "!!!" }));
+                Assert.Contains("!!!", configException.Message);
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${eventproperty:Url}" });
             }).LogFactory;
-            logFactory.GetCurrentClassLogger().Info("Test");
+
+            logFactory.GetCurrentClassLogger().WithProperty("Url", "!!!").Info("Test");
+            
+            logFactory.ThrowExceptions = true;
+
+            Assert.Throws<NLogRuntimeException>(() => logFactory.GetCurrentClassLogger().WithProperty("Url", "!!!").Info("Test"));
         }
 
         [Fact]

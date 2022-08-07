@@ -626,7 +626,8 @@ namespace NLog.UnitTests.Targets
 
             if (entryType != null)
             {
-                target.EntryType = new Layout<EventLogEntryType>(entryType);
+                using (new NoThrowNLogExceptions())
+                    target.EntryType = new Layout<EventLogEntryType>(entryType);
             }
 
             return target;

@@ -520,14 +520,17 @@ namespace NLog.UnitTests.Targets
                 To = "bar@foo.com",
                 Subject = "Hello from NLog",
                 SmtpServer = "server1",
-                Priority = "invalidPriority"
+                Priority = "${scopeproperty:scopePriority}"
             };
             var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
                 cfg.Configuration.AddRuleForAllLevels(mmt);
             }).LogFactory;
 
-            logFactory.GetLogger("MyLogger").Info("log message 1");
+            using (logFactory.GetCurrentClassLogger().PushScopeProperty("scopePriority", "InvalidPriority"))
+            {
+                logFactory.GetLogger("MyLogger").Info("log message 1");
+            }
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
