@@ -4,6 +4,20 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.0.2 (2022/08/12)
+
+**Improvements**
+- [#5019](https://github.com/NLog/NLog/pull/5019) Layout Typed validates fixed values upfront at config initialization, instead of when logging (#5019) (@snakefoot)
+- [#5026](https://github.com/NLog/NLog/pull/5026) Removed obsolete dependency Microsoft.Extensions.PlatformAbstractions (#5026) (@snakefoot)
+- [#5016](https://github.com/NLog/NLog/pull/5016) WebServiceTarget - Verifies Url as RequiredParameter (#5016) (@snakefoot)
+- [#5014](https://github.com/NLog/NLog/pull/5014) WebServiceTarget - Improve InternalLogging when Url is invalid (#5014) (@snakefoot)
+- [#5010](https://github.com/NLog/NLog/pull/5010) GlobalDiagnosticsContext - Implicit caching of value lookup (#5010) (@snakefoot)
+- [#5004](https://github.com/NLog/NLog/pull/5004) EventLogTarget - Bump default MaxMessageLength to 30000 to match limit in Win2008 (#5004) (@snakefoot)
+- [#4995](https://github.com/NLog/NLog/pull/4995) Support UniversalTime = false when NLog time-source is UTC (#4995) (@snakefoot)
+- [#4987](https://github.com/NLog/NLog/pull/4987) ConfigurationItemFactory - Include original type-alias when CreateInstance fails (#4987) (@snakefoot)
+- [#4981](https://github.com/NLog/NLog/pull/4981) AssemblyVersionLayoutRenderer - Support override of Default value (#4981) (@snakefoot)
+- [#4976](https://github.com/NLog/NLog/pull/4976) LoggingConfiguration - AddRule with overload for LoggingRule object (#4976) (@tvogel-nid)
+
 ### Version 5.0.1 (2022/06/12)
 
 **Improvements**
