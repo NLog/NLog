@@ -223,12 +223,12 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(Text) && _layoutRenderers.Length > 0)
+            if (string.IsNullOrEmpty(Text) && !IsFixedText && _layoutRenderers.Length > 0)
             {
                 return ToStringWithNestedItems(_layoutRenderers, r => r.ToString());
             }
 
-            return Text;
+            return Text ?? _fixedText ?? string.Empty;
         }
 
         internal void SetLayoutRenderers(LayoutRenderer[] layoutRenderers, string text)

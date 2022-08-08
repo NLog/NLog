@@ -59,6 +59,22 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutFixedInvalidIntTest()
+        {
+            Layout<int> layout;
+            Assert.Throws<NLogConfigurationException>(() => layout = "abc");
+        }
+
+        [Fact]
+        public void LayoutFixedEmptyIntTest()
+        {
+            Layout<int> layout = "";
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            Assert.Equal(0, result);
+            Assert.Equal("", layout.ToString());
+        }
+
+        [Fact]
         public void LayoutFixedNullableIntValueTest()
         {
             // Arrange
@@ -76,6 +92,22 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, layout);
             Assert.NotEqual(0, layout);
             Assert.NotEqual(default(int?), layout);
+        }
+
+        [Fact]
+        public void LayoutFixedInvalidNullableIntTest()
+        {
+            Layout<int?> layout;
+            Assert.Throws<NLogConfigurationException>(() => layout = "abc");
+        }
+
+        [Fact]
+        public void LayoutFixedEmptyNullableIntTest()
+        {
+            Layout<int?> layout = "";
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            Assert.Null(result);
+            Assert.Equal("", layout.ToString());
         }
 
         [Fact]
@@ -145,6 +177,22 @@ namespace NLog.UnitTests.Layouts
             Assert.Same(layout.FixedValue, layout.FixedValue);
             Assert.Equal("null", layout.ToString());
             Assert.NotEqual(new Uri("//other"), layout);
+        }
+
+        [Fact]
+        public void LayoutFixedInvalidUrlTest()
+        {
+            Layout<Uri> layout;
+            Assert.Throws<NLogConfigurationException>(() => layout = "!!!");
+        }
+
+        [Fact]
+        public void LayoutFixedEmptyUrlTest()
+        {
+            Layout<int?> layout = "";
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            Assert.Null(result);
+            Assert.Equal("", layout.ToString());
         }
 
         [Fact]

@@ -100,24 +100,7 @@ namespace NLog.Layouts
                 throw new NLogConfigurationException($"Layout<{typeof(T).ToString()}> not supported. Immutable value type is recommended");
             }
 
-            if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
-            {
-                if (TryParseValueFromString(simpleLayout.FixedText, parseValueFormat, parseValueCulture, out var value) && value != null)
-                {
-                    _fixedValue = (T)value;
-                }
-                else
-                {
-                    _innerLayout = simpleLayout;
-                    _parseFormat = parseValueFormat;
-                    _parseFormatCulture = parseValueCulture;
-                }
-            }
-            else if (layout is null)
-            {
-                _fixedValue = default(T);
-            }
-            else
+            if (!TryParseFixedValue(layout, parseValueFormat, parseValueCulture, ref _fixedValue))
             {
                 _innerLayout = layout;
                 _parseFormat = parseValueFormat;
@@ -318,6 +301,40 @@ namespace NLog.Layouts
             }
         }
 
+        private bool TryParseFixedValue(Layout layout, string parseValueFormat, CultureInfo parseValueCulture, ref T fixedValue)
+        {
+            if (layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            {
+                if (!string.IsNullOrEmpty(simpleLayout.FixedText))
+                {
+                    try
+                    {
+                        fixedValue = (T)ParseValueFromObject(simpleLayout.FixedText, parseValueFormat, parseValueCulture);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        var configException = new NLogConfigurationException($"Failed converting into type {typeof(T)}. Value='{simpleLayout.FixedText}'", ex);
+                        if (configException.MustBeRethrown())
+                            throw configException;
+                    }
+                }
+                else if (typeof(T) == typeof(string))
+                {
+                    fixedValue = (T)(object)simpleLayout.FixedText;
+                    return true;
+                }
+            }
+            else if (layout is null)
+            {
+                fixedValue = default(T);
+                return true;
+            }
+
+            fixedValue = default(T);
+            return false;
+        }
+
         private bool TryParseValueFromString(string stringValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
         {
             if (string.IsNullOrEmpty(stringValue))
@@ -338,7 +355,7 @@ namespace NLog.Layouts
         {
             try
             {
-                parsedValue = ValueTypeConverter.Convert(rawValue, typeof(T), parseValueFormat, parseValueCulture);
+                parsedValue = ParseValueFromObject(rawValue, parseValueFormat, parseValueCulture);
                 return true;
             }
             catch (Exception ex)
@@ -347,6 +364,11 @@ namespace NLog.Layouts
                 InternalLogger.Warn(ex, "Failed converting object '{0}' of type {1} into type {2}", rawValue, rawValue?.GetType(), typeof(T));
                 return false;
             }
+        }
+
+        private object ParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture)
+        {
+            return ValueTypeConverter.Convert(rawValue, typeof(T), parseValueFormat, parseValueCulture);
         }
 
         /// <inheritdoc/>

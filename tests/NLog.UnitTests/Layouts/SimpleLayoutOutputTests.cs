@@ -87,6 +87,9 @@ namespace NLog.UnitTests.Layouts
 
             var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", ConfigurationItemFactory.Default);
             Assert.Equal("someFakeText", l2.ToString());
+
+            var l3 = new SimpleLayout("");
+            Assert.Equal("", l3.ToString());
         }
 
         [Fact]

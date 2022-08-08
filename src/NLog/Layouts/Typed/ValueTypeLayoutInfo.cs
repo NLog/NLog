@@ -35,6 +35,7 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.Layouts
 {
@@ -225,9 +226,13 @@ namespace NLog.Layouts
             }
             catch (TargetInvocationException ex)
             {
-                if (ex.InnerException != null)
+                if (ex.InnerException is null)
+                    throw;
+
+                if (ex.InnerException.MustBeRethrown())
                     throw ex.InnerException;
-                throw;
+
+                return _innerLayout;
             }
         }
 
