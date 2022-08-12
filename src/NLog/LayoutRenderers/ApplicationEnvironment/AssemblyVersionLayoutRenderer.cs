@@ -154,34 +154,23 @@ namespace NLog.LayoutRenderers
             return $"Could not find value for {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly and version type {Type}";
         }
 
-#if NETSTANDARD1_3
-
-        private string GetVersion()
-        {
-            if (string.IsNullOrEmpty(Name))
-            {
-                return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
-            }
-            else
-            {
-                var assembly = GetAssembly();
-                return assembly?.GetName().Version.ToString();
-            }
-        }
-
-        private System.Reflection.Assembly GetAssembly()
-        {
-            return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
-        }
-
-#else
-
         private string GetVersion()
         {
             try
             {
                 var assembly = GetAssembly();
-                return GetVersion(assembly) ?? string.Empty;
+
+                switch (Type)
+                {
+                    case AssemblyVersionType.File:
+                        return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version;
+
+                    case AssemblyVersionType.Informational:
+                        return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+
+                    default:
+                        return assembly?.GetName().Version?.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -195,35 +184,20 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the assembly specified by <see cref="Name"/>, or entry assembly otherwise
         /// </summary>
-        /// <returns>Found assembly</returns>
         protected virtual System.Reflection.Assembly GetAssembly()
         {
             if (string.IsNullOrEmpty(Name))
             {
+#if !NETSTANDARD1_3
                 return System.Reflection.Assembly.GetEntryAssembly();
+#else
+                return null;
+#endif
             }
             else
             {
                 return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
             }
         }
-
-        private string GetVersion(System.Reflection.Assembly assembly)
-        {
-            switch (Type)
-            {
-                case AssemblyVersionType.File:
-                    return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version;
-
-                case AssemblyVersionType.Informational:
-                    return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-
-                default:
-                    return assembly?.GetName().Version?.ToString();
-            }
-        }
-
-#endif
-
     }
 }
