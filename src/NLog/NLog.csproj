@@ -29,13 +29,16 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-- LoggingConfigurationParser should alert when LoggingRule filters are bad (#4938) (@snakefoot)
-- CompoundLayout with layout from config variable (#4940) (@snakefoot)
-- Mark Target LayoutWithLock as obsolete, since only temporary workaround (#4944) (@snakefoot)
-- FileTarget - First acquire file-handle to compress before creating zip-file (#4950) (@snakefoot)
-- FileTarget - Zip compression should not truncate when zip-file already exists (#4953) (@snakefoot)
-- Max StackTraceUsage should be computed using bitwise OR (#4965) (@martinzding)
-- Improved source-code documentation by fixing spelling errors (#4963) (@KurnakovMaksim)
+- Layout Typed validates fixed values upfront at config initialization, instead of when logging (#5019) (@snakefoot)
+- Removed obsolete dependency Microsoft.Extensions.PlatformAbstractions (#5026) (@snakefoot)
+- WebServiceTarget - Verifies Url as RequiredParameter (#5016) (@snakefoot)
+- WebServiceTarget - Improve InternalLogging when Url is invalid (#5014) (@snakefoot)
+- GlobalDiagnosticsContext - Implicit caching of value lookup (#5010) (@snakefoot)
+- EventLogTarget - Bump default MaxMessageLength to 30000 to match limit in Win2008 (#5004) (@snakefoot)
+- Support UniversalTime = false when NLog time-source is UTC (#4995) (@snakefoot)
+- ConfigurationItemFactory - Include original type-alias when CreateInstance fails (#4987) (@snakefoot)
+- AssemblyVersionLayoutRenderer - Support override of Default value (#4981) (@snakefoot)
+- LoggingConfiguration - AddRule with overload for LoggingRule object (#4976) (@tvogel-nid)
       
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 
