@@ -454,7 +454,7 @@ namespace NLog.Targets
             else if (objTypeCode == TypeCode.DateTime)
             {
                 destination.Append('"');
-                destination.AppendXmlDateTimeRoundTrip(value.ToDateTime(CultureInfo.InvariantCulture));
+                destination.AppendXmlDateTimeUtcRoundTrip(value.ToDateTime(CultureInfo.InvariantCulture));
                 destination.Append('"');
             }
             else if (IsNumericTypeCode(objTypeCode, true) && SkipQuotes(value, objTypeCode))
