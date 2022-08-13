@@ -146,9 +146,9 @@ namespace NLog.Internal
         private static readonly char[] charToInt = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         /// <summary>
-        /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 6801 date (Round-Trip-Time)
+        /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 8601 Compliant Date Format (Round-Trip-Time)
         /// </summary>
-        public static void AppendXmlDateTimeRoundTrip(this StringBuilder builder, DateTime dateTime)
+        public static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime)
         {
             if (dateTime.Kind == DateTimeKind.Unspecified)
                 dateTime = new DateTime(dateTime.Ticks, DateTimeKind.Utc);

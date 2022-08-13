@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Internal
         void TestAppendXmlDateTimeRoundTripUndefined(DateTime input)
         {
             StringBuilder sb = new StringBuilder();
-            StringBuilderExt.AppendXmlDateTimeRoundTrip(sb, input);
+            StringBuilderExt.AppendXmlDateTimeUtcRoundTrip(sb, input);
             Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
         }
 
@@ -91,7 +91,7 @@ namespace NLog.UnitTests.Internal
         {
             input = new DateTime(input.Ticks, DateTimeKind.Local);
             StringBuilder sb = new StringBuilder();
-            StringBuilderExt.AppendXmlDateTimeRoundTrip(sb, input);
+            StringBuilderExt.AppendXmlDateTimeUtcRoundTrip(sb, input);
             Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
         }
 
@@ -101,7 +101,7 @@ namespace NLog.UnitTests.Internal
         {
             input = new DateTime(input.Ticks, DateTimeKind.Utc);
             StringBuilder sb = new StringBuilder();
-            StringBuilderExt.AppendXmlDateTimeRoundTrip(sb, input);
+            StringBuilderExt.AppendXmlDateTimeUtcRoundTrip(sb, input);
             Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
         }
 
