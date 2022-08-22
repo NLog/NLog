@@ -60,7 +60,7 @@
 
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.9" />
   </ItemGroup>
  
