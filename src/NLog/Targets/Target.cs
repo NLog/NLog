@@ -719,11 +719,14 @@ namespace NLog.Targets
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
         {
-            if (layout is null || logEvent is null)
+            if (layout is null)
                 return defaultValue;
 
             if (layout.IsFixed)
                 return layout.FixedValue;
+
+            if (logEvent is null)
+                return defaultValue;
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {
