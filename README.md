@@ -112,7 +112,7 @@ How to build
 Use Visual Studio 2019 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
-- AppVeyor for Windows builds, including Silverlight and Xamarin.
+- AppVeyor for Windows- and Linux-builds
 - SonarQube for code coverage
 
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
