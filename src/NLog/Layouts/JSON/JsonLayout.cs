@@ -116,7 +116,8 @@ namespace NLog.Layouts
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public bool RenderEmptyObject { get; set; } = true;
+        public bool RenderEmptyObject { get => _renderEmptyObject ?? true; set => _renderEmptyObject = value; }
+        private bool? _renderEmptyObject;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -220,6 +221,20 @@ namespace NLog.Layouts
                     if (!attribute.EscapeForwardSlashInternal.HasValue)
                     {
                         attribute.EscapeForwardSlash = _escapeForwardSlashInternal.Value;
+                    }
+                }
+            }
+
+            if (Attributes?.Count > 0)
+            {
+                foreach (var attribute in Attributes)
+                {
+                    if (!attribute.IncludeEmptyValue && !attribute.Encode && attribute.Layout is JsonLayout jsonLayout)
+                    {
+                        if (!jsonLayout._renderEmptyObject.HasValue)
+                        {
+                            jsonLayout.RenderEmptyObject = false;
+                        }
                     }
                 }
             }
