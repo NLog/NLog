@@ -206,6 +206,9 @@ namespace NLog.Layouts
 
         private TValueType RenderTypedValue<TValueType>(LogEventInfo logEvent, StringBuilder stringBuilder, TValueType defaultValue)
         {
+            if (logEvent is null)
+                return defaultValue;
+
             if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
             {
                 if (cachedValue is null)

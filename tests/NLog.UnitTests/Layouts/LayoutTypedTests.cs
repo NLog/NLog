@@ -75,6 +75,19 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutFixedNullEventTest()
+        {
+            // Arrange
+            Layout<int> layout = 5;
+
+            // Act
+            var result = layout.RenderValue(null);
+
+            // Assert
+            Assert.Equal(5, result);
+        }
+
+        [Fact]
         public void LayoutFixedNullableIntValueTest()
         {
             // Arrange
@@ -242,6 +255,19 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void LayoutDynamicIntNullEventTest()
+        {
+            // Arrange
+            Layout<int> layout = "${event-properties:intvalue}";
+
+            // Act
+            var result = layout.RenderValue(null, 42);
+
+            // Assert
+            Assert.Equal(42, result);
+        }
+
+        [Fact]
         public void LayoutDynamicNullableIntValueTest()
         {
             // Arrange
@@ -313,6 +339,20 @@ namespace NLog.UnitTests.Layouts
             Assert.False(layout.IsFixed);
             Assert.NotEqual(uri, layout);
             Assert.NotEqual(default(Uri), layout);
+        }
+
+        [Fact]
+        public void LayoutDynamicUrlNullEventTest()
+        {
+            // Arrange
+            Layout<Uri> layout = "${event-properties:urlvalue}";
+            var uri = new Uri("http://nlog");
+
+            // Act
+            var result = layout.RenderValue(null, uri);
+
+            // Assert
+            Assert.Equal(uri, result);
         }
 
         [Fact]
