@@ -1,7 +1,7 @@
 <linker>
   <assembly fullname="NLog" preserve="all" />
   <assembly fullname="NLog.Targets.AppCenter" preserve="all" />
-  <assembly fullname="NLog.Targets.Xamarin" preserve="all" />
+  <assembly fullname="NLog.Targets.MauiLog" preserve="all" />
   <assembly fullname="NLog.Database" preserve="all" />
   <assembly fullname="NLog.DiagnosticSource" preserve="all" />
   <assembly fullname="NLog.Extensions.Logging" preserve="all" />
