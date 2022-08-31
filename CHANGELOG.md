@@ -4,6 +4,13 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.0.3 (2022/09/01)
+
+**Improvements**
+- [#5034](https://github.com/NLog/NLog/pull/5034) Added embedded resource with ILLink.Descriptors.xml to skip AOT (#5034) (@snakefoot)
+- [#5035](https://github.com/NLog/NLog/pull/5035) Layout Typed that can handle LogEventInfo is null (#5035) (@snakefoot)
+- [#5036](https://github.com/NLog/NLog/pull/5036) JsonLayout - Fix output for Attributes with IncludeEmptyValue=false and Encode=false (#5036) (@snakefoot)
+
 ### Version 5.0.2 (2022/08/12)
 
 **Improvements**
