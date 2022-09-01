@@ -7,7 +7,7 @@ Date format: (year/month/day)
 ### Version 5.0.3 (2022/09/01)
 
 **Fixes**
-- [#5051](https://github.com/NLog/NLog/pull/5051) Added embedded resource with ILLink.Descriptors.xml to skip AOT (#5051) (@snakefoot)
+- [#5051](https://github.com/NLog/NLog/pull/5051) Fixed embedded resource with ILLink.Descriptors.xml to avoid IL2007 (#5051) (@snakefoot)
 
 ### Version 5.0.3 (2022/09/01)
 
