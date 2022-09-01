@@ -1,18 +1,3 @@
 <linker>
   <assembly fullname="NLog" preserve="all" />
-  <assembly fullname="NLog.Targets.AppCenter" preserve="all" />
-  <assembly fullname="NLog.Targets.MauiLog" preserve="all" />
-  <assembly fullname="NLog.Database" preserve="all" />
-  <assembly fullname="NLog.DiagnosticSource" preserve="all" />
-  <assembly fullname="NLog.Extensions.Logging" preserve="all" />
-  <assembly fullname="NLog.Etw" preserve="all" />
-  <assembly fullname="NLog.MailKit" preserve="all" />
-  <assembly fullname="NLog.MSMQ" preserve="all" />
-  <assembly fullname="NLog.OutputDebugString" preserve="all" />
-  <assembly fullname="NLog.PerformanceCounter" preserve="all" />
-  <assembly fullname="NLog.WindowsEventLog" preserve="all" />
-  <assembly fullname="NLog.WindowsIdentity" preserve="all" />
-  <assembly fullname="NLog.Windows.Forms" preserve="all" />
-  <assembly fullname="NLog.Wcf" preserve="all" />
-  <assembly fullname="NLog.Web.AspNetCore" preserve="all" />
 </linker>

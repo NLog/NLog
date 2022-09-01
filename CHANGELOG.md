@@ -6,6 +6,11 @@ Date format: (year/month/day)
 
 ### Version 5.0.3 (2022/09/01)
 
+**Fixes**
+- [#5051](https://github.com/NLog/NLog/pull/5051) Added embedded resource with ILLink.Descriptors.xml to skip AOT (#5051) (@snakefoot)
+
+### Version 5.0.3 (2022/09/01)
+
 **Improvements**
 - [#5034](https://github.com/NLog/NLog/pull/5034) Added embedded resource with ILLink.Descriptors.xml to skip AOT (#5034) (@snakefoot)
 - [#5035](https://github.com/NLog/NLog/pull/5035) Layout Typed that can handle LogEventInfo is null (#5035) (@snakefoot)
