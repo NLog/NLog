@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### Version 5.0.3 (2022/09/01)
+### Version 5.0.4 (2022/09/01)
 
 **Fixes**
 - [#5051](https://github.com/NLog/NLog/pull/5051) Fixed embedded resource with ILLink.Descriptors.xml to avoid IL2007 (#5051) (@snakefoot)
