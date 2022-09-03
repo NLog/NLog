@@ -633,6 +633,10 @@ namespace NLog.UnitTests.LayoutRenderers
             var wrappedLogger = new MyWrapper(logFactory);
             wrappedLogger.Log("wrapped");
             logFactory.AssertDebugLastMessage($"{currentMethodFullName}|wrapped");
+
+            var fluentLogger = new MyFluentWrapper(logFactory);
+            fluentLogger.Log("wrapped");
+            logFactory.AssertDebugLastMessage($"{currentMethodFullName}|wrapped");
         }
 
         [Fact]
@@ -1022,12 +1026,12 @@ namespace NLog.UnitTests.LayoutRenderers
                 InternalLog(typeof(BaseWrapper), what);
             }
 
-            public void Log(Type type, string what) //overloaded with type for composition
+            public void Log(Type wrapperType, string what) //overloaded with type for composition
             {
-                InternalLog(type, what);
+                InternalLog(wrapperType, what);
             }
 
-            protected abstract void InternalLog(Type type, string what);
+            protected abstract void InternalLog(Type wrapperType, string what);
         }
 
         public class MyWrapper : BaseWrapper
@@ -1039,14 +1043,32 @@ namespace NLog.UnitTests.LayoutRenderers
                 _wrapperLogger = logFactory.GetLogger("WrappedLogger");
             }
 
-            protected override void InternalLog(Type type, string what) //added type for composition
+            protected override void InternalLog(Type wrapperType, string what) //added type for composition
             {
                 LogEventInfo info = new LogEventInfo(LogLevel.Warn, _wrapperLogger.Name, what);
 
                 // Provide BaseWrapper as wrapper type.
                 // Expected: UserStackFrame should point to the method that calls a 
                 // method of BaseWrapper.
-                _wrapperLogger.Log(type, info);
+                _wrapperLogger.Log(wrapperType, info);
+            }
+        }
+
+        public class MyFluentWrapper : BaseWrapper
+        {
+            private readonly Logger _wrapperLogger;
+
+            public MyFluentWrapper(LogFactory logFactory)
+            {
+                _wrapperLogger = logFactory.GetLogger("WrappedLogger");
+            }
+
+            protected override void InternalLog(Type wrapperType, string what) //added type for composition
+            {
+                // Provide BaseWrapper as wrapper type.
+                // Expected: UserStackFrame should point to the method that calls a 
+                // method of BaseWrapper.
+                _wrapperLogger.ForWarnEvent().Message(what).Log(wrapperType);
             }
         }
 

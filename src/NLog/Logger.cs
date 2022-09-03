@@ -257,7 +257,7 @@ namespace NLog
         /// <summary>
         /// Writes the specified diagnostic message.
         /// </summary>
-        /// <param name="wrapperType">The name of the type that wraps Logger.</param>
+        /// <param name="wrapperType">Type of custom Logger wrapper.</param>
         /// <param name="logEvent">Log event.</param>
         public void Log(Type wrapperType, LogEventInfo logEvent)
         {

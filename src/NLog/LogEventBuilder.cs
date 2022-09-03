@@ -58,7 +58,6 @@ namespace NLog
             _logEvent = new LogEventInfo() { LoggerName = _logger.Name };
         }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventBuilder"/> class.
         /// </summary>
@@ -91,7 +90,7 @@ namespace NLog
         /// Logging event that will be written
         /// </summary>
         [CanBeNull]
-        public LogEventInfo LogEvent => _logEvent;
+        public LogEventInfo LogEvent => _logEvent is null ? null : ResolveLogEvent(_logEvent);
 
         /// <summary>
         /// Sets a per-event context property on the logging event.
@@ -121,7 +120,7 @@ namespace NLog
 
             if (_logEvent is null)
                 return this;
-            
+
             foreach (var property in properties)
                 _logEvent.Properties[property.Key] = property.Value;
             return this;
@@ -305,16 +304,52 @@ namespace NLog
         {
             if (_logEvent != null)
             {
-                if (logLevel != null)
-                    _logEvent.Level = logLevel;
-                else if (_logEvent.Level == null)
-                    _logEvent.Level = _logEvent.Exception != null ? LogLevel.Error : LogLevel.Info;
-                if (_logEvent.Message == null)
-                    _logEvent.Message = _logEvent.Exception != null ? _logEvent.Exception.Message : string.Empty;
-                if (_logEvent.CallSiteInformation == null && _logEvent.Level != LogLevel.Off)
+                var logEvent = ResolveLogEvent(_logEvent, logLevel);
+                if (logEvent.CallSiteInformation is null && _logger.IsEnabled(logEvent.Level))
+                {
                     _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
-                _logger.Log(_logEvent);
+                }
+                _logger.Log(logEvent);
             }
+        }
+
+        /// <summary>
+        /// Writes the log event to the underlying logger.
+        /// </summary>
+        /// <param name="wrapperType">Type of custom Logger wrapper.</param>
+#if !NET35
+        public void Log(Type wrapperType)
+#else
+        public void Log(Type wrapperType)
+#endif
+        {
+            if (_logEvent != null)
+            {
+                var logEvent = ResolveLogEvent(_logEvent);
+                _logger.Log(wrapperType, logEvent);
+            }
+        }
+
+        private LogEventInfo ResolveLogEvent(LogEventInfo logEvent, LogLevel logLevel = null)
+        {
+            if (logLevel is null)
+            {
+                if (logEvent.Level is null)
+                    logEvent.Level = logEvent.Exception != null ? LogLevel.Error : LogLevel.Info;
+            }
+            else
+            {
+                logEvent.Level = logLevel;
+            }
+            
+            if (logEvent.Message is null && logEvent.Exception != null && _logger.IsEnabled(logEvent.Level))
+            {
+                logEvent.FormatProvider = NLog.Internal.ExceptionMessageFormatProvider.Instance;
+                logEvent.Message = "{0}";
+                logEvent.Parameters = new object[] { logEvent.Exception };
+            }
+
+            return logEvent;
         }
     }
 }
