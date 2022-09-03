@@ -335,7 +335,7 @@ namespace NLog.UnitTests.Fluent
                 .Exception(ex)
                 .Log();
 
-            var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", ex.Message) { Exception = ex };
+            var expectedEvent = LogEventInfo.Create(LogLevel.Error, "logger1", null, ex);
             AssertLastLogEventTarget(expectedEvent);
         }
 

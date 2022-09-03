@@ -500,7 +500,7 @@ namespace NLog
 #else
             var className = StackTraceUsageUtils.GetClassFullName();            
 #endif
-            return GetLoggerThreadSafe(className, loggerType);
+            return GetLoggerThreadSafe(className, loggerType ?? typeof(Logger));
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace NLog
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
-            return GetLoggerThreadSafe(name, loggerType);
+            return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger));
         }
 
         private bool RefreshExistingLoggers()
@@ -1068,12 +1068,12 @@ namespace NLog
             _candidateConfigFilePaths = null;
         }
 
-        private Logger GetLoggerThreadSafe(string name, Type loggerType)
+        private Logger GetLoggerThreadSafe(string name, [NotNull] Type loggerType)
         {
             if (name is null)
                 throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
 
-            LoggerCacheKey cacheKey = new LoggerCacheKey(name, loggerType ?? typeof(Logger));
+            LoggerCacheKey cacheKey = new LoggerCacheKey(name, loggerType);
 
             lock (_syncRoot)
             {
