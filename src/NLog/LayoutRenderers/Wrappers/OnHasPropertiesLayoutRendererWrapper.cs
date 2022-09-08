@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
     using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Outputs alternative layout when the inner layout produces empty result.
@@ -46,12 +47,22 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class OnHasPropertiesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
+        /// <summary>
+        /// If <see cref="LogEventInfo.HasProperties"/> is not found, print this layout.
+        /// </summary>
+        /// <docgen category="Condition Options" order="10"/>
+        public Layout Else { get; set; }
+
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             if (logEvent.HasProperties)
             {
-                Inner.Render(logEvent, builder);
+                Inner?.Render(logEvent, builder);
+            }
+            else
+            {
+                Else?.Render(logEvent, builder);
             }
         }
 
