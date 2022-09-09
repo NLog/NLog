@@ -43,16 +43,16 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void OnExceptionTest1()
         {
-            SimpleLayout l = @"${message}${onexception:EXCEPTION\:${exception:format=message}}${logger}";
+            SimpleLayout l = @"${message}|${onexception:EXCEPTION\:${exception:format=message}:else=Success}|${logger}";
 
             // no exception - ${onexception} is ignored completely
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.Equal("messagelogger", l.Render(le));
+            Assert.Equal("message|Success|logger", l.Render(le));
 
             // have exception
             var le2 = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             le2.Exception = new InvalidOperationException("ExceptionMessage");
-            Assert.Equal("messageEXCEPTION:ExceptionMessagelogger", l.Render(le2));
+            Assert.Equal("message|EXCEPTION:ExceptionMessage|logger", l.Render(le2));
         }
     }
 }

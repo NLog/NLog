@@ -42,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         public void OnHasPropertiesValid()
         {
             // Arrange
-            SimpleLayout l = @"${message:raw=true}${onhasproperties:, Properties\: ${all-event-properties}}";
+            SimpleLayout l = @"${message:raw=true}${onhasproperties:, Properties\: ${all-event-properties}:Else=, No Properties}";
             var logevent = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             logevent.Properties["Foo"] = "Bar";
 
@@ -65,6 +65,20 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             // Assert
             Assert.Equal("message", result);
+        }
+
+        [Fact]
+        public void OnHasPropertiesElse()
+        {
+            // Arrange
+            SimpleLayout l = @"${message:raw=true}${onhasproperties: Properties\:${all-event-properties}:else=, No Properties}";
+            var logevent = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+
+            // Act
+            var result = l.Render(logevent);
+
+            // Assert
+            Assert.Equal("message, No Properties", result);
         }
     }
 }
