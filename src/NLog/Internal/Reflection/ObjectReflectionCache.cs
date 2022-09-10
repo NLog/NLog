@@ -228,6 +228,9 @@ namespace NLog.Internal
             if (typeof(Uri).IsAssignableFrom(objectType))
                 return true;
 
+            if (typeof(Delegate).IsAssignableFrom(objectType))
+                return true;    // Skip serializing all types in the application
+
             if (typeof(MemberInfo).IsAssignableFrom(objectType))
                 return true;    // Skip serializing all types in the application
 

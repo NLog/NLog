@@ -1074,7 +1074,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void SkipInvalidJsonPropertyValues()
         {
-            var jsonLayout = new JsonLayout() { IncludeEventProperties = true };
+            var jsonLayout = new JsonLayout() { IncludeEventProperties = true, MaxRecursionLimit = 10 };
 
             var logEventInfo = new LogEventInfo
             {
@@ -1085,12 +1085,23 @@ namespace NLog.UnitTests.Layouts
 
             var expectedValue = Guid.NewGuid();
             logEventInfo.Properties["BadObject"] = new BadObject();
+            logEventInfo.Properties["EvilObject"] = new EvilObject();
             logEventInfo.Properties["RequestId"] = expectedValue;
 
-            Assert.Equal($"{{ \"RequestId\": \"{expectedValue}\" }}", jsonLayout.Render(logEventInfo));
+            var actualValue = jsonLayout.Render(logEventInfo);           
+            Assert.Equal($"{{ \"BadObject\": {{\"Recursive\":[\"Hello\"], \"WeirdProperty\":\"System.Action\"}}, \"RequestId\": \"{expectedValue}\" }}", actualValue);
         }
 
-        class BadObject : IFormattable
+        class BadObject
+        {
+            public IEnumerable<object> Recursive => new List<object>(new [] { "Hello", (object)this });
+
+            public IEnumerable<string> EvilProperty => throw new NotSupportedException();
+
+            public System.Action WeirdProperty { get; } = new System.Action(() => throw new NotSupportedException());
+        }
+
+        class EvilObject : IFormattable
         {
             public string ToString(string format, IFormatProvider formatProvider)
             {
@@ -1102,6 +1113,7 @@ namespace NLog.UnitTests.Layouts
                 return ToString(null, null);
             }
         }
+
 
         private static LogEventInfo CreateLogEventWithExcluded()
         {
