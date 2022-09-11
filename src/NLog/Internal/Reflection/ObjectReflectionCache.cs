@@ -243,11 +243,8 @@ namespace NLog.Internal
             if (typeof(System.IO.Stream).IsAssignableFrom(objectType))
                 return true;    // Skip serializing properties that often throws exceptions
 
-            if (typeof(System.Collections.IEqualityComparer).IsAssignableFrom(objectType))
-                return true;    // Skip serializing custom object comparer helper
-            
-            if (typeof(System.IFormatProvider).IsAssignableFrom(objectType))
-                return true;    // Skip serializing custom object formatter helper
+            if (typeof(System.Globalization.CultureInfo).IsAssignableFrom(objectType))
+                return true;    // Skip serializing CultureInfo details
 
             return false;
         }
