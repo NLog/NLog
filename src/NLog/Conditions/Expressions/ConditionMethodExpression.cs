@@ -149,9 +149,7 @@ namespace NLog.Conditions
             }
         }
 
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
+        /// <inheritdoc/>
         public override string ToString()
         {
             var sb = new StringBuilder();

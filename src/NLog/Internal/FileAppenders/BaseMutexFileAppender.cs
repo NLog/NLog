@@ -114,10 +114,7 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

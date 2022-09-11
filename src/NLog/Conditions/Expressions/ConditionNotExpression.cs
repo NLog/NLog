@@ -53,9 +53,7 @@ namespace NLog.Conditions
         /// <value>The expression.</value>
         public ConditionExpression Expression { get; }
 
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"(not {Expression})";

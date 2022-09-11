@@ -75,9 +75,7 @@ namespace NLog.Conditions
         /// <value>The operator.</value>
         public ConditionRelationalOperator RelationalOperator { get; }
 
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"({LeftExpression} {GetOperatorString()} {RightExpression})";

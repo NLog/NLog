@@ -56,10 +56,7 @@ namespace NLog.Conditions
         /// <value>The literal value.</value>
         public object LiteralValue { get; }
 
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
-        /// <returns>The literal value.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (LiteralValue is null)
