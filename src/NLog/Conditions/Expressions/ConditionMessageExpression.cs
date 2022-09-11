@@ -38,10 +38,7 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionMessageExpression : ConditionExpression
     {
-        /// <summary>
-        /// Returns a string representation of this expression.
-        /// </summary>
-        /// <returns>The '<b>message</b>' string.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return "message";

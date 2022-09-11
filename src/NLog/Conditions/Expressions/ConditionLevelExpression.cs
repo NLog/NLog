@@ -38,10 +38,7 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLevelExpression : ConditionExpression
     {
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
-        /// <returns>The '<b>level</b>' string.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return "level";

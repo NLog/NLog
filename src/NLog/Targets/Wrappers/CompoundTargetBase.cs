@@ -87,10 +87,7 @@ namespace NLog.Targets.Wrappers
             return GenerateTargetToString(true);
         }
 
-        /// <summary>
-        /// Writes logging event to the log target.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             throw new NotSupportedException("This target must not be invoked in a synchronous way.");

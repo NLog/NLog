@@ -61,9 +61,7 @@ namespace NLog.Conditions
         /// <value>The right expression.</value>
         public ConditionExpression RightExpression { get; }
 
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"({LeftExpression} or {RightExpression})";

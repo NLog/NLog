@@ -61,10 +61,7 @@ namespace NLog.Conditions
         /// <value>The layout.</value>
         public Layout Layout => _simpleLayout;
 
-        /// <summary>
-        /// Returns a string representation of this expression.
-        /// </summary>
-        /// <returns>String literal in single quotes.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"'{_simpleLayout.ToString()}'";

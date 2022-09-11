@@ -113,15 +113,21 @@ namespace NLog.Internal.FileAppenders
             Write(bytes, 0, bytes.Length);
         }
 
+        /// <summary>
+        /// Writes the specified bytes to a file.
+        /// </summary>
+        /// <param name="bytes">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
         public abstract void Write(byte[] bytes, int offset, int count);
 
         /// <summary>
-        /// Flushes this instance.
+        /// Flushes this file-appender instance.
         /// </summary>
         public abstract void Flush();
 
         /// <summary>
-        /// Closes this instance.
+        /// Closes this file-appender instance.
         /// </summary>
         public abstract void Close();
 

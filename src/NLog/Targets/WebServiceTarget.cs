@@ -466,10 +466,7 @@ namespace NLog.Targets
             continuation(ex);
         }
 
-        /// <summary>
-        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <inheritdoc/>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
