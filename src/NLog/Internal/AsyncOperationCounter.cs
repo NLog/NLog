@@ -58,12 +58,13 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="exception">Exception coming from the completed operation [optional]</param>
         public void CompleteOperation(Exception exception)
-        { 
+        {
+            System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
+
             if (_pendingCompletionList.Count > 0)
             {
                 lock (_pendingCompletionList)
                 {
-                    System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
                     var nodeNext = _pendingCompletionList.First;
                     while (nodeNext != null)
                     {
@@ -72,10 +73,6 @@ namespace NLog.Internal
                         nodeValue(exception);  // Will modify _pendingCompletionList
                     }
                 }
-            }
-            else
-            {
-                System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
             }
         }
 
