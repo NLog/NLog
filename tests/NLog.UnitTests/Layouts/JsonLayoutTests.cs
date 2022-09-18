@@ -1089,7 +1089,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties["RequestId"] = expectedValue;
 
             var actualValue = jsonLayout.Render(logEventInfo);           
-            Assert.Equal($"{{ \"BadObject\": {{\"Recursive\":[\"Hello\"], \"WeirdProperty\":\"System.Action\", \"CultureProperty\":\"\"}}, \"RequestId\": \"{expectedValue}\" }}", actualValue);
+            Assert.Equal($"{{ \"BadObject\": {{\"Recursive\":[\"Hello\"], \"WeirdProperty\":\"System.Action\"}}, \"RequestId\": \"{expectedValue}\" }}", actualValue);
         }
 
         class BadObject
@@ -1099,8 +1099,6 @@ namespace NLog.UnitTests.Layouts
             public IEnumerable<string> EvilProperty => throw new NotSupportedException();
 
             public System.Action WeirdProperty { get; } = new System.Action(() => throw new NotSupportedException());
-
-            public System.IFormatProvider CultureProperty { get; } = System.Globalization.CultureInfo.InvariantCulture;
         }
 
         class EvilObject : IFormattable
