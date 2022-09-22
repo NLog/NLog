@@ -41,6 +41,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Internal;
     using Xunit;
     using NLog.Config;
+    using Xunit.Sdk;
 
     public class ExceptionTests : NLogTestBase
     {
@@ -461,8 +462,8 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             var lastMessage1 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage1);
-            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage1);
+            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", ", lastMessage1);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", ", lastMessage1);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage1);
             Assert.Contains("1Really_Bad_Boy_", lastMessage1);
 
@@ -470,10 +471,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex, "msg");
             var lastMessage2 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage2);
-            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage2);
+            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", ", lastMessage2);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", ", lastMessage2);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage2);
-            Assert.Contains("1Really_Bad_Boy_", lastMessage1);
+            Assert.Contains("1Really_Bad_Boy_", lastMessage2);
         }
 
         [Fact]
