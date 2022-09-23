@@ -99,14 +99,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-            continuationHit.WaitOne();
+            Assert.True(continuationHit.WaitOne(5000));
             Assert.Null(lastException);
             Assert.Equal(1, myTarget.FlushCount);
             Assert.Equal(1, myTarget.WriteCount);
 
             continuationHit.Reset();
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
-            continuationHit.WaitOne();
+            Assert.True(continuationHit.WaitOne(5000));
             Assert.Null(lastException);
             Assert.Equal(2, myTarget.WriteCount);
             Assert.Equal(2, myTarget.FlushCount);
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Null(lastException);
             wrapper.Flush(continuation);
             Assert.Null(lastException);
-            continuationHit.WaitOne();
+            Assert.True(continuationHit.WaitOne(5000));
             Assert.Null(lastException);
             wrapper.Flush(ex => { });   // Executed right away
             Assert.Null(lastException);
@@ -169,7 +169,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-            continuationHit.WaitOne();
+            Assert.True(continuationHit.WaitOne(5000));
             Assert.NotNull(lastException);
             Assert.IsType<InvalidOperationException>(lastException);
 
@@ -180,7 +180,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             continuationHit.Reset();
             lastException = null;
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
-            continuationHit.WaitOne();
+            Assert.True(continuationHit.WaitOne(5000));
             Assert.NotNull(lastException);
             Assert.IsType<InvalidOperationException>(lastException);
             Assert.Equal(0, myTarget.FlushCount);

@@ -30,7 +30,7 @@ install:
 
 script:
   # Run tests
-  - dotnet test tests/NLog.UnitTests --configuration Release --framework netcoreapp2.0
+  - dotnet test tests/NLog.UnitTests --configuration Release --framework netcoreapp2.1
 
   - dotnet msbuild /t:Restore /p:targetframework=net452 /p:monobuild=1 src/NLog
   - dotnet msbuild /t:Restore /p:targetframework=net452 /p:monobuild=1 tests/NLog.UnitTests

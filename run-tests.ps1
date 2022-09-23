@@ -29,7 +29,7 @@ msbuild /t:Restore,Build /p:Configuration=Release /p:DebugType=Full .\tests\NLog
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-dotnet test .\tests\NLog.UnitTests\  --configuration release --framework netcoreapp2.0 --no-build
+dotnet test .\tests\NLog.UnitTests\  --configuration release --framework netcoreapp2.1 --no-build
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
