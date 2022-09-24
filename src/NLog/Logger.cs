@@ -128,9 +128,7 @@ namespace NLog
         /// <returns>New Logger object that automatically appends specified properties</returns>
         public Logger WithProperties(IEnumerable<KeyValuePair<string, object>> properties)
         {
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
-
+            Guard.ThrowIfNull(properties);
             Logger newLogger = CreateChildLogger();
             foreach (KeyValuePair<string, object> property in properties)
             {
@@ -315,11 +313,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
-
+                Guard.ThrowIfNull(messageFunc);
                 WriteToTargets(level, messageFunc());
             }
         }
