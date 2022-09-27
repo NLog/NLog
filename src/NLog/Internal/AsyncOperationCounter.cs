@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Keeps track of pending operation count, and can notify when pending operation count reaches zero
@@ -59,7 +59,12 @@ namespace NLog.Internal
         /// <param name="exception">Exception coming from the completed operation [optional]</param>
         public void CompleteOperation(Exception exception)
         {
-            System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
+            NotifyCompletion(exception);
+        }
+
+        private int NotifyCompletion(Exception exception)
+        {
+            int pendingOperations = System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
 
             if (_pendingCompletionList.Count > 0)
             {
@@ -74,6 +79,8 @@ namespace NLog.Internal
                     }
                 }
             }
+
+            return pendingOperations;
         }
 
         /// <summary>
@@ -83,24 +90,32 @@ namespace NLog.Internal
         /// <returns>AsyncContinuation operation</returns>
         public AsyncContinuation RegisterCompletionNotification(AsyncContinuation asyncContinuation)
         {
-            if (_pendingOperationCounter == 0)
+            // We only want to wait for the operations currently in progress (not the future operations)
+            int remainingCompletionCounter = System.Threading.Interlocked.Increment(ref _pendingOperationCounter);
+            if (remainingCompletionCounter <= 1)
             {
+                // No active operations
+                if (NotifyCompletion(null) < 0)
+                {
+                    System.Threading.Interlocked.Exchange(ref _pendingOperationCounter, 0);
+                }
                 return asyncContinuation;
             }
             else
             {
                 lock (_pendingCompletionList)
                 {
+                    if (NotifyCompletion(null) <= 0)
+                    {
+                        return asyncContinuation;   // No active operations
+                    }
+
                     var pendingCompletion = new LinkedListNode<AsyncContinuation>(null);
                     _pendingCompletionList.AddLast(pendingCompletion);
-
-                    // We only want to wait for the operations currently in progress (not the future operations)
-                    int remainingCompletionCounter = System.Threading.Interlocked.Increment(ref _pendingOperationCounter);
+                    remainingCompletionCounter = System.Threading.Interlocked.Increment(ref _pendingOperationCounter);
                     if (remainingCompletionCounter <= 0)
                     {
-                        System.Threading.Interlocked.Exchange(ref _pendingOperationCounter, 0);
-                        _pendingCompletionList.Remove(pendingCompletion);
-                        return asyncContinuation;
+                        remainingCompletionCounter = 1;
                     }
 
                     pendingCompletion.Value = (ex) =>
@@ -109,16 +124,10 @@ namespace NLog.Internal
                         {
                             lock (_pendingCompletionList)
                             {
-                                System.Threading.Interlocked.Decrement(ref _pendingOperationCounter);
                                 _pendingCompletionList.Remove(pendingCompletion);
-                                var nodeNext = _pendingCompletionList.First;
-                                while (nodeNext != null)
-                                {
-                                    var nodeValue = nodeNext.Value;
-                                    nodeNext = nodeNext.Next;
-                                    nodeValue(ex);  // Will modify _pendingCompletionList
-                                }
+                                NotifyCompletion(ex);
                             }
+
                             asyncContinuation(ex);
                         }
                     };
@@ -134,6 +143,7 @@ namespace NLog.Internal
         public void Clear()
         {
             _pendingCompletionList.Clear();
+            System.Threading.Interlocked.Exchange(ref _pendingOperationCounter, 0);
         }
     }
 }
