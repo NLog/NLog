@@ -586,7 +586,7 @@ namespace NLog.Layouts
             }
             catch (Exception ex)
             {
-                var configException = new NLogConfigurationException($"Failed to parse layout containing type: {typeName}", ex);
+                var configException = new NLogConfigurationException($"Failed to parse layout containing type: {typeName} - {ex.Message}", ex);
                 if (throwConfigExceptions ?? configException.MustBeRethrown())
                 {
                     throw configException;
