@@ -253,6 +253,10 @@ namespace NLog.Config
             {
                 message += ". Extension NLog.Database not included?";
             }
+            else if (normalName?.StartsWith("eventlog", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                message += ". Extension NLog.WindowsEventLog not included?";
+            }
             else if (normalName?.StartsWith("windowsidentity", StringComparison.OrdinalIgnoreCase) == true)
             {
                 message += ". Extension NLog.WindowsIdentity not included?";
