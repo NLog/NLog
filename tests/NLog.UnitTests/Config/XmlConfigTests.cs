@@ -65,7 +65,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ParseNLogOptionsTest()
         {
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 using (new NoThrowNLogExceptions())
                 {
@@ -87,21 +87,21 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ParseNLogInternalLoggerPathTest()
         {
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${CurrentDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(System.IO.Directory.GetCurrentDirectory(), InternalLogger.LogFile);
             }
 
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${BaseDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(AppDomain.CurrentDomain.BaseDirectory, InternalLogger.LogFile);
             }
 
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${TempDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
@@ -109,7 +109,7 @@ namespace NLog.UnitTests.Config
             }
 
 #if !NETSTANDARD1_3
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${ProcessDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
@@ -118,21 +118,21 @@ namespace NLog.UnitTests.Config
 #endif
 
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${CommonApplicationDataDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), InternalLogger.LogFile);
             }
 
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${UserApplicationDataDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), InternalLogger.LogFile);
             }
 
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${UserLocalApplicationDataDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
@@ -140,7 +140,7 @@ namespace NLog.UnitTests.Config
             }
 #endif
 
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             {
                 var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
                 var xml = "<nlog internalLogFile='%USERNAME%_test.txt'></nlog>";
@@ -183,7 +183,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InvalidInternalLogLevel_shouldNotSetLevel()
         {
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             using (new NoThrowNLogExceptions())
             {
                 // Arrange
@@ -202,7 +202,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InvalidNLogAttributeValues_shouldNotBreakLogging()
         {
-            using (new InternalLoggerScope(true))
+            using (new InternalLoggerScope())
             using (new NoThrowNLogExceptions())
             {
                 // Arrange

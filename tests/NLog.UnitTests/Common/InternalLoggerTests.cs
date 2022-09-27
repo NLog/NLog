@@ -236,15 +236,10 @@ namespace NLog.UnitTests.Common
                 InternalLogger.LogToConsole = true;
 
                 {
-                    StringWriter consoleOutWriter1 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-
-                    // Redirect the console output to a StringWriter.
-                    loggerScope.SetConsoleOutput(consoleOutWriter1);
-
                     // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleOutputWriter.Flush();
+                    loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Warn("WWW");
                     InternalLogger.Error("EEE");
                     InternalLogger.Fatal("FFF");
@@ -252,19 +247,14 @@ namespace NLog.UnitTests.Common
                     InternalLogger.Debug("DDD");
                     InternalLogger.Info("III");
 
-                    TestWriter(expected, consoleOutWriter1);
+                    TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
 
-                //
-                // Redirect the console output to another StringWriter.
                 {
-                    StringWriter consoleOutWriter2 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-                    loggerScope.SetConsoleOutput(consoleOutWriter2);
-
                     // Invoke Log(LogLevel, string) for every log level.
+                    loggerScope.ConsoleOutputWriter.Flush();
+                    loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Log(LogLevel.Warn, "WWW");
                     InternalLogger.Log(LogLevel.Error, "EEE");
                     InternalLogger.Log(LogLevel.Fatal, "FFF");
@@ -272,20 +262,15 @@ namespace NLog.UnitTests.Common
                     InternalLogger.Log(LogLevel.Debug, "DDD");
                     InternalLogger.Log(LogLevel.Info, "III");
 
-                    TestWriter(expected, consoleOutWriter2);
+                    TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
 
                 //lambdas
                 {
-                    StringWriter consoleOutWriter1 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-
-                    // Redirect the console output to a StringWriter.
-                    loggerScope.SetConsoleOutput(consoleOutWriter1);
-
                     // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleOutputWriter.Flush();
+                    loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Warn(() => "WWW");
                     InternalLogger.Error(() => "EEE");
                     InternalLogger.Fatal(() => "FFF");
@@ -293,7 +278,7 @@ namespace NLog.UnitTests.Common
                     InternalLogger.Debug(() => "DDD");
                     InternalLogger.Info(() => "III");
 
-                    TestWriter(expected, consoleOutWriter1);
+                    TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
             }
         }
@@ -311,15 +296,10 @@ namespace NLog.UnitTests.Common
                 InternalLogger.LogToConsoleError = true;
 
                 {
-                    StringWriter consoleWriter1 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-
-                    // Redirect the console output to a StringWriter.
-                    loggerScope.SetConsoleError(consoleWriter1);
-
                     // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleErrorWriter.Flush();
+                    loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Warn("WWW");
                     InternalLogger.Error("EEE");
                     InternalLogger.Fatal("FFF");
@@ -331,22 +311,32 @@ namespace NLog.UnitTests.Common
                 }
 
                 {
-                    //
-                    // Redirect the console output to another StringWriter.
-
-                    StringWriter consoleWriter2 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-                    loggerScope.SetConsoleError(consoleWriter2);
-
                     // Invoke Log(LogLevel, string) for every log level.
+                    loggerScope.ConsoleErrorWriter.Flush();
+                    loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Log(LogLevel.Warn, "WWW");
                     InternalLogger.Log(LogLevel.Error, "EEE");
                     InternalLogger.Log(LogLevel.Fatal, "FFF");
                     InternalLogger.Log(LogLevel.Trace, "TTT");
                     InternalLogger.Log(LogLevel.Debug, "DDD");
                     InternalLogger.Log(LogLevel.Info, "III");
+                    TestWriter(expected, loggerScope.ConsoleErrorWriter);
+                }
+
+                //lambdas
+                {
+                    // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleErrorWriter.Flush();
+                    loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
+
+                    InternalLogger.Warn(() => "WWW");
+                    InternalLogger.Error(() => "EEE");
+                    InternalLogger.Fatal(() => "FFF");
+                    InternalLogger.Trace(() => "TTT");
+                    InternalLogger.Debug(() => "DDD");
+                    InternalLogger.Info(() => "III");
+
                     TestWriter(expected, loggerScope.ConsoleErrorWriter);
                 }
             }
