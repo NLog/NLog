@@ -511,7 +511,7 @@ namespace NLog.UnitTests
             }
         }
 
-        public class InternalLoggerScope : IDisposable
+        public sealed class InternalLoggerScope : IDisposable
         {
             private readonly TextWriter oldConsoleOutputWriter;
             public StringWriter ConsoleOutputWriter { get; private set; }
@@ -540,24 +540,6 @@ namespace NLog.UnitTests
                 globalThreshold = LogManager.GlobalThreshold;
                 throwExceptions = LogManager.ThrowExceptions;
                 throwConfigExceptions = LogManager.ThrowConfigExceptions;
-            }
-
-            public void SetConsoleError(StringWriter consoleErrorWriter)
-            {
-                if (ConsoleOutputWriter is null || consoleErrorWriter is null)
-                    throw new InvalidOperationException("Initialize with redirectConsole=true");
-
-                ConsoleErrorWriter = consoleErrorWriter;
-                Console.SetError(consoleErrorWriter);
-            }
-
-            public void SetConsoleOutput(StringWriter consoleOutputWriter)
-            {
-                if (ConsoleOutputWriter is null || consoleOutputWriter is null)
-                    throw new InvalidOperationException("Initialize with redirectConsole=true");
-
-                ConsoleOutputWriter = consoleOutputWriter;
-                Console.SetOut(consoleOutputWriter);
             }
 
             public void Dispose()
