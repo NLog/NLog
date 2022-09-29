@@ -94,7 +94,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Register a custom Target.
+        /// Register a custom NLog Target.
         /// </summary>
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
@@ -107,7 +107,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Register a custom Target.
+        /// Register a custom NLog Target.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Type name of the Target</param>
@@ -115,13 +115,45 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, string name, Type targetType)
         {
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentException("Missing target type-alias", nameof(name));
+                throw new ArgumentException("Missing NLog Target type-alias", nameof(name));
+            if (!typeof(Target).IsAssignableFrom(targetType))
+                throw new ArgumentException("Not of type NLog Target", nameof(targetType));
             ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
             return setupBuilder;
         }
 
         /// <summary>
-        /// Register a custom layout renderer.
+        /// Register a custom NLog Layout.
+        /// </summary>
+        /// <typeparam name="T">Type of the layout renderer.</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="typeAlias">The layout type-alias for use in NLog configuration. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterLayout<T>(this ISetupExtensionsBuilder setupBuilder, string typeAlias = null)
+            where T : Layout
+        {
+            var layoutRendererType = typeof(T);
+            typeAlias = string.IsNullOrEmpty(typeAlias) ? (layoutRendererType.GetFirstCustomAttribute<LayoutAttribute>()?.Name ?? typeof(T).Name) : typeAlias;
+            return RegisterLayout(setupBuilder, typeAlias, layoutRendererType);
+        }
+
+        /// <summary>
+        /// Register a custom NLog Layout.
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="layoutType">Type of the layout.</param>
+        /// <param name="typeAlias">The layout type-alias for use in NLog configuration</param>
+        public static ISetupExtensionsBuilder RegisterLayout(this ISetupExtensionsBuilder setupBuilder, string typeAlias, Type layoutType)
+        {
+            if (string.IsNullOrEmpty(typeAlias))
+                throw new ArgumentException("Missing NLog Layout type-alias", nameof(typeAlias));
+            if (!typeof(Layout).IsAssignableFrom(layoutType))
+                throw new ArgumentException("Not of type NLog Layout", nameof(layoutType));
+            ConfigurationItemFactory.Default.Layouts.RegisterDefinition(typeAlias, layoutType);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Register a custom NLog LayoutRenderer.
         /// </summary>
         /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
@@ -135,7 +167,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Register a custom layout renderer.
+        /// Register a custom NLog LayoutRenderer.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="layoutRendererType">Type of the layout renderer.</param>
@@ -143,13 +175,15 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Type layoutRendererType)
         {
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentException("Missing layout-renderer type-alias", nameof(name));
+                throw new ArgumentException("Missing NLog LayoutRenderer type-alias", nameof(name));
+            if (!typeof(LayoutRenderer).IsAssignableFrom(layoutRendererType))
+                throw new ArgumentException("Not of type NLog LayoutRenderer", nameof(layoutRendererType));
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
             return setupBuilder;
         }
 
         /// <summary>
-        /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
+        /// Register a custom NLog LayoutRenderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
@@ -160,7 +194,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
+        /// Register a custom NLog LayoutRenderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
@@ -171,7 +205,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
+        /// Register a custom NLog LayoutRenderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
@@ -183,7 +217,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
+        /// Register a custom NLog LayoutRenderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
