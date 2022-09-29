@@ -308,6 +308,31 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void SetupExtensionsRegisterLayoutTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            logFactory.Setup().SetupExtensions(ext => ext.RegisterLayout<MyExtensionNamespace.FooLayout>("FooLayout"));
+            logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug'>
+                        <layout type='foolayout' />
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='debug'>
+                    </logger>
+                </rules>
+            </nlog>", null, logFactory);
+            logFactory.GetLogger("Hello").Info("World");
+
+            // Assert
+            Assert.Equal("FooFoo0", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+        }
+
+        [Fact]
         public void SetupExtensionsRegisterLayoutMethodTest()
         {
             // Arrange

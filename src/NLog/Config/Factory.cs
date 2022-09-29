@@ -137,13 +137,15 @@ namespace NLog.Config
             _items.Clear();
         }
 
-        /// <summary>
-        /// Registers a single type definition.
-        /// </summary>
-        /// <param name="itemName">The item name.</param>
-        /// <param name="itemDefinition">The type of the item.</param>
+        /// <inheritdoc/>
         public void RegisterDefinition(string itemName, Type itemDefinition)
         {
+            if (string.IsNullOrEmpty(itemName))
+                throw new ArgumentException($"Missing NLog {typeof(TBaseType).Name} type-alias", nameof(itemName));
+
+            if (!typeof(TBaseType).IsAssignableFrom(itemDefinition))
+                throw new ArgumentException($"Not of type NLog {typeof(TBaseType).Name}", nameof(itemDefinition));
+
             RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
         }
 
@@ -167,12 +169,7 @@ namespace NLog.Config
             }
         }
 
-        /// <summary>
-        /// Tries to get registered item definition.
-        /// </summary>
-        /// <param name="itemName">Name of the item.</param>
-        /// <param name="result">Reference to a variable which will store the item definition.</param>
-        /// <returns>Item definition.</returns>
+        /// <inheritdoc/>
         public bool TryGetDefinition(string itemName, out Type result)
         {
             GetTypeDelegate getTypeDelegate;
@@ -207,12 +204,7 @@ namespace NLog.Config
             }
         }
 
-        /// <summary>
-        /// Tries to create an item instance.
-        /// </summary>
-        /// <param name="itemName">Name of the item.</param>
-        /// <param name="result">The result.</param>
-        /// <returns>True if instance was created successfully, false otherwise.</returns>
+        /// <inheritdoc/>
         public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
             itemName = NormalizeName(itemName);
@@ -226,11 +218,7 @@ namespace NLog.Config
             return true;
         }
 
-        /// <summary>
-        /// Creates an item instance.
-        /// </summary>
-        /// <param name="itemName">The name of the item.</param>
-        /// <returns>Created item.</returns>
+        /// <inheritdoc/>
         public virtual TBaseType CreateInstance(string itemName)
         {
             var normalName = NormalizeName(itemName);
@@ -302,7 +290,7 @@ namespace NLog.Config
     /// <summary>
     /// Factory specialized for <see cref="LayoutRenderer"/>s. 
     /// </summary>
-    internal class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
+    internal sealed class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
     {
         private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
         private readonly LayoutRendererFactory _globalDefaultFactory;
