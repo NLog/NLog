@@ -153,9 +153,9 @@ namespace NLog.Targets.Wrappers
                     AsyncContinuation currentContinuation = logEvent.Continuation;
                     AsyncContinuation wrappedContinuation = (ex) =>
                     {
+                        _pendingManualFlushList.CompleteOperation(ex);
                         if (ex is null)
                             FlushOnCondition();
-                        _pendingManualFlushList.CompleteOperation(ex);
                         currentContinuation(ex);
                     };
                     _pendingManualFlushList.BeginOperation();
@@ -187,16 +187,20 @@ namespace NLog.Targets.Wrappers
 
         private void FlushOnCondition()
         {
-            if (FlushOnConditionOnly)
-                FlushWrappedTarget((e) => { });
-            else
-                FlushAsync((e) => { });
+            FlushWrappedTarget((e) => { });
         }
 
         private void FlushWrappedTarget(AsyncContinuation asyncContinuation)
         {
-            var wrappedContinuation = _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
-            WrappedTarget.Flush(wrappedContinuation);
+            if (AsyncFlush)
+            {
+                var wrappedContinuation = _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
+                WrappedTarget.Flush(wrappedContinuation);
+            }
+            else
+            {
+                WrappedTarget.Flush(asyncContinuation);
+            }
         }
 
         /// <inheritdoc/>

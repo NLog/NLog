@@ -120,6 +120,54 @@ namespace NLog.UnitTests.Targets.Wrappers
             var logEvent = new LogEventInfo();
             Exception lastException = null;
 
+            // Schedule 100 writes, where each write on completion schedules followup-flush (in random order)
+            const int expectedWriteCount = 100;
+            const int expectedFlushCount = expectedWriteCount + 3;
+            for (int i = 0; i < expectedWriteCount; ++i)
+            {
+                wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(ex => lastException = ex));
+            }
+
+            var continuationHit = new ManualResetEvent(false);
+            AsyncContinuation continuation =
+                ex =>
+                {
+                    continuationHit.Set();
+                };
+
+            // Schedule 1st flush (can complete before follow-flushes)
+            wrapper.Flush(ex => { });
+            Assert.Null(lastException);
+            // Schedule 2nd flush (can complete before follow-flushes)
+            wrapper.Flush(continuation);
+            Assert.Null(lastException);
+            Assert.True(continuationHit.WaitOne(5000));
+            Assert.Null(lastException);
+            // Schedule 3rd flush (can complete before follow-flushes)
+            wrapper.Flush(ex => { });
+            Assert.Null(lastException);
+
+            for (int i = 0; i < 500; ++i)
+            {
+                if (myTarget.WriteCount == expectedWriteCount && myTarget.FlushCount == expectedFlushCount)
+                    break;
+                Thread.Sleep(10);
+            }
+
+            Assert.Equal(expectedWriteCount, myTarget.WriteCount);
+            Assert.Equal(expectedFlushCount, myTarget.FlushCount);
+        }
+
+        [Fact]
+        public void AutoFlushTargetWrapperAsyncTest3()
+        {
+            var myTarget = new MyAsyncTarget();
+            var wrapper = new AutoFlushTargetWrapper(myTarget) { AsyncFlush = false };
+            myTarget.Initialize(null);
+            wrapper.Initialize(null);
+            var logEvent = new LogEventInfo();
+            Exception lastException = null;
+
             for (int i = 0; i < 100; ++i)
             {
                 wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(ex => lastException = ex));
@@ -334,9 +382,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
+                InternalLogger.Trace("Flush Started");
                 FlushCount++;
                 ThreadPool.QueueUserWorkItem(
-                    s => asyncContinuation(null));
+                    s =>
+                    {
+                        asyncContinuation(null);
+                        InternalLogger.Trace("Flush Completed");
+                    });
             }
 
             public bool ThrowExceptions { get; set; }
