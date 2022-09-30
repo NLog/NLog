@@ -65,8 +65,12 @@ namespace NLog.LayoutRenderers.Wrappers
                 var containsNewLines = builder.IndexOf('\n', orgLength) >= 0;
                 if (containsNewLines)
                 {
-                    builder.Replace(WindowsNewLine, UnixNewLine, orgLength, builder.Length - orgLength);
-                    builder.Replace(UnixNewLine, Replacement, orgLength, builder.Length - orgLength);
+                    string str = builder.ToString(orgLength, builder.Length - orgLength)
+                                        .Replace(WindowsNewLine, UnixNewLine)
+                                        .Replace(UnixNewLine, Replacement);
+
+                    builder.Length = orgLength;
+                    builder.Append(str);
                 }
             }
         }
