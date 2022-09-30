@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 if (containsNewLines)
                 {
                     string str = builder.ToString(orgLength, builder.Length - orgLength)
-                                        .Replace(WindowsNewLine, Replacement)
+                                        .Replace(WindowsNewLine, UnixNewLine)
                                         .Replace(UnixNewLine, Replacement);
 
                     builder.Length = orgLength;
