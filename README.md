@@ -117,3 +117,5 @@ For building in the cloud we use:
 
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
+Note: master points to NLog 4.x and dev to NLog 5.x
+
