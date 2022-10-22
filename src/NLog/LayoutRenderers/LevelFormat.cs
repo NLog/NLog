@@ -41,21 +41,31 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the LogLevel standard name.
         /// </summary>
-        Name,
+        Name = 0,
 
         /// <summary>
         /// Render the first character of the level.
         /// </summary>
-        FirstCharacter,
+        FirstCharacter = 1,
+
+        /// <summary>
+        /// Render the first character of the level.
+        /// </summary>
+        OneLetter = 1,
 
         /// <summary>
         /// Render the ordinal (aka number) for the level.
         /// </summary>
-        Ordinal,
+        Ordinal = 2,
 
         /// <summary>
         /// Render the LogLevel full name, expanding Warn / Info abbreviations
         /// </summary>
-        FullName,
+        FullName = 3,
+
+        /// <summary>
+        /// Render the LogLevel as 3 letter abbreviations (Trb, Dbg, Inf, Wrn, Err, Ftl)
+        /// </summary>
+        TriLetter = 4,
     }
 }

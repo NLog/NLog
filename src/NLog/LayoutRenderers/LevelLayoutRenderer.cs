@@ -93,6 +93,20 @@ namespace NLog.LayoutRenderers
                     else
                         builder.Append(Uppercase ? GetUpperCaseString(level) : level.ToString());
                     break;
+                case LevelFormat.TriLetter:
+                    if (level == LogLevel.Debug)
+                        builder.Append(Uppercase ? "DBG" : "Dbg");
+                    else if (level == LogLevel.Info)
+                        builder.Append(Uppercase ? "INF" : "Inf");
+                    else if (level == LogLevel.Warn)
+                        builder.Append(Uppercase ? "WRN" : "Wrn");
+                    else if (level == LogLevel.Error)
+                        builder.Append(Uppercase ? "ERR" : "Err");
+                    else if (level == LogLevel.Fatal)
+                        builder.Append(Uppercase ? "FTL" : "Ftl");
+                    else
+                        builder.Append(Uppercase ? "TRC" : "Trc");
+                    break;
             }
         }
 

@@ -166,6 +166,32 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void LogLevelTriLetterTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level:format=TriLetter} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Trace' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+            logger.Trace("a");
+            logFactory.AssertDebugLastMessage("Trc a");
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("Dbg a");
+            logger.Info("a");
+            logFactory.AssertDebugLastMessage("Inf a");
+            logger.Warn("a");
+            logFactory.AssertDebugLastMessage("Wrn a");
+            logger.Error("a");
+            logFactory.AssertDebugLastMessage("Err a");
+            logger.Fatal("a");
+            logFactory.AssertDebugLastMessage("Ftl a");
+        }
+
+        [Fact]
         public void LogLevelGetTypeCodeTest()
         {
             // Arrange
