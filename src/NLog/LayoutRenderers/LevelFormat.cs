@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers
         FullName = 3,
 
         /// <summary>
-        /// Render the LogLevel as 3 letter abbreviations (Trb, Dbg, Inf, Wrn, Err, Ftl)
+        /// Render the LogLevel as 3 letter abbreviations (Trc, Dbg, Inf, Wrn, Err, Ftl)
         /// </summary>
         TriLetter = 4,
     }
