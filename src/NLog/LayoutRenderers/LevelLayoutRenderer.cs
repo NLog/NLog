@@ -86,26 +86,10 @@ namespace NLog.LayoutRenderers
                     builder.AppendInvariant(level.Ordinal);
                     break;
                 case LevelFormat.FullName:
-                    if (level == LogLevel.Info)
-                        builder.Append(Uppercase ? "INFORMATION" : "Information");
-                    else if (level == LogLevel.Warn)
-                        builder.Append(Uppercase ? "WARNING" : "Warning");
-                    else
-                        builder.Append(Uppercase ? GetUpperCaseString(level) : level.ToString());
+                    builder.Append(GetFullNameString(level));
                     break;
                 case LevelFormat.TriLetter:
-                    if (level == LogLevel.Debug)
-                        builder.Append(Uppercase ? "DBG" : "Dbg");
-                    else if (level == LogLevel.Info)
-                        builder.Append(Uppercase ? "INF" : "Inf");
-                    else if (level == LogLevel.Warn)
-                        builder.Append(Uppercase ? "WRN" : "Wrn");
-                    else if (level == LogLevel.Error)
-                        builder.Append(Uppercase ? "ERR" : "Err");
-                    else if (level == LogLevel.Fatal)
-                        builder.Append(Uppercase ? "FTL" : "Ftl");
-                    else
-                        builder.Append(Uppercase ? "TRC" : "Trc");
+                    builder.Append(GetTriLetterString(level));
                     break;
             }
         }
@@ -120,6 +104,31 @@ namespace NLog.LayoutRenderers
             {
                 return level.ToString().ToUpperInvariant();
             }
+        }
+
+        private string GetFullNameString(LogLevel level)
+        {
+            if (level == LogLevel.Info)
+                return Uppercase ? "INFORMATION" : "Information";
+            if (level == LogLevel.Warn)
+                return Uppercase ? "WARNING" : "Warning";
+            
+            return Uppercase ? GetUpperCaseString(level) : level.ToString();
+        }
+
+        private string GetTriLetterString(LogLevel level)
+        {
+            if (level == LogLevel.Debug)
+                return Uppercase ? "DBG" : "Dbg";
+            if (level == LogLevel.Info)
+                return Uppercase ? "INF" : "Inf";
+            if (level == LogLevel.Warn)
+                return Uppercase ? "WRN" : "Wrn";
+            if (level == LogLevel.Error)
+                return Uppercase ? "ERR" : "Err";
+            if (level == LogLevel.Fatal)
+                return Uppercase ? "FTL" : "Ftl";
+            return Uppercase ? "TRC" : "Trc";
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
