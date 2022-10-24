@@ -300,6 +300,38 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(scopeProperties.ToString(), target.LastMessage);   // Avoid enumerating properties, since available from ScopeContext-Properties
         }
 
+        [Fact]
+        public void ScopeNestedIndentTest()
+        {
+            // Arrange
+            ScopeContext.Clear();
+            var logFactory = new LogFactory();
+            logFactory.Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${scopeindent:_}${scopenested} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            var logger = logFactory.GetCurrentClassLogger();
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+
+            // Act
+            using (logger.PushScopeNested("ala"))
+            {
+                using (logger.PushScopeNested("ma"))
+                {
+                    using (logger.PushScopeNested("kota"))
+                    {
+                        logger.Debug("c");
+                    }
+                }
+            }
+
+            // Assert
+            Assert.Equal("___ala ma kota c", target.LastMessage);
+        }
+
 #if !NET35 && !NET40 && !NET45
         [Fact]
         public void ScopeNestedTimingTest()

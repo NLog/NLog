@@ -272,6 +272,7 @@ namespace NLog.UnitTests
                 "ScopeContextNestedStatesLayoutRenderer",
                 "ScopeContextPropertyLayoutRenderer",
                 "ScopeContextTimingLayoutRenderer",
+                "ScopeContextIndentLayoutRenderer",
                 "TraceActivityIdLayoutRenderer",
                 "SpecialFolderApplicationDataLayoutRenderer",
                 "SpecialFolderCommonApplicationDataLayoutRenderer",
