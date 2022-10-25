@@ -4,6 +4,21 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.0.5 (2022/10/26)
+
+**Improvements**
+- [#5092](https://github.com/NLog/NLog/pull/5092) InternalLogger - LogFile expand filepath variables (#5092) (@RyanGaudion)
+- [#5090](https://github.com/NLog/NLog/pull/5090) ReplaceNewLines - Support Replacement with newlines (#5090) (@Orace)
+- [#5086](https://github.com/NLog/NLog/pull/5086) ScopeIndent LayoutRenderer (#5086) (@snakefoot)
+- [#5085](https://github.com/NLog/NLog/pull/5085) Introduced TriLetter as LevelFormat (Trc, Dbg, Inf, Wrn, Err, Ftl) (#5085) (@snakefoot)
+- [#5078](https://github.com/NLog/NLog/pull/5078) LogFactory.Setup - Added support for RegisterLayout and validate NLog types (#5078) (@snakefoot)
+- [#5076](https://github.com/NLog/NLog/pull/5076) AutoFlushTargetWrapper - Fix race-condition that makes unit-tests unstable (#5076) (@snakefoot)
+- [#5073](https://github.com/NLog/NLog/pull/5073) Include error-message from inner-exception when layout contains unknown layoutrenderer (#5073) (@snakefoot)
+- [#5065](https://github.com/NLog/NLog/pull/5065) ObjectReflectionCache - Skip serializing System.Net.IPAddress (#5065) (@snakefoot)
+- [#5060](https://github.com/NLog/NLog/pull/5060) ObjectReflectionCache - Skip reflection of delegate-objects (#5060) (@snakefoot)
+- [#5057](https://github.com/NLog/NLog/pull/5057) OnException + OnHasProperties - Added Else-option (#5057) (@snakefoot)
+- [#5056](https://github.com/NLog/NLog/pull/5056) LogEventBuilder - Added Log(Type wrapperType) for custom Logger wrapper (#5056) (@snakefoot)
+
 ### Version 5.0.4 (2022/09/01)
 
 **Fixes**
