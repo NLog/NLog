@@ -39,9 +39,10 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.7" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.5" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.17" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />  <!-- Help Microsoft.Data.Sqlite -->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
