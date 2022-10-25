@@ -132,7 +132,7 @@ namespace NLog
                 if (logFactory.ThrowExceptions || LogManager.ThrowExceptions)
                     throw;
 
-                InternalLogger.Error(ex, "Failed to capture CallSite for Logger {0}. Platform might not support ${{callsite}}", logEvent.LoggerName);
+                InternalLogger.Error(ex, "{0} Failed to capture CallSite. Platform might not support ${{callsite}}", logEvent.LoggerName);
             }
         }
 #endif
@@ -143,7 +143,7 @@ namespace NLog
             {
                 if (InternalLogger.IsDebugEnabled)
                 {
-                    InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
+                    InternalLogger.Debug("{0} [{1}] Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                 }
 
                 if (result == FilterResult.IgnoreFinal)
