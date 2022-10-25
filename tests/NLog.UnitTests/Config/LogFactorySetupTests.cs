@@ -511,7 +511,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToFile(logFile));
+                logFactory.Setup().SetupInternalLogger(b => b.LogToFile(logFile).SetMinimumLogLevel(LogLevel.Fatal));
 
                 // Assert
                 Assert.Equal(logFile, InternalLogger.LogFile);

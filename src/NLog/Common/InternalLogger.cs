@@ -113,8 +113,9 @@ namespace NLog.Common
             set
             {
                 _logFile = value;
-                if (!string.IsNullOrEmpty(_logFile))
+                if (!string.IsNullOrEmpty(value))
                 {
+                    _logFile = ExpandFilePathVariables(value);
                     CreateDirectoriesIfNeeded(_logFile);
                 }
             }
@@ -647,6 +648,45 @@ namespace NLog.Common
                     throw;
                 }
             }
+        }
+
+        private static string ExpandFilePathVariables(string internalLogFile)
+        {
+            try
+            {
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out string currentDirToken))
+                    internalLogFile = internalLogFile.Replace(currentDirToken, System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out string baseDirToken))
+                    internalLogFile = internalLogFile.Replace(baseDirToken, LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out string tempDirToken))
+                    internalLogFile = internalLogFile.Replace(tempDirToken, LogManager.LogFactory.CurrentAppEnvironment.UserTempFilePath + System.IO.Path.DirectorySeparatorChar.ToString());
+#if !NETSTANDARD1_3
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
+                    internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogManager.LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
+#endif
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out string commonAppDataDirToken))
+                    internalLogFile = internalLogFile.Replace(commonAppDataDirToken, Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out string appDataDirToken))
+                    internalLogFile = internalLogFile.Replace(appDataDirToken, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userLocalApplicationDataDir}", out string localapplicationdatadir))
+                    internalLogFile = internalLogFile.Replace(localapplicationdatadir, Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+#endif
+                if (internalLogFile.IndexOf('%') >= 0)
+                    internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
+                return internalLogFile;
+            }
+            catch
+            {
+                return internalLogFile;
+            }
+        }
+
+        private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string result)
+        {
+            int needlePos = haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase);
+            result = needlePos >= 0 ? haystack.Substring(needlePos, needle.Length) : null;
+            return result != null;
         }
     }
 }

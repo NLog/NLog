@@ -47,7 +47,16 @@ namespace NLog
         /// </summary>
         public static ISetupInternalLoggerBuilder SetMinimumLogLevel(this ISetupInternalLoggerBuilder setupBuilder, LogLevel logLevel)
         {
+            var orgValue = InternalLogger.LogLevel;
             InternalLogger.LogLevel = logLevel;
+            if (InternalLogger.LogLevel != LogLevel.Off && orgValue == LogLevel.Off)
+            {
+                var orgLogFile = InternalLogger.LogFile;
+                if (!string.IsNullOrEmpty(orgLogFile))
+                {
+                    InternalLogger.LogFile = orgLogFile;    // InternalLogger.LogFile property-setter skips directory creation when LogLevel.Off
+                }
+            }
             return setupBuilder;
         }
 
