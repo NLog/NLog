@@ -54,7 +54,17 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating the string that should be used for separating lines.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Replacement { get; set; } = " ";
+        public string Replacement
+        {
+            get => _replacement;
+            set
+            {
+                _replacement = value;
+                _replaceWithNewLines = value?.IndexOf('\n') >= 0;
+            }
+        }
+        private string _replacement = " ";
+        private bool _replaceWithNewLines;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
@@ -66,7 +76,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 if (containsNewLines)
                 {
                     string str = builder.ToString(orgLength, builder.Length - orgLength)
-                                        .Replace(WindowsNewLine, Replacement)
+                                        .Replace(WindowsNewLine, _replaceWithNewLines ? UnixNewLine : Replacement)
                                         .Replace(UnixNewLine, Replacement);
 
                     builder.Length = orgLength;

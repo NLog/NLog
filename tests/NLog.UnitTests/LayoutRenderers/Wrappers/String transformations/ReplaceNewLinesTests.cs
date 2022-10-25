@@ -43,64 +43,97 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void ReplaceNewLineWithDefaultTest()
         {
-            ScopeContext.PushProperty("foo", "bar" + Environment.NewLine + "123");
-            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
-
-            Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+            // Arrange
+            var foo = "bar" + Environment.NewLine + "123";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar 123", result);
         }
 
         [Fact]
         public void ReplaceNewLineWithDefaultTestUnix()
         {
-            ScopeContext.PushProperty("foo", "bar\n123");
-            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
-
-            Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+            // Arrange
+            var foo = "bar\n123";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar 123", result);
         }
 
         [Fact]
         public void ReplaceNewLineWithDefaultTestWindows()
         {
-            ScopeContext.PushProperty("foo", "bar\r\n123");
-            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
-
-            Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+            // Arrange
+            var foo = "bar\r\n123";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar 123", result);
         }
 
         [Fact]
         public void ReplaceNewLineWithDefaultTestMixed()
         {
-            ScopeContext.PushProperty("foo", "bar\r\n123\nabc");
-            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
-
-            Assert.Equal("bar 123 abc", l.Render(LogEventInfo.CreateNullEvent()));
+            // Arrange
+            var foo = "bar\r\n123\nabc";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar 123 abc", result);
         }
 
         [Fact]
         public void ReplaceNewLineWithSpecifiedSeparationStringTest()
         {
-            ScopeContext.PushProperty("foo", "bar" + System.Environment.NewLine + "123");
-            SimpleLayout l = "${replace-newlines:replacement=|:${scopeproperty:foo}}";
-
-            Assert.Equal("bar|123", l.Render(LogEventInfo.CreateNullEvent()));
+            // Arrange
+            var foo = "bar" + System.Environment.NewLine + "123";
+            SimpleLayout l = "${replace-newlines:replacement=|:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar|123", result);
         }
 
         [Fact]
         public void ReplaceNewLineOneLineTest()
         {
-            ScopeContext.PushProperty("foo", "bar123");
-            SimpleLayout l = "${replace-newlines:${scopeproperty:foo}}";
-
-            Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
+            // Arrange
+            var foo = "bar123";
+            SimpleLayout l = "${replace-newlines:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar123", result);
         }
 
         [Fact]
         public void ReplaceNewLineWithNoEmptySeparationStringTest()
         {
-            ScopeContext.PushProperty("foo", "bar" + System.Environment.NewLine + "123");
-            SimpleLayout l = "${replace-newlines:replacement=:${scopeproperty:foo}}";
+            // Arrange
+            var foo = "bar" + System.Environment.NewLine + "123";
+            SimpleLayout l = "${replace-newlines:replacement=:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar123", result);
+        }
 
-            Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
+        [Fact]
+        public void ReplaceNewLineWithNewLineSeparationStringTest()
+        {
+            // Arrange
+            var foo = "bar\r\n123\n";
+            SimpleLayout l = "${replace-newlines:replacement=\\r\\n:${event-properties:foo}}";
+            // Act
+            var result = l.Render(LogEventInfo.Create(LogLevel.Info, null, null, "{foo}", new[] { foo }));
+            // Assert
+            Assert.Equal("bar\r\n123\r\n", result);
         }
     }
 }
