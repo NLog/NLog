@@ -248,15 +248,25 @@ namespace NLog.Targets
                 return true;
             }
             
-            if (value is DateTimeOffset dateTimeOffset)
-            {
-                QuoteValue(destination, dateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
-                return true;
-            }
-
             if (value is IFormattable formattable)
             {
-                SerializeWithFormatProvider(formattable, destination, options);
+                if (value is DateTimeOffset dateTimeOffset)
+                {
+                    QuoteValue(destination, dateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
+                    return true;
+                }
+
+
+                destination.Append('"');
+#if NETSTANDARD
+                int startPos = destination.Length;
+                destination.AppendFormat(CultureInfo.InvariantCulture, "{0}", formattable); // Support ISpanFormattable
+                PerformJsonEscapeWhenNeeded(destination, startPos, options.EscapeUnicode, options.EscapeForwardSlash);
+#else
+                var str = formattable.ToString(null, CultureInfo.InvariantCulture);
+                AppendStringEscape(destination, str, options);
+#endif
+                destination.Append('"');
                 return true;
             }
 
@@ -266,14 +276,6 @@ namespace NLog.Targets
         private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartCollectionScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
         {
             return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
-        }
-
-        private void SerializeWithFormatProvider(IFormattable formattable, StringBuilder destination, JsonSerializeOptions options)
-        {
-            var str = formattable.ToString(null, CultureInfo.InvariantCulture);
-            destination.Append('"');
-            AppendStringEscape(destination, str, options);
-            destination.Append('"');
         }
 
         private void SerializeDictionaryObject(IDictionary dictionary, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
