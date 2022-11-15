@@ -1214,7 +1214,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int _idCounter;
 
-            public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = maxQueueSize, OnQueueOverflow = onQueueOverflow };
                 Senders.Add(sender);

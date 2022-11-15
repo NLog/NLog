@@ -580,11 +580,7 @@ namespace NLog.Targets
         {
             var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
             sender.Initialize();
-            
-            if(sender is QueuedNetworkSender queuedNetworkSender)
-            {
-                queuedNetworkSender.LogEventDropped += OnLogEventDropped;
-            }
+            sender.LogEventDropped += OnLogEventDropped;
 
             return sender;
         }
