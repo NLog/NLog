@@ -38,12 +38,34 @@ namespace NLog.Targets
     /// <summary>
     /// Arguments for <see cref="NetworkTarget.LogEventDropped"/> events.
     /// </summary>
-    public class LogEventDroppedEventArgs : EventArgs
+    public class NetworkLogEventDroppedEventArgs : EventArgs
     {
         /// <summary>
         /// Provides a value to use with events that do not have event data.
         /// </summary>
-        public static new readonly LogEventDroppedEventArgs Empty = new LogEventDroppedEventArgs();
-    }
+        internal static readonly NetworkLogEventDroppedEventArgs PayloadSizeOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.PayloadSizeOverflow);
 
+        /// <summary>
+        /// Provides a value to use with events that do not have event data.
+        /// </summary>
+        internal static readonly NetworkLogEventDroppedEventArgs ConnectionOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.ConnectionOverflow);
+
+        /// <summary>
+        /// Provides a value to use with events that do not have event data.
+        /// </summary>
+        internal static readonly NetworkLogEventDroppedEventArgs QueueOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.QueueOverflow);
+
+        /// <summary>
+        /// Creates new instance of NetworkTargetLogEventDroppedEventArgs
+        /// </summary>
+        public NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason reason)
+        {
+            Reason = reason;
+        }
+
+        /// <summary>
+        /// The reason why log was dropped
+        /// </summary>
+        public NetworkLogEventDroppedReason Reason { get; }
+    }
 }
