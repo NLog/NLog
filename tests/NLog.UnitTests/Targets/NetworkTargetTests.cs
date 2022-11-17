@@ -365,6 +365,9 @@ namespace NLog.UnitTests.Targets
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
             target.Initialize(null);
 
+            int droppedLogs = 0;
+            target.LogEventDropped += (sender, args) => droppedLogs++;
+
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
             int remaining = 3;
@@ -399,6 +402,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("2: send 0 5") != -1);
             Assert.True(result.IndexOf("1: close") != -1);
             Assert.True(result.IndexOf("2: close") != -1);
+            Assert.Equal(1, droppedLogs);
         }
 
         [Fact]
@@ -416,6 +420,9 @@ namespace NLog.UnitTests.Targets
             target.MaxMessageSize = 10;
             target.OnOverflow = NetworkTargetOverflowAction.Error;
             target.Initialize(null);
+
+            int droppedLogs = 0;
+            target.LogEventDropped += (sender, args) => droppedLogs++;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -451,6 +458,8 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
             Assert.True(result.IndexOf("2: send 0 5") != -1);
             Assert.True(result.IndexOf("2: close") != -1);
+
+            Assert.Equal(1, droppedLogs);
         }
 
         [Fact]
@@ -813,6 +822,9 @@ namespace NLog.UnitTests.Targets
             target.KeepConnection = true;
             target.Initialize(null);
 
+            int discardEventCalls = 0;
+            target.LogEventDropped += (sender, args) => discardEventCalls++;
+
             int pendingWrites = 1;
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -853,6 +865,8 @@ namespace NLog.UnitTests.Targets
             {
                 Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
+
+            Assert.True(discardEventCalls >= 5, $"LogDropped not called: {discardEventCalls}");
         }
 
         [Fact]
@@ -1200,7 +1214,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int _idCounter;
 
-            public NetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = maxQueueSize, OnQueueOverflow = onQueueOverflow };
                 Senders.Add(sender);

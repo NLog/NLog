@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,28 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal.NetworkSenders
+namespace NLog.Targets
 {
-    using System;
-    using NLog.Targets;
-
     /// <summary>
-    /// Creates instances of <see cref="NetworkSender"/> objects for given URLs.
+    /// The reason why log event was dropped by <see cref="NetworkTarget"/>
     /// </summary>
-    internal interface INetworkSenderFactory
+    public enum NetworkLogEventDroppedReason
     {
         /// <summary>
-        /// Creates a new instance of the network sender based on a network URL.
+        /// Discarded LogEvent because message is bigger than <see cref="NetworkTarget.MaxMessageSize"/>
         /// </summary>
-        /// <param name="url">URL that determines the network sender to be created.</param>
-        /// <param name="maxQueueSize">The maximum queue size.</param>
-        /// <param name="onQueueOverflow">The overflow action when reaching maximum queue size.</param>
-        /// <param name="maxMessageSize">The maximum message size.</param>
-        /// <param name="sslProtocols">SSL protocols for TCP</param>
-        /// <param name="keepAliveTime">KeepAliveTime for TCP</param>
-        /// <returns>
-        /// A newly created network sender.
-        /// </returns>
-        QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime);
+        PayloadSizeOverflow,
+        /// <summary>
+        /// Discarded LogEvent because message queue was bigger than <see cref="NetworkTarget.MaxQueueSize"/>
+        /// </summary>
+        QueueOverflow,
+        /// <summary>
+        /// Discarded LogEvent because attempted to open more than <see cref="NetworkTarget.MaxConnections"/> connections
+        /// </summary>
+        ConnectionOverflow
     }
 }

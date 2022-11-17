@@ -31,28 +31,41 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal.NetworkSenders
-{
-    using System;
-    using NLog.Targets;
+using System;
 
+namespace NLog.Targets
+{
     /// <summary>
-    /// Creates instances of <see cref="NetworkSender"/> objects for given URLs.
+    /// Arguments for <see cref="NetworkTarget.LogEventDropped"/> events.
     /// </summary>
-    internal interface INetworkSenderFactory
+    public class NetworkLogEventDroppedEventArgs : EventArgs
     {
         /// <summary>
-        /// Creates a new instance of the network sender based on a network URL.
+        /// Provides a value to use with events that do not have event data.
         /// </summary>
-        /// <param name="url">URL that determines the network sender to be created.</param>
-        /// <param name="maxQueueSize">The maximum queue size.</param>
-        /// <param name="onQueueOverflow">The overflow action when reaching maximum queue size.</param>
-        /// <param name="maxMessageSize">The maximum message size.</param>
-        /// <param name="sslProtocols">SSL protocols for TCP</param>
-        /// <param name="keepAliveTime">KeepAliveTime for TCP</param>
-        /// <returns>
-        /// A newly created network sender.
-        /// </returns>
-        QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime);
+        internal static readonly NetworkLogEventDroppedEventArgs PayloadSizeOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.PayloadSizeOverflow);
+
+        /// <summary>
+        /// Provides a value to use with events that do not have event data.
+        /// </summary>
+        internal static readonly NetworkLogEventDroppedEventArgs ConnectionOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.ConnectionOverflow);
+
+        /// <summary>
+        /// Provides a value to use with events that do not have event data.
+        /// </summary>
+        internal static readonly NetworkLogEventDroppedEventArgs QueueOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.QueueOverflow);
+
+        /// <summary>
+        /// Creates new instance of NetworkTargetLogEventDroppedEventArgs
+        /// </summary>
+        public NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason reason)
+        {
+            Reason = reason;
+        }
+
+        /// <summary>
+        /// The reason why log was dropped
+        /// </summary>
+        public NetworkLogEventDroppedReason Reason { get; }
     }
 }
