@@ -54,12 +54,12 @@ namespace NLog.Targets.Wrappers
         public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
 
         /// <summary>
-        /// Notifies about log event that was dropped when <see cref="OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
+        /// Occurs when LogEvent has been dropped, because internal queue is full and <see cref="OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
         /// </summary>
         public event EventHandler<LogEventDroppedEventArgs> LogEventDropped;
 
         /// <summary>
-        /// Notifies when queue size is growing over <see cref="RequestLimit"/>
+        /// Occurs when internal queue size is growing, because internal queue is full and <see cref="OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
         /// </summary>
         public event EventHandler<LogEventQueueGrowEventArgs> LogEventQueueGrow;
 

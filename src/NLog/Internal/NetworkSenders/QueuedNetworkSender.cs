@@ -78,6 +78,7 @@ namespace NLog.Internal.NetworkSenders
         public int MaxQueueSize { get; set; }
 
         public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; }
+
         public event EventHandler<NetworkLogEventDroppedEventArgs> LogEventDropped;
 
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
@@ -95,7 +96,7 @@ namespace NLog.Internal.NetworkSenders
                         {
                             case NetworkTargetQueueOverflowAction.Discard:
                                 InternalLogger.Debug("NetworkQueue - Discarding single item, because queue is full");
-                                OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.QueueOverflow);
+                                OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxQueueOverflow);
                                 var dequeued = _pendingRequests.Dequeue();
                                 dequeued.AsyncContinuation?.Invoke(null);
                                 break;

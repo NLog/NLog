@@ -41,14 +41,14 @@ namespace NLog.Targets
         /// <summary>
         /// Discarded LogEvent because message is bigger than <see cref="NetworkTarget.MaxMessageSize"/>
         /// </summary>
-        PayloadSizeOverflow,
+        MaxMessageSizeOverflow,
         /// <summary>
         /// Discarded LogEvent because message queue was bigger than <see cref="NetworkTarget.MaxQueueSize"/>
         /// </summary>
-        QueueOverflow,
+        MaxQueueOverflow,
         /// <summary>
         /// Discarded LogEvent because attempted to open more than <see cref="NetworkTarget.MaxConnections"/> connections
         /// </summary>
-        ConnectionOverflow
+        MaxConnectionsOverflow
     }
 }
