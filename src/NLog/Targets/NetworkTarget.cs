@@ -188,9 +188,13 @@ namespace NLog.Targets
         public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; } = NetworkTargetQueueOverflowAction.Discard;
 
         /// <summary>
-        /// Raise event when Target cannot store LogEvent and <see cref="OnQueueOverflow"/> equals <see cref="NetworkTargetOverflowAction.Discard"/>.
-        /// Event arg contains lost LogEvents
+        /// Occurs when LogEvent has been dropped.
         /// </summary>
+        /// <remarks>
+        ///  - When internal queue is full and <see cref="OnQueueOverflow"/> set to <see cref="NetworkTargetOverflowAction.Discard"/><br/>
+        ///  - When connection-list is full and <see cref="OnConnectionOverflow"/> set to <see cref="NetworkTargetConnectionsOverflowAction.Discard"/><br/>
+        ///  - When message is too big and <see cref="OnOverflow"/> set to <see cref="NetworkTargetOverflowAction.Discard"/><br/>
+        /// </remarks>
         public event EventHandler<NetworkLogEventDroppedEventArgs> LogEventDropped;
 
         /// <summary>
@@ -367,7 +371,7 @@ namespace NLog.Targets
                     {
                         case NetworkTargetConnectionsOverflowAction.Discard:
                             InternalLogger.Debug("{0}: Discarding message, because too many open connections.", this);
-                            OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.ConnectionOverflow);
+                            OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxConnectionsOverflow);
                             logEvent.Continuation(null);
                             return;
 
@@ -580,8 +584,10 @@ namespace NLog.Targets
         {
             var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
             sender.Initialize();
-            sender.LogEventDropped += OnLogEventDropped;
-
+            if (KeepConnection || LogEventDropped != null)
+            {
+                sender.LogEventDropped += OnLogEventDropped;
+            }
             return sender;
         }
 
@@ -615,7 +621,7 @@ namespace NLog.Targets
                 if (OnOverflow == NetworkTargetOverflowAction.Discard)
                 {
                     InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
-                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.PayloadSizeOverflow);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
                     continuation(null);
                     return;
                 }
@@ -623,7 +629,7 @@ namespace NLog.Targets
                 if (OnOverflow == NetworkTargetOverflowAction.Error)
                 {
                     InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
-                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.PayloadSizeOverflow);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
                     continuation(new InvalidOperationException($"NetworkTarget: Discarded LogEvent because MessageSize={messageSize} is above MaxMessageSize={MaxMessageSize}"));
                     return;
                 }

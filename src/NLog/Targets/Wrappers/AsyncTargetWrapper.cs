@@ -149,10 +149,9 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
         public int TimeToSleepBetweenBatches { get; set; } = 1;
-        
+
         /// <summary>
-        /// Raise event when Target cannot store LogEvent.
-        /// Event arg contains lost LogEvents
+        /// Occurs when LogEvent has been dropped, because internal queue is full and <see cref="OverflowAction"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
         /// </summary>
         public event EventHandler<LogEventDroppedEventArgs> LogEventDropped
         {
@@ -175,10 +174,9 @@ namespace NLog.Targets.Wrappers
                 }
             }
         }
-        
+
         /// <summary>
-        /// Raises when event queue grow. 
-        /// Queue can grow when <see cref="OverflowAction"/> was set to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+        /// Occurs when internal queue size is growing, because internal queue is full and <see cref="OverflowAction"/> set to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
         /// </summary>
         public event EventHandler<LogEventQueueGrowEventArgs> EventQueueGrow
         {

@@ -43,17 +43,17 @@ namespace NLog.Targets
         /// <summary>
         /// Provides a value to use with events that do not have event data.
         /// </summary>
-        internal static readonly NetworkLogEventDroppedEventArgs PayloadSizeOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.PayloadSizeOverflow);
+        internal static readonly NetworkLogEventDroppedEventArgs MaxMessageSizeOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.MaxMessageSizeOverflow);
 
         /// <summary>
         /// Provides a value to use with events that do not have event data.
         /// </summary>
-        internal static readonly NetworkLogEventDroppedEventArgs ConnectionOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.ConnectionOverflow);
+        internal static readonly NetworkLogEventDroppedEventArgs MaxConnectionsOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.MaxConnectionsOverflow);
 
         /// <summary>
         /// Provides a value to use with events that do not have event data.
         /// </summary>
-        internal static readonly NetworkLogEventDroppedEventArgs QueueOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.QueueOverflow);
+        internal static readonly NetworkLogEventDroppedEventArgs MaxQueueOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.MaxQueueOverflow);
 
         /// <summary>
         /// Creates new instance of NetworkTargetLogEventDroppedEventArgs
