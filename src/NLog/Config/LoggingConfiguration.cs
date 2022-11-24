@@ -131,31 +131,40 @@ namespace NLog.Config
 
             if (target != null)
             {
-                InternalLogger.Debug("Unregistered target {0}: {1}", name, target.GetType().FullName);
+                InternalLogger.Debug("Unregistered target {0}(Name={1})", target.GetType().Name, target.Name);
             }
+
             return target;
         }
 
-        private void AddTargetThreadSafe(string name, Target target, bool forceOverwrite)
+        private void AddTargetThreadSafe(Target target, string targetAlias = null)
         {
-            if (string.IsNullOrEmpty(name) && !forceOverwrite)
+            if (string.IsNullOrEmpty(target.Name) && string.IsNullOrEmpty(targetAlias))
                 return;
 
             lock (_targets)
             {
-                if (!forceOverwrite && _targets.ContainsKey(name))
+                if (string.IsNullOrEmpty(targetAlias))
+                {
+                    if (_targets.ContainsKey(target.Name))
+                        return;
+
+                    targetAlias = target.Name;
+                }
+
+                if (_targets.TryGetValue(targetAlias, out var oldTarget) && ReferenceEquals(oldTarget, target))
                     return;
 
-                _targets[name] = target;
+                _targets[targetAlias] = target;
             }
 
-            if (!string.IsNullOrEmpty(target.Name) && target.Name != name)
+            if (!string.IsNullOrEmpty(target.Name) && !string.Equals(target.Name, targetAlias, StringComparison.OrdinalIgnoreCase))
             {
-                InternalLogger.Info("Registered target {0}: {1} (Target created with different name: {2})", name, target.GetType().FullName, target.Name);
+                InternalLogger.Info("Registered target {0}(Name={1}) (Extra alias={2})", target.GetType().Name, target.Name, targetAlias);
             }
             else
             {
-                InternalLogger.Debug("Registered target {0}: {1}", name, target.GetType().FullName);
+                InternalLogger.Info("Registered target {0}(Name={1})", target.GetType().Name, target.Name);
             }
         }
 
@@ -206,9 +215,12 @@ namespace NLog.Config
         public void AddTarget([NotNull] Target target)
         {
             if (target is null) { throw new ArgumentNullException(nameof(target)); }
-            if (target.Name is null) { throw new ArgumentNullException(nameof(target) + ".Name cannot be null."); }
 
-            AddTargetThreadSafe(target.Name, target, true);
+            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType().Name, target.Name);
+
+            if (string.IsNullOrEmpty(target.Name)) { throw new ArgumentException(nameof(target) + ".Name cannot be empty", nameof(target)); }
+
+            AddTargetThreadSafe(target, target.Name);
         }
 
         /// <summary>
@@ -218,21 +230,16 @@ namespace NLog.Config
         /// <param name="target">The target object.</param>
         /// <exception cref="ArgumentException">when <paramref name="name"/> is <see langword="null"/></exception>
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
-        public void AddTarget(string name, Target target)
+        public void AddTarget(string name, [NotNull] Target target)
         {
-            if (name is null)
-            {
-                throw new ArgumentNullException(nameof(name), "Target name cannot be null");
-            }
-
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentException("Target name cannot be empty", nameof(name));
-            }
-
+            if (name is null) { throw new ArgumentNullException(nameof(name)); }
             if (target is null) { throw new ArgumentNullException(nameof(target)); }
 
-            AddTargetThreadSafe(name, target, true);
+            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType().Name, string.IsNullOrEmpty(name) ? target.Name : name);
+
+            if (string.IsNullOrEmpty(name)) { throw new ArgumentException("Target name cannot be empty", nameof(name)); }
+
+            AddTargetThreadSafe(target, name);
         }
 
         /// <summary>
@@ -327,7 +334,7 @@ namespace NLog.Config
         {
             if (target is null) { throw new ArgumentNullException(nameof(target)); }
             AddLoggingRulesThreadSafe(new LoggingRule(loggerNamePattern, minLevel, maxLevel, target) { Final = final });
-            AddTargetThreadSafe(target.Name, target, false);
+            AddTargetThreadSafe(target);
         }
 
         /// <summary>
@@ -381,7 +388,7 @@ namespace NLog.Config
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
             loggingRule.EnableLoggingForLevel(level);
             AddLoggingRulesThreadSafe(loggingRule);
-            AddTargetThreadSafe(target.Name, target, false);
+            AddTargetThreadSafe(target);
         }
 
         /// <summary>
@@ -423,7 +430,7 @@ namespace NLog.Config
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
             loggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             AddLoggingRulesThreadSafe(loggingRule);
-            AddTargetThreadSafe(target.Name, target, false);
+            AddTargetThreadSafe(target);
         }
 
         /// <summary>
