@@ -858,7 +858,6 @@ namespace NLog.Config
                         newTarget = WrapWithDefaultWrapper(newTarget, defaultWrapperElement);
                     }
 
-                    InternalLogger.Info("Adding target {0}(Name={1})", newTarget.GetType().Name, newTarget.Name);
                     AddTarget(newTarget.Name, newTarget);
                 }
             }

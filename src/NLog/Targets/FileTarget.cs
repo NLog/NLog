@@ -2380,7 +2380,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void PrepareForNewFile(string fileName, LogEventInfo logEvent)
         {
-            InternalLogger.Debug("{0}: Preparing for new file '{1}'", this, fileName);
+            InternalLogger.Debug("{0}: Preparing for new file: '{1}'", this, fileName);
             RefreshArchiveFilePatternToWatch(fileName, logEvent);
 
             try

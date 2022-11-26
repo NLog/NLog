@@ -269,7 +269,7 @@ namespace NLog.Internal.FileAppenders
             BaseFileAppender appenderToWrite;
             try
             {
-                InternalLogger.Debug("{0}: Creating file appender: {1}", CreateFileParameters, fileName);
+                InternalLogger.Debug("{0}: Creating file appender: '{1}'", CreateFileParameters, fileName);
                 BaseFileAppender newAppender = Factory.Open(fileName, CreateFileParameters);
 
                 if (_appenders[freeSpot] != null)
