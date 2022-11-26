@@ -94,27 +94,35 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (TryGetRawValue(logEvent, out object rawValue))
+            if (TryGetRawPropertyValue(logEvent, out object propertyValue))
             {
                 var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.AppendFormattedValue(rawValue, Format, formatProvider, ValueFormatter);
+                builder.AppendFormattedValue(propertyValue, Format, formatProvider, ValueFormatter);
             }
         }
 
-        /// <inheritdoc/>
-        private bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        private bool TryGetRawPropertyValue(LogEventInfo logEvent, out object propertyValue)
         {
             if (Inner != null &&
                 Inner.TryGetRawValue(logEvent, out var rawValue) &&
-                ObjectReflectionCache.TryGetObjectProperty(rawValue, _objectPropertyPath.PathNames, out value))
+                TryGetPropertyValue(rawValue, out propertyValue))
             {
                 return true;
             }
 
-            value = null;
+            propertyValue = null;
             return false;
         }
 
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value) => TryGetRawValue(logEvent, out value);
+        /// <summary>
+        /// Lookup property-value from source object based on <see cref="ObjectPath"/>
+        /// </summary>
+        /// <returns>Could resolve property-value?</returns>
+        public bool TryGetPropertyValue(object sourceObject, out object propertyValue)
+        {
+            return ObjectReflectionCache.TryGetObjectProperty(sourceObject, _objectPropertyPath.PathNames, out propertyValue);
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value) => TryGetRawPropertyValue(logEvent, out value);
     }
 }
