@@ -43,7 +43,7 @@ namespace NLog.Targets.FileArchiveModes
         static readonly DateTime MaxAgeArchiveFileDate = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         private int _lastArchiveFileCount = short.MaxValue * 2;
-        private DateTime _oldestArchiveFileDate = MaxAgeArchiveFileDate;
+        private DateTime _oldestArchiveFileDate = MaxAgeArchiveFileDate.Date;
 
         public bool IsArchiveCleanupEnabled { get; }
 
@@ -66,7 +66,7 @@ namespace NLog.Targets.FileArchiveModes
             if (maxArchiveFiles > 0 && _lastArchiveFileCount++ > maxArchiveFiles)
                 return true;
 
-            if (maxArchiveDays > 0 && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - _oldestArchiveFileDate.Date).TotalDays > maxArchiveDays)
+            if (maxArchiveDays > 0 && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - _oldestArchiveFileDate).TotalDays > maxArchiveDays)
                 return true;
 
             return false;
@@ -85,7 +85,7 @@ namespace NLog.Targets.FileArchiveModes
         public virtual List<DateAndSequenceArchive> GetExistingArchiveFiles(string archiveFilePath)
         {
             _lastArchiveFileCount = short.MaxValue * 2;
-            _oldestArchiveFileDate = MaxAgeArchiveFileDate;
+            _oldestArchiveFileDate = MaxAgeArchiveFileDate.Date;
 
             string archiveFolderPath = Path.GetDirectoryName(archiveFilePath);
             FileNameTemplate archiveFileNameTemplate = GenerateFileNameTemplate(archiveFilePath);
@@ -124,7 +124,7 @@ namespace NLog.Targets.FileArchiveModes
         protected void UpdateMaxArchiveState(List<DateAndSequenceArchive> existingArchiveFiles)
         {
             _lastArchiveFileCount = existingArchiveFiles.Count;
-            _oldestArchiveFileDate = existingArchiveFiles.Count == 0 ? DateTime.UtcNow : existingArchiveFiles[0].Date.Date.ToUniversalTime();
+            _oldestArchiveFileDate = existingArchiveFiles.Count == 0 ? NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() : existingArchiveFiles[0].Date.Date.ToUniversalTime();
         }
 
         private static int FileSortOrderComparison(DateAndSequenceArchive x, DateAndSequenceArchive y)
