@@ -118,8 +118,8 @@ namespace NLog.Internal
                     return true;
                 }
 
-                var eventProperties = LookupObjectProperties(value);
-                if (eventProperties.TryGetPropertyValue(objectPath[i], out var propertyValue))
+                var propertyList = LookupObjectProperties(value);
+                if (propertyList.TryGetPropertyValue(objectPath[i], out var propertyValue))
                 {
                     value = propertyValue.Value;
                 }
