@@ -29,17 +29,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-- InternalLogger - LogFile expand filepath variables (#5092) (@RyanGaudion)
-- ReplaceNewLines - Support Replacement with newlines (#5090) (@Orace)
-- ScopeIndent LayoutRenderer (#5086) (@snakefoot)
-- Introduced TriLetter as LevelFormat (Trc, Dbg, Inf, Wrn, Err, Ftl) (#5085) (@snakefoot)
-- LogFactory.Setup - Added support for RegisterLayout and validate NLog types (#5078) (@snakefoot)
-- AutoFlushTargetWrapper - Fix race-condition that makes unit-tests unstable (#5076) (@snakefoot)
-- Include error-message from inner-exception when layout contains unknown layoutrenderer (#5073) (@snakefoot)
-- ObjectReflectionCache - Skip serializing System.Net.IPAddress (#5065) (@snakefoot)
-- ObjectReflectionCache - Skip reflection of delegate-objects (#5060) (@snakefoot)
-- OnException + OnHasProperties - Added Else-option (#5057) (@snakefoot)
-- LogEventBuilder - Added Log(Type wrapperType) for custom Logger wrapper (#5056) (@snakefoot)
+- MessageTemplates ValueFormatter with support for ISpanFormattable (#5102) (@snakefoot)
+- Add LogEventDropped handler to the NetworkTarget (#5101) (@ShadowDancer)
+- Improving InternalLogger output when adding NLog targets to configuration (#5108) (@snakefoot)
+- ObjectPathRendererWrapper - Added public method TryGetPropertyValue (#5110) (@snakefoot)
 
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 
