@@ -2,7 +2,7 @@
 # creates NuGet package at \artifacts
 dotnet --version
 
-$versionPrefix = "5.0.5"
+$versionPrefix = "5.1.0"
 $versionSuffix = ""
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
