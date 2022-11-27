@@ -4,6 +4,14 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.1.0 (2022/11/27)
+
+**Improvements**
+- [#5102](https://github.com/NLog/NLog/pull/5102) MessageTemplates ValueFormatter with support for ISpanFormattable (#5102) (@snakefoot)
+- [#5101](https://github.com/NLog/NLog/pull/5101) Add LogEventDropped handler to the NetworkTarget (#5101) (@ShadowDancer)
+- [#5108](https://github.com/NLog/NLog/pull/5108) Improving InternalLogger output when adding NLog targets to configuration (#5108) (@snakefoot)
+- [#5110](https://github.com/NLog/NLog/pull/5110) ObjectPathRendererWrapper - Added public method TryGetPropertyValue (#5110) (@snakefoot)
+
 ### Version 5.0.5 (2022/10/26)
 
 **Improvements**
