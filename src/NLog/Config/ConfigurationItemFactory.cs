@@ -262,8 +262,18 @@ namespace NLog.Config
             var typesToScan = assembly.SafeGetTypes();
             if (typesToScan?.Length > 0)
             {
-                var assemblyName = new AssemblyName(assembly.FullName).Name;
-                PreloadAssembly(typesToScan);
+                string assemblyName = string.Empty;
+
+                if (ReferenceEquals(assembly, typeof(LogFactory).GetAssembly()))
+                {
+                    typesToScan = typesToScan.Where(t => t.IsPublic() && t.IsClass()).ToArray();
+                }
+                else
+                {
+                    assemblyName = new AssemblyName(assembly.FullName).Name;
+                    PreloadAssembly(typesToScan);
+                }
+
                 foreach (IFactory f in _allFactories)
                 {
                     f.ScanTypes(typesToScan, assemblyName, itemNamePrefix);

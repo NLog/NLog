@@ -223,13 +223,16 @@ namespace NLog.Internal
             foreach (var configProp in GetAllConfigItemProperties(o.GetType()))
             {
                 var propInfo = configProp.Value;
-                if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
+                if (propInfo.PropertyType?.IsClass() == true)
                 {
-                    object value = propInfo.GetValue(o, null);
-                    if (value is null)
+                    if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                     {
-                        throw new NLogConfigurationException(
-                            $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
+                        object value = propInfo.GetValue(o, null);
+                        if (value is null)
+                        {
+                            throw new NLogConfigurationException(
+                                $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
+                        }
                     }
                 }
             }
