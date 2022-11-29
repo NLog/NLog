@@ -609,7 +609,7 @@ namespace NLog.Layouts
                     value = EscapeUnicodeStringValue(value);
                 }
 
-                PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
+                PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo, value, configurationItemFactory);
                 return propertyInfo.Name;
             }
             else
