@@ -29,8 +29,7 @@ It can process diagnostic messages emitted from any .NET language, augment
 them with contextual information, format them according to your preference
 and send them to one or more targets such as file or database.
 
-Major and minor releases will be posted on [project news](https://nlog-project.org/archives/). For smaller updates, follow us on [Twitter](https://twitter.com/NLogOfficial)
-
+Major and minor releases will be posted on [project news](https://nlog-project.org/archives/). 
 
 Getting started
 ---
