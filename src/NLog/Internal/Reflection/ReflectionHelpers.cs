@@ -193,6 +193,15 @@ namespace NLog.Internal
             return valueCast;
         }
 
+        public static bool IsPublic(this Type type)
+        {
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            return type.IsPublic;
+#else
+            return type.GetTypeInfo().IsPublic;
+#endif
+        }
+
         public static bool IsEnum(this Type type)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5

@@ -1348,7 +1348,7 @@ namespace NLog.Config
             target.Name = target.Name + "_wrapped";
 
             InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name,
-                wrapperTargetInstance.GetType().Name, target.Name);
+                wrapperTargetInstance.GetType(), target.Name);
             return wrapperTargetInstance;
         }
 

@@ -37,13 +37,11 @@ namespace NLog.Internal
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
-    using System.Linq;
     using System.Reflection;
     using System.Text;
     using NLog.Common;
     using NLog.Conditions;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
 
@@ -92,7 +90,6 @@ namespace NLog.Internal
         internal static void SetPropertyFromString(object targetObject, string propertyName, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
             var objType = targetObject.GetType();
-            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", objType, propertyName, stringValue);
 
             if (!TryGetPropertyInfo(objType, propertyName, out var propInfo))
             {
@@ -105,6 +102,8 @@ namespace NLog.Internal
         internal static void SetPropertyFromString(object targetObject, PropertyInfo propInfo, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
             object propertyValue = null;
+
+            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", targetObject?.GetType(), propInfo.Name, stringValue);
 
             try
             {
@@ -223,13 +222,16 @@ namespace NLog.Internal
             foreach (var configProp in GetAllConfigItemProperties(o.GetType()))
             {
                 var propInfo = configProp.Value;
-                if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
+                if (propInfo.PropertyType?.IsClass() == true)
                 {
-                    object value = propInfo.GetValue(o, null);
-                    if (value is null)
+                    if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                     {
-                        throw new NLogConfigurationException(
-                            $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
+                        object value = propInfo.GetValue(o, null);
+                        if (value is null)
+                        {
+                            throw new NLogConfigurationException(
+                                $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
+                        }
                     }
                 }
             }

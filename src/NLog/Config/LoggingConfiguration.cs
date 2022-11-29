@@ -131,7 +131,7 @@ namespace NLog.Config
 
             if (target != null)
             {
-                InternalLogger.Debug("Unregistered target {0}(Name={1})", target.GetType().Name, target.Name);
+                InternalLogger.Debug("Unregistered target {0}(Name={1})", target.GetType(), target.Name);
             }
 
             return target;
@@ -160,11 +160,11 @@ namespace NLog.Config
 
             if (!string.IsNullOrEmpty(target.Name) && !string.Equals(target.Name, targetAlias, StringComparison.OrdinalIgnoreCase))
             {
-                InternalLogger.Info("Registered target {0}(Name={1}) (Extra alias={2})", target.GetType().Name, target.Name, targetAlias);
+                InternalLogger.Info("Registered target {0}(Name={1}) (Extra alias={2})", target.GetType(), target.Name, targetAlias);
             }
             else
             {
-                InternalLogger.Info("Registered target {0}(Name={1})", target.GetType().Name, target.Name);
+                InternalLogger.Info("Registered target {0}(Name={1})", target.GetType(), target.Name);
             }
         }
 
@@ -216,7 +216,7 @@ namespace NLog.Config
         {
             if (target is null) { throw new ArgumentNullException(nameof(target)); }
 
-            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType().Name, target.Name);
+            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType(), target.Name);
 
             if (string.IsNullOrEmpty(target.Name)) { throw new ArgumentException(nameof(target) + ".Name cannot be empty", nameof(target)); }
 
@@ -235,7 +235,7 @@ namespace NLog.Config
             if (name is null) { throw new ArgumentNullException(nameof(name)); }
             if (target is null) { throw new ArgumentNullException(nameof(target)); }
 
-            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType().Name, string.IsNullOrEmpty(name) ? target.Name : name);
+            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType(), string.IsNullOrEmpty(name) ? target.Name : name);
 
             if (string.IsNullOrEmpty(name)) { throw new ArgumentException("Target name cannot be empty", nameof(name)); }
 
