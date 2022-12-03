@@ -349,47 +349,53 @@ namespace NLog.Targets.Wrappers
         /// <returns>Returns true when scheduled a timer-worker-thread</returns>
         protected virtual bool StartInstantWriterTimer()
         {
-            return StartTimerUnlessWriterActive(true);
+            return StartLazyWriterThread(true);
         }
 
-        private bool StartTimerUnlessWriterActive(bool instant)
+        private void StartTimerUnlessWriterActive(bool instant)
         {
             bool lockTaken = false;
             try
             {
                 lockTaken = Monitor.TryEnter(_writeLockObject);
-                if (lockTaken)
+                if (!lockTaken)
                 {
-                    lock (_timerLockObject)
-                    {
-                        if (_lazyWriterTimer != null)
-                        {
-                            // Lock taken means no other timer-worker-thread is trying to write, schedule timer now
-                            if (instant)
-                            {
-                                // Not optimal to schedule timer-worker-thread while holding lock,
-                                // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
-                                InternalLogger.Trace("{0}: Timer scheduled instantly", this);
-                                _lazyWriterTimer.Change(0, Timeout.Infinite);
-                            }
-                            else
-                            {
-                                InternalLogger.Trace("{0}: Timer scheduled throttled", this);
-                                _lazyWriterTimer.Change(1, Timeout.Infinite);
-                            }
-                            return true;
-                        }
-                    }
+                    // If not able to take lock, then it means timer-worker-thread is already active,
+                    // and timer-worker-thread will check RequestQueue after leaving writeLockObject
+                    InternalLogger.Trace("{0}: Timer not scheduled, since already active", this);
+                    return;
                 }
-
-                InternalLogger.Trace("{0}: Timer not scheduled, since already active", this);
             }
             finally
             {
-                // If not able to take lock, then it means timer-worker-thread is already active,
-                // and timer-worker-thread will check RequestQueue after leaving writeLockObject
                 if (lockTaken)
                     Monitor.Exit(_writeLockObject);
+            }
+
+            if (instant)
+                StartInstantWriterTimer();
+            else
+                StartLazyWriterThread(false);
+        }
+
+        private bool StartLazyWriterThread(bool instant)
+        {
+            lock (_timerLockObject)
+            {
+                if (_lazyWriterTimer != null)
+                {
+                    if (instant)
+                    {
+                        InternalLogger.Trace("{0}: Timer scheduled instantly", this);
+                        _lazyWriterTimer.Change(0, Timeout.Infinite);
+                    }
+                    else
+                    {
+                        InternalLogger.Trace("{0}: Timer scheduled throttled", this);
+                        _lazyWriterTimer.Change(1, Timeout.Infinite);
+                    }
+                    return true;
+                }
             }
 
             return false;
@@ -427,7 +433,7 @@ namespace NLog.Targets.Wrappers
             if (queueWasEmpty)
             {
                 if (TimeToSleepBetweenBatches == 0)
-                    StartInstantWriterTimer();
+                    StartTimerUnlessWriterActive(true);
                 else if (TimeToSleepBetweenBatches <= 1)
                     StartLazyWriterTimer();
             }
