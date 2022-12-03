@@ -105,6 +105,18 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
         }
 
+        [Theory]
+        [MemberData(nameof(TestAppendXsdDateTimeRoundTripCases))]
+        void TestAppendXmlDateTimeRoundTripUtcToString(DateTime input)
+        {
+            input = new DateTime(input.Ticks, DateTimeKind.Utc);
+            StringBuilder sb = new StringBuilder();
+            StringBuilderExt.AppendXmlDateTimeUtcRoundTrip(sb, input, forceFraction: true);
+            Assert.Equal(input.ToString("O",System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+            Assert.Equal(input.ToString("o", System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+            Assert.Equal(input.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ", System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+        }
+
         public static IEnumerable<object[]> TestAppendXsdDateTimeRoundTripCases()
         {
             yield return new object[] { DateTime.MinValue };

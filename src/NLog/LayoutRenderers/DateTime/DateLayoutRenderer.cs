@@ -75,12 +75,14 @@ namespace NLog.LayoutRenderers
                 _cachedDateFormatted = IsLowTimeResolutionLayout(_format)
                     ? new CachedDateFormatted(DateTime.MaxValue, string.Empty)  // Cache can be used, will update cache-value
                     : null;    // No cache support
+                _iso8601 = "O".Equals(value) || "o".Equals(value) || "yyyy-MM-ddTHH:mm:ss.fffffffZ".Equals(value);
             }
         }
         private string _format;
 
         private const string _lowTimeResolutionChars = "YyMDdHh";
         private CachedDateFormatted _cachedDateFormatted = null;
+        private bool _iso8601;
 
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
@@ -92,7 +94,19 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(GetStringValue(logEvent));
+            if (_iso8601 && IsValidIso8601(logEvent))
+                builder.AppendXmlDateTimeUtcRoundTrip(GetValue(logEvent), forceFraction: true);
+            else
+                builder.Append(GetStringValue(logEvent));
+        }
+
+        private bool IsValidIso8601(LogEventInfo logEvent)
+        {
+            var formatProvider = GetFormatProvider(logEvent, Culture);
+            if (_universalTime == true && ReferenceEquals(CultureInfo.InvariantCulture, Culture))
+                return ReferenceEquals(CultureInfo.InvariantCulture, formatProvider);
+            else
+                return _iso8601 = false;
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)

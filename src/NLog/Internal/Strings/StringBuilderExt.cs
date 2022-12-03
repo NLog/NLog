@@ -148,7 +148,7 @@ namespace NLog.Internal
         /// <summary>
         /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 8601 Compliant Date Format (Round-Trip-Time)
         /// </summary>
-        public static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime)
+        public static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime, bool forceFraction = false)
         {
             if (dateTime.Kind == DateTimeKind.Unspecified)
                 dateTime = new DateTime(dateTime.Ticks, DateTimeKind.Utc);
@@ -166,16 +166,20 @@ namespace NLog.Internal
             builder.Append(':');
             builder.Append2DigitsZeroPadded(dateTime.Second);
             int fraction = (int)(dateTime.Ticks % 10000000);
-            if (fraction > 0)
+            if (fraction > 0 || forceFraction)
             {
                 builder.Append('.');
 
-                // Remove trailing zeros
                 int max_digit_count = 7;
-                while (fraction % 10 == 0)
+
+                if (!forceFraction)
                 {
-                    --max_digit_count;
-                    fraction /= 10;
+                    // Remove trailing zeros
+                    while (fraction % 10 == 0)
+                    {
+                        --max_digit_count;
+                        fraction /= 10;
+                    }
                 }
 
                 // Append the remaining fraction

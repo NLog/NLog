@@ -60,6 +60,20 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void Iso8601Test()
+        {
+            var dateLayoutRenderer = new DateLayoutRenderer();
+            dateLayoutRenderer.UniversalTime = true;
+            dateLayoutRenderer.Format = "o";
+            dateLayoutRenderer.Culture = CultureInfo.InvariantCulture;
+
+            var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            var result = dateLayoutRenderer.Render(logEvent);
+
+            Assert.Equal(logEvent.TimeStamp.ToUniversalTime().ToString(dateLayoutRenderer.Format, dateLayoutRenderer.Culture), result);
+        }
+
+        [Fact]
         public void TimeZoneTest()
         {
             var dateLayoutRenderer = new DateLayoutRenderer();
