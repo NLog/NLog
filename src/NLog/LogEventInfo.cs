@@ -655,13 +655,13 @@ namespace NLog
                 _messageFormatter = messageFormatter;
             }
 
-            if (NeedToPreformatMessage(_parameters))
+            if (hasCustomMessageFormatter || NeedToPreformatMessage(_parameters))
             {
                 CalcFormattedMessage();
             }
             else
             {
-                if (!hasCustomMessageFormatter && singleTargetMessageFormatter != null && _parameters?.Length > 0 && _message?.Length < 256)
+                if (singleTargetMessageFormatter != null && _parameters?.Length > 0 && _message?.Length < 256)
                 {
                     // Change MessageFormatter so it writes directly to StringBuilder without string-allocation
                     _messageFormatter = singleTargetMessageFormatter;
