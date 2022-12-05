@@ -126,15 +126,22 @@ namespace NLog.Config
         public void RegisterNamedType(string itemName, string typeName)
         {
             itemName = NormalizeName(itemName);
-            _items[itemName] = () => Type.GetType(typeName, false);
+
+            lock (_items)
+            {
+                _items[itemName] = () => Type.GetType(typeName, false);
+            }
         }
 
         /// <summary>
         /// Clears the contents of the factory.
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
-            _items.Clear();
+            lock (_items)
+            {
+                _items.Clear();
+            }
         }
 
         /// <inheritdoc/>
@@ -160,22 +167,26 @@ namespace NLog.Config
         {
             GetTypeDelegate typeLookup = () => itemDefinition;
             itemName = NormalizeName(itemName);
-            _items[itemNamePrefix + itemName] = typeLookup;
-            if (!string.IsNullOrEmpty(assemblyName))
+
+            lock (_items)
             {
-                _items[itemName + ", " + assemblyName] = typeLookup;
-                _items[itemDefinition.Name + ", " + assemblyName] = typeLookup;
-                _items[itemDefinition.ToString() + ", " + assemblyName] = typeLookup;
+                _items[itemNamePrefix + itemName] = typeLookup;
+
+                if (!string.IsNullOrEmpty(assemblyName))
+                {
+                    _items[itemName + ", " + assemblyName] = typeLookup;
+                    _items[itemDefinition.Name + ", " + assemblyName] = typeLookup;
+                    _items[itemDefinition.ToString() + ", " + assemblyName] = typeLookup;
+                }
             }
         }
 
         /// <inheritdoc/>
         public bool TryGetDefinition(string itemName, out Type result)
         {
-            GetTypeDelegate getTypeDelegate;
-
             itemName = NormalizeName(itemName);
-            if (!_items.TryGetValue(itemName, out getTypeDelegate))
+
+            if (!TryGetTypeDelegate(itemName, out var getTypeDelegate))
             {
                 if (_globalDefaultFactory != null && _globalDefaultFactory.TryGetDefinition(itemName, out result))
                 {
@@ -204,10 +215,17 @@ namespace NLog.Config
             }
         }
 
+        private bool TryGetTypeDelegate(string itemName, out GetTypeDelegate getTypeDelegate)
+        {
+            lock (_items)
+            {
+                return _items.TryGetValue(itemName, out getTypeDelegate);
+            }
+        }
+
         /// <inheritdoc/>
         public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
-            itemName = NormalizeName(itemName);
             if (!TryGetDefinition(itemName, out var itemType))
             {
                 result = null;
@@ -292,7 +310,7 @@ namespace NLog.Config
     /// </summary>
     internal sealed class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
     {
-        private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
+        private readonly Dictionary<string, FuncLayoutRenderer> _funcRenderers = new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
         private readonly LayoutRendererFactory _globalDefaultFactory;
 
         public LayoutRendererFactory(ConfigurationItemFactory parentFactory, LayoutRendererFactory globalDefaultFactory)
@@ -301,12 +319,15 @@ namespace NLog.Config
             _globalDefaultFactory = globalDefaultFactory;
         }
 
-        /// <summary>
-        /// Clear all func layouts
-        /// </summary>
-        public void ClearFuncLayouts()
+        /// <inheritdoc/>
+        public override void Clear()
         {
-            _funcRenderers?.Clear();
+            lock (_funcRenderers)
+            {
+                _funcRenderers.Clear();
+            }
+
+            base.Clear();
         }
 
         /// <summary>
@@ -317,10 +338,11 @@ namespace NLog.Config
         public void RegisterFuncLayout(string itemName, FuncLayoutRenderer renderer)
         {
             itemName = NormalizeName(itemName);
-            _funcRenderers = _funcRenderers ?? new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
 
-            //overwrite current if there is one
-            _funcRenderers[itemName] = renderer;
+            lock (_funcRenderers)
+            {
+                _funcRenderers[itemName] = renderer;
+            }
         }
 
         /// <summary>
@@ -334,20 +356,29 @@ namespace NLog.Config
             //first try func renderers, as they should have the possibility to overwrite a current one.
             FuncLayoutRenderer funcResult;
             itemName = NormalizeName(itemName);
-            if (_funcRenderers != null)
+
+            if (_funcRenderers.Count > 0)
             {
-                var successAsFunc = _funcRenderers.TryGetValue(itemName, out funcResult);
-                if (successAsFunc)
+                lock (_funcRenderers)
                 {
-                    result = funcResult;
-                    return true;
+                    if (_funcRenderers.TryGetValue(itemName, out funcResult))
+                    {
+                        result = funcResult;
+                        return true;
+                    }
                 }
             }
 
-            if (_globalDefaultFactory?._funcRenderers != null && _globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+            if (_globalDefaultFactory?._funcRenderers?.Count > 0)
             {
-                result = funcResult;
-                return true;
+                lock (_globalDefaultFactory._funcRenderers)
+                {
+                    if (_globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+                    {
+                        result = funcResult;
+                        return true;
+                    }
+                }
             }
 
             return base.TryCreateInstance(itemName, out result);
