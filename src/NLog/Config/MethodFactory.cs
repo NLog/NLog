@@ -149,9 +149,11 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            _nameToMethodInfo.Clear();
-            lock (_nameToLateBoundMethod)
+            lock (_nameToMethodInfo)
+            {
+                _nameToMethodInfo.Clear();
                 _nameToLateBoundMethod.Clear();
+            }
         }
 
         /// <summary>
@@ -173,18 +175,18 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterDefinition(string itemName, MethodInfo itemDefinition, string assemblyName, string itemNamePrefix)
         {
-            _nameToMethodInfo[itemName + itemNamePrefix] = itemDefinition;
-            if (!string.IsNullOrEmpty(assemblyName))
+            lock (_nameToMethodInfo)
             {
-                _nameToMethodInfo[itemName + ", " + assemblyName] = itemDefinition;
-            }
+                _nameToMethodInfo[itemName + itemNamePrefix] = itemDefinition;
+                if (!string.IsNullOrEmpty(assemblyName))
+                {
+                    _nameToMethodInfo[itemName + ", " + assemblyName] = itemDefinition;
+                }
 
-            lock (_nameToLateBoundMethod)
-            {
                 _nameToLateBoundMethod.Remove(itemName + itemNamePrefix);
                 if (!string.IsNullOrEmpty(assemblyName))
                 {
-                    _nameToMethodInfo.Remove(itemName + ", " + assemblyName);
+                    _nameToLateBoundMethod.Remove(itemName + ", " + assemblyName);
                 }
             }
         }
@@ -197,9 +199,11 @@ namespace NLog.Config
         /// <param name="lateBoundMethod">The precompiled method delegate.</param>
         internal void RegisterDefinition(string itemName, MethodInfo itemDefinition, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
-            _nameToMethodInfo[itemName] = itemDefinition;
             lock (_nameToLateBoundMethod)
+            {
+                _nameToMethodInfo[itemName] = itemDefinition;
                 _nameToLateBoundMethod[itemName] = lateBoundMethod;
+            }
         }
 
         /// <summary>
@@ -221,18 +225,22 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryCreateInstance(string itemName, out ReflectionHelpers.LateBoundMethod result)
         {
-            lock (_nameToLateBoundMethod)
+            MethodInfo methodInfo = null;
+
+            lock (_nameToMethodInfo)
             {
                 if (_nameToLateBoundMethod.TryGetValue(itemName, out result))
                 {
                     return true;
                 }
+
+                _nameToMethodInfo.TryGetValue(itemName, out methodInfo);
             }
 
-            if (_nameToMethodInfo.TryGetValue(itemName, out var methodInfo))
+            if (methodInfo != null)
             {
                 result = ReflectionHelpers.CreateLateBoundMethod(methodInfo);
-                lock (_nameToLateBoundMethod)
+                lock (_nameToMethodInfo)
                     _nameToLateBoundMethod[itemName] = result;
                 return true;
             }
@@ -278,9 +286,12 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
-            if (_nameToMethodInfo.TryGetValue(itemName, out result))
+            lock (_nameToMethodInfo)
             {
-                return true;
+                if (_nameToMethodInfo.TryGetValue(itemName, out result))
+                {
+                    return true;
+                }
             }
 
             return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
