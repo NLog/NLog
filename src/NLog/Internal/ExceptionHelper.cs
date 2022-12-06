@@ -150,6 +150,10 @@ namespace NLog.Internal
             {
                 return true;
             }
+            if (exception is ArgumentOutOfRangeException)
+            {
+                return true;
+            }
             if (exception is DivideByZeroException)
             {
                 return true;
