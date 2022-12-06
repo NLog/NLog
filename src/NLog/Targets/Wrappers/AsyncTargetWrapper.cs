@@ -358,12 +358,18 @@ namespace NLog.Targets.Wrappers
             try
             {
                 lockTaken = Monitor.TryEnter(_writeLockObject);
-                if (!lockTaken)
+                if (lockTaken)
+                {
+                    if (instant)
+                        StartInstantWriterTimer();
+                    else
+                        StartLazyWriterThread(false);
+                }
+                else
                 {
                     // If not able to take lock, then it means timer-worker-thread is already active,
                     // and timer-worker-thread will check RequestQueue after leaving writeLockObject
                     InternalLogger.Trace("{0}: Timer not scheduled, since already active", this);
-                    return;
                 }
             }
             finally
@@ -371,11 +377,6 @@ namespace NLog.Targets.Wrappers
                 if (lockTaken)
                     Monitor.Exit(_writeLockObject);
             }
-
-            if (instant)
-                StartInstantWriterTimer();
-            else
-                StartLazyWriterThread(false);
         }
 
         private bool StartLazyWriterThread(bool instant)
