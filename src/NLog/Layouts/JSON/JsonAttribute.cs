@@ -162,7 +162,7 @@ namespace NLog.Layouts
                 }
 
                 int orgLength = builder.Length;
-                Layout.Render(logEvent, builder);
+                Layout?.Render(logEvent, builder);
                 if (!IncludeEmptyValue && builder.Length <= orgLength)
                 {
                     return false;
