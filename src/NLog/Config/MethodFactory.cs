@@ -72,7 +72,7 @@ namespace NLog.Config
             {
                 try
                 {
-                    if (t.IsClass() && t.IsPublic())
+                    if (t.IsClass())
                     {
                         RegisterType(t, assemblyName, itemNamePrefix);
                     }
