@@ -74,6 +74,12 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Value inside the element
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout Layout { get => Value; set => Value = value; }
+
+        /// <summary>
         /// Gets or sets whether output should be encoded with Xml-string escaping, or be treated as valid xml-element-value
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
