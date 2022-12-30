@@ -4,6 +4,17 @@ Date format: (year/month/day)
 
 ## Change Log
 
+
+### Version 5.1.1 (2022/12/29)
+
+**Improvements**
+- [#5134](https://github.com/NLog/NLog/pull/5134) XmlLayout - Added Layout-option to XmlElement to match XmlAttribute (#5134) (@snakefoot)
+- [#5126](https://github.com/NLog/NLog/pull/5126) JsonLayout - Avoid NullReferenceException when JsonAttribute has no Layout (#5126) (@snakefoot)
+- [#5122](https://github.com/NLog/NLog/pull/5122) ConfigurationItemFactory - Handle concurrent registration of extensions (#5122) (@snakefoot)
+- [#5121](https://github.com/NLog/NLog/pull/5121) LogEventInfo with custom MessageFormatter now generates FormattedMessage upfront (#5121) (@snakefoot)
+- [#5118](https://github.com/NLog/NLog/pull/5118) AsyncTargetWrapper - Reduce overhead when scheduling instant background writer thread (#5118) (@snakefoot)
+- [#5115](https://github.com/NLog/NLog/pull/5115) ConfigurationItemFactory - Faster scan of NLog types with filter on IsPublic / IsClass (#5115) (@snakefoot)
+
 ### Version 5.1.0 (2022/11/27)
 
 **Improvements**
