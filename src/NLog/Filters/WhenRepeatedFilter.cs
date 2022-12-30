@@ -251,7 +251,7 @@ namespace NLog.Filters
                     targetBuilder.Length = MaxLength;
                 return new FilterInfoKey(targetBuilder, null);
             }
-            string value = Layout.Render(logEvent) ?? string.Empty;
+            string value = Layout.Render(logEvent);
             if (value.Length > MaxLength)
                 value = value.Substring(0, MaxLength);
             return new FilterInfoKey(null, value);
