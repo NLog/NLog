@@ -68,7 +68,6 @@ namespace NLog.Config
         {
             RuleName = ruleName;
             Filters = new List<Filter>();
-            ChildRules = new List<LoggingRule>();
         }
 
         /// <summary>
@@ -125,7 +124,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
-        public IList<LoggingRule> ChildRules { get; }
+        public IList<LoggingRule> ChildRules { get; } = new List<LoggingRule>();
 
         internal List<LoggingRule> GetChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
         internal Target[] GetTargetsThreadSafe() { lock (_targets) return _targets.Count == 0 ? NLog.Internal.ArrayHelper.Empty<Target>() : _targets.ToArray(); }

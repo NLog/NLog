@@ -80,7 +80,6 @@ namespace NLog.Config
         public LoggingConfiguration(LogFactory logFactory)
         {
             LogFactory = logFactory ?? LogManager.LogFactory;
-            LoggingRules = new List<LoggingRule>();
             _variables = new ConfigVariablesDictionary(this);
             DefaultCultureInfo = LogFactory._defaultCultureInfo;
         }
@@ -110,7 +109,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the collection of logging rules.
         /// </summary>
-        public IList<LoggingRule> LoggingRules { get; private set; }
+        public IList<LoggingRule> LoggingRules { get; } = new List<LoggingRule>();
 
         internal List<LoggingRule> GetLoggingRulesThreadSafe() { lock (LoggingRules) return LoggingRules.ToList(); }
         private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (LoggingRules) LoggingRules.Add(rule); }

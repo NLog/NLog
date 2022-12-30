@@ -192,7 +192,7 @@ namespace NLog.Layouts
                     return rawValue;
                 }
 
-                var stringValue = layout.Render(logEvent) ?? string.Empty;
+                var stringValue = layout.Render(logEvent);
                 if (string.IsNullOrEmpty(stringValue))
                 {
                     return GetTypedDefaultValue();
@@ -257,12 +257,12 @@ namespace NLog.Layouts
                 return string.Empty;
 
             if (_typedLayout is null)
-                return _defaultValue.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
+                return _defaultValue.Render(LogEventInfo.CreateNullEvent());
 
             if (_typedLayout.IsFixed)
                 return string.Empty;
 
-            var defaultStringValue = _defaultValue.Render(LogEventInfo.CreateNullEvent()) ?? string.Empty;
+            var defaultStringValue = _defaultValue.Render(LogEventInfo.CreateNullEvent());
             if (string.IsNullOrEmpty(defaultStringValue))
                 return string.Empty;
 
