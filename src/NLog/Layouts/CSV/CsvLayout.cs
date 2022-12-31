@@ -63,7 +63,6 @@ namespace NLog.Layouts
         /// </summary>
         public CsvLayout()
         {
-            Columns = new List<CsvColumn>();
             Layout = this;
             Header = new CsvHeaderLayout(this);
             Footer = null;
@@ -74,7 +73,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(CsvColumn), "column")]
-        public IList<CsvColumn> Columns { get; private set; }
+        public IList<CsvColumn> Columns { get; } = new List<CsvColumn>();
 
         /// <summary>
         /// Gets or sets a value indicating whether CVS should include header.

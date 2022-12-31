@@ -91,8 +91,6 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseTarget()
         {
-            InstallDdlCommands = new List<DatabaseCommandInfo>();
-            UninstallDdlCommands = new List<DatabaseCommandInfo>();
             DBProvider = "sqlserver";
             DBHost = ".";
 #if !NETSTANDARD
@@ -168,14 +166,14 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Installation Options' order='100' />
         [ArrayParameter(typeof(DatabaseCommandInfo), "install-command")]
-        public IList<DatabaseCommandInfo> InstallDdlCommands { get; private set; }
+        public IList<DatabaseCommandInfo> InstallDdlCommands { get; } = new List<DatabaseCommandInfo>();
 
         /// <summary>
         /// Gets the uninstallation DDL commands.
         /// </summary>
         /// <docgen category='Installation Options' order='100' />
         [ArrayParameter(typeof(DatabaseCommandInfo), "uninstall-command")]
-        public IList<DatabaseCommandInfo> UninstallDdlCommands { get; private set; }
+        public IList<DatabaseCommandInfo> UninstallDdlCommands { get; } = new List<DatabaseCommandInfo>();
 
         /// <summary>
         /// Gets or sets a value indicating whether to keep the 

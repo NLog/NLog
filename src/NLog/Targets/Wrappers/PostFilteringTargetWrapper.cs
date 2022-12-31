@@ -97,7 +97,6 @@ namespace NLog.Targets.Wrappers
         {
             Name = name;
             WrappedTarget = wrappedTarget;
-            Rules = new List<FilteringRule>();
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <docgen category='Filtering Rules' order='10' />
         [ArrayParameter(typeof(FilteringRule), "when")]
-        public IList<FilteringRule> Rules { get; private set; }
+        public IList<FilteringRule> Rules { get; } = new List<FilteringRule>();
 
         /// <inheritdoc/>
         protected override void Write(AsyncLogEventInfo logEvent)

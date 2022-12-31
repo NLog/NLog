@@ -93,8 +93,6 @@ namespace NLog.Targets
         /// </remarks>
         public ColoredConsoleTarget()
         {
-            WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
-            RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
 
@@ -221,14 +219,14 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
         [ArrayParameter(typeof(ConsoleRowHighlightingRule), "highlight-row")]
-        public IList<ConsoleRowHighlightingRule> RowHighlightingRules { get; private set; }
+        public IList<ConsoleRowHighlightingRule> RowHighlightingRules { get; } = new List<ConsoleRowHighlightingRule>();
 
         /// <summary>
         /// Gets the word highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='11' />
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
-        public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
+        public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; } = new List<ConsoleWordHighlightingRule>();
 
         /// <inheritdoc/>
         protected override void InitializeTarget()

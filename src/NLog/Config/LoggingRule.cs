@@ -67,7 +67,6 @@ namespace NLog.Config
         public LoggingRule(string ruleName)
         {
             RuleName = ruleName;
-            Filters = new List<Filter>();
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of filters to be checked before writing to targets.
         /// </summary>
-        public IList<Filter> Filters { get; }
+        public IList<Filter> Filters { get; } = new List<Filter>();
 
         /// <summary>
         /// Gets or sets a value indicating whether to quit processing any following rules when this one matches.

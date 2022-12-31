@@ -45,17 +45,17 @@ namespace NLog.Targets
         /// <summary>
         /// The full name of the archive file.
         /// </summary>
-        public string FileName { get; private set; }
+        public string FileName { get; }
 
         /// <summary>
         /// The parsed date contained in the file name.
         /// </summary>
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; }
 
         /// <summary>
         /// The parsed sequence number contained in the file name.
         /// </summary>
-        public int Sequence { get; private set; }
+        public int Sequence { get; }
 
         /// <summary>
         /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.

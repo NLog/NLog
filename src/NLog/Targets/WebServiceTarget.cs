@@ -99,8 +99,6 @@ namespace NLog.Targets
             Encoding = new UTF8Encoding(writeBOM);
             IncludeBOM = writeBOM;
 
-            Headers = new List<MethodCallParameter>();
-
 #if NETSTANDARD1_3 || NETSTANDARD1_5
             // NetCore1 throws PlatformNotSupportedException on WebRequest.GetSystemWebProxy, when using DefaultWebProxy
             // Net5 (or newer) will turn off Http-connection-pooling if not using DefaultWebProxy
@@ -223,7 +221,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         [ArrayParameter(typeof(MethodCallParameter), "header")]
-        public IList<MethodCallParameter> Headers { get; private set; }
+        public IList<MethodCallParameter> Headers { get; } = new List<MethodCallParameter>();
 
         /// <summary>
         /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
@@ -574,7 +572,7 @@ namespace NLog.Targets
             protected string ContentType => _contentType ?? (_contentType = GetContentType(Target));
             private string _contentType;
 
-            protected WebServiceTarget Target { get; private set; }
+            protected WebServiceTarget Target { get; }
 
             protected virtual string GetContentType(WebServiceTarget target)
             {
