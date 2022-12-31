@@ -43,14 +43,6 @@ namespace NLog.Targets
     public class ConsoleRowHighlightingRule
     {
         /// <summary>
-        /// Initializes static members of the ConsoleRowHighlightingRule class.
-        /// </summary>
-        static ConsoleRowHighlightingRule()
-        {
-            Default = new ConsoleRowHighlightingRule(null, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange);
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleRowHighlightingRule" /> class.
         /// </summary>
         public ConsoleRowHighlightingRule()
@@ -74,7 +66,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the default highlighting rule. Doesn't change the color.
         /// </summary>
-        public static ConsoleRowHighlightingRule Default { get; private set; }
+        public static ConsoleRowHighlightingRule Default { get; } = new ConsoleRowHighlightingRule(null, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange);
 
         /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified foreground and background color.

@@ -59,8 +59,6 @@ namespace NLog.Layouts
         {
             ElementNameInternal = elementName;
             LayoutWrapper.Inner = elementValue;
-            Attributes = new List<XmlAttribute>();
-            Elements = new List<XmlElement>();
             ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
@@ -88,14 +86,14 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(XmlElement), "element")]
-        public IList<XmlElement> Elements { get; private set; }
+        public IList<XmlElement> Elements { get; } = new List<XmlElement>();
 
         /// <summary>
         /// Gets the array of 'attributes' configurations for the element
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(XmlAttribute), "attribute")]
-        public IList<XmlAttribute> Attributes { get; private set; }
+        public IList<XmlAttribute> Attributes { get; } = new List<XmlAttribute>();
 
         /// <summary>
         /// Gets or sets whether a ElementValue with empty value should be included in the output

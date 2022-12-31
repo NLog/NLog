@@ -45,14 +45,6 @@ namespace NLog.Targets
     public class DatabaseCommandInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DatabaseCommandInfo"/> class.
-        /// </summary>
-        public DatabaseCommandInfo()
-        {
-            Parameters = new List<DatabaseParameterInfo>();
-        }
-
-        /// <summary>
         /// Gets or sets the type of the command.
         /// </summary>
         /// <value>The type of the command.</value>
@@ -85,6 +77,6 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Command Options' order='10' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
-        public IList<DatabaseParameterInfo> Parameters { get; private set; }
+        public IList<DatabaseParameterInfo> Parameters { get; } = new List<DatabaseParameterInfo>();
     }
 }

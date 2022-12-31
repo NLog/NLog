@@ -56,7 +56,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the collection of targets managed by this compound target.
         /// </summary>
-        public IList<Target> Targets { get; private set; }
+        public IList<Target> Targets { get; }
 
         /// <inheritdoc/>
         public override string ToString()

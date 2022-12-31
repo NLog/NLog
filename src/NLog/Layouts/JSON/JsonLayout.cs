@@ -95,7 +95,6 @@ namespace NLog.Layouts
         /// </summary>
         public JsonLayout()
         {
-            Attributes = new List<JsonAttribute>();
             ExcludeProperties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
@@ -104,7 +103,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(JsonAttribute), "attribute")]
-        public IList<JsonAttribute> Attributes { get; private set; }
+        public IList<JsonAttribute> Attributes { get; } = new List<JsonAttribute>();
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json

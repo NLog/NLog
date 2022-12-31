@@ -220,21 +220,21 @@ namespace NLog.Targets.FileArchiveModes
             /// File name which is used as template for matching and replacements. 
             /// It is expected to contain a pattern to match.
             /// </summary>
-            public string Template { get; private set; }
+            public string Template { get; }
 
             /// <summary>
             /// The beginning position of the <see cref="FileNameTemplate.PatternStartCharacters"/> 
             /// within the <see cref="FileNameTemplate.Template"/>. -1 is returned 
             /// when no pattern can be found.
             /// </summary>
-            public int BeginAt { get; private set; }
+            public int BeginAt { get; }
 
             /// <summary>
             /// The ending position of the <see cref="FileNameTemplate.PatternEndCharacters"/> 
             /// within the <see cref="FileNameTemplate.Template"/>. -1 is returned 
             /// when no pattern can be found.
             /// </summary>
-            public int EndAt { get; private set; }
+            public int EndAt { get; }
 
             private bool FoundPattern => BeginAt != -1 && EndAt != -1;
 
@@ -242,8 +242,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 Template = template;
                 BeginAt = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                if (BeginAt != -1)
-                    EndAt = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+                EndAt = BeginAt != -1 ? (template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length) : -1;
             }
 
             /// <summary>
