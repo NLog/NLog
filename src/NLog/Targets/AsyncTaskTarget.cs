@@ -783,7 +783,7 @@ namespace NLog.Targets
 
                     if (previousTask != null)
                     {
-                        if (!WaitTaskIsCompleted(previousTask, TimeSpan.FromMilliseconds(150)))
+                        if (!WaitTaskIsCompleted(previousTask, TimeSpan.FromSeconds(TaskTimeoutSeconds / 10.0)))
                         {
                             InternalLogger.Debug("{0}: WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this, previousTask.Status);
                         }
