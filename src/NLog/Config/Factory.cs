@@ -49,7 +49,7 @@ namespace NLog.Config
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, GetTypeDelegate> _items;
         private readonly ConfigurationItemFactory _parentFactory;
         private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
 
@@ -57,6 +57,7 @@ namespace NLog.Config
         {
             _parentFactory = parentFactory;
             _globalDefaultFactory = globalDefaultFactory;
+            _items = new Dictionary<string, GetTypeDelegate>(globalDefaultFactory is null ? 16 : 0, StringComparer.OrdinalIgnoreCase);
         }
 
         private delegate Type GetTypeDelegate();
@@ -69,19 +70,22 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The prefix.</param>
         public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
         {
-            foreach (Type t in types)
+            lock (_items)
             {
-                try
+                foreach (Type t in types)
                 {
-                    RegisterType(t, assemblyName, itemNamePrefix);
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
-
-                    if (exception.MustBeRethrown())
+                    try
                     {
-                        throw;
+                        RegisterTypeNoLock(t, assemblyName, itemNamePrefix);
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
+
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
                     }
                 }
             }
@@ -105,6 +109,14 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string assemblyName, string itemNamePrefix)
         {
+            lock (_items)
+            {
+                RegisterTypeNoLock(type, assemblyName, itemNamePrefix);
+            }
+        }
+
+        private void RegisterTypeNoLock(Type type, string assemblyName, string itemNamePrefix)
+        {
             if (typeof(TBaseType).IsAssignableFrom(type))
             {
                 IEnumerable<TAttributeType> attributes = type.GetCustomAttributes<TAttributeType>(false);
@@ -112,7 +124,7 @@ namespace NLog.Config
                 {
                     foreach (var attr in attributes)
                     {
-                        RegisterDefinition(attr.Name, type, assemblyName, itemNamePrefix);
+                        RegisterDefinitionNoLock(attr.Name, type, assemblyName, itemNamePrefix);
                     }
                 }
             }
@@ -127,9 +139,18 @@ namespace NLog.Config
         {
             itemName = NormalizeName(itemName);
 
+            Type itemType = null;
+
+            GetTypeDelegate typeLookup = () =>
+            {
+                if (itemType is null)
+                    itemType = Type.GetType(typeName, false);
+                return itemType;
+            };
+
             lock (_items)
             {
-                _items[itemName] = () => Type.GetType(typeName, false);
+                _items[itemName] = typeLookup;
             }
         }
 
@@ -153,7 +174,10 @@ namespace NLog.Config
             if (!typeof(TBaseType).IsAssignableFrom(itemDefinition))
                 throw new ArgumentException($"Not of type NLog {typeof(TBaseType).Name}", nameof(itemDefinition));
 
-            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+            lock (_items)
+            {
+                RegisterDefinitionNoLock(itemName, itemDefinition, string.Empty, string.Empty);
+            }
         }
 
         /// <summary>
@@ -163,7 +187,7 @@ namespace NLog.Config
         /// <param name="itemDefinition">The type of the item.</param>
         /// <param name="assemblyName">The assembly name for the types.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        private void RegisterDefinition(string itemName, Type itemDefinition, string assemblyName, string itemNamePrefix)
+        private void RegisterDefinitionNoLock(string itemName, Type itemDefinition, string assemblyName, string itemNamePrefix)
         {
             GetTypeDelegate typeLookup = () => itemDefinition;
             itemName = NormalizeName(itemName);
