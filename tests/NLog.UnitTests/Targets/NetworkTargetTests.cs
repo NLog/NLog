@@ -459,7 +459,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("2: send 0 5") != -1);
             Assert.True(result.IndexOf("2: close") != -1);
 
-            Assert.Equal(1, droppedLogs);
+            Assert.Equal(2, droppedLogs);
         }
 
         [Fact]
@@ -477,6 +477,21 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.KeepConnection = true;
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
+
+            int droppedLogsDueToSendFailure = 0;
+            int droppedLogsOther = 0;
+            target.LogEventDropped += (sender, args) =>
+            {
+                if (args.Reason == NetworkLogEventDroppedReason.NetworkError)
+                {
+                    droppedLogsDueToSendFailure++;
+                }
+                else
+                {
+                    droppedLogsOther++;
+                }
+            };
+
             target.Initialize(null);
 
             var exceptions = new List<Exception>();
@@ -526,6 +541,9 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("4: send 0 7") != -1);
             Assert.True(result.IndexOf("4: send 0 5") != -1);
             Assert.True(result.IndexOf("4: close") != -1);
+
+            Assert.Equal(3, droppedLogsDueToSendFailure);
+            Assert.Equal(0, droppedLogsOther);
         }
 
         [Fact]
