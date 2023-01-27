@@ -49,6 +49,10 @@ namespace NLog.Targets
         /// <summary>
         /// Discarded LogEvent because attempted to open more than <see cref="NetworkTarget.MaxConnections"/> connections
         /// </summary>
-        MaxConnectionsOverflow
+        MaxConnectionsOverflow,
+        /// <summary>
+        /// Discarded LogEvent because of network communication error
+        /// </summary>
+        NetworkError
     }
 }

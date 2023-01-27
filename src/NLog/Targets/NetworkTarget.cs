@@ -337,6 +337,7 @@ namespace NLog.Targets
             catch (Exception ex)
             {
                 InternalLogger.Error(ex, "{0}: Failed to create sender to address: '{1}'", this, address);
+                OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
                 throw;
             }
 
@@ -348,6 +349,7 @@ namespace NLog.Targets
                     if (ex != null)
                     {
                         InternalLogger.Error(ex, "{0}: Error when sending.", this);
+                        OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
                         ReleaseCachedConnection(senderNode);
                     }
 
@@ -400,6 +402,7 @@ namespace NLog.Targets
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "{0}: Failed to create sender to address: '{1}'", this, address);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
                     throw;
                 }
 
@@ -423,6 +426,7 @@ namespace NLog.Targets
                     if (ex != null)
                     {
                         InternalLogger.Error(ex, "{0}: Error when sending.", this);
+                        OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
                     }
 
                     sender.Close(ex2 => { });

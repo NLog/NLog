@@ -40,20 +40,17 @@ namespace NLog.Targets
     /// </summary>
     public class NetworkLogEventDroppedEventArgs : EventArgs
     {
-        /// <summary>
-        /// Provides a value to use with events that do not have event data.
-        /// </summary>
+        /// <inheritdoc cref="NetworkLogEventDroppedReason.MaxMessageSizeOverflow"/>
         internal static readonly NetworkLogEventDroppedEventArgs MaxMessageSizeOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.MaxMessageSizeOverflow);
 
-        /// <summary>
-        /// Provides a value to use with events that do not have event data.
-        /// </summary>
+        /// <inheritdoc cref="NetworkLogEventDroppedReason.MaxConnectionsOverflow"/>
         internal static readonly NetworkLogEventDroppedEventArgs MaxConnectionsOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.MaxConnectionsOverflow);
 
-        /// <summary>
-        /// Provides a value to use with events that do not have event data.
-        /// </summary>
+        /// <inheritdoc cref="NetworkLogEventDroppedReason.MaxQueueOverflow"/>
         internal static readonly NetworkLogEventDroppedEventArgs MaxQueueOverflow = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.MaxQueueOverflow);
+
+        /// <inheritdoc cref="NetworkLogEventDroppedReason.NetworkError"/>
+        internal static readonly NetworkLogEventDroppedEventArgs NetworkErrorDetected = new NetworkLogEventDroppedEventArgs(NetworkLogEventDroppedReason.NetworkError);
 
         /// <summary>
         /// Creates new instance of NetworkTargetLogEventDroppedEventArgs
