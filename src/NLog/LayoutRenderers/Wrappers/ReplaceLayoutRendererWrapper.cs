@@ -60,6 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The text search for.</value>
         /// <docgen category='Layout Options' order='10' />
+        [RequiredParameter]
         public string SearchFor { get; set; }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>The replacement string.</value>
         /// <docgen category='Layout Options' order='10' />
-        public string ReplaceWith { get; set; }
+        public string ReplaceWith { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the group name to replace when using regular expressions.
