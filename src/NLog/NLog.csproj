@@ -29,12 +29,15 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-- XmlLayout - Added Layout-option to XmlElement to match XmlAttribute (#5134) (@snakefoot)
-- JsonLayout - Avoid NullReferenceException when JsonAttribute has no Layout (#5126) (@snakefoot)
-- ConfigurationItemFactory - Handle concurrent registration of extensions (#5122) (@snakefoot)
-- LogEventInfo with custom MessageFormatter now generates FormattedMessage upfront (#5121) (@snakefoot)
-- AsyncTargetWrapper - Reduce overhead when scheduling instant background writer thread (#5118) (@snakefoot)
-- ConfigurationItemFactory - Faster scan of NLog types with filter on IsPublic / IsClass (#5115) (@snakefoot)
+ChangeLog:
+
+- FileTarget - Archive Dynamic FileName ordering ignore case (#5157) (@snakefoot)
+- EventLogTarget - EventId with LogEvent Property Lookup by default (#5150) (@snakefoot)
+- ReplaceLayoutRendererWrapper - SearchFor is required, and ReplaceWith optional (#5148) (@snakefoot)
+- SpecialFolderLayoutRenderer - Fallback for Windows Nano (#5146) (@snakefoot)
+- NetworkTarget emit LogEventDropped event on NetworkError (#5144) (@ShadowDancer)
+- AsyncTaskTarget - Dynamic wait time after TaskTimeoutSeconds has expired (#5141) (@snakefoot)
+- ConfigurationItemFactory - Handle concurrent registration with single lock (#5140) (@snakefoot)
 
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 
