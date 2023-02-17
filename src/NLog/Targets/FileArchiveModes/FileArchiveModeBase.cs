@@ -135,7 +135,7 @@ namespace NLog.Targets.FileArchiveModes
             if (x.Sequence.CompareTo(y.Sequence) != 0)
                 return x.Sequence.CompareTo(y.Sequence);
 
-            return string.CompareOrdinal(x.FileName, y.FileName);
+            return StringComparer.OrdinalIgnoreCase.Compare(x.FileName, y.FileName);
         }
 
         protected virtual FileNameTemplate GenerateFileNameTemplate(string archiveFilePath)
