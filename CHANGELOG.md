@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### Version 5.1.2 (2023/02/20)
+### Version 5.1.2 (2023/02/17)
 
 **Improvements**
 - [#5157](https://github.com/NLog/NLog/pull/5157) FileTarget - Archive Dynamic FileName ordering ignore case (#5157) (@snakefoot)
