@@ -4,6 +4,16 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.1.2 (2023/02/17)
+
+**Improvements**
+- [#5157](https://github.com/NLog/NLog/pull/5157) FileTarget - Archive Dynamic FileName ordering ignore case (#5157) (@snakefoot)
+- [#5150](https://github.com/NLog/NLog/pull/5150) EventLogTarget - EventId with LogEvent Property Lookup by default (#5150) (@snakefoot)
+- [#5148](https://github.com/NLog/NLog/pull/5148) ReplaceLayoutRendererWrapper - SearchFor is required, and ReplaceWith optional (#5148) (@snakefoot)
+- [#5146](https://github.com/NLog/NLog/pull/5146) SpecialFolderLayoutRenderer - Fallback for Windows Nano (#5146) (@snakefoot)
+- [#5144](https://github.com/NLog/NLog/pull/5144) NetworkTarget emit LogEventDropped event on NetworkError (#5144) (@ShadowDancer)
+- [#5141](https://github.com/NLog/NLog/pull/5141) AsyncTaskTarget - Dynamic wait time after TaskTimeoutSeconds has expired (#5141) (@snakefoot)
+- [#5140](https://github.com/NLog/NLog/pull/5140) ConfigurationItemFactory - Handle concurrent registration with single lock (#5140) (@snakefoot)
 
 ### Version 5.1.1 (2022/12/29)
 
