@@ -421,19 +421,45 @@ namespace NLog.Internal
                 case TypeCode.Single:
                     {
                         float floatValue = value.ToSingle(CultureInfo.InvariantCulture);
-                        AppendFloatInvariant(sb, floatValue);
+#if NETSTANDARD
+                        if (!float.IsNaN(floatValue) && !float.IsInfinity(floatValue) && value is IFormattable formattable)
+                        {
+                            AppendDecimalInvariant(sb, formattable, "{0:R}");
+                        }
+                        else
+#endif
+                        {
+                            AppendFloatInvariant(sb, floatValue);
+                        }
                     }
                     break;
                 case TypeCode.Double:
                     {
                         double doubleValue = value.ToDouble(CultureInfo.InvariantCulture);
-                        AppendDoubleInvariant(sb, doubleValue);
+#if NETSTANDARD
+                        if (!double.IsNaN(doubleValue) && !double.IsInfinity(doubleValue) && value is IFormattable formattable)
+                        {
+                            AppendDecimalInvariant(sb, formattable, "{0:R}");
+                        }
+                        else
+#endif
+                        {
+                            AppendDoubleInvariant(sb, doubleValue);
+                        }
                     }
                     break;
                 case TypeCode.Decimal:
                     {
-                        decimal decimalValue = value.ToDecimal(CultureInfo.InvariantCulture);
-                        AppendDecimalInvariant(sb, decimalValue);
+#if NETSTANDARD
+                        if (value is IFormattable formattable)
+                        {
+                            AppendDecimalInvariant(sb, formattable, "{0}");
+                        }
+                        else
+#endif
+                        {
+                            AppendDecimalInvariant(sb, value.ToDecimal(CultureInfo.InvariantCulture));
+                        }
                     }
                     break;
                 default:
@@ -441,6 +467,21 @@ namespace NLog.Internal
                     break;
             }
         }
+
+#if NETSTANDARD
+        private static void AppendDecimalInvariant(StringBuilder sb, IFormattable formattable, string format)
+        {
+            int orgLength = sb.Length;
+            sb.AppendFormat(CultureInfo.InvariantCulture, format, formattable); // Support ISpanFormattable
+            for (int i = sb.Length - 1; i > orgLength; --i)
+            {
+                if (!char.IsDigit(sb[i]))
+                    return;
+            }
+            sb.Append('.');
+            sb.Append('0');
+        }
+#endif
 
         private static void AppendDecimalInvariant(StringBuilder sb, decimal decimalValue)
         {
