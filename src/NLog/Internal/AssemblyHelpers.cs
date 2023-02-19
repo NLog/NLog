@@ -50,6 +50,7 @@ namespace NLog.Internal
         /// <param name="assemblyFileName">file or path, including .dll</param>
         /// <param name="baseDirectory">basepath, optional</param>
         /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode")]
         public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
         {
             string fullFileName = baseDirectory is null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);

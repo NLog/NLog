@@ -483,6 +483,7 @@ namespace NLog.Internal
             return null;
         }
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode")]
         internal static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
             try

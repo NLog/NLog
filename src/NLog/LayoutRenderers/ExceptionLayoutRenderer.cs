@@ -363,7 +363,8 @@ namespace NLog.LayoutRenderers
         /// Appends the method name from Exception's stack trace to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose method name should be appended.</param>        
+        /// <param name="ex">The Exception whose method name should be appended.</param>
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode")]
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5

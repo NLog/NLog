@@ -53,6 +53,7 @@ namespace NLog.Internal
         /// <param name="assembly">Assembly to scan.</param>
         /// <returns>Usable types from the given assembly.</returns>
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode")]
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
             try

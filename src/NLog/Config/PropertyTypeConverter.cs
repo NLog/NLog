@@ -148,13 +148,9 @@ namespace NLog.Config
                 if (typeCode == TypeCode.Empty)
                     return null;
             }
-            else
+            else if (TryConvertToType(propertyValue, propertyType, out var convertedValue))
             {
-                var logConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
-                if (logConverter != null && logConverter.CanConvertTo(propertyType))
-                {
-                    return logConverter.ConvertTo(propertyValue, propertyType);
-                }
+                return convertedValue;
             }
 
             if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
@@ -163,6 +159,20 @@ namespace NLog.Config
             }
 
             return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
+        }
+
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode")]
+        private static bool TryConvertToType(object propertyValue, Type propertyType, out object convertedValue)
+        {
+            var typeConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
+            if (typeConverter != null && typeConverter.CanConvertTo(propertyType))
+            {
+                convertedValue = typeConverter.ConvertTo(propertyValue, propertyType);
+                return true;
+            }
+
+            convertedValue = null;
+            return false;
         }
 
         private static object ConvertGuid(string format, string propertyString)

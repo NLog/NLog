@@ -59,6 +59,8 @@ For all config options and platform support, check https://nlog-project.org/conf
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -103,6 +105,7 @@ For all config options and platform support, check https://nlog-project.org/conf
   </ItemGroup>
 
   <ItemGroup>
+    <TrimmerRootDescriptor Include="ILLink.Descriptors.xml" />
     <EmbeddedResource Include="ILLink.Descriptors.xml">
       <LogicalName>ILLink.Descriptors.xml</LogicalName>
     </EmbeddedResource>
