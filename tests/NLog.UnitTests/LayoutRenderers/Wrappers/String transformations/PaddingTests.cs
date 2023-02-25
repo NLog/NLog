@@ -44,28 +44,46 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             SimpleLayout l;
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            var le = LogEventInfo.Create(LogLevel.Info, "", "VeryBigMessage");
 
-            l = @"${message:padding=10:alignmentOnTruncation=left}";
-            Assert.Equal("   message", l.Render(le));
+            l = @"${message:padding=16:alignmentOnTruncation=left}";
+            Assert.Equal("  VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=9:alignmentOnTruncation=left}";
-            Assert.Equal("  message", l.Render(le));
+            l = @"${message:padding=15:alignmentOnTruncation=left}";
+            Assert.Equal(" VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=8:alignmentOnTruncation=left}";
-            Assert.Equal(" message", l.Render(le));
+            l = @"${message:padding=14:alignmentOnTruncation=left}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=7:alignmentOnTruncation=left}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=13:alignmentOnTruncation=left}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=6:alignmentOnTruncation=left}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=13:alignmentOnTruncation=left:fixedLength=true}";
+            Assert.Equal("VeryBigMessag", l.Render(le));
 
-            l = @"${message:padding=6:fixedLength=true:alignmentOnTruncation=left}";
-            Assert.Equal("messag", l.Render(le));
+            l = @"${level:padding=6:alignmentOnTruncation=left}";
+            Assert.Equal("  Info", l.Render(le));
 
-            l = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=left}";
-            Assert.Equal("messa", l.Render(le));
+            l = @"${level:padding=5:alignmentOnTruncation=left}";
+            Assert.Equal(" Info", l.Render(le));
+
+            l = @"${level:padding=4:alignmentOnTruncation=left}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=3:alignmentOnTruncation=left}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=2:alignmentOnTruncation=left}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=2:fixedLength=true:alignmentOnTruncation=left}";
+            Assert.Equal("In", l.Render(le));
+
+            l = @"${level:padding=1:fixedLength=true:alignmentOnTruncation=left}";
+            Assert.Equal("I", l.Render(le));
+
+            l = @"${logger:padding=5:alignmentOnTruncation=left}";
+            Assert.Equal("     ", l.Render(le));
         }
 
         [Fact]
@@ -73,28 +91,43 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             SimpleLayout l;
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            var le = LogEventInfo.Create(LogLevel.Info, "", "VeryBigMessage");
 
-            l = @"${message:padding=10:alignmentOnTruncation=right}";
-            Assert.Equal("   message", l.Render(le));
+            l = @"${message:padding=16:alignmentOnTruncation=right}";
+            Assert.Equal("  VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=9:alignmentOnTruncation=right}";
-            Assert.Equal("  message", l.Render(le));
+            l = @"${message:padding=15:alignmentOnTruncation=right}";
+            Assert.Equal(" VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=8:alignmentOnTruncation=right}";
-            Assert.Equal(" message", l.Render(le));
+            l = @"${message:padding=14:alignmentOnTruncation=right}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=7:alignmentOnTruncation=right}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=13:alignmentOnTruncation=right}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=6:alignmentOnTruncation=right}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=13:alignmentOnTruncation=right:fixedLength=true}";
+            Assert.Equal("eryBigMessage", l.Render(le));
 
-            l = @"${message:padding=6:fixedLength=true:alignmentOnTruncation=right}";
-            Assert.Equal("essage", l.Render(le));
+            l = @"${level:padding=6:alignmentOnTruncation=right}";
+            Assert.Equal("  Info", l.Render(le));
 
-            l = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=right}";
-            Assert.Equal("ssage", l.Render(le));
+            l = @"${level:padding=5:alignmentOnTruncation=right}";
+            Assert.Equal(" Info", l.Render(le));
+
+            l = @"${level:padding=4:alignmentOnTruncation=right}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=3:alignmentOnTruncation=right}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=2:fixedLength=true:alignmentOnTruncation=right}";
+            Assert.Equal("fo", l.Render(le));
+
+            l = @"${level:padding=1:fixedLength=true:alignmentOnTruncation=right}";
+            Assert.Equal("o", l.Render(le));
+
+            l = @"${logger:padding=5:alignmentOnTruncation=right}";
+            Assert.Equal("     ", l.Render(le));
         }
 
         [Fact]
@@ -102,28 +135,46 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             SimpleLayout l;
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            var le = LogEventInfo.Create(LogLevel.Info, "", "VeryBigMessage");
 
-            l = @"${message:padding=-10:alignmentOnTruncation=left}";
-            Assert.Equal("message   ", l.Render(le));
+            l = @"${message:padding=-16:alignmentOnTruncation=left}";
+            Assert.Equal("VeryBigMessage  ", l.Render(le));
 
-            l = @"${message:padding=-9:alignmentOnTruncation=left}";
-            Assert.Equal("message  ", l.Render(le));
+            l = @"${message:padding=-15:alignmentOnTruncation=left}";
+            Assert.Equal("VeryBigMessage ", l.Render(le));
 
-            l = @"${message:padding=-8:alignmentOnTruncation=left}";
-            Assert.Equal("message ", l.Render(le));
+            l = @"${message:padding=-14:alignmentOnTruncation=left}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=-7:alignmentOnTruncation=left}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=-13:alignmentOnTruncation=left}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=-6:alignmentOnTruncation=left}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=-13:alignmentOnTruncation=left:fixedLength=true}";
+            Assert.Equal("VeryBigMessag", l.Render(le));
 
-            l = @"${message:padding=-6:fixedLength=true:alignmentOnTruncation=left}";
-            Assert.Equal("messag", l.Render(le));
+            l = @"${level:padding=-6:alignmentOnTruncation=left}";
+            Assert.Equal("Info  ", l.Render(le));
 
-            l = @"${message:padding=-5:fixedLength=true:alignmentOnTruncation=left}";
-            Assert.Equal("messa", l.Render(le));
+            l = @"${level:padding=-5:alignmentOnTruncation=left}";
+            Assert.Equal("Info ", l.Render(le));
+
+            l = @"${level:padding=-4:alignmentOnTruncation=left}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=-3:alignmentOnTruncation=left}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=-2:alignmentOnTruncation=left}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=-2:fixedLength=true:alignmentOnTruncation=left}";
+            Assert.Equal("In", l.Render(le));
+
+            l = @"${level:padding=-1:fixedLength=true:alignmentOnTruncation=left}";
+            Assert.Equal("I", l.Render(le));
+
+            l = @"${logger:padding=-5:alignmentOnTruncation=left}";
+            Assert.Equal("     ", l.Render(le));
         }
 
         [Fact]
@@ -131,28 +182,46 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             SimpleLayout l;
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            var le = LogEventInfo.Create(LogLevel.Info, "", "VeryBigMessage");
 
-            l = @"${message:padding=-10:alignmentOnTruncation=right}";
-            Assert.Equal("message   ", l.Render(le));
+            l = @"${message:padding=-16:alignmentOnTruncation=right}";
+            Assert.Equal("VeryBigMessage  ", l.Render(le));
 
-            l = @"${message:padding=-9:alignmentOnTruncation=right}";
-            Assert.Equal("message  ", l.Render(le));
+            l = @"${message:padding=-15:alignmentOnTruncation=right}";
+            Assert.Equal("VeryBigMessage ", l.Render(le));
 
-            l = @"${message:padding=-8:alignmentOnTruncation=right}";
-            Assert.Equal("message ", l.Render(le));
+            l = @"${message:padding=-14:alignmentOnTruncation=right}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=-7:alignmentOnTruncation=right}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=-13:alignmentOnTruncation=right}";
+            Assert.Equal("VeryBigMessage", l.Render(le));
 
-            l = @"${message:padding=-6:alignmentOnTruncation=right}";
-            Assert.Equal("message", l.Render(le));
+            l = @"${message:padding=-13:alignmentOnTruncation=right:fixedLength=true}";
+            Assert.Equal("eryBigMessage", l.Render(le));
 
-            l = @"${message:padding=-6:fixedLength=true:alignmentOnTruncation=right}";
-            Assert.Equal("essage", l.Render(le));
+            l = @"${level:padding=-6:alignmentOnTruncation=right}";
+            Assert.Equal("Info  ", l.Render(le));
 
-            l = @"${message:padding=-5:fixedLength=true:alignmentOnTruncation=right}";
-            Assert.Equal("ssage", l.Render(le));
+            l = @"${level:padding=-5:alignmentOnTruncation=right}";
+            Assert.Equal("Info ", l.Render(le));
+
+            l = @"${level:padding=-4:alignmentOnTruncation=right}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=-3:alignmentOnTruncation=right}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=-2:alignmentOnTruncation=right}";
+            Assert.Equal("Info", l.Render(le));
+
+            l = @"${level:padding=-2:fixedLength=true:alignmentOnTruncation=right}";
+            Assert.Equal("fo", l.Render(le));
+
+            l = @"${level:padding=-1:fixedLength=true:alignmentOnTruncation=right}";
+            Assert.Equal("o", l.Render(le));
+
+            l = @"${logger:padding=-5:alignmentOnTruncation=right}";
+            Assert.Equal("     ", l.Render(le));
         }
 
         [Fact]
@@ -160,7 +229,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             SimpleLayout defaultLayout, leftLayout, rightLayout;
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            var le = LogEventInfo.Create(LogLevel.Info, "", "VeryBigMessage");
 
             defaultLayout = @"${message:padding=5:fixedLength=true}";
             leftLayout = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=left}";
