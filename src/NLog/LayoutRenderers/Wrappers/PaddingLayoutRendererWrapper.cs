@@ -88,32 +88,13 @@ namespace NLog.LayoutRenderers.Wrappers
             Inner.Render(logEvent, builder);
             if (Padding != 0)
             {
-                int deltaLength = builder.Length - orgLength;
-
                 int absolutePadding = Padding;
                 if (absolutePadding < 0)
                 {
                     absolutePadding = -absolutePadding;
                 }
 
-                if (Padding > 0)
-                {
-                    // Pad Left
-                    for (int i = deltaLength; i < absolutePadding; ++i)
-                    {
-                        builder.Insert(orgLength, PadCharacter);
-                        ++deltaLength;
-                    }
-                }
-                else
-                {
-                    // Pad Right
-                    for (int i = deltaLength; i < absolutePadding; ++i)
-                    {
-                        builder.Append(PadCharacter);
-                        ++deltaLength;
-                    }
-                }
+                var deltaLength = AppendPadding(builder, orgLength, absolutePadding);
 
                 if (FixedLength && deltaLength > absolutePadding)
                 {
@@ -128,6 +109,51 @@ namespace NLog.LayoutRenderers.Wrappers
                     }
                 }
             }
+        }
+
+        private int AppendPadding(StringBuilder builder, int orgLength, int absolutePadding)
+        {
+            int deltaLength = builder.Length - orgLength;
+
+            if (Padding > 0)
+            {
+                // Pad Left
+                if (deltaLength < 10 || deltaLength >= absolutePadding)
+                {
+                    for (int i = deltaLength; i < absolutePadding; ++i)
+                    {
+                        builder.Append(PadCharacter);
+                        for (int j = builder.Length - 1; j > orgLength; --j)
+                        {
+                            builder[j] = builder[j - 1];
+                        }
+                        builder[orgLength] = PadCharacter;
+                        ++deltaLength;
+                    }
+                }
+                else
+                {
+                    var innerResult = builder.ToString(orgLength, deltaLength);
+                    builder.Length = orgLength;
+                    for (int i = deltaLength; i < absolutePadding; ++i)
+                    {
+                        builder.Append(PadCharacter);
+                        ++deltaLength;
+                    }
+                    builder.Append(innerResult);
+                }
+            }
+            else
+            {
+                // Pad Right
+                for (int i = deltaLength; i < absolutePadding; ++i)
+                {
+                    builder.Append(PadCharacter);
+                    ++deltaLength;
+                }
+            }
+
+            return deltaLength;
         }
 
         /// <inheritdoc/>

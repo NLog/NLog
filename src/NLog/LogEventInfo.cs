@@ -286,7 +286,7 @@ namespace NLog
             get => _formatProvider;
             set
             {
-                if (_formatProvider != value)
+                if (!ReferenceEquals(_formatProvider, value))
                 {
                     _formatProvider = value;
                     ResetFormattedMessage(false);
