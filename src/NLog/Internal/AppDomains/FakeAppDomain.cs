@@ -126,7 +126,7 @@ namespace NLog.Internal.Fakeables
         /// <returns>A list of assemblies in this application domain.</returns>
         public IEnumerable<Assembly> GetAssemblies()
         {
-            return Internal.ArrayHelper.Empty<Assembly>();  // TODO NETSTANDARD1_6 has DependencyContext.RuntimeLibraries
+            return Internal.ArrayHelper.Empty<Assembly>();
         }
 
         /// <summary>
