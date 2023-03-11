@@ -107,26 +107,30 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            if (ClassName != null && MethodName != null)
+            if (!string.IsNullOrEmpty(ClassName) && !string.IsNullOrEmpty(MethodName))
             {
                 _logEventAction = null;
 
                 var targetType = Type.GetType(ClassName);
-                if (targetType != null)
+                if (targetType is null)
+                {
+                    throw new NLogConfigurationException($"MethodCallTarget: failed to get type from ClassName={ClassName}");
+                }
+                else
                 {
                     var methodInfo = targetType.GetMethod(MethodName);
                     if (methodInfo is null)
                     {
-                        throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} not found in ClassName={ClassName} - it should be static");
+                        throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} not found in ClassName={ClassName} - and must be static method");
+                    }
+                    else if (!methodInfo.IsStatic)
+                    {
+                        throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} found in ClassName={ClassName} - but not static method");
                     }
                     else
                     {
                         _logEventAction = BuildLogEventAction(methodInfo);
                     }
-                }
-                else
-                {
-                    throw new NLogConfigurationException($"MethodCallTarget: failed to get type from ClassName={ClassName}");
                 }
             }
             else if (_logEventAction is null)
@@ -138,6 +142,8 @@ namespace NLog.Targets
         private static Action<LogEventInfo, object[]> BuildLogEventAction(MethodInfo methodInfo)
         {
             var neededParameters = methodInfo.GetParameters().Length;
+
+            ReflectionHelpers.LateBoundMethod lateBoundMethod = null;
             return (logEvent, parameters) =>
             {
                 var missingParameters = neededParameters - parameters.Length;
@@ -150,10 +156,52 @@ namespace NLog.Targets
                     for (int i = parameters.Length; i < neededParameters; ++i)
                         newParams[i] = Type.Missing;
                     parameters = newParams;
+                    methodInfo.Invoke(null, parameters);
                 }
-
-                methodInfo.Invoke(null, parameters);
+                else if (parameters.Length != neededParameters && neededParameters != 0)
+                {
+                    methodInfo.Invoke(null, parameters);
+                }
+                else
+                {
+                    parameters = neededParameters == 0 ? ArrayHelper.Empty<object>() : parameters;
+                    if (lateBoundMethod is null)
+                        lateBoundMethod = CreateFastInvoke(methodInfo, parameters) ?? CreateNormalInvoke(methodInfo, parameters);
+                    else
+                        lateBoundMethod.Invoke(null, parameters);
+                }
             };
+        }
+
+        private static ReflectionHelpers.LateBoundMethod CreateFastInvoke(MethodInfo methodInfo, object[] parameters)
+        {
+            try
+            {
+                var lateBoundMethod = ReflectionHelpers.CreateLateBoundMethod(methodInfo);
+                lateBoundMethod.Invoke(null, parameters);
+                return lateBoundMethod;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "MethodCallTarget: Failed to create expression method {0} - {1}", methodInfo.Name,  ex.Message);
+                return null;
+            }
+        }
+
+        private static ReflectionHelpers.LateBoundMethod CreateNormalInvoke(MethodInfo methodInfo, object[] parameters)
+        {
+            ReflectionHelpers.LateBoundMethod reflectionMethod = (target, args) => methodInfo.Invoke(null, args);
+
+            try
+            {
+                reflectionMethod.Invoke(null, parameters);
+                return reflectionMethod;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "MethodCallTarget: Failed to invoke reflection method {0} - {1}", methodInfo.Name, ex.Message);
+                return reflectionMethod;
+            }
         }
 
         /// <summary>
@@ -190,13 +238,21 @@ namespace NLog.Targets
 
         private void ExecuteLogMethod(object[] parameters, LogEventInfo logEvent)
         {
-            if (_logEventAction != null)
+            if (_logEventAction is null)
             {
-                _logEventAction.Invoke(logEvent, parameters);
+                InternalLogger.Trace("{0}: No invoke because class/method was not found or set", this);
             }
             else
             {
-                InternalLogger.Trace("{0}: No invoke because class/method was not found or set", this);
+                try
+                {
+                    _logEventAction.Invoke(logEvent, parameters);
+                }
+                catch (TargetInvocationException ex)
+                {
+                    InternalLogger.Warn("{0}: Failed to invoke method - {1}", this, ex.Message);
+                    throw ex.InnerException;
+                }
             }
         }
     }

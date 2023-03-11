@@ -121,6 +121,24 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void WrongMethodDontThrow()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "WrongStaticAndPublic", CorrectClassName);
+            }
+        }
+
+        [Fact]
+        public void EmptyClassDontThrow()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "", "");
+            }
+        }
+
+        [Fact]
         public void WrongParametersDontThrow()
         {
             using (new NoThrowNLogExceptions())
@@ -166,6 +184,7 @@ namespace NLog.UnitTests.Targets
             }).LogFactory;
 
             logFactory.GetCurrentClassLogger().Debug(expectedMessage);
+            logFactory.GetCurrentClassLogger().Debug(expectedMessage);  // Bonus call to verify compiled expression tree works
 
             Assert.Equal(expectedMessage, actualMessage);
         }
@@ -188,6 +207,7 @@ namespace NLog.UnitTests.Targets
             LastCallTest = null;
 
             logFactory.GetCurrentClassLogger().Debug("test method 1");
+            logFactory.GetCurrentClassLogger().Debug("test method 2");  // Bonus call to verify compiled expression tree works
 
             Assert.Equal(expected, LastCallTest);
         }
