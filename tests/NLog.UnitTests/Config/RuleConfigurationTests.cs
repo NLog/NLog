@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.UnitTests.Config
 {
     using System.Collections.Generic;
@@ -199,6 +201,30 @@ namespace NLog.UnitTests.Config
             microsoftLogger.Warn("Good Noise");
             logFactory.AssertDebugLastMessage("defaultTarget", "Good Noise");
             logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
+        }
+
+        [Theory]
+        [InlineData("Trace")]
+        [InlineData("Debug")]
+        [InlineData("Info")]
+        [InlineData("Warn")]
+        [InlineData("Error")]
+        [InlineData("Fatal")]
+        public void FinalMinLevel_Literal_ReturnsCorrectLevel(string level)
+        {
+            LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' />
+                </targets>
+
+                <rules>
+                    <logger name='*' finalMinLevel='{level}' writeTo='d1'/>
+                </rules>
+            </nlog>").LogFactory;
+
+            Assert.Single(logFactory.Configuration.LoggingRules);
+            Assert.Equal(level, logFactory.Configuration.LoggingRules[0].FinalMinLevel?.Name);
         }
 
         [Fact]
@@ -965,6 +991,122 @@ namespace NLog.UnitTests.Config
             yield return new object[] { " error, Warn", new[] { LogLevel.Error, LogLevel.Warn } };
             yield return new object[] { "Wrong", new[] { LogLevel.Off } };
             yield return new object[] { "Wrong, Fatal", new[] { LogLevel.Off, LogLevel.Fatal } };
+        }
+
+        [Theory]
+        [MemberData(nameof(LoggingRule_FinalMinLevel_TestCases))]
+        public void LoggingRule_FinalMinLevelLayoutAsVar_EnablesExpectedLevels(string levelVariable, LogLevel[] expectedLevels)
+        {
+            LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>"
+                + (levelVariable != null ? $"<variable name='var_level' value='{levelVariable}'/>" : "") +
+                @"<targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' finalMinLevel='${var:var_level}' writeTo='d1' />
+                </rules>
+            </nlog>").LogFactory;
+
+            Logger logger = logFactory.GetLogger(nameof(LoggingRule_FinalMinLevelLayoutAsVar_EnablesExpectedLevels));
+
+            AssertLogLevelEnabled(logger, expectedLevels);
+
+            // Verify that runtime override also works
+            logFactory.Configuration.Variables["var_level"] = LogLevel.Fatal.ToString();
+            logFactory.ReconfigExistingLoggers();
+
+            AssertLogLevelEnabled(logger, LogLevel.Fatal);
+        }
+
+        [Theory]
+        [InlineData("Trace")]
+        [InlineData("Debug")]
+        [InlineData("Info")]
+        [InlineData("Warn")]
+        [InlineData("Error")]
+        [InlineData("Fatal")]
+        public void LoggingRule_FinalMinLevelLayoutAsVar_SetsFinalMinLevel(string levelVariable)
+        {
+            LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>"
+                + (levelVariable != null ? $"<variable name='var_level' value='{levelVariable}'/>" : "") +
+                @"<targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' finalMinLevel='${var:var_level}' writeTo='d1' />
+                </rules>
+            </nlog>").LogFactory;
+
+            Assert.Single(logFactory.Configuration.LoggingRules);
+            Assert.Equal(levelVariable, logFactory.Configuration.LoggingRules[0].FinalMinLevel?.Name);
+        }
+
+        [Theory]
+        [MemberData(nameof(LoggingRule_FinalMinLevel_TestCases))]
+        public void LoggingRule_FinalMinLevelLayoutAsEnvVar_EnablesExpectedLevels(string levelVariable, LogLevel[] expectedLevels)
+        {
+            if (Environment.GetEnvironmentVariable("LOG_LEVEL") != levelVariable)
+            {
+                Environment.SetEnvironmentVariable("LOG_LEVEL", levelVariable);
+            }
+
+            LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' finalMinLevel='${environment:LOG_LEVEL}' writeTo='d1' />
+                </rules>
+            </nlog>").LogFactory;
+
+            Logger logger = logFactory.GetLogger(nameof(LoggingRule_FinalMinLevelLayoutAsEnvVar_EnablesExpectedLevels));
+
+            AssertLogLevelEnabled(logger, expectedLevels);
+        }
+
+        public static IEnumerable<object[]> LoggingRule_FinalMinLevel_TestCases()
+        {
+            yield return new object[] { "Off", new[] { LogLevel.Off } };
+            yield return new object[] { "Wrong", new[] { LogLevel.Off } };
+            yield return new object[] { " ", new[] { LogLevel.Off } };
+            yield return new object[] { "", new[] { LogLevel.Off } };
+            yield return new object[] { "Trace", new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Debug", new[] { LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Info", new[] { LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Warn", new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Error", new[] { LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Fatal", new[] { LogLevel.Fatal } };
+        }
+
+        [Theory]
+        [InlineData("Trace")]
+        [InlineData("Debug")]
+        [InlineData("Info")]
+        [InlineData("Warn")]
+        [InlineData("Error")]
+        [InlineData("Fatal")]
+        public void LoggingRule_FinalMinLevelLayoutAsEnvVar_SetsFinalMinLevel(string levelVariable)
+        {
+            if (Environment.GetEnvironmentVariable("LOG_LEVEL") != levelVariable)
+            {
+                Environment.SetEnvironmentVariable("LOG_LEVEL", levelVariable);
+            }
+
+            LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' finalMinLevel='${environment:LOG_LEVEL}' writeTo='d1' />
+                </rules>
+            </nlog>").LogFactory;
+
+            Assert.Single(logFactory.Configuration.LoggingRules);
+            Assert.Equal(levelVariable, logFactory.Configuration.LoggingRules[0].FinalMinLevel?.Name);
         }
 
         [Theory]

@@ -539,6 +539,28 @@ namespace NLog.Config
             return LogLevel.FromString(ExpandSimpleVariables(text).Trim());
         }
 
+        private bool TryLogLevelFromString(LoggingRule rule, string levelFilter, out LogLevel logLevel)
+        {
+            if (StringHelpers.IsNullOrWhiteSpace(levelFilter))
+            {
+                logLevel = null;
+                return false;
+            }
+
+            try
+            {
+                logLevel = LogLevel.FromString(levelFilter.Trim());
+                return true;
+            }
+            catch (ArgumentException ex)
+            {
+                InternalLogger.Warn(ex, "Logging rule {0} with filter `{1}` has invalid level filter: {2}",
+                    rule.RuleName, rule.LoggerNamePattern, levelFilter);
+                logLevel = null;
+                return false;
+            }
+        }
+
         /// <summary>
         /// Parse {Logger} xml element
         /// </summary>
@@ -629,14 +651,14 @@ namespace NLog.Config
                 Final = final,
             };
 
-            if (!string.IsNullOrEmpty(finalMinLevel))
+            if (!string.IsNullOrEmpty(finalMinLevel)
+                && string.IsNullOrEmpty(enableLevels)
+                && string.IsNullOrEmpty(minLevel))
             {
-                rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
-                if (string.IsNullOrEmpty(enableLevels) && string.IsNullOrEmpty(minLevel))
-                {
-                    minLevel = finalMinLevel;
-                }
+                minLevel = finalMinLevel;
             }
+
+            ParseFinalMinLevel(rule, finalMinLevel);
 
             EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
 
@@ -649,12 +671,26 @@ namespace NLog.Config
             return rule;
         }
 
+        private void ParseFinalMinLevel(LoggingRule rule, string finalMinLevel)
+        {
+            if (IsLevelLayout(finalMinLevel))
+            {
+                SimpleLayout layout = ParseLevelLayout(finalMinLevel);
+                finalMinLevel = layout.Render(LogEventInfo.CreateNullEvent());
+            }
+
+            if (TryLogLevelFromString(rule, finalMinLevel, out LogLevel logLevel))
+            {
+                rule.FinalMinLevel = logLevel;
+            }
+        }
+
         private void EnableLevelsForRule(LoggingRule rule, string enableLevels, string minLevel, string maxLevel)
         {
             if (enableLevels != null)
             {
                 enableLevels = ExpandSimpleVariables(enableLevels);
-                if (enableLevels.IndexOf('{') >= 0)
+                if (IsLevelLayout(enableLevels))
                 {
                     SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
                     rule.EnableLoggingForLevelLayout(simpleLayout);
@@ -671,7 +707,7 @@ namespace NLog.Config
             {
                 minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
                 maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
-                if (minLevel?.IndexOf('{') >= 0 || maxLevel?.IndexOf('{') >= 0)
+                if (IsLevelLayout(minLevel) || IsLevelLayout(maxLevel))
                 {
                     SimpleLayout minLevelLayout = ParseLevelLayout(minLevel);
                     SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
@@ -684,6 +720,11 @@ namespace NLog.Config
                     rule.SetLoggingLevels(minLogLevel, maxLogLevel);
                 }
             }
+        }
+
+        private static bool IsLevelLayout(string level)
+        {
+            return level?.IndexOf('{') >= 0;
         }
 
         private SimpleLayout ParseLevelLayout(string levelLayout)
