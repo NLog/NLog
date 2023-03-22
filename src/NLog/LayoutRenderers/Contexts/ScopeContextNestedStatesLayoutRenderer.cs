@@ -89,26 +89,26 @@ namespace NLog.LayoutRenderers
                 return;
             }
 
-            var messages = ScopeContext.GetAllNestedStates();
-            if (messages.Length == 0)
+            var messages = ScopeContext.GetAllNestedStateList();
+            if (messages.Count == 0)
                 return;
 
             int startPos = 0;
-            int endPos = messages.Length;
+            int endPos = messages.Count;
 
             if (TopFrames != -1)
             {
-                endPos = Math.Min(TopFrames, messages.Length);
+                endPos = Math.Min(TopFrames, messages.Count);
             }
             else if (BottomFrames != -1)
             {
-                startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
+                startPos = messages.Count - Math.Min(BottomFrames, messages.Count);
             }
 
             AppendNestedStates(builder, messages, startPos, endPos, logEvent);
         }
 
-        private void AppendNestedStates(StringBuilder builder, object[] messages, int startPos, int endPos, LogEventInfo logEvent)
+        private void AppendNestedStates(StringBuilder builder, IList<object> messages, int startPos, int endPos, LogEventInfo logEvent)
         {
             bool formatAsJson = MessageTemplates.ValueFormatter.FormatAsJson.Equals(Format, StringComparison.Ordinal);
             var formatProvider = GetFormatProvider(logEvent, Culture);

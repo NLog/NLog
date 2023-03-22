@@ -55,8 +55,8 @@ namespace NLog.LayoutRenderers
         {
             string indent = null;
 
-            var messages = ScopeContext.GetAllNestedStates();
-            for (int i = 0; i < messages.Length; ++i)
+            var messages = ScopeContext.GetAllNestedStateList();
+            for (int i = 0; i < messages.Count; ++i)
             {
                 indent = indent ?? Indent?.Render(logEvent) ?? string.Empty;
                 builder.Append(indent);

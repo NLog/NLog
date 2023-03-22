@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NLog.Internal;
 
 namespace NLog
@@ -62,16 +63,31 @@ namespace NLog
         /// <remarks>Scope dictionary keys are case-insensitive</remarks>
         public static IDisposable PushNestedStateProperties(object nestedState, IReadOnlyCollection<KeyValuePair<string, object>> properties)
         {
-            if (properties?.Count > 0)
+            properties = properties ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            if (properties.Count > 0 || nestedState is null)
             {
 #if !NET45
                 var parent = GetAsyncLocalContext();
+                if (nestedState is null)
+                {
+                    var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, properties.Count);
+                    if (allProperties != null)
+                    {
+                        // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
+                        ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, allProperties);
+
+                        var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent.Parent.Parent, allProperties, nestedState);
+                        SetAsyncLocalContext(collapsedState);
+                        return new ScopeContextPropertiesCollapsed(parent, collapsedState);
+                    }
+                }
+
                 var current = new ScopeContextPropertiesAsyncState<object>(parent, properties, nestedState);
                 SetAsyncLocalContext(current);
                 return current;
 #else
                 var oldMappedContext = PushPropertiesCallContext(properties);
-                var oldNestedContext = PushNestedStateCallContext(nestedState);
+                var oldNestedContext = nestedState is null ? null : PushNestedStateCallContext(nestedState);
                 return new ScopeContextNestedStateProperties(oldNestedContext, oldMappedContext);
 #endif
             }
@@ -116,7 +132,7 @@ namespace NLog
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
 
-            var current = new ScopeContextPropertiesAsyncState<TValue>(parent, properties, null);
+            var current = new ScopeContextPropertiesAsyncState<TValue>(parent, properties);
             SetAsyncLocalContext(current);
             return current;
 #else
@@ -138,13 +154,13 @@ namespace NLog
 #if !NET35 && !NET40 && !NET45
             var parent = GetAsyncLocalContext();
 
-            var scopeProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, 1);
-            if (scopeProperties != null)
+            var allProperties = ScopeContextPropertiesCollapsed.BuildCollapsedDictionary(parent, 1);
+            if (allProperties != null)
             {
                 // Collapse all 3 property-scopes into a collapsed scope, and return bookmark that can restore original parent (Avoid huge object-graphs)
-                scopeProperties[key] = value;
+                allProperties[key] = value;
 
-                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent.Parent.Parent, scopeProperties);
+                var collapsedState = new ScopeContextPropertiesAsyncState<object>(parent.Parent.Parent, allProperties);
                 SetAsyncLocalContext(collapsedState);
                 return new ScopeContextPropertiesCollapsed(parent, collapsedState);
             }
@@ -221,7 +237,8 @@ namespace NLog
         {
 #if !NET35 && !NET40 && !NET45
             var contextState = GetAsyncLocalContext();
-            return contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            var propertyCollector = new ScopeContextPropertyCollector();
+            return contextState?.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
 #else
             var mappedContext = GetMappedContextCallContext();
             if (mappedContext?.Count > 0)
@@ -257,8 +274,9 @@ namespace NLog
             var contextState = GetAsyncLocalContext();
             if (contextState != null)
             {
-                var mappedContext = contextState?.CaptureContextProperties(0, out var _);
-                if (mappedContext != null)
+                var propertyCollector = new ScopeContextPropertyCollector();
+                var mappedContext = contextState?.CaptureContextProperties(ref propertyCollector);
+                if (mappedContext?.Count > 0)
                 {
                     return TryLookupProperty(mappedContext, key, out value);
                 }
@@ -286,8 +304,15 @@ namespace NLog
         public static object[] GetAllNestedStates()
         {
 #if !NET35 && !NET40 && !NET45
-            var parent = GetAsyncLocalContext();
-            return parent?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
+            var nestedStates = GetAllNestedStateList();
+            if (nestedStates?.Count > 0)
+            {
+                if (nestedStates is object[] nestedArray)
+                    return nestedArray;
+                else
+                    return Enumerable.ToArray(nestedStates);
+            }
+            return ArrayHelper.Empty<object>();
 #else
             var currentContext = GetNestedContextCallContext();
             if (currentContext?.Count > 0)
@@ -306,6 +331,20 @@ namespace NLog
             return ArrayHelper.Empty<object>();
 #endif
         }
+
+#if !NET35 && !NET40 && !NET45
+        internal static IList<object> GetAllNestedStateList()
+        {
+            var parent = GetAsyncLocalContext();
+            var nestedStateCollector = new ScopeContextNestedStateCollector();
+            return parent?.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
+        }
+#else
+        internal static IList<object> GetAllNestedStateList()
+        {
+            return GetAllNestedStates();
+        }
+#endif
 
         /// <summary>
         /// Peeks the top value from the logical context scope stack
@@ -450,15 +489,14 @@ namespace NLog
                 {
                     if (parentProperties.NestedState is null && grandParentProperties.NestedState is null)
                     {
-                        var scopeProperties = parentProperties.CaptureContextProperties(initialCapacity, out var scopeDictionary) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-                        if (scopeDictionary is null)
-                        {
-                            scopeDictionary = new Dictionary<string, object>(scopeProperties.Count + initialCapacity, DefaultComparer);
-                            foreach (var scopeProperty in scopeProperties)
-                                scopeDictionary[scopeProperty.Key] = scopeProperty.Value;
-                        }
-
-                        return scopeDictionary;
+                        var propertyCollectorList = new List<KeyValuePair<string, object>>();   // Marks the collector as active
+                        var propertyCollector = new ScopeContextPropertyCollector(propertyCollectorList);
+                        var propertyCollection = propertyCollector.StartCaptureProperties(parent);
+                        if (propertyCollectorList.Count > 0 && propertyCollection is Dictionary<string, object> propertyDictionary)
+                            return propertyDictionary;  // New property collector was built from the list
+                        propertyDictionary = new Dictionary<string, object>(propertyCollection.Count + initialCapacity, ScopeContext.DefaultComparer);
+                        ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(propertyCollection, propertyDictionary);
+                        return propertyDictionary;
                     }
                 }
 
@@ -508,7 +546,8 @@ namespace NLog
 
             public void Dispose()
             {
-                SetNestedContextCallContext(_parentNestedContext);
+                if (_parentNestedContext != null)
+                    SetNestedContextCallContext(_parentNestedContext);
                 SetMappedContextCallContext(_parentMappedContext);
             }
         }
@@ -528,23 +567,19 @@ namespace NLog
         internal static ICollection<string> GetKeysMappedContextLegacy()
         {
 #if !NET35 && !NET40 && !NET45
-            using (var propertyEnumerator = GetAllPropertiesEnumerator())
+            var contextState = GetAsyncLocalContext();
+            var propertyCollector = new ScopeContextPropertyCollector();
+            var scopeProperties = contextState?.CaptureContextProperties(ref propertyCollector);
+            if (scopeProperties?.Count > 0)
             {
-                if (!propertyEnumerator.MoveNext())
-                    return ArrayHelper.Empty<string>();
-
-                var firstProperty = propertyEnumerator.Current;
-                if (!propertyEnumerator.MoveNext())
-                    return new[] { firstProperty.Key };
-
-                var propertyKeys = new List<string>();
-                propertyKeys.Add(firstProperty.Key);
-                do
-                {
-                    propertyKeys.Add(propertyEnumerator.Current.Key);
-                } while (propertyEnumerator.MoveNext());
-                return propertyKeys;
+                if (scopeProperties.Count == 1)
+                    return new[] { Enumerable.First(scopeProperties).Key };
+                else if (scopeProperties is IDictionary<string, object> dictionary)
+                    return dictionary.Keys;
+                else
+                    return scopeProperties.Select(prop => prop.Key).ToList();
             }
+            return Array.Empty<string>();
 #else
             return GetMappedContextCallContext()?.Keys ?? (ICollection<string>)ArrayHelper.Empty<string>();
 #endif
@@ -584,23 +619,21 @@ namespace NLog
             {
                 if ((contextState.Parent is null && contextState is ScopeContextLegacyAsyncState) || contextState.NestedState is null)
                 {
-                    var nestedContext = contextState?.CaptureNestedContext(0, out var _) ?? ArrayHelper.Empty<object>();
-                    if (nestedContext.Length == 0)
+                    var nestedStateCollector = new ScopeContextNestedStateCollector();
+                    var nestedStates = contextState?.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
+                    if (nestedStates.Count == 0)
                         return null;    // Nothing to pop, just leave scope alone
 
                     // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
-                    var stackTopValue = nestedContext[0];
-                    var allProperties = contextState?.CaptureContextProperties(0, out var _) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
-                    if (nestedContext.Length == 1)
+                    var propertyCollector = new ScopeContextPropertyCollector();
+                    var stackTopValue = nestedStates[0];
+                    var allProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                    var nestedContext = ArrayHelper.Empty<object>();
+                    if (nestedStates.Count > 1)
                     {
-                        nestedContext = ArrayHelper.Empty<object>();
-                    }
-                    else
-                    {
-                        var newScope = new object[nestedContext.Length - 1];
-                        for (int i = 0; i < newScope.Length; ++i)
-                            newScope[i] = nestedContext[i + 1];
-                        nestedContext = newScope;
+                        nestedContext = new object[nestedStates.Count - 1];
+                        for (int i = 0; i < nestedContext.Length; ++i)
+                            nestedContext[i] = nestedStates[i + 1];
                     }
 
                     var legacyScope = new ScopeContextLegacyAsyncState(allProperties, nestedContext, nestedContext.Length > 0 ? GetNestedContextTimestampNow() : 0L);
