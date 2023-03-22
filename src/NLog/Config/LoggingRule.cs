@@ -145,7 +145,11 @@ namespace NLog.Config
         /// <remarks>
         /// Loggers matching will be restricted to specified minimum level for following rules.
         /// </remarks>
-        public LogLevel FinalMinLevel { get; set; }
+        public LogLevel FinalMinLevel
+        {
+            get => _logLevelFilter.FinalMinLevel;
+            set => _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetFinalMinLevel(value);
+        }
 
         /// <summary>
         /// Gets or sets logger name pattern.
@@ -234,6 +238,16 @@ namespace NLog.Config
         internal void EnableLoggingForLevelsLayout(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel)
         {
             _logLevelFilter = new DynamicRangeLevelFilter(this, minLevel, maxLevel);
+        }
+
+        internal void EnableLoggingForFinalMinLevel(LogLevel finalMinLevel)
+        {
+            _logLevelFilter = new FinalMinLogLevelFilter(finalMinLevel);
+        }
+
+        internal void EnableLoggingForFinalMinLevelLayout(Layouts.SimpleLayout finalMinLevel)
+        {
+            _logLevelFilter = new FinalMinLogLevelLayoutFilter(this, finalMinLevel);
         }
 
         /// <summary>

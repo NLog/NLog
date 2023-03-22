@@ -50,6 +50,8 @@ namespace NLog.Config
 
         public bool[] LogLevels => GenerateLogLevels();
 
+        public LogLevel FinalMinLevel => null;
+
         public DynamicRangeLevelFilter(LoggingRule loggingRule, SimpleLayout minLevel, SimpleLayout maxLevel)
         {
             _loggingRule = loggingRule;

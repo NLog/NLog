@@ -651,16 +651,7 @@ namespace NLog.Config
                 Final = final,
             };
 
-            if (!string.IsNullOrEmpty(finalMinLevel)
-                && string.IsNullOrEmpty(enableLevels)
-                && string.IsNullOrEmpty(minLevel))
-            {
-                minLevel = finalMinLevel;
-            }
-
-            ParseFinalMinLevel(rule, finalMinLevel);
-
-            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
+            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel, finalMinLevel);
 
             ParseLoggingRuleTargets(writeTargets, rule);
 
@@ -671,23 +662,27 @@ namespace NLog.Config
             return rule;
         }
 
-        private void ParseFinalMinLevel(LoggingRule rule, string finalMinLevel)
+        private void EnableLevelsForRule(
+            LoggingRule rule,
+            string enableLevels,
+            string minLevel,
+            string maxLevel,
+            string finalMinLevel)
         {
-            if (IsLevelLayout(finalMinLevel))
+            if (finalMinLevel != null)
             {
-                SimpleLayout layout = ParseLevelLayout(finalMinLevel);
-                finalMinLevel = layout.Render(LogEventInfo.CreateNullEvent());
+                if (IsLevelLayout(finalMinLevel))
+                {
+                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    rule.EnableLoggingForFinalMinLevelLayout(finalMinLevelLayout);
+                }
+                else
+                {
+                    LogLevel finalMinLogLevel = LogLevelFromString(finalMinLevel);
+                    rule.EnableLoggingForFinalMinLevel(finalMinLogLevel);
+                }
             }
-
-            if (TryLogLevelFromString(rule, finalMinLevel, out LogLevel logLevel))
-            {
-                rule.FinalMinLevel = logLevel;
-            }
-        }
-
-        private void EnableLevelsForRule(LoggingRule rule, string enableLevels, string minLevel, string maxLevel)
-        {
-            if (enableLevels != null)
+            else if (enableLevels != null)
             {
                 enableLevels = ExpandSimpleVariables(enableLevels);
                 if (IsLevelLayout(enableLevels))
