@@ -539,28 +539,6 @@ namespace NLog.Config
             return LogLevel.FromString(ExpandSimpleVariables(text).Trim());
         }
 
-        private bool TryLogLevelFromString(LoggingRule rule, string levelFilter, out LogLevel logLevel)
-        {
-            if (StringHelpers.IsNullOrWhiteSpace(levelFilter))
-            {
-                logLevel = null;
-                return false;
-            }
-
-            try
-            {
-                logLevel = LogLevel.FromString(levelFilter.Trim());
-                return true;
-            }
-            catch (ArgumentException ex)
-            {
-                InternalLogger.Warn(ex, "Logging rule {0} with filter `{1}` has invalid level filter: {2}",
-                    rule.RuleName, rule.LoggerNamePattern, levelFilter);
-                logLevel = null;
-                return false;
-            }
-        }
-
         /// <summary>
         /// Parse {Logger} xml element
         /// </summary>
