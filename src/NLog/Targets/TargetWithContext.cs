@@ -674,12 +674,12 @@ namespace NLog.Targets
         /// <returns>Collection with <see cref="ScopeContext"/> stack items if any, else null</returns>
         protected virtual IList<object> CaptureScopeContextNested(LogEventInfo logEvent)
         {
-            var stack = ScopeContext.GetAllNestedStates();
-            if (stack.Length == 0)
+            var stack = ScopeContext.GetAllNestedStateList();
+            if (stack.Count == 0)
                 return stack;
 
             IList<object> filteredStack = null;
-            for (int i = 0; i < stack.Length; ++i)
+            for (int i = 0; i < stack.Count; ++i)
             {
                 var ndcValue = stack[i];
                 if (SerializeScopeContextNestedState(logEvent, ndcValue, out var serializedValue))
@@ -693,7 +693,7 @@ namespace NLog.Targets
                 {
                     if (filteredStack is null)
                     {
-                        filteredStack = new List<object>(stack.Length);
+                        filteredStack = new List<object>(stack.Count);
                         for (int j = 0; j < i; ++j)
                             filteredStack.Add(stack[j]);
                     }

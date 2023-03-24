@@ -80,17 +80,6 @@ namespace NLog.Internal
         }
 
 #if !NET35 && !NET40
-        public static Dictionary<string, object> CloneScopePropertiesToDictionary(IReadOnlyCollection<KeyValuePair<string, TValue>> parentContext, int initialCapacity)
-        {
-            var propertyCount = parentContext.Count;
-            var scopeProperties = new Dictionary<string, object>(propertyCount + initialCapacity, ScopeContext.DefaultComparer);
-            if (propertyCount > 0)
-            {
-                CopyScopePropertiesToDictionary(parentContext, scopeProperties);
-            }
-            return scopeProperties;
-        }
-
         public static void CopyScopePropertiesToDictionary(IReadOnlyCollection<KeyValuePair<string, TValue>> parentContext, Dictionary<string, object> scopeDictionary)
         {
             using (var propertyEnumerator = new ScopeContextPropertyEnumerator<TValue>(parentContext))
