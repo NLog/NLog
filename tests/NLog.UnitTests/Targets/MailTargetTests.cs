@@ -39,6 +39,7 @@ namespace NLog.UnitTests.Targets
     using System.Net.Configuration;
 #endif
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.Mail;
     using NLog.Internal;
@@ -908,6 +909,30 @@ namespace NLog.UnitTests.Targets
             Assert.Single(mock.MessagesSent);
 
             Assert.Equal($"Message from NLog on {Environment.MachineName}", mock.MessagesSent[0].Subject);
+        }
+
+        [Fact]
+        public void MailTarget_WithMessageHeaders_SendsMail()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+            };
+            mmt.MailHeaders.Add(new MethodCallParameter("Hello", "World"));
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
+            {
+                cfg.Configuration.AddRuleForAllLevels(mmt);
+            }).LogFactory;
+
+            logFactory.GetLogger("MyLogger").Info("log message 1");
+
+            var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
+            Assert.NotEmpty(messageSent.Headers);
+            Assert.Contains("Hello", messageSent.Headers.Keys.Cast<string>());
+            Assert.Equal("World", messageSent.Headers["Hello"]);
         }
 
         public sealed class MockSmtpClient : ISmtpClient

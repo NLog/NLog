@@ -308,6 +308,13 @@ namespace NLog.Targets
         /// <docgen category='SMTP Options' order='100' />
         public Layout<int> Timeout { get; set; } = 10000;
 
+        /// <summary>
+        /// Gets the array of email headers that are transmitted with this email message
+        /// </summary>
+        /// <docgen category='Message Options' order='100' />
+        [ArrayParameter(typeof(MethodCallParameter), "mailheader")]
+        public IList<MethodCallParameter> MailHeaders { get; } = new List<MethodCallParameter>();
+
         internal virtual ISmtpClient CreateSmtpClient()
         {
             return new MySmtpClient();
@@ -322,7 +329,7 @@ namespace NLog.Targets
         /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (logEvents.Count <= 1)
+            if (logEvents.Count == 1)
             {
                 ProcessSingleMailMessage(logEvents);
             }
@@ -416,7 +423,7 @@ namespace NLog.Targets
             var bodyBuffer = new StringBuilder();
             if (Header != null)
             {
-                bodyBuffer.Append(Header.Render(firstEvent));
+                bodyBuffer.Append(RenderLogEvent(Header, firstEvent));
                 if (AddNewLines)
                 {
                     bodyBuffer.Append('\n');
@@ -425,7 +432,7 @@ namespace NLog.Targets
 
             foreach (AsyncLogEventInfo eventInfo in events)
             {
-                bodyBuffer.Append(Layout.Render(eventInfo.LogEvent));
+                bodyBuffer.Append(RenderLogEvent(Layout, eventInfo.LogEvent));
                 if (AddNewLines)
                 {
                     bodyBuffer.Append('\n');
@@ -434,7 +441,7 @@ namespace NLog.Targets
 
             if (Footer != null)
             {
-                bodyBuffer.Append(Footer.Render(lastEvent));
+                bodyBuffer.Append(RenderLogEvent(Footer, lastEvent));
                 if (AddNewLines)
                 {
                     bodyBuffer.Append('\n');
@@ -539,33 +546,17 @@ namespace NLog.Targets
         /// Create key for grouping. Needed for multiple events in one mail message
         /// </summary>
         /// <param name="logEvent">event for rendering layouts   </param>  
-        ///<returns>string to group on</returns>
+        /// <returns>string to group on</returns>
         private string GetSmtpSettingsKey(LogEventInfo logEvent)
         {
-            var sb = new StringBuilder();
-
-            AppendLayout(sb, logEvent, From);
-            AppendLayout(sb, logEvent, To);
-            AppendLayout(sb, logEvent, CC);
-            AppendLayout(sb, logEvent, Bcc);
-            AppendLayout(sb, logEvent, SmtpServer);
-            AppendLayout(sb, logEvent, SmtpPassword);
-            AppendLayout(sb, logEvent, SmtpUserName);
-
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Append rendered <paramref name="layout"/> to <paramref name="sb"/>
-        /// </summary>
-        /// <param name="sb">append to this</param>
-        /// <param name="logEvent">event for rendering <paramref name="layout"/></param>
-        /// <param name="layout">append if not <c>null</c></param>
-        private static void AppendLayout(StringBuilder sb, LogEventInfo logEvent, Layout layout)
-        {
-            sb.Append('|');
-            if (layout != null)
-                sb.Append(layout.Render(logEvent));
+            return $@"{RenderLogEvent(From, logEvent)}
+{RenderLogEvent(To, logEvent)}
+{RenderLogEvent(CC, logEvent)}
+{RenderLogEvent(Bcc, logEvent)}
+{RenderLogEvent(SmtpServer, logEvent)}
+{RenderLogEvent(SmtpPassword, logEvent)}
+{RenderLogEvent(SmtpUserName, logEvent)}
+{RenderLogEvent(PickupDirectoryLocation, logEvent)}";
         }
 
         /// <summary>
@@ -575,7 +566,7 @@ namespace NLog.Targets
         {
             var msg = new MailMessage();
 
-            var renderedFrom = From?.Render(lastEvent);
+            var renderedFrom = RenderLogEvent(From, lastEvent);
 
             if (string.IsNullOrEmpty(renderedFrom))
             {
@@ -592,7 +583,7 @@ namespace NLog.Targets
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc"));
             }
 
-            msg.Subject = Subject is null ? string.Empty : Subject.Render(lastEvent).Trim();
+            msg.Subject = (RenderLogEvent(Subject, lastEvent) ?? string.Empty).Trim();
             msg.BodyEncoding = Encoding;
             msg.IsBodyHtml = Html;
 
@@ -604,6 +595,19 @@ namespace NLog.Targets
             msg.Body = body;
             if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null)
                 msg.Body = msg.Body.Replace(Environment.NewLine, "<br/>");
+
+            if (MailHeaders?.Count > 0)
+            {
+                for (int i = 0; i < MailHeaders.Count; i++)
+                {
+                    string headerValue = RenderLogEvent(MailHeaders[i].Layout, lastEvent);
+                    if (headerValue is null)
+                        continue;
+
+                    msg.Headers.Add(MailHeaders[i].Name, headerValue);
+                }
+            }
+
             return msg;
         }
 
@@ -614,12 +618,14 @@ namespace NLog.Targets
         /// <param name="layout">layout with addresses, ; separated</param>
         /// <param name="logEvent">event for rendering the <paramref name="layout"/></param>
         /// <returns>added a address?</returns>
-        private static bool AddAddresses(MailAddressCollection mailAddressCollection, Layout layout, LogEventInfo logEvent)
+        private bool AddAddresses(MailAddressCollection mailAddressCollection, Layout layout, LogEventInfo logEvent)
         {
             var added = false;
-            if (layout != null)
+            var mailAddresses = RenderLogEvent(layout, logEvent);
+
+            if (!string.IsNullOrEmpty(mailAddresses))
             {
-                foreach (string mail in layout.Render(logEvent).Split(';'))
+                foreach (string mail in mailAddresses.Split(';'))
                 {
                     var mailAddress = mail.Trim();
                     if (string.IsNullOrEmpty(mailAddress))
