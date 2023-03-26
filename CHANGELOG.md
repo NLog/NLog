@@ -4,6 +4,16 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.1.3 (2023/03/30)
+
+**Improvements**
+- [#5174](https://github.com/NLog/NLog/pull/5174) LoggingRule - FinalMinLevel with Layout support (#5174) (@Aaronmsv)
+- [#5177](https://github.com/NLog/NLog/pull/5177) MailTarget - Added support for email message headers (#5177) (@snakefoot)
+- [#5175](https://github.com/NLog/NLog/pull/5175) ScopeContext - Replace rescursive lookup with enumeration (#5175) (@snakefoot)
+- [#5168](https://github.com/NLog/NLog/pull/5168) MethodCallTarget - Compile Method Invoke as Expression Trees (#5168) (@snakefoot)
+- [#5165](https://github.com/NLog/NLog/pull/5165) PaddingLayoutRendererWrapper - Avoid using Insert for reusable StringBuilder (#5165) (@snakefoot)
+- [#5159](https://github.com/NLog/NLog/pull/5159) Json serializer with ISpanFormattable support for decimal + double (#5168) (@snakefoot)
+
 ### Version 5.1.2 (2023/02/17)
 
 **Improvements**

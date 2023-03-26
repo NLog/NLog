@@ -31,13 +31,12 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- FileTarget - Archive Dynamic FileName ordering ignore case (#5157) (@snakefoot)
-- EventLogTarget - EventId with LogEvent Property Lookup by default (#5150) (@snakefoot)
-- ReplaceLayoutRendererWrapper - SearchFor is required, and ReplaceWith optional (#5148) (@snakefoot)
-- SpecialFolderLayoutRenderer - Fallback for Windows Nano (#5146) (@snakefoot)
-- NetworkTarget emit LogEventDropped event on NetworkError (#5144) (@ShadowDancer)
-- AsyncTaskTarget - Dynamic wait time after TaskTimeoutSeconds has expired (#5141) (@snakefoot)
-- ConfigurationItemFactory - Handle concurrent registration with single lock (#5140) (@snakefoot)
+- LoggingRule - FinalMinLevel with Layout support (#5174) (@Aaronmsv)
+- MailTarget - Added support for email message headers (#5177) (@snakefoot)
+- ScopeContext - Replace rescursive lookup with enumeration (#5175) (@snakefoot)
+- MethodCallTarget - Compile Method Invoke as Expression Trees (#5168) (@snakefoot)
+- PaddingLayoutRendererWrapper - Avoid using Insert for reusable StringBuilder (#5165) (@snakefoot)
+- Json serializer with ISpanFormattable support for decimal + double (#5168) (@snakefoot)
 
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 
