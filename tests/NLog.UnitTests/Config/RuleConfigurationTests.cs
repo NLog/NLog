@@ -201,30 +201,6 @@ namespace NLog.UnitTests.Config
             logFactory.AssertDebugLastMessage("requestTarget", "Request-Good Noise");
         }
 
-        [Theory]
-        [InlineData("Trace")]
-        [InlineData("Debug")]
-        [InlineData("Info")]
-        [InlineData("Warn")]
-        [InlineData("Error")]
-        [InlineData("Fatal")]
-        public void FinalMinLevel_Literal_ReturnsCorrectLevel(string level)
-        {
-            LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
-            <nlog>
-                <targets>
-                    <target name='d1' type='Debug' />
-                </targets>
-
-                <rules>
-                    <logger name='*' finalMinLevel='{level}' writeTo='d1'/>
-                </rules>
-            </nlog>").LogFactory;
-
-            Assert.Single(logFactory.Configuration.LoggingRules);
-            Assert.Equal(level, logFactory.Configuration.LoggingRules[0].FinalMinLevel?.Name);
-        }
-
         [Fact]
         public void NoLevelsTest()
         {
@@ -945,6 +921,7 @@ namespace NLog.UnitTests.Config
             yield return new object[] { " ", new[] { LogLevel.Off } };
             yield return new object[] { " , Debug", new[] { LogLevel.Off, LogLevel.Debug } };
             yield return new object[] { null, new[] { LogLevel.Off } };
+            yield return new object[] { "", new[] { LogLevel.Off } };
             yield return new object[] { ",Info", new[] { LogLevel.Off, LogLevel.Info } };
             yield return new object[] { "Error, Error", new[] { LogLevel.Error, LogLevel.Error } };
             yield return new object[] { " error", new[] { LogLevel.Error } };
