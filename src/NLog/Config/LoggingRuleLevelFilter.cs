@@ -56,9 +56,10 @@ namespace NLog.Config
 
         public LoggingRuleLevelFilter GetSimpleFilterForUpdate()
         {
-            if (!ReferenceEquals(LogLevels, Off.LogLevels) || FinalMinLevel != null)
+            if (ReferenceEquals(LogLevels, Off.LogLevels) && FinalMinLevel is null)
+                return new LoggingRuleLevelFilter();
+            else
                 return this;
-            return new LoggingRuleLevelFilter();
         }
 
         public LoggingRuleLevelFilter SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel, bool enable)
