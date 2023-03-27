@@ -647,26 +647,15 @@ namespace NLog.Config
             string maxLevel,
             string finalMinLevel)
         {
-            if (finalMinLevel != null)
-            {
-                if (IsLevelLayout(finalMinLevel))
-                {
-                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
-                    rule.EnableLoggingForFinalMinLevelLayout(finalMinLevelLayout);
-                }
-                else
-                {
-                    LogLevel finalMinLogLevel = LogLevelFromString(finalMinLevel);
-                    rule.EnableLoggingForFinalMinLevel(finalMinLogLevel);
-                }
-            }
-            else if (enableLevels != null)
+            if (enableLevels != null)
             {
                 enableLevels = ExpandSimpleVariables(enableLevels);
-                if (IsLevelLayout(enableLevels))
+                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                if (IsLevelLayout(enableLevels) || IsLevelLayout(finalMinLevel))
                 {
                     SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
-                    rule.EnableLoggingForLevelLayout(simpleLayout);
+                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    rule.EnableLoggingForLevelLayout(simpleLayout, finalMinLevelLayout);
                 }
                 else
                 {
@@ -674,23 +663,30 @@ namespace NLog.Config
                     {
                         rule.EnableLoggingForLevel(LogLevelFromString(logLevel));
                     }
+                    if (finalMinLevel != null)
+                        rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
                 }
             }
             else
             {
                 minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
                 maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
-                if (IsLevelLayout(minLevel) || IsLevelLayout(maxLevel))
+                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                if (IsLevelLayout(minLevel) || IsLevelLayout(maxLevel) || IsLevelLayout(finalMinLevel))
                 {
-                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel);
+                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel) ?? finalMinLevelLayout;
                     SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
-                    rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout);
+                    rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout, finalMinLevelLayout);
                 }
                 else
                 {
-                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : LogLevel.MinLevel;
+                    LogLevel finalMinLogLevel = finalMinLevel != null ? LogLevelFromString(finalMinLevel) : null;
+                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : (finalMinLogLevel ?? LogLevel.MinLevel);
                     LogLevel maxLogLevel = maxLevel != null ? LogLevelFromString(maxLevel) : LogLevel.MaxLevel;
                     rule.SetLoggingLevels(minLogLevel, maxLogLevel);
+                    if (finalMinLogLevel != null)
+                        rule.FinalMinLevel = finalMinLogLevel;
                 }
             }
         }
