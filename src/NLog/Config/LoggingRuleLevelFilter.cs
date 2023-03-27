@@ -44,7 +44,7 @@ namespace NLog.Config
         public bool[] LogLevels { get; }
         public LogLevel FinalMinLevel { get; private set; }
 
-        public LoggingRuleLevelFilter(bool[] logLevels, LogLevel finalMinLevel)
+        public LoggingRuleLevelFilter(bool[] logLevels = null, LogLevel finalMinLevel = null)
         {
             if (logLevels != null)
             {
