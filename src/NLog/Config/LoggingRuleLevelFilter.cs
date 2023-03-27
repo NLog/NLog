@@ -54,11 +54,6 @@ namespace NLog.Config
             FinalMinLevel = finalMinLevel;
         }
 
-        public LoggingRuleLevelFilter(LogLevel finalMinLogLevel) : this()
-        {
-            SetFinalMinLevel(finalMinLogLevel);
-        }
-
         private LoggingRuleLevelFilter()
         {
             LogLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
