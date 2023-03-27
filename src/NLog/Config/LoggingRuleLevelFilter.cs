@@ -44,12 +44,14 @@ namespace NLog.Config
         public bool[] LogLevels { get; }
         public LogLevel FinalMinLevel { get; private set; }
 
-        public LoggingRuleLevelFilter(bool[] logLevels = null) : this()
+        public LoggingRuleLevelFilter(bool[] logLevels, LogLevel finalMinLevel) : this()
         {
             if (logLevels != null)
             {
-                CopyLogLevels(logLevels);
+                for (int i = 0; i < Math.Min(logLevels.Length, LogLevels.Length); ++i)
+                    LogLevels[i] = logLevels[i];
             }
+            FinalMinLevel = finalMinLevel;
         }
 
         public LoggingRuleLevelFilter(LogLevel finalMinLogLevel) : this()
@@ -71,7 +73,6 @@ namespace NLog.Config
 
         public LoggingRuleLevelFilter SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel, bool enable)
         {
-            FinalMinLevel = null;
             for (int i = minLevel.Ordinal; i <= Math.Min(maxLevel.Ordinal, LogLevels.Length - 1); ++i)
                 LogLevels[i] = enable;
             return this;
@@ -80,15 +81,7 @@ namespace NLog.Config
         public LoggingRuleLevelFilter SetFinalMinLevel(LogLevel finalMinLevel)
         {
             FinalMinLevel = finalMinLevel;
-            bool[] newLevels = FinalMinLevelCalculator.GetLogLevels(finalMinLevel);
-            CopyLogLevels(newLevels);
             return this;
-        }
-
-        private void CopyLogLevels(bool[] logLevels)
-        {
-            for (int i = 0; i < Math.Min(logLevels.Length, LogLevels.Length); ++i)
-                LogLevels[i] = logLevels[i];
         }
     }
 }
