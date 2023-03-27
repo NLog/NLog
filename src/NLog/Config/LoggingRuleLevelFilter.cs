@@ -46,6 +46,7 @@ namespace NLog.Config
 
         public LoggingRuleLevelFilter(bool[] logLevels = null, LogLevel finalMinLevel = null)
         {
+            LogLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
             if (logLevels != null)
             {
                 for (int i = 0; i < Math.Min(logLevels.Length, LogLevels.Length); ++i)
@@ -56,7 +57,7 @@ namespace NLog.Config
 
         public LoggingRuleLevelFilter GetSimpleFilterForUpdate()
         {
-            if (ReferenceEquals(LogLevels, Off.LogLevels) && FinalMinLevel is null)
+            if (ReferenceEquals(this, Off))
                 return new LoggingRuleLevelFilter();
             else
                 return this;
