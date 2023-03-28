@@ -122,7 +122,7 @@ namespace NLog.Config
             }
             catch (ArgumentException ex)
             {
-                InternalLogger.Warn(ex, "Logging rule {0} with filter `{1}` has invalid level filter: {2}", _loggingRule.RuleName, _loggingRule.LoggerNamePattern, logLevel);
+                InternalLogger.Warn(ex, "Logging rule {0} with pattern '{1}' has invalid loglevel: {2}", _loggingRule.RuleName, _loggingRule.LoggerNamePattern, logLevel);
                 return null;
             }
         }
@@ -148,7 +148,7 @@ namespace NLog.Config
                 }
                 catch (ArgumentException ex)
                 {
-                    InternalLogger.Warn(ex, "Logging rule {0} with filter `{1}` has invalid level filter: {2}", _loggingRule.RuleName, _loggingRule.LoggerNamePattern, levelFilter);
+                    InternalLogger.Warn(ex, "Logging rule {0} with pattern '{1}' has invalid loglevel: {2}", _loggingRule.RuleName, _loggingRule.LoggerNamePattern, levelFilter);
                 }
             }
 
