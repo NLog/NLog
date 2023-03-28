@@ -166,9 +166,12 @@ namespace NLog.Internal
             bool targetsFound = false;
             bool duplicateTargetsFound = false;
 
+            var finalMinLevel = rule.FinalMinLevel;
+            var ruleLogLevels = rule.LogLevels;
+
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
-                if (SuppressLogLevel(rule, globalLogLevel, i, ref suppressedLevels[i]))
+                if (SuppressLogLevel(rule, ruleLogLevels, finalMinLevel, globalLogLevel, i, ref suppressedLevels[i]))
                 {
                     continue;
                 }
@@ -204,14 +207,14 @@ namespace NLog.Internal
             return targetsFound;
         }
 
-        private static bool SuppressLogLevel(LoggingRule rule, LogLevel globalLogLevel, int logLevelOrdinal, ref bool suppressedLevels)
+        private static bool SuppressLogLevel(LoggingRule rule, bool[] ruleLogLevels, LogLevel finalMinLevel, LogLevel globalLogLevel, int logLevelOrdinal, ref bool suppressedLevels)
         {
             if (logLevelOrdinal < globalLogLevel.Ordinal)
             {
                 return true;
             }
 
-            if (rule.FinalMinLevel is null)
+            if (finalMinLevel is null)
             {
                 if (suppressedLevels)
                 {
@@ -220,10 +223,10 @@ namespace NLog.Internal
             }
             else
             {
-                suppressedLevels = rule.FinalMinLevel.Ordinal > logLevelOrdinal;
+                suppressedLevels = finalMinLevel.Ordinal > logLevelOrdinal;
             }
 
-            if (!rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(logLevelOrdinal)))
+            if (!ruleLogLevels[logLevelOrdinal])
             {
                 return true;
             }
