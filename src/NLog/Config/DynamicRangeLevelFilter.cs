@@ -46,21 +46,25 @@ namespace NLog.Config
         private readonly LoggingRule _loggingRule;
         private readonly SimpleLayout _minLevel;
         private readonly SimpleLayout _maxLevel;
+        private readonly SimpleLayout _finalMinLevelFilter;
         private KeyValuePair<MinMaxLevels, bool[]> _activeFilter;
 
         public bool[] LogLevels => GenerateLogLevels();
 
-        public DynamicRangeLevelFilter(LoggingRule loggingRule, SimpleLayout minLevel, SimpleLayout maxLevel)
+        public LogLevel FinalMinLevel => GenerateFinalMinLevel();
+
+        public DynamicRangeLevelFilter(LoggingRule loggingRule, SimpleLayout minLevel, SimpleLayout maxLevel, SimpleLayout finalMinLevelFilter)
         {
             _loggingRule = loggingRule;
             _minLevel = minLevel;
             _maxLevel = maxLevel;
+            _finalMinLevelFilter = finalMinLevelFilter;
             _activeFilter = new KeyValuePair<MinMaxLevels, bool[]>(new MinMaxLevels(string.Empty, string.Empty), LoggingRuleLevelFilter.Off.LogLevels);
         }
 
         public LoggingRuleLevelFilter GetSimpleFilterForUpdate()
         {
-            return new LoggingRuleLevelFilter(LogLevels);
+            return new LoggingRuleLevelFilter(LogLevels, FinalMinLevel);
         }
 
         private bool[] GenerateLogLevels()
@@ -77,6 +81,12 @@ namespace NLog.Config
                 _activeFilter = activeFilter = new KeyValuePair<MinMaxLevels, bool[]>(new MinMaxLevels(minLevelFilter, maxLevelFilter), logLevels);
             }
             return activeFilter.Value;
+        }
+
+        private LogLevel GenerateFinalMinLevel()
+        {
+            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent());
+            return ParseLogLevel(levelFilter, null);
         }
 
         private bool[] ParseLevelRange(string minLevelFilter, string maxLevelFilter)

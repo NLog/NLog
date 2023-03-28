@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -46,20 +46,24 @@ namespace NLog.Config
     {
         private readonly LoggingRule _loggingRule;
         private readonly SimpleLayout _levelFilter;
+        private readonly SimpleLayout _finalMinLevelFilter;
         private KeyValuePair<string, bool[]> _activeFilter;
 
         public bool[] LogLevels => GenerateLogLevels();
 
-        public DynamicLogLevelFilter(LoggingRule loggingRule, SimpleLayout levelFilter)
+        public LogLevel FinalMinLevel => GenerateFinalMinLevel();
+
+        public DynamicLogLevelFilter(LoggingRule loggingRule, SimpleLayout levelFilter, SimpleLayout finalMinLevelFilter)
         {
             _loggingRule = loggingRule;
             _levelFilter = levelFilter;
+            _finalMinLevelFilter = finalMinLevelFilter;
             _activeFilter = new KeyValuePair<string, bool[]>(string.Empty, LoggingRuleLevelFilter.Off.LogLevels);
         }
 
         public LoggingRuleLevelFilter GetSimpleFilterForUpdate()
         {
-            return new LoggingRuleLevelFilter(LogLevels);
+            return new LoggingRuleLevelFilter(LogLevels, FinalMinLevel);
         }
 
         private bool[] GenerateLogLevels()
@@ -90,25 +94,36 @@ namespace NLog.Config
             return activeFilter.Value;
         }
 
+        private LogLevel GenerateFinalMinLevel()
+        {
+            var levelFilter = _finalMinLevelFilter?.Render(LogEventInfo.CreateNullEvent());
+            return ParseLogLevel(levelFilter, null);
+        }
+
         private bool[] ParseSingleLevel(string levelFilter)
+        {
+            var logLevel = ParseLogLevel(levelFilter, null);
+            if (logLevel is null || logLevel == LogLevel.Off)
+                return LoggingRuleLevelFilter.Off.LogLevels;
+
+            bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+            logLevels[logLevel.Ordinal] = true;
+            return logLevels;
+        }
+
+        private LogLevel ParseLogLevel(string logLevel, LogLevel levelIfEmpty)
         {
             try
             {
-                if (StringHelpers.IsNullOrWhiteSpace(levelFilter))
-                    return LoggingRuleLevelFilter.Off.LogLevels;
+                if (string.IsNullOrEmpty(logLevel))
+                    return levelIfEmpty;
 
-                var logLevel = LogLevel.FromString(levelFilter.Trim());
-                if (logLevel == LogLevel.Off)
-                    return LoggingRuleLevelFilter.Off.LogLevels;
-
-                bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
-                logLevels[logLevel.Ordinal] = true;
-                return logLevels;
+                return LogLevel.FromString(logLevel.Trim());
             }
             catch (ArgumentException ex)
             {
-                InternalLogger.Warn(ex, "Logging rule {0} with filter `{1}` has invalid level filter: {2}", _loggingRule.RuleName, _loggingRule.LoggerNamePattern, levelFilter);
-                return LoggingRuleLevelFilter.Off.LogLevels;
+                InternalLogger.Warn(ex, "Logging rule {0} with filter `{1}` has invalid level filter: {2}", _loggingRule.RuleName, _loggingRule.LoggerNamePattern, logLevel);
+                return null;
             }
         }
 

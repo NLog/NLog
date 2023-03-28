@@ -145,7 +145,11 @@ namespace NLog.Config
         /// <remarks>
         /// Loggers matching will be restricted to specified minimum level for following rules.
         /// </remarks>
-        public LogLevel FinalMinLevel { get; set; }
+        public LogLevel FinalMinLevel
+        {
+            get => _logLevelFilter.FinalMinLevel;
+            set => _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetFinalMinLevel(value);
+        }
 
         /// <summary>
         /// Gets or sets logger name pattern.
@@ -161,12 +165,10 @@ namespace NLog.Config
         public string LoggerNamePattern
         {
             get => _loggerNameMatcher.Pattern;
-
-            set
-            {
-                _loggerNameMatcher = LoggerNameMatcher.Create(value);
-            }
+            set => _loggerNameMatcher = LoggerNameMatcher.Create(value);
         }
+
+        internal bool[] LogLevels => _logLevelFilter.LogLevels;
 
         /// <summary>
         /// Gets the collection of log levels enabled by this rule.
@@ -226,14 +228,14 @@ namespace NLog.Config
             _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, true);
         }
 
-        internal void EnableLoggingForLevelLayout(NLog.Layouts.SimpleLayout simpleLayout)
+        internal void EnableLoggingForLevelLayout(NLog.Layouts.SimpleLayout simpleLayout, NLog.Layouts.SimpleLayout finalMinLevel)
         {
-            _logLevelFilter = new DynamicLogLevelFilter(this, simpleLayout);
+            _logLevelFilter = new DynamicLogLevelFilter(this, simpleLayout, finalMinLevel);
         }
 
-        internal void EnableLoggingForLevelsLayout(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel)
+        internal void EnableLoggingForLevelsLayout(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel, NLog.Layouts.SimpleLayout finalMinLevel)
         {
-            _logLevelFilter = new DynamicRangeLevelFilter(this, minLevel, maxLevel);
+            _logLevelFilter = new DynamicRangeLevelFilter(this, minLevel, maxLevel, finalMinLevel);
         }
 
         /// <summary>

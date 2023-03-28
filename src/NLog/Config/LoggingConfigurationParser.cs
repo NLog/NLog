@@ -629,16 +629,7 @@ namespace NLog.Config
                 Final = final,
             };
 
-            if (!string.IsNullOrEmpty(finalMinLevel))
-            {
-                rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
-                if (string.IsNullOrEmpty(enableLevels) && string.IsNullOrEmpty(minLevel))
-                {
-                    minLevel = finalMinLevel;
-                }
-            }
-
-            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
+            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel, finalMinLevel);
 
             ParseLoggingRuleTargets(writeTargets, rule);
 
@@ -649,15 +640,22 @@ namespace NLog.Config
             return rule;
         }
 
-        private void EnableLevelsForRule(LoggingRule rule, string enableLevels, string minLevel, string maxLevel)
+        private void EnableLevelsForRule(
+            LoggingRule rule,
+            string enableLevels,
+            string minLevel,
+            string maxLevel,
+            string finalMinLevel)
         {
             if (enableLevels != null)
             {
                 enableLevels = ExpandSimpleVariables(enableLevels);
-                if (enableLevels.IndexOf('{') >= 0)
+                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                if (IsLevelLayout(enableLevels) || IsLevelLayout(finalMinLevel))
                 {
                     SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
-                    rule.EnableLoggingForLevelLayout(simpleLayout);
+                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    rule.EnableLoggingForLevelLayout(simpleLayout, finalMinLevelLayout);
                 }
                 else
                 {
@@ -665,25 +663,37 @@ namespace NLog.Config
                     {
                         rule.EnableLoggingForLevel(LogLevelFromString(logLevel));
                     }
+                    if (finalMinLevel != null)
+                        rule.FinalMinLevel = LogLevelFromString(finalMinLevel);
                 }
             }
             else
             {
                 minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
                 maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
-                if (minLevel?.IndexOf('{') >= 0 || maxLevel?.IndexOf('{') >= 0)
+                finalMinLevel = finalMinLevel != null ? ExpandSimpleVariables(finalMinLevel) : finalMinLevel;
+                if (IsLevelLayout(minLevel) || IsLevelLayout(maxLevel) || IsLevelLayout(finalMinLevel))
                 {
-                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel);
+                    SimpleLayout finalMinLevelLayout = ParseLevelLayout(finalMinLevel);
+                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel) ?? finalMinLevelLayout;
                     SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
-                    rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout);
+                    rule.EnableLoggingForLevelsLayout(minLevelLayout, maxLevelLayout, finalMinLevelLayout);
                 }
                 else
                 {
-                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : LogLevel.MinLevel;
+                    LogLevel finalMinLogLevel = finalMinLevel != null ? LogLevelFromString(finalMinLevel) : null;
+                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : (finalMinLogLevel ?? LogLevel.MinLevel);
                     LogLevel maxLogLevel = maxLevel != null ? LogLevelFromString(maxLevel) : LogLevel.MaxLevel;
                     rule.SetLoggingLevels(minLogLevel, maxLogLevel);
+                    if (finalMinLogLevel != null)
+                        rule.FinalMinLevel = finalMinLogLevel;
                 }
             }
+        }
+
+        private static bool IsLevelLayout(string level)
+        {
+            return level?.IndexOf('{') >= 0;
         }
 
         private SimpleLayout ParseLevelLayout(string levelLayout)
