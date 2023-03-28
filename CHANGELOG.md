@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### Version 5.1.3 (2023/03/30)
+### Version 5.1.3 (2023/03/28)
 
 **Improvements**
 - [#5174](https://github.com/NLog/NLog/pull/5174) LoggingRule - FinalMinLevel with Layout support (#5174) (@Aaronmsv)
