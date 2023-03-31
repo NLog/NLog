@@ -47,10 +47,10 @@ namespace NLog.Internal.Xamarin
         /// <summary>
         /// Ensures that all members of this type are preserved
         /// </summary>
-        public bool AllMembers { get; } = true;
+        public bool AllMembers { get; set; }
         /// <summary>
         /// Flags the method as a method to preserve during linking if the container class is pulled in.
         /// </summary>
-        public bool Conditional { get; }
+        public bool Conditional { get; set; }
     }
 }
