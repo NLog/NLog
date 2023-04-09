@@ -67,6 +67,16 @@ namespace NLog.Internal.Fakeables
 
             try
             {
+                FriendlyName = appDomain.FriendlyName;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "AppDomain.FriendlyName Failed");
+                FriendlyName = GetFriendlyNameFromEntryAssembly() ?? GetFriendlyNameFromProcessName() ?? string.Empty;
+            }
+
+            try
+            {
                 ConfigurationFile = LookupConfigurationFile(appDomain);
             }
             catch (Exception ex)
@@ -85,7 +95,6 @@ namespace NLog.Internal.Fakeables
                 PrivateBinPath = ArrayHelper.Empty<string>();
             }
 
-            FriendlyName = appDomain.FriendlyName;
             Id = appDomain.Id;
         }
 
@@ -113,6 +122,32 @@ namespace NLog.Internal.Fakeables
 #else
             return ArrayHelper.Empty<string>();
 #endif
+        }
+
+        private static string GetFriendlyNameFromEntryAssembly()
+        {
+            try
+            {
+                string assemblyName = Assembly.GetEntryAssembly()?.GetName()?.Name;
+                return string.IsNullOrEmpty(assemblyName) ? null : assemblyName;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static string GetFriendlyNameFromProcessName()
+        {
+            try
+            {
+                string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+                return string.IsNullOrEmpty(processName) ? null : processName;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
