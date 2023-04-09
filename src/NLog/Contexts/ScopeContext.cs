@@ -579,7 +579,7 @@ namespace NLog
                 else
                     return scopeProperties.Select(prop => prop.Key).ToList();
             }
-            return Array.Empty<string>();
+            return ArrayHelper.Empty<string>();
 #else
             return GetMappedContextCallContext()?.Keys ?? (ICollection<string>)ArrayHelper.Empty<string>();
 #endif

@@ -105,7 +105,14 @@ namespace NLog.Internal
             if (_allProperties?.Count > 0)
             {
                 if (properties?.Count > 0)
+                {
+                    if (_propertyCollector is null)
+                    {
+                        return _allProperties = MergeUniqueProperties(properties);
+                    }
+
                     AddProperties(properties);
+                }
 
                 return _allProperties = EnsureUniqueProperties(_allProperties);
             }
@@ -116,6 +123,14 @@ namespace NLog.Internal
                 else
                     return _allProperties = Array.Empty<KeyValuePair<string, object>>();
             }
+        }
+
+        private IReadOnlyCollection<KeyValuePair<string, object>> MergeUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        {
+            var scopeProperties = new Dictionary<string, object>(_allProperties.Count + properties.Count, ScopeContext.DefaultComparer);
+            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
+            ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(_allProperties, scopeProperties);
+            return scopeProperties;
         }
 
         private static IReadOnlyCollection<KeyValuePair<string, object>> EnsureUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
@@ -148,7 +163,7 @@ namespace NLog.Internal
             {
                 if (_propertyCollector is null)
                 {
-                    _propertyCollector = new List<KeyValuePair<string, object>>(_allProperties.Count + 1);
+                    _propertyCollector = new List<KeyValuePair<string, object>>(Math.Max(4, _allProperties.Count + 1));
                     _propertyCollector.Add(new KeyValuePair<string, object>(propertyName, propertyValue));
                     CollectProperties(_allProperties);
                     _allProperties = _propertyCollector;
@@ -170,10 +185,14 @@ namespace NLog.Internal
             {
                 if (_propertyCollector is null)
                 {
-                    _propertyCollector = new List<KeyValuePair<string, object>>(_allProperties.Count + properties.Count);
+                    _propertyCollector = new List<KeyValuePair<string, object>>(Math.Max(4, _allProperties.Count + properties.Count));
                     CollectProperties(properties);
                     CollectProperties(_allProperties);
                     _allProperties = _propertyCollector;
+                }
+                else if (_propertyCollector.Count == 0)
+                {
+                    CollectProperties(properties);
                 }
                 else
                 {
@@ -214,7 +233,7 @@ namespace NLog.Internal
 
         public IList<object> StartCaptureNestedStates(IScopeContextAsyncState state)
         {
-            _allNestedStates = _allNestedStates ?? System.Array.Empty<object>();
+            _allNestedStates = _allNestedStates ?? Array.Empty<object>();
 
             while (state != null)
             {
@@ -231,7 +250,7 @@ namespace NLog.Internal
         {
             if (_nestedStateCollector is null)
             {
-                _nestedStateCollector = new List<object>(_allNestedStates?.Count ?? 0 + 1);
+                _nestedStateCollector = new List<object>(Math.Max(4, _allNestedStates?.Count ?? 0 + 1));
                 if (_allNestedStates?.Count > 0)
                 {
                     for (int i = 0; i < _allNestedStates.Count; ++i)
@@ -506,8 +525,8 @@ namespace NLog.Internal
         {
             var nestedStateCollector = new ScopeContextNestedStateCollector();
             var propertyCollector = new ScopeContextPropertyCollector();
-            var nestedStates = contextState?.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
-            var scopeProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+            var nestedStates = contextState?.CaptureNestedContext(ref nestedStateCollector) ?? Array.Empty<object>();
+            var scopeProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? Array.Empty<KeyValuePair<string, object>>();
             allProperties = new Dictionary<string, object>(scopeProperties.Count, ScopeContext.DefaultComparer);
             ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(scopeProperties, allProperties);
 
@@ -531,7 +550,7 @@ namespace NLog.Internal
             }
             else
             {
-                nestedContext = ArrayHelper.Empty<object>();
+                nestedContext = Array.Empty<object>();
             }
         }
 
