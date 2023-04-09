@@ -605,7 +605,7 @@ namespace NLog.Internal
             }
         }
 
-        private class ParameterEnumerator : DictionaryEnumeratorBase, IEnumerator<MessageTemplateParameter>
+        private sealed class ParameterEnumerator : DictionaryEnumeratorBase, IEnumerator<MessageTemplateParameter>
         {
             /// <inheritDoc/>
             public MessageTemplateParameter Current => CurrentParameter;
@@ -619,7 +619,7 @@ namespace NLog.Internal
             }
         }
 
-        private class DictionaryEnumerator : DictionaryEnumeratorBase, IEnumerator<KeyValuePair<object, object>>
+        private sealed class DictionaryEnumerator : DictionaryEnumeratorBase, IEnumerator<KeyValuePair<object, object>>
         {
             /// <inheritDoc/>
             public KeyValuePair<object, object> Current => CurrentProperty;
@@ -634,7 +634,7 @@ namespace NLog.Internal
         }
 
         [DebuggerDisplay("Count = {Count}")]
-        private class DictionaryCollection : ICollection<object>
+        private sealed class DictionaryCollection : ICollection<object>
         {
             private readonly PropertiesDictionary _dictionary;
             private readonly bool _keyCollection;
@@ -708,7 +708,7 @@ namespace NLog.Internal
                 return GetEnumerator();
             }
 
-            private class DictionaryCollectionEnumerator : DictionaryEnumeratorBase, IEnumerator<object>
+            private sealed class DictionaryCollectionEnumerator : DictionaryEnumeratorBase, IEnumerator<object>
             {
                 private readonly bool _keyCollection;
 
@@ -769,7 +769,7 @@ namespace NLog.Internal
         /// Property-Key equality-comparer that uses string-hashcode from OrdinalIgnoreCase
         /// Enables case-insensitive lookup using <see cref="IgnoreCasePropertyKey"/>
         /// </summary>
-        private class PropertyKeyComparer : IEqualityComparer<object>
+        private sealed class PropertyKeyComparer : IEqualityComparer<object>
         {
             public static readonly PropertyKeyComparer Default = new PropertyKeyComparer();
 

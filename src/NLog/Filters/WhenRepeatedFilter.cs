@@ -301,7 +301,7 @@ namespace NLog.Filters
         /// <summary>
         /// Filter Value State (mutable)
         /// </summary>
-        private class FilterInfo
+        private sealed class FilterInfo
         {
             public FilterInfo(StringBuilder stringBuilder)
             {

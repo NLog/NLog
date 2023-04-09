@@ -39,7 +39,7 @@ using NLog.Config;
 
 namespace LoaderTestPublic
 {
-    public class NLogPackageLoader
+    public sealed class NLogPackageLoader
     {
         public static void Preload()
         {
@@ -53,7 +53,7 @@ namespace LoaderTestInternal
     /// <summary>
     /// private
     /// </summary>
-    internal class NLogPackageLoader
+    internal sealed class NLogPackageLoader
     {
         public static void Preload()
         {
@@ -66,8 +66,7 @@ namespace LoaderTestPrivateNested
 {
     internal class SomeType
     {
-        [SuppressMessage("ReSharper", "UnusedMember.Local")]
-        private class NLogPackageLoader
+        private sealed class NLogPackageLoader
         {
             public static void Preload(ConfigurationItemFactory fact)
             {
@@ -82,9 +81,8 @@ namespace LoaderTestPrivateNested
 
 namespace LoaderTestPrivateNestedStatic
 {
-    internal class SomeType
+    internal sealed class SomeType
     {
-        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static class NLogPackageLoader
         {
             public static void Preload()
@@ -97,7 +95,7 @@ namespace LoaderTestPrivateNestedStatic
 
 namespace LoaderTestWrong1
 {
-    public class NLogPackageLoader
+    public sealed class NLogPackageLoader
     {
         [DebuggerStepThrough]
         public static void Preload()
@@ -109,7 +107,7 @@ namespace LoaderTestWrong1
 
 namespace LoaderTestWrong2
 {
-    public class NLogPackageLoader
+    public sealed class NLogPackageLoader
     {
         public void Preload()
         {
@@ -120,7 +118,7 @@ namespace LoaderTestWrong2
 
 namespace LoaderTestWrong3
 {
-    public class NLogPackageLoader
+    public sealed class NLogPackageLoader
     {
         public static void Preload(int arg1, int arg2)
         {
