@@ -88,7 +88,7 @@ namespace NLog
             return setupBuilder;
         }
 
-        private class ObjectTypeTransformation<T> : IObjectTypeTransformer
+        private sealed class ObjectTypeTransformation<T> : IObjectTypeTransformer
         {
             private readonly IObjectTypeTransformer _original;
             private readonly Func<T, object> _transformer;
@@ -111,7 +111,7 @@ namespace NLog
             }
         }
 
-        private class ObjectTypeTransformation : IObjectTypeTransformer
+        private sealed class ObjectTypeTransformation : IObjectTypeTransformer
         {
             private readonly IObjectTypeTransformer _original;
             private readonly Func<object, object> _transformer;

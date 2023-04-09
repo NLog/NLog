@@ -1433,7 +1433,7 @@ namespace NLog.Config
         /// <summary>
         /// Config element that's validated and having extra context
         /// </summary>
-        private class ValidatedConfigurationElement : ILoggingConfigurationElement
+        private sealed class ValidatedConfigurationElement : ILoggingConfigurationElement
         {
             private static readonly IDictionary<string, string> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, string>();
 
