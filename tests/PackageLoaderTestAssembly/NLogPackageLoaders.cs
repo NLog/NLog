@@ -33,7 +33,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using NLog;
 using NLog.Config;
 
@@ -43,7 +42,7 @@ namespace LoaderTestPublic
     {
         public static void Preload()
         {
-
+            // Nothing to do
         }
     }
 }
