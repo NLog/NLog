@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using NLog.Internal.Xamarin;
 
-[assembly: Preserve(AllMembers = true)]    // Automatic --linkskip=NLog
+[assembly: Preserve]    // Automatic --linkskip=NLog
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
