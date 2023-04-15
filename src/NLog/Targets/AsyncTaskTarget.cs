@@ -702,11 +702,7 @@ namespace NLog.Targets
                         return;
                 }
 
-                var reusableLogEvents = continuation as System.Tuple<List<LogEventInfo>, List<AsyncContinuation>>;
-                if (reusableLogEvents != null)
-                    NotifyTaskCompletion(reusableLogEvents.Item2, null);
-                else
-                    success = false;
+                var actualException = ExtractActualException(completedTask.Exception);
 
                 if (completedTask.IsCanceled)
                 {
@@ -716,10 +712,8 @@ namespace NLog.Targets
                     else
                         InternalLogger.Info("{0}: WriteAsyncTask was cancelled", this);
                 }
-                else if (completedTask.Exception != null)
+                else if (actualException != null)
                 {
-                    Exception actualException = ExtractActualException(completedTask.Exception);
-
                     success = false;
                     if (RetryCount <= 0)
                     {
@@ -734,6 +728,12 @@ namespace NLog.Targets
                         InternalLogger.Warn(actualException, "{0}: WriteAsyncTask failed on completion", this);
                     }
                 }
+
+                var reusableLogEvents = continuation as System.Tuple<List<LogEventInfo>, List<AsyncContinuation>>;
+                if (reusableLogEvents != null)
+                    NotifyTaskCompletion(reusableLogEvents.Item2, actualException);
+                else
+                    success = false;
 
                 if (success)
                 {
