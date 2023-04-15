@@ -199,7 +199,7 @@ namespace NLog.Config
         /// <param name="lateBoundMethod">The precompiled method delegate.</param>
         internal void RegisterDefinition(string itemName, MethodInfo itemDefinition, ReflectionHelpers.LateBoundMethod lateBoundMethod)
         {
-            lock (_nameToLateBoundMethod)
+            lock (_nameToMethodInfo)
             {
                 _nameToMethodInfo[itemName] = itemDefinition;
                 _nameToLateBoundMethod[itemName] = lateBoundMethod;

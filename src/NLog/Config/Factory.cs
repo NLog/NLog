@@ -192,16 +192,13 @@ namespace NLog.Config
             GetTypeDelegate typeLookup = () => itemDefinition;
             itemName = NormalizeName(itemName);
 
-            lock (_items)
-            {
-                _items[itemNamePrefix + itemName] = typeLookup;
+            _items[itemNamePrefix + itemName] = typeLookup;
 
-                if (!string.IsNullOrEmpty(assemblyName))
-                {
-                    _items[itemName + ", " + assemblyName] = typeLookup;
-                    _items[itemDefinition.Name + ", " + assemblyName] = typeLookup;
-                    _items[itemDefinition.ToString() + ", " + assemblyName] = typeLookup;
-                }
+            if (!string.IsNullOrEmpty(assemblyName))
+            {
+                _items[itemName + ", " + assemblyName] = typeLookup;
+                _items[itemDefinition.Name + ", " + assemblyName] = typeLookup;
+                _items[itemDefinition.ToString() + ", " + assemblyName] = typeLookup;
             }
         }
 
