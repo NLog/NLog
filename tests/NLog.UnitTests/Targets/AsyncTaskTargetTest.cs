@@ -40,6 +40,7 @@ namespace NLog.UnitTests.Targets
     using System.Threading;
     using System.Threading.Tasks;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Targets;
     using Xunit;
 
@@ -57,6 +58,10 @@ namespace NLog.UnitTests.Targets
 
             public bool WaitForWriteEvent(int timeoutMilliseconds = 1000)
             {
+#if DEBUG
+                if (System.Diagnostics.Debugger.IsAttached)
+                    timeoutMilliseconds = timeoutMilliseconds * 60;
+#endif
                 if (_writeEvent.WaitOne(TimeSpan.FromMilliseconds(timeoutMilliseconds)))
                 {
                     Thread.Sleep(25);
@@ -374,6 +379,47 @@ namespace NLog.UnitTests.Targets
             logger.Factory.Flush();
             Assert.Equal(LogLevel.MaxLevel.Ordinal, asyncTarget.Logs.Count);
             Assert.Equal(LogLevel.MaxLevel.Ordinal + 4, asyncTarget.WriteTasks);
+
+            int ordinal = 0;
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
+            {
+                var logLevel = LogLevel.FromString(logEventMessage);
+                Assert.NotEqual(LogLevel.Debug, logLevel);
+                Assert.Equal(ordinal++, logLevel.Ordinal);
+                if (ordinal == LogLevel.Debug.Ordinal)
+                    ++ordinal;
+            }
+
+            logger.Factory.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestFallbackException()
+        {
+            var asyncTarget = new AsyncTaskTestTarget
+            {
+                Layout = "${level}",
+                RetryDelayMilliseconds = 10,
+                RetryCount = 1
+            };
+
+            var fallbacKTarget = new MemoryTarget() { Layout = "${level}" };
+
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(asyncTarget).WithFallback(fallbacKTarget);
+            }).GetCurrentClassLogger();
+
+            foreach (var logLevel in LogLevel.AllLoggingLevels)
+                logger.Log(logLevel, logLevel == LogLevel.Debug ? "EXCEPTION" : logLevel.Name.ToUpperInvariant());
+            Assert.True(asyncTarget.WaitForWriteEvent());
+            Assert.NotEmpty(asyncTarget.Logs);
+            logger.Factory.Flush();
+            Assert.Equal(LogLevel.MaxLevel.Ordinal, asyncTarget.Logs.Count);
+            Assert.Equal(LogLevel.MaxLevel.Ordinal + 2, asyncTarget.WriteTasks);
+
+            Assert.Single(fallbacKTarget.Logs);
+            Assert.Equal(LogLevel.Debug.ToString(), fallbacKTarget.Logs[0]);
 
             int ordinal = 0;
             while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
