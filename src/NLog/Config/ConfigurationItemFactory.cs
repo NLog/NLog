@@ -82,7 +82,6 @@ namespace NLog.Config
 
         internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
         {
-            CreateInstance = FactoryHelper.CreateInstance;
             _serviceRepository = Guard.ThrowIfNull(serviceRepository);
             _targets = new Factory<Target, TargetAttribute>(this, globalDefaultFactory?._targets);
             _filters = new Factory<Filter, FilterAttribute>(this, globalDefaultFactory?._filters);
@@ -127,7 +126,8 @@ namespace NLog.Config
         /// <remarks>
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
-        public ConfigurationItemCreator CreateInstance { get; set; }
+        [Obsolete("Instead override type-creation by calling RegisterTarget with delegate. Marked obsolete with NLog v5.2")]
+        public ConfigurationItemCreator CreateInstance { get; set; } = FactoryHelper.CreateInstance;
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
@@ -141,15 +141,11 @@ namespace NLog.Config
         /// <value>The filter factory.</value>
         public INamedItemFactory<Filter, Type> Filters => _filters;
 
-        /// <summary>
-        /// gets the <see cref="LayoutRenderer"/> factory
-        /// </summary>
-        /// <remarks>not using <see cref="_layoutRenderers"/> due to backwards-compatibility.</remarks>
-        /// <returns></returns>
-        internal LayoutRendererFactory GetLayoutRenderers()
-        {
-            return _layoutRenderers;
-        }
+        internal LayoutRendererFactory GetLayoutRenderers() => _layoutRenderers;
+
+        internal Factory<Layout, LayoutAttribute> GetLayoutFactory() => _layouts;
+
+        internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
@@ -453,14 +449,15 @@ namespace NLog.Config
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var success = false;
+
                 try
                 {
                     var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
                     InternalLogger.LogAssemblyVersion(extensionAssembly);
                     factory.RegisterItemsFromAssembly(extensionAssembly);
                     alreadyRegistered.Add(extensionAssembly.FullName);
-                    success = true;
+
+                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                 }
                 catch (Exception ex)
                 {
@@ -474,10 +471,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-                }
-                if (success)
-                {
-                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                 }
             }
 

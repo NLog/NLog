@@ -99,11 +99,33 @@ namespace NLog
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The target type-alias for use in NLog configuration. Will extract from class-attribute when unassigned.</param>
-        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name = null) where T : Target
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name = null)
+            where T : Target, new()
         {
-            var targetType = typeof(T);
-            name = string.IsNullOrEmpty(name) ? (targetType.GetFirstCustomAttribute<TargetAttribute>()?.Name ?? typeof(T).Name) : name;
-            return RegisterTarget(setupBuilder, name, targetType);
+            return RegisterTarget<T>(setupBuilder, () => new T(), name);
+        }
+
+        /// <summary>
+        /// Register a custom NLog Target.
+        /// </summary>
+        /// <typeparam name="T">Type of the Target.</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="factory">The factory method for creating instance of NLog Target</param>
+        /// <param name="typeAlias">The target type-alias for use in NLog configuration. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, Func<T> factory, string typeAlias = null)
+            where T : Target
+        {
+            typeAlias = string.IsNullOrEmpty(typeAlias) ? typeof(T).GetFirstCustomAttribute<TargetAttribute>()?.Name : typeAlias;
+            if (string.IsNullOrEmpty(typeAlias))
+            {
+                typeAlias = ResolveTypeAlias<T>("TargetWrapper", "Target");
+                if (typeof(NLog.Targets.Wrappers.WrapperTargetBase).IsAssignableFrom(typeof(T)) && !typeAlias.EndsWith("Wrapper", StringComparison.OrdinalIgnoreCase))
+                {
+                    typeAlias += "Wrapper";
+                }
+            }
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterDefinition<T>(typeAlias, () => factory(), string.Empty);
+            return setupBuilder;
         }
 
         /// <summary>
@@ -129,11 +151,24 @@ namespace NLog
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="typeAlias">The layout type-alias for use in NLog configuration. Will extract from class-attribute when unassigned.</param>
         public static ISetupExtensionsBuilder RegisterLayout<T>(this ISetupExtensionsBuilder setupBuilder, string typeAlias = null)
+            where T : Layout, new()
+        {
+            return RegisterLayout<T>(setupBuilder, () => new T(), typeAlias);
+        }
+
+        /// <summary>
+        /// Register a custom NLog Layout.
+        /// </summary>
+        /// <typeparam name="T">Type of the layout renderer.</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="factory">The factory method for creating instance of NLog Layout</param>
+        /// <param name="typeAlias">The layout type-alias for use in NLog configuration. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterLayout<T>(this ISetupExtensionsBuilder setupBuilder, Func<T> factory, string typeAlias = null)
             where T : Layout
         {
-            var layoutRendererType = typeof(T);
-            typeAlias = string.IsNullOrEmpty(typeAlias) ? (layoutRendererType.GetFirstCustomAttribute<LayoutAttribute>()?.Name ?? typeof(T).Name) : typeAlias;
-            return RegisterLayout(setupBuilder, typeAlias, layoutRendererType);
+            typeAlias = string.IsNullOrEmpty(typeAlias) ? ResolveTypeAlias<T, LayoutAttribute>(ArrayHelper.Empty<string>()) : typeAlias;
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterDefinition<T>(typeAlias, () => factory(), string.Empty);
+            return setupBuilder;
         }
 
         /// <summary>
@@ -159,11 +194,49 @@ namespace NLog
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'. Will extract from class-attribute when unassigned.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name = null)
+            where T : LayoutRenderer, new()
+        {
+            return RegisterLayoutRenderer<T>(setupBuilder, () => new T(), name);
+        }
+
+        /// <summary>
+        /// Register a custom NLog LayoutRenderer.
+        /// </summary>
+        /// <typeparam name="T">Type of the layout renderer.</typeparam>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="factory">The factory method for creating instance of NLog LayoutRenderer</param>
+        /// <param name="typeAlias">The layout-renderer type-alias for use in NLog configuration - without '${ }'. Will extract from class-attribute when unassigned.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, Func<T> factory, string typeAlias = null)
             where T : LayoutRenderer
         {
-            var layoutRendererType = typeof(T);
-            name = string.IsNullOrEmpty(name) ? (layoutRendererType.GetFirstCustomAttribute<LayoutRendererAttribute>()?.Name ?? typeof(T).Name) : name;
-            return RegisterLayoutRenderer(setupBuilder, name, layoutRendererType);
+            typeAlias = string.IsNullOrEmpty(typeAlias) ? ResolveTypeAlias<T, LayoutRendererAttribute>("LayoutRendererWrapper", "LayoutRenderer") : typeAlias;
+            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterDefinition<T>(typeAlias, () => factory(), string.Empty);
+            return setupBuilder;
+        }
+
+        private static string ResolveTypeAlias<T, TNameAttribute>(params string[] trimEndings) where TNameAttribute : NameBaseAttribute
+        {
+            var typeAlias = typeof(T).GetFirstCustomAttribute<TNameAttribute>()?.Name;
+            if (!string.IsNullOrEmpty(typeAlias))
+                return typeAlias;
+
+            return ResolveTypeAlias<T>(trimEndings);
+        }
+
+        private static string ResolveTypeAlias<T>(params string[] trimEndings)
+        {
+            var typeAlias = typeof(T).Name;
+
+            foreach (var ending in trimEndings)
+            {
+                int endingPosition = typeAlias.IndexOf(ending, StringComparison.OrdinalIgnoreCase);
+                if (endingPosition > 0)
+                {
+                    return typeAlias.Substring(endingPosition);
+                }
+            }
+
+            return typeAlias;
         }
 
         /// <summary>

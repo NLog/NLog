@@ -42,6 +42,7 @@ namespace NLog.UnitTests.Config
     public class ConfigurationItemFactoryTests : NLogTestBase
     {
         [Fact]
+        [Obsolete("Instead override type-creation by calling RegisterDefinition with delegate. Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryDefaultTest()
         {
             var itemFactory = new ConfigurationItemFactory();
@@ -66,6 +67,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead override type-creation by calling RegisterDefinition with delegate. Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryUsesSuppliedDelegateToResolveObject()
         {
             var cif = new ConfigurationItemFactory();

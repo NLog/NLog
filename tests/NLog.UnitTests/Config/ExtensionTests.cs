@@ -245,6 +245,15 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void RegisterNamedTypeLessTest()
+        {
+            Assert.NotNull(typeof(FooLayout));
+            var configurationItemFactory = new ConfigurationItemFactory();
+            ((Factory<Layout, LayoutAttribute>)configurationItemFactory.Layouts).RegisterNamedType("foo", typeof(FooLayout).ToString() + "," + typeof(FooLayout).Assembly.GetName().Name);
+            Assert.NotNull(configurationItemFactory.Layouts.CreateInstance("foo"));
+        }
+
+        [Fact]
         public void ExtensionTest_extensions_not_top_and_used()
         {
             Assert.NotNull(typeof(FooLayout));
@@ -597,7 +606,9 @@ namespace NLog.UnitTests.Config
             var configFactory = new ConfigurationItemFactory(assembly);
 
             // Act
+#pragma warning disable CS0618 // Type or member is obsolete
             var foundDefinition = configFactory.Targets.TryGetDefinition(input, out var outputDefinition);
+#pragma warning restore CS0618 // Type or member is obsolete
             var foundInstance = configFactory.Targets.TryCreateInstance(input, out var outputInstance);
             var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.Targets.CreateInstance(input) : null;
 

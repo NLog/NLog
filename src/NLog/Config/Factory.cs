@@ -49,7 +49,19 @@ namespace NLog.Config
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, GetTypeDelegate> _items;
+        private struct ItemFactory
+        {
+            public readonly GetTypeDelegate ItemType;
+            public readonly Func<TBaseType> ItemCreator;
+
+            public ItemFactory(GetTypeDelegate type, Func<TBaseType> factory)
+            {
+                ItemType = type;
+                ItemCreator = factory;
+            }
+        }
+
+        private readonly Dictionary<string, ItemFactory> _items;
         private readonly ConfigurationItemFactory _parentFactory;
         private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
 
@@ -57,7 +69,7 @@ namespace NLog.Config
         {
             _parentFactory = parentFactory;
             _globalDefaultFactory = globalDefaultFactory;
-            _items = new Dictionary<string, GetTypeDelegate>(globalDefaultFactory is null ? 16 : 0, StringComparer.OrdinalIgnoreCase);
+            _items = new Dictionary<string, ItemFactory>(globalDefaultFactory is null ? 16 : 0, StringComparer.OrdinalIgnoreCase);
         }
 
         private delegate Type GetTypeDelegate();
@@ -98,20 +110,9 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
-            RegisterType(type, string.Empty, itemNamePrefix);
-        }
-
-        /// <summary>
-        /// Registers the type.
-        /// </summary>
-        /// <param name="type">The type to register.</param>
-        /// <param name="assemblyName">The assembly name for the type.</param>
-        /// <param name="itemNamePrefix">The item name prefix.</param>
-        public void RegisterType(Type type, string assemblyName, string itemNamePrefix)
-        {
             lock (_items)
             {
-                RegisterTypeNoLock(type, assemblyName, itemNamePrefix);
+                RegisterTypeNoLock(type, string.Empty, itemNamePrefix);
             }
         }
 
@@ -148,9 +149,15 @@ namespace NLog.Config
                 return itemType;
             };
 
+            Func<TBaseType> typeCreator = () =>
+            {
+                var type = typeLookup();
+                return type != null ? (TBaseType)Activator.CreateInstance(type) : null;
+            };
+
             lock (_items)
             {
-                _items[itemName] = typeLookup;
+                _items[itemName] = new ItemFactory(typeLookup, typeCreator);
             }
         }
 
@@ -180,6 +187,18 @@ namespace NLog.Config
             }
         }
 
+        internal void RegisterDefinition<TType>(string itemName, Func<TBaseType> itemCreator, string itemNamePrefix = "") where TType : TBaseType
+        {
+            itemName = NormalizeName(itemName);
+
+            var itemFactory = new ItemFactory(() => typeof(TType), itemCreator);
+
+            lock (_items)
+            {
+                _items[itemNamePrefix + itemName] = itemFactory;
+            }
+        }
+
         /// <summary>
         /// Registers a single type definition.
         /// </summary>
@@ -189,20 +208,22 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         private void RegisterDefinitionNoLock(string itemName, Type itemDefinition, string assemblyName, string itemNamePrefix)
         {
-            GetTypeDelegate typeLookup = () => itemDefinition;
             itemName = NormalizeName(itemName);
 
-            _items[itemNamePrefix + itemName] = typeLookup;
+            var itemFactory = new ItemFactory(() => itemDefinition, () => (TBaseType)Activator.CreateInstance(itemDefinition));
+
+            _items[itemNamePrefix + itemName] = itemFactory;
 
             if (!string.IsNullOrEmpty(assemblyName))
             {
-                _items[itemName + ", " + assemblyName] = typeLookup;
-                _items[itemDefinition.Name + ", " + assemblyName] = typeLookup;
-                _items[itemDefinition.ToString() + ", " + assemblyName] = typeLookup;
+                _items[itemName + ", " + assemblyName] = itemFactory;
+                _items[itemDefinition.Name + ", " + assemblyName] = itemFactory;
+                _items[itemDefinition.ToString() + ", " + assemblyName] = itemFactory;
             }
         }
 
         /// <inheritdoc/>
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         public bool TryGetDefinition(string itemName, out Type result)
         {
             itemName = NormalizeName(itemName);
@@ -220,7 +241,7 @@ namespace NLog.Config
 
             try
             {
-                result = getTypeDelegate();
+                result = getTypeDelegate?.Invoke();
                 return result != null;
             }
             catch (Exception ex)
@@ -240,21 +261,58 @@ namespace NLog.Config
         {
             lock (_items)
             {
-                return _items.TryGetValue(itemName, out getTypeDelegate);
+                if (_items.TryGetValue(itemName, out var itemFactory))
+                {
+                    getTypeDelegate = itemFactory.ItemType;
+                    return getTypeDelegate != null;
+                }
             }
+
+            getTypeDelegate = null;
+            return false;
         }
 
         /// <inheritdoc/>
         public virtual bool TryCreateInstance(string itemName, out TBaseType result)
         {
-            if (!TryGetDefinition(itemName, out var itemType))
+#pragma warning disable CS0618 // Type or member is obsolete
+            if (TryCreateInstanceLegacy(itemName, out result))
+                return true;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            itemName = NormalizeName(itemName);
+
+            Func<TBaseType> itemCreator;
+
+            lock (_items)
             {
-                result = null;
-                return false;
+                if (!_items.TryGetValue(itemName, out var itemFactory))
+                {
+                    result = null;
+                    return false;
+                }
+
+                itemCreator = itemFactory.ItemCreator;
             }
 
-            result = (TBaseType)_parentFactory.CreateInstance(itemType);
-            return true;
+            result = itemCreator?.Invoke();
+            return !(result is null);
+        }
+
+        [Obsolete("Instead override type-creation by calling RegisterDefinition with delegate. Marked obsolete with NLog v5.2")]
+        private bool TryCreateInstanceLegacy(string itemName, out TBaseType result)
+        {
+            if (!ReferenceEquals(_parentFactory.CreateInstance, FactoryHelper.CreateInstance)) 
+            {
+                if (TryGetDefinition(itemName, out var itemType))
+                {
+                    result = (TBaseType)_parentFactory.CreateInstance(itemType);
+                    return true;
+                }
+            }
+
+            result = null;
+            return false;
         }
 
         /// <inheritdoc/>

@@ -561,15 +561,16 @@ namespace NLog.Layouts
 
         private static LayoutRenderer LookupAmbientProperty(string propertyName, ConfigurationItemFactory configurationItemFactory, ref Dictionary<Type, LayoutRenderer> wrappers, ref List<LayoutRenderer> orderedWrappers)
         {
-            if (configurationItemFactory.AmbientProperties.TryGetDefinition(propertyName, out var wrapperType))
+            if (configurationItemFactory.AmbientProperties.TryCreateInstance(propertyName, out var wrapperInstance))
             {
                 wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
                 orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
+                var wrapperType = wrapperInstance.GetType();
                 if (!wrappers.TryGetValue(wrapperType, out var wrapperRenderer))
                 {
-                    wrapperRenderer = configurationItemFactory.AmbientProperties.CreateInstance(propertyName);
-                    wrappers[wrapperType] = wrapperRenderer;
-                    orderedWrappers.Add(wrapperRenderer);
+                    wrappers[wrapperType] = wrapperInstance;
+                    orderedWrappers.Add(wrapperInstance);
+                    wrapperRenderer = wrapperInstance;
                 }
                 return wrapperRenderer;
             }

@@ -34,13 +34,14 @@
 namespace NLog.Internal
 {
     using System;
+    using NLog.Config;
 
     /// <summary>
     /// Object construction helper.
     /// </summary>
     internal static class FactoryHelper
     {
-        internal static object CreateInstance(Type t)
+        internal static readonly ConfigurationItemCreator CreateInstance = (t) =>
         {
             try
             {
@@ -50,6 +51,6 @@ namespace NLog.Internal
             {
                 throw new NLogConfigurationException($"Cannot access the constructor of type: {t.FullName}. Is the required permission granted?", exception);
             }
-        }
+        };
     }
 }

@@ -212,6 +212,7 @@ namespace NLog.Config
         /// <param name="itemName">The method name.</param>
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        [Obsolete("Use TryCreateInstance instead that resolves delegate. Marked obsolete with NLog v5.2")]
         public bool TryCreateInstance(string itemName, out MethodInfo result)
         {
             return TryGetDefinition(itemName, out result);
@@ -253,6 +254,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="itemName">Method name.</param>
         /// <returns>MethodInfo object.</returns>
+        [Obsolete("Use TryCreateInstance instead that resolves delegate. Marked obsolete with NLog v5.2")]
         MethodInfo INamedItemFactory<MethodInfo, MethodInfo>.CreateInstance(string itemName)
         {
             if (TryCreateInstance(itemName, out MethodInfo result))
@@ -284,6 +286,7 @@ namespace NLog.Config
         /// <param name="itemName">The method name.</param>
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        [Obsolete("Use TryCreateInstance instead that resolves delegate. Marked obsolete with NLog v5.2")]
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
             lock (_nameToMethodInfo)

@@ -33,13 +33,13 @@
 
 namespace NLog.Config
 {
-    using System.Reflection;
+    using System;
 
     /// <summary>
     /// Represents a factory of named items (such as targets, layouts, layout renderers, etc.).
     /// </summary>
     /// <typeparam name="TInstanceType">Base type for each item instance.</typeparam>
-    /// <typeparam name="TDefinitionType">Item definition type (typically <see cref="System.Type"/> or <see cref="MethodInfo"/>).</typeparam>
+    /// <typeparam name="TDefinitionType">Item definition type (typically <see cref="System.Type"/>).</typeparam>
     public interface INamedItemFactory<TInstanceType, TDefinitionType>
         where TInstanceType : class
     {
@@ -56,6 +56,7 @@ namespace NLog.Config
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">Reference to a variable which will store the item definition.</param>
         /// <returns>Item definition.</returns>
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         bool TryGetDefinition(string itemName, out TDefinitionType result);
 
         /// <summary>
