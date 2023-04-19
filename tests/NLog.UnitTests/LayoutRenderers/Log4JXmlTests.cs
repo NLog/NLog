@@ -75,6 +75,8 @@ namespace NLog.UnitTests.LayoutRenderers
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);
             string result = GetDebugLastMessage("debug", logFactory);
+            Assert.DoesNotContain("dummy", result);
+
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
 
             Assert.NotEqual("", result);
