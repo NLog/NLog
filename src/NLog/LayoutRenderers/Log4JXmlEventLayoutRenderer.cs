@@ -298,24 +298,18 @@ namespace NLog.LayoutRenderers
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
 
-                AppendScopeContextProperties("log4j", dummyNamespaceRemover, xtw);
+                AppendScopeContextProperties(xtw);
 
                 if (IncludeEventProperties)
                 {
-                    AppendProperties("log4j", dummyNamespaceRemover, xtw, logEvent);
+                    AppendDataProperties("log4j", dummyNamespace, xtw, logEvent);
                 }
 
                 AppendParameters(logEvent, xtw);
 
-                xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeString("name", "log4japp");
-                xtw.WriteAttributeSafeString("value", AppInfo?.Render(logEvent) ?? string.Empty);
-                xtw.WriteEndElement();
+                AppendDataProperty(xtw, "log4japp", AppInfo?.Render(logEvent) ?? string.Empty, dummyNamespace);
 
-                xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeString("name", "log4jmachinename");
-                xtw.WriteAttributeSafeString("value", _machineName);
-                xtw.WriteEndElement();
+                AppendDataProperty(xtw, "log4jmachinename", _machineName, dummyNamespace);
 
                 xtw.WriteEndElement();  // properties
 
@@ -332,7 +326,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendScopeContextProperties(string prefix, string propertiesNamespace, XmlWriter xtw)
+        private void AppendScopeContextProperties(XmlWriter xtw)
         {
             if (IncludeScopeProperties)
             {
@@ -348,10 +342,7 @@ namespace NLog.LayoutRenderers
                         if (propertyValue is null)
                             continue;
 
-                        xtw.WriteStartElement(prefix, "data", propertiesNamespace);
-                        xtw.WriteAttributeSafeString("name", scopeProperty.Key);
-                        xtw.WriteAttributeString("value", propertyValue);
-                        xtw.WriteEndElement();
+                        AppendDataProperty(xtw, scopeProperty.Key, propertyValue, dummyNamespace);
                     }
                 }
             }
@@ -379,10 +370,7 @@ namespace NLog.LayoutRenderers
                 if (!parameter.IncludeEmptyValue && string.IsNullOrEmpty(parameterValue))
                     continue;
 
-                xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeSafeString("name", parameter.Name);
-                xtw.WriteAttributeSafeString("value", parameterValue);
-                xtw.WriteEndElement();
+                AppendDataProperty(xtw, parameter.Name, parameterValue, dummyNamespace);
             }
         }
 
@@ -420,12 +408,12 @@ namespace NLog.LayoutRenderers
                 xtw.WriteEndElement();
 
                 xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                AppendProperties("nlog", dummyNLogNamespace, xtw, logEvent);
+                AppendDataProperties("nlog", dummyNLogNamespace, xtw, logEvent);
                 xtw.WriteEndElement();
             }
         }
 
-        private void AppendProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
+        private void AppendDataProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
         {
             if (logEvent.HasProperties)
             {
@@ -439,12 +427,17 @@ namespace NLog.LayoutRenderers
                     if (propertyValue is null)
                         continue;
 
-                    xtw.WriteStartElement(prefix, "data", propertiesNamespace);
-                    xtw.WriteAttributeString("name", propertyKey);
-                    xtw.WriteAttributeString("value", propertyValue);
-                    xtw.WriteEndElement();
+                    AppendDataProperty(xtw, propertyKey, propertyValue, propertiesNamespace, prefix);
                 }
             }
+        }
+
+        private static void AppendDataProperty(XmlWriter xtw, string propertyKey, string propertyValue, string propertiesNamespace, string prefix = "log4j")
+        {
+            xtw.WriteStartElement(prefix, "data", propertiesNamespace);
+            xtw.WriteAttributeString("name", propertyKey);
+            xtw.WriteAttributeString("value", propertyValue);
+            xtw.WriteEndElement();
         }
     }
 }
