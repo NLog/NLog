@@ -137,10 +137,8 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+              
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 WriteToTargets(LogLevel.Trace, messageFunc());
             }
@@ -378,10 +376,8 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 WriteToTargets(LogLevel.Debug, messageFunc());
             }
@@ -619,10 +615,8 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 WriteToTargets(LogLevel.Info, messageFunc());
             }
@@ -860,11 +854,8 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
-
+                ArgumentNullException.ThrowIfNull(messageFunc);
+               
                 WriteToTargets(LogLevel.Warn, messageFunc());
             }
         }
@@ -1101,10 +1092,8 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+             
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 WriteToTargets(LogLevel.Error, messageFunc());
             }
@@ -1342,10 +1331,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 WriteToTargets(LogLevel.Fatal, messageFunc());
             }

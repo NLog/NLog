@@ -261,7 +261,8 @@ namespace NLog.UnitTests.Config
         {
             public TargetWithInjection([NotNull] IJsonConverter jsonConverter)
             {
-                JsonConverter = jsonConverter ?? throw new ArgumentNullException(nameof(jsonConverter));
+                JsonConverter = ArgumentNullException.ThrowIfNull(jsonConverter);
+;
             }
 
             public IJsonConverter JsonConverter { get; }
@@ -274,7 +275,7 @@ namespace NLog.UnitTests.Config
             /// <inheritdoc/>
             public TargetWithNestedInjection([NotNull] ClassWithInjection helper)
             {
-                Helper = helper ?? throw new ArgumentNullException(nameof(helper));
+                Helper =  ArgumentNullException.ThrowIfNull(helper);
             }
         }
 

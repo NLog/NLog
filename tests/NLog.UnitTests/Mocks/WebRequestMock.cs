@@ -61,7 +61,7 @@ namespace NLog.UnitTests.Mocks
                 RequestStream.Position = 0;
                 RequestStream.SetLength(0);
                 System.Threading.Thread.Sleep(50);
-                throw new ArgumentNullException("You are doomed");
+                ArgumentNullException.ThrowIfNull("You are doomed");
             }
 
             var responseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("new response 1"));

@@ -83,7 +83,7 @@ namespace NLog.Config
         internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
         {
             CreateInstance = FactoryHelper.CreateInstance;
-            _serviceRepository = serviceRepository ?? throw new ArgumentNullException(nameof(serviceRepository));
+            _serviceRepository = ArgumentNullException.ThrowIfNull(serviceRepository);
             _targets = new Factory<Target, TargetAttribute>(this, globalDefaultFactory?._targets);
             _filters = new Factory<Filter, FilterAttribute>(this, globalDefaultFactory?._filters);
             _layoutRenderers = new LayoutRendererFactory(this, globalDefaultFactory?._layoutRenderers);

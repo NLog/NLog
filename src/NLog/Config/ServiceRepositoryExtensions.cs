@@ -140,10 +140,7 @@ namespace NLog.Config
         /// </summary>
         internal static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
         {
-            if (valueFormatter is null)
-            {
-                throw new ArgumentNullException(nameof(valueFormatter));
-            }
+            ArgumentNullException.ThrowIfNull(valueFormatter);
 
             serviceRepository.RegisterSingleton(valueFormatter);
             return serviceRepository;
@@ -151,10 +148,7 @@ namespace NLog.Config
 
         internal static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
         {
-            if (jsonConverter is null)
-            {
-                throw new ArgumentNullException(nameof(jsonConverter));
-            }
+            ArgumentNullException.ThrowIfNull(jsonConverter);
 
             serviceRepository.RegisterSingleton(jsonConverter);
             return serviceRepository;
@@ -162,10 +156,7 @@ namespace NLog.Config
 
         internal static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
         {
-            if (converter is null)
-            {
-                throw new ArgumentNullException(nameof(converter));
-            }
+            ArgumentNullException.ThrowIfNull(converter);
 
             serviceRepository.RegisterSingleton(converter);
             return serviceRepository;
@@ -173,10 +164,7 @@ namespace NLog.Config
 
         internal static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
         {
-            if (transformer is null)
-            {
-                throw new ArgumentNullException(nameof(transformer));
-            }
+            ArgumentNullException.ThrowIfNull(transformer);
 
             serviceRepository.RegisterSingleton(transformer);
             return serviceRepository;

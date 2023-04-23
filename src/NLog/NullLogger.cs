@@ -50,10 +50,7 @@ namespace NLog
         /// <param name="factory">The factory class to be used for the creation of this logger.</param>
         public NullLogger(LogFactory factory)
         {
-            if (factory is null)
-            {
-                throw new ArgumentNullException(nameof(factory));
-            }
+            ArgumentNullException.ThrowIfNull(factory);
 
             Initialize(string.Empty, TargetWithFilterChain.NoTargetsByLevel, factory);
         }

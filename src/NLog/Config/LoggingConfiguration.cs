@@ -213,7 +213,7 @@ namespace NLog.Config
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
         public void AddTarget([NotNull] Target target)
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
 
             InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType(), target.Name);
 
@@ -231,8 +231,9 @@ namespace NLog.Config
         /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
         public void AddTarget(string name, [NotNull] Target target)
         {
-            if (name is null) { throw new ArgumentNullException(nameof(name)); }
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(name);
+
+            ArgumentNullException.ThrowIfNull(target);
 
             InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType(), string.IsNullOrEmpty(name) ? target.Name : name);
 
@@ -317,7 +318,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern = "*")
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
+
             AddRule(minLevel, maxLevel, target, loggerNamePattern, false);
         }
 
@@ -331,7 +333,7 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern, bool final)
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
             AddLoggingRulesThreadSafe(new LoggingRule(loggerNamePattern, minLevel, maxLevel, target) { Final = final });
             AddTargetThreadSafe(target);
         }
@@ -370,7 +372,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*")
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
+
             AddRuleForOneLevel(level, target, loggerNamePattern, false);
         }
 
@@ -383,7 +386,7 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern, bool final)
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
             loggingRule.EnableLoggingForLevel(level);
             AddLoggingRulesThreadSafe(loggingRule);
@@ -413,7 +416,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*")
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
+
             AddRuleForAllLevels(target, loggerNamePattern, false);
         }
 
@@ -425,7 +429,8 @@ namespace NLog.Config
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern, bool final)
         {
-            if (target is null) { throw new ArgumentNullException(nameof(target)); }
+            ArgumentNullException.ThrowIfNull(target);
+
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
             loggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             AddLoggingRulesThreadSafe(loggingRule);
@@ -577,10 +582,7 @@ namespace NLog.Config
         /// </remarks>
         public void Install(InstallationContext installationContext)
         {
-            if (installationContext is null)
-            {
-                throw new ArgumentNullException(nameof(installationContext));
-            }
+            ArgumentNullException.ThrowIfNull(installationContext);
 
             InitializeAll();
             var configItemsList = GetInstallableItems();
@@ -615,10 +617,7 @@ namespace NLog.Config
         /// </remarks>
         public void Uninstall(InstallationContext installationContext)
         {
-            if (installationContext is null)
-            {
-                throw new ArgumentNullException(nameof(installationContext));
-            }
+            ArgumentNullException.ThrowIfNull(installationContext);
 
             InitializeAll();
 

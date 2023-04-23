@@ -65,8 +65,9 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterObjectTransformation<T>(this ISetupSerializationBuilder setupBuilder, Func<T, object> transformer)
         {
-            if (transformer is null)
-                throw new ArgumentNullException(nameof(transformer));
+         
+            ArgumentNullException.ThrowIfNull(transformer);
+            
 
             var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
             setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation<T>(transformer, original));
@@ -78,10 +79,10 @@ namespace NLog
         /// </summary>
         public static ISetupSerializationBuilder RegisterObjectTransformation(this ISetupSerializationBuilder setupBuilder, Type objectType, Func<object, object> transformer)
         {
-            if (objectType is null)
-                throw new ArgumentNullException(nameof(objectType));
-            if (transformer is null)
-                throw new ArgumentNullException(nameof(transformer));
+           
+            ArgumentNullException.ThrowIfNull(objectType);
+  
+            ArgumentNullException.ThrowIfNull(transformer);
 
             var original = setupBuilder.LogFactory.ServiceRepository.GetService<IObjectTypeTransformer>();
             setupBuilder.LogFactory.ServiceRepository.RegisterObjectTypeTransformer(new ObjectTypeTransformation(objectType, transformer, original));

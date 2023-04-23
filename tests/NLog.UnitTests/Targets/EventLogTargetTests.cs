@@ -682,10 +682,10 @@ namespace NLog.UnitTests.Targets
                 Func<string, string, string> logNameFromSourceNameFunction,
                 Action<EventSourceCreationData> createEventSourceFunction)
             {
-                DeleteEventSourceFunction = deleteEventSourceFunction ?? throw new ArgumentNullException(nameof(deleteEventSourceFunction));
-                SourceExistsFunction = sourceExistsFunction ?? throw new ArgumentNullException(nameof(sourceExistsFunction));
-                LogNameFromSourceNameFunction = logNameFromSourceNameFunction ?? throw new ArgumentNullException(nameof(logNameFromSourceNameFunction));
-                CreateEventSourceFunction = createEventSourceFunction ?? throw new ArgumentNullException(nameof(createEventSourceFunction));
+                DeleteEventSourceFunction = ArgumentNullException.ThrowIfNull(deleteEventSourceFunction);
+                SourceExistsFunction =  ArgumentNullException.ThrowIfNull(sourceExistsFunction);
+                LogNameFromSourceNameFunction =  ArgumentNullException.ThrowIfNull(logNameFromSourceNameFunction);
+                CreateEventSourceFunction =  ArgumentNullException.ThrowIfNull(createEventSourceFunction);
             }
 
             private Action<string, string> DeleteEventSourceFunction { get; }

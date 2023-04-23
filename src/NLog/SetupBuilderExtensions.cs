@@ -175,8 +175,9 @@ namespace NLog
         /// <param name="resourceName">Name of the manifest resource for NLog config XML</param>
         public static ISetupBuilder LoadConfigurationFromAssemblyResource(this ISetupBuilder setupBuilder, System.Reflection.Assembly applicationAssembly, string resourceName = "NLog.config")
         {
-            if (applicationAssembly is null) throw new ArgumentNullException(nameof(applicationAssembly));
-            if (string.IsNullOrEmpty(resourceName)) throw new ArgumentNullException(nameof(resourceName));
+            ArgumentNullException.ThrowIfNull(applicationAssembly);
+
+            ArgumentNullException.ThrowIfNull(resourceName);
 
             var resourcePaths = applicationAssembly.GetManifestResourceNames().Where(x => x.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase)).ToList();
             if (resourcePaths.Count == 1)

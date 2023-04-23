@@ -99,8 +99,8 @@ namespace NLog
         /// <param name="minLevel">Minimum level that this rule matches</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterMinLevel(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel minLevel)
         {
-            if (minLevel is null)
-                throw new ArgumentNullException(nameof(minLevel));
+
+            ArgumentNullException.ThrowIfNull(minLevel);
 
             configBuilder.LoggingRule.DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             configBuilder.LoggingRule.EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
@@ -114,8 +114,8 @@ namespace NLog
         /// <param name="maxLevel">Maximum level that this rule matches</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterMaxLevel(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel maxLevel)
         {
-            if (maxLevel is null)
-                throw new ArgumentNullException(nameof(maxLevel));
+
+            ArgumentNullException.ThrowIfNull(maxLevel);
 
             configBuilder.LoggingRule.DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
             configBuilder.LoggingRule.EnableLoggingForLevels(LogLevel.MinLevel, maxLevel);
@@ -129,8 +129,8 @@ namespace NLog
         /// <param name="logLevel">Single loglevel that this rule matches</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterLevel(this ISetupConfigurationLoggingRuleBuilder configBuilder, LogLevel logLevel)
         {
-            if (logLevel is null)
-                throw new ArgumentNullException(nameof(logLevel));
+
+             ArgumentNullException.ThrowIfNull(logLevel);
 
             if (configBuilder.LoggingRule.IsLoggingEnabledForLevel(logLevel))
             {
@@ -164,8 +164,8 @@ namespace NLog
         /// <param name="filterDefaultAction">Default action if none of the filters match</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Filter filter, FilterResult? filterDefaultAction = null)
         {
-            if (filter is null)
-                throw new ArgumentNullException(nameof(filter));
+
+            ArgumentNullException.ThrowIfNull(filter);
 
             configBuilder.LoggingRule.Filters.Add(filter);
             if (filterDefaultAction.HasValue)
@@ -184,8 +184,7 @@ namespace NLog
         /// <param name="filterDefaultAction">Default action if none of the filters match</param>
         public static ISetupConfigurationLoggingRuleBuilder FilterDynamic(this ISetupConfigurationLoggingRuleBuilder configBuilder, Func<LogEventInfo, FilterResult> filterMethod, FilterResult? filterDefaultAction = null)
         {
-            if (filterMethod is null)
-                throw new ArgumentNullException(nameof(filterMethod));
+            ArgumentNullException.ThrowIfNull(filterMethod);
 
             return configBuilder.FilterDynamic(new WhenMethodFilter(filterMethod), filterDefaultAction);
         }
@@ -415,8 +414,7 @@ namespace NLog
         /// <param name="layouts">Layouts to render object[]-args before calling <paramref name="logEventAction"/></param>
         public static ISetupConfigurationTargetBuilder WriteToMethodCall(this ISetupConfigurationTargetBuilder configBuilder, Action<LogEventInfo, object[]> logEventAction, Layout[] layouts = null)
         {
-            if (logEventAction is null)
-                throw new ArgumentNullException(nameof(logEventAction));
+            ArgumentNullException.ThrowIfNull(logEventAction);
 
             var methodTarget = new MethodCallTarget(string.Empty, logEventAction);
             if (layouts?.Length > 0)
@@ -506,8 +504,8 @@ namespace NLog
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
         public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
         {
-            if (fileName is null)
-                throw new ArgumentNullException(nameof(fileName));
+            ArgumentNullException.ThrowIfNull(fileName);
+            
 
             var fileTarget = new FileTarget();
             fileTarget.FileName = fileName;
@@ -532,8 +530,7 @@ namespace NLog
         /// <param name="wrapperFactory">Factory method for creating target-wrapper</param>
         public static ISetupConfigurationTargetBuilder WithWrapper(this ISetupConfigurationTargetBuilder configBuilder, Func<Target, Target> wrapperFactory)
         {
-            if (wrapperFactory is null)
-                throw new ArgumentNullException(nameof(wrapperFactory));
+            ArgumentNullException.ThrowIfNull(wrapperFactory);
 
             var targets = configBuilder.Targets;
 
@@ -659,8 +656,8 @@ namespace NLog
         /// <param name="returnToFirstOnSuccess">Whether to return to the first target after any successful write</param>
         public static ISetupConfigurationTargetBuilder WithFallback(this ISetupConfigurationTargetBuilder configBuilder, Target fallbackTarget, bool returnToFirstOnSuccess = true)
         {
-            if (fallbackTarget is null)
-                throw new ArgumentNullException(nameof(fallbackTarget));
+           
+            ArgumentNullException.ThrowIfNull(fallbackTarget);
 
             if (string.IsNullOrEmpty(fallbackTarget.Name))
                 fallbackTarget.Name = EnsureUniqueTargetName(configBuilder.Configuration, fallbackTarget, "_Fallback");

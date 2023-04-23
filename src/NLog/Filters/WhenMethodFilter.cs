@@ -47,8 +47,8 @@ namespace NLog.Filters
         /// </summary>
         public WhenMethodFilter(Func<LogEventInfo, FilterResult> filterMethod)
         {
-            if (filterMethod is null)
-                throw new ArgumentNullException(nameof(filterMethod));
+            ArgumentNullException.ThrowIfNull(filterMethod);
+            
             _filterMethod = filterMethod;
         }
 

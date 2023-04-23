@@ -280,10 +280,7 @@ namespace NLog
         /// <returns>The enumeration value.</returns>
         public static LogLevel FromString(string levelName)
         {
-            if (levelName is null)
-            {
-                throw new ArgumentNullException(nameof(levelName));
-            }
+            ArgumentNullException.ThrowIfNull(levelName);
 
             if (levelName.Equals("Trace", StringComparison.OrdinalIgnoreCase))
             {

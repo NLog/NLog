@@ -431,8 +431,7 @@ namespace NLog
         /// </summary>
         public LogFactory Setup(Action<ISetupBuilder> setupBuilder)
         {
-            if (setupBuilder is null)
-                throw new ArgumentNullException(nameof(setupBuilder));
+            ArgumentNullException.ThrowIfNull(setupBuilder);
             setupBuilder(new SetupBuilder(this));
             return this;
         }
@@ -1070,8 +1069,7 @@ namespace NLog
 
         private Logger GetLoggerThreadSafe(string name, [NotNull] Type loggerType)
         {
-            if (name is null)
-                throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
+             ArgumentNullException.ThrowIfNull(name, "Name of logger cannot be null");
 
             LoggerCacheKey cacheKey = new LoggerCacheKey(name, loggerType);
 

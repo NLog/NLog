@@ -72,8 +72,8 @@ namespace NLog.Targets
         /// </summary>
         public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
         {
-            FileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
-            _dateFormat = dateFormat ?? throw new ArgumentNullException(nameof(dateFormat));
+            FileName = ArgumentNullException.ThrowIfNull(fileName);
+            _dateFormat =  ArgumentNullException.ThrowIfNull(dateFormat);
             Date = date;
             Sequence = sequence;
         }

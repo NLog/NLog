@@ -489,11 +489,7 @@ namespace NLog
         {
             if (logger.IsTraceEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
-
+                ArgumentNullException.ThrowIfNull(messageFunc);
                 logger.Trace(exception, messageFunc());
             }
         }
@@ -508,10 +504,7 @@ namespace NLog
         {
             if (logger.IsDebugEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 logger.Debug(exception, messageFunc());
             }
@@ -527,10 +520,7 @@ namespace NLog
         {
             if (logger.IsInfoEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 logger.Info(exception, messageFunc());
             }
@@ -546,10 +536,7 @@ namespace NLog
         {
             if (logger.IsWarnEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 logger.Warn(exception, messageFunc());
             }
@@ -565,10 +552,7 @@ namespace NLog
         {
             if (logger.IsErrorEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 logger.Error(exception, messageFunc());
             }
@@ -584,10 +568,7 @@ namespace NLog
         {
             if (logger.IsFatalEnabled)
             {
-                if (messageFunc is null)
-                {
-                    throw new ArgumentNullException(nameof(messageFunc));
-                }
+                ArgumentNullException.ThrowIfNull(messageFunc);
 
                 logger.Fatal(exception, messageFunc());
             }

@@ -69,10 +69,7 @@ namespace LoaderTestPrivateNested
         {
             public static void Preload(ConfigurationItemFactory fact)
             {
-                if (fact is null)
-                {
-                    throw new ArgumentNullException(nameof(fact));
-                }
+                ArgumentNullException.ThrowIfNull(fact);
             }
         }
     }

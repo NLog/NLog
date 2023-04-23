@@ -64,10 +64,9 @@ namespace NLog.Config
 
         public override void RegisterService(Type type, object instance)
         {
-            if (type is null)
-                throw new ArgumentNullException(nameof(type));
-            if (instance is null)
-                throw new ArgumentNullException(nameof(instance));
+            ArgumentNullException.ThrowIfNull(type);
+            
+            ArgumentNullException.ThrowIfNull(instance);
 
             lock (_lockObject)
             {
@@ -95,8 +94,7 @@ namespace NLog.Config
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
         {
-            if (itemType is null)
-                throw new ArgumentNullException(nameof(itemType));
+            ArgumentNullException.ThrowIfNull(itemType);
 
             ConfigurationItemCreator objectResolver = null;
             CompiledConstructor compiledConstructor = null;
@@ -223,7 +221,7 @@ namespace NLog.Config
 
             public CompiledConstructor([NotNull] ReflectionHelpers.LateBoundConstructor ctor, ParameterInfo[] parameters = null)
             {
-                Ctor = ctor ?? throw new ArgumentNullException(nameof(ctor));
+                Ctor = ArgumentNullException.ThrowIfNull(ctor);
                 Parameters = parameters;
             }
         }
