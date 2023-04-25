@@ -68,6 +68,30 @@ namespace NLog.UnitTests.Layouts
 
             Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(logEventInfo));
         }
+        
+        [Fact]
+        public void JsonLayoutRenderingIndentJson()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
+                    },
+                IndentJson = true
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello, world"
+            };
+
+            Assert.Equal($"{{{Environment.NewLine}  \"date\": \"2010-01-01 12:34:56.0000\",{Environment.NewLine}  \"level\": \"Info\",{Environment.NewLine}  \"message\": \"hello, world\"{Environment.NewLine}}}", jsonLayout.Render(logEventInfo));
+        }
 
         [Fact]
         public void JsonLayoutRenderingNoSpaces()
