@@ -71,6 +71,7 @@ namespace NLog.Internal.FileAppenders
 
             if (_enableFileDeleteSimpleMonitor && MonitorForEnableFileDeleteEvent(FileName, ref _lastSimpleMonitorCheckTickCount))
             {
+                NLog.Common.InternalLogger.Debug("{0}: Recreating FileStream because no longer File.Exists: '{1}'", CreateFileParameters, FileName);
                 CloseFileSafe(ref _file, FileName);
                 _file = CreateFileStream(false);
             }
