@@ -52,6 +52,15 @@ function Test-XmlFile
 
 # Needs absolute paths. Will throw a error if one of the files is not found
 $pwd = get-location;
-
-# Returns true if valid
-return Test-XmlFile "$pwd\src\NLog\bin\Release\NLog.xsd" "$pwd\examples\targets\Configuration File\Null\NLog.config"
+$testFilesDir = "$pwd\examples\targets\Configuration File"
+$xsdFilePath = "$pwd\src\NLog\bin\Release\NLog.xsd"
+$excludedTests = ("MessageBox","RichTextBox","FormControl","PerfCounter","OutputDebugString","MSMQ","Database")
+# Returns true if all selected tests in examples directory are valid
+$ret = $true
+Get-ChildItem -Path $testFilesDir -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config | % {
+    $testOutcome = Test-XmlFile $xsdFilePath $_.FullName
+    if (-Not $testOutcome) { 
+        $ret = $false
+    }
+}
+return $ret
