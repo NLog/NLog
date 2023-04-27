@@ -364,7 +364,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "FileTarget: Failed to check if File.Exists {0}", fileName);
+                    InternalLogger.Error(ex, "FileTarget: Failed to check if File.Exists: '{0}'", fileName);
                     return true;
                 }
             }
