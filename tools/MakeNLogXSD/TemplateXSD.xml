@@ -12,6 +12,7 @@
       <xs:element name="extensions" type="NLogExtensions" />
       <xs:element name="include" type="NLogInclude" />
       <xs:element name="variable" type="NLogVariable" />
+      <xs:element name="variables" type="NLogVariables" />
       <xs:element name="targets" type="NLogTargets" />
       <xs:element name="rules" type="NLogRules" />
       <xs:element name="time" type="TimeSource" />
@@ -263,6 +264,12 @@
         <xs:documentation>Variable value.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="NLogVariables">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="variable" type="NLogVariable" />
+    </xs:sequence>
   </xs:complexType>
 
   <xs:simpleType name="NLogTargetIDList">
