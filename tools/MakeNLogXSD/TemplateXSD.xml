@@ -253,6 +253,11 @@
           <xs:documentation>Variable value. Note, the 'value' attribute has precedence over this one.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="layout" minOccurs="0" maxOccurs="1" type="Layout">
+        <xs:annotation>
+          <xs:documentation>Layout type variable value. Note, the 'value' attribute has precedence over this one.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:choice>
     <xs:attribute name="name" type="xs:string" use="required">
       <xs:annotation>
