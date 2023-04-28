@@ -158,66 +158,78 @@ namespace NLog.UnitTests.Targets
                 return;
             }
 #endif
-
-            RetryingIntegrationTest(3, () =>
+            foreach (var archiveSameFolder in new[] { true, false })
             {
-                var logPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
-                var logFile = Path.Combine(logPath, "..", "nlog.txt");
-                var logFile2 = Path.Combine(logPath, Path.GetFileName(logFile));
-
-                try
+                RetryingIntegrationTest(3, () =>
                 {
-                    var fileTarget = new FileTarget
+                    var logPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
+                    var logFile = Path.GetFullPath(Path.Combine(logPath, "..", "nlogA.txt"));
+                    //var arhiveFile = archiveSameFolder ? Path.GetFullPath(Path.Combine(logPath, "..", "nlogB.txt")) : Path.GetFullPath(Path.Combine(logPath, "nlogB.txt"));
+                    var arhiveFile = Path.GetFullPath(Path.Combine(logPath, archiveSameFolder ? ".." : ".", "nlogB.txt"));
+
+                    try
                     {
-                        FileName = SimpleLayout.Escape(logFile),
-                        ArchiveFileName = SimpleLayout.Escape(logFile2),
-                        ArchiveEvery = FileArchivePeriod.Year,
-                        LineEnding = LineEndingMode.LF,
-                        Layout = "${level} ${message}",
-                        OpenFileCacheTimeout = 0,
-                        EnableFileDelete = true,
-                        ConcurrentWrites = concurrentWrites,
-                        KeepFileOpen = keepFileOpen,
-                        NetworkWrites = networkWrites,
-                        ForceManaged = forceManaged,
-                        ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    };
+                        var fileTarget = new FileTarget
+                        {
+                            FileName = SimpleLayout.Escape(logFile),
+                            ArchiveFileName = SimpleLayout.Escape(arhiveFile),
+                            ArchiveEvery = FileArchivePeriod.Year,
+                            LineEnding = LineEndingMode.LF,
+                            Layout = "${level} ${message}",
+                            OpenFileCacheTimeout = 0,
+                            EnableFileDelete = true,
+                            ConcurrentWrites = concurrentWrites,
+                            KeepFileOpen = keepFileOpen,
+                            NetworkWrites = networkWrites,
+                            ForceManaged = forceManaged,
+                            ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                            ArchiveAboveSize = archiveSameFolder ? 1000000 : 0,
+                        };
 
-                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                        SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                    logger.Debug("aaa");
+                        logger.Debug("aaa");
 
-                    LogManager.Flush();
+                        LogManager.Flush();
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(logFile2));
-                    File.Move(logFile, logFile2);
+                        Directory.CreateDirectory(Path.GetDirectoryName(arhiveFile));
+                        File.Move(logFile, arhiveFile);
 
-                    if (isSimpleKeepFileOpen)
-                        Thread.Sleep(1500); // Ensure EnableFileDeleteSimpleMonitor will trigger
-                    else if (keepFileOpen && !networkWrites)
-                        Thread.Sleep(150); // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
+                        if (isSimpleKeepFileOpen)
+                            Thread.Sleep(1500); // Ensure EnableFileDeleteSimpleMonitor will trigger
+                        else if (keepFileOpen && !networkWrites)
+                            Thread.Sleep(150); // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
 
-                    logger.Info("bbb");
+                        logger.Info("bbb");
 
-                    LogManager.Configuration = null;
+                        LogManager.Configuration = null;
 
-                    AssertFileContents(logFile, "Info bbb\n", Encoding.UTF8);
-                }
-                finally
-                {
-                    if (File.Exists(logFile2))
-                    {
-                        File.Delete(logFile2);
-                        Directory.Delete(Path.GetDirectoryName(logFile2));
+                        AssertFileContents(logFile, "Info bbb\n", Encoding.UTF8);
                     }
-
-                    if (File.Exists(logFile))
+                    finally
                     {
-                        File.Delete(logFile);
-                        Directory.Delete(Path.GetDirectoryName(logFile));
+                        if (File.Exists(arhiveFile))
+                        {
+                            File.Delete(arhiveFile);
+                        }
+
+                        if (File.Exists(logFile))
+                        {
+                            File.Delete(logFile);
+                        }
+
+                        if (Directory.Exists(Path.GetDirectoryName(arhiveFile)))
+                        {
+                            Directory.Delete(Path.GetDirectoryName(arhiveFile));
+                        }
+
+                        if (Directory.Exists(Path.GetDirectoryName(logFile)))
+                        {
+                            Directory.Delete(Path.GetDirectoryName(logFile));
+                        }
                     }
-                }
-            });
+                });
+            }
         }
 
         /// <summary>

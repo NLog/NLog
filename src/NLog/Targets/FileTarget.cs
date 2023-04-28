@@ -1980,7 +1980,7 @@ namespace NLog.Targets
             if (!initializedNewFile && _initializedFiles.Remove(archiveFileName))
             {
                 // Register current filename needs re-initialization
-                InternalLogger.Debug("{0}: Invalidates appender for archive file '{1}' since it no longer exists", this, archiveFileName);
+                InternalLogger.Debug("{0}: Invalidate appender as archive file no longer exists: '{1}'", this, archiveFileName);
                 _fileAppenderCache.InvalidateAppender(archiveFileName)?.Dispose();
             }
 
