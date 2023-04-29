@@ -96,11 +96,37 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            if ((e.ChangeType & (WatcherChangeTypes.Created | WatcherChangeTypes.Renamed | WatcherChangeTypes.Deleted)) != 0)
+            if ((e.ChangeType & (WatcherChangeTypes.Deleted | WatcherChangeTypes.Renamed)) != 0)
             {
-                _logFileWasArchived = true;  // File Appender file create/renamed/deleted
-                _autoClosingTimer.Change(50, Timeout.Infinite);
+                _logFileWasArchived = true;  // File Appender file deleted/renamed
             }
+            else if ((e.ChangeType & (WatcherChangeTypes.Created)) != 0)
+            {
+                if (FileArchiveFolderChanged(e.FullPath))
+                {
+                    _logFileWasArchived = true; // Something was created in the archive folder
+                }
+            }
+
+            if (_logFileWasArchived)
+            {
+                _autoClosingTimer?.Change(50, Timeout.Infinite);
+            }
+        }
+
+        private bool FileArchiveFolderChanged(string fullPath)
+        {
+            if (!string.IsNullOrEmpty(_archiveFilePatternToWatch) && !string.IsNullOrEmpty(fullPath))
+            {
+                string archiveFolderPath = Path.GetDirectoryName(_archiveFilePatternToWatch);
+                string currentFolderPath = Path.GetDirectoryName(fullPath);
+                if (!string.IsNullOrEmpty(archiveFolderPath) && !string.IsNullOrEmpty(currentFolderPath))
+                {
+                    return string.Equals(Path.GetFullPath(archiveFolderPath), Path.GetFullPath(currentFolderPath), StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
