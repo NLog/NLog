@@ -31,12 +31,13 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- LoggingRule - FinalMinLevel with Layout support (#5174) (@Aaronmsv)
-- MailTarget - Added support for email message headers (#5177) (@snakefoot)
-- ScopeContext - Replace rescursive lookup with enumeration (#5175) (@snakefoot)
-- MethodCallTarget - Compile Method Invoke as Expression Trees (#5168) (@snakefoot)
-- PaddingLayoutRendererWrapper - Avoid using Insert for reusable StringBuilder (#5165) (@snakefoot)
-- Json serializer with ISpanFormattable support for decimal + double (#5168) (@snakefoot)
+- FileTarget - Recover from file-deleted when same archive-folder (#5207) (@snakefoot)
+- NLog.xsd schema with support for variables section (#5201) (@michaelplavnik)
+- JsonLayout - Added IndentJson for pretty format (#5200) (@nih0n)
+- Log4jXmlEvent - Fix dummy-Namespace when using IncludeScopeProperties (#5197) (@snakefoot)
+- ConfigurationItemFactory - Handle concurrent registration with single lock (#5195) (@snakefoot)
+- AsyncTaskTarget - Include task exception on completed event (#5193) (@snakefoot)
+- ScopeContext - Uniform initial small array sizes (#5186) (@snakefoot)
 
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 
