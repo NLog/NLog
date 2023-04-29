@@ -350,20 +350,17 @@ namespace NLog.Layouts
             if (beginJsonMessage)
             {
                 if (IndentJson)
-                    sb.Append('{');
+                    sb.Append('{').AppendLine().Append(' ', SpacesPerIndent);
                 else
                     sb.Append(SuppressSpaces ? "{" : "{ ");
             }
             else
             {
                 if (IndentJson)
-                    sb.Append(',');
+                    sb.Append(',').AppendLine().Append(' ', SpacesPerIndent);
                 else
                     sb.Append(SuppressSpaces ? "," : ", ");
             }
-
-            if (IndentJson)
-                sb.AppendLine().Append(' ', SpacesPerIndent);
 
             sb.Append('"');
 
