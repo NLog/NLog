@@ -50,6 +50,8 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public class JsonLayout : Layout
     {
+        private const int SpacesPerIndent = 2;
+
         private LimitRecursionJsonConvert JsonConverter
         {
             get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, EscapeForwardSlash, ResolveService<IJsonConverter>()));
@@ -117,6 +119,12 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public bool RenderEmptyObject { get => _renderEmptyObject ?? true; set => _renderEmptyObject = value; }
         private bool? _renderEmptyObject;
+        
+        /// <summary>
+        /// Auto indent and create new lines
+        /// </summary>
+        /// <docgen category='Layout Options' order='100' />
+        public bool IndentJson { get; set; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -341,11 +349,17 @@ namespace NLog.Layouts
         {
             if (beginJsonMessage)
             {
-                sb.Append(SuppressSpaces ? "{\"" : "{ \"");
+                if (IndentJson)
+                    sb.Append('{').AppendLine().Append(' ', SpacesPerIndent).Append('"');
+                else
+                    sb.Append(SuppressSpaces ? "{\"" : "{ \"");
             }
             else
             {
-                sb.Append(SuppressSpaces ? ",\"" : ", \"");
+                if (IndentJson)
+                    sb.Append(',').AppendLine().Append(' ', SpacesPerIndent).Append('"');
+                else
+                    sb.Append(SuppressSpaces ? ",\"" : ", \"");
             }
 
             if (ensureStringEscape)
@@ -358,7 +372,10 @@ namespace NLog.Layouts
 
         private void CompleteJsonMessage(StringBuilder sb)
         {
-            sb.Append(SuppressSpaces ? "}" : " }");
+            if (IndentJson)
+                sb.AppendLine().Append('}');
+            else
+                sb.Append(SuppressSpaces ? "}" : " }");
         }
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
