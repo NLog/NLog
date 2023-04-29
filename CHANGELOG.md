@@ -4,6 +4,17 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.1.4 (2023/04/29)
+
+**Improvements**
+- [#5207](https://github.com/NLog/NLog/pull/5207) FileTarget - Recover from file-deleted when same archive-folder (#5207) (@snakefoot)
+- [#5201](https://github.com/NLog/NLog/pull/5201) NLog.xsd schema with support for variables section (#5201) (@michaelplavnik)
+- [#5200](https://github.com/NLog/NLog/pull/5200) JsonLayout - Added IndentJson for pretty format (#5200) (@nih0n)
+- [#5197](https://github.com/NLog/NLog/pull/5197) Log4jXmlEvent - Fix dummy-Namespace when using IncludeScopeProperties (#5197) (@snakefoot)
+- [#5195](https://github.com/NLog/NLog/pull/5195) ConfigurationItemFactory - Handle concurrent registration with single lock (#5195) (@snakefoot)
+- [#5193](https://github.com/NLog/NLog/pull/5193) AsyncTaskTarget - Include task exception on completed event (#5193) (@snakefoot)
+- [#5186](https://github.com/NLog/NLog/pull/5186) ScopeContext - Uniform initial small array sizes (#5186) (@snakefoot)
+
 ### Version 5.1.3 (2023/03/28)
 
 **Improvements**
