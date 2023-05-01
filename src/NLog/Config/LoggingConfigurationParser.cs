@@ -705,6 +705,7 @@ namespace NLog.Config
 
         private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
         {
+            writeTargets = ExpandSimpleVariables(writeTargets);
             if (string.IsNullOrEmpty(writeTargets))
                 return;
 

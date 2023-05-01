@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.Config
 {
     using System;
+    using System.Linq;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
@@ -94,30 +95,49 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void VariablesTest_minLevel_expanding()
+        public void VariablesTest_WriteTo_expanding()
         {
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
-   <variable name='test' value='debug'/>
+  <variable name='test' value='test_target'/>
+  <targets>
+    <target type='Debug' name='test_target' />
+  </targets>
     <rules>
-      <logger minLevel='${test}' final='true' />
+      <logger writeTo='${test}' />
+    </rules>
+</nlog>");
+
+            var target = configuration.FindTargetByName("test_target");
+            Assert.NotNull(target);
+
+            Assert.Single(configuration.LoggingRules);
+            Assert.Single(configuration.LoggingRules[0].Targets);
+            Assert.Same(target, configuration.LoggingRules[0].Targets.First());
+        }
+
+        [Fact]
+        public void VariablesTest_minLevel_maxLevel_expanding()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='test1' value='info'/>
+    <variable name='test2' value='warn'/>
+    <rules>
+      <logger minLevel='${test1}' maxLevel='${test2}' final='true' />
     </rules>
 </nlog>");
 
             var rule = configuration.LoggingRules[0];
             Assert.NotNull(rule);
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Trace));
-            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
             Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Info));
             Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
-            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Error));
-            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
-
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
         }
 
-        /// <summary>
-        /// Expand of level attributes
-        /// </summary>
         [Fact]
         public void VariablesTest_Level_expanding()
         {
@@ -140,6 +160,27 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void VariablesTest_Levels_expanding()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+   <variable name='test' value='debug,fatal'/>
+    <rules>
+      <logger levels='${test}' final='true' />
+    </rules>
+</nlog>");
+
+            var rule = configuration.LoggingRules[0];
+            Assert.NotNull(rule);
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
+        }
+
+        [Fact]
         public void Xml_configuration_returns_defined_variables()
         {
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -149,7 +190,6 @@ namespace NLog.UnitTests.Config
         <variable name='suffix' value=']]' />
     </variables>
 </nlog>");
-
 
             var nullEvent = LogEventInfo.CreateNullEvent();
 
