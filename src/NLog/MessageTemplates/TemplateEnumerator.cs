@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -61,7 +62,7 @@ namespace NLog.MessageTemplates
         /// <returns>Template, never null</returns>
         public TemplateEnumerator(string template)
         {
-            _template = template ?? throw new ArgumentNullException(nameof(template));
+            _template = Guard.ThrowIfNull(template);
             _length = _template.Length;
             _position = 0;
             _literalLength = 0;

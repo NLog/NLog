@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers
         /// <param name="renderMethod">Method that renders the layout.</param>
         public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
         {
-            _renderMethod = renderMethod ?? throw new ArgumentNullException(nameof(renderMethod));
+            _renderMethod = Guard.ThrowIfNull(renderMethod);
             LayoutRendererName = layoutRendererName;
         }
 

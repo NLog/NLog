@@ -37,6 +37,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
+using NLog.Internal;
 
 namespace NLog.Fluent
 {
@@ -67,10 +68,8 @@ namespace NLog.Fluent
         [CLSCompliant(false)]
         public LogBuilder(ILogger logger, LogLevel logLevel)
         {
-            if (logger is null)
-                throw new ArgumentNullException(nameof(logger));
-            if (logLevel is null)
-                throw new ArgumentNullException(nameof(logLevel));
+            Guard.ThrowIfNull(logger);
+            Guard.ThrowIfNull(logLevel);
 
             _logger = logger;
             _logEvent = new LogEventInfo() { LoggerName = logger.Name, Level = logLevel };
@@ -99,8 +98,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Level(LogLevel logLevel)
         {
-            if (logLevel is null)
-                throw new ArgumentNullException(nameof(logLevel));
+            Guard.ThrowIfNull(logLevel);
 
             _logEvent.Level = logLevel;
             return this;
@@ -235,8 +233,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Property(object name, object value)
         {
-            if (name is null)
-                throw new ArgumentNullException(nameof(name));
+            Guard.ThrowIfNull(name);
 
             _logEvent.Properties[name] = value;
             return this;
@@ -249,8 +246,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Properties(IDictionary properties)
         {
-            if (properties is null)
-                throw new ArgumentNullException(nameof(properties));
+            Guard.ThrowIfNull(properties);
 
             foreach (var key in properties.Keys)
             {

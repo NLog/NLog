@@ -179,10 +179,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            if (asyncContinuation is null)
-            {
-                throw new ArgumentNullException(nameof(asyncContinuation));
-            }
+            Guard.ThrowIfNull(asyncContinuation);
 
             asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
 

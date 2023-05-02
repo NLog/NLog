@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if  !MONO && !NETSTANDARD
+#if !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
 {
@@ -41,6 +41,7 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using System.Diagnostics;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -682,10 +683,10 @@ namespace NLog.UnitTests.Targets
                 Func<string, string, string> logNameFromSourceNameFunction,
                 Action<EventSourceCreationData> createEventSourceFunction)
             {
-                DeleteEventSourceFunction = deleteEventSourceFunction ?? throw new ArgumentNullException(nameof(deleteEventSourceFunction));
-                SourceExistsFunction = sourceExistsFunction ?? throw new ArgumentNullException(nameof(sourceExistsFunction));
-                LogNameFromSourceNameFunction = logNameFromSourceNameFunction ?? throw new ArgumentNullException(nameof(logNameFromSourceNameFunction));
-                CreateEventSourceFunction = createEventSourceFunction ?? throw new ArgumentNullException(nameof(createEventSourceFunction));
+                DeleteEventSourceFunction = Guard.ThrowIfNull(deleteEventSourceFunction);
+                SourceExistsFunction = Guard.ThrowIfNull(sourceExistsFunction);
+                LogNameFromSourceNameFunction = Guard.ThrowIfNull(logNameFromSourceNameFunction);
+                CreateEventSourceFunction = Guard.ThrowIfNull(createEventSourceFunction);
             }
 
             private Action<string, string> DeleteEventSourceFunction { get; }

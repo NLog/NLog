@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,52 +31,56 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
+using NLog.Internal;
+using System;
+using Xunit;
+
+namespace NLog.UnitTests.Internal
 {
-    using NLog.Internal;
-    using System;
-
-    /// <summary>
-    /// A descriptor for an archive created with the DateAndSequence numbering mode.
-    /// </summary>
-    internal class DateAndSequenceArchive
+    public class GuardTests
     {
-        private readonly string _dateFormat;
-
-        /// <summary>
-        /// The full name of the archive file.
-        /// </summary>
-        public string FileName { get; }
-
-        /// <summary>
-        /// The parsed date contained in the file name.
-        /// </summary>
-        public DateTime Date { get; }
-
-        /// <summary>
-        /// The parsed sequence number contained in the file name.
-        /// </summary>
-        public int Sequence { get; }
-
-        /// <summary>
-        /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
-        /// </summary>
-        /// <param name="date">The date to compare the current object's date to.</param>
-        /// <returns><c>True</c> if the formatted dates are equal, otherwise <c>False</c>.</returns>
-        public bool HasSameFormattedDate(DateTime date)
+        [Fact]
+        public void ThrowIfNull_WhenArgumentIsNull_ThrowArgumentNullException()
         {
-            return string.Equals(date.ToString(_dateFormat), Date.ToString(_dateFormat), StringComparison.Ordinal);
+            object argument = null;
+
+            Assert.Throws<ArgumentNullException>(() => Guard.ThrowIfNull(argument));
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DateAndSequenceArchive"/> class.
-        /// </summary>
-        public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
+        [Fact]
+        public void ThrowIfNull_WhenArgumentIsNotNull_ReturnArgument()
         {
-            FileName = Guard.ThrowIfNull(fileName);
-            _dateFormat = Guard.ThrowIfNull(dateFormat);
-            Date = date;
-            Sequence = sequence;
+            var argument = "test";
+
+            var result = Guard.ThrowIfNull(argument);
+
+            Assert.Equal(argument, result);
+        }
+
+        [Fact]
+        public void ThrowIfNullOrEmpty_WhenArgumentIsNull_ThrowArgumentNullException()
+        {
+            string argument = null;
+
+            Assert.Throws<ArgumentNullException>(() => Guard.ThrowIfNullOrEmpty(argument));
+        }
+
+        [Fact]
+        public void ThrowIfNullOrEmpty_WhenArgumentIsEmpty_ThrowArgumentNullException()
+        {
+            var argument = string.Empty;
+
+            Assert.Throws<ArgumentNullException>(() => Guard.ThrowIfNullOrEmpty(argument));
+        }
+
+        [Fact]
+        public void ThrowIfNullOrEmpty_WhenArgumentIsValid_ReturnArgument()
+        {
+            var argument = "test";
+
+            var result = Guard.ThrowIfNull(argument);
+
+            Assert.Equal(argument, result);
         }
     }
 }

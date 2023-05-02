@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,52 +31,48 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
+#if !NETCOREAPP3_1_OR_GREATER
+namespace System.Runtime.CompilerServices
 {
-    using NLog.Internal;
-    using System;
-
-    /// <summary>
-    /// A descriptor for an archive created with the DateAndSequence numbering mode.
-    /// </summary>
-    internal class DateAndSequenceArchive
+    [AttributeUsage(AttributeTargets.Parameter)]
+    sealed class CallerArgumentExpressionAttribute : Attribute
     {
-        private readonly string _dateFormat;
-
-        /// <summary>
-        /// The full name of the archive file.
-        /// </summary>
-        public string FileName { get; }
-
-        /// <summary>
-        /// The parsed date contained in the file name.
-        /// </summary>
-        public DateTime Date { get; }
-
-        /// <summary>
-        /// The parsed sequence number contained in the file name.
-        /// </summary>
-        public int Sequence { get; }
-
-        /// <summary>
-        /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
-        /// </summary>
-        /// <param name="date">The date to compare the current object's date to.</param>
-        /// <returns><c>True</c> if the formatted dates are equal, otherwise <c>False</c>.</returns>
-        public bool HasSameFormattedDate(DateTime date)
+        public CallerArgumentExpressionAttribute(string param)
         {
-            return string.Equals(date.ToString(_dateFormat), Date.ToString(_dateFormat), StringComparison.Ordinal);
+            Param = param;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DateAndSequenceArchive"/> class.
-        /// </summary>
-        public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
+        public string Param { get; }
+    }
+}
+#endif
+
+namespace NLog.Internal
+{
+    using System;
+    using System.Runtime.CompilerServices;
+
+    internal static class Guard
+    {
+        internal static T ThrowIfNull<T>(
+            T arg,
+            [CallerArgumentExpression("arg")] string param = "")
+            where T : class
         {
-            FileName = Guard.ThrowIfNull(fileName);
-            _dateFormat = Guard.ThrowIfNull(dateFormat);
-            Date = date;
-            Sequence = sequence;
+            if (arg is null)
+                throw new ArgumentNullException(string.IsNullOrEmpty(param) ? typeof(T).Name : param);
+
+            return arg;
+        }
+
+        internal static string ThrowIfNullOrEmpty(
+            string arg,
+            [CallerArgumentExpression("arg")] string param = "")
+        {
+            if (string.IsNullOrEmpty(arg))
+                throw new ArgumentNullException(string.IsNullOrEmpty(param) ? nameof(arg) : param);
+
+            return arg;
         }
     }
 }

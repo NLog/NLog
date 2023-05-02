@@ -36,6 +36,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
+using NLog.Internal;
 
 namespace NLog
 {
@@ -54,7 +55,7 @@ namespace NLog
         /// <param name="logger">The <see cref="NLog.Logger"/> to send the log event.</param>
         public LogEventBuilder([NotNull] ILogger logger)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = Guard.ThrowIfNull(logger);
             _logEvent = new LogEventInfo() { LoggerName = _logger.Name };
         }
 
@@ -65,10 +66,9 @@ namespace NLog
         /// <param name="logLevel">The log level. LogEvent is only created when <see cref="LogLevel"/> is enabled for <paramref name="logger"/></param>
         public LogEventBuilder([NotNull] ILogger logger, [NotNull] LogLevel logLevel)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = Guard.ThrowIfNull(logger);
 
-            if (logLevel is null)
-                throw new ArgumentNullException(nameof(logLevel));
+            Guard.ThrowIfNull(logLevel);
 
             if (logger.IsEnabled(logLevel))
             {
@@ -99,8 +99,7 @@ namespace NLog
         /// <param name="propertyValue">The value of the context property.</param>
         public LogEventBuilder Property<T>([NotNull] string propertyName, T propertyValue)
         {
-            if (propertyName is null)
-                throw new ArgumentNullException(nameof(propertyName));
+            Guard.ThrowIfNull(propertyName);
 
             if (_logEvent is null)
                 return this;
@@ -115,8 +114,7 @@ namespace NLog
         /// <param name="properties">The properties to set.</param>
         public LogEventBuilder Properties([NotNull] IEnumerable<KeyValuePair<string, object>> properties)
         {
-            if (properties is null)
-                throw new ArgumentNullException(nameof(properties));
+            Guard.ThrowIfNull(properties);
 
             if (_logEvent is null)
                 return this;

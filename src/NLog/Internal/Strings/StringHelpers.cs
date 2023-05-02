@@ -91,15 +91,8 @@ namespace NLog.Internal
         /// <returns>The same reference of nothing has been replaced.</returns>
         public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
         {
-            if (str is null)
-            {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            if (oldValue is null)
-            {
-                throw new ArgumentNullException(nameof(oldValue));
-            }
+            Guard.ThrowIfNull(str);
+            Guard.ThrowIfNull(oldValue);
 
             if (str.Length == 0)
             {
