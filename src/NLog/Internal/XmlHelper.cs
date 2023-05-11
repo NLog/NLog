@@ -64,9 +64,16 @@ namespace NLog.Internal
             for (int i = 0; i < length; ++i)
             {
                 char ch = text[i];
-                if (!XmlConvert.IsXmlChar(ch) && !(i + 1 < text.Length && XmlConvert.IsXmlSurrogatePair(text[i + 1], ch)))
+                if (!XmlConvert.IsXmlChar(ch))
                 {
-                    return CreateValidXmlString(text);   // rare expensive case
+                    if (i + 1 < text.Length && XmlConvert.IsXmlSurrogatePair(text[i + 1], ch))
+                    {
+                        ++i;
+                    }
+                    else
+                    {
+                        return CreateValidXmlString(text);   // rare expensive case
+                    }
                 }
             }
             return text;
