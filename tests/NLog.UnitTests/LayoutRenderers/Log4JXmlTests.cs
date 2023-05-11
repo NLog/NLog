@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
             ScopeContext.PushNestedState("baz3");
 
             var logger = logFactory.GetLogger("A");
-            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message");
+            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message \u0014");
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);
             string result = GetDebugLastMessage("debug", logFactory);
@@ -134,7 +134,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "message":
                                 reader.Read();
-                                Assert.Equal("some message", reader.Value);
+                                Assert.Equal("some message ", reader.Value);
                                 break;
 
                             case "NDC":
