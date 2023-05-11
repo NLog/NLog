@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                _machineName = EnvironmentHelper.GetMachineName();
+                _machineName = XmlHelper.XmlConvertToStringSafe(EnvironmentHelper.GetMachineName());
                 if (string.IsNullOrEmpty(_machineName))
                 {
                     InternalLogger.Info("MachineName is not available.");
@@ -307,7 +307,8 @@ namespace NLog.LayoutRenderers
 
                 AppendParameters(logEvent, xtw);
 
-                AppendDataProperty(xtw, "log4japp", AppInfo?.Render(logEvent) ?? string.Empty, dummyNamespace);
+                var appInfo = XmlHelper.XmlConvertToStringSafe(AppInfo?.Render(logEvent) ?? string.Empty);
+                AppendDataProperty(xtw, "log4japp", appInfo, dummyNamespace);
 
                 AppendDataProperty(xtw, "log4jmachinename", _machineName, dummyNamespace);
 
@@ -335,14 +336,16 @@ namespace NLog.LayoutRenderers
                     while (scopeEnumerator.MoveNext())
                     {
                         var scopeProperty = scopeEnumerator.Current;
-                        if (string.IsNullOrEmpty(scopeProperty.Key))
+
+                        string propertyKey = XmlHelper.XmlConvertToStringSafe(scopeProperty.Key);
+                        if (string.IsNullOrEmpty(propertyKey))
                             continue;
 
                         string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
                         if (propertyValue is null)
                             continue;
 
-                        AppendDataProperty(xtw, scopeProperty.Key, propertyValue, dummyNamespace);
+                        AppendDataProperty(xtw, propertyKey, propertyValue, dummyNamespace);
                     }
                 }
             }
@@ -363,14 +366,16 @@ namespace NLog.LayoutRenderers
             for (int i = 0; i < Parameters?.Count; ++i)
             {
                 var parameter = Parameters[i];
-                if (string.IsNullOrEmpty(parameter?.Name))
+
+                string parameterName = parameter?.Name; // property-setter has ensured safe xml-string
+                if (string.IsNullOrEmpty(parameterName))
                     continue;
 
-                var parameterValue = parameter.Layout?.Render(logEvent) ?? string.Empty;
+                var parameterValue = XmlHelper.XmlConvertToStringSafe(parameter.Layout?.Render(logEvent) ?? string.Empty);
                 if (!parameter.IncludeEmptyValue && string.IsNullOrEmpty(parameterValue))
                     continue;
 
-                AppendDataProperty(xtw, parameter.Name, parameterValue, dummyNamespace);
+                AppendDataProperty(xtw, parameterName, parameterValue, dummyNamespace);
             }
         }
 

@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -54,7 +55,8 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        public string Name { get; set; }
+        public string Name { get => _name; set => _name = XmlHelper.XmlConvertToStringSafe(value); }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
