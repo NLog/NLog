@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using NLog.LayoutRenderers;
 using NLog.Config;
 using Xunit;
@@ -41,6 +42,28 @@ namespace NLog.UnitTests.LayoutRenderers
     {
         [Fact]
         public void RegisterCustomFuncLayoutRendererTest()
+        {
+            // Arrange
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<MyFuncLayoutRenderer>("the-answer-new"))
+                .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer-new:Format=D3}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            // Act
+            var logger = logFactory.GetCurrentClassLogger();
+            logger.Debug("test1");
+
+            // Assert
+            AssertDebugLastMessage("debug", "TheAnswer=042", logFactory);
+        }
+
+        [Fact]
+        [Obsolete("Instead override type-creation by calling NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void RegisterCustomFuncLayoutRendererTest_Legacy()
         {
             // Arrange
             var funcLayoutRenderer = new MyFuncLayoutRenderer("the-answer-new");
@@ -65,7 +88,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class MyFuncLayoutRenderer : FuncLayoutRenderer
         {
-            /// <inheritdoc/>
+            public MyFuncLayoutRenderer() : base(string.Empty)
+            {
+            }
+
+
             public MyFuncLayoutRenderer(string layoutRendererName) : base(layoutRendererName)
             {
             }

@@ -275,6 +275,7 @@ namespace NLog.Config
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
+        [Obsolete("Replaced by LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public static IEnumerable<string> GetCandidateConfigFilePaths()
         {
             return LogManager.LogFactory.GetCandidateConfigFilePaths();
@@ -284,6 +285,7 @@ namespace NLog.Config
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
+        [Obsolete("Replaced by LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
@@ -292,6 +294,7 @@ namespace NLog.Config
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
+        [Obsolete("Replaced by LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public static void ResetCandidateConfigFilePath()
         {
             LogManager.LogFactory.ResetCandidateConfigFilePath();

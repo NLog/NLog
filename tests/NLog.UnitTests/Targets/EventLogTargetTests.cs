@@ -478,7 +478,8 @@ namespace NLog.UnitTests.Targets
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
             target.Layout = new SimpleLayout("${message}");
             target.Source = new SimpleLayout("${event-properties:item=DynamicSource}");
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
 
             var logger = LogManager.GetLogger("WriteEventLogEntry");
 
@@ -515,7 +516,7 @@ namespace NLog.UnitTests.Targets
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
             target.EventId = eventId;
             target.Category = (short)category;
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(LogLevel.Error, "Simple Test Message");
             var eventLog = new EventLog(target.Log);
@@ -540,7 +541,7 @@ namespace NLog.UnitTests.Targets
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
             target.EventId = "${event-properties:EventId}";
             target.Category = "${event-properties:Category}";
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             LogEventInfo theEvent = new LogEventInfo(LogLevel.Error, "TestLoggerName", "Simple Message");
             theEvent.Properties["EventId"] = eventId;
@@ -572,7 +573,7 @@ namespace NLog.UnitTests.Targets
             var target = new EventLogTarget(eventLogMock, null);
             InitializeEventLogTarget(target, sourceName, overflowAction, maxMessageLength, entryType);
 
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
 
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(logLevel, logMessage);

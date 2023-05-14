@@ -37,8 +37,10 @@ namespace NLog
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Security;
     using System.Text;
@@ -79,6 +81,7 @@ namespace NLog
         /// Overwrite possible file paths (including filename) for possible NLog config files. 
         /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths()"/> are used.
         /// </summary>
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         private List<string> _candidateConfigFilePaths;
 
         private readonly ILoggingConfigurationLoader _configLoader;
@@ -92,6 +95,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
@@ -111,11 +115,13 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
+#pragma warning disable CS0618 // Type or member is obsolete
 #if !NETSTANDARD1_3
-            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))  // TODO Move file-watcher logic into XmlLoggingConfiguration
+            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))
 #else
             : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
 #endif
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             RefreshMessageFormatter();
@@ -457,7 +463,7 @@ namespace NLog
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #else
-            var className = StackTraceUsageUtils.GetClassFullName();       
+            var className = StackTraceUsageUtils.GetClassFullName();
 #endif
             return GetLogger(className);
         }
@@ -477,9 +483,9 @@ namespace NLog
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #else
-            var className = StackTraceUsageUtils.GetClassFullName();            
+            var className = StackTraceUsageUtils.GetClassFullName();
 #endif
-            return (T)GetLogger(className, typeof(T));
+            return GetLogger<T>(className);
         }
 
         /// <summary>
@@ -492,14 +498,15 @@ namespace NLog
         /// <remarks>This method introduces performance hit, because of StackTrace capture.
         /// Make sure you are not calling this method in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public Logger GetCurrentClassLogger(Type loggerType)
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        public Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #else
-            var className = StackTraceUsageUtils.GetClassFullName();            
+            var className = StackTraceUsageUtils.GetClassFullName();
 #endif
-            return GetLoggerThreadSafe(className, loggerType ?? typeof(Logger));
+            return GetLogger(className, loggerType ?? typeof(Logger));
         }
 
         /// <summary>
@@ -510,7 +517,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            return GetLoggerThreadSafe(name, Logger.DefaultLoggerType);
+            return GetLoggerThreadSafe(name, Logger.DefaultLoggerType, (t) => new Logger());
         }
 
         /// <summary>
@@ -524,7 +531,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger, new()
         {
-            return (T)GetLoggerThreadSafe(name, typeof(T));
+            return (T)GetLoggerThreadSafe(name, typeof(T), (t) => new T());
         }
 
         /// <summary>
@@ -536,9 +543,11 @@ namespace NLog
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
-        public Logger GetLogger(string name, Type loggerType)
+        [Obsolete("Replaced by GetLogger<T>(). Marked obsolete on NLog 5.2")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
+        public Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
-            return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger));
+            return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger), (t) => Activator.CreateInstance(t, true) as Logger);
         }
 
         private bool RefreshExistingLoggers()
@@ -853,11 +862,13 @@ namespace NLog
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
         /// <param name="e">Event arguments</param>
+        [Obsolete("Replaced by OnConfigurationChanged. Marked obsolete on NLog 5.2")]
         protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
         {
             ConfigurationReloaded?.Invoke(this, e);
         }
 
+        [Obsolete("Replaced by OnConfigurationChanged. Marked obsolete on NLog 5.2")]
         internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
         {
             OnConfigurationReloaded(eventArgs);
@@ -1023,6 +1034,7 @@ namespace NLog
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public IEnumerable<string> GetCandidateConfigFilePaths()
         {
             if (_candidateConfigFilePaths != null)
@@ -1037,6 +1049,7 @@ namespace NLog
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         internal IEnumerable<string> GetCandidateConfigFilePaths(string filename)
         {
             if (_candidateConfigFilePaths != null)
@@ -1049,6 +1062,7 @@ namespace NLog
         /// Overwrite the candidates paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             _candidateConfigFilePaths = new List<string>();
@@ -1062,12 +1076,13 @@ namespace NLog
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void ResetCandidateConfigFilePath()
         {
             _candidateConfigFilePaths = null;
         }
 
-        private Logger GetLoggerThreadSafe(string name, [NotNull] Type loggerType)
+        private Logger GetLoggerThreadSafe(string name, Type loggerType, Func<Type, Logger> loggerCreator)
         {
             if (name is null)
                 throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
@@ -1083,7 +1098,7 @@ namespace NLog
                     return existingLogger;
                 }
 
-                Logger newLogger = CreateNewLogger(cacheKey.ConcreteType);
+                Logger newLogger = CreateNewLogger(loggerType, loggerCreator);
                 if (newLogger is null)
                 {
                     cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
@@ -1101,65 +1116,39 @@ namespace NLog
             }
         }
 
-        internal Logger CreateNewLogger(Type loggerType)
+        internal Logger CreateNewLogger(Type loggerType, Func<Type, Logger> loggerCreator)
         {
             Logger newLogger;
-            if (loggerType != null && loggerType != typeof(Logger))
+            try
             {
-                try
-                {
-                    newLogger = CreateCustomLoggerType(loggerType);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default constructor.", loggerType);
-                    if (ex.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                    newLogger = null;
-                }
-            }
-            else
-            {
-                newLogger = new Logger();
-            }
-
-            return newLogger;
-        }
-
-        private Logger CreateCustomLoggerType(Type customLoggerType)
-        {
-            //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
-            if (customLoggerType.IsStaticClass())
-            {
-                var errorMessage =
-                    $"GetLogger / GetCurrentClassLogger is '{customLoggerType}' as loggerType is static class and should instead inherit from Logger";
-                InternalLogger.Error(errorMessage);
-                if (ThrowExceptions)
-                {
-                    throw new NLogRuntimeException(errorMessage);
-                }
-                return null;
-            }
-            else
-            {
-                var newLogger = ServiceRepository.GetService(customLoggerType) as Logger;
+                newLogger = loggerCreator(loggerType);
                 if (newLogger is null)
                 {
-                    //well, it's not a Logger, and we should return a Logger.
-                    var errorMessage =
-                        $"GetLogger / GetCurrentClassLogger got '{customLoggerType}' as loggerType doesn't inherit from Logger";
-                    InternalLogger.Error(errorMessage);
-                    if (ThrowExceptions)
+                    if (!Logger.DefaultLoggerType.IsAssignableFrom(loggerType))
                     {
-                        throw new NLogRuntimeException(errorMessage);
+                        throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' does not inherit from NLog Logger");
                     }
-                    return null;
+                    else
+                    {
+                        throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' could not create instance of NLog Logger");
+                    }
                 }
-
-                return newLogger;
+                else
+                {
+                    return newLogger;
+                }
             }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default constructor.", loggerType);
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                newLogger = null;
+            }
+
+            return newLogger ?? new Logger();
         }
 
         /// <summary>
@@ -1167,6 +1156,7 @@ namespace NLog
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>
         /// <returns>LogFactory instance for fluent interface</returns>
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public LogFactory LoadConfiguration(string configFile)
         {
             // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)

@@ -1087,7 +1087,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            var logger = logFactory.GetLogger("mylogger", typeof(MyLogger));
+            var logger = logFactory.GetLogger<MyLogger>("mylogger");
 
             Assert.True(logger is MyLogger, "logger isn't MyLogger");
             logger.Debug("msg");
@@ -1105,7 +1105,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            MyLogger logger = logFactory.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
+            MyLogger logger = logFactory.GetLogger<MyLogger>("mylogger");
 
             Assert.NotNull(logger);
             logger.Debug("msg");
@@ -1123,7 +1123,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>").LogFactory;
 
-            Logger logger = logFactory.GetLogger("mylogger", typeof(MyLogger)) as Logger;
+            Logger logger = logFactory.GetLogger<MyLogger>("mylogger");
 
             Assert.NotNull(logger);
             logger.Debug("msg");

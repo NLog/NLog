@@ -42,7 +42,23 @@ namespace NLog.UnitTests.Config
     public class ConfigurationItemFactoryTests : NLogTestBase
     {
         [Fact]
-        [Obsolete("Instead override type-creation by calling RegisterDefinition with delegate. Marked obsolete with NLog v5.2")]
+        public void ConfigurationItemFactoryTargetTest()
+        {
+            var itemFactory = new ConfigurationItemFactory();
+            itemFactory.TargetFactory.RegisterType(nameof(MemoryTarget), () => new MemoryTarget());
+            Assert.IsType<MemoryTarget>(itemFactory.TargetFactory.CreateInstance(nameof(MemoryTarget)));
+        }
+
+        [Fact]
+        public void ConfigurationItemFactoryFailsTest()
+        {
+            var itemFactory = new ConfigurationItemFactory();
+            var ex = Assert.ThrowsAny<Exception>(() => itemFactory.TargetFactory.CreateInstance("Memory-Target") as MemoryTarget);
+            Assert.Contains("Memory-Target", ex.Message);
+        }
+
+        [Fact]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryDefaultTest()
         {
             var itemFactory = new ConfigurationItemFactory();
@@ -50,51 +66,27 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactorySimpleTest()
         {
-            var cif = new ConfigurationItemFactory();
-            cif.RegisterType(typeof(DebugTarget), string.Empty);
-            var target = cif.Targets.CreateInstance("Debug") as DebugTarget;
+            var itemFactory = new ConfigurationItemFactory();
+            itemFactory.RegisterType(typeof(DebugTarget), string.Empty);
+            var target = itemFactory.TargetFactory.CreateInstance("Debug") as DebugTarget;
             Assert.NotNull(target);
         }
 
         [Fact]
-        public void ConfigurationItemFactoryFailsTest()
-        {
-            var cif = new ConfigurationItemFactory();
-            var ex = Assert.ThrowsAny<Exception>(() => cif.Targets.CreateInstance("Debug-Target") as DebugTarget);
-            Assert.Contains("Debug-Target", ex.Message);
-        }
-
-        [Fact]
-        [Obsolete("Instead override type-creation by calling RegisterDefinition with delegate. Marked obsolete with NLog v5.2")]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryUsesSuppliedDelegateToResolveObject()
         {
-            var cif = new ConfigurationItemFactory();
-            cif.RegisterType(typeof(DebugTarget), string.Empty);
+            var itemFactory = new ConfigurationItemFactory();
+            itemFactory.RegisterType(typeof(DebugTarget), string.Empty);
             List<Type> resolvedTypes = new List<Type>();
-            cif.CreateInstance = t => { resolvedTypes.Add(t); return Activator.CreateInstance(t); };
-            Target target = cif.Targets.CreateInstance("Debug");
+            itemFactory.CreateInstance = t => { resolvedTypes.Add(t); return Activator.CreateInstance(t); };
+            Target target = itemFactory.TargetFactory.CreateInstance("Debug");
             Assert.NotNull(target);
             Assert.Single(resolvedTypes);
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
-
-#if !NETSTANDARD && !MONO
-
-        [Fact]
-        public void ExtendedLayoutRendererTest()
-        {
-            var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;
-
-            AssertInstance(layoutRenderers, "appsetting", "AppSettingLayoutRenderer", "AppSettingLayoutRenderer2");
-        }
-
-        private static void AssertInstance<T1, T2>(INamedItemFactory<T1, T2> targets, string itemName, params string[] expectedTypeNames)
-            where T1 : class
-        {
-            Assert.Contains(targets.CreateInstance(itemName).GetType().Name, expectedTypeNames);
-        }
-#endif
     }
 }

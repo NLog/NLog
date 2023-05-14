@@ -43,88 +43,39 @@ namespace NLog.Internal
     /// </summary>
     internal static class AssemblyHelpers
     {
-#if !NETSTANDARD1_3
         /// <summary>
-        /// Load from url
+        /// Gets all usable exported types from the given assembly.
         /// </summary>
-        /// <param name="assemblyFileName">file or path, including .dll</param>
-        /// <param name="baseDirectory">basepath, optional</param>
-        /// <returns></returns>
-        public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
+        /// <param name="assembly">Assembly to scan.</param>
+        /// <returns>Usable types from the given assembly.</returns>
+        /// <remarks>Types which cannot be loaded are skipped.</remarks>
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static Type[] SafeGetTypes(Assembly assembly)
         {
-            string fullFileName = baseDirectory is null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
-
-            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-#if NETSTANDARD1_5
             try
             {
-                var assemblyName = System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(fullFileName);
-                return Assembly.Load(assemblyName);
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException typeLoadException)
+            {
+                var result = typeLoadException.Types?.Where(t => t != null)?.ToArray() ?? ArrayHelper.Empty<Type>();
+                InternalLogger.Warn(typeLoadException, "Loaded {0} valid types from Assembly: {1}", result.Length, assembly.FullName);
+                foreach (var ex in typeLoadException.LoaderExceptions ?? ArrayHelper.Empty<Exception>())
+                {
+                    InternalLogger.Warn(ex, "Type load exception.");
+                }
+                return result;
             }
             catch (Exception ex)
             {
-                // this doesn't usually work
-                InternalLogger.Warn(ex, "Fallback to AssemblyLoadContext.Default.LoadFromAssemblyPath for file: {0}", fullFileName);
-                return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
+                InternalLogger.Warn(ex, "Failed to load types from Assembly: {0}", assembly.FullName);
+                return ArrayHelper.Empty<Type>();
             }
-#else
-            Assembly asm = Assembly.LoadFrom(fullFileName);
-            return asm;
-#endif
-        }
-#endif
-
-        /// <summary>
-        /// Load from url
-        /// </summary>
-        /// <param name="assemblyName">name without .dll</param>
-        /// <returns></returns>
-        public static Assembly LoadFromName(string assemblyName)
-        {
-            InternalLogger.Info("Loading assembly: {0}", assemblyName);
-
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            try
-            {
-                Assembly assembly = Assembly.Load(assemblyName);
-                return assembly;
-            }
-            catch (FileNotFoundException)
-            {
-                var name = new AssemblyName(assemblyName);
-                InternalLogger.Trace("Try find '{0}' in current domain", assemblyName);
-                var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(domainAssembly => IsAssemblyMatch(name, domainAssembly.GetName()));
-                if (loadedAssembly != null)
-                {
-                    InternalLogger.Trace("Found '{0}' in current domain", assemblyName);
-                    return loadedAssembly;
-                }
-
-                InternalLogger.Trace("Haven't found' '{0}' in current domain", assemblyName);
-                throw;
-            }
-#else
-            var name = new AssemblyName(assemblyName);
-            return Assembly.Load(name);
-#endif
-        }
-
-        private static bool IsAssemblyMatch(AssemblyName expected, AssemblyName actual)
-        {
-            if (expected.Name != actual.Name)
-                return false;
-            if (expected.Version != null && expected.Version != actual.Version)
-                return false;
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            if (expected.CultureInfo != null && expected.CultureInfo.Name != actual.CultureInfo.Name)
-                return false;
-#endif
-            var expectedKeyToken = expected.GetPublicKeyToken();
-            var correctToken = expectedKeyToken is null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
-            return correctToken;
         }
 
 #if !NETSTANDARD1_3
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public static string GetAssemblyFileLocation(Assembly assembly)
         {
             string assemblyFullName = string.Empty;

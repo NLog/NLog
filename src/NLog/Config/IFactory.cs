@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Provides means to populate factories of named items (such as targets, layouts, layout renderers, etc.).
@@ -42,8 +43,15 @@ namespace NLog.Config
     {
         void Clear();
 
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix);
 
-        void RegisterType(Type type, string itemNamePrefix);
+        void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix);
+    }
+
+    internal interface IFactory<TBaseType> : IFactory where TBaseType : class
+    {
+        bool TryCreateInstance(string typeAlias, out TBaseType result);
+        void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new();
     }
 }

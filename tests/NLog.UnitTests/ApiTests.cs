@@ -256,7 +256,22 @@ namespace NLog.UnitTests
                 if (appDomainFixedOutputAttribute != null)
                 {
                     var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
-                    Assert.True(!(threadAgnosticAttribute is null), $"{type.ToString()} should also have ThreadAgnostic");
+                    Assert.True(!(threadAgnosticAttribute is null), $"{type.ToString()} should also have [ThreadAgnostic]");
+                }
+            }
+        }
+
+        [Fact]
+        public void WrapperLayoutRenderer_EnsureThreadAgnostic()
+        {
+            foreach (Type type in allTypes)
+            {
+                if (typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase).IsAssignableFrom(type))
+                {
+                    if (type.IsAbstract || !type.IsPublic)
+                        continue;   // skip non-concrete types, enumerations, and private nested types
+
+                    Assert.True(type.IsDefined(typeof(ThreadAgnosticAttribute), true), $"{type.ToString()} is missing [ThreadAgnostic] attribute.");
                 }
             }
         }
@@ -314,6 +329,93 @@ namespace NLog.UnitTests
                                 Assert.Equal(typeAlias + "LayoutRenderer", type.Name, StringComparer.OrdinalIgnoreCase);
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void ValidateConfigurationItemFactory()
+        {
+            ConfigurationItemFactory.Default = null;    // Reset
+            
+            foreach (Type type in allTypes)
+            {
+                if (!type.IsPublic || !type.IsClass || type.IsAbstract)
+                    continue;
+
+                if (typeof(NLog.Targets.Target).IsAssignableFrom(type))
+                {
+                    var configAttribs = type.GetCustomAttributes<NLog.Targets.TargetAttribute>();
+                    Assert.NotEmpty(configAttribs);
+
+                    foreach (var configName in configAttribs)
+                    {
+                        Assert.True(ConfigurationItemFactory.Default.TargetFactory.TryCreateInstance(configName.Name, out var _));
+                    }
+                }
+                else if (typeof(NLog.Layouts.Layout).IsAssignableFrom(type))
+                {
+                    if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(NLog.Layouts.Layout<>)))
+                        continue;
+
+                    if (type == typeof(NLog.Layouts.XmlElement))
+                        continue;
+
+                    var configAttribs = type.GetCustomAttributes<NLog.Layouts.LayoutAttribute>();
+                    Assert.NotEmpty(configAttribs);
+
+                    foreach (var configName in configAttribs)
+                    {
+                        Assert.True(ConfigurationItemFactory.Default.LayoutFactory.TryCreateInstance(configName.Name, out var _));
+                    }
+                }
+                else if (typeof(NLog.LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
+                {
+                    if (type == typeof(NLog.LayoutRenderers.FuncLayoutRenderer) || type == typeof(NLog.LayoutRenderers.FuncThreadAgnosticLayoutRenderer))
+                        continue;
+
+                    var configAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>();
+                    Assert.NotEmpty(configAttribs);
+
+                    foreach (var configName in configAttribs)
+                    {
+                        Assert.True(ConfigurationItemFactory.Default.LayoutRendererFactory.TryCreateInstance(configName.Name, out var _));
+                    }
+
+                    if (typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase).IsAssignableFrom(type))
+                    {
+                        var wrapperAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.AmbientPropertyAttribute>();
+                        if (wrapperAttribs?.Any() == true)
+                        {
+                            foreach (var ambientName in wrapperAttribs)
+                            {
+                                Assert.True(ConfigurationItemFactory.Default.AmbientRendererFactory.TryCreateInstance(ambientName.Name, out var _));
+                            }
+                        }
+                    }
+                }
+                else if (typeof(NLog.Filters.Filter).IsAssignableFrom(type))
+                {
+                    if (type == typeof(NLog.Filters.WhenMethodFilter))
+                        continue;
+
+                    var configAttribs = type.GetCustomAttributes<NLog.Filters.FilterAttribute>();
+                    Assert.NotEmpty(configAttribs);
+
+                    foreach (var configName in configAttribs)
+                    {
+                        Assert.True(ConfigurationItemFactory.Default.FilterFactory.TryCreateInstance(configName.Name, out var _));
+                    }
+                }
+                else if (typeof(NLog.Time.TimeSource).IsAssignableFrom(type))
+                {
+                    var configAttribs = type.GetCustomAttributes<NLog.Time.TimeSourceAttribute>();
+                    Assert.NotEmpty(configAttribs);
+
+                    foreach (var configName in configAttribs)
+                    {
+                        Assert.True(ConfigurationItemFactory.Default.TimeSourceFactory.TryCreateInstance(configName.Name, out var _));
                     }
                 }
             }

@@ -57,7 +57,9 @@ namespace NLog.UnitTests
             //reset before every test
             LogManager.ThrowExceptions = false; // Ignore any errors triggered by closing existing config
             LogManager.Configuration = null;    // Will close any existing config
+#pragma warning disable CS0618 // Type or member is obsolete
             LogManager.LogFactory.ResetCandidateConfigFilePath();
+#pragma warning restore CS0618 // Type or member is obsolete
 
             InternalLogger.Reset();
             InternalLogger.LogLevel = LogLevel.Off;

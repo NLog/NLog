@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,41 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+#if NET35
+namespace System.Reflection
 {
-    /// <summary>
-    /// Gets or sets the property of System.GC to retrieve.
-    /// </summary>
-    public enum GarbageCollectorProperty
+    [AttributeUsage(AttributeTargets.Assembly)]
+    internal sealed class AssemblyMetadataAttribute : Attribute
     {
-        /// <summary>
-        /// Total memory allocated.
-        /// </summary>
-        TotalMemory,
-
-        /// <summary>
-        /// Total memory allocated (perform full garbage collection first).
-        /// </summary>
-        TotalMemoryForceCollection,
-
-        /// <summary>
-        /// Gets the number of Gen0 collections.
-        /// </summary>
-        CollectionCount0,
-
-        /// <summary>
-        /// Gets the number of Gen1 collections.
-        /// </summary>
-        CollectionCount1,
-
-        /// <summary>
-        /// Gets the number of Gen2 collections.
-        /// </summary>
-        CollectionCount2,
-
-        /// <summary>
-        /// Maximum generation number supported by GC.
-        /// </summary>
-        MaxGeneration,
+        public AssemblyMetadataAttribute(string key, string value)
+        {
+        }
     }
 }
+#endif

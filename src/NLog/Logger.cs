@@ -810,7 +810,7 @@ namespace NLog
 
         private Logger CreateChildLogger()
         {
-            Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
+            Logger newLogger = (Logger)MemberwiseClone();
             newLogger.Initialize(Name, _targetsByLevel, Factory);
             newLogger._contextProperties = CreateContextPropertiesDictionary(_contextProperties);
             newLogger._contextLogger = _contextLogger;  // Use the GetTargetsForLevel() of the parent Logger

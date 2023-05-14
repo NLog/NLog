@@ -126,7 +126,9 @@ namespace NLog.Internal.Fakeables
                 return Path.GetDirectoryName(entryLocation);
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
             return AssemblyHelpers.GetAssemblyFileLocation(entryAssembly);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         private static string LookupEntryAssemblyFileName()

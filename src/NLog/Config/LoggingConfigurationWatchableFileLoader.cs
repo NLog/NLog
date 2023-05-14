@@ -188,7 +188,9 @@ namespace NLog.Config
                     }
 #endif
                     InternalLogger.Warn(exception, "NLog configuration failed to reload");
+#pragma warning disable CS0618 // Type or member is obsolete
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+#pragma warning restore CS0618 // Type or member is obsolete
                     return;
                 }
 
@@ -198,7 +200,9 @@ namespace NLog.Config
 
                     _logFactory.Configuration = newConfig;  // Triggers LogFactory to call Activated(...) that adds file-watch again
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 catch (Exception exception)
                 {
@@ -210,7 +214,9 @@ namespace NLog.Config
 #endif
                     InternalLogger.Warn(exception, "NLog configuration reloaded, failed to be assigned");
                     _watcher.Watch(oldConfig.FileNamesToWatch);
+#pragma warning disable CS0618 // Type or member is obsolete
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
             }
         }

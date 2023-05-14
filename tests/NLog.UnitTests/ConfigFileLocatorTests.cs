@@ -62,6 +62,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void GetCandidateConfigTest()
         {
             var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
@@ -71,6 +72,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void GetCandidateConfigTest_list_is_readonly()
         {
             Assert.Throws<NotSupportedException>(() =>
@@ -84,6 +86,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void SetCandidateConfigTest()
         {
             var list = new List<string> { "c:\\global\\temp.config" };
@@ -95,6 +98,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void ResetCandidateConfigTest()
         {
             var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();

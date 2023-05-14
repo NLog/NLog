@@ -102,7 +102,7 @@ namespace NLog.Internal
         public MethodBase GetCallerStackFrameMethod(int skipFrames)
         {
             StackFrame frame = StackTrace?.GetFrame(UserStackFrameNumber + skipFrames);
-            return frame?.GetMethod();
+            return StackTraceUsageUtils.GetStackMethod(frame);
         }
 
         public string GetCallerClassName(MethodBase method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
@@ -218,10 +218,12 @@ namespace NLog.Internal
                 if (SkipAssembly(stackFrame))
                     continue;
 
-                if (stackFrame.GetMethod()?.Name == "MoveNext" && stackFrames.Length > i)
+                var stackMethod = StackTraceUsageUtils.GetStackMethod(stackFrame);
+                if (stackMethod?.Name == "MoveNext" && stackFrames.Length > i)
                 {
                     var nextStackFrame = stackFrames[i + 1];
-                    var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
+                    var nextStackMethod = StackTraceUsageUtils.GetStackMethod(nextStackFrame);
+                    var declaringType = nextStackMethod?.DeclaringType;
                     if (declaringType?.Namespace == "System.Runtime.CompilerServices" || declaringType == typeof(System.Threading.ExecutionContext))
                     {
                         //async, search further
@@ -254,7 +256,7 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool IsLoggerType(StackFrame frame, Type loggerType)
         {
-            var method = frame.GetMethod();
+            var method = StackTraceUsageUtils.GetStackMethod(frame);
             Type declaringType = method?.DeclaringType;
             var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
             return isLoggerType;

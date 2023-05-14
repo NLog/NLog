@@ -35,11 +35,10 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
     using NLog.Common;
-    using NLog.Conditions;
     using NLog.Filters;
     using NLog.Internal;
     using NLog.LayoutRenderers;
@@ -56,7 +55,12 @@ namespace NLog.Config
     {
         private static ConfigurationItemFactory _defaultInstance;
 
+        internal static readonly object SyncRoot = new object();
+
         private readonly ServiceRepository _serviceRepository;
+#pragma warning disable CS0618 // Type or member is obsolete
+        internal IAssemblyExtensionLoader AssemblyLoader { get; } = new AssemblyExtensionLoader();
+#pragma warning restore CS0618 // Type or member is obsolete
         private readonly IFactory[] _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
         private readonly Factory<Filter, FilterAttribute> _filters;
@@ -65,29 +69,54 @@ namespace NLog.Config
         private readonly MethodFactory _conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> _ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
+        private readonly Dictionary<Type, ItemFactory> _itemFactories = new Dictionary<Type, ItemFactory>(256);
+
+        private struct ItemFactory
+        {
+            public readonly Func<Dictionary<string, PropertyInfo>> ItemProperties;
+
+            public ItemFactory(Func<Dictionary<string, PropertyInfo>> itemProperties)
+            {
+                ItemProperties = itemProperties;
+            }
+        }
 
         /// <summary>
         /// Called before the assembly will be loaded.
         /// </summary>
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public static event EventHandler<AssemblyLoadingEventArgs> AssemblyLoading;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
-        /// <param name="assemblies">The assemblies to scan for named items.</param>
-        public ConfigurationItemFactory(params Assembly[] assemblies)
-            :this(LogManager.LogFactory.ServiceRepository, null, assemblies)
+        public ConfigurationItemFactory()
+            : this(LogManager.LogFactory.ServiceRepository, null)
         {
         }
 
-        internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
+        /// </summary>
+        /// <param name="assemblies">The assemblies to scan for named items.</param>
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        public ConfigurationItemFactory(params Assembly[] assemblies)
+            : this(LogManager.LogFactory.ServiceRepository, null)
+        {
+            foreach (var asm in assemblies)
+            {
+                RegisterItemsFromAssembly(asm);
+            }
+        }
+
+        internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory)
         {
             _serviceRepository = Guard.ThrowIfNull(serviceRepository);
             _targets = new Factory<Target, TargetAttribute>(this, globalDefaultFactory?._targets);
             _filters = new Factory<Filter, FilterAttribute>(this, globalDefaultFactory?._filters);
             _layoutRenderers = new LayoutRendererFactory(this, globalDefaultFactory?._layoutRenderers);
             _layouts = new Factory<Layout, LayoutAttribute>(this, globalDefaultFactory?._layouts);
-            _conditionMethods = new MethodFactory(globalDefaultFactory?._conditionMethods, classType => MethodFactory.ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(classType));
+            _conditionMethods = new MethodFactory(globalDefaultFactory?._conditionMethods);
             _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this, globalDefaultFactory?._ambientProperties);
             _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this, globalDefaultFactory?._timeSources);
             _allFactories = new IFactory[]
@@ -100,11 +129,6 @@ namespace NLog.Config
                 _ambientProperties,
                 _timeSources,
             };
-
-            foreach (var asm in assemblies)
-            {
-                RegisterItemsFromAssembly(asm);
-            }
         }
 
         /// <summary>
@@ -120,50 +144,71 @@ namespace NLog.Config
             set => _defaultInstance = value;
         }
 
+        internal LayoutRendererFactory LayoutRendererFactory => _layoutRenderers;
+        internal Factory<Layout, LayoutAttribute> LayoutFactory => _layouts;
+        internal Factory<Target, TargetAttribute> TargetFactory => _targets;
+        internal IFactory<Filter> FilterFactory => _filters;
+        internal IFactory<LayoutRenderer> AmbientRendererFactory => _ambientProperties;
+        internal IFactory<TimeSource> TimeSourceFactory => _timeSources;
+        internal MethodFactory ConditionMethodFactory => _conditionMethods;
+
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.
         /// </summary>
         /// <remarks>
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
-        [Obsolete("Instead override type-creation by calling RegisterTarget with delegate. Marked obsolete with NLog v5.2")]
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public ConfigurationItemCreator CreateInstance { get; set; } = FactoryHelper.CreateInstance;
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<Target, Type> Targets => _targets;
 
         /// <summary>
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
         /// <value>The filter factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<Filter, Type> Filters => _filters;
-
-        internal LayoutRendererFactory GetLayoutRenderers() => _layoutRenderers;
-
-        internal Factory<Layout, LayoutAttribute> GetLayoutFactory() => _layouts;
-
-        internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<Layout, Type> Layouts => _layouts;
 
         /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
         /// <value>The ambient property factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
+
+        /// <summary>
+        /// Gets the time source factory.
+        /// </summary>
+        /// <value>The time source factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public INamedItemFactory<TimeSource, Type> TimeSources => _timeSources;
+
+        /// <summary>
+        /// Gets the condition method factory.
+        /// </summary>
+        /// <value>The condition method factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
 
         /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="JsonLayout"/>
@@ -210,27 +255,10 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Gets the time source factory.
-        /// </summary>
-        /// <value>The time source factory.</value>
-        public INamedItemFactory<TimeSource, Type> TimeSources => _timeSources;
-
-        /// <summary>
-        /// Gets the condition method factory.
-        /// </summary>
-        /// <value>The condition method factory.</value>
-        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
-
-        /// <summary>
-        /// Gets the condition method factory (precompiled)
-        /// </summary>
-        /// <value>The condition method factory.</value>
-        internal MethodFactory ConditionMethodDelegates => _conditionMethods;
-
-        /// <summary>
         /// Registers named items from the assembly.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void RegisterItemsFromAssembly(Assembly assembly)
         {
             RegisterItemsFromAssembly(assembly, string.Empty);
@@ -241,6 +269,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         /// <param name="itemNamePrefix">Item name prefix.</param>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
             if (AssemblyLoading != null)
@@ -255,7 +284,7 @@ namespace NLog.Config
             }
 
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
-            var typesToScan = assembly.SafeGetTypes();
+            var typesToScan = AssemblyHelpers.SafeGetTypes(assembly);
             if (typesToScan?.Length > 0)
             {
                 string assemblyName = string.Empty;
@@ -270,9 +299,12 @@ namespace NLog.Config
                     PreloadAssembly(typesToScan);
                 }
 
-                foreach (IFactory f in _allFactories)
+                lock (SyncRoot)
                 {
-                    f.ScanTypes(typesToScan, assemblyName, itemNamePrefix);
+                    foreach (IFactory f in _allFactories)
+                    {
+                        f.ScanTypes(typesToScan, assemblyName, itemNamePrefix);
+                    }
                 }
             }
         }
@@ -285,6 +317,8 @@ namespace NLog.Config
         /// This method will be called just before registering all items in the assembly.
         /// </remarks>
         /// <param name="typesToScan"></param>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
         public void PreloadAssembly(Type[] typesToScan)
         {
             var types = typesToScan.Where(t => t.Name.Equals("NLogPackageLoader", StringComparison.OrdinalIgnoreCase));
@@ -299,7 +333,8 @@ namespace NLog.Config
         /// Call the Preload method for <paramref name="type"/>. The Preload method must be static.
         /// </summary>
         /// <param name="type"></param>
-        private void CallPreload(Type type)
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        private void CallPreload([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type)
         {
             if (type is null)
             {
@@ -338,13 +373,14 @@ namespace NLog.Config
             }
         }
 
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private static object[] CreatePreloadParameters(MethodInfo preloadMethod, ConfigurationItemFactory configurationItemFactory)
         {
             var firstParam = preloadMethod.GetParameters().FirstOrDefault();
             object[] parameters = null;
             if (firstParam?.ParameterType == typeof(ConfigurationItemFactory))
             {
-                parameters = new object[] {configurationItemFactory};
+                parameters = new object[] { configurationItemFactory };
             }
 
             return parameters;
@@ -355,9 +391,12 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            foreach (IFactory f in _allFactories)
+            lock (SyncRoot)
             {
-                f.Clear();
+                foreach (IFactory f in _allFactories)
+                {
+                    f.Clear();
+                }
             }
         }
 
@@ -366,12 +405,99 @@ namespace NLog.Config
         /// </summary>
         /// <param name="type">The type to register.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        public void RegisterType(Type type, string itemNamePrefix)
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
-            foreach (IFactory f in _allFactories)
+            lock (SyncRoot)
             {
-                f.RegisterType(type, itemNamePrefix);
+                foreach (IFactory f in _allFactories)
+                {
+                    f.RegisterType(type, itemNamePrefix);
+                }
             }
+        }
+
+        internal void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] TType>() where TType : class, new()
+        {
+            lock (SyncRoot)
+            {
+                RegisterTypeProperties<TType>();
+
+                foreach (IFactory f in _allFactories)
+                {
+                    f.RegisterType(typeof(TType), string.Empty);
+                }
+            }
+        }
+
+        internal void RegisterTypeProperties<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>()
+        {
+            lock (SyncRoot)
+            {
+                if (!_itemFactories.ContainsKey(typeof(TType)))
+                {
+                    Dictionary<string, PropertyInfo> properties = null;
+                    var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = typeof(TType).GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
+                    var itemFactory = new ItemFactory(itemProperties);
+                    _itemFactories[typeof(TType)] = itemFactory;
+                }
+            }
+        }
+
+        internal void RegisterTypeProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType)
+        {
+            lock (SyncRoot)
+            {
+                if (!_itemFactories.ContainsKey(itemType))
+                {
+                    Dictionary<string, PropertyInfo> properties = null;
+                    var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
+                    var itemFactory = new ItemFactory(itemProperties);
+                    _itemFactories[itemType] = itemFactory;
+                }
+            }
+        }
+
+        internal Dictionary<string, PropertyInfo> TryGetTypeProperties(Type itemType)
+        {
+            lock (SyncRoot)
+            {
+                if (_itemFactories.TryGetValue(itemType, out var itemFactory))
+                    return itemFactory.ItemProperties();
+
+                if (itemType.IsAbstract())
+                    return new Dictionary<string, PropertyInfo>();
+
+#pragma warning disable CS0618 // Type or member is obsolete
+                return ResolveTypePropertiesLegacy(itemType);
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
+        }
+
+        internal ICollection<Assembly> ScanLoadedAssemblies()
+        {
+            HashSet<Assembly> assemblies = new HashSet<Assembly>();
+
+            lock (SyncRoot)
+            {
+                foreach (var itemType in _itemFactories)
+                {
+                    assemblies.Add(itemType.Key.GetAssembly());
+                }
+            }
+
+            return assemblies;
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        private Dictionary<string, PropertyInfo> ResolveTypePropertiesLegacy(Type itemType)
+        {
+            InternalLogger.Debug("Object reflection needed for unknown type: {0}", itemType);
+            Dictionary<string, PropertyInfo> properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
+            _itemFactories[itemType] = new ItemFactory(() => properties);
+            return properties;
         }
 
         /// <summary>
@@ -380,221 +506,22 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
-            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
-            factory.RegisterExternalItems();
+            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null);
+            lock (SyncRoot)
+            {
+                AssemblyExtensionTypes.RegisterTypes(factory);
+                factory.ConditionMethodFactory.RegisterType(typeof(NLog.Conditions.ConditionMethods), string.Empty);
+#pragma warning disable CS0618 // Type or member is obsolete
+                factory.RegisterExternalItems();
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
             return factory;
         }
-
-        internal static void ScanForAutoLoadExtensions(LogFactory logFactory)
-        {
-#if !NETSTANDARD1_3
-            try
-            {
-                var factory = ConfigurationItemFactory.Default;
-                var nlogAssembly = typeof(LogFactory).GetAssembly();
-                var assemblyLocation = string.Empty;
-                var extensionDlls = ArrayHelper.Empty<string>();
-                var fileLocations = GetAutoLoadingFileLocations();
-                foreach (var fileLocation in fileLocations)
-                {
-                    if (string.IsNullOrEmpty(fileLocation.Key))
-                        continue;
-
-                    if (string.IsNullOrEmpty(assemblyLocation))
-                        assemblyLocation = fileLocation.Key;
-
-                    extensionDlls = GetNLogExtensionFiles(fileLocation.Key);
-                    if (extensionDlls.Length > 0)
-                    {
-                        assemblyLocation = fileLocation.Key;
-                        break;
-                    }
-                }
-
-                InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-                var alreadyRegistered = LoadNLogExtensionAssemblies(factory, nlogAssembly, extensionDlls);
-                RegisterAppDomainAssemblies(factory, nlogAssembly, alreadyRegistered);
-            }
-            catch (System.Security.SecurityException ex)
-            {
-                InternalLogger.Warn(ex, "Seems that we do not have permission");
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                InternalLogger.Warn(ex, "Seems that we do not have permission");
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-            InternalLogger.Debug("Auto loading done");
-#else
-            // Nothing to do for Sonar Cube
-#endif
-        }
-
-#if !NETSTANDARD1_3
-        private static HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
-        {
-            HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    nlogAssembly.FullName
-                };
-
-            foreach (var extensionDll in extensionDlls)
-            {
-                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-
-                try
-                {
-                    var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
-                    InternalLogger.LogAssemblyVersion(extensionAssembly);
-                    factory.RegisterItemsFromAssembly(extensionAssembly);
-                    alreadyRegistered.Add(extensionAssembly.FullName);
-
-                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
-                }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
-                    if (ex.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-            }
-
-            return alreadyRegistered;
-        }
-
-        private static void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
-        {
-            alreadyRegistered.Add(nlogAssembly.FullName);
-
-#if !NETSTANDARD1_5
-            var allAssemblies = LogFactory.DefaultAppEnvironment.GetAppDomainRuntimeAssemblies();
-#else
-            var allAssemblies = new [] { nlogAssembly };
-#endif
-            foreach (var assembly in allAssemblies)
-            {
-                if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
-                {
-                    factory.RegisterItemsFromAssembly(assembly);
-                }
-
-                if (IncludeAsHiddenAssembly(assembly.FullName))
-                {
-                    LogManager.AddHiddenAssembly(assembly);
-                }
-            }
-        }
-
-        private static bool IncludeAsHiddenAssembly(string assemblyFullName)
-        {
-            if (assemblyFullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (assemblyFullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (assemblyFullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (assemblyFullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (assemblyFullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            return false;
-        }
-
-        internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
-        {
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
-            var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
-            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyLocation);
-            if (!string.IsNullOrEmpty(nlogAssemblyLocation))
-                yield return new KeyValuePair<string, string>(nlogAssemblyLocation, nameof(nlogAssemblyLocation));
-
-            var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.EntryAssemblyLocation);
-            InternalLogger.Debug("Auto loading based on GetEntryAssembly-Assembly found location: {0}", entryAssemblyLocation);
-            if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
-                yield return new KeyValuePair<string, string>(entryAssemblyLocation, nameof(entryAssemblyLocation));
-
-            var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory);
-            InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
-            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, nlogAssemblyLocation, StringComparison.OrdinalIgnoreCase))
-                yield return new KeyValuePair<string, string>(baseDirectory, nameof(baseDirectory));
-        }
-
-        private static string[] GetNLogExtensionFiles(string assemblyLocation)
-        {
-            try
-            {
-                InternalLogger.Debug("Search for auto loading files in location: {0}", assemblyLocation);
-                if (string.IsNullOrEmpty(assemblyLocation))
-                {
-                    return ArrayHelper.Empty<string>();
-                }
-
-                var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
-                .Select(Path.GetFileName)
-                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                .Select(x => Path.Combine(assemblyLocation, x));
-                return extensionDlls.ToArray();
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping auto loading location because assembly directory does not exist: {0}", assemblyLocation);
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-                return ArrayHelper.Empty<string>();
-            }
-            catch (System.Security.SecurityException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping auto loading location because access not allowed to assembly directory: {0}", assemblyLocation);
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-                return ArrayHelper.Empty<string>();
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping auto loading location because access not allowed to assembly directory: {0}", assemblyLocation);
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-                return ArrayHelper.Empty<string>();
-            }
-        }
-#endif
 
         /// <summary>
         /// Registers items in using late-bound types, so that we don't need a reference to the dll.
         /// </summary>
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private void RegisterExternalItems()
         {
 #if !NET35 && !NET40

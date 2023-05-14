@@ -132,8 +132,10 @@ namespace NLog.Conditions
 
             try
             {
-                var methodInfo = _configurationItemFactory.ConditionMethods.CreateInstance(functionName);
-                var methodDelegate = _configurationItemFactory.ConditionMethodDelegates.CreateInstance(functionName);
+#pragma warning disable CS0618 // Type or member is obsolete
+                var methodInfo = _configurationItemFactory.ConditionMethodFactory.CreateMethodInfo(functionName);
+#pragma warning restore CS0618 // Type or member is obsolete
+                var methodDelegate = _configurationItemFactory.ConditionMethodFactory.CreateInstance(functionName);
                 return new ConditionMethodExpression(functionName, methodInfo, methodDelegate, par);
             }
             catch (Exception exception)
