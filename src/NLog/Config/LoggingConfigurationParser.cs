@@ -803,14 +803,12 @@ namespace NLog.Config
             bool asyncWrap = ParseBooleanValue("async", targetsElement.GetOptionalValue("async", "false"), false);
 
             ValidatedConfigurationElement defaultWrapperElement = null;
-            var typeNameToDefaultTargetParameters =
-                new Dictionary<string, ValidatedConfigurationElement>(StringComparer.OrdinalIgnoreCase);
+            Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null;
 
             foreach (var targetElement in targetsElement.ValidChildren)
             {
                 string targetTypeName = targetElement.GetConfigItemTypeAttribute();
                 string targetValueName = targetElement.GetOptionalValue("name", null);
-                Target newTarget = null;
                 if (!string.IsNullOrEmpty(targetValueName))
                     targetValueName = $"{targetElement.Name}(Name={targetValueName})";
                 else
@@ -830,6 +828,8 @@ namespace NLog.Config
                     case "TARGETDEFAULTPARAMETERS":
                         if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
+                            if (typeNameToDefaultTargetParameters is null)
+                                typeNameToDefaultTargetParameters = new Dictionary<string, ValidatedConfigurationElement>(StringComparer.OrdinalIgnoreCase);
                             typeNameToDefaultTargetParameters[targetTypeName.Trim()] = targetElement;
                         }
                         break;
@@ -841,11 +841,7 @@ namespace NLog.Config
                     case "COMPOUND-TARGET":
                         if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            newTarget = CreateTargetType(targetTypeName);
-                            if (newTarget != null)
-                            {
-                                ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
-                            }
+                            AddNewTargetFromConfig(targetTypeName, targetElement, asyncWrap, typeNameToDefaultTargetParameters, defaultWrapperElement);
                         }
                         break;
 
@@ -855,9 +851,20 @@ namespace NLog.Config
                             throw configException;
                         break;
                 }
+            }
+        }
 
+        private void AddNewTargetFromConfig(string targetTypeName, ValidatedConfigurationElement targetElement, bool asyncWrap, Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null, ValidatedConfigurationElement defaultWrapperElement = null)
+        {
+            Target newTarget = null;
+
+            try
+            {
+                newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
                 {
+                    ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
+
                     if (asyncWrap)
                     {
                         newTarget = WrapWithAsyncTargetWrapper(newTarget);
@@ -868,8 +875,22 @@ namespace NLog.Config
                         newTarget = WrapWithDefaultWrapper(newTarget, defaultWrapperElement);
                     }
 
-                    AddTarget(newTarget.Name, newTarget);
+                    AddTarget(newTarget);
                 }
+            }
+            catch (NLogConfigurationException ex)
+            {
+                if (MustThrowConfigException(ex))
+                    throw;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                var configException = new NLogConfigurationException($"Target '{newTarget?.ToString() ?? targetTypeName}' has invalid config. Error: {ex.Message}", ex);
+                if (MustThrowConfigException(configException))
+                    throw;
             }
         }
 
@@ -878,8 +899,7 @@ namespace NLog.Config
             return FactoryCreateInstance(targetTypeName, ConfigurationItemFactory.Default.Targets);
         }
 
-        private void ParseTargetElement(Target target, ValidatedConfigurationElement targetElement,
-            Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null)
+        private void ParseTargetElement(Target target, ValidatedConfigurationElement targetElement, Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null)
         {
             string targetTypeName = targetElement.GetConfigItemTypeAttribute("targets");
             if (typeNameToDefaultTargetParameters != null &&
