@@ -310,18 +310,30 @@ namespace NLog.Internal.FileAppenders
 
         private void UpdateCreationTime()
         {
-            FileInfo fileInfo = new FileInfo(FileName);
-            if (fileInfo.Exists)
-            {
-                CreationTimeUtc = fileInfo.LookupValidFileCreationTimeUtc();
-            }
-            else
-            {
-                File.Create(FileName).Dispose();
-                CreationTimeUtc = DateTime.UtcNow;
+            CreationTimeUtc = DateTime.UtcNow;
 
-                // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
-                File.SetCreationTimeUtc(FileName, CreationTimeUtc);
+            try
+            {
+                FileInfo fileInfo = new FileInfo(FileName);
+                if (fileInfo.Exists)
+                {
+                    CreationTimeUtc = fileInfo.LookupValidFileCreationTimeUtc();
+                }
+                else
+                {
+                    File.Create(FileName).Dispose();
+
+                    // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
+                    File.SetCreationTimeUtc(FileName, CreationTimeUtc);
+                }
+            }
+            catch (NotSupportedException ex)
+            {
+                InternalLogger.Debug(ex, "{0}: Failed to retrieve FileInfo.CreationTimeUtc from FileName: {1}", CreateFileParameters, FileName);
+            }
+            catch (IOException ex)
+            {
+                InternalLogger.Debug(ex, "{0}: Failed to retrieve FileInfo.CreationTimeUtc from FileName: {1}", CreateFileParameters, FileName);
             }
         }
 
