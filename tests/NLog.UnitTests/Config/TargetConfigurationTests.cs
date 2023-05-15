@@ -568,6 +568,29 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void DontThrowExceptionsWhenMissingTargetName()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+<nlog>
+    <targets>
+        <target type='bufferingwrapper'>
+            <target type='unknowntargettype' name='badtarget' />
+        </target>
+        <target type='debug' name='goodtarget' layout='${message}' />
+    </targets>
+    <rules>
+        <logger name='*' writeTo='goodtarget'/>
+    </rules>
+</nlog>").LogFactory;
+
+                logFactory.GetLogger(nameof(DontThrowExceptionsWhenMissingTargetName)).Info("Test");
+                AssertDebugLastMessage("goodtarget", "Test", logFactory);
+            }
+        }
+
+        [Fact]
         public void DataTypesTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"

@@ -63,28 +63,40 @@ namespace NLog.UnitTests.Config
         public void AddTarget_WithName_NullNameParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
-        }      
+            var ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
+            Assert.Equal("name", ex.ParamName);
+        }
         
         [Fact]
-        public void AddTarget_WithName_EmptyPameParam()
+        public void AddTarget_WithName_EmptyNameParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: "", target: new FileTarget { Name = "name1" }));
+            var ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: "", target: new FileTarget { Name = "name1" }));
+            Assert.Equal("name", ex.ParamName);
         }
 
         [Fact]
         public void AddTarget_WithName_NullTargetParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: "Name1", target: null));
+            var ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: "Name1", target: null));
+            Assert.Equal("target", ex.ParamName);
         }
 
         [Fact]
         public void AddTarget_TargetOnly_NullParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(target: null));
+            var ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(target: null));
+            Assert.Equal("target", ex.ParamName);
+        }
+
+        [Fact]
+        public void AddTarget_TargetOnly_EmptyName()
+        {
+            var config = new LoggingConfiguration();
+            var ex = Assert.Throws<ArgumentException>(() => config.AddTarget(target: new FileTarget { Name = "" }));
+            Assert.Equal("target", ex.ParamName);
         }
 
         [Fact]
