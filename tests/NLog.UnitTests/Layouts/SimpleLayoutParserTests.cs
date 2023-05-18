@@ -552,7 +552,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void InvalidLayoutWithExistingRenderer_WillThrowIfExceptionThrowingIsOn()
         {
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType("layoutrenderer-with-list", () => new LayoutRendererWithListParam());
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
@@ -564,7 +564,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void UnknownPropertyInLayout_WillThrowIfExceptionThrowingIsOn()
         {
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType("layoutrenderer-with-list", () => new LayoutRendererWithListParam());
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             LogManager.ThrowConfigExceptions = true;
 
             Assert.Throws<NLogConfigurationException>(() =>
@@ -613,7 +613,7 @@ namespace NLog.UnitTests.Layouts
 #endif
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType("layoutrenderer-with-list", () => new LayoutRendererWithListParam());
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
@@ -630,7 +630,7 @@ namespace NLog.UnitTests.Layouts
             //note flags enum already supported
 
             //can;t convert empty to int
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType("layoutrenderer-with-list", () => new LayoutRendererWithListParam());
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";

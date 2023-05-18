@@ -47,13 +47,13 @@ namespace NLog.Config
     /// <typeparam name="TBaseType">The base type of each item.</typeparam>
     /// <typeparam name="TAttributeType">The type of the attribute used to annotate items.</typeparam>
     internal class Factory<TBaseType, TAttributeType> :
+        IFactory, IFactory<TBaseType>
 #pragma warning disable CS0618 // Type or member is obsolete
-        INamedItemFactory<TBaseType, Type>, IFactory<TBaseType>
+        ,INamedItemFactory<TBaseType, Type>
 #pragma warning restore CS0618 // Type or member is obsolete
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-
         private struct ItemFactory
         {
             public readonly GetTypeDelegate ItemType;
@@ -113,7 +113,6 @@ namespace NLog.Config
         /// </summary>
         /// <param name="type">The type to register.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
             if (typeof(TBaseType).IsAssignableFrom(type))
@@ -138,7 +137,7 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
         public void RegisterNamedType(string itemName, string typeName)
         {
-            itemName = NormalizeName(itemName);
+            itemName = FactoryExtensions.NormalizeName(itemName);
 
             Type itemType = null;
 
@@ -197,9 +196,21 @@ namespace NLog.Config
             RegisterDefinition(itemType, typeAlias, string.Empty);
         }
 
+        private void RegisterDefinition([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType, string typeAlias, string itemNamePrefix)
+        {
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
+
+            var itemFactory = new ItemFactory(() => itemType, () => (TBaseType)Activator.CreateInstance(itemType));
+            lock (ConfigurationItemFactory.SyncRoot)
+            {
+                _parentFactory.RegisterTypeProperties(itemType);
+                _items[itemNamePrefix + typeAlias] = itemFactory;
+            }
+        }
+
         public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new()
         {
-            typeAlias = NormalizeName(typeAlias);
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
             var itemFactory = new ItemFactory(() => typeof(TType), () => new TType());
             lock (ConfigurationItemFactory.SyncRoot)
@@ -211,7 +222,7 @@ namespace NLog.Config
 
         public void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias, Func<TType> itemCreator) where TType : TBaseType
         {
-            typeAlias = NormalizeName(typeAlias);
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
             var itemFactory = new ItemFactory(() => typeof(TType), () => itemCreator());
             lock (ConfigurationItemFactory.SyncRoot)
@@ -221,31 +232,13 @@ namespace NLog.Config
             }
         }
 
-        /// <summary>
-        /// Registers a single type definition.
-        /// </summary>
-        /// <param name="itemType">The type of the item.</param>
-        /// <param name="typeAlias">The item name.</param>
-        /// <param name="itemNamePrefix">The item name prefix.</param>
-        private void RegisterDefinition([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType, string typeAlias, string itemNamePrefix)
-        {
-            typeAlias = NormalizeName(typeAlias);
-
-            var itemFactory = new ItemFactory(() => itemType, () => (TBaseType)Activator.CreateInstance(itemType));
-            lock (ConfigurationItemFactory.SyncRoot)
-            {
-                _parentFactory.RegisterTypeProperties(itemType);
-                _items[itemNamePrefix + typeAlias] = itemFactory;
-            }
-        }
-
         /// <inheritdoc/>
         [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         public bool TryGetDefinition(string itemName, out Type result)
         {
-            itemName = NormalizeName(itemName);
+            itemName = FactoryExtensions.NormalizeName(itemName);
 
-            if (!TryGetTypeDelegate(itemName, out var getTypeDelegate))
+            if (!TryGetItemFactory(itemName, out var itemFactory) || itemFactory.ItemType is null)
             {
                 if (_globalDefaultFactory != null && _globalDefaultFactory.TryGetDefinition(itemName, out result))
                 {
@@ -258,7 +251,7 @@ namespace NLog.Config
 
             try
             {
-                result = getTypeDelegate?.Invoke();
+                result = itemFactory.ItemType.Invoke();
                 return result != null;
             }
             catch (Exception ex)
@@ -274,16 +267,12 @@ namespace NLog.Config
             }
         }
 
-        private bool TryGetTypeDelegate(string itemName, out GetTypeDelegate getTypeDelegate)
+        private bool TryGetItemFactory(string itemName, out ItemFactory itemFactory)
         {
-            if (_items.TryGetValue(itemName, out var itemFactory))
+            lock (ConfigurationItemFactory.SyncRoot)
             {
-                getTypeDelegate = itemFactory.ItemType;
-                return getTypeDelegate != null;
+                return _items.TryGetValue(itemName, out itemFactory);
             }
-
-            getTypeDelegate = null;
-            return false;
         }
 
         /// <inheritdoc/>
@@ -294,18 +283,15 @@ namespace NLog.Config
                 return true;
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            itemName = NormalizeName(itemName);
+            itemName = FactoryExtensions.NormalizeName(itemName);
 
-            Func<TBaseType> itemCreator;
-
-            if (!_items.TryGetValue(itemName, out var itemFactory))
+            if (!TryGetItemFactory(itemName, out var itemFactory) || itemFactory.ItemCreator is null)
             {
                 result = null;
                 return false;
             }
 
-            itemCreator = itemFactory.ItemCreator;
-            result = itemCreator?.Invoke();
+            result = itemFactory.ItemCreator.Invoke();
             return !(result is null);
         }
 
@@ -326,15 +312,24 @@ namespace NLog.Config
         }
 
         /// <inheritdoc/>
-        public virtual TBaseType CreateInstance(string itemName)
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
+        TBaseType INamedItemFactory<TBaseType, Type>.CreateInstance(string itemName)
         {
-            var normalName = NormalizeName(itemName);
-            if (TryCreateInstance(normalName, out TBaseType result))
+            return FactoryExtensions.CreateInstance(this, itemName);
+        }
+    }
+
+    internal static class FactoryExtensions
+    {
+        public static TBaseType CreateInstance<TBaseType>(this IFactory<TBaseType> factory, string typeAlias) where TBaseType : class
+        {
+            if (factory.TryCreateInstance(typeAlias, out TBaseType result))
             {
                 return result;
             }
 
-            var message = typeof(TBaseType).Name + " type-alias is unknown: '" + itemName + "'";
+            var normalName = NormalizeName(typeAlias);
+            var message = typeof(TBaseType).Name + " type-alias is unknown: '" + typeAlias + "'";
             if (normalName != null && (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
                                  normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
@@ -368,7 +363,7 @@ namespace NLog.Config
             throw new ArgumentException(message);
         }
 
-        protected static string NormalizeName(string itemName)
+        public static string NormalizeName(string itemName)
         {
             if (itemName is null)
             {
@@ -422,7 +417,7 @@ namespace NLog.Config
         /// <param name="renderer">the renderer that renders the value.</param>
         public void RegisterFuncLayout(string itemName, FuncLayoutRenderer renderer)
         {
-            itemName = NormalizeName(itemName);
+            itemName = FactoryExtensions.NormalizeName(itemName);
             lock (ConfigurationItemFactory.SyncRoot)
             {
                 _funcRenderers[itemName] = renderer;
@@ -439,23 +434,29 @@ namespace NLog.Config
         {
             //first try func renderers, as they should have the possibility to overwrite a current one.
             FuncLayoutRenderer funcResult;
-            itemName = NormalizeName(itemName);
+            itemName = FactoryExtensions.NormalizeName(itemName);
 
             if (_funcRenderers.Count > 0)
             {
-                if (_funcRenderers.TryGetValue(itemName, out funcResult))
+                lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    result = funcResult;
-                    return true;
+                    if (_funcRenderers.TryGetValue(itemName, out funcResult))
+                    {
+                        result = funcResult;
+                        return true;
+                    }
                 }
             }
 
             if (_globalDefaultFactory?._funcRenderers?.Count > 0)
             {
-                if (_globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+                lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    result = funcResult;
-                    return true;
+                    if (_globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+                    {
+                        result = funcResult;
+                        return true;
+                    }
                 }
             }
 

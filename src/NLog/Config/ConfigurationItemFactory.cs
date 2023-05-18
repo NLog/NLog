@@ -144,13 +144,29 @@ namespace NLog.Config
             set => _defaultInstance = value;
         }
 
-        internal LayoutRendererFactory LayoutRendererFactory => _layoutRenderers;
-        internal Factory<Layout, LayoutAttribute> LayoutFactory => _layouts;
-        internal Factory<Target, TargetAttribute> TargetFactory => _targets;
+        /// <summary>
+        /// Gets the <see cref="Target"/> factory.
+        /// </summary>
+        public IFactory<Target> TargetFactory => _targets;
+        /// <summary>
+        /// Gets the <see cref="Layout"/> factory.
+        /// </summary>
+        public IFactory<Layout> LayoutFactory => _layouts;
+        /// <summary>
+        /// Gets the <see cref="LayoutRenderer"/> factory.
+        /// </summary>
+        public IFactory<LayoutRenderer> LayoutRendererFactory => _layoutRenderers;
+        /// <summary>
+        /// Gets the ambient property factory.
+        /// </summary>
+        public IFactory<LayoutRenderer> AmbientRendererFactory => _ambientProperties;
         internal IFactory<Filter> FilterFactory => _filters;
-        internal IFactory<LayoutRenderer> AmbientRendererFactory => _ambientProperties;
         internal IFactory<TimeSource> TimeSourceFactory => _timeSources;
         internal MethodFactory ConditionMethodFactory => _conditionMethods;
+
+        internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
+        internal Factory<Layout, LayoutAttribute> GetLayoutFactory() => _layouts;
+        internal LayoutRendererFactory GetLayoutRendererFactory() => _layoutRenderers;
 
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.
@@ -169,11 +185,11 @@ namespace NLog.Config
         public INamedItemFactory<Target, Type> Targets => _targets;
 
         /// <summary>
-        /// Gets the <see cref="Filter"/> factory.
+        /// Gets the <see cref="Layout"/> factory.
         /// </summary>
-        /// <value>The filter factory.</value>
+        /// <value>The layout factory.</value>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public INamedItemFactory<Filter, Type> Filters => _filters;
+        public INamedItemFactory<Layout, Type> Layouts => _layouts;
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
@@ -183,18 +199,18 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
-        /// Gets the <see cref="LayoutRenderer"/> factory.
-        /// </summary>
-        /// <value>The layout factory.</value>
-        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public INamedItemFactory<Layout, Type> Layouts => _layouts;
-
-        /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
         /// <value>The ambient property factory.</value>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
+
+        /// <summary>
+        /// Gets the <see cref="Filter"/> factory.
+        /// </summary>
+        /// <value>The filter factory.</value>
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public INamedItemFactory<Filter, Type> Filters => _filters;
 
         /// <summary>
         /// Gets the time source factory.
@@ -463,15 +479,17 @@ namespace NLog.Config
             lock (SyncRoot)
             {
                 if (_itemFactories.TryGetValue(itemType, out var itemFactory))
-                    return itemFactory.ItemProperties();
+                {
+                    return itemFactory.ItemProperties.Invoke();
+                }
+            }
 
-                if (itemType.IsAbstract())
-                    return new Dictionary<string, PropertyInfo>();
+            if (itemType.IsAbstract())
+                return new Dictionary<string, PropertyInfo>();
 
 #pragma warning disable CS0618 // Type or member is obsolete
-                return ResolveTypePropertiesLegacy(itemType);
+            return ResolveTypePropertiesLegacy(itemType);
 #pragma warning restore CS0618 // Type or member is obsolete
-            }
         }
 
         internal ICollection<Assembly> ScanLoadedAssemblies()
@@ -496,7 +514,10 @@ namespace NLog.Config
         {
             InternalLogger.Debug("Object reflection needed for unknown type: {0}", itemType);
             Dictionary<string, PropertyInfo> properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
-            _itemFactories[itemType] = new ItemFactory(() => properties);
+            lock (SyncRoot)
+            {
+                _itemFactories[itemType] = new ItemFactory(() => properties);
+            }
             return properties;
         }
 

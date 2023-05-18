@@ -45,16 +45,26 @@ namespace NLog.UnitTests.Config
         public void ConfigurationItemFactoryTargetTest()
         {
             var itemFactory = new ConfigurationItemFactory();
-            itemFactory.TargetFactory.RegisterType(nameof(MemoryTarget), () => new MemoryTarget());
-            Assert.IsType<MemoryTarget>(itemFactory.TargetFactory.CreateInstance(nameof(MemoryTarget)));
+            itemFactory.TargetFactory.RegisterType<MemoryTarget>(nameof(MemoryTarget));
+            itemFactory.TargetFactory.TryCreateInstance(nameof(MemoryTarget), out var result);
+            Assert.IsType<MemoryTarget>(result);
         }
 
         [Fact]
         public void ConfigurationItemFactoryFailsTest()
         {
             var itemFactory = new ConfigurationItemFactory();
-            var ex = Assert.ThrowsAny<Exception>(() => itemFactory.TargetFactory.CreateInstance("Memory-Target") as MemoryTarget);
+            var ex = Assert.ThrowsAny<Exception>(() => itemFactory.GetTargetFactory().CreateInstance("Memory-Target") as MemoryTarget);
             Assert.Contains("Memory-Target", ex.Message);
+        }
+
+        [Fact]
+        public void ConfigurationItemFactorySimpleTest()
+        {
+            var itemFactory = new ConfigurationItemFactory();
+            itemFactory.RegisterType<DebugTarget>();
+            itemFactory.TargetFactory.TryCreateInstance("Debug", out var result);
+            Assert.NotNull(result);
         }
 
         [Fact]
@@ -67,23 +77,13 @@ namespace NLog.UnitTests.Config
 
         [Fact]
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public void ConfigurationItemFactorySimpleTest()
-        {
-            var itemFactory = new ConfigurationItemFactory();
-            itemFactory.RegisterType(typeof(DebugTarget), string.Empty);
-            var target = itemFactory.TargetFactory.CreateInstance("Debug") as DebugTarget;
-            Assert.NotNull(target);
-        }
-
-        [Fact]
-        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryUsesSuppliedDelegateToResolveObject()
         {
             var itemFactory = new ConfigurationItemFactory();
             itemFactory.RegisterType(typeof(DebugTarget), string.Empty);
             List<Type> resolvedTypes = new List<Type>();
             itemFactory.CreateInstance = t => { resolvedTypes.Add(t); return Activator.CreateInstance(t); };
-            Target target = itemFactory.TargetFactory.CreateInstance("Debug");
+            itemFactory.TargetFactory.TryCreateInstance("Debug", out var target);
             Assert.NotNull(target);
             Assert.Single(resolvedTypes);
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);

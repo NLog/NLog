@@ -289,7 +289,7 @@ namespace NLog.Internal
 
         public static bool IsValidPublicProperty(this PropertyInfo p)
         {
-            return p?.CanRead == true && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
+            return p != null && p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
         }
 
         public static object GetPropertyValue(this PropertyInfo p, object instance)

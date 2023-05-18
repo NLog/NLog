@@ -50,7 +50,9 @@ namespace NLog.Config
             factory.FilterFactory.RegisterType<NLog.Filters.WhenRepeatedFilter>("whenRepeated");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("all-event-properties");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppDomainLayoutRenderer>("appdomain");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer2>("appsetting");
+#if !NETSTANDARD
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
+#endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AssemblyVersionLayoutRenderer>("assembly-version");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.BaseDirLayoutRenderer>("basedir");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.CallSiteFileNameLayoutRenderer>("callsite-filename");
@@ -65,8 +67,11 @@ namespace NLog.Config
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EnvironmentUserLayoutRenderer>("environment-user");
 #endif
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventContextLayoutRenderer>("event-context");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-properties");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-property");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.EventPropertiesLayoutRenderer>("event-context");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exceptiondata");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionDataLayoutRenderer>("exception-data");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ExceptionLayoutRenderer>("exception");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.FileContentsLayoutRenderer>("file-contents");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.GarbageCollectorInfoLayoutRenderer>("gc");
@@ -78,11 +83,13 @@ namespace NLog.Config
 #endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.InstallContextLayoutRenderer>("install-context");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("level");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LevelLayoutRenderer>("loglevel");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal");
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LocalIpAddressLayoutRenderer>("local-ip");
 #endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer>("log4jxmlevent");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MachineNameLayoutRenderer>("machinename");
@@ -96,7 +103,6 @@ namespace NLog.Config
 #if !NETSTANDARD1_3
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NLogDirLayoutRenderer>("nlogdir");
 #endif
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.PerformanceCounterLayoutRenderer>("performancecounter");
 #if !NETSTANDARD1_3
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessDirLayoutRenderer>("processdir");
 #endif
@@ -110,12 +116,23 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessNameLayoutRenderer>("processname");
 #endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.QueryPerformanceCounterLayoutRenderer>("qpc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.RegistryLayoutRenderer>("registry");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("scopeproperty");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("scopetiming");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SequenceIdLayoutRenderer>("sequenceid");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ShortDateLayoutRenderer>("shortdate");
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer>("userApplicationDataDir");
+#endif
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer>("commonApplicationDataDir");
+#endif
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderLayoutRenderer>("specialfolder");
+#endif
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer>("userLocalApplicationDataDir");
 #endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.StackTraceLayoutRenderer>("stacktrace");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TempDirLayoutRenderer>("tempdir");
@@ -127,7 +144,6 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.TraceActivityIdLayoutRenderer>("activityid");
 #endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.VariableLayoutRenderer>("var");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.WindowsIdentityLayoutRenderer>("windows-identity");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("cached");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("Cached");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper>("ClearCache");
@@ -140,6 +156,7 @@ namespace NLog.Config
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LeftLayoutRendererWrapper>("Truncate");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("lowercase");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("Lowercase");
+            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.LowercaseLayoutRendererWrapper>("ToLower");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("norawvalue");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.NoRawValueLayoutRendererWrapper>("NoRawValue");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper>("Object-Path");
@@ -161,6 +178,7 @@ namespace NLog.Config
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.TrimWhiteSpaceLayoutRendererWrapper>("TrimWhiteSpace");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("uppercase");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("Uppercase");
+            factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper>("ToUpper");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.UrlEncodeLayoutRendererWrapper>("url-encode");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("whenEmpty");
             factory.AmbientRendererFactory.RegisterType<NLog.LayoutRenderers.Wrappers.WhenEmptyLayoutRendererWrapper>("WhenEmpty");
@@ -173,11 +191,13 @@ namespace NLog.Config
             factory.LayoutFactory.RegisterType<NLog.Layouts.CompoundLayout>("CompoundLayout");
             factory.RegisterType<NLog.Layouts.CsvColumn>();
             factory.LayoutFactory.RegisterType<NLog.Layouts.CsvLayout>("CsvLayout");
+            factory.LayoutFactory.RegisterType<NLog.Layouts.JsonArrayLayout>("JsonArrayLayout");
             factory.RegisterType<NLog.Layouts.JsonAttribute>();
             factory.LayoutFactory.RegisterType<NLog.Layouts.JsonLayout>("JsonLayout");
             factory.LayoutFactory.RegisterType<NLog.Layouts.LayoutWithHeaderAndFooter>("LayoutWithHeaderAndFooter");
             factory.LayoutFactory.RegisterType<NLog.Layouts.Log4JXmlEventLayout>("Log4JXmlEventLayout");
             factory.LayoutFactory.RegisterType<NLog.Layouts.SimpleLayout>("SimpleLayout");
+            factory.RegisterType<NLog.Layouts.ValueTypeLayoutInfo>();
             factory.RegisterType<NLog.Layouts.XmlAttribute>();
             factory.LayoutFactory.RegisterType<NLog.Layouts.XmlLayout>("XmlLayout");
             factory.TargetFactory.RegisterType<NLog.Targets.ChainsawTarget>("Chainsaw");
@@ -193,21 +213,20 @@ namespace NLog.Config
 #if !NETSTANDARD1_3
             factory.RegisterType<NLog.Targets.ConsoleWordHighlightingRule>();
 #endif
-            factory.RegisterType<NLog.Targets.DatabaseCommandInfo>();
-            factory.RegisterType<NLog.Targets.DatabaseObjectPropertyInfo>();
-            factory.RegisterType<NLog.Targets.DatabaseParameterInfo>();
-            factory.TargetFactory.RegisterType<NLog.Targets.DatabaseTarget>("Database");
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             factory.TargetFactory.RegisterType<NLog.Targets.DebuggerTarget>("Debugger");
 #endif
+            factory.TargetFactory.RegisterType<NLog.Targets.DebugSystemTarget>("DebugSystem");
             factory.TargetFactory.RegisterType<NLog.Targets.DebugTarget>("Debug");
 #if !NETSTANDARD
             factory.TargetFactory.RegisterType<NLog.Targets.EventLogTarget>("EventLog");
 #endif
             factory.TargetFactory.RegisterType<NLog.Targets.FileTarget>("File");
-            factory.TargetFactory.RegisterType<NLog.Targets.LogReceiverWebServiceTarget>("LogReceiverService");
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("Mail");
+            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("Email");
+            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("Smtp");
+            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("SmtpClient");
 #endif
             factory.TargetFactory.RegisterType<NLog.Targets.MemoryTarget>("Memory");
             factory.RegisterType<NLog.Targets.MethodCallParameter>();
@@ -216,11 +235,10 @@ namespace NLog.Config
             factory.RegisterType<NLog.Targets.NLogViewerParameterInfo>();
             factory.TargetFactory.RegisterType<NLog.Targets.NLogViewerTarget>("NLogViewer");
             factory.TargetFactory.RegisterType<NLog.Targets.NullTarget>("Null");
-            factory.TargetFactory.RegisterType<NLog.Targets.OutputDebugStringTarget>("OutputDebugString");
-            factory.TargetFactory.RegisterType<NLog.Targets.PerformanceCounterTarget>("PerfCounter");
             factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
 #if !NETSTANDARD1_3
             factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("Trace");
+            factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("TraceSystem");
 #endif
             factory.TargetFactory.RegisterType<NLog.Targets.WebServiceTarget>("WebService");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper");
@@ -229,7 +247,6 @@ namespace NLog.Config
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.FallbackGroupTarget>("FallbackGroup");
             factory.RegisterType<NLog.Targets.Wrappers.FilteringRule>();
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.FilteringTargetWrapper>("FilteringWrapper");
-            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.ImpersonatingTargetWrapper>("ImpersonatingWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.LimitingTargetWrapper>("LimitingWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.PostFilteringTargetWrapper>("PostFilteringWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.RandomizeGroupTarget>("RandomizeGroup");

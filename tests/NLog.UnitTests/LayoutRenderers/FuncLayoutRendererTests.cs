@@ -62,28 +62,27 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        [Obsolete("Instead override type-creation by calling NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public void RegisterCustomFuncLayoutRendererTest_Legacy()
+        public void RegisterCustomFuncLayoutRendererTestOldStyle()
         {
             // Arrange
             var funcLayoutRenderer = new MyFuncLayoutRenderer("the-answer-new");
 
             // Act
-            LayoutRenderer.Register(funcLayoutRenderer);
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer(funcLayoutRenderer))
+                .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
                 <targets>
                     <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer-new:Format=D3}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Debug("test1");
 
             // Assert
-            AssertDebugLastMessage("debug", "TheAnswer=042");
+            AssertDebugLastMessage("debug", "TheAnswer=042", logFactory);
         }
 
         private class MyFuncLayoutRenderer : FuncLayoutRenderer
@@ -91,7 +90,6 @@ namespace NLog.UnitTests.LayoutRenderers
             public MyFuncLayoutRenderer() : base(string.Empty)
             {
             }
-
 
             public MyFuncLayoutRenderer(string layoutRendererName) : base(layoutRendererName)
             {

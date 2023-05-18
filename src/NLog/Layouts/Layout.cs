@@ -442,7 +442,7 @@ namespace NLog.Layouts
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type layoutType)
         {
-            ConfigurationItemFactory.Default.LayoutFactory.RegisterDefinition(name, layoutType);
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterDefinition(name, layoutType);
         }
 
         /// <summary>

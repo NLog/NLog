@@ -250,7 +250,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
             var configurationItemFactory = new ConfigurationItemFactory();
-            configurationItemFactory.LayoutFactory.RegisterNamedType("foo", typeof(FooLayout).ToString() + "," + typeof(FooLayout).Assembly.GetName().Name);
+            configurationItemFactory.GetLayoutFactory().RegisterNamedType("foo", typeof(FooLayout).ToString() + "," + typeof(FooLayout).Assembly.GetName().Name);
             Assert.NotNull(configurationItemFactory.LayoutFactory.CreateInstance("foo"));
         }
 
@@ -610,9 +610,9 @@ namespace NLog.UnitTests.Config
             var configFactory = new ConfigurationItemFactory(assembly);
 
             // Act
-            var foundDefinition = configFactory.TargetFactory.TryGetDefinition(input, out var outputDefinition);
+            var foundDefinition = configFactory.GetTargetFactory().TryGetDefinition(input, out var outputDefinition);
             var foundInstance = configFactory.TargetFactory.TryCreateInstance(input, out var outputInstance);
-            var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.TargetFactory.CreateInstance(input) : null;
+            var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.GetTargetFactory().CreateInstance(input) : null;
 
             // Assert
             Assert.Equal(expected != null, foundInstance);

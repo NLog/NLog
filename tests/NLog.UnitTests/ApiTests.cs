@@ -338,7 +338,9 @@ namespace NLog.UnitTests
         public void ValidateConfigurationItemFactory()
         {
             ConfigurationItemFactory.Default = null;    // Reset
-            
+
+            var missingTypes = new List<string>();
+
             foreach (Type type in allTypes)
             {
                 if (!type.IsPublic || !type.IsClass || type.IsAbstract)
@@ -346,12 +348,21 @@ namespace NLog.UnitTests
 
                 if (typeof(NLog.Targets.Target).IsAssignableFrom(type))
                 {
-                    var configAttribs = type.GetCustomAttributes<NLog.Targets.TargetAttribute>();
+                    var configAttribs = type.GetCustomAttributes<NLog.Targets.TargetAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
                     foreach (var configName in configAttribs)
                     {
-                        Assert.True(ConfigurationItemFactory.Default.TargetFactory.TryCreateInstance(configName.Name, out var _));
+                        if (!ConfigurationItemFactory.Default.TargetFactory.TryCreateInstance(configName.Name, out var target))
+                        {
+                            Console.WriteLine(configName.Name);
+                            missingTypes.Add(configName.Name);
+                        }
+                        else if (type != target.GetType())
+                        {
+                            Console.WriteLine(type.Name);
+                            missingTypes.Add(type.Name);
+                        }
                     }
                 }
                 else if (typeof(NLog.Layouts.Layout).IsAssignableFrom(type))
@@ -362,12 +373,21 @@ namespace NLog.UnitTests
                     if (type == typeof(NLog.Layouts.XmlElement))
                         continue;
 
-                    var configAttribs = type.GetCustomAttributes<NLog.Layouts.LayoutAttribute>();
+                    var configAttribs = type.GetCustomAttributes<NLog.Layouts.LayoutAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
                     foreach (var configName in configAttribs)
                     {
-                        Assert.True(ConfigurationItemFactory.Default.LayoutFactory.TryCreateInstance(configName.Name, out var _));
+                        if (!ConfigurationItemFactory.Default.LayoutFactory.TryCreateInstance(configName.Name, out var layout))
+                        {
+                            Console.WriteLine(configName.Name);
+                            missingTypes.Add(configName.Name);
+                        }
+                        else if (type != layout.GetType())
+                        {
+                            Console.WriteLine(type.Name);
+                            missingTypes.Add(type.Name);
+                        }
                     }
                 }
                 else if (typeof(NLog.LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
@@ -375,22 +395,40 @@ namespace NLog.UnitTests
                     if (type == typeof(NLog.LayoutRenderers.FuncLayoutRenderer) || type == typeof(NLog.LayoutRenderers.FuncThreadAgnosticLayoutRenderer))
                         continue;
 
-                    var configAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>();
+                    var configAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
                     foreach (var configName in configAttribs)
                     {
-                        Assert.True(ConfigurationItemFactory.Default.LayoutRendererFactory.TryCreateInstance(configName.Name, out var _));
+                        if (!ConfigurationItemFactory.Default.LayoutRendererFactory.TryCreateInstance(configName.Name, out var layoutRenderer))
+                        {
+                            Console.WriteLine(configName.Name);
+                            missingTypes.Add(configName.Name);
+                        }
+                        else if (type != layoutRenderer.GetType())
+                        {
+                            Console.WriteLine(type.Name);
+                            missingTypes.Add(type.Name);
+                        }
                     }
 
                     if (typeof(NLog.LayoutRenderers.Wrappers.WrapperLayoutRendererBase).IsAssignableFrom(type))
                     {
-                        var wrapperAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.AmbientPropertyAttribute>();
+                        var wrapperAttribs = type.GetCustomAttributes<NLog.LayoutRenderers.AmbientPropertyAttribute>(false);
                         if (wrapperAttribs?.Any() == true)
                         {
                             foreach (var ambientName in wrapperAttribs)
                             {
-                                Assert.True(ConfigurationItemFactory.Default.AmbientRendererFactory.TryCreateInstance(ambientName.Name, out var _));
+                                if (!ConfigurationItemFactory.Default.AmbientRendererFactory.TryCreateInstance(ambientName.Name, out var layoutRenderer))
+                                {
+                                    Console.WriteLine(ambientName.Name);
+                                    missingTypes.Add(ambientName.Name);
+                                }
+                                else if (type != layoutRenderer.GetType())
+                                {
+                                    Console.WriteLine(type.Name);
+                                    missingTypes.Add(type.Name);
+                                }
                             }
                         }
                     }
@@ -400,25 +438,45 @@ namespace NLog.UnitTests
                     if (type == typeof(NLog.Filters.WhenMethodFilter))
                         continue;
 
-                    var configAttribs = type.GetCustomAttributes<NLog.Filters.FilterAttribute>();
+                    var configAttribs = type.GetCustomAttributes<NLog.Filters.FilterAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
                     foreach (var configName in configAttribs)
                     {
-                        Assert.True(ConfigurationItemFactory.Default.FilterFactory.TryCreateInstance(configName.Name, out var _));
+                        if (!ConfigurationItemFactory.Default.FilterFactory.TryCreateInstance(configName.Name, out var filter))
+                        {
+                            Console.WriteLine(configName.Name);
+                            missingTypes.Add(configName.Name);
+                        }
+                        else if (type != filter.GetType())
+                        {
+                            Console.WriteLine(type.Name);
+                            missingTypes.Add(type.Name);
+                        }
                     }
                 }
                 else if (typeof(NLog.Time.TimeSource).IsAssignableFrom(type))
                 {
-                    var configAttribs = type.GetCustomAttributes<NLog.Time.TimeSourceAttribute>();
+                    var configAttribs = type.GetCustomAttributes<NLog.Time.TimeSourceAttribute>(false);
                     Assert.NotEmpty(configAttribs);
 
                     foreach (var configName in configAttribs)
                     {
-                        Assert.True(ConfigurationItemFactory.Default.TimeSourceFactory.TryCreateInstance(configName.Name, out var _));
+                        if (!ConfigurationItemFactory.Default.TimeSourceFactory.TryCreateInstance(configName.Name, out var timeSource))
+                        {
+                            Console.WriteLine(configName.Name);
+                            missingTypes.Add(configName.Name);
+                        }
+                        else if (type != timeSource.GetType())
+                        {
+                            Console.WriteLine(type.Name);
+                            missingTypes.Add(type.Name);
+                        }
                     }
                 }
             }
+
+            Assert.Empty(missingTypes);
         }
     }
 }

@@ -1298,7 +1298,8 @@ namespace NLog.Config
                     }
                 }
 
-                if (!factory.TryCreateInstance(typeName, out newInstance) || newInstance is null)
+                newInstance = factory.CreateInstance(typeName);
+                if (newInstance is null)
                 {
                     throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {typeName}");
                 }

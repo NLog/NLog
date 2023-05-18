@@ -160,7 +160,7 @@ namespace NLog.UnitTests.Layouts
         public void CustomNotAgnosticTests()
         {
             var cif = new ConfigurationItemFactory();
-            cif.LayoutRendererFactory.RegisterType("customNotAgnostic", () => new CustomRendererNonAgnostic());
+            cif.LayoutRendererFactory.RegisterType<CustomRendererNonAgnostic>("customNotAgnostic");
             Layout l = new SimpleLayout("${customNotAgnostic}", cif);
 
             l.Initialize(null);
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.Layouts
         public void CustomAgnosticTests()
         {
             var cif = new ConfigurationItemFactory();
-            cif.LayoutRendererFactory.RegisterType("customAgnostic", () => new CustomRendererAgnostic());
+            cif.LayoutRendererFactory.RegisterType<CustomRendererAgnostic>("customAgnostic");
 
             Layout l = new SimpleLayout("${customAgnostic}", cif);
 

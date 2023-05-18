@@ -37,7 +37,7 @@ namespace NLog.Config
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Provides means to populate factories of named items (such as targets, layouts, layout renderers, etc.).
+    /// Factory of named items (such as <see cref="Targets.Target"/>, <see cref="Layouts.Layout"/>, <see cref="LayoutRenderers.LayoutRenderer"/>, etc.).
     /// </summary>
     internal interface IFactory
     {
@@ -49,9 +49,18 @@ namespace NLog.Config
         void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix);
     }
 
-    internal interface IFactory<TBaseType> : IFactory where TBaseType : class
+    /// <summary>
+    /// Factory of named items (such as <see cref="Targets.Target"/>, <see cref="Layouts.Layout"/>, <see cref="LayoutRenderers.LayoutRenderer"/>, etc.).
+    /// </summary>
+    public interface IFactory<TBaseType> where TBaseType : class
     {
-        bool TryCreateInstance(string typeAlias, out TBaseType result);
+        /// <summary>
+        /// Registers type-creation from type-alias
+        /// </summary>
         void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new();
+        /// <summary>
+        /// Create type-instance from type-alias
+        /// </summary>
+        bool TryCreateInstance(string typeAlias, out TBaseType result);
     }
 }

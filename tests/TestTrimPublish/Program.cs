@@ -17,10 +17,10 @@ try
     </nlog>
     ").GetCurrentClassLogger();
 
-    logger.Debug("Start");
+    logger.Debug("Almost ready");
     logger.Info("Success");
-
     NLog.LogManager.Shutdown();
+    logger.Debug("Almost done");
 }
 finally
 {

@@ -282,8 +282,7 @@ namespace NLog.Layouts
 
         private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
         {
-            SimpleLayout simpleLayout = _innerLayout as SimpleLayout;
-            if (simpleLayout?.IsSimpleStringText == true)
+            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsSimpleStringText)
             {
                 return simpleLayout.Render(logEvent);
             }

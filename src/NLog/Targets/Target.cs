@@ -797,7 +797,7 @@ namespace NLog.Targets
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType)
         {
-            ConfigurationItemFactory.Default.TargetFactory.RegisterDefinition(name, targetType);
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterDefinition(name, targetType);
         }
     }
 }

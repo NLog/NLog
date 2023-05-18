@@ -138,7 +138,7 @@ namespace NLog
                     typeAlias += "Wrapper";
                 }
             }
-            ConfigurationItemFactory.Default.TargetFactory.RegisterType<T>(typeAlias, factory);
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterType<T>(typeAlias, factory);
             return setupBuilder;
         }
 
@@ -154,7 +154,7 @@ namespace NLog
                 throw new ArgumentException("Missing NLog Target type-alias", nameof(name));
             if (!typeof(Target).IsAssignableFrom(targetType))
                 throw new ArgumentException("Not of type NLog Target", nameof(targetType));
-            ConfigurationItemFactory.Default.TargetFactory.RegisterDefinition(name, targetType);
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterDefinition(name, targetType);
             return setupBuilder;
         }
 
@@ -181,7 +181,7 @@ namespace NLog
             where T : Layout
         {
             typeAlias = string.IsNullOrEmpty(typeAlias) ? ResolveTypeAlias<T, LayoutAttribute>(ArrayHelper.Empty<string>()) : typeAlias;
-            ConfigurationItemFactory.Default.LayoutFactory.RegisterType<T>(typeAlias, factory);
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterType<T>(typeAlias, factory);
             return setupBuilder;
         }
 
@@ -197,7 +197,7 @@ namespace NLog
                 throw new ArgumentException("Missing NLog Layout type-alias", nameof(typeAlias));
             if (!typeof(Layout).IsAssignableFrom(layoutType))
                 throw new ArgumentException("Not of type NLog Layout", nameof(layoutType));
-            ConfigurationItemFactory.Default.LayoutFactory.RegisterDefinition(typeAlias, layoutType);
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterDefinition(typeAlias, layoutType);
             return setupBuilder;
         }
 
@@ -224,7 +224,7 @@ namespace NLog
             where T : LayoutRenderer
         {
             typeAlias = string.IsNullOrEmpty(typeAlias) ? ResolveTypeAlias<T, LayoutRendererAttribute>("LayoutRendererWrapper", "LayoutRenderer") : typeAlias;
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<T>(typeAlias, factory);
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType<T>(typeAlias, factory);
             return setupBuilder;
         }
 
@@ -265,7 +265,7 @@ namespace NLog
                 throw new ArgumentException("Missing NLog LayoutRenderer type-alias", nameof(name));
             if (!typeof(LayoutRenderer).IsAssignableFrom(layoutRendererType))
                 throw new ArgumentException("Not of type NLog LayoutRenderer", nameof(layoutRendererType));
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterDefinition(name, layoutRendererType);
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterDefinition(name, layoutRendererType);
             return setupBuilder;
         }
 
@@ -313,7 +313,17 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options)
         {
             FuncLayoutRenderer layoutRenderer = Layout.CreateFuncLayoutRenderer(layoutMethod, options, name);
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterFuncLayout(name, layoutRenderer);
+            return setupBuilder.RegisterLayoutRenderer(layoutRenderer);
+        }
+
+        /// <summary>
+        /// Register a custom NLog LayoutRenderer with a callback function
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="layoutRenderer">LayoutRenderer instance with type-alias and callback-method.</param>
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, FuncLayoutRenderer layoutRenderer)
+        {
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
             return setupBuilder;
         }
 

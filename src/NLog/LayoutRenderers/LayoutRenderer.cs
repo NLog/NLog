@@ -257,7 +257,7 @@ namespace NLog.LayoutRenderers
         {
             Guard.ThrowIfNull(layoutRendererType);
             Guard.ThrowIfNullOrEmpty(name);
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterDefinition(name, layoutRendererType);
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterDefinition(name, layoutRendererType);
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace NLog.LayoutRenderers
         public static void Register(FuncLayoutRenderer layoutRenderer)
         {
             Guard.ThrowIfNull(layoutRenderer);
-            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
         }
 
         /// <summary>

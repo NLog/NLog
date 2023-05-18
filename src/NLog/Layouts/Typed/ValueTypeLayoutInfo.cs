@@ -250,7 +250,7 @@ namespace NLog.Layouts
 
         private object CreateTypedDefaultValue()
         {
-            if (_typedDefaultValue?.IsFixed == true)
+            if (_typedDefaultValue != null && _typedDefaultValue.IsFixed)
                 return _typedDefaultValue.FixedObjectValue;
 
             if (_defaultValue is null)

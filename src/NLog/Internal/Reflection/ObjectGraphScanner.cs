@@ -89,12 +89,6 @@ namespace NLog.Internal
                 return;
             }
 
-            var type = targetObject.GetType();
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, targetObject);
-            }
-
             if (targetObject is T t)
             {
                 result.Add(t);
@@ -102,6 +96,12 @@ namespace NLog.Internal
                 {
                     return;
                 }
+            }
+
+            var type = targetObject.GetType();
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, targetObject);
             }
 
             foreach (var configProp in PropertyHelper.GetAllConfigItemProperties(configFactory, type))

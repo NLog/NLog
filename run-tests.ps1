@@ -12,7 +12,7 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
-	.\tests\TestTrimPublish\bin\release\net7.0\win-x64\TestTrimPublish.exe
+	.\tests\TestTrimPublish\bin\release\net6.0\win-x64\publish\TestTrimPublish.exe
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 

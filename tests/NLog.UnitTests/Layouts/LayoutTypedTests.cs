@@ -1004,7 +1004,7 @@ namespace NLog.UnitTests.Layouts
         public void LayoutRendererSupportTypedLayout()
         {
             var cif = new NLog.Config.ConfigurationItemFactory();
-            cif.LayoutRendererFactory.RegisterType(nameof(LayoutTypedTestLayoutRenderer), () => new LayoutTypedTestLayoutRenderer());
+            cif.LayoutRendererFactory.RegisterType<LayoutTypedTestLayoutRenderer>(nameof(LayoutTypedTestLayoutRenderer));
 
             Layout l = new SimpleLayout("${LayoutTypedTestLayoutRenderer:IntProperty=42}", cif);
             l.Initialize(null);
