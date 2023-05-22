@@ -288,7 +288,8 @@ namespace NLog.Internal
         /// <returns>Index of the first occurrence (Else -1)</returns>
         public static int IndexOf(this StringBuilder builder, char needle, int startPos = 0)
         {
-            for (int i = startPos; i < builder.Length; ++i)
+            var builderLength = builder.Length;
+            for (int i = startPos; i < builderLength; ++i)
                 if (builder[i] == needle)
                     return i;
             return -1;
@@ -303,11 +304,10 @@ namespace NLog.Internal
         /// <returns>Index of the first occurrence (Else -1)</returns>
         public static int IndexOfAny(this StringBuilder builder, char[] needles, int startPos = 0)
         {
-            for (int i = startPos; i < builder.Length; ++i)
-            {
+            var builderLength = builder.Length;
+            for (int i = startPos; i < builderLength; ++i)
                 if (CharArrayContains(builder[i], needles))
                     return i;
-            }
             return -1;
         }
 
@@ -331,10 +331,11 @@ namespace NLog.Internal
         /// <returns>True when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, StringBuilder other)
         {
-            if (builder.Length != other.Length)
+            var builderLength = builder.Length;
+            if (builderLength != other.Length)
                 return false;
 
-            for (int x = 0; x < builder.Length; ++x)
+            for (int x = 0; x < builderLength; ++x)
             {
                 if (builder[x] != other[x])
                 {
@@ -351,10 +352,11 @@ namespace NLog.Internal
         /// <returns>True when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, string other)
         {
-            if (builder.Length != other.Length)
+            var builderLength = builder.Length;
+            if (builderLength != other.Length)
                 return false;
 
-            for (int i = 0; i < other.Length; ++i)
+            for (int i = 0; i < builderLength; ++i)
             {
                 if (builder[i] != other[i])
                     return false;

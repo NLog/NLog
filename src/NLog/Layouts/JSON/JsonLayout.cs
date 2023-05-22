@@ -419,10 +419,11 @@ namespace NLog.Layouts
 
         private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart, bool escapeForwardSlash)
         {
-            if (sb.Length - valueStart <= 2)
+            var builderLength = sb.Length;
+            if (builderLength - valueStart <= 2)
                 return;
 
-            for (int i = valueStart + 1; i < sb.Length - 1; ++i)
+            for (int i = valueStart + 1; i < builderLength - 1; ++i)
             {
                 if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false, escapeForwardSlash))
                 {
