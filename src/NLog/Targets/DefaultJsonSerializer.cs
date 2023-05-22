@@ -95,7 +95,7 @@ namespace NLog.Targets
             {
                 for (int i = 0; i < str.Length; ++i)
                 {
-                    if (RequiresJsonEscape(str[i], options))
+                    if (RequiresJsonEscape(str[i], options.EscapeUnicode, options.EscapeForwardSlash))
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');
@@ -589,83 +589,84 @@ namespace NLog.Targets
             if (string.IsNullOrEmpty(text))
                 return;
 
-            StringBuilder sb = null;
+            int i = 0;
+            for (; i < text.Length; ++i)
+            {
+                char ch = text[i];
+                if (RequiresJsonEscape(ch, escapeUnicode, escapeForwardSlash))
+                {
+                    destination.Append(text, 0, i);
+                    break;
+                }
+            }
 
-            for (int i = 0; i < text.Length; ++i)
+            if (i == text.Length)
+            {
+                destination.Append(text);
+                return;
+            }
+
+            for (; i < text.Length; ++i)
             {
                 char ch = text[i];
                 if (!RequiresJsonEscape(ch, escapeUnicode, escapeForwardSlash))
                 {
-                    sb?.Append(ch);
+                    destination.Append(ch);
                     continue;
-                }
-                else if (sb is null)
-                {
-                    sb = destination;
-                    sb.Append(text, 0, i);
                 }
 
                 switch (ch)
                 {
                     case '"':
-                        sb.Append("\\\"");
+                        destination.Append("\\\"");
                         break;
 
                     case '\\':
-                        sb.Append("\\\\");
+                        destination.Append("\\\\");
                         break;
 
                     case '\b':
-                        sb.Append("\\b");
+                        destination.Append("\\b");
                         break;
 
                     case '/':
                         if (escapeForwardSlash)
                         {
-                            sb.Append("\\/");
+                            destination.Append("\\/");
                         }
                         else
                         {
-                            sb.Append(ch);
+                            destination.Append(ch);
                         }
                         break;
 
                     case '\r':
-                        sb.Append("\\r");
+                        destination.Append("\\r");
                         break;
 
                     case '\n':
-                        sb.Append("\\n");
+                        destination.Append("\\n");
                         break;
 
                     case '\f':
-                        sb.Append("\\f");
+                        destination.Append("\\f");
                         break;
 
                     case '\t':
-                        sb.Append("\\t");
+                        destination.Append("\\t");
                         break;
 
                     default:
-                        if (EscapeChar(ch, escapeUnicode))
-                        {
-                            sb.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
-                        }
-                        else
-                        {
-                            sb.Append(ch);
-                        }
+                        destination.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
                         break;
                 }
             }
-
-            if (sb is null)
-                destination.Append(text);   // Faster to make single Append
         }
 
         internal static void PerformJsonEscapeWhenNeeded(StringBuilder builder, int startPos, bool escapeUnicode, bool escapeForwardSlash)
         {
-            for (int i = startPos; i < builder.Length; ++i)
+            var builderLength = builder.Length;
+            for (int i = startPos; i < builderLength; ++i)
             {
                 if (RequiresJsonEscape(builder[i], escapeUnicode, escapeForwardSlash))
                 {
@@ -677,34 +678,15 @@ namespace NLog.Targets
             }
         }
 
-        internal static bool RequiresJsonEscape(char ch, JsonSerializeOptions options)
-        {
-            return RequiresJsonEscape(ch, options.EscapeUnicode, options.EscapeForwardSlash);
-        }
-
         internal static bool RequiresJsonEscape(char ch, bool escapeUnicode, bool escapeForwardSlash)
-        {
-            if (!EscapeChar(ch, escapeUnicode))
-            {
-                switch (ch)
-                {
-                    case '/': return escapeForwardSlash;
-                    case '"':
-                    case '\\':
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        private static bool EscapeChar(char ch, bool escapeUnicode)
         {
             if (ch < 32)
                 return true;
-            else
-                return escapeUnicode && ch > 127;
+            if (ch > 127)
+                return escapeUnicode;
+            if (ch == '/')
+                return escapeForwardSlash;
+            return ch == '"' || ch == '\\';
         }
 
         private bool SerializeObjectProperties(ObjectReflectionCache.ObjectPropertyList objectPropertyList, StringBuilder destination, JsonSerializeOptions options,
