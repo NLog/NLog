@@ -943,7 +943,7 @@ namespace NLog.Targets
 
                 private void CaptureContext(LogEventInfo logEvent)
                 {
-                    if (IsActive)
+                    if (IsActive && !logEvent.TryGetCachedLayoutValue(this, out var _))
                     {
                         var scopeContextProperties = _owner.CaptureScopeContextProperties(logEvent, null);
                         logEvent.AddCachedLayoutValue(this, scopeContextProperties);
@@ -975,7 +975,7 @@ namespace NLog.Targets
 
                 private void CaptureContext(LogEventInfo logEvent)
                 {
-                    if (IsActive)
+                    if (IsActive && !logEvent.TryGetCachedLayoutValue(this, out var _))
                     {
                         var nestedContext = _owner.CaptureScopeContextNested(logEvent);
                         logEvent.AddCachedLayoutValue(this, nestedContext);
