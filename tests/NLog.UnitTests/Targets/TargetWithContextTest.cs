@@ -237,6 +237,44 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void TargetWithContextAsyncBufferScopePropertyTest()
+        {
+            var logFactory = new LogFactory().Setup()
+                                 .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                 .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
+                        <target name='debug_buffer' type='BufferingWrapper' flustTimeout='1'>
+                           <target name='debug' type='contexttarget' includeCallSite='true' includeMdlc='true' />
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug_buffer' />
+                    </rules>
+                </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set("name", "Kenny");
+            logger.Error("Hello");
+
+            for (int i = 0; i < 500; ++i)
+            {
+                System.Threading.Thread.Sleep(10);
+                if (!string.IsNullOrEmpty(target.LastMessage))
+                    break;
+            }
+
+            Assert.NotEqual(0, target.LastMessage.Length);
+            var lastCombinedProperties = target.LastCombinedProperties;
+            Assert.Single(lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("name", "Kenny"), lastCombinedProperties);
+        }
+
+        [Fact]
         public void TargetWithContextJsonTest()
         {
             Target.Register("contexttarget", typeof(CustomTargetWithContext));
