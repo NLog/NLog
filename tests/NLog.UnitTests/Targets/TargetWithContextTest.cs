@@ -266,6 +266,39 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void TargetWithContextAsyncBufferScopePropertyTest()
+        {
+            var logFactory = new LogFactory().Setup()
+                                 .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                 .LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
+                        <target name='debug_buffer' type='BufferingWrapper'>
+                           <target name='debug' type='contexttarget' includeCallSite='true' includeScopeProperties='true' excludeProperties='password' />
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug_buffer' />
+                    </rules>
+                </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+
+            using (logger.PushScopeProperty("name", "Kenny"))
+            using (logger.PushScopeProperty("password", "123Password"))
+            {
+                logger.Error("Hello");
+            }
+            logFactory.Flush();
+            Assert.NotEqual(0, target.LastMessage.Length);
+            var lastCombinedProperties = target.LastCombinedProperties;
+            Assert.Single(lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("name", "Kenny"), lastCombinedProperties);
+        }
+
+        [Fact]
         public void TargetWithContextJsonTest()
         {
             var logFactory = new LogFactory().Setup()
