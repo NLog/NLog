@@ -245,7 +245,7 @@ namespace NLog.UnitTests.Targets
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
-                        <target name='debug_buffer' type='BufferingWrapper' flustTimeout='1'>
+                        <target name='debug_buffer' type='BufferingWrapper' flushTimeout='1'>
                            <target name='debug' type='contexttarget' includeCallSite='true' includeMdlc='true' />
                         </target>
                     </targets>
