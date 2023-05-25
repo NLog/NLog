@@ -4,6 +4,16 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.1.5 (2023/05/25)
+
+**Improvements**
+- [#5229](https://github.com/NLog/NLog/pull/5229) TargetWithContext - Fixed ScopeContext capture when multiple wrappers (#5229) (@snakefoot)
+- [#5227](https://github.com/NLog/NLog/pull/5227) DefaultJsonSerializer - Cache length when validating json encoding (#5227) (@snakefoot)
+- [#5220](https://github.com/NLog/NLog/pull/5220) FileTarget - Suppress exceptions from retrieving FileInfo.CreationTimeUtc (#5220) (@snakefoot)
+- [#5219](https://github.com/NLog/NLog/pull/5219) LoggingConfigurationParser - Handle adding Target without name (#5219) (@snakefoot)
+- [#5215](https://github.com/NLog/NLog/pull/5215) Log4jXmlEvent - Fixed removal of invalid XML chars (#5215) (@snakefoot)
+- [#5210](https://github.com/NLog/NLog/pull/5210) LoggingConfiguration - Expand NLog config variables for Logging Rules WriteTo (#5210) (@snakefoot)
+
 ### Version 5.1.4 (2023/04/29)
 
 **Improvements**

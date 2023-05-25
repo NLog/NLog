@@ -352,11 +352,10 @@ namespace NLog.Internal
         /// <returns>True when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, string other)
         {
-            var builderLength = builder.Length;
-            if (builderLength != other.Length)
+            if (builder.Length != other.Length)
                 return false;
 
-            for (int i = 0; i < builderLength; ++i)
+            for (int i = 0; i < other.Length; ++i)
             {
                 if (builder[i] != other[i])
                     return false;
