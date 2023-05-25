@@ -826,7 +826,7 @@ namespace NLog.Targets
 
                 private void CaptureContext(LogEventInfo logEvent)
                 {
-                    if (IsActive)
+                    if (IsActive && !logEvent.TryGetCachedLayoutValue(this, out var _))
                     {
                         var contextMdc = _owner.CaptureContextMdc(logEvent, null);
                         logEvent.AddCachedLayoutValue(this, contextMdc);
@@ -860,7 +860,7 @@ namespace NLog.Targets
 
                 private void CaptureContext(LogEventInfo logEvent)
                 {
-                    if (IsActive)
+                    if (IsActive && !logEvent.TryGetCachedLayoutValue(this, out var _))
                     {
                         var contextMdlc = _owner.CaptureContextMdlc(logEvent, null);
                         logEvent.AddCachedLayoutValue(this, contextMdlc);
@@ -893,7 +893,7 @@ namespace NLog.Targets
 
                 private void CaptureContext(LogEventInfo logEvent)
                 {
-                    if (IsActive)
+                    if (IsActive && !logEvent.TryGetCachedLayoutValue(this, out var _))
                     {
                         var contextNdc = _owner.CaptureContextNdc(logEvent);
                         logEvent.AddCachedLayoutValue(this, contextNdc);
@@ -927,7 +927,7 @@ namespace NLog.Targets
 
                 private void CaptureContext(LogEventInfo logEvent)
                 {
-                    if (IsActive)
+                    if (IsActive && !logEvent.TryGetCachedLayoutValue(this, out var _))
                     {
                         var contextNdlc = _owner.CaptureContextNdlc(logEvent);
                         logEvent.AddCachedLayoutValue(this, contextNdlc);
