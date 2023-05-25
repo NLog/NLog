@@ -144,8 +144,7 @@ namespace NLog.Layouts
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
         {
-            if (layoutMethod is null)
-                throw new ArgumentNullException(nameof(layoutMethod));
+            Guard.ThrowIfNull(layoutMethod);
 
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";

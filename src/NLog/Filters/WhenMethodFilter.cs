@@ -33,6 +33,7 @@
 
 namespace NLog.Filters
 {
+    using NLog.Internal;
     using System;
 
     /// <summary>
@@ -47,8 +48,8 @@ namespace NLog.Filters
         /// </summary>
         public WhenMethodFilter(Func<LogEventInfo, FilterResult> filterMethod)
         {
-            if (filterMethod is null)
-                throw new ArgumentNullException(nameof(filterMethod));
+            Guard.ThrowIfNull(filterMethod);
+
             _filterMethod = filterMethod;
         }
 

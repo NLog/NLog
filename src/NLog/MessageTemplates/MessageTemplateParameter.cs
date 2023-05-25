@@ -33,6 +33,7 @@
 
 using System;
 using JetBrains.Annotations;
+using NLog.Internal;
 
 namespace NLog.MessageTemplates
 {
@@ -104,7 +105,7 @@ namespace NLog.MessageTemplates
         /// <param name="format">Parameter Format</param>
         internal MessageTemplateParameter([NotNull] string name, object value, string format)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Name = Guard.ThrowIfNull(name);
             Value = value;
             Format = format;
             CaptureType = CaptureType.Normal;
@@ -119,7 +120,7 @@ namespace NLog.MessageTemplates
         /// <param name="captureType">Parameter CaptureType</param>
         public MessageTemplateParameter([NotNull] string name, object value, string format, CaptureType captureType)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Name = Guard.ThrowIfNull(name);
             Value = value;
             Format = format;
             CaptureType = captureType;

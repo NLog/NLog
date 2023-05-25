@@ -38,6 +38,7 @@ namespace NLog.UnitTests.Config
     using System.Text;
     using JetBrains.Annotations;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Targets;
     using Xunit;
 
@@ -261,7 +262,7 @@ namespace NLog.UnitTests.Config
         {
             public TargetWithInjection([NotNull] IJsonConverter jsonConverter)
             {
-                JsonConverter = jsonConverter ?? throw new ArgumentNullException(nameof(jsonConverter));
+                JsonConverter = Guard.ThrowIfNull(jsonConverter);
             }
 
             public IJsonConverter JsonConverter { get; }
@@ -274,7 +275,7 @@ namespace NLog.UnitTests.Config
             /// <inheritdoc/>
             public TargetWithNestedInjection([NotNull] ClassWithInjection helper)
             {
-                Helper = helper ?? throw new ArgumentNullException(nameof(helper));
+                Helper = Guard.ThrowIfNull(helper);
             }
         }
 

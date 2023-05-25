@@ -431,8 +431,7 @@ namespace NLog
         /// </summary>
         public LogFactory Setup(Action<ISetupBuilder> setupBuilder)
         {
-            if (setupBuilder is null)
-                throw new ArgumentNullException(nameof(setupBuilder));
+            Guard.ThrowIfNull(setupBuilder);
             setupBuilder(new SetupBuilder(this));
             return this;
         }

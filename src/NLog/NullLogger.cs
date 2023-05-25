@@ -34,7 +34,6 @@
 namespace NLog
 {
     using Internal;
-    using System;
 
     /// <summary>
     /// It works as a normal <see cref="Logger" /> but it discards all messages which an application requests 
@@ -50,10 +49,7 @@ namespace NLog
         /// <param name="factory">The factory class to be used for the creation of this logger.</param>
         public NullLogger(LogFactory factory)
         {
-            if (factory is null)
-            {
-                throw new ArgumentNullException(nameof(factory));
-            }
+            Guard.ThrowIfNull(factory);
 
             Initialize(string.Empty, TargetWithFilterChain.NoTargetsByLevel, factory);
         }

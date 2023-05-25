@@ -33,6 +33,7 @@
 
 namespace NLog
 {
+    using NLog.Internal;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -280,10 +281,7 @@ namespace NLog
         /// <returns>The enumeration value.</returns>
         public static LogLevel FromString(string levelName)
         {
-            if (levelName is null)
-            {
-                throw new ArgumentNullException(nameof(levelName));
-            }
+            Guard.ThrowIfNull(levelName);
 
             if (levelName.Equals("Trace", StringComparison.OrdinalIgnoreCase))
             {

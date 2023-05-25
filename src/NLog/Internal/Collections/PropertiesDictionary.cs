@@ -283,8 +283,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public void CopyTo(KeyValuePair<object, object>[] array, int arrayIndex)
         {
-            if (array is null)
-                throw new ArgumentNullException(nameof(array));
+            Guard.ThrowIfNull(array);
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 
@@ -682,8 +681,7 @@ namespace NLog.Internal
             /// <inheritDoc/>
             public void CopyTo(object[] array, int arrayIndex)
             {
-                if (array is null)
-                    throw new ArgumentNullException(nameof(array));
+                Guard.ThrowIfNull(array);
                 if (arrayIndex < 0)
                     throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 

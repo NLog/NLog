@@ -140,10 +140,7 @@ namespace NLog.Config
         /// </summary>
         internal static ServiceRepository RegisterValueFormatter(this ServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
         {
-            if (valueFormatter is null)
-            {
-                throw new ArgumentNullException(nameof(valueFormatter));
-            }
+            Guard.ThrowIfNull(valueFormatter);
 
             serviceRepository.RegisterSingleton(valueFormatter);
             return serviceRepository;
@@ -151,10 +148,7 @@ namespace NLog.Config
 
         internal static ServiceRepository RegisterJsonConverter(this ServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
         {
-            if (jsonConverter is null)
-            {
-                throw new ArgumentNullException(nameof(jsonConverter));
-            }
+            Guard.ThrowIfNull(jsonConverter);
 
             serviceRepository.RegisterSingleton(jsonConverter);
             return serviceRepository;
@@ -162,10 +156,7 @@ namespace NLog.Config
 
         internal static ServiceRepository RegisterPropertyTypeConverter(this ServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
         {
-            if (converter is null)
-            {
-                throw new ArgumentNullException(nameof(converter));
-            }
+            Guard.ThrowIfNull(converter);
 
             serviceRepository.RegisterSingleton(converter);
             return serviceRepository;
@@ -173,10 +164,7 @@ namespace NLog.Config
 
         internal static ServiceRepository RegisterObjectTypeTransformer(this ServiceRepository serviceRepository, [NotNull] IObjectTypeTransformer transformer)
         {
-            if (transformer is null)
-            {
-                throw new ArgumentNullException(nameof(transformer));
-            }
+            Guard.ThrowIfNull(transformer);
 
             serviceRepository.RegisterSingleton(transformer);
             return serviceRepository;
