@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -96,5 +94,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif

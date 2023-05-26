@@ -36,6 +36,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using JetBrains.Annotations;
     using NLog.Common;
@@ -425,7 +426,7 @@ namespace NLog.Targets
                 {
                     try
                     {
-                        PropertyHelper.CheckRequiredParameters(this);
+                        PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
 
                         InitializeTarget();
                         _initializeException = null;
@@ -523,7 +524,7 @@ namespace NLog.Targets
 
         private void FindAllLayouts()
         {
-            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(false, this).ToArray();
+            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(ConfigurationItemFactory.Default, false, this).ToArray();
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Length);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
             _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
@@ -779,7 +780,8 @@ namespace NLog.Targets
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="name">The target type-alias for use in NLog configuration</param>
-        public static void Register<T>(string name)
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static void Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string name)
             where T : Target
         {
             var layoutRendererType = typeof(T);
@@ -792,9 +794,10 @@ namespace NLog.Targets
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="targetType">Type of the Target.</param>
         /// <param name="name">The target type-alias for use in NLog configuration</param>
-        public static void Register(string name, Type targetType)
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType)
         {
-            ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterDefinition(name, targetType);
         }
     }
 }

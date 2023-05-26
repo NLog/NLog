@@ -732,7 +732,7 @@ namespace NLog.Config
                 roots.Add(target);
             }
 
-            _configItems = ObjectGraphScanner.FindReachableObjects<object>(true, roots.ToArray());
+            _configItems = ObjectGraphScanner.FindReachableObjects<object>(ConfigurationItemFactory.Default, true, roots.ToArray());
 
             InternalLogger.Info("Validating config: {0}", this);
 
@@ -743,7 +743,7 @@ namespace NLog.Config
                     if (o is ISupportsInitialize)
                         continue;   // Target + Layout + LayoutRenderer validate on Initialize()
 
-                    PropertyHelper.CheckRequiredParameters(o);
+                    PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, o);
                 }
                 catch (Exception ex)
                 {

@@ -36,6 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 #if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System.Dynamic;
 #endif
@@ -92,7 +93,7 @@ namespace NLog.Internal
             }
 
             var objectType = value.GetType();
-            var propertyInfos = BuildObjectPropertyInfos(value, objectType);
+            var propertyInfos = ConvertSimpleToString(objectType) ? ObjectPropertyInfos.SimpleToString :  BuildObjectPropertyInfos(value);
             ObjectTypeCache.TryAddValue(objectType, propertyInfos);
             return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
         }
@@ -134,6 +135,8 @@ namespace NLog.Internal
             return true;
         }
 
+        [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2072")]
+        [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2075")]
         public bool TryLookupExpandoObject(object value, out ObjectPropertyList objectPropertyList)
         {
             if (value is IDictionary<string, object> expando)
@@ -164,60 +167,41 @@ namespace NLog.Internal
                 return true;
             }
 
-            if (TryExtractExpandoObject(objectType, out propertyInfos))
+            foreach (var interfaceType in value.GetType().GetInterfaces())
             {
-                ObjectTypeCache.TryAddValue(objectType, propertyInfos);
-                objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
-                return true;
+                if (IsGenericDictionaryEnumeratorType(interfaceType))
+                {
+                    var dictionaryEnumerator = (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(interfaceType.GetGenericArguments()));
+                    propertyInfos = new ObjectPropertyInfos(null, new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
+                    
+                    ObjectTypeCache.TryAddValue(objectType, propertyInfos);
+                    objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+                    return true;
+                }
             }
 
             objectPropertyList = default(ObjectPropertyList);
             return false;
         }
 
-        private static bool TryExtractExpandoObject(Type objectType, out ObjectPropertyInfos propertyInfos)
+        [UnconditionalSuppressMessage("Trimming - Allow reflection of message args", "IL2072")]
+        private static ObjectPropertyInfos BuildObjectPropertyInfos(object value)
         {
-            foreach (var interfaceType in objectType.GetInterfaces())
+            var properties = GetPublicProperties(value.GetType());
+            if (value is Exception)
             {
-                if (IsGenericDictionaryEnumeratorType(interfaceType))
-                {
-                    var dictionaryEnumerator = (IDictionaryEnumerator)Activator.CreateInstance(typeof(DictionaryEnumerator<,>).MakeGenericType(interfaceType.GetGenericArguments()));
-                    propertyInfos = new ObjectPropertyInfos(null, new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => dictionaryEnumerator.GetEnumerator(o)) });
-                    return true;
-                }
+                // Special handling of Exception (Include Exception-Type as artificial first property)
+                var fastLookup = BuildFastLookup(properties, true);
+                return new ObjectPropertyInfos(properties, fastLookup);
             }
-
-            propertyInfos = default(ObjectPropertyInfos);
-            return false;
-        }
-
-        private static ObjectPropertyInfos BuildObjectPropertyInfos(object value, Type objectType)
-        {
-            ObjectPropertyInfos propertyInfos;
-            if (ConvertSimpleToString(objectType))
+            else if (properties.Length == 0)
             {
-                propertyInfos = ObjectPropertyInfos.SimpleToString;
+                return ObjectPropertyInfos.SimpleToString;
             }
             else
             {
-                var properties = GetPublicProperties(objectType);
-                if (value is Exception)
-                {
-                    // Special handling of Exception (Include Exception-Type as artificial first property)
-                    var fastLookup = BuildFastLookup(properties, true);
-                    propertyInfos = new ObjectPropertyInfos(properties, fastLookup);
-                }
-                else if (properties.Length == 0)
-                {
-                    propertyInfos = ObjectPropertyInfos.SimpleToString;
-                }
-                else
-                {
-                    propertyInfos = new ObjectPropertyInfos(properties, null);
-                }
+                return new ObjectPropertyInfos(properties, null);
             }
-
-            return propertyInfos;
         }
 
         private static bool ConvertSimpleToString(Type objectType)
@@ -249,7 +233,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static PropertyInfo[] GetPublicProperties(Type type)
+        private static PropertyInfo[] GetPublicProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type type)
         {
             PropertyInfo[] properties = null;
 

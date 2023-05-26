@@ -40,6 +40,7 @@ namespace NLog.Config
     /// <summary>
     /// An assembly is trying to load. 
     /// </summary>
+    [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
     public class AssemblyLoadingEventArgs : CancelEventArgs
     {
         /// <summary>

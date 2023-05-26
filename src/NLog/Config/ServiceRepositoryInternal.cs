@@ -45,7 +45,7 @@ namespace NLog.Config
     /// </summary>
     internal sealed class ServiceRepositoryInternal : ServiceRepository
     {
-        private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
+        private readonly Dictionary<Type, Func<object>> _creatorMap = new Dictionary<Type, Func<object>>();
         private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
         private readonly object _lockObject = new object();
         public event EventHandler<ServiceRepositoryUpdateEventArgs> TypeRegistered;
@@ -69,7 +69,7 @@ namespace NLog.Config
 
             lock (_lockObject)
             {
-                _creatorMap[type] = new ConfigurationItemCreator(t => instance);
+                _creatorMap[type] = () => instance;
             }
 
             TypeRegistered?.Invoke(this, new ServiceRepositoryUpdateEventArgs(type));
@@ -95,7 +95,7 @@ namespace NLog.Config
         {
             Guard.ThrowIfNull(itemType);
 
-            ConfigurationItemCreator objectResolver = null;
+            Func<object> objectResolver = null;
             CompiledConstructor compiledConstructor = null;
 
             lock (_lockObject)
@@ -117,7 +117,9 @@ namespace NLog.Config
                 }
 
                 // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
+#pragma warning disable CS0618 // Type or member is obsolete
                 var newCompiledConstructor = CreateCompiledConstructor(itemType);
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 lock (_lockObject)
                 {
@@ -133,7 +135,7 @@ namespace NLog.Config
             var constructorParameters = compiledConstructor?.Parameters;
             if (constructorParameters is null)
             {
-                return objectResolver?.Invoke(itemType) ?? compiledConstructor?.Ctor(null);
+                return objectResolver?.Invoke() ?? compiledConstructor?.Ctor(null);
             }
             else
             {
@@ -143,6 +145,8 @@ namespace NLog.Config
             }
         }
 
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
         private CompiledConstructor CreateCompiledConstructor(Type itemType)
         {
             try
@@ -151,7 +155,18 @@ namespace NLog.Config
                 if (defaultConstructor is null)
                 {
                     InternalLogger.Trace("Resolves parameterized constructor for {0}", itemType);
-                    var ctor = GetParameterizedConstructor(itemType);
+                    var ctors = itemType.GetConstructors();
+                    if (ctors.Length == 0)
+                    {
+                        throw new NLogDependencyResolveException("No public constructor", itemType);
+                    }
+
+                    if (ctors.Length > 1)
+                    {
+                        throw new NLogDependencyResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
+                    }
+
+                    var ctor = ctors[0];
                     var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(ctor);
                     return new CompiledConstructor(constructorMethod, ctor.GetParameters());
                 }
@@ -170,24 +185,6 @@ namespace NLog.Config
             {
                 InternalLogger.Trace("Resolve {0} done", itemType.FullName);
             }
-        }
-
-        private static ConstructorInfo GetParameterizedConstructor(Type itemType)
-        {
-            var ctors = itemType.GetConstructors();
-
-            if (ctors.Length == 0)
-            {
-                throw new NLogDependencyResolveException("No public constructor", itemType);
-            }
-
-            if (ctors.Length > 1)
-            {
-                throw new NLogDependencyResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
-            }
-
-            var ctor = ctors[0];
-            return ctor;
         }
 
         private object[] CreateCtorParameterValues(ParameterInfo[] parameterInfos, HashSet<Type> seenTypes)

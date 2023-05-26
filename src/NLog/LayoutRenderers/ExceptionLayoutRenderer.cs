@@ -364,6 +364,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose method name should be appended.</param>        
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow callsite logic", "IL2026")]
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5

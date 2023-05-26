@@ -35,6 +35,7 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using NLog.Internal;
 
@@ -57,7 +58,7 @@ namespace NLog.Config
             {
                 { typeof(System.Text.Encoding), (stringvalue, format, formatProvider) => ConvertToEncoding(stringvalue) },
                 { typeof(System.Globalization.CultureInfo), (stringvalue, format, formatProvider) => new System.Globalization.CultureInfo(stringvalue) },
-                { typeof(Type), (stringvalue, format, formatProvider) => Type.GetType(stringvalue, true) },
+                { typeof(Type), (stringvalue, format, formatProvider) => ConvertToType(stringvalue, true) },
                 { typeof(NLog.Targets.LineEndingMode), (stringvalue, format, formatProvider) => NLog.Targets.LineEndingMode.FromString(stringvalue) },
                 { typeof(LogLevel), (stringvalue, format, formatProvider) => LogLevel.FromString(stringvalue) },
                 { typeof(Uri), (stringvalue, format, formatProvider) => new Uri(stringvalue) },
@@ -66,6 +67,12 @@ namespace NLog.Config
                 { typeof(TimeSpan), (stringvalue, format, formatProvider) => ConvertToTimeSpan(format, formatProvider, stringvalue) },
                 { typeof(Guid), (stringvalue, format, formatProvider) => ConvertGuid(format, stringvalue) },
             };
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2057")]
+        internal static Type ConvertToType(string stringvalue, bool throwOnError)
+        {
+            return Type.GetType(stringvalue, throwOnError);
         }
 
         internal static bool IsComplexType(Type type)
@@ -148,13 +155,9 @@ namespace NLog.Config
                 if (typeCode == TypeCode.Empty)
                     return null;
             }
-            else
+            else if (TryConvertToType(propertyValue, propertyType, out var convertedValue))
             {
-                var logConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
-                if (logConverter != null && logConverter.CanConvertTo(propertyType))
-                {
-                    return logConverter.ConvertTo(propertyValue, propertyType);
-                }
+                return convertedValue;
             }
 
             if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
@@ -163,6 +166,22 @@ namespace NLog.Config
             }
 
             return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2026")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
+        private static bool TryConvertToType(object propertyValue, Type propertyType, out object convertedValue)
+        {
+            var typeConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
+            if (typeConverter != null && typeConverter.CanConvertTo(propertyType))
+            {
+                convertedValue = typeConverter.ConvertTo(propertyValue, propertyType);
+                return true;
+            }
+
+            convertedValue = null;
+            return false;
         }
 
         private static object ConvertGuid(string format, string propertyString)

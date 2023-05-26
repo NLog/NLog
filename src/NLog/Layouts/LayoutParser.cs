@@ -122,7 +122,7 @@ namespace NLog.Layouts
                     AddLiteral(literalBuf, result);
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr, throwConfigExceptions);
-                    if (CanBeConvertedToLiteral(newLayoutRenderer))
+                    if (CanBeConvertedToLiteral(configurationItemFactory, newLayoutRenderer))
                     {
                         newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
                     }
@@ -446,10 +446,10 @@ namespace NLog.Layouts
                     parameterName = parameterName.Trim();
                     LayoutRenderer parameterTarget = layoutRenderer;
 
-                    if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out var propertyInfo))
+                    if (!PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, parameterName, out var propertyInfo))
                     {
                         parameterTarget = LookupAmbientProperty(parameterName, configurationItemFactory, ref wrappers, ref orderedWrappers);
-                        if (parameterTarget is null || !PropertyHelper.TryGetPropertyInfo(parameterTarget, parameterName, out propertyInfo))
+                        if (parameterTarget is null || !PropertyHelper.TryGetPropertyInfo(configurationItemFactory, parameterTarget, parameterName, out propertyInfo))
                         {
                             parameterTarget = layoutRenderer;
                             propertyInfo = null;
@@ -561,15 +561,16 @@ namespace NLog.Layouts
 
         private static LayoutRenderer LookupAmbientProperty(string propertyName, ConfigurationItemFactory configurationItemFactory, ref Dictionary<Type, LayoutRenderer> wrappers, ref List<LayoutRenderer> orderedWrappers)
         {
-            if (configurationItemFactory.AmbientProperties.TryGetDefinition(propertyName, out var wrapperType))
+            if (configurationItemFactory.AmbientRendererFactory.TryCreateInstance(propertyName, out var wrapperInstance))
             {
                 wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
                 orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
+                var wrapperType = wrapperInstance.GetType();
                 if (!wrappers.TryGetValue(wrapperType, out var wrapperRenderer))
                 {
-                    wrapperRenderer = configurationItemFactory.AmbientProperties.CreateInstance(propertyName);
-                    wrappers[wrapperType] = wrapperRenderer;
-                    orderedWrappers.Add(wrapperRenderer);
+                    wrappers[wrapperType] = wrapperInstance;
+                    orderedWrappers.Add(wrapperInstance);
+                    wrapperRenderer = wrapperInstance;
                 }
                 return wrapperRenderer;
             }
@@ -582,7 +583,7 @@ namespace NLog.Layouts
             LayoutRenderer layoutRenderer;
             try
             {
-                layoutRenderer = configurationItemFactory.LayoutRenderers.CreateInstance(typeName);
+                layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
             }
             catch (Exception ex)
             {
@@ -602,7 +603,7 @@ namespace NLog.Layouts
         {
             // what we've just read is not a parameterName, but a value
             // assign it to a default property (denoted by empty string)
-            if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out var propertyInfo))
+            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, string.Empty, out var propertyInfo))
             {
                 if (!typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType) && value.IndexOf('\\') >= 0)
                 {
@@ -630,7 +631,7 @@ namespace NLog.Layouts
             {
                 var newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
                 InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType(), newRenderer.GetType());
-                if (CanBeConvertedToLiteral(lr))
+                if (CanBeConvertedToLiteral(configurationItemFactory, lr))
                 {
                     lr = ConvertToLiteral(lr);
                 }
@@ -642,9 +643,9 @@ namespace NLog.Layouts
             return lr;
         }
 
-        private static bool CanBeConvertedToLiteral(LayoutRenderer lr)
+        private static bool CanBeConvertedToLiteral(ConfigurationItemFactory configurationItemFactory, LayoutRenderer lr)
         {
-            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(true, lr))
+            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(configurationItemFactory, true, lr))
             {
                 var renderType = renderable.GetType();
                 if (renderType == typeof(SimpleLayout))

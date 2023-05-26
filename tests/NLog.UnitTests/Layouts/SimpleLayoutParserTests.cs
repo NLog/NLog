@@ -31,23 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using NLog.Config;
-using NLog.Filters;
-
 namespace NLog.UnitTests.Layouts
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Filters;
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
     using NLog.Targets;
-    using System;
     using Xunit;
-    using static Config.TargetConfigurationTests;
 
     public class SimpleLayoutParserTests : NLogTestBase
     {
@@ -555,7 +552,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void InvalidLayoutWithExistingRenderer_WillThrowIfExceptionThrowingIsOn()
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             LogManager.ThrowConfigExceptions = true;
             Assert.Throws<NLogConfigurationException>(() =>
             {
@@ -567,7 +564,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void UnknownPropertyInLayout_WillThrowIfExceptionThrowingIsOn()
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             LogManager.ThrowConfigExceptions = true;
 
             Assert.Throws<NLogConfigurationException>(() =>
@@ -616,7 +613,7 @@ namespace NLog.UnitTests.Layouts
 #endif
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
@@ -633,7 +630,7 @@ namespace NLog.UnitTests.Layouts
             //note flags enum already supported
 
             //can;t convert empty to int
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
+            ConfigurationItemFactory.Default.LayoutRendererFactory.RegisterType<LayoutRendererWithListParam>("layoutrenderer-with-list");
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
@@ -655,7 +652,21 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void FuncLayoutRendererRegisterTest1()
+        public void FuncLayoutRendererRegisterTest1()
+        {
+            var theAnswer = "42";
+
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("the-answer", (evt) => theAnswer))
+                .LoadConfiguration(builder => builder.ForLogger().WriteTo(new DebugTarget() { Name = "Debug", Layout = "${the-answer}" })).LogFactory;
+
+            logFactory.GetCurrentClassLogger().Info("Hello World");
+
+            AssertDebugLastMessage("Debug", theAnswer, logFactory);
+        }
+
+        [Fact]
+        [Obsolete("Instead override type-creation by calling NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void FuncLayoutRendererRegisterTest1_Legacy()
         {
             LayoutRenderer.Register("the-answer", (info) => "42");
             Layout l = "${the-answer}";
@@ -664,7 +675,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void FuncLayoutRendererFluentMethod_ThreadAgnostic_Test()
+        public void FuncLayoutRendererFluentMethod_ThreadAgnostic_Test()
         {
             // Arrange
             var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
@@ -676,7 +687,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void FuncLayoutRendererFluentMethod_Test()
+        public void FuncLayoutRendererFluentMethod_Test()
         {
             // Arrange
             var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.None);
@@ -688,14 +699,33 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void FuncLayoutRendererFluentMethod_NullThrows_Test()
+        public void FuncLayoutRendererFluentMethod_NullThrows_Test()
         {
             // Arrange
             Assert.Throws<ArgumentNullException>(() => Layout.FromMethod(null));
         }
 
         [Fact]
-        void FuncLayoutRendererRegisterTest1WithXML()
+        public void FuncLayoutRendererRegisterTest1WithXML()
+        {
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("the-answer", (evt) => 42))
+                .LoadConfigurationFromXml(
+@"<nlog throwExceptions='true'>          
+                <targets>
+                    <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer:Format=D3}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            logFactory.GetCurrentClassLogger().Info("test1");
+
+            AssertDebugLastMessage("debug", "TheAnswer=042", logFactory);
+        }
+
+        [Fact]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void FuncLayoutRendererRegisterTest1WithXML_Legacy()
         {
             LayoutRenderer.Register("the-answer", (info) => 42);
 
@@ -715,7 +745,19 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void FuncLayoutRendererRegisterTest2()
+        public void FuncLayoutRendererRegisterTest2()
+        {
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("message-length", (evt) => evt.Message.Length))
+                .LoadConfiguration(builder => builder.ForLogger().WriteTo(new DebugTarget() { Name = "Debug", Layout = "${message-length" })).LogFactory;
+
+            logFactory.GetCurrentClassLogger().Info("1234567890");
+
+            AssertDebugLastMessage("Debug", "10", logFactory);
+        }
+
+        [Fact]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void FuncLayoutRendererRegisterTest2_Legacy()
         {
             LayoutRenderer.Register("message-length", (info) => info.Message.Length);
             Layout l = "${message-length}";
@@ -724,13 +766,13 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void SimpleLayout_FromString_ThrowConfigExceptions()
+        public void SimpleLayout_FromString_ThrowConfigExceptions()
         {
             Assert.Throws<NLogConfigurationException>(() => Layout.FromString("${evil}", true));
         }
 
         [Fact]
-        void SimpleLayout_FromString_NoThrowConfigExceptions()
+        public void SimpleLayout_FromString_NoThrowConfigExceptions()
         {
             Assert.NotNull(Layout.FromString("${evil}", false));
         }
@@ -855,7 +897,7 @@ namespace NLog.UnitTests.Layouts
 
             public List<FilterResult> Enums { get; set; }
 
-            public List<MyFlagsEnum> FlagEnums { get; set; }
+            public List<Config.TargetConfigurationTests.MyFlagsEnum> FlagEnums { get; set; }
 
             public List<int> Numbers { get; set; }
 

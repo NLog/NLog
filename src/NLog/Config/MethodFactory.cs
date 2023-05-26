@@ -35,27 +35,32 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using NLog.Common;
+    using NLog.Conditions;
     using NLog.Internal;
 
     /// <summary>
     /// Factory for locating methods.
     /// </summary>
-    internal class MethodFactory : INamedItemFactory<MethodInfo, MethodInfo>, INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>, IFactory
+    internal class MethodFactory :
+#pragma warning disable CS0618 // Type or member is obsolete
+        INamedItemFactory<MethodInfo, MethodInfo>,
+        INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>,
+#pragma warning restore CS0618 // Type or member is obsolete
+        IFactory
     {
         private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>(StringComparer.OrdinalIgnoreCase);
-        private readonly Func<Type, IList<KeyValuePair<string, MethodInfo>>> _methodExtractor;
         private readonly MethodFactory _globalDefaultFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodFactory"/> class.
         /// </summary>
-        public MethodFactory(MethodFactory globalDefaultFactory, Func<Type, IList<KeyValuePair<string, MethodInfo>>> methodExtractor)
+        public MethodFactory(MethodFactory globalDefaultFactory)
         {
             _globalDefaultFactory = globalDefaultFactory;
-            _methodExtractor = methodExtractor;
         }
 
         /// <summary>
@@ -66,6 +71,9 @@ namespace NLog.Config
         /// <param name="types">The types to scan.</param>
         /// <param name="assemblyName">The assembly name for the type.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2062")]
         public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
         {
             foreach (Type t in types)
@@ -94,9 +102,21 @@ namespace NLog.Config
         /// </summary>
         /// <param name="type">The type to register.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        public void RegisterType(Type type, string itemNamePrefix)
+        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
-            RegisterType(type, string.Empty, itemNamePrefix);
+            var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
+            for (int i = 0; i < extractedMethods.Count; ++i)
+            {
+                RegisterDefinition(extractedMethods[i].Key, extractedMethods[i].Value, string.Empty, string.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Registers the definition of a single method.
+        /// </summary>
+        public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
+        {
+            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
         }
 
         /// <summary>
@@ -105,9 +125,10 @@ namespace NLog.Config
         /// <param name="type">The type to register.</param>
         /// <param name="assemblyName">The assembly name for the type.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        public void RegisterType(Type type, string assemblyName, string itemNamePrefix)
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string assemblyName, string itemNamePrefix)
         {
-            var extractedMethods = _methodExtractor(type);
+            var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
             if (extractedMethods?.Count > 0)
             {
                 for (int i = 0; i < extractedMethods.Count; ++i)
@@ -124,7 +145,7 @@ namespace NLog.Config
         /// <typeparam name="TMethodAttributeType">Include methods that are marked with this attribute</typeparam>
         /// <param name="type">Class Type to scan</param>
         /// <returns>Collection of methods with their symbolic names</returns>
-        public static IList<KeyValuePair<string, MethodInfo>> ExtractClassMethods<TClassAttributeType, TMethodAttributeType>(Type type) 
+        public static IList<KeyValuePair<string, MethodInfo>> ExtractClassMethods<TClassAttributeType, TMethodAttributeType>([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type) 
             where TClassAttributeType : Attribute
             where TMethodAttributeType : NameBaseAttribute
         {
@@ -161,7 +182,8 @@ namespace NLog.Config
         /// </summary>
         /// <param name="itemName">The method name.</param>
         /// <param name="itemDefinition">The method info.</param>
-        public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        void INamedItemFactory<MethodInfo, MethodInfo>.RegisterDefinition(string itemName, MethodInfo itemDefinition)
         {
             RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
         }
@@ -212,6 +234,7 @@ namespace NLog.Config
         /// <param name="itemName">The method name.</param>
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         public bool TryCreateInstance(string itemName, out MethodInfo result)
         {
             return TryGetDefinition(itemName, out result);
@@ -253,7 +276,14 @@ namespace NLog.Config
         /// </summary>
         /// <param name="itemName">Method name.</param>
         /// <returns>MethodInfo object.</returns>
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         MethodInfo INamedItemFactory<MethodInfo, MethodInfo>.CreateInstance(string itemName)
+        {
+            return CreateMethodInfo(itemName);
+        }
+
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
+        internal MethodInfo CreateMethodInfo(string itemName)
         {
             if (TryCreateInstance(itemName, out MethodInfo result))
             {
@@ -284,6 +314,7 @@ namespace NLog.Config
         /// <param name="itemName">The method name.</param>
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
             lock (_nameToMethodInfo)
@@ -295,6 +326,12 @@ namespace NLog.Config
             }
 
             return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
+        }
+
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        void INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>.RegisterDefinition(string itemName, System.Reflection.MethodInfo itemDefinition)
+        {
+            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
         }
     }
 }

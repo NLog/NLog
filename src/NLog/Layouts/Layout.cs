@@ -36,13 +36,14 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
+    using JetBrains.Annotations;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
     using NLog.Targets;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -334,7 +335,7 @@ namespace NLog.Layouts
 
                     _scannedForObjects = false;
 
-                    PropertyHelper.CheckRequiredParameters(this);
+                    PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
 
                     InitializeLayout();
 
@@ -353,7 +354,7 @@ namespace NLog.Layouts
 
         internal void PerformObjectScanning()
         {
-            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<IRenderable>(true, this);
+            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<IRenderable>(ConfigurationItemFactory.Default, true, this);
             var objectGraphTypes = new HashSet<Type>(objectGraphScannerList.Select(o => o.GetType()));
             objectGraphTypes.Remove(typeof(SimpleLayout));
             objectGraphTypes.Remove(typeof(NLog.LayoutRenderers.LiteralLayoutRenderer));
@@ -424,7 +425,8 @@ namespace NLog.Layouts
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T"> Type of the Layout.</typeparam>
         /// <param name="name"> Name of the Layout.</param>
-        public static void Register<T>(string name)
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static void Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string name)
             where T : Layout
         {
             var layoutRendererType = typeof(T);
@@ -437,10 +439,10 @@ namespace NLog.Layouts
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="layoutType"> Type of the Layout.</param>
         /// <param name="name"> Name of the Layout.</param>
-        public static void Register(string name, Type layoutType)
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type layoutType)
         {
-            ConfigurationItemFactory.Default.Layouts
-                .RegisterDefinition(name, layoutType);
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterDefinition(name, layoutType);
         }
 
         /// <summary>

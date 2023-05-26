@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Layouts;
-using Xunit;
-
 namespace NLog.UnitTests.Layouts
 {
+    using System;
+    using NLog.Layouts;
+    using Xunit;
+
     public class LayoutTypedTests : NLogTestBase
     {
         [Fact]
@@ -1002,6 +1002,19 @@ namespace NLog.UnitTests.Layouts
 
         [Fact]
         public void LayoutRendererSupportTypedLayout()
+        {
+            var cif = new NLog.Config.ConfigurationItemFactory();
+            cif.LayoutRendererFactory.RegisterType<LayoutTypedTestLayoutRenderer>(nameof(LayoutTypedTestLayoutRenderer));
+
+            Layout l = new SimpleLayout("${LayoutTypedTestLayoutRenderer:IntProperty=42}", cif);
+            l.Initialize(null);
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("42", result);
+        }
+
+        [Fact]
+        [Obsolete("Instead override type-creation by calling NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void LayoutRendererSupportTypedLayout_Legacy()
         {
             var cif = new NLog.Config.ConfigurationItemFactory();
             cif.RegisterType(typeof(LayoutTypedTestLayoutRenderer), string.Empty);

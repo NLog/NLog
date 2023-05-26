@@ -33,13 +33,14 @@
 
 namespace NLog.Config
 {
-    using System.Reflection;
+    using System;
 
     /// <summary>
     /// Represents a factory of named items (such as targets, layouts, layout renderers, etc.).
     /// </summary>
     /// <typeparam name="TInstanceType">Base type for each item instance.</typeparam>
-    /// <typeparam name="TDefinitionType">Item definition type (typically <see cref="System.Type"/> or <see cref="MethodInfo"/>).</typeparam>
+    /// <typeparam name="TDefinitionType">Item definition type (typically <see cref="System.Type"/>).</typeparam>
+    [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
     public interface INamedItemFactory<TInstanceType, TDefinitionType>
         where TInstanceType : class
     {

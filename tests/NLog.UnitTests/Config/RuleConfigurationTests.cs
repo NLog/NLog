@@ -821,10 +821,9 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                var config = XmlLoggingConfiguration.CreateFromXmlString("<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
-                    <extensions>
-                        <add assembly='NLog.UnitTests'/> 
-                    </extensions>
+                var logFactory = new LogFactory().Setup()
+                    .SetupExtensions(ext => ext.RegisterTarget<Targets.Mocks.MockTargetWrapper >())
+                    .LoadConfigurationFromXml("<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
                     <targets async='true'>
                         <target name='d1' type='Debug' />
                         <target name='d2' type='MockWrapper'>
@@ -840,9 +839,6 @@ namespace NLog.UnitTests.Config
                     </rules>
                 </nlog>");
 
-                var logFactory = new LogFactory();
-                logFactory.Configuration = config;
-
                 AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d2", Encoding.UTF8);
 
                 AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d3", Encoding.UTF8);
@@ -851,7 +847,6 @@ namespace NLog.UnitTests.Config
 
                 AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);
             }
-
             finally
             {
                 NLog.Common.InternalLogger.Reset();
@@ -1035,7 +1030,7 @@ namespace NLog.UnitTests.Config
 
         private static void AssertLogLevelEnabled(ILogger logger, LogLevel expectedLogLevel)
         {
-            AssertLogLevelEnabled(logger, new[] {expectedLogLevel });
+            AssertLogLevelEnabled(logger, new[] { expectedLogLevel });
         }
 
         private static void AssertLogLevelEnabled(ILogger logger, LogLevel[] expectedLogLevels)
@@ -1044,9 +1039,9 @@ namespace NLog.UnitTests.Config
             {
                 var logLevel = LogLevel.FromOrdinal(i);
                 if (expectedLogLevels.Contains(logLevel))
-                    Assert.True(logger.IsEnabled(logLevel),$"{logLevel} expected as true");
+                    Assert.True(logger.IsEnabled(logLevel), $"{logLevel} expected as true");
                 else
-                    Assert.False(logger.IsEnabled(logLevel),$"{logLevel} expected as false");
+                    Assert.False(logger.IsEnabled(logLevel), $"{logLevel} expected as false");
             }
         }
     }

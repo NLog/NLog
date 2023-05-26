@@ -34,8 +34,10 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Reflection;
     using System.Text;
@@ -50,8 +52,8 @@ namespace NLog.Internal
     /// </summary>
     internal static class PropertyHelper
     {
-        private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
-        private static Dictionary<Type, Func<string, ConfigurationItemFactory, object>> DefaultPropertyConversionMapper = BuildPropertyConversionMapper();
+        private static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
+        private static readonly Dictionary<Type, Func<string, ConfigurationItemFactory, object>> _propertyConversionMapper = BuildPropertyConversionMapper();
 
 #pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
         private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
@@ -74,36 +76,15 @@ namespace NLog.Internal
                 { typeof(int), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Int32, CultureInfo.InvariantCulture) },
                 { typeof(bool), (stringvalue, factory) => Convert.ChangeType(stringvalue.Trim(), TypeCode.Boolean, CultureInfo.InvariantCulture) },
                 { typeof(CultureInfo), (stringvalue, factory) =>  TryParseCultureInfo(stringvalue) },
-                { typeof(Type),  (stringvalue, factory) => Type.GetType(stringvalue.Trim(), true) },
+                { typeof(Type),  (stringvalue, factory) => PropertyTypeConverter.ConvertToType(stringvalue.Trim(), true) },
                 { typeof(LineEndingMode), (stringvalue, factory) => LineEndingMode.FromString(stringvalue.Trim()) },
                 { typeof(Uri), (stringvalue, factory) => new Uri(stringvalue.Trim()) }
             };
         }
 
-        /// <summary>
-        /// Set value parsed from string.
-        /// </summary>
-        /// <param name="targetObject">object instance to set with property <paramref name="propertyName"/></param>
-        /// <param name="propertyName">name of the property on <paramref name="targetObject"/></param>
-        /// <param name="stringValue">The value to be parsed.</param>
-        /// <param name="configurationItemFactory"></param>
-        internal static void SetPropertyFromString(object targetObject, string propertyName, string stringValue, ConfigurationItemFactory configurationItemFactory)
-        {
-            var objType = targetObject.GetType();
-
-            if (!TryGetPropertyInfo(objType, propertyName, out var propInfo))
-            {
-                throw new NLogConfigurationException($"'{objType?.Name}' cannot assign unknown property '{propertyName}'='{stringValue}'");
-            }
-
-            SetPropertyFromString(targetObject, propInfo, stringValue, configurationItemFactory);
-        }
-
         internal static void SetPropertyFromString(object targetObject, PropertyInfo propInfo, string stringValue, ConfigurationItemFactory configurationItemFactory)
         {
             object propertyValue = null;
-
-            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", targetObject?.GetType(), propInfo.Name, stringValue);
 
             try
             {
@@ -116,7 +97,7 @@ namespace NLog.Internal
                         throw new NotSupportedException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}', because property of type array and not scalar value: '{stringValue}'.");
                     }
 
-                    if (!(TryGetEnumValue(propertyType, stringValue, out propertyValue, true)
+                    if (!(TryGetEnumValue(propertyType, stringValue, out propertyValue)
                         || TryImplicitConversion(propertyType, stringValue, out propertyValue)
                         || TryFlatListConversion(targetObject, propInfo, stringValue, configurationItemFactory, out propertyValue)
                         || TryTypeConverterConversion(propertyType, stringValue, out propertyValue)))
@@ -160,13 +141,45 @@ namespace NLog.Internal
         /// <summary>
         /// Get property info
         /// </summary>
+        /// <param name="configFactory">Configuration Reflection Helper</param>
         /// <param name="obj">object which could have property <paramref name="propertyName"/></param>
         /// <param name="propertyName">property name on <paramref name="obj"/></param>
         /// <param name="result">result when success.</param>
         /// <returns>success.</returns>
-        internal static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)
+        internal static bool TryGetPropertyInfo(ConfigurationItemFactory configFactory, object obj, string propertyName, out PropertyInfo result)
         {
-            return TryGetPropertyInfo(obj.GetType(), propertyName, out result);
+            var configProperties = TryLookupConfigItemProperties(configFactory, obj.GetType());
+            if (configProperties is null)
+            {
+                if (!string.IsNullOrEmpty(propertyName))
+                {
+#pragma warning disable CS0618 // Type or member is obsolete
+                    return TryGetPropertyInfo(obj, propertyName, out result);
+#pragma warning restore CS0618 // Type or member is obsolete
+                }
+
+                result = null;
+                return false;
+            }
+
+            return configProperties.TryGetValue(propertyName, out result);
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2075")]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        private static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)
+        {
+            InternalLogger.Debug("Object reflection needed for unknown type: {0} (Lookup property={1})", obj.GetType(), propertyName);
+
+            PropertyInfo propInfo = obj.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase);
+            if (propInfo != null)
+            {
+                result = propInfo;
+                return true;
+            }
+
+            result = null;
+            return false;
         }
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
@@ -175,7 +188,7 @@ namespace NLog.Internal
             return arrayParameterAttribute?.ItemType;
         }
 
-        internal static bool IsConfigurationItemType(Type type)
+        internal static bool IsConfigurationItemType(ConfigurationItemFactory configFactory, Type type)
         {
             if (type is null || IsSimplePropertyType(type))
                 return false;
@@ -186,30 +199,35 @@ namespace NLog.Internal
             if (typeof(Layout).IsAssignableFrom(type))
                 return true;
 
-            // NLog will register no properties for types that are not marked with NLogConfigurationItemAttribute
-            return TryLookupConfigItemProperties(type) != null;
+            if (typeof(Target).IsAssignableFrom(type))
+                return true;
+
+            if (typeof(IEnumerable).IsAssignableFrom(type))
+                return true;
+
+            return TryLookupConfigItemProperties(configFactory, type) != null;
         }
 
-        internal static Dictionary<string, PropertyInfo> GetAllConfigItemProperties(Type type)
+        internal static Dictionary<string, PropertyInfo> GetAllConfigItemProperties(ConfigurationItemFactory configFactory, Type type)
         {
             // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
-            return TryLookupConfigItemProperties(type) ?? new Dictionary<string, PropertyInfo>();
+            return TryLookupConfigItemProperties(configFactory, type) ?? new Dictionary<string, PropertyInfo>();
         }
 
-        private static Dictionary<string, PropertyInfo> TryLookupConfigItemProperties(Type type)
+        private static Dictionary<string, PropertyInfo> TryLookupConfigItemProperties(ConfigurationItemFactory configFactory, Type type)
         {
-            lock (parameterInfoCache)
+            lock (_parameterInfoCache)
             {
                 // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
-                if (!parameterInfoCache.TryGetValue(type, out var cache))
+                if (!_parameterInfoCache.TryGetValue(type, out var cache))
                 {
-                    if (TryCreatePropertyInfoDictionary(type, out cache))
+                    if (TryCreatePropertyInfoDictionary(configFactory, type, out cache))
                     {
-                        parameterInfoCache[type] = cache;
+                        _parameterInfoCache[type] = cache;
                     }
                     else
                     {
-                        parameterInfoCache[type] = null;    // Not config item type
+                        _parameterInfoCache[type] = null;    // Not config item type
                     }
                 }
 
@@ -217,9 +235,9 @@ namespace NLog.Internal
             }
         }
 
-        internal static void CheckRequiredParameters(object o)
+        internal static void CheckRequiredParameters(ConfigurationItemFactory configFactory, object o)
         {
-            foreach (var configProp in GetAllConfigItemProperties(o.GetType()))
+            foreach (var configProp in GetAllConfigItemProperties(configFactory, o.GetType()))
             {
                 var propInfo = configProp.Value;
                 if (propInfo.PropertyType?.IsClass() == true)
@@ -255,9 +273,13 @@ namespace NLog.Internal
             if (type == typeof(Encoding))
                 return true;
 
+            if (type == typeof(LogLevel))
+                return true;
+
             return false;
         }
 
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2070")]
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
             try
@@ -288,7 +310,7 @@ namespace NLog.Internal
 
         private static bool TryNLogSpecificConversion(Type propertyType, string value, ConfigurationItemFactory configurationItemFactory, out object newValue)
         {
-            if (DefaultPropertyConversionMapper.TryGetValue(propertyType, out var objectConverter))
+            if (_propertyConversionMapper.TryGetValue(propertyType, out var objectConverter))
             {
                 newValue = objectConverter.Invoke(value, configurationItemFactory);
                 return true;
@@ -306,7 +328,7 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryGetEnumValue(Type resultType, string value, out object result, bool flagsEnumAllowed)
+        private static bool TryGetEnumValue(Type resultType, string value, out object result)
         {
             if (!resultType.IsEnum())
             {
@@ -314,36 +336,24 @@ namespace NLog.Internal
                 return false;
             }
 
-            if (flagsEnumAllowed && resultType.IsDefined(_flagsAttribute.GetType(), false))
+            if (!StringHelpers.IsNullOrWhiteSpace(value))
             {
-                ulong union = 0;
-
-                foreach (string v in value.SplitAndTrimTokens(','))
+                // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
+                try
                 {
-                    FieldInfo enumField = resultType.GetField(v, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                    if (enumField is null)
-                    {
-                        throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
-                    }
-
-                    union |= Convert.ToUInt64(enumField.GetValue(null), CultureInfo.InvariantCulture);
+                    result = Enum.Parse(resultType, value, true) as Enum;
+                    return true;
                 }
-
-                result = Convert.ChangeType(union, Enum.GetUnderlyingType(resultType), CultureInfo.InvariantCulture);
-                result = Enum.ToObject(resultType, result);
-
-                return true;
+                catch (ArgumentException)
+                {
+                    result = null;
+                    return false;
+                }
             }
             else
             {
-                FieldInfo enumField = resultType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                if (enumField is null)
-                {
-                    throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
-                }
-
-                result = enumField.GetValue(null);
-                return true;
+                result = null;
+                return false;
             }
         }
 
@@ -395,7 +405,7 @@ namespace NLog.Internal
                 var values = valueRaw.SplitQuoted(',', '\'', '\\');
                 foreach (var value in values)
                 {
-                    if (!(TryGetEnumValue(propertyType, value, out newValue, false)
+                    if (!(TryGetEnumValue(propertyType, value, out newValue)
                           || TryNLogSpecificConversion(propertyType, value, configurationItemFactory, out newValue)
                           || TryImplicitConversion(propertyType, value, out newValue)
                           || TryTypeConverterConversion(propertyType, value, out newValue)))
@@ -430,14 +440,12 @@ namespace NLog.Internal
 
                 //note: type.GenericTypeArguments is .NET 4.5+ 
                 collectionItemType = collectionType.GetGenericArguments()[0];
-                collectionObject = CreateCollectionObjectInstance(isSet ? typeof(HashSet<>) : typeof(List<>), collectionItemType, hashsetComparer);
+                collectionObject = isSet ? CreateCollectionHashSetInstance(collectionItemType, hashsetComparer, out collectionAddMethod) : CreateCollectionListInstance(collectionItemType, out collectionAddMethod);
                 //no support for array
                 if (collectionObject is null)
                 {
                     throw new NLogConfigurationException($"Cannot create instance of {collectionType.ToString()} for value {valueRaw}");
                 }
-
-                collectionAddMethod = collectionObject.GetType().GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
                 if (collectionAddMethod is null)
                 {
                     throw new NLogConfigurationException($"Add method on type {collectionType.ToString()} for value {valueRaw} not found");
@@ -452,15 +460,30 @@ namespace NLog.Internal
             return false;
         }
 
-        private static object CreateCollectionObjectInstance(Type collectionType, Type collectionItemType, object hashSetComparer)
+        private static object CreateCollectionHashSetInstance(Type collectionItemType, object hashSetComparer, out MethodInfo collectionAddMethod)
         {
-            var concreteType = collectionType.MakeGenericType(collectionItemType);
+            var concreteType = typeof(HashSet<>).MakeGenericType(collectionItemType);
+
+            collectionAddMethod = typeof(HashSet<>).MakeGenericType(collectionItemType).GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+
             if (hashSetComparer != null)
             {
                 var constructor = concreteType.GetConstructor(new[] { hashSetComparer.GetType() });
                 if (constructor != null)
+                {
                     return constructor.Invoke(new[] { hashSetComparer });
+                }
             }
+
+            return Activator.CreateInstance(concreteType);
+        }
+
+        private static object CreateCollectionListInstance(Type collectionItemType, out MethodInfo collectionAddMethod)
+        {
+            var concreteType = typeof(List<>).MakeGenericType(collectionItemType);
+
+            collectionAddMethod = typeof(List<>).MakeGenericType(collectionItemType).GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+
             return Activator.CreateInstance(concreteType);
         }
 
@@ -473,16 +496,22 @@ namespace NLog.Internal
             if (exitingValue != null)
             {
                 // Found original HashSet-object. See if we can extract the Comparer
-                var comparerPropInfo = exitingValue.GetType().GetProperty("Comparer", BindingFlags.Instance | BindingFlags.Public);
-                if (comparerPropInfo.IsValidPublicProperty())
+                if (exitingValue.GetType().GetGenericTypeDefinition() == typeof(HashSet<>))
                 {
-                    return comparerPropInfo.GetPropertyValue(exitingValue);
+                    var comparerPropInfo = typeof(HashSet<>).MakeGenericType(exitingValue.GetType().GetGenericArguments()[0]).GetProperty("Comparer", BindingFlags.Instance | BindingFlags.Public);
+                    if (comparerPropInfo.IsValidPublicProperty())
+                    {
+                        return comparerPropInfo.GetPropertyValue(exitingValue);
+                    }
                 }
             }
 
             return null;
         }
 
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2026")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2067")]
+        [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         internal static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
             try
@@ -505,91 +534,122 @@ namespace NLog.Internal
             }
         }
 
-        private static bool TryGetPropertyInfo(Type targetType, string propertyName, out PropertyInfo result)
-        {
-            if (!string.IsNullOrEmpty(propertyName))
-            {
-                PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                if (propInfo != null)
-                {
-                    result = propInfo;
-                    return true;
-                }
-            }
-
-            // NLog has special property-lookup handling for default-parameters (and array-properties)
-            var configProperties = GetAllConfigItemProperties(targetType);
-            return configProperties.TryGetValue(propertyName, out result);
-        }
-
-        private static bool TryCreatePropertyInfoDictionary(Type t, out Dictionary<string, PropertyInfo> result)
+        private static bool TryCreatePropertyInfoDictionary(ConfigurationItemFactory configFactory, Type objectType, out Dictionary<string, PropertyInfo> result)
         {
             result = null;
 
             try
             {
-                if (!t.IsDefined(_configPropertyAttribute.GetType(), true))
+                if (!objectType.IsDefined(_configPropertyAttribute.GetType(), true))
                 {
                     return false;
                 }
 
-                result = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
-                foreach (PropertyInfo propInfo in t.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                var properties = configFactory.TryGetTypeProperties(objectType);
+                if (properties is null)
                 {
-                    try
-                    {
-                        var parameterName = LookupPropertySymbolName(propInfo);
-                        if (string.IsNullOrEmpty(parameterName))
-                        {
-                            continue;
-                        }
+                    return false;
+                }
 
-                        result[parameterName] = propInfo;
+                if (properties.Count == 0)
+                {
+                    result = properties;
+                    return true;
+                }
 
-                        if (propInfo.IsDefined(_defaultParameterAttribute.GetType(), false))
-                        {
-                            // define a property with empty name (Default property name)
-                            result[string.Empty] = propInfo;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Debug(ex, "Type reflection not possible for property {0} on type {1}. Maybe because of .NET Native.", propInfo.Name, t);
-                    }
+                if (!HasCustomConfigurationProperties(objectType, properties))
+                {
+                    result = properties;
+                    return true;
+                }
+
+                bool checkDefaultValue = typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(objectType);
+
+                result = new Dictionary<string, PropertyInfo>(properties.Count + 4, StringComparer.OrdinalIgnoreCase);
+                foreach (var property in properties)
+                {
+                    var propInfo = property.Value;
+
+                    if (!IncludeConfigurationPropertyInfo(objectType, propInfo, checkDefaultValue, out var overridePropertyName))
+                        continue;
+
+                    result[propInfo.Name] = propInfo;
+                    if (overridePropertyName is null)
+                        continue;
+
+                    result[overridePropertyName] = propInfo;
                 }
             }
             catch (Exception ex)
             {
-                InternalLogger.Debug(ex, "Type reflection not possible for type {0}. Maybe because of .NET Native.", t);
+                InternalLogger.Debug(ex, "Type reflection not possible for type {0}. Maybe because of .NET Native.", objectType);
             }
 
             return result != null;
         }
 
-        private static string LookupPropertySymbolName(PropertyInfo propInfo)
+        private static bool HasCustomConfigurationProperties(Type objectType, Dictionary<string, PropertyInfo> objectProperties)
         {
-            if (propInfo.PropertyType is null)
-                return null;
+            bool checkDefaultValue = typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(objectType);
 
-            if (IsSimplePropertyType(propInfo.PropertyType))
-                return propInfo.Name;
-
-            if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(propInfo.PropertyType))
-                return propInfo.Name;
-
-            if (typeof(Layout).IsAssignableFrom(propInfo.PropertyType))
-                return propInfo.Name;
-
-            if (propInfo.IsDefined(_ignorePropertyAttribute.GetType(), false))
-                return null;
-
-            var arrayParameterAttribute = propInfo.GetFirstCustomAttribute<ArrayParameterAttribute>();
-            if (arrayParameterAttribute != null)
+            foreach (var property in objectProperties)
             {
-                return arrayParameterAttribute.ElementName;
+                if (IncludeConfigurationPropertyInfo(objectType, property.Value, checkDefaultValue, out var overridePropertyName) && overridePropertyName is null)
+                    continue;
+
+                return true;
             }
 
-            return propInfo.Name;
+            return false;
+        }
+
+        private static bool IncludeConfigurationPropertyInfo(Type objectType, PropertyInfo propInfo, bool checkDefaultValue, out string overridePropertyName)
+        {
+            overridePropertyName = null;
+
+            try
+            {
+                if (propInfo?.PropertyType is null)
+                    return false;
+
+                if (checkDefaultValue && propInfo.IsDefined(_defaultParameterAttribute.GetType(), false))
+                {
+                    overridePropertyName = string.Empty;
+                    return true;
+                }
+
+                if (IsSimplePropertyType(propInfo.PropertyType))
+                    return true;
+
+                if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(propInfo.PropertyType))
+                    return true;
+
+                if (typeof(Layout).IsAssignableFrom(propInfo.PropertyType))
+                    return true;
+
+                if (typeof(Target).IsAssignableFrom(propInfo.PropertyType))
+                    return true;
+
+                if (propInfo.IsDefined(_ignorePropertyAttribute.GetType(), false))
+                    return false;
+
+                if (typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
+                {
+                    var arrayParameterAttribute = propInfo.GetFirstCustomAttribute<ArrayParameterAttribute>();
+                    if (arrayParameterAttribute != null)
+                    {
+                        overridePropertyName = arrayParameterAttribute.ElementName;
+                        return true;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Debug(ex, "Type reflection not possible for property {0} on type {1}. Maybe because of .NET Native.", propInfo.Name, objectType);
+                return false;
+            }
         }
     }
 }

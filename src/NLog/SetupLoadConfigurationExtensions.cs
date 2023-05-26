@@ -85,6 +85,29 @@ namespace NLog
         /// Defines <see cref="LoggingRule" /> for redirecting output from matching <see cref="Logger"/> to wanted targets.
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="finalMinLevel">Restrict minimum LogLevel for <see cref="Logger"/> names that matches this rule</param>
+        /// <param name="loggerNamePattern">Logger name pattern to check which <see cref="Logger"/> names matches this rule</param>
+        /// <param name="ruleName">Rule identifier to allow rule lookup</param>
+        public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, LogLevel finalMinLevel, string loggerNamePattern = "*", string ruleName = null)
+        {
+            var ruleBuilder = new SetupConfigurationLoggingRuleBuilder(configBuilder.LogFactory, configBuilder.Configuration, loggerNamePattern, ruleName);
+            if (finalMinLevel != null)
+            {
+                ruleBuilder.LoggingRule.EnableLoggingForLevels(finalMinLevel, LogLevel.MaxLevel);
+                ruleBuilder.LoggingRule.FinalMinLevel = finalMinLevel;
+            }
+            else
+            {
+                ruleBuilder.LoggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+            }                
+            return ruleBuilder;
+        }
+
+
+        /// <summary>
+        /// Defines <see cref="LoggingRule" /> for redirecting output from matching <see cref="Logger"/> to wanted targets.
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="targetName">Override the name for the target created</param>
         public static ISetupConfigurationTargetBuilder ForTarget(this ISetupLoadConfigurationBuilder configBuilder, string targetName = null)
         {

@@ -110,6 +110,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void Configuration_InaccessibleNLog_doesNotThrowException()
         {
             string tempDirectory = null;
@@ -138,6 +139,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void LoadConfiguration_InaccessibleNLog_throwException()
         {
             string tempDirectory = null;
@@ -170,6 +172,7 @@ namespace NLog.UnitTests
             return new FileStream(configFile, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
         }
 
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         private static LogFactory CreateEmptyNLogFile(out string tempDirectory, out string filePath)
         {
             tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));

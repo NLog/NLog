@@ -8,6 +8,14 @@ if (-Not $LastExitCode -eq 0)
 
 if ($isWindows -or $Env:WinDir)
 {
+	dotnet publish .\tests\TestTrimPublish --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	.\tests\TestTrimPublish\bin\release\net6.0\win-x64\publish\TestTrimPublish.exe
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
 	dotnet test ./tests/NLog.UnitTests/ --framework net461 --configuration release --no-restore
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }

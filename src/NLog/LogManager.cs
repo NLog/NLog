@@ -36,6 +36,7 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
@@ -79,6 +80,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
             add => factory.ConfigurationReloaded += value;
@@ -162,6 +164,7 @@ namespace NLog
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>
         /// <returns>LogFactory instance for fluent interface</returns>
+        [Obsolete("Replaced by LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public static LogFactory LoadConfiguration(string configFile)
         {
             factory.LoadConfiguration(configFile);
@@ -228,7 +231,8 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Logger GetCurrentClassLogger(Type loggerType)
+        [Obsolete("Replaced by LogFactory.GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        public static Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return factory.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
         }
@@ -261,7 +265,8 @@ namespace NLog
         /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
-        public static Logger GetLogger(string name, Type loggerType)
+        [Obsolete("Replaced by LogFactory.GetLogger<T>(). Marked obsolete on NLog 5.2")]
+        public static Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return factory.GetLogger(name, loggerType);
         }

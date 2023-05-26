@@ -43,24 +43,6 @@ namespace NLog.UnitTests.Layouts
     public class ThreadAgnosticTests : NLogTestBase
     {
         [Fact]
-        public void ThreadAgnosticAttributeTest()
-        {
-            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly))
-            {
-                if (t.Namespace == typeof(WrapperLayoutRendererBase).Namespace)
-                {
-                    if (t.IsAbstract || t.IsEnum || t.IsNestedPrivate)
-                    {
-                        // skip non-concrete types, enumerations, and private nested types
-                        continue;
-                    }
-
-                    Assert.True(t.IsDefined(typeof(ThreadAgnosticAttribute), true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
-                }
-            }
-        }
-
-        [Fact]
         public void ThreadAgnosticTest()
         {
             Layout l = new SimpleLayout("${message}");
@@ -178,8 +160,7 @@ namespace NLog.UnitTests.Layouts
         public void CustomNotAgnosticTests()
         {
             var cif = new ConfigurationItemFactory();
-            cif.RegisterType(typeof(CustomRendererNonAgnostic), string.Empty);
-
+            cif.LayoutRendererFactory.RegisterType<CustomRendererNonAgnostic>("customNotAgnostic");
             Layout l = new SimpleLayout("${customNotAgnostic}", cif);
 
             l.Initialize(null);
@@ -190,7 +171,7 @@ namespace NLog.UnitTests.Layouts
         public void CustomAgnosticTests()
         {
             var cif = new ConfigurationItemFactory();
-            cif.RegisterType(typeof(CustomRendererAgnostic), string.Empty);
+            cif.LayoutRendererFactory.RegisterType<CustomRendererAgnostic>("customAgnostic");
 
             Layout l = new SimpleLayout("${customAgnostic}", cif);
 

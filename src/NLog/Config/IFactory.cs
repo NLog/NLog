@@ -34,16 +34,33 @@
 namespace NLog.Config
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Provides means to populate factories of named items (such as targets, layouts, layout renderers, etc.).
+    /// Factory of named items (such as <see cref="Targets.Target"/>, <see cref="Layouts.Layout"/>, <see cref="LayoutRenderers.LayoutRenderer"/>, etc.).
     /// </summary>
     internal interface IFactory
     {
         void Clear();
 
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix);
 
-        void RegisterType(Type type, string itemNamePrefix);
+        void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix);
+    }
+
+    /// <summary>
+    /// Factory of named items (such as <see cref="Targets.Target"/>, <see cref="Layouts.Layout"/>, <see cref="LayoutRenderers.LayoutRenderer"/>, etc.).
+    /// </summary>
+    public interface IFactory<TBaseType> where TBaseType : class
+    {
+        /// <summary>
+        /// Registers type-creation from type-alias
+        /// </summary>
+        void RegisterType<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(string typeAlias) where TType : TBaseType, new();
+        /// <summary>
+        /// Create type-instance from type-alias
+        /// </summary>
+        bool TryCreateInstance(string typeAlias, out TBaseType result);
     }
 }

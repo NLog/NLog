@@ -393,7 +393,7 @@ namespace NLog.UnitTests.Config
             </nlog>", null, logFactory);
             logFactory.GetLogger("Hello").Info("World");
 
-            ConfigurationItemFactory.Default.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+            ConfigurationItemFactory.Default.LayoutRendererFactory.TryCreateInstance("mylayout", out var layoutRenderer);
             var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
             layout.Render(LogEventInfo.CreateNullEvent());
 
@@ -421,7 +421,7 @@ namespace NLog.UnitTests.Config
             </nlog>", null, logFactory);
             logFactory.GetLogger("Hello").Info("World");
 
-            ConfigurationItemFactory.Default.GetLayoutRenderers().TryCreateInstance("mylayout", out var layoutRenderer);
+            ConfigurationItemFactory.Default.LayoutRendererFactory.TryCreateInstance("mylayout", out var layoutRenderer);
             var layout = new SimpleLayout(new LayoutRenderer[] { layoutRenderer }, "mylayout", ConfigurationItemFactory.Default);
             layout.Render(LogEventInfo.CreateNullEvent());
 

@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Text;
     using NLog.Common;
@@ -127,7 +128,7 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-                PropertyHelper.CheckRequiredParameters(this);
+                PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
                 InitializeLayoutRenderer();
             }
             catch (Exception ex)
@@ -237,7 +238,8 @@ namespace NLog.LayoutRenderers
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
-        public static void Register<T>(string name)
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static void Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string name)
             where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);
@@ -250,13 +252,12 @@ namespace NLog.LayoutRenderers
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="layoutRendererType"> Type of the layout renderer.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
-        public static void Register(string name, Type layoutRendererType)
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type layoutRendererType)
         {
             Guard.ThrowIfNull(layoutRendererType);
             Guard.ThrowIfNullOrEmpty(name);
-
-            ConfigurationItemFactory.Default.LayoutRenderers
-                .RegisterDefinition(name, layoutRendererType);
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterDefinition(name, layoutRendererType);
         }
 
         /// <summary>
@@ -264,6 +265,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public static void Register(string name, Func<LogEventInfo, object> func)
         {
             Guard.ThrowIfNull(func);
@@ -275,6 +277,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public static void Register(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
         {
             Guard.ThrowIfNull(func);
@@ -286,10 +289,11 @@ namespace NLog.LayoutRenderers
         /// Register a custom layout renderer with a callback function <paramref name="layoutRenderer"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="layoutRenderer">Renderer with callback func</param>
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public static void Register(FuncLayoutRenderer layoutRenderer)
         {
             Guard.ThrowIfNull(layoutRenderer);
-            ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterFuncLayout(layoutRenderer.LayoutRendererName, layoutRenderer);
         }
 
         /// <summary>

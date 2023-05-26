@@ -76,7 +76,9 @@ namespace NLog.Config
         
         private LoggingConfiguration TryLoadFromFilePaths(LogFactory logFactory, string filename)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             var configFileNames = logFactory.GetCandidateConfigFilePaths(filename);
+#pragma warning restore CS0618 // Type or member is obsolete
             foreach (string configFile in configFileNames)
             {
                 if (TryLoadLoggingConfiguration(logFactory, configFile, out var config))

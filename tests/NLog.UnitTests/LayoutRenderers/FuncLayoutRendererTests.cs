@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using NLog.LayoutRenderers;
 using NLog.Config;
 using Xunit;
@@ -43,29 +44,53 @@ namespace NLog.UnitTests.LayoutRenderers
         public void RegisterCustomFuncLayoutRendererTest()
         {
             // Arrange
-            var funcLayoutRenderer = new MyFuncLayoutRenderer("the-answer-new");
-
-            // Act
-            LayoutRenderer.Register(funcLayoutRenderer);
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<MyFuncLayoutRenderer>("the-answer-new"))
+                .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
                 <targets>
                     <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer-new:Format=D3}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var logger = LogManager.GetCurrentClassLogger();
+            // Act
+            var logger = logFactory.GetCurrentClassLogger();
             logger.Debug("test1");
 
             // Assert
-            AssertDebugLastMessage("debug", "TheAnswer=042");
+            AssertDebugLastMessage("debug", "TheAnswer=042", logFactory);
+        }
+
+        [Fact]
+        public void RegisterCustomFuncLayoutRendererTestOldStyle()
+        {
+            // Arrange
+            var funcLayoutRenderer = new MyFuncLayoutRenderer("the-answer-new");
+
+            // Act
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer(funcLayoutRenderer))
+                .LoadConfigurationFromXml(@"<nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer-new:Format=D3}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetCurrentClassLogger();
+            logger.Debug("test1");
+
+            // Assert
+            AssertDebugLastMessage("debug", "TheAnswer=042", logFactory);
         }
 
         private class MyFuncLayoutRenderer : FuncLayoutRenderer
         {
-            /// <inheritdoc/>
+            public MyFuncLayoutRenderer() : base(string.Empty)
+            {
+            }
+
             public MyFuncLayoutRenderer(string layoutRendererName) : base(layoutRendererName)
             {
             }

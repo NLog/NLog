@@ -154,6 +154,12 @@ namespace NLog.Internal
             return className;
         }
 
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow callsite logic", "IL2026")]
+        public static MethodBase GetStackMethod(StackFrame stackFrame)
+        {
+            return stackFrame?.GetMethod();
+        }
+
         /// <summary>
         /// Gets the fully qualified name of the class invoking the calling method, including the 
         /// namespace but not the assembly.    
@@ -209,7 +215,10 @@ namespace NLog.Internal
                 var stackTrace = new StackTrace(false);
                 className = GetClassFullName(stackTrace);
                 if (string.IsNullOrEmpty(className))
-                    className = stackFrame.GetMethod()?.Name ?? string.Empty;
+                {
+                    var method = StackTraceUsageUtils.GetStackMethod(stackFrame);
+                    className = method?.Name ?? string.Empty;
+                }                    
             }
             return className;
         }
@@ -234,7 +243,7 @@ namespace NLog.Internal
         /// <returns>Valid assembly, or null if assembly was internal</returns>
         public static Assembly LookupAssemblyFromStackFrame(StackFrame stackFrame)
         {
-            var method = stackFrame.GetMethod();
+            var method = StackTraceUsageUtils.GetStackMethod(stackFrame);
             if (method is null)
             {
                 return null;
@@ -267,7 +276,7 @@ namespace NLog.Internal
         /// <returns>Valid class name, or empty string if assembly was internal</returns>
         public static string LookupClassNameFromStackFrame(StackFrame stackFrame)
         {
-            var method = stackFrame.GetMethod();
+            var method = StackTraceUsageUtils.GetStackMethod(stackFrame);
             if (method != null && LookupAssemblyFromStackFrame(stackFrame) != null)
             {
                 string className = GetStackFrameMethodClassName(method, true, true, true);

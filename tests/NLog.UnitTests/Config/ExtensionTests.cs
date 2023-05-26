@@ -245,6 +245,16 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead override type-creation by calling NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        public void RegisterNamedTypeLessTest()
+        {
+            Assert.NotNull(typeof(FooLayout));
+            var configurationItemFactory = new ConfigurationItemFactory();
+            configurationItemFactory.GetLayoutFactory().RegisterNamedType("foo", typeof(FooLayout).ToString() + "," + typeof(FooLayout).Assembly.GetName().Name);
+            Assert.NotNull(configurationItemFactory.LayoutFactory.CreateInstance("foo"));
+        }
+
+        [Fact]
         public void ExtensionTest_extensions_not_top_and_used()
         {
             Assert.NotNull(typeof(FooLayout));
@@ -379,9 +389,10 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
-            var fileLocations = ConfigurationItemFactory.GetAutoLoadingFileLocations().ToArray();
+            var fileLocations = AssemblyExtensionLoader.GetAutoLoadingFileLocations().ToArray();
             Assert.NotEmpty(fileLocations);
             Assert.NotNull(fileLocations[0].Key);
             Assert.NotNull(fileLocations[0].Value); // Primary search location is NLog-assembly
@@ -422,6 +433,7 @@ namespace NLog.UnitTests.Config
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void Extension_loading_could_be_canceled(bool cancel)
         {
             ConfigurationItemFactory.Default = null;
@@ -525,6 +537,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void LoadExtensionFromAppDomain()
         {
             try
@@ -563,6 +576,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void FullyQualifiedExtensionTest()
         {
             // Arrange
@@ -586,10 +600,9 @@ namespace NLog.UnitTests.Config
         [InlineData("", null)]
         [InlineData("ManuallyLoadedTarget", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData("ManuallyLoaded-Target", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
-        [InlineData("ManuallyLoadedTarget, Manually-Loaded-Extension", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
-        [InlineData("ManuallyLoaded-Target, Manually-Loaded-Extension", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData(", Manually-Loaded-Extension", null)] // border case
         [InlineData("ManuallyLoadedTarget,", null)] // border case
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void NormalizeNameTest(string input, string expected)
         {
             // Arrange
@@ -597,9 +610,9 @@ namespace NLog.UnitTests.Config
             var configFactory = new ConfigurationItemFactory(assembly);
 
             // Act
-            var foundDefinition = configFactory.Targets.TryGetDefinition(input, out var outputDefinition);
-            var foundInstance = configFactory.Targets.TryCreateInstance(input, out var outputInstance);
-            var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.Targets.CreateInstance(input) : null;
+            var foundDefinition = configFactory.GetTargetFactory().TryGetDefinition(input, out var outputDefinition);
+            var foundInstance = configFactory.TargetFactory.TryCreateInstance(input, out var outputInstance);
+            var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.GetTargetFactory().CreateInstance(input) : null;
 
             // Assert
             Assert.Equal(expected != null, foundInstance);
@@ -609,10 +622,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, outputDefinition?.ToString());
         }
 
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private static Assembly LoadManuallyLoadedExtensionDll()
         {
             // ...\NLog\tests\NLog.UnitTests\bin\Debug\netcoreapp2.0\nlog.dll
-            var nlogDirectory = new DirectoryInfo(ConfigurationItemFactory.GetAutoLoadingFileLocations().First().Key);
+            var nlogDirectory = new DirectoryInfo(AssemblyExtensionLoader.GetAutoLoadingFileLocations().First().Key);
             var configurationDirectory = nlogDirectory.Parent;
             var testsDirectory = configurationDirectory.Parent.Parent.Parent;
             var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,

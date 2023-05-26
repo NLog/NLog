@@ -36,6 +36,7 @@ namespace NLog.Targets
     using System;
     using System.Reflection;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
@@ -109,33 +110,37 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(ClassName) && !string.IsNullOrEmpty(MethodName))
             {
-                _logEventAction = null;
-
-                var targetType = Type.GetType(ClassName);
-                if (targetType is null)
-                {
-                    throw new NLogConfigurationException($"MethodCallTarget: failed to get type from ClassName={ClassName}");
-                }
-                else
-                {
-                    var methodInfo = targetType.GetMethod(MethodName);
-                    if (methodInfo is null)
-                    {
-                        throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} not found in ClassName={ClassName} - and must be static method");
-                    }
-                    else if (!methodInfo.IsStatic)
-                    {
-                        throw new NLogConfigurationException($"MethodCallTarget: MethodName={MethodName} found in ClassName={ClassName} - but not static method");
-                    }
-                    else
-                    {
-                        _logEventAction = BuildLogEventAction(methodInfo);
-                    }
-                }
+                _logEventAction = BuildLogEventAction(ClassName, MethodName);
             }
             else if (_logEventAction is null)
             {
                 throw new NLogConfigurationException($"MethodCallTarget: Missing configuration of ClassName and MethodName");
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow method lookup from config", "IL2075")]
+        private static Action<LogEventInfo, object[]> BuildLogEventAction(string className, string methodName)
+        {
+            var targetType = PropertyTypeConverter.ConvertToType(className.Trim(), false);
+            if (targetType is null)
+            {
+                throw new NLogConfigurationException($"MethodCallTarget: failed to get type from ClassName={className}");
+            }
+            else
+            {
+                var methodInfo = targetType.GetMethod(methodName);
+                if (methodInfo is null)
+                {
+                    throw new NLogConfigurationException($"MethodCallTarget: MethodName={methodName} not found in ClassName={className} - and must be static method");
+                }
+                else if (!methodInfo.IsStatic)
+                {
+                    throw new NLogConfigurationException($"MethodCallTarget: MethodName={methodName} found in ClassName={className} - but not static method");
+                }
+                else
+                {
+                    return BuildLogEventAction(methodInfo);
+                }
             }
         }
 

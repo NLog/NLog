@@ -58,6 +58,9 @@ For all config options and platform support, check https://nlog-project.org/conf
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <IsTrimmable>true</IsTrimmable>
+    <TrimMode>copyused</TrimMode>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -170,6 +173,10 @@ For all config options and platform support, check https://nlog-project.org/conf
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
     </None>
+    <None Update="Config\AssemblyExtensionTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyExtensionTypes.cs</LastGenOutput>
+    </None>
     <None Update="Logger-generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Logger-generated.cs</LastGenOutput>
@@ -185,6 +192,11 @@ For all config options and platform support, check https://nlog-project.org/conf
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>InternalLogger-generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Config\AssemblyExtensionTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AssemblyExtensionTypes.tt</DependentUpon>
     </Compile>
     <Compile Update="Logger-generated.cs">
       <DesignTime>True</DesignTime>

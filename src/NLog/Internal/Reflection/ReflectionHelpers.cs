@@ -40,42 +40,12 @@ namespace NLog.Internal
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using NLog.Common;
 
     /// <summary>
     /// Reflection helpers.
     /// </summary>
     internal static class ReflectionHelpers
     {
-        /// <summary>
-        /// Gets all usable exported types from the given assembly.
-        /// </summary>
-        /// <param name="assembly">Assembly to scan.</param>
-        /// <returns>Usable types from the given assembly.</returns>
-        /// <remarks>Types which cannot be loaded are skipped.</remarks>
-        public static Type[] SafeGetTypes(this Assembly assembly)
-        {
-            try
-            {
-                return assembly.GetTypes();
-            }
-            catch (ReflectionTypeLoadException typeLoadException)
-            {
-                var result = typeLoadException.Types?.Where(t => t != null)?.ToArray() ?? ArrayHelper.Empty<Type>();
-                InternalLogger.Warn(typeLoadException, "Loaded {0} valid types from Assembly: {1}", result.Length, assembly.FullName);
-                foreach (var ex in typeLoadException.LoaderExceptions ?? ArrayHelper.Empty<Exception>())
-                {
-                    InternalLogger.Warn(ex, "Type load exception.");
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn(ex, "Failed to load types from Assembly: {0}", assembly.FullName);
-                return ArrayHelper.Empty<Type>();
-            }
-        }
-
         /// <summary>
         /// Is this a static class?
         /// </summary>
@@ -319,7 +289,7 @@ namespace NLog.Internal
 
         public static bool IsValidPublicProperty(this PropertyInfo p)
         {
-            return p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
+            return p != null && p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
         }
 
         public static object GetPropertyValue(this PropertyInfo p, object instance)

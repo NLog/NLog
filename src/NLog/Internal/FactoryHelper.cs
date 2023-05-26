@@ -34,21 +34,26 @@
 namespace NLog.Internal
 {
     using System;
+    using NLog.Config;
 
     /// <summary>
     /// Object construction helper.
     /// </summary>
+    [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
     internal static class FactoryHelper
     {
-        internal static object CreateInstance(Type t)
+        internal static readonly ConfigurationItemCreator CreateInstance = DefaultCreateInstance;
+
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
+        private static object DefaultCreateInstance(Type type)
         {
             try
             {
-                return Activator.CreateInstance(t);
+                return Activator.CreateInstance(type);
             }
             catch (MissingMethodException exception)
             {
-                throw new NLogConfigurationException($"Cannot access the constructor of type: {t.FullName}. Is the required permission granted?", exception);
+                throw new NLogConfigurationException($"Cannot access the constructor of type: {type.FullName}. Is the required permission granted?", exception);
             }
         }
     }

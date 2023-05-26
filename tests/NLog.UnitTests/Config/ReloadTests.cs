@@ -98,9 +98,15 @@ namespace NLog.UnitTests.Config
         private static void SetLogManagerConfiguration(bool useExplicitFileLoading, string configFilePath)
         {
             if (useExplicitFileLoading)
+            {
                 LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+            }
             else
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
                 LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
         }
 
         [Theory]
@@ -574,6 +580,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void TestKeepVariablesOnReload()
         {
             string config = @"<nlog autoReload='true' keepVariablesOnReload='true'>
@@ -634,6 +641,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void TestResetVariablesOnReload()
         {
             string config = @"<nlog autoReload='true' keepVariablesOnReload='false'>
@@ -688,6 +696,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
         {
             var called = false;
@@ -708,6 +717,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void TestReloadingInvalidConfiguration()
         {
             var validXmlConfig = @"<nlog>
@@ -754,6 +764,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void TestThrowExceptionWhenInvalidXml()
         {
             var invalidXmlConfig = @"<nlog throwExceptions='true' internalLogLevel='debug' internalLogLevel='error'>
@@ -800,21 +811,20 @@ namespace NLog.UnitTests.Config
             }
         }
 
-
         private class ConfigurationReloadWaiter : IDisposable
         {
             private ManualResetEvent counterEvent = new ManualResetEvent(false);
 
             public ConfigurationReloadWaiter()
             {
-                LogManager.ConfigurationReloaded += SignalCounterEvent(counterEvent);
+                LogManager.ConfigurationChanged += SignalCounterEvent(counterEvent);
             }
 
             public bool DidReload => counterEvent.WaitOne(0);
 
             public void Dispose()
             {
-                LogManager.ConfigurationReloaded -= SignalCounterEvent(counterEvent);
+                LogManager.ConfigurationChanged -= SignalCounterEvent(counterEvent);
             }
 
             public void WaitForReload()
@@ -822,7 +832,7 @@ namespace NLog.UnitTests.Config
                 counterEvent.WaitOne(3000);
             }
 
-            private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
+            private static EventHandler<LoggingConfigurationChangedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
             {
                 return (sender, e) =>
                 {

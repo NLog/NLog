@@ -53,10 +53,11 @@ namespace NLog.Internal
         /// from any of the given root objects when traversing the object graph over public properties.
         /// </summary>
         /// <typeparam name="T">Type of the objects to return.</typeparam>
+        /// <param name="configFactory">Configuration Reflection Helper</param>
         /// <param name="aggressiveSearch">Also search the properties of the wanted objects.</param>
         /// <param name="rootObjects">The root objects.</param>
         /// <returns>Ordered list of objects implementing T.</returns>
-        public static List<T> FindReachableObjects<T>(bool aggressiveSearch, params object[] rootObjects)
+        public static List<T> FindReachableObjects<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, params object[] rootObjects)
             where T : class
         {
             if (InternalLogger.IsTraceEnabled)
@@ -67,36 +68,28 @@ namespace NLog.Internal
             var visitedObjects = new HashSet<object>(SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default);
             foreach (var rootObject in rootObjects)
             {
-                if (IncludeConfigurationItem(rootObject))
+                if (PropertyHelper.IsConfigurationItemType(configFactory, rootObject?.GetType()))
                 {
-                    ScanProperties(aggressiveSearch, result, rootObject, 0, visitedObjects);
+                    ScanProperties(configFactory, aggressiveSearch, rootObject, result, 0, visitedObjects);
                 }
             }
             return result;
         }
 
-        /// <remarks>ISet is not there in .net35, so using HashSet</remarks>
-        private static void ScanProperties<T>(bool aggressiveSearch, List<T> result, object o, int level, HashSet<object> visitedObjects)
+        private static void ScanProperties<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, object targetObject, List<T> result, int level, HashSet<object> visitedObjects)
             where T : class
         {
-            if (o is null)
+            if (targetObject is null)
             {
                 return;
             }
 
-            if (visitedObjects.Contains(o))
+            if (visitedObjects.Contains(targetObject))
             {
                 return;
             }
 
-            var type = o.GetType();
-
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, o);
-            }
-
-            if (o is T t)
+            if (targetObject is T t)
             {
                 result.Add(t);
                 if (!aggressiveSearch)
@@ -105,68 +98,79 @@ namespace NLog.Internal
                 }
             }
 
-            foreach (var configProp in PropertyHelper.GetAllConfigItemProperties(type))
+            var type = targetObject.GetType();
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, targetObject);
+            }
+
+            foreach (var configProp in PropertyHelper.GetAllConfigItemProperties(configFactory, type))
             {
                 if (string.IsNullOrEmpty(configProp.Key))
                     continue;   // Ignore default values
 
-                var propInfo = configProp.Value;
-                if (PropertyHelper.IsSimplePropertyType(propInfo.PropertyType))
+                if (!PropertyHelper.IsConfigurationItemType(configFactory, configProp.Value.PropertyType))
                     continue;
 
-                var propValue = propInfo.GetValue(o, null);
+                var propInfo = configProp.Value;
+                var propValue = propInfo.GetValue(targetObject, null);
                 if (propValue is null)
                     continue;
 
-                visitedObjects.Add(o);
-                ScanPropertyForObject(propInfo, propValue, aggressiveSearch, result, level, visitedObjects);
+                visitedObjects.Add(targetObject);
+                ScanPropertyForObject(configFactory, aggressiveSearch, propValue, propInfo, result, level, visitedObjects);
             }
         }
 
-        private static void ScanPropertyForObject<T>(PropertyInfo prop, object propValue, bool aggressiveSearch, List<T> result, int level, HashSet<object> visitedObjects) where T : class
+        private static void ScanPropertyForObject<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, object propValue, PropertyInfo prop, List<T> result, int level, HashSet<object> visitedObjects) where T : class
         {
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("{0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, propValue.ToString(), prop.PropertyType.Namespace);
+                InternalLogger.Trace("{0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, propValue, prop.PropertyType);
             }
 
             if (propValue is IEnumerable enumerable)
             {
-                var list = ConvertEnumerableToList(enumerable);
-                if (list.Count > 0 && !visitedObjects.Contains(list))
+                var propListValue = ConvertEnumerableToList(enumerable, visitedObjects);
+                if (propListValue.Count > 0)
                 {
-                    visitedObjects.Add(list);
-                    ScanPropertiesList(list, aggressiveSearch, result, level + 1, visitedObjects);
+                    ScanPropertiesList(configFactory, aggressiveSearch, propListValue, result, level + 1, visitedObjects);
                 }
             }
             else
             {
-                // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
-                if (IncludeConfigurationItem(propValue, prop.PropertyType))
-                {
-                    ScanProperties(aggressiveSearch, result, propValue, level + 1, visitedObjects);
-                }
+                ScanProperties(configFactory, aggressiveSearch, propValue, result, level + 1, visitedObjects);
             }
         }
 
-        private static void ScanPropertiesList<T>(IList list, bool aggressiveSearch, List<T> result, int level, HashSet<object> visitedObjects) where T : class
+        private static void ScanPropertiesList<T>(ConfigurationItemFactory configFactory, bool aggressiveSearch, IList list, List<T> result, int level, HashSet<object> visitedObjects) where T : class
         {
-            for (int i = 0; i < list.Count; i++)
+            var firstElement = list[0];
+            if (firstElement is null || PropertyHelper.IsConfigurationItemType(configFactory, firstElement.GetType()))
             {
-                var element = list[i];
-                if (IncludeConfigurationItem(element))
+                ScanProperties(configFactory, aggressiveSearch, firstElement, result, level, visitedObjects);
+
+                for (int i = 1; i < list.Count; i++)
                 {
-                    ScanProperties(aggressiveSearch, result, element, level, visitedObjects);
+                    var element = list[i];
+                    ScanProperties(configFactory, aggressiveSearch, element, result, level, visitedObjects);
                 }
             }
         }
 
-        private static IList ConvertEnumerableToList(IEnumerable enumerable)
+        private static IList ConvertEnumerableToList(IEnumerable enumerable, HashSet<object> visitedObjects)
         {
             if (enumerable is ICollection collection && collection.Count == 0)
             {
                 return ArrayHelper.Empty<object>();
             }
+
+            if (visitedObjects.Contains(enumerable))
+            {
+                return ArrayHelper.Empty<object>();
+            }
+
+            visitedObjects.Add(enumerable);
 
             if (enumerable is IList list)
             {
@@ -190,22 +194,6 @@ namespace NLog.Internal
             //new list to prevent: Collection was modified after the enumerator was instantiated.
             //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
             return enumerable.Cast<object>().ToList();
-        }
-
-        private static bool IncludeConfigurationItem(object item, Type propertyType = null)
-        {
-            propertyType = propertyType ?? item?.GetType();
-            if (propertyType is null)
-                return false;
-
-            if (PropertyHelper.IsConfigurationItemType(propertyType))
-                return true;
-
-            var itemType = item?.GetType();
-            if (itemType != null && itemType != propertyType && PropertyHelper.IsConfigurationItemType(itemType))
-                return true;
-
-            return false;
         }
     }
 }

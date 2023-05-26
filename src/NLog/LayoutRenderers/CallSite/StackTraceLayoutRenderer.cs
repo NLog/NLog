@@ -175,8 +175,7 @@ namespace NLog.LayoutRenderers
             bool first = true;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
-                StackFrame f = stackFrameList[i];
-                var method = f.GetMethod();
+                var method = StackTraceUsageUtils.GetStackMethod(stackFrameList[i]);
                 if (method is null)
                 {
                     continue;   // Net Native can have StackFrames without managed methods
@@ -211,8 +210,7 @@ namespace NLog.LayoutRenderers
             bool first = true;
             for (int i = 0; i < stackFrameList.Count; ++i)
             {
-                StackFrame f = stackFrameList[i];
-                var method = f.GetMethod();
+                var method = StackTraceUsageUtils.GetStackMethod(stackFrameList[i]);
                 if (method is null)
                 {
                     continue;   // Net Native can have StackFrames without managed methods

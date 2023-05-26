@@ -90,9 +90,15 @@ namespace NLog.LayoutRenderers
         {
             var nlogAssembly = typeof(LogFactory).GetAssembly();
             if (!string.IsNullOrEmpty(nlogAssembly.Location))
+            {
                 return Path.GetDirectoryName(nlogAssembly.Location);
+            }
             else
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
                 return AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly) ?? string.Empty;
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
         }
     }
 }

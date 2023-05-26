@@ -56,6 +56,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by GetLogger<T>(). Marked obsolete on NLog 5.2")]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -77,6 +78,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         public void TypedGetCurrentClassLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -135,6 +137,7 @@ namespace NLog.UnitTests
 
 
         [Fact]
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         public void InvalidLoggerConfiguration_NotThrowsThrowExceptions_NotThrows()
         {
             using (new NoThrowNLogExceptions())
@@ -144,19 +147,14 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         public void InvalidLoggerConfiguration_ThrowsThrowExceptions_Throws()
         {
             LogManager.ThrowExceptions = true;
-            InvalidLoggerConfiguration_ThrowsNLogResolveException();
-        }
-
-        private void InvalidLoggerConfiguration_ThrowsNLogResolveException()
-        {
-            Assert.Throws<NLogDependencyResolveException>(() =>
+            Assert.Throws<NLogRuntimeException>(() =>
             {
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });
-
         }
 
         public class MyLogger : Logger

@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Conditions
 {
+    using System;
     using NLog.Internal;
     using NLog.Conditions;
     using NLog.Config;
@@ -205,8 +206,8 @@ namespace NLog.UnitTests.Conditions
         public void CustomNLogFactoriesTest()
         {
             var configurationItemFactory = new ConfigurationItemFactory();
-            configurationItemFactory.LayoutRenderers.RegisterDefinition("foo", typeof(FooLayoutRenderer));
-            configurationItemFactory.ConditionMethods.RegisterDefinition("check", typeof(MyConditionMethods).GetMethod("CheckIt"));
+            configurationItemFactory.LayoutRendererFactory.RegisterType<FooLayoutRenderer>("foo");
+            configurationItemFactory.ConditionMethodFactory.RegisterDefinition("check", typeof(MyConditionMethods).GetMethod("CheckIt"));
 
             ConditionParser.ParseExpression("check('${foo}')", configurationItemFactory);
         }
@@ -215,8 +216,8 @@ namespace NLog.UnitTests.Conditions
         public void MethodNameWithUnderscores()
         {
             var configurationItemFactory = new ConfigurationItemFactory();
-            configurationItemFactory.LayoutRenderers.RegisterDefinition("foo", typeof(FooLayoutRenderer));
-            configurationItemFactory.ConditionMethods.RegisterDefinition("__check__", typeof(MyConditionMethods).GetMethod("CheckIt"));
+            configurationItemFactory.LayoutRendererFactory.RegisterType<FooLayoutRenderer>("foo");
+            configurationItemFactory.ConditionMethodFactory.RegisterDefinition("__check__", typeof(MyConditionMethods).GetMethod("CheckIt"));
 
             ConditionParser.ParseExpression("__check__('${foo}')", configurationItemFactory);
         }

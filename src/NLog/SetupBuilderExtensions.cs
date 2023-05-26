@@ -154,7 +154,28 @@ namespace NLog
         /// <param name="optional">Whether to allow application to run when NLog config is not available</param>
         public static ISetupBuilder LoadConfigurationFromFile(this ISetupBuilder setupBuilder, IEnumerable<string> candidateFilePaths, bool optional = true)
         {
-            setupBuilder.LogFactory.SetCandidateConfigFilePaths(candidateFilePaths);
+#pragma warning disable CS0618 // Type or member is obsolete
+            if (candidateFilePaths is null)
+            {
+                setupBuilder.LogFactory.ResetCandidateConfigFilePath();
+            }
+            else if (optional)
+            {
+                var originalFilePaths = setupBuilder.LogFactory.GetCandidateConfigFilePaths();
+                var uniqueFilePaths = new HashSet<string>(candidateFilePaths, StringComparer.OrdinalIgnoreCase);
+                var orderedFilePaths = new List<string>(candidateFilePaths);
+                foreach (var filePath in originalFilePaths)
+                {
+                    if (uniqueFilePaths.Add(filePath))
+                        orderedFilePaths.Add(filePath);
+                }
+                setupBuilder.LogFactory.SetCandidateConfigFilePaths(orderedFilePaths);
+            }
+            else
+            {
+                setupBuilder.LogFactory.SetCandidateConfigFilePaths(candidateFilePaths);
+            }
+#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder.LoadConfigurationFromFile(default(string), optional);
         }
 

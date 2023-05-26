@@ -40,5 +40,6 @@ namespace NLog.Config
     /// </summary>
     /// <param name="itemType">Type of the item.</param>
     /// <returns>Created object of the specified type.</returns>
+    [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
     public delegate object ConfigurationItemCreator(Type itemType);
 }
