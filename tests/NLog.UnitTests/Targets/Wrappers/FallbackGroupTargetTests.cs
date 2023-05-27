@@ -255,7 +255,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         }
                     }));
                 }
-                allEventsDone.WaitOne();                            // Wait for all events to be delivered.
+                allEventsDone.WaitOne(5000);                        // Wait for all events to be delivered.
 
                 Assert.True(totalEvents >= myTarget1.WriteCount,    // Check events weren't delivered twice to myTarget1,
                     "Target 1 received " + myTarget1.WriteCount + " writes although only " + totalEvents + " events were written");

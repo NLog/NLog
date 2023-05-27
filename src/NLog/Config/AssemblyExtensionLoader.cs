@@ -52,7 +52,12 @@ namespace NLog.Config
 
         public void LoadAssemblyFromName(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix)
         {
-            var loadedAssemblies = factory.ScanLoadedAssemblies();
+            var loadedAssemblies = new HashSet<Assembly>();
+            foreach (var itemType in factory.ItemTypes)
+            {
+                loadedAssemblies.Add(itemType.GetAssembly());
+            }
+
             if (loadedAssemblies.Count > 1)
             {
                 foreach (var assembly in loadedAssemblies)

@@ -167,6 +167,14 @@ namespace NLog.Config
         internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
         internal Factory<Layout, LayoutAttribute> GetLayoutFactory() => _layouts;
         internal LayoutRendererFactory GetLayoutRendererFactory() => _layoutRenderers;
+        internal ICollection<Type> ItemTypes
+        {
+            get
+            {
+                lock (SyncRoot)
+                    return new List<Type>(_itemFactories.Keys);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.

@@ -514,8 +514,16 @@ namespace NLog.Internal
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         internal static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
+            if (typeof(IConvertible).IsAssignableFrom(type) || type.IsAssignableFrom(typeof(string)))
+            {
+                newValue = null;
+                return false;
+            }
+
             try
             {
+                InternalLogger.Debug("Object reflection needed for creating external type: {0} from string-value: {1}", type, value);
+
                 var converter = TypeDescriptor.GetConverter(type);
                 if (converter.CanConvertFrom(typeof(string)))
                 {
