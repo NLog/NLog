@@ -500,21 +500,6 @@ namespace NLog.Config
 #pragma warning restore CS0618 // Type or member is obsolete
         }
 
-        internal ICollection<Assembly> ScanLoadedAssemblies()
-        {
-            HashSet<Assembly> assemblies = new HashSet<Assembly>();
-
-            lock (SyncRoot)
-            {
-                foreach (var itemType in _itemFactories)
-                {
-                    assemblies.Add(itemType.Key.GetAssembly());
-                }
-            }
-
-            return assemblies;
-        }
-
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
