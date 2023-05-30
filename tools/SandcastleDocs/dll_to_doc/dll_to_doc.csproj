@@ -17,7 +17,7 @@
 		<None Include="$(PkgNLog_Database)\lib\net46\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<PackageReference Include="NLog.DiagnosticSource" version="1.*" GeneratePathProperty="true" />
+		<PackageReference Include="NLog.DiagnosticSource" version="5.*" GeneratePathProperty="true" />
 		<None Include="$(PkgNLog_DiagnosticSource)\lib\net45\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -61,7 +61,7 @@
 		<None Include="$(PkgNLog_Web_AspNetCore)\lib\net461\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<PackageReference Include="NLog.Windows.Forms" version="4.*" GeneratePathProperty="true" />
+		<PackageReference Include="NLog.Windows.Forms" version="5.*" GeneratePathProperty="true" />
 		<None Include="$(PkgNLog_Windows_Forms)\lib\net35\NLog.*.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

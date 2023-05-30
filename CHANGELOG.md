@@ -4,6 +4,12 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2 (2023/05/30)
+
+**Improvements**
+- [#5191](https://github.com/NLog/NLog/pull/5191) ConfigurationItemFactory annotated for trimming and obsoleted CreateInstance-delegate (#5191) (@snakefoot)
+- [#5216](https://github.com/NLog/NLog/pull/5216) Refactor - Apply ThrowIfNull and ThrowIfNullOrEmpty (#5216) (@nih0n)
+
 ### Version 5.1.5 (2023/05/25)
 
 **Improvements**

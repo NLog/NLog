@@ -31,12 +31,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- TargetWithContext - Fixed ScopeContext capture when multiple wrappers (#5229) (@snakefoot)
-- DefaultJsonSerializer - Cache length when validating json encoding (#5227) (@snakefoot)
-- FileTarget - Suppress exceptions from retrieving FileInfo.CreationTimeUtc (#5220) (@snakefoot)
-- LoggingConfigurationParser - Handle adding Target without name (#5219) (@snakefoot)
-- Log4jXmlEvent - Fixed removal of invalid XML chars (#5215) (@snakefoot)
-- LoggingConfiguration - Expand NLog config variables for Logging Rules WriteTo (#5210) (@snakefoot)
+- ConfigurationItemFactory annotated for trimming and obsoleted CreateInstance-delegate (#5191) (@snakefoot)
+- Refactor - Apply ThrowIfNull and ThrowIfNullOrEmpty (#5216) (@nih0n)
+
+NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
 List of major changes in NLog 5.0: https://nlog-project.org/2022/05/16/nlog-5-0-finally-ready.html
 

@@ -123,13 +123,12 @@ namespace NLog.Config
                 return true;
             }
 
-            if (propertyType.IsEnum() && NLog.Common.ConversionHelpers.TryParseEnum(propertyString, propertyType, out var enumValue))
+            if (propertyType.IsEnum())
             {
-                propertyValue = enumValue;
-                return true;
+                return NLog.Common.ConversionHelpers.TryParseEnum(propertyString, propertyType, out propertyValue);
             }
 
-            if (!typeof(IConvertible).IsAssignableFrom(propertyType) && PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
+            if (PropertyHelper.TryTypeConverterConversion(propertyType, propertyString, out var convertedValue))
             {
                 propertyValue = convertedValue;
                 return true;
@@ -173,6 +172,12 @@ namespace NLog.Config
         [UnconditionalSuppressMessage("Trimming - Allow converting option-values from config", "IL2072")]
         private static bool TryConvertToType(object propertyValue, Type propertyType, out object convertedValue)
         {
+            if (propertyValue is null || propertyType.IsAssignableFrom(propertyValue.GetType()))
+            {
+                convertedValue = null;
+                return false;
+            }
+
             var typeConverter = System.ComponentModel.TypeDescriptor.GetConverter(propertyValue.GetType());
             if (typeConverter != null && typeConverter.CanConvertTo(propertyType))
             {
