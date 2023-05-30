@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\appveyor.yml = ..\appveyor.yml
 		..\build.ps1 = ..\build.ps1
 		..\CHANGELOG.md = ..\CHANGELOG.md
+		..\.github\CONTRIBUTING.md = ..\.github\CONTRIBUTING.md
 		..\.github\dependabot.yml = ..\.github\dependabot.yml
 		..\README.md = ..\README.md
 		..\run-tests.ps1 = ..\run-tests.ps1
@@ -44,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Database", "NLog.Datab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Database.Tests", "..\tests\NLog.Database.Tests\NLog.Database.Tests.csproj", "{35EB0745-C37C-4E42-86C5-481A7D773E2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTrimPublish", "..\tests\TestTrimPublish\TestTrimPublish.csproj", "{058FBDB2-4C9C-45F6-BE9E-088AD019C77A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTrimPublish", "..\tests\TestTrimPublish\TestTrimPublish.csproj", "{058FBDB2-4C9C-45F6-BE9E-088AD019C77A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

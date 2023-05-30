@@ -1,4 +1,4 @@
-Support & contributing guidelines (September 19, 2017)
+Support & contributing guidelines
 ===
 Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](/issue-labeling.md). 
 
