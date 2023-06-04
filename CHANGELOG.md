@@ -4,6 +4,33 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2 (2023/05/30)
+
+**Improvements**
+- [#5191](https://github.com/NLog/NLog/pull/5191) ConfigurationItemFactory annotated for trimming and obsoleted CreateInstance-delegate (#5191) (@snakefoot)
+- [#5216](https://github.com/NLog/NLog/pull/5216) Refactor - Apply ThrowIfNull and ThrowIfNullOrEmpty (#5216) (@nih0n)
+
+### Version 5.1.5 (2023/05/25)
+
+**Improvements**
+- [#5229](https://github.com/NLog/NLog/pull/5229) TargetWithContext - Fixed ScopeContext capture when multiple wrappers (#5229) (@snakefoot)
+- [#5227](https://github.com/NLog/NLog/pull/5227) DefaultJsonSerializer - Cache length when validating json encoding (#5227) (@snakefoot)
+- [#5220](https://github.com/NLog/NLog/pull/5220) FileTarget - Suppress exceptions from retrieving FileInfo.CreationTimeUtc (#5220) (@snakefoot)
+- [#5219](https://github.com/NLog/NLog/pull/5219) LoggingConfigurationParser - Handle adding Target without name (#5219) (@snakefoot)
+- [#5215](https://github.com/NLog/NLog/pull/5215) Log4jXmlEvent - Fixed removal of invalid XML chars (#5215) (@snakefoot)
+- [#5210](https://github.com/NLog/NLog/pull/5210) LoggingConfiguration - Expand NLog config variables for Logging Rules WriteTo (#5210) (@snakefoot)
+
+### Version 5.1.4 (2023/04/29)
+
+**Improvements**
+- [#5207](https://github.com/NLog/NLog/pull/5207) FileTarget - Recover from file-deleted when same archive-folder (#5207) (@snakefoot)
+- [#5201](https://github.com/NLog/NLog/pull/5201) NLog.xsd schema with support for variables section (#5201) (@michaelplavnik)
+- [#5200](https://github.com/NLog/NLog/pull/5200) JsonLayout - Added IndentJson for pretty format (#5200) (@nih0n)
+- [#5197](https://github.com/NLog/NLog/pull/5197) Log4jXmlEvent - Fix dummy-Namespace when using IncludeScopeProperties (#5197) (@snakefoot)
+- [#5195](https://github.com/NLog/NLog/pull/5195) ConfigurationItemFactory - Handle concurrent registration with single lock (#5195) (@snakefoot)
+- [#5193](https://github.com/NLog/NLog/pull/5193) AsyncTaskTarget - Include task exception on completed event (#5193) (@snakefoot)
+- [#5186](https://github.com/NLog/NLog/pull/5186) ScopeContext - Uniform initial small array sizes (#5186) (@snakefoot)
+
 ### Version 5.1.3 (2023/03/28)
 
 **Improvements**
