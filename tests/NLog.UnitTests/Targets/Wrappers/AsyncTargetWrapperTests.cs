@@ -428,10 +428,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
 
-            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+            var writeOnClose = new ManualResetEvent(false);
+
+            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { writeOnClose.Set(); }));
 
             // quickly close the target before the timer elapses
             targetWrapper.Close();
+
+            Assert.True(writeOnClose.WaitOne(5000));
         }
 
         [Fact]

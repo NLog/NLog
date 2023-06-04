@@ -710,7 +710,7 @@ namespace NLog.UnitTests.Config
             logFactory.Setup().LoadConfigurationFromFile(optional: true);
 
             // Assert
-            // no Exception
+            Assert.Null(logFactory.Configuration);
         }
 
         [Fact]

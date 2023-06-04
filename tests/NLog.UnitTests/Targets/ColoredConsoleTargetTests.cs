@@ -285,7 +285,8 @@ namespace NLog.UnitTests.Targets
                 </rules>
             </nlog>";
 
-            ConsoleTargetTests.ConsoleRaceCondtionIgnoreInnerTest(configXml);
+            var success = ConsoleTargetTests.ConsoleRaceCondtionIgnoreInnerTest(configXml);
+            Assert.True(success);
         }
 #endif
 

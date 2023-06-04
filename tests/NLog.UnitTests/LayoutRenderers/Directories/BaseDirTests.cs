@@ -114,17 +114,17 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void BaseDir_FixTempDir_ChoosesProcessDir()
         {
-            var tempPath = System.IO.Path.GetTempPath();
+            var tempDir = System.IO.Path.GetTempPath();
             var processPath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
 
             var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
-            appEnvironment.AppDomainBaseDirectory = tempPath;
-            appEnvironment.UserTempFilePath = tempPath;
+            appEnvironment.AppDomainBaseDirectory = tempDir;
+            appEnvironment.UserTempFilePath = tempDir;
             appEnvironment.CurrentProcessFilePath = processPath;
             var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
             // test1
-            Assert.Equal(tempPath, baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(tempDir, baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
 
             // test2
             baseLayoutRenderer.FixTempDir = true;

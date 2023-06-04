@@ -50,15 +50,16 @@ namespace NLog.UnitTests.Targets
                 Debug.Listeners.Clear();
                 Debug.Listeners.Add(new TextWriterTraceListener(sw));
 #endif
-                var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+                var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
                 {
                     builder.ForLogger().WriteToDebug();
-                }).GetCurrentClassLogger();
+                }).LogFactory;
 
                 // Act
-                logger.Info("Hello World");
+                logFactory.GetCurrentClassLogger().Info("Hello World");
 
                 // Assert
+                Assert.Single(logFactory.Configuration.AllTargets);
 #if !NETSTANDARD
                 Assert.Contains("Hello World", sw.ToString());
 #endif
@@ -83,7 +84,7 @@ namespace NLog.UnitTests.Targets
                 Debug.Listeners.Clear();
                 Debug.Listeners.Add(new TextWriterTraceListener(sw));
 #endif
-                var logger = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>
                     <targets>
                         <target type='debugsystem' name='Debug' layout='${message}'>
@@ -94,18 +95,19 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' writeTo='Debug' />
                     </rules>
-                </nlog>").GetCurrentClassLogger();
+                </nlog>").LogFactory;
 
                 // Act
-                logger.Info("Hello World");
+                logFactory.GetCurrentClassLogger().Info("Hello World");
 
                 // Assert
+                Assert.Single(logFactory.Configuration.AllTargets);
 #if !NETSTANDARD
                 Assert.Contains("Startup", sw.ToString());
                 Assert.Contains("Hello World", sw.ToString());
                 Assert.DoesNotContain("Shutdown", sw.ToString());
 
-                logger.Factory.Shutdown();
+                logFactory.Shutdown();
                 Assert.Contains("Shutdown", sw.ToString());
 #endif
             }

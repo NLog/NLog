@@ -733,11 +733,12 @@ namespace NLog.UnitTests.Targets
         {
             using (new NoThrowNLogExceptions())
             {
-                var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+                var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
                 {
                     builder.ForLogger().WriteTo(new WrongMyTarget());
-                }).GetLogger("WrongMyTargetShouldThrowException");
-                logger.Info("Testing");
+                }).LogFactory;
+                Assert.Single(logFactory.Configuration.AllTargets);
+                logFactory.GetLogger("WrongMyTargetShouldThrowException").Info("Testing");
             }
         }
 

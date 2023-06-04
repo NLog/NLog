@@ -538,6 +538,9 @@ namespace NLog.UnitTests.Config
 </nlog> ").LogFactory;
 
                 logFactory.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+
+                Assert.NotNull(logFactory.Configuration);
+                Assert.Single(logFactory.Configuration.AllTargets);
             }
             finally
             {
@@ -564,6 +567,8 @@ namespace NLog.UnitTests.Config
 </nlog>").LogFactory;
 
                 logFactory.GetLogger(nameof(DontThrowExceptionsWhenMissingRequiredParameters)).Info("Test");
+
+                Assert.NotNull(logFactory.Configuration);
             }
         }
 

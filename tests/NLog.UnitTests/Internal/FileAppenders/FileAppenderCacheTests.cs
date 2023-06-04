@@ -130,7 +130,6 @@ namespace NLog.UnitTests.Internal.FileAppenders
             cache.InvalidateAppender(tempFile);
             // Verify the appender has been allocated correctly.
             AssertFileContents(tempFile, "NLog test string.", Encoding.Unicode);
-
         }
 
         [Fact]
@@ -139,9 +138,9 @@ namespace NLog.UnitTests.Internal.FileAppenders
             // Invoke CloseAppenders() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
             emptyCache.CloseAppenders(string.Empty);
+            emptyCache.CloseExpiredAppenders(DateTime.UtcNow);
 
-            
-            IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
+            IFileAppenderFactory appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders. 
@@ -164,7 +163,21 @@ namespace NLog.UnitTests.Internal.FileAppenders
             // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
-            cache.CloseExpiredAppenders(DateTime.UtcNow);
+            cache.CloseExpiredAppenders(DateTime.UtcNow.AddMinutes(-1));
+
+            var appenderFile1 = cache.InvalidateAppender("file1.txt");
+            Assert.NotNull(appenderFile1);
+            var appenderFile2 = cache.InvalidateAppender("file2.txt");
+            Assert.NotNull(appenderFile2);
+
+            cache.AllocateAppender("file3.txt");
+            cache.AllocateAppender("file4.txt");
+            cache.CloseExpiredAppenders(DateTime.UtcNow.AddMinutes(1));
+
+            var appenderFile3 = cache.InvalidateAppender("file3.txt");
+            Assert.Null(appenderFile3);
+            var appenderFile4 = cache.InvalidateAppender("file4.txt");
+            Assert.Null(appenderFile4);
         }
 
         [Fact]

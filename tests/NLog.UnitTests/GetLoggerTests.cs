@@ -142,7 +142,8 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+                var result = LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+                Assert.NotNull(result);
             }
         }
 
