@@ -700,10 +700,12 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
-            new LogFactory().Setup().LoadConfiguration(cfg =>
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg =>
             {
                 cfg.Configuration.AddRuleForAllLevels(mmt);
-            });
+            }).LogFactory;
+
+            Assert.Single(logFactory.Configuration.AllTargets);
         }
 
         [Fact]
@@ -835,10 +837,10 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("nlog@foo.com", mmt.From.ToString());
         }
 
+#if !NETSTANDARD
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile()
         {
-#if !NETSTANDARD
             var mmt = new MailTarget()
             {
                 From = null,
@@ -857,13 +859,13 @@ namespace NLog.UnitTests.Targets
             });
 
             Assert.Equal("config@foo.com", mmt.From.ToString());
-#endif
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
         {
-#if !NETSTANDARD
             var mmt = new MailTarget()
             {
                 From = null,
@@ -882,8 +884,8 @@ namespace NLog.UnitTests.Targets
                     cfg.Configuration.AddRuleForAllLevels(mmt);
                 })
             );
-#endif
         }
+#endif
 
         [Fact]
         public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()

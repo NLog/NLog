@@ -347,7 +347,8 @@ namespace NLog.UnitTests.Config
                 <add assembly='NLog'/>
 </extensions>
 </nlog>";
-            XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            var result = XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            Assert.NotNull(result);
         }
 
         [Fact]
@@ -359,7 +360,8 @@ namespace NLog.UnitTests.Config
         <add assembly='some_assembly_that_doesnt_exist'/>
     </extensions>
 </nlog>";
-            XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            var result = XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            Assert.NotNull(result);
         }
 
         [Fact]
@@ -371,7 +373,8 @@ namespace NLog.UnitTests.Config
                 <add assemblyfile='some_file_that_doesnt_exist'/>
 </extensions>
 </nlog>";
-            XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            var result = XmlLoggingConfiguration.CreateFromXmlString(configXml);
+            Assert.NotNull(result);
         }
 
         [Fact]

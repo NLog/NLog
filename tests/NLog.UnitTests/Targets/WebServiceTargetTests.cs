@@ -71,6 +71,8 @@ namespace NLog.UnitTests.Targets
             }).LogFactory;
             
             logFactory.GetCurrentClassLogger().WithProperty("Url", "").Info("Test");
+
+            Assert.NotNull(logFactory.Configuration);
         }
 
         [Fact]

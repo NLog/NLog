@@ -227,10 +227,11 @@ namespace NLog.UnitTests.Targets
                 </rules>
             </nlog>";
 
-            ConsoleRaceCondtionIgnoreInnerTest(configXml);
+            var success = ConsoleRaceCondtionIgnoreInnerTest(configXml);
+            Assert.True(success);
         }
 
-        internal static void ConsoleRaceCondtionIgnoreInnerTest(string configXml)
+        internal static bool ConsoleRaceCondtionIgnoreInnerTest(string configXml)
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
@@ -264,6 +265,7 @@ namespace NLog.UnitTests.Targets
                           logger.Trace("test message to the out and error stream");
                       }
                   });
+                return true;
             }
             finally
             {

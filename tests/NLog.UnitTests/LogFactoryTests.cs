@@ -77,13 +77,14 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                new LogFactory().Setup().LoadConfigurationFromXml(@"
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='Debug' name='test' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
+                Assert.NotNull(logFactory.Configuration);
             }
         }
 
@@ -287,13 +288,14 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                new LogFactory().Setup().LoadConfigurationFromXml(@"
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog imAnewAttribute='noError'>
                     <targets><target type='file' name='f1' filename='test.log' /></targets>
                     <rules>
                         <logger name='*' minlevel='Debug' writeto='f1'></logger>
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
+                Assert.NotNull(logFactory.Configuration);
             }
         }
 

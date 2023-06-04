@@ -95,7 +95,7 @@ namespace NLog.UnitTests
 
             var log = logFactory.GetLogger("x");
             log.Fatal("Test");
-
+            Assert.NotNull(logFactory.Configuration);
             logFactory.Configuration = null;
         }
     }

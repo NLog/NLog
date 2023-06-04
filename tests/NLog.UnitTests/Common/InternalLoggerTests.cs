@@ -694,9 +694,9 @@ namespace NLog.UnitTests.Common
         [InlineData("off", false)]
         public void CreateDirectoriesIfNeededTests(string rawLogLevel, bool shouldCreateDirectory)
         {
-            var tempPath = Path.GetTempPath();
+            var tempDir = Path.GetTempPath();
             var tempFileName = Path.GetRandomFileName();
-            var randomSubDirectory = Path.Combine(tempPath, Path.GetRandomFileName());
+            var randomSubDirectory = Path.Combine(tempDir, Path.GetRandomFileName());
             string tempFile = Path.Combine(randomSubDirectory, tempFileName);
 
             try

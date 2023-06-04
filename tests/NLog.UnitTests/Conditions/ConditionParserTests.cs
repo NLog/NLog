@@ -209,7 +209,8 @@ namespace NLog.UnitTests.Conditions
             configurationItemFactory.LayoutRendererFactory.RegisterType<FooLayoutRenderer>("foo");
             configurationItemFactory.ConditionMethodFactory.RegisterDefinition("check", typeof(MyConditionMethods).GetMethod("CheckIt"));
 
-            ConditionParser.ParseExpression("check('${foo}')", configurationItemFactory);
+            var result = ConditionParser.ParseExpression("check('${foo}')", configurationItemFactory);
+            Assert.NotNull(result);
         }
 
         [Fact]
@@ -219,7 +220,8 @@ namespace NLog.UnitTests.Conditions
             configurationItemFactory.LayoutRendererFactory.RegisterType<FooLayoutRenderer>("foo");
             configurationItemFactory.ConditionMethodFactory.RegisterDefinition("__check__", typeof(MyConditionMethods).GetMethod("CheckIt"));
 
-            ConditionParser.ParseExpression("__check__('${foo}')", configurationItemFactory);
+            var result = ConditionParser.ParseExpression("__check__('${foo}')", configurationItemFactory);
+            Assert.NotNull(result);
         }
 
         [Fact]

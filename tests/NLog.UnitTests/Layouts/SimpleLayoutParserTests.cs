@@ -59,7 +59,8 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void UnclosedTest()
         {
-            new SimpleLayout("${message");
+            var l = new SimpleLayout("${message");
+            Assert.Single(l.Renderers);
         }
 
         [Fact]
