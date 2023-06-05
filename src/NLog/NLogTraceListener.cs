@@ -46,6 +46,10 @@ namespace NLog
     /// <summary>
     /// TraceListener which routes all messages through NLog.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace">Documentation on NLog Wiki</seealso>
     public class NLogTraceListener : TraceListener
     {
         private LogFactory _logFactory;
