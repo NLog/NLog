@@ -69,7 +69,7 @@ namespace NLog.Targets.Wrappers
         public BufferingTargetWrapper(string name, Target wrappedTarget)
             : this(wrappedTarget)
         {
-            Name = name;
+            Name = name ?? Name;
         }
 
         /// <summary>
@@ -111,6 +111,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to take when the buffer overflows.</param>
         public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout, BufferingTargetWrapperOverflowAction overflowAction)
         {
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
             WrappedTarget = wrappedTarget;
             BufferSize = bufferSize;
             FlushTimeout = flushTimeout;

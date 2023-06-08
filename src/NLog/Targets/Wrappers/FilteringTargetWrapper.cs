@@ -80,7 +80,7 @@ namespace NLog.Targets.Wrappers
         public FilteringTargetWrapper(string name, Target wrappedTarget, ConditionExpression condition)
             : this(wrappedTarget, condition)
         {
-            Name = name;
+            Name = name ?? Name;
         }
 
         /// <summary>
@@ -90,6 +90,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="condition">The condition.</param>
         public FilteringTargetWrapper(Target wrappedTarget, ConditionExpression condition)
         {
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
             WrappedTarget = wrappedTarget;
             Condition = condition;
         }

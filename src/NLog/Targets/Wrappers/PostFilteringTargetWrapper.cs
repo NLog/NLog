@@ -84,7 +84,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
         public PostFilteringTargetWrapper(Target wrappedTarget)
-            : this(null, wrappedTarget)
+            : this(string.IsNullOrEmpty(wrappedTarget?.Name) ? null : (wrappedTarget.Name + "_wrapped"), wrappedTarget)
         {
         }
 
@@ -95,7 +95,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public PostFilteringTargetWrapper(string name, Target wrappedTarget)
         {
-            Name = name;
+            Name = name ?? Name;
             WrappedTarget = wrappedTarget;
         }
 

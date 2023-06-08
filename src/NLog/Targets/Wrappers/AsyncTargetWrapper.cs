@@ -103,7 +103,7 @@ namespace NLog.Targets.Wrappers
         public AsyncTargetWrapper(string name, Target wrappedTarget)
             : this(wrappedTarget)
         {
-            Name = name;
+            Name = name ?? Name;
         }
 
         /// <summary>
@@ -123,6 +123,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
+            WrappedTarget = wrappedTarget;
 #if NETSTANDARD2_0
             // NetStandard20 includes many optimizations for ConcurrentQueue:
             //  - See: https://blogs.msdn.microsoft.com/dotnet/2017/06/07/performance-improvements-in-net-core/
@@ -132,7 +134,6 @@ namespace NLog.Targets.Wrappers
 #else
             _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #endif
-            WrappedTarget = wrappedTarget;
             QueueLimit = queueLimit;
             OverflowAction = overflowAction;
         }

@@ -70,7 +70,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public GroupByTargetWrapper(Target wrappedTarget)
-            : this(null, wrappedTarget)
+            : this(string.IsNullOrEmpty(wrappedTarget?.Name) ? null : (wrappedTarget.Name + "_wrapped"), wrappedTarget)
         {
         }
 
