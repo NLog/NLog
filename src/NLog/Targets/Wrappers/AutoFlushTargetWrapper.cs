@@ -103,7 +103,7 @@ namespace NLog.Targets.Wrappers
         public AutoFlushTargetWrapper(string name, Target wrappedTarget)
             : this(wrappedTarget)
         {
-            Name = name;
+            Name = name ?? Name;
         }
 
         /// <summary>
@@ -112,6 +112,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AutoFlushTargetWrapper(Target wrappedTarget)
         {
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
             WrappedTarget = wrappedTarget;
         }
 
