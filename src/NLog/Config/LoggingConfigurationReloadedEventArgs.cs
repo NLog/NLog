@@ -40,6 +40,7 @@ namespace NLog.Config
     /// <summary>
     /// Arguments for <see cref="LogFactory.ConfigurationReloaded"/>.
     /// </summary>
+    [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
     public class LoggingConfigurationReloadedEventArgs : EventArgs
     {
         /// <summary>

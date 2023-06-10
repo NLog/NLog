@@ -95,7 +95,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
-        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
@@ -862,13 +862,13 @@ namespace NLog
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
         /// <param name="e">Event arguments</param>
-        [Obsolete("Replaced by OnConfigurationChanged. Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
         protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
         {
             ConfigurationReloaded?.Invoke(this, e);
         }
 
-        [Obsolete("Replaced by OnConfigurationChanged. Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
         internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
         {
             OnConfigurationReloaded(eventArgs);
@@ -1049,7 +1049,7 @@ namespace NLog
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
-        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         internal IEnumerable<string> GetCandidateConfigFilePaths(string filename)
         {
             if (_candidateConfigFilePaths != null)
@@ -1062,7 +1062,7 @@ namespace NLog
         /// Overwrite the candidates paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
-        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             _candidateConfigFilePaths = new List<string>();
@@ -1076,7 +1076,7 @@ namespace NLog
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
-        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void ResetCandidateConfigFilePath()
         {
             _candidateConfigFilePaths = null;
