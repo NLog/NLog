@@ -80,7 +80,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
-        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
+        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
         public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
             add => factory.ConfigurationReloaded += value;
