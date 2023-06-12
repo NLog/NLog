@@ -203,10 +203,11 @@ namespace NLog.Config
         {
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            var itemFactory = new ItemFactory(() => itemType, () => (TBaseType)Activator.CreateInstance(itemType));
+            Func<TBaseType> itemCreator = () => (TBaseType)Activator.CreateInstance(itemType);
+            var itemFactory = new ItemFactory(() => itemType, itemCreator);
             lock (ConfigurationItemFactory.SyncRoot)
             {
-                _parentFactory.RegisterTypeProperties(itemType);
+                _parentFactory.RegisterTypeProperties(itemType, () => itemCreator.Invoke());
                 _items[itemNamePrefix + typeAlias] = itemFactory;
             }
         }
@@ -218,7 +219,7 @@ namespace NLog.Config
             var itemFactory = new ItemFactory(() => typeof(TType), () => new TType());
             lock (ConfigurationItemFactory.SyncRoot)
             {
-                _parentFactory.RegisterTypeProperties<TType>();
+                _parentFactory.RegisterTypeProperties<TType>(() => new TType());
                 _items[typeAlias] = itemFactory;
             }
         }
@@ -230,7 +231,7 @@ namespace NLog.Config
             var itemFactory = new ItemFactory(() => typeof(TType), () => itemCreator());
             lock (ConfigurationItemFactory.SyncRoot)
             {
-                _parentFactory.RegisterTypeProperties<TType>();
+                _parentFactory.RegisterTypeProperties<TType>(() => itemCreator());
                 _items[typeAlias] = itemFactory;
             }
         }

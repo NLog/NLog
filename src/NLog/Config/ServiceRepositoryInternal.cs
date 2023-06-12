@@ -151,6 +151,8 @@ namespace NLog.Config
         {
             try
             {
+                InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
+
                 var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
                 if (defaultConstructor is null)
                 {

@@ -247,6 +247,7 @@ namespace NLog.Config
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.FallbackGroupTarget>("FallbackGroup");
             factory.RegisterType<NLog.Targets.Wrappers.FilteringRule>();
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.FilteringTargetWrapper>("FilteringWrapper");
+            factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.GroupByTargetWrapper>("GroupByWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.LimitingTargetWrapper>("LimitingWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.PostFilteringTargetWrapper>("PostFilteringWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.RandomizeGroupTarget>("RandomizeGroup");
