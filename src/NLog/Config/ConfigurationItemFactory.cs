@@ -74,10 +74,12 @@ namespace NLog.Config
         private struct ItemFactory
         {
             public readonly Func<Dictionary<string, PropertyInfo>> ItemProperties;
+            public readonly Func<object> ItemCreator;
 
-            public ItemFactory(Func<Dictionary<string, PropertyInfo>> itemProperties)
+            public ItemFactory(Func<Dictionary<string, PropertyInfo>> itemProperties, Func<object> itemCreator)
             {
                 ItemProperties = itemProperties;
+                ItemCreator = itemCreator;
             }
         }
 
@@ -445,7 +447,7 @@ namespace NLog.Config
         {
             lock (SyncRoot)
             {
-                RegisterTypeProperties<TType>();
+                RegisterTypeProperties<TType>(() => new TType());
 
                 foreach (IFactory f in _allFactories)
                 {
@@ -454,7 +456,7 @@ namespace NLog.Config
             }
         }
 
-        internal void RegisterTypeProperties<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>()
+        internal void RegisterTypeProperties<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] TType>(Func<object> itemCreator)
         {
             lock (SyncRoot)
             {
@@ -462,13 +464,13 @@ namespace NLog.Config
                 {
                     Dictionary<string, PropertyInfo> properties = null;
                     var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = typeof(TType).GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
-                    var itemFactory = new ItemFactory(itemProperties);
+                    var itemFactory = new ItemFactory(itemProperties, itemCreator);
                     _itemFactories[typeof(TType)] = itemFactory;
                 }
             }
         }
 
-        internal void RegisterTypeProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType)
+        internal void RegisterTypeProperties([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType, Func<object> itemCreator)
         {
             lock (SyncRoot)
             {
@@ -476,7 +478,7 @@ namespace NLog.Config
                 {
                     Dictionary<string, PropertyInfo> properties = null;
                     var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
-                    var itemFactory = new ItemFactory(itemProperties);
+                    var itemFactory = new ItemFactory(itemProperties, itemCreator);
                     _itemFactories[itemType] = itemFactory;
                 }
             }
@@ -495,6 +497,9 @@ namespace NLog.Config
             if (itemType.IsAbstract())
                 return new Dictionary<string, PropertyInfo>();
 
+            if (itemType.IsGenericType() && itemType.GetGenericTypeDefinition() == typeof(Layout<>))
+                return new Dictionary<string, PropertyInfo>();
+
 #pragma warning disable CS0618 // Type or member is obsolete
             return ResolveTypePropertiesLegacy(itemType);
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -502,16 +507,59 @@ namespace NLog.Config
 
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private Dictionary<string, PropertyInfo> ResolveTypePropertiesLegacy(Type itemType)
         {
-            InternalLogger.Debug("Object reflection needed for unknown type: {0}", itemType);
+            InternalLogger.Debug("Object reflection needed to configure instance of type: {0}", itemType);
             Dictionary<string, PropertyInfo> properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
             lock (SyncRoot)
             {
-                _itemFactories[itemType] = new ItemFactory(() => properties);
+                _itemFactories[itemType] = new ItemFactory(() => properties, () => Activator.CreateInstance(itemType));
             }
             return properties;
+        }
+
+        internal bool TryCreateInstance(Type itemType, out object instance)
+        {
+            Func<object> itemCreator = null;
+
+            lock (SyncRoot)
+            {
+                if (_itemFactories.TryGetValue(itemType, out var itemFactory))
+                    itemCreator = itemFactory.ItemCreator;
+            }
+
+            if (itemCreator is null)
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
+                instance = ResolveCreateInstanceLegacy(itemType);
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
+            else
+            {
+                instance = itemCreator.Invoke();
+            }
+
+            return !(instance is null);
+        }
+
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
+        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        private object ResolveCreateInstanceLegacy(Type itemType)
+        {
+            InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
+            Dictionary<string, PropertyInfo> properties = null;
+            var itemProperties = new Func<Dictionary<string, PropertyInfo>>(() => properties ?? (properties = itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase)));
+            var itemFactory = new ItemFactory(itemProperties, () => Activator.CreateInstance(itemType));
+            lock (SyncRoot)
+            {
+                _itemFactories[itemType] = itemFactory;
+            }
+
+            return itemFactory.ItemCreator.Invoke();
         }
 
         /// <summary>

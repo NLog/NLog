@@ -1179,7 +1179,11 @@ namespace NLog.Config
             // arrayItem is not a layout
             if (arrayItem is null)
             {
-                arrayItem = _serviceRepository.GetService(elementType);
+                if (!ConfigurationItemFactory.Default.TryCreateInstance(elementType, out arrayItem))
+                {
+                    throw new NLogConfigurationException($"Factory returned null for {elementType}");
+                }
+
                 ConfigureFromAttributesAndElements(arrayItem, element);
             }
             return arrayItem;
