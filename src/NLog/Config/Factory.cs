@@ -144,7 +144,10 @@ namespace NLog.Config
             GetTypeDelegate typeLookup = () =>
             {
                 if (itemType is null)
+                {
+                    InternalLogger.Debug("Object reflection needed to resolve type: {0}", typeName);
                     itemType = PropertyTypeConverter.ConvertToType(typeName, false);
+                }
                 return itemType;
             };
 
