@@ -44,7 +44,6 @@ namespace NLog.Internal
     /// Represents target with a chain of filters which determine
     /// whether logging should happen.
     /// </summary>
-    [NLogConfigurationItem]
     internal class TargetWithFilterChain
     {
         internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggingConfiguration();

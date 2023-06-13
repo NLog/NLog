@@ -169,7 +169,7 @@ namespace NLog.Internal
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)
         {
-            InternalLogger.Debug("Object reflection needed for unknown type: {0} (Lookup property={1})", obj.GetType(), propertyName);
+            InternalLogger.Debug("Object reflection needed to configure instance of type: {0} (Lookup property={1})", obj.GetType(), propertyName);
 
             PropertyInfo propInfo = obj.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase);
             if (propInfo != null)
