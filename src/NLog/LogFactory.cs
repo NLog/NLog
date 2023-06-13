@@ -547,9 +547,8 @@ namespace NLog
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
         public Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
-            return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger), (t) => Activator.CreateInstance(t, true) as Logger);
+            return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger), (t) => Logger.DefaultLoggerType.IsAssignableFrom(t) ? Activator.CreateInstance(t, true) as Logger : null);
         }
-
         private bool RefreshExistingLoggers()
         {
             bool purgeObsoleteLoggers;
@@ -1124,13 +1123,13 @@ namespace NLog
                 newLogger = loggerCreator(loggerType);
                 if (newLogger is null)
                 {
-                    if (!Logger.DefaultLoggerType.IsAssignableFrom(loggerType))
-                    {
-                        throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' does not inherit from NLog Logger");
-                    }
-                    else
+                    if (Logger.DefaultLoggerType.IsAssignableFrom(loggerType))
                     {
                         throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' could not create instance of NLog Logger");
+                    }
+                    else if (ThrowExceptions)
+                    {
+                        throw new NLogRuntimeException($"GetLogger / GetCurrentClassLogger with type '{loggerType}' does not inherit from NLog Logger");
                     }
                 }
                 else
