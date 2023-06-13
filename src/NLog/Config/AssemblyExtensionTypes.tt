@@ -89,7 +89,7 @@ namespace NLog.Config
 
     foreach(var type in types)
     {
-        if (type.IsAbstract || type.IsPrimitive || !type.IsPublic)
+        if (type.IsAbstract || type.IsPrimitive || !type.IsClass || type.IsNested)
             continue;
 
         if (netFramework.Contains(type.ToString()))
@@ -111,7 +111,17 @@ namespace NLog.Config
 <#
         }
 
-        if (typeof(NLog.Targets.Target).IsAssignableFrom(type))
+        if (!type.IsPublic)
+        {
+            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
+            if (configAttribute?.Any() == true)
+            {
+#>
+            factory.RegisterTypeProperties<<#= type #>>(() => null);
+<#
+            }
+        }
+        else if (typeof(NLog.Targets.Target).IsAssignableFrom(type))
         {
             var targetAttributes = type.GetCustomAttributes<NLog.Targets.TargetAttribute>(false);
             foreach (var targetAlias in targetAttributes)
@@ -177,7 +187,7 @@ namespace NLog.Config
         }
         else
         {
-            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(false);
+            var configAttribute = type.GetCustomAttributes<NLog.Config.NLogConfigurationItemAttribute>(true);
             if (configAttribute?.Any() == true)
             {
 #>
