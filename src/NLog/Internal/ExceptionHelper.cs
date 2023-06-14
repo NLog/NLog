@@ -89,11 +89,14 @@ namespace NLog.Internal
             }
 
             var isConfigError = exception is NLogConfigurationException;
+            var logFactory = loggerContext?.LogFactory;
+            var throwExceptionsAll = logFactory?.ThrowExceptions == true || LogManager.ThrowExceptions;
+            var shallRethrow = isConfigError ? (logFactory?.ThrowConfigExceptions ?? LogManager.ThrowConfigExceptions ?? throwExceptionsAll) : throwExceptionsAll;
 
             //we throw always configuration exceptions (historical)
             if (!exception.IsLoggedToInternalLogger())
             {
-                var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
+                var level = shallRethrow ? LogLevel.Error : LogLevel.Warn;
                 if (loggerContext != null)
                 {
                     if (string.IsNullOrEmpty(callerMemberName))
@@ -102,12 +105,11 @@ namespace NLog.Internal
                         InternalLogger.Log(exception, level, "{0}: Exception in {1}", loggerContext, callerMemberName);
                 }
                 else
+                {
                     InternalLogger.Log(exception, level, "Error has been raised.");
+                }
             }
 
-            var logFactory = loggerContext?.LogFactory;
-            var throwExceptionsAll = logFactory?.ThrowExceptions == true || LogManager.ThrowExceptions;
-            var shallRethrow = isConfigError ? (logFactory?.ThrowConfigExceptions ?? LogManager.ThrowConfigExceptions ?? throwExceptionsAll) : throwExceptionsAll;
             return shallRethrow;
         }
 

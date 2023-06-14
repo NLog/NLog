@@ -104,7 +104,7 @@ namespace NLog.UnitTests.Internal
         [Theory]
         [InlineData("Error has been raised.", typeof(ArgumentException), false, "Error")]
         [InlineData("Error has been raised.", typeof(ArgumentException), true, "Warn")]
-        [InlineData("Error has been raised.", typeof(NLogConfigurationException), false, "Warn")]
+        [InlineData("Error has been raised.", typeof(NLogConfigurationException), false, "Error")]
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), true, "Warn")]
         [InlineData("", typeof(ArgumentException), true, "Warn")]
         [InlineData("", typeof(NLogConfigurationException), true, "Warn")]

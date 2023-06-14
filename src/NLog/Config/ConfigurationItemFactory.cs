@@ -162,8 +162,14 @@ namespace NLog.Config
         /// Gets the ambient property factory.
         /// </summary>
         public IFactory<LayoutRenderer> AmbientRendererFactory => _ambientProperties;
-        internal IFactory<Filter> FilterFactory => _filters;
-        internal IFactory<TimeSource> TimeSourceFactory => _timeSources;
+        /// <summary>
+        /// Gets the <see cref="Filter"/> factory.
+        /// </summary>
+        public IFactory<Filter> FilterFactory => _filters;
+        /// <summary>
+        /// Gets the <see cref="TimeSource"/> factory.
+        /// </summary>
+        public IFactory<TimeSource> TimeSourceFactory => _timeSources;
         internal MethodFactory ConditionMethodFactory => _conditionMethods;
 
         internal Factory<Target, TargetAttribute> GetTargetFactory() => _targets;
