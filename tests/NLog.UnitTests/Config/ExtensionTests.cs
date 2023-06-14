@@ -154,6 +154,54 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void ExtensionWithPrefixLoadTwiceTest()
+        {
+            var configuration = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(extensionAssemblyName1))
+                .LoadConfigurationFromXml(@"
+<nlog throwExceptions='true'>
+    <extensions>
+        <add assembly='" + extensionAssemblyName1 + @"' prefix='twice' />
+    </extensions>
+
+    <targets>
+        <target name='t' type='twice.MyTarget' />
+        <target name='d1' type='Debug' layout='${foo}' />
+        <target name='d2' type='Debug'>
+            <layout type='twice.FooLayout' x='1'>
+            </layout>
+        </target>
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='t'>
+        <filters>
+           <whenFoo x='44' action='Ignore' />
+           <when condition='myrandom(10)==3' action='Log' />
+        </filters>
+      </logger>
+    </rules>
+</nlog>").LogFactory.Configuration;
+
+            Target myTarget = configuration.FindTargetByName("t");
+            Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
+
+            var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
+            var layout = d1Target.Layout as SimpleLayout;
+            Assert.NotNull(layout);
+            Assert.Single(layout.Renderers);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+
+            var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
+            Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
+
+            Assert.Equal(2, configuration.LoggingRules[0].Filters.Count);
+            Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
+            var cbf = configuration.LoggingRules[0].Filters[1] as ConditionBasedFilter;
+            Assert.NotNull(cbf);
+            Assert.Equal("(myrandom(10) == 3)", cbf.Condition.ToString());
+        }
+
+        [Fact]
         public void ExtensionWithPrefixTest()
         {
             var configuration = new LogFactory().Setup().LoadConfigurationFromXml(@"

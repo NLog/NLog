@@ -52,22 +52,10 @@ namespace NLog.Config
 
         public void LoadAssemblyFromName(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix)
         {
-            var loadedAssemblies = new HashSet<Assembly>();
-            foreach (var itemType in factory.ItemTypes)
+            if (SkipAlreadyLoadedAssembly(factory, assemblyName, itemNamePrefix))
             {
-                loadedAssemblies.Add(itemType.GetAssembly());
-            }
-
-            if (loadedAssemblies.Count > 1)
-            {
-                foreach (var assembly in loadedAssemblies)
-                {
-                    if (string.Equals(assembly.GetName().Name, assemblyName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        InternalLogger.Debug("Skipped Auto loading assembly name: {0}", assemblyName);
-                        return;
-                    }
-                }
+                InternalLogger.Debug("Skipped Auto loading assembly name: {0}", assemblyName);
+                return;
             }
 
             InternalLogger.Info("Auto loading assembly name: {0}", assemblyName);
@@ -75,6 +63,134 @@ namespace NLog.Config
             InternalLogger.LogAssemblyVersion(extensionAssembly);
             factory.RegisterItemsFromAssembly(extensionAssembly, itemNamePrefix);
             InternalLogger.Info("Auto loading assembly name: {0} succeeded!", assemblyName);
+        }
+
+        private static bool SkipAlreadyLoadedAssembly(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix)
+        {
+            try
+            {
+                var loadedAssemblies = new Dictionary<Assembly, Type>();
+                foreach (var itemType in factory.ItemTypes)
+                {
+                    var assembly = itemType.GetAssembly();
+                    if (assembly is null)
+                        continue;
+
+                    if (loadedAssemblies.TryGetValue(assembly, out var firstItemType))
+                    {
+                        if (firstItemType is null && IsNLogConfigurationItemType(itemType))
+                        {
+                            loadedAssemblies[assembly] = itemType;
+                        }
+                    }
+                    else
+                    {
+                        loadedAssemblies.Add(assembly, IsNLogConfigurationItemType(itemType) ? itemType : null);
+                    }
+                }
+
+
+                if (loadedAssemblies.Count > 1)
+                {
+                    foreach (var assembly in loadedAssemblies)
+                    {
+                        if (string.Equals(assembly.Key.GetName()?.Name, assemblyName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            if (IsNLogItemTypeAlreadyRegistered(factory, assembly.Value, itemNamePrefix))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Warn(ex, "Failed checking Auto loading assembly name: {0}", assemblyName);
+            }
+
+            return false;
+        }
+
+        private static bool IsNLogConfigurationItemType(Type itemType)
+        {
+            if (itemType is null)
+            {
+                return false;
+            }
+            else if (typeof(Layouts.Layout).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<Layouts.LayoutAttribute>();
+                return !string.IsNullOrEmpty(nameAttribute.Name);
+            }
+            else if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<LayoutRenderers.LayoutRendererAttribute>();
+                return !string.IsNullOrEmpty(nameAttribute.Name);
+            }
+            else if (typeof(Targets.Target).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<Targets.TargetAttribute>();
+                return !string.IsNullOrEmpty(nameAttribute.Name);
+            }
+            else if (typeof(NLog.Filters.Filter).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<Filters.FilterAttribute>();
+                return !string.IsNullOrEmpty(nameAttribute.Name);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static bool IsNLogItemTypeAlreadyRegistered(ConfigurationItemFactory factory, Type itemType, string itemNamePrefix)
+        {
+            if (itemType is null)
+            {
+                return false;
+            }
+            else if (typeof(Layouts.Layout).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<Layouts.LayoutAttribute>();
+                if (!string.IsNullOrEmpty(nameAttribute.Name))
+                {
+                    var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
+                    return factory.LayoutFactory.TryCreateInstance(typeAlias, out var _);
+                }
+            }
+            else if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<LayoutRenderers.LayoutRendererAttribute>();
+                if (!string.IsNullOrEmpty(nameAttribute.Name))
+                {
+                    var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
+                    return factory.LayoutRendererFactory.TryCreateInstance(typeAlias, out var _);
+                }
+            }
+            else if (typeof(Targets.Target).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<Targets.TargetAttribute>();
+                if (!string.IsNullOrEmpty(nameAttribute.Name))
+                {
+                    var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
+                    return factory.TargetFactory.TryCreateInstance(typeAlias, out var _);
+                }
+            }
+            else if (typeof(NLog.Filters.Filter).IsAssignableFrom(itemType))
+            {
+                var nameAttribute = itemType.GetFirstCustomAttribute<Filters.FilterAttribute>();
+                if (!string.IsNullOrEmpty(nameAttribute.Name))
+                {
+                    var typeAlias = string.IsNullOrEmpty(itemNamePrefix) ? nameAttribute.Name : itemNamePrefix + nameAttribute.Name;
+                    return factory.FilterFactory.TryCreateInstance(typeAlias, out var _);
+                }
+            }
+
+            return false;
         }
 
         public void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyPath, string baseDirectory, string itemNamePrefix)
@@ -364,6 +480,8 @@ namespace NLog.Config
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
         private static bool IsAssemblyMatch(AssemblyName expected, AssemblyName actual)
         {
+            if (expected is null || actual is null)
+                return false;
             if (expected.Name != actual.Name)
                 return false;
             if (expected.Version != null && expected.Version != actual.Version)
