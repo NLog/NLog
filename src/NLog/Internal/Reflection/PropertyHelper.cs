@@ -319,8 +319,7 @@ namespace NLog.Internal
             if (propertyType.IsGenericType() && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
             {
                 var simpleLayout = new SimpleLayout(value, configurationItemFactory);
-                var concreteType = typeof(Layout<>).MakeGenericType(propertyType.GetGenericArguments());
-                newValue = Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
+                newValue = (Layout)Activator.CreateInstance(propertyType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { simpleLayout }, null);
                 return true;
             }
 
