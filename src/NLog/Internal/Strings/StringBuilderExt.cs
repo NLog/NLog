@@ -80,7 +80,7 @@ namespace NLog.Internal
             if (value < 0)
             {
                 builder.Append('-');
-                uint uint_value = uint.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
+                uint uint_value = uint.MaxValue - ((uint)value) + 1; // NOSONAR: This is to deal with Int32.MinValue
                 AppendInvariant(builder, uint_value);
             }
             else
