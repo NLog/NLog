@@ -523,7 +523,7 @@ namespace NLog.Common
             }
             catch (Exception ex)
             {
-                Error(ex, "Error logging version of assembly {0}.", assembly.FullName);
+                Error(ex, "Error logging version of assembly {0}.", assembly?.FullName);
             }
         }
 
