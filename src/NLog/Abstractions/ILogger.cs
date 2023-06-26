@@ -296,14 +296,14 @@ namespace NLog
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        void DebugException([Localizable(false)][StructuredMessageTemplate] string message, Exception exception);
+        void DebugException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        void Debug(Exception exception, [Localizable(false)][StructuredMessageTemplate] string message);
+        void Debug(Exception exception, [Localizable(false)] string message);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
@@ -961,7 +961,7 @@ namespace NLog
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete with v4.3.11 (Only here because of LibLog)")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        void FatalException([Localizable(false)][StructuredMessageTemplate] string message, Exception exception);
+        void FatalException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
