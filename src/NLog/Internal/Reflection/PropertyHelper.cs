@@ -341,13 +341,12 @@ namespace NLog.Internal
                 // Note: .NET Standard 2.1 added a public Enum.TryParse(Type)
                 try
                 {
-                    result = Enum.Parse(resultType, value, true) as Enum;
+                    result = (Enum)Enum.Parse(resultType, value, true);
                     return true;
                 }
-                catch (ArgumentException)
+                catch (ArgumentException ex)
                 {
-                    result = null;
-                    return false;
+                    throw new ArgumentException($"Failed parsing Enum {resultType.Name} from value: {value}", ex);
                 }
             }
             else
