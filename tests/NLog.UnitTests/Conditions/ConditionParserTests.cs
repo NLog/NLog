@@ -197,9 +197,9 @@ namespace NLog.UnitTests.Conditions
         {
             var result = ConditionParser.ParseExpression("starts-with(logger, 'x${message}')") as ConditionMethodExpression;
             Assert.NotNull(result);
+            Assert.Equal("starts-with", result.MethodName);
             Assert.Equal("starts-with(logger, 'x${message}')", result.ToString());
-            Assert.Equal("StartsWith", result.MethodInfo.Name);
-            Assert.Equal(typeof(ConditionMethods), result.MethodInfo.DeclaringType);
+            Assert.Equal(2, result.MethodParameters.Count);
         }
 
         [Fact]
