@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -35,130 +35,43 @@ namespace NLog.Conditions
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
-    using System.Reflection;
     using System.Text;
-    using NLog.Common;
     using NLog.Internal;
 
-    /// <summary>
-    /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).
-    /// </summary>
-	internal sealed class ConditionMethodExpression : ConditionExpression
+    internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private readonly string _conditionMethodName;
-        private readonly bool _acceptsLogEvent;
-        private readonly ConditionExpression[] _methodParameters;
-        private readonly ReflectionHelpers.LateBoundMethod _lateBoundMethod;
-        private readonly object[] _lateBoundMethodDefaultParameters;
+        private readonly IEvaluateMethod _method;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
-        /// </summary>
-        /// <param name="conditionMethodName">Name of the condition method.</param>
-        /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>
-        /// <param name="lateBoundMethod">Precompiled delegate of the condition method.</param>
-        /// <param name="methodParameters">The method parameters.</param>
-        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, ReflectionHelpers.LateBoundMethod lateBoundMethod, IEnumerable<ConditionExpression> methodParameters)
-        {
-            MethodInfo = methodInfo;
-            _lateBoundMethod = lateBoundMethod;
-            _conditionMethodName = conditionMethodName;
-            _methodParameters = new List<ConditionExpression>(methodParameters).ToArray();
-            ParameterInfo[] formalParameters = MethodInfo.GetParameters();
-            if (formalParameters.Length > 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
-            {
-                _acceptsLogEvent = true;
-            }
-            _lateBoundMethodDefaultParameters = CreateMethodDefaultParameters(formalParameters, _methodParameters, _acceptsLogEvent ? 1 : 0);
-
-            int actualParameterCount = _methodParameters.Length;
-            if (_acceptsLogEvent)
-            {
-                actualParameterCount++;
-            }
-
-            // Count the number of required and optional parameters
-            CountParmameters(formalParameters, out var requiredParametersCount, out var optionalParametersCount);
-
-            if ( !( ( actualParameterCount >= requiredParametersCount ) && ( actualParameterCount <= formalParameters.Length ) ) )
-            {
-                string message;
-
-                if ( optionalParametersCount > 0 )
-                {
-                    message = string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Condition method '{0}' requires between {1} and {2} parameters, but passed {3}.",
-                        conditionMethodName,
-                        requiredParametersCount,
-                        formalParameters.Length,
-                        actualParameterCount );
-                }
-                else
-                {
-                    message = string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Condition method '{0}' requires {1} parameters, but passed {2}.",
-                        conditionMethodName,
-                        requiredParametersCount,
-                        actualParameterCount );
-                }
-                InternalLogger.Error(message);
-                throw new ConditionParseException(message);
-            }
-        }
-
-        /// <summary>
-        /// Gets the method info.
-        /// </summary>
-        public MethodInfo MethodInfo { get; }
+        public string MethodName { get; }
 
         /// <summary>
         /// Gets the method parameters
         /// </summary>
-        public IEnumerable<ConditionExpression> MethodParameters => _methodParameters;
+        public IList<ConditionExpression> MethodParameters { get; }
 
-        private static object[] CreateMethodDefaultParameters(ParameterInfo[] formalParameters, ConditionExpression[] methodParameters, int parameterOffset)
+        private ConditionMethodExpression(string methodName, IList<ConditionExpression> methodParameters, IEvaluateMethod method)
         {
-            var defaultParameterCount = formalParameters.Length - methodParameters.Length - parameterOffset;
-            if (defaultParameterCount <= 0)
-                return ArrayHelper.Empty<object>();
-
-            var extraDefaultParameters = new object[defaultParameterCount];
-            for (int i = methodParameters.Length + parameterOffset; i < formalParameters.Length; ++i)
-            {
-                ParameterInfo param = formalParameters[i];
-                extraDefaultParameters[i - methodParameters.Length + parameterOffset] = param.DefaultValue;
-            }
-
-            return extraDefaultParameters;
+            MethodName = Guard.ThrowIfNull(methodName);
+            _method = Guard.ThrowIfNull(method);
+            MethodParameters = Guard.ThrowIfNull(methodParameters);
         }
 
-        private static void CountParmameters(ParameterInfo[] formalParameters, out int requiredParametersCount, out int optionalParametersCount)
+        /// <inheritdoc />
+        protected override object EvaluateNode(LogEventInfo context)
         {
-            requiredParametersCount = 0;
-            optionalParametersCount = 0;
-
-            foreach (var param in formalParameters)
-            {
-                if (param.IsOptional)
-                    ++optionalParametersCount;
-                else
-                    ++requiredParametersCount;
-            }
+            return _method.EvaluateNode(context);
         }
 
         /// <inheritdoc/>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append(_conditionMethodName);
+            sb.Append(MethodName);
             sb.Append('(');
 
             string separator = string.Empty;
 
-            foreach (var expr in _methodParameters)
+            foreach (var expr in MethodParameters)
             {
                 sb.Append(separator);
                 sb.Append(expr);
@@ -169,48 +82,147 @@ namespace NLog.Conditions
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Evaluates the expression.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>Expression result.</returns>
-        protected override object EvaluateNode(LogEventInfo context)
+        public static ConditionMethodExpression CreateMethodNoParameters(string conditionMethodName, Func<LogEventInfo, object> method)
         {
-            object[] callParameters = GenerateCallParameters(context);
-            return _lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
+            return new ConditionMethodExpression(conditionMethodName, ArrayHelper.Empty<ConditionExpression>(), new EvaluateMethodNoParameters(method));
         }
 
-        private object[] GenerateCallParameters(LogEventInfo context)
+        public static ConditionMethodExpression CreateMethodOneParameter(string conditionMethodName, Func<LogEventInfo, object, object> method, IList<ConditionExpression> methodParameters)
         {
-            int parameterOffset = _acceptsLogEvent ? 1 : 0;
-            int callParametersCount = _methodParameters.Length + parameterOffset + _lateBoundMethodDefaultParameters.Length;
-            if (callParametersCount == 0)
-                return ArrayHelper.Empty<object>();
+            var methodParameter = methodParameters[0];
+            return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodOneParameter(method, (logEvent) => methodParameter.Evaluate(logEvent)));
+        }
 
-            var callParameters = new object[callParametersCount];
+        public static ConditionMethodExpression CreateMethodTwoParameters(string conditionMethodName, Func<LogEventInfo, object, object, object> method, IList<ConditionExpression> methodParameters)
+        {
+            var methodParameterArg1 = methodParameters[0];
+            var methodParameterArg2 = methodParameters[1];
+            return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodTwoParameters(method, (logEvent) => methodParameterArg1.Evaluate(logEvent), (logEvent) => methodParameterArg2.Evaluate(logEvent)));
+        }
 
-            if (_acceptsLogEvent)
+        public static ConditionMethodExpression CreateMethodThreeParameters(string conditionMethodName, Func<LogEventInfo, object, object, object, object> method, IList<ConditionExpression> methodParameters)
+        {
+            var methodParameterArg1 = methodParameters[0];
+            var methodParameterArg2 = methodParameters[1];
+            var methodParameterArg3 = methodParameters[2];
+            return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodThreeParameters(method, (logEvent) => methodParameterArg1.Evaluate(logEvent), (logEvent) => methodParameterArg2.Evaluate(logEvent), (logEvent) => methodParameterArg3.Evaluate(logEvent)));
+        }
+
+        public static ConditionMethodExpression CreateMethodManyParameters(string conditionMethodName, Func<object[], object> method, IList<ConditionExpression> methodParameters, bool includeLogEvent)
+        {
+            return new ConditionMethodExpression(conditionMethodName, methodParameters, new EvaluateMethodManyParameters(method, methodParameters, includeLogEvent));
+        }
+
+        private interface IEvaluateMethod
+        {
+            object EvaluateNode(LogEventInfo logEvent);
+        }
+
+        private sealed class EvaluateMethodNoParameters : IEvaluateMethod
+        {
+            private readonly Func<LogEventInfo, object> _method;
+
+            public EvaluateMethodNoParameters(Func<LogEventInfo, object> method)
             {
-                callParameters[0] = context;
+                _method = Guard.ThrowIfNull(method);
             }
 
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < _methodParameters.Length; i++)
+            public object EvaluateNode(LogEventInfo logEvent)
             {
-                ConditionExpression ce = _methodParameters[i];
-                callParameters[i + parameterOffset] = ce.Evaluate(context);
+                return _method(logEvent);
+            }
+        }
+
+        private sealed class EvaluateMethodOneParameter : IEvaluateMethod
+        {
+            private readonly Func<LogEventInfo, object, object> _method;
+            private readonly Func<LogEventInfo, object> _methodParameter;
+
+            public EvaluateMethodOneParameter(Func<LogEventInfo, object, object> method, Func<LogEventInfo, object> methodParameter)
+            {
+                _method = Guard.ThrowIfNull(method);
+                _methodParameter = Guard.ThrowIfNull(methodParameter);
             }
 
-            if (_lateBoundMethodDefaultParameters.Length > 0)
+            public object EvaluateNode(LogEventInfo logEvent)
             {
-                for (int i = _lateBoundMethodDefaultParameters.Length - 1; i >= 0; --i)
+                var inputParameter = _methodParameter(logEvent);
+                return _method(logEvent, inputParameter);
+            }
+        }
+
+        private sealed class EvaluateMethodTwoParameters : IEvaluateMethod
+        {
+            private readonly Func<LogEventInfo, object, object, object> _method;
+            private readonly Func<LogEventInfo, object> _methodParameterArg1;
+            private readonly Func<LogEventInfo, object> _methodParameterArg2;
+
+            public EvaluateMethodTwoParameters(Func<LogEventInfo, object, object, object> method, Func<LogEventInfo, object> methodParameterArg1, Func<LogEventInfo, object> methodParameterArg2)
+            {
+                _method = Guard.ThrowIfNull(method);
+                _methodParameterArg1 = Guard.ThrowIfNull(methodParameterArg1);
+                _methodParameterArg2 = Guard.ThrowIfNull(methodParameterArg2);
+            }
+
+            public object EvaluateNode(LogEventInfo logEvent)
+            {
+                var inputParameter1 = _methodParameterArg1(logEvent);
+                var inputParameter2 = _methodParameterArg2(logEvent);
+                return _method(logEvent, inputParameter1, inputParameter2);
+            }
+        }
+
+        private sealed class EvaluateMethodThreeParameters : IEvaluateMethod
+        {
+            private readonly Func<LogEventInfo, object, object, object, object> _method;
+            private readonly Func<LogEventInfo, object> _methodParameterArg1;
+            private readonly Func<LogEventInfo, object> _methodParameterArg2;
+            private readonly Func<LogEventInfo, object> _methodParameterArg3;
+
+            public EvaluateMethodThreeParameters(Func<LogEventInfo, object, object, object, object> method, Func<LogEventInfo, object> methodParameterArg1, Func<LogEventInfo, object> methodParameterArg2, Func<LogEventInfo, object> methodParameterArg3)
+            {
+                _method = Guard.ThrowIfNull(method);
+                _methodParameterArg1 = Guard.ThrowIfNull(methodParameterArg1);
+                _methodParameterArg2 = Guard.ThrowIfNull(methodParameterArg2);
+                _methodParameterArg3 = Guard.ThrowIfNull(methodParameterArg3);
+            }
+
+            public object EvaluateNode(LogEventInfo logEvent)
+            {
+                var inputParameter1 = _methodParameterArg1(logEvent);
+                var inputParameter2 = _methodParameterArg2(logEvent);
+                var inputParameter3 = _methodParameterArg3(logEvent);
+                return _method(logEvent, inputParameter1, inputParameter2, inputParameter3);
+            }
+        }
+
+        private sealed class EvaluateMethodManyParameters : IEvaluateMethod
+        {
+            private readonly Func<object[], object> _method;
+            private readonly IList<ConditionExpression> _methodParameters;
+            private readonly bool _includeLogEvent;
+
+            public EvaluateMethodManyParameters(Func<object[], object> method, IList<ConditionExpression> inputParameters, bool includeLogEvent)
+            {
+                _method = Guard.ThrowIfNull(method);
+                _methodParameters = Guard.ThrowIfNull(inputParameters);
+                _includeLogEvent = includeLogEvent;
+            }
+
+            public object EvaluateNode(LogEventInfo logEvent)
+            {
+                var parameterIndex = _includeLogEvent ? 1 : 0;
+                var inputParameters = new object[_methodParameters.Count + parameterIndex];
+                if (_includeLogEvent)
+                    inputParameters[0] = logEvent;
+                for (int i = 0; i < _methodParameters.Count; ++i)
                 {
-                    callParameters[callParameters.Length - i - 1] = _lateBoundMethodDefaultParameters[i];
+                    var inputParameter = _methodParameters[i].Evaluate(logEvent);
+                    inputParameters[parameterIndex++] = inputParameter;
                 }
-            }
 
-            return callParameters;
+                return _method.Invoke(inputParameters);
+            }
         }
     }
 }

@@ -637,10 +637,9 @@ namespace NLog
             return configBuilder.WithWrapper(t =>
             {
                 var targetWrapper = new AutoFlushTargetWrapper() { WrappedTarget = t };
-                var methodInfo = conditionMethod.GetDelegateInfo();
-                ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod((LogEventInfo)args[0]);
-                var conditionExpression = new Conditions.ConditionMethodExpression(methodInfo.Name, methodInfo, lateBound, ArrayHelper.Empty<Conditions.ConditionExpression>());
-                targetWrapper.Condition = conditionExpression;
+
+                var autoFlushCondition = Conditions.ConditionMethodExpression.CreateMethodNoParameters("AutoFlush", (logEvent) => conditionMethod(logEvent) ? Conditions.ConditionExpression.BoxedTrue : Conditions.ConditionExpression.BoxedFalse);
+                targetWrapper.Condition = autoFlushCondition;
                 if (flushOnConditionOnly.HasValue)
                     targetWrapper.FlushOnConditionOnly = flushOnConditionOnly.Value;
                 return targetWrapper;

@@ -47,13 +47,46 @@ namespace NLog.Config
     internal class MethodFactory :
 #pragma warning disable CS0618 // Type or member is obsolete
         INamedItemFactory<MethodInfo, MethodInfo>,
-        INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>,
 #pragma warning restore CS0618 // Type or member is obsolete
         IFactory
     {
-        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>(StringComparer.OrdinalIgnoreCase);
-        private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>(StringComparer.OrdinalIgnoreCase);
         private readonly MethodFactory _globalDefaultFactory;
+        private readonly Dictionary<string, MethodDetails> _nameToMethodDetails = new Dictionary<string, MethodDetails>(StringComparer.OrdinalIgnoreCase);
+
+        struct MethodDetails
+        {
+            public readonly MethodInfo MethodInfo;
+            public readonly Func<LogEventInfo, object> NoParameters;
+            public readonly Func<LogEventInfo, object, object> OneParameter;
+            public readonly Func<LogEventInfo, object, object, object> TwoParameters;
+            public readonly Func<LogEventInfo, object, object, object, object> ThreeParameters;
+            public readonly Func<object[], object> ManyParameters;
+            public readonly int ManyParameterMinCount;
+            public readonly int ManyParameterMaxCount;
+            public readonly bool ManyParameterWithLogEvent;
+
+            public MethodDetails(
+                MethodInfo methodInfo,
+                Func<LogEventInfo, object> noParameters,
+                Func<LogEventInfo, object, object> oneParameter,
+                Func<LogEventInfo, object, object, object> twoParameters,
+                Func<LogEventInfo, object, object, object, object> threeParameters,
+                Func<object[], object> manyParameters,
+                int manyParameterMinCount,
+                int manyParameterMaxCount,
+                bool manyParameterWithLogEvent)
+            {
+                MethodInfo = methodInfo;
+                NoParameters = noParameters;
+                OneParameter = oneParameter;
+                TwoParameters = twoParameters;
+                ThreeParameters = threeParameters;
+                ManyParameters = manyParameters;
+                ManyParameterMinCount = manyParameterMinCount;
+                ManyParameterMaxCount = manyParameterMaxCount;
+                ManyParameterWithLogEvent = manyParameterWithLogEvent;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodFactory"/> class.
@@ -82,7 +115,7 @@ namespace NLog.Config
                 {
                     if (t.IsClass())
                     {
-                        RegisterType(t, assemblyName, itemNamePrefix);
+                        RegisterType(t, itemNamePrefix);
                     }
                 }
                 catch (Exception exception)
@@ -102,38 +135,25 @@ namespace NLog.Config
         /// </summary>
         /// <param name="type">The type to register.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
+        void IFactory.RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
-            var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
-            for (int i = 0; i < extractedMethods.Count; ++i)
-            {
-                RegisterDefinition(extractedMethods[i].Key, extractedMethods[i].Value, string.Empty, string.Empty);
-            }
-        }
-
-        /// <summary>
-        /// Registers the definition of a single method.
-        /// </summary>
-        public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
-        {
-            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+            RegisterType(type, itemNamePrefix);
         }
 
         /// <summary>
         /// Registers the type.
         /// </summary>
         /// <param name="type">The type to register.</param>
-        /// <param name="assemblyName">The assembly name for the type.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string assemblyName, string itemNamePrefix)
+        private void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
             var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
             if (extractedMethods?.Count > 0)
             {
                 for (int i = 0; i < extractedMethods.Count; ++i)
                 {
-                    RegisterDefinition(extractedMethods[i].Key, extractedMethods[i].Value, assemblyName, itemNamePrefix);
+                    string methodName = string.IsNullOrEmpty(itemNamePrefix) ? extractedMethods[i].Key : itemNamePrefix + extractedMethods[i].Key;
+                    RegisterDefinition(methodName, extractedMethods[i].Value);
                 }
             }
         }
@@ -145,7 +165,7 @@ namespace NLog.Config
         /// <typeparam name="TMethodAttributeType">Include methods that are marked with this attribute</typeparam>
         /// <param name="type">Class Type to scan</param>
         /// <returns>Collection of methods with their symbolic names</returns>
-        public static IList<KeyValuePair<string, MethodInfo>> ExtractClassMethods<TClassAttributeType, TMethodAttributeType>([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type) 
+        private static IList<KeyValuePair<string, MethodInfo>> ExtractClassMethods<TClassAttributeType, TMethodAttributeType>([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type) 
             where TClassAttributeType : Attribute
             where TMethodAttributeType : NameBaseAttribute
         {
@@ -170,10 +190,9 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            lock (_nameToMethodInfo)
+            lock (_nameToMethodDetails)
             {
-                _nameToMethodInfo.Clear();
-                _nameToLateBoundMethod.Clear();
+                _nameToMethodDetails.Clear();
             }
         }
 
@@ -185,47 +204,138 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         void INamedItemFactory<MethodInfo, MethodInfo>.RegisterDefinition(string itemName, MethodInfo itemDefinition)
         {
-            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+            RegisterDefinition(itemName, itemDefinition);
         }
 
-        /// <summary>
-        /// Registers the definition of a single method.
-        /// </summary>
-        /// <param name="itemName">The method name.</param>
-        /// <param name="itemDefinition">The method info.</param>
-        /// <param name="assemblyName">The assembly name for the method.</param>
-        /// <param name="itemNamePrefix">The item name prefix.</param>
-        public void RegisterDefinition(string itemName, MethodInfo itemDefinition, string assemblyName, string itemNamePrefix)
+        internal void RegisterDefinition(string methodName, MethodInfo methodInfo)
         {
-            lock (_nameToMethodInfo)
-            {
-                _nameToMethodInfo[itemName + itemNamePrefix] = itemDefinition;
-                if (!string.IsNullOrEmpty(assemblyName))
-                {
-                    _nameToMethodInfo[itemName + ", " + assemblyName] = itemDefinition;
-                }
+            object[] defaultMethodParameters = ResolveDefaultMethodParameters(methodInfo, out var manyParameterMinCount, out var manyParameterMaxCount, out var includeLogEvent);
 
-                _nameToLateBoundMethod.Remove(itemName + itemNamePrefix);
-                if (!string.IsNullOrEmpty(assemblyName))
-                {
-                    _nameToLateBoundMethod.Remove(itemName + ", " + assemblyName);
-                }
+            if (manyParameterMaxCount > 0)
+                RegisterManyParameters(methodName, (inputArgs) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, inputArgs)), manyParameterMinCount, manyParameterMaxCount, includeLogEvent, methodInfo);
+
+            if (manyParameterMinCount == 0)
+            {
+                if (!includeLogEvent)
+                    RegisterNoParameters(methodName, (logEvent) => InvokeMethodInfo(methodInfo, defaultMethodParameters), methodInfo);
+                else
+                    RegisterNoParameters(methodName, (logEvent) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, logEvent)), methodInfo);
+            }
+            if (manyParameterMinCount <= 1 && manyParameterMaxCount >= 1)
+            {
+                if (!includeLogEvent)
+                    RegisterOneParameter(methodName, (logEvent, arg1) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, arg1)), methodInfo);
+                else
+                    RegisterOneParameter(methodName, (logEvent, arg1) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, logEvent, arg1)), methodInfo);
+            }
+            if (manyParameterMinCount <= 2 && manyParameterMaxCount >= 2)
+            {
+                if (!includeLogEvent)
+                    RegisterTwoParameters(methodName, (logEvent, arg1, arg2) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, arg1, arg2)), methodInfo);
+                else
+                    RegisterTwoParameters(methodName, (logEvent, arg1, arg2) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, logEvent, arg1, arg2)), methodInfo);
+            }
+            if (manyParameterMinCount <= 3 && manyParameterMaxCount >= 3)
+            {
+                if (!includeLogEvent)
+                    RegisterThreeParameters(methodName, (logEvent, arg1, arg2, arg3) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, arg1, arg2, arg3)), methodInfo);
+                else
+                    RegisterThreeParameters(methodName, (logEvent, arg1, arg2, arg3) => InvokeMethodInfo(methodInfo, ResolveMethodParameters(defaultMethodParameters, logEvent, arg1, arg2, arg3)), methodInfo);
             }
         }
 
-        /// <summary>
-        /// Registers the definition of a single method.
-        /// </summary>
-        /// <param name="itemName">The method name.</param>
-        /// <param name="itemDefinition">The method info.</param>
-        /// <param name="lateBoundMethod">The precompiled method delegate.</param>
-        internal void RegisterDefinition(string itemName, MethodInfo itemDefinition, ReflectionHelpers.LateBoundMethod lateBoundMethod)
+        private static object InvokeMethodInfo(MethodInfo methodInfo, object[] methodArgs)
         {
-            lock (_nameToMethodInfo)
+            try
             {
-                _nameToMethodInfo[itemName] = itemDefinition;
-                _nameToLateBoundMethod[itemName] = lateBoundMethod;
+                return methodInfo.Invoke(null, methodArgs);
             }
+            catch (TargetInvocationException ex)
+            {
+                if (ex.InnerException is null)
+                    throw;
+
+                throw ex.InnerException;
+            }
+        }
+
+        private static object[] ResolveDefaultMethodParameters(MethodInfo methodInfo, out int manyParameterMinCount, out int manyParameterMaxCount, out bool includeLogEvent)
+        {
+            var methodParameters = methodInfo.GetParameters();
+
+            manyParameterMinCount = 0;
+            manyParameterMaxCount = methodParameters.Length;
+            var defaultMethodParameters = new object[methodParameters.Length];
+            for (int i = 0; i < defaultMethodParameters.Length; ++i)
+            {
+                if (methodParameters[i].IsOptional)
+                    defaultMethodParameters[i] = methodParameters[i].DefaultValue;
+                else
+                    ++manyParameterMinCount;
+            }
+            includeLogEvent = methodParameters.Length > 0 && methodParameters[0].ParameterType == typeof(LogEventInfo);
+            if (includeLogEvent)
+            {
+                --manyParameterMaxCount;
+                if (manyParameterMinCount > 0)
+                    --manyParameterMinCount;
+            }
+            return defaultMethodParameters;
+        }
+
+        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object[] inputParameters)
+        {
+            if (defaultMethodParameters.Length == inputParameters.Length)
+                return inputParameters;
+
+            object[] methodParameters = new object[defaultMethodParameters.Length];
+            for (int i = 0; i < inputParameters.Length; ++i)
+                methodParameters[i] = inputParameters[i];
+            for (int i = inputParameters.Length; i < defaultMethodParameters.Length; ++i)
+                methodParameters[i] = defaultMethodParameters[i];
+            return methodParameters;
+        }
+
+        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1)
+        {
+            object[] methodParameters = new object[defaultMethodParameters.Length];
+            methodParameters[0] = inputParameterArg1;
+            for (int i = 1; i < defaultMethodParameters.Length; ++i)
+                methodParameters[i] = defaultMethodParameters[i];
+            return methodParameters;
+        }
+
+        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1, object inputParameterArg2)
+        {
+            object[] methodParameters = new object[defaultMethodParameters.Length];
+            methodParameters[0] = inputParameterArg1;
+            methodParameters[1] = inputParameterArg2;
+            for (int i = 2; i < defaultMethodParameters.Length; ++i)
+                methodParameters[i] = defaultMethodParameters[i];
+            return methodParameters;
+        }
+
+        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1, object inputParameterArg2, object inputParameterArg3)
+        {
+            object[] methodParameters = new object[defaultMethodParameters.Length];
+            methodParameters[0] = inputParameterArg1;
+            methodParameters[1] = inputParameterArg2;
+            methodParameters[2] = inputParameterArg3;
+            for (int i = 3; i < defaultMethodParameters.Length; ++i)
+                methodParameters[i] = defaultMethodParameters[i];
+            return methodParameters;
+        }
+
+        private static object[] ResolveMethodParameters(object[] defaultMethodParameters, object inputParameterArg1, object inputParameterArg2, object inputParameterArg3, object inputParameterArg4)
+        {
+            object[] methodParameters = new object[defaultMethodParameters.Length];
+            methodParameters[0] = inputParameterArg1;
+            methodParameters[1] = inputParameterArg2;
+            methodParameters[2] = inputParameterArg3;
+            methodParameters[3] = inputParameterArg4;
+            for (int i = 4; i < defaultMethodParameters.Length; ++i)
+                methodParameters[i] = defaultMethodParameters[i];
+            return methodParameters;
         }
 
         /// <summary>
@@ -235,40 +345,9 @@ namespace NLog.Config
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        public bool TryCreateInstance(string itemName, out MethodInfo result)
+        bool INamedItemFactory<MethodInfo, MethodInfo>.TryCreateInstance(string itemName, out MethodInfo result)
         {
             return TryGetDefinition(itemName, out result);
-        }
-
-        /// <summary>
-        /// Tries to retrieve method-delegate by name.
-        /// </summary>
-        /// <param name="itemName">The method name.</param>
-        /// <param name="result">The result.</param>
-        /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
-        public bool TryCreateInstance(string itemName, out ReflectionHelpers.LateBoundMethod result)
-        {
-            MethodInfo methodInfo = null;
-
-            lock (_nameToMethodInfo)
-            {
-                if (_nameToLateBoundMethod.TryGetValue(itemName, out result))
-                {
-                    return true;
-                }
-
-                _nameToMethodInfo.TryGetValue(itemName, out methodInfo);
-            }
-
-            if (methodInfo != null)
-            {
-                result = ReflectionHelpers.CreateLateBoundMethod(methodInfo);
-                lock (_nameToMethodInfo)
-                    _nameToLateBoundMethod[itemName] = result;
-                return true;
-            }
-
-            return _globalDefaultFactory?.TryCreateInstance(itemName, out result) ?? false;
         }
 
         /// <summary>
@@ -279,28 +358,7 @@ namespace NLog.Config
         [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         MethodInfo INamedItemFactory<MethodInfo, MethodInfo>.CreateInstance(string itemName)
         {
-            return CreateMethodInfo(itemName);
-        }
-
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        internal MethodInfo CreateMethodInfo(string itemName)
-        {
-            if (TryCreateInstance(itemName, out MethodInfo result))
-            {
-                return result;
-            }
-
-            throw new NLogConfigurationException($"Unknown function: '{itemName}'");
-        }
-
-        /// <summary>
-        /// Retrieves method by name.
-        /// </summary>
-        /// <param name="itemName">Method name.</param>
-        /// <returns>Method delegate object.</returns>
-        public ReflectionHelpers.LateBoundMethod CreateInstance(string itemName)
-        {
-            if (TryCreateInstance(itemName, out ReflectionHelpers.LateBoundMethod result))
+            if (TryGetDefinition(itemName, out MethodInfo result))
             {
                 return result;
             }
@@ -317,21 +375,160 @@ namespace NLog.Config
         [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
-            lock (_nameToMethodInfo)
+            lock (_nameToMethodDetails)
             {
-                if (_nameToMethodInfo.TryGetValue(itemName, out result))
+                if (_nameToMethodDetails.TryGetValue(itemName, out var methodDetails))
                 {
-                    return true;
+                    result = methodDetails.MethodInfo;
+                    return result != null;
                 }
             }
 
+            result = null;
             return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
         }
 
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        void INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>.RegisterDefinition(string itemName, System.Reflection.MethodInfo itemDefinition)
+        public void RegisterNoParameters(string methodName, Func<LogEventInfo, object> noParameters, MethodInfo legacyMethodInfo = null)
         {
-            RegisterDefinition(itemName, itemDefinition, string.Empty, string.Empty);
+            lock (_nameToMethodDetails)
+            {
+                _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? noParameters.GetDelegateInfo();
+                _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, noParameters, methodDetails.OneParameter, methodDetails.TwoParameters, methodDetails.ThreeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
+            }
+        }
+
+        public void RegisterOneParameter(string methodName, Func<LogEventInfo, object, object> oneParameter, MethodInfo legacyMethodInfo = null)
+        {
+            lock (_nameToMethodDetails)
+            {
+                _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? oneParameter.GetDelegateInfo();
+                _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, oneParameter, methodDetails.TwoParameters, methodDetails.ThreeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
+            }
+        }
+
+        public void RegisterTwoParameters(string methodName, Func<LogEventInfo, object, object, object> twoParameters, MethodInfo legacyMethodInfo = null)
+        {
+            lock (_nameToMethodDetails)
+            {
+                _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? twoParameters.GetDelegateInfo();
+                _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, methodDetails.OneParameter, twoParameters, methodDetails.ThreeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
+            }
+        }
+
+        public void RegisterThreeParameters(string methodName, Func<LogEventInfo, object, object, object, object> threeParameters, MethodInfo legacyMethodInfo = null)
+        {
+            lock (_nameToMethodDetails)
+            {
+                _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? threeParameters.GetDelegateInfo();
+                _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, methodDetails.OneParameter, methodDetails.TwoParameters, threeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
+            }
+        }
+
+        public void RegisterManyParameters(string methodName, Func<object[], object> manyParameters, int manyParameterMinCount, int manyParameterMaxCount, bool manyParameterWithLogEvent, MethodInfo legacyMethodInfo = null)
+        {
+            lock (_nameToMethodDetails)
+            {
+                _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? manyParameters.GetDelegateInfo();
+                _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, methodDetails.OneParameter, methodDetails.TwoParameters, methodDetails.ThreeParameters, manyParameters, manyParameterMinCount, manyParameterMaxCount, manyParameterWithLogEvent);
+            }
+        }
+
+        public Func<LogEventInfo, object> TryCreateInstanceWithNoParameters(string methodName)
+        {
+            lock (_nameToMethodDetails)
+            {
+                if (_nameToMethodDetails.TryGetValue(methodName, out var methodDetails))
+                    return methodDetails.NoParameters;
+                else
+                    return null;
+            }
+        }
+
+        public Func<LogEventInfo, object, object> TryCreateInstanceWithOneParameter(string methodName)
+        {
+            lock (_nameToMethodDetails)
+            {
+                if (_nameToMethodDetails.TryGetValue(methodName, out var methodDetails))
+                    return methodDetails.OneParameter;
+                else
+                    return null;
+            }
+        }
+
+        public Func<LogEventInfo, object, object, object> TryCreateInstanceWithTwoParameters(string methodName)
+        {
+            lock (_nameToMethodDetails)
+            {
+                if (_nameToMethodDetails.TryGetValue(methodName, out var methodDetails))
+                    return methodDetails.TwoParameters;
+                else
+                    return null;
+            }
+        }
+
+        public Func<LogEventInfo, object, object, object, object> TryCreateInstanceWithThreeParameters(string methodName)
+        {
+            lock (_nameToMethodDetails)
+            {
+                if (_nameToMethodDetails.TryGetValue(methodName, out var methodDetails))
+                    return methodDetails.ThreeParameters;
+                else
+                    return null;
+            }
+        }
+
+        public Func<object[], object> TryCreateInstanceWithManyParameters(string methodName, out int manyParameterMinCount, out int manyParameterMaxCount, out bool manyParameterWithLogEvent)
+        {
+            lock (_nameToMethodDetails)
+            {
+                if (_nameToMethodDetails.TryGetValue(methodName, out var methodDetails))
+                {
+                    if (methodDetails.ManyParameters != null)
+                    {
+                        manyParameterMaxCount = methodDetails.ManyParameterMaxCount;
+                        manyParameterMinCount = methodDetails.ManyParameterMinCount;
+                        manyParameterWithLogEvent = methodDetails.ManyParameterWithLogEvent;
+                        return methodDetails.ManyParameters;
+                    }
+                    else if (methodDetails.ThreeParameters != null)
+                    {
+                        manyParameterMaxCount = 3;
+                        manyParameterMinCount = methodDetails.TwoParameters is null ? 3 : 2;
+                        manyParameterWithLogEvent = true;
+                        return new Func<object[], object>(args => methodDetails.ThreeParameters((LogEventInfo)args[0], args[1], args[2], args[3]));
+                    }
+                    else if (methodDetails.TwoParameters != null)
+                    {
+                        manyParameterMaxCount = 2;
+                        manyParameterMinCount = methodDetails.OneParameter is null ? 2 : 1;
+                        manyParameterWithLogEvent = true;
+                        return new Func<object[], object>(args => methodDetails.TwoParameters((LogEventInfo)args[0], args[1], args[2]));
+                    }
+                    else if (methodDetails.OneParameter != null)
+                    {
+                        manyParameterMaxCount = 1;
+                        manyParameterMinCount = methodDetails.NoParameters is null ? 1 : 0;
+                        manyParameterWithLogEvent = true;
+                        return new Func<object[], object>(args => methodDetails.OneParameter((LogEventInfo)args[0], args[1]));
+                    }
+                    else if (methodDetails.NoParameters != null)
+                    {
+                        manyParameterMaxCount = 0;
+                        manyParameterMinCount = 0;
+                        manyParameterWithLogEvent = true;
+                        return new Func<object[], object>(args => methodDetails.NoParameters((LogEventInfo)args[0]));
+                    }
+                }
+                manyParameterMinCount = 0;
+                manyParameterMaxCount = 0;
+                manyParameterWithLogEvent = false;
+                return null;
+            }
         }
     }
 }

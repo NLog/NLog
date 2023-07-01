@@ -333,6 +333,7 @@ namespace NLog
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Name of the condition filter method</param>
         /// <param name="conditionMethod">MethodInfo extracted by reflection - typeof(MyClass).GetMethod("MyFunc", BindingFlags.Static).</param>
+        [Obsolete("Instead use RegisterConditionMethod with delegate, as type reflection will be moved out. Marked obsolete with NLog v5.2")]
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod)
         {
             Guard.ThrowIfNull(conditionMethod);
@@ -352,8 +353,8 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> conditionMethod)
         {
             Guard.ThrowIfNull(conditionMethod);
-            ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod((LogEventInfo)args[0]);
-            return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
+            ConfigurationItemFactory.Default.ConditionMethodFactory.RegisterNoParameters(name, (logEvent) => conditionMethod(logEvent));
+            return setupBuilder;
         }
 
         /// <summary>
@@ -365,13 +366,7 @@ namespace NLog
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<object> conditionMethod)
         {
             Guard.ThrowIfNull(conditionMethod);
-            ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod();
-            return RegisterConditionMethod(setupBuilder, name, conditionMethod, lateBound);
-        }
-
-        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Delegate conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
-        {
-            ConfigurationItemFactory.Default.ConditionMethodFactory.RegisterDefinition(name, conditionMethod.GetDelegateInfo(), lateBoundMethod);
+            ConfigurationItemFactory.Default.ConditionMethodFactory.RegisterNoParameters(name, (logEvent) => conditionMethod());
             return setupBuilder;
         }
 

@@ -578,7 +578,6 @@ namespace NLog.Config
             lock (SyncRoot)
             {
                 AssemblyExtensionTypes.RegisterTypes(factory);
-                factory.ConditionMethodFactory.RegisterType(typeof(NLog.Conditions.ConditionMethods), string.Empty);
 #pragma warning disable CS0618 // Type or member is obsolete
                 factory.RegisterExternalItems();
 #pragma warning restore CS0618 // Type or member is obsolete
