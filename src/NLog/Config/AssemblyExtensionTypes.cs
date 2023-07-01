@@ -41,6 +41,8 @@ namespace NLog.Config
         public static void RegisterTypes(ConfigurationItemFactory factory)
         {
             #pragma warning disable CS0618 // Type or member is obsolete
+            factory.RegisterTypeProperties<NLog.Targets.TargetWithContext.TargetWithContextLayout>(() => null);
+            factory.RegisterTypeProperties<NLog.Layouts.CsvLayout.CsvHeaderLayout>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionAndExpression>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionExceptionExpression>(() => null);
             factory.RegisterTypeProperties<NLog.Conditions.ConditionLayoutExpression>(() => null);

@@ -756,7 +756,7 @@ namespace NLog.Targets
         }
 
         [ThreadAgnostic]
-        private sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
+        internal sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
         {
             public Layout TargetLayout { get => _targetLayout; set => _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value; }
             private Layout _targetLayout;

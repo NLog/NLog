@@ -251,7 +251,7 @@ namespace NLog.Layouts
         /// </summary>
         [ThreadAgnostic]
         [AppDomainFixedOutput]
-        private sealed class CsvHeaderLayout : Layout
+        internal sealed class CsvHeaderLayout : Layout
         {
             private readonly CsvLayout _parent;
             private string _headerOutput;
