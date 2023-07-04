@@ -4,6 +4,11 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.2 (2023/07/04)
+
+**Improvements**
+- [#5276](https://github.com/NLog/NLog/pull/5276) ConfigurationItemFactory - Fix NullReferenceException when skipping already loaded assembly (#5276) (@snakefoot)
+
 ### Version 5.2.1 (2023/07/01)
 
 **Improvements**
