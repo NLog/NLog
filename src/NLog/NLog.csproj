@@ -31,6 +31,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
+- ConfigurationItemFactory - Fix NullReferenceException when skipping already loaded assembly (#5276) (@snakefoot)
 - WrapperTarget - Derive Name from wrappedTarget (#5248) (@snakefoot)
 - Updated obsolete warning for ConfigurationReloaded-event (#5249) (@snakefoot)
 - ConfigurationItemFactory - Notify when using reflection to resolve type (#5251) (@snakefoot)
