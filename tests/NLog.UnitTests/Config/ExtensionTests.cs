@@ -48,8 +48,8 @@ namespace NLog.UnitTests.Config
 
     public class ExtensionTests : NLogTestBase
     {
-        private string extensionAssemblyName1 = "SampleExtensions";
-        private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
+        private readonly string extensionAssemblyName1 = "SampleExtensions";
+        private readonly string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
 
         private string GetExtensionAssemblyFullPath()
         {
