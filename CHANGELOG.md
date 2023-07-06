@@ -4,6 +4,28 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.2 (2023/07/04)
+
+**Improvements**
+- [#5276](https://github.com/NLog/NLog/pull/5276) ConfigurationItemFactory - Fix NullReferenceException when skipping already loaded assembly (#5276) (@snakefoot)
+
+### Version 5.2.1 (2023/07/01)
+
+**Improvements**
+- [#5191](https://github.com/NLog/NLog/pull/5248) WrapperTarget - Derive Name from wrappedTarget (#5248) (@snakefoot)
+- [#5249](https://github.com/NLog/NLog/pull/5249) Updated obsolete warning for ConfigurationReloaded-event (#5249) (@snakefoot)
+- [#5251](https://github.com/NLog/NLog/pull/5251) ConfigurationItemFactory - Notify when using reflection to resolve type (#5251) (@snakefoot)
+- [#5253](https://github.com/NLog/NLog/pull/5253) LoggingConfigurationParser - Create list items without using reflection (#5253) (@snakefoot)
+- [#5254](https://github.com/NLog/NLog/pull/5254) ConfigurationItemFactory - Include ConditionExpression in registration (#5254) (@snakefoot)
+- [#5255](https://github.com/NLog/NLog/pull/5255) LogFactory - Obsoleted GetLogger should not throw exceptions when invalid logger-type (#5255) (@snakefoot)
+- [#5257](https://github.com/NLog/NLog/pull/5257) ConfigurationItemFactory - Skip assembly-loading should also check prefix-option (#5257) (@snakefoot)
+- [#5263](https://github.com/NLog/NLog/pull/5263) ConfigurationItemFactory - Logging assembly-prefix when loading assembly (#5263) (@snakefoot)
+- [#5266](https://github.com/NLog/NLog/pull/5266) ILogger - Remove irrelevant StructuredMessageTemplateAttribute (#5266) (@saltukkos)
+- [#5267](https://github.com/NLog/NLog/pull/5267) ILogger - Updated obsolete warning for ErrorException-method and friends (#5267) (@snakefoot)
+- [#5269](https://github.com/NLog/NLog/pull/5269) LoggingConfigurationParser - TryGetEnumValue should throw when invalid string-value (#5269) (@snakefoot)
+- [#5268](https://github.com/NLog/NLog/pull/5268) ConfigurationItemFactory - Include ConditionMethods in registration (#5268) (@snakefoot)
+- [#5273](https://github.com/NLog/NLog/pull/5273) TargetWithContext - Fix InternalLogger output about Object reflection needed (#5273) (@snakefoot)
+
 ### Version 5.2 (2023/05/30)
 
 **Improvements**
