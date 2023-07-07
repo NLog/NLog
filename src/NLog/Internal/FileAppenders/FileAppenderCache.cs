@@ -142,7 +142,7 @@ namespace NLog.Internal.FileAppenders
                     if (!string.IsNullOrEmpty(_archiveFilePatternToWatch))
                     {
                         string directoryPath = Path.GetDirectoryName(_archiveFilePatternToWatch);
-                        if (string.IsNullOrEmpty(directoryPath))
+                        if (!string.IsNullOrEmpty(directoryPath))
                             _externalFileArchivingWatcher.StopWatching(directoryPath);
                     }
 
