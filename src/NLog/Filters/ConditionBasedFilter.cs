@@ -58,8 +58,8 @@ namespace NLog.Filters
         /// <inheritdoc/>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
-            bool isConditionTrue = Condition.Evaluate(logEvent) == ConditionExpression.BoxedTrue;
-            return isConditionTrue ? Action : FilterDefaultAction;
+            object val = Condition.Evaluate(logEvent);
+            return ConditionExpression.BoxedTrue.Equals(val) ? Action : FilterDefaultAction;
         }
     }
 }
