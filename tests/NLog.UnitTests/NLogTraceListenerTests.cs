@@ -33,17 +33,16 @@
 
 #define DEBUG
 
-using NLog.Config;
-
 namespace NLog.UnitTests
 {
     using System;
     using System.Globalization;
     using System.Threading;
     using System.Diagnostics;
+    using NLog.Config;
     using Xunit;
 
-    public class NLogTraceListenerTests : NLogTestBase, IDisposable
+    public sealed class NLogTraceListenerTests : NLogTestBase, IDisposable
     {
         private readonly CultureInfo previousCultureInfo;
 

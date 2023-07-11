@@ -125,7 +125,7 @@ namespace NLog.UnitTests
                 {
                     Console.WriteLine("Type '{0}' is not used.", kvp.Key);
                     unusedTypes.Add(kvp.Key);
-                    sb.Append(kvp.Key.FullName).Append("\n");
+                    sb.Append(kvp.Key.FullName).Append('\n');
                 }
             }
 
@@ -304,7 +304,7 @@ namespace NLog.UnitTests
             {
                 if (type.IsSubclassOf(typeof(NLog.LayoutRenderers.LayoutRenderer)))
                 {
-                    var layoutRendererAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>()?.ToArray() ?? new NLog.LayoutRenderers.LayoutRendererAttribute[0];
+                    var layoutRendererAttributes = type.GetCustomAttributes<NLog.LayoutRenderers.LayoutRendererAttribute>()?.ToArray() ?? NLog.Internal.ArrayHelper.Empty<NLog.LayoutRenderers.LayoutRendererAttribute>();
                     if (layoutRendererAttributes.Length == 0)
                     {
                         if (type != typeof(NLog.LayoutRenderers.FuncLayoutRenderer) && type != typeof(NLog.LayoutRenderers.FuncThreadAgnosticLayoutRenderer))

@@ -1981,7 +1981,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             return MockDbConnection.LastConnectionString;
         }
 
-        public class MockDbConnection : IDbConnection
+        public sealed class MockDbConnection : IDbConnection
         {
             public static string Log { get; private set; }
             public static string LastConnectionString { get; private set; }
@@ -2343,7 +2343,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-        public class MockDbTransaction : IDbTransaction
+        public sealed class MockDbTransaction : IDbTransaction
         {
             public IDbConnection Connection { get; private set; }
 

@@ -41,6 +41,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Threading;
     using System.Threading.Tasks;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -755,7 +756,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("direct");
-            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
             await reader.ReadLineAsync();
         }
 
@@ -765,7 +766,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 var logger = logFactory.GetCurrentClassLogger();
                 logger.Warn("direct");
-                var reader = new StreamReader(new MemoryStream(new byte[0]));
+                var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
                 await reader.ReadLineAsync();
             }
         }
@@ -826,7 +827,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("direct");
-            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
             await reader.ReadLineAsync();
         }
 
@@ -841,7 +842,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 var logger = logFactory.GetCurrentClassLogger();
                 logger.Warn("direct");
-                var reader = new StreamReader(new MemoryStream(new byte[0]));
+                var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
                 await reader.ReadLineAsync();
             }
         }
@@ -875,7 +876,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private async Task AsyncMethod3a(LogFactory logFactory)
         {
-            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
             await reader.ReadLineAsync();
             AsyncMethod3b(logFactory);
         }
@@ -890,7 +891,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             public async Task AsyncMethod3a(LogFactory logFactory)
             {
-                var reader = new StreamReader(new MemoryStream(new byte[0]));
+                var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
                 await reader.ReadLineAsync();
                 AsyncMethod3b(logFactory);
             }

@@ -719,32 +719,29 @@ namespace NLog.Targets
         /// </summary>
         private void RefreshArchiveFilePatternToWatch(string fileName, LogEventInfo logEvent)
         {
-            if (_fileAppenderCache != null)
-            {
-                _fileAppenderCache.CheckCloseAppenders -= AutoCloseAppendersAfterArchive;
+            _fileAppenderCache.CheckCloseAppenders -= AutoCloseAppendersAfterArchive;
 
-                bool mustWatchArchiving = IsArchivingEnabled && KeepFileOpen && ConcurrentWrites;
-                bool mustWatchActiveFile = EnableFileDelete && ((KeepFileOpen && ConcurrentWrites) || (IsSimpleKeepFileOpen && !EnableFileDeleteSimpleMonitor));
-                if (mustWatchArchiving || mustWatchActiveFile)
-                {
-                    _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
-                }
+            bool mustWatchArchiving = IsArchivingEnabled && KeepFileOpen && ConcurrentWrites;
+            bool mustWatchActiveFile = EnableFileDelete && ((KeepFileOpen && ConcurrentWrites) || (IsSimpleKeepFileOpen && !EnableFileDeleteSimpleMonitor));
+            if (mustWatchArchiving || mustWatchActiveFile)
+            {
+                _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
+            }
 
 #if !NETSTANDARD1_3
-                if (mustWatchArchiving)
-                {
-                    string archiveFilePattern = GetArchiveFileNamePattern(fileName, logEvent);
-                    var fileArchiveStyle = !string.IsNullOrEmpty(archiveFilePattern) ? GetFileArchiveHelper(archiveFilePattern) : null;
-                    string fileNameMask = fileArchiveStyle != null ? _fileArchiveHelper.GenerateFileNameMask(archiveFilePattern) : string.Empty;
-                    string directoryMask = !string.IsNullOrEmpty(fileNameMask) ? Path.Combine(Path.GetDirectoryName(archiveFilePattern), fileNameMask) : string.Empty;
-                    _fileAppenderCache.ArchiveFilePatternToWatch = directoryMask;
-                }
-                else
-                {
-                    _fileAppenderCache.ArchiveFilePatternToWatch = null;
-                }
-#endif
+            if (mustWatchArchiving)
+            {
+                string archiveFilePattern = GetArchiveFileNamePattern(fileName, logEvent);
+                var fileArchiveStyle = !string.IsNullOrEmpty(archiveFilePattern) ? GetFileArchiveHelper(archiveFilePattern) : null;
+                string fileNameMask = fileArchiveStyle != null ? _fileArchiveHelper.GenerateFileNameMask(archiveFilePattern) : string.Empty;
+                string directoryMask = !string.IsNullOrEmpty(fileNameMask) ? Path.Combine(Path.GetDirectoryName(archiveFilePattern), fileNameMask) : string.Empty;
+                _fileAppenderCache.ArchiveFilePatternToWatch = directoryMask;
             }
+            else
+            {
+                _fileAppenderCache.ArchiveFilePatternToWatch = null;
+            }
+#endif
         }
 
         /// <summary>

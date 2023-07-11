@@ -252,7 +252,7 @@ namespace NLog.UnitTests.Common
         /// <param name="internalLogToTrace">internalLogToTrace XML attribute value. If <c>null</c> attribute is omitted.</param>
         /// <param name="logToTrace">Value of <see cref="InternalLogger.LogToTrace"/> property. If <c>null</c> property is not set.</param>
         /// <returns><see cref="TraceListener"/> instance.</returns>
-        private T SetupTestConfiguration<T>(LogLevel logLevel, bool? internalLogToTrace, bool? logToTrace) where T : TraceListener
+        private static T SetupTestConfiguration<T>(LogLevel logLevel, bool? internalLogToTrace, bool? logToTrace) where T : TraceListener
         {
             var internalLogToTraceAttribute = "";
             if (internalLogToTrace.HasValue)

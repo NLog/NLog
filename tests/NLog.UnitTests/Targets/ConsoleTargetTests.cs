@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Targets
 {
     using System;
-    using System.IO;
-    using NLog.Targets;
     using System.Collections.Generic;
+    using System.IO;
+    using NLog.Config;
+    using NLog.Targets;
     using Xunit;
     using System.Threading.Tasks;
 
@@ -56,7 +55,7 @@ namespace NLog.UnitTests.Targets
             ConsoleOutTest(true);
         }
 
-        private void ConsoleOutTest(bool writeBuffer)
+        private static void ConsoleOutTest(bool writeBuffer)
         {
             var target = new ConsoleTarget()
             {

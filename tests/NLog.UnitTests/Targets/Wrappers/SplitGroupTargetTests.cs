@@ -38,6 +38,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System.Linq;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
@@ -47,7 +48,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void NoTargets_SplitGroupTarget_IsWorking()
         {
-            SplitGroupTarget_Exercise(new MyTarget[] { });
+            SplitGroupTarget_Exercise(ArrayHelper.Empty<MyTarget>());
         }
 
         [Fact]

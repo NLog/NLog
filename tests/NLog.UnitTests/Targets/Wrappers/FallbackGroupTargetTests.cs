@@ -225,7 +225,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             FallbackGroupWithBufferingTargets(false);
         }
 
-        private void FallbackGroupWithBufferingTargets(bool returnToFirstOnSuccess)
+        private static void FallbackGroupWithBufferingTargets(bool returnToFirstOnSuccess)
         {
             using (new NoThrowNLogExceptions())
             {

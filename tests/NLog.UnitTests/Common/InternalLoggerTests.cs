@@ -43,7 +43,7 @@ namespace NLog.UnitTests.Common
     using NLog.Time;
     using Xunit;
 
-    public class InternalLoggerTests : NLogTestBase, IDisposable
+    public sealed class InternalLoggerTests : NLogTestBase, IDisposable
     {
         /// <summary>
         /// Test the return values of all Is[Level]Enabled() methods.

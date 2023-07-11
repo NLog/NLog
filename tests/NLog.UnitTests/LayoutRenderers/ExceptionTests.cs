@@ -35,12 +35,12 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using NLog.Config;
+    using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
-    using NLog.Internal;
     using Xunit;
-    using NLog.Config;
 
     public class ExceptionTests : NLogTestBase
     {
@@ -728,7 +728,7 @@ namespace NLog.UnitTests.LayoutRenderers
             public override string Message => throw new Exception("Exception from Message property");
         }
 
-        private LogFactory BuildConfigurationForExceptionTests()
+        private static LogFactory BuildConfigurationForExceptionTests()
         {
             return new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
@@ -760,7 +760,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        private Exception GetNestedExceptionWithStackTrace(string exceptionMessage)
+        private static Exception GetNestedExceptionWithStackTrace(string exceptionMessage)
         {
             try
             {
@@ -804,7 +804,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        private Exception GetExceptionWithoutStackTrace(string exceptionMessage)
+        private static Exception GetExceptionWithoutStackTrace(string exceptionMessage)
         {
             return new CustomArgumentException(exceptionMessage, "exceptionMessage");
         }

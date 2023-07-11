@@ -68,7 +68,7 @@ namespace NLog.UnitTests.Targets
             HappyPathTest(LineEndingMode.LF, "msg1", "msg2", "msg3");
         }
 
-        private void HappyPathTest(LineEndingMode lineEnding, params string[] messages)
+        private static void HappyPathTest(LineEndingMode lineEnding, params string[] messages)
         {
             var senderFactory = new MyQueudSenderFactory();
             var target = new NetworkTarget();
@@ -654,7 +654,7 @@ namespace NLog.UnitTests.Targets
         }
         private static int _portOffset;
 
-        private void NetworkTargetUdpTest(bool splitMessage)
+        private static void NetworkTargetUdpTest(bool splitMessage)
         {
             var loopBackIP = Socket.OSSupportsIPv4 ? IPAddress.Loopback : IPAddress.IPv6Loopback;
             var udpPrefix = loopBackIP.AddressFamily == AddressFamily.InterNetwork ? "udp4" : "udp6";

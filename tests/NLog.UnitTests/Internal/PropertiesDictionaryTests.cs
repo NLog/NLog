@@ -31,14 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using NLog.MessageTemplates;
-using Xunit;
-
 namespace NLog.UnitTests.Internal
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using NLog.MessageTemplates;
+    using Xunit;
+    using NLog.Internal;
+
     public class PropertiesDictionaryTests : NLogTestBase
     {
         [Fact]
@@ -61,9 +62,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 
@@ -90,9 +91,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 
@@ -116,7 +117,7 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
             dictionary.Values.CopyTo(new object[0], 0);
             dictionary.Keys.CopyTo(new object[0], 0);
             dictionary.Clear();
@@ -144,9 +145,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 

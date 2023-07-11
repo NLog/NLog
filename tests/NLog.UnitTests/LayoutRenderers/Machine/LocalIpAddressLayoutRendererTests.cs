@@ -31,20 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using NLog.LayoutRenderers;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
-using Xunit;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.NetworkInformation;
+    using System.Net.Sockets;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
+    using NSubstitute;
+    using NSubstitute.ExceptionExtensions;
+    using Xunit;
 
     public class LocalIpAddressLayoutRendererTests : NLogTestBase
     {
@@ -310,7 +309,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        private NetworkInterface BuildNetworkInterfaceMock(IEnumerable<KeyValuePair<string, string>> ips, string mac, NetworkInterfaceType type, OperationalStatus status)
+        private static NetworkInterface BuildNetworkInterfaceMock(IEnumerable<KeyValuePair<string, string>> ips, string mac, NetworkInterfaceType type, OperationalStatus status)
         {
             var networkInterfaceMock = Substitute.For<NetworkInterface>();
 

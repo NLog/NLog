@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using NLog.Internal;
-using Xunit;
-
 namespace NLog.UnitTests.Internal
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using NLog.Internal;
+    using Xunit;
+
     public class SortHelpersTests
     {
         [Fact]
@@ -66,13 +66,13 @@ namespace NLog.UnitTests.Internal
             Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
             Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
 
-            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
+            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
         }
 
         [Fact]
         public void SingleBucketDictionary_OneBucketEmptyTest()
         {
-            IList<string> bucket = new string[0];
+            IList<string> bucket = ArrayHelper.Empty<string>();
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>(new KeyValuePair<string, IList<string>>("Bucket1", bucket));
             Assert.Single(dict);
 
@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Internal
             Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 0);
             Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
             Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
-            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
+            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
         }
 
         [Fact]
@@ -164,7 +164,7 @@ namespace NLog.UnitTests.Internal
             Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 1);
             Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
             Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
-            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
+            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
         }
 
         [Fact]
@@ -223,8 +223,8 @@ namespace NLog.UnitTests.Internal
         [Fact]
         public void SingleBucketDictionary_TwoBucketEmptyTest()
         {
-            IList<string> bucket1 = new string[0];
-            IList<string> bucket2 = new string[0];
+            IList<string> bucket1 = ArrayHelper.Empty<string>();
+            IList<string> bucket2 = ArrayHelper.Empty<string>();
             Dictionary<string, IList<string>> buckets = new Dictionary<string, IList<string>>();
             buckets["Bucket1"] = bucket1;
             buckets["Bucket2"] = bucket2;
@@ -277,7 +277,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(0, dict["Bucket2"].Count);
             Assert.True(dict.TryGetValue("Bucket1", out bucket1) && bucket1.Count == 0);
             Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 0);
-            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
+            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
         }
 
         [Fact]
@@ -339,7 +339,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(1, dict["Bucket2"].Count);
             Assert.True(dict.TryGetValue("Bucket1", out bucket1) && bucket1.Count == 1);
             Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 1);
-            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
+            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
         }
     }
 }
