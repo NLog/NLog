@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net461;net6.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
@@ -9,10 +9,10 @@
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
-    <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">Full</DebugType>
+    <DebugType Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">Full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
   </PropertyGroup>
   
@@ -25,25 +25,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">
+  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite" />
     <Reference Include="System.Transactions" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.114.3" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115.5" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.5" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.17" />
-    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />  <!-- Help Microsoft.Data.Sqlite -->
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.6" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.20" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />  <!-- Help Microsoft.Data.SqlClient -->
   </ItemGroup>
 
   <ItemGroup>

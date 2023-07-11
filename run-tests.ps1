@@ -2,7 +2,7 @@ dotnet restore ./tests/NLog.UnitTests/
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-dotnet test ./tests/NLog.UnitTests/ --framework netcoreapp3.1 --configuration release --no-restore
+dotnet test ./tests/NLog.UnitTests/ --framework net6.0 --configuration release --no-restore
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -51,7 +51,7 @@ if ($isWindows -or $Env:WinDir)
 }
 else
 {
-	dotnet test ./tests/NLog.Database.Tests/ --framework netcoreapp3.1 --configuration release
+	dotnet test ./tests/NLog.Database.Tests/ --framework net6.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 

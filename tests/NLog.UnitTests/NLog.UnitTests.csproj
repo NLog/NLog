@@ -1,16 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net461;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net461;net6.0</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
-    <DebugType Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">Full</DebugType>
+    <DebugType Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TestTargetFramework)' != '' ">
@@ -18,15 +18,15 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TestTargetFramework)' == 'net35' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net6.0' AND '$(TestTargetFramework)' == 'net35' ">
     <DefineConstants>$(DefineConstants);NET35</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TestTargetFramework)' == 'net45' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net6.0' AND '$(TestTargetFramework)' == 'net45' ">
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
   </PropertyGroup>
   
@@ -35,7 +35,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" /> <!-- Because of OWIN + NetCoreApp3.1 -->
     <PackageReference Include="NSubstitute" Version="5.0.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
@@ -43,7 +42,7 @@
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.6.3" Condition="'$(OS)' != 'Windows_NT'" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' ">
+  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -57,10 +56,11 @@
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.9" />
-    <PackageReference Include="Microsoft.Owin" version="4.2.2" /> <!-- Waiting for updated OwinSelfHost -->
+    <PackageReference Include="Microsoft.Owin" version="4.2.2" />   <!-- Waiting for updated OwinSelfHost -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" /> <!-- Waiting for updated OwinSelfHost -->
   </ItemGroup>
  
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net6.0' AND '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog">
       <HintPath>../../src/NLog/bin/$(Configuration)/$(TestTargetFramework)/NLog.dll</HintPath>
       <Private>True</Private>

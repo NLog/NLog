@@ -48,10 +48,10 @@ namespace NLog.UnitTests.Config
 
     public class ExtensionTests : NLogTestBase
     {
-        private readonly string extensionAssemblyName1 = "SampleExtensions";
-        private readonly string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
+        private readonly static string extensionAssemblyName1 = "SampleExtensions";
+        private readonly static string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
 
-        private string GetExtensionAssemblyFullPath()
+        private static string GetExtensionAssemblyFullPath()
         {
 #if NETSTANDARD
             Assert.NotNull(typeof(FooLayout));
@@ -682,9 +682,9 @@ namespace NLog.UnitTests.Config
             var testsDirectory = configurationDirectory.Parent.Parent.Parent;
             var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
 #if NETSTANDARD
-                    "netstandard2.0",
+                "netstandard2.0",
 #elif NET35 || NET40 || NET45
-                    "net461",
+                "net461",
 #else
                 nlogDirectory.Name,
 #endif

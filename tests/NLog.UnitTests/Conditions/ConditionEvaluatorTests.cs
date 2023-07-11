@@ -329,11 +329,8 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if NETSTANDARD
-        [Fact(Skip = "NetStandard does not mark InvalidOperationException as Serializable")]
-#else
+#if !NET6_0_OR_GREATER
         [Fact]
-#endif
         public void ExceptionTest4()
         {
             var inner = new InvalidOperationException("f");
@@ -347,6 +344,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal("msg", ex2.Message);
             Assert.Equal("f", ex2.InnerException.Message);
         }
+#endif
 
         [Fact]
         public void ExceptionTest11()
@@ -371,11 +369,8 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if NETSTANDARD
-        [Fact(Skip = "NetStandard does not mark InvalidOperationException as Serializable")]
-#else
+#if !NET6_0_OR_GREATER
         [Fact]
-#endif
         public void ExceptionTest14()
         {
             var inner = new InvalidOperationException("f");
@@ -389,6 +384,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal("msg", ex2.Message);
             Assert.Equal("f", ex2.InnerException.Message);
         }
+#endif
 
         private static ConfigurationItemFactory SetupConditionMethods()
         {

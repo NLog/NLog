@@ -615,7 +615,9 @@ namespace NLog.UnitTests.Config
             var logFactory = new LogFactory();
             logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("hasParameters", evt => evt.Parameters?.Length > 0));
             logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isProduction", () => false));
+#pragma warning disable CS0618 // Type or member is obsolete
             logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isValid", typeof(Conditions.ConditionEvaluatorTests.MyConditionMethods).GetMethod(nameof(Conditions.ConditionEvaluatorTests.MyConditionMethods.IsValid))));
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // Act
             logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
