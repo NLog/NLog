@@ -303,7 +303,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Throws<ConditionParseException>(() => tokenizer.GetNextToken());
         }
 
-        private void RelationalOperatorTestInner(string op, string result)
+        private static void RelationalOperatorTestInner(string op, string result)
         {
             string operand1 = "3";
             string operand2 = "7";

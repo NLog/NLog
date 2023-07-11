@@ -34,13 +34,13 @@
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using System.Collections.Generic;
     using Xunit;
-    using NLog.Config;
 
     public class AsyncTargetWrapperTests : NLogTestBase
     {
@@ -85,7 +85,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
-        private void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
+        private static void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
         {
             LogManager.ThrowConfigExceptions = true;
 
@@ -678,7 +678,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             EnqueuQueueBlock_OnClose_ReleasesWriters(false);
         }
 
-        private void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue)
+        private static void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue)
         {
             // Arrange
             var slowTarget = new MethodCallTarget("slowTarget", (logEvent, parms) => System.Threading.Thread.Sleep(300));

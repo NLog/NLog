@@ -34,6 +34,7 @@
 using System;
 using System.Linq;
 using NLog.Config;
+using NLog.Internal;
 using NLog.Targets;
 using Xunit;
 
@@ -331,7 +332,7 @@ namespace NLog.UnitTests.Config
             rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
 
             rule.SetLoggingLevels(LogLevel.Off, LogLevel.Off);
-            Assert.Equal(rule.Levels, new LogLevel[0]);
+            Assert.Equal(rule.Levels, ArrayHelper.Empty<LogLevel>());
         }
 
         [Fact]

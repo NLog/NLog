@@ -38,6 +38,7 @@ namespace NLog.UnitTests.Contexts
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using NLog.Internal;
     using Xunit;
 
     [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
@@ -480,7 +481,7 @@ namespace NLog.UnitTests.Contexts
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key });
             }
 
-            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new string[] { });
+            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), ArrayHelper.Empty<string>());
 
             using (MappedDiagnosticsLogicalContext.SetScoped(new[]
             {
@@ -493,7 +494,7 @@ namespace NLog.UnitTests.Contexts
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { item1Key, item2Key, item3Key, item4Key });
             }
 
-            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new string[] { });
+            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), ArrayHelper.Empty<string>());
         }
 #endif
 

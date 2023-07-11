@@ -31,16 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Linq;
-using NLog.Config;
-using NLog.Layouts;
-using NLog.Targets;
-using Xunit;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using Xunit;
+
     public class VariableLayoutRendererTests : NLogTestBase
     {
         [Fact]
@@ -349,7 +349,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logFactory.AssertDebugLastMessage("msg|my-mocking-manager");
         }
 
-        private LogFactory CreateConfigFromXml()
+        private static LogFactory CreateConfigFromXml()
         {
             return new LogFactory().Setup().LoadConfigurationFromXml(@"
 <nlog throwExceptions='true'>

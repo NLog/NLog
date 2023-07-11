@@ -37,6 +37,7 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
     using Xunit;
 
     public class AsyncHelperTests : NLogTestBase
@@ -401,7 +402,7 @@ namespace NLog.UnitTests
         [Fact]
         public void ForEachItemInParallelEmptyTest()
         {
-            int[] items = new int[0];
+            int[] items = ArrayHelper.Empty<int>();
             Exception lastException = null;
             bool finalContinuationInvoked = false;
 

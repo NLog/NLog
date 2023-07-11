@@ -31,29 +31,29 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Runtime.Serialization;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+namespace NLog.UnitTests.Targets
+{
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http.Headers;
+    using System.Runtime.Serialization;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Xml.Serialization;
 #if !NETSTANDARD
-using System.Collections.Concurrent;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using Microsoft.Owin.Hosting;
 using Owin;
-using NLog.Internal;
 #endif
-using NLog.Targets;
-using Xunit;
+    using NLog.Internal;
+    using NLog.Targets;
+    using Xunit;
 
-namespace NLog.UnitTests.Targets
-{
     public class WebServiceTargetTests : NLogTestBase
     {
         public WebServiceTargetTests()
@@ -900,7 +900,7 @@ namespace NLog.UnitTests.Targets
                 }
                 else
                 {
-                    return new object[0];
+                    return ArrayHelper.Empty<object>();
                 }
             }
         }

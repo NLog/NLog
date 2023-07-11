@@ -31,13 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Xunit;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using NLog.Internal;
+    using Xunit;
+
     public class CallSiteFileNameLayoutTests : NLogTestBase
     {
 #if !MONO
@@ -195,7 +196,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logger = logFactory.GetCurrentClassLogger();
             logger.Warn("msg");
-            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            var reader = new StreamReader(new MemoryStream(ArrayHelper.Empty<byte>()));
             await reader.ReadLineAsync();
         }
     }

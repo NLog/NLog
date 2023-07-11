@@ -953,12 +953,12 @@ namespace NLog.UnitTests.Layouts
                 AppendFormattable(builder, HashSetNumber);
             }
 
-            private void Append<T>(StringBuilder builder, IEnumerable<T> items)
+            private static void Append<T>(StringBuilder builder, IEnumerable<T> items)
             {
                 if (items != null) builder.Append(string.Join("-", items.ToArray()));
             }
 
-            private void AppendFormattable<T>(StringBuilder builder, IEnumerable<T> items)
+            private static void AppendFormattable<T>(StringBuilder builder, IEnumerable<T> items)
                 where T : IFormattable
             {
                 if (items != null) builder.Append(string.Join("-", items.Select(it => it.ToString(null, CultureInfo.InvariantCulture)).ToArray()));

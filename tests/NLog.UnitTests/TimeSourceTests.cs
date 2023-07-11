@@ -34,10 +34,10 @@
 namespace NLog.UnitTests
 {
     using System;
-    using Time;
+    using NLog.Time;
     using Xunit;
 
-    public class TimeSourceTests : NLogTestBase, IDisposable
+    public sealed class TimeSourceTests : NLogTestBase, IDisposable
     {
         public void Dispose()
         {
@@ -147,9 +147,7 @@ namespace NLog.UnitTests
             }
         }
 
-
-
-        void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
+        private static void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
             Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
             TimeSource.Current = source;
