@@ -38,7 +38,8 @@ using NSubstitute;
 
 namespace NLog.UnitTests.Mocks
 {
-    public class WebRequestMock : WebRequest, IDisposable
+    [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
+    public sealed class WebRequestMock : WebRequest, IDisposable
     {
         public Uri RequestedAddress { get; set; }
 
@@ -61,7 +62,7 @@ namespace NLog.UnitTests.Mocks
                 RequestStream.Position = 0;
                 RequestStream.SetLength(0);
                 System.Threading.Thread.Sleep(50);
-                throw new ArgumentNullException("You are doomed");
+                throw new InvalidDataException("You are doomed");
             }
 
             var responseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("new response 1"));

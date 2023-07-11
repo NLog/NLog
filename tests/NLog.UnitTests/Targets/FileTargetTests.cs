@@ -624,7 +624,7 @@ namespace NLog.UnitTests.Targets
                 // See that opening closing 
                 AssertFileContents(logFile, "name;level;message\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\n", Encoding.UTF8);
 
-                Assert.NotEqual(3, Directory.GetFiles(tempDir).Count());   // See that archive cleanup worked
+                Assert.NotEqual(3, Directory.GetFiles(tempDir).Length);   // See that archive cleanup worked
 
                 LogManager.Configuration = null;    // Close
             }
@@ -2790,7 +2790,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(File.Exists(logFile));
 
                 //Five archive files, plus the log file itself.
-                Assert.True(tempDirectory.GetFiles(archiveFileMask).Count() == 5 + 1);
+                Assert.True(tempDirectory.GetFiles(archiveFileMask).Length == 5 + 1);
             }
             finally
             {
@@ -3570,7 +3570,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">expected count of archived files</param>
         /// <param name="dateFormat">date format</param>
         /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
-        private void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        private static void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archivePath = Path.Combine(tempDir, "archive");
@@ -3665,7 +3665,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
         /// <param name="dateFormat">string to be used for formatting log file names</param>
         /// <param name="changeCreationAndWriteTime"></param>
-        private void HandleArchiveFilesMultipleContextMultipleTargetsTest(
+        private static void HandleArchiveFilesMultipleContextMultipleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -3807,7 +3807,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
         /// <param name="dateFormat">string to be used for formatting log file names</param>
         /// <param name="changeCreationAndWriteTime"></param>
-        private void HandleArchiveFilesMultipleContextSingleTargetsTest(
+        private static void HandleArchiveFilesMultipleContextSingleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -4064,7 +4064,7 @@ namespace NLog.UnitTests.Targets
             var invalidChars = Path.GetInvalidFileNameChars();
             var invalidFileName = Path.DirectorySeparatorChar.ToString();
             var expectedFileName = "";
-            for (int i = 0; i < invalidChars.Count(); i++)
+            for (int i = 0; i < invalidChars.Length; i++)
             {
                 var invalidChar = invalidChars[i];
                 if (invalidChar == Path.DirectorySeparatorChar || invalidChar == Path.AltDirectorySeparatorChar)
@@ -4107,7 +4107,9 @@ namespace NLog.UnitTests.Targets
         [InlineData("UTF-16BE", true)]
         [InlineData("UTF-32", true)]
         [InlineData("UTF-32BE", true)]
+#if !NET6_0_OR_GREATER
         [InlineData("UTF-7", false)]
+#endif
         [InlineData("UTF-8", false)]
         [InlineData("ASCII", false)]
         public void TestInitialBomValue(string encodingName, bool expected)

@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Targets
             WebserviceTest_httppost_utf8("includeBOM='false'", false);
         }
 
-        private void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
+        private static void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
         {
             var logFactory = new LogFactory().Setup()
                                              .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
@@ -142,7 +142,9 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("utf-8", target.Encoding.WebName);
 
             //async call with mockup stream
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
             var webRequest = System.Net.WebRequest.Create("http://www.test.com");
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
             var httpWebRequest = (HttpWebRequest)webRequest;
             var streamMock = new StreamMock();
 

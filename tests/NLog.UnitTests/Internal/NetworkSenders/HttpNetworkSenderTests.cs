@@ -49,6 +49,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         /// Test <see cref="HttpNetworkSender"/> via <see cref="NetworkTarget"/>
         /// </summary>
         [Fact]
+        [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
         public void HttpNetworkSenderViaNetworkTargetTest()
         {
             // Arrange
@@ -92,6 +93,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         }
 
         [Fact]
+        [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
         public void HttpNetworkSenderViaNetworkTargetRecoveryTest()
         {
             // Arrange
@@ -136,7 +138,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             mock.Dispose();
         }
 
-
+        [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
         private static INetworkSenderFactory CreateNetworkSenderFactoryMock(WebRequestMock webRequestMock)
         {
             var networkSenderFactoryMock = Substitute.For<INetworkSenderFactory>();
