@@ -4225,7 +4225,7 @@ namespace NLog.UnitTests.Targets
             HandleArchiveFileAlreadyExistsTest(encoding, false);
         }
 
-        private void HandleArchiveFileAlreadyExistsTest(Encoding encoding, bool hasBom)
+        private static void HandleArchiveFileAlreadyExistsTest(Encoding encoding, bool hasBom)
         {
             var tempDir = Path.Combine(Path.GetTempPath(), "HandleArchiveFileAlreadyExistsTest-" + Guid.NewGuid());
             string logFile = Path.Combine(tempDir, "log.txt");

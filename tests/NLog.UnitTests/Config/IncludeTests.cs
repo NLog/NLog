@@ -64,7 +64,7 @@ namespace NLog.UnitTests.Config
             IncludeTest_inner(includeAttrValue, tempPath);
         }
 
-        private void IncludeTest_inner(string includeAttrValue, string tempDir)
+        private static void IncludeTest_inner(string includeAttrValue, string tempDir)
         {
             Directory.CreateDirectory(tempDir);
 

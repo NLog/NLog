@@ -217,7 +217,7 @@ namespace NLog.UnitTests.Internal
             Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 2);
             Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
             Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
-            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = new string[0]);
+            Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
         }
 
         [Fact]

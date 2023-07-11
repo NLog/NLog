@@ -162,7 +162,7 @@ namespace NLog.UnitTests.Internal
             SplitStringWithQuotes(input, ';', SingleQuote, Backslash, output);
         }
 
-        void SplitStringWithQuotes(string input, char splitChar, char quoteChar, char escapeChar, string output)
+        private static void SplitStringWithQuotes(string input, char splitChar, char quoteChar, char escapeChar, string output)
         {
             var strings = StringSplitter.SplitQuoted(input, splitChar, quoteChar, escapeChar).ToArray();
             var result = string.Join(",", strings);

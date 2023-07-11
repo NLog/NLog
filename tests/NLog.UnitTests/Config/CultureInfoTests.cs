@@ -97,7 +97,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        private void AssertMessageFormattedWithCulture(LogFactory logFactory, CultureInfo culture, string formatString, params object[] parameters)
+        private static void AssertMessageFormattedWithCulture(LogFactory logFactory, CultureInfo culture, string formatString, params object[] parameters)
         {
             var expected = string.Format(culture, formatString, parameters);
             var logger = logFactory.GetLogger("test");
