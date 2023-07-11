@@ -6,6 +6,8 @@ try
 {
     System.Console.SetOut(consoleWriter);
 
+    NLog.LogManager.ThrowExceptions = true; // unit-test-mode
+
     var logger = NLog.LogManager.Setup().LoadConfigurationFromXml(@"
     <nlog>
       <targets>
@@ -21,6 +23,12 @@ try
     logger.Info("Success");
     NLog.LogManager.Shutdown();
     logger.Debug("Almost done");
+}
+catch (Exception ex)
+{
+    System.Console.SetOut(orgConsole);
+    Console.WriteLine(ex.ToString());
+    throw;
 }
 finally
 {
