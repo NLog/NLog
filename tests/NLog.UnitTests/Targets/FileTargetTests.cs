@@ -2609,7 +2609,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(File.Exists(logFile));
 
                 //Five archive files, plus the log file itself.
-                Assert.True(tempDirectory.GetFiles(archiveFileMask).Count() == 5 + 1);
+                Assert.True(tempDirectory.GetFiles(archiveFileMask).Length == 5 + 1);
             }
             finally
             {
@@ -3389,7 +3389,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">expected count of archived files</param>
         /// <param name="dateFormat">date format</param>
         /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
-        private void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        private static void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archivePath = Path.Combine(logdir, "archive");
@@ -3485,7 +3485,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
         /// <param name="dateFormat">string to be used for formatting log file names</param>
         /// <param name="changeCreationAndWriteTime"></param>
-        private void HandleArchiveFilesMultipleContextMultipleTargetsTest(
+        private static void HandleArchiveFilesMultipleContextMultipleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -3629,7 +3629,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
         /// <param name="dateFormat">string to be used for formatting log file names</param>
         /// <param name="changeCreationAndWriteTime"></param>
-        private void HandleArchiveFilesMultipleContextSingleTargetsTest(
+        private static void HandleArchiveFilesMultipleContextSingleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -3887,7 +3887,7 @@ namespace NLog.UnitTests.Targets
             var invalidChars = Path.GetInvalidFileNameChars();
             var invalidFileName = Path.DirectorySeparatorChar.ToString();
             var expectedFileName = "";
-            for (int i = 0; i < invalidChars.Count(); i++)
+            for (int i = 0; i < invalidChars.Length; i++)
             {
                 var invalidChar = invalidChars[i];
                 if (invalidChar == Path.DirectorySeparatorChar || invalidChar == Path.AltDirectorySeparatorChar)
