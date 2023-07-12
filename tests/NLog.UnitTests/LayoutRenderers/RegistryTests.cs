@@ -41,7 +41,10 @@ namespace NLog.UnitTests.LayoutRenderers
     using Microsoft.Win32;
     using Xunit;
 
-    public class RegistryTests : NLogTestBase, IDisposable
+#if NETSTANDARD
+    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
+#endif
+    public sealed class RegistryTests : NLogTestBase, IDisposable
     {
         private const string TestKey = @"Software\NLogTest";
 

@@ -108,7 +108,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             WebserviceTest_httppost_utf8("includeBOM='false'", false);
         }
 
-        private void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
+        private static void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
         {
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
@@ -138,7 +138,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal("utf-8", target.Encoding.WebName);
 
             //async call with mockup stream
-            WebRequest webRequest = WebRequest.Create("http://www.test.com");
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
+            var webRequest = System.Net.WebRequest.Create("http://www.test.com");
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
             var httpWebRequest = (HttpWebRequest)webRequest;
             var streamMock = new StreamMock();
 
