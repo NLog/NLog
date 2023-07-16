@@ -47,7 +47,7 @@ namespace NLog.Internal.Fakeables
         private readonly System.Runtime.Loader.AssemblyLoadContext _defaultContext;
 #endif
 
-        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FakeAppDomain" /> class.</summary>
         public FakeAppDomain()
         {
             BaseDirectory = AppContext.BaseDirectory;

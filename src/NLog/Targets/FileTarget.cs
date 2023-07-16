@@ -250,6 +250,7 @@ namespace NLog.Targets
                 {
                     _fileNameKind = value;
                     _fullFileName = CreateFileNameLayout(FileName);
+                    _fullArchiveFileName = CreateFileNameLayout(ArchiveFileName);
                     ResetFileAppenders("FileNameKind Changed");
                 }
             }

@@ -34,6 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using NLog.Common;
 using NLog.Layouts;
 using NLog.Targets;
 
@@ -83,7 +84,7 @@ namespace NLog.Internal
 
         public bool IsFixedFilePath => _cleanedFixedResult != null;
 
-        /// <summary>Initializes a new instance of the <see cref="System.Object" /> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FilePathLayout" /> class.</summary>
         public FilePathLayout(Layout layout, bool cleanupInvalidChars, FilePathKind filePathKind)
         {
             _layout = layout;
@@ -106,6 +107,12 @@ namespace NLog.Internal
             if (_filePathKind == FilePathKind.Relative)
             {
                 _baseDir = LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory;
+                InternalLogger.Debug("FileTarget FilePathLayout with FilePathKind.Relative using AppDomain.BaseDirectory: {0}", _baseDir);
+                if (_cleanedFixedResult != null)
+                {
+                    _cleanedFixedResult = Path.Combine(_baseDir, _cleanedFixedResult);
+                    _filePathKind = FilePathKind.Absolute;
+                }
             }
         }
 
@@ -224,6 +231,7 @@ namespace NLog.Internal
                 cleanFileName = Path.Combine(_baseDir, cleanFileName);
                 return cleanFileName;
             }
+
             //unknown, use slow method
             cleanFileName = Path.GetFullPath(cleanFileName);
             return cleanFileName;
@@ -242,7 +250,7 @@ namespace NLog.Internal
                 return rawFileName;
             }
 
-            if ((!_cleanupInvalidChars || _cleanedFixedResult != null) && _filePathKind == FilePathKind.Absolute)
+            if (_filePathKind == FilePathKind.Absolute && (!_cleanupInvalidChars || _cleanedFixedResult != null))
                 return rawFileName; // Skip clean filename string-allocation
 
             if (string.Equals(_cachedPrevRawFileName, rawFileName, StringComparison.Ordinal) && _cachedPrevCleanFileName != null)
