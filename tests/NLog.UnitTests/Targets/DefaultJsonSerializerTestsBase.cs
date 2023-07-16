@@ -658,7 +658,6 @@ namespace NLog.UnitTests.Targets
 
         protected class TestObject
         {
-            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
             public TestObject(string name)
             {
                 Name = name;
@@ -687,7 +686,6 @@ namespace NLog.UnitTests.Targets
 
         private class ObjectWithExceptionAndPrivateSetter
         {
-            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
             public ObjectWithExceptionAndPrivateSetter(string name)
             {
                 Name = name;
