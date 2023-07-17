@@ -240,7 +240,8 @@ namespace NLog.Internal
             foreach (var configProp in GetAllConfigItemProperties(configFactory, o.GetType()))
             {
                 var propInfo = configProp.Value;
-                if (propInfo.PropertyType?.IsClass() == true)
+                var propertyType = propInfo.PropertyType;
+                if (propertyType != null && (propertyType.IsClass() || Nullable.GetUnderlyingType(propertyType) != null))
                 {
                     if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                     {

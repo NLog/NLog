@@ -596,6 +596,55 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void RequiredDataTypesTest()
+        {
+            var c = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        stringProperty='foobar'
+                        enumProperty='Value3'
+/>
+                </targets>
+            </nlog>").LogFactory.Configuration;
+
+            var myTarget = c.FindTargetByName("myTarget") as MyRequiredTarget;
+            Assert.NotNull(myTarget);
+
+            var missingStringValue = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        enumProperty='Value3'
+                    />
+                </targets>
+            </nlog>"));
+            Assert.Contains(nameof(MyRequiredTarget.StringProperty), missingStringValue.Message);
+
+            var missingEnumValue = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        stringProperty='foobar'
+                    />
+                </targets>
+            </nlog>"));
+            Assert.Contains(nameof(MyRequiredTarget.EnumProperty), missingEnumValue.Message);
+        }
+
+        [Fact]
         public void DataTypesTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -786,6 +835,15 @@ namespace NLog.UnitTests.Config
             {
                 Name = name;
             }
+        }
+
+        [Target("MyRequiredTarget")]
+        public class MyRequiredTarget : Target
+        {
+            [RequiredParameter]
+            public string StringProperty { get; set; }
+            [RequiredParameter]
+            public MyEnum? EnumProperty { get; set; }
         }
 
         public enum MyEnum
