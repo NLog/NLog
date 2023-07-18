@@ -89,19 +89,21 @@ namespace NLog.Internal
             try
             {
                 var propertyType = Nullable.GetUnderlyingType(propInfo.PropertyType) ?? propInfo.PropertyType;
-
-                if (!TryNLogSpecificConversion(propertyType, stringValue, configurationItemFactory, out propertyValue))
+                if (ReferenceEquals(propertyType, propInfo.PropertyType) || !StringHelpers.IsNullOrWhiteSpace(stringValue))
                 {
-                    if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
+                    if (!TryNLogSpecificConversion(propertyType, stringValue, configurationItemFactory, out propertyValue))
                     {
-                        throw new NotSupportedException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}', because property of type array and not scalar value: '{stringValue}'.");
-                    }
+                        if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
+                        {
+                            throw new NotSupportedException($"'{targetObject?.GetType()?.Name}' cannot assign property '{propInfo.Name}', because property of type array and not scalar value: '{stringValue}'.");
+                        }
 
-                    if (!(TryGetEnumValue(propertyType, stringValue, out propertyValue)
-                        || TryImplicitConversion(propertyType, stringValue, out propertyValue)
-                        || TryFlatListConversion(targetObject, propInfo, stringValue, configurationItemFactory, out propertyValue)
-                        || TryTypeConverterConversion(propertyType, stringValue, out propertyValue)))
-                        propertyValue = Convert.ChangeType(stringValue, propertyType, CultureInfo.InvariantCulture);
+                        if (!(TryGetEnumValue(propertyType, stringValue, out propertyValue)
+                            || TryImplicitConversion(propertyType, stringValue, out propertyValue)
+                            || TryFlatListConversion(targetObject, propInfo, stringValue, configurationItemFactory, out propertyValue)
+                            || TryTypeConverterConversion(propertyType, stringValue, out propertyValue)))
+                            propertyValue = Convert.ChangeType(stringValue, propertyType, CultureInfo.InvariantCulture);
+                    }
                 }
             }
             catch (Exception ex)

@@ -596,7 +596,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void RequiredDataTypesTest()
+        public void RequiredDataTypesNullableTest()
         {
             var c = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
@@ -642,6 +642,21 @@ namespace NLog.UnitTests.Config
                 </targets>
             </nlog>"));
             Assert.Contains(nameof(MyRequiredTarget.EnumProperty), missingEnumValue.Message);
+
+            var emptyEnumValue = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        enumProperty=''
+                        stringProperty='foobar'
+                    />
+                </targets>
+            </nlog>"));
+            Assert.Contains(nameof(MyRequiredTarget.EnumProperty), emptyEnumValue.Message);
         }
 
         [Fact]
