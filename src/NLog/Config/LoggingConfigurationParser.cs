@@ -208,7 +208,7 @@ namespace NLog.Config
         private ICollection<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
             var dict = ValidatedConfigurationElement.Create(nlogConfig, LogFactory).ValueLookup;
-            if (dict.Count == 0)
+            if (dict.Count <= 1)
                 return dict;
 
             var sortedList = new List<KeyValuePair<string, string>>(dict.Count);

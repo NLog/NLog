@@ -268,11 +268,11 @@ namespace NLog
                     {
                         try
                         {
+                            LogConfigurationInitialized();
                             _config = config;
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
-                            LogConfigurationInitialized();
                         }
                         finally
                         {
@@ -307,6 +307,8 @@ namespace NLog
                     {
                         try
                         {
+                            if (oldConfig is null)
+                                LogConfigurationInitialized();
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
@@ -403,6 +405,9 @@ namespace NLog
 
         internal static void LogConfigurationInitialized()
         {
+            if (!InternalLogger.IsInfoEnabled)
+                return;
+
             InternalLogger.Info("Configuration initialized.");
             try
             {
@@ -413,7 +418,6 @@ namespace NLog
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
         }
-
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting 
         /// unmanaged resources.
