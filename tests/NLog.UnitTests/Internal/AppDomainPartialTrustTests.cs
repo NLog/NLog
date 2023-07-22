@@ -160,7 +160,7 @@ namespace NLog.UnitTests.Internal
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
                 //this method gave issues
-                LogFactory.LogConfigurationInitialized();
+                LogFactory.LogNLogAssemblyVersion();
 
                 var logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 

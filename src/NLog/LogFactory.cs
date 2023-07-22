@@ -268,11 +268,12 @@ namespace NLog
                     {
                         try
                         {
-                            LogConfigurationInitialized();
+                            LogNLogAssemblyVersion();
                             _config = config;
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
+                            InternalLogger.Info("Configuration initialized.");
                         }
                         finally
                         {
@@ -308,10 +309,11 @@ namespace NLog
                         try
                         {
                             if (oldConfig is null)
-                                LogConfigurationInitialized();
+                                LogNLogAssemblyVersion();
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
+                            InternalLogger.Info("Configuration initialized.");
                         }
                         finally
                         {
@@ -403,12 +405,11 @@ namespace NLog
         }
         internal CultureInfo _defaultCultureInfo;
 
-        internal static void LogConfigurationInitialized()
+        internal static void LogNLogAssemblyVersion()
         {
             if (!InternalLogger.IsInfoEnabled)
                 return;
 
-            InternalLogger.Info("Configuration initialized.");
             try
             {
                 InternalLogger.LogAssemblyVersion(typeof(LogFactory).GetAssembly());
@@ -553,6 +554,7 @@ namespace NLog
         {
             return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger), (t) => Logger.DefaultLoggerType.IsAssignableFrom(t) ? Activator.CreateInstance(t, true) as Logger : null);
         }
+
         private bool RefreshExistingLoggers()
         {
             bool purgeObsoleteLoggers;
