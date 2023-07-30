@@ -524,7 +524,8 @@ namespace NLog.Targets
 
         private void FindAllLayouts()
         {
-            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(ConfigurationItemFactory.Default, false, this).ToArray();
+            var allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(ConfigurationItemFactory.Default, false, this);
+            _allLayouts = allLayouts.Count > 1 ? new HashSet<Layout>(allLayouts, SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray() : allLayouts.ToArray();
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Length);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
             _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
