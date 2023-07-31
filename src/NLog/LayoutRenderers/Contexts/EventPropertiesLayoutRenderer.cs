@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("event-property")]
     [LayoutRenderer("event-context")]
     [ThreadAgnostic]
-    [MutableUnsafe]
+    [ThreadAgnosticImmutable]
     public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache(LoggingConfiguration.GetServiceProvider()));

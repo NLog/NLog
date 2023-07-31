@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -34,17 +34,19 @@
 namespace NLog.Config
 {
     using System;
-    using System.ComponentModel;
 
     /// <summary>
-    /// Marks the layout or layout renderer depends on mutable objects from the LogEvent
+    /// Marks the layout or layout renderer as thread independent - it producing correct results 
+    /// regardless of the thread it's running on.
     /// 
-    /// This can be <see cref="LogEventInfo.Properties"/> or <see cref="LogEventInfo.Exception"/>
+    /// Layout or layout-renderer depends on <see cref="LogEventInfo.Properties"/> or <see cref="LogEventInfo.Exception"/>,
+    /// and requires that LogEvent-state is recognized as immutable.
     /// </summary>
-    [Obsolete("Marked obsolete on NLog 5.3, instead use ThreadAgnosticImmutableAttribute")]
+    /// <remarks>
+    /// Must be used in combination with <see cref="ThreadAgnosticAttribute"/>, else it will have no effect
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Class)]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class MutableUnsafeAttribute : Attribute
+    public sealed class ThreadAgnosticImmutableAttribute : Attribute
     {
     }
 }

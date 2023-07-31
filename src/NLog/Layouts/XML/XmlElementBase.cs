@@ -231,7 +231,7 @@ namespace NLog.Layouts
                 ThreadAgnostic = false;
 
             if (IncludeEventProperties)
-                MutableUnsafe = true;
+                ThreadAgnosticImmutable = true;
 
             if (Attributes.Count > 1)
             {
