@@ -197,21 +197,21 @@ namespace NLog.Config
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>
-        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<T>()). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<Target, Type> Targets => _targets;
 
         /// <summary>
         /// Gets the <see cref="Layout"/> factory.
         /// </summary>
         /// <value>The layout factory.</value>
-        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(ext => ext.RegisterLayout<T>()). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<Layout, Type> Layouts => _layouts;
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
-        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<T>()). Marked obsolete with NLog v5.2")]
         public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
