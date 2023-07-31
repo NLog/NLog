@@ -210,8 +210,11 @@ namespace NLog.UnitTests.LayoutRenderers
             logFactory.AssertDebugLastMessage("a");
 
             var ex = new InvalidOperationException("Exception message.");
-
+#if !NET35
+            logger.Debug(new AggregateException(ex), "Foo");
+#else
             logger.Debug(ex, "Foo");
+#endif
             logFactory.AssertDebugLastMessage("Foo," + ex.ToString());
 
             logger.Debug(ex);
