@@ -525,13 +525,13 @@ namespace NLog.Targets
         private void FindAllLayouts()
         {
             var allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(ConfigurationItemFactory.Default, false, this);
-            _allLayouts = allLayouts.Count > 1 ? new HashSet<Layout>(allLayouts, SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray() : allLayouts.ToArray();
-            InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Length);
-            _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
-            _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
+            InternalLogger.Trace("{0} has {1} layouts", this, allLayouts.Count);
+            _allLayoutsAreThreadAgnostic = allLayouts.All(layout => layout.ThreadAgnostic);
+            _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && allLayouts.Any(layout => layout.MutableUnsafe);
 
-            var result = _allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
+            var result = allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
             StackTraceUsage = result | ((this as IUsesStackTrace)?.StackTraceUsage ?? StackTraceUsage.None);
+            _allLayouts = allLayouts.Where(l => !l.ThreadAgnostic || l.MutableUnsafe || !(l is SimpleLayout)).Distinct(SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray();
             _scannedForLayouts = true;
         }
 
