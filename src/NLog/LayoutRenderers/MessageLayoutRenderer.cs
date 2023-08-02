@@ -118,6 +118,8 @@ namespace NLog.LayoutRenderers
                 {
                     return aggregateException.InnerExceptions[0];
                 }
+
+                return aggregateException;  // Matches ${exception} default behavior
             }
 #endif
             return exception;
