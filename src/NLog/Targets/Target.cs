@@ -237,9 +237,6 @@ namespace NLog.Targets
 
         private void PrecalculateVolatileLayoutsConcurrent(LogEventInfo logEvent)
         {
-            if (!IsInitialized)
-                return;
-
             if (_precalculateStringBuilderPool is null)
             {
                 System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
@@ -259,9 +256,6 @@ namespace NLog.Targets
         {
             lock (SyncRoot)
             {
-                if (!_isInitialized)
-                    return;
-
                 using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                 {
                     foreach (Layout layout in _allLayouts)
