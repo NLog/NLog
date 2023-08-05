@@ -87,72 +87,39 @@ namespace NLog.Internal
         /// <summary>Initializes a new instance of the <see cref="FilePathLayout" /> class.</summary>
         public FilePathLayout(Layout layout, bool cleanupInvalidChars, FilePathKind filePathKind)
         {
-            _layout = layout;
-            _filePathKind = filePathKind;
+            _layout = layout ?? new SimpleLayout(null);
             _cleanupInvalidChars = cleanupInvalidChars;
-
-            if (_layout is null)
-            {
-                _filePathKind = FilePathKind.Unknown;
-                return;
-            }
-
-            //do we have to the layout?
-            if (cleanupInvalidChars || _filePathKind == FilePathKind.Unknown)
-            {
-                _cleanedFixedResult = CreateCleanedFixedResult(cleanupInvalidChars, layout);
-                _filePathKind = DetectKind(layout, _filePathKind);
-            }
+            _filePathKind = filePathKind == FilePathKind.Unknown ? DetectKind(_layout, filePathKind) : filePathKind;
+            _cleanedFixedResult = (_layout as SimpleLayout)?.FixedText;
 
             if (_filePathKind == FilePathKind.Relative)
             {
                 _baseDir = LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory;
                 InternalLogger.Debug("FileTarget FilePathLayout with FilePathKind.Relative using AppDomain.BaseDirectory: {0}", _baseDir);
-                if (_cleanedFixedResult != null)
+            }
+            
+            if (_cleanedFixedResult != null)
+            {
+                if (!StringHelpers.IsNullOrWhiteSpace(_cleanedFixedResult))
                 {
-                    _cleanedFixedResult = Path.Combine(_baseDir, _cleanedFixedResult);
+                    _cleanedFixedResult = GetCleanFileName(_cleanedFixedResult);
                     _filePathKind = FilePathKind.Absolute;
+                }
+                else
+                {
+                    _filePathKind = FilePathKind.Unknown;
                 }
             }
         }
 
         private static FilePathKind DetectKind(Layout layout, FilePathKind currentFilePathKind)
         {
-            if (layout is SimpleLayout simpleLayout)
+            if (currentFilePathKind == FilePathKind.Unknown)
             {
-                //detect absolute
-                if (currentFilePathKind == FilePathKind.Unknown)
-                {
-                    return DetectFilePathKind(simpleLayout);
-                }
-            }
-            else
-            {
-                return FilePathKind.Unknown;
+                return DetectFilePathKind(layout as SimpleLayout);
             }
 
             return currentFilePathKind;
-        }
-
-        private static string CreateCleanedFixedResult(bool cleanupInvalidChars, Layout layout)
-        {
-            if (layout is SimpleLayout simpleLayout)
-            {
-                var isFixedText = simpleLayout.IsFixedText;
-                if (isFixedText)
-                {
-                    var cleanedFixedResult = simpleLayout.FixedText;
-                    if (cleanupInvalidChars)
-                    {
-                        //clean first
-                        cleanedFixedResult = CleanupInvalidFilePath(cleanedFixedResult);
-                    }
-
-                    return cleanedFixedResult;
-                }
-            }
-
-            return null;
         }
 
         public Layout GetLayout()
@@ -168,17 +135,11 @@ namespace NLog.Internal
         /// <returns>String representation of a layout.</returns>
         private string GetRenderedFileName(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
         {
-            if (_cleanedFixedResult != null)
+            if (reusableBuilder is null)
             {
-                return _cleanedFixedResult;
+                return _layout.Render(logEvent);
             }
-
-            if (_layout is null)
-            {
-                return null;
-            }
-
-            if (reusableBuilder != null)
+            else
             {
                 if (!_layout.ThreadAgnostic || _layout.MutableUnsafe)
                 {
@@ -201,10 +162,6 @@ namespace NLog.Internal
                 _cachedPrevCleanFileName = null;
                 return _cachedPrevRawFileName;
             }
-            else
-            {
-                return _layout.Render(logEvent);
-            }
         }
 
         /// <summary>
@@ -215,7 +172,7 @@ namespace NLog.Internal
         private string GetCleanFileName(string rawFileName)
         {
             var cleanFileName = rawFileName;
-            if (_cleanupInvalidChars && _cleanedFixedResult is null)
+            if (_cleanupInvalidChars)
             {
                 cleanFileName = CleanupInvalidFilePath(rawFileName);
             }
@@ -244,13 +201,14 @@ namespace NLog.Internal
 
         internal string RenderWithBuilder(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
         {
+            if (_cleanedFixedResult != null)
+                return _cleanedFixedResult; // Always absolute path
+
             var rawFileName = GetRenderedFileName(logEvent, reusableBuilder);
             if (string.IsNullOrEmpty(rawFileName))
-            {
                 return rawFileName;
-            }
 
-            if (_filePathKind == FilePathKind.Absolute && (!_cleanupInvalidChars || _cleanedFixedResult != null))
+            if (_filePathKind == FilePathKind.Absolute && !_cleanupInvalidChars)
                 return rawFileName; // Skip clean filename string-allocation
 
             if (string.Equals(_cachedPrevRawFileName, rawFileName, StringComparison.Ordinal) && _cachedPrevCleanFileName != null)
@@ -265,22 +223,11 @@ namespace NLog.Internal
         /// <summary>
         /// Is this (templated/invalid) path an absolute, relative or unknown?
         /// </summary>
-        internal static FilePathKind DetectFilePathKind(Layout pathLayout)
+        internal static FilePathKind DetectFilePathKind(SimpleLayout pathLayout)
         {
-            if (pathLayout is SimpleLayout simpleLayout)
-            {
-                return DetectFilePathKind(simpleLayout);
-            }
+            if (pathLayout is null)
+                return FilePathKind.Unknown;
 
-            return FilePathKind.Unknown;
-
-        }
-
-        /// <summary>
-        /// Is this (templated/invalid) path an absolute, relative or unknown?
-        /// </summary>
-        private static FilePathKind DetectFilePathKind(SimpleLayout pathLayout)
-        {
             var isFixedText = pathLayout.IsFixedText;
 
             //nb: ${basedir} has already been rewritten in the SimpleLayout.compile
