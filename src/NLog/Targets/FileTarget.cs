@@ -599,9 +599,7 @@ namespace NLog.Targets
         {
             get
             {
-                if (_fullArchiveFileName is null) return null;
-
-                return _fullArchiveFileName.GetLayout();
+                return _fullArchiveFileName?.GetLayout();
             }
             set
             {

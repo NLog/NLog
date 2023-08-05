@@ -74,7 +74,7 @@ ${level}/test ", FilePathKind.Relative)]
         [InlineData(@"dir${level}/test ", FilePathKind.Relative)]
         public void DetectFilePathKind(string path, FilePathKind expected)
         {
-            Layout layout = path;
+            SimpleLayout layout = path;
             var result = FilePathLayout.DetectFilePathKind(layout);
             Assert.Equal(expected, result);
         }
@@ -94,7 +94,7 @@ ${level}/test ", FilePathKind.Relative)]
             if (System.IO.Path.DirectorySeparatorChar != '\\')
                 return; //no backward-slash on linux
 
-            Layout layout = path;
+            SimpleLayout layout = path;
             var result = FilePathLayout.DetectFilePathKind(layout);
             Assert.Equal(expected, result);
         }
