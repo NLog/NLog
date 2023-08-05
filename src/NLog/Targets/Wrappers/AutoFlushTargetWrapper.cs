@@ -33,6 +33,7 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using NLog.Common;
     using NLog.Conditions;
     using NLog.Internal;
@@ -86,6 +87,7 @@ namespace NLog.Targets.Wrappers
         public bool FlushOnConditionOnly { get; set; }
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
+        private readonly AsyncContinuation _flushCompletedContinuation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
@@ -114,6 +116,7 @@ namespace NLog.Targets.Wrappers
         {
             Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
             WrappedTarget = wrappedTarget;
+            _flushCompletedContinuation = (ex) => _pendingManualFlushList.CompleteOperation(ex);
         }
 
         /// <inheritdoc/>
@@ -147,7 +150,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (Condition is null || Condition.Evaluate(logEvent.LogEvent).Equals(ConditionExpression.BoxedTrue))
+            if (Condition is null || ConditionExpression.BoxedTrue.Equals(Condition.Evaluate(logEvent.LogEvent)))
             {
                 if (AsyncFlush)
                 {
@@ -156,7 +159,10 @@ namespace NLog.Targets.Wrappers
                     {
                         _pendingManualFlushList.CompleteOperation(ex);
                         if (ex is null)
-                            FlushOnCondition();
+                        {
+                            var flushContinuation = _pendingManualFlushList.RegisterCompletionNotification((e) => { });
+                            FlushWrappedTarget(flushContinuation);
+                        }
                         currentContinuation(ex);
                     };
                     _pendingManualFlushList.BeginOperation();
@@ -164,8 +170,9 @@ namespace NLog.Targets.Wrappers
                 }
                 else
                 {
+                    _pendingManualFlushList.BeginOperation();
                     WrappedTarget.WriteAsyncLogEvent(logEvent);
-                    FlushOnCondition();
+                    FlushWrappedTarget(_flushCompletedContinuation);
                 }
             }
             else
@@ -180,28 +187,20 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
+            var wrappedContinuation = _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
             if (FlushOnConditionOnly)
-                asyncContinuation(null);
+            {
+                wrappedContinuation.Invoke(null);
+            }
             else
-                FlushWrappedTarget(asyncContinuation);
-        }
-
-        private void FlushOnCondition()
-        {
-            FlushWrappedTarget((e) => { });
+            {
+                FlushWrappedTarget(wrappedContinuation);
+            }
         }
 
         private void FlushWrappedTarget(AsyncContinuation asyncContinuation)
         {
-            if (AsyncFlush)
-            {
-                var wrappedContinuation = _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
-                WrappedTarget.Flush(wrappedContinuation);
-            }
-            else
-            {
-                WrappedTarget.Flush(asyncContinuation);
-            }
+            WrappedTarget.Flush(asyncContinuation);
         }
 
         /// <inheritdoc/>

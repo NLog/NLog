@@ -35,6 +35,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
@@ -342,10 +343,58 @@ namespace NLog.UnitTests.Targets.Wrappers
             autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Fatal, "*", "test").WithContinuation(continuation));
             Assert.Equal(2, testTarget.WriteCount);
             Assert.Equal(1, testTarget.FlushCount);
-            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Please do not FlushThis").WithContinuation(continuation));
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Ignore on Explict Flush").WithContinuation(continuation));
             Assert.Equal(2, testTarget.WriteCount);
             Assert.Equal(1, testTarget.FlushCount);
             autoFlushOnLevelWrapper.Flush(continuation);
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+        }
+
+        [Fact]
+        public void ExplicitFlushWaitsForAutoFlushWrapperCompletionTest()
+        {
+            var testTarget = new MyTarget();
+            var bufferingTargetWrapper = new BufferingTargetWrapper(testTarget, 100);
+            var autoFlushOnLevelWrapper = new AutoFlushTargetWrapper(bufferingTargetWrapper);
+            autoFlushOnLevelWrapper.Condition = "level > LogLevel.Info";
+            autoFlushOnLevelWrapper.FlushOnConditionOnly = true;
+            testTarget.Initialize(null);
+            bufferingTargetWrapper.Initialize(null);
+            autoFlushOnLevelWrapper.Initialize(null);
+
+            AsyncContinuation continuation = ex => { };
+
+            var flushCompleted = false;
+
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "test").WithContinuation(continuation));
+            Assert.Equal(0, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.Flush((ex) => flushCompleted = true);
+            Assert.True(flushCompleted);
+            Assert.Equal(0, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+
+            flushCompleted = false;
+            var manualResetEvent = new ManualResetEvent(false);
+            testTarget.FlushEvent = (arg) =>
+            {
+                Task.Run(() => manualResetEvent.WaitOne(10000)).ContinueWith(t => arg(null));
+            };
+
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Error, "*", "test").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.Flush((ex) => flushCompleted = true);
+            Assert.False(flushCompleted);
+            Assert.Equal(0, testTarget.FlushCount);
+            manualResetEvent.Set();
+            for (int i = 0; i < 500; ++i)
+            {
+                if (flushCompleted && testTarget.FlushCount > 0)
+                    break;
+                Thread.Sleep(10);
+            }
             Assert.Equal(2, testTarget.WriteCount);
             Assert.Equal(1, testTarget.FlushCount);
         }
@@ -399,6 +448,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             public int FlushCount { get; set; }
             public int WriteCount { get; set; }
+            public Action<AsyncContinuation> FlushEvent { get; set; } = (arg) => arg(null);
 
             protected override void Write(LogEventInfo logEvent)
             {
@@ -408,8 +458,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                FlushCount++;
-                asyncContinuation(null);
+                FlushEvent((ex) => { asyncContinuation(ex); FlushCount++; });
             }
         }
     }
