@@ -241,9 +241,8 @@ namespace NLog.Internal
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
         /// <returns>Valid assembly, or null if assembly was internal</returns>
-        public static Assembly LookupAssemblyFromStackFrame(StackFrame stackFrame)
+        public static Assembly LookupAssembly(MethodBase method)
         {
-            var method = StackTraceUsageUtils.GetStackMethod(stackFrame);
             if (method is null)
             {
                 return null;
@@ -277,7 +276,7 @@ namespace NLog.Internal
         public static string LookupClassNameFromStackFrame(StackFrame stackFrame)
         {
             var method = StackTraceUsageUtils.GetStackMethod(stackFrame);
-            if (method != null && LookupAssemblyFromStackFrame(stackFrame) != null)
+            if (method != null && LookupAssembly(method) != null)
             {
                 string className = GetStackFrameMethodClassName(method, true, true, true);
                 if (!string.IsNullOrEmpty(className))

@@ -58,6 +58,7 @@ namespace NLog
         /// </remarks>
         internal static readonly LogFactory factory = new LogFactory();
         private static ICollection<Assembly> _hiddenAssemblies;
+        private static ICollection<Type> _hiddenTypes;
 
         private static readonly object lockObject = new object();
 
@@ -198,6 +199,11 @@ namespace NLog
             return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
         }
 
+        internal static bool IsHiddenType(Type type)
+        {
+            return _hiddenTypes != null && _hiddenTypes.Contains(type);
+        }
+
         /// <summary>
         /// Adds the given assembly which will be skipped 
         /// when NLog is trying to find the calling method on stack trace.
@@ -218,6 +224,32 @@ namespace NLog
             }
 
             InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly?.FullName);
+        }
+
+        /// <summary>
+        /// Adds the given type which will be skipped when NLog is trying to find the calling method on stack trace.
+        /// </summary>
+        /// <param name="type">The <c>Type</c> to skip.</param>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void AddHiddenType(Type type)
+        {
+            if(type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
+            lock (lockObject)
+            {
+                if (_hiddenTypes != null && _hiddenTypes.Contains(type))
+                    return;
+
+                _hiddenTypes = new HashSet<Type>(_hiddenTypes ?? Enumerable.Empty<Type>())
+                {
+                    type,
+                };
+            }
+
+            InternalLogger.Trace("Type '{0}' will be hidden in callsite stacktrace", type?.FullName);
         }
 
         /// <summary>

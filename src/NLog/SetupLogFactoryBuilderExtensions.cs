@@ -34,6 +34,7 @@
 namespace NLog
 {
     using NLog.Config;
+    using System;
 
     /// <summary>
     /// Extension methods to setup general option before loading NLog LoggingConfiguration
@@ -119,6 +120,15 @@ namespace NLog
         public static ISetupLogFactoryBuilder AddCallSiteHiddenAssembly(this ISetupLogFactoryBuilder configBuilder, System.Reflection.Assembly assembly)
         {
             LogManager.AddHiddenAssembly(assembly);
+            return configBuilder;
+        }
+
+        /// <summary>
+        /// Mark Type as hidden, so Type methods are excluded when resolving ${callsite} from StackTrace
+        /// </summary>
+        public static ISetupLogFactoryBuilder AddCallSiteHiddenType(this ISetupLogFactoryBuilder configBuilder, Type type)
+        {
+            LogManager.AddHiddenType(type);
             return configBuilder;
         }
     }

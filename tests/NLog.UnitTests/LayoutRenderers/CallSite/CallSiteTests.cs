@@ -46,6 +46,18 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Targets;
     using Xunit;
 
+    /// <summary>
+    /// Used in the HiddenTypeTest. This needs to be at the top level of the namespace as 
+    /// nested extension classes are not allowed.
+    /// </summary>
+    internal static class HiddenTypeLogger
+    {
+        public static void LogDebug(this ILogger logger)
+        {
+            logger.Debug("msg");
+        }
+    }
+
     public class CallSiteTests : NLogTestBase
     {
 #if !NETSTANDARD
@@ -116,6 +128,31 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 #endif
+
+        [Fact]
+        public void HiddenTypeTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // create logger
+            Logger logger = LogManager.GetLogger(nameof(HiddenTypeTest));
+
+            // hide the class type.
+            LogManager.AddHiddenType(typeof(HiddenTypeLogger));
+
+            // call the log method
+            logger.LogDebug();
+
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+        }
+
 
 #if !DEBUG
         [Fact(Skip = "RELEASE not working, only DEBUG")]

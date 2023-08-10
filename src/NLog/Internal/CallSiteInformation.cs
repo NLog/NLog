@@ -185,7 +185,7 @@ namespace NLog.Internal
             for (int i = 0; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];
-                if (SkipAssembly(stackFrame))
+                if (ShouldSkip(stackFrame))
                     continue;
 
                 if (!firstUserStackFrame.HasValue)
@@ -215,7 +215,7 @@ namespace NLog.Internal
             for (int i = firstUserStackFrame; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];
-                if (SkipAssembly(stackFrame))
+                if (ShouldSkip(stackFrame))
                     continue;
 
                 var stackMethod = StackTraceUsageUtils.GetStackMethod(stackFrame);
@@ -242,10 +242,16 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="frame">Find assembly via this frame. </param>
         /// <returns><c>true</c>, we should skip.</returns>
-        private static bool SkipAssembly(StackFrame frame)
+        private static bool ShouldSkip(StackFrame frame)
         {
-            var assembly = StackTraceUsageUtils.LookupAssemblyFromStackFrame(frame);
-            return assembly is null || LogManager.IsHiddenAssembly(assembly);
+            var method = StackTraceUsageUtils.GetStackMethod(frame);
+            var assembly = StackTraceUsageUtils.LookupAssembly(method);
+            if (assembly is null || LogManager.IsHiddenAssembly(assembly))
+            {
+                return true;
+            }
+
+            return method is null || LogManager.IsHiddenType(method.DeclaringType);
         }
 
         /// <summary>
