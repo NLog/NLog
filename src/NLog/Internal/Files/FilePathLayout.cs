@@ -89,7 +89,7 @@ namespace NLog.Internal
         {
             _layout = layout ?? new SimpleLayout(null);
             _cleanupInvalidChars = cleanupInvalidChars;
-            _filePathKind = filePathKind == FilePathKind.Unknown ? DetectKind(_layout, filePathKind) : filePathKind;
+            _filePathKind = filePathKind == FilePathKind.Unknown ? DetectFilePathKind(_layout as SimpleLayout) : filePathKind;
             _cleanedFixedResult = (_layout as SimpleLayout)?.FixedText;
 
             if (_filePathKind == FilePathKind.Relative)
@@ -110,16 +110,6 @@ namespace NLog.Internal
                     _filePathKind = FilePathKind.Unknown;
                 }
             }
-        }
-
-        private static FilePathKind DetectKind(Layout layout, FilePathKind currentFilePathKind)
-        {
-            if (currentFilePathKind == FilePathKind.Unknown)
-            {
-                return DetectFilePathKind(layout as SimpleLayout);
-            }
-
-            return currentFilePathKind;
         }
 
         public Layout GetLayout()
@@ -239,7 +229,7 @@ namespace NLog.Internal
         {
             if (!string.IsNullOrEmpty(path))
             {
-                path = path.TrimStart();
+                path = path.TrimStart(ArrayHelper.Empty<char>());
 
                 int length = path.Length;
                 if (length >= 1)
