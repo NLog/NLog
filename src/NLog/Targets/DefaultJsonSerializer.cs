@@ -592,8 +592,7 @@ namespace NLog.Targets
             int i = 0;
             for (; i < text.Length; ++i)
             {
-                char ch = text[i];
-                if (RequiresJsonEscape(ch, escapeUnicode, escapeForwardSlash))
+                if (RequiresJsonEscape(text[i], escapeUnicode, escapeForwardSlash))
                 {
                     destination.Append(text, 0, i);
                     break;
