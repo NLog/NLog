@@ -119,8 +119,10 @@ namespace NLog.UnitTests.Layouts
         {
             Layout<int?> layout = "";
             var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            var result5 = layout.RenderValue(LogEventInfo.CreateNullEvent(), 5);
             Assert.Null(result);
-            Assert.Equal("", layout.ToString());
+            Assert.Null(result5);
+            Assert.Equal("null", layout.ToString());
         }
 
         [Fact]
@@ -202,9 +204,12 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutFixedEmptyUrlTest()
         {
-            Layout<int?> layout = "";
+            var uri = new Uri("http://nlog");
+            Layout<Uri> layout = "";
             var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            var resultFallback = layout.RenderValue(LogEventInfo.CreateNullEvent(), uri);
             Assert.Null(result);
+            Assert.Equal(uri, resultFallback);
             Assert.Equal("", layout.ToString());
         }
 
