@@ -114,9 +114,7 @@ namespace NLog.Internal
             {
                 if (value is null)
                 {
-                    // Found null
-                    foundValue = null;
-                    return true;
+                    return false;
                 }
 
                 var propertyList = LookupObjectProperties(value);

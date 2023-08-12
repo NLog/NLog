@@ -47,11 +47,10 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         public void RenderPropertyOfException(string layout)
         {
             // Arrange
-            var logEvent1 = new LogEventInfo
+            var logEvent = new LogEventInfo
             {
                 Exception = new ArgumentException("ArgumentException with param name", "MyParam")
             };
-            var logEvent = logEvent1;
             Layout l = layout;
 
             // Act
@@ -59,6 +58,40 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             // Assert
             Assert.Equal("MyParam", result);
+        }
+
+        [Theory]
+        [InlineData("${object-path:${exception}:path=ParamName:Format=@}")]
+        [InlineData("${exception:objectpath=ParamName}")]
+        public void RenderPropertyWithoutException(string layout)
+        {
+            // Arrange
+            var logEvent = LogEventInfo.CreateNullEvent();
+            Layout l = layout;
+
+            // Act
+            var result = l.Render(logEvent);
+
+            // Assert
+            Assert.Equal("", result);
+        }
+
+        [Theory]
+        [InlineData("${object-path:${exception}:path=ParamName:Format=@}")]
+        public void RenderPropertyWithExceptionNullValue(string layout)
+        {
+            // Arrange
+            var logEvent = new LogEventInfo
+            {
+                Exception = new ArgumentException("ArgumentException with null param name", (string)null)
+            };
+            Layout l = layout;
+
+            // Act
+            var result = l.Render(logEvent);
+
+            // Assert
+            Assert.Equal("null", result);
         }
 
         [Theory]
