@@ -326,6 +326,11 @@ namespace NLog.Layouts
                     fixedValue = (T)(object)simpleLayout.FixedText;
                     return true;
                 }
+                else if (Nullable.GetUnderlyingType(typeof(T)) != null)
+                {
+                    fixedValue = default(T);
+                    return true;
+                }
             }
             else if (layout is null)
             {
