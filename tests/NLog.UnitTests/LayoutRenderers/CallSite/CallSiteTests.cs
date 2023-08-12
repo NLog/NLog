@@ -57,6 +57,11 @@ namespace NLog.UnitTests.LayoutRenderers
                                 {
                                     public class HiddenAssemblyLogger
                                     {
+                                        public HiddenAssemblyLogger(NLog.Logger logger)
+                                        {
+                                            LogDebug(logger);
+                                        }
+
                                         public void LogDebug(NLog.Logger logger)
                                         {
                                             logger.Debug(""msg"");
@@ -99,18 +104,11 @@ namespace NLog.UnitTests.LayoutRenderers
             Type hiddenAssemblyLoggerType = compiledAssembly.GetType("Foo.HiddenAssemblyLogger");
             Assert.NotNull(hiddenAssemblyLoggerType);
 
-            // load methodinfo
-            MethodInfo logDebugMethod = hiddenAssemblyLoggerType.GetMethod("LogDebug");
-            Assert.NotNull(logDebugMethod);
-
-            // instantiate the HiddenAssemblyLogger from previously generated assembly
-            object instance = Activator.CreateInstance(hiddenAssemblyLoggerType);
-
             // Add the previously generated assembly to the "blacklist"
             LogManager.AddHiddenAssembly(compiledAssembly);
 
-            // call the log method
-            logDebugMethod.Invoke(instance, new object[] { logger });
+            // instantiate the HiddenAssemblyLogger from previously generated assembly
+            object instance = Activator.CreateInstance(hiddenAssemblyLoggerType, new object[] { logger });
 
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
