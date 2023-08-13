@@ -83,6 +83,41 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void ExtensionsLoggingPreFormatTest()
+        {
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from John for BestApplicationEver", "Login request from {Username} for {Application}", new[]
+            {
+                new MessageTemplateParameter("Username", "John", null, CaptureType.Normal),
+                new MessageTemplateParameter("Application", "BestApplicationEver", null, CaptureType.Normal)
+            });
+
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug'  >
+                                <layout type='JsonLayout' IncludeAllProperties='true'>
+                                    <attribute name='LogMessage' layout='${message:raw=true}' />
+                                </layout>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Info' writeTo='debug' />
+                    </rules>
+                </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A");
+            logger.Log(logEventInfo);
+            logFactory.AssertDebugLastMessage("{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+
+            Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
+
+            AssertContainsInDictionary(logEventInfo.Properties, "Username", "John");
+            AssertContainsInDictionary(logEventInfo.Properties, "Application", "BestApplicationEver");
+            Assert.Contains(new MessageTemplateParameter("Username", "John", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
+        }
+
+        [Fact]
         public void NormalStringFormatTest()
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "{0:X} - Login request from {1} for {2} with userid {0}", new object[]
