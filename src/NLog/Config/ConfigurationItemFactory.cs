@@ -245,7 +245,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="JsonLayout"/>
         /// </summary>
-        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.RegisterJsonConverter()) or ResolveService<IJsonConverter>(). Marked obsolete on NLog 5.0")]
         public IJsonConverter JsonConverter
         {
             get => _serviceRepository.GetService<IJsonConverter>();
@@ -255,7 +255,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
-        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IValueFormatter)). Marked obsolete on NLog 5.0")]
+        [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.RegisterValueFormatter()) or ResolveService<IValueFormatter>(). Marked obsolete on NLog 5.0")]
         public IValueFormatter ValueFormatter
         {
             get => _serviceRepository.GetService<IValueFormatter>();
@@ -265,7 +265,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the parameter converter to use with <see cref="TargetWithContext"/> or <see cref="Layout{T}"/>
         /// </summary>
-        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IPropertyTypeConverter)). Marked obsolete on NLog 5.0")]
+        [Obsolete("Instead use LogFactory.ServiceRepository.RegisterService(). Marked obsolete on NLog 5.0")]
         public IPropertyTypeConverter PropertyTypeConverter
         {
             get => _serviceRepository.GetService<IPropertyTypeConverter>();

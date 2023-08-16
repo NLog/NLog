@@ -43,7 +43,7 @@ namespace NLog.Config
         /// <summary>
         /// Registers instance of singleton object for use in NLog
         /// </summary>
-        /// <param name="type">Type of service</param>
+        /// <param name="type">Type of service/interface to register</param>
         /// <param name="instance">Instance of service</param>
         public abstract void RegisterService(Type type, object instance);
 

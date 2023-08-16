@@ -58,7 +58,7 @@ namespace NLog.Targets
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
+        [Obsolete("Instead use ResolveService<IJsonConverter>() in Layout / Target. Marked obsolete on NLog 5.0")]
         public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer(null);
 
         /// <summary>
