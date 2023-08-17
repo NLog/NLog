@@ -1,10 +1,10 @@
 version: 5.0.0-{build} # Only change for mayor versions (e.g. 6.0)
 image:
   - Visual Studio 2022
-  - Ubuntu
+  - Previous Ubuntu
 configuration: Release
-build: no
-test: no
+build: false
+test: false
 skip_tags: true
 skip_branch_with_pr: true
 
@@ -54,7 +54,7 @@ for:
   -
     matrix:
       only:
-        - image: Ubuntu
+        - image: Previous Ubuntu
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/
