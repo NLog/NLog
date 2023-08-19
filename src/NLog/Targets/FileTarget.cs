@@ -1000,9 +1000,10 @@ namespace NLog.Targets
         internal string GetFullFileName(LogEventInfo logEvent)
         {
             if (_fullFileName is null)
-            {
                 return null;
-            }
+
+            if (_fullFileName.IsFixedFilePath)
+                return _fullFileName.Render(logEvent);
 
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
