@@ -248,10 +248,22 @@ namespace NLog.Common
                 return;
             }
 
+            string fullMessage = message;
+
             try
             {
-                var fullMessage = CreateFullMessage(message, args);
+                fullMessage = CreateFullMessage(message, args);
+            }
+            catch (Exception exception)
+            {
+                if (ex is null)
+                    ex = exception;
+                if (LogLevel.Error > level)
+                    level = LogLevel.Error;
+            }
 
+            try
+            {
                 if (hasActiveLoggersWithLine)
                 {
                     WriteLogLine(ex, level, fullMessage);
