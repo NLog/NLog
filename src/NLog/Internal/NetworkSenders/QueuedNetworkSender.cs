@@ -95,25 +95,25 @@ namespace NLog.Internal.NetworkSenders
                         switch (OnQueueOverflow)
                         {
                             case NetworkTargetQueueOverflowAction.Discard:
-                                InternalLogger.Debug("NetworkQueue - Discarding single item, because queue is full");
+                                InternalLogger.Debug("NetworkTarget - Discarding single item, because queue is full");
                                 OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxQueueOverflow);
                                 var dequeued = _pendingRequests.Dequeue();
                                 dequeued.AsyncContinuation?.Invoke(null);
                                 break;
 
                             case NetworkTargetQueueOverflowAction.Grow:
-                                InternalLogger.Debug("NetworkQueue - Growing the size of queue, because queue is full");
+                                InternalLogger.Debug("NetworkTarget - Growing the size of queue, because queue is full");
                                 MaxQueueSize *= 2;
                                 break;
 
                             case NetworkTargetQueueOverflowAction.Block:
                                 while (_pendingRequests.Count >= MaxQueueSize && _pendingError is null)
                                 {
-                                    InternalLogger.Debug("NetworkQueue - Blocking until ready, because queue is full");
+                                    InternalLogger.Debug("NetworkTarget - Blocking until ready, because queue is full");
                                     System.Threading.Monitor.Wait(_pendingRequests);
-                                    InternalLogger.Trace("NetworkQueue - Entered critical section.");
+                                    InternalLogger.Trace("NetworkTarget - Entered critical section for queue.");
                                 }
-                                InternalLogger.Trace("NetworkQueue - Limit ok.");
+                                InternalLogger.Trace("NetworkTarget - Queue Limit ok.");
                                 break;
                         }
                     }
@@ -205,8 +205,26 @@ namespace NLog.Internal.NetworkSenders
                 }
             }
 
-            asyncContinuation?.Invoke(pendingException);    // Will attempt to close socket on error
-            return DequeueNextItem();
+            try
+            {
+                asyncContinuation?.Invoke(pendingException);    // Will attempt to close socket on error
+                return DequeueNextItem();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;  // Throwing exceptions here will crash the entire application
+                }
+#endif
+
+                if (_pendingError is null)
+                    InternalLogger.Error(ex, "NetworkTarget: Error completing network request");
+                else
+                    InternalLogger.Error(ex, "NetworkTarget: Error completing failed network request");
+                return null;
+            }
         }
 
         protected abstract void BeginRequest(NetworkRequestArgs eventArgs);
