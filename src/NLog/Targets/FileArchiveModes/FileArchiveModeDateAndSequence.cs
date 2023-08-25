@@ -139,7 +139,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 return false;
             }
-            InternalLogger.Trace("FileTarget: parsed date '{0}' from file-template '{1}'", datePart, fileTemplate?.Template);
+            InternalLogger.Trace("FileTarget: parsed date '{0}' from file-template '{1}'", datePart, fileTemplate.Template);
             return true;
         }
     }
