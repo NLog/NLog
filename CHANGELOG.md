@@ -4,6 +4,22 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.3 (2023/08/05)
+
+**Improvements**
+- [#5308](https://github.com/NLog/NLog/pull/5308) AutoFlushTargetWrapper - Explicit flush should also await when FlushOnConditionOnly (#5308) (@snakefoot)
+- [#5301](https://github.com/NLog/NLog/pull/5301) Target precalculate should only perform single IsInitialized check (#5301) (@snakefoot)
+- [#5300](https://github.com/NLog/NLog/pull/5300) Target precalculate should only consider relevant layouts (#5300) (@snakefoot)
+- [#5296](https://github.com/NLog/NLog/pull/5296) Target precalculate should handle duplicate layouts (#5296) (@snakefoot)
+- [#5299](https://github.com/NLog/NLog/pull/5299) MessageLayoutRenderer - Skip Flatten when simple AggregateException (#5299) (@snakefoot)
+- [#5298](https://github.com/NLog/NLog/pull/5298) ConfigurationItemFactory - Improve obsolete message for obsoleted factory-properties (#5298) (@snakefoot)
+- [#5291](https://github.com/NLog/NLog/pull/5291) Report NLog version on initial configuration assignment (#5291) (@snakefoot)
+- [#5290](https://github.com/NLog/NLog/pull/5290) PropertyHelper - SetPropertyFromString allow empty string for nullable-value (#5290) (@snakefoot)
+- [#5289](https://github.com/NLog/NLog/pull/5289) Check RequiredParameter should also validate nullable types (#5289) (@snakefoot)
+- [#5287](https://github.com/NLog/NLog/pull/5287) FileTarget - FilePathLayout with fixed-filename can translate to absolute path (#5287) (@snakefoot)
+- [#5279](https://github.com/NLog/NLog/pull/5279) FileTarget - Cleanup FileSystemWatcher correctly when ArchiveFilePatternToWatch changes (#5279) (@lavige777)
+- [#5281](https://github.com/NLog/NLog/pull/5281) Refactor ConditionBasedFilter when-filter to use ternary operator (#5281) (@jokoyoski)
+
 ### Version 5.2.2 (2023/07/04)
 
 **Improvements**
