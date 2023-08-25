@@ -1076,7 +1076,7 @@ namespace NLog.Config
                 
                 if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, propertyName, out var propertyInfo))
                 {
-                    throw new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign unknown property '{propertyName}'='{propertyValue}'");
+                    throw new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{propertyName}'='{propertyValue}'");
                 }
 
                 var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingVariableName);
@@ -1120,7 +1120,7 @@ namespace NLog.Config
             
             if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, childElement.Name, out var propInfo))
             {
-                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign unknown property '{childElement.Name}' in section '{parentElement.Name}'");
+                var configException = new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{childElement.Name}' in section '{parentElement.Name}'");
                 if (MustThrowConfigException(configException))
                     throw configException;
 

@@ -1123,10 +1123,9 @@ namespace NLog
 
         internal Logger CreateNewLogger(Type loggerType, Func<Type, Logger> loggerCreator)
         {
-            Logger newLogger;
             try
             {
-                newLogger = loggerCreator(loggerType);
+                Logger newLogger = loggerCreator(loggerType);
                 if (newLogger is null)
                 {
                     if (Logger.DefaultLoggerType.IsAssignableFrom(loggerType))
@@ -1150,10 +1149,9 @@ namespace NLog
                 {
                     throw;
                 }
-                newLogger = null;
             }
 
-            return newLogger ?? new Logger();
+            return new Logger();
         }
 
         /// <summary>

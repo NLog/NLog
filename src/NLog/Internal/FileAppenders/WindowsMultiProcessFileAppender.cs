@@ -153,25 +153,7 @@ namespace NLog.Internal.FileAppenders
         /// <inheritdoc/>
         public override void Close()
         {
-            if (_fileStream is null)
-            {
-                return;
-            }
-
-            InternalLogger.Trace("{0}: Closing '{1}'", CreateFileParameters, FileName);
-            try
-            {
-                _fileStream?.Dispose();
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn(ex, "{0}: Failed to close file '{1}'", CreateFileParameters, FileName);
-                Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
-            }
-            finally
-            {
-                _fileStream = null;
-            }
+            CloseFileSafe(ref _fileStream, FileName);
         }
 
         /// <inheritdoc/>

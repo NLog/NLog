@@ -74,7 +74,7 @@ namespace NLog.Internal
         {
             try
             {
-                if (_wrapped is ISerializable || _wrapped.GetType().IsSerializable)
+                if (_wrapped is ISerializable || _wrapped?.GetType()?.IsSerializable == true)
                 {
                     info.AddValue("wrappedtype", _wrapped.GetType());
                     info.AddValue("wrappedvalue", _wrapped);

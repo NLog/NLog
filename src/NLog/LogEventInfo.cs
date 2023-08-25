@@ -723,7 +723,7 @@ namespace NLog
                 catch (Exception ex)
                 {
                     builder.Length = originalLength;
-                    builder.Append(_message ?? string.Empty);
+                    builder.Append(_message);
                     InternalLogger.Warn(ex, "Error when formatting a message.");
                     if (ex.MustBeRethrown())
                     {
