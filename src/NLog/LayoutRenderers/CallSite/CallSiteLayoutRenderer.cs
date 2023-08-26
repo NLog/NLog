@@ -115,40 +115,37 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (logEvent.CallSiteInformation != null)
-            {
-                if (ClassName || MethodName)
-                {
-                    var method = logEvent.CallSiteInformation.GetCallerStackFrameMethod(SkipFrames);
-                    if (ClassName)
-                    {
-                        string className = logEvent.CallSiteInformation.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
-                        if (string.IsNullOrEmpty(className))
-                            className = "<no type>";
-                        builder.Append(className);
-                    }
-                    if (MethodName)
-                    {
-                        string methodName = logEvent.CallSiteInformation.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
-                        if (string.IsNullOrEmpty(methodName))
-                            methodName = "<no method>";
+            if (logEvent.CallSiteInformation is null)
+                return;
 
-                        if (ClassName)
-                        {
-                            builder.Append('.');
-                        }
-                        builder.Append(methodName);
-                    }
+            if (ClassName || MethodName)
+            {
+                var method = logEvent.CallSiteInformation.GetCallerStackFrameMethod(SkipFrames);
+                
+                if (ClassName)
+                {
+                    string className = logEvent.CallSiteInformation.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                    builder.Append(string.IsNullOrEmpty(className) ? "<no type>" : className);
                 }
 
-                if (FileName)
+                if (MethodName)
                 {
-                    string fileName = logEvent.CallSiteInformation.GetCallerFilePath(SkipFrames);
-                    if (!string.IsNullOrEmpty(fileName))
+                    string methodName = logEvent.CallSiteInformation.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                    if (ClassName)
                     {
-                        int lineNumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
-                        AppendFileName(builder, fileName, lineNumber);
+                        builder.Append('.');
                     }
+                    builder.Append(string.IsNullOrEmpty(methodName) ? "<no method>" : methodName);
+                }
+            }
+
+            if (FileName)
+            {
+                string fileName = logEvent.CallSiteInformation.GetCallerFilePath(SkipFrames);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    int lineNumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
+                    AppendFileName(builder, fileName, lineNumber);
                 }
             }
         }
