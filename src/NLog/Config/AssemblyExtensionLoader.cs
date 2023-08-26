@@ -69,27 +69,7 @@ namespace NLog.Config
         {
             try
             {
-                var loadedAssemblies = new Dictionary<Assembly, Type>();
-                foreach (var itemType in factory.ItemTypes)
-                {
-                    var assembly = itemType.GetAssembly();
-                    if (assembly is null)
-                        continue;
-
-                    if (loadedAssemblies.TryGetValue(assembly, out var firstItemType))
-                    {
-                        if (firstItemType is null && IsNLogConfigurationItemType(itemType))
-                        {
-                            loadedAssemblies[assembly] = itemType;
-                        }
-                    }
-                    else
-                    {
-                        loadedAssemblies.Add(assembly, IsNLogConfigurationItemType(itemType) ? itemType : null);
-                    }
-                }
-
-
+                var loadedAssemblies = ResolveLoadedAssemblyTypes(factory);
                 if (loadedAssemblies.Count > 1)
                 {
                     foreach (var assembly in loadedAssemblies)
@@ -113,6 +93,31 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private static Dictionary<Assembly, Type> ResolveLoadedAssemblyTypes(ConfigurationItemFactory factory)
+        {
+            var loadedAssemblies = new Dictionary<Assembly, Type>();
+            foreach (var itemType in factory.ItemTypes)
+            {
+                var assembly = itemType.GetAssembly();
+                if (assembly is null)
+                    continue;
+
+                if (loadedAssemblies.TryGetValue(assembly, out var firstItemType))
+                {
+                    if (firstItemType is null && IsNLogConfigurationItemType(itemType))
+                    {
+                        loadedAssemblies[assembly] = itemType;
+                    }
+                }
+                else
+                {
+                    loadedAssemblies.Add(assembly, IsNLogConfigurationItemType(itemType) ? itemType : null);
+                }
+            }
+
+            return loadedAssemblies;
         }
 
         private static bool IsNLogConfigurationItemType(Type itemType)
