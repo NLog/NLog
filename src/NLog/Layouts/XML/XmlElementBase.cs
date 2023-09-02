@@ -360,6 +360,7 @@ namespace NLog.Layouts
         {
             if (IncludeScopeProperties)
             {
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
                 using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
                     while (scopeEnumerator.MoveNext())
@@ -368,7 +369,7 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
-                        if (ExcludeProperties.Contains(scopeProperty.Key))
+                        if (checkExcludeProperties && ExcludeProperties.Contains(scopeProperty.Key))
                             continue;
 
                         AppendXmlPropertyValue(scopeProperty.Key, scopeProperty.Value, sb, orgLength);
@@ -376,7 +377,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (IncludeEventProperties && logEventInfo.HasProperties)
+            if (IncludeEventProperties)
             {
                 AppendLogEventProperties(logEventInfo, sb, orgLength);
             }
@@ -384,13 +385,17 @@ namespace NLog.Layouts
 
         private void AppendLogEventProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)
         {
+            if (!logEventInfo.HasProperties)
+                return;
+
+            bool checkExcludeProperties = ExcludeProperties.Count > 0;
             IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEventInfo.CreateOrUpdatePropertiesInternal(true);
             foreach (var prop in propertiesList)
             {
                 if (string.IsNullOrEmpty(prop.Name))
                     continue;
 
-                if (ExcludeProperties.Contains(prop.Name))
+                if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
                     continue;
 
                 var propertyValue = prop.Value;

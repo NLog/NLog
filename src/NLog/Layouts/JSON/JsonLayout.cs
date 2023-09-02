@@ -310,6 +310,7 @@ namespace NLog.Layouts
 
             if (IncludeScopeProperties)
             {
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
                 using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
                     while (scopeEnumerator.MoveNext())
@@ -318,7 +319,7 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
-                        if (ExcludeProperties.Contains(scopeProperty.Key))
+                        if (checkExcludeProperties && ExcludeProperties.Contains(scopeProperty.Key))
                             continue;
 
                         AppendJsonPropertyValue(scopeProperty.Key, scopeProperty.Value, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
@@ -328,13 +329,14 @@ namespace NLog.Layouts
 
             if (IncludeEventProperties && logEvent.HasProperties)
             {
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
                 IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
                 foreach (var prop in propertiesList)
                 {
                     if (string.IsNullOrEmpty(prop.Name))
                         continue;
 
-                    if (ExcludeProperties.Contains(prop.Name))
+                    if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
                         continue;
 
                     AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
