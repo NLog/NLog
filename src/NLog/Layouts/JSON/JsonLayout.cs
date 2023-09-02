@@ -36,6 +36,7 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
 
@@ -51,6 +52,7 @@ namespace NLog.Layouts
     public class JsonLayout : Layout
     {
         private const int SpacesPerIndent = 2;
+        private Layout[] _precalculateLayouts = null;
 
         private LimitRecursionJsonConvert JsonConverter
         {
@@ -221,6 +223,8 @@ namespace NLog.Layouts
                 MutableUnsafe = true;
             }
 
+            _precalculateLayouts = (IncludeScopeProperties || IncludeEventProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout));
+
             if (_escapeForwardSlashInternal.HasValue && Attributes?.Count > 0)
             {
                 foreach (var attribute in Attributes)
@@ -252,12 +256,13 @@ namespace NLog.Layouts
         {
             JsonConverter = null;
             ValueFormatter = null;
+            _precalculateLayouts = null;
             base.CloseLayout();
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>

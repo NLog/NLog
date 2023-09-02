@@ -36,6 +36,7 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -46,6 +47,7 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public abstract class XmlElementBase : Layout
     {
+        private Layout[] _precalculateLayouts = null;
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
         private const string DefaultCollectionItemName = "item";
@@ -245,11 +247,20 @@ namespace NLog.Layouts
                     }
                 }
             }
+
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Select(elm => elm.Layout)));
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseLayout()
+        {
+            _precalculateLayouts = null;
+            base.CloseLayout();
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>
