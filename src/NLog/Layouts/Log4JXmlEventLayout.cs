@@ -198,7 +198,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, null);
         }
 
         /// <inheritdoc/>

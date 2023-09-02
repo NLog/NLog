@@ -312,7 +312,7 @@ namespace NLog.Layouts
         {
             if (!IsLogEventMutableSafe(logEvent))
             {
-                PrecalculateBuilderInternal(logEvent, target);
+                PrecalculateBuilderInternal(logEvent, target, null);
             }
         }
 

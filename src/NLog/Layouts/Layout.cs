@@ -384,6 +384,38 @@ namespace NLog.Layouts
             _scannedForObjects = true;
         }
 
+        internal Layout[] ResolveLayoutPrecalculation(IEnumerable<Layout> allLayouts)
+        {
+            if (!_scannedForObjects || (ThreadAgnostic && !MutableUnsafe))
+                return null;
+
+            int layoutCount = 0;
+            int precalculateLayoutCount = 0;
+            int precalculateSimpleLayoutCount = 0;
+
+            foreach (var layout in allLayouts)
+            {
+                ++layoutCount;
+                if (layout?.ThreadAgnostic == false || layout?.MutableUnsafe == true)
+                {
+                    precalculateLayoutCount++;
+                    if (layout is SimpleLayout)
+                    {
+                        precalculateSimpleLayoutCount++;
+                    }
+                }
+            }
+
+            if (layoutCount <= 1 || precalculateSimpleLayoutCount > 5 || (precalculateLayoutCount - precalculateSimpleLayoutCount) > 2)
+            {
+                return null;
+            }
+            else
+            {
+                return allLayouts.Where(layout => layout?.ThreadAgnostic == false || layout?.MutableUnsafe == true).ToArray();
+            }
+        }
+
         /// <summary>
         /// Closes this instance.
         /// </summary>
@@ -449,11 +481,22 @@ namespace NLog.Layouts
         /// Optimized version of <see cref="Precalculate(LogEventInfo)"/> for internal Layouts, when
         /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
-        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target)
+        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target, Layout[] precalculateLayout)
         {
             if (!ThreadAgnostic || MutableUnsafe)
             {
-                RenderAppendBuilder(logEvent, target, true);
+                if (precalculateLayout is null)
+                {
+                    RenderAppendBuilder(logEvent, target, true);
+                }
+                else
+                {
+                    foreach (var layout in precalculateLayout)
+                    {
+                        layout.PrecalculateBuilder(logEvent, target);
+                        target.Length = 0;
+                    }
+                }
             }
         }
 
