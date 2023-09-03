@@ -406,7 +406,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (layoutCount <= 1 || layoutCount == precalculateSimpleLayoutCount || precalculateSimpleLayoutCount > 5 || (precalculateLayoutCount - precalculateSimpleLayoutCount) > 2)
+            if (layoutCount <= 1 || precalculateLayoutCount > 4 || (precalculateLayoutCount - precalculateSimpleLayoutCount) > 2 || (layoutCount - precalculateSimpleLayoutCount) <= 1)
             {
                 return null;
             }
