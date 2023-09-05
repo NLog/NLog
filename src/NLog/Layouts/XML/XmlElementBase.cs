@@ -234,7 +234,7 @@ namespace NLog.Layouts
                 {
                     if (string.IsNullOrEmpty(attribute.Name))
                     {
-                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains attribute with missing name (Ignored)");
+                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains attribute with missing name (Ignored)", ElementNameInternal);
                     }
                     else if (attributeValidator.Contains(attribute.Name))
                     {
@@ -248,7 +248,7 @@ namespace NLog.Layouts
             }
 
             var innerLayouts = LayoutWrapper.Inner is null ? ArrayHelper.Empty<Layout>() : new[] { LayoutWrapper.Inner };
-            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Select(elm => elm.Layout)).Concat(innerLayouts));
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(innerLayouts));
         }
 
         /// <inheritdoc/>

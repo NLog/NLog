@@ -49,21 +49,28 @@ namespace NLog.Layouts
         private const string DefaultRootElementName = "logevent";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XmlElementBase"/> class.
+        /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
             : this(DefaultRootElementName, null)
         {
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLayout"/> class.
+        /// </summary>
+        /// <param name="elementName">The name of the top XML node</param>
+        /// <param name="elementValue">The value of the top XML node</param>
         public XmlLayout(string elementName, Layout elementValue) : base(elementName, elementValue)
         {
         }
-        
+
         /// <summary>
         /// Name of the root XML element
         /// </summary>
+        /// <remarks>
+        /// Default value "logevent"
+        /// </remarks>
         /// <docgen category='Layout Options' order='10' />
         public string ElementName
         {
