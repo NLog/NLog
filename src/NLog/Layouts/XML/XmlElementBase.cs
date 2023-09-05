@@ -44,7 +44,6 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders XML-formatted events.
     /// </summary>
-    [ThreadAgnostic]
     public abstract class XmlElementBase : Layout
     {
         private Layout[] _precalculateLayouts = null;
@@ -248,7 +247,8 @@ namespace NLog.Layouts
                 }
             }
 
-            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Select(elm => elm.Layout)));
+            var innerLayouts = LayoutWrapper.Inner is null ? ArrayHelper.Empty<Layout>() : new[] { LayoutWrapper.Inner };
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Select(elm => elm.Layout)).Concat(innerLayouts));
         }
 
         /// <inheritdoc/>
