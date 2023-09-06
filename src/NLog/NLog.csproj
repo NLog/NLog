@@ -31,18 +31,15 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- AutoFlushTargetWrapper - Explicit flush should also await when FlushOnConditionOnly (#5308) (@snakefoot)
-- Target precalculate should only perform single IsInitialized check (#5301) (@snakefoot)
-- Target precalculate should only consider relevant layouts (#5300) (@snakefoot)
-- Target precalculate should handle duplicate layouts (#5296) (@snakefoot)
-- MessageLayoutRenderer - Skip Flatten when simple AggregateException (#5299) (@snakefoot)
-- ConfigurationItemFactory - Improve obsolete message for obsoleted factory-properties (#5298) (@snakefoot)
-- Report NLog version on initial configuration assignment (#5291) (@snakefoot)
-- PropertyHelper - SetPropertyFromString allow empty string for nullable-value (#5290) (@snakefoot)
-- Check RequiredParameter should also validate nullable types (#5289) (@snakefoot)
-- FileTarget - FilePathLayout with fixed-filename can translate to absolute path (#5287) (@snakefoot)
-- FileTarget - Cleanup FileSystemWatcher correctly when ArchiveFilePatternToWatch changes (#5279) (@lavige777)
-- Refactor ConditionBasedFilter when-filter to use ternary operator (#5281) (@jokoyoski)
+- ObjectPath should only render output when finding property-value (#5316) (@snakefoot)
+- Typed Layout parses empty string as fixed null value when nullable (#5318) (@snakefoot)
+- Introduced new LogEventInfo-constructor to skip Parameters-array allocation (#5319) (@snakefoot)
+- ConfigurationItemFactory - Improve obsolete message for JsonConverter + ValueFormatter (#5321) (@snakefoot)
+- InternalLogger - Force output even when invalid format string (#5326) (@snakefoot)
+- NetworkTarget - Avoid unhandled exception when using ThrowExceptions=true (#5327) (@snakefoot)
+- Skip checking ExcludeProperties when empty, to avoid string GetHashCode (#5336) (@snakefoot)
+- JsonLayout optimizing thread context capture for inner layouts (#5337) (@snakefoot)
+- FileTarget - FilePathLayout with fixed-filename can translate to absolute path (#5310) (@snakefoot)
 
 NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
