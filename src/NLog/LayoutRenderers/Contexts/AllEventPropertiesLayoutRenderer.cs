@@ -96,7 +96,6 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Enables capture of ScopeContext-properties from active thread context
         /// </summary>
-        [NLogConfigurationIgnoreProperty]
         public LayoutRenderer FixScopeContext => IncludeScopeProperties ? _fixScopeContext : null;
         private static readonly LayoutRenderer _fixScopeContext = new ScopeContextPropertyLayoutRenderer() { Item = string.Empty };
 

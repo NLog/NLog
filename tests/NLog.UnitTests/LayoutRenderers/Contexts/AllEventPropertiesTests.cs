@@ -35,7 +35,9 @@ namespace NLog.UnitTests.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using NLog.LayoutRenderers;
+    using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
 
@@ -114,13 +116,26 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void IncludeScopeProperties()
         {
-            var renderer = new AllEventPropertiesLayoutRenderer() { IncludeScopeProperties = true };
+            var testLayout = new SimpleLayout("${all-event-properties:IncludeScopeProperties=true}");
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = testLayout }).WithAsync();
+            }).LogFactory;
+
             var ev = new LogEventInfo(LogLevel.Info, null, null, "{pi:0}", new object[] { 3.14159265359 });
             using (ScopeContext.PushProperty("Figure", "Circle"))
             {
-                var result = renderer.Render(ev);
-                Assert.Equal("pi=3, Figure=Circle", result);
+                var logger = logFactory.GetLogger("B");
+
+                logger.Debug(ev);
             }
+
+            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().First();
+            logFactory.Shutdown();  // Flush
+
+            var result = target.LastMessage;
+            Assert.Equal("pi=3, Figure=Circle", result);
         }
 
         [Fact]
