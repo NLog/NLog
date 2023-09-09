@@ -255,21 +255,20 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void JsonAttributeThreadAgnosticTest()
         {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog throwExceptions='true'>
-            <targets async='true'>
-                <target name='debug' type='Debug'>
-                 <layout type='JsonLayout'>
-                    <attribute name='type' layout='${exception:format=Type}'/>
-                    <attribute name='message' layout='${exception:format=Message}'/>
-                    <attribute name='threadid' layout='${threadid}'/>
-                 </layout>
-                </target>
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                {
+                    new JsonAttribute("type", "${exception:format=Type}"),
+                    new JsonAttribute("message", "${exception:format=Message}"),
+                    new JsonAttribute("threadid", "${threadid}"),
+                }
+            };
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = jsonLayout }).WithAsync();
+            }).LogFactory;
 
             var logger = logFactory.GetLogger("B");
 
@@ -282,6 +281,10 @@ namespace NLog.UnitTests.Layouts
 
             var message = target.LastMessage;
             Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
+
+            // Verify that JsonLayout performed minimal thread context capture
+            System.Threading.Tasks.Task.Run(() => message = jsonLayout.Attributes.Last().Layout.Render(logEventInfo)).Wait();
+            Assert.Equal(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
         }
 
         [Fact]

@@ -236,7 +236,6 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.
         /// </summary>
-        [NLogConfigurationIgnoreProperty]
         public Log4JXmlEventLayoutRenderer Renderer => _log4JLayout.Renderer;
 
         /// <summary>
