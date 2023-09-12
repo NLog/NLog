@@ -4,6 +4,19 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.4 (2023/09/06)
+
+**Improvements**
+- [#5316](https://github.com/NLog/NLog/pull/5316) ObjectPath should only render output when finding property-value (#5316) (@snakefoot)
+- [#5318](https://github.com/NLog/NLog/pull/5318) Typed Layout parses empty string as fixed null value when nullable (#5318) (@snakefoot)
+- [#5319](https://github.com/NLog/NLog/pull/5319) Introduced new LogEventInfo-constructor to skip Parameters-array allocation (#5319) (@snakefoot)
+- [#5321](https://github.com/NLog/NLog/pull/5321) ConfigurationItemFactory - Improve obsolete message for JsonConverter + ValueFormatter (#5321) (@snakefoot)
+- [#5326](https://github.com/NLog/NLog/pull/5326) InternalLogger - Force output even when invalid format string (#5326) (@snakefoot)
+- [#5327](https://github.com/NLog/NLog/pull/5327) NetworkTarget - Avoid unhandled exception when using ThrowExceptions=true (#5327) (@snakefoot)
+- [#5336](https://github.com/NLog/NLog/pull/5336) Skip checking ExcludeProperties when empty, to avoid string GetHashCode (#5336) (@snakefoot)
+- [#5337](https://github.com/NLog/NLog/pull/5337) JsonLayout optimizing thread context capture for inner layouts (#5337) (@snakefoot)
+- [#5310](https://github.com/NLog/NLog/pull/5310) FileTarget - FilePathLayout with fixed-filename can translate to absolute path (#5310) (@snakefoot)
+
 ### Version 5.2.3 (2023/08/05)
 
 **Improvements**
