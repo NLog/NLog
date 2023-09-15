@@ -584,10 +584,16 @@ namespace NLog.Layouts
 
         private static LayoutRenderer GetLayoutRenderer(string typeName, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
-            LayoutRenderer layoutRenderer;
+            LayoutRenderer layoutRenderer = null;
+
             try
             {
                 layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
+            }
+            catch (NLogConfigurationException ex)
+            {
+                if (throwConfigExceptions ?? ex.MustBeRethrown())
+                    throw;
             }
             catch (Exception ex)
             {
@@ -596,11 +602,10 @@ namespace NLog.Layouts
                 {
                     throw configException;
                 }
-
-                // replace with empty values
-                layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
-            return layoutRenderer;
+
+            return layoutRenderer
+                ?? new LiteralLayoutRenderer(string.Empty); // replace with empty values
         }
 
         private static string SetDefaultPropertyValue(string value, LayoutRenderer layoutRenderer, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
