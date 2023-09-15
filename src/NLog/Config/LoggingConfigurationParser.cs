@@ -1305,7 +1305,7 @@ namespace NLog.Config
                 newInstance = factory.CreateInstance(typeName);
                 if (newInstance is null)
                 {
-                    throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {typeName}");
+                    throw new NLogConfigurationException($"Failed to create {typeof(T).Name} of type: '{typeName}' - Factory returned null");
                 }
             }
             catch (NLogConfigurationException configException)

@@ -327,44 +327,55 @@ namespace NLog.Config
     {
         public static TBaseType CreateInstance<TBaseType>(this IFactory<TBaseType> factory, string typeAlias) where TBaseType : class
         {
-            if (factory.TryCreateInstance(typeAlias, out TBaseType result))
+            try
             {
-                return result;
+                if (factory.TryCreateInstance(typeAlias, out var result))
+                {
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NLogConfigurationException($"Failed to create {typeof(TBaseType).Name} of type: '{typeAlias}' - {ex.Message}", ex);
             }
 
             var normalName = NormalizeName(typeAlias);
-            var message = typeof(TBaseType).Name + " type-alias is unknown: '" + typeAlias + "'";
+            var message = $"Failed to create {typeof(TBaseType).Name} with unknown type-alias: '{typeAlias}'";
             if (normalName != null && (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
                                  normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
 #if NETSTANDARD
-                message += ". Extension NLog.Web.AspNetCore not included?";
+                message += " - Extension NLog.Web.AspNetCore not included?";
 #else
-                message += ". Extension NLog.Web not included?";
+                message += " - Extension NLog.Web not included?";
 #endif
             }
             else if (normalName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.Database not included?";
+                message += " - Extension NLog.Database not included?";
             }
             else if (normalName?.StartsWith("eventlog", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.WindowsEventLog not included?";
+                message += " - Extension NLog.WindowsEventLog not included?";
             }
             else if (normalName?.StartsWith("windowsidentity", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.WindowsIdentity not included?";
+                message += " - Extension NLog.WindowsIdentity not included?";
             }
             else if (normalName?.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.OutputDebugString not included?";
+                message += " - Extension NLog.OutputDebugString not included?";
             }
             else if (normalName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.PerformanceCounter not included?";
+                message += " - Extension NLog.PerformanceCounter not included?";
+            }
+            else
+            {
+                message += " - Verify type-alias and check extension is included.";
             }
 
-            throw new ArgumentException(message);
+            throw new NLogConfigurationException(message);
         }
 
         public static string NormalizeName(string itemName)
