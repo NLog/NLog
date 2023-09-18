@@ -97,7 +97,7 @@ namespace NLog.Internal
                 _baseDir = LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory;
                 InternalLogger.Debug("FileTarget FilePathLayout with FilePathKind.Relative using AppDomain.BaseDirectory: {0}", _baseDir);
             }
-            
+           
             if (_cleanedFixedResult != null)
             {
                 if (!StringHelpers.IsNullOrWhiteSpace(_cleanedFixedResult))
@@ -108,6 +108,21 @@ namespace NLog.Internal
                 else
                 {
                     _filePathKind = FilePathKind.Unknown;
+                }
+            }
+
+            if (layout is SimpleLayout simpleLayout && simpleLayout.OriginalText?.IndexOfAny(new char[] { '\a', '\b', '\f', '\n', '\r', '\t', '\v' }) >= 0)
+            {
+                if (_cleanedFixedResult is null)
+                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters: {0}", simpleLayout.OriginalText);
+                else
+                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters: {0}", _cleanedFixedResult);
+            }
+            else if (_cleanedFixedResult != null)
+            {
+                if (DetectFilePathKind(_cleanedFixedResult) != FilePathKind.Absolute && _cleanedFixedResult.IndexOfAny(new char[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }) < 0)
+                {
+                    InternalLogger.Warn("FileTarget FilePathLayout not recognized as absolute path: {0}", _cleanedFixedResult);
                 }
             }
         }
