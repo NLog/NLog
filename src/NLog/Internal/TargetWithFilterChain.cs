@@ -117,17 +117,15 @@ namespace NLog.Internal
             return stackTraceUsage;
         }
 
-        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LoggingConfiguration configuration, LogLevel globalLogLevel)
+        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, List<LoggingRule> loggingRules, LogLevel globalLogLevel)
         {
-            if (configuration is null || LogLevel.Off.Equals(globalLogLevel))
+            if (loggingRules is null || loggingRules.Count == 0 || LogLevel.Off.Equals(globalLogLevel))
                 return TargetWithFilterChain.NoTargetsByLevel;
 
             TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
             TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
-            //no "System.InvalidOperationException: Collection was modified"
-            var loggingRules = configuration.GetLoggingRulesThreadSafe();
             bool targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             return targetsFound ? targetsByLevel : TargetWithFilterChain.NoTargetsByLevel;
         }
