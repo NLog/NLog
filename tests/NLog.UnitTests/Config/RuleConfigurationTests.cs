@@ -500,7 +500,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>").LogFactory;
 
-            var loggerConfig = logFactory.BuildLoggerConfiguration("AAA", logFactory.Configuration);
+            var loggerConfig = logFactory.BuildLoggerConfiguration("AAA", logFactory.Configuration?.GetLoggingRulesThreadSafe());
             var targets = loggerConfig[LogLevel.Warn.Ordinal];
             Assert.Equal("d1", targets.Target.Name);
             Assert.Equal("d2", targets.NextInChain.Target.Name);

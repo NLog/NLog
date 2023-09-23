@@ -567,9 +567,10 @@ namespace NLog
                 purgeObsoleteLoggers = loggers.Count != _loggerCache.Count;
             }
 
+            var loggingRules = _config?.GetLoggingRulesThreadSafe();
             foreach (var logger in loggers)
             {
-                logger.SetConfiguration(BuildLoggerConfiguration(logger.Name, _config));
+                logger.SetConfiguration(BuildLoggerConfiguration(logger.Name, loggingRules));
             }
 
             return purgeObsoleteLoggers;
@@ -880,9 +881,9 @@ namespace NLog
         }
 #endif
 
-        internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LoggingConfiguration configuration)
+        internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, List<LoggingRule> loggingRules)
         {
-            var targetsByLevel = TargetWithFilterChain.BuildLoggerConfiguration(loggerName, configuration, IsLoggingEnabled() ? GlobalThreshold : LogLevel.Off);
+            var targetsByLevel = TargetWithFilterChain.BuildLoggerConfiguration(loggerName, loggingRules, IsLoggingEnabled() ? GlobalThreshold : LogLevel.Off);
             if (InternalLogger.IsDebugEnabled && !DumpTargetConfigurationForLogger(loggerName, targetsByLevel))
             {
                 InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
@@ -1111,7 +1112,8 @@ namespace NLog
                 }
 
                 var config = _config ?? (_loggerCache.Count == 0 ? Configuration : null);   // Only force load NLog-config with first logger
-                newLogger.Initialize(name, BuildLoggerConfiguration(name, config), this);
+                var loggingRules = config?.GetLoggingRulesThreadSafe();
+                newLogger.Initialize(name, BuildLoggerConfiguration(name, loggingRules), this);
                 if (config is null && _loggerCache.Count == 0)
                 {
                     InternalLogger.Info("NLog Configuration has not been loaded.");
