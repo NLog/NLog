@@ -103,7 +103,7 @@ namespace NLog.Layouts
         public string QuoteChar { get; set; } = "\"";
 
         /// <summary>
-        /// Gets or sets the custom column delimiter value (valid when ColumnDelimiter is set to 'Custom').
+        /// Gets or sets the custom column delimiter value (valid when <see cref="Delimiter"/> is set to <see cref="CsvColumnDelimiterMode.Custom"/>).
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public string CustomColumnDelimiter { get; set; }
