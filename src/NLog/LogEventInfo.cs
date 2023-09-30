@@ -626,7 +626,10 @@ namespace NLog
 
         internal bool IsLogEventMutableSafe()
         {
-            if (Exception != null || _formattedMessage != null)
+            if (Exception != null)
+                return false;
+
+            if (_formattedMessage != null && _parameters?.Length > 0)
                 return false;
 
             var properties = CreateOrUpdatePropertiesInternal(false);
