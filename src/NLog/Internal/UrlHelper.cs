@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
 
     /// <summary>
@@ -54,6 +55,8 @@ namespace NLog.Internal
             /// <summary>Replace space ' ' with '+' instead of '%20'</summary>
             SpaceAsPlus = 8,
             /// <summary>Skip UTF8 encoding, and prefix special characters with '%u'</summary>
+            [Obsolete("Instead use default Rfc2396 or Rfc3986. Marked obsolete with NLog v5.3")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             NLogLegacy = 16 | LegacyRfc2396 | LowerCaseHex | UriString,
         };
 
@@ -67,11 +70,12 @@ namespace NLog.Internal
         {
             if (string.IsNullOrEmpty(source))
                 return;
-
-          
+         
             bool isLowerCaseHex = Contains(options, EscapeEncodingOptions.LowerCaseHex);
             bool isSpaceAsPlus = Contains(options, EscapeEncodingOptions.SpaceAsPlus);
+#pragma warning disable CS0618 // Type or member is obsolete
             bool isNLogLegacy = Contains(options, EscapeEncodingOptions.NLogLegacy);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             char[] charArray = null;
             byte[] byteArray = null;
@@ -97,7 +101,9 @@ namespace NLog.Internal
 
                 if (isNLogLegacy)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     HandleLegacyEncoding(target, ch, hexChars);
+#pragma warning restore CS0618 // Type or member is obsolete
                     continue;
                 }
 
@@ -121,10 +127,6 @@ namespace NLog.Internal
         /// <summary>
         /// Convert the wide-char into utf8-bytes, and then escape
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="charArray"></param>
-        /// <param name="byteArray"></param>
-        /// <param name="hexChars"></param>
         private static void WriteWideChars(StringBuilder target, char[] charArray, byte[] byteArray, char[] hexChars)
         {
             int byteCount = Encoding.UTF8.GetBytes(charArray, 0, 1, byteArray, 0);
@@ -140,6 +142,7 @@ namespace NLog.Internal
             }
         }
 
+        [Obsolete("Instead use default Rfc2396 or Rfc3986. Marked obsolete with NLog v5.3")]
         private static void HandleLegacyEncoding(StringBuilder target, char ch, char[] hexChars)
         {
             if (ch < 256)
@@ -221,11 +224,20 @@ namespace NLog.Internal
         {
             EscapeEncodingOptions encodingOptions = EscapeEncodingOptions.UriString;
             if (escapeDataNLogLegacy)
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
                 encodingOptions |= EscapeEncodingOptions.LowerCaseHex | EscapeEncodingOptions.NLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
             else if (!escapeDataRfc3986)
+            {
                 encodingOptions |= EscapeEncodingOptions.LowerCaseHex | EscapeEncodingOptions.LegacyRfc2396;
+            }
+
             if (spaceAsPlus)
+            {
                 encodingOptions |= EscapeEncodingOptions.SpaceAsPlus;
+            }
             return encodingOptions;
         }
     }
