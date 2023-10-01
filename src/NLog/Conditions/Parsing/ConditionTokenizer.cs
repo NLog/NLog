@@ -56,22 +56,10 @@ namespace NLog.Conditions
             GetNextToken();
         }
 
-        /// <summary>
-        /// Gets the type of the token.
-        /// </summary>
-        /// <value>The type of the token.</value>
         public ConditionTokenType TokenType { get; private set; }
 
-        /// <summary>
-        /// Gets the token value.
-        /// </summary>
-        /// <value>The token value.</value>
         public string TokenValue { get; private set; }
 
-        /// <summary>
-        /// Gets the value of a string token.
-        /// </summary>
-        /// <value>The string token value.</value>
         public string StringTokenValue
         {
             get

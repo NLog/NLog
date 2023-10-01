@@ -47,9 +47,9 @@ namespace NLog.Config
     using NLog.Time;
 
     /// <summary>
-    /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
+    /// Provides registration information for named items (targets, layouts, layout renderers, etc.)
     /// 
-    /// Everything of an assembly could be loaded by <see cref="RegisterItemsFromAssembly(System.Reflection.Assembly)"/>
+    /// Supports creating item-instance from their type-alias, when parsing NLog configuration
     /// </summary>
     public class ConfigurationItemFactory
     {

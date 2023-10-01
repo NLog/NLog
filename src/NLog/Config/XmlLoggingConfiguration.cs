@@ -257,7 +257,8 @@ namespace NLog.Config
         /// <summary>
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
         /// </summary>
-        /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
+        /// <returns>The newly loaded <see cref="XmlLoggingConfiguration" /> instance.</returns>
+        /// <remarks>Must assign the returned object to LogManager.Configuration to activate it</remarks>
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
@@ -347,7 +348,7 @@ namespace NLog.Config
                 InitializeSucceeded = null;
                 _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
                 reader.MoveToContent();
-                var content = new NLogXmlElement(reader);
+                var content = new XmlLoggingConfigurationElement(reader);
                 if (!string.IsNullOrEmpty(_originalFileName))
                 {
                     InternalLogger.Info("Loading NLog config from XML file: {0}", _originalFileName);
@@ -387,7 +388,7 @@ namespace NLog.Config
                 using (var reader = LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName))
                 {
                     reader.MoveToContent();
-                    ParseTopLevel(new NLogXmlElement(reader, false), fileName, autoReloadDefault);
+                    ParseTopLevel(new XmlLoggingConfigurationElement(reader, false), fileName, autoReloadDefault);
                 }
             }
         }
@@ -398,7 +399,7 @@ namespace NLog.Config
         /// <param name="content"></param>
         /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(NLogXmlElement content, [CanBeNull] string filePath, bool autoReloadDefault)
+        private void ParseTopLevel(XmlLoggingConfigurationElement content, [CanBeNull] string filePath, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
@@ -420,7 +421,7 @@ namespace NLog.Config
         /// <param name="configurationElement"></param>
         /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(NLogXmlElement configurationElement, [CanBeNull] string filePath, bool autoReloadDefault)
+        private void ParseConfigurationElement(XmlLoggingConfigurationElement configurationElement, [CanBeNull] string filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");

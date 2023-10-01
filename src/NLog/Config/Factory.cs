@@ -271,25 +271,30 @@ namespace NLog.Config
             }
         }
 
-        private bool TryGetItemFactory(string itemName, out ItemFactory itemFactory)
+        private bool TryGetItemFactory(string typeAlias, out ItemFactory itemFactory)
         {
             lock (ConfigurationItemFactory.SyncRoot)
             {
-                return _items.TryGetValue(itemName, out itemFactory);
+                return _items.TryGetValue(typeAlias, out itemFactory);
             }
         }
 
+        bool INamedItemFactory<TBaseType, Type>.TryCreateInstance(string itemName, out TBaseType result)
+        {
+            return TryCreateInstance(itemName, out result);
+        }
+
         /// <inheritdoc/>
-        public virtual bool TryCreateInstance(string itemName, out TBaseType result)
+        public virtual bool TryCreateInstance(string typeAlias, out TBaseType result)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
-            if (TryCreateInstanceLegacy(itemName, out result))
+            if (TryCreateInstanceLegacy(typeAlias, out result))
                 return true;
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            itemName = FactoryExtensions.NormalizeName(itemName);
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            if (!TryGetItemFactory(itemName, out var itemFactory) || itemFactory.ItemCreator is null)
+            if (!TryGetItemFactory(typeAlias, out var itemFactory) || itemFactory.ItemCreator is null)
             {
                 result = null;
                 return false;
@@ -439,23 +444,18 @@ namespace NLog.Config
             }
         }
 
-        /// <summary>
-        /// Tries to create an item instance.
-        /// </summary>
-        /// <param name="itemName">Name of the item.</param>
-        /// <param name="result">The result.</param>
-        /// <returns>True if instance was created successfully, false otherwise.</returns>
-        public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
+        /// <inheritdoc/>
+        public override bool TryCreateInstance(string typeAlias, out LayoutRenderer result)
         {
             //first try func renderers, as they should have the possibility to overwrite a current one.
             FuncLayoutRenderer funcResult;
-            itemName = FactoryExtensions.NormalizeName(itemName);
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
             if (_funcRenderers.Count > 0)
             {
                 lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    if (_funcRenderers.TryGetValue(itemName, out funcResult))
+                    if (_funcRenderers.TryGetValue(typeAlias, out funcResult))
                     {
                         result = funcResult;
                         return true;
@@ -467,7 +467,7 @@ namespace NLog.Config
             {
                 lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    if (_globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+                    if (_globalDefaultFactory._funcRenderers.TryGetValue(typeAlias, out funcResult))
                     {
                         result = funcResult;
                         return true;
@@ -475,7 +475,7 @@ namespace NLog.Config
                 }
             }
 
-            return base.TryCreateInstance(itemName, out result);
+            return base.TryCreateInstance(typeAlias, out result);
         }
     }
 }
