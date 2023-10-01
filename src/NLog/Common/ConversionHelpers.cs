@@ -110,11 +110,9 @@ namespace NLog.Common
 
         /// <summary>
         /// Enum.TryParse implementation for .net 3.5 
-        /// 
         /// </summary>
         /// <returns></returns>
         /// <remarks>Don't uses reflection</remarks>
-        // ReSharper disable once UnusedMember.Local
         private static bool TryParseEnum_net3<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
         {
             var enumType = typeof(TEnum);

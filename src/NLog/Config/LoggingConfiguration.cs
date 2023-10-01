@@ -496,6 +496,7 @@ namespace NLog.Config
         /// <returns>
         /// A new instance of <see cref="LoggingConfiguration"/> that represents the updated configuration.
         /// </returns>
+        /// <remarks>Must assign the returned object to LogManager.Configuration to activate it</remarks>
         public virtual LoggingConfiguration Reload()
         {
             return this;

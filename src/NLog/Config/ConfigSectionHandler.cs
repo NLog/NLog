@@ -31,22 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 #if !NETSTANDARD
 
 namespace NLog.Config
 {
-    using Internal.Fakeables;
-    using NLog.Common;
     using System;
     using System.Configuration;
     using System.Xml;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
-    /// Class for providing Nlog configuration xml code from app.config
-    /// to <see cref="XmlLoggingConfiguration"/>
+    /// Represents NLog ConfigSection for loading <see cref="XmlLoggingConfiguration"/> from app.config / web.config
     /// </summary>
+    /// <remarks><code>
+    /// &lt;configSections&gt;
+    ///   &lt;section name=&quot;NLog&quot; type=&quot;NLog.Config.ConfigSectionHandler, NLog&quot; /&gt;
+    /// &lt;/configSections&gt;
+    /// </code></remarks>
     public sealed class ConfigSectionHandler : ConfigurationSection
     {
         private XmlLoggingConfiguration _config;
@@ -66,7 +68,7 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "ConfigSectionHandler DeserializeElement error");
+                InternalLogger.Error(exception, "Failed loading XML configuration from NLog ConfigSection in app.config");
 
                 if (exception.MustBeRethrown())
                 {
@@ -77,7 +79,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Override base implementation to return a <see cref="LoggingConfiguration"/> object
-        /// for <see cref="ConfigurationManager.GetSection"/>
+        /// for <see cref="System.Configuration.ConfigurationManager.GetSection(string)"/>
         /// instead of the <see cref="ConfigSectionHandler"/> instance.
         /// </summary>
         /// <returns>

@@ -42,22 +42,22 @@ namespace NLog.Config
     /// <summary>
     /// Represents simple XML element with case-insensitive attribute semantics.
     /// </summary>
-    internal class NLogXmlElement : ILoggingConfigurationElement
+    internal class XmlLoggingConfigurationElement : ILoggingConfigurationElement
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogXmlElement"/> class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfigurationElement"/> class.
         /// </summary>
         /// <param name="reader">The reader to initialize element from.</param>
-        public NLogXmlElement(XmlReader reader)
+        public XmlLoggingConfigurationElement(XmlReader reader)
             : this(reader, false)
         {
         }
 
-        public NLogXmlElement(XmlReader reader, bool nestedElement)
+        public XmlLoggingConfigurationElement(XmlReader reader, bool nestedElement)
         {
             Parse(reader, nestedElement, out var attributes, out var children);
             AttributeValues = attributes ?? ArrayHelper.Empty<KeyValuePair<string, string>>();
-            Children = children ?? ArrayHelper.Empty<NLogXmlElement>();
+            Children = children ?? ArrayHelper.Empty<XmlLoggingConfigurationElement>();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the collection of child elements.
         /// </summary>
-        public IList<NLogXmlElement> Children { get; }
+        public IList<XmlLoggingConfigurationElement> Children { get; }
 
         /// <summary>
         /// Gets the value of the element.
@@ -99,7 +99,7 @@ namespace NLog.Config
             }
         }
 
-        private static bool SingleValueElement(NLogXmlElement child)
+        private static bool SingleValueElement(XmlLoggingConfigurationElement child)
         {
             // Node-element that works like an attribute
             return child.Children.Count == 0 && child.AttributeValues.Count == 0 && child.Value != null;
@@ -125,19 +125,15 @@ namespace NLog.Config
         /// </summary>
         /// <param name="elementName">Name of the element.</param>
         /// <returns>Children elements with the specified element name.</returns>
-        public List<NLogXmlElement> FilterChildren(string elementName)
+        public IEnumerable<XmlLoggingConfigurationElement> FilterChildren(string elementName)
         {
-            var result = new List<NLogXmlElement>();
-
-            foreach (var ch in Children)
+            foreach (var childElement in Children)
             {
-                if (ch.LocalName.Equals(elementName, StringComparison.OrdinalIgnoreCase))
+                if (childElement.LocalName.Equals(elementName, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.Add(ch);
+                    yield return childElement;
                 }
             }
-
-            return result;
         }
 
         /// <summary>
@@ -146,9 +142,9 @@ namespace NLog.Config
         /// <param name="allowedNames">The allowed names.</param>
         public void AssertName(params string[] allowedNames)
         {
-            foreach (var en in allowedNames)
+            foreach (var elementName in allowedNames)
             {
-                if (LocalName.Equals(en, StringComparison.OrdinalIgnoreCase))
+                if (LocalName.Equals(elementName, StringComparison.OrdinalIgnoreCase))
                 {
                     return;
                 }
@@ -157,7 +153,7 @@ namespace NLog.Config
             throw new InvalidOperationException($"Assertion failed. Expected element name '{string.Join("|", allowedNames)}', actual: '{LocalName}'.");
         }
 
-        private void Parse(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string,string>> attributes, out IList<NLogXmlElement> children)
+        private void Parse(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string,string>> attributes, out IList<XmlLoggingConfigurationElement> children)
         {
             ParseAttributes(reader, nestedElement, out attributes);
 
@@ -182,9 +178,9 @@ namespace NLog.Config
                     
                     if (reader.NodeType == XmlNodeType.Element)
                     {
-                        children = children ?? new List<NLogXmlElement>();
+                        children = children ?? new List<XmlLoggingConfigurationElement>();
                         var nestedChild = nestedElement || !string.Equals(reader.LocalName, "nlog", StringComparison.OrdinalIgnoreCase);
-                        children.Add(new NLogXmlElement(reader, nestedChild));
+                        children.Add(new XmlLoggingConfigurationElement(reader, nestedChild));
                     }
                 }
             }
