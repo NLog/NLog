@@ -39,7 +39,7 @@ namespace NLog.Layouts
     public enum CsvQuotingMode
     {
         /// <summary>
-        /// Quote all column (Fast)
+        /// Quote Always (Fast)
         /// </summary>
         All,
 
