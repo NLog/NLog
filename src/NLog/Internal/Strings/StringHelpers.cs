@@ -92,13 +92,14 @@ namespace NLog.Internal
         public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
         {
             Guard.ThrowIfNull(str);
-            Guard.ThrowIfNull(oldValue);
 
-            if (str.Length == 0)
+            if (string.IsNullOrEmpty(str))
             {
                 //nothing to do
-                return str;
+                return string.Empty;
             }
+
+            Guard.ThrowIfNullOrEmpty(oldValue);
 
             StringBuilder sb = null;
 
@@ -113,7 +114,7 @@ namespace NLog.Internal
                     // for cases that 2 chars is one symbol
                     break;
                 }
-                sb.Append(str.Substring(previousIndex, index - previousIndex));
+                sb.Append(str, previousIndex, index - previousIndex);
                 sb.Append(newValue);
                 index += oldValue.Length;
 
@@ -135,10 +136,10 @@ namespace NLog.Internal
 
             if (previousIndex < str.Length)
             {
-                sb.Append(str.Substring(previousIndex));
+                sb.Append(str, previousIndex, str.Length - previousIndex);
             }
-            return sb.ToString();
 
+            return sb.ToString();
         }
 
         /// <summary>Concatenates all the elements of a string array, using the specified separator between each element. </summary>
