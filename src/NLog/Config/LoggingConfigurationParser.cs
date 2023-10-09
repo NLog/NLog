@@ -1356,7 +1356,7 @@ namespace NLog.Config
             asyncTargetWrapper.WrappedTarget = target;
             asyncTargetWrapper.Name = target.Name;
             target.Name = target.Name + "_wrapped";
-            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}",
+            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}'",
                 asyncTargetWrapper.Name, target.Name);
             target = asyncTargetWrapper;
             return target;
@@ -1395,7 +1395,7 @@ namespace NLog.Config
             wrapperTargetInstance.Name = target.Name;
             target.Name = target.Name + "_wrapped";
 
-            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name,
+            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}'", wrapperTargetInstance.Name,
                 wrapperTargetInstance.GetType(), target.Name);
             return wrapperTargetInstance;
         }
