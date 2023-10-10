@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Layouts
     public class JsonLayoutTests : NLogTestBase
     {
         private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"NullProp\": null, \"DateTimeProp\": \"2345-01-23T12:34:56Z\" }";
-        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"DateTimeProp\": \"2345-01-23T12:34:56Z\", \"NoEmptyProp4\": \"hello\" }";
+        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"DateTimeProp\": \"2345-01-23T12:34:56Z\", \"NoEmptyProp4\": \"hello\\\"\" }";
 
         [Fact]
         public void JsonLayoutRendering()
@@ -68,7 +68,7 @@ namespace NLog.UnitTests.Layouts
 
             Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(logEventInfo));
         }
-        
+
         [Fact]
         public void JsonLayoutRenderingIndentJson()
         {
@@ -525,7 +525,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             Assert.Equal(ExpectedExcludeEmptyPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
         }
@@ -614,7 +614,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             MappedDiagnosticsContext.Clear();
             foreach (var prop in logEventInfo.Properties)
@@ -689,7 +689,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             GlobalDiagnosticsContext.Clear();
             foreach (var prop in logEventInfo.Properties)
@@ -766,7 +766,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             MappedDiagnosticsLogicalContext.Clear();
             foreach (var prop in logEventInfo.Properties)
