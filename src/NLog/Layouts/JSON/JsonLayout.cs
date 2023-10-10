@@ -418,7 +418,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (ExcludeEmptyProperties && (sb[sb.Length-1] == '"' && sb[sb.Length-2] == '"'))
+            if (ExcludeEmptyProperties && sb[sb.Length-1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
             {
                 sb.Length = initialLength;
             }
