@@ -56,6 +56,10 @@ namespace NLog.UnitTests.Config
             var itemFactory = new ConfigurationItemFactory();
             var ex = Assert.ThrowsAny<Exception>(() => itemFactory.GetTargetFactory().CreateInstance("Memory-Target") as MemoryTarget);
             Assert.Contains("Memory-Target", ex.Message);
+
+            itemFactory.GetTargetFactory().RegisterDefinition(nameof(MemoryTarget), typeof(MemoryTarget));
+            var result = itemFactory.GetTargetFactory().CreateInstance("Memory-Target");
+            Assert.IsType<MemoryTarget>(result);
         }
 
         [Fact]
