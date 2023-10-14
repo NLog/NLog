@@ -459,7 +459,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("2: send 0 5") != -1);
             Assert.True(result.IndexOf("2: close") != -1);
 
-            Assert.Equal(2, droppedLogs);
+            Assert.Equal(1, droppedLogs);
         }
 
         [Fact]

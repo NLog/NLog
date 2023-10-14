@@ -313,21 +313,47 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             string address = RenderLogEvent(Address, logEvent.LogEvent);
-            InternalLogger.Trace("{0}: Sending to address: '{1}'", this, address);
+            byte[] payload = GetBytesToWrite(logEvent.LogEvent);
+            int messageSize = payload.Length;
 
-            byte[] bytes = GetBytesToWrite(logEvent.LogEvent);
+            InternalLogger.Trace("{0}: Sending {1} bytes to address: '{2}'", this, messageSize, address);
+
+            if (messageSize > MaxMessageSize)
+            {
+                if (OnOverflow == NetworkTargetOverflowAction.Discard)
+                {
+                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
+                    logEvent.Continuation(null);
+                    return;
+                }
+
+                if (OnOverflow == NetworkTargetOverflowAction.Error)
+                {
+                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
+                    logEvent.Continuation(new InvalidOperationException($"NetworkTarget: Discarded LogEvent because MessageSize={messageSize} is above MaxMessageSize={MaxMessageSize}"));
+                    return;
+                }
+            }
+
+            if (messageSize <= 0)
+            {
+                logEvent.Continuation(null);
+                return;
+            }
 
             if (KeepConnection)
             {
-                WriteBytesToCachedNetworkSender(address, bytes, logEvent);
+                WriteBytesToCachedNetworkSender(address, payload, logEvent);
             }
             else
             {
-                WriteBytesToNewNetworkSender(address, bytes, logEvent);
+                WriteBytesToNewNetworkSender(address, payload, logEvent);
             }
         }
 
-        private void WriteBytesToCachedNetworkSender(string address, byte[] bytes, AsyncLogEventInfo logEvent)
+        private void WriteBytesToCachedNetworkSender(string address, byte[] payload, AsyncLogEventInfo logEvent)
         {
             LinkedListNode<NetworkSender> senderNode;
             try
@@ -343,7 +369,7 @@ namespace NLog.Targets
 
             WriteBytesToNetworkSender(
                 senderNode.Value,
-                bytes,
+                payload,
                 ex =>
                 {
                     if (ex != null)
@@ -357,7 +383,7 @@ namespace NLog.Targets
                 });
         }
 
-        private void WriteBytesToNewNetworkSender(string address, byte[] bytes, AsyncLogEventInfo logEvent)
+        private void WriteBytesToNewNetworkSender(string address, byte[] payload, AsyncLogEventInfo logEvent)
         {
             NetworkSender sender;
             LinkedListNode<NetworkSender> linkedListNode;
@@ -411,7 +437,7 @@ namespace NLog.Targets
 
             WriteBytesToNetworkSender(
                 sender,
-                bytes,
+                payload,
                 ex =>
                 {
                     lock (_openNetworkSenders)
@@ -499,7 +525,6 @@ namespace NLog.Targets
 
         private byte[] GetBytesFromStringBuilder(char[] charBuffer, StringBuilder stringBuilder)
         {
-            InternalLogger.Trace("{0}: Sending {1} chars", this, stringBuilder.Length);
             if (stringBuilder.Length <= charBuffer.Length)
             {
                 stringBuilder.CopyTo(0, charBuffer, 0, stringBuilder.Length);
@@ -617,36 +642,9 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteBytesToNetworkSender(NetworkSender sender, byte[] buffer, AsyncContinuation continuation)
+        private void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, AsyncContinuation continuation)
         {
-            int messageSize = buffer.Length;
-            if (messageSize > MaxMessageSize)
-            {
-                if (OnOverflow == NetworkTargetOverflowAction.Discard)
-                {
-                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
-                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
-                    continuation(null);
-                    return;
-                }
-
-                if (OnOverflow == NetworkTargetOverflowAction.Error)
-                {
-                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
-                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
-                    continuation(new InvalidOperationException($"NetworkTarget: Discarded LogEvent because MessageSize={messageSize} is above MaxMessageSize={MaxMessageSize}"));
-                    return;
-                }
-            }
-
-            InternalLogger.Trace("{0}: Sending LogEvent MessageSize={1}", this, messageSize);
-            if (messageSize <= 0)
-            {
-                continuation(null);
-                return;
-            }
-
-            sender.Send(buffer, 0, messageSize, continuation);
+            sender.Send(payload, 0, payload.Length, continuation);
         }
     }
 }
