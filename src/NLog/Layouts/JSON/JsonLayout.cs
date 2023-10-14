@@ -52,7 +52,7 @@ namespace NLog.Layouts
     public class JsonLayout : Layout
     {
         private const int SpacesPerIndent = 2;
-        private Layout[] _precalculateLayouts = null;
+        private Layout[] _precalculateLayouts;
 
         private LimitRecursionJsonConvert JsonConverter
         {

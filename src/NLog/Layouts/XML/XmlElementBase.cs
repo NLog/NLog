@@ -46,7 +46,7 @@ namespace NLog.Layouts
     /// </summary>
     public abstract class XmlElementBase : Layout
     {
-        private Layout[] _precalculateLayouts = null;
+        private Layout[] _precalculateLayouts;
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
         private const string DefaultCollectionItemName = "item";
@@ -605,7 +605,7 @@ namespace NLog.Layouts
                 if (_propertiesElementNameHasFormat)
                 {
                     propNameElement = XmlHelper.XmlConvertToElementName(propName);
-                    sb.AppendFormat(PropertiesElementName, propNameElement);
+                    sb.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, PropertiesElementName, propNameElement);
                 }
                 else
                 {
@@ -647,7 +647,7 @@ namespace NLog.Layouts
             if (ignorePropertiesElementName)
                 sb.Append(propNameElement);
             else
-                sb.AppendFormat(PropertiesElementName, propNameElement);
+                sb.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, PropertiesElementName, propNameElement);
             sb.Append('>');
             if (IndentXml)
                 sb.AppendLine();

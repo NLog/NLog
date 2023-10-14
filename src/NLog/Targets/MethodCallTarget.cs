@@ -245,7 +245,7 @@ namespace NLog.Targets
         {
             if (_logEventAction is null)
             {
-                InternalLogger.Trace("{0}: No invoke because class/method was not found or set", this);
+                InternalLogger.Debug("{0}: No invoke because class/method was not found or set", this);
             }
             else
             {

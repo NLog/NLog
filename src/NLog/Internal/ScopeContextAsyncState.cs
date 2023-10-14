@@ -531,7 +531,7 @@ namespace NLog.Internal
             ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(scopeProperties, allProperties);
 
             nestedContextTimestamp = 0L;
-            if (nestedStates?.Count > 0)
+            if (nestedStates.Count > 0)
             {
                 var parent = contextState;
                 while (parent != null)

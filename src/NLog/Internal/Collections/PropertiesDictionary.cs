@@ -159,7 +159,7 @@ namespace NLog.Internal
             }
         }
 
-        private void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties, Dictionary<object, PropertyValue> eventProperties)
+        private static void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties, Dictionary<object, PropertyValue> eventProperties)
         {
             for (int i = 0; i < oldMessageProperties.Count; ++i)
             {

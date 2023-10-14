@@ -228,7 +228,6 @@ namespace NLog.Conditions
                 if (type1 == typeof(string))
                 {
                     val = Convert.ToString(val, CultureInfo.InvariantCulture);
-                    InternalLogger.Trace("Using string comparison");
                     return true;
                 }
             }

@@ -87,25 +87,13 @@ namespace NLog.Config
             {
                 if (starPos1 == 0 && starPos2 == loggerNamePattern.Length - 1)
                     return new ContainsLoggerNameMatcher(loggerNamePattern);
-                if (starPos2 < 0)
-                {
-                    var loggerNameMatcher = CreateStartsOrEndsWithLoggerNameMatcher(loggerNamePattern, starPos1);
-                    if (loggerNameMatcher != null)
-                    {
-                        return loggerNameMatcher;
-                    }
-                }
+                if (starPos1 == 0 && starPos2 < 0)
+                    return new EndsWithLoggerNameMatcher(loggerNamePattern);
+                if (starPos1 == loggerNamePattern.Length - 1 && starPos2 < 0)
+                    return new StartsWithLoggerNameMatcher(loggerNamePattern);
             }
-            return new MultiplePatternLoggerNameMatcher(loggerNamePattern);
-        }
 
-        private static LoggerNameMatcher CreateStartsOrEndsWithLoggerNameMatcher(string loggerNamePattern, int starPos1)
-        {
-            if (starPos1 == 0)
-                return new EndsWithLoggerNameMatcher(loggerNamePattern);
-            if (starPos1 == loggerNamePattern.Length - 1)
-                return new StartsWithLoggerNameMatcher(loggerNamePattern);
-            return null;
+            return new MultiplePatternLoggerNameMatcher(loggerNamePattern);
         }
 
         /// <summary>

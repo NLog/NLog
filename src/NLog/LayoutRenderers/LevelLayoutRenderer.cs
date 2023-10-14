@@ -94,7 +94,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private string GetUpperCaseString(LogLevel level)
+        private static string GetUpperCaseString(LogLevel level)
         {
             try
             {

@@ -58,7 +58,7 @@ namespace NLog.Layouts
         private string _actualColumnDelimiter;
         private string _doubleQuoteChar;
         private char[] _quotableCharacters;
-        private Layout[] _precalculateLayouts = null;
+        private Layout[] _precalculateLayouts;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvLayout"/> class.

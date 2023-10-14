@@ -236,7 +236,7 @@ namespace NLog.Layouts
             }
         }
 
-        private object ExtractExistingValue(object innerValue)
+        private static object ExtractExistingValue(object innerValue)
         {
             if (innerValue is SimpleLayout simpleLayout)
                 return simpleLayout;

@@ -48,7 +48,7 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public class JsonArrayLayout : Layout
     {
-        private Layout[] _precalculateLayouts = null;
+        private Layout[] _precalculateLayouts;
 
         private IJsonConverter JsonConverter
         {

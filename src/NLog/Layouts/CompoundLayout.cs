@@ -50,7 +50,7 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {
-        private Layout[] _precalculateLayouts = null;
+        private Layout[] _precalculateLayouts;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompoundLayout"/> class.
