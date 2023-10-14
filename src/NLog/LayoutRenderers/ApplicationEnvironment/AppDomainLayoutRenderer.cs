@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
             if (_assemblyName is null)
             {
                 var formattingString = GetFormattingString(Format);
-                _assemblyName = string.Format(formattingString, _currentAppEnvironment.AppDomainId, _currentAppEnvironment.AppDomainFriendlyName);
+                _assemblyName = string.Format(System.Globalization.CultureInfo.InvariantCulture, formattingString, _currentAppEnvironment.AppDomainId, _currentAppEnvironment.AppDomainFriendlyName);
             }
             builder.Append(_assemblyName);
         }

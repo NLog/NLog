@@ -117,7 +117,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private bool CheckOptimalNetworkScore(UnicastIPAddressInformation networkAddress, int networkScore, ref int currentNetworkScore, ref string currentIpAddress)
+        private static bool CheckOptimalNetworkScore(UnicastIPAddressInformation networkAddress, int networkScore, ref int currentNetworkScore, ref string currentIpAddress)
         {
             const int greatNetworkScore = 30;   // 16 = Good Address Family + 9 = Good NetworkStatus + 3 = Valid gateway + Extra Bonus Points
 

@@ -661,7 +661,7 @@ namespace NLog.Targets
             }
         }
 
-        private void NotifyTaskCompletion(IList<AsyncContinuation> reusableContinuations, Exception ex)
+        private static void NotifyTaskCompletion(IList<AsyncContinuation> reusableContinuations, Exception ex)
         {
             try
             {
@@ -805,7 +805,7 @@ namespace NLog.Targets
             }
         }
 
-        private bool WaitTaskIsCompleted(Task task, TimeSpan timeout)
+        private static bool WaitTaskIsCompleted(Task task, TimeSpan timeout)
         {
             while (!task.IsCompleted && timeout > TimeSpan.Zero)
             {

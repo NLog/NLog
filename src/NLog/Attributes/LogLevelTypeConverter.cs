@@ -55,7 +55,7 @@ namespace NLog.Attributes
             if (typeof(string).Equals(valueType))
                 return LogLevel.FromString(value?.ToString());
             else if (IsNumericType(valueType))
-                return LogLevel.FromOrdinal(Convert.ToInt32(value));
+                return LogLevel.FromOrdinal(Convert.ToInt32(value, CultureInfo.InvariantCulture));
             else 
                 return base.ConvertFrom(context, culture, value);
         }

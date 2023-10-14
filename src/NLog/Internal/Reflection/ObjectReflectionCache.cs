@@ -625,14 +625,14 @@ namespace NLog.Internal
                 return EmptyDictionaryEnumerator.Default;
             }
 
-            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey,TValue> dictionary)
+            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey,TValue> dictionary)
             {
                 foreach (var item in dictionary)
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
             }
 
 #if !NET35
-            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
+            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);

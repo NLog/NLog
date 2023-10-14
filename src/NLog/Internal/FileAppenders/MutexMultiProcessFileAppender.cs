@@ -122,12 +122,8 @@ namespace NLog.Internal.FileAppenders
         /// <inheritdoc/>
         public override void Close()
         {
-            if (_mutex is null && _fileStream is null)
-            {
-                return;
-            }
+            CloseFileSafe(ref _fileStream, FileName);
 
-            InternalLogger.Trace("{0}: Closing '{1}'", CreateFileParameters, FileName);
             try
             {
                 _mutex?.Close();
@@ -140,21 +136,6 @@ namespace NLog.Internal.FileAppenders
             finally
             {
                 _mutex = null;
-            }
-
-            try
-            {
-                _fileStream?.Close();
-            }
-            catch (Exception ex)
-            {
-                // Swallow exception as the file-stream now is in final state (broken instead of closed)
-                InternalLogger.Warn(ex, "{0}: Failed to close file: '{1}'", CreateFileParameters, FileName);
-                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));    // Artificial delay to avoid hammering a bad file location
-            }
-            finally
-            {
-                _fileStream = null;
             }
         }
 

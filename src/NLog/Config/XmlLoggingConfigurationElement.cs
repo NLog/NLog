@@ -186,7 +186,7 @@ namespace NLog.Config
             }
         }
 
-        private void ParseAttributes(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string, string>> attributes)
+        private static void ParseAttributes(XmlReader reader, bool nestedElement, out IList<KeyValuePair<string, string>> attributes)
         {
             attributes = null;
             if (reader.MoveToFirstAttribute())

@@ -186,7 +186,7 @@ namespace NLog.Internal.FileAppenders
 
             // The hash makes the name unique, but also add the end of the path,
             // so the end of the name tells us which file it is (for debugging)
-            mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, hash);
+            mutexName = string.Format(System.Globalization.CultureInfo.InvariantCulture, mutexNameFormatString, mutexNamePrefix, hash);
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
             return mutexName + canonicalName.Substring(cutOffIndex);
         }

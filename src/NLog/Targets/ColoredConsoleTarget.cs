@@ -439,7 +439,7 @@ namespace NLog.Targets
             return matchingRule ?? ConsoleRowHighlightingRule.Default;
         }
 
-        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
+        private static ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
         {
             for (int i = 0; i < rules.Count; ++i)
             {

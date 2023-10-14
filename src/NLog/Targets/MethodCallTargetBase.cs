@@ -71,7 +71,8 @@ namespace NLog.Targets
             {
                 try
                 {
-                    parameters[i] = GetParameterValue(logEvent.LogEvent, Parameters[i]);
+                    var parameterValue = Parameters[i].RenderValue(logEvent.LogEvent);
+                    parameters[i] = parameterValue;
                 }
                 catch (Exception ex)
                 {
@@ -84,11 +85,6 @@ namespace NLog.Targets
             }
 
             DoInvoke(parameters, logEvent);
-        }
-
-        private object GetParameterValue(LogEventInfo logEvent, MethodCallParameter param)
-        {
-            return param.RenderValue(logEvent);
         }
 
         /// <summary>

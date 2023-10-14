@@ -642,7 +642,7 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, AsyncContinuation continuation)
+        private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, AsyncContinuation continuation)
         {
             sender.Send(payload, 0, payload.Length, continuation);
         }

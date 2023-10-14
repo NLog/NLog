@@ -270,7 +270,7 @@ namespace NLog.Config
                 yield return nlogAssemblyLocation + ".nlog";
         }
 
-        private string LookupNLogAssemblyLocation()
+        private static string LookupNLogAssemblyLocation()
         {
 #if !NETSTANDARD1_3
             var nlogAssembly = typeof(LogFactory).GetAssembly();
