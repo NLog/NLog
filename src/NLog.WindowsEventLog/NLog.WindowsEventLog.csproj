@@ -18,6 +18,7 @@
       Docs:
       https://github.com/nlog/NLog/wiki/EventLog-target
     </PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>NLog;EventLog;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
@@ -61,6 +62,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
     <None Include="N.png" Pack="true" PackagePath="" visible="false" />
   </ItemGroup>
   <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
