@@ -17,5 +17,7 @@ NLog will only recognize type-alias `eventlog` when loading from `NLog.config`-f
 Alternative register from code using [fluent configuration API](https://github.com/NLog/NLog/wiki/Fluent-Configuration-API):
 
 ```csharp
-LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<NLog.Targets.EventLogTarget>());
+LogManager.Setup().SetupExtensions(ext => {
+   ext.RegisterTarget<NLog.Targets.EventLogTarget>();
+});
 ```
