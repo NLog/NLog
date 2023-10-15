@@ -17,5 +17,7 @@ NLog will only recognize type-alias `OutputDebugString` when loading from `NLog.
 Alternative register from code using [fluent configuration API](https://github.com/NLog/NLog/wiki/Fluent-Configuration-API):
 
 ```csharp
-LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<NLog.Targets.OutputDebugStringTarget>());
+LogManager.Setup().SetupExtensions(ext => {
+   ext.RegisterTarget<NLog.Targets.OutputDebugStringTarget>();
+});
 ```
