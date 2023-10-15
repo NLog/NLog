@@ -114,15 +114,15 @@ namespace NLog.Internal
             if (layout is SimpleLayout simpleLayout && simpleLayout.OriginalText?.IndexOfAny(new char[] { '\a', '\b', '\f', '\n', '\r', '\t', '\v' }) >= 0)
             {
                 if (_cleanedFixedResult is null)
-                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters: {0}", simpleLayout.OriginalText);
+                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters (Maybe change to forward-slash): {0}", simpleLayout.OriginalText);
                 else
-                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters: {0}", _cleanedFixedResult);
+                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters (Maybe change to forward-slash): {0}", _cleanedFixedResult);
             }
             else if (_cleanedFixedResult != null)
             {
                 if (DetectFilePathKind(_cleanedFixedResult) != FilePathKind.Absolute && _cleanedFixedResult.IndexOfAny(new char[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }) < 0)
                 {
-                    InternalLogger.Warn("FileTarget FilePathLayout not recognized as absolute path: {0}", _cleanedFixedResult);
+                    InternalLogger.Warn("FileTarget FilePathLayout not recognized as absolute path (Maybe change to forward-slash): {0}", _cleanedFixedResult);
                 }
             }
         }
