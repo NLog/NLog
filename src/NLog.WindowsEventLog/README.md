@@ -2,6 +2,8 @@
 
 NLog EventLog Target writes to the Windows EventLog.
 
+If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
+
 See the [NLog Wiki](https://github.com/nlog/nlog/wiki/EventLog-target) for available options and examples.
 
 ## Register Extension

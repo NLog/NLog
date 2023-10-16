@@ -2,6 +2,8 @@
 
 NLog Registry LayoutRenderer to output value from Windows Registry.
 
+If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
+
 See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Registry-Layout-Renderer) for available options and examples.
 
 ## Register Extension
