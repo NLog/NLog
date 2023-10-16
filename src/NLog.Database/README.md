@@ -1,8 +1,10 @@
 # NLog Database Target
 
-NLog Database Target can write to any database that has ADO.NET Database Provider. Ex. NS-SQL, MySQL, SqLite, Oracle, etc.
+NLog Database Target can write to any database that has ADO.NET Database Provider. Ex. MS-SQL, MySQL, SqLite, Oracle, etc.
 
 Make sure to also install the nuget-package for the wanted Database Provider, and configure the [DbProvider](https://github.com/NLog/NLog/wiki/Database-target#dbprovider-examples) for the Database Target.
+
+If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 
 See the [NLog Wiki](https://github.com/NLog/NLog/wiki/Database-target) for available options and examples.
 
