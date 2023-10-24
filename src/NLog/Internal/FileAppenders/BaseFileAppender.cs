@@ -180,34 +180,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    try
-                    {
-                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
-                    }
-                    catch (DirectoryNotFoundException)
-                    {
-                        //we don't check the directory on beforehand, as that will really slow down writing.
-                        if (!CreateFileParameters.CreateDirs)
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for FileName: {1}", CreateFileParameters, FileName);
-
-                        var directoryName = Path.GetDirectoryName(FileName);
-
-                        try
-                        {
-                            Directory.CreateDirectory(directoryName);
-                        }
-                        catch (DirectoryNotFoundException)
-                        {
-                            //if creating a directory failed, don't retry for this message (e.g the FileOpenRetryCount below)
-                            throw new NLogRuntimeException($"Could not create directory {directoryName}");
-                        }
-
-                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
-                    }
+                    return TryCreateDirectoryFileStream(allowFileSharedWriting, overrideBufferSize);
                 }
                 catch (IOException ex)
                 {
@@ -226,8 +199,60 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
+        private FileStream TryCreateDirectoryFileStream(bool allowFileSharedWriting, int overrideBufferSize)
+        {
+            bool fileAlreadyExisted = UpdateCreationTime();
+            bool fixWindowFileSystemTunnelingCapabilities = false;
+
+            try
+            {
+                var fileStream = TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
+                fixWindowFileSystemTunnelingCapabilities = !fileAlreadyExisted && (CreateFileParameters.FileOpenRetryCount > 0 || PlatformDetector.IsWin32);
+                return fileStream;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                //we don't check the directory on beforehand, as that will really slow down writing.
+                if (!CreateFileParameters.CreateDirs)
+                {
+                    throw;
+                }
+
+                InternalLogger.Debug("{0}: DirectoryNotFoundException - Attempting to create directory for FileName: {1}", CreateFileParameters, FileName);
+
+                var directoryName = Path.GetDirectoryName(FileName);
+
+                try
+                {
+                    Directory.CreateDirectory(directoryName);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    //if creating a directory failed, don't retry for this message (e.g the FileOpenRetryCount below)
+                    throw new NLogRuntimeException($"Could not create directory {directoryName}");
+                }
+
+                return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
+            }
+            finally
+            {
+                if (fixWindowFileSystemTunnelingCapabilities)
+                {
+                    try
+                    {
+                        // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
+                        File.SetCreationTimeUtc(FileName, CreationTimeUtc);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Debug(ex, "{0}: Failed to update File.SetCreationTimeUtc for FileName: {1}", CreateFileParameters, FileName);
+                    }
+                }
+            }
+        }
+
 #if !MONO && !NETSTANDARD
-        private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting, int overrideBufferSize)
+        private FileStream WindowsCreateFile(bool allowFileSharedWriting, int bufferSize)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
 
@@ -247,7 +272,7 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 handle = Win32FileNativeMethods.CreateFile(
-                fileName,
+                FileName,
                 Win32FileNativeMethods.FileAccess.GenericWrite,
                 fileShare,
                 IntPtr.Zero,
@@ -260,7 +285,7 @@ namespace NLog.Internal.FileAppenders
                     Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
                 }
 
-                fileStream = new FileStream(handle, FileAccess.Write, overrideBufferSize > 0 ? overrideBufferSize : CreateFileParameters.BufferSize);
+                fileStream = new FileStream(handle, FileAccess.Write, bufferSize);
                 fileStream.Seek(0, SeekOrigin.End);
                 return fileStream;
             }
@@ -278,14 +303,14 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream TryCreateFileStream(bool allowFileSharedWriting, int overrideBufferSize)
         {
-            UpdateCreationTime();
+            var bufferSize = overrideBufferSize > 0 ? overrideBufferSize : CreateFileParameters.BufferSize;
 
 #if !MONO && !NETSTANDARD
             try
             {
                 if (!CreateFileParameters.ForceManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
                 {
-                    return WindowsCreateFile(FileName, allowFileSharedWriting, overrideBufferSize);
+                    return WindowsCreateFile(allowFileSharedWriting, bufferSize);
                 }
             }
             catch (SecurityException)
@@ -305,10 +330,10 @@ namespace NLog.Internal.FileAppenders
                 FileMode.Append,
                 FileAccess.Write,
                 fileShare,
-                overrideBufferSize > 0 ? overrideBufferSize : CreateFileParameters.BufferSize);
+                bufferSize);
         }
 
-        private void UpdateCreationTime()
+        private bool UpdateCreationTime()
         {
             CreationTimeUtc = DateTime.UtcNow;
 
@@ -318,23 +343,19 @@ namespace NLog.Internal.FileAppenders
                 if (fileInfo.Exists)
                 {
                     CreationTimeUtc = fileInfo.LookupValidFileCreationTimeUtc();
-                }
-                else
-                {
-                    File.Create(FileName).Dispose();
-
-                    // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
-                    File.SetCreationTimeUtc(FileName, CreationTimeUtc);
+                    return true;
                 }
             }
             catch (NotSupportedException ex)
             {
-                InternalLogger.Debug(ex, "{0}: Failed to retrieve FileInfo.CreationTimeUtc from FileName: {1}", CreateFileParameters, FileName);
+                InternalLogger.Debug(ex, "{0}: Failed to retrieve FileInfo.CreationTimeUtc for FileName: {1}", CreateFileParameters, FileName);
             }
             catch (IOException ex)
             {
-                InternalLogger.Debug(ex, "{0}: Failed to retrieve FileInfo.CreationTimeUtc from FileName: {1}", CreateFileParameters, FileName);
+                InternalLogger.Debug(ex, "{0}: Failed to retrieve FileInfo.CreationTimeUtc for FileName: {1}", CreateFileParameters, FileName);
             }
+
+            return false;
         }
 
         protected static void CloseFileSafe(ref FileStream fileStream, string fileName)
