@@ -40,6 +40,7 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using System.Text;
     using System.Threading;
+    using System.Threading.Tasks;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
@@ -975,6 +976,39 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
                 if (Directory.Exists(tempArchiveFolder))
                     Directory.Delete(tempArchiveFolder, true);
+            }
+        }
+
+        [Fact]
+        public void RetryFileOpenWhenFileLocked()
+        {
+            var logFile = Path.GetTempFileName();
+
+            var fileTarget = new FileTarget("file")
+            {
+                FileName = SimpleLayout.Escape(logFile),
+                LineEnding = LineEndingMode.LF,
+                Layout = "${level} ${message}",
+                KeepFileOpen = false,
+                ConcurrentWriteAttempts = 100,
+            };
+
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+            try
+            {
+                var fileStream = new FileStream(logFile, FileMode.Open, FileAccess.Write, FileShare.None);
+                var task = Task.Run(() => logger.Info("aaa"));
+                Assert.False(task.Wait(TimeSpan.FromMilliseconds(50)));
+                fileStream.Dispose();
+                Assert.True(task.Wait(TimeSpan.FromSeconds(60)));
+
+                AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
             }
         }
 
