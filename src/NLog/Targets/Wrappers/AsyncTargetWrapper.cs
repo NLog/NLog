@@ -123,7 +123,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
 #if NETSTANDARD2_0
             // NetStandard20 includes many optimizations for ConcurrentQueue:
