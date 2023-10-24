@@ -207,7 +207,7 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 var fileStream = TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
-                fixWindowFileSystemTunnelingCapabilities = !fileAlreadyExisted && (CreateFileParameters.FileOpenRetryCount > 0 || PlatformDetector.IsWin32);
+                fixWindowFileSystemTunnelingCapabilities = !fileAlreadyExisted && CreateFileParameters.IsArchivingEnabled && (CreateFileParameters.FileOpenRetryCount > 0 || PlatformDetector.IsWin32);
                 return fileStream;
             }
             catch (DirectoryNotFoundException)
