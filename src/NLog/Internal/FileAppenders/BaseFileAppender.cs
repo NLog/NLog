@@ -202,12 +202,12 @@ namespace NLog.Internal.FileAppenders
         private FileStream TryCreateDirectoryFileStream(bool allowFileSharedWriting, int overrideBufferSize)
         {
             bool fileAlreadyExisted = UpdateCreationTime();
-            bool fixWindowFileSystemTunnelingCapabilities = false;
+            bool fixWindowsFileSystemTunneling = false;
 
             try
             {
                 var fileStream = TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
-                fixWindowFileSystemTunnelingCapabilities = !fileAlreadyExisted && CreateFileParameters.IsArchivingEnabled && (CreateFileParameters.FileOpenRetryCount > 0 || PlatformDetector.IsWin32);
+                fixWindowsFileSystemTunneling = !fileAlreadyExisted && (CreateFileParameters.IsArchivingEnabled || PlatformDetector.IsWin32);
                 return fileStream;
             }
             catch (DirectoryNotFoundException)
@@ -236,11 +236,11 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                if (fixWindowFileSystemTunnelingCapabilities)
+                if (fixWindowsFileSystemTunneling)
                 {
                     try
                     {
-                        // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
+                        // Set the file's creation time to avoid being thwarted by Windows FileSystem Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
                         File.SetCreationTimeUtc(FileName, CreationTimeUtc);
                     }
                     catch (Exception ex)
