@@ -357,7 +357,7 @@ namespace NLog
             ActiveMessageFormatter = messageFormatter.FormatMessage;
             if (messageFormatter is LogMessageTemplateFormatter templateFormatter)
             {
-                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(_serviceRepository, templateFormatter.MessageTemplateParser == true, true).FormatMessage;
+                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(_serviceRepository, templateFormatter.EnableMessageTemplateParser == true, true).FormatMessage;
             }
             else
             {

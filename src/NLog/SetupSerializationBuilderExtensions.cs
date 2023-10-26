@@ -44,6 +44,18 @@ namespace NLog
     public static class SetupSerializationBuilderExtensions
     {
         /// <summary>
+        /// Enable/disables the NLog Message Template Parsing:
+        /// <para>- True = Always use NLog mesage-template-parser and formatting.</para>
+        /// <para>- False = Never use NLog-parser and only use string.Format (Disable support for message-template-syntax).</para>
+        /// <para>- Null = Auto detection of message-template-syntax, with fallback to string.Format (Default Behavior).</para>
+        /// </summary>
+        public static ISetupSerializationBuilder ParseMessageTemplates(this ISetupSerializationBuilder setupBuilder, bool? enable)
+        {
+            setupBuilder.LogFactory.ServiceRepository.ParseMessageTemplates(enable);
+            return setupBuilder;
+        }
+
+        /// <summary>
         /// Overrides the active <see cref="IJsonConverter"/> with a new custom implementation
         /// </summary>
         public static ISetupSerializationBuilder RegisterJsonConverter(this ISetupSerializationBuilder setupBuilder, IJsonConverter jsonConverter)

@@ -74,7 +74,7 @@ namespace NLog.Internal
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
 
-        public bool? MessageTemplateParser => _forceTemplateRenderer ? true : default(bool?);
+        public bool? EnableMessageTemplateParser => _forceTemplateRenderer ? true : default(bool?);
 
         /// <inheritDoc/>
         public bool HasProperties(LogEventInfo logEvent)

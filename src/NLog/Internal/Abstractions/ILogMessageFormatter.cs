@@ -43,7 +43,7 @@ namespace NLog.Internal
         /// <summary>
         /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
-        bool? MessageTemplateParser { get; }
+        bool? EnableMessageTemplateParser { get; }
 
         /// <summary>
         /// Format the message and return
