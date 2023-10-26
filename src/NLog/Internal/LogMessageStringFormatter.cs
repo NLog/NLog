@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
 
-        public bool? MessageTemplateParser => false;
+        public bool? EnableMessageTemplateParser => false;
 
         public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
         {

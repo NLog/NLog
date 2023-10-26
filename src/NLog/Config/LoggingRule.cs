@@ -195,6 +195,10 @@ namespace NLog.Config
         /// <summary>
         /// Default action if none of the filters match
         /// </summary>
+        /// <remarks>
+        /// NLog v4.6 introduced the setting with default value <see cref="FilterResult.Neutral"/>. 
+        /// NLog v5 marked it as obsolete and change default value to <see cref="FilterResult.Log"/>
+        /// </remarks>
         [Obsolete("Replaced by FilterDefaultAction. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FilterResult DefaultFilterResult { get => FilterDefaultAction; set => FilterDefaultAction = value; }
@@ -202,6 +206,9 @@ namespace NLog.Config
         /// <summary>
         /// Default action if none of the filters match
         /// </summary>
+        /// <remarks>
+        /// NLog v5 changed default value to <see cref="FilterResult.Ignore"/>
+        /// </remarks>
         public FilterResult FilterDefaultAction { get; set; } = FilterResult.Ignore;
 
         /// <summary>

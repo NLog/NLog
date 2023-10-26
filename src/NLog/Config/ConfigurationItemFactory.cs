@@ -282,8 +282,8 @@ namespace NLog.Config
         /// </remarks>
         public bool? ParseMessageTemplates
         {
-            get => _serviceRepository.ResolveMessageTemplateParser();
-            set => _serviceRepository.RegisterMessageTemplateParser(value);
+            get => _serviceRepository.ResolveParseMessageTemplates();
+            set => _serviceRepository.ParseMessageTemplates(value);
         }
 
         /// <summary>
