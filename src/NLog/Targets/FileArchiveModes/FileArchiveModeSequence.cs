@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using NLog.Internal;
 
 namespace NLog.Targets.FileArchiveModes
@@ -50,7 +51,7 @@ namespace NLog.Targets.FileArchiveModes
         private readonly string _archiveDateFormat;
 
         public FileArchiveModeSequence(string archiveDateFormat, bool isArchiveCleanupEnabled)
-            :base(isArchiveCleanupEnabled)
+            : base(isArchiveCleanupEnabled)
         {
             _archiveDateFormat = archiveDateFormat;
         }
@@ -75,7 +76,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 return null;
             }
-            
+
             var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc();
             var creationTime = creationTimeUtc > DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(creationTimeUtc) : DateTime.MinValue;
             return new DateAndSequenceArchive(archiveFile.FullName, creationTime, string.Empty, num);
@@ -91,7 +92,7 @@ namespace NLog.Targets.FileArchiveModes
 
             int minSequenceLength = archiveFileNameTemplate.EndAt - archiveFileNameTemplate.BeginAt - 2;
             string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
-            string dirName = Path.GetDirectoryName(archiveFilePath);
+            string dirName = Regex.Replace(Path.GetDirectoryName(archiveFilePath), @"\{#+\}", archiveDate.ToString(_archiveDateFormat));
             archiveFilePath = Path.Combine(dirName, archiveFileNameTemplate.ReplacePattern("*").Replace("*", paddedSequence));
             archiveFilePath = Path.GetFullPath(archiveFilePath);    // Rebuild to fix non-standard path-format
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, nextSequenceNumber);

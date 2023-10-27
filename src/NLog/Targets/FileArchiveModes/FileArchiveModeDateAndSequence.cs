@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
@@ -52,7 +53,7 @@ namespace NLog.Targets.FileArchiveModes
         private readonly string _archiveDateFormat;
 
         public FileArchiveModeDateAndSequence(string archiveDateFormat, bool archiveCleanupEnabled)
-            :base(archiveCleanupEnabled)
+            : base(archiveCleanupEnabled)
         {
             _archiveDateFormat = archiveDateFormat;
         }
@@ -89,7 +90,7 @@ namespace NLog.Targets.FileArchiveModes
             string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
             string archiveFileNameWithoutPath = archiveFileNameTemplate.ReplacePattern("*").Replace("*",
                 $"{archiveDate.ToString(_archiveDateFormat)}.{paddedSequence}");
-            string dirName = Path.GetDirectoryName(archiveFilePath);
+            string dirName = Regex.Replace(Path.GetDirectoryName(archiveFilePath), @"\{#+\}", archiveDate.ToString(_archiveDateFormat));
             archiveFilePath = Path.Combine(dirName, archiveFileNameWithoutPath);
             archiveFilePath = Path.GetFullPath(archiveFilePath);    // Rebuild to fix non-standard path-format
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, nextSequenceNumber);
