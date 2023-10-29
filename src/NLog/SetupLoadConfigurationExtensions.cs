@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using NLog.Conditions;
 using NLog.Config;
 using NLog.Filters;
 using NLog.Internal;
@@ -492,38 +493,46 @@ namespace NLog
 
             if (enableAnsiOutput)
             {
+                var conditionLogLevelFatal = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Fatal);
+                var conditionLogLevelError = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Error);
+                var conditionLogLevelWarn = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", (evt) => evt.Level == LogLevel.Warn);
+
                 if (highlightWordLevel)
                 {
-                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Fatal", IgnoreCase = true, WholeWords = true });
-                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Error", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Error", IgnoreCase = true, WholeWords = true });
-                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Warn", IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange) { Condition = conditionLogLevelFatal, IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Error", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange) { Condition = conditionLogLevelError, IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange) { Condition = conditionLogLevelWarn, IgnoreCase = true, WholeWords = true });
                 }
                 else
                 {
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelFatal, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelError, ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelWarn, ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Info", (evt) => evt.Level == LogLevel.Info), ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Debug", (evt) => evt.Level == LogLevel.Debug), ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Trace", (evt) => evt.Level == LogLevel.Trace), ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
                 }
             }
             else
             {
+                var conditionLogLevelFatal = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Fatal);
+                var conditionLogLevelError = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Error);
+                var conditionLogLevelWarn = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", (evt) => evt.Level == LogLevel.Warn);
+
                 if (highlightWordLevel)
                 {
-                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Fatal", ConsoleOutputColor.White, ConsoleOutputColor.DarkRed) { Condition = "level == LogLevel.Fatal", IgnoreCase = true, WholeWords = true });
-                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Error", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Error", IgnoreCase = true, WholeWords = true });
-                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Warn", IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Fatal", ConsoleOutputColor.White, ConsoleOutputColor.DarkRed) { Condition = conditionLogLevelFatal, IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Error", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange) { Condition = conditionLogLevelError, IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange) { Condition = conditionLogLevelWarn, IgnoreCase = true, WholeWords = true });
                 }
                 else
                 {
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.White, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelFatal, ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelError, ConsoleOutputColor.Red, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelWarn, ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Info", (evt) => evt.Level == LogLevel.Info),  ConsoleOutputColor.White, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Debug", (evt) => evt.Level == LogLevel.Debug), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Trace", (evt) => evt.Level == LogLevel.Trace), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
                 }
             }
 
