@@ -493,7 +493,7 @@ namespace NLog
 
             if (enableAnsiOutput)
             {
-                var conditionLogLevelFatal = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Fatal);
+                var conditionLogLevelFatal = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Fatal", (evt) => evt.Level == LogLevel.Fatal);
                 var conditionLogLevelError = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Error);
                 var conditionLogLevelWarn = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", (evt) => evt.Level == LogLevel.Warn);
 
@@ -515,7 +515,7 @@ namespace NLog
             }
             else
             {
-                var conditionLogLevelFatal = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Fatal);
+                var conditionLogLevelFatal = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Fatal", (evt) => evt.Level == LogLevel.Fatal);
                 var conditionLogLevelError = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Error", (evt) => evt.Level == LogLevel.Error);
                 var conditionLogLevelWarn = ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Warn", (evt) => evt.Level == LogLevel.Warn);
 
