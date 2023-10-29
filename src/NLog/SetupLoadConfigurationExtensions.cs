@@ -469,6 +469,68 @@ namespace NLog
         }
 
         /// <summary>
+        /// Write to <see cref="NLog.Targets.ColoredConsoleTarget"/> and color log-messages based on <see cref="LogLevel"/>
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="layout">Override the default Layout for output</param>
+        /// <param name="highlightWordLevel">Highlight only the Level-part</param>
+        /// <param name="encoding">Override the default Encoding for output (Ex. UTF8)</param>
+        /// <param name="stderr">Write to stderr instead of standard output (stdout)</param>
+        /// <param name="detectConsoleAvailable">Skip overhead from writing to console, when not available (Ex. running as Windows Service)</param>
+        /// <param name="enableAnsiOutput">Enables output using ANSI Color Codes (Windows console does not support this by default)</param>
+        public static ISetupConfigurationTargetBuilder WriteToColoredConsole(this ISetupConfigurationTargetBuilder configBuilder, Layout layout = null, bool highlightWordLevel = false, System.Text.Encoding encoding = null, bool stderr = false, bool detectConsoleAvailable = false, bool enableAnsiOutput = false)
+        {
+            var consoleTarget = new ColoredConsoleTarget();
+            if (layout != null)
+                consoleTarget.Layout = layout;
+            if (encoding != null)
+                consoleTarget.Encoding = encoding;
+            consoleTarget.StdErr = stderr;
+            consoleTarget.DetectConsoleAvailable = detectConsoleAvailable;
+            consoleTarget.EnableAnsiOutput = enableAnsiOutput;
+            consoleTarget.UseDefaultRowHighlightingRules = false;
+
+            if (enableAnsiOutput)
+            {
+                if (highlightWordLevel)
+                {
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Fatal", IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Error", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Error", IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Warn", IgnoreCase = true, WholeWords = true });
+                }
+                else
+                {
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.DarkRed, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange));
+                }
+            }
+            else
+            {
+                if (highlightWordLevel)
+                {
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Fatal", ConsoleOutputColor.White, ConsoleOutputColor.DarkRed) { Condition = "level == LogLevel.Fatal", IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Error", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Error", IgnoreCase = true, WholeWords = true });
+                    consoleTarget.WordHighlightingRules.Add(new ConsoleWordHighlightingRule("Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange) { Condition = "level == LogLevel.Warn", IgnoreCase = true, WholeWords = true });
+                }
+                else
+                {
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.DarkYellow, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.White, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
+                }
+            }
+
+            return configBuilder.WriteTo(consoleTarget);
+        }
+
+        /// <summary>
         /// Write to <see cref="NLog.Targets.TraceTarget"/> 
         /// </summary>
         /// <param name="configBuilder"></param>
