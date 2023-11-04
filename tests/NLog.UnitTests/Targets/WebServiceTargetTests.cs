@@ -223,7 +223,7 @@ using Owin;
         private static int _portOffset;
 
         /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_restapi_httppost()
@@ -377,76 +377,60 @@ using Owin;
         }
 
         /// <summary>
-        /// Timeout for <see cref="WebserviceTest_restapi_httppost_checkingLost"/>.
-        /// 
-        /// in miliseconds. 20000 = 20 sec
-        /// </summary>
-        const int webserviceCheckTimeoutMs = 20000;
-
-        /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
-        /// 
-        /// repeats for checking 'lost messages'
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/>
         /// </summary>
         [Fact]
-        public void WebserviceTest_restapi_httppost_checkingLost()
+        public void WebserviceTest_restapi_httppost_many()
         {
-            RetryingIntegrationTest(3, () =>
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{wsAddress}{"api/logme"}'
+                                protocol='HttpPost'
+                                encoding='UTF-8'
+                                >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' writeTo='ws' />
+                    </rules>
+                </nlog>").LogFactory;
+
+            var logger = logFactory.GetCurrentClassLogger();
+
+            const int messageCount = 101;
+            //reset
+            var context = new LogMeController.TestContext();
+            context.ResetState(messageCount);
+
+            string lastMessage = null;
+
+            StartOwinTest(wsAddress, context, () =>
             {
-                string wsAddress = getNewWsAddress();
-                var logFactory = new LogFactory().Setup()
-                                                 .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
-                                                 .LoadConfigurationFromXml($@"
-                    <nlog throwExceptions='true'>
-                        <targets>
-                            <target type='WebService'
-                                    name='ws'
-                                    url='{wsAddress}{"api/logme"}'
-                                    protocol='HttpPost'
-                                    encoding='UTF-8'
-                                   >
-                                <parameter name='param1' type='System.String' layout='${{message}}'/> 
-                                <parameter name='param2' type='System.String' layout='${{level}}'/>
-                            </target>
-                        </targets>
-                        <rules>
-                          <logger name='*' writeTo='ws' />
-                        </rules>
-                    </nlog>").LogFactory;
-
-                var logger = logFactory.GetCurrentClassLogger();
-
-                const int messageCount = 1000;
-                var createdMessages = new List<string>(messageCount);
-
                 for (int i = 0; i < messageCount; i++)
                 {
-                    var message = "message " + i;
-                    createdMessages.Add(message);
+                    lastMessage = "message" + i;
+                    logger.Info(lastMessage);
                 }
-
-                //reset
-                var context = new LogMeController.TestContext();
-                context.ResetState(messageCount);
-
-                StartOwinTest(wsAddress, context, () =>
-                {
-                    foreach (var createdMessage in createdMessages)
-                    {
-                        logger.Info(createdMessage);
-                    }
-                });
-
-                Assert.Equal(0, context.CountdownEvent.CurrentCount);
-                Assert.Equal(createdMessages.Count, context.ReceivedLogsPostParam1.Count);
             });
+
+            Assert.Equal(0, context.CountdownEvent.CurrentCount);
+            Assert.Equal(messageCount, context.ReceivedLogsPostParam1.Count);
+            CheckQueueMessage(lastMessage, context.ReceivedLogsPostParam1);
         }
 
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
         /// </summary>
         [Fact]
-        public void WebserviceTest_restapi_json()
+        public void WebserviceTest_restapi_jsonpost()
         {
             string wsAddress = getNewWsAddress();
             var logFactory = new LogFactory().Setup()
@@ -476,12 +460,12 @@ using Owin;
             var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
-            var count = 101;
-            var context = new LogDocController.TestContext(count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" }, { "User-Agent", "SecretAgent" } }, txt, "info", true, DateTime.UtcNow);
+            const int messageCount = 101;
+            var context = new LogDocController.TestContext(messageCount, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" }, { "User-Agent", "SecretAgent" } }, txt, "info", true, DateTime.UtcNow);
 
             StartOwinDocTest(wsAddress, context, () =>
             {
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < messageCount; i++)
                     logger.Info(txt);
             });
 
@@ -493,7 +477,7 @@ using Owin;
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/> 
         /// </summary>
         [Fact]
-        public void WebserviceTest_restapi_xml()
+        public void WebserviceTest_restapi_xmlpost()
         {
             string wsAddress = getNewWsAddress();
             var logFactory = new LogFactory().Setup()
@@ -522,12 +506,12 @@ using Owin;
             var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "message 1 with a XML POST<hello><again\\>\"";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
-            var count = 101;
-            var context = new LogDocController.TestContext(count, true, null, txt, "info", true, DateTime.UtcNow);
+            const int messageCount = 101;
+            var context = new LogDocController.TestContext(messageCount, true, null, txt, "info", true, DateTime.UtcNow);
 
             StartOwinDocTest(wsAddress, context, () =>
             {
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < messageCount; i++)
                     logger.Info(txt);
             });
 
@@ -707,7 +691,6 @@ using Owin;
             /// </summary>
             public string Get(int id)
             {
-
                 return "value";
             }
 
@@ -752,7 +735,7 @@ using Owin;
             {
             }
 
-            public class TestContext
+            public sealed class TestContext
             {
                 /// <summary>
                 /// Countdown event for keeping WS alive.
@@ -783,6 +766,8 @@ using Owin;
                 }
             }
         }
+
+        const int webserviceCheckTimeoutMs = 20000;
 
         internal static void StartOwinTest(string url, LogMeController.TestContext testContext, Action testsFunc)
         {
@@ -857,12 +842,13 @@ using Owin;
                 if (testContext.CountdownEvent != null)
                 {
                     testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
+                    //we need some extra time for completion
                     Thread.Sleep(1000);
                 }
             }
         }
 
-        private sealed class ControllerResolver<T> : IDependencyResolver
+        private sealed class ControllerResolver<T> : IDependencyResolver where T : class
         {
             private readonly Func<T> _factory;
 
@@ -918,24 +904,6 @@ using Owin;
                 processRequest(complexType);
             }
 
-            private void processRequest(LogMeController.ComplexType complexType)
-            {
-                if (Context != null)
-                {
-                    if (string.Equals(Context.ExpectedParam2, complexType.Param2, StringComparison.OrdinalIgnoreCase)
-                        && Context.ExpectedParam1 == complexType.Param1
-                        && Context.ExpectedParam3 == complexType.Param3
-                        && Context.ExpectedParam4.Date == complexType.Param4.Date)
-                    {
-                        if (!ValidateHeaders())
-                        {
-                            return;
-                        }
-                        Context.CountdownEvent.Signal();
-                    }
-                }
-            }
-
             [HttpPost]
             public void Xml(LogMeController.ComplexType complexType)
             {
@@ -965,6 +933,24 @@ using Owin;
                 }
             }
 
+            private void processRequest(LogMeController.ComplexType complexType)
+            {
+                if (Context != null)
+                {
+                    if (string.Equals(Context.ExpectedParam2, complexType.Param2, StringComparison.OrdinalIgnoreCase)
+                        && Context.ExpectedParam1 == complexType.Param1
+                        && Context.ExpectedParam3 == complexType.Param3
+                        && Context.ExpectedParam4.Date == complexType.Param4.Date)
+                    {
+                        if (!ValidateHeaders())
+                        {
+                            return;
+                        }
+                        Context.CountdownEvent.Signal();
+                    }
+                }
+            }
+
             private bool ValidateHeaders()
             {
                 if (Context.ExpectedHeaders?.Count > 0)
@@ -979,7 +965,7 @@ using Owin;
                 return true;
             }
 
-            public class TestContext
+            public sealed class TestContext
             {
                 public CountdownEvent CountdownEvent { get; }
 
@@ -1010,8 +996,6 @@ using Owin;
                 }
             }
         }
-
 #endif
     }
-
 }
