@@ -35,6 +35,7 @@ namespace NLog.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using System.Threading;
     using NLog.Internal;
@@ -82,6 +83,7 @@ namespace NLog.Common
         /// have been iterated.</param>
         /// <param name="action">The action to invoke for each item.</param>
         [Obsolete("Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ForEachItemSequentially<T>(IEnumerable<T> items, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
@@ -147,6 +149,7 @@ namespace NLog.Common
         /// <param name="action">The action to pre-pend.</param>
         /// <returns>Continuation which will execute the given action before forwarding to the actual continuation.</returns>
         [Obsolete("Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static AsyncContinuation PrecededBy(AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
@@ -260,6 +263,7 @@ namespace NLog.Common
         /// Using this method is not recommended because it will block the calling thread.
         /// </remarks>
         [Obsolete("Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void RunSynchronously(AsynchronousAction action)
         {
             var ev = new ManualResetEvent(false);

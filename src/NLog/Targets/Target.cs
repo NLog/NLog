@@ -103,6 +103,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
         [Obsolete("Temporary workaround for broken Layout Renderers that are not threadsafe. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LayoutWithLock { get => _layoutWithLock ?? false; set => _layoutWithLock = value; }
         internal bool? _layoutWithLock;
 
@@ -776,6 +777,7 @@ namespace NLog.Targets
         /// <typeparam name="T">Type of the Target.</typeparam>
         /// <param name="name">The target type-alias for use in NLog configuration</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string name)
             where T : Target
         {
@@ -790,6 +792,7 @@ namespace NLog.Targets
         /// <param name="targetType">Type of the Target.</param>
         /// <param name="name">The target type-alias for use in NLog configuration</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type targetType)
         {
             ConfigurationItemFactory.Default.GetTargetFactory().RegisterDefinition(name, targetType);

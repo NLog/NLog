@@ -34,6 +34,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using NLog.Internal;
@@ -59,6 +60,7 @@ namespace NLog.Targets
         /// Singleton instance of the serializer.
         /// </summary>
         [Obsolete("Instead use ResolveService<IJsonConverter>() in Layout / Target. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer(null);
 
         /// <summary>

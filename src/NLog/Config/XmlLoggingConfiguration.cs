@@ -277,6 +277,7 @@ namespace NLog.Config
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
         [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<string> GetCandidateConfigFilePaths()
         {
             return LogManager.LogFactory.GetCandidateConfigFilePaths();
@@ -287,6 +288,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
         [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
@@ -296,6 +298,7 @@ namespace NLog.Config
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
         [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ResetCandidateConfigFilePath()
         {
             LogManager.LogFactory.ResetCandidateConfigFilePath();

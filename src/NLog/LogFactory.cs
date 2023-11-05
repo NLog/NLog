@@ -96,6 +96,7 @@ namespace NLog
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
@@ -504,6 +505,7 @@ namespace NLog
         /// Make sure you are not calling this method in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
@@ -550,6 +552,7 @@ namespace NLog
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         [Obsolete("Replaced by GetLogger<T>(). Marked obsolete on NLog 5.2")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger), (t) => Logger.DefaultLoggerType.IsAssignableFrom(t) ? Activator.CreateInstance(t, true) as Logger : null);
@@ -1041,6 +1044,7 @@ namespace NLog
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
         [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerable<string> GetCandidateConfigFilePaths()
         {
             if (_candidateConfigFilePaths != null)
@@ -1069,6 +1073,7 @@ namespace NLog
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
         [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             _candidateConfigFilePaths = new List<string>();
@@ -1083,6 +1088,7 @@ namespace NLog
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
         [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ResetCandidateConfigFilePath()
         {
             _candidateConfigFilePaths = null;
