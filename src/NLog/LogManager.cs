@@ -81,6 +81,7 @@ namespace NLog
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
             add => factory.ConfigurationReloaded += value;
@@ -165,6 +166,7 @@ namespace NLog
         /// <param name="configFile">Configuration file to be read</param>
         /// <returns>LogFactory instance for fluent interface</returns>
         [Obsolete("Replaced by LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogFactory LoadConfiguration(string configFile)
         {
             factory.LoadConfiguration(configFile);
@@ -232,6 +234,7 @@ namespace NLog
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         [Obsolete("Replaced by LogFactory.GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return factory.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
@@ -266,6 +269,7 @@ namespace NLog
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
         [Obsolete("Replaced by LogFactory.GetLogger<T>(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return factory.GetLogger(name, loggerType);

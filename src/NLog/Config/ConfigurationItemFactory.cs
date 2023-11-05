@@ -35,6 +35,7 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
@@ -87,6 +88,7 @@ namespace NLog.Config
         /// Called before the assembly will be loaded.
         /// </summary>
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<AssemblyLoadingEventArgs> AssemblyLoading;
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ConfigurationItemFactory(params Assembly[] assemblies)
             : this(LogManager.LogFactory.ServiceRepository, null)
         {
@@ -191,6 +194,7 @@ namespace NLog.Config
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ConfigurationItemCreator CreateInstance { get; set; } = FactoryHelper.CreateInstance;
 
         /// <summary>
@@ -198,6 +202,7 @@ namespace NLog.Config
         /// </summary>
         /// <value>The target factory.</value>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<T>()). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<Target, Type> Targets => _targets;
 
         /// <summary>
@@ -205,6 +210,7 @@ namespace NLog.Config
         /// </summary>
         /// <value>The layout factory.</value>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(ext => ext.RegisterLayout<T>()). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<Layout, Type> Layouts => _layouts;
 
         /// <summary>
@@ -212,6 +218,7 @@ namespace NLog.Config
         /// </summary>
         /// <value>The layout renderer factory.</value>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<T>()). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
@@ -219,6 +226,7 @@ namespace NLog.Config
         /// </summary>
         /// <value>The ambient property factory.</value>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
 
         /// <summary>
@@ -226,6 +234,7 @@ namespace NLog.Config
         /// </summary>
         /// <value>The filter factory.</value>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<Filter, Type> Filters => _filters;
 
         /// <summary>
@@ -233,6 +242,7 @@ namespace NLog.Config
         /// </summary>
         /// <value>The time source factory.</value>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<TimeSource, Type> TimeSources => _timeSources;
 
         /// <summary>
@@ -240,12 +250,14 @@ namespace NLog.Config
         /// </summary>
         /// <value>The condition method factory.</value>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
 
         /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="JsonLayout"/>
         /// </summary>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.RegisterJsonConverter()) or ResolveService<IJsonConverter>(). Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IJsonConverter JsonConverter
         {
             get => _serviceRepository.GetService<IJsonConverter>();
@@ -256,6 +268,7 @@ namespace NLog.Config
         /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.RegisterValueFormatter()) or ResolveService<IValueFormatter>(). Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IValueFormatter ValueFormatter
         {
             get => _serviceRepository.GetService<IValueFormatter>();
@@ -266,6 +279,7 @@ namespace NLog.Config
         /// Gets or sets the parameter converter to use with <see cref="TargetWithContext"/> or <see cref="Layout{T}"/>
         /// </summary>
         [Obsolete("Instead use LogFactory.ServiceRepository.RegisterService(). Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IPropertyTypeConverter PropertyTypeConverter
         {
             get => _serviceRepository.GetService<IPropertyTypeConverter>();
@@ -291,6 +305,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterItemsFromAssembly(Assembly assembly)
         {
             RegisterItemsFromAssembly(assembly, string.Empty);
@@ -302,6 +317,7 @@ namespace NLog.Config
         /// <param name="assembly">The assembly.</param>
         /// <param name="itemNamePrefix">Item name prefix.</param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
             if (AssemblyLoading != null)
@@ -351,6 +367,7 @@ namespace NLog.Config
         /// <param name="typesToScan"></param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void PreloadAssembly(Type[] typesToScan)
         {
             var types = typesToScan.Where(t => t.Name.Equals("NLogPackageLoader", StringComparison.OrdinalIgnoreCase));
@@ -438,6 +455,7 @@ namespace NLog.Config
         /// <param name="type">The type to register.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
             lock (SyncRoot)
