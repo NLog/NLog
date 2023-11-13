@@ -2292,15 +2292,6 @@ namespace NLog.UnitTests.Targets
                     AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8);
                 else
                     AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8);
-               
-                // string expectedEnding = footer + fileTarget.LineEnding.NewLineCharacters;
-                // if (writeFooterOnArchivingOnly)
-                //     Assert.False(File.ReadAllText(logFile).EndsWith(expectedEnding), "Footer was unexpectedly written to log file.");
-                // else
-                //     AssertFileContentsEndsWith(logFile, expectedEnding, Encoding.UTF8);
-                // AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0002.txt"), expectedEnding, Encoding.UTF8);
-                // AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0001.txt"), expectedEnding, Encoding.UTF8);
-                // Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
             }
             finally
             {
