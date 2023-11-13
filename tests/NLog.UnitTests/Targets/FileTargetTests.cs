@@ -795,8 +795,7 @@ namespace NLog.UnitTests.Targets
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${level} ${message}",
-                    WriteHeaderOnStartup = true
+                    Layout = "${level} ${message}"
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -816,8 +815,7 @@ namespace NLog.UnitTests.Targets
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${level} ${message}",
-                    WriteHeaderOnStartup = true
+                    Layout = "${level} ${message}"
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
