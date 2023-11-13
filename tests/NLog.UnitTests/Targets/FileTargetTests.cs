@@ -795,12 +795,7 @@ namespace NLog.UnitTests.Targets
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = new LayoutWithHeaderAndFooter()
-                    {
-                        Header = "Header",
-                        Layout = "${level} ${message}",
-                        Footer = "Footer"
-                    },
+                    Layout = "${level} ${message}",
                     WriteHeaderOnStartup = true
                 };
 
@@ -821,12 +816,7 @@ namespace NLog.UnitTests.Targets
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = new LayoutWithHeaderAndFooter()
-                    {
-                        Header = "Header",
-                        Layout = "${level} ${message}",
-                        Footer = "Footer"
-                    },
+                    Layout = "${level} ${message}",
                     WriteHeaderOnStartup = true
                 };
 
@@ -852,12 +842,7 @@ namespace NLog.UnitTests.Targets
                     EnableArchiveFileCompression = enableCompression,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = new LayoutWithHeaderAndFooter()
-                    {
-                        Header = "Header",
-                        Layout = "${level} ${message}",
-                        Footer = "Footer"
-                    },
+                    Layout = "${level} ${message}",
                     ArchiveOldFileOnStartup = true,
                     ArchiveFileName = archiveTempName,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
