@@ -795,7 +795,13 @@ namespace NLog.UnitTests.Targets
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${level} ${message}"
+                    Layout = new LayoutWithHeaderAndFooter()
+                    {
+                        Header = "Header",
+                        Layout = "${level} ${message}",
+                        Footer = "Footer"
+                    },
+                    WriteHeaderOnStartup = true
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -815,7 +821,13 @@ namespace NLog.UnitTests.Targets
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${level} ${message}"
+                    Layout = new LayoutWithHeaderAndFooter()
+                    {
+                        Header = "Header",
+                        Layout = "${level} ${message}",
+                        Footer = "Footer"
+                    },
+                    WriteHeaderOnStartup = true
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -840,7 +852,12 @@ namespace NLog.UnitTests.Targets
                     EnableArchiveFileCompression = enableCompression,
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
-                    Layout = "${level} ${message}",
+                    Layout = new LayoutWithHeaderAndFooter()
+                    {
+                        Header = "Header",
+                        Layout = "${level} ${message}",
+                        Footer = "Footer"
+                    },
                     ArchiveOldFileOnStartup = true,
                     ArchiveFileName = archiveTempName,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
@@ -2235,6 +2252,78 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
+            }
+        }
+        
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void WriteHeaderOnStartupTest(bool writeHeaderOnStartup)
+        {
+            var logFile = Path.GetTempFileName() + ".txt";
+            try
+            {
+                const string header = "Headerline";
+
+                 // Configure first time
+                var fileTarget = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    Header = header,
+                    WriteHeaderOnStartup = true
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;
+
+                string headerPart = header + LineEndingMode.LF.NewLineCharacters;
+                string logPart = "aaa\nbbb\nccc\n";
+                AssertFileContents(logFile, headerPart + logPart, Encoding.UTF8);
+
+                // Configure second time
+                fileTarget = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    Header = header,
+                    WriteHeaderOnStartup = writeHeaderOnStartup
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;    // Flush
+                
+                if (writeHeaderOnStartup)
+                    AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8);
+                else
+                    AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8);
+               
+                // string expectedEnding = footer + fileTarget.LineEnding.NewLineCharacters;
+                // if (writeFooterOnArchivingOnly)
+                //     Assert.False(File.ReadAllText(logFile).EndsWith(expectedEnding), "Footer was unexpectedly written to log file.");
+                // else
+                //     AssertFileContentsEndsWith(logFile, expectedEnding, Encoding.UTF8);
+                // AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0002.txt"), expectedEnding, Encoding.UTF8);
+                // AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0001.txt"), expectedEnding, Encoding.UTF8);
+                // Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
             }
         }
 

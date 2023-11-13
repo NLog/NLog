@@ -486,6 +486,11 @@ namespace NLog.Targets
             set => _archiveOldFileOnStartup = value;
         }
         private bool? _archiveOldFileOnStartup;
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether the header should be written on every startup.
+        /// </summary>
+        public bool WriteHeaderOnStartup { get; set; }
 
         /// <summary>
         /// Gets or sets a value of the file size threshold to archive old log file on startup.
@@ -2493,8 +2498,8 @@ namespace NLog.Targets
             if (Header is null && !WriteBom) return;
 
             var length = appender.GetFileLength();
-            //  Write header and BOM only on empty files or if file info cannot be obtained.
-            if (length is null || length == 0)
+            //  Write header and BOM only on empty files or if file info cannot be obtained or WriteHeaderOnStartup is true.
+            if (length is null || length == 0 || WriteHeaderOnStartup)
             {
                 if (WriteBom)
                 {
