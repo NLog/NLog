@@ -2237,6 +2237,71 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempDir, true);
             }
         }
+        
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void WriteHeaderOnStartupTest(bool writeHeaderOnInitialFileOpen)
+        {
+            var logFile = Path.GetTempFileName() + ".txt";
+            try
+            {
+                const string header = "Headerline";
+
+                 // Configure first time
+                var fileTarget = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    Header = header,
+                    WriteBom = true,
+                    WriteHeaderOnInitialFileOpen = true
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;
+
+                string headerPart = header + LineEndingMode.LF.NewLineCharacters;
+                string logPart = "aaa\nbbb\nccc\n";
+                AssertFileContents(logFile, headerPart + logPart, Encoding.UTF8, addBom: true);
+
+                // Configure second time
+                fileTarget = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    Header = header,
+                    WriteBom = true,
+                    WriteHeaderOnInitialFileOpen = writeHeaderOnInitialFileOpen
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;    // Flush
+                
+                if (writeHeaderOnInitialFileOpen)
+                    AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8, addBom: true);
+                else
+                    AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8, addBom: true);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
 
         [Theory]
         [InlineData(false)]
