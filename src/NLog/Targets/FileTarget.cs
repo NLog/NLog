@@ -2500,9 +2500,9 @@ namespace NLog.Targets
             if (Header is null && !WriteBom) return;
 
             var length = appender.GetFileLength();
+            // File is empty or file info cannot be obtained
             var isNewFile = length is null || length == 0;
             
-            //  Write BOM only on empty files or if file info cannot be obtained
             if (isNewFile && WriteBom)
             {
                 InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
@@ -2510,8 +2510,7 @@ namespace NLog.Targets
                 if (preamble.Length > 0)
                     appender.Write(preamble, 0, preamble.Length);
             }
-          
-            //  Write Header only on empty files or if file info cannot be obtained or WriteHeaderOnInitialFileOpen is true
+            
             if (Header != null && (isNewFile || WriteHeaderOnInitialFileOpen))
             {
                 InternalLogger.Trace("{0}: Write header", this);
