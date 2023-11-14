@@ -488,9 +488,11 @@ namespace NLog.Targets
         private bool? _archiveOldFileOnStartup;
         
         /// <summary>
-        /// Gets or sets a value indicating whether the header should be written on every startup.
+        /// Gets or sets whether to write the Header on initial creation of file appender.
+        /// Independent of file is empty or not.
+        /// Alternative use <see cref="ArchiveOldFileOnStartup"/> to ensure each application session has its own individual log-file.
         /// </summary>
-        public bool WriteHeaderOnStartup { get; set; }
+        public bool WriteHeaderOnInitialFileOpen { get; set; }
 
         /// <summary>
         /// Gets or sets a value of the file size threshold to archive old log file on startup.
@@ -2498,25 +2500,27 @@ namespace NLog.Targets
             if (Header is null && !WriteBom) return;
 
             var length = appender.GetFileLength();
-            //  Write header and BOM only on empty files or if file info cannot be obtained or WriteHeaderOnStartup is true.
-            if (length is null || length == 0 || WriteHeaderOnStartup)
+            var isNewFile = length is null || length == 0;
+            var writeBom = isNewFile && WriteBom;
+            var writeHeader = Header != null && (isNewFile || WriteHeaderOnInitialFileOpen);
+            
+            //  Write BOM only on empty files or if file info cannot be obtained
+            if (writeBom)
             {
-                if (WriteBom)
+                InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
+                var preamble = Encoding.GetPreamble();
+                if (preamble.Length > 0)
+                    appender.Write(preamble, 0, preamble.Length);
+            }
+          
+            //  Write Header only on empty files or if file info cannot be obtained or WriteHeaderOnInitialFileOpen is true
+            if (writeHeader)
+            {
+                InternalLogger.Trace("{0}: Write header", this);
+                ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
+                if (headerBytes.Count > 0)
                 {
-                    InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
-                    var preamble = Encoding.GetPreamble();
-                    if (preamble.Length > 0)
-                        appender.Write(preamble, 0, preamble.Length);
-                }
-
-                if (Header != null)
-                {
-                    InternalLogger.Trace("{0}: Write header", this);
-                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
-                    if (headerBytes.Count > 0)
-                    {
-                        appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
-                    }
+                    appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
                 }
             }
         }

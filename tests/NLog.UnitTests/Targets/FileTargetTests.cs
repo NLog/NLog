@@ -2241,7 +2241,7 @@ namespace NLog.UnitTests.Targets
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
-        public void WriteHeaderOnStartupTest(bool writeHeaderOnStartup)
+        public void WriteHeaderOnStartupTest(bool writeHeaderOnInitialFileOpen)
         {
             var logFile = Path.GetTempFileName() + ".txt";
             try
@@ -2255,7 +2255,8 @@ namespace NLog.UnitTests.Targets
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     Header = header,
-                    WriteHeaderOnStartup = true
+                    WriteBom = true,
+                    WriteHeaderOnInitialFileOpen = true
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -2277,7 +2278,8 @@ namespace NLog.UnitTests.Targets
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     Header = header,
-                    WriteHeaderOnStartup = writeHeaderOnStartup
+                    WriteBom = true,
+                    WriteHeaderOnInitialFileOpen = writeHeaderOnInitialFileOpen
                 };
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
@@ -2288,7 +2290,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;    // Flush
                 
-                if (writeHeaderOnStartup)
+                if (writeHeaderOnInitialFileOpen)
                     AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8);
                 else
                     AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8);
