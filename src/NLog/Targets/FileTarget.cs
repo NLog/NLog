@@ -2501,11 +2501,9 @@ namespace NLog.Targets
 
             var length = appender.GetFileLength();
             var isNewFile = length is null || length == 0;
-            var writeBom = isNewFile && WriteBom;
-            var writeHeader = Header != null && (isNewFile || WriteHeaderOnInitialFileOpen);
             
             //  Write BOM only on empty files or if file info cannot be obtained
-            if (writeBom)
+            if (isNewFile && WriteBom)
             {
                 InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
                 var preamble = Encoding.GetPreamble();
@@ -2514,7 +2512,7 @@ namespace NLog.Targets
             }
           
             //  Write Header only on empty files or if file info cannot be obtained or WriteHeaderOnInitialFileOpen is true
-            if (writeHeader)
+            if (Header != null && (isNewFile || WriteHeaderOnInitialFileOpen))
             {
                 InternalLogger.Trace("{0}: Write header", this);
                 ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
