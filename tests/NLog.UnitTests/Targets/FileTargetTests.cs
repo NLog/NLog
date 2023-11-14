@@ -2269,7 +2269,7 @@ namespace NLog.UnitTests.Targets
 
                 string headerPart = header + LineEndingMode.LF.NewLineCharacters;
                 string logPart = "aaa\nbbb\nccc\n";
-                AssertFileContents(logFile, headerPart + logPart, Encoding.UTF8);
+                AssertFileContents(logFile, headerPart + logPart, Encoding.UTF8, addBom: true);
 
                 // Configure second time
                 fileTarget = new FileTarget
@@ -2291,9 +2291,9 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;    // Flush
                 
                 if (writeHeaderOnInitialFileOpen)
-                    AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8);
+                    AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8, addBom: true);
                 else
-                    AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8);
+                    AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8, addBom: true);
             }
             finally
             {
