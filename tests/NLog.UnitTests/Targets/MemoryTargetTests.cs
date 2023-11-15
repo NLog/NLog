@@ -144,6 +144,20 @@ namespace NLog.UnitTests.Targets
             Assert.True(memoryTarget.Logs[0] == "Trace TTT");
             Assert.True(memoryTarget.Logs[1] == "Debug DDD");
             Assert.True(memoryTarget.Logs[2] == "Info III");
+
+            Assert.True(memoryTarget.Logs.All(l => !string.IsNullOrEmpty(l)));
+            Assert.True(memoryTarget.Logs.Contains(memoryTarget.Logs[0]));
+            Assert.False(memoryTarget.Logs.Contains(string.Empty));
+            Assert.True(memoryTarget.Logs.Remove(memoryTarget.Logs[0]));
+            Assert.False(memoryTarget.Logs.Remove(string.Empty));
+            Assert.Equal(2, memoryTarget.Logs.Count);
+            Assert.Equal(0, memoryTarget.Logs.IndexOf(memoryTarget.Logs[0]));
+            Assert.Equal(1, memoryTarget.Logs.IndexOf(memoryTarget.Logs[1]));
+            Assert.Equal(-1, memoryTarget.Logs.IndexOf(string.Empty));
+            memoryTarget.Logs.RemoveAt(1);
+            Assert.Equal(1, memoryTarget.Logs.Count);
+            memoryTarget.Logs[0] = "Hello World";
+            Assert.Contains("Hello World", memoryTarget.Logs);
         }
 
         [Fact]
