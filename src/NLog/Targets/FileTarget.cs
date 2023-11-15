@@ -486,13 +486,15 @@ namespace NLog.Targets
             set => _archiveOldFileOnStartup = value;
         }
         private bool? _archiveOldFileOnStartup;
-        
+
         /// <summary>
-        /// Gets or sets whether to write the Header on initial creation of file appender.
-        /// Independent of file is empty or not.
-        /// Alternative use <see cref="ArchiveOldFileOnStartup"/> to ensure each application session has its own individual log-file.
+        /// Gets or sets whether to write the Header on initial creation of file appender, even if the file is not empty.
+        /// Default value is <see langword="false"/>, which means only write header when initial file is empty (Ex. ensures valid CSV files)
         /// </summary>
-        public bool WriteHeaderOnInitialFileOpen { get; set; }
+        /// <remarks>
+        /// Alternative use <see cref="ArchiveOldFileOnStartup"/> to ensure each application session gets individual log-file.
+        /// </remarks>
+        public bool WriteHeaderWhenInitialFileNotEmpty { get; set; }
 
         /// <summary>
         /// Gets or sets a value of the file size threshold to archive old log file on startup.
@@ -2511,7 +2513,7 @@ namespace NLog.Targets
                     appender.Write(preamble, 0, preamble.Length);
             }
             
-            if (Header != null && (isNewOrEmptyFile || WriteHeaderOnInitialFileOpen))
+            if (Header != null && (isNewOrEmptyFile || WriteHeaderWhenInitialFileNotEmpty))
             {
                 InternalLogger.Trace("{0}: Write header", this);
                 ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
