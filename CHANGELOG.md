@@ -4,6 +4,19 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.6 (2023/11/19)
+
+**Improvements**
+- [#5407](https://github.com/NLog/NLog/pull/5407) FileTarget - Added option WriteHeaderWhenInitialFileNotEmpty (#5407) (@RomanSoloweow)
+- [#5381](https://github.com/NLog/NLog/pull/5381) FileTarget - Removed explicit File.Create to not trigger file-scanners  (#5381) (@snakefoot)
+- [#5382](https://github.com/NLog/NLog/pull/5382) FileTarget - SetCreationTimeUtc only when IsArchivingEnabled (#5382) (@snakefoot)
+- [#5384](https://github.com/NLog/NLog/pull/5384) FileTarget - SetCreationTimeUtc always when running on Windows (#5384) (@snakefoot)
+- [#5389](https://github.com/NLog/NLog/pull/5389) ColoredConsoleTarget - Added Setup-extension-method WriteToColoredConsole (#5389) (@snakefoot)
+- [#5409](https://github.com/NLog/NLog/pull/5409) MemoryTarget - Make Logs-property thread-safe to enumerate (#5409) (@snakefoot)
+- [#5413](https://github.com/NLog/NLog/pull/5413) MultiFileWatcher - Improve InternalLogger output to match on start and stop (#5413) (@snakefoot)
+- [#5398](https://github.com/NLog/NLog/pull/5398) Marked obsolete members with EditorBrowsableState.Never (#5398) (@snakefoot)
+- [#5412](https://github.com/NLog/NLog/pull/5412) Change TargetFrameworks to net461 when old VisualStudioVersion (#5412) (@snakefoot)
+
 ### Version 5.2.5 (2023/10/15)
 
 **Improvements**
