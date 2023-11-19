@@ -31,20 +31,15 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- ConcurrentRequestQueue - Reduced SpinCount to 15, before monitor wait (#5344) (@snakefoot)
-- ConfigurationItemFactory - Improve exception message when unknown type-alias (#5347) (@snakefoot)
-- ConfigurationItemFactory - Faster scanning of relevant configuration item types (#5348) (@snakefoot)
-- FileTarget - Verify FilePathLayout not containing unexpected characters (#5349) (@snakefoot)
-- LogManager.ReconfigExistingLoggers with reduced memory allocation (#5351) (@snakefoot)
-- CsvLayout - Improve XML docs for CustomColumnDelimiter (#5353) (@snakefoot)
-- LogEventInfo - Can be immutable when having FormattedMessage and no parameters (#5354) (@snakefoot)
-- Renamed internal NLogXmlElement to XmlLoggingConfigurationElement and fixed XML docs (#5356) (@snakefoot)
-- StringHelpers - Skip SubString for case-insensitive Replace-method (#5359) (@snakefoot)
-- ReplaceLayoutRendererWrapper - IgnoreCase faster without RegEx (#5360) (@snakefoot)
-- Improved InternalLogger output when parsing NLog config with target wrappers (#5363) (@snakefoot)
-- NetworkTarget - Skip connection when above max message size (#5370) (@snakefoot)
-- Fixed various issues reported by EnableNETAnalyzers (#5371) (@snakefoot)
-- Updated various nuget-packages to include README.md (#5372) (@snakefoot)
+- FileTarget - Added option WriteHeaderWhenInitialFileNotEmpty (#5407) (@RomanSoloweow)
+- FileTarget - Removed explicit File.Create to not trigger file-scanners  (#5381) (@snakefoot)
+- FileTarget - SetCreationTimeUtc only when IsArchivingEnabled (#5382) (@snakefoot)
+- FileTarget - SetCreationTimeUtc always when running on Windows (#5384) (@snakefoot)
+- ColoredConsoleTarget - Added Setup-extension-method WriteToColoredConsole (#5389) (@snakefoot)
+- MemoryTarget - Make Logs-property thread-safe to enumerate (#5409) (@snakefoot)
+- MultiFileWatcher - Improve InternalLogger output to match on start and stop (#5413) (@snakefoot)
+- Marked obsolete members with EditorBrowsableState.Never (#5398) (@snakefoot)
+- Change TargetFrameworks to net461 when old VisualStudioVersion (#5412) (@snakefoot)
 
 NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
