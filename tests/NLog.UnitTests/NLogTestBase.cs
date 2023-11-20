@@ -78,7 +78,8 @@ namespace NLog.UnitTests
 
         protected static void AssertDebugLastMessage(string targetName, string msg)
         {
-            Assert.Equal(msg, GetDebugLastMessage(targetName));
+            var x = GetDebugLastMessage(targetName);
+            Assert.Equal(msg, x);
         }
 
         protected static void AssertDebugLastMessage(string targetName, string msg, LogFactory logFactory)
@@ -100,7 +101,8 @@ namespace NLog.UnitTests
 
         protected static string GetDebugLastMessage(string targetName, LogFactory logFactory)
         {
-            return GetDebugTarget(targetName, logFactory).LastMessage;
+            var x = GetDebugTarget(targetName, logFactory);
+            return x.LastMessage;
         }
 
         public static DebugTarget GetDebugTarget(string targetName)
