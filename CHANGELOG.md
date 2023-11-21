@@ -4,6 +4,37 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.6 (2023/11/19)
+
+**Improvements**
+- [#5407](https://github.com/NLog/NLog/pull/5407) FileTarget - Added option WriteHeaderWhenInitialFileNotEmpty (#5407) (@RomanSoloweow)
+- [#5381](https://github.com/NLog/NLog/pull/5381) FileTarget - Removed explicit File.Create to not trigger file-scanners  (#5381) (@snakefoot)
+- [#5382](https://github.com/NLog/NLog/pull/5382) FileTarget - SetCreationTimeUtc only when IsArchivingEnabled (#5382) (@snakefoot)
+- [#5384](https://github.com/NLog/NLog/pull/5384) FileTarget - SetCreationTimeUtc always when running on Windows (#5384) (@snakefoot)
+- [#5389](https://github.com/NLog/NLog/pull/5389) ColoredConsoleTarget - Added Setup-extension-method WriteToColoredConsole (#5389) (@snakefoot)
+- [#5409](https://github.com/NLog/NLog/pull/5409) MemoryTarget - Make Logs-property thread-safe to enumerate (#5409) (@snakefoot)
+- [#5413](https://github.com/NLog/NLog/pull/5413) MultiFileWatcher - Improve InternalLogger output to match on start and stop (#5413) (@snakefoot)
+- [#5398](https://github.com/NLog/NLog/pull/5398) Marked obsolete members with EditorBrowsableState.Never (#5398) (@snakefoot)
+- [#5412](https://github.com/NLog/NLog/pull/5412) Change TargetFrameworks to net461 when old VisualStudioVersion (#5412) (@snakefoot)
+
+### Version 5.2.5 (2023/10/15)
+
+**Improvements**
+- [#5344](https://github.com/NLog/NLog/pull/5344) ConcurrentRequestQueue - Reduced SpinCount to 15, before monitor wait (#5344) (@snakefoot)
+- [#5347](https://github.com/NLog/NLog/pull/5347) ConfigurationItemFactory - Improve exception message when unknown type-alias (#5347) (@snakefoot)
+- [#5348](https://github.com/NLog/NLog/pull/5348) ConfigurationItemFactory - Faster scanning of relevant configuration item types (#5348) (@snakefoot)
+- [#5349](https://github.com/NLog/NLog/pull/5349) FileTarget - Verify FilePathLayout not containing unexpected characters (#5349) (@snakefoot)
+- [#5351](https://github.com/NLog/NLog/pull/5351) LogManager.ReconfigExistingLoggers with reduced memory allocation (#5351) (@snakefoot)
+- [#5353](https://github.com/NLog/NLog/pull/5353) CsvLayout - Improve XML docs for CustomColumnDelimiter (#5353) (@snakefoot)
+- [#5354](https://github.com/NLog/NLog/pull/5354) LogEventInfo - Can be immutable when having FormattedMessage and no parameters (#5354) (@snakefoot)
+- [#5356](https://github.com/NLog/NLog/pull/5356) Renamed internal NLogXmlElement to XmlLoggingConfigurationElement and fixed XML docs (#5356) (@snakefoot)
+- [#5359](https://github.com/NLog/NLog/pull/5359) StringHelpers - Skip SubString for case-insensitive Replace-method (#5359) (@snakefoot)
+- [#5360](https://github.com/NLog/NLog/pull/5360) ReplaceLayoutRendererWrapper - IgnoreCase faster without RegEx (#5360) (@snakefoot)
+- [#5363](https://github.com/NLog/NLog/pull/5363) Improved InternalLogger output when parsing NLog config with target wrappers (#5363) (@snakefoot)
+- [#5370](https://github.com/NLog/NLog/pull/5370) NetworkTarget - Skip connection when above max message size (#5370) (@snakefoot)
+- [#5371](https://github.com/NLog/NLog/pull/5371) Fixed various issues reported by EnableNETAnalyzers (#5371) (@snakefoot)
+- [#5372](https://github.com/NLog/NLog/pull/5372) Updated various nuget-packages to include README.md (#5372) (@snakefoot)
+
 ### Version 5.2.4 (2023/09/06)
 
 **Improvements**
