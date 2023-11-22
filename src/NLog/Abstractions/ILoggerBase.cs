@@ -113,7 +113,7 @@ namespace NLog
         void Log(LogLevel level, LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the specified level.
+        /// Obsolete and replaced by <see cref="Log(LogLevel, Exception, string, object[])"/> - Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
@@ -171,7 +171,7 @@ namespace NLog
         void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the specified level.
+        /// Obsolete and replaced by <see cref="Log(LogLevel, Exception, string, object[])"/> - Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>

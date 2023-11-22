@@ -108,25 +108,37 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='10' />
         public bool IncludeScopeNested { get => _contextLayout.IncludeScopeNested; set => _contextLayout.IncludeScopeNested = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// Gets or sets whether to include the contents of the <see cref="MappedDiagnosticsContext"/>-dictionary.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => _contextLayout.IncludeMdc; set => _contextLayout.IncludeMdc = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeNested"/> with NLog v5.
+        /// Gets or sets whether to include the contents of the <see cref="NestedDiagnosticsContext"/>-stack.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNdc { get => _contextLayout.IncludeNdc; set => _contextLayout.IncludeNdc = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// Gets or sets whether to include the contents of the <see cref="MappedDiagnosticsLogicalContext"/>-properties.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => _contextLayout.IncludeMdlc; set => _contextLayout.IncludeMdlc = value; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeNested"/> with NLog v5.
+        /// Gets or sets whether to include the contents of the <see cref="NestedDiagnosticsLogicalContext"/>-stack.
+        /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeNested. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -320,6 +332,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="GetScopeContextProperties"/> with NLog v5.
         /// Returns the captured snapshot of <see cref="MappedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -350,6 +363,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="GetScopeContextProperties"/> with NLog v5.
         /// Returns the captured snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -366,6 +380,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="GetScopeContextNested"/> with NLog v5.
         /// Returns the captured snapshot of <see cref="NestedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -396,6 +411,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="GetScopeContextNested"/> with NLog v5.
         /// Returns the captured snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -484,6 +500,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="CaptureScopeContextProperties"/> with NLog v5.
         /// Takes snapshot of <see cref="MappedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -511,6 +528,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="SerializeScopeContextProperty"/> with NLog v5.
         /// Take snapshot of a single object value from <see cref="MappedDiagnosticsContext"/>
         /// </summary>
         /// <param name="logEvent">Log event</param>
@@ -532,6 +550,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="CaptureScopeContextProperties"/> with NLog v5.
         /// Takes snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -580,6 +599,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="SerializeScopeContextProperty"/> with NLog v5.
         /// Take snapshot of a single object value from <see cref="MappedDiagnosticsLogicalContext"/>
         /// </summary>
         /// <param name="logEvent">Log event</param>
@@ -614,6 +634,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="CaptureScopeContextNested"/> with NLog v5.
         /// Takes snapshot of <see cref="NestedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -651,6 +672,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="SerializeScopeContextNestedState"/> with NLog v5.
         /// Take snapshot of a single object value from <see cref="NestedDiagnosticsContext"/>
         /// </summary>
         /// <param name="logEvent">Log event</param>
@@ -665,6 +687,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="CaptureScopeContextNested"/> with NLog v5.
         /// Takes snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -712,6 +735,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="SerializeScopeContextNestedState"/> with NLog v5.
         /// Take snapshot of a single object value from <see cref="NestedDiagnosticsLogicalContext"/>
         /// </summary>
         /// <param name="logEvent">Log event</param>

@@ -85,7 +85,8 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Called before the assembly will be loaded.
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
+        /// Called before the assembly with NLog extensions is being loaded.
         /// </summary>
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -100,6 +101,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
@@ -188,6 +190,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets or sets the creator delegate used to instantiate configuration objects.
         /// </summary>
         /// <remarks>
@@ -198,6 +201,7 @@ namespace NLog.Config
         public ConfigurationItemCreator CreateInstance { get; set; } = FactoryHelper.CreateInstance;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>
@@ -206,6 +210,7 @@ namespace NLog.Config
         public INamedItemFactory<Target, Type> Targets => _targets;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the <see cref="Layout"/> factory.
         /// </summary>
         /// <value>The layout factory.</value>
@@ -214,6 +219,7 @@ namespace NLog.Config
         public INamedItemFactory<Layout, Type> Layouts => _layouts;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
@@ -222,6 +228,7 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the ambient property factory.
         /// </summary>
         /// <value>The ambient property factory.</value>
@@ -230,6 +237,7 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
         /// <value>The filter factory.</value>
@@ -238,6 +246,7 @@ namespace NLog.Config
         public INamedItemFactory<Filter, Type> Filters => _filters;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the time source factory.
         /// </summary>
         /// <value>The time source factory.</value>
@@ -246,6 +255,7 @@ namespace NLog.Config
         public INamedItemFactory<TimeSource, Type> TimeSources => _timeSources;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets the condition method factory.
         /// </summary>
         /// <value>The condition method factory.</value>
@@ -254,6 +264,7 @@ namespace NLog.Config
         public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupSerializationBuilderExtensions.RegisterJsonConverter"/> with NLog v5.2.
         /// Gets or sets the JSON serializer to use with <see cref="JsonLayout"/>
         /// </summary>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.RegisterJsonConverter()) or ResolveService<IJsonConverter>(). Marked obsolete on NLog 5.0")]
@@ -265,6 +276,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupSerializationBuilderExtensions.RegisterValueFormatter"/> with NLog v5.2.
         /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
         [Obsolete("Instead use NLog.LogManager.Setup().SetupSerialization(s => s.RegisterValueFormatter()) or ResolveService<IValueFormatter>(). Marked obsolete on NLog 5.0")]
@@ -276,6 +288,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NLog.SetupBuilderExtensions.SetupExtensions"/> with NLog v5.2.
         /// Gets or sets the parameter converter to use with <see cref="TargetWithContext"/> or <see cref="Layout{T}"/>
         /// </summary>
         [Obsolete("Instead use LogFactory.ServiceRepository.RegisterService(). Marked obsolete on NLog 5.0")]
@@ -301,6 +314,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
         /// Registers named items from the assembly.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
@@ -312,6 +326,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
         /// Registers named items from the assembly.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
@@ -358,6 +373,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete since dynamic assembly loading is not compatible with publish as trimmed application.
         /// Call Preload for NLogPackageLoader
         /// </summary>
         /// <remarks>
@@ -450,6 +466,7 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete since dynamic type loading is not compatible with publish as trimmed application.
         /// Registers the type.
         /// </summary>
         /// <param name="type">The type to register.</param>

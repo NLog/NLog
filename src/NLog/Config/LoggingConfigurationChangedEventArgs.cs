@@ -60,6 +60,9 @@ namespace NLog.Config
         /// <summary>
         /// Gets the new configuration.
         /// </summary>
+        /// <remarks>
+        /// New value can be <c>null</c> when unloading configuration during shutdown.
+        /// </remarks>
         /// <value>The new configuration.</value>
         public LoggingConfiguration ActivatedConfiguration { get; }
     }

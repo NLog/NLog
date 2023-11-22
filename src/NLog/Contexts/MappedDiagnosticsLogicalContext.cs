@@ -38,9 +38,11 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Async version of Mapped Diagnostics Context - a logical context structure that keeps a dictionary
-    /// of strings and provides methods to output them in layouts.  Allows for maintaining state across
-    /// asynchronous tasks and call contexts.
+    /// Obsolete and replaced by <see cref="ScopeContext"/> with NLog v5.
+    /// 
+    /// Mapped Diagnostics Logical Context (MDLC) is a dictionary of keys and values.
+    /// Stores the dictionary in the logical thread callcontext, and provides methods to output dictionary values in layouts.
+    /// Allows for maintaining state across asynchronous tasks and call contexts.
     /// </summary>
     /// <remarks>
     /// Ideally, these changes should be incorporated as a new version of the MappedDiagnosticsContext class in the original

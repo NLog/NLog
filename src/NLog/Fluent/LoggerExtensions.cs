@@ -40,6 +40,8 @@ namespace NLog.Fluent
     public static class LoggerExtensions
     {
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForLogEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event with the specified <see cref="LogLevel"/>.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -54,6 +56,8 @@ namespace NLog.Fluent
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForTraceEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Trace</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -65,8 +69,10 @@ namespace NLog.Fluent
             var builder = new LogBuilder(logger, LogLevel.Trace);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForDebugEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Debug</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -78,8 +84,10 @@ namespace NLog.Fluent
             var builder = new LogBuilder(logger, LogLevel.Debug);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForInfoEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Info</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -91,8 +99,10 @@ namespace NLog.Fluent
             var builder = new LogBuilder(logger, LogLevel.Info);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForWarnEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Warn</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -104,8 +114,10 @@ namespace NLog.Fluent
             var builder = new LogBuilder(logger, LogLevel.Warn);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForErrorEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Error</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -117,8 +129,10 @@ namespace NLog.Fluent
             var builder = new LogBuilder(logger, LogLevel.Error);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForFatalEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>

@@ -139,6 +139,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="WithProperty"/> that prevents unexpected side-effects in Logger-state.
+        /// 
         /// Updates the specified context property for the current logger. The logger will append it for all log events.
         ///
         /// With <see cref="Properties"/> property, all properties can be enumerated (or updated). 

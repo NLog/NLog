@@ -36,6 +36,7 @@ namespace NLog.Config
     using System;
 
     /// <summary>
+    /// Obsolete since dynamic tyope loading is not compatible with publish as trimmed application.
     /// Constructs a new instance the configuration item (target, layout, layout renderer, etc.) given its type.
     /// </summary>
     /// <param name="itemType">Type of the item.</param>

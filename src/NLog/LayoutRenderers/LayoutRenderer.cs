@@ -234,6 +234,8 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
@@ -249,6 +251,8 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
@@ -264,6 +268,8 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent.
         /// </summary>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
@@ -277,6 +283,8 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
@@ -291,6 +299,8 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer with a callback function <paramref name="layoutRenderer"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="layoutRenderer">Renderer with callback func</param>

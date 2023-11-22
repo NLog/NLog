@@ -123,7 +123,7 @@ namespace NLog
         void Trace(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// Obsolete and replaced by <see cref="Trace(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -182,7 +182,7 @@ namespace NLog
         void Trace([Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// Obsolete and replaced by <see cref="Trace(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -289,7 +289,7 @@ namespace NLog
         void Debug(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// Obsolete and replaced by <see cref="Debug(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Debug</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -348,7 +348,7 @@ namespace NLog
         void Debug([Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// Obsolete and replaced by <see cref="Debug(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Debug</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -455,7 +455,7 @@ namespace NLog
         void Info(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// Obsolete and replaced by <see cref="Info(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Info</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -514,7 +514,7 @@ namespace NLog
         void Info([Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// Obsolete and replaced by <see cref="Info(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Info</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -621,7 +621,7 @@ namespace NLog
         void Warn(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// Obsolete and replaced by <see cref="Warn(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Warn</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -680,7 +680,7 @@ namespace NLog
         void Warn([Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// Obsolete and replaced by <see cref="Warn(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Warn</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -787,7 +787,7 @@ namespace NLog
         void Error(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// Obsolete and replaced by <see cref="Error(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Error</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -847,7 +847,7 @@ namespace NLog
         void Error([Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// Obsolete and replaced by <see cref="Error(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Error</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -954,7 +954,7 @@ namespace NLog
         void Fatal(LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// Obsolete and replaced by <see cref="Fatal(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -1013,7 +1013,7 @@ namespace NLog
         void Fatal([Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// Obsolete and replaced by <see cref="Fatal(Exception, string)"/> - Writes the diagnostic message and exception at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>

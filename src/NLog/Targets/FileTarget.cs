@@ -1133,6 +1133,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="RenderFormattedMessage"/> with NLog v5.
         /// Formats the log event for write.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
@@ -1145,6 +1146,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="RenderFormattedMessage"/> with NLog v5.
         /// Gets the bytes to be written to the file.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
@@ -1163,6 +1165,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="TransformStream"/> with NLog v5.
         /// Modifies the specified byte array before it gets sent to a file.
         /// </summary>
         /// <param name="value">The byte array.</param>

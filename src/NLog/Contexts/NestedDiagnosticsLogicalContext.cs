@@ -39,8 +39,10 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Async version of <see cref="NestedDiagnosticsContext" /> - a logical context structure that keeps a stack
-    /// Allows for maintaining scope across asynchronous tasks and call contexts.
+    /// Obsolete and replaced by <see cref="ScopeContext"/> with NLog v5.
+    /// 
+    /// Nested Diagnostics Logical Context (NDLC) is a stack of nested values.
+    /// Stores the stack in the logical thread callcontexte, and provides methods to output the values in layouts.
     /// </summary>
     [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
     public static class NestedDiagnosticsLogicalContext
