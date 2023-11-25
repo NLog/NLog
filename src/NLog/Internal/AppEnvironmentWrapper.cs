@@ -181,7 +181,8 @@ namespace NLog.Internal.Fakeables
             try
             {
                 var currentProcess = Process.GetCurrentProcess();
-                return currentProcess?.MainModule.FileName;
+                var currentProcessPath = currentProcess?.MainModule?.FileName;
+                return !string.IsNullOrEmpty(currentProcessPath) ? currentProcessPath : null;
             }
             catch (Exception ex)
             {
@@ -276,6 +277,14 @@ namespace NLog.Internal.Fakeables
                 var currentProcessName = Path.GetFileNameWithoutExtension(currentProcessFilePath);
                 if (!string.IsNullOrEmpty(currentProcessName))
                     return currentProcessName;
+            }
+
+            var entryAssemblyFileName = LookupEntryAssemblyFileName();
+            if (!string.IsNullOrEmpty(entryAssemblyFileName))
+            {
+                entryAssemblyFileName = Path.GetFileNameWithoutExtension(entryAssemblyFileName);
+                if (!string.IsNullOrEmpty(entryAssemblyFileName))
+                    return entryAssemblyFileName;
             }
 
             return UnknownProcessName;
