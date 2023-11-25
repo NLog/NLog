@@ -36,6 +36,7 @@ namespace NLog.Config
     using System;
 
     /// <summary>
+    /// Obsolete since dynamic type loading is not compatible with publish as trimmed application. Replaced by <see cref="IFactory{TBaseType}"/>.
     /// Represents a factory of named items (such as targets, layouts, layout renderers, etc.).
     /// </summary>
     /// <typeparam name="TInstanceType">Base type for each item instance.</typeparam>

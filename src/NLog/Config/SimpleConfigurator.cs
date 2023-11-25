@@ -38,6 +38,8 @@ namespace NLog.Config
     using NLog.Targets;
 
     /// <summary>
+    /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+    /// 
     /// Provides simple programmatic configuration API used for trivial logging cases.
     /// 
     /// Warning, these methods will overwrite the current config.
@@ -47,6 +49,8 @@ namespace NLog.Config
     {
 #if !NETSTANDARD1_3
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToConsole"/> with NLog v5.2.
+        /// 
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="NLog.LogLevel.Info"/> level are output to the console.
         /// </summary>
@@ -57,6 +61,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToConsole"/> with NLog v5.2.
+        /// 
         /// Configures NLog for console logging so that all messages above and including
         /// the specified level are output to the console.
         /// </summary>
@@ -73,6 +79,8 @@ namespace NLog.Config
 #endif
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Configures NLog for to log to the specified target so that all messages 
         /// above and including the <see cref="NLog.LogLevel.Info"/> level are output.
         /// </summary>
@@ -85,6 +93,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Configures NLog for to log to the specified target so that all messages 
         /// above and including the specified level are output.
         /// </summary>
@@ -100,6 +110,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToFile"/> with NLog v5.2.
+        /// 
         /// Configures NLog for file logging so that all messages above and including
         /// the <see cref="NLog.LogLevel.Info"/> level are written to the specified file.
         /// </summary>
@@ -111,6 +123,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToFile"/> with NLog v5.2.
+        /// 
         /// Configures NLog for file logging so that all messages above and including
         /// the specified level are written to the specified file.
         /// </summary>

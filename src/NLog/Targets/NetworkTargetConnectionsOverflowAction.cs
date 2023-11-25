@@ -47,6 +47,7 @@ namespace NLog.Targets
         Grow = 0,
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="Grow"/> with NLog v5.
         /// Just allow it.
         /// </summary>
         [Obsolete("Replaced by Grow. Marked obsolete on NLog 5.0")]
@@ -59,6 +60,7 @@ namespace NLog.Targets
         Discard = 1,
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="Discard"/> with NLog v5.
         /// Discard the connection item.
         /// </summary>
         [Obsolete("Replaced by Discard. Marked obsolete on NLog 5.0")]

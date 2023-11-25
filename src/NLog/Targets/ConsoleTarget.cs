@@ -85,6 +85,7 @@ namespace NLog.Targets
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(16 * 1024);
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="StdErr"/> with NLog v5.
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />

@@ -87,6 +87,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string)"/> with NLog v4.7.
+        /// 
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
@@ -98,6 +100,8 @@ namespace NLog.Config
         { }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string, LogFactory)"/> with NLog v4.7.
+        /// 
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
@@ -143,6 +147,8 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string)"/> with NLog v4.7.
+        /// 
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
@@ -155,6 +161,8 @@ namespace NLog.Config
         { }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string, LogFactory)"/> with NLog v4.7.
+        /// 
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>

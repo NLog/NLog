@@ -63,6 +63,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by using normal string-interpolation with <see cref="NLogRuntimeException(string)"/> in NLog v5.
         /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>

@@ -193,7 +193,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Default action if none of the filters match
+        /// Obsolete and replaced by <see cref="FilterDefaultAction"/> with NLog v5.
+        /// 
+        /// Default action when filters not matching
         /// </summary>
         /// <remarks>
         /// NLog v4.6 introduced the setting with default value <see cref="FilterResult.Neutral"/>. 

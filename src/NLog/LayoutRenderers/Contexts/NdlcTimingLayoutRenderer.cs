@@ -37,7 +37,8 @@ namespace NLog.LayoutRenderers
     using System.Text;
 
     /// <summary>
-    /// <see cref="NestedDiagnosticsLogicalContext"/> Timing Renderer (Async scope)
+    /// Obsolete and replaced by <see cref="ScopeContextTimingLayoutRenderer"/> with NLog v5.
+    /// Render Nested Diagnostic Context (NDLC) timings from <see cref="NestedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("ndlctiming")]
     [Obsolete("Replaced by ScopeContextTimingLayoutRenderer ${scopetiming}. Marked obsolete on NLog 5.0")]

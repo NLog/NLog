@@ -68,8 +68,11 @@ namespace NLog
         public static LogFactory LogFactory => factory;
 
         /// <summary>
-        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// Occurs when logging <see cref="Configuration" /> changes. Both when assigned to new config or config unloaded.
         /// </summary>
+        /// <remarks>
+        /// Note <see cref="LoggingConfigurationChangedEventArgs.ActivatedConfiguration"/> can be <c>null</c> when unloading configuration at shutdown.
+        /// </remarks>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
             add => factory.ConfigurationChanged += value;
@@ -78,6 +81,7 @@ namespace NLog
 
 #if !NETSTANDARD1_3
         /// <summary>
+        /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
@@ -161,7 +165,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Loads logging configuration from file (Currently only XML configuration files supported)
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// Loads logging configuration from file (Only XML configuration files supported)
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>
         /// <returns>LogFactory instance for fluent interface</returns>
@@ -223,6 +228,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogFactory.GetCurrentClassLogger{T}()"/> with NLog v5.2.
         /// Gets a custom logger with the full name of the current class, so namespace and class name.
         /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
@@ -260,8 +266,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named custom logger.
-        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// Obsolete and replaced by <see cref="LogFactory.GetLogger{T}(string)"/> with NLog v5.2.
+        /// Gets the specified named custom <see cref="Logger"/> using the parameter <paramref name="loggerType"/> for creating instance.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
@@ -352,6 +358,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by by <see cref="SuspendLogging"/> with NLog v5.
         /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="EnableLogging"/>
         /// </summary>
         /// <remarks>
@@ -368,6 +375,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by disposing the scope returned from <see cref="SuspendLogging"/> with NLog v5.
         /// Resumes logging if having called <see cref="DisableLogging"/>.
         /// </summary>
         /// <remarks>

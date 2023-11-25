@@ -87,12 +87,16 @@ namespace NLog
         private readonly ILoggingConfigurationLoader _configLoader;
 
         /// <summary>
-        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// Occurs when logging <see cref="Configuration" /> changes. Both when assigned to new config or config unloaded.
         /// </summary>
+        /// <remarks>
+        /// Note <see cref="LoggingConfigurationChangedEventArgs.ActivatedConfiguration"/> can be <c>null</c> when unloading configuration at shutdown.
+        /// </remarks>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
 #if !NETSTANDARD1_3
         /// <summary>
+        /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
@@ -542,6 +546,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="GetLogger{T}(string)"/> with NLog v5.2.
         /// Gets the specified named logger.
         /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.

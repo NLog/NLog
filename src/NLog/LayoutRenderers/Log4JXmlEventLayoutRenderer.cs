@@ -156,6 +156,8 @@ namespace NLog.LayoutRenderers
         public bool IncludeSourceInfo { get; set; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -165,6 +167,8 @@ namespace NLog.LayoutRenderers
         private bool? _includeMdc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -174,6 +178,8 @@ namespace NLog.LayoutRenderers
         private bool? _includeMdlc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -214,6 +220,8 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NdcItemSeparator"/> with NLog v5.
+        /// 
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -222,6 +230,8 @@ namespace NLog.LayoutRenderers
         public string NdlcItemSeparator { get => ScopeNestedSeparator; set => ScopeNestedSeparator = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
+        /// 
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />

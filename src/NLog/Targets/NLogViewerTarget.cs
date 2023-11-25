@@ -128,6 +128,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsContext"/> dictionary contents.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -174,6 +175,7 @@ namespace NLog.Targets
         public string ScopeNestedSeparator { get => Renderer.ScopeNestedSeparator; set => Renderer.ScopeNestedSeparator = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -182,6 +184,7 @@ namespace NLog.Targets
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -190,6 +193,7 @@ namespace NLog.Targets
         public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -198,6 +202,7 @@ namespace NLog.Targets
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NdcItemSeparator"/> with NLog v5.
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />

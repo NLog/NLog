@@ -771,6 +771,8 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom Target.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
@@ -786,6 +788,8 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom Target.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>

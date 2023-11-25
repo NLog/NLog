@@ -452,6 +452,8 @@ namespace NLog.Layouts
         protected abstract string GetFormattedMessage(LogEventInfo logEvent);
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom Layout.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
@@ -467,6 +469,8 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom Layout.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>

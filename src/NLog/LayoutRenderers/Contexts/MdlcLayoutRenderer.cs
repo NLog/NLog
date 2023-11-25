@@ -39,8 +39,8 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Render a Mapped Diagnostic Logical Context item (based on CallContext).
-    /// See <see cref="MappedDiagnosticsLogicalContext"/>
+    /// Obsolete and replaced by <see cref="ScopeContextPropertyLayoutRenderer"/> with NLog v5.
+    /// Render Mapped Diagnostics Logical Context (MDLC) from <see cref="MappedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("mdlc")]
     [Obsolete("Replaced by ScopeContextPropertyLayoutRenderer ${scopeproperty}. Marked obsolete on NLog 5.0")]
