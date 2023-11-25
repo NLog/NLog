@@ -280,11 +280,11 @@ namespace NLog.UnitTests.Layouts
             logFactory.Shutdown();  // Flush
 
             var message = target.LastMessage;
-            Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
+            Assert.Contains(CurrentManagedThreadId.ToString(), message);
 
             // Verify that JsonLayout performed minimal thread context capture
             System.Threading.Tasks.Task.Run(() => message = jsonLayout.Attributes.Last().Layout.Render(logEventInfo)).Wait();
-            Assert.Equal(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
+            Assert.Equal(CurrentManagedThreadId.ToString(), message);
         }
 
         [Fact]

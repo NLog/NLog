@@ -75,7 +75,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.NotNull(dir);
             Assert.True(Directory.Exists(dir), $"dir '{dir}' doesn't exists");
-            Assert.Equal(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), dir);
+            Assert.Equal(Path.GetDirectoryName(CurrentProcessPath), dir);
         }
 
         [Fact]
@@ -115,7 +115,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void BaseDir_FixTempDir_ChoosesProcessDir()
         {
             var tempDir = System.IO.Path.GetTempPath();
-            var processPath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            var processPath = CurrentProcessPath;
 
             var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
             appEnvironment.AppDomainBaseDirectory = tempDir;

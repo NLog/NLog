@@ -167,7 +167,7 @@ namespace NLog.UnitTests.Targets
             {
                 task = Task.Run(() =>
                 {
-                    managedThreadId = Thread.CurrentThread.ManagedThreadId;
+                    managedThreadId = CurrentManagedThreadId;
                     logger.Trace("TTT");
                     logger.Debug("DDD");
                     logger.Info("III");
@@ -183,7 +183,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(6, asyncTarget.Logs.Count);
             while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                Assert.Equal(0, logEventMessage.IndexOf(managedThreadId.ToString() + "|"));
+                Assert.StartsWith(managedThreadId.ToString() + "|", logEventMessage);
                 Assert.EndsWith("|42", logEventMessage);
             }
 
@@ -314,7 +314,7 @@ namespace NLog.UnitTests.Targets
                 Assert.Equal(5, asyncTarget.Logs.Count);
                 while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
                 {
-                    Assert.Equal(-1, logEventMessage.IndexOf("Debug|"));
+                    Assert.DoesNotContain("Debug|", logEventMessage);
                 }
 
                 logger.Factory.Configuration = null;

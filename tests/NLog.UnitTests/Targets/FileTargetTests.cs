@@ -2604,7 +2604,7 @@ namespace NLog.UnitTests.Targets
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
-                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+                var threadID = CurrentManagedThreadId.ToString();
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger(LogLevel.Debug).WriteTo(fileTarget).WithAsync());
 

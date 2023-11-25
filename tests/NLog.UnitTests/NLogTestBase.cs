@@ -52,6 +52,12 @@ namespace NLog.UnitTests
 
     public abstract class NLogTestBase
     {
+        protected static int CurrentProcessId => _currentProcessId != 0 ? _currentProcessId : (_currentProcessId = System.Diagnostics.Process.GetCurrentProcess().Id);
+        private static int _currentProcessId;
+        protected static string CurrentProcessPath => _currentProcessPath != null ? _currentProcessPath : (_currentProcessPath = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName);
+        private static string _currentProcessPath;
+        protected static int CurrentManagedThreadId => System.Environment.CurrentManagedThreadId; // System.Threading.Thread.CurrentThread.ManagedThreadId
+
         protected NLogTestBase()
         {
             //reset before every test
@@ -349,7 +355,8 @@ namespace NLog.UnitTests
         /// <summary>
         /// Get line number of previous line.
         /// </summary>
-        protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        protected static int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
         {
             return callingFileLineNumber - 1;
         }

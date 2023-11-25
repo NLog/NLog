@@ -139,7 +139,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string lastMessage = GetDebugLastMessage("debug", logFactory);
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
-            Assert.True(lastMessage.IndexOf("callsitetests.cs:" + linenumber, StringComparison.OrdinalIgnoreCase) >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
+            Assert.Contains("callsitetests.cs:" + linenumber, lastMessage); // Expected prefix of 10000
 #if DEBUG
 #line default
 #endif
@@ -1162,7 +1162,7 @@ namespace NLog.UnitTests.LayoutRenderers
             WriteLogMessage(logger);
             logFactory.Flush();
             logMessage = target.Logs[2];
-            Assert.Contains("ThreadId=" + Thread.CurrentThread.ManagedThreadId.ToString(), logMessage);
+            Assert.Contains("ThreadId=" + CurrentManagedThreadId.ToString(), logMessage);
 
             // See that interface logging also works (Improve support for Microsoft.Extension.Logging.ILogger replacement)
             INLogLogger ilogger = logger;

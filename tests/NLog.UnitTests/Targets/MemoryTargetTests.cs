@@ -158,6 +158,10 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(1, memoryTarget.Logs.Count);
             memoryTarget.Logs[0] = "Hello World";
             Assert.Contains("Hello World", memoryTarget.Logs);
+            memoryTarget.Logs.Insert(1, "Goodbye World");
+            Assert.Equal("Hello World", memoryTarget.Logs[0]);
+            Assert.Equal("Goodbye World", memoryTarget.Logs[1]);
+            Assert.Equal(2, memoryTarget.Logs.Count);
         }
 
         [Fact]

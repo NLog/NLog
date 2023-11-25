@@ -105,7 +105,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 {
                     var continuationHit = new ManualResetEvent(false);
                     string rendered = null;
-                    var threadId = Thread.CurrentThread.ManagedThreadId;
+                    var threadId = CurrentManagedThreadId;
                     var asyncThreadId = threadId;
                     LogEventInfo lastLogEvent = null;
 
