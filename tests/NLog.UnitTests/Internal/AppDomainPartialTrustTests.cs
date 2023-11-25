@@ -60,7 +60,7 @@ namespace NLog.UnitTests.Internal
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+                var threadID = CurrentManagedThreadId.ToString();
 
                 Assert.False(File.Exists(Path.Combine(fileWritePath, "Trace.txt")));
 

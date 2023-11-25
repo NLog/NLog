@@ -118,8 +118,8 @@ namespace NLog.UnitTests.Internal
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
             dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 

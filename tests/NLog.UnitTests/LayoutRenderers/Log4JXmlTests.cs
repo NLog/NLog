@@ -129,7 +129,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 var now = DateTime.UtcNow;
                                 Assert.True(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
 
-                                Assert.Equal(Thread.CurrentThread.ManagedThreadId.ToString(), reader.GetAttribute("thread"));
+                                Assert.Equal(CurrentManagedThreadId.ToString(), reader.GetAttribute("thread"));
                                 break;
 
                             case "message":
@@ -162,7 +162,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 switch (name)
                                 {
                                     case "log4japp":
-                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
+                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + CurrentProcessId + ")", value);
                                         break;
 
                                     case "log4jmachinename":
@@ -255,7 +255,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 Parameters = new[] { "world" },
             };
 
-            var threadid = Environment.CurrentManagedThreadId;
+            var threadid = CurrentManagedThreadId;
             var machinename = Environment.MachineName;
             Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;world&gt;</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, &lt;{{0}}&gt;\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
         }

@@ -42,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public ProcessDirTests()
         {
-            _processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            _processDir = Path.GetDirectoryName(CurrentProcessPath);
         }
 
         [Fact]

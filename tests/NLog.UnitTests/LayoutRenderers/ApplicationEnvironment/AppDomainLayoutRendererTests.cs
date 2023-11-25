@@ -31,18 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Linq;
-using Xunit;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
+    using Xunit;
 
     public class AppDomainLayoutRendererTests : NLogTestBase
     {
-        private int id = AppDomain.CurrentDomain.Id;
-        private string friendlyname = AppDomain.CurrentDomain.FriendlyName;
+        private readonly int id = AppDomain.CurrentDomain.Id;
+        private readonly string friendlyname = AppDomain.CurrentDomain.FriendlyName;
 
         [Fact]
         public void AppDomainTest()
@@ -55,7 +52,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void AppDomainShortFormatTest()
         {
             //example: 03
-            AssertLayoutRendererOutput("${appdomain:format=short}", string.Format("{0:00}", id, friendlyname));
+            AssertLayoutRendererOutput("${appdomain:format=short}", $"{id:00}");
         }
 
         [Fact]
@@ -66,12 +63,17 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void AppDomainTestFriendlyFormatTest()
+        {
+            //example: NLog.UnitTests
+            AssertLayoutRendererOutput("${appdomain:format=friendly}", $"{friendlyname}");
+        }
+
+        [Fact]
         public void AppDomainCustomFormatTest()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${appdomain:format={1\\}{0\\}}", string.Format("{1}{0}", id, friendlyname));
         }
-
-
     }
 }

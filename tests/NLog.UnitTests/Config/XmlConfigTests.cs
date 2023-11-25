@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Config
             {
                 var xml = "<nlog internalLogFile='${ProcessDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
-                Assert.Contains(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess()?.MainModule?.FileName), InternalLogger.LogFile);
+                Assert.Contains(Path.GetDirectoryName(CurrentProcessPath), InternalLogger.LogFile);
             }
 #endif
 

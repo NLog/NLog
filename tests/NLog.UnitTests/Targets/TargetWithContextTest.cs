@@ -121,7 +121,7 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(new KeyValuePair<string, object>("AsyncKey", "Hello Async World"), target.LastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("TestKey", "Hello Async World"), target.LastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("TestKey_1", "Hello Global World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
         }
 
         private static bool WaitForLastMessage(CustomTargetWithContext target)
@@ -225,7 +225,7 @@ namespace NLog.UnitTests.Targets
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.NotEmpty(lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId.ToString()), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString()), lastCombinedProperties);
         }
 
         [Fact]
@@ -337,7 +337,7 @@ namespace NLog.UnitTests.Targets
             }
 
             Assert.NotEqual(0, target.LastMessage.Length);
-            Assert.Contains(System.Environment.CurrentManagedThreadId.ToString(), target.LastMessage);
+            Assert.Contains(CurrentManagedThreadId.ToString(), target.LastMessage);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.Empty(lastCombinedProperties);
         }
@@ -376,8 +376,8 @@ namespace NLog.UnitTests.Targets
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.NotEmpty(lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId), lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("processid", System.Diagnostics.Process.GetCurrentProcess().Id), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("processid", CurrentProcessId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);
             Assert.DoesNotContain("int-non-existing-empty", lastCombinedProperties.Keys);
             Assert.Contains(new KeyValuePair<string, object>("object-non-existing", ""), lastCombinedProperties);

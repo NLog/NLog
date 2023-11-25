@@ -91,14 +91,14 @@ namespace NLog.UnitTests.Targets
 
             var actual = consoleOutWriter.ToString();
 
-            Assert.True(actual.IndexOf("-- header --") != -1);
-            Assert.True(actual.IndexOf("Logger1 message1") != -1);
-            Assert.True(actual.IndexOf("Logger1 message2") != -1);
-            Assert.True(actual.IndexOf("Logger1 message3") != -1);
-            Assert.True(actual.IndexOf("Logger2 message4") != -1);
-            Assert.True(actual.IndexOf("Logger2 message5") != -1);
-            Assert.True(actual.IndexOf("Logger1 message6") != -1);
-            Assert.True(actual.IndexOf("-- footer --") != -1);
+            Assert.Contains("-- header --", actual);
+            Assert.Contains("Logger1 message1", actual);
+            Assert.Contains("Logger1 message2", actual);
+            Assert.Contains("Logger1 message3", actual);
+            Assert.Contains("Logger2 message4", actual);
+            Assert.Contains("Logger2 message5", actual);
+            Assert.Contains("Logger1 message6", actual);
+            Assert.Contains("-- footer --", actual);
         }
 
         [Fact]
