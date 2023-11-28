@@ -31,15 +31,9 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- FileTarget - Added option WriteHeaderWhenInitialFileNotEmpty (#5407) (@RomanSoloweow)
-- FileTarget - Removed explicit File.Create to not trigger file-scanners  (#5381) (@snakefoot)
-- FileTarget - SetCreationTimeUtc only when IsArchivingEnabled (#5382) (@snakefoot)
-- FileTarget - SetCreationTimeUtc always when running on Windows (#5384) (@snakefoot)
-- ColoredConsoleTarget - Added Setup-extension-method WriteToColoredConsole (#5389) (@snakefoot)
-- MemoryTarget - Make Logs-property thread-safe to enumerate (#5409) (@snakefoot)
-- MultiFileWatcher - Improve InternalLogger output to match on start and stop (#5413) (@snakefoot)
-- Marked obsolete members with EditorBrowsableState.Never (#5398) (@snakefoot)
-- Change TargetFrameworks to net461 when old VisualStudioVersion (#5412) (@snakefoot)
+- FileTarget - Fix Windows FileSystem Tunneling when KeepFileOpen=false (#5427) (@snakefoot)
+- AppEnvironmentWrapper - Added Entry-Assembly as fallback for ProcessName (#5422) (@snakefoot)
+- Improved XML docs for MDC, MDLC, NDC, NDLC about being replaced by ScopeContext (#5419) (@snakefoot)
 
 NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
