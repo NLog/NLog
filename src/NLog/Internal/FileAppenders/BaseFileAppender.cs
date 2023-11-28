@@ -201,13 +201,19 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream TryCreateDirectoryFileStream(bool allowFileSharedWriting, int overrideBufferSize)
         {
-            bool fileAlreadyExisted = UpdateCreationTime();
+            bool fileAlreadyExisted = RefreshFileCreationTime();
+            bool windowsFileSystemTunnelingActive = !fileAlreadyExisted && (CreateFileParameters.IsArchivingEnabled || PlatformDetector.IsWin32);
             bool fixWindowsFileSystemTunneling = false;
 
             try
             {
+                if (!allowFileSharedWriting && windowsFileSystemTunnelingActive)
+                {
+                    RepairFileCreationTime(allowFileSharedWriting);
+                }
+
                 var fileStream = TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
-                fixWindowsFileSystemTunneling = !fileAlreadyExisted && (CreateFileParameters.IsArchivingEnabled || PlatformDetector.IsWin32);
+                fixWindowsFileSystemTunneling = windowsFileSystemTunnelingActive && allowFileSharedWriting;
                 return fileStream;
             }
             catch (DirectoryNotFoundException)
@@ -238,15 +244,7 @@ namespace NLog.Internal.FileAppenders
             {
                 if (fixWindowsFileSystemTunneling)
                 {
-                    try
-                    {
-                        // Set the file's creation time to avoid being thwarted by Windows FileSystem Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
-                        File.SetCreationTimeUtc(FileName, CreationTimeUtc);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Debug(ex, "{0}: Failed to update File.SetCreationTimeUtc for FileName: {1}", CreateFileParameters, FileName);
-                    }
+                    RepairFileCreationTime(true);
                 }
             }
         }
@@ -333,7 +331,7 @@ namespace NLog.Internal.FileAppenders
                 bufferSize);
         }
 
-        private bool UpdateCreationTime()
+        private bool RefreshFileCreationTime()
         {
             CreationTimeUtc = DateTime.UtcNow;
 
@@ -356,6 +354,28 @@ namespace NLog.Internal.FileAppenders
             }
 
             return false;
+        }
+
+        private void RepairFileCreationTime(bool allowFileSharedWriting)
+        {
+            try
+            {
+                if (!allowFileSharedWriting)
+                {
+                    File.Create(FileName).Dispose();
+                }
+
+                // Set the file's creation time to avoid being thwarted by Windows FileSystem Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
+                File.SetCreationTimeUtc(FileName, CreationTimeUtc);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Debug(ex, "{0}: Failed to update File.SetCreationTimeUtc for FileName: {1}", CreateFileParameters, FileName);
+            }
         }
 
         protected static void CloseFileSafe(ref FileStream fileStream, string fileName)

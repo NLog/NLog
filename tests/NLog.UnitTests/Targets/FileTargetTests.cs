@@ -1751,14 +1751,20 @@ namespace NLog.UnitTests.Targets
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
                 logger.Debug("123456789");
-                LogManager.Flush();
+                LogManager.Configuration = null;
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+                if (!dateInLogFilePath)
+                    File.SetCreationTimeUtc(logFile, timeSource.Time.ToUniversalTime());
                 timeSource.AddToLocalTime(TimeSpan.FromDays(1));
 
                 // This should archive the log before logging.
                 logger.Debug("123456789");
 
-                timeSource.AddToSystemTime(TimeSpan.FromDays(1));   // Archive only once
+                LogManager.Configuration = null;
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+                timeSource.AddToSystemTime(TimeSpan.FromDays(2));   // Archive only once
 
                 // This must not archive.
                 logger.Debug("123456789");
