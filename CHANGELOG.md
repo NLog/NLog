@@ -4,6 +4,13 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.7 (2023/11/28)
+
+**Improvements**
+- [#5427](https://github.com/NLog/NLog/pull/5427) FileTarget - Fix Windows FileSystem Tunneling when KeepFileOpen=false (#5427) (@snakefoot)
+- [#5422](https://github.com/NLog/NLog/pull/5422) AppEnvironmentWrapper - Added Entry-Assembly as fallback for ProcessName (#5422) (@snakefoot)
+- [#5419](https://github.com/NLog/NLog/pull/5419) Improved XML docs for MDC, MDLC, NDC, NDLC about being replaced by ScopeContext (#5419) (@snakefoot)
+
 ### Version 5.2.6 (2023/11/19)
 
 **Improvements**
