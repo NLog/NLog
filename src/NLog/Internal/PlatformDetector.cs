@@ -49,7 +49,7 @@ namespace NLog.Internal
         /// <summary>
         /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
         /// </summary>
-        public static bool IsWin32 => CurrentOS == RuntimeOS.Windows || CurrentOS == RuntimeOS.WindowsNT;
+        public static bool IsWin32 => CurrentOS == RuntimeOS.WindowsNT || CurrentOS == RuntimeOS.Windows9x;
 
         /// <summary>
         /// Gets a value indicating whether current OS is Unix-based.
@@ -68,7 +68,7 @@ namespace NLog.Internal
         {
 #if NETSTANDARD
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-                return RuntimeOS.Windows;
+                return RuntimeOS.WindowsNT;
             else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
                 return RuntimeOS.MacOSX;
             else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
@@ -83,7 +83,7 @@ namespace NLog.Internal
 
             if (platformID == PlatformID.Win32Windows)
             {
-                return RuntimeOS.Windows;
+                return RuntimeOS.Windows9x;
             }
 
             if (platformID == PlatformID.Win32NT)
