@@ -1173,6 +1173,7 @@ namespace NLog
         /// <param name="configFile">Configuration file to be read</param>
         /// <returns>LogFactory instance for fluent interface</returns>
         [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LogFactory LoadConfiguration(string configFile)
         {
             // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
