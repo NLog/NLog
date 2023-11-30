@@ -47,6 +47,7 @@ namespace NLog.Fluent
     /// A fluent class to build log events for NLog.
     /// </summary>
     [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;

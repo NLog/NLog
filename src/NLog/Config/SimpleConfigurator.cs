@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.ComponentModel;
     using NLog.Internal;
     using NLog.Targets;
 
@@ -45,6 +46,7 @@ namespace NLog.Config
     /// Warning, these methods will overwrite the current config.
     /// </summary>
     [Obsolete("Use LogManager.Setup().LoadConfiguration() instead. Marked obsolete on NLog 5.2")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class SimpleConfigurator
     {
 #if !NETSTANDARD1_3
@@ -55,6 +57,7 @@ namespace NLog.Config
         /// the <see cref="NLog.LogLevel.Info"/> level are output to the console.
         /// </summary>
         [Obsolete("Use LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteToConsole()) instead. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfigureForConsoleLogging()
         {
             ConfigureForConsoleLogging(LogLevel.Info);
@@ -68,6 +71,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="minLevel">The minimal logging level.</param>
         [Obsolete("Use LogManager.Setup().LoadConfiguration(c => c.ForLogger(minLevel).WriteToConsole()) instead. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfigureForConsoleLogging(LogLevel minLevel)
         {
             ConsoleTarget consoleTarget = new ConsoleTarget();
@@ -86,6 +90,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="target">The target to log all messages to.</param>
         [Obsolete("Use LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target)) instead. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfigureForTargetLogging(Target target)
         {
             Guard.ThrowIfNull(target);
@@ -101,6 +106,7 @@ namespace NLog.Config
         /// <param name="target">The target to log all messages to.</param>
         /// <param name="minLevel">The minimal logging level.</param>
         [Obsolete("Use LogManager.Setup().LoadConfiguration(c => c.ForLogger(minLevel).WriteTo(target)) instead. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfigureForTargetLogging(Target target, LogLevel minLevel)
         {
             Guard.ThrowIfNull(target);
@@ -117,6 +123,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">Log file name.</param>
         [Obsolete("Use LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteToFile(fileName)) instead. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfigureForFileLogging(string fileName)
         {
             ConfigureForFileLogging(fileName, LogLevel.Info);
@@ -131,6 +138,7 @@ namespace NLog.Config
         /// <param name="fileName">Log file name.</param>
         /// <param name="minLevel">The minimal logging level.</param>
         [Obsolete("Use LogManager.Setup().LoadConfiguration(c => c.ForLogger(minLevel).WriteToFile(fileName)) instead. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfigureForFileLogging(string fileName, LogLevel minLevel)
         {
             FileTarget target = new FileTarget();

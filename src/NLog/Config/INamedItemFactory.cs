@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// Obsolete since dynamic type loading is not compatible with publish as trimmed application. Replaced by <see cref="IFactory{TBaseType}"/>.
@@ -42,6 +43,7 @@ namespace NLog.Config
     /// <typeparam name="TInstanceType">Base type for each item instance.</typeparam>
     /// <typeparam name="TDefinitionType">Item definition type (typically <see cref="System.Type"/>).</typeparam>
     [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public interface INamedItemFactory<TInstanceType, TDefinitionType>
         where TInstanceType : class
     {
