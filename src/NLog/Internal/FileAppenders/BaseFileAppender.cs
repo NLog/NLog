@@ -232,10 +232,10 @@ namespace NLog.Internal.FileAppenders
                 {
                     Directory.CreateDirectory(directoryName);
                 }
-                catch (DirectoryNotFoundException)
+                catch (DirectoryNotFoundException ex)
                 {
                     //if creating a directory failed, don't retry for this message (e.g the FileOpenRetryCount below)
-                    throw new NLogRuntimeException($"Could not create directory {directoryName}");
+                    throw new NLogRuntimeException($"Could not create directory {directoryName}", ex);
                 }
 
                 return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
@@ -259,7 +259,7 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_WRITE;
             }
 
-            if (CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
+            if (CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows9x)
             {
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }

@@ -55,7 +55,7 @@ namespace NLog.Internal
         /// <summary>
         /// Desktop versions of Windows (95,98,ME).
         /// </summary>
-        Windows,
+        Windows9x,
 
         /// <summary>
         /// Windows NT, 2000, 2003 and future versions based on NT technology.
