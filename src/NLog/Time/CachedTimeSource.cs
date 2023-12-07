@@ -56,16 +56,19 @@ namespace NLog.Time
             get
             {
                 int tickCount = Environment.TickCount;
-                if (tickCount == _lastTicks)
-                    return _lastTime;
-                else
-                {
-                    DateTime time = FreshTime;
-                    _lastTicks = tickCount;
-                    _lastTime = time;
-                    return time;
-                }
+                return tickCount == _lastTicks ? _lastTime : RetrieveFreshTime(tickCount);
             }
+        }
+
+        private DateTime RetrieveFreshTime(int tickCount)
+        {
+            var freshTime = FreshTime;
+            _lastTime = freshTime;  // Assignment of 64 bit value is safe, also when 32bit Intel x86 that uses FPU-registers without tearing
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            System.Threading.Thread.MemoryBarrier();    // Make sure that the value written to _lastTime is visible to other threads
+#endif
+            _lastTicks = tickCount;
+            return freshTime;
         }
     }
 }
