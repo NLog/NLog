@@ -290,24 +290,44 @@ namespace NLog.Config
 
             sb.Append(_loggerNameMatcher.ToString());
             sb.Append(" levels: [ ");
+            
+            var targets = GetTargetsThreadSafe();
 
             var currentLogLevels = _logLevelFilter.LogLevels;
             for (int i = 0; i < currentLogLevels.Length; ++i)
             {
-                if (currentLogLevels[i])
+                if (targets.Length == 0 && !Final && FinalMinLevel != null)
+                {
+                    if (i < FinalMinLevel.Ordinal)
+                    {
+                        sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", LogLevel.FromOrdinal(i).ToString());
+                    }
+                }
+                else if (currentLogLevels[i])
                 {
                     sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", LogLevel.FromOrdinal(i).ToString());
                 }
             }
 
             sb.Append("] writeTo: [ ");
-            foreach (Target writeTo in GetTargetsThreadSafe())
+            foreach (Target writeTo in targets)
             {
                 var targetName = string.IsNullOrEmpty(writeTo.Name) ? writeTo.ToString() : writeTo.Name;
                 sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", targetName);
             }
 
             sb.Append(']');
+
+            if (Final)
+            {
+                sb.Append(" final: True");
+            }
+
+            if (FinalMinLevel != null)
+            {
+                sb.Append(" finalMinLevel: ").Append(FinalMinLevel);
+            }
+
             return sb.ToString();
         }
 

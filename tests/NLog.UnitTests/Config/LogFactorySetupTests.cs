@@ -831,11 +831,43 @@ namespace NLog.UnitTests.Config
             logger.Info("Info Level");
             Assert.Equal("Info Level", target.LastMessage);
 
-            logger.Info("Fatal Level");
+            logger.Fatal("Fatal Level");
             Assert.Equal("Fatal Level", target.LastMessage);
 
             logger.Trace("Trace Level");
             Assert.Equal("Fatal Level", target.LastMessage);
+        }
+
+        [Fact]
+        public void SetupBuilder_FilterFinalMinLevel()
+        {
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c => {
+                c.ForLogger("NoisyLogger").WriteToNil(LogLevel.Warn);
+                c.ForLogger(LogLevel.Debug).WriteTo(new DebugTarget() { Layout = "${message}" });
+            }).GetCurrentClassLogger();
+            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
+            Assert.Single(logFactory.Configuration.AllTargets);
+            Assert.NotNull(target);
+
+            logger.Info("Info Level");
+            Assert.Equal("Info Level", target.LastMessage);
+
+            logger.Fatal("Fatal Level");
+            Assert.Equal("Fatal Level", target.LastMessage);
+
+            logger.Trace("Trace Level");
+            Assert.Equal("Fatal Level", target.LastMessage);
+
+            var noisyLogger = logFactory.GetLogger("NoisyLogger");
+            noisyLogger.Info("Noisy Info Level");
+            Assert.Equal("Fatal Level", target.LastMessage);
+
+            noisyLogger.Fatal("Noisy Fatal Level");
+            Assert.Equal("Noisy Fatal Level", target.LastMessage);
+
+            noisyLogger.Trace("Noisy Trace Level");
+            Assert.Equal("Noisy Fatal Level", target.LastMessage);
         }
 
         [Fact]
