@@ -92,18 +92,9 @@ namespace NLog
         public static ISetupConfigurationLoggingRuleBuilder ForLogger(this ISetupLoadConfigurationBuilder configBuilder, LogLevel finalMinLevel, string loggerNamePattern = "*", string ruleName = null)
         {
             var ruleBuilder = new SetupConfigurationLoggingRuleBuilder(configBuilder.LogFactory, configBuilder.Configuration, loggerNamePattern, ruleName);
-            if (finalMinLevel != null)
-            {
-                ruleBuilder.LoggingRule.EnableLoggingForLevels(finalMinLevel, LogLevel.MaxLevel);
-                ruleBuilder.LoggingRule.FinalMinLevel = finalMinLevel;
-            }
-            else
-            {
-                ruleBuilder.LoggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
-            }                
+            ruleBuilder.LoggingRule.EnableLoggingForLevels(finalMinLevel ?? LogLevel.MinLevel, LogLevel.MaxLevel);
             return ruleBuilder;
         }
-
 
         /// <summary>
         /// Defines <see cref="LoggingRule" /> for redirecting output from matching <see cref="Logger"/> to wanted targets.
