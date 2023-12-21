@@ -514,7 +514,9 @@ namespace NLog.UnitTests.Config
                 logFactory.Setup().SetupInternalLogger(b => b.LogToFile(logFile).SetMinimumLogLevel(LogLevel.Fatal));
 
                 // Assert
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Equal(logFile, InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             finally
             {
@@ -535,7 +537,9 @@ namespace NLog.UnitTests.Config
                 logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToConsole(true));
 
                 // Assert
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.True(InternalLogger.LogToConsole);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             finally
             {
@@ -556,7 +560,9 @@ namespace NLog.UnitTests.Config
                 logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToTrace(true));
 
                 // Assert
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.True(InternalLogger.LogToTrace);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             finally
             {
@@ -593,13 +599,13 @@ namespace NLog.UnitTests.Config
                 // Arrange
                 InternalLogger.Reset();
                 var logFactory = new LogFactory();
-                InternalLogger.LogToConsole = true;
+                InternalLogger.IncludeTimestamp = false;
 
                 // Act
                 logFactory.Setup().SetupInternalLogger(b => b.SetupFromEnvironmentVariables().SetMinimumLogLevel(LogLevel.Fatal));
 
                 // Assert
-                Assert.False(InternalLogger.LogToConsole);
+                Assert.True(InternalLogger.IncludeTimestamp);
                 Assert.Equal(LogLevel.Fatal, InternalLogger.LogLevel);
             }
             finally

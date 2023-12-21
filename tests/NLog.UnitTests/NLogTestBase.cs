@@ -553,7 +553,9 @@ namespace NLog.UnitTests
 
             public void Dispose()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var logFile = InternalLogger.LogFile;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 InternalLogger.Reset();
                 LogManager.GlobalThreshold = globalThreshold;
@@ -565,13 +567,7 @@ namespace NLog.UnitTests
                 if (ConsoleErrorWriter != null)
                     Console.SetError(oldConsoleErrorWriter);
 
-                if (!string.IsNullOrEmpty(InternalLogger.LogFile))
-                {
-                    if (File.Exists(InternalLogger.LogFile))
-                        File.Delete(InternalLogger.LogFile);
-                }
-
-                if (!string.IsNullOrEmpty(logFile) && logFile != InternalLogger.LogFile)
+                if (!string.IsNullOrEmpty(logFile))
                 {
                     if (File.Exists(logFile))
                         File.Delete(logFile);
