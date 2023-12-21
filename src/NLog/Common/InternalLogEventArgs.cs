@@ -34,15 +34,12 @@
 namespace NLog.Common
 {
     using System;
-    using System.ComponentModel;
     using JetBrains.Annotations;
 
     /// <summary>
-    /// A message has been written to the internal logger
+    /// Internal LogEvent details from <see cref="InternalLogger"/> 
     /// </summary>
-    [Obsolete("Instead use InternalEventOccurred and InternalLogEventArgs. Marked obsolete with NLog v5.3")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class InternalLoggerMessageEventArgs : EventArgs
+    public readonly struct InternalLogEventArgs
     {
         /// <summary>
         /// The rendered message
@@ -74,7 +71,7 @@ namespace NLog.Common
         [CanBeNull]
         public string SenderName { get; }
 
-        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
+        internal InternalLogEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
         {
             Message = message;
             Level = level;

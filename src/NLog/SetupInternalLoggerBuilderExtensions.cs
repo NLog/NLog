@@ -33,6 +33,8 @@
 
 namespace NLog
 {
+    using System;
+    using System.ComponentModel;
     using System.IO;
     using NLog.Common;
     using NLog.Config;
@@ -51,11 +53,13 @@ namespace NLog
             InternalLogger.LogLevel = logLevel;
             if (InternalLogger.LogLevel != LogLevel.Off && orgValue == LogLevel.Off)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var orgLogFile = InternalLogger.LogFile;
                 if (!string.IsNullOrEmpty(orgLogFile))
                 {
                     InternalLogger.LogFile = orgLogFile;    // InternalLogger.LogFile property-setter skips directory creation when LogLevel.Off
                 }
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             return setupBuilder;
         }
@@ -65,7 +69,9 @@ namespace NLog
         /// </summary>
         public static ISetupInternalLoggerBuilder LogToFile(this ISetupInternalLoggerBuilder setupBuilder, string fileName)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.LogFile = fileName;
+#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder;
         }
 
@@ -74,7 +80,9 @@ namespace NLog
         /// </summary>
         public static ISetupInternalLoggerBuilder LogToConsole(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.LogToConsole = enabled;
+#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder;
         }
 
@@ -84,7 +92,9 @@ namespace NLog
         /// </summary>
         public static ISetupInternalLoggerBuilder LogToTrace(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.LogToTrace = enabled;
+#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder;
         }
 #endif
@@ -101,7 +111,9 @@ namespace NLog
         /// <summary>
         /// Configures <see cref="InternalLogger.LogMessageReceived"/>
         /// </summary>
-        public static ISetupInternalLoggerBuilder AddLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, System.EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
+        [Obsolete("Instead use AddEventSubscription. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ISetupInternalLoggerBuilder AddLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
         {
             InternalLogger.LogMessageReceived += eventSubscriber;
             return setupBuilder;
@@ -110,9 +122,29 @@ namespace NLog
         /// <summary>
         /// Configures <see cref="InternalLogger.LogMessageReceived"/>
         /// </summary>
-        public static ISetupInternalLoggerBuilder RemoveLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, System.EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
+        [Obsolete("Instead use RemoveEventSubscription. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ISetupInternalLoggerBuilder RemoveLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
         {
             InternalLogger.LogMessageReceived -= eventSubscriber;
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Configures <see cref="InternalLogger.InternalEventOccurred"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder AddEventSubscription(this ISetupInternalLoggerBuilder setupBuilder, InternalEventOccurredHandler eventSubscriber)
+        {
+            InternalLogger.InternalEventOccurred += eventSubscriber;
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Configures <see cref="InternalLogger.InternalEventOccurred"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder RemoveEventSubscription(this ISetupInternalLoggerBuilder setupBuilder, InternalEventOccurredHandler eventSubscriber)
+        {
+            InternalLogger.InternalEventOccurred -= eventSubscriber;
             return setupBuilder;
         }
 
