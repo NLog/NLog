@@ -101,20 +101,21 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            if (FileAppenderFolderChanged(e.FullPath))
+            if ((e.ChangeType & (WatcherChangeTypes.Deleted | WatcherChangeTypes.Renamed)) != 0)
             {
-                if ((e.ChangeType & (WatcherChangeTypes.Deleted | WatcherChangeTypes.Renamed)) != 0)
-                    _logFileWasArchived = true;  // File Appender file deleted/renamed
+                _logFileWasArchived = true;  // File Appender file deleted/renamed
             }
-            else
+            else if ((e.ChangeType & (WatcherChangeTypes.Created)) != 0)
             {
-                if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
-                    _logFileWasArchived = true;  // Something was created in the archive folder
+                if (!FileAppenderFolderChanged(e.FullPath))
+                {
+                    _logFileWasArchived = true; // Something was created in the archive folder
+                }
             }
 
-            if (_logFileWasArchived && _autoClosingTimer != null)
+            if (_logFileWasArchived)
             {
-                _autoClosingTimer.Change(50, Timeout.Infinite);
+                _autoClosingTimer?.Change(50, Timeout.Infinite);
             }
         }
 
