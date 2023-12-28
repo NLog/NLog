@@ -36,6 +36,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <IsTrimmable>true</IsTrimmable>
+    <TrimMode>copyused</TrimMode>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
