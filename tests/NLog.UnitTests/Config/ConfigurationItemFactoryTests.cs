@@ -51,6 +51,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryFailsTest()
         {
             var itemFactory = new ConfigurationItemFactory();

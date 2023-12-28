@@ -188,6 +188,7 @@ namespace NLog.Config
             RegisterDefinition(itemDefinition, itemName, string.Empty);
         }
 
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void RegisterDefinition(string typeAlias, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType)
         {
             if (string.IsNullOrEmpty(typeAlias))
