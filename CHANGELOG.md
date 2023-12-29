@@ -4,6 +4,15 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.8 (2023/12/29)
+
+**Improvements**
+- [#5450](https://github.com/NLog/NLog/pull/5450) ConfigurationItemFactory - Skip type attribute lookup for official types (#5450) (@snakefoot)
+- [#5441](https://github.com/NLog/NLog/pull/5441) LoggingRule - ToString should recognize Final and FinalMinLevel (#5441) (@snakefoot)
+- [#5438](https://github.com/NLog/NLog/pull/5438) FileTarget - Refactor Windows FileSystem Tunneling repair logic (#5438) (@snakefoot)
+- [#5432](https://github.com/NLog/NLog/pull/5432) Hide obsolete methods and classes from intellisense (#5432) (@snakefoot)
+- [#5429](https://github.com/NLog/NLog/pull/5429) CachedTimeSource - Added Thread.MemoryBarrier to avoid code-reordering (#5429) (@snakefoot)
+
 ### Version 5.2.7 (2023/11/28)
 
 **Improvements**
