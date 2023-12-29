@@ -29,9 +29,11 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- FileTarget - Fix Windows FileSystem Tunneling when KeepFileOpen=false (#5427) (@snakefoot)
-- AppEnvironmentWrapper - Added Entry-Assembly as fallback for ProcessName (#5422) (@snakefoot)
-- Improved XML docs for MDC, MDLC, NDC, NDLC about being replaced by ScopeContext (#5419) (@snakefoot)
+- ConfigurationItemFactory - Skip type attribute lookup for official types (#5450) (@snakefoot)
+- LoggingRule - ToString should recognize Final and FinalMinLevel (#5441) (@snakefoot)
+- FileTarget - Refactor Windows FileSystem Tunneling repair logic (#5438) (@snakefoot)
+- Hide obsolete methods and classes from intellisense (#5432) (@snakefoot)
+- CachedTimeSource - Added Thread.MemoryBarrier to avoid code-reordering (#5429) (@snakefoot)
 
 NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
