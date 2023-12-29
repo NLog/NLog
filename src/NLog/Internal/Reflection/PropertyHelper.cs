@@ -206,7 +206,6 @@ namespace NLog.Internal
 
         internal static Dictionary<string, PropertyInfo> GetAllConfigItemProperties(ConfigurationItemFactory configFactory, Type type)
         {
-            // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
             return TryLookupConfigItemProperties(configFactory, type) ?? new Dictionary<string, PropertyInfo>();
         }
 
@@ -214,7 +213,6 @@ namespace NLog.Internal
         {
             lock (_parameterInfoCache)
             {
-                // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
                 if (!_parameterInfoCache.TryGetValue(type, out var cache))
                 {
                     if (TryCreatePropertyInfoDictionary(configFactory, type, out cache))
@@ -544,7 +542,7 @@ namespace NLog.Internal
 
             try
             {
-                if (!objectType.IsDefined(_configPropertyAttribute.GetType(), true))
+                if (!typeof(ISupportsInitialize).IsAssignableFrom(objectType) && !objectType.IsDefined(_configPropertyAttribute.GetType(), true))
                 {
                     return false;
                 }
@@ -630,7 +628,7 @@ namespace NLog.Internal
                     return true;    // Target, Layout, LayoutRenderer
 
                 if (propInfo.IsDefined(_ignorePropertyAttribute.GetType(), false))
-                    return false;
+                    return false;   // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
 
                 if (typeof(IEnumerable).IsAssignableFrom(propertyType))
                 {

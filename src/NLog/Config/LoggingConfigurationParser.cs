@@ -776,7 +776,16 @@ namespace NLog.Config
             filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue(nameof(rule.FilterDefaultAction), null) ?? filterDefaultAction;
             if (filterDefaultAction != null)
             {
-                SetPropertyValueFromString(rule, nameof(rule.FilterDefaultAction), filterDefaultAction, filtersElement);
+                if (ConversionHelpers.TryParseEnum(filterDefaultAction, typeof(FilterResult), out var enumValue))
+                {
+                    rule.FilterDefaultAction = (FilterResult)enumValue;
+                }
+                else
+                {
+                    var configException = new NLogConfigurationException($"Failed to parse Enum-value to assign property '{nameof(LoggingRule.FilterDefaultAction)}'='{filterDefaultAction}' for logging rule: {(string.IsNullOrEmpty(rule.RuleName) ? rule.LoggerNamePattern : rule.RuleName)}.");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
+                }
             }
 
             foreach (var filterElement in filtersElement.ValidChildren)
