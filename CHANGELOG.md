@@ -4,6 +4,22 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.2.8 (2023/12/29)
+
+**Improvements**
+- [#5450](https://github.com/NLog/NLog/pull/5450) ConfigurationItemFactory - Skip type attribute lookup for official types (#5450) (@snakefoot)
+- [#5441](https://github.com/NLog/NLog/pull/5441) LoggingRule - ToString should recognize Final and FinalMinLevel (#5441) (@snakefoot)
+- [#5438](https://github.com/NLog/NLog/pull/5438) FileTarget - Refactor Windows FileSystem Tunneling repair logic (#5438) (@snakefoot)
+- [#5432](https://github.com/NLog/NLog/pull/5432) Hide obsolete methods and classes from intellisense (#5432) (@snakefoot)
+- [#5429](https://github.com/NLog/NLog/pull/5429) CachedTimeSource - Added Thread.MemoryBarrier to avoid code-reordering (#5429) (@snakefoot)
+
+### Version 5.2.7 (2023/11/28)
+
+**Improvements**
+- [#5427](https://github.com/NLog/NLog/pull/5427) FileTarget - Fix Windows FileSystem Tunneling when KeepFileOpen=false (#5427) (@snakefoot)
+- [#5422](https://github.com/NLog/NLog/pull/5422) AppEnvironmentWrapper - Added Entry-Assembly as fallback for ProcessName (#5422) (@snakefoot)
+- [#5419](https://github.com/NLog/NLog/pull/5419) Improved XML docs for MDC, MDLC, NDC, NDLC about being replaced by ScopeContext (#5419) (@snakefoot)
+
 ### Version 5.2.6 (2023/11/19)
 
 **Improvements**
