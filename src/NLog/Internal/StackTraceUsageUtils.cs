@@ -131,23 +131,35 @@ namespace NLog.Internal
                 }
             }
 
-            if (!includeNameSpace
-                && callerClassType?.DeclaringType != null
-                && callerClassType.IsNested
-                && callerClassType.GetFirstCustomAttribute<CompilerGeneratedAttribute>() != null)
+            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
+            if (cleanAnonymousDelegates && className?.IndexOf("<>", StringComparison.Ordinal) >= 0)
             {
-                return callerClassType.DeclaringType.Name;
+                if (!includeNameSpace && callerClassType.DeclaringType != null && callerClassType.IsNested)
+                {
+                    className = callerClassType.DeclaringType.Name;
+                }
+                else
+                {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
+                    int index = className.IndexOf("+<>", StringComparison.Ordinal);
+                    if (index >= 0)
+                    {
+                        className = className.Substring(0, index);
+                    }
+                }
             }
 
-            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
-
-            if (cleanAnonymousDelegates && className != null)
+            if (includeNameSpace && className?.IndexOf('.') == -1)
             {
-                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
-                int index = className.IndexOf("+<>", StringComparison.Ordinal);
-                if (index >= 0)
+                var classAssembly = callerClassType.GetAssembly();
+                if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
                 {
-                    className = className.Substring(0, index);
+                    var assemblyFullName = classAssembly.FullName;
+                    if (assemblyFullName?.IndexOf(',') >= 0 && !assemblyFullName.StartsWith("System.", StringComparison.Ordinal) && !assemblyFullName.StartsWith("Microsoft.", StringComparison.Ordinal))
+                    {
+                        assemblyFullName = assemblyFullName.Substring(0, assemblyFullName.IndexOf(','));
+                        className = string.Concat(assemblyFullName, ".", className);
+                    }
                 }
             }
 
