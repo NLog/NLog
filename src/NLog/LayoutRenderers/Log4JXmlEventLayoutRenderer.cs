@@ -138,7 +138,19 @@ namespace NLog.LayoutRenderers
         public bool IndentXml { get; set; }
 
         /// <summary>
-        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout LoggerName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the log4j:event message-xml-element. Default: ${message}
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout FormattedMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the log4j:event log4japp-xml-element. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout AppInfo { get; set; }
@@ -252,12 +264,6 @@ namespace NLog.LayoutRenderers
         public string NdcItemSeparator { get => ScopeNestedSeparator; set => ScopeNestedSeparator = value; }
 
         /// <summary>
-        /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
-        /// </summary>
-        /// <docgen category='Layout Options' order='50' />
-        public Layout LoggerName { get; set; }
-
-        /// <summary>
         ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
@@ -284,12 +290,12 @@ namespace NLog.LayoutRenderers
                 {
                     xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
                 }
-                xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
+                xtw.WriteAttributeSafeString("logger", LoggerName?.Render(logEvent) ?? logEvent.LoggerName);
                 xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
                 xtw.WriteAttributeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
-                xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
+                xtw.WriteElementSafeString("log4j", "message", dummyNamespace, FormattedMessage?.Render(logEvent) ?? logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
                 {
                     if (WriteThrowableCData)

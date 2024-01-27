@@ -155,7 +155,7 @@ namespace NLog.Layouts
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>
-        /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
+        /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public Layout LoggerName
@@ -165,7 +165,17 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// Gets or sets the log4j:event message-xml-element. Default: ${message}
+        /// </summary>
+        /// <docgen category='Layout Options' order='100' />
+        public Layout FormattedMessage
+        {
+            get => Renderer.FormattedMessage;
+            set => Renderer.FormattedMessage = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the log4j:event log4japp-xml-element. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
         public Layout AppInfo
