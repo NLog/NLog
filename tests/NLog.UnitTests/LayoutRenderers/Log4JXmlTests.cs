@@ -53,7 +53,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets>
-                    <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />
+                    <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}:formattedMessage=${message}}' />
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
