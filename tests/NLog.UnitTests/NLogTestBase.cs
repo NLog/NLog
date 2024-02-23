@@ -123,7 +123,7 @@ namespace NLog.UnitTests
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
 
@@ -142,7 +142,7 @@ namespace NLog.UnitTests
         protected static void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             string fileText = File.ReadAllText(fileName, encoding);
             Assert.True(fileText.Length >= contents.Length);
@@ -200,7 +200,7 @@ namespace NLog.UnitTests
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -238,7 +238,7 @@ namespace NLog.UnitTests
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
 
@@ -283,11 +283,11 @@ namespace NLog.UnitTests
         protected static void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
         {
             if (contentToCheck.Contains(Environment.NewLine))
-                Assert.True(false, "Please use only single line string to check.");
+                Assert.Fail("Please use only single line string to check.");
 
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             using (TextReader fs = new StreamReader(fileName, encoding))
             {
@@ -299,17 +299,17 @@ namespace NLog.UnitTests
                 }
             }
 
-            Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
+            Assert.Fail("File doesn't contains '" + contentToCheck + "'");
         }
 
         protected static void AssertFileNotContains(string fileName, string contentToCheck, Encoding encoding)
         {
             if (contentToCheck.Contains(Environment.NewLine))
-                Assert.True(false, "Please use only single line string to check.");
+                Assert.Fail("Please use only single line string to check.");
 
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             using (TextReader fs = new StreamReader(fileName, encoding))
             {
@@ -317,7 +317,7 @@ namespace NLog.UnitTests
                 while ((line = fs.ReadLine()) != null)
                 {
                     if (line.Contains(contentToCheck))
-                        Assert.False(true, "File contains '" + contentToCheck + "'");
+                        Assert.Fail("File contains '" + contentToCheck + "'");
                 }
             }
         }

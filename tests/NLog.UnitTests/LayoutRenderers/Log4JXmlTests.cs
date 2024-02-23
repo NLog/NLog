@@ -186,7 +186,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                         break;
 
                                     default:
-                                        Assert.True(false, "Unknown <log4j:data>: " + name);
+                                        Assert.Fail("Unknown <log4j:data>: " + name);
                                         break;
                                 }
                                 break;

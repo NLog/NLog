@@ -1227,7 +1227,7 @@ Dispose()
             try
             {
                 new LogFactory().Setup().LoadConfiguration(cfg => cfg.Configuration.AddRuleForAllLevels(dt));
-                Assert.True(false, "Exception expected.");
+                Assert.Fail("Show throw Exception.");
             }
             catch (NLogConfigurationException configurationException)
             {

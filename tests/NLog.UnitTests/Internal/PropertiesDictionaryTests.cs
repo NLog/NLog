@@ -49,11 +49,11 @@ namespace NLog.UnitTests.Internal
             IDictionary<object, object> dictionary = logEvent.Properties;
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             Assert.DoesNotContain("Hello World", dictionary);
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
@@ -77,11 +77,11 @@ namespace NLog.UnitTests.Internal
             Assert.True(dictionary.Remove("Hello World"));
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
 
             Assert.DoesNotContain("Hello World", dictionary);
             Assert.False(dictionary.ContainsKey("Hello World"));
@@ -104,11 +104,11 @@ namespace NLog.UnitTests.Internal
             IDictionary<object, object> dictionary = logEvent.Properties;
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
@@ -132,11 +132,11 @@ namespace NLog.UnitTests.Internal
             Assert.True(dictionary.Remove("Hello World"));
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));

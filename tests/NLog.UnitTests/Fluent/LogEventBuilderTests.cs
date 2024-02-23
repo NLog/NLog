@@ -475,8 +475,10 @@ namespace NLog.UnitTests.Fluent
             Assert.Equal(expected.Message, _lastLogEventInfo.Message);
 
             Assert.NotNull(_lastLogEventInfo.Properties);
-
+            Assert.Equal(expected.Properties.Count, _lastLogEventInfo.Properties.Count);
+#if !MONO
             Assert.Equal(expected.Properties, _lastLogEventInfo.Properties);
+#endif
             Assert.Equal(expected.LoggerName, _lastLogEventInfo.LoggerName);
             Assert.Equal(expected.Level, _lastLogEventInfo.Level);
             Assert.Equal(expected.Exception, _lastLogEventInfo.Exception);

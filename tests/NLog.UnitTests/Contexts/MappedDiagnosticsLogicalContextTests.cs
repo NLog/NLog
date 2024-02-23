@@ -134,7 +134,7 @@ namespace NLog.UnitTests.Contexts
         [Fact]
         public void given_no_item_exists_when_getting_items_should_return_empty_collection()
         {
-            Assert.Equal(0, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.Empty(MappedDiagnosticsLogicalContext.GetNames());
         }
 
         [Fact]
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Contexts
             const string key = "Key";
             MappedDiagnosticsLogicalContext.Set(key, "Item");
 
-            Assert.Equal(1, MappedDiagnosticsLogicalContext.GetNames().Count);
+            Assert.Single(MappedDiagnosticsLogicalContext.GetNames());
             Assert.True(MappedDiagnosticsLogicalContext.GetNames().Contains("Key"));
 
         }
