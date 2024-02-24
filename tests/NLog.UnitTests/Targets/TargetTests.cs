@@ -615,10 +615,8 @@ namespace NLog.UnitTests.Targets
             exceptions.ForEach(Assert.Null);
 
             mre.WaitOne();
-            if (backgroundThreadException != null)
-            {
-                Assert.True(false, backgroundThreadException.ToString());
-            }
+
+            Assert.True(backgroundThreadException is null, backgroundThreadException?.ToString());
         }
 
         [Fact]
@@ -632,7 +630,7 @@ namespace NLog.UnitTests.Targets
             }
             catch (Exception e)
             {
-                Assert.True(false, "Exception thrown: " + e);
+                Assert.Fail("Exception thrown: " + e);
             }
         }
 

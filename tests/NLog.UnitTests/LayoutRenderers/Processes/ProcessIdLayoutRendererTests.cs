@@ -49,7 +49,7 @@ namespace NLog.UnitTests.LayoutRenderers
             int number;
             if(!int.TryParse(actual, out number))
             {
-                Assert.True(false,"processid is not a number");
+                Assert.Fail("processid is not a number");
             }
             
             Assert.True(number > 0, "processid is not > 0");

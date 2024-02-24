@@ -57,7 +57,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(0, c.LoggingRules.Count);
+            Assert.Empty(c.LoggingRules);
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
             Assert.Equal(FilterResult.Ignore, rule.FilterDefaultAction);
@@ -83,10 +83,10 @@ namespace NLog.UnitTests.Config
             Assert.Contains(LogLevel.Warn, rule.Levels);
             Assert.Contains(LogLevel.Error, rule.Levels);
             Assert.Contains(LogLevel.Fatal, rule.Levels);
-            Assert.Equal(1, rule.Targets.Count);
+            Assert.Single(rule.Targets);
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
             Assert.False(rule.Final);
-            Assert.Equal(0, rule.Filters.Count);
+            Assert.Empty(rule.Filters);
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Single(rule.Levels);
             Assert.Contains(LogLevel.Warn, rule.Levels);
@@ -123,7 +123,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal(2, rule.Levels.Count);
             Assert.Contains(LogLevel.Info, rule.Levels);
@@ -216,7 +216,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal(6, rule.Levels.Count);
             Assert.Contains(LogLevel.Trace, rule.Levels);
@@ -241,7 +241,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal(3, rule.Levels.Count);
             Assert.Contains(LogLevel.Trace, rule.Levels);
@@ -444,7 +444,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal(3, rule.Targets.Count);
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
@@ -477,7 +477,7 @@ namespace NLog.UnitTests.Config
 
             foreach (var target in logFactory.Configuration.AllTargets.OfType<NLog.Targets.MemoryTarget>())
             {
-                Assert.Equal(1, target.Logs.Count);
+                Assert.Single(target.Logs);
             }
         }
 
@@ -536,7 +536,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal(2, rule.ChildRules.Count);
             Assert.Equal("Foo*", rule.ChildRules[0].LoggerNamePattern);
@@ -565,7 +565,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal(2, rule.Filters.Count);
             var conditionBasedFilter = rule.Filters[0] as ConditionBasedFilter;

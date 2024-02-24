@@ -355,8 +355,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                               });
 
             flushHit.WaitOne();
-            if (flushException != null)
-                Assert.True(false, flushException.ToString());
+            Assert.True(flushException is null, flushException?.ToString());
         }
 
         private class MyTarget : TargetWithLayout

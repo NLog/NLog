@@ -133,7 +133,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget { Name = "File" });
             config.AddRule(LogLevel.Info, LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
@@ -161,7 +161,7 @@ namespace NLog.UnitTests.Config
             rule.Final = true;
             config.AddRule(rule);
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var lastRule = config.LoggingRules.LastOrDefault();
             Assert.Same(rule, lastRule);
         }
@@ -173,7 +173,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget { Name = "File" });
             config.AddRuleForAllLevels("File", "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
@@ -194,7 +194,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget { Name = "File" });
             config.AddRuleForOneLevel(LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
@@ -215,7 +215,7 @@ namespace NLog.UnitTests.Config
             var fileTarget = new FileTarget { Name = "File" };
             config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             config.AddTarget(new FileTarget { Name = "File" });
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);

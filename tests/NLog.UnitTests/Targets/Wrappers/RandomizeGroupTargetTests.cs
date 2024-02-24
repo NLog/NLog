@@ -81,11 +81,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Flush(ex => { flushException = ex; flushHit.Set(); });
 
             flushHit.WaitOne();
-            if (flushException != null)
-            {
-                Assert.True(false, flushException.ToString());
-            }
-
+            Assert.True(flushException is null, flushException?.ToString());
             Assert.Equal(1, myTarget1.FlushCount);
             Assert.Equal(1, myTarget2.FlushCount);
             Assert.Equal(1, myTarget3.FlushCount);
@@ -117,11 +113,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             Exception flushException = new Exception("Flush not hit synchronously.");
             wrapper.Flush(ex => flushException = ex);
-
-            if (flushException != null)
-            {
-                Assert.True(false, flushException.ToString());
-            }
+            Assert.True(flushException is null, flushException?.ToString());
         }
 
         public class MyAsyncTarget : Target

@@ -397,10 +397,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         },
                         LogLevel.Trace);
 
-                    if (lastException != null)
-                    {
-                        Assert.True(false, lastException.ToString() + "\r\n" + internalLog);
-                    }
+                    Assert.True(lastException is null, lastException?.ToString() + "\r\n" + internalLog);
                 }
                 finally
                 {

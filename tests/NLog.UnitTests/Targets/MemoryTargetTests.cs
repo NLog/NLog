@@ -62,13 +62,13 @@ namespace NLog.UnitTests.Targets
 
             logger.Factory.Configuration = null;
 
-            Assert.True(memoryTarget.Logs.Count == 6);
-            Assert.True(memoryTarget.Logs[0] == "Trace TTT");
-            Assert.True(memoryTarget.Logs[1] == "Debug DDD");
-            Assert.True(memoryTarget.Logs[2] == "Info III");
-            Assert.True(memoryTarget.Logs[3] == "Warn WWW");
-            Assert.True(memoryTarget.Logs[4] == "Error EEE");
-            Assert.True(memoryTarget.Logs[5] == "Fatal FFF");
+            Assert.Equal(6, memoryTarget.Logs.Count);
+            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
+            Assert.Equal("Debug DDD", memoryTarget.Logs[1]);
+            Assert.Equal("Info III", memoryTarget.Logs[2]);
+            Assert.Equal("Warn WWW", memoryTarget.Logs[3]);
+            Assert.Equal("Error EEE", memoryTarget.Logs[4]);
+            Assert.Equal("Fatal FFF", memoryTarget.Logs[5]);
         }
 
         [Fact]
@@ -88,10 +88,10 @@ namespace NLog.UnitTests.Targets
             logger.Info("III");
             logger.Warn("WWW");
 
-            Assert.True(memoryTarget.Logs.Count == 3);
-            Assert.True(memoryTarget.Logs[0] == "Debug DDD");
-            Assert.True(memoryTarget.Logs[1] == "Info III");
-            Assert.True(memoryTarget.Logs[2] == "Warn WWW");
+            Assert.Equal(3, memoryTarget.Logs.Count);
+            Assert.Equal("Debug DDD", memoryTarget.Logs[0]);
+            Assert.Equal("Info III", memoryTarget.Logs[1]);
+            Assert.Equal("Warn WWW", memoryTarget.Logs[2]);
 
             logger.Factory.Configuration = null;
 
@@ -110,10 +110,10 @@ namespace NLog.UnitTests.Targets
             logger.Error("EEE");
             logger.Fatal("FFF");
 
-            Assert.True(memoryTarget.Logs.Count == 3);
-            Assert.True(memoryTarget.Logs[0] == "Trace TTT");
-            Assert.True(memoryTarget.Logs[1] == "Error EEE");
-            Assert.True(memoryTarget.Logs[2] == "Fatal FFF");
+            Assert.Equal(3, memoryTarget.Logs.Count);
+            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
+            Assert.Equal("Error EEE", memoryTarget.Logs[1]);
+            Assert.Equal("Fatal FFF", memoryTarget.Logs[2]);
         }
 
         [Fact]
@@ -140,10 +140,10 @@ namespace NLog.UnitTests.Targets
 
             logger.Factory.Configuration = null;
 
-            Assert.True(memoryTarget.Logs.Count == 3);
-            Assert.True(memoryTarget.Logs[0] == "Trace TTT");
-            Assert.True(memoryTarget.Logs[1] == "Debug DDD");
-            Assert.True(memoryTarget.Logs[2] == "Info III");
+            Assert.Equal(3, memoryTarget.Logs.Count);
+            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
+            Assert.Equal("Debug DDD", memoryTarget.Logs[1]);
+            Assert.Equal("Info III", memoryTarget.Logs[2]);
 
             Assert.True(memoryTarget.Logs.All(l => !string.IsNullOrEmpty(l)));
             Assert.True(memoryTarget.Logs.Contains(memoryTarget.Logs[0]));
@@ -155,7 +155,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(1, memoryTarget.Logs.IndexOf(memoryTarget.Logs[1]));
             Assert.Equal(-1, memoryTarget.Logs.IndexOf(string.Empty));
             memoryTarget.Logs.RemoveAt(1);
-            Assert.Equal(1, memoryTarget.Logs.Count);
+            Assert.Single(memoryTarget.Logs);
             memoryTarget.Logs[0] = "Hello World";
             Assert.Contains("Hello World", memoryTarget.Logs);
             memoryTarget.Logs.Insert(1, "Goodbye World");
@@ -187,12 +187,12 @@ namespace NLog.UnitTests.Targets
 
             logger.Factory.Configuration = null;
 
-            Assert.True(memoryTarget.Logs.Count == 5);
-            Assert.True(memoryTarget.Logs[0] == "Trace TTT");
-            Assert.True(memoryTarget.Logs[1] == "Debug ");
-            Assert.True(memoryTarget.Logs[2] == "Info III");
-            Assert.True(memoryTarget.Logs[3] == "Warn ");
-            Assert.True(memoryTarget.Logs[4] == "Error EEE");
+            Assert.Equal(5, memoryTarget.Logs.Count);
+            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
+            Assert.Equal("Debug ", memoryTarget.Logs[1]);
+            Assert.Equal("Info III", memoryTarget.Logs[2]);
+            Assert.Equal("Warn ", memoryTarget.Logs[3]);
+            Assert.Equal("Error EEE", memoryTarget.Logs[4]);
         }
 
         [Fact]
@@ -216,12 +216,12 @@ namespace NLog.UnitTests.Targets
 
             logger.Factory.Configuration = null;
 
-            Assert.True(memoryTarget.Logs.Count == 5);
-            Assert.True(memoryTarget.Logs[0] == "Trace TTT");
-            Assert.True(memoryTarget.Logs[1] == "Debug ");
-            Assert.True(memoryTarget.Logs[2] == "Info III");
-            Assert.True(memoryTarget.Logs[3] == "Warn ");
-            Assert.True(memoryTarget.Logs[4] == "Error EEE");
+            Assert.Equal(5, memoryTarget.Logs.Count);
+            Assert.Equal("Trace TTT", memoryTarget.Logs[0]);
+            Assert.Equal("Debug ", memoryTarget.Logs[1]);
+            Assert.Equal("Info III", memoryTarget.Logs[2]);
+            Assert.Equal("Warn ", memoryTarget.Logs[3]);
+            Assert.Equal("Error EEE", memoryTarget.Logs[4]);
         }
     }
 }

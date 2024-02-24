@@ -412,7 +412,7 @@ namespace NLog.UnitTests
                     finalContinuationInvoked = true;
                 };
 
-            AsyncHelpers.ForEachItemInParallel(items, continuation, (i, cont) => { Assert.True(false, "Will not be reached"); });
+            AsyncHelpers.ForEachItemInParallel(items, continuation, (i, cont) => { Assert.Fail("Should not be reached"); });
             Assert.True(finalContinuationInvoked);
             Assert.Null(lastException);
         }
