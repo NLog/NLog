@@ -45,8 +45,8 @@ namespace NLog.UnitTests.LayoutRenderers
             LogEventInfo logEvent = LogEventInfo.CreateNullEvent();
             string newGuid1 = layoutRenderer.Render(logEvent);
             string newGuid2 = layoutRenderer.Render(logEvent);
-            Assert.True(!string.IsNullOrEmpty(newGuid1));
-            Assert.True(!string.IsNullOrEmpty(newGuid2));
+            Assert.NotEmpty(newGuid1);
+            Assert.NotEmpty(newGuid2);
             Assert.NotEqual(newGuid1, newGuid2);
         }
 
@@ -57,14 +57,14 @@ namespace NLog.UnitTests.LayoutRenderers
             LogEventInfo logEvent1 = LogEventInfo.CreateNullEvent();
             string newGuid11 = layoutRenderer.Render(logEvent1);
             string newGuid12 = layoutRenderer.Render(logEvent1);
-            Assert.True(!string.IsNullOrEmpty(newGuid11));
-            Assert.True(!string.IsNullOrEmpty(newGuid12));
+            Assert.NotEmpty(newGuid11);
+            Assert.NotEmpty(newGuid12);
             Assert.Equal(newGuid11, newGuid12);
             LogEventInfo logEvent2 = LogEventInfo.CreateNullEvent();
             string newGuid21 = layoutRenderer.Render(logEvent2);
             string newGuid22 = layoutRenderer.Render(logEvent2);
-            Assert.True(!string.IsNullOrEmpty(newGuid21));
-            Assert.True(!string.IsNullOrEmpty(newGuid22));
+            Assert.NotEmpty(newGuid21);
+            Assert.NotEmpty(newGuid22);
             Assert.Equal(newGuid21, newGuid22);
             Assert.NotEqual(newGuid11, newGuid22);
         }
