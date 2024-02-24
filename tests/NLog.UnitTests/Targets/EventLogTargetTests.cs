@@ -180,24 +180,24 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [InlineData(null)] // A possible value, that should not change anything
-        [InlineData(64)] // Min value
-        [InlineData(4194240)] // Max value
-        [InlineData(16384)] // Acceptable value
-        public void MaxKilobytes_ShouldBeAsSpecified_WhenValueIsValid(IConvertible maxKilobytes)
+        [InlineData(64L)] // Min value
+        [InlineData(4194240L)] // Max value
+        [InlineData(16384L)] // Acceptable value
+        public void MaxKilobytes_ShouldBeAsSpecified_WhenValueIsValid(long? maxKilobytes)
         {
-            var expectedMaxKilobytes = maxKilobytes?.ToInt64(null);
+            var expectedMaxKilobytes = maxKilobytes;
 
             var target = new EventLogTarget();
-            target.MaxKilobytes = expectedMaxKilobytes;
+            target.MaxKilobytes = maxKilobytes;
 
             Assert.Equal(expectedMaxKilobytes, target.MaxKilobytes);
         }
 
         [Theory]
-        [InlineData(32768, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
-        [InlineData(16384, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
+        [InlineData(32768L, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
+        [InlineData(16384L, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
         [InlineData(null, EventLogMock.EventLogDefaultMaxKilobytes, EventLogMock.EventLogDefaultMaxKilobytes)]      // Should not change MaxKilobytes when the value is null
-        public void ShouldSetMaxKilobytes_WhenNeeded(IConvertible newValue, long initialValue, long expectedValue)
+        public void ShouldSetMaxKilobytes_WhenNeeded(long? newValue, long initialValue, long expectedValue)
         {
             string targetLog = "application"; // The Log to write to is intentionally lower case!!
             var eventLogMock = new EventLogMock(
@@ -213,7 +213,7 @@ namespace NLog.UnitTests.Targets
                 Layout = new SimpleLayout("${message}"), // Be able to check message length and content, the Layout is intentionally only ${message}.
                 OnOverflow = EventLogTargetOverflowAction.Truncate,
                 MaxMessageLength = MaxMessageLength,
-                MaxKilobytes = newValue?.ToInt64(null),
+                MaxKilobytes = newValue,
             };
             eventLogMock.AssociateNewEventLog(target.Log, target.MachineName, target.GetFixedSource());
 

@@ -1251,8 +1251,8 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 //0000 should not exists because of MaxArchiveFiles=3
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -1318,7 +1318,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(25, "ddd\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -2179,7 +2179,7 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContentsStartsWith(Path.Combine(archiveFolder, "0001.txt"), header, Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
             }
             finally
             {
@@ -2401,7 +2401,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "bbb\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(tempDir, string.Format(archiveFileNameFormat, 3))));
+                Assert.False(File.Exists(Path.Combine(tempDir, string.Format(archiveFileNameFormat, 3))));
             }
             finally
             {
@@ -3192,7 +3192,7 @@ namespace NLog.UnitTests.Targets
                 {
                     Generate100BytesLog('b');
                     var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
-                    Assert.True(!helper.Exists(numberToBeRemoved),
+                    Assert.False(helper.Exists(numberToBeRemoved),
                         $"archive file {numberToBeRemoved} has not been removed! We are created file {i}");
                 }
 
@@ -4152,7 +4152,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -4518,7 +4518,7 @@ namespace NLog.UnitTests.Targets
                     "123\n456\n789\n123\n456\n",
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0001.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0001.txt")));
             }
             finally
             {

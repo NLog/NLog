@@ -48,11 +48,11 @@ namespace NLog.UnitTests.Internal.FileAppenders
         public void FileAppenderCache_Empty() 
         {
             FileAppenderCache cache = FileAppenderCache.Empty;
+
             // An empty FileAppenderCache will have Size = 0 as well as Factory and CreateFileParameters parameters equal to null.
-            Assert.True(cache.Size == 0);
+            Assert.Equal(0, cache.Size);
             Assert.Null(cache.Factory);
             Assert.Null(cache.CreateFileParameters);
-
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
 
-            Assert.True(cache.Size == 3);
+            Assert.Equal(3, cache.Size);
             Assert.NotNull(cache.Factory);           
             Assert.NotNull(cache.CreateFileParameters);
         }
