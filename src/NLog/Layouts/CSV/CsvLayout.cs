@@ -47,9 +47,9 @@ namespace NLog.Layouts
     /// <para>
     /// If <see cref="LayoutWithHeaderAndFooter.Header"/> is set, then the header generation with column names will be disabled.
     /// </para>
-    /// <a href="https://github.com/NLog/NLog/wiki/JsonLayout">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/CsvLayout">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/NLog/NLog/wiki/JsonLayout">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/CsvLayout">Documentation on NLog Wiki</seealso>
     [Layout("CsvLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
