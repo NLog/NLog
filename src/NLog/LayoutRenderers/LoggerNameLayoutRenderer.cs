@@ -51,6 +51,11 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Layout Options' order='10' />
         public bool ShortName { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to render prefix of logger name (the part before the trailing dot character).
+        /// </summary>
+        public bool PrefixName { get; set; }
+
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
@@ -60,6 +65,15 @@ namespace NLog.LayoutRenderers
                 if (lastDot >= 0)
                 {
                     builder.Append(logEvent.LoggerName, lastDot + 1, logEvent.LoggerName.Length - lastDot - 1);
+                    return;
+                }
+            }
+            else if (PrefixName)
+            {
+                int lastDot = TryGetLastDotForShortName(logEvent);
+                if (lastDot > 0)
+                {
+                    builder.Append(logEvent.LoggerName, 0, lastDot);
                     return;
                 }
             }
@@ -74,6 +88,14 @@ namespace NLog.LayoutRenderers
                 if (lastDot >= 0)
                 {
                     return logEvent.LoggerName.Substring(lastDot + 1);
+                }
+            }
+            else if (PrefixName)
+            {
+                int lastDot = TryGetLastDotForShortName(logEvent);
+                if (lastDot > 0)
+                {
+                    return logEvent.LoggerName.Substring(0, lastDot);
                 }
             }
             return logEvent.LoggerName ?? string.Empty;
