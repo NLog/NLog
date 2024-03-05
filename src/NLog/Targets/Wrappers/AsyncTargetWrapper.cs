@@ -38,6 +38,7 @@ namespace NLog.Targets.Wrappers
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
+    using NLog.Internal.Timers;
 
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
@@ -81,7 +82,7 @@ namespace NLog.Targets.Wrappers
     {
         private readonly object _writeLockObject = new object();
         private readonly object _timerLockObject = new object();
-        private Timer _lazyWriterTimer;
+        private ITimer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
         private event EventHandler<LogEventDroppedEventArgs> _logEventDroppedEvent;
         private event EventHandler<LogEventQueueGrowEventArgs> _eventQueueGrowEvent;
@@ -150,6 +151,11 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
         public int TimeToSleepBetweenBatches { get; set; } = 1;
+
+        /// <summary>
+        /// Gets or sets the type of timer to be used for scheduling. 
+        /// </summary>
+        public TimerType TimerType { get; set; } = TimerType.Default;
 
         /// <summary>
         /// Occurs when LogEvent has been dropped, because internal queue is full and <see cref="OverflowAction"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
@@ -293,7 +299,22 @@ namespace NLog.Targets.Wrappers
 
             _requestQueue.Clear();
             InternalLogger.Trace("{0}: Start Timer", this);
-            _lazyWriterTimer = new Timer(ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
+            switch (TimerType)
+            {
+                case TimerType.Default:
+                    _lazyWriterTimer = new DefaultTimer(ProcessPendingEvents);
+                    break;
+                case TimerType.DedicatedThread:
+#if NETSTANDARD1_4_OR_GREATER || NET40_OR_GREATER
+                    this._lazyWriterTimer = new DedicatedThreadTimer(ProcessPendingEvents);
+                    break;
+#else
+                    throw new PlatformNotSupportedException("The DedicatedThread timer is not supported on this platform. You must use .net framework 4 or greater or .net standard 1.4 or greater");
+#endif
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
             StartLazyWriterTimer();
         }
 
@@ -338,7 +359,7 @@ namespace NLog.Targets.Wrappers
             {
                 lock (_timerLockObject)
                 {
-                    _lazyWriterTimer?.Change(TimeToSleepBetweenBatches, Timeout.Infinite);
+                    _lazyWriterTimer?.NextTrigger(TimeToSleepBetweenBatches);
                 }
             }
         }
@@ -389,12 +410,12 @@ namespace NLog.Targets.Wrappers
                     if (instant)
                     {
                         InternalLogger.Trace("{0}: Timer scheduled instantly", this);
-                        _lazyWriterTimer.Change(0, Timeout.Infinite);
+                        _lazyWriterTimer.NextTrigger(0);
                     }
                     else
                     {
                         InternalLogger.Trace("{0}: Timer scheduled throttled", this);
-                        _lazyWriterTimer.Change(1, Timeout.Infinite);
+                        _lazyWriterTimer.NextTrigger(1);
                     }
                     return true;
                 }
@@ -462,7 +483,7 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        private void ProcessPendingEvents(object state)
+        private void ProcessPendingEvents()
         {
             if (_lazyWriterTimer is null)
                 return;
