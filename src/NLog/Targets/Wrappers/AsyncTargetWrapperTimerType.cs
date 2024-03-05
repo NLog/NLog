@@ -1,9 +1,9 @@
-﻿namespace NLog.Internal.Timers
+﻿namespace NLog.Targets.Wrappers
 {
     /// <summary>
     /// The type of timer to be used for scheduling. 
     /// </summary>
-    public enum TimerType
+    public enum AsyncTargetWrapperTimerType
     {
         /// <summary>
         /// Timer based on a thread pool thread.

@@ -155,7 +155,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the type of timer to be used for scheduling. 
         /// </summary>
-        public TimerType TimerType { get; set; } = TimerType.Default;
+        public AsyncTargetWrapperTimerType TimerType { get; set; } = AsyncTargetWrapperTimerType.Default;
 
         /// <summary>
         /// Occurs when LogEvent has been dropped, because internal queue is full and <see cref="OverflowAction"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
@@ -301,10 +301,10 @@ namespace NLog.Targets.Wrappers
             InternalLogger.Trace("{0}: Start Timer", this);
             switch (TimerType)
             {
-                case TimerType.Default:
+                case AsyncTargetWrapperTimerType.Default:
                     _lazyWriterTimer = new DefaultTimer(ProcessPendingEvents);
                     break;
-                case TimerType.DedicatedThread:
+                case AsyncTargetWrapperTimerType.DedicatedThread:
 #if NETSTANDARD1_4_OR_GREATER || NET40_OR_GREATER
                     this._lazyWriterTimer = new DedicatedThreadTimer(ProcessPendingEvents);
                     break;

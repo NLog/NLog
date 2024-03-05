@@ -38,7 +38,6 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System.Threading;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal.Timers;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
@@ -46,9 +45,9 @@ namespace NLog.UnitTests.Targets.Wrappers
     public class AsyncTargetWrapperTests : NLogTestBase
     {
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperInitTest(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperInitTest(AsyncTargetWrapperTimerType timerType)
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper(myTarget, 300, AsyncTargetWrapperOverflowAction.Grow) { TimerType = timerType };
@@ -59,9 +58,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperInitTest2(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperInitTest2(AsyncTargetWrapperTimerType timerType)
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper()
@@ -77,17 +76,17 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero(AsyncTargetWrapperTimerType timerType)
         {
             AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true, timerType);
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero(AsyncTargetWrapperTimerType timerType)
         {
             AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false, timerType);
         }
@@ -95,7 +94,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
-        private static void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue, TimerType timerType)
+        private static void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue, AsyncTargetWrapperTimerType timerType)
         {
             LogManager.ThrowConfigExceptions = true;
 
@@ -204,9 +203,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperSyncTest1(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperSyncTest1(AsyncTargetWrapperTimerType timerType)
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper
@@ -255,9 +254,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperAsyncTest1(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperAsyncTest1(AsyncTargetWrapperTimerType timerType)
         {
             var myTarget = new MyAsyncTarget();
             var targetWrapper = new AsyncTargetWrapper(myTarget) { Name = "AsyncTargetWrapperAsyncTest1_Wrapper", TimerType = timerType };
@@ -295,9 +294,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperAsyncWithExceptionTest1(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperAsyncWithExceptionTest1(AsyncTargetWrapperTimerType timerType)
         {
             var myTarget = new MyAsyncTarget
             {
@@ -346,9 +345,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperFlushTest(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperFlushTest(AsyncTargetWrapperTimerType timerType)
         {
             RetryingIntegrationTest(3, () =>
             {
@@ -429,9 +428,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperCloseTest(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperCloseTest(AsyncTargetWrapperTimerType timerType)
         {
             var myTarget = new MyAsyncTarget
             {
@@ -460,9 +459,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapperExceptionTest(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapperExceptionTest(AsyncTargetWrapperTimerType timerType)
         {
             var targetWrapper = new AsyncTargetWrapper
             {
@@ -493,9 +492,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void FlushingMultipleTimesSimultaneous(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void FlushingMultipleTimesSimultaneous(AsyncTargetWrapperTimerType timerType)
         {
             var asyncTarget = new AsyncTargetWrapper
             {
@@ -537,9 +536,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void LogEventDropped_OnRequestqueueOverflow(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void LogEventDropped_OnRequestqueueOverflow(AsyncTargetWrapperTimerType timerType)
         {
             int queueLimit = 2;
             int loggedEventCount = 5;
@@ -579,9 +578,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void LogEventNotDropped_IfOverflowActionBlock(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void LogEventNotDropped_IfOverflowActionBlock(AsyncTargetWrapperTimerType timerType)
         {
             int queueLimit = 2;
             int loggedEventCount = 5;
@@ -620,9 +619,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void LogEventNotDropped_IfOverflowActionGrow(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void LogEventNotDropped_IfOverflowActionGrow(AsyncTargetWrapperTimerType timerType)
         {
             int queueLimit = 2;
             int loggedEventCount = 5;
@@ -661,9 +660,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void EventQueueGrow_OnQueueGrow(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void EventQueueGrow_OnQueueGrow(AsyncTargetWrapperTimerType timerType)
         {
             int queueLimit = 2;
             int loggedEventCount = 10;
@@ -706,22 +705,22 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void EnqueuQueueBlock_WithLock_OnClose_ReleasesWriters(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void EnqueuQueueBlock_WithLock_OnClose_ReleasesWriters(AsyncTargetWrapperTimerType timerType)
         {
             EnqueuQueueBlock_OnClose_ReleasesWriters(true, timerType);
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void EnqueuQueueBlock_NoLock_OnClose_ReleasesWriters(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void EnqueuQueueBlock_NoLock_OnClose_ReleasesWriters(AsyncTargetWrapperTimerType timerType)
         {
             EnqueuQueueBlock_OnClose_ReleasesWriters(false, timerType);
         }
 
-        private static void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue, TimerType timerType)
+        private static void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue, AsyncTargetWrapperTimerType timerType)
         {
             // Arrange
             var slowTarget = new MethodCallTarget("slowTarget", (logEvent, parms) => System.Threading.Thread.Sleep(300));
@@ -759,9 +758,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Theory]
-        [InlineData(TimerType.Default)]
-        [InlineData(TimerType.DedicatedThread)]
-        public void AsyncTargetWrapper_MissingDependency_EnqueueLogEvents(TimerType timerType)
+        [InlineData(AsyncTargetWrapperTimerType.Default)]
+        [InlineData(AsyncTargetWrapperTimerType.DedicatedThread)]
+        public void AsyncTargetWrapper_MissingDependency_EnqueueLogEvents(AsyncTargetWrapperTimerType timerType)
         {
             using (new NoThrowNLogExceptions())
             {
