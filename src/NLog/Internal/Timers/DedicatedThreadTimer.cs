@@ -189,7 +189,7 @@ namespace NLog.Internal.Timers
         /// <inheritdoc />
         public void Dispose()
         {
-            ((AutoResetEvent)this._waits[1]).Set();
+            ((AutoResetEvent)this._waits[0]).Set();
             this._waits[0].Dispose();
             this._waits[1].Dispose();
             this._schedules.Enqueue(-1);
