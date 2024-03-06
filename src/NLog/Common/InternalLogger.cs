@@ -366,7 +366,7 @@ namespace NLog.Common
         {
             if (LogWriter != null)
             {
-                var logLine = CreateLogLine(ex, level, fullMessage);
+                var logLine = CreateLogLine(ex, level, fullMessage, loggerContext);
                 lock (LockObject)
                 {
                     LogWriter?.WriteLine(logLine);
@@ -383,13 +383,50 @@ namespace NLog.Common
         /// <summary>
         /// Create log line with timestamp, exception message etc (if configured)
         /// </summary>
-        private static string CreateLogLine([CanBeNull]Exception ex, LogLevel level, string fullMessage)
+        private static string CreateLogLine([CanBeNull] Exception ex, LogLevel level, string fullMessage, string senderName, Type senderType)
+        {
+            const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
+            const string fieldSeparator = " ";
+            const int levelWidth = 6;
+
+            string levelFormatted = $"[{level.ToString().ToUpper().PadLeft(levelWidth)}]";
+            string methodFormatted = (senderType != null) ? $"[{senderName}|{senderType?.ToString()}]" : "";
+            string methodSeparator = (senderType != null) ? " " : "";
+
+            if (IncludeTimestamp)
+            {
+                return string.Concat(
+                    TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture),
+                    fieldSeparator,
+                    levelFormatted,
+                    methodSeparator,
+                    methodFormatted,
+                    fieldSeparator,
+                    fullMessage,
+                    ex != null ? " Exception: " : "",
+                    ex?.ToString() ?? "");
+            }
+            else
+            {
+                return string.Concat(
+                    level.ToString(),
+                    fieldSeparator,
+                    fullMessage,
+                    ex != null ? " Exception: " : "",
+                    ex?.ToString() ?? "");
+            }
+        }
+
+        /// <summary>
+        /// Create log line with timestamp, exception message etc (if configured)
+        /// </summary>
+        private static string CreateLogLine([CanBeNull] Exception ex, LogLevel level, string fullMessage, IInternalLoggerContext loggerContext)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
 
             string levelFormatted = $"[{level.ToString().ToUpper()}]";
-            string methodFormatted = "[Program.<Main>$(String[] args)]";
+            string methodFormatted = $"[{loggerContext?.Name}{loggerContext?.ToString()}]";
 
 
             if (IncludeTimestamp)
@@ -653,7 +690,7 @@ namespace NLog.Common
         private static void LogToConsoleSubscription(object sender, InternalLogEventArgs eventArgs)
         {
 #if !NETSTANDARD1_3
-            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message, eventArgs.SenderName, eventArgs.SenderType);
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Out, logLine);
 #endif
         }
@@ -662,7 +699,7 @@ namespace NLog.Common
         private static void LogToConsoleErrorSubscription(object sender, InternalLogEventArgs eventArgs)
         {
 #if !NETSTANDARD1_3
-            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message, eventArgs.SenderName, eventArgs.SenderType);
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, logLine);
 #endif
         }
@@ -671,7 +708,7 @@ namespace NLog.Common
         private static void LogToTraceSubscription(object sender, InternalLogEventArgs eventArgs)
         {
 #if !NETSTANDARD1_3
-            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message, eventArgs.SenderName, eventArgs.SenderType);
             System.Diagnostics.Trace.WriteLine(logLine, "NLog");
 #endif
         }
@@ -679,7 +716,7 @@ namespace NLog.Common
         [Obsolete("Instead use InternalLogger.LogWriter = new System.IO.StreamWriter(logFilePath, true). Marked obsolete with NLog v5.3")]
         private static void LogToFileSubscription(object sender, InternalLogEventArgs eventArgs)
         {
-            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message, eventArgs.SenderName, eventArgs.SenderType);
             lock (LockObject)
             {
                 try
