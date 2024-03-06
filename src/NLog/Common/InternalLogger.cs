@@ -329,12 +329,18 @@ namespace NLog.Common
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
 
+            string levelFormatted = $"[{level.ToString().ToUpper()}]";
+            string methodFormatted = "[Program.<Main>$(String[] args)]";
+
+
             if (IncludeTimestamp)
             {
                 return string.Concat(
                     TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture),
                     fieldSeparator,
-                    level.ToString(),
+                    levelFormatted,
+                    fieldSeparator,
+                    methodFormatted,
                     fieldSeparator,
                     fullMessage,
                     ex != null ? " Exception: " : "",
