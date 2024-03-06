@@ -273,7 +273,9 @@ namespace NLog
                     {
                         try
                         {
+#pragma warning disable CS0618 // Type or member is obsolete
                             LogNLogAssemblyVersion();
+#pragma warning restore CS0618 // Type or member is obsolete
                             _config = config;
                             _configLoader.Activated(this, _config);
                             _config.Dump();
@@ -313,8 +315,10 @@ namespace NLog
                     {
                         try
                         {
+#pragma warning disable CS0618 // Type or member is obsolete
                             if (oldConfig is null)
                                 LogNLogAssemblyVersion();
+#pragma warning restore CS0618 // Type or member is obsolete
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
@@ -410,6 +414,7 @@ namespace NLog
         }
         internal CultureInfo _defaultCultureInfo;
 
+        [Obsolete("LogFactory should be minimal. Marked obsolete with NLog v5.3")]
         internal static void LogNLogAssemblyVersion()
         {
             if (!InternalLogger.IsInfoEnabled)
