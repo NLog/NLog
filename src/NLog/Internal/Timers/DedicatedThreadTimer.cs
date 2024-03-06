@@ -44,11 +44,11 @@ namespace NLog.Internal.Timers
     /// </summary>
     internal class DedicatedThreadTimer : ITimer
     {
-        private readonly Action _handle;
-        private readonly Thread _worker;
-        private readonly ConcurrentQueue<int> _schedules;
-        private readonly WaitHandle[] _waits;
         private const string ThreadName = "Nlog internal timer";
+        private readonly Action _handle;
+        private readonly ConcurrentQueue<int> _schedules;
+        private readonly AutoResetEvent _scheduleChanged;
+        private bool _disposed;
 
         /// <summary>
         /// Initializes a new instance of the NLog.Internal.Timers.DedicatedThreadTimer class.
@@ -58,16 +58,9 @@ namespace NLog.Internal.Timers
         {
             this._handle = handle;
             this._schedules = new ConcurrentQueue<int>();
-            this._waits = new WaitHandle[]
-            {
-                new AutoResetEvent(false), // cancel
-                new AutoResetEvent(false)  // change
-            };
-            this._worker = new Thread(Handle)
-            {
-                Name = ThreadName
-            };
-            this._worker.Start();
+            this._scheduleChanged = new AutoResetEvent(false);
+            this._disposed = false;
+            new Thread(Handle) { Name = ThreadName }.Start();
         }
 
         /// <inheritdoc />
@@ -79,26 +72,23 @@ namespace NLog.Internal.Timers
                 dueTime = 0;
             }
 
-            if (!this._worker.IsAlive)
+            if (this._disposed)
                 throw new ObjectDisposedException("Cannot access a disposed timer.");
 
             this._schedules.Enqueue(dueTime);
-            ((AutoResetEvent)this._waits[1]).Set();
+            this._scheduleChanged.Set();
         }
 
         private void Handle()
         {
             try
             {
-                int waitResult = WaitHandle.WaitAny(this._waits);
-
-                if (waitResult == 0) // cancel
-                    return;
+                this._scheduleChanged.WaitOne();
 
                 bool instant = false;
                 int? dueTime = null;
 
-                while (true)
+                while (!this._disposed)
                 {
                     while (this._schedules.TryDequeue(out var schedule))
                     {
@@ -123,30 +113,12 @@ namespace NLog.Internal.Timers
 
                     if (!dueTime.HasValue)
                     {
-                        waitResult = WaitHandle.WaitAny(this._waits);
-
-                        if (waitResult == 0) // cancel
-                        {
-                            break;
-                        }
-
+                        this._scheduleChanged.WaitOne();
                         continue;
                     }
 
-                    if (dueTime.Value <= int.MinValue)
-                        InternalLogger.Info("Timer exit");
-
-                    waitResult = WaitHandle.WaitAny(this._waits, dueTime.Value);
-
-                    if (waitResult == 0) // cancel
-                    {
-                        break;
-                    }
-
-                    if (waitResult == 1) // change
-                    {
+                    if (this._scheduleChanged.WaitOne(dueTime.Value))
                         continue;
-                    }
 
                     dueTime = null;
                     DoWork();
@@ -159,6 +131,11 @@ namespace NLog.Internal.Timers
             finally
             {
                 InternalLogger.Debug("{0}: The timer thread is complete.", this);
+            }
+
+            if (!this._disposed)
+            {
+                InternalLogger.Error("{0}: The timer not disposed, but its worker thread has ended.", this);
             }
         }
 
@@ -189,10 +166,9 @@ namespace NLog.Internal.Timers
         /// <inheritdoc />
         public void Dispose()
         {
-            ((AutoResetEvent)this._waits[0]).Set();
-            this._waits[0].Dispose();
-            this._waits[1].Dispose();
-            this._schedules.Enqueue(-1);
+            this._disposed = true;
+            this._scheduleChanged.Set();
+            this._scheduleChanged.Dispose();
         }
     }
 }
