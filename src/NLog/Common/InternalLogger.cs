@@ -41,6 +41,7 @@ namespace NLog.Common
     using System.Reflection;
     using NLog.Internal;
     using NLog.Time;
+    using System.Text;
 
     /// <summary>
     /// NLog internal logger.
@@ -388,9 +389,16 @@ namespace NLog.Common
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
             const int levelWidth = 6;
+            int maxLineLength = 100;
+            int indent = 4;
+            int indentSize = 33 + indent;
 
             string levelFormatted = $"[{level.ToString().ToUpper().PadLeft(levelWidth)}]";
             string methodFormatted = (senderType != null) ? $"[{senderName}|{senderType?.ToString()}]" : "";
+
+            fullMessage = (fullMessage.Length > maxLineLength)
+                ? IndentLongString(fullMessage, maxLineLength, indentSize)
+                : fullMessage;
             string methodSeparator = (senderType != null) ? " " : "";
 
             if (IncludeTimestamp)
@@ -451,6 +459,38 @@ namespace NLog.Common
                     ex != null ? " Exception: " : "",
                     ex?.ToString() ?? "");
             }
+        }
+
+        static string IndentLongString(string longString, int maxLineLength, int indentSize)
+        {
+            StringBuilder result = new StringBuilder();
+            string[] words = longString.Split(new[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder currentLine = new StringBuilder();
+            int currentLineLength = 0;
+
+            foreach (string word in words)
+            {
+                if (currentLineLength + word.Length + 1 > maxLineLength) // If adding the word would exceed max length
+                {
+                    result.AppendLine(currentLine.ToString()); // Add current line to result
+                    result.Append(new string(' ', indentSize)); // Add indentation
+                    currentLine.ClearBuilder(); // Clear current line
+                    currentLineLength = indentSize; // Reset current line length with indentation
+                }
+
+                if (currentLine.Length > 0) // If not the first word in the line, add a space before appending the word
+                {
+                    currentLine.Append(' ');
+                    currentLineLength++;
+                }
+
+                currentLine.Append(word); // Append word to current line
+                currentLineLength += word.Length;
+            }
+
+            result.Append(currentLine); // Append the last line to result
+
+            return result.ToString();
         }
 
         /// <summary>
