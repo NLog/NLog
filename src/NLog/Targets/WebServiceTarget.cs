@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -197,6 +198,8 @@ namespace NLog.Targets
         /// </summary>
         /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
         /// <docgen category='Web Service Options' order='100' />
+        [Obsolete("Instead use default Rfc2396 or EscapeDataRfc3986. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeDataNLogLegacy { get; set; }
 
         /// <summary>
@@ -488,12 +491,16 @@ namespace NLog.Targets
                 return uri;
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
+            bool escapeDataNLogLegacy = EscapeDataNLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             string queryParameters;
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(escapeDataNLogLegacy, false, EscapeDataRfc3986);
                 BuildWebServiceQueryParameters(parameterValues, sb, encodingOptions);
                 queryParameters = sb.ToString();
             }
@@ -603,7 +610,10 @@ namespace NLog.Targets
 
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
-                _encodingOptions = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeDataNLogLegacy = target.EscapeDataNLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+                _encodingOptions = UrlHelper.GetUriStringEncodingFlags(escapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
             protected override string GetContentType(WebServiceTarget target)
