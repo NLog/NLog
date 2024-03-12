@@ -393,7 +393,7 @@ namespace NLog.Common
             int indent = 4;
             int indentSize = 33 + indent;
 
-            string levelFormatted = $"[{level.ToString().ToUpper().PadLeft(levelWidth)}]";
+            string levelFormatted = $"[{level.ToString().ToUpper().PadRight(levelWidth)}]";
             string methodFormatted = (senderType != null) ? $"[{senderType?.ToString()}]" : "";
 
             fullMessage = (fullMessage.Length > maxLineLength)
@@ -434,7 +434,7 @@ namespace NLog.Common
             const string fieldSeparator = " ";
 
             string levelFormatted = $"[{level.ToString().ToUpper()}]";
-            string methodFormatted = $"[{loggerContext?.Name}{loggerContext?.ToString()}]";
+            string methodFormatted = $"[{loggerContext?.Name}]";
 
 
             if (IncludeTimestamp)
@@ -478,11 +478,11 @@ namespace NLog.Common
                     currentLineLength = indentSize; // Reset current line length with indentation
                 }
 
-                if (currentLine.Length > 0) // If not the first word in the line, add a space before appending the word
-                {
-                    currentLine.Append(' ');
-                    currentLineLength++;
-                }
+                //if (currentLine.Length > 0) // If not the first word in the line, add a space before appending the word
+                //{
+                //    currentLine.Append(' ');
+                //    currentLineLength++;
+                //}
 
                 currentLine.Append(word); // Append word to current line
                 currentLineLength += word.Length;
@@ -548,7 +548,7 @@ namespace NLog.Common
                     fileVersionInfo?.ProductVersion,
                     globalAssemblyCache);
 #else
-                Info(assembly.FullName);
+                Info($"[NLog.Common.InternalLogger] Assembly Info: {assembly.FullName}");
 #endif
             }
             catch (Exception ex)
