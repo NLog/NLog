@@ -423,13 +423,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="KeepFileOpen"/> = <c>false</c> with NLog v5.3.
         /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on different network hosts.
         /// </summary>
         /// <remarks>
         /// This effectively prevents files from being kept open.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='50' />
-        public bool NetworkWrites { get; set; }
+        [Obsolete("Instead use KeepFileOpen = false. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool NetworkWrites { get => !KeepFileOpen; set => KeepFileOpen = !value; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files.
@@ -858,10 +861,6 @@ namespace NLog.Targets
             {
                 return RetryingMultiProcessFileAppender.TheFactory;
             }
-            else if (NetworkWrites)
-            {
-                return RetryingMultiProcessFileAppender.TheFactory;
-            }
             else if (ConcurrentWrites)
             {
 #if SupportsMutex
@@ -898,7 +897,7 @@ namespace NLog.Targets
 
         private bool IsArchivingEnabled => ArchiveAboveSize != ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
 
-        private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !NetworkWrites && !ReplaceFileContentsOnEachWrite;
+        private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !ReplaceFileContentsOnEachWrite;
 
         private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && IsSimpleKeepFileOpen
 #if !NETSTANDARD
