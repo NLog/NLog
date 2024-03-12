@@ -85,7 +85,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="interval">Interval in which the maximum number of messages can be written.</param>
         public LimitingTargetWrapper(Target wrappedTarget, int messageLimit, TimeSpan interval)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             MessageLimit = messageLimit;
             Interval = interval;

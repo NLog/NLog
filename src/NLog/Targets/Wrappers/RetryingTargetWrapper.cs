@@ -91,7 +91,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="retryDelayMilliseconds">The retry delay milliseconds.</param>
         public RetryingTargetWrapper(Target wrappedTarget, int retryCount, int retryDelayMilliseconds)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             RetryCount = retryCount;
             RetryDelayMilliseconds = retryDelayMilliseconds;
