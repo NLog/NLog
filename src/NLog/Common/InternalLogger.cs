@@ -394,7 +394,7 @@ namespace NLog.Common
             int indentSize = 33 + indent;
 
             string levelFormatted = $"[{level.ToString().ToUpper().PadLeft(levelWidth)}]";
-            string methodFormatted = (senderType != null) ? $"[{senderName}|{senderType?.ToString()}]" : "";
+            string methodFormatted = (senderType != null) ? $"[{senderType?.ToString()}]" : "";
 
             fullMessage = (fullMessage.Length > maxLineLength)
                 ? IndentLongString(fullMessage, maxLineLength, indentSize)
