@@ -329,7 +329,7 @@ namespace NLog.Layouts
 
                     if (ThreadAgnostic)
                     {
-                        if (MutableUnsafe)
+                        if (ThreadAgnosticImmutable)
                         {
                             // If raw value doesn't have the ability to mutate, then we can skip precalculate
                             var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
@@ -361,7 +361,7 @@ namespace NLog.Layouts
                 }
             }
 
-            return ThreadAgnostic && !MutableUnsafe;
+            return ThreadAgnostic && !ThreadAgnosticImmutable;
         }
 
         private static bool IsObjectValueMutableSafe(object value)
@@ -381,7 +381,7 @@ namespace NLog.Layouts
                         Initialize(LoggingConfiguration);
                     }
 
-                    if ((!ThreadAgnostic || MutableUnsafe) && logEvent.TryGetCachedLayoutValue(this, out _))
+                    if ((!ThreadAgnostic || ThreadAgnosticImmutable) && logEvent.TryGetCachedLayoutValue(this, out _))
                     {
                         rawValue = null;
                         return false;    // Raw-Value has been precalculated, so not available

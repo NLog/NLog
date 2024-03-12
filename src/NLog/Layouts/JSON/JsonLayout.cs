@@ -226,7 +226,7 @@ namespace NLog.Layouts
             }
             if (IncludeEventProperties)
             {
-                MutableUnsafe = true;
+                ThreadAgnosticImmutable = true;
             }
 
             _precalculateLayouts = (IncludeScopeProperties || IncludeEventProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout));

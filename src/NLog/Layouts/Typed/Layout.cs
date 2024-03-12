@@ -164,7 +164,7 @@ namespace NLog.Layouts
             base.InitializeLayout();
             _innerLayout?.Initialize(LoggingConfiguration ?? _innerLayout.LoggingConfiguration);
             ThreadAgnostic = _innerLayout?.ThreadAgnostic ?? true;
-            MutableUnsafe = _innerLayout?.MutableUnsafe ?? false;
+            ThreadAgnosticImmutable = _innerLayout?.ThreadAgnosticImmutable ?? false;
             StackTraceUsage = _innerLayout?.StackTraceUsage ?? StackTraceUsage.None;
             _valueTypeConverter = null;
             _previousStringValue = null;
@@ -195,7 +195,7 @@ namespace NLog.Layouts
 
         private void PrecalculateInnerLayout(LogEventInfo logEvent, StringBuilder target)
         {
-            if (IsFixed || (_innerLayout.ThreadAgnostic && !_innerLayout.MutableUnsafe))
+            if (IsFixed || (_innerLayout.ThreadAgnostic && !_innerLayout.ThreadAgnosticImmutable))
                 return;
 
             if (TryRenderObjectValue(logEvent, target, out var cachedValue))

@@ -51,7 +51,6 @@ namespace NLog.LayoutRenderers
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
     /// </summary>
     [LayoutRenderer("log4jxmlevent")]
-    [MutableUnsafe]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace, IIncludeContext
     {
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);

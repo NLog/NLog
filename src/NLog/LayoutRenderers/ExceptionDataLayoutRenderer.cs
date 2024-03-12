@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("exceptiondata")]
     [LayoutRenderer("exception-data")]
     [ThreadAgnostic]
-    [MutableUnsafe]
+    [ThreadAgnosticImmutable]
     public class ExceptionDataLayoutRenderer : LayoutRenderer
     {
         /// <summary>
