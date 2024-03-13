@@ -197,7 +197,9 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
-            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
+            var logger = factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
+            InternalLogger.Info($"[LogManager] Retrieved Logger for #{logger?.Name}");
+            return logger;
         }
 
         internal static bool IsHiddenAssembly(Assembly assembly)
