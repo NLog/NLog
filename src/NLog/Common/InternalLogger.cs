@@ -389,16 +389,11 @@ namespace NLog.Common
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
             const int levelWidth = 6;
-            int maxLineLength = 100;
             int indent = 4;
             int indentSize = 33 + indent;
 
             string levelFormatted = $"[{level.ToString().ToUpper().PadRight(levelWidth)}]";
             string methodFormatted = (senderType != null) ? $"[{senderType?.ToString()}]" : "";
-
-            fullMessage = (fullMessage.Length > maxLineLength)
-                ? IndentLongString(fullMessage, maxLineLength, indentSize)
-                : fullMessage;
             string methodSeparator = (senderType != null) ? " " : "";
 
             if (IncludeTimestamp)
@@ -461,37 +456,7 @@ namespace NLog.Common
             }
         }
 
-        static string IndentLongString(string longString, int maxLineLength, int indentSize)
-        {
-            StringBuilder result = new StringBuilder();
-            string[] words = longString.Split(new[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            StringBuilder currentLine = new StringBuilder();
-            int currentLineLength = 0;
 
-            foreach (string word in words)
-            {
-                if (currentLineLength + word.Length + 1 > maxLineLength) // If adding the word would exceed max length
-                {
-                    result.AppendLine(currentLine.ToString()); // Add current line to result
-                    result.Append(new string(' ', indentSize)); // Add indentation
-                    currentLine.ClearBuilder(); // Clear current line
-                    currentLineLength = indentSize; // Reset current line length with indentation
-                }
-
-                //if (currentLine.Length > 0) // If not the first word in the line, add a space before appending the word
-                //{
-                //    currentLine.Append(' ');
-                //    currentLineLength++;
-                //}
-
-                currentLine.Append(word); // Append word to current line
-                currentLineLength += word.Length;
-            }
-
-            result.Append(currentLine); // Append the last line to result
-
-            return result.ToString();
-        }
 
         /// <summary>
         /// Determine if logging should be avoided because of exception type. 
