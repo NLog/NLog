@@ -47,8 +47,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Database.Tests", "..\t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTrimPublish", "..\tests\TestTrimPublish\TestTrimPublish.csproj", "{058FBDB2-4C9C-45F6-BE9E-088AD019C77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogConsole", "NLogConsole\NLogConsole.csproj", "{47633D6A-D545-4ABF-8EEB-AC76116A3E00}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,10 +105,6 @@ Global
 		{058FBDB2-4C9C-45F6-BE9E-088AD019C77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058FBDB2-4C9C-45F6-BE9E-088AD019C77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058FBDB2-4C9C-45F6-BE9E-088AD019C77A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47633D6A-D545-4ABF-8EEB-AC76116A3E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47633D6A-D545-4ABF-8EEB-AC76116A3E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47633D6A-D545-4ABF-8EEB-AC76116A3E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47633D6A-D545-4ABF-8EEB-AC76116A3E00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
