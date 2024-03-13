@@ -801,9 +801,9 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
                 logFactory.Configuration = config;
 
-                AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
+                AssertFileContains(tempFileName, "[LoggingConfiguration] Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
 
-                AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);
+                AssertFileContains(tempFileName, "[LoggingConfiguration] Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);
             }
             finally
             {
