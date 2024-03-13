@@ -62,7 +62,7 @@ namespace NLog.Internal
         {
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
+                InternalLogger.Trace("[Nlog.Internal.ObjectGraphScanner] FindReachableObject<{0}>:", typeof(T));
             }
             var result = new List<T>();
             var visitedObjects = new HashSet<object>(SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default);
@@ -101,7 +101,7 @@ namespace NLog.Internal
             var type = targetObject.GetType();
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, targetObject);
+                InternalLogger.Trace("[Nlog.Internal.ObjectGraphScanner] {0}Scanning {1} '{2}'", new string(' ', level), type.Name, targetObject);
             }
 
             foreach (var configProp in PropertyHelper.GetAllConfigItemProperties(configFactory, type))
@@ -126,7 +126,7 @@ namespace NLog.Internal
         {
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("{0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, propValue, prop.PropertyType);
+                InternalLogger.Trace("[Nlog.Internal.ObjectGraphScanner] {0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, propValue, prop.PropertyType);
             }
 
             if (propValue is IEnumerable enumerable)
