@@ -280,16 +280,17 @@ namespace NLog
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
-                            InternalLogger.Info("Configuration initialized.");
+                            InternalLogger.Info("[LogFactory] Configurations for all loggers reloaded.");
                         }
                         finally
                         {
                             _configLoaded = true;
                         }
                     }
-
+                    InternalLogger.Debug("[NLog.LogFactory] Getting Configuration: ", _config?.ToString());
                     return _config;
                 }
+
             }
 
             set
@@ -299,7 +300,7 @@ namespace NLog
                     LoggingConfiguration oldConfig = _config;
                     if (oldConfig != null)
                     {
-                        InternalLogger.Info("Closing old configuration.");
+                        InternalLogger.Info("[LogFactory] Closing old configuration.");
                         Flush();
                         oldConfig.Close();
                     }
@@ -322,7 +323,7 @@ namespace NLog
                             _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
-                            InternalLogger.Info("Configuration initialized.");
+                            InternalLogger.Info("[LogFactory] Configuration initialized.");
                         }
                         finally
                         {
@@ -332,6 +333,8 @@ namespace NLog
 
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
+                InternalLogger.Debug("[NLog.LogFactory] Setting Configuration: ", _config?.ToString());
+
             }
         }
 
@@ -387,7 +390,7 @@ namespace NLog
                 {
                     if (_globalThreshold != value)
                     {
-                        InternalLogger.Info("LogFactory GlobalThreshold changing to LogLevel: {0}", value);
+                        InternalLogger.Info("[LogFactory] LogFactory GlobalThreshold changing to LogLevel: {0}", value);
                     }
                     _globalThreshold = value ?? LogLevel.MinLevel;
                     ReconfigExistingLoggers();
@@ -922,7 +925,7 @@ namespace NLog
                 {
                     if (sb is null)
                     {
-                        InternalLogger.Debug("Targets configured when LogLevel >= {0} for Logger: {1}", LogLevel.FromOrdinal(i), loggerName);
+                        InternalLogger.Debug("[NLog.LogFactory] Targets configured when LogLevel >= {0} for Logger: {1}", LogLevel.FromOrdinal(i), loggerName);
                         sb = new StringBuilder();
                         sb.AppendFormat(CultureInfo.InvariantCulture, "Logger {0} [{1}] =>", loggerName, LogLevel.FromOrdinal(i));
                     }
@@ -935,7 +938,7 @@ namespace NLog
                 }
 
                 if (sb != null)
-                    InternalLogger.Debug(sb.ToString());
+                    InternalLogger.Debug($"[NLog.LogFactory] {sb}");
             }
 
             return sb != null;
@@ -1434,7 +1437,7 @@ namespace NLog
                 //stop timer on domain unload, otherwise: 
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
-                InternalLogger.Info("AppDomain Shutting down. LogFactory closing...");
+                InternalLogger.Info("[LogFactory] AppDomain Shutting down. LogFactory closing...");
                 // Domain-Unload has to complete in about 2 secs on Windows-platform, before being terminated.
                 // Other platforms like Linux will fail when trying to spin up new threads at domain unload.
                 var flushTimeout =
@@ -1443,7 +1446,7 @@ namespace NLog
 #endif
                     TimeSpan.Zero;
                 Close(flushTimeout);
-                InternalLogger.Info("LogFactory has been closed.");
+                InternalLogger.Info("[LogFactory] LogFactory has been closed.");
             }
             catch (Exception ex)
             {
