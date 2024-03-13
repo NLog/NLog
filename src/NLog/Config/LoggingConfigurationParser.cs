@@ -72,7 +72,7 @@ namespace NLog.Config
         /// <param name="basePath">Directory where the NLog-config-file was loaded from</param>
         protected void LoadConfig(ILoggingConfigurationElement nlogConfig, string basePath)
         {
-            InternalLogger.Trace("ParseNLogConfig");
+            InternalLogger.Trace("[NLog.Config.LoggingConfigurationParser] ParseNLogConfig");
             nlogConfig.AssertName("nlog");
 
             SetNLogElementSettings(nlogConfig);
@@ -499,7 +499,7 @@ namespace NLog.Config
             if (newTimeSource != null)
             {
                 ConfigureFromAttributesAndElements(newTimeSource, timeElement);
-                InternalLogger.Info("Selecting time source {0}", newTimeSource);
+                InternalLogger.Info("[LoggingConfigurationParser] Selecting time source {0}", newTimeSource);
                 TimeSource.Current = newTimeSource;
             }
         }
@@ -533,7 +533,7 @@ namespace NLog.Config
         /// <param name="rulesCollection">Rules are added to this parameter.</param>
         private void ParseRulesElement(ValidatedConfigurationElement rulesElement, IList<LoggingRule> rulesCollection)
         {
-            InternalLogger.Trace("ParseRulesElement");
+            InternalLogger.Trace("[NLog.Config.LoggingConfigurationParser] ParseRulesElement() Entered");
             rulesElement.AssertName("rules");
 
             foreach (var childItem in rulesElement.ValidChildren)
@@ -544,9 +544,12 @@ namespace NLog.Config
                     lock (rulesCollection)
                     {
                         rulesCollection.Add(loggingRule);
+                        InternalLogger.Trace($"[NLog.Config.LoggingConfigurationParser] ParseRulesElement {loggingRule} Added");
                     }
                 }
             }
+            InternalLogger.Trace("[NLog.Config.LoggingConfigurationParser] ParseRulesElement() Exited");
+
         }
 
         private LogLevel LogLevelFromString(string text)
