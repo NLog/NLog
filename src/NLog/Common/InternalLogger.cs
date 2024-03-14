@@ -389,8 +389,6 @@ namespace NLog.Common
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
             const int levelWidth = 6;
-            int indent = 4;
-            int indentSize = 33 + indent;
 
             string levelFormatted = $"[{level.ToString().ToUpper().PadRight(levelWidth)}]";
             string methodFormatted = (senderType != null) ? $"[{senderType?.ToString()}]" : "";
