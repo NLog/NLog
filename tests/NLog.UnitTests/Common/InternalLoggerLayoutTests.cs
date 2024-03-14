@@ -179,7 +179,6 @@ internalLogToTrace='{logToTraceString}' autoShutdown='{autoShutdownString}'>
             var testTime = TimeSource.Current.Time.ToString(_timeStampFormat, CultureInfo.InvariantCulture);
 
             //test parameters
-            var file = @"c:\temp\nlog\file_internallogger_Infodebug.txt";
             var logLevelString = LogLevel.Info.ToString();
             var internalLogToConsoleString = false.ToString();
             var internalLogToConsoleErrorString = false.ToString().ToLower();
