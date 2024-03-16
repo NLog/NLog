@@ -499,6 +499,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogFactory.GetCurrentClassLogger{T}()"/> with NLog v5.2.
         /// Gets a custom logger with the full name of the current class, so namespace and class name.
         /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
