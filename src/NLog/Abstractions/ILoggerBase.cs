@@ -40,11 +40,15 @@ namespace NLog
     /// <summary>
     /// Logger with only generic methods (passing 'LogLevel' to methods) and core properties.
     /// </summary>
+    [Obsolete("ILoggerBase should be replaced with ILogger. Marked obsolete with NLog v5.3")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public partial interface ILoggerBase
     {
         /// <summary>
         /// Occurs when logger configuration changes.
         /// </summary>
+        [Obsolete("LoggerReconfigured-EventHandler is very exotic for ILogger-interface. Instead use Logger.LoggerReconfigured. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         event EventHandler<EventArgs> LoggerReconfigured;
 
         /// <summary>
@@ -58,6 +62,8 @@ namespace NLog
         /// <summary>
         /// Gets the factory that created this logger.
         /// </summary>
+        [Obsolete("Factory-property is hard to mock for ILogger-interface. Instead use Logger.Factory. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         LogFactory Factory
         {
             get;
@@ -113,17 +119,6 @@ namespace NLog
         void Log(LogLevel level, LogMessageGenerator messageFunc);
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="Log(LogLevel, Exception, string, object[])"/> - Writes the diagnostic message and exception at the specified level.
-        /// </summary>
-        /// <param name="level">The log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete with v4.3.11")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        void LogException(LogLevel level, [Localizable(false)] string message, Exception exception);
-
-        /// <summary>
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
@@ -169,17 +164,6 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args);
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="Log(LogLevel, Exception, string, object[])"/> - Writes the diagnostic message and exception at the specified level.
-        /// </summary>
-        /// <param name="level">The log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete with v4.3.11")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        void Log(LogLevel level, [Localizable(false)] string message, Exception exception);
 
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameter and formatting it with the supplied format provider.
@@ -256,6 +240,27 @@ namespace NLog
         [MessageTemplateFormatMethod("message")]
         void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
+        /// <summary>
+        /// Obsolete and replaced by <see cref="Log(LogLevel, Exception, string, object[])"/> - Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete with v4.3.11")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void Log(LogLevel level, [Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Obsolete and replaced by <see cref="Log(LogLevel, Exception, string, object[])"/> - Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete with v4.3.11")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void LogException(LogLevel level, [Localizable(false)] string message, Exception exception);
         #endregion
     }
 }

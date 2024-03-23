@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.ComponentModel;
 #if !NET35 && !NET40
     using System.Threading.Tasks;
 #endif
@@ -41,6 +42,8 @@ namespace NLog
     /// <summary>
     /// Provides an interface to execute System.Actions without surfacing any exceptions raised for that action.
     /// </summary>
+    [Obsolete("ISuppress should be replaced with ILogger. Marked obsolete with NLog v5.3")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public interface ISuppress
     {
         /// <summary>
