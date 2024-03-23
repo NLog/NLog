@@ -1,7 +1,7 @@
 version: 5.0.0-{build} # Only change for mayor versions (e.g. 6.0)
 image:
   - Visual Studio 2022
-  - Previous Ubuntu
+  - Ubuntu2004
 configuration: Release
 build: false
 test: false
@@ -54,7 +54,7 @@ for:
   -
     matrix:
       only:
-        - image: Previous Ubuntu
+        - image: Ubuntu2004
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       FrameworkPathOverride: /usr/lib/mono/4.6.1-api/

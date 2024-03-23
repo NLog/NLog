@@ -139,7 +139,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string lastMessage = GetDebugLastMessage("debug", logFactory);
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
-            Assert.Contains("callsitetests.cs:" + linenumber, lastMessage); // Expected prefix of 10000
+            Assert.Contains("callsitetests.cs:" + linenumber, lastMessage.ToLowerInvariant()); // Expected prefix of 10000
 #if DEBUG
 #line default
 #endif
