@@ -452,7 +452,7 @@ namespace NLog.Config
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
         private void ParseNLogElement(ILoggingConfigurationElement nlogElement, [CanBeNull] string filePath, bool autoReloadDefault)
         {
-            InternalLogger.Trace("ParseNLogElement");
+            InternalLogger.Trace("[NLog.Config.XmlLoggingConfiguration] ParseNLogElement");
             nlogElement.AssertName("nlog");
 
             bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);

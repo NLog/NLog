@@ -130,7 +130,7 @@ namespace NLog.Config
 
             if (target != null)
             {
-                InternalLogger.Debug("Unregistered target {0}(Name={1})", target.GetType(), target.Name);
+                InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Unregistered target {0}(Name={1})", target.GetType(), target.Name);
             }
 
             return target;
@@ -159,11 +159,11 @@ namespace NLog.Config
 
             if (!string.IsNullOrEmpty(target.Name) && !string.Equals(target.Name, targetAlias, StringComparison.OrdinalIgnoreCase))
             {
-                InternalLogger.Info("Registered target {0}(Name={1}) (Extra alias={2})", target.GetType(), target.Name, targetAlias);
+                InternalLogger.Info("[LoggingConfiguration] Registered target {0}(Name={1}) (Extra alias={2})", target.GetType(), target.Name, targetAlias);
             }
             else
             {
-                InternalLogger.Info("Registered target {0}(Name={1})", target.GetType(), target.Name);
+                InternalLogger.Info("[LoggingConfiguration] Registered target {0}(Name={1})", target.GetType(), target.Name);
             }
         }
 
@@ -215,7 +215,7 @@ namespace NLog.Config
         {
             Guard.ThrowIfNull(target);
 
-            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType(), target.Name);
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Adding target {0}(Name={1})", target.GetType(), target.Name);
 
             if (string.IsNullOrEmpty(target.Name)) { throw new ArgumentException(nameof(target) + ".Name cannot be empty", nameof(target)); }
 
@@ -234,7 +234,7 @@ namespace NLog.Config
             Guard.ThrowIfNull(name);
             Guard.ThrowIfNull(target);
 
-            InternalLogger.Debug("Adding target {0}(Name={1})", target.GetType(), string.IsNullOrEmpty(name) ? target.Name : name);
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Adding target {0}(Name={1})", target.GetType(), string.IsNullOrEmpty(name) ? target.Name : name);
 
             if (string.IsNullOrEmpty(name)) { throw new ArgumentException("Target name cannot be empty", nameof(name)); }
 
@@ -593,7 +593,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Error(exception, "Install of '{0}' failed.", installable);
+                    InternalLogger.Error(exception, "[LoggingConfiguration] Install of '{0}' failed.", installable);
                     if (exception.MustBeRethrownImmediately() || installationContext.ThrowExceptions)
                     {
                         throw;
@@ -629,7 +629,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Error(exception, "Uninstall of '{0}' failed.", installable);
+                    InternalLogger.Error(exception, "[LoggingConfiguration] Uninstall of '{0}' failed.", installable);
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;
@@ -645,18 +645,18 @@ namespace NLog.Config
         /// </summary>
         internal void Close()
         {
-            InternalLogger.Debug("Closing logging configuration...");
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Closing logging configuration...");
             var supportsInitializesList = GetSupportsInitializes();
             foreach (ISupportsInitialize initialize in supportsInitializesList)
             {
-                InternalLogger.Trace("Closing {0}", initialize);
+                InternalLogger.Trace("[NLog.Config.LoggingConfiguration] Closing {0}", initialize);
                 try
                 {
                     initialize.Close();
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Warn(exception, "Exception while closing.");
+                    InternalLogger.Warn(exception, "[LoggingConfiguration]Exception while closing.");
 
                     if (exception.MustBeRethrown())
                     {
@@ -665,7 +665,7 @@ namespace NLog.Config
                 }
             }
 
-            InternalLogger.Debug("Finished closing logging configuration.");
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Finished closing logging configuration.");
         }
 
         /// <summary>
@@ -684,17 +684,17 @@ namespace NLog.Config
             }
 
             InternalLogger.Debug("--- NLog configuration dump ---");
-            InternalLogger.Debug("Targets:");
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Targets:");
             var targetList = GetAllTargetsThreadSafe();
             foreach (Target target in targetList)
             {
-                InternalLogger.Debug("{0}", target);
+                InternalLogger.Debug("[NLog.Config.LoggingConfiguration] {0}", target);
             }
 
-            InternalLogger.Debug("Rules:");
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Rules:");
             foreach (LoggingRule rule in GetLoggingRulesThreadSafe())
             {
-                InternalLogger.Debug("{0}", rule);
+                InternalLogger.Debug("[NLog.Config.LoggingConfiguration] {0}", rule);
             }
 
             InternalLogger.Debug("--- End of NLog configuration dump ---");
@@ -735,7 +735,7 @@ namespace NLog.Config
 
             _configItems = ObjectGraphScanner.FindReachableObjects<object>(ConfigurationItemFactory.Default, true, roots.ToArray());
 
-            InternalLogger.Info("Validating config: {0}", this);
+            InternalLogger.Info("[LoggingConfiguration] Validating config: {0}", this);
 
             foreach (object o in _configItems)
             {
@@ -760,7 +760,7 @@ namespace NLog.Config
 
             if (firstInitializeAll && (LogFactory.ThrowExceptions || LogManager.ThrowExceptions))
             {
-                InternalLogger.Info("LogManager.ThrowExceptions = true can crash the application! Use only for unit-testing and last resort troubleshooting.");
+                InternalLogger.Info("[LoggingConfiguration] LogManager.ThrowExceptions = true can crash the application! Use only for unit-testing and last resort troubleshooting.");
             }
 
             ValidateConfig();
@@ -775,7 +775,7 @@ namespace NLog.Config
             var supportsInitializes = GetSupportsInitializes(true);
             foreach (ISupportsInitialize initialize in supportsInitializes)
             {
-                InternalLogger.Trace("Initializing {0}", initialize);
+                InternalLogger.Trace("[NLog.Config.LoggingConfiguration] Initializing {0}", initialize);
 
                 try
                 {
@@ -918,7 +918,7 @@ namespace NLog.Config
                 return;
 
             var configuredNamedTargets = GetAllTargetsThreadSafe(); //assign to variable because `GetAllTargetsThreadSafe` computes a new list every time.
-            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
 
             var targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
             var allTargets = AllTargets;
@@ -957,11 +957,11 @@ namespace NLog.Config
                 if (!IsUnusedInList(target, compoundTargets))
                     return false;
 
-                InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
+                InternalLogger.Warn("[LoggingConfiguration] Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
                 return true;
             });
 
-            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
+            InternalLogger.Debug("[NLog.Config.LoggingConfiguration] Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
         /// <inheritdoc/>

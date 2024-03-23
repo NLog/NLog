@@ -72,7 +72,7 @@ namespace NLog.Config
         /// <param name="basePath">Directory where the NLog-config-file was loaded from</param>
         protected void LoadConfig(ILoggingConfigurationElement nlogConfig, string basePath)
         {
-            InternalLogger.Trace("ParseNLogConfig");
+            InternalLogger.Trace("[NLog.Config.LoggingConfigurationParser] ParseNLogConfig");
             nlogConfig.AssertName("nlog");
 
             SetNLogElementSettings(nlogConfig);
@@ -146,16 +146,24 @@ namespace NLog.Config
                         LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
                         break;
                     case "INTERNALLOGTOCONSOLE":
+#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsole);
+#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGTOCONSOLEERROR":
+#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsoleError);
+#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGFILE":
+#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogFile = configItem.Value?.Trim();
+#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGTOTRACE":
+#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogToTrace = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
+#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGINCLUDETIMESTAMP":
                         InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.IncludeTimestamp);
@@ -491,7 +499,7 @@ namespace NLog.Config
             if (newTimeSource != null)
             {
                 ConfigureFromAttributesAndElements(newTimeSource, timeElement);
-                InternalLogger.Info("Selecting time source {0}", newTimeSource);
+                InternalLogger.Info("[LoggingConfigurationParser] Selecting time source {0}", newTimeSource);
                 TimeSource.Current = newTimeSource;
             }
         }
@@ -525,7 +533,7 @@ namespace NLog.Config
         /// <param name="rulesCollection">Rules are added to this parameter.</param>
         private void ParseRulesElement(ValidatedConfigurationElement rulesElement, IList<LoggingRule> rulesCollection)
         {
-            InternalLogger.Trace("ParseRulesElement");
+            InternalLogger.Trace("[NLog.Config.LoggingConfigurationParser] ParseRulesElement() Entered");
             rulesElement.AssertName("rules");
 
             foreach (var childItem in rulesElement.ValidChildren)
@@ -536,9 +544,12 @@ namespace NLog.Config
                     lock (rulesCollection)
                     {
                         rulesCollection.Add(loggingRule);
+                        InternalLogger.Trace($"[NLog.Config.LoggingConfigurationParser] ParseRulesElement {loggingRule} Added");
                     }
                 }
             }
+            InternalLogger.Trace("[NLog.Config.LoggingConfigurationParser] ParseRulesElement() Exited");
+
         }
 
         private LogLevel LogLevelFromString(string text)

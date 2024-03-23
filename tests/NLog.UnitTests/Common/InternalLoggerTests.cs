@@ -233,7 +233,9 @@ namespace NLog.UnitTests.Common
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToConsole = true;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 {
                     // Named (based on LogLevel) public methods.
@@ -271,12 +273,14 @@ namespace NLog.UnitTests.Common
                     loggerScope.ConsoleOutputWriter.Flush();
                     loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Warn(() => "WWW");
                     InternalLogger.Error(() => "EEE");
                     InternalLogger.Fatal(() => "FFF");
                     InternalLogger.Trace(() => "TTT");
                     InternalLogger.Debug(() => "DDD");
                     InternalLogger.Info(() => "III");
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
@@ -293,7 +297,9 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToConsoleError = true;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 {
                     // Named (based on LogLevel) public methods.
@@ -330,12 +336,14 @@ namespace NLog.UnitTests.Common
                     loggerScope.ConsoleErrorWriter.Flush();
                     loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Warn(() => "WWW");
                     InternalLogger.Error(() => "EEE");
                     InternalLogger.Fatal(() => "FFF");
                     InternalLogger.Trace(() => "TTT");
                     InternalLogger.Debug(() => "DDD");
                     InternalLogger.Info(() => "III");
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     TestWriter(expected, loggerScope.ConsoleErrorWriter);
                 }
@@ -359,7 +367,9 @@ namespace NLog.UnitTests.Common
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogFile = tempFile;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 // Invoke Log(LogLevel, string) for every log level.
                 InternalLogger.Log(LogLevel.Warn, "WWW");
@@ -508,12 +518,14 @@ namespace NLog.UnitTests.Common
 
                     // Named (based on LogLevel) public methods.
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Warn(ex1, () => "WWW2");
                     InternalLogger.Error(ex2, () => "EEE2");
                     InternalLogger.Fatal(ex3, () => "FFF2");
                     InternalLogger.Trace(ex4, () => "TTT2");
                     InternalLogger.Debug(ex5, () => "DDD2");
                     InternalLogger.Info(ex6, () => "III2");
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     consoleOutWriter.Flush();
                     var strings = consoleOutWriter.ToString();
@@ -569,12 +581,14 @@ namespace NLog.UnitTests.Common
 
                     // Named (based on LogLevel) public methods.
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Log(ex1, LogLevel.Warn, () => "WWW4");
                     InternalLogger.Log(ex2, LogLevel.Error, () => "EEE4");
                     InternalLogger.Log(ex3, LogLevel.Fatal, () => "FFF4");
                     InternalLogger.Log(ex4, LogLevel.Trace, () => "TTT4");
                     InternalLogger.Log(ex5, LogLevel.Debug, () => "DDD4");
                     InternalLogger.Log(ex6, LogLevel.Info, () => "III4");
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     var strings = consoleOutWriter.ToString();
                     Assert.Equal(expected, strings);
@@ -640,12 +654,14 @@ namespace NLog.UnitTests.Common
         {
             Action log = () =>
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.Fatal(() => "L1");
                 InternalLogger.Error(() => "L2");
                 InternalLogger.Warn(() => "L3");
                 InternalLogger.Info(() => "L4");
                 InternalLogger.Debug(() => "L5");
                 InternalLogger.Trace(() => "L6");
+#pragma warning restore CS0618 // Type or member is obsolete
             };
 
             TestMinLevelSwitch_inner(rawLogLevel, count, log);
@@ -711,7 +727,9 @@ namespace NLog.UnitTests.Common
                 Assert.False(Directory.Exists(randomSubDirectory));
 
                 // Set the log file, which will only create the needed directories
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogFile = tempFile;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.Equal(Directory.Exists(randomSubDirectory), shouldCreateDirectory);
 
@@ -749,7 +767,9 @@ namespace NLog.UnitTests.Common
                     "Info III" + Environment.NewLine;
 
             // Store off the previous log file
+#pragma warning disable CS0618 // Type or member is obsolete
             string previousLogFile = InternalLogger.LogFile;
+#pragma warning restore CS0618 // Type or member is obsolete
 
             var tempFileName = Path.GetRandomFileName();
 
@@ -761,7 +781,9 @@ namespace NLog.UnitTests.Common
                 Assert.False(File.Exists(tempFileName));
 
                 // Set the log file, which only has a filename
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogFile = tempFileName;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.False(File.Exists(tempFileName));
 
@@ -787,6 +809,7 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventTest()
         {
             using (var loggerScope = new InternalLoggerScope())
@@ -816,6 +839,7 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventThrowingTest()
         {
             using (var loggerScope = new InternalLoggerScope())
@@ -842,6 +866,7 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventContextTest()
         {
             using (var loggerScope = new InternalLoggerScope())

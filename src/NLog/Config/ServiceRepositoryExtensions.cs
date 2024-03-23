@@ -174,18 +174,18 @@ namespace NLog.Config
         {
             if (enable == true)
             {
-                NLog.Common.InternalLogger.Debug("Message Template Format always enabled");
+                NLog.Common.InternalLogger.Debug("[NLog.Config.ServiceRepositoryExtensions] Message Template Format always enabled");
                 serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, true, false));
             }
             else if (enable == false)
             {
-                NLog.Common.InternalLogger.Debug("Message Template String Format always enabled");
+                NLog.Common.InternalLogger.Debug("[NLog.Config.ServiceRepositoryExtensions] Message Template String Format always enabled");
                 serviceRepository.RegisterSingleton<ILogMessageFormatter>(LogMessageStringFormatter.Default);
             }
             else
             {
                 //null = auto
-                NLog.Common.InternalLogger.Debug("Message Template Auto Format enabled");
+                NLog.Common.InternalLogger.Debug("[NLog.Config.ServiceRepositoryExtensions] Message Template Auto Format enabled");
                 serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
             }
             return serviceRepository;

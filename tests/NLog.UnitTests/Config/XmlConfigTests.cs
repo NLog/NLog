@@ -53,10 +53,12 @@ namespace NLog.UnitTests.Config
 
                 Assert.False(config.AutoReload);
                 Assert.True(config.InitializeSucceeded);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Equal("", InternalLogger.LogFile);
-                Assert.True(InternalLogger.IncludeTimestamp);
                 Assert.False(InternalLogger.LogToConsole);
                 Assert.False(InternalLogger.LogToConsoleError);
+#pragma warning restore CS0618 // Type or member is obsolete
+                Assert.True(InternalLogger.IncludeTimestamp);
                 Assert.Null(InternalLogger.LogWriter);
                 Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);
             }
@@ -74,10 +76,12 @@ namespace NLog.UnitTests.Config
 
                     Assert.False(config.AutoReload);
                     Assert.True(config.InitializeSucceeded);
+#pragma warning disable CS0618 // Type or member is obsolete
                     Assert.Equal("", InternalLogger.LogFile);
-                    Assert.False(InternalLogger.IncludeTimestamp);
                     Assert.True(InternalLogger.LogToConsole);
                     Assert.True(InternalLogger.LogToConsoleError);
+#pragma warning restore CS0618 // Type or member is obsolete
+                    Assert.False(InternalLogger.IncludeTimestamp);
                     Assert.Null(InternalLogger.LogWriter);
                     Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);
                 }
@@ -91,21 +95,27 @@ namespace NLog.UnitTests.Config
             {
                 var xml = "<nlog internalLogFile='${CurrentDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(System.IO.Directory.GetCurrentDirectory(), InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${BaseDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(AppDomain.CurrentDomain.BaseDirectory, InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${TempDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(System.IO.Path.GetTempPath(), InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
 #if !NETSTANDARD1_3
@@ -113,7 +123,9 @@ namespace NLog.UnitTests.Config
             {
                 var xml = "<nlog internalLogFile='${ProcessDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(Path.GetDirectoryName(CurrentProcessPath), InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 #endif
 
@@ -122,21 +134,27 @@ namespace NLog.UnitTests.Config
             {
                 var xml = "<nlog internalLogFile='${CommonApplicationDataDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${UserApplicationDataDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${UserLocalApplicationDataDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 #endif
 
@@ -146,7 +164,9 @@ namespace NLog.UnitTests.Config
                 var xml = "<nlog internalLogFile='%USERNAME%_test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 if (!string.IsNullOrEmpty(userName))
+#pragma warning disable CS0618 // Type or member is obsolete
                     Assert.Contains(userName, InternalLogger.LogFile);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
 
