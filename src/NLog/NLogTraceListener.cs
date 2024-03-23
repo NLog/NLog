@@ -46,6 +46,10 @@ namespace NLog
     /// <summary>
     /// TraceListener which routes all messages through NLog.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace">Documentation on NLog Wiki</seealso>
     public class NLogTraceListener : TraceListener
     {
         private LogFactory _logFactory;
@@ -165,7 +169,16 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void Write(string message)
         {
-            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+            WriteInternal(message);
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, writes the specified message to the listener you create in the derived class.
+        /// </summary>
+        /// <param name="o">A message payload to write.</param>
+        public override void Write(object o)
+        {
+            WriteInternal(o);
         }
 
         /// <summary>
@@ -174,7 +187,39 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void WriteLine(string message)
         {
-            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+            WriteInternal(message);
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, writes the specified message to the listener you create in the derived class.
+        /// </summary>
+        /// <param name="o">A message payload to write.</param>
+        public override void WriteLine(object o)
+        {
+            WriteInternal(o);
+        }
+
+        private void WriteInternal(string message)
+        {
+            if (Filter != null && !Filter.ShouldTrace(null, String.Empty, TraceEventType.Verbose, 0, message, null, null, null))
+                return;
+
+            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Verbose, null);
+        }
+
+        private void WriteInternal(object o)
+        {
+            if (Filter != null && !Filter.ShouldTrace(null, string.Empty, TraceEventType.Verbose, 0, string.Empty, null, o, null))
+                return;
+
+            if (o is null || o is IConvertible)
+            {
+                ProcessLogEventInfo(DefaultLogLevel, null, o?.ToString() ?? string.Empty, null, null, TraceEventType.Verbose, null);
+            }
+            else
+            {
+                ProcessLogEventInfo(DefaultLogLevel, null, "{0}", new[] { o }, null, TraceEventType.Verbose, null);
+            }
         }
 
         /// <summary>
@@ -404,21 +449,30 @@ namespace NLog
             var ev = new LogEventInfo();
             ev.LoggerName = logger.Name;
             ev.Level = logLevel;
-            if (eventType.HasValue)
+            if (eventType.HasValue && eventType != TraceEventType.Verbose)
             {
                 ev.Properties.Add("EventType", eventType.Value);
             }
 
-            if (relatedActivityId.HasValue)
+            if (relatedActivityId.HasValue && relatedActivityId != Guid.Empty)
             {
                 ev.Properties.Add("RelatedActivityID", relatedActivityId.Value);
             }
 
             ev.Message = message;
             ev.Parameters = arguments;
+            if (arguments?.Length == 1 && arguments[0] is Exception exception)
+            {
+                ev.Exception = exception;
+                if (message == "{0}")
+                {
+                    ev.FormatProvider = ExceptionMessageFormatProvider.Instance;
+                }
+            }
+
             ev.Level = _forceLogLevel ?? logLevel;
 
-            if (eventId.HasValue)
+            if (eventId.HasValue && eventId != 0)
             {
                 ev.Properties.Add("EventID", eventId.Value);
             }
@@ -428,7 +482,7 @@ namespace NLog
                 ev.SetStackTrace(stackTrace, userFrameIndex);
             }
 
-            logger.Log(ev);
+            logger.Log(typeof(System.Diagnostics.Trace), ev);
         }
 
         private Logger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
