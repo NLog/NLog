@@ -105,7 +105,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.NotNull(hiddenAssemblyLoggerType);
 
             // Add the previously generated assembly to the "blacklist"
-            LogManager.AddHiddenAssembly(compiledAssembly);
+            LogManager.Setup().SetupLogFactory(setup => setup.AddCallSiteHiddenAssembly(compiledAssembly));
 
             // instantiate the HiddenAssemblyLogger from previously generated assembly
             object instance = Activator.CreateInstance(hiddenAssemblyLoggerType, new object[] { logger });

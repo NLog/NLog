@@ -118,7 +118,16 @@ namespace NLog
         /// </summary>
         public static ISetupLogFactoryBuilder AddCallSiteHiddenAssembly(this ISetupLogFactoryBuilder configBuilder, System.Reflection.Assembly assembly)
         {
-            LogManager.AddHiddenAssembly(assembly);
+            NLog.Internal.CallSiteInformation.AddCallSiteHiddenAssembly(assembly);
+            return configBuilder;
+        }
+
+        /// <summary>
+        /// Mark ClassType as hidden, so Class-Type-methods are excluded when resolving ${callsite} from StackTrace
+        /// </summary>
+        public static ISetupLogFactoryBuilder AddCallSiteHiddenClassType(this ISetupLogFactoryBuilder configBuilder, System.Type type)
+        {
+            NLog.Internal.CallSiteInformation.AddCallSiteHiddenClassType(type);
             return configBuilder;
         }
     }
