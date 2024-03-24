@@ -115,22 +115,26 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (logEvent.CallSiteInformation is null)
+            var logEventCallSize = logEvent.CallSiteInformation;
+            if (logEventCallSize is null)
+            {
+                AppendExceptionCallSite(builder, logEvent);
                 return;
+            }
 
             if (ClassName || MethodName)
             {
-                var method = logEvent.CallSiteInformation.GetCallerStackFrameMethod(SkipFrames);
-                
+                var method = logEventCallSize.GetCallerStackFrameMethod(SkipFrames);
+
                 if (ClassName)
                 {
-                    string className = logEvent.CallSiteInformation.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                    string className = logEventCallSize.GetCallerClassName(method, IncludeNamespace, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                     builder.Append(string.IsNullOrEmpty(className) ? "<no type>" : className);
                 }
 
                 if (MethodName)
                 {
-                    string methodName = logEvent.CallSiteInformation.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                    string methodName = logEventCallSize.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                     if (ClassName)
                     {
                         builder.Append('.');
@@ -141,10 +145,10 @@ namespace NLog.LayoutRenderers
 
             if (FileName)
             {
-                string fileName = logEvent.CallSiteInformation.GetCallerFilePath(SkipFrames);
+                string fileName = logEventCallSize.GetCallerFilePath(SkipFrames);
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    int lineNumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
+                    int lineNumber = logEventCallSize.GetCallerLineNumber(SkipFrames);
                     AppendFileName(builder, fileName, lineNumber);
                 }
             }
@@ -165,6 +169,39 @@ namespace NLog.LayoutRenderers
             builder.Append(':');
             builder.AppendInvariant(lineNumber);
             builder.Append(')');
+        }
+
+        private void AppendExceptionCallSite(StringBuilder builder, LogEventInfo logEvent)
+        {
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            var targetSite = logEvent?.Exception?.TargetSite;
+            if (targetSite != null)
+            {
+                if (ClassName)
+                {
+                    var className = StackTraceUsageUtils.GetStackFrameMethodClassName(targetSite, true, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates) ?? string.Empty;
+                    builder.Append(className);
+                }
+
+                if (MethodName)
+                {
+                    if (ClassName)
+                    {
+                        builder.Append('.');
+                    }
+                    var methodName = StackTraceUsageUtils.GetStackFrameMethodName(targetSite, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates) ?? string.Empty;
+                    builder.Append(methodName);
+                }
+            }
+            else
+#endif
+            {
+                if (ClassName || FileName)
+                {
+                    var exceptionSource = logEvent?.Exception?.Source;
+                    builder.Append(exceptionSource);
+                }
+            }
         }
     }
 }

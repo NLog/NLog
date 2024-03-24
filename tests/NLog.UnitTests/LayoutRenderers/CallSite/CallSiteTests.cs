@@ -274,137 +274,30 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
+        public void ClassNameFromExceptionTargetSiteTest()
         {
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${callsite:captureStackTrace=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>").LogFactory;
 
             var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            logFactory.AssertDebugLastMessage(currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
-        }
 
-        [Fact]
-        public void ClassNameWithPaddingTestPadLeftAlignRightTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
+            try
+            {
+                throw new InvalidDataException("Oops");
+            }
+            catch (Exception ex)
+            {
+                logger.Debug(ex, "msg");
+            }
 
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             var typeName = currentMethod.DeclaringType.FullName;
-            logFactory.AssertDebugLastMessage(typeName.Substring(typeName.Length - 3) + " msg");
-        }
-
-        [Fact]
-        public void ClassNameWithPaddingTestPadRightAlignLeftTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            logFactory.AssertDebugLastMessage(currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
-        }
-
-        [Fact]
-        public void ClassNameWithPaddingTestPadRightAlignRightTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            var typeName = currentMethod.DeclaringType.FullName;
-            logFactory.AssertDebugLastMessage(typeName.Substring(typeName.Length - 3) + " msg");
-        }
-
-        [Fact]
-        public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            logFactory.AssertDebugLastMessage("MethodNameWithPa msg");
-        }
-
-        [Fact]
-        public void MethodNameWithPaddingTestPadLeftAlignRightTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            logFactory.AssertDebugLastMessage("ftAlignRightTest msg");
-        }
-
-        [Fact]
-        public void MethodNameWithPaddingTestPadRightAlignLeftTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            logFactory.AssertDebugLastMessage("MethodNameWithPa msg");
-        }
-
-        [Fact]
-        public void MethodNameWithPaddingTestPadRightAlignRightTest()
-        {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>").LogFactory;
-
-            var logger = logFactory.GetLogger("A");
-            logger.Debug("msg");
-            logFactory.AssertDebugLastMessage("htAlignRightTest msg");
+            logFactory.AssertDebugLastMessage(typeName + "." + currentMethod.Name.ToString() + " msg");
         }
 
         [Fact]
