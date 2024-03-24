@@ -86,7 +86,6 @@ namespace NLog.Common
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
         /// <remarks>Your application must be a console application.</remarks>
-        [Obsolete("Instead use InternalLogger.LogWriter = System.Console.Out. Marked obsolete with NLog v5.3")]
         public static bool LogToConsole
         {
             get => _logToConsole;
@@ -107,7 +106,6 @@ namespace NLog.Common
         /// Gets or sets a value indicating whether internal messages should be written to the console error stream.
         /// </summary>
         /// <remarks>Your application must be a console application.</remarks>
-        [Obsolete("Instead use InternalLogger.LogWriter = System.Console.Error. Marked obsolete with NLog v5.3")]
         public static bool LogToConsoleError
         {
             get => _logToConsoleError;
@@ -148,7 +146,6 @@ namespace NLog.Common
         /// Gets or sets the file path of the internal log file.
         /// </summary>
         /// <remarks>A value of <see langword="null" /> value disables internal logging to a file.</remarks>
-        [Obsolete("Instead use InternalLogger.LogWriter = new System.IO.StreamWriter(logFilePath, true). Marked obsolete with NLog v5.3")]
         public static string LogFile
         {
             get
@@ -574,7 +571,6 @@ namespace NLog.Common
             }
         }
 
-        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try
@@ -601,7 +597,6 @@ namespace NLog.Common
             }
         }
 
-        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static string ExpandFilePathVariables(string internalLogFile)
         {
             try
@@ -634,7 +629,6 @@ namespace NLog.Common
             }
         }
 
-        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string result)
         {
             int needlePos = haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase);
@@ -642,7 +636,6 @@ namespace NLog.Common
             return result != null;
         }
 
-        [Obsolete("Instead use InternalLogger.LogWriter = System.Console.Out. Marked obsolete with NLog v5.3")]
         private static void LogToConsoleSubscription(object sender, InternalLogEventArgs eventArgs)
         {
 #if !NETSTANDARD1_3
@@ -651,7 +644,6 @@ namespace NLog.Common
 #endif
         }
 
-        [Obsolete("Instead use InternalLogger.LogWriter = System.Console.Error. Marked obsolete with NLog v5.3")]
         private static void LogToConsoleErrorSubscription(object sender, InternalLogEventArgs eventArgs)
         {
 #if !NETSTANDARD1_3
@@ -669,7 +661,6 @@ namespace NLog.Common
 #endif
         }
 
-        [Obsolete("Instead use InternalLogger.LogWriter = new System.IO.StreamWriter(logFilePath, true). Marked obsolete with NLog v5.3")]
         private static void LogToFileSubscription(object sender, InternalLogEventArgs eventArgs)
         {
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);

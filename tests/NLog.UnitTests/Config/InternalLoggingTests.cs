@@ -66,9 +66,9 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope(true))
             {
                 InternalLogger.LogLevel = LogLevel.Error;
-#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToTrace = true;
 #pragma warning restore CS0618 // Type or member is obsolete
                 LogManager.GlobalThreshold = LogLevel.Fatal;
@@ -81,9 +81,9 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
-#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.True(InternalLogger.LogToTrace);
 #pragma warning restore CS0618 // Type or member is obsolete
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
@@ -165,10 +165,10 @@ namespace NLog.UnitTests.Config
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
 
-#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Equal(file, InternalLogger.LogFile);
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);
+#pragma warning disable CS0618 // Type or member is obsolete
                 Assert.Equal(logToTrace, InternalLogger.LogToTrace);
 #pragma warning restore CS0618 // Type or member is obsolete
 

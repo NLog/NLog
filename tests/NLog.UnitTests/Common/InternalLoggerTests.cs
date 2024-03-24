@@ -233,9 +233,7 @@ namespace NLog.UnitTests.Common
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
-#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToConsole = true;
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 {
                     // Named (based on LogLevel) public methods.
@@ -297,9 +295,7 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
-#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToConsoleError = true;
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 {
                     // Named (based on LogLevel) public methods.
@@ -367,9 +363,7 @@ namespace NLog.UnitTests.Common
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
-#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogFile = tempFile;
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 // Invoke Log(LogLevel, string) for every log level.
                 InternalLogger.Log(LogLevel.Warn, "WWW");
@@ -727,9 +721,7 @@ namespace NLog.UnitTests.Common
                 Assert.False(Directory.Exists(randomSubDirectory));
 
                 // Set the log file, which will only create the needed directories
-#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogFile = tempFile;
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.Equal(Directory.Exists(randomSubDirectory), shouldCreateDirectory);
 
@@ -767,9 +759,7 @@ namespace NLog.UnitTests.Common
                     "Info III" + Environment.NewLine;
 
             // Store off the previous log file
-#pragma warning disable CS0618 // Type or member is obsolete
             string previousLogFile = InternalLogger.LogFile;
-#pragma warning restore CS0618 // Type or member is obsolete
 
             var tempFileName = Path.GetRandomFileName();
 
@@ -781,9 +771,7 @@ namespace NLog.UnitTests.Common
                 Assert.False(File.Exists(tempFileName));
 
                 // Set the log file, which only has a filename
-#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogFile = tempFileName;
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.False(File.Exists(tempFileName));
 

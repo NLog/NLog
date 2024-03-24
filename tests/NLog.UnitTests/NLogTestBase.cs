@@ -553,9 +553,7 @@ namespace NLog.UnitTests
 
             public void Dispose()
             {
-#pragma warning disable CS0618 // Type or member is obsolete
                 var logFile = InternalLogger.LogFile;
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 InternalLogger.Reset();
                 LogManager.GlobalThreshold = globalThreshold;

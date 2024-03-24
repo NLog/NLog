@@ -53,13 +53,11 @@ namespace NLog
             InternalLogger.LogLevel = logLevel;
             if (InternalLogger.LogLevel != LogLevel.Off && orgValue == LogLevel.Off)
             {
-#pragma warning disable CS0618 // Type or member is obsolete
                 var orgLogFile = InternalLogger.LogFile;
                 if (!string.IsNullOrEmpty(orgLogFile))
                 {
                     InternalLogger.LogFile = orgLogFile;    // InternalLogger.LogFile property-setter skips directory creation when LogLevel.Off
                 }
-#pragma warning restore CS0618 // Type or member is obsolete
             }
             return setupBuilder;
         }
@@ -69,9 +67,7 @@ namespace NLog
         /// </summary>
         public static ISetupInternalLoggerBuilder LogToFile(this ISetupInternalLoggerBuilder setupBuilder, string fileName)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.LogFile = fileName;
-#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder;
         }
 
@@ -80,9 +76,7 @@ namespace NLog
         /// </summary>
         public static ISetupInternalLoggerBuilder LogToConsole(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             InternalLogger.LogToConsole = enabled;
-#pragma warning restore CS0618 // Type or member is obsolete
             return setupBuilder;
         }
 

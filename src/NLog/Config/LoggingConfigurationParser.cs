@@ -146,19 +146,13 @@ namespace NLog.Config
                         LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
                         break;
                     case "INTERNALLOGTOCONSOLE":
-#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsole);
-#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGTOCONSOLEERROR":
-#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsoleError);
-#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGFILE":
-#pragma warning disable CS0618 // Type or member is obsolete
                         InternalLogger.LogFile = configItem.Value?.Trim();
-#pragma warning restore CS0618 // Type or member is obsolete
                         break;
                     case "INTERNALLOGTOTRACE":
 #pragma warning disable CS0618 // Type or member is obsolete
