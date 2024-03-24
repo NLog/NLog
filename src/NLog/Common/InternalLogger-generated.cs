@@ -95,7 +95,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Trace.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Trace([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Trace(Func<string> messageFunc)
         {
             if (IsTraceEnabled)
                 Write(null, LogLevel.Trace, messageFunc(), null);
@@ -174,7 +176,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Trace(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Trace(Exception ex, Func<string> messageFunc)
         {
             if (IsTraceEnabled)
                 Write(ex, LogLevel.Trace, messageFunc(), null);
@@ -205,7 +209,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Debug.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Debug([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Debug(Func<string> messageFunc)
         {
             if (IsDebugEnabled)
                 Write(null, LogLevel.Debug, messageFunc(), null);
@@ -284,7 +290,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Debug(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Debug(Exception ex, Func<string> messageFunc)
         {
             if (IsDebugEnabled)
                 Write(ex, LogLevel.Debug, messageFunc(), null);
@@ -315,7 +323,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Info.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Info([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Info(Func<string> messageFunc)
         {
             if (IsInfoEnabled)
                 Write(null, LogLevel.Info, messageFunc(), null);
@@ -394,7 +404,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Info(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Info(Exception ex, Func<string> messageFunc)
         {
             if (IsInfoEnabled)
                 Write(ex, LogLevel.Info, messageFunc(), null);
@@ -425,7 +437,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Warn.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Warn([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Warn(Func<string> messageFunc)
         {
             if (IsWarnEnabled)
                 Write(null, LogLevel.Warn, messageFunc(), null);
@@ -504,7 +518,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Warn(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Warn(Exception ex, Func<string> messageFunc)
         {
             if (IsWarnEnabled)
                 Write(ex, LogLevel.Warn, messageFunc(), null);
@@ -535,7 +551,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Error.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Error([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Error(Func<string> messageFunc)
         {
             if (IsErrorEnabled)
                 Write(null, LogLevel.Error, messageFunc(), null);
@@ -614,7 +632,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Error(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Error(Exception ex, Func<string> messageFunc)
         {
             if (IsErrorEnabled)
                 Write(ex, LogLevel.Error, messageFunc(), null);
@@ -645,7 +665,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Fatal.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Fatal([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Fatal(Func<string> messageFunc)
         {
             if (IsFatalEnabled)
                 Write(null, LogLevel.Fatal, messageFunc(), null);
@@ -724,7 +746,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Fatal(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Fatal(Exception ex, Func<string> messageFunc)
         {
             if (IsFatalEnabled)
                 Write(ex, LogLevel.Fatal, messageFunc(), null);

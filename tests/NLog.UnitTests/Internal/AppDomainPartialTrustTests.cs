@@ -159,8 +159,10 @@ namespace NLog.UnitTests.Internal
             {
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
+#pragma warning disable CS0618 // Type or member is obsolete
                 //this method gave issues
                 LogFactory.LogNLogAssemblyVersion();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 var logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 

@@ -81,7 +81,9 @@ namespace NLog.Common
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  <#=level#>.
         /// </summary>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void <#=level#>([Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void <#=level#>(Func<string> messageFunc)
         {
             if (Is<#=level#>Enabled)
                 Write(null, LogLevel.<#=level#>, messageFunc(), null);
@@ -160,7 +162,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void <#=level#>(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        [Obsolete("Avoid delegate capture allocations. Marked obsolete with v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void <#=level#>(Exception ex, Func<string> messageFunc)
         {
             if (Is<#=level#>Enabled)
                 Write(ex, LogLevel.<#=level#>, messageFunc(), null);

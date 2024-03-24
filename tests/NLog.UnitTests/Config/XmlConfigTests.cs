@@ -54,9 +54,9 @@ namespace NLog.UnitTests.Config
                 Assert.False(config.AutoReload);
                 Assert.True(config.InitializeSucceeded);
                 Assert.Equal("", InternalLogger.LogFile);
-                Assert.True(InternalLogger.IncludeTimestamp);
                 Assert.False(InternalLogger.LogToConsole);
                 Assert.False(InternalLogger.LogToConsoleError);
+                Assert.True(InternalLogger.IncludeTimestamp);
                 Assert.Null(InternalLogger.LogWriter);
                 Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);
             }
@@ -75,9 +75,9 @@ namespace NLog.UnitTests.Config
                     Assert.False(config.AutoReload);
                     Assert.True(config.InitializeSucceeded);
                     Assert.Equal("", InternalLogger.LogFile);
-                    Assert.False(InternalLogger.IncludeTimestamp);
                     Assert.True(InternalLogger.LogToConsole);
                     Assert.True(InternalLogger.LogToConsoleError);
+                    Assert.False(InternalLogger.IncludeTimestamp);
                     Assert.Null(InternalLogger.LogWriter);
                     Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);
                 }

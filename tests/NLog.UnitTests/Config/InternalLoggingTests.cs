@@ -68,11 +68,13 @@ namespace NLog.UnitTests.Config
                 InternalLogger.LogLevel = LogLevel.Error;
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
+#pragma warning disable CS0618 // Type or member is obsolete
+                InternalLogger.LogToTrace = true;
+#pragma warning restore CS0618 // Type or member is obsolete
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
                 LogManager.AutoShutdown = true;
-                InternalLogger.LogToTrace = true;
 
                 XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog>
@@ -81,11 +83,13 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
+#pragma warning disable CS0618 // Type or member is obsolete
+                Assert.True(InternalLogger.LogToTrace);
+#pragma warning restore CS0618 // Type or member is obsolete
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
                 Assert.True(LogManager.AutoShutdown);
-                Assert.True(InternalLogger.LogToTrace);
             }
         }
 
@@ -162,18 +166,17 @@ namespace NLog.UnitTests.Config
                 Assert.Same(logLevel, InternalLogger.LogLevel);
 
                 Assert.Equal(file, InternalLogger.LogFile);
-
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
-
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);
+#pragma warning disable CS0618 // Type or member is obsolete
+                Assert.Equal(logToTrace, InternalLogger.LogToTrace);
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.Same(globalThreshold, LogManager.GlobalThreshold);
 
                 Assert.Equal(throwExceptions, LogManager.ThrowExceptions);
 
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
-
-                Assert.Equal(logToTrace, InternalLogger.LogToTrace);
 
                 Assert.Equal(autoShutdown, LogManager.AutoShutdown);
             }
