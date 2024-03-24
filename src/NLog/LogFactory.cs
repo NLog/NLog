@@ -50,7 +50,6 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
-    using NLog.Targets;
 
     /// <summary>
     /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
@@ -668,142 +667,33 @@ namespace NLog
             FlushInternal(timeout, asyncContinuation ?? (ex => { }));
         }
 
-        private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
+        private void FlushInternal(TimeSpan flushTimeout, AsyncContinuation asyncContinuation)
         {
+            InternalLogger.Debug("LogFactory Flush with timeout={0} secs", flushTimeout.TotalSeconds);
+
             try
             {
-                InternalLogger.Debug("LogFactory Flush with timeout={0} secs", timeout.TotalSeconds);
                 LoggingConfiguration config;
                 lock (_syncRoot)
                 {
                     config = _config; // Flush should not attempt to auto-load Configuration
                 }
-
-                if (config != null)
-                {
-                    if (asyncContinuation != null)
-                    {
-                        FlushAllTargetsAsync(config, asyncContinuation, timeout);
-                    }
-                    else
-                    {
-                        if (FlushAllTargetsSync(config, timeout, ThrowExceptions))
-                            return;
-                    }
-                }
-                else
+                if (config is null)
                 {
                     asyncContinuation?.Invoke(null);
                 }
+                else
+                {
+                    config.FlushAllTargets(flushTimeout, asyncContinuation, ThrowExceptions);
+                }
             }
             catch (Exception ex)
             {
-                if (ThrowExceptions)
-                {
-                    throw;
-                }
 
                 InternalLogger.Error(ex, "LogFactory failed to flush targets.");
                 asyncContinuation?.Invoke(ex);
+
             }
-        }
-
-        /// <summary>
-        /// Flushes any pending log messages on all appenders.
-        /// </summary>
-        /// <param name="loggingConfiguration">Config containing Targets to Flush</param>
-        /// <param name="asyncContinuation">Flush completed notification (success / timeout)</param>
-        /// <param name="asyncTimeout">Optional timeout that guarantees that completed notification is called.</param>
-        /// <returns></returns>
-        private static AsyncContinuation FlushAllTargetsAsync(LoggingConfiguration loggingConfiguration, AsyncContinuation asyncContinuation, TimeSpan? asyncTimeout)
-        {
-            var pendingTargets = loggingConfiguration.GetAllTargetsToFlush();
-
-            AsynchronousAction<Target> flushAction = (target, cont) =>
-            {
-                target.Flush(ex =>
-                {
-                    if (ex != null)
-                        InternalLogger.Warn(ex, "Flush failed for target {0}(Name={1})", target.GetType(), target.Name);
-                    lock (pendingTargets)
-                    {
-                        pendingTargets.Remove(target);
-                    }
-                    cont(ex);
-                });
-            };
-            AsyncContinuation flushContinuation = (ex) =>
-            {
-                lock (pendingTargets)
-                {
-                    foreach (var pendingTarget in pendingTargets)
-                        InternalLogger.Debug("Flush timeout for target {0}(Name={1})", pendingTarget.GetType(), pendingTarget.Name);
-                    pendingTargets.Clear();
-                }
-                if (ex != null)
-                    InternalLogger.Warn(ex, "Flush completed with errors");
-                else
-                    InternalLogger.Debug("Flush completed");
-                asyncContinuation(ex);
-            };
-
-            if (asyncTimeout.HasValue)
-            {
-                flushContinuation = AsyncHelpers.WithTimeout(flushContinuation, asyncTimeout.Value);
-            }
-            else
-            {
-                flushContinuation = AsyncHelpers.PreventMultipleCalls(flushContinuation);
-            }
-
-            InternalLogger.Trace("Flushing all {0} targets...", pendingTargets.Count);
-            AsyncHelpers.ForEachItemInParallel(pendingTargets, flushContinuation, flushAction);
-            return flushContinuation;
-        }
-
-        private static bool FlushAllTargetsSync(LoggingConfiguration oldConfig, TimeSpan timeout, bool throwExceptions)
-        {
-            Exception lastException = null;
-
-            try
-            {
-                ManualResetEvent flushCompletedEvent = new ManualResetEvent(false);
-
-                var flushContinuation = FlushAllTargetsAsync(oldConfig, (ex) =>
-                {
-                    if (ex != null)
-                        lastException = ex;
-                    flushCompletedEvent.Set();
-                }, null);
-
-                bool flushCompleted = flushCompletedEvent.WaitOne(timeout);
-                if (!flushCompleted)
-                    flushContinuation(new TimeoutException($"Timeout when flushing all targets, after waiting {timeout.TotalSeconds} seconds."));
-            }
-            catch (Exception ex)
-            {
-#if DEBUG
-                if (ex.MustBeRethrownImmediately())
-                    throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
-#endif
-
-                InternalLogger.Error(ex, "LogFactory failed to flush targets.");
-
-                if (throwExceptions)
-                    throw new NLogRuntimeException("Asynchronous exception has occurred.", ex);
-
-                return false;
-            }
-
-            if (lastException != null)
-            {
-                if (throwExceptions)
-                    throw new NLogRuntimeException("Asynchronous exception has occurred.", lastException);
-                else
-                    return false;
-            }
-
-            return true;
         }
 
         /// <summary>
@@ -889,54 +779,18 @@ namespace NLog
         }
 #endif
 
+        /// <summary>
+        /// Change this method with NLog v6 to completely disconnect LogFactory from Targets/Layouts
+        /// - Remove LoggingRule-List-parameter
+        /// - Return ITargetWithFilterChain[]
+        /// </summary>
         internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, List<LoggingRule> loggingRules)
         {
-            var targetsByLevel = TargetWithFilterChain.BuildLoggerConfiguration(loggerName, loggingRules, IsLoggingEnabled() ? GlobalThreshold : LogLevel.Off);
-            if (InternalLogger.IsDebugEnabled && !DumpTargetConfigurationForLogger(loggerName, targetsByLevel))
-            {
-                InternalLogger.Debug("Targets not configured for Logger: {0}", loggerName);
-            }
-            return targetsByLevel;
+            var globalThreshold = IsLoggingEnabled() ? GlobalThreshold : LogLevel.Off;
+            return _config?.BuildLoggerConfiguration(loggerName, globalThreshold, loggingRules) ?? TargetWithFilterChain.NoTargetsByLevel;
         }
 
-        private static bool DumpTargetConfigurationForLogger(string loggerName, TargetWithFilterChain[] targetsByLevel)
-        {
-            if (ReferenceEquals(targetsByLevel, TargetWithFilterChain.NoTargetsByLevel))
-                return false;
-
-            StringBuilder sb = null;
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                if (sb != null)
-                {
-                    sb.Length = 0;
-                    sb.AppendFormat(CultureInfo.InvariantCulture, "Logger {0} [{1}] =>", loggerName, LogLevel.FromOrdinal(i));
-                }
-
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
-                {
-                    if (sb is null)
-                    {
-                        InternalLogger.Debug("Targets configured when LogLevel >= {0} for Logger: {1}", LogLevel.FromOrdinal(i), loggerName);
-                        sb = new StringBuilder();
-                        sb.AppendFormat(CultureInfo.InvariantCulture, "Logger {0} [{1}] =>", loggerName, LogLevel.FromOrdinal(i));
-                    }
-
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                    if (afc.FilterChain.Count > 0)
-                    {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
-                    }
-                }
-
-                if (sb != null)
-                    InternalLogger.Debug(sb.ToString());
-            }
-
-            return sb != null;
-        }
-
-        /// <summary>
+         /// <summary>
         /// Currently this <see cref="LogFactory"/> is disposing?
         /// </summary>
         private bool _isDisposing;
@@ -986,7 +840,7 @@ namespace NLog
 
                 if (flushTimeout > TimeSpan.Zero)
                 {
-                    attemptClose = FlushAllTargetsSync(oldConfig, flushTimeout, false);
+                    attemptClose = oldConfig.FlushAllTargets(flushTimeout, null, false);
                 }
 
                 // Disable all loggers, so things become quiet
@@ -1001,8 +855,9 @@ namespace NLog
                 {
                     // Flush completed within timeout, lets try and close down
                     oldConfig.Close();
-                    OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
                 }
+
+                OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
             }
             catch (Exception ex)
             {

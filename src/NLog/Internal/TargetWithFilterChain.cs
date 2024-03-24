@@ -44,11 +44,11 @@ namespace NLog.Internal
     /// Represents target with a chain of filters which determine
     /// whether logging should happen.
     /// </summary>
-    internal class TargetWithFilterChain
+    internal sealed class TargetWithFilterChain : ITargetWithFilterChain
     {
-        internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggingConfiguration();
+        internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggerConfiguration();
 
-        private static TargetWithFilterChain[] CreateLoggingConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
+        private static TargetWithFilterChain[] CreateLoggerConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
 
         private MruCache<CallSiteKey, string> _callSiteClassNameCache;
 
@@ -122,8 +122,8 @@ namespace NLog.Internal
             if (loggingRules is null || loggingRules.Count == 0 || LogLevel.Off.Equals(globalLogLevel))
                 return TargetWithFilterChain.NoTargetsByLevel;
 
-            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
-            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
+            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggerConfiguration();
+            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggerConfiguration();
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
             bool targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels);
@@ -255,7 +255,6 @@ namespace NLog.Internal
             return newTarget;
         }
 
-
         internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
         {
             if ((stackTraceUsage & (StackTraceUsage.WithCallSiteClassName | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSiteClassName)
@@ -320,6 +319,11 @@ namespace NLog.Internal
 
             CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
             return _callSiteClassNameCache.TryGetValue(callSiteKey, out callSiteClassName);
+        }
+
+        public void WriteToLoggerTargets(Type loggerType, LogEventInfo logEvent, LogFactory logFactory)
+        {
+            LoggerImpl.Write(loggerType, this, logEvent, logFactory);
         }
 
         struct CallSiteKey : IEquatable<CallSiteKey>
