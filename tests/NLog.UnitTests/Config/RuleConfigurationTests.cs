@@ -203,6 +203,44 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void FinalMinLevelFilterTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets>
+                    <target name='defaultTarget' type='Debug' layout='${message}' />
+                    <target name='requestTarget' type='Debug' layout='Request-${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' finalMinLevel='Info' />
+                    <logger name='Microsoft*' finalMinLevel='Warn' />
+                    <logger name='Microsoft.Hosting.Lifetime*' finalMinLevel='Info' />
+                    <logger name='System*' finalMinLevel='Warn' />
+
+                    <logger name='RequestLogger' finalMinLevel='Error'>
+                        <filters defaultAction='Log'>
+                            <when condition='exception == null' action='IgnoreFinal' />
+                        </filters>
+                    </logger>
+
+                    <logger writeTo='defaultTarget, requestTarget' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var requestLogger = logFactory.GetLogger("RequestLogger");
+            requestLogger.Error(new System.Exception("Oops"), "ERROR EXCEPTION");
+            logFactory.AssertDebugLastMessage("defaultTarget", "ERROR EXCEPTION");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-ERROR EXCEPTION");
+            requestLogger.Info(new System.Exception("Oops"), "INFO EXCEPTION");
+            logFactory.AssertDebugLastMessage("defaultTarget", "ERROR EXCEPTION");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-ERROR EXCEPTION");
+            requestLogger.Error("ERROR NO EXCEPTION");
+            logFactory.AssertDebugLastMessage("defaultTarget", "ERROR EXCEPTION");
+            logFactory.AssertDebugLastMessage("requestTarget", "Request-ERROR EXCEPTION");
+        }
+
+        [Fact]
         public void NoLevelsTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
