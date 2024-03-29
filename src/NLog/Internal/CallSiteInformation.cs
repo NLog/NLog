@@ -34,11 +34,44 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
 
     internal sealed class CallSiteInformation
     {
+        private static readonly object lockObject = new object();
+        private static ICollection<Assembly> _hiddenAssemblies = ArrayHelper.Empty<Assembly>();
+
+        internal static bool IsHiddenAssembly(Assembly assembly)
+        {
+            return _hiddenAssemblies.Contains(assembly);
+        }
+
+        /// <summary>
+        /// Adds the given assembly which will be skipped 
+        /// when NLog is trying to find the calling method on stack trace.
+        /// </summary>
+        /// <param name="assembly">The assembly to skip.</param>
+        public static void AddCallSiteHiddenAssembly(Assembly assembly)
+        {
+            if (_hiddenAssemblies.Contains(assembly) || assembly is null)
+                return;
+
+            lock (lockObject)
+            {
+                if (_hiddenAssemblies.Contains(assembly))
+                    return;
+
+                _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies)
+                {
+                    assembly
+                };
+            }
+
+            Common.InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly.FullName);
+        }
+
         /// <summary>
         /// Sets the stack trace for the event info.
         /// </summary>
@@ -81,6 +114,7 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
+        [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete on NLog 5.3")]
         public StackFrame UserStackFrame => StackTrace?.GetFrame(UserStackFrameNumberLegacy ?? UserStackFrameNumber);
 
         /// <summary>
@@ -185,7 +219,7 @@ namespace NLog.Internal
             for (int i = 0; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];
-                if (SkipAssembly(stackFrame))
+                if (SkipStackFrameWhenHidden(stackFrame))
                     continue;
 
                 if (!firstUserStackFrame.HasValue)
@@ -215,7 +249,7 @@ namespace NLog.Internal
             for (int i = firstUserStackFrame; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];
-                if (SkipAssembly(stackFrame))
+                if (SkipStackFrameWhenHidden(stackFrame))
                     continue;
 
                 var stackMethod = StackTraceUsageUtils.GetStackMethod(stackFrame);
@@ -238,14 +272,13 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Assembly to skip?
+        /// Skip StackFrame when from hidden Assembly / ClassType
         /// </summary>
-        /// <param name="frame">Find assembly via this frame. </param>
-        /// <returns><c>true</c>, we should skip.</returns>
-        private static bool SkipAssembly(StackFrame frame)
+        private static bool SkipStackFrameWhenHidden(StackFrame frame)
         {
-            var assembly = StackTraceUsageUtils.LookupAssemblyFromStackFrame(frame);
-            return assembly is null || LogManager.IsHiddenAssembly(assembly);
+            var method = StackTraceUsageUtils.GetStackMethod(frame);
+            var assembly = StackTraceUsageUtils.LookupAssemblyFromMethod(method);
+            return assembly is null || IsHiddenAssembly(assembly);
         }
 
         /// <summary>
