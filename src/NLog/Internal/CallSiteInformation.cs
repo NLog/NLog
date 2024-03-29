@@ -42,10 +42,16 @@ namespace NLog.Internal
     {
         private static readonly object lockObject = new object();
         private static ICollection<Assembly> _hiddenAssemblies = ArrayHelper.Empty<Assembly>();
+        private static ICollection<Type> _hiddenTypes = ArrayHelper.Empty<Type>();
 
         internal static bool IsHiddenAssembly(Assembly assembly)
         {
             return _hiddenAssemblies.Contains(assembly);
+        }
+
+        internal static bool IsHiddenClassType(Type type)
+        {
+            return _hiddenTypes != null && _hiddenTypes.Contains(type);
         }
 
         /// <summary>
@@ -70,6 +76,25 @@ namespace NLog.Internal
             }
 
             Common.InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly.FullName);
+        }
+
+        public static void AddCallSiteHiddenClassType(Type classType)
+        {
+            if (_hiddenTypes.Contains(classType) || classType is null)
+                return;
+
+            lock (lockObject)
+            {
+                if (_hiddenTypes.Contains(classType))
+                    return;
+
+                _hiddenTypes = new HashSet<Type>(_hiddenTypes)
+                {
+                    classType
+                };
+            }
+
+            Common.InternalLogger.Trace("Type '{0}' will be hidden in callsite stacktrace", classType);
         }
 
         /// <summary>
