@@ -46,12 +46,12 @@ namespace NLog.Internal
 
         internal static bool IsHiddenAssembly(Assembly assembly)
         {
-            return _hiddenAssemblies.Contains(assembly);
+            return _hiddenAssemblies.Count != 0 && _hiddenAssemblies.Contains(assembly);
         }
 
         internal static bool IsHiddenClassType(Type type)
         {
-            return _hiddenTypes != null && _hiddenTypes.Contains(type);
+            return _hiddenTypes.Count != 0 && _hiddenTypes.Contains(type);
         }
 
         /// <summary>
