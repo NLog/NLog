@@ -302,13 +302,13 @@ namespace NLog.Internal
         private static bool SkipStackFrameWhenHidden(StackFrame frame)
         {
             var method = StackTraceUsageUtils.GetStackMethod(frame);
-            var assembly = StackTraceUsageUtils.LookupAssembly(method);
-            if (assembly is null || LogManager.IsHiddenAssembly(assembly))
+            var assembly = StackTraceUsageUtils.LookupAssemblyFromMethod(method);
+            if (assembly is null || IsHiddenAssembly(assembly))
             {
                 return true;
             }
 
-            return method is null || LogManager.IsHiddenType(method.DeclaringType);
+            return method is null || IsHiddenClassType(method.DeclaringType);
         }
 
         /// <summary>
