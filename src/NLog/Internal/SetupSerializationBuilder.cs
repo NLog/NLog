@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using NLog.Config;
 
-    internal class SetupSerializationBuilder : ISetupSerializationBuilder
+    internal sealed class SetupSerializationBuilder : ISetupSerializationBuilder
     {
         internal SetupSerializationBuilder(LogFactory logFactory)
         {

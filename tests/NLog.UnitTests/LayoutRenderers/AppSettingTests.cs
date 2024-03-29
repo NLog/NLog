@@ -128,7 +128,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(expected, rendered);
         }
 
-        private class MockConfigurationManager : IConfigurationManager
+        private sealed class MockConfigurationManager : IConfigurationManager
         {
             public NameValueCollection AppSettings { get; } = new NameValueCollection();
 

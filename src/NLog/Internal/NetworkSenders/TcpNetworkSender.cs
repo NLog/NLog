@@ -316,7 +316,7 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Facilitates mocking of <see cref="SocketAsyncEventArgs"/> class.
         /// </summary>
-        internal class MySocketAsyncEventArgs : SocketAsyncEventArgs
+        internal sealed class MySocketAsyncEventArgs : SocketAsyncEventArgs
         {
             /// <summary>
             /// Raises the Completed event.

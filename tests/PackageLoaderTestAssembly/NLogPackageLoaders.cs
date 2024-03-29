@@ -63,7 +63,7 @@ namespace LoaderTestInternal
 
 namespace LoaderTestPrivateNested
 {
-    internal class SomeType
+    internal sealed class SomeType
     {
         private sealed class NLogPackageLoader
         {

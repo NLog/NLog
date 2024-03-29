@@ -1030,7 +1030,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("42", result);
         }
 
-        private class TestObject
+        private sealed class TestObject
         {
             public string Value { get; set; }
         }

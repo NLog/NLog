@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Targets
         {
         }
 
-        private class ExcludedClass : IExcludedInterface
+        private sealed class ExcludedClass : IExcludedInterface
         {
             public string ExcludedString { get; set; }
             public override string ToString()
@@ -57,12 +57,12 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        private class IncludedClass
+        private sealed class IncludedClass
         {
             public string IncludedString { get; set; }
         }
 
-        private class ContainerClass
+        private sealed class ContainerClass
         {
             public string S { get; set; }
             public ExcludedClass Excluded { get; set; }

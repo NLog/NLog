@@ -1226,7 +1226,7 @@ namespace NLog.UnitTests.Targets
             } 
         }
 
-        internal class MyQueudSenderFactory : INetworkSenderFactory
+        internal sealed class MyQueudSenderFactory : INetworkSenderFactory
         {
             internal List<MyQueudNetworkSender> Senders = new List<MyQueudNetworkSender>();
             internal StringWriter Log = new StringWriter();
@@ -1248,7 +1248,7 @@ namespace NLog.UnitTests.Targets
             public bool AsyncMode { get; set; } = true;
         }
 
-        internal class MyQueudNetworkSender : QueuedNetworkSender
+        internal sealed class MyQueudNetworkSender : QueuedNetworkSender
         {
             private readonly int _id;
             private readonly TextWriter _log;

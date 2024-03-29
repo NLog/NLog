@@ -44,7 +44,7 @@ namespace NLog.Targets
     /// So log files created via <see cref="FileTarget"/> can be zipped when archived
     /// w/o 3rd party zip library when run on .Net4.5 or higher.
     /// </summary>
-    internal class ZipArchiveFileCompressor : IArchiveFileCompressor
+    internal sealed class ZipArchiveFileCompressor : IArchiveFileCompressor
     {
         /// <summary>
         /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>

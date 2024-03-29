@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Text.RegularExpressions;
 
-    internal class RegexHelper
+    internal sealed class RegexHelper
     {
         private Regex _regex;
         private string _searchText;

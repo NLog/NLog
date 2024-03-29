@@ -38,7 +38,7 @@ namespace NLog.Internal
     /// <summary>
     /// FormatProvider that renders an exception-object as $"{ex.GetType()}: {ex.Message}"
     /// </summary>
-    internal class ExceptionMessageFormatProvider : IFormatProvider, ICustomFormatter
+    internal sealed class ExceptionMessageFormatProvider : IFormatProvider, ICustomFormatter
     {
         internal static readonly ExceptionMessageFormatProvider Instance = new ExceptionMessageFormatProvider();
 

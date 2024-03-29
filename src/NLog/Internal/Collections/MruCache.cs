@@ -38,7 +38,7 @@ namespace NLog.Internal
     /// <summary>
     /// Most-Recently-Used-Cache, that discards less frequently used items on overflow
     /// </summary>
-    internal class MruCache<TKey, TValue>
+    internal sealed class MruCache<TKey, TValue>
     {
         private readonly Dictionary<TKey, MruCacheItem> _dictionary;
         private readonly int _maxCapacity;

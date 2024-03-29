@@ -37,7 +37,7 @@ namespace NLog.Internal
     using System.Text;
     using System.Threading;
 
-    internal class StringBuilderPool
+    internal sealed class StringBuilderPool
     {
         private StringBuilder _fastPool;
         private readonly StringBuilder[] _slowPool;

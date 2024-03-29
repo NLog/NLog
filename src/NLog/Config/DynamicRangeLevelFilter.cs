@@ -41,7 +41,7 @@ namespace NLog.Config
     /// <summary>
     /// Dynamic filtering with a minlevel and maxlevel range
     /// </summary>
-    internal class DynamicRangeLevelFilter : ILoggingRuleLevelFilter
+    internal sealed class DynamicRangeLevelFilter : ILoggingRuleLevelFilter
     {
         private readonly LoggingRule _loggingRule;
         private readonly SimpleLayout _minLevel;

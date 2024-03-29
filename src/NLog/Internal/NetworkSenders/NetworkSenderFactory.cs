@@ -40,7 +40,7 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Default implementation of <see cref="INetworkSenderFactory"/>.
     /// </summary>
-    internal class NetworkSenderFactory : INetworkSenderFactory
+    internal sealed class NetworkSenderFactory : INetworkSenderFactory
     {
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 

@@ -38,7 +38,7 @@ using NLog.Internal.Fakeables;
 
 namespace NLog.UnitTests.Mocks
 {
-    internal class AppEnvironmentMock : IAppEnvironment
+    internal sealed class AppEnvironmentMock : IAppEnvironment
     {
         private readonly Func<string, bool> _fileexists;
         private readonly Func<string, XmlReader> _fileload;

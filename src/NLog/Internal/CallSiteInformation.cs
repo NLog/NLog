@@ -37,7 +37,7 @@ namespace NLog.Internal
     using System.Diagnostics;
     using System.Reflection;
 
-    internal class CallSiteInformation
+    internal sealed class CallSiteInformation
     {
         /// <summary>
         /// Sets the stack trace for the event info.

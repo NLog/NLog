@@ -42,7 +42,7 @@ namespace NLog.Config
     /// <summary>
     /// Default implementation of <see cref="IPropertyTypeConverter"/>
     /// </summary>
-    internal class PropertyTypeConverter : IPropertyTypeConverter
+    internal sealed class PropertyTypeConverter : IPropertyTypeConverter
     {
         /// <summary>
         /// Singleton instance of the serializer.

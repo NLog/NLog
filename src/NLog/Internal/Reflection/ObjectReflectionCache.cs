@@ -48,7 +48,7 @@ namespace NLog.Internal
     /// <summary>
     /// Converts object into a List of property-names and -values using reflection
     /// </summary>
-    internal class ObjectReflectionCache : IObjectTypeTransformer
+    internal sealed class ObjectReflectionCache : IObjectTypeTransformer
     {
         private MruCache<Type, ObjectPropertyInfos> ObjectTypeCache => _objectTypeCache ?? System.Threading.Interlocked.CompareExchange(ref _objectTypeCache, new MruCache<Type, ObjectPropertyInfos>(10000), null) ?? _objectTypeCache;
         private MruCache<Type, ObjectPropertyInfos> _objectTypeCache;

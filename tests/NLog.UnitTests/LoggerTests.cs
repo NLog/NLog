@@ -2655,7 +2655,7 @@ namespace NLog.UnitTests
                 </nlog>");
         }
 
-        private class Person
+        private sealed class Person
         {
             public Person()
             {

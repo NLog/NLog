@@ -42,7 +42,7 @@ namespace NLog.Internal
 #if DEBUG
     [System.Diagnostics.DebuggerDisplay("{" + nameof(CurrentState) + "}")]
 #endif
-    internal class SimpleStringReader
+    internal sealed class SimpleStringReader
     {
         private readonly string _text;
 

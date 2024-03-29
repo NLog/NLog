@@ -376,7 +376,7 @@ namespace NLog.UnitTests.Targets
         }
 
 
-        private class PartsWriter : StringWriter
+        private sealed class PartsWriter : StringWriter
         {
             public PartsWriter()
             {

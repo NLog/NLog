@@ -724,7 +724,7 @@ namespace NLog.Internal
         /// <summary>
         /// Special property-key for lookup without being case-sensitive
         /// </summary>
-        internal class IgnoreCasePropertyKey
+        internal sealed class IgnoreCasePropertyKey
         {
             private readonly string _propertyName;
 

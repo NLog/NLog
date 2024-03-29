@@ -36,7 +36,7 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated char[]-buffer for reuse (only one active user)
     /// </summary>
-    internal class ReusableBufferCreator : ReusableObjectCreator<char[]>
+    internal sealed class ReusableBufferCreator : ReusableObjectCreator<char[]>
     {
         public ReusableBufferCreator(int capacity)
             :base(capacity, cap => new char[cap], (b) => { })
