@@ -123,8 +123,10 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
+        [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<LoggingRule> ChildRules { get; } = new List<LoggingRule>();
-
+        [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
         internal List<LoggingRule> GetChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
         internal Target[] GetTargetsThreadSafe() { lock (_targets) return _targets.Count == 0 ? NLog.Internal.ArrayHelper.Empty<Target>() : _targets.ToArray(); }
         internal bool RemoveTargetThreadSafe(Target target) { lock (_targets) return _targets.Remove(target); }
@@ -199,7 +201,7 @@ namespace NLog.Config
         /// </summary>
         /// <remarks>
         /// NLog v4.6 introduced the setting with default value <see cref="FilterResult.Neutral"/>. 
-        /// NLog v5 marked it as obsolete and change default value to <see cref="FilterResult.Log"/>
+        /// NLog v5 marked it as obsolete and change default value to <see cref="FilterResult.Ignore"/>
         /// </remarks>
         [Obsolete("Replaced by FilterDefaultAction. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
