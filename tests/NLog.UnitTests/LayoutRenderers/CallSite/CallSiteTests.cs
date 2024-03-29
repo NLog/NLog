@@ -142,7 +142,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Logger logger = LogManager.GetLogger(nameof(HiddenTypeTest));
 
             // hide the class type.
-            LogManager.Setup().SetupLogFactory(setup => setup.AddCallSiteHiddenType(typeof(HiddenTypeLogger)));
+            LogManager.Setup().SetupLogFactory(setup => setup.AddCallSiteHiddenClassType(typeof(HiddenTypeLogger)));
 
             // call the log method
             logger.LogDebug();
