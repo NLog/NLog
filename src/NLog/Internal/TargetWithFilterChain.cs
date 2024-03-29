@@ -132,12 +132,18 @@ namespace NLog.Internal
 
         static private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
+            IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters = null;
             bool targetsFound = false;
             foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
                 {
                     continue;
+                }
+
+                if (LoggingRuleHasFinalMinLevelFilters(rule))
+                {
+                    CollectFinalMinLevelFiltersFromRule(rule, ref finalMinLevelWithFilters);
                 }
 
                 targetsFound = AddTargetsFromLoggingRule(rule, name, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
@@ -152,10 +158,57 @@ namespace NLog.Internal
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 TargetWithFilterChain tfc = targetsByLevel[i];
-                tfc?.PrecalculateStackTraceUsage();
+                if (tfc is null)
+                    continue;
+
+                if (finalMinLevelWithFilters?.Count > 0)
+                {
+                    var finalMinLevelFilters = finalMinLevelWithFilters[i];
+                    if (finalMinLevelFilters.Value?.Count > 0)
+                    {
+                        targetsByLevel[i] = tfc = AppendFinalMinLevelFilters(tfc, finalMinLevelFilters.Value, finalMinLevelFilters.Key.Value);
+                    }
+                }
+
+                tfc.PrecalculateStackTraceUsage();
             }
 
             return targetsFound;
+        }
+
+        private static bool LoggingRuleHasFinalMinLevelFilters(LoggingRule rule)
+        {
+            return LogLevel.Off != rule.FinalMinLevel && rule.Filters.Count != 0 && rule.Targets.Count == 0;
+        }
+
+        private static void CollectFinalMinLevelFiltersFromRule(LoggingRule rule, ref IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters)
+        {
+            finalMinLevelWithFilters = finalMinLevelWithFilters ?? new KeyValuePair<FilterResult?, IList<Filter>>[LogLevel.MaxLevel.Ordinal + 1];
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (i < rule.FinalMinLevel.Ordinal)
+                    continue;
+
+                if (finalMinLevelWithFilters[i].Key.HasValue && finalMinLevelWithFilters[i].Key.Value != rule.FilterDefaultAction)
+                    continue;
+
+                var newFilterResult = finalMinLevelWithFilters[i].Key ?? rule.FilterDefaultAction;
+                var newFilterChain = finalMinLevelWithFilters[i].Value?.Count > 0 ? System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(finalMinLevelWithFilters[i].Value, rule.Filters)) : rule.Filters;
+                finalMinLevelWithFilters[i] = new KeyValuePair<FilterResult?, IList<Filter>>(newFilterResult, newFilterChain);
+            }
+        }
+
+        private static TargetWithFilterChain AppendFinalMinLevelFilters(TargetWithFilterChain targetsByLevel, IList<Filter> finalMinLevelFilters, FilterResult finalMinLevelDefaultResult)
+        {
+            if (targetsByLevel.FilterChain?.Count > 0 && targetsByLevel.FilterDefaultAction != finalMinLevelDefaultResult)
+                return targetsByLevel;
+
+            var newFilterChain = targetsByLevel.FilterChain?.Count > 0 ? System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(finalMinLevelFilters, targetsByLevel.FilterChain)) : finalMinLevelFilters;
+            var newTargetsByLevel = new TargetWithFilterChain(targetsByLevel.Target, newFilterChain, finalMinLevelDefaultResult);
+
+            var nextInChain = targetsByLevel.NextInChain is null ? null : AppendFinalMinLevelFilters(targetsByLevel.NextInChain, finalMinLevelFilters, finalMinLevelDefaultResult);
+            newTargetsByLevel.NextInChain = nextInChain ?? targetsByLevel.NextInChain;
+            return newTargetsByLevel;
         }
 
         private static bool AddTargetsFromLoggingRule(LoggingRule rule, string loggerName, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
