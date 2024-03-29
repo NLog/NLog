@@ -256,6 +256,7 @@ namespace NLog.Internal
         public static Assembly LookupAssemblyFromMethod(MethodBase method)
         {
             var assembly = method?.DeclaringType?.GetAssembly() ?? method?.Module?.Assembly;
+
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (assembly == nlogAssembly)
             {
