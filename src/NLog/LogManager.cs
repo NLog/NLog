@@ -53,13 +53,7 @@ namespace NLog
     /// </remarks>
     public static class LogManager
     {
-        /// <remarks>
-        /// Internal for unit tests
-        /// </remarks>
-        internal static readonly LogFactory factory = new LogFactory();
-        private static ICollection<Assembly> _hiddenAssemblies;
-
-        private static readonly object lockObject = new object();
+        private static readonly LogFactory factory = new LogFactory();
 
         /// <summary>
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
@@ -149,6 +143,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// </summary>
+        public static LogLevel GlobalThreshold
+        {
+            get => factory.GlobalThreshold;
+            set => factory.GlobalThreshold = value;
+        }
+
+        /// <summary>
         /// Begins configuration of the LogFactory options using fluent interface
         /// </summary>
         public static ISetupBuilder Setup()
@@ -179,52 +182,27 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// Adds the given assembly which will be skipped 
+        /// when NLog is trying to find the calling method on stack trace.
         /// </summary>
-        public static LogLevel GlobalThreshold
+        /// <param name="assembly">The assembly to skip.</param>
+        [Obsolete("Replaced by LogManager.Setup().SetupLogFactory(setup => setup.AddCallSiteHiddenAssembly(assembly)). Marked obsolete on NLog 5.3")]
+        public static void AddHiddenAssembly(Assembly assembly)
         {
-            get => factory.GlobalThreshold;
-            set => factory.GlobalThreshold = value;
+            CallSiteInformation.AddCallSiteHiddenAssembly(assembly);
         }
 
         /// <summary>
         /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
             return factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
-        }
-
-        internal static bool IsHiddenAssembly(Assembly assembly)
-        {
-            return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
-        }
-
-        /// <summary>
-        /// Adds the given assembly which will be skipped 
-        /// when NLog is trying to find the calling method on stack trace.
-        /// </summary>
-        /// <param name="assembly">The assembly to skip.</param>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHiddenAssembly(Assembly assembly)
-        {
-            lock (lockObject)
-            {
-                if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
-                    return;
-
-                _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
-                {
-                    assembly
-                };
-            }
-
-            InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly?.FullName);
         }
 
         /// <summary>
@@ -233,10 +211,10 @@ namespace NLog
         /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
-        /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         [Obsolete("Replaced by LogFactory.GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]

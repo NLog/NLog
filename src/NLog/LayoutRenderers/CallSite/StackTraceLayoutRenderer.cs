@@ -104,13 +104,15 @@ namespace NLog.LayoutRenderers
             if (logEvent.StackTrace is null)
                 return;
 
-            int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
+            var logEventStackFrameNumber = logEvent.CallSiteInformation?.UserStackFrameNumberLegacy ?? logEvent.CallSiteInformation?.UserStackFrameNumber ?? 0;
+
+            int startingFrame = logEventStackFrameNumber + TopFrames - 1;
             if (startingFrame >= logEvent.StackTrace.GetFrameCount())
             {
                 startingFrame = logEvent.StackTrace.GetFrameCount() - 1;
             }
 
-            int endingFrame = logEvent.UserStackFrameNumber + SkipFrames;
+            int endingFrame = logEventStackFrameNumber + SkipFrames;
             StackFrameList stackFrameList = new StackFrameList(logEvent.StackTrace, startingFrame, endingFrame, Reverse);
 
             switch (Format)

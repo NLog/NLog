@@ -219,6 +219,7 @@ namespace NLog
         /// <summary>
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
+        [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete on NLog 5.3")]
         public StackFrame UserStackFrame => CallSiteInformation?.UserStackFrame;
 
         /// <summary>
