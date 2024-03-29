@@ -44,7 +44,7 @@ namespace NLog.Internal.Fakeables
     /// Adapter for <see cref="AppDomain"/> to <see cref="IAppDomain"/>
     /// </summary>
     [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
-    internal class AppDomainWrapper : IAppDomain
+    internal sealed class AppDomainWrapper : IAppDomain
     {
         private readonly AppDomain _currentAppDomain;
 

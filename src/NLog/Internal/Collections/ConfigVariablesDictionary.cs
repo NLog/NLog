@@ -41,7 +41,7 @@ using NLog.Layouts;
 namespace NLog.Internal
 {
     [DebuggerDisplay("Count = {Count}")]
-    internal class ConfigVariablesDictionary : IDictionary<string, Layout>
+    internal sealed class ConfigVariablesDictionary : IDictionary<string, Layout>
     {
         private readonly ThreadSafeDictionary<string, Layout> _variables = new ThreadSafeDictionary<string, Layout>(StringComparer.OrdinalIgnoreCase);
         private readonly LoggingConfiguration _configuration;

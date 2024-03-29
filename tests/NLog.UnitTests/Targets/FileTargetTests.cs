@@ -3382,7 +3382,7 @@ namespace NLog.UnitTests.Targets
         /// Archive file helepr
         /// </summary>
         /// <remarks>TODO rewrite older test</remarks>
-        private class ArchiveFileNameHelper
+        private sealed class ArchiveFileNameHelper
         {
             public string FolderName { get; private set; }
 

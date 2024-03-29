@@ -38,7 +38,7 @@ namespace NLog.Internal
     using NLog.Config;
     using NLog.Targets;
 
-    internal class SetupConfigurationLoggingRuleBuilder : ISetupConfigurationLoggingRuleBuilder, IList<Target>
+    internal sealed class SetupConfigurationLoggingRuleBuilder : ISetupConfigurationLoggingRuleBuilder, IList<Target>
     {
         public SetupConfigurationLoggingRuleBuilder(LogFactory logFactory, LoggingConfiguration configuration, string loggerNamePattern = null, string ruleName = null)
         {

@@ -38,7 +38,7 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated StringBuilder for reuse (only one active user)
     /// </summary>
-    internal class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
+    internal sealed class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
     {
         public ReusableBuilderCreator()
             : base(128, (cap) => new StringBuilder(cap), (sb) => { sb.ClearBuilder(); })

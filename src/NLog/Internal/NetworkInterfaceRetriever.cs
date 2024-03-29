@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Retrieve network interfaces
     /// </summary>
-    internal class NetworkInterfaceRetriever : INetworkInterfaceRetriever
+    internal sealed class NetworkInterfaceRetriever : INetworkInterfaceRetriever
     {
         /// <summary>
         /// Retrieve network interfaces

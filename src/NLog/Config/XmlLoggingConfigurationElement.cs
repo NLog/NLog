@@ -42,7 +42,7 @@ namespace NLog.Config
     /// <summary>
     /// Represents simple XML element with case-insensitive attribute semantics.
     /// </summary>
-    internal class XmlLoggingConfigurationElement : ILoggingConfigurationElement
+    internal sealed class XmlLoggingConfigurationElement : ILoggingConfigurationElement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfigurationElement"/> class.

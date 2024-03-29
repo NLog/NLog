@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System.Globalization;
     using System.Text;
 
-    internal class LogMessageStringFormatter : ILogMessageFormatter
+    internal sealed class LogMessageStringFormatter : ILogMessageFormatter
     {
         public static readonly LogMessageStringFormatter Default = new LogMessageStringFormatter();
 

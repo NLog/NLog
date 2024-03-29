@@ -43,7 +43,7 @@ namespace NLog.Internal
     /// <summary>
     /// A layout that represents a filePath. 
     /// </summary>
-    internal class FilePathLayout : IRenderable
+    internal sealed class FilePathLayout : IRenderable
     {
         /// <summary>
         /// Cached directory separator char array to avoid memory allocation on each method call.

@@ -892,7 +892,7 @@ namespace NLog.UnitTests.Layouts
             Assert.IsType<LiteralLayoutRenderer>(single);
         }
 
-        private class LayoutRendererWithListParam : LayoutRenderer
+        private sealed class LayoutRendererWithListParam : LayoutRenderer
         {
             public List<double> Doubles { get; set; }
 

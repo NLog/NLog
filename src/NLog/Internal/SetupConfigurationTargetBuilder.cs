@@ -39,7 +39,7 @@ namespace NLog.Internal
     using NLog.Config;
     using NLog.Targets;
 
-    internal class SetupConfigurationTargetBuilder : ISetupConfigurationTargetBuilder, IList<Target>
+    internal sealed class SetupConfigurationTargetBuilder : ISetupConfigurationTargetBuilder, IList<Target>
     {
         private readonly IList<Target> _targets = new List<Target>();
         private string _targetName;

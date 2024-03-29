@@ -41,7 +41,7 @@ namespace NLog.Config
     using NLog.Internal;
 
     [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-    internal class AssemblyExtensionLoader : IAssemblyExtensionLoader
+    internal sealed class AssemblyExtensionLoader : IAssemblyExtensionLoader
     {
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2072")]
         public void LoadTypeFromName(ConfigurationItemFactory factory, string typeName, string itemNamePrefix)

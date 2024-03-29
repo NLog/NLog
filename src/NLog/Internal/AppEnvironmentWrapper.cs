@@ -40,7 +40,7 @@ namespace NLog.Internal.Fakeables
     using System.Xml;
     using NLog.Common;
 
-    internal class AppEnvironmentWrapper : IAppEnvironment
+    internal sealed class AppEnvironmentWrapper : IAppEnvironment
     {
 #if !NETSTANDARD1_3
         private const string UnknownProcessName = "<unknown>";

@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Internal
     /// <summary>
     /// Special Expando-Object that has custom object-value (Similar to JObject)
     /// </summary>
-    internal class ExpandoTestDictionary : IDictionary<string, IFormattable>
+    internal sealed class ExpandoTestDictionary : IDictionary<string, IFormattable>
     {
         private readonly Dictionary<string, IFormattable> _properties = new Dictionary<string, IFormattable>();
 

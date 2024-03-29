@@ -631,7 +631,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, result);
         }
 
-        private class TestList : IEnumerable<System.Collections.IEnumerable>
+        private sealed class TestList : IEnumerable<System.Collections.IEnumerable>
         {
             static List<int> _list1 = new List<int> { 17, 3 };
             static List<string> _list2 = new List<string> { "alpha", "bravo" };

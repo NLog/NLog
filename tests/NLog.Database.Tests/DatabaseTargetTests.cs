@@ -2062,7 +2062,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-        private class NonLoggingDatabaseTarget : DatabaseTarget
+        private sealed class NonLoggingDatabaseTarget : DatabaseTarget
         {
             public string GetRenderedConnectionString(LogEventInfo logEventInfo)
             {
@@ -2070,7 +2070,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-        private class MockDbCommand : IDbCommand
+        private sealed class MockDbCommand : IDbCommand
         {
             private int paramCount;
             private IDataParameterCollection parameters;
@@ -2150,7 +2150,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-        private class MockDbParameter : IDbDataParameter
+        private sealed class MockDbParameter : IDbDataParameter
         {
             private readonly MockDbCommand mockDbCommand;
             private readonly int paramId;
@@ -2250,7 +2250,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-        private class MockParameterCollection : IDataParameterCollection
+        private sealed class MockParameterCollection : IDataParameterCollection
         {
             private readonly MockDbCommand command;
 
@@ -2429,7 +2429,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             public override ConnectionState State => throw new NotImplementedException();
         }
 
-        private class SQLiteTest
+        private sealed class SQLiteTest
         {
             private string dbName = "NLogTest.sqlite";
             private string connectionString;

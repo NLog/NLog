@@ -57,7 +57,7 @@ namespace NLog.Internal.FileAppenders
     /// (global named mutex is used for this)
     /// </remarks>
     [SecuritySafeCritical]
-    internal class MutexMultiProcessFileAppender : BaseMutexFileAppender
+    internal sealed class MutexMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 

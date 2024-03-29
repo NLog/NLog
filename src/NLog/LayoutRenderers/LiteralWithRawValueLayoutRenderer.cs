@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// A string literal with a fixed raw value
     /// </summary>
     [ThreadAgnostic]
-    internal class LiteralWithRawValueLayoutRenderer : LiteralLayoutRenderer, IRawValue
+    internal sealed class LiteralWithRawValueLayoutRenderer : LiteralLayoutRenderer, IRawValue
     {
         private readonly bool _rawValueSuccess;
         private readonly object _rawValue;

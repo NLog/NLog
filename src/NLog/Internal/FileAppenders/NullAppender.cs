@@ -42,7 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// Throws away all data.
     /// </summary>
     [SecuritySafeCritical]
-    internal class NullAppender : BaseFileAppender
+    internal sealed class NullAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 

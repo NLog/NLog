@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using NLog.Config;
 
-    internal class SetupBuilder : ISetupBuilder
+    internal sealed class SetupBuilder : ISetupBuilder
     {
         internal SetupBuilder(LogFactory logFactory)
         {

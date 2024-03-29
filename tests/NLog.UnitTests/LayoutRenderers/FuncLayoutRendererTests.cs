@@ -85,7 +85,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "TheAnswer=042", logFactory);
         }
 
-        private class MyFuncLayoutRenderer : FuncLayoutRenderer
+        private sealed class MyFuncLayoutRenderer : FuncLayoutRenderer
         {
             public MyFuncLayoutRenderer() : base(string.Empty)
             {

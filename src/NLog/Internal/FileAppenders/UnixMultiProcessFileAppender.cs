@@ -62,7 +62,7 @@ namespace NLog.Internal.FileAppenders
     /// pointer to the end of the file and appending can be made one operation.
     /// </remarks>
     [SecuritySafeCritical]
-    internal class UnixMultiProcessFileAppender : BaseMutexFileAppender
+    internal sealed class UnixMultiProcessFileAppender : BaseMutexFileAppender
     {
         private UnixStream _file;
 

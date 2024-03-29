@@ -43,7 +43,7 @@ namespace NLog.Targets
     /// <summary>
     /// Color formatting for <see cref="ColoredConsoleTarget"/> using ANSI Color Codes
     /// </summary>
-    internal class ColoredConsoleAnsiPrinter : IColoredConsolePrinter
+    internal sealed class ColoredConsoleAnsiPrinter : IColoredConsolePrinter
     {
         public TextWriter AcquireTextWriter(TextWriter consoleStream, StringBuilder reusableBuilder)
         {

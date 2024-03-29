@@ -44,7 +44,7 @@ namespace NLog.Targets
     /// Color formatting for <see cref="ColoredConsoleTarget"/> using <see cref="Console.ForegroundColor"/>
     /// and <see cref="Console.BackgroundColor"/>
     /// </summary>
-    internal class ColoredConsoleSystemPrinter : IColoredConsolePrinter
+    internal sealed class ColoredConsoleSystemPrinter : IColoredConsolePrinter
     {
         public TextWriter AcquireTextWriter(TextWriter consoleStream, StringBuilder reusableBuilder)
         {

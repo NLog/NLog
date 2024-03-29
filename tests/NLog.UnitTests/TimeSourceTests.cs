@@ -109,7 +109,7 @@ namespace NLog.UnitTests
             }
         }
 
-        internal class ShiftedTimeSource : TimeSource
+        internal sealed class ShiftedTimeSource : TimeSource
         {
             private readonly DateTimeKind kind;
             private DateTimeOffset sourceTime;

@@ -46,7 +46,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             Foo,Bar
         };
-        private class Test : IFormattable, IConvertible
+        private sealed class Test : IFormattable, IConvertible
         {
             public Test()
             {
@@ -157,7 +157,7 @@ namespace NLog.UnitTests.MessageTemplates
             }
         }
 
-        private class Test1
+        private sealed class Test1
         {
             public Test1()
             {
@@ -169,7 +169,7 @@ namespace NLog.UnitTests.MessageTemplates
             public int Integer { get; set; }
         }
 
-        private class Test2
+        private sealed class Test2
         {
             public Test2()
             {
@@ -182,7 +182,7 @@ namespace NLog.UnitTests.MessageTemplates
 
         }
         
-        private class RecursiveTest
+        private sealed class RecursiveTest
         {
             public RecursiveTest(int integer)
             {

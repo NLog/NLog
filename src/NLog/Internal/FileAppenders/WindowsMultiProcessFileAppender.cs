@@ -47,7 +47,7 @@ namespace NLog.Internal.FileAppenders
     /// keeping the files open.
     /// </summary>
     [SecuritySafeCritical]
-    internal class WindowsMultiProcessFileAppender : BaseMutexFileAppender
+    internal sealed class WindowsMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 

@@ -44,7 +44,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Concurrent Asynchronous request queue based on <see cref="ConcurrentQueue{T}"/>
     /// </summary>
-	internal class ConcurrentRequestQueue : AsyncRequestQueueBase
+	internal sealed class ConcurrentRequestQueue : AsyncRequestQueueBase
     {
         private readonly ConcurrentQueue<AsyncLogEventInfo> _logEventInfoQueue = new ConcurrentQueue<AsyncLogEventInfo>();
 

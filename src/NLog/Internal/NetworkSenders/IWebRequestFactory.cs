@@ -41,7 +41,7 @@ namespace NLog.Internal.NetworkSenders
         WebRequest CreateWebRequest(Uri address);
     }
 
-    internal class WebRequestFactory : IWebRequestFactory
+    internal sealed class WebRequestFactory : IWebRequestFactory
     {
         public static IWebRequestFactory Instance { get; } = new WebRequestFactory();
 
