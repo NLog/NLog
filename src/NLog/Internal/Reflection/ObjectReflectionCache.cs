@@ -48,7 +48,7 @@ namespace NLog.Internal
     /// <summary>
     /// Converts object into a List of property-names and -values using reflection
     /// </summary>
-    internal class ObjectReflectionCache : IObjectTypeTransformer
+    internal sealed class ObjectReflectionCache : IObjectTypeTransformer
     {
         private MruCache<Type, ObjectPropertyInfos> ObjectTypeCache => _objectTypeCache ?? System.Threading.Interlocked.CompareExchange(ref _objectTypeCache, new MruCache<Type, ObjectPropertyInfos>(10000), null) ?? _objectTypeCache;
         private MruCache<Type, ObjectPropertyInfos> _objectTypeCache;
@@ -114,9 +114,7 @@ namespace NLog.Internal
             {
                 if (value is null)
                 {
-                    // Found null
-                    foundValue = null;
-                    return true;
+                    return false;
                 }
 
                 var propertyList = LookupObjectProperties(value);
@@ -627,14 +625,14 @@ namespace NLog.Internal
                 return EmptyDictionaryEnumerator.Default;
             }
 
-            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey,TValue> dictionary)
+            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IDictionary<TKey,TValue> dictionary)
             {
                 foreach (var item in dictionary)
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);
             }
 
 #if !NET35
-            private IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
+            private static IEnumerator<KeyValuePair<string, object>> YieldEnumerator(IReadOnlyDictionary<TKey, TValue> dictionary)
             {
                 foreach (var item in dictionary)
                     yield return new KeyValuePair<string, object>(item.Key.ToString(), item.Value);

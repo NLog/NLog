@@ -384,6 +384,38 @@ namespace NLog.Layouts
             _scannedForObjects = true;
         }
 
+        internal Layout[] ResolveLayoutPrecalculation(IEnumerable<Layout> allLayouts)
+        {
+            if (!_scannedForObjects || (ThreadAgnostic && !MutableUnsafe))
+                return null;
+
+            int layoutCount = 0;
+            int precalculateLayoutCount = 0;
+            int precalculateSimpleLayoutCount = 0;
+
+            foreach (var layout in allLayouts)
+            {
+                ++layoutCount;
+                if (layout?.ThreadAgnostic == false || layout?.MutableUnsafe == true)
+                {
+                    precalculateLayoutCount++;
+                    if (layout is SimpleLayout)
+                    {
+                        precalculateSimpleLayoutCount++;
+                    }
+                }
+            }
+
+            if (layoutCount <= 1 || precalculateLayoutCount > 4 || (precalculateLayoutCount - precalculateSimpleLayoutCount) > 2 || (layoutCount - precalculateSimpleLayoutCount) <= 1 || precalculateLayoutCount == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return allLayouts.Where(layout => layout?.ThreadAgnostic == false || layout?.MutableUnsafe == true).ToArray();
+            }
+        }
+
         /// <summary>
         /// Closes this instance.
         /// </summary>
@@ -420,12 +452,15 @@ namespace NLog.Layouts
         protected abstract string GetFormattedMessage(LogEventInfo logEvent);
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom Layout.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T"> Type of the Layout.</typeparam>
         /// <param name="name"> Name of the Layout.</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string name)
             where T : Layout
         {
@@ -434,12 +469,15 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom Layout.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="layoutType"> Type of the Layout.</param>
         /// <param name="name"> Name of the Layout.</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type layoutType)
         {
             ConfigurationItemFactory.Default.GetLayoutFactory().RegisterDefinition(name, layoutType);
@@ -449,11 +487,22 @@ namespace NLog.Layouts
         /// Optimized version of <see cref="Precalculate(LogEventInfo)"/> for internal Layouts, when
         /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
-        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target)
+        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target, Layout[] precalculateLayout)
         {
             if (!ThreadAgnostic || MutableUnsafe)
             {
-                RenderAppendBuilder(logEvent, target, true);
+                if (precalculateLayout is null)
+                {
+                    RenderAppendBuilder(logEvent, target, true);
+                }
+                else
+                {
+                    foreach (var layout in precalculateLayout)
+                    {
+                        layout.PrecalculateBuilder(logEvent, target);
+                        target.Length = 0;
+                    }
+                }
             }
         }
 

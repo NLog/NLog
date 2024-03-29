@@ -275,7 +275,7 @@ namespace NLog
             if (contextState != null)
             {
                 var propertyCollector = new ScopeContextPropertyCollector();
-                var mappedContext = contextState?.CaptureContextProperties(ref propertyCollector);
+                var mappedContext = contextState.CaptureContextProperties(ref propertyCollector);
                 if (mappedContext?.Count > 0)
                 {
                     return TryLookupProperty(mappedContext, key, out value);
@@ -620,14 +620,14 @@ namespace NLog
                 if ((contextState.Parent is null && contextState is ScopeContextLegacyAsyncState) || contextState.NestedState is null)
                 {
                     var nestedStateCollector = new ScopeContextNestedStateCollector();
-                    var nestedStates = contextState?.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
+                    var nestedStates = contextState.CaptureNestedContext(ref nestedStateCollector) ?? ArrayHelper.Empty<object>();
                     if (nestedStates.Count == 0)
                         return null;    // Nothing to pop, just leave scope alone
 
                     // Replace with new legacy-scope, the legacy-scope can be discarded when previous parent scope is restored
                     var propertyCollector = new ScopeContextPropertyCollector();
                     var stackTopValue = nestedStates[0];
-                    var allProperties = contextState?.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
+                    var allProperties = contextState.CaptureContextProperties(ref propertyCollector) ?? ArrayHelper.Empty<KeyValuePair<string, object>>();
                     var nestedContext = ArrayHelper.Empty<object>();
                     if (nestedStates.Count > 1)
                     {
@@ -643,7 +643,7 @@ namespace NLog
                 else
                 {
                     SetAsyncLocalContext(contextState.Parent);
-                    return contextState?.NestedState;
+                    return contextState.NestedState;
                 }
             }
             return null;

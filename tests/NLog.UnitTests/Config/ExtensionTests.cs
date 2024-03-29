@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Config
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Single(configuration.LoggingRules[0].Filters);
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
@@ -240,7 +240,7 @@ namespace NLog.UnitTests.Config
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Single(configuration.LoggingRules[0].Filters);
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
@@ -288,7 +288,7 @@ namespace NLog.UnitTests.Config
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Single(configuration.LoggingRules[0].Filters);
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
@@ -345,7 +345,7 @@ namespace NLog.UnitTests.Config
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
             Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Single(configuration.LoggingRules[0].Filters);
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
@@ -647,12 +647,12 @@ namespace NLog.UnitTests.Config
         }
 
         [Theory]
-        [InlineData(null, null)]
-        [InlineData("", null)]
+        [InlineData((string)null, (string)null)]
+        [InlineData("", (string)null)]
         [InlineData("ManuallyLoadedTarget", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
         [InlineData("ManuallyLoaded-Target", "ManuallyLoadedExtension.ManuallyLoadedTarget")]
-        [InlineData(", Manually-Loaded-Extension", null)] // border case
-        [InlineData("ManuallyLoadedTarget,", null)] // border case
+        [InlineData(", Manually-Loaded-Extension", (string)null)] // border case
+        [InlineData("ManuallyLoadedTarget,", (string)null)] // border case
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void NormalizeNameTest(string input, string expected)
         {
@@ -684,7 +684,7 @@ namespace NLog.UnitTests.Config
 #if NETSTANDARD
                 "netstandard2.0",
 #elif NET35 || NET40 || NET45
-                "net461",
+                "net462",
 #else
                 nlogDirectory.Name,
 #endif

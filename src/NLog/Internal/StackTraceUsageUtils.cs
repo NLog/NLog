@@ -131,23 +131,35 @@ namespace NLog.Internal
                 }
             }
 
-            if (!includeNameSpace
-                && callerClassType?.DeclaringType != null
-                && callerClassType.IsNested
-                && callerClassType.GetFirstCustomAttribute<CompilerGeneratedAttribute>() != null)
+            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
+            if (cleanAnonymousDelegates && className?.IndexOf("<>", StringComparison.Ordinal) >= 0)
             {
-                return callerClassType.DeclaringType.Name;
+                if (!includeNameSpace && callerClassType.DeclaringType != null && callerClassType.IsNested)
+                {
+                    className = callerClassType.DeclaringType.Name;
+                }
+                else
+                {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
+                    int index = className.IndexOf("+<>", StringComparison.Ordinal);
+                    if (index >= 0)
+                    {
+                        className = className.Substring(0, index);
+                    }
+                }
             }
 
-            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
-
-            if (cleanAnonymousDelegates && className != null)
+            if (includeNameSpace && className?.IndexOf('.') == -1)
             {
-                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
-                int index = className.IndexOf("+<>", StringComparison.Ordinal);
-                if (index >= 0)
+                var classAssembly = callerClassType.GetAssembly();
+                if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
                 {
-                    className = className.Substring(0, index);
+                    var assemblyFullName = classAssembly.FullName;
+                    if (assemblyFullName?.IndexOf(',') >= 0 && !assemblyFullName.StartsWith("System.", StringComparison.Ordinal) && !assemblyFullName.StartsWith("Microsoft.", StringComparison.Ordinal))
+                    {
+                        assemblyFullName = assemblyFullName.Substring(0, assemblyFullName.IndexOf(','));
+                        className = string.Concat(assemblyFullName, ".", className);
+                    }
                 }
             }
 
@@ -241,14 +253,10 @@ namespace NLog.Internal
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
         /// <returns>Valid assembly, or null if assembly was internal</returns>
-        public static Assembly LookupAssembly(MethodBase method)
+        public static Assembly LookupAssemblyFromMethod(MethodBase method)
         {
-            if (method is null)
-            {
-                return null;
-            }
+            var assembly = method?.DeclaringType?.GetAssembly() ?? method?.Module?.Assembly;
 
-            var assembly = method.DeclaringType?.GetAssembly() ?? method.Module?.Assembly;
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (assembly == nlogAssembly)
             {
@@ -275,8 +283,8 @@ namespace NLog.Internal
         /// <returns>Valid class name, or empty string if assembly was internal</returns>
         public static string LookupClassNameFromStackFrame(StackFrame stackFrame)
         {
-            var method = StackTraceUsageUtils.GetStackMethod(stackFrame);
-            if (method != null && LookupAssembly(method) != null)
+            var method = GetStackMethod(stackFrame);
+            if (method != null && LookupAssemblyFromMethod(method) != null)
             {
                 string className = GetStackFrameMethodClassName(method, true, true, true);
                 if (!string.IsNullOrEmpty(className))

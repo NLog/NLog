@@ -31,16 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.Collections.Generic;
     using NLog;
+    using NLog.Config;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
     using NLog.Targets;
-    using System;
-    using System.Collections.Generic;
     using Xunit;
 
     public class ReplaceTests : NLogTestBase
@@ -56,6 +55,19 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             // Assert
             Assert.Equal(" BAR bar bar BAR bar FOO", result);
+        }
+
+        [Fact]
+        public void ReplaceTestIgnoreCaseWithoutRegEx()
+        {
+            // Arrange
+            SimpleLayout layout = @"${replace:inner=${message}:searchFor=foo:replaceWith=BAR:ignorecase=true}";
+
+            // Act
+            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", " foo bar bar foo bar FOO"));
+
+            // Assert
+            Assert.Equal(" BAR bar bar BAR bar BAR", result);
         }
 
         [Fact]

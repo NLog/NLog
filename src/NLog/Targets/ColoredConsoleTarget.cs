@@ -109,6 +109,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="StdErr"/> with NLog v5.
         /// Gets or sets a value indicating whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
         /// <docgen category='Console Options' order='10' />
@@ -439,7 +440,7 @@ namespace NLog.Targets
             return matchingRule ?? ConsoleRowHighlightingRule.Default;
         }
 
-        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
+        private static ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
         {
             for (int i = 0; i < rules.Count; ++i)
             {

@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System.Globalization;
     using System.Text;
 
-    internal class LogMessageStringFormatter : ILogMessageFormatter
+    internal sealed class LogMessageStringFormatter : ILogMessageFormatter
     {
         public static readonly LogMessageStringFormatter Default = new LogMessageStringFormatter();
 
@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
 
-        public bool? MessageTemplateParser => false;
+        public bool? EnableMessageTemplateParser => false;
 
         public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
         {

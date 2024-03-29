@@ -36,6 +36,7 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -43,9 +44,9 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders XML-formatted events.
     /// </summary>
-    [ThreadAgnostic]
     public abstract class XmlElementBase : Layout
     {
+        private Layout[] _precalculateLayouts;
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
         private const string DefaultCollectionItemName = "item";
@@ -115,6 +116,8 @@ namespace NLog.Layouts
         private bool? _includeScopeProperties;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -124,6 +127,8 @@ namespace NLog.Layouts
         private bool? _includeMdc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -133,6 +138,8 @@ namespace NLog.Layouts
         private bool? _includeMdlc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
+        /// 
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -233,7 +240,7 @@ namespace NLog.Layouts
                 {
                     if (string.IsNullOrEmpty(attribute.Name))
                     {
-                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains attribute with missing name (Ignored)");
+                        Common.InternalLogger.Warn("XmlElement(ElementName={0}): Contains attribute with missing name (Ignored)", ElementNameInternal);
                     }
                     else if (attributeValidator.Contains(attribute.Name))
                     {
@@ -245,11 +252,21 @@ namespace NLog.Layouts
                     }
                 }
             }
+
+            var innerLayouts = LayoutWrapper.Inner is null ? ArrayHelper.Empty<Layout>() : new[] { LayoutWrapper.Inner };
+            _precalculateLayouts = (IncludeEventProperties || IncludeScopeProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout).Concat(Elements.Where(elm => elm.Layout != null).Select(elm => elm.Layout)).Concat(innerLayouts));
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseLayout()
+        {
+            _precalculateLayouts = null;
+            base.CloseLayout();
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>
@@ -360,6 +377,7 @@ namespace NLog.Layouts
         {
             if (IncludeScopeProperties)
             {
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
                 using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
                     while (scopeEnumerator.MoveNext())
@@ -368,7 +386,7 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
-                        if (ExcludeProperties.Contains(scopeProperty.Key))
+                        if (checkExcludeProperties && ExcludeProperties.Contains(scopeProperty.Key))
                             continue;
 
                         AppendXmlPropertyValue(scopeProperty.Key, scopeProperty.Value, sb, orgLength);
@@ -376,7 +394,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (IncludeEventProperties && logEventInfo.HasProperties)
+            if (IncludeEventProperties)
             {
                 AppendLogEventProperties(logEventInfo, sb, orgLength);
             }
@@ -384,13 +402,17 @@ namespace NLog.Layouts
 
         private void AppendLogEventProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)
         {
+            if (!logEventInfo.HasProperties)
+                return;
+
+            bool checkExcludeProperties = ExcludeProperties.Count > 0;
             IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEventInfo.CreateOrUpdatePropertiesInternal(true);
             foreach (var prop in propertiesList)
             {
                 if (string.IsNullOrEmpty(prop.Name))
                     continue;
 
-                if (ExcludeProperties.Contains(prop.Name))
+                if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
                     continue;
 
                 var propertyValue = prop.Value;
@@ -589,7 +611,7 @@ namespace NLog.Layouts
                 if (_propertiesElementNameHasFormat)
                 {
                     propNameElement = XmlHelper.XmlConvertToElementName(propName);
-                    sb.AppendFormat(PropertiesElementName, propNameElement);
+                    sb.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, PropertiesElementName, propNameElement);
                 }
                 else
                 {
@@ -631,7 +653,7 @@ namespace NLog.Layouts
             if (ignorePropertiesElementName)
                 sb.Append(propNameElement);
             else
-                sb.AppendFormat(PropertiesElementName, propNameElement);
+                sb.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, PropertiesElementName, propNameElement);
             sb.Append('>');
             if (IndentXml)
                 sb.AppendLine();

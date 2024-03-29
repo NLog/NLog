@@ -42,7 +42,7 @@ namespace NLog.Config
     /// <summary>
     /// Dynamic filtering with a positive list of enabled levels
     /// </summary>
-    internal class DynamicLogLevelFilter : ILoggingRuleLevelFilter
+    internal sealed class DynamicLogLevelFilter : ILoggingRuleLevelFilter
     {
         private readonly LoggingRule _loggingRule;
         private readonly SimpleLayout _levelFilter;

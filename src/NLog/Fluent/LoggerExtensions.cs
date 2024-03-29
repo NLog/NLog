@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 using System;
+using System.ComponentModel;
 
 namespace NLog.Fluent
 {
@@ -40,6 +41,8 @@ namespace NLog.Fluent
     public static class LoggerExtensions
     {
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForLogEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event with the specified <see cref="LogLevel"/>.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
@@ -47,6 +50,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Log(this ILogger logger, LogLevel logLevel)
         {
             var builder = new LogBuilder(logger, logLevel);
@@ -54,77 +58,95 @@ namespace NLog.Fluent
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForTraceEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Trace</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForTraceEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Trace(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Trace);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForDebugEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Debug</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForDebugEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Debug(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Debug);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForInfoEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Info</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForInfoEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Info(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Info);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForWarnEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Warn</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForWarnEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Warn(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Warn);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForErrorEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Error</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForErrorEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Error(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Error);
             return builder;
         }
-        
+
         /// <summary>
+        /// Obsolete and replaced by <see cref="ILoggerExtensions.ForFatalEvent"/> with NLog v5.
+        /// 
         /// Starts building a log event at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForFatalEvent() and LogEventBuilder. Obsoleted in NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogBuilder Fatal(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Fatal);

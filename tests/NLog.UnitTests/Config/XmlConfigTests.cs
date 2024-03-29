@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Config
             {
                 var xml = "<nlog internalLogFile='${ProcessDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
-                Assert.Contains(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess()?.MainModule?.FileName), InternalLogger.LogFile);
+                Assert.Contains(Path.GetDirectoryName(CurrentProcessPath), InternalLogger.LogFile);
             }
 #endif
 
@@ -321,7 +321,7 @@ namespace NLog.UnitTests.Config
                 </targets>
             </nlog>");
 
-            Assert.Equal(1, c.LoggingRules.Count);
+            Assert.Single(c.LoggingRules);
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
             Assert.Equal(4, rule.Levels.Count);
@@ -329,10 +329,10 @@ namespace NLog.UnitTests.Config
             Assert.Contains(LogLevel.Warn, rule.Levels);
             Assert.Contains(LogLevel.Error, rule.Levels);
             Assert.Contains(LogLevel.Fatal, rule.Levels);
-            Assert.Equal(1, rule.Targets.Count);
+            Assert.Single(rule.Targets);
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
             Assert.False(rule.Final);
-            Assert.Equal(0, rule.Filters.Count);
+            Assert.Empty(rule.Filters);
         }
 
         [Fact]

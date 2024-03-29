@@ -385,7 +385,7 @@ namespace NLog.UnitTests.Common
         /// <see cref="TimeSource"/> that returns always the same time,
         /// passed into object constructor.
         /// </summary>
-        private class FixedTimeSource : TimeSource
+        private sealed class FixedTimeSource : TimeSource
         {
             private readonly DateTime _time;
 

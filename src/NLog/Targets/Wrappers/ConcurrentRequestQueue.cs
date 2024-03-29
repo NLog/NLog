@@ -44,7 +44,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Concurrent Asynchronous request queue based on <see cref="ConcurrentQueue{T}"/>
     /// </summary>
-	internal class ConcurrentRequestQueue : AsyncRequestQueueBase
+	internal sealed class ConcurrentRequestQueue : AsyncRequestQueueBase
     {
         private readonly ConcurrentQueue<AsyncLogEventInfo> _logEventInfoQueue = new ConcurrentQueue<AsyncLogEventInfo>();
 
@@ -160,7 +160,7 @@ namespace NLog.Targets.Wrappers
             long currentCount = 0;
             bool firstYield = true;
             SpinWait spinWait = new SpinWait();
-            for (int i = 0; i <= 20; ++i)
+            for (int i = 0; i < 15; ++i)
             {
                 if (spinWait.NextSpinWillYield)
                 {

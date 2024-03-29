@@ -43,7 +43,7 @@ namespace NLog.Internal
     /// <summary>
     /// A layout that represents a filePath. 
     /// </summary>
-    internal class FilePathLayout : IRenderable
+    internal sealed class FilePathLayout : IRenderable
     {
         /// <summary>
         /// Cached directory separator char array to avoid memory allocation on each method call.
@@ -89,7 +89,7 @@ namespace NLog.Internal
         {
             _layout = layout ?? new SimpleLayout(null);
             _cleanupInvalidChars = cleanupInvalidChars;
-            _filePathKind = filePathKind == FilePathKind.Unknown ? DetectKind(_layout, filePathKind) : filePathKind;
+            _filePathKind = filePathKind == FilePathKind.Unknown ? DetectFilePathKind(_layout as SimpleLayout) : filePathKind;
             _cleanedFixedResult = (_layout as SimpleLayout)?.FixedText;
 
             if (_filePathKind == FilePathKind.Relative)
@@ -97,7 +97,7 @@ namespace NLog.Internal
                 _baseDir = LogFactory.DefaultAppEnvironment.AppDomainBaseDirectory;
                 InternalLogger.Debug("FileTarget FilePathLayout with FilePathKind.Relative using AppDomain.BaseDirectory: {0}", _baseDir);
             }
-            
+           
             if (_cleanedFixedResult != null)
             {
                 if (!StringHelpers.IsNullOrWhiteSpace(_cleanedFixedResult))
@@ -110,16 +110,21 @@ namespace NLog.Internal
                     _filePathKind = FilePathKind.Unknown;
                 }
             }
-        }
 
-        private static FilePathKind DetectKind(Layout layout, FilePathKind currentFilePathKind)
-        {
-            if (currentFilePathKind == FilePathKind.Unknown)
+            if (layout is SimpleLayout simpleLayout && simpleLayout.OriginalText?.IndexOfAny(new char[] { '\a', '\b', '\f', '\n', '\r', '\t', '\v' }) >= 0)
             {
-                return DetectFilePathKind(layout as SimpleLayout);
+                if (_cleanedFixedResult is null)
+                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters (Maybe change to forward-slash): {0}", simpleLayout.OriginalText);
+                else
+                    InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters (Maybe change to forward-slash): {0}", _cleanedFixedResult);
             }
-
-            return currentFilePathKind;
+            else if (_cleanedFixedResult != null)
+            {
+                if (DetectFilePathKind(_cleanedFixedResult) != FilePathKind.Absolute && _cleanedFixedResult.IndexOfAny(new char[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }) < 0)
+                {
+                    InternalLogger.Warn("FileTarget FilePathLayout not recognized as absolute path (Maybe change to forward-slash): {0}", _cleanedFixedResult);
+                }
+            }
         }
 
         public Layout GetLayout()
@@ -239,7 +244,7 @@ namespace NLog.Internal
         {
             if (!string.IsNullOrEmpty(path))
             {
-                path = path.TrimStart();
+                path = path.TrimStart(ArrayHelper.Empty<char>());
 
                 int length = path.Length;
                 if (length >= 1)

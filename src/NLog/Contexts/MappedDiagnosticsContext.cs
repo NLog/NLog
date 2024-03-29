@@ -39,8 +39,10 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
-    /// of strings and provides methods to output them in layouts. 
+    /// Obsolete and replaced by <see cref="ScopeContext"/> with NLog v5.
+    /// 
+    /// Mapped Diagnostics Context (MDC) is a dictionary of keys and values.
+    /// Stores the dictionary in the thread-local static variable, and provides methods to output dictionary values in layouts.
     /// </summary>
     [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public static class MappedDiagnosticsContext

@@ -312,7 +312,7 @@ namespace NLog.Layouts
         {
             if (!IsLogEventMutableSafe(logEvent))
             {
-                PrecalculateBuilderInternal(logEvent, target);
+                PrecalculateBuilderInternal(logEvent, target, null);
             }
         }
 
@@ -435,7 +435,7 @@ namespace NLog.Layouts
                     //check for performance
                     if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
                     {
-                        InternalLogger.Warn(exception, "Exception in '{0}.GetFormattedString()'", _stringValueRenderer?.GetType().FullName);
+                        InternalLogger.Warn(exception, "Exception in '{0}.GetFormattedString()'", _stringValueRenderer.GetType().FullName);
                     }
 
                     if (exception.MustBeRethrown())

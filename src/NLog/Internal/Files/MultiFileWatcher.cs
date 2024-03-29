@@ -128,22 +128,22 @@ namespace NLog.Internal
             try
             {
                 var directory = Path.GetDirectoryName(fileName);
+                var fileFilter = Path.GetFileName(fileName);
                 directory = Path.GetFullPath(directory);
                 if (!Directory.Exists(directory))
                 {
-                    InternalLogger.Warn("Cannot watch file '{0}' for non-existing directory: {1}", fileName, directory);
+                    InternalLogger.Warn("Cannot watch file-filter '{0}' when non-existing directory: {1}", fileFilter, directory);
                     return;
                 }
 
-                var fileFilter = Path.GetFileName(fileName);
                 if (TryAddWatch(fileName, directory, fileFilter))
                 {
-                    InternalLogger.Debug("Watching file-filter '{0}' in directory: {1}", fileFilter, directory);
+                    InternalLogger.Debug("Start watching file-filter '{0}' in directory: {1}", fileFilter, directory);
                 }
             }
             catch (System.Security.SecurityException ex)
             {
-                InternalLogger.Debug(ex, "Cannot watch for file changes: {0}", fileName);
+                InternalLogger.Debug(ex, "Failed to start FileSystemWatcher with file-path: {0}", fileName);
             }
         }
 
@@ -177,7 +177,7 @@ namespace NLog.Internal
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed to setup FileSystemWatcher for file `{0}` with directory: {1}", fileName, directory);
+                    InternalLogger.Error(ex, "Failed to start FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, directory);
                     if (ex.MustBeRethrown())
                         throw;
 
@@ -193,9 +193,15 @@ namespace NLog.Internal
 
         private void StopWatching(FileSystemWatcher watcher)
         {
+            string fileFilter = string.Empty;
+            string fileDirectory = string.Empty;
+
             try
             {
-                InternalLogger.Debug("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+                fileFilter = watcher.Filter;
+                fileDirectory = watcher.Path;
+
+                InternalLogger.Debug("Stop watching file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
                 watcher.EnableRaisingEvents = false;
                 watcher.Created -= OnFileChanged;
                 watcher.Changed -= OnFileChanged;
@@ -206,24 +212,18 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "Failed to stop file watcher for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+                InternalLogger.Error(ex, "Failed to stop FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
                 if (ex.MustBeRethrown())
                     throw;
             }
         }
 
-        private void OnWatcherError(object source, ErrorEventArgs e)
+        private static void OnWatcherError(object source, ErrorEventArgs e)
         {
-            var watcherPath = string.Empty;
             var watcher = source as FileSystemWatcher;
-            if (watcher != null)
-                watcherPath = watcher.Path;
-
-            var exception = e.GetException();
-            if (exception != null)
-                InternalLogger.Warn(exception, "Error Watching Path {0}", watcherPath);
-            else
-                InternalLogger.Warn("Error Watching Path {0}", watcherPath);
+            var fileFilter = watcher?.Filter ?? string.Empty;
+            var fileDirectory = watcher?.Path ?? string.Empty;
+            InternalLogger.Warn(e.GetException(), "Error from FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
         }
 
         private void OnFileChanged(object source, FileSystemEventArgs e)
@@ -241,7 +241,7 @@ namespace NLog.Internal
                     if (ex.MustBeRethrownImmediately())
                         throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
 #endif
-                    InternalLogger.Error(ex, "Error Handling File Changed");
+                    InternalLogger.Error(ex, "Error handling event from FileSystemWatcher with file-filter: '{0}' in directory: {1}", e.Name, e.FullPath);
                 }
             }
         }

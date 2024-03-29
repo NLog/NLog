@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Conditions
             try
             {
                 AssertEvaluationResult(true, "starts-with('foobar')");
-                Assert.True(false, "Expected exception");
+                Assert.Fail("Should throw exception");
             }
             catch (ConditionParseException ex)
             {
@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Conditions
             try
             {
                 AssertEvaluationResult(true, "starts-with('foobar','baz','qux','zzz')");
-                Assert.True(false, "Expected exception");
+                Assert.Fail("Should throw exception");
             }
             catch (ConditionParseException ex)
             {
@@ -130,7 +130,7 @@ namespace NLog.UnitTests.Conditions
             try
             {
                 AssertEvaluationResult(true, "length()");
-                Assert.True(false, "Expected exception");
+                Assert.Fail("Should throw exception");
             }
             catch (ConditionParseException ex)
             {
@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Conditions
             try
             {
                 AssertEvaluationResult(true, "equals('foobar','baz','qux')");
-                Assert.True(false, "Expected exception");
+                Assert.Fail("Should throw exception");
             }
             catch (ConditionParseException ex)
             {

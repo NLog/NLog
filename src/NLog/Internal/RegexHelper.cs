@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text.RegularExpressions;
-
 namespace NLog.Internal
 {
-    internal class RegexHelper
+    using System;
+    using System.Text.RegularExpressions;
+
+    internal sealed class RegexHelper
     {
         private Regex _regex;
         private string _searchText;
@@ -121,7 +121,7 @@ namespace NLog.Internal
 
         private void ResetRegex()
         {
-            _simpleSearchText = !WholeWords && !IgnoreCase && !string.IsNullOrEmpty(SearchText);
+            _simpleSearchText = !WholeWords && !CompileRegex && !string.IsNullOrEmpty(SearchText);
             if (!string.IsNullOrEmpty(SearchText))
             {
                 _regexPattern = Regex.Escape(SearchText);
@@ -153,7 +153,7 @@ namespace NLog.Internal
         {
             if (_simpleSearchText)
             {
-                return input.Replace(SearchText, replacement);
+                return IgnoreCase ? StringHelpers.Replace(input, SearchText, replacement, StringComparison.CurrentCultureIgnoreCase) : input.Replace(SearchText, replacement);
             }
             else if (CompileRegex)
             {

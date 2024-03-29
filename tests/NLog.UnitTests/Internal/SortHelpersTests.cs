@@ -53,11 +53,11 @@ namespace NLog.UnitTests.Internal
             foreach (var _ in dict)
                 Assert.False(true);
 
-            Assert.Equal(0, dict.Keys.Count);
+            Assert.Empty(dict.Keys);
             foreach (var _ in dict.Keys)
                 Assert.False(true);
 
-            Assert.Equal(0, dict.Values.Count);
+            Assert.Empty(dict.Values);
             foreach (var _ in dict.Values)
                 Assert.False(true);
 
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Internal
             KeyValuePair<string, IList<string>>[] copyToResult = new KeyValuePair<string, IList<string>>[10];
             dict.CopyTo(copyToResult, 0);
             Assert.Equal("Bucket1", copyToResult[0].Key);
-            Assert.Equal(0, copyToResult[0].Value.Count);
+            Assert.Empty(copyToResult[0].Value);
 
             Assert.Single(dict);
             Assert.Equal(1, dict.Count(val => val.Key == "Bucket1"));
@@ -94,22 +94,22 @@ namespace NLog.UnitTests.Internal
             foreach (var item in dict)
             {
                 Assert.Equal("Bucket1", item.Key);
-                Assert.Equal(0, item.Value.Count);
+                Assert.Empty(item.Value);
             }
 
-            Assert.Equal(1, dict.Keys.Count);
+            Assert.Single(dict.Keys);
             foreach (var key in dict.Keys)
             {
                 Assert.Equal("Bucket1", key);
             }
 
-            Assert.Equal(1, dict.Values.Count);
+            Assert.Single(dict.Values);
             foreach (var val in dict.Values)
             {
-                Assert.Equal(0, val.Count);
+                Assert.Empty(val);
             }
 
-            Assert.Equal(0, dict["Bucket1"].Count);
+            Assert.Empty(dict["Bucket1"]);
 
             Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 0);
             Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
@@ -134,7 +134,7 @@ namespace NLog.UnitTests.Internal
             KeyValuePair<string, IList<string>>[] copyToResult = new KeyValuePair<string, IList<string>>[10];
             dict.CopyTo(copyToResult, 0);
             Assert.Equal("Bucket1", copyToResult[0].Key);
-            Assert.Equal(1, copyToResult[0].Value.Count);
+            Assert.Single(copyToResult[0].Value);
             Assert.Equal("Bucket1Item1", copyToResult[0].Value[0]);
 
             Assert.Single(dict);
@@ -143,24 +143,24 @@ namespace NLog.UnitTests.Internal
             foreach (var item in dict)
             {
                 Assert.Equal("Bucket1", item.Key);
-                Assert.Equal(1, item.Value.Count);
+                Assert.Single(item.Value);
                 Assert.Equal("Bucket1Item1", item.Value[0]);
             }
 
-            Assert.Equal(1, dict.Keys.Count);
+            Assert.Single(dict.Keys);
             foreach (var key in dict.Keys)
             {
                 Assert.Equal("Bucket1", key);
             }
 
-            Assert.Equal(1, dict.Values.Count);
+            Assert.Single(dict.Values);
             foreach (var val in dict.Values)
             {
-                Assert.Equal(1, val.Count);
+                Assert.Single(val);
                 Assert.Equal("Bucket1Item1", val[0]);
             }
 
-            Assert.Equal(1, dict["Bucket1"].Count);
+            Assert.Single(dict["Bucket1"]);
             Assert.True(dict.TryGetValue("Bucket1", out bucket) && bucket.Count == 1);
             Assert.False(dict.TryGetValue(string.Empty, out bucket) || bucket != null);
             Assert.False(dict.TryGetValue(null, out bucket) || bucket != null);
@@ -199,13 +199,13 @@ namespace NLog.UnitTests.Internal
                 Assert.Equal("Bucket1Item2", item.Value[1]);
             }
 
-            Assert.Equal(1, dict.Keys.Count);
+            Assert.Single(dict.Keys);
             foreach (var key in dict.Keys)
             {
                 Assert.Equal("Bucket1", key);
             }
 
-            Assert.Equal(1, dict.Values.Count);
+            Assert.Single(dict.Values);
             foreach (var val in dict.Values)
             {
                 Assert.Equal(2, val.Count);
@@ -248,8 +248,8 @@ namespace NLog.UnitTests.Internal
             dict.CopyTo(copyToResult, 0);
             Assert.Equal("Bucket1", copyToResult[0].Key);
             Assert.Equal("Bucket2", copyToResult[1].Key);
-            Assert.Equal(0, copyToResult[0].Value.Count);
-            Assert.Equal(0, copyToResult[1].Value.Count);
+            Assert.Empty(copyToResult[0].Value);
+            Assert.Empty(copyToResult[1].Value);
 
             Assert.Equal(2, dict.Count());
             Assert.Equal(1, dict.Count(val => val.Key == "Bucket1"));
@@ -258,7 +258,7 @@ namespace NLog.UnitTests.Internal
             foreach (var item in dict)
             {
                 Assert.True(item.Key == "Bucket1" || item.Key == "Bucket2");
-                Assert.Equal(0, item.Value.Count);
+                Assert.Empty(item.Value);
             }
 
             Assert.Equal(2, dict.Keys.Count);
@@ -270,11 +270,11 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(2, dict.Values.Count);
             foreach (var val in dict.Values)
             {
-                Assert.Equal(0, val.Count);
+                Assert.Empty(val);
             }
 
-            Assert.Equal(0, dict["Bucket1"].Count);
-            Assert.Equal(0, dict["Bucket2"].Count);
+            Assert.Empty(dict["Bucket1"]);
+            Assert.Empty(dict["Bucket2"]);
             Assert.True(dict.TryGetValue("Bucket1", out bucket1) && bucket1.Count == 0);
             Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 0);
             Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());
@@ -308,8 +308,8 @@ namespace NLog.UnitTests.Internal
             dict.CopyTo(copyToResult, 0);
             Assert.Equal("Bucket1", copyToResult[0].Key);
             Assert.Equal("Bucket2", copyToResult[1].Key);
-            Assert.Equal(1, copyToResult[0].Value.Count);
-            Assert.Equal(1, copyToResult[1].Value.Count);
+            Assert.Single(copyToResult[0].Value);
+            Assert.Single(copyToResult[1].Value);
 
             Assert.Equal(2, dict.Count());
             Assert.Equal(1, dict.Count(val => val.Key == "Bucket1"));
@@ -318,7 +318,7 @@ namespace NLog.UnitTests.Internal
             foreach (var item in dict)
             {
                 Assert.True(item.Key == "Bucket1" || item.Key == "Bucket2");
-                Assert.Equal(1, item.Value.Count);
+                Assert.Single(item.Value);
                 Assert.Equal("Bucket1Item1", item.Value[0]);
             }
 
@@ -331,12 +331,12 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(2, dict.Values.Count);
             foreach (var val in dict.Values)
             {
-                Assert.Equal(1, val.Count);
+                Assert.Single(val);
                 Assert.Equal("Bucket1Item1", val[0]);
             }
 
-            Assert.Equal(1, dict["Bucket1"].Count);
-            Assert.Equal(1, dict["Bucket2"].Count);
+            Assert.Single(dict["Bucket1"]);
+            Assert.Single(dict["Bucket2"]);
             Assert.True(dict.TryGetValue("Bucket1", out bucket1) && bucket1.Count == 1);
             Assert.True(dict.TryGetValue("Bucket2", out bucket2) && bucket2.Count == 1);
             Assert.Throws<NotSupportedException>(() => dict[string.Empty] = ArrayHelper.Empty<string>());

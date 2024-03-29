@@ -38,8 +38,10 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Nested Diagnostics Context - a thread-local structure that keeps a stack
-    /// of strings and provides methods to output them in layouts
+    /// Obsolete and replaced by <see cref="ScopeContext"/> with NLog v5.
+    /// 
+    /// Nested Diagnostics Context (NDC) is a stack of nested values.
+    /// Stores the stack in the thread-local static variable, and provides methods to output the values in layouts.
     /// </summary>
     [Obsolete("Replaced by ScopeContext.PushNestedState or Logger.PushScopeNested using ${scopenested}. Marked obsolete on NLog 5.0")]
     public static class NestedDiagnosticsContext

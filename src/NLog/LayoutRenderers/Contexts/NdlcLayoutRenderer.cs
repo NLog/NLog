@@ -37,8 +37,8 @@ namespace NLog.LayoutRenderers
     using System.Text;
 
     /// <summary>
-    /// Render a Nested Diagnostic Logical Context item (Async scope)
-    /// See <see cref="NestedDiagnosticsLogicalContext"/>
+    /// Obsolete and replaced by <see cref="ScopeContextNestedStatesLayoutRenderer"/> with NLog v5.
+    /// Render Nested Diagnostic Context (NDLC) from <see cref="NestedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("ndlc")]
     [Obsolete("Replaced by ScopeContextNestedStatesLayoutRenderer ${scopenested}. Marked obsolete on NLog 5.0")]

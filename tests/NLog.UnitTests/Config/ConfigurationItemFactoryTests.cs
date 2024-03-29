@@ -51,11 +51,16 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
         public void ConfigurationItemFactoryFailsTest()
         {
             var itemFactory = new ConfigurationItemFactory();
             var ex = Assert.ThrowsAny<Exception>(() => itemFactory.GetTargetFactory().CreateInstance("Memory-Target") as MemoryTarget);
             Assert.Contains("Memory-Target", ex.Message);
+
+            itemFactory.GetTargetFactory().RegisterDefinition(nameof(MemoryTarget), typeof(MemoryTarget));
+            var result = itemFactory.GetTargetFactory().CreateInstance("Memory-Target");
+            Assert.IsType<MemoryTarget>(result);
         }
 
         [Fact]

@@ -44,11 +44,11 @@ namespace NLog.Internal
     /// Represents target with a chain of filters which determine
     /// whether logging should happen.
     /// </summary>
-    internal class TargetWithFilterChain
+    internal sealed class TargetWithFilterChain : ITargetWithFilterChain
     {
-        internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggingConfiguration();
+        internal static readonly TargetWithFilterChain[] NoTargetsByLevel = CreateLoggerConfiguration();
 
-        private static TargetWithFilterChain[] CreateLoggingConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
+        private static TargetWithFilterChain[] CreateLoggerConfiguration() => new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 2];    // +2 to include LogLevel.Off
 
         private MruCache<CallSiteKey, string> _callSiteClassNameCache;
 
@@ -117,29 +117,33 @@ namespace NLog.Internal
             return stackTraceUsage;
         }
 
-        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, LoggingConfiguration configuration, LogLevel globalLogLevel)
+        static internal TargetWithFilterChain[] BuildLoggerConfiguration(string loggerName, List<LoggingRule> loggingRules, LogLevel globalLogLevel)
         {
-            if (configuration is null || LogLevel.Off.Equals(globalLogLevel))
+            if (loggingRules is null || loggingRules.Count == 0 || LogLevel.Off.Equals(globalLogLevel))
                 return TargetWithFilterChain.NoTargetsByLevel;
 
-            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
-            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggingConfiguration();
+            TargetWithFilterChain[] targetsByLevel = TargetWithFilterChain.CreateLoggerConfiguration();
+            TargetWithFilterChain[] lastTargetsByLevel = TargetWithFilterChain.CreateLoggerConfiguration();
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
-            //no "System.InvalidOperationException: Collection was modified"
-            var loggingRules = configuration.GetLoggingRulesThreadSafe();
             bool targetsFound = GetTargetsByLevelForLogger(loggerName, loggingRules, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             return targetsFound ? targetsByLevel : TargetWithFilterChain.NoTargetsByLevel;
         }
 
         static private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
+            IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters = null;
             bool targetsFound = false;
             foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
                 {
                     continue;
+                }
+
+                if (LoggingRuleHasFinalMinLevelFilters(rule))
+                {
+                    CollectFinalMinLevelFiltersFromRule(rule, ref finalMinLevelWithFilters);
                 }
 
                 targetsFound = AddTargetsFromLoggingRule(rule, name, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
@@ -154,10 +158,57 @@ namespace NLog.Internal
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 TargetWithFilterChain tfc = targetsByLevel[i];
-                tfc?.PrecalculateStackTraceUsage();
+                if (tfc is null)
+                    continue;
+
+                if (finalMinLevelWithFilters?.Count > 0)
+                {
+                    var finalMinLevelFilters = finalMinLevelWithFilters[i];
+                    if (finalMinLevelFilters.Value?.Count > 0)
+                    {
+                        targetsByLevel[i] = tfc = AppendFinalMinLevelFilters(tfc, finalMinLevelFilters.Value, finalMinLevelFilters.Key.Value);
+                    }
+                }
+
+                tfc.PrecalculateStackTraceUsage();
             }
 
             return targetsFound;
+        }
+
+        private static bool LoggingRuleHasFinalMinLevelFilters(LoggingRule rule)
+        {
+            return LogLevel.Off != rule.FinalMinLevel && rule.Filters.Count != 0 && rule.Targets.Count == 0;
+        }
+
+        private static void CollectFinalMinLevelFiltersFromRule(LoggingRule rule, ref IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters)
+        {
+            finalMinLevelWithFilters = finalMinLevelWithFilters ?? new KeyValuePair<FilterResult?, IList<Filter>>[LogLevel.MaxLevel.Ordinal + 1];
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (i < rule.FinalMinLevel.Ordinal)
+                    continue;
+
+                if (finalMinLevelWithFilters[i].Key.HasValue && finalMinLevelWithFilters[i].Key.Value != rule.FilterDefaultAction)
+                    continue;
+
+                var newFilterResult = finalMinLevelWithFilters[i].Key ?? rule.FilterDefaultAction;
+                var newFilterChain = finalMinLevelWithFilters[i].Value?.Count > 0 ? System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(finalMinLevelWithFilters[i].Value, rule.Filters)) : rule.Filters;
+                finalMinLevelWithFilters[i] = new KeyValuePair<FilterResult?, IList<Filter>>(newFilterResult, newFilterChain);
+            }
+        }
+
+        private static TargetWithFilterChain AppendFinalMinLevelFilters(TargetWithFilterChain targetsByLevel, IList<Filter> finalMinLevelFilters, FilterResult finalMinLevelDefaultResult)
+        {
+            if (targetsByLevel.FilterChain?.Count > 0 && targetsByLevel.FilterDefaultAction != finalMinLevelDefaultResult)
+                return targetsByLevel;
+
+            var newFilterChain = targetsByLevel.FilterChain?.Count > 0 ? System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(finalMinLevelFilters, targetsByLevel.FilterChain)) : finalMinLevelFilters;
+            var newTargetsByLevel = new TargetWithFilterChain(targetsByLevel.Target, newFilterChain, finalMinLevelDefaultResult);
+
+            var nextInChain = targetsByLevel.NextInChain is null ? null : AppendFinalMinLevelFilters(targetsByLevel.NextInChain, finalMinLevelFilters, finalMinLevelDefaultResult);
+            newTargetsByLevel.NextInChain = nextInChain ?? targetsByLevel.NextInChain;
+            return newTargetsByLevel;
         }
 
         private static bool AddTargetsFromLoggingRule(LoggingRule rule, string loggerName, LogLevel globalLogLevel, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
@@ -257,7 +308,6 @@ namespace NLog.Internal
             return newTarget;
         }
 
-
         internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
         {
             if ((stackTraceUsage & (StackTraceUsage.WithCallSiteClassName | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSiteClassName)
@@ -322,6 +372,11 @@ namespace NLog.Internal
 
             CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
             return _callSiteClassNameCache.TryGetValue(callSiteKey, out callSiteClassName);
+        }
+
+        public void WriteToLoggerTargets(Type loggerType, LogEventInfo logEvent, LogFactory logFactory)
+        {
+            LoggerImpl.Write(loggerType, this, logEvent, logFactory);
         }
 
         struct CallSiteKey : IEquatable<CallSiteKey>

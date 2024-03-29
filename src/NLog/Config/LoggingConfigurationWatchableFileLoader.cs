@@ -46,7 +46,7 @@ namespace NLog.Config
     /// Enables FileWatcher for the currently loaded NLog Configuration File,
     /// and supports automatic reload on file modification.
     /// </summary>
-    internal class LoggingConfigurationWatchableFileLoader : LoggingConfigurationFileLoader
+    internal sealed class LoggingConfigurationWatchableFileLoader : LoggingConfigurationFileLoader
     {
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private readonly object _lockObject = new object();

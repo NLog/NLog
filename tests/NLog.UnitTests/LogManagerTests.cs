@@ -395,7 +395,7 @@ namespace NLog.UnitTests
             }
         }
 
-        private class InheritedFromAbstractClass : ImAAbstractClass
+        private sealed class InheritedFromAbstractClass : ImAAbstractClass
         {
             public readonly Logger LoggerInherited = LogManager.GetCurrentClassLogger();
             public readonly Logger LoggerTypeInherited = LogManager.LogFactory.GetCurrentClassLogger<MyLogger>();

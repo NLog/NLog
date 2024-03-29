@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Internal
     /// <summary>
     /// Tricky implementation of IDictionary where GetEnumerator does not return expected DictionaryEntry by default
     /// </summary>
-    internal class TrickyTestDictionary : IDictionary<object, object>, IDictionary
+    internal sealed class TrickyTestDictionary : IDictionary<object, object>, IDictionary
     {
         readonly Dictionary<object, object> _inner = new Dictionary<object, object>();
 

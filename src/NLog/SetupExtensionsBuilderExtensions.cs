@@ -154,7 +154,8 @@ namespace NLog
                 throw new ArgumentException("Missing NLog Target type-alias", nameof(name));
             if (!typeof(Target).IsAssignableFrom(targetType))
                 throw new ArgumentException("Not of type NLog Target", nameof(targetType));
-            ConfigurationItemFactory.Default.GetTargetFactory().RegisterDefinition(name, targetType);
+
+            ConfigurationItemFactory.Default.GetTargetFactory().RegisterType(name, () => (Target)Activator.CreateInstance(targetType));
             return setupBuilder;
         }
 
@@ -197,7 +198,8 @@ namespace NLog
                 throw new ArgumentException("Missing NLog Layout type-alias", nameof(typeAlias));
             if (!typeof(Layout).IsAssignableFrom(layoutType))
                 throw new ArgumentException("Not of type NLog Layout", nameof(layoutType));
-            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterDefinition(typeAlias, layoutType);
+
+            ConfigurationItemFactory.Default.GetLayoutFactory().RegisterType(typeAlias, () => (Layout)Activator.CreateInstance(layoutType));
             return setupBuilder;
         }
 
@@ -265,7 +267,8 @@ namespace NLog
                 throw new ArgumentException("Missing NLog LayoutRenderer type-alias", nameof(name));
             if (!typeof(LayoutRenderer).IsAssignableFrom(layoutRendererType))
                 throw new ArgumentException("Not of type NLog LayoutRenderer", nameof(layoutRendererType));
-            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterDefinition(name, layoutRendererType);
+
+            ConfigurationItemFactory.Default.GetLayoutRendererFactory().RegisterType(name, () => (LayoutRenderer)Activator.CreateInstance(layoutRendererType));
             return setupBuilder;
         }
 
@@ -334,6 +337,7 @@ namespace NLog
         /// <param name="name">Name of the condition filter method</param>
         /// <param name="conditionMethod">MethodInfo extracted by reflection - typeof(MyClass).GetMethod("MyFunc", BindingFlags.Static).</param>
         [Obsolete("Instead use RegisterConditionMethod with delegate, as type reflection will be moved out. Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod)
         {
             Guard.ThrowIfNull(conditionMethod);

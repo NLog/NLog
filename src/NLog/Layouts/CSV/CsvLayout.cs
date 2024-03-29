@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -46,9 +47,9 @@ namespace NLog.Layouts
     /// <para>
     /// If <see cref="LayoutWithHeaderAndFooter.Header"/> is set, then the header generation with column names will be disabled.
     /// </para>
-    /// <a href="https://github.com/NLog/NLog/wiki/JsonLayout">See NLog Wiki</a>
+    /// <a href="https://github.com/NLog/NLog/wiki/CsvLayout">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/NLog/NLog/wiki/JsonLayout">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/CsvLayout">Documentation on NLog Wiki</seealso>
     [Layout("CsvLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
@@ -57,6 +58,7 @@ namespace NLog.Layouts
         private string _actualColumnDelimiter;
         private string _doubleQuoteChar;
         private char[] _quotableCharacters;
+        private Layout[] _precalculateLayouts;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvLayout"/> class.
@@ -101,7 +103,7 @@ namespace NLog.Layouts
         public string QuoteChar { get; set; } = "\"";
 
         /// <summary>
-        /// Gets or sets the custom column delimiter value (valid when ColumnDelimiter is set to 'Custom').
+        /// Gets or sets the custom column delimiter value (valid when <see cref="Delimiter"/> is set to <see cref="CsvColumnDelimiterMode.Custom"/>).
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public string CustomColumnDelimiter { get; set; }
@@ -149,11 +151,19 @@ namespace NLog.Layouts
 
             _quotableCharacters = (QuoteChar + "\r\n" + _actualColumnDelimiter).ToCharArray();
             _doubleQuoteChar = QuoteChar + QuoteChar;
+            _precalculateLayouts = ResolveLayoutPrecalculation(Columns.Select(cln => cln.Layout));
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseLayout()
+        {
+            _precalculateLayouts = null;
+            base.CloseLayout();
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>

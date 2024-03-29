@@ -50,6 +50,8 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {
+        private Layout[] _precalculateLayouts;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CompoundLayout"/> class.
         /// </summary>
@@ -68,14 +70,17 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void InitializeLayout()
         {
-            base.InitializeLayout();
             foreach (var layout in Layouts)
                 layout.Initialize(LoggingConfiguration);
+
+            base.InitializeLayout();
+
+            _precalculateLayouts = ResolveLayoutPrecalculation(Layouts);
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>
@@ -99,6 +104,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
+            _precalculateLayouts = null;
             foreach (var layout in Layouts)
                 layout.Close();
             base.CloseLayout();

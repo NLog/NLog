@@ -38,17 +38,21 @@ namespace NLog.Layouts
     /// <summary>
     /// A XML Element
     /// </summary>
-    [NLogConfigurationItem]
+    [ThreadAgnostic]
     public class XmlElement : XmlElementBase
     {
         private const string DefaultElementName = "item";
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlElement"/> class.
+        /// </summary>
         public XmlElement() : this(DefaultElementName, null)
         {
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlElement"/> class.
+        /// </summary>
         public XmlElement(string elementName, Layout elementValue) : base(elementName, elementValue)
         {
         }
@@ -56,7 +60,11 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the element
         /// </summary>
+        /// <remarks>
+        /// Default value "item"
+        /// </remarks>
         /// <docgen category='Layout Options' order='1' />
+        [RequiredParameter]
         public string Name
         {
             get => base.ElementNameInternal;

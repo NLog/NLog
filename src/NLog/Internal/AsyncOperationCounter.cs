@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Keeps track of pending operation count, and can notify when pending operation count reaches zero
     /// </summary>
-    internal class AsyncOperationCounter
+    internal sealed class AsyncOperationCounter
     {
         private int _pendingOperationCounter;
         private readonly LinkedList<AsyncContinuation> _pendingCompletionList = new LinkedList<AsyncContinuation>();

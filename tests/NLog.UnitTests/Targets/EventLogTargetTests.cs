@@ -123,7 +123,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(0)] // Is multiple of 64, but less than the min value of 64
         [InlineData(65)] // Isn't multiple of 64
         [InlineData(4194304)] // Is multiple of 64, but bigger than the max value of 4194240
-        public void Configuration_ShouldThrowException_WhenMaxKilobytesIsInvalid(long? maxKilobytes)
+        public void Configuration_ShouldThrowException_WhenMaxKilobytesIsInvalid(long maxKilobytes)
         {
             string configrationText = $@"
             <nlog ThrowExceptions='true'>
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(0)] // Is multiple of 64, but less than the min value of 64
         [InlineData(65)] // Isn't multiple of 64
         [InlineData(4194304)] // Is multiple of 64, but bigger than the max value of 4194240
-        public void MaxKilobytes_ShouldThrowException_WhenMaxKilobytesIsInvalid(long? maxKilobytes)
+        public void MaxKilobytes_ShouldThrowException_WhenMaxKilobytesIsInvalid(long maxKilobytes)
         {
             ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
@@ -159,7 +159,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(64)] // Min value
         [InlineData(4194240)] // Max value
         [InlineData(16384)] // Acceptable value
-        public void ConfigurationMaxKilobytes_ShouldBeAsSpecified_WhenMaxKilobytesIsValid(long? maxKilobytes)
+        public void ConfigurationMaxKilobytes_ShouldBeAsSpecified_WhenMaxKilobytesIsValid(long maxKilobytes)
         {
             var expectedMaxKilobytes = maxKilobytes;
 
@@ -180,9 +180,9 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [InlineData(null)] // A possible value, that should not change anything
-        [InlineData(64)] // Min value
-        [InlineData(4194240)] // Max value
-        [InlineData(16384)] // Acceptable value
+        [InlineData(64L)] // Min value
+        [InlineData(4194240L)] // Max value
+        [InlineData(16384L)] // Acceptable value
         public void MaxKilobytes_ShouldBeAsSpecified_WhenValueIsValid(long? maxKilobytes)
         {
             var expectedMaxKilobytes = maxKilobytes;
@@ -194,8 +194,8 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData(32768, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
-        [InlineData(16384, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
+        [InlineData(32768L, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
+        [InlineData(16384L, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
         [InlineData(null, EventLogMock.EventLogDefaultMaxKilobytes, EventLogMock.EventLogDefaultMaxKilobytes)]      // Should not change MaxKilobytes when the value is null
         public void ShouldSetMaxKilobytes_WhenNeeded(long? newValue, long initialValue, long expectedValue)
         {

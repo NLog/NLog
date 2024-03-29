@@ -831,11 +831,63 @@ namespace NLog.UnitTests.Config
             logger.Info("Info Level");
             Assert.Equal("Info Level", target.LastMessage);
 
-            logger.Info("Fatal Level");
+            logger.Fatal("Fatal Level");
             Assert.Equal("Fatal Level", target.LastMessage);
 
             logger.Trace("Trace Level");
             Assert.Equal("Fatal Level", target.LastMessage);
+        }
+
+        [Fact]
+        public void SetupBuilder_FilterFinalMinLevel()
+        {
+            var logFactory = new LogFactory();
+            var logger = logFactory.Setup().LoadConfiguration(c => {
+                c.ForLogger("NoisyNameSpace.*").WriteToNil(LogLevel.Warn);
+                c.ForLogger("NoisyNameSpace.GoodLogger").WriteToNil(LogLevel.Info);
+                c.ForLogger(LogLevel.Debug).WriteTo(new DebugTarget() { Layout = "${message}" });
+            }).GetCurrentClassLogger();
+            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().FirstOrDefault();
+            Assert.Single(logFactory.Configuration.AllTargets);
+            Assert.NotNull(target);
+
+            logger.Info("Debug Level");
+            Assert.Equal("Debug Level", target.LastMessage);
+
+            logger.Info("Info Level");
+            Assert.Equal("Info Level", target.LastMessage);
+
+            logger.Fatal("Fatal Level");
+            Assert.Equal("Fatal Level", target.LastMessage);
+
+            logger.Trace("Trace Level");
+            Assert.Equal("Fatal Level", target.LastMessage);
+
+            var goodLogger = logFactory.GetLogger("NoisyNameSpace.GoodLogger");
+            goodLogger.Info("Good Noise Info Level");
+            Assert.Equal("Good Noise Info Level", target.LastMessage);
+
+            goodLogger.Error("Good Noise Error Level");
+            Assert.Equal("Good Noise Error Level", target.LastMessage);
+
+            goodLogger.Fatal("Good Noise Fatal Level");
+            Assert.Equal("Good Noise Fatal Level", target.LastMessage);
+
+            goodLogger.Debug("Good Noise Debug Level");
+            Assert.Equal("Good Noise Fatal Level", target.LastMessage);
+
+            var noisyLogger = logFactory.GetLogger("NoisyNameSpace.BadLogger");
+            noisyLogger.Error("Bad Noise Error Level");
+            Assert.Equal("Bad Noise Error Level", target.LastMessage);
+
+            noisyLogger.Fatal("Bad Noise Fatal Level");
+            Assert.Equal("Bad Noise Fatal Level", target.LastMessage);
+
+            noisyLogger.Info("Bad Noise Info Level");
+            Assert.Equal("Bad Noise Fatal Level", target.LastMessage);
+
+            noisyLogger.Debug("Bad Noise Debug Level");
+            Assert.Equal("Bad Noise Fatal Level", target.LastMessage);
         }
 
         [Fact]

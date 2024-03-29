@@ -119,7 +119,7 @@ namespace NLog
         /// </summary>
         public static ISetupLogFactoryBuilder AddCallSiteHiddenAssembly(this ISetupLogFactoryBuilder configBuilder, System.Reflection.Assembly assembly)
         {
-            LogManager.AddHiddenAssembly(assembly);
+            NLog.Internal.CallSiteInformation.AddCallSiteHiddenAssembly(assembly);
             return configBuilder;
         }
 

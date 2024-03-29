@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
     /// </summary>
-    internal class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
+    internal sealed class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
     {
         public ReusableAsyncLogEventList(int capacity)
             :base(capacity, (cap) => new List<AsyncLogEventInfo>(cap), (l) => l.Clear())

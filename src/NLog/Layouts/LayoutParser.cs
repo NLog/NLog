@@ -122,12 +122,6 @@ namespace NLog.Layouts
                     AddLiteral(literalBuf, result);
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr, throwConfigExceptions);
-                    if (CanBeConvertedToLiteral(configurationItemFactory, newLayoutRenderer))
-                    {
-                        newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
-                    }
-
-                    // layout renderer
                     result.Add(newLayoutRenderer);
                 }
                 else
@@ -491,9 +485,19 @@ namespace NLog.Layouts
                 ch = stringReader.Read();
             }
 
+            return BuildCompleteLayoutRenderer(configurationItemFactory, layoutRenderer, orderedWrappers);
+        }
+
+        private static LayoutRenderer BuildCompleteLayoutRenderer(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, List<LayoutRenderer> orderedWrappers = null)
+        {
             if (orderedWrappers != null)
             {
                 layoutRenderer = ApplyWrappers(configurationItemFactory, layoutRenderer, orderedWrappers);
+            }
+            
+            if (CanBeConvertedToLiteral(configurationItemFactory, layoutRenderer))
+            {
+                layoutRenderer = ConvertToLiteral(layoutRenderer);
             }
 
             return layoutRenderer;
@@ -580,10 +584,16 @@ namespace NLog.Layouts
 
         private static LayoutRenderer GetLayoutRenderer(string typeName, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
-            LayoutRenderer layoutRenderer;
+            LayoutRenderer layoutRenderer = null;
+
             try
             {
                 layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
+            }
+            catch (NLogConfigurationException ex)
+            {
+                if (throwConfigExceptions ?? ex.MustBeRethrown())
+                    throw;
             }
             catch (Exception ex)
             {
@@ -592,11 +602,10 @@ namespace NLog.Layouts
                 {
                     throw configException;
                 }
-
-                // replace with empty values
-                layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
-            return layoutRenderer;
+
+            return layoutRenderer
+                ?? new LiteralLayoutRenderer(string.Empty); // replace with empty values
         }
 
         private static string SetDefaultPropertyValue(string value, LayoutRenderer layoutRenderer, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)

@@ -195,14 +195,8 @@ namespace NLog.Internal
             if (type is null || IsSimplePropertyType(type))
                 return false;
 
-            if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(type))
-                return true;
-
-            if (typeof(Layout).IsAssignableFrom(type))
-                return true;
-
-            if (typeof(Target).IsAssignableFrom(type))
-                return true;
+            if (typeof(ISupportsInitialize).IsAssignableFrom(type))
+                return true;    // Target, Layout, LayoutRenderer
 
             if (typeof(IEnumerable).IsAssignableFrom(type))
                 return true;
@@ -212,7 +206,6 @@ namespace NLog.Internal
 
         internal static Dictionary<string, PropertyInfo> GetAllConfigItemProperties(ConfigurationItemFactory configFactory, Type type)
         {
-            // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
             return TryLookupConfigItemProperties(configFactory, type) ?? new Dictionary<string, PropertyInfo>();
         }
 
@@ -220,7 +213,6 @@ namespace NLog.Internal
         {
             lock (_parameterInfoCache)
             {
-                // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
                 if (!_parameterInfoCache.TryGetValue(type, out var cache))
                 {
                     if (TryCreatePropertyInfoDictionary(configFactory, type, out cache))
@@ -550,7 +542,7 @@ namespace NLog.Internal
 
             try
             {
-                if (!objectType.IsDefined(_configPropertyAttribute.GetType(), true))
+                if (!typeof(ISupportsInitialize).IsAssignableFrom(objectType) && !objectType.IsDefined(_configPropertyAttribute.GetType(), true))
                 {
                     return false;
                 }
@@ -619,7 +611,8 @@ namespace NLog.Internal
 
             try
             {
-                if (propInfo?.PropertyType is null)
+                var propertyType = propInfo?.PropertyType;
+                if (propertyType is null)
                     return false;
 
                 if (checkDefaultValue && propInfo.IsDefined(_defaultParameterAttribute.GetType(), false))
@@ -628,22 +621,16 @@ namespace NLog.Internal
                     return true;
                 }
 
-                if (IsSimplePropertyType(propInfo.PropertyType))
+                if (IsSimplePropertyType(propertyType))
                     return true;
 
-                if (typeof(LayoutRenderers.LayoutRenderer).IsAssignableFrom(propInfo.PropertyType))
-                    return true;
-
-                if (typeof(Layout).IsAssignableFrom(propInfo.PropertyType))
-                    return true;
-
-                if (typeof(Target).IsAssignableFrom(propInfo.PropertyType))
-                    return true;
+                if (typeof(ISupportsInitialize).IsAssignableFrom(propertyType))
+                    return true;    // Target, Layout, LayoutRenderer
 
                 if (propInfo.IsDefined(_ignorePropertyAttribute.GetType(), false))
-                    return false;
+                    return false;   // NLog will ignore all properties marked with NLogConfigurationIgnorePropertyAttribute
 
-                if (typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
+                if (typeof(IEnumerable).IsAssignableFrom(propertyType))
                 {
                     var arrayParameterAttribute = propInfo.GetFirstCustomAttribute<ArrayParameterAttribute>();
                     if (arrayParameterAttribute != null)

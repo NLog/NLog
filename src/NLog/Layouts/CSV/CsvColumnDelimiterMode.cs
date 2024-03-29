@@ -69,7 +69,7 @@ namespace NLog.Layouts
         Space,
 
         /// <summary>
-        /// Custom string, specified by the CustomDelimiter.
+        /// Custom string, specified by the <see cref="CsvLayout.CustomColumnDelimiter"/>.
         /// </summary>
         Custom,
     }

@@ -246,7 +246,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 
-    internal class NetworkInterfaceRetrieverBuilder
+    internal sealed class NetworkInterfaceRetrieverBuilder
     {
         private readonly IDictionary<int, List<KeyValuePair<string, string>>> _ips = new Dictionary<int, List<KeyValuePair<string, string>>>();
 

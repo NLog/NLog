@@ -811,7 +811,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        private class ConfigurationReloadWaiter : IDisposable
+        private sealed class ConfigurationReloadWaiter : IDisposable
         {
             private ManualResetEvent counterEvent = new ManualResetEvent(false);
 

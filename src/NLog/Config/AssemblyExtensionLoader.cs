@@ -41,7 +41,7 @@ namespace NLog.Config
     using NLog.Internal;
 
     [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-    internal class AssemblyExtensionLoader : IAssemblyExtensionLoader
+    internal sealed class AssemblyExtensionLoader : IAssemblyExtensionLoader
     {
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2072")]
         public void LoadTypeFromName(ConfigurationItemFactory factory, string typeName, string itemNamePrefix)
@@ -69,27 +69,7 @@ namespace NLog.Config
         {
             try
             {
-                var loadedAssemblies = new Dictionary<Assembly, Type>();
-                foreach (var itemType in factory.ItemTypes)
-                {
-                    var assembly = itemType.GetAssembly();
-                    if (assembly is null)
-                        continue;
-
-                    if (loadedAssemblies.TryGetValue(assembly, out var firstItemType))
-                    {
-                        if (firstItemType is null && IsNLogConfigurationItemType(itemType))
-                        {
-                            loadedAssemblies[assembly] = itemType;
-                        }
-                    }
-                    else
-                    {
-                        loadedAssemblies.Add(assembly, IsNLogConfigurationItemType(itemType) ? itemType : null);
-                    }
-                }
-
-
+                var loadedAssemblies = ResolveLoadedAssemblyTypes(factory);
                 if (loadedAssemblies.Count > 1)
                 {
                     foreach (var assembly in loadedAssemblies)
@@ -113,6 +93,31 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private static Dictionary<Assembly, Type> ResolveLoadedAssemblyTypes(ConfigurationItemFactory factory)
+        {
+            var loadedAssemblies = new Dictionary<Assembly, Type>();
+            foreach (var itemType in factory.ItemTypes)
+            {
+                var assembly = itemType.GetAssembly();
+                if (assembly is null)
+                    continue;
+
+                if (loadedAssemblies.TryGetValue(assembly, out var firstItemType))
+                {
+                    if (firstItemType is null && IsNLogConfigurationItemType(itemType))
+                    {
+                        loadedAssemblies[assembly] = itemType;
+                    }
+                }
+                else
+                {
+                    loadedAssemblies.Add(assembly, IsNLogConfigurationItemType(itemType) ? itemType : null);
+                }
+            }
+
+            return loadedAssemblies;
         }
 
         private static bool IsNLogConfigurationItemType(Type itemType)

@@ -324,7 +324,7 @@ namespace NLog.UnitTests.Common
 #endif
         }
 
-        private class MockTraceListener : TraceListener
+        private sealed class MockTraceListener : TraceListener
         {
 
             internal readonly List<string> Messages = new List<string>();

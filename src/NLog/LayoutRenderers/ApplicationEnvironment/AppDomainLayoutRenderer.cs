@@ -49,8 +49,10 @@ namespace NLog.LayoutRenderers
     {
         private const string ShortFormat = "{0:00}";
         private const string LongFormat = "{0:0000}:{1}";
+        private const string FriendlyFormat = "{1}";
         private const string LongFormatCode = "Long";
         private const string ShortFormatCode = "Short";
+        private const string FriendlyFormatCode = "Friendly";
 
         private readonly IAppEnvironment _currentAppEnvironment;
 
@@ -101,7 +103,7 @@ namespace NLog.LayoutRenderers
             if (_assemblyName is null)
             {
                 var formattingString = GetFormattingString(Format);
-                _assemblyName = string.Format(formattingString, _currentAppEnvironment.AppDomainId, _currentAppEnvironment.AppDomainFriendlyName);
+                _assemblyName = string.Format(System.Globalization.CultureInfo.InvariantCulture, formattingString, _currentAppEnvironment.AppDomainId, _currentAppEnvironment.AppDomainFriendlyName);
             }
             builder.Append(_assemblyName);
         }
@@ -109,13 +111,17 @@ namespace NLog.LayoutRenderers
         private static string GetFormattingString(string format)
         {
             string formattingString;
-            if (format.Equals(LongFormatCode, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(format, LongFormatCode, StringComparison.OrdinalIgnoreCase))
             {
                 formattingString = LongFormat;
             }
-            else if (format.Equals(ShortFormatCode, StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(format, ShortFormatCode, StringComparison.OrdinalIgnoreCase))
             {
                 formattingString = ShortFormat;
+            }
+            else if (string.Equals(format, FriendlyFormatCode, StringComparison.OrdinalIgnoreCase))
+            {
+                formattingString = FriendlyFormat;
             }
             else
             {

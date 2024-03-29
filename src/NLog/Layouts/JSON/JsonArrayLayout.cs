@@ -48,6 +48,8 @@ namespace NLog.Layouts
     [ThreadAgnostic]
     public class JsonArrayLayout : Layout
     {
+        private Layout[] _precalculateLayouts;
+
         private IJsonConverter JsonConverter
         {
             get => _jsonConverter ?? (_jsonConverter = ResolveService<IJsonConverter>());
@@ -75,15 +77,23 @@ namespace NLog.Layouts
         public bool RenderEmptyObject { get; set; } = true;
 
         /// <inheritdoc/>
+        protected override void InitializeLayout()
+        {
+            base.InitializeLayout();
+            _precalculateLayouts = ResolveLayoutPrecalculation(Items);
+        }
+
+        /// <inheritdoc/>
         protected override void CloseLayout()
         {
             JsonConverter = null;
+            _precalculateLayouts = null;
             base.CloseLayout();
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>

@@ -103,6 +103,7 @@ namespace NLog.Targets
         public Layout Layout { get => _layoutInfo.Layout; set => _layoutInfo.Layout = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="ParameterType"/> with NLog v4.6.
         /// Gets or sets the type of the parameter. Obsolete alias for <see cref="ParameterType"/>
         /// </summary>
         /// <docgen category='Parameter Options' order='50' />

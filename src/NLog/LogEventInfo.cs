@@ -115,6 +115,21 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Override default Logger name. Default <see cref="Logger.Name"/> is used when <c>null</c></param>
+        /// <param name="formattedMessage">Pre-formatted log message for ${message}.</param>
+        /// <param name="messageTemplate">Log message-template including parameter placeholders for ${message:raw=true}.</param>
+        /// <param name="messageTemplateParameters">Already parsed message template parameters.</param>
+        public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string formattedMessage, [Localizable(false)] string messageTemplate, IList<MessageTemplateParameter> messageTemplateParameters)
+            : this(level, loggerName, messageTemplate, messageTemplateParameters)
+        {
+            _formattedMessage = formattedMessage;
+            _messageFormatter = (l) => l._formattedMessage ?? l.Message ?? string.Empty;
+        }
+
 #if !NET35
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
@@ -204,6 +219,7 @@ namespace NLog
         /// <summary>
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
+        [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete on NLog 5.3")]
         public StackFrame UserStackFrame => CallSiteInformation?.UserStackFrame;
 
         /// <summary>
@@ -303,8 +319,13 @@ namespace NLog
             get => _messageFormatter ?? LogManager.LogFactory.ActiveMessageFormatter;
             set
             {
-                _messageFormatter = value ?? LogMessageStringFormatter.Default.MessageFormatter;
-                ResetFormattedMessage(false);
+                var messageFormatter = value ?? LogMessageStringFormatter.Default.MessageFormatter;
+                if (!ReferenceEquals(_messageFormatter, messageFormatter))
+                {
+                    _messageFormatter = messageFormatter;
+                    _formattedMessage = null;
+                    ResetFormattedMessage(false);
+                }
             }
         }
 
@@ -606,7 +627,10 @@ namespace NLog
 
         internal bool IsLogEventMutableSafe()
         {
-            if (Exception != null || _formattedMessage != null)
+            if (Exception != null)
+                return false;
+
+            if (_formattedMessage != null && _parameters?.Length > 0)
                 return false;
 
             var properties = CreateOrUpdatePropertiesInternal(false);
@@ -677,7 +701,7 @@ namespace NLog
             }
             catch (Exception exception)
             {
-                _formattedMessage = Message;
+                _formattedMessage = Message ?? string.Empty;
                 InternalLogger.Warn(exception, "Error when formatting a message.");
 
                 if (exception.MustBeRethrown())
@@ -703,7 +727,7 @@ namespace NLog
                 catch (Exception ex)
                 {
                     builder.Length = originalLength;
-                    builder.Append(_message ?? string.Empty);
+                    builder.Append(_message);
                     InternalLogger.Warn(ex, "Error when formatting a message.");
                     if (ex.MustBeRethrown())
                     {
@@ -719,7 +743,11 @@ namespace NLog
 
         private void ResetFormattedMessage(bool rebuildMessageTemplateParameters)
         {
-            _formattedMessage = null;
+            if (_messageFormatter is null || _messageFormatter.Target is ILogMessageFormatter)
+            {
+                _formattedMessage = null;
+            }
+
             if (rebuildMessageTemplateParameters && HasMessageTemplateParameters)
             {
                 CalcFormattedMessage();

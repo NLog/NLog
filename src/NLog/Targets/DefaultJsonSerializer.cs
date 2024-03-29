@@ -34,6 +34,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using NLog.Internal;
@@ -58,7 +59,8 @@ namespace NLog.Targets
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
+        [Obsolete("Instead use ResolveService<IJsonConverter>() in Layout / Target. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer(null);
 
         /// <summary>
@@ -592,8 +594,7 @@ namespace NLog.Targets
             int i = 0;
             for (; i < text.Length; ++i)
             {
-                char ch = text[i];
-                if (RequiresJsonEscape(ch, escapeUnicode, escapeForwardSlash))
+                if (RequiresJsonEscape(text[i], escapeUnicode, escapeForwardSlash))
                 {
                     destination.Append(text, 0, i);
                     break;

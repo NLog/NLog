@@ -42,9 +42,12 @@ using NLog.Internal;
 namespace NLog.Fluent
 {
     /// <summary>
+    /// Obsolete and replaced by <see cref="LogEventBuilder"/> with NLog v5.
+    /// 
     /// A fluent class to build log events for NLog.
     /// </summary>
     [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;

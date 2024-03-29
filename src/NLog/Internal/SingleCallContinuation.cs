@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Implements a single-call guard around given continuation function.
     /// </summary>
-    internal class SingleCallContinuation
+    internal sealed class SingleCallContinuation
     {
         internal static readonly AsyncContinuation Completed = new SingleCallContinuation(null).CompletedFunction;
 

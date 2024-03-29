@@ -36,6 +36,7 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
 
@@ -51,6 +52,7 @@ namespace NLog.Layouts
     public class JsonLayout : Layout
     {
         private const int SpacesPerIndent = 2;
+        private Layout[] _precalculateLayouts;
 
         private LimitRecursionJsonConvert JsonConverter
         {
@@ -146,6 +148,8 @@ namespace NLog.Layouts
         private bool? _includeScopeProperties;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
+        /// 
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -154,6 +158,8 @@ namespace NLog.Layouts
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -163,6 +169,8 @@ namespace NLog.Layouts
         private bool? _includeMdc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -221,6 +229,8 @@ namespace NLog.Layouts
                 MutableUnsafe = true;
             }
 
+            _precalculateLayouts = (IncludeScopeProperties || IncludeEventProperties) ? null : ResolveLayoutPrecalculation(Attributes.Select(atr => atr.Layout));
+
             if (_escapeForwardSlashInternal.HasValue && Attributes?.Count > 0)
             {
                 foreach (var attribute in Attributes)
@@ -252,12 +262,13 @@ namespace NLog.Layouts
         {
             JsonConverter = null;
             ValueFormatter = null;
+            _precalculateLayouts = null;
             base.CloseLayout();
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            PrecalculateBuilderInternal(logEvent, target);
+            PrecalculateBuilderInternal(logEvent, target, _precalculateLayouts);
         }
 
         /// <inheritdoc/>
@@ -310,6 +321,7 @@ namespace NLog.Layouts
 
             if (IncludeScopeProperties)
             {
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
                 using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
                 {
                     while (scopeEnumerator.MoveNext())
@@ -318,7 +330,7 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(scopeProperty.Key))
                             continue;
 
-                        if (ExcludeProperties.Contains(scopeProperty.Key))
+                        if (checkExcludeProperties && ExcludeProperties.Contains(scopeProperty.Key))
                             continue;
 
                         AppendJsonPropertyValue(scopeProperty.Key, scopeProperty.Value, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
@@ -328,13 +340,14 @@ namespace NLog.Layouts
 
             if (IncludeEventProperties && logEvent.HasProperties)
             {
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
                 IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
                 foreach (var prop in propertiesList)
                 {
                     if (string.IsNullOrEmpty(prop.Name))
                         continue;
 
-                    if (ExcludeProperties.Contains(prop.Name))
+                    if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
                         continue;
 
                     AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
@@ -411,7 +424,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (ExcludeEmptyProperties && (sb[sb.Length-1] == '"' && sb[sb.Length-2] == '"'))
+            if (ExcludeEmptyProperties && sb[sb.Length-1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
             {
                 sb.Length = initialLength;
             }

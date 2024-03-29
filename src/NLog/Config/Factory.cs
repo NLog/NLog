@@ -188,6 +188,7 @@ namespace NLog.Config
             RegisterDefinition(itemDefinition, itemName, string.Empty);
         }
 
+        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public void RegisterDefinition(string typeAlias, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type itemType)
         {
             if (string.IsNullOrEmpty(typeAlias))
@@ -271,25 +272,30 @@ namespace NLog.Config
             }
         }
 
-        private bool TryGetItemFactory(string itemName, out ItemFactory itemFactory)
+        private bool TryGetItemFactory(string typeAlias, out ItemFactory itemFactory)
         {
             lock (ConfigurationItemFactory.SyncRoot)
             {
-                return _items.TryGetValue(itemName, out itemFactory);
+                return _items.TryGetValue(typeAlias, out itemFactory);
             }
         }
 
+        bool INamedItemFactory<TBaseType, Type>.TryCreateInstance(string itemName, out TBaseType result)
+        {
+            return TryCreateInstance(itemName, out result);
+        }
+
         /// <inheritdoc/>
-        public virtual bool TryCreateInstance(string itemName, out TBaseType result)
+        public virtual bool TryCreateInstance(string typeAlias, out TBaseType result)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
-            if (TryCreateInstanceLegacy(itemName, out result))
+            if (TryCreateInstanceLegacy(typeAlias, out result))
                 return true;
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            itemName = FactoryExtensions.NormalizeName(itemName);
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            if (!TryGetItemFactory(itemName, out var itemFactory) || itemFactory.ItemCreator is null)
+            if (!TryGetItemFactory(typeAlias, out var itemFactory) || itemFactory.ItemCreator is null)
             {
                 result = null;
                 return false;
@@ -327,44 +333,55 @@ namespace NLog.Config
     {
         public static TBaseType CreateInstance<TBaseType>(this IFactory<TBaseType> factory, string typeAlias) where TBaseType : class
         {
-            if (factory.TryCreateInstance(typeAlias, out TBaseType result))
+            try
             {
-                return result;
+                if (factory.TryCreateInstance(typeAlias, out var result))
+                {
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NLogConfigurationException($"Failed to create {typeof(TBaseType).Name} of type: '{typeAlias}' - {ex.Message}", ex);
             }
 
             var normalName = NormalizeName(typeAlias);
-            var message = typeof(TBaseType).Name + " type-alias is unknown: '" + typeAlias + "'";
+            var message = $"Failed to create {typeof(TBaseType).Name} with unknown type-alias: '{typeAlias}'";
             if (normalName != null && (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
                                  normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
 #if NETSTANDARD
-                message += ". Extension NLog.Web.AspNetCore not included?";
+                message += " - Extension NLog.Web.AspNetCore not included?";
 #else
-                message += ". Extension NLog.Web not included?";
+                message += " - Extension NLog.Web not included?";
 #endif
             }
             else if (normalName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.Database not included?";
+                message += " - Extension NLog.Database not included?";
             }
             else if (normalName?.StartsWith("eventlog", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.WindowsEventLog not included?";
+                message += " - Extension NLog.WindowsEventLog not included?";
             }
             else if (normalName?.StartsWith("windowsidentity", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.WindowsIdentity not included?";
+                message += " - Extension NLog.WindowsIdentity not included?";
             }
             else if (normalName?.StartsWith("outputdebugstring", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.OutputDebugString not included?";
+                message += " - Extension NLog.OutputDebugString not included?";
             }
             else if (normalName?.StartsWith("performancecounter", StringComparison.OrdinalIgnoreCase) == true)
             {
-                message += ". Extension NLog.PerformanceCounter not included?";
+                message += " - Extension NLog.PerformanceCounter not included?";
+            }
+            else
+            {
+                message += " - Verify type-alias and check extension is included.";
             }
 
-            throw new ArgumentException(message);
+            throw new NLogConfigurationException(message);
         }
 
         public static string NormalizeName(string itemName)
@@ -428,23 +445,18 @@ namespace NLog.Config
             }
         }
 
-        /// <summary>
-        /// Tries to create an item instance.
-        /// </summary>
-        /// <param name="itemName">Name of the item.</param>
-        /// <param name="result">The result.</param>
-        /// <returns>True if instance was created successfully, false otherwise.</returns>
-        public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
+        /// <inheritdoc/>
+        public override bool TryCreateInstance(string typeAlias, out LayoutRenderer result)
         {
             //first try func renderers, as they should have the possibility to overwrite a current one.
             FuncLayoutRenderer funcResult;
-            itemName = FactoryExtensions.NormalizeName(itemName);
+            typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
             if (_funcRenderers.Count > 0)
             {
                 lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    if (_funcRenderers.TryGetValue(itemName, out funcResult))
+                    if (_funcRenderers.TryGetValue(typeAlias, out funcResult))
                     {
                         result = funcResult;
                         return true;
@@ -456,7 +468,7 @@ namespace NLog.Config
             {
                 lock (ConfigurationItemFactory.SyncRoot)
                 {
-                    if (_globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+                    if (_globalDefaultFactory._funcRenderers.TryGetValue(typeAlias, out funcResult))
                     {
                         result = funcResult;
                         return true;
@@ -464,7 +476,7 @@ namespace NLog.Config
                 }
             }
 
-            return base.TryCreateInstance(itemName, out result);
+            return base.TryCreateInstance(typeAlias, out result);
         }
     }
 }

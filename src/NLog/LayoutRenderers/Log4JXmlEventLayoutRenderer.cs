@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Reflection;
     using System.Text;
@@ -137,7 +138,19 @@ namespace NLog.LayoutRenderers
         public bool IndentXml { get; set; }
 
         /// <summary>
-        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout LoggerName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the log4j:event message-xml-element. Default: ${message}
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout FormattedMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the log4j:event log4japp-xml-element. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout AppInfo { get; set; }
@@ -155,26 +168,35 @@ namespace NLog.LayoutRenderers
         public bool IncludeSourceInfo { get; set; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdc { get => _includeMdc ?? false; set => _includeMdc = value; }
         private bool? _includeMdc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeScopeProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeMdlc { get => _includeMdlc ?? false; set => _includeMdlc = value; }
         private bool? _includeMdlc;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
+        /// 
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeNdc. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNdlc { get => _includeNdlc ?? false; set => _includeNdlc = value; }
         private bool? _includeNdlc;
 
@@ -210,17 +232,23 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NdcItemSeparator"/> with NLog v5.
+        /// 
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by NdcItemSeparator. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string NdlcItemSeparator { get => ScopeNestedSeparator; set => ScopeNestedSeparator = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
+        /// 
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Obsolete("Replaced by IncludeEventProperties. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
@@ -234,12 +262,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public string NdcItemSeparator { get => ScopeNestedSeparator; set => ScopeNestedSeparator = value; }
-
-        /// <summary>
-        /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
-        /// </summary>
-        /// <docgen category='Layout Options' order='50' />
-        public Layout LoggerName { get; set; }
 
         /// <summary>
         ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
@@ -268,12 +290,12 @@ namespace NLog.LayoutRenderers
                 {
                     xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
                 }
-                xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
+                xtw.WriteAttributeSafeString("logger", LoggerName?.Render(logEvent) ?? logEvent.LoggerName);
                 xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
                 xtw.WriteAttributeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
-                xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
+                xtw.WriteElementSafeString("log4j", "message", dummyNamespace, FormattedMessage?.Render(logEvent) ?? logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
                 {
                     if (WriteThrowableCData)
@@ -418,7 +440,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private void AppendDataProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
+        private static void AppendDataProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
         {
             if (logEvent.HasProperties)
             {

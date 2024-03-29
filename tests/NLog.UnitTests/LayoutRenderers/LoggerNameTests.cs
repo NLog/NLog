@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using NLog.Layouts;
     using Xunit;
 
     public class LoggerNameTests : NLogTestBase
@@ -68,6 +69,10 @@ namespace NLog.UnitTests.LayoutRenderers
             var logger = logFactory.GetLogger("A.B.C");
             logger.Debug("a");
             logFactory.AssertDebugLastMessage("C a");
+
+            var renderer = new NLog.LayoutRenderers.LoggerNameLayoutRenderer() { ShortName = true };
+            var result = renderer.Render(new LogEventInfo() { LoggerName = logger.Name });
+            Assert.Equal("C", result);
         }
 
         [Fact]
@@ -84,6 +89,10 @@ namespace NLog.UnitTests.LayoutRenderers
             var logger = logFactory.GetLogger("C");
             logger.Debug("a");
             logFactory.AssertDebugLastMessage("C a");
+
+            var renderer = new NLog.LayoutRenderers.LoggerNameLayoutRenderer() { ShortName = true };
+            var result = renderer.Render(new LogEventInfo() { LoggerName = logger.Name });
+            Assert.Equal("C", result);
         }
 
         [Fact]
@@ -100,8 +109,48 @@ namespace NLog.UnitTests.LayoutRenderers
             var logger = logFactory.GetLogger("A.B.C");
             logger.Debug("a");
             logFactory.AssertDebugLastMessage("A.B.C a");
-        }    
-        
+        }
+
+        [Fact]
+        public void LoggerPrefixNameTest()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${logger:PrefixName=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("A.B.C");
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("A.B a");
+
+            var layout = new SimpleLayout("${logger:PrefixName=true}");
+            var result = layout.Render(new LogEventInfo() { LoggerName = logger.Name });
+            Assert.Equal("A.B", result);
+        }
+
+        [Fact]
+        public void LoggerPrefixNameTest2()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${logger:PrefixName=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>").LogFactory;
+
+            var logger = logFactory.GetLogger("C");
+            logger.Debug("a");
+            logFactory.AssertDebugLastMessage("C a");
+
+            var layout = new SimpleLayout("${logger:PrefixName=true}");
+            var result = layout.Render(new LogEventInfo() { LoggerName = logger.Name });
+            Assert.Equal("C", result);
+        }
+
         [Theory]
         [InlineData("logger")]
         [InlineData("logger-name")]

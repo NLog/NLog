@@ -36,11 +36,13 @@ namespace NLog.Internal.Fakeables
     using System;
     using System.Reflection;
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     /// <summary>
     /// Interface for fakeable of the current AppDomain.
     /// </summary>
     [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IAppDomain 
     {
         /// <summary>

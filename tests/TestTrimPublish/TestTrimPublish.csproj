@@ -2,7 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <TargetFramework Condition=" '$(TargetFramework)' == '' AND '$(VisualStudioVersion)' &lt; '17.0' ">netcoreapp3.1</TargetFramework>
     <TargetFramework>net6.0</TargetFramework>
+    
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PublishTrimmed>true</PublishTrimmed>

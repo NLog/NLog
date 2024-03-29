@@ -326,6 +326,11 @@ namespace NLog.Layouts
                     fixedValue = (T)(object)simpleLayout.FixedText;
                     return true;
                 }
+                else if (Nullable.GetUnderlyingType(typeof(T)) != null)
+                {
+                    fixedValue = default(T);
+                    return true;
+                }
             }
             else if (layout is null)
             {
@@ -422,7 +427,7 @@ namespace NLog.Layouts
         /// <param name="value">Text to be converted.</param>
         public static implicit operator Layout<T>(T value)
         {
-            if (value == null && !typeof(T).IsValueType()) return null;
+            if (object.Equals(value, default(T)) && !typeof(T).IsValueType()) return null;
 
             return new Layout<T>(value);
         }

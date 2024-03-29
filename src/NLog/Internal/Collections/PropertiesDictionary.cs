@@ -159,7 +159,7 @@ namespace NLog.Internal
             }
         }
 
-        private void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties, Dictionary<object, PropertyValue> eventProperties)
+        private static void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties, Dictionary<object, PropertyValue> eventProperties)
         {
             for (int i = 0; i < oldMessageProperties.Count; ++i)
             {
@@ -724,7 +724,7 @@ namespace NLog.Internal
         /// <summary>
         /// Special property-key for lookup without being case-sensitive
         /// </summary>
-        internal class IgnoreCasePropertyKey
+        internal sealed class IgnoreCasePropertyKey
         {
             private readonly string _propertyName;
 

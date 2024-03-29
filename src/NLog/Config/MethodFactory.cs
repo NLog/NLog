@@ -44,7 +44,7 @@ namespace NLog.Config
     /// <summary>
     /// Factory for locating methods.
     /// </summary>
-    internal class MethodFactory :
+    internal sealed class MethodFactory :
 #pragma warning disable CS0618 // Type or member is obsolete
         INamedItemFactory<MethodInfo, MethodInfo>,
 #pragma warning restore CS0618 // Type or member is obsolete

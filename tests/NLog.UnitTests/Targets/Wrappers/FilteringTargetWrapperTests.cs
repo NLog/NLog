@@ -317,7 +317,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             logFactory.Flush();
 
             // Assert
-            Assert.Equal(1, myTarget.Logs.Count);
+            Assert.Single(myTarget.Logs);
         }
 
         [Fact]

@@ -49,7 +49,7 @@ namespace NLog
     public partial class Logger : ILogger
     {
         internal static readonly Type DefaultLoggerType = typeof(Logger);
-        private TargetWithFilterChain[] _targetsByLevel = TargetWithFilterChain.NoTargetsByLevel;
+        private ITargetWithFilterChain[] _targetsByLevel = TargetWithFilterChain.NoTargetsByLevel;
         private Logger _contextLogger;
         private ThreadSafeDictionary<string, object> _contextProperties;
         private volatile bool _isTraceEnabled;
@@ -139,6 +139,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="WithProperty"/> that prevents unexpected side-effects in Logger-state.
+        /// 
         /// Updates the specified context property for the current logger. The logger will append it for all log events.
         ///
         /// With <see cref="Properties"/> property, all properties can be enumerated (or updated). 
@@ -660,7 +662,7 @@ namespace NLog
         }
 #endif
 
-        internal void Initialize(string name, TargetWithFilterChain[] targetsByLevel, LogFactory factory)
+        internal void Initialize(string name, ITargetWithFilterChain[] targetsByLevel, LogFactory factory)
         {
             Name = name;
             Factory = factory;
@@ -727,11 +729,11 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets([NotNull] LogEventInfo logEvent, [NotNull] TargetWithFilterChain targetsForLevel)
+        private void WriteToTargets([NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
         {
             try
             {
-                LoggerImpl.Write(DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+                targetsForLevel.WriteToLoggerTargets(DefaultLoggerType, PrepareLogEventInfo(logEvent), Factory);
             }
             catch (Exception ex)
             {
@@ -747,17 +749,18 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] TargetWithFilterChain targetsForLevel)
+        private void WriteToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] ITargetWithFilterChain targetsForLevel)
         {
             try
             {
-                LoggerImpl.Write(wrapperType ?? DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+                targetsForLevel.WriteToLoggerTargets(wrapperType ?? DefaultLoggerType, PrepareLogEventInfo(logEvent), Factory);
             }
             catch (Exception ex)
             {
 #if DEBUG
                 if (ex.MustBeRethrownImmediately())
                     throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
+
 #endif
                 if (Factory.ThrowExceptions || LogManager.ThrowExceptions)
                     throw;
@@ -766,7 +769,7 @@ namespace NLog
             }
         }
 
-        internal void SetConfiguration(TargetWithFilterChain[] targetsByLevel)
+        internal void SetConfiguration(ITargetWithFilterChain[] targetsByLevel)
         {
             _targetsByLevel = targetsByLevel;
 
@@ -781,7 +784,7 @@ namespace NLog
             OnLoggerReconfigured(EventArgs.Empty);
         }
 
-        private TargetWithFilterChain GetTargetsForLevelSafe(LogLevel level)
+        private ITargetWithFilterChain GetTargetsForLevelSafe(LogLevel level)
         {
             if (level is null)
             {
@@ -791,7 +794,7 @@ namespace NLog
             return GetTargetsForLevel(level);
         }
 
-        private TargetWithFilterChain GetTargetsForLevel(LogLevel level)
+        private ITargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
             if (ReferenceEquals(_contextLogger, this))
                 return _targetsByLevel[level.Ordinal];

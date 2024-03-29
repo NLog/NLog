@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Text;
@@ -233,12 +234,15 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
+        /// 
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T">Type of the layout renderer.</typeparam>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string name)
             where T : LayoutRenderer
         {
@@ -247,12 +251,15 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="layoutRendererType"> Type of the layout renderer.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type layoutRendererType)
         {
             Guard.ThrowIfNull(layoutRendererType);
@@ -261,11 +268,14 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent.
         /// </summary>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register(string name, Func<LogEventInfo, object> func)
         {
             Guard.ThrowIfNull(func);
@@ -273,11 +283,14 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register(string name, Func<LogEventInfo, LoggingConfiguration, object> func)
         {
             Guard.ThrowIfNull(func);
@@ -286,10 +299,13 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// 
         /// Register a custom layout renderer with a callback function <paramref name="layoutRenderer"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="layoutRenderer">Renderer with callback func</param>
         [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Register(FuncLayoutRenderer layoutRenderer)
         {
             Guard.ThrowIfNull(layoutRenderer);

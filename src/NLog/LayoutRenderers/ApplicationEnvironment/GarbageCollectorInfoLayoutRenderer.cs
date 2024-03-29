@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers
             if (value >= 0 && value < uint.MaxValue)
                 builder.AppendInvariant((uint)value);
             else
-                builder.Append(value.ToString());
+                builder.Append(value);
         }
 
         private long GetValue()

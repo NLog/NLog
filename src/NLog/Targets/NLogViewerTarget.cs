@@ -98,7 +98,27 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// Gets or sets the log4j:event logger-xml-attribute. Default: ${logger}
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout LoggerName
+        {
+            get => Renderer.LoggerName;
+            set => Renderer.LoggerName = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the log4j:event message-xml-element. Default: ${message}
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public Layout FormattedMessage
+        {
+            get => Renderer.FormattedMessage;
+            set => Renderer.FormattedMessage = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the log4j:event log4japp-xml-element. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public Layout AppInfo
@@ -128,6 +148,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsContext"/> dictionary contents.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -174,6 +195,7 @@ namespace NLog.Targets
         public string ScopeNestedSeparator { get => Renderer.ScopeNestedSeparator; set => Renderer.ScopeNestedSeparator = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -182,6 +204,7 @@ namespace NLog.Targets
         public bool IncludeAllProperties { get => IncludeEventProperties; set => IncludeEventProperties = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -190,6 +213,7 @@ namespace NLog.Targets
         public bool IncludeMdlc { get => Renderer.IncludeMdlc; set => Renderer.IncludeMdlc = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="IncludeNdc"/> with NLog v5.
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -198,6 +222,7 @@ namespace NLog.Targets
         public bool IncludeNdlc { get => Renderer.IncludeNdlc; set => Renderer.IncludeNdlc = value; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="NdcItemSeparator"/> with NLog v5.
         /// Gets or sets the stack separator for log4j:NDC in output from <see cref="ScopeContext"/> nested context.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -216,16 +241,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the renderer for log4j:event logger-xml-attribute (Default ${logger})
-        /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        public Layout LoggerName
-        {
-            get => Renderer.LoggerName;
-            set => Renderer.LoggerName = value;
-        }
-
-        /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>
@@ -236,7 +251,6 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.
         /// </summary>
-        [NLogConfigurationIgnoreProperty]
         public Log4JXmlEventLayoutRenderer Renderer => _log4JLayout.Renderer;
 
         /// <summary>

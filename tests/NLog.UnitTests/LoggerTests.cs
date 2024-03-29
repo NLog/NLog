@@ -2655,7 +2655,7 @@ namespace NLog.UnitTests
                 </nlog>");
         }
 
-        private class Person
+        private sealed class Person
         {
             public Person()
             {
@@ -2716,9 +2716,9 @@ namespace NLog.UnitTests
         {
             var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", null, "{A}", new object[] { "b" });
             var props = logEventInfo.Properties;
+            Assert.Single(props);
             Assert.Contains("A", props.Keys);
             Assert.Equal("b", props["A"]);
-            Assert.Equal(1, props.Count);
         }
 
         [Fact]
@@ -2727,9 +2727,9 @@ namespace NLog.UnitTests
             var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", null, "{A}", new object[] { "b" });
             var props = logEventInfo.Properties;
             logEventInfo.Message = "{A}";
+            Assert.Single(props);
             Assert.Contains("A", props.Keys);
             Assert.Equal("b", props["A"]);
-            Assert.Equal(1, props.Count);
         }
 
         static Logger GetContextLoggerFromTemporary(string loggerName)

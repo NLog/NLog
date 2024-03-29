@@ -181,7 +181,7 @@ namespace NLog.Targets.FileArchiveModes
             }
         }
 
-        private bool ShouldDeleteFile(DateAndSequenceArchive existingArchiveFile, int remainingFileCount, int maxArchiveFiles, int maxArchiveDays)
+        private static bool ShouldDeleteFile(DateAndSequenceArchive existingArchiveFile, int remainingFileCount, int maxArchiveFiles, int maxArchiveDays)
         {
             if (maxArchiveFiles > 0 && remainingFileCount > maxArchiveFiles)
                 return true;

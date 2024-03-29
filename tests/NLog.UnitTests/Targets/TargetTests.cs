@@ -615,10 +615,8 @@ namespace NLog.UnitTests.Targets
             exceptions.ForEach(Assert.Null);
 
             mre.WaitOne();
-            if (backgroundThreadException != null)
-            {
-                Assert.True(false, backgroundThreadException.ToString());
-            }
+
+            Assert.True(backgroundThreadException is null, backgroundThreadException?.ToString());
         }
 
         [Fact]
@@ -632,7 +630,7 @@ namespace NLog.UnitTests.Targets
             }
             catch (Exception e)
             {
-                Assert.True(false, "Exception thrown: " + e);
+                Assert.Fail("Exception thrown: " + e);
             }
         }
 
@@ -863,7 +861,7 @@ namespace NLog.UnitTests.Targets
             // Assert
             Assert.Equal((byte)42, logEvent.Properties["ByteProperty"]);
             Assert.Equal((short)43, logEvent.Properties["Int16Property"]);
-            Assert.Equal(Thread.CurrentThread.ManagedThreadId, logEvent.Properties["Int32Property"]);
+            Assert.Equal(CurrentManagedThreadId, logEvent.Properties["Int32Property"]);
             Assert.Equal((long)logEvent.SequenceID, logEvent.Properties["Int64Property"]);
             Assert.Equal(AppDomain.CurrentDomain.FriendlyName, logEvent.Properties["StringProperty"]);
             Assert.Equal(true, logEvent.Properties["BoolProperty"]);

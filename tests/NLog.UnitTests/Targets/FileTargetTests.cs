@@ -40,6 +40,7 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using System.Text;
     using System.Threading;
+    using System.Threading.Tasks;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
@@ -978,6 +979,39 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void RetryFileOpenWhenFileLocked()
+        {
+            var logFile = Path.GetTempFileName();
+
+            var fileTarget = new FileTarget("file")
+            {
+                FileName = SimpleLayout.Escape(logFile),
+                LineEnding = LineEndingMode.LF,
+                Layout = "${level} ${message}",
+                KeepFileOpen = false,
+                ConcurrentWriteAttempts = 100,
+            };
+
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+            try
+            {
+                var fileStream = new FileStream(logFile, FileMode.Open, FileAccess.Write, FileShare.None);
+                var task = Task.Run(() => logger.Info("aaa"));
+                Assert.False(task.Wait(TimeSpan.FromMilliseconds(50)));
+                fileStream.Dispose();
+                Assert.True(task.Wait(TimeSpan.FromSeconds(60)));
+
+                AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
         public static IEnumerable<object[]> ReplaceFileContentsOnEachWriteTest_TestParameters
         {
             get
@@ -1217,8 +1251,8 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 //0000 should not exists because of MaxArchiveFiles=3
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -1284,7 +1318,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(25, "ddd\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -1717,14 +1751,20 @@ namespace NLog.UnitTests.Targets
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
                 logger.Debug("123456789");
-                LogManager.Flush();
+                LogManager.Configuration = null;
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+                if (!dateInLogFilePath)
+                    File.SetCreationTimeUtc(logFile, timeSource.Time.ToUniversalTime());
                 timeSource.AddToLocalTime(TimeSpan.FromDays(1));
 
                 // This should archive the log before logging.
                 logger.Debug("123456789");
 
-                timeSource.AddToSystemTime(TimeSpan.FromDays(1));   // Archive only once
+                LogManager.Configuration = null;
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+                timeSource.AddToSystemTime(TimeSpan.FromDays(2));   // Archive only once
 
                 // This must not archive.
                 logger.Debug("123456789");
@@ -2139,7 +2179,7 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContentsStartsWith(Path.Combine(archiveFolder, "0001.txt"), header, Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0000.txt"))); // MaxArchiveFiles = 2 (Removes the first file)
             }
             finally
             {
@@ -2201,6 +2241,71 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
+            }
+        }
+        
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void WriteHeaderOnStartupTest(bool writeHeaderWhenInitialFileNotEmpty)
+        {
+            var logFile = Path.GetTempFileName() + ".txt";
+            try
+            {
+                const string header = "Headerline";
+
+                 // Configure first time
+                var fileTarget = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    Header = header,
+                    WriteBom = true,
+                    WriteHeaderWhenInitialFileNotEmpty = true
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;
+
+                string headerPart = header + LineEndingMode.LF.NewLineCharacters;
+                string logPart = "aaa\nbbb\nccc\n";
+                AssertFileContents(logFile, headerPart + logPart, Encoding.UTF8, addBom: true);
+
+                // Configure second time
+                fileTarget = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    Header = header,
+                    WriteBom = true,
+                    WriteHeaderWhenInitialFileNotEmpty = writeHeaderWhenInitialFileNotEmpty
+                };
+
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;    // Flush
+                
+                if (writeHeaderWhenInitialFileNotEmpty)
+                    AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8, addBom: true);
+                else
+                    AssertFileContents(logFile, headerPart + logPart + logPart, Encoding.UTF8, addBom: true);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
             }
         }
 
@@ -2296,7 +2401,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "bbb\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(tempDir, string.Format(archiveFileNameFormat, 3))));
+                Assert.False(File.Exists(Path.Combine(tempDir, string.Format(archiveFileNameFormat, 3))));
             }
             finally
             {
@@ -2505,7 +2610,7 @@ namespace NLog.UnitTests.Targets
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
-                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+                var threadID = CurrentManagedThreadId.ToString();
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger(LogLevel.Debug).WriteTo(fileTarget).WithAsync());
 
@@ -3087,7 +3192,7 @@ namespace NLog.UnitTests.Targets
                 {
                     Generate100BytesLog('b');
                     var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
-                    Assert.True(!helper.Exists(numberToBeRemoved),
+                    Assert.False(helper.Exists(numberToBeRemoved),
                         $"archive file {numberToBeRemoved} has not been removed! We are created file {i}");
                 }
 
@@ -3277,7 +3382,7 @@ namespace NLog.UnitTests.Targets
         /// Archive file helepr
         /// </summary>
         /// <remarks>TODO rewrite older test</remarks>
-        private class ArchiveFileNameHelper
+        private sealed class ArchiveFileNameHelper
         {
             public string FolderName { get; private set; }
 
@@ -4047,7 +4152,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -4413,7 +4518,7 @@ namespace NLog.UnitTests.Targets
                     "123\n456\n789\n123\n456\n",
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0001.txt")));
+                Assert.False(File.Exists(Path.Combine(archiveFolder, "0001.txt")));
             }
             finally
             {

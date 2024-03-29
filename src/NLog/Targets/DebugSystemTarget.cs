@@ -98,7 +98,7 @@ namespace NLog.Targets
             DebugWriteLine(RenderLogEvent(Layout, logEvent));
         }
 
-        private void DebugWriteLine(string message)
+        private static void DebugWriteLine(string message)
         {
             System.Diagnostics.Debug.WriteLine(message);
         }

@@ -83,11 +83,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Flush(ex => { flushException = ex; flushHit.Set(); });
 
             flushHit.WaitOne();
-            if (flushException != null)
-            {
-                Assert.True(false, flushException.ToString());
-            }
-
+            Assert.True(flushException is null, flushException?.ToString());
             Assert.Equal(1, myTarget1.FlushCount);
             Assert.Equal(1, myTarget2.FlushCount);
             Assert.Equal(1, myTarget3.FlushCount);
@@ -122,10 +118,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Flush(ex => { flushException = ex; flushHit.Set(); });
 
             flushHit.WaitOne();
-            if (flushException != null)
-            {
-                Assert.True(false, flushException.ToString());
-            }
+            Assert.True(flushException is null, flushException?.ToString());
         }
 
         public class MyAsyncTarget : Target

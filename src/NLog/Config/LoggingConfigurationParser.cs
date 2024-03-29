@@ -197,7 +197,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default.AssemblyLoader.ScanForAutoLoadExtensions(ConfigurationItemFactory.Default);
             }
 
-            _serviceRepository.RegisterMessageTemplateParser(parseMessageTemplates);
+            _serviceRepository.ParseMessageTemplates(parseMessageTemplates);
         }
 
         /// <summary>
@@ -776,7 +776,16 @@ namespace NLog.Config
             filterDefaultAction = filtersElement.GetOptionalValue("defaultAction", null) ?? filtersElement.GetOptionalValue(nameof(rule.FilterDefaultAction), null) ?? filterDefaultAction;
             if (filterDefaultAction != null)
             {
-                SetPropertyValueFromString(rule, nameof(rule.FilterDefaultAction), filterDefaultAction, filtersElement);
+                if (ConversionHelpers.TryParseEnum(filterDefaultAction, typeof(FilterResult), out var enumValue))
+                {
+                    rule.FilterDefaultAction = (FilterResult)enumValue;
+                }
+                else
+                {
+                    var configException = new NLogConfigurationException($"Failed to parse Enum-value to assign property '{nameof(LoggingRule.FilterDefaultAction)}'='{filterDefaultAction}' for logging rule: {(string.IsNullOrEmpty(rule.RuleName) ? rule.LoggerNamePattern : rule.RuleName)}.");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
+                }
             }
 
             foreach (var filterElement in filtersElement.ValidChildren)
@@ -1076,7 +1085,7 @@ namespace NLog.Config
                 
                 if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, propertyName, out var propertyInfo))
                 {
-                    throw new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign unknown property '{propertyName}'='{propertyValue}'");
+                    throw new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{propertyName}'='{propertyValue}'");
                 }
 
                 var propertyValueExpanded = ExpandSimpleVariables(propertyValue, out var matchingVariableName);
@@ -1120,7 +1129,7 @@ namespace NLog.Config
             
             if (!PropertyHelper.TryGetPropertyInfo(ConfigurationItemFactory.Default, targetObject, childElement.Name, out var propInfo))
             {
-                var configException = new NLogConfigurationException($"'{targetObject?.GetType()?.Name}' cannot assign unknown property '{childElement.Name}' in section '{parentElement.Name}'");
+                var configException = new NLogConfigurationException($"'{targetObject.GetType()?.Name}' cannot assign unknown property '{childElement.Name}' in section '{parentElement.Name}'");
                 if (MustThrowConfigException(configException))
                     throw configException;
 
@@ -1305,7 +1314,7 @@ namespace NLog.Config
                 newInstance = factory.CreateInstance(typeName);
                 if (newInstance is null)
                 {
-                    throw new NLogConfigurationException($"Factory returned null for {typeof(T).Name} of type: {typeName}");
+                    throw new NLogConfigurationException($"Failed to create {typeof(T).Name} of type: '{typeName}' - Factory returned null");
                 }
             }
             catch (NLogConfigurationException configException)
@@ -1356,7 +1365,7 @@ namespace NLog.Config
             asyncTargetWrapper.WrappedTarget = target;
             asyncTargetWrapper.Name = target.Name;
             target.Name = target.Name + "_wrapped";
-            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}",
+            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}'",
                 asyncTargetWrapper.Name, target.Name);
             target = asyncTargetWrapper;
             return target;
@@ -1395,7 +1404,7 @@ namespace NLog.Config
             wrapperTargetInstance.Name = target.Name;
             target.Name = target.Name + "_wrapped";
 
-            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name,
+            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}'", wrapperTargetInstance.Name,
                 wrapperTargetInstance.GetType(), target.Name);
             return wrapperTargetInstance;
         }

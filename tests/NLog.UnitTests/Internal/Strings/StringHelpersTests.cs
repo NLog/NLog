@@ -97,8 +97,9 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
-        [InlineData(null, "", "", StringComparison.InvariantCulture)]
-        [InlineData("", null, "", StringComparison.InvariantCulture)]
+        [InlineData(null, "abc", "", StringComparison.InvariantCulture)]
+        [InlineData("abc", null, "", StringComparison.InvariantCulture)]
+        [InlineData("abc", "", "", StringComparison.InvariantCulture)]
         public void ReplaceTestThrowsNullException(string input, string search, string replace, StringComparison comparer)
         {
             Assert.Throws<ArgumentNullException>(() => StringHelpers.Replace(input, search, replace, comparer));

@@ -34,11 +34,13 @@
 namespace NLog.Common
 {
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
     [Obsolete("Use AsyncRequestQueue instead. Marked obsolete on NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LogEventInfoBuffer
     {
         private readonly object _lockObject = new object();

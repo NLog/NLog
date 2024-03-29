@@ -38,7 +38,7 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Network sender which uses HTTP or HTTPS POST.
     /// </summary>
-    internal class HttpNetworkSender : QueuedNetworkSender
+    internal sealed class HttpNetworkSender : QueuedNetworkSender
     {
         private readonly Uri _addressUri;
 
