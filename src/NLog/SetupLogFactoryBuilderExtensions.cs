@@ -126,9 +126,9 @@ namespace NLog
         /// <summary>
         /// Mark Type as hidden, so Type methods are excluded when resolving ${callsite} from StackTrace
         /// </summary>
-        public static ISetupLogFactoryBuilder AddCallSiteHiddenType(this ISetupLogFactoryBuilder configBuilder, Type type)
+        public static ISetupLogFactoryBuilder AddCallSiteHiddenClassType(this ISetupLogFactoryBuilder configBuilder, Type type)
         {
-            LogManager.AddHiddenType(type);
+            NLog.Internal.CallSiteInformation.AddCallSiteHiddenClassType(type);
             return configBuilder;
         }
     }
