@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -72,6 +74,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
         /// <docgen category='Layout Options' order='100' />
+        [Obsolete("Instead use default Rfc2396 or EscapeDataRfc3986. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeDataNLogLegacy { get; set; }
 
         /// <inheritdoc/>
@@ -79,7 +83,10 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (!string.IsNullOrEmpty(text))
             {
-                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeDataNLogLegacy = EscapeDataNLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(escapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
                 System.Text.StringBuilder sb = new System.Text.StringBuilder(text.Length + 20);
                 UrlHelper.EscapeDataEncode(text, sb, encodingOptions);
                 return sb.ToString();
@@ -95,7 +102,11 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 var text = builder.ToString(orgLength, builder.Length - orgLength);
                 builder.Length = orgLength;
-                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
+
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeDataNLogLegacy = EscapeDataNLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(escapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
                 UrlHelper.EscapeDataEncode(text, builder, encodingOptions);
             }
         }
