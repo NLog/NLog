@@ -625,7 +625,7 @@ namespace NLog
             return Convert.GetTypeCode(value) != TypeCode.Object;
         }
 
-        internal bool IsLogEventMutableSafe()
+        internal bool IsLogEventThreadAgnosticImmutable()
         {
             if (Exception != null)
                 return false;

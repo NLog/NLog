@@ -68,7 +68,7 @@ namespace NLog.Layouts
         /// </remarks>
         internal bool ThreadAgnostic { get; set; }
 
-        internal bool MutableUnsafe { get; set; }
+        internal bool ThreadAgnosticImmutable { get; set; }
 
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
@@ -178,7 +178,7 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            if (!ThreadAgnostic || MutableUnsafe)
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
                 using (var localTarget = new AppendBuilderCreator(true))
                 {
@@ -200,7 +200,7 @@ namespace NLog.Layouts
                 Initialize(LoggingConfiguration);
             }
 
-            if (!ThreadAgnostic || MutableUnsafe)
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
                 object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -210,7 +210,7 @@ namespace NLog.Layouts
             }
 
             string layoutValue = GetFormattedMessage(logEvent) ?? string.Empty;
-            if (!ThreadAgnostic || MutableUnsafe)
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
                 // Would be nice to only do this in Precalculate(), but we need to ensure internal cache
                 // is updated for custom Layouts that overrides Precalculate (without calling base.Precalculate)
@@ -249,7 +249,7 @@ namespace NLog.Layouts
                 Initialize(LoggingConfiguration);
             }
 
-            if (!ThreadAgnostic || MutableUnsafe)
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
                 object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -363,8 +363,8 @@ namespace NLog.Layouts
             // layout is thread agnostic if it is thread-agnostic and 
             // all its nested objects are thread-agnostic.
             ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
-            MutableUnsafe = objectGraphTypes.Any(t => t.IsDefined(typeof(MutableUnsafeAttribute), true));
-            if ((ThreadAgnostic || !MutableUnsafe) && objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
+            ThreadAgnosticImmutable = ThreadAgnostic && objectGraphTypes.Any(t => t.IsDefined(typeof(ThreadAgnosticImmutableAttribute), true));
+            if (ThreadAgnostic && objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
             {
                 foreach (var nestedLayout in objectGraphScannerList.OfType<Layout>())
                 {
@@ -372,7 +372,7 @@ namespace NLog.Layouts
                     {
                         nestedLayout.Initialize(LoggingConfiguration);
                         ThreadAgnostic = nestedLayout.ThreadAgnostic && ThreadAgnostic;
-                        MutableUnsafe = nestedLayout.MutableUnsafe || MutableUnsafe;
+                        ThreadAgnosticImmutable = ThreadAgnostic && (nestedLayout.ThreadAgnosticImmutable || ThreadAgnosticImmutable);
                     }
                 }
             }
@@ -386,7 +386,7 @@ namespace NLog.Layouts
 
         internal Layout[] ResolveLayoutPrecalculation(IEnumerable<Layout> allLayouts)
         {
-            if (!_scannedForObjects || (ThreadAgnostic && !MutableUnsafe))
+            if (!_scannedForObjects || (ThreadAgnostic && !ThreadAgnosticImmutable))
                 return null;
 
             int layoutCount = 0;
@@ -396,7 +396,7 @@ namespace NLog.Layouts
             foreach (var layout in allLayouts)
             {
                 ++layoutCount;
-                if (layout?.ThreadAgnostic == false || layout?.MutableUnsafe == true)
+                if (layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true)
                 {
                     precalculateLayoutCount++;
                     if (layout is SimpleLayout)
@@ -412,7 +412,7 @@ namespace NLog.Layouts
             }
             else
             {
-                return allLayouts.Where(layout => layout?.ThreadAgnostic == false || layout?.MutableUnsafe == true).ToArray();
+                return allLayouts.Where(layout => layout?.ThreadAgnostic == false || layout?.ThreadAgnosticImmutable == true).ToArray();
             }
         }
 
@@ -489,7 +489,7 @@ namespace NLog.Layouts
         /// </summary>
         internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target, Layout[] precalculateLayout)
         {
-            if (!ThreadAgnostic || MutableUnsafe)
+            if (!ThreadAgnostic || ThreadAgnosticImmutable)
             {
                 if (precalculateLayout is null)
                 {

@@ -896,7 +896,7 @@ namespace NLog.Targets
                 if (IncludeScopeProperties || IncludeScopeNested)
                     ThreadAgnostic = false;
                 if (IncludeEventProperties)
-                    MutableUnsafe = true;   // TODO Need to convert Properties to an immutable state
+                    ThreadAgnosticImmutable = true;   // TODO Need to convert Properties to an immutable state
             }
 
             public override string ToString()
@@ -906,7 +906,7 @@ namespace NLog.Targets
 
             public override void Precalculate(LogEventInfo logEvent)
             {
-                if (!(TargetLayout?.ThreadAgnostic ?? true) || (TargetLayout?.MutableUnsafe ?? false))
+                if (TargetLayout?.ThreadAgnostic == false || TargetLayout?.ThreadAgnosticImmutable == true)
                 {
                     TargetLayout.Precalculate(logEvent);
                     if (logEvent.TryGetCachedLayoutValue(TargetLayout, out var cachedLayout))
@@ -921,7 +921,7 @@ namespace NLog.Targets
 
             internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
             {
-                if (!(TargetLayout?.ThreadAgnostic ?? true) || (TargetLayout?.MutableUnsafe ?? false))
+                if (TargetLayout?.ThreadAgnostic == false || TargetLayout?.ThreadAgnosticImmutable == true)
                 {
                     TargetLayout.PrecalculateBuilder(logEvent, target);
                     if (logEvent.TryGetCachedLayoutValue(TargetLayout, out var cachedLayout))

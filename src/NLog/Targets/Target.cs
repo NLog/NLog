@@ -56,7 +56,7 @@ namespace NLog.Targets
 
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
-        private bool _oneLayoutIsMutableUnsafe;
+        private bool _anyLayoutsAreThreadAgnosticImmutable;
         private bool _scannedForLayouts;
         private Exception _initializeException;
 
@@ -218,7 +218,7 @@ namespace NLog.Targets
         /// </param>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            if (_allLayoutsAreThreadAgnostic && (!_oneLayoutIsMutableUnsafe || logEvent.IsLogEventMutableSafe()))
+            if (_allLayoutsAreThreadAgnostic && (!_anyLayoutsAreThreadAgnosticImmutable || logEvent.IsLogEventThreadAgnosticImmutable()))
             {
                 return;
             }
@@ -522,11 +522,11 @@ namespace NLog.Targets
             var allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(ConfigurationItemFactory.Default, false, this);
             InternalLogger.Trace("{0} has {1} layouts", this, allLayouts.Count);
             _allLayoutsAreThreadAgnostic = allLayouts.All(layout => layout.ThreadAgnostic);
-            _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && allLayouts.Any(layout => layout.MutableUnsafe);
+            _anyLayoutsAreThreadAgnosticImmutable = _allLayoutsAreThreadAgnostic && allLayouts.Any(layout => layout.ThreadAgnosticImmutable);
 
             var result = allLayouts.Aggregate(StackTraceUsage.None, (agg, layout) => agg | layout.StackTraceUsage);
             StackTraceUsage = result | ((this as IUsesStackTrace)?.StackTraceUsage ?? StackTraceUsage.None);
-            _allLayouts = allLayouts.Where(l => !l.ThreadAgnostic || l.MutableUnsafe || !(l is SimpleLayout)).Distinct(SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray();
+            _allLayouts = allLayouts.Where(l => !l.ThreadAgnostic || l.ThreadAgnosticImmutable || !(l is SimpleLayout)).Distinct(SingleItemOptimizedHashSet<Layout>.ReferenceEqualityComparer.Default).ToArray();
             _scannedForLayouts = true;
         }
 
@@ -761,7 +761,7 @@ namespace NLog.Targets
 
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out object value)
         {
-            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out value))
+            if ((!layout.ThreadAgnostic || layout.ThreadAgnosticImmutable) && logEvent.TryGetCachedLayoutValue(layout, out value))
             {
                 return true;
             }
