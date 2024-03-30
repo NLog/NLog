@@ -640,7 +640,9 @@ namespace NLog.Config
 
             ParseLoggingRuleTargets(writeTargets, rule);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             ParseLoggingRuleChildren(loggerElement, rule, filterDefaultAction);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             ValidateLoggingRuleFilters(rule);
 
@@ -733,6 +735,7 @@ namespace NLog.Config
             }
         }
 
+        [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
         private void ParseLoggingRuleChildren(ValidatedConfigurationElement loggerElement, LoggingRule rule, string filterDefaultAction = null)
         {
             foreach (var child in loggerElement.ValidChildren)

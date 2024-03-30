@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -555,6 +556,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]
         public void ChildRulesTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"

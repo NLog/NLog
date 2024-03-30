@@ -148,11 +148,13 @@ namespace NLog.Internal
 
                 targetsFound = AddTargetsFromLoggingRule(rule, name, globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
 
-                // Recursively analyze the child rules.
+#pragma warning disable CS0618 // Type or member is obsolete
                 if (rule.ChildRules.Count != 0)
                 {
+                    // Recursively analyze the child rules.
                     targetsFound = GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), globalLogLevel, targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
                 }
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
