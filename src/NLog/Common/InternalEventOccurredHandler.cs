@@ -33,54 +33,11 @@
 
 namespace NLog.Common
 {
-    using System;
-    using System.ComponentModel;
-    using JetBrains.Annotations;
-
     /// <summary>
-    /// A message has been written to the internal logger
+    /// Handle Internal LogEvent written to the InternalLogger
     /// </summary>
-    [Obsolete("Instead use InternalEventOccurred and InternalLogEventArgs. Marked obsolete with NLog v5.3")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class InternalLoggerMessageEventArgs : EventArgs
-    {
-        /// <summary>
-        /// The rendered message
-        /// </summary>
-        public string Message { get; }
-
-        /// <summary>
-        /// The log level
-        /// </summary>
-        public LogLevel Level { get; }
-
-        /// <summary>
-        /// The exception. Could be null.
-        /// </summary>
-        [CanBeNull]
-        public Exception Exception { get; }
-
-        /// <summary>
-        /// The type that triggered this internal log event, for example the FileTarget. 
-        /// This property is not always populated. 
-        /// </summary>
-        [CanBeNull]
-        public Type SenderType { get; }
-
-        /// <summary>
-        /// The context name that triggered this internal log event, for example the name of the Target. 
-        /// This property is not always populated. 
-        /// </summary>
-        [CanBeNull]
-        public string SenderName { get; }
-
-        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
-        {
-            Message = message;
-            Level = level;
-            Exception = exception;
-            SenderType = senderType;
-            SenderName = senderName;
-        }
-    }
+    /// <remarks>
+    /// Never use/call NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
+    /// </remarks>
+    public delegate void InternalEventOccurredHandler(object sender, InternalLogEventArgs e);
 }

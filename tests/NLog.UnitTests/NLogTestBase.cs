@@ -567,13 +567,7 @@ namespace NLog.UnitTests
                 if (ConsoleErrorWriter != null)
                     Console.SetError(oldConsoleErrorWriter);
 
-                if (!string.IsNullOrEmpty(InternalLogger.LogFile))
-                {
-                    if (File.Exists(InternalLogger.LogFile))
-                        File.Delete(InternalLogger.LogFile);
-                }
-
-                if (!string.IsNullOrEmpty(logFile) && logFile != InternalLogger.LogFile)
+                if (!string.IsNullOrEmpty(logFile))
                 {
                     if (File.Exists(logFile))
                         File.Delete(logFile);

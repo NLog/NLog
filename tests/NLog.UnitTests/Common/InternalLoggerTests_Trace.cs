@@ -268,7 +268,9 @@ namespace NLog.UnitTests.Common
 
             if (logToTrace.HasValue)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.LogToTrace = logToTrace.Value;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             T traceListener;
