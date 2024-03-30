@@ -244,13 +244,14 @@ namespace NLog.Internal
             for (int i = 0; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];
-                if (SkipStackFrameWhenHidden(stackFrame))
+                var stackMethod = StackTraceUsageUtils.GetStackMethod(stackFrame);
+                if (SkipStackFrameWhenHidden(stackMethod))
                     continue;
 
                 if (!firstUserStackFrame.HasValue)
                     firstUserStackFrame = i;
 
-                if (IsLoggerType(stackFrame, loggerType))
+                if (SkipStackFrameWhenLoggerType(stackMethod, loggerType))
                 {
                     firstStackFrameAfterLogger = null;
                     continue;
@@ -274,10 +275,10 @@ namespace NLog.Internal
             for (int i = firstUserStackFrame; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];
-                if (SkipStackFrameWhenHidden(stackFrame))
-                    continue;
-
                 var stackMethod = StackTraceUsageUtils.GetStackMethod(stackFrame);
+                if (SkipStackFrameWhenHidden(stackMethod))
+                    continue;
+                
                 if (stackMethod?.Name == "MoveNext" && stackFrames.Length > i)
                 {
                     var nextStackFrame = stackFrames[i + 1];
@@ -299,28 +300,23 @@ namespace NLog.Internal
         /// <summary>
         /// Skip StackFrame when from hidden Assembly / ClassType
         /// </summary>
-        private static bool SkipStackFrameWhenHidden(StackFrame frame)
+        private static bool SkipStackFrameWhenHidden(MethodBase stackMethod)
         {
-            var method = StackTraceUsageUtils.GetStackMethod(frame);
-            var assembly = StackTraceUsageUtils.LookupAssemblyFromMethod(method);
+            var assembly = StackTraceUsageUtils.LookupAssemblyFromMethod(stackMethod);
             if (assembly is null || IsHiddenAssembly(assembly))
             {
                 return true;
             }
 
-            return method is null || IsHiddenClassType(method.DeclaringType);
+            return stackMethod is null || IsHiddenClassType(stackMethod.DeclaringType);
         }
 
         /// <summary>
-        /// Is this the type of the logger?
+        /// Skip StackFrame when type of the logger
         /// </summary>
-        /// <param name="frame">get type of this logger in this frame.</param>
-        /// <param name="loggerType">Type of the logger.</param>
-        /// <returns></returns>
-        private static bool IsLoggerType(StackFrame frame, Type loggerType)
+        private static bool SkipStackFrameWhenLoggerType(MethodBase stackMethod, Type loggerType)
         {
-            var method = StackTraceUsageUtils.GetStackMethod(frame);
-            Type declaringType = method?.DeclaringType;
+            Type declaringType = stackMethod?.DeclaringType;
             var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
             return isLoggerType;
         }
