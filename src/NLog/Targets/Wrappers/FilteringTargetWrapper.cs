@@ -90,7 +90,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="condition">The condition.</param>
         public FilteringTargetWrapper(Target wrappedTarget, ConditionExpression condition)
         {
-            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapped");
+            Name = string.IsNullOrEmpty(wrappedTarget?.Name) ? Name : (wrappedTarget.Name + "_wrapper");
             WrappedTarget = wrappedTarget;
             Condition = condition;
         }
