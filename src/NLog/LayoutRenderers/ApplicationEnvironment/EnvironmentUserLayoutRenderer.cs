@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Thread identity information (username).
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Environment-User-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Environment-User-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("environment-user")]
     public class EnvironmentUserLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {

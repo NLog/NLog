@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The logger name.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Logger-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Logger-Layout-Renderer">Documentation on NLog Wiki</seealso>/// 
     [LayoutRenderer("loggername")]
     [LayoutRenderer("logger")]
     [ThreadAgnostic]

@@ -38,8 +38,12 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// Installation parameter (passed to InstallNLogConfig).
+    /// Lookup parameter value from <see cref="InstallationContext.Parameters"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/InstallContext-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/InstallContext-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("install-context")]
     public class InstallContextLayoutRenderer : LayoutRenderer
     {

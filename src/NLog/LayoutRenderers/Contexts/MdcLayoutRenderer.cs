@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// Obsolete and replaced by <see cref="ScopeContextPropertyLayoutRenderer"/> with NLog v5.
     /// Render Mapped Diagnostics Logical (MDC) from <see cref="MappedDiagnosticsContext"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Mdc-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Mdc-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("mdc")]
     [Obsolete("Replaced by ScopeContextPropertyLayoutRenderer ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MdcLayoutRenderer : LayoutRenderer, IStringValueRenderer

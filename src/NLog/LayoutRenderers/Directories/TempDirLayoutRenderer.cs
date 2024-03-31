@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A temporary directory.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/TempDir-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/TempDir-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("tempdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

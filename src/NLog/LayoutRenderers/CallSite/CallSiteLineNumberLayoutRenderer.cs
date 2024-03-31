@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The call site source line number. Full callsite <see cref="CallSiteLayoutRenderer"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Callsite-line-number-layout-renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Callsite-line-number-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("callsite-linenumber")]
     [ThreadAgnostic]
     public class CallSiteLineNumberLayoutRenderer : LayoutRenderer, IUsesStackTrace, IRawValue

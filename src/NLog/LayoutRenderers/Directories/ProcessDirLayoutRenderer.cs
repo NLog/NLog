@@ -46,6 +46,10 @@ namespace NLog.LayoutRenderers
     /// The executable directory from the <see cref="System.Diagnostics.Process.MainModule"/> FileName,
     /// using the current process <see cref="System.Diagnostics.Process.GetCurrentProcess()"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ProcessDir-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ProcessDir-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("processdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Converts the result of another layout output to be XML-compliant.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Xml-Encode-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Xml-Encode-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("xml-encode")]
     [AmbientProperty(nameof(XmlEncode))]
     [AppDomainFixedOutput]

@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Log event context data.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/All-Event-Properties-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/All-Event-Properties-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("all-event-properties")]
     [ThreadAgnostic]
     [ThreadAgnosticImmutable]

@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The process time in format HH:mm:ss.mmm.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ProcessTime-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ProcessTime-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("processtime")]
     [ThreadAgnostic]
     public class ProcessTimeLayoutRenderer : LayoutRenderer, IRawValue

@@ -46,6 +46,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The information about the running process.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ProcessInfo-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ProcessInfo-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("processinfo")]
     public class ProcessInfoLayoutRenderer : LayoutRenderer
     {

@@ -46,8 +46,9 @@ namespace NLog.LayoutRenderers
     /// it is recommended to use it in conjunction with the <see cref="NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper"/>.
     /// </remarks>
     /// <remarks>
-    /// The entry assembly can't be found in some cases e.g. ASP.NET, unit tests, etc.
+    /// <a href="https://github.com/NLog/NLog/wiki/AssemblyVersion-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/AssemblyVersion-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("assembly-version")]
     [ThreadAgnostic]
     public class AssemblyVersionLayoutRenderer : LayoutRenderer

@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Render a single property of a object
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ObjectPath-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ObjectPath-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("Object-Path")]
     [AmbientProperty(nameof(ObjectPath))]
     [ThreadAgnostic]

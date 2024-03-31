@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Replace-NewLines-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Replace-NewLines-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("replace-newlines")]
     [AmbientProperty("ReplaceNewLines")]
     [AppDomainFixedOutput]

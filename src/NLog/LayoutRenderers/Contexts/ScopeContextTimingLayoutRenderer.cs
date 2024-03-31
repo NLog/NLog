@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// <see cref="ScopeContext"/> Timing Renderer (Async scope)
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ScopeTiming-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeTiming-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("scopetiming")]
     public sealed class ScopeContextTimingLayoutRenderer : LayoutRenderer
     {

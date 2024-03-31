@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Render a NLog Configuration variable assigned from API or loaded from config-file
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Var-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Var-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("var")]
     public class VariableLayoutRenderer : LayoutRenderer
     {

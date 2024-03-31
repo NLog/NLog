@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <example>
     /// ${onhasproperties:, Properties\: ${all-event-properties}}
     /// </example>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/OnHasProperties-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/OnHasProperties-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("onhasproperties")]
     [ThreadAgnostic]
     public sealed class OnHasPropertiesLayoutRendererWrapper : WrapperLayoutRendererBase

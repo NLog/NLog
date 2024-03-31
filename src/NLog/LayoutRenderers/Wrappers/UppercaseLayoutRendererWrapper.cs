@@ -46,6 +46,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${uppercase:Inner=${level}} 
     /// ${level:uppercase} // [AmbientProperty]
     /// </example>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Uppercase-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Uppercase-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("uppercase")]
     [AmbientProperty(nameof(Uppercase))]
     [AmbientProperty(nameof(ToUpper))]

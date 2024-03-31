@@ -50,6 +50,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Log4JXMLEvent-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Log4JXMLEvent-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("log4jxmlevent")]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace, IIncludeContext
     {

@@ -36,7 +36,6 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.IO;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -44,6 +43,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more).
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Special-Folder-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Special-Folder-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("specialfolder")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

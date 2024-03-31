@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Converts the result of another layout output to lower case.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Lowercase-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Lowercase-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("lowercase")]
     [AmbientProperty(nameof(Lowercase))]
     [AmbientProperty(nameof(ToLower))]

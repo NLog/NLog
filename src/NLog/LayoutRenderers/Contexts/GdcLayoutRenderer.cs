@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Render a Global Diagnostics Context item. See <see cref="GlobalDiagnosticsContext"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Gdc-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Gdc-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("gdc")]
     [ThreadAgnostic]
     public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer

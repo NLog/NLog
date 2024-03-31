@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Trims the whitespace from the result of another layout renderer.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Trim-Whitespace-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Trim-Whitespace-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("trim-whitespace")]
     [AmbientProperty("TrimWhiteSpace")]
     [AppDomainFixedOutput]

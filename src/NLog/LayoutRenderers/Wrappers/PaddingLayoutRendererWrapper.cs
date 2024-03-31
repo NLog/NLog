@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Applies padding to another layout output.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Pad-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Pad-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("pad")]
     [AmbientProperty(nameof(Padding))]
     [AmbientProperty(nameof(PadCharacter))]

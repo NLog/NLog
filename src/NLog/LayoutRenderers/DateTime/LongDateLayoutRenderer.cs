@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.ffff.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/LongDate-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/LongDate-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("longdate")]
     [ThreadAgnostic]
     public class LongDateLayoutRenderer : LayoutRenderer, IRawValue
