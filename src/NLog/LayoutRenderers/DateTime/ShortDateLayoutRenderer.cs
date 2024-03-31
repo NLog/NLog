@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The short date in a sortable format yyyy-MM-dd.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ShortDate-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ShortDate-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("shortdate")]
     [ThreadAgnostic]
     public class ShortDateLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer

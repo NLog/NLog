@@ -42,15 +42,15 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Application setting.
+    /// Render value for Application setting retrieved from App.config or Web.config file.
     /// </summary>
     /// <remarks>
-    /// Use this layout renderer to insert the value of an application setting
-    /// stored in the application's App.config or Web.config file.
-    /// </remarks>
     /// <code lang="NLog Layout Renderer">
     /// ${appsetting:item=mysetting:default=mydefault} - produces "mydefault" if no appsetting
     /// </code>
+    /// <a href="https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("appsetting")]
     [ThreadAgnostic]
     public sealed class AppSettingLayoutRenderer : LayoutRenderer, IStringValueRenderer

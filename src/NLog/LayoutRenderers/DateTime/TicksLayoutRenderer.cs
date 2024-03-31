@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The Ticks value of current date and time.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Ticks-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Ticks-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("ticks")]
     [ThreadAgnostic]
     public class TicksLayoutRenderer : LayoutRenderer, IRawValue

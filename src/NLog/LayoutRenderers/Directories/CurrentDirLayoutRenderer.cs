@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The current working directory of the application.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/CurrentDir-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/CurrentDir-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("currentdir")]
     [ThreadAgnostic]
     public class CurrentDirLayoutRenderer : LayoutRenderer, IStringValueRenderer

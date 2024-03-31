@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Filters characters not allowed in the file names by replacing them with safe character.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Filesystem-Normalize-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Filesystem-Normalize-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("filesystem-normalize")]
     [AmbientProperty("FSNormalize")]
     [AppDomainFixedOutput]

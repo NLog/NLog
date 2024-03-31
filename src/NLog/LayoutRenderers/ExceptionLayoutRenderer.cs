@@ -44,6 +44,10 @@ namespace NLog.LayoutRenderers
     /// Exception information provided through 
     /// a call to one of the Logger.*Exception() methods.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Exception-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Exception-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("exception")]
     [ThreadAgnostic]
     public class ExceptionLayoutRenderer : LayoutRenderer, IRawValue

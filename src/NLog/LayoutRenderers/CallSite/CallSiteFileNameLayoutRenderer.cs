@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The call site source file name. Full callsite <see cref="CallSiteLayoutRenderer"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Callsite-file-name-layout-renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Callsite-file-name-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("callsite-filename")]
     [ThreadAgnostic]
     public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace, IStringValueRenderer

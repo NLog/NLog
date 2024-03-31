@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Escapes output of another layout using JSON rules.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Json-Encode-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Json-Encode-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("json-encode")]
     [AmbientProperty("JsonEncode")]
     [AppDomainFixedOutput]

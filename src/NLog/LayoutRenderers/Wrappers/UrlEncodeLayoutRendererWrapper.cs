@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Encodes the result of another layout output for use with URLs.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Url-Encode-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Url-Encode-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("url-encode")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

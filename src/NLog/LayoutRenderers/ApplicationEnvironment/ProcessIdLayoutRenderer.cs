@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The identifier of the current process.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ProcessId-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ProcessId-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("processid")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

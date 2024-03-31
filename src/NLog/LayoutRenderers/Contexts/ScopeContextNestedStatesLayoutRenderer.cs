@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Renders the nested states from <see cref="ScopeContext"/> like a callstack
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ScopeNested-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeNested-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("scopenested")]
     public sealed class ScopeContextNestedStatesLayoutRenderer : LayoutRenderer
     {

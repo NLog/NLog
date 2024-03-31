@@ -43,7 +43,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     /// <remarks>
     /// The value of the inner layout will be rendered only once and reused subsequently.
+    /// 
+    /// <a href="https://github.com/NLog/NLog/wiki/Cached-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Cached-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("cached")]
     [AmbientProperty("Cached")]
     [AmbientProperty("ClearCache")]

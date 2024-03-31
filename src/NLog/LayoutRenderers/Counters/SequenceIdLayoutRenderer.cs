@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The sequence ID
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/SequenceId-layout-renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/SequenceId-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("sequenceid")]
     [ThreadAgnostic]
     public class SequenceIdLayoutRenderer : LayoutRenderer, IRawValue

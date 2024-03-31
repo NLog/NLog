@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Log event context data. See <see cref="LogEventInfo.Properties"/>.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/EventProperties-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/EventProperties-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("event-properties")]
     [LayoutRenderer("event-property")]
     [LayoutRenderer("event-context")]

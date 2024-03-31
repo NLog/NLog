@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Only outputs the inner layout when exception has been defined for log message.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/OnException-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/OnException-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("onexception")]
     [ThreadAgnostic]
     public sealed class OnExceptionLayoutRendererWrapper : WrapperLayoutRendererBase

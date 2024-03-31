@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Renders specified property-item from <see cref="ScopeContext"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/ScopeProperty-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeProperty-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("scopeproperty")]
     public sealed class ScopeContextPropertyLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {

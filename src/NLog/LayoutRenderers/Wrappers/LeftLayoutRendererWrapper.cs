@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Left part of a text
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Left-layout-renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Left-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("left")]
     [AmbientProperty("Truncate")]
     [AppDomainFixedOutput]

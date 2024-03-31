@@ -42,7 +42,10 @@ namespace NLog.LayoutRenderers
     /// <remarks>
     /// This is used to escape '${' sequence 
     /// as ;${literal:text=${}'
+    /// 
+    /// <a href="https://github.com/NLog/NLog/wiki/Literal-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Literal-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("literal")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]

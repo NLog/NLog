@@ -39,12 +39,15 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
     /// A renderer that puts into log a System.Diagnostics trace correlation id.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Trace-Activity-Id-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Trace-Activity-Id-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("activityid")]
     public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {

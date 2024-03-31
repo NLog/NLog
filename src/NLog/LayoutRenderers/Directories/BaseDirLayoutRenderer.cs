@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The current application domain's base directory.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Basedir-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Basedir-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("basedir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

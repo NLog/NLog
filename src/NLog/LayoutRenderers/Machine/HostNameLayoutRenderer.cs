@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The host name that the process is running on.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/HostName-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/HostName-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("hostname")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

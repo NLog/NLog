@@ -45,6 +45,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${substring:${level}:start=-2:length=2}
     /// ${substring:Inner=${level}:start=2:length=2}
     /// </example>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Substring-layout-renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Substring-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("substring")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

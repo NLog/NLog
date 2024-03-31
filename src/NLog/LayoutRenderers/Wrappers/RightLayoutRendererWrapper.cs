@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Right part of a text
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Right-layout-renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Right-layout-renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("right")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

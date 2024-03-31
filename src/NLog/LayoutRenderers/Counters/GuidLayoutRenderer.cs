@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Globally-unique identifier (GUID).
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Guid-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Guid-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("guid")]
     [ThreadAgnostic]
     public class GuidLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer

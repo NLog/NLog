@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers
     /// Obsolete and replaced by <see cref="ScopeContextNestedStatesLayoutRenderer"/> with NLog v5.
     /// Render Nested Diagnostic Context (NDLC) from <see cref="NestedDiagnosticsLogicalContext"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Ndlc-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Ndlc-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("ndlc")]
     [Obsolete("Replaced by ScopeContextNestedStatesLayoutRenderer ${scopenested}. Marked obsolete on NLog 5.0")]
     public class NdlcLayoutRenderer : LayoutRenderer

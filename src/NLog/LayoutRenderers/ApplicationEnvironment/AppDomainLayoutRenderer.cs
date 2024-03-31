@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     ///  Used to render the application domain name.
     ///  </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/AppDomain-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/AppDomain-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("appdomain")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

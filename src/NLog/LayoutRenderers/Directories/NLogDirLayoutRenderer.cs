@@ -44,6 +44,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The directory where NLog.dll is located.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/NLogDir-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/NLogDir-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("nlogdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

@@ -43,6 +43,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Only outputs the inner layout when the specified condition has been met.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/When-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/When-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("when")]
     [AmbientProperty(nameof(When))]
     [ThreadAgnostic]

@@ -40,6 +40,10 @@ namespace NLog.LayoutRenderers
     /// Obsolete and replaced by <see cref="ScopeContextTimingLayoutRenderer"/> with NLog v5.
     /// Render Nested Diagnostic Context (NDLC) timings from <see cref="NestedDiagnosticsLogicalContext"/>
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/NdlcTiming-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/NdlcTiming-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("ndlctiming")]
     [Obsolete("Replaced by ScopeContextTimingLayoutRenderer ${scopetiming}. Marked obsolete on NLog 5.0")]
     public class NdlcTimingLayoutRenderer : LayoutRenderer

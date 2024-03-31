@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The call site (class name, method name and source information).
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Callsite-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Callsite-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("callsite")]
     [ThreadAgnostic]
     public class CallSiteLayoutRenderer : LayoutRenderer, IUsesStackTrace

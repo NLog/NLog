@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Current date and time.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Date-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Date-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("date")]
     [ThreadAgnostic]
     public class DateLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer

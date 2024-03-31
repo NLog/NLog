@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Stack-Trace-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Stack-Trace-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("stacktrace")]
     [ThreadAgnostic]
     public class StackTraceLayoutRenderer : LayoutRenderer, IUsesStackTrace

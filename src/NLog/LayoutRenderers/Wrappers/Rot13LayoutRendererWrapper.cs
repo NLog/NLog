@@ -43,7 +43,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     /// <remarks>
     /// See <a href="https://en.wikipedia.org/wiki/ROT13">https://en.wikipedia.org/wiki/ROT13</a>.
+    /// 
+    /// <a href="https://github.com/NLog/NLog/wiki/Rot13-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Rot13-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("rot13")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The formatted log message.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Message-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Message-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("message")]
     [ThreadAgnostic]
     public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer

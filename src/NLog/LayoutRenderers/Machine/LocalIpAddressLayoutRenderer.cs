@@ -49,7 +49,10 @@ namespace NLog.LayoutRenderers
     /// </summary>
     /// <remarks>
     /// Skips loopback-adapters and tunnel-interfaces. Skips devices without any MAC-address
+    /// 
+    /// <a href="https://github.com/NLog/NLog/wiki/Local-IP-Address-Layout-Renderer">See NLog Wiki</a>
     /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Local-IP-Address-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("local-ip")]
     [ThreadAgnostic]
     public class LocalIpAddressLayoutRenderer : LayoutRenderer

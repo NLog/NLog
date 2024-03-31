@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The environment variable.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Environment-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Environment-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("environment")]
     [ThreadAgnostic]
     public class EnvironmentLayoutRenderer : LayoutRenderer, IStringValueRenderer

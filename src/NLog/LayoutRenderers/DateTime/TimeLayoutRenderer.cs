@@ -42,6 +42,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The time in a 24-hour, sortable format HH:mm:ss.mmmm.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Time-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Time-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("time")]
     [ThreadAgnostic]
     public class TimeLayoutRenderer : LayoutRenderer, IRawValue

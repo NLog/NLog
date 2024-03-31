@@ -47,6 +47,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <example>
     /// ${replace:searchFor=\\n+:replaceWith=-:regex=true:inner=${message}}
     /// </example>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("replace")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]

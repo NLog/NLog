@@ -41,6 +41,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Thread identity information (name and authentication information).
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Identity-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Identity-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("identity")]
     public class IdentityLayoutRenderer : LayoutRenderer
     {
