@@ -251,7 +251,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
         /// 
         /// Register a custom layout renderer.
         /// </summary>
@@ -268,7 +268,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
         /// 
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent.
         /// </summary>
@@ -283,7 +283,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
         /// 
         /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
@@ -299,7 +299,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
         /// 
         /// Register a custom layout renderer with a callback function <paramref name="layoutRenderer"/>. The callback receives the logEvent and the current configuration.
         /// </summary>

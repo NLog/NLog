@@ -217,6 +217,8 @@ namespace NLog
         public bool HasStackTrace => CallSiteInformation?.StackTrace != null;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogEventInfo.CallerMemberName"/> or ${callsite} with NLog v5.3.
+        /// 
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
         [Obsolete("Instead use ${callsite} or CallerMemberName. Marked obsolete on NLog 5.3")]

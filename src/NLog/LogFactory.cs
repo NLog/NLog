@@ -132,6 +132,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete instead use <see cref="LogFactory"/> default-constructor, and assign <see cref="Configuration"/> with NLog 5.0.
+        /// 
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="config">The config.</param>
@@ -769,6 +771,8 @@ namespace NLog
 
 #if !NETSTANDARD1_3
         /// <summary>
+        /// Obsolete and replaced by <see cref="OnConfigurationReloaded"/> with NLog 5.2.
+        /// 
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
         /// <param name="e">Event arguments</param>
@@ -906,6 +910,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// 
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
@@ -922,6 +928,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// 
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
@@ -935,6 +943,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// 
         /// Overwrite the candidates paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
@@ -951,6 +961,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// 
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
         [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
@@ -1029,6 +1041,8 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// 
         /// Loads logging configuration from file (Currently only XML configuration files supported)
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>

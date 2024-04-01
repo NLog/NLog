@@ -121,6 +121,8 @@ namespace NLog.Config
         public IList<Target> Targets => _targets;
 
         /// <summary>
+        /// Obsolete since too exotic feature with NLog v5.3.
+        /// 
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
         [Obsolete("Very exotic feature without any unit-tests, not sure if it works. Marked obsolete with NLog v5.3")]

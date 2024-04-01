@@ -37,6 +37,8 @@ namespace NLog.Config
     using System.ComponentModel;
 
     /// <summary>
+    /// Obsolete and replaced by <see cref="ThreadAgnosticImmutableAttribute"/> with NLog v5.3.
+    /// 
     /// Marks the layout or layout renderer depends on mutable objects from the LogEvent
     /// 
     /// This can be <see cref="LogEventInfo.Properties"/> or <see cref="LogEventInfo.Exception"/>

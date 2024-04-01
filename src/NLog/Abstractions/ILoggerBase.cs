@@ -38,6 +38,8 @@ namespace NLog
     using JetBrains.Annotations;
 
     /// <summary>
+    /// Obsolete and replaced by <see cref="ILogger"/> with NLog v5.3.
+    /// 
     /// Logger with only generic methods (passing 'LogLevel' to methods) and core properties.
     /// </summary>
     [Obsolete("ILoggerBase should be replaced with ILogger. Marked obsolete with NLog v5.3")]
@@ -45,6 +47,7 @@ namespace NLog
     public partial interface ILoggerBase
     {
         /// <summary>
+        /// Obsolete on the ILogger-interface, instead use <see cref="Logger.LoggerReconfigured"/> with NLog v5.3.
         /// Occurs when logger configuration changes.
         /// </summary>
         [Obsolete("LoggerReconfigured-EventHandler is very exotic for ILogger-interface. Instead use Logger.LoggerReconfigured. Marked obsolete with NLog v5.3")]
@@ -60,6 +63,7 @@ namespace NLog
         }
 
         /// <summary>
+        /// Obsolete on the ILogger-interface, instead use <see cref="Logger.Factory"/> with NLog v5.3.
         /// Gets the factory that created this logger.
         /// </summary>
         [Obsolete("Factory-property is hard to mock for ILogger-interface. Instead use Logger.Factory. Marked obsolete with NLog v5.3")]
