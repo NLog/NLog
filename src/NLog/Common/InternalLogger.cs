@@ -123,6 +123,7 @@ namespace NLog.Common
         private static bool _logToConsoleError;
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="InternalLogger.LogWriter"/> with NLog v5.3.
         /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics"/>.Trace
         /// </summary>
         [Obsolete("Instead use InternalLogger.LogWriter. Marked obsolete with NLog v5.3")]
@@ -178,6 +179,7 @@ namespace NLog.Common
         public static TextWriter LogWriter { get; set; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="InternalEventOccurred"/> with NLog 5.3.
         /// Event written to the internal log.
         /// </summary>
         /// <remarks>
