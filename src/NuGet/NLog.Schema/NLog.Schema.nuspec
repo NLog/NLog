@@ -19,9 +19,10 @@ Notes:
     <iconUrl>https://nlog-project.org/NConfig.png</iconUrl>
     <projectUrl>https://nlog-project.org/</projectUrl>
     <repository type="git" url="https://github.com/NLog/NLog.git" />
-    <licenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <license type="expression">BSD-3-Clause</license>
     <tags>nlog, intellisense, xsd</tags>
-      <contentFiles>
+    <contentFiles>
       <files include="**/*.*" buildAction="None" copyToOutput="false" flatten="true" />
     </contentFiles>
   </metadata>
