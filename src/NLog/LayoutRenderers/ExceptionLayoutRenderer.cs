@@ -504,20 +504,28 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose properties should be appended.</param>
         protected virtual void AppendProperties(StringBuilder sb, Exception ex)
         {
-            string separator = string.Empty;
             var exceptionProperties = ObjectReflectionCache.LookupObjectProperties(ex);
-            foreach (var property in exceptionProperties)
+            if (exceptionProperties.IsSimpleValue && exceptionProperties.ObjectValue is IConvertible stringValue)
             {
-                if (ExcludeDefaultProperties.Contains(property.Name))
-                    continue;
+                // Weird scenario, where custom transformation is converting Exception into scalar value
+                sb.AppendFormat("{0}", stringValue);
+            }
+            else
+            {
+                string separator = string.Empty;
+                foreach (var property in exceptionProperties)
+                {
+                    if (ExcludeDefaultProperties.Contains(property.Name))
+                        continue;
 
-                var propertyValue = property.Value?.ToString();
-                if (string.IsNullOrEmpty(propertyValue))
-                    continue;
+                    var propertyValue = property.Value?.ToString();
+                    if (string.IsNullOrEmpty(propertyValue))
+                        continue;
 
-                sb.Append(separator);
-                sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
-                separator = ExceptionDataSeparator;
+                    sb.Append(separator);
+                    sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
+                    separator = ExceptionDataSeparator;
+                }
             }
         }
 
