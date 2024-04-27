@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### Version 5.3.0 (2024/04/27)
+### Version 5.3.1 (2024/04/27)
 
 **Improvements**
 - [#5313](https://github.com/NLog/NLog/pull/5313) CallSite can hide single class type using AddCallSiteHiddenClassType (#5313) (@wadebaird)
