@@ -4,6 +4,30 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.3.0 (2024/04/27)
+
+**Improvements**
+- [#5313](https://github.com/NLog/NLog/pull/5313) CallSite can hide single class type using AddCallSiteHiddenClassType (#5313) (@wadebaird)
+- [#5489](https://github.com/NLog/NLog/pull/5489) Logging Rule with FinalMinLevel also supports dynamic filters (#5489) (@snakefoot)
+- [#5463](https://github.com/NLog/NLog/pull/5463) LogManager GetCurrentClassLogger fallback to assembly-name when no namespace (#5463) (@snakefoot)
+- [#5480](https://github.com/NLog/NLog/pull/5480) Logger LayoutRenderer able to output the Logger PrefixName (#5480) (@snakefoot)
+- [#5466](https://github.com/NLog/NLog/pull/5466) NLogViewer Target - Allow override of the FormattedMessage (#5466) (@snakefoot)
+- [#5487](https://github.com/NLog/NLog/pull/5487) CallSite fallback to Exception TargetSite when available (#5487) (@snakefoot)
+- [#5242](https://github.com/NLog/NLog/pull/5242) NLogTraceListener - Align Filter-behavior for all Write-methods (#5242) (@snakefoot)
+- [#5490](https://github.com/NLog/NLog/pull/5490) LogManager AddHiddenAssembly marked obsolete, instead use AddCallSiteHiddenAssembly (#5490) (@snakefoot)
+- [#5443](https://github.com/NLog/NLog/pull/5443) InternalLogger - Marked LogToTrace as obsolete to reduce dependencies (#5443) (@snakefoot)
+- [#5297](https://github.com/NLog/NLog/pull/5297) Replaced MutableUnsafeAttribute with ThreadAgnosticImmutableAttribute (#5297) (@snakefoot)
+- [#5431](https://github.com/NLog/NLog/pull/5431) Marked ILoggerBase and ISuppress as obsolete and instead use ILogger (#5431) (@snakefoot)
+- [#5491](https://github.com/NLog/NLog/pull/5491) LoggingRule - Marked ChildRules as obsolete (#5491) (@snakefoot)
+- [#5416](https://github.com/NLog/NLog/pull/5416) FileTarget - Marked NetworkWrites as obsolete, and replaced by KeepFileOpen=false (#5416) (@snakefoot)
+- [#5355](https://github.com/NLog/NLog/pull/5355) Marked EscapeDataNLogLegacy as obsolete (#5355) (@snakefoot)
+- [#5380](https://github.com/NLog/NLog/pull/5380) WrapperTarget is the wrapper and not the wrapped (#5380) (@snakefoot)
+- [#5485](https://github.com/NLog/NLog/pull/5485) LogFactory - Disconnect from Target write and Target flush (#5485) (@snakefoot)
+- [#5509](https://github.com/NLog/NLog/pull/5509) NLog Schema nuget-package with updated license info (#5509) (@snakefoot)
+- [#5493](https://github.com/NLog/NLog/pull/5493) Added sealed to internal classes (#5493) (@snakefoot)
+- [#5497](https://github.com/NLog/NLog/pull/5497) Added more NLog Wiki Links to XML docs (#5497) (@snakefoot)
+- [#5475](https://github.com/NLog/NLog/pull/5475) CsvLayout - Fixed links to NLog Wiki in XML docs (#5475) (@hangy)
+
 ### Version 5.2.8 (2023/12/29)
 
 **Improvements**

@@ -29,11 +29,28 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 ChangeLog:
 
-- ConfigurationItemFactory - Skip type attribute lookup for official types (#5450) (@snakefoot)
-- LoggingRule - ToString should recognize Final and FinalMinLevel (#5441) (@snakefoot)
-- FileTarget - Refactor Windows FileSystem Tunneling repair logic (#5438) (@snakefoot)
-- Hide obsolete methods and classes from intellisense (#5432) (@snakefoot)
-- CachedTimeSource - Added Thread.MemoryBarrier to avoid code-reordering (#5429) (@snakefoot)
+NLog v5.3 marks a few exotic API-methods as obsolete, to pave the road for NLog v6.
+
+- CallSite can hide single class type using AddCallSiteHiddenClassType (#5313) (@wadebaird)
+- Logging Rule with FinalMinLevel also supports dynamic filters (#5489) (@snakefoot)
+- LogManager GetCurrentClassLogger fallback to assembly-name when no namespace (#5463) (@snakefoot)
+- Logger LayoutRenderer able to output the Logger PrefixName (#5480) (@snakefoot)
+- NLogViewer Target - Allow override of the FormattedMessage (#5466) (@snakefoot)
+- CallSite fallback to Exception TargetSite when available (#5487) (@snakefoot)
+- NLogTraceListener - Align Filter-behavior for all Write-methods (#5242) (@snakefoot)
+- LogManager AddHiddenAssembly marked obsolete, instead use AddCallSiteHiddenAssembly (#5490) (@snakefoot)
+- InternalLogger - Marked LogToTrace as obsolete to reduce dependencies (#5443) (@snakefoot)
+- Replaced MutableUnsafeAttribute with ThreadAgnosticImmutableAttribute (#5297) (@snakefoot)
+- Marked ILoggerBase and ISuppress as obsolete and instead use ILogger (#5431) (@snakefoot)
+- LoggingRule - Marked ChildRules as obsolete (#5491) (@snakefoot)
+- FileTarget - Marked NetworkWrites as obsolete, and replaced by KeepFileOpen=false (#5416) (@snakefoot)
+- Marked EscapeDataNLogLegacy as obsolete (#5355) (@snakefoot)
+- WrapperTarget is the wrapper and not the wrapped (#5380) (@snakefoot)
+- LogFactory - Disconnect from Target write and Target flush (#5485) (@snakefoot)
+- NLog Schema nuget-package with updated license info (#5509) (@snakefoot)
+- Added sealed to internal classes (#5493) (@snakefoot)
+- Added more NLog Wiki Links to XML docs (#5497) (@snakefoot)
+- CsvLayout - Fixed links to NLog Wiki in XML docs (#5475) (@hangy)
 
 NLog v5.2 changes how to load extensions: https://nlog-project.org/2023/05/30/nlog-5-2-trim-warnings.html
 
