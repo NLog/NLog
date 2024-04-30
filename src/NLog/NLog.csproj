@@ -31,6 +31,7 @@ ChangeLog:
 
 NLog v5.3 marks a few exotic API-methods as obsolete, to pave the road for NLog v6.
 
+- Fix NullReferenceException when using LoggingRules with filters and no targets (#5515) (@snakefoot)
 - CallSite can hide single class type using AddCallSiteHiddenClassType (#5313) (@wadebaird)
 - Logging Rule with FinalMinLevel also supports dynamic filters (#5489) (@snakefoot)
 - LogManager GetCurrentClassLogger fallback to assembly-name when no namespace (#5463) (@snakefoot)

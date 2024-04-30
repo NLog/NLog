@@ -4,6 +4,11 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.3.2 (2024/04/30)
+
+**Bug fix**
+- [#5515](https://github.com/NLog/NLog/pull/5515) Fix NullReferenceException when using LoggingRules with filters and no targets (#5515) (@snakefoot)
+
 ### Version 5.3.1 (2024/04/27)
 
 **Improvements**
