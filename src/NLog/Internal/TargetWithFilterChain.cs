@@ -180,15 +180,19 @@ namespace NLog.Internal
 
         private static bool LoggingRuleHasFinalMinLevelFilters(LoggingRule rule)
         {
-            return LogLevel.Off != rule.FinalMinLevel && rule.Filters.Count != 0 && rule.Targets.Count == 0;
+            return rule.FinalMinLevel != LogLevel.Off && rule.Filters.Count != 0 && rule.Targets.Count == 0;
         }
 
         private static void CollectFinalMinLevelFiltersFromRule(LoggingRule rule, ref IList<KeyValuePair<FilterResult?, IList<Filter>>> finalMinLevelWithFilters)
         {
+            var finalMinLevel = rule.FinalMinLevel;
+            if (finalMinLevel is null)
+                return;
+
             finalMinLevelWithFilters = finalMinLevelWithFilters ?? new KeyValuePair<FilterResult?, IList<Filter>>[LogLevel.MaxLevel.Ordinal + 1];
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
-                if (i < rule.FinalMinLevel.Ordinal)
+                if (i < finalMinLevel.Ordinal)
                     continue;
 
                 if (finalMinLevelWithFilters[i].Key.HasValue && finalMinLevelWithFilters[i].Key.Value != rule.FilterDefaultAction)

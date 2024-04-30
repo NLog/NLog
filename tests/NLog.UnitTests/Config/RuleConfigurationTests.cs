@@ -219,6 +219,12 @@ namespace NLog.UnitTests.Config
                     <logger name='Microsoft.Hosting.Lifetime*' finalMinLevel='Info' />
                     <logger name='System*' finalMinLevel='Warn' />
 
+                    <logger name='RequestLogger*'>
+                        <filters defaultAction='Log'>
+                            <when condition='exception == null' action='IgnoreFinal' />
+                        </filters>
+                    </logger>
+
                     <logger name='RequestLogger' finalMinLevel='Error'>
                         <filters defaultAction='Log'>
                             <when condition='exception == null' action='IgnoreFinal' />
