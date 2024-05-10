@@ -37,8 +37,10 @@ namespace NLog
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Linq;
     using System.Text;
     using System.Xml;
     using NLog.Internal;
@@ -148,6 +150,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets a value indicating whether to use auto logger name detected from the stack trace.
         /// </summary>
+        /// <remarks>Default Logger-Name is <see cref="TraceListener.Name"/> of the <see cref="NLogTraceListener" /></remarks>
         public bool AutoLoggerName
         {
             get
@@ -393,7 +396,7 @@ namespace NLog
         /// </returns>
         protected override string[] GetSupportedAttributes()
         {
-            return new[] { "defaultLogLevel", "autoLoggerName", "forceLogLevel", "disableFlush" };
+            return new[] { nameof(DefaultLogLevel), nameof(AutoLoggerName), nameof(ForceLogLevel), nameof(DisableFlush) };
         }
 
         /// <summary>
@@ -437,6 +440,12 @@ namespace NLog
         /// </summary>
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
         {
+            var globalLogLevel = (LogFactory ?? LogManager.LogFactory).GlobalThreshold;
+            if (logLevel < globalLogLevel)
+            {
+                return; // We are done
+            }
+
             StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
             var logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
 
@@ -449,9 +458,9 @@ namespace NLog
             var ev = new LogEventInfo();
             ev.LoggerName = logger.Name;
             ev.Level = logLevel;
-            if (eventType.HasValue && eventType != TraceEventType.Verbose)
+            if (eventType.HasValue && eventType != TraceEventType.Verbose && eventType.Value != default)
             {
-                ev.Properties.Add("EventType", eventType.Value);
+                ev.Properties.Add("EventType", ResolveBoxedTraceEventType(eventType.Value));
             }
 
             if (relatedActivityId.HasValue && relatedActivityId != Guid.Empty)
@@ -474,7 +483,7 @@ namespace NLog
 
             if (eventId.HasValue && eventId != 0)
             {
-                ev.Properties.Add("EventID", eventId.Value);
+                ev.Properties.Add("EventID", ResolvedBoxedEventId(eventId.Value));
             }
 
             if (stackTrace != null && userFrameIndex >= 0)
@@ -485,9 +494,33 @@ namespace NLog
             logger.Log(typeof(System.Diagnostics.Trace), ev);
         }
 
+        private static readonly Dictionary<TraceEventType, object> TraceEventTypeBoxing = Enum.GetValues(typeof(TraceEventType)).Cast<object>().ToDictionary(evt => (TraceEventType)evt);
+        private static readonly object[] EventIdBoxing = Enumerable.Range(0, 1000).Select(id => (object)id).ToArray();
+
+        private static object ResolveBoxedTraceEventType(TraceEventType traceEventType)
+        {
+            if (TraceEventTypeBoxing.TryGetValue(traceEventType, out var boxedEventType))
+            {
+                return boxedEventType;
+            }
+            return traceEventType;
+        }
+
+        private static object ResolvedBoxedEventId(int eventId)
+        {
+            if (eventId > 0 && eventId < EventIdBoxing.Length)
+                return EventIdBoxing[eventId];
+            return eventId;
+        }
+
         private Logger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
         {
-            loggerName = (loggerName ?? Name) ?? string.Empty;
+            if (string.IsNullOrEmpty(loggerName))
+            {
+                loggerName = Name;
+                if (string.IsNullOrEmpty(loggerName))
+                    loggerName = nameof(NLogTraceListener);
+            }
 
             userFrameIndex = -1;
             if (stackTrace != null)
@@ -495,9 +528,10 @@ namespace NLog
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
                     var frame = stackTrace.GetFrame(i);
-                    loggerName = StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
-                    if (!string.IsNullOrEmpty(loggerName))
+                    var className = StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
+                    if (!string.IsNullOrEmpty(className))
                     {
+                        loggerName = className;
                         userFrameIndex = i;
                         break;
                     }
@@ -535,11 +569,11 @@ namespace NLog
                     switch (key.ToUpperInvariant())
                     {
                         case "DEFAULTLOGLEVEL":
-                            _defaultLogLevel = LogLevel.FromString(value);
+                            DefaultLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "FORCELOGLEVEL":
-                            _forceLogLevel = LogLevel.FromString(value);
+                            ForceLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "AUTOLOGGERNAME":
@@ -547,7 +581,7 @@ namespace NLog
                             break;
 
                         case "DISABLEFLUSH":
-                            _disableFlush = bool.Parse(value);
+                            DisableFlush = bool.Parse(value);
                             break;
                     }
                 }
