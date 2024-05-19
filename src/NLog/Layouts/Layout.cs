@@ -364,7 +364,8 @@ namespace NLog.Layouts
             // all its nested objects are thread-agnostic.
             ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
             ThreadAgnosticImmutable = ThreadAgnostic && objectGraphTypes.Any(t => t.IsDefined(typeof(ThreadAgnosticImmutableAttribute), true));
-            if (ThreadAgnostic && objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
+
+            if (objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
             {
                 foreach (var nestedLayout in objectGraphScannerList.OfType<Layout>())
                 {
