@@ -542,38 +542,38 @@ namespace NLog.Layouts
             if (propertyValues.IsSimpleValue)
             {
                 AppendXmlPropertyValue(propName, propertyValues.ObjectValue, sb, orgLength, false, ignorePropertiesElementName);
+                return;
             }
-            else
+
+            string propNameElement = AppendXmlPropertyValue(propName, string.Empty, sb, orgLength, true, ignorePropertiesElementName);
+            if (string.IsNullOrEmpty(propNameElement))
+                return;
+
+            foreach (var property in propertyValues)
             {
-                string propNameElement = AppendXmlPropertyValue(propName, string.Empty, sb, orgLength, true, ignorePropertiesElementName);
-                if (!string.IsNullOrEmpty(propNameElement))
+                int beforeValueLength = sb.Length;
+                if (beforeValueLength > MaxXmlLength)
+                    break;
+
+                if (!property.HasNameAndValue)
+                    continue;
+
+                var propertyTypeCode = property.TypeCode;
+                if (propertyTypeCode != TypeCode.Object)
                 {
-                    foreach (var property in propertyValues)
+                    string xmlValueString = XmlHelper.XmlConvertToString((IConvertible)property.Value, propertyTypeCode, true);
+                    AppendXmlPropertyStringValue(property.Name, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                }
+                else
+                {
+                    if (!AppendXmlPropertyObjectValue(property.Name, property.Value, sb, orgLength, objectsInPath, depth))
                     {
-                        int beforeValueLength = sb.Length;
-                        if (beforeValueLength > MaxXmlLength)
-                            break;
-
-                        if (!property.HasNameAndValue)
-                            continue;
-
-                        var propertyTypeCode = property.TypeCode;
-                        if (propertyTypeCode != TypeCode.Object)
-                        {
-                            string xmlValueString = XmlHelper.XmlConvertToString((IConvertible)property.Value, propertyTypeCode, true);
-                            AppendXmlPropertyStringValue(property.Name, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
-                        }
-                        else
-                        {
-                            if (!AppendXmlPropertyObjectValue(property.Name, property.Value, sb, orgLength, objectsInPath, depth))
-                            {
-                                sb.Length = beforeValueLength;
-                            }
-                        }
+                        sb.Length = beforeValueLength;
                     }
-                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
                 }
             }
+
+            AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
         }
 
         private string AppendXmlPropertyValue(string propName, object propertyValue, StringBuilder sb, int orgLength, bool ignoreValue = false, bool ignorePropertiesElementName = false)
@@ -622,26 +622,23 @@ namespace NLog.Layouts
                 RenderAttribute(sb, PropertiesElementKeyAttribute, propName);
             }
 
-            if (!ignoreValue)
-            {
-                if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
-                {
-                    sb.Append("/>");
-                    if (IndentXml)
-                        sb.AppendLine();
-                }
-                else
-                {
-                    sb.Append('>');
-                    XmlHelper.EscapeXmlString(xmlValueString, false, sb);
-                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
-                }
-            }
-            else
+            if (ignoreValue)
             {
                 sb.Append('>');
                 if (IndentXml)
                     sb.AppendLine();
+            }
+            else if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
+            {
+                sb.Append("/>");
+                if (IndentXml)
+                    sb.AppendLine();
+            }
+            else
+            {
+                sb.Append('>');
+                XmlHelper.EscapeXmlString(xmlValueString, false, sb);
+                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
             }
 
             return propNameElement;

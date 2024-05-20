@@ -806,7 +806,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private static Exception GetExceptionWithoutStackTrace(string exceptionMessage)
         {
-            return new CustomArgumentException(exceptionMessage, "exceptionMessage");
+            return new CustomArgumentException(exceptionMessage, nameof(exceptionMessage));
         }
 
         private class GenericClass<TA, TB, TC>
@@ -819,7 +819,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something, string exceptionMessage)
             {
-                throw new CustomArgumentException(exceptionMessage, "exceptionMessage");
+                throw new CustomArgumentException(exceptionMessage, nameof(exceptionMessage));
             }
         }
 

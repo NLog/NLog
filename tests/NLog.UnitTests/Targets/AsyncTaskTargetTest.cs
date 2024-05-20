@@ -134,11 +134,11 @@ namespace NLog.UnitTests.Targets
 
             protected override async Task WriteAsyncTask(IList<LogEventInfo> logEvents, CancellationToken cancellationToken)
             {
-                await Task.Delay(50);
+                await Task.Delay(50, cancellationToken);
                 throw new Exception("Failed to write to message queue, or something");
             }
 
-            protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken)
+            protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken token)
             {
                 throw new NotImplementedException();
             }
