@@ -472,6 +472,7 @@ namespace NLog.Targets
 
                     if (previousTask != null && !fullBatchCompleted && TaskDelayMilliseconds >= 50 && !_requestQueue.IsEmpty)
                     {
+                        InternalLogger.Trace("{0}: Throttle to optimize batching", this);
                         _previousTask = null;
                         _lazyWriterTimer.Change(TaskDelayMilliseconds, Timeout.Infinite);
                         break;  // Throttle using Timer, since we didn't write a full batch
@@ -639,6 +640,7 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Trace("{0}: Writing {1} events", this, logEvents.Count);
                 var newTask = WriteAsyncTask(logEvents, cancellationToken);
                 if (newTask?.Status == TaskStatus.Created)
                     newTask.Start(TaskScheduler);
