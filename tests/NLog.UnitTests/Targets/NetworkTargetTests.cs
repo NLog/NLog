@@ -122,9 +122,9 @@ namespace NLog.UnitTests.Targets
             Assert.Contains("1: connect tcp://someaddress/", actual);
             foreach (var message in messages)
             {
-                Assert.True(actual.IndexOf($"1: send 0 {message.Length + eolLength}") != -1);
+                Assert.Contains($"1: send 0 {message.Length + eolLength}", actual);
             }
-            Assert.True(actual.IndexOf("1: close") != -1);
+            Assert.Contains("1: close", actual);
         }
 
         [Fact]
