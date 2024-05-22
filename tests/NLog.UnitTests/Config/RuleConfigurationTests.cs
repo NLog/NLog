@@ -931,12 +931,29 @@ namespace NLog.UnitTests.Config
         }
 
         [Theory]
-        [MemberData(nameof(LoggingRule_LevelsLayout_ParseLevel_TestCases))]
-        public void LoggingRule_LevelsLayout_ParseLevel(string levelsVariable, LogLevel[] expectedLevels)
+        [InlineData("Off", new string[] { nameof(LogLevel.Off) })]
+        [InlineData("Off, Trace", new string[] { nameof(LogLevel.Off), nameof(LogLevel.Trace) })]
+        [InlineData(" ", new string[] { nameof(LogLevel.Off) })]
+        [InlineData(" , Debug", new string[] { nameof(LogLevel.Off), nameof(LogLevel.Debug) })]
+        [InlineData(null, new string[] { nameof(LogLevel.Off) })]
+        [InlineData("", new string[] { nameof(LogLevel.Off) })]
+        [InlineData(",Info", new string[] { nameof(LogLevel.Off), nameof(LogLevel.Info) })]
+        [InlineData("Error, Error", new string[] { nameof(LogLevel.Error), nameof(LogLevel.Error) })]
+        [InlineData(" error", new string[] { nameof(LogLevel.Error) })]
+        [InlineData(" error, Warn", new string[] { nameof(LogLevel.Error), nameof(LogLevel.Warn) })]
+        [InlineData("Wrong", new string[] { nameof(LogLevel.Off) })]
+        [InlineData("Wrong, Fatal", new string[] { nameof(LogLevel.Off), nameof(LogLevel.Fatal) })]
+        [InlineData(nameof(LogLevel.Trace), new string[] { nameof(LogLevel.Trace) })]
+        [InlineData(nameof(LogLevel.Debug), new string[] { nameof(LogLevel.Debug) })]
+        [InlineData(nameof(LogLevel.Info), new string[] { nameof(LogLevel.Info) })]
+        [InlineData(nameof(LogLevel.Warn), new string[] { nameof(LogLevel.Warn) })]
+        [InlineData(nameof(LogLevel.Error), new string[] { nameof(LogLevel.Error) })]
+        [InlineData(nameof(LogLevel.Fatal), new string[] { nameof(LogLevel.Fatal) })]
+        public void LoggingRule_LevelsLayout_ParseLevel(string inputLevels, string[] expectedLevels)
         {
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog>"
-    + (levelsVariable != null ? $"<variable name='var_levels' value='{levelsVariable}'/>" : "") +
+    + (inputLevels != null ? $"<variable name='var_levels' value='{inputLevels}'/>" : "") +
     @"<targets>
                         <target name='d1' type='Debug' layout='${message}' />
                     </targets>
@@ -947,7 +964,7 @@ namespace NLog.UnitTests.Config
 
             var logger = logFactory.GetLogger(nameof(LoggingRule_LevelsLayout_ParseLevel));
 
-            AssertLogLevelEnabled(logger, expectedLevels);
+            AssertLogLevelEnabled(logger, expectedLevels.Select(l => LogLevel.FromString(l)).ToArray());
 
             // Verify that runtime override also works
             logFactory.Configuration.Variables["var_levels"] = LogLevel.Fatal.ToString();
@@ -956,35 +973,22 @@ namespace NLog.UnitTests.Config
             AssertLogLevelEnabled(logger, LogLevel.Fatal);
         }
 
-        public static IEnumerable<object[]> LoggingRule_LevelsLayout_ParseLevel_TestCases()
-        {
-            yield return new object[] { "Off", new[] { LogLevel.Off } };
-            yield return new object[] { "Off, Trace", new[] { LogLevel.Off, LogLevel.Trace } };
-            yield return new object[] { " ", new[] { LogLevel.Off } };
-            yield return new object[] { " , Debug", new[] { LogLevel.Off, LogLevel.Debug } };
-            yield return new object[] { null, new[] { LogLevel.Off } };
-            yield return new object[] { "", new[] { LogLevel.Off } };
-            yield return new object[] { ",Info", new[] { LogLevel.Off, LogLevel.Info } };
-            yield return new object[] { "Error, Error", new[] { LogLevel.Error, LogLevel.Error } };
-            yield return new object[] { " error", new[] { LogLevel.Error } };
-            yield return new object[] { " error, Warn", new[] { LogLevel.Error, LogLevel.Warn } };
-            yield return new object[] { "Wrong", new[] { LogLevel.Off } };
-            yield return new object[] { "Wrong, Fatal", new[] { LogLevel.Off, LogLevel.Fatal } };
-            yield return new object[] { "Trace", new[] { LogLevel.Trace } };
-            yield return new object[] { "Debug", new[] { LogLevel.Debug } };
-            yield return new object[] { "Info", new[] { LogLevel.Info } };
-            yield return new object[] { "Warn", new[] { LogLevel.Warn } };
-            yield return new object[] { "Error", new[] { LogLevel.Error } };
-            yield return new object[] { "Fatal", new[] { LogLevel.Fatal } };
-        }
-
         [Theory]
-        [MemberData(nameof(LoggingRule_FinalMinLevel_TestCases))]
-        public void LoggingRule_FinalMinLevelLayoutAsVar_EnablesExpectedLevels(string levelVariable, LogLevel[] expectedLevels)
+        [InlineData("Off", new string[] { nameof(LogLevel.Off) })]
+        [InlineData(" ", new string[] { nameof(LogLevel.Off) })]
+        [InlineData("", new string[] { nameof(LogLevel.Off) })]
+        [InlineData(nameof(LogLevel.Trace), new string[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug), nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData(nameof(LogLevel.Debug), new string[] { nameof(LogLevel.Debug), nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData(nameof(LogLevel.Info), new string[] { nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData(nameof(LogLevel.Warn), new string[] { nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData(nameof(LogLevel.Error), new string[] { nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData(nameof(LogLevel.Fatal), new string[] { nameof(LogLevel.Fatal) })]
+        [InlineData(" FataL ", new string[] { nameof(LogLevel.Fatal) })]
+        public void LoggingRule_FinalMinLevelLayoutAsVar_EnablesExpectedLevels(string inputLevels, string[] expectedLevels)
         {
             LogFactory logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>"
-                + (levelVariable != null ? $"<variable name='var_level' value='{levelVariable}'/>" : "") +
+                + (inputLevels != null ? $"<variable name='var_level' value='{inputLevels}'/>" : "") +
                 @"<targets>
                     <target name='d1' type='Debug' layout='${message}' />
                 </targets>
@@ -995,7 +999,7 @@ namespace NLog.UnitTests.Config
 
             Logger logger = logFactory.GetLogger(nameof(LoggingRule_FinalMinLevelLayoutAsVar_EnablesExpectedLevels));
 
-            AssertLogLevelEnabled(logger, expectedLevels);
+            AssertLogLevelEnabled(logger, expectedLevels.Select(l => LogLevel.FromString(l)).ToArray());
 
             // Verify that runtime override also works
             logFactory.Configuration.Variables["var_level"] = LogLevel.Fatal.ToString();
@@ -1004,24 +1008,31 @@ namespace NLog.UnitTests.Config
             AssertLogLevelEnabled(logger, LogLevel.Fatal);
         }
 
-        public static IEnumerable<object[]> LoggingRule_FinalMinLevel_TestCases()
-        {
-            yield return new object[] { "Off", new[] { LogLevel.Off } };
-            yield return new object[] { "Wrong", new[] { LogLevel.Off } };
-            yield return new object[] { " ", new[] { LogLevel.Off } };
-            yield return new object[] { "", new[] { LogLevel.Off } };
-            yield return new object[] { "Trace", new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Debug", new[] { LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Info", new[] { LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Warn", new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Error", new[] { LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Fatal", new[] { LogLevel.Fatal } };
-            yield return new object[] { " FataL ", new[] { LogLevel.Fatal } };
-        }
-
         [Theory]
-        [MemberData(nameof(LoggingRule_MinMaxLayout_ParseLevel_TestCases))]
-        public void LoggingRule_MinMaxLayout_ParseLevel(string minLevel, string maxLevel, LogLevel[] expectedLevels)
+        [InlineData("Off", "", null)]
+        [InlineData("Off", "Fatal", null)]
+        [InlineData("Error", "Debug", null)]
+        [InlineData(" ", "", null)]
+        [InlineData(" ", "Fatal", null)]
+        [InlineData("", "", null)]
+        [InlineData("", "Off", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug), nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData("", "Fatal", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug), nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData("", "Debug", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug) })]
+        [InlineData("", "Trace", new[] { nameof(LogLevel.Trace) })]
+        [InlineData("", " error", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug), nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error) })]
+        [InlineData("", "Wrong", null)]
+        [InlineData("Wrong", "", null)]
+        [InlineData("Wrong", "Fatal", null)]
+        [InlineData(" error", "Debug", null)]
+        [InlineData(" error", "Fatal", new[] { nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData(" error", "", new[] { nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData("Error", "", new[] { nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData("Fatal", "", new[] { nameof(LogLevel.Fatal) })]
+        [InlineData("Trace", " ", null)]
+        [InlineData("Trace", "", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug), nameof(LogLevel.Info), nameof(LogLevel.Warn), nameof(LogLevel.Error), nameof(LogLevel.Fatal) })]
+        [InlineData("Trace", "Debug", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Debug) })]
+        [InlineData("Trace", "Trace", new[] { nameof(LogLevel.Trace), nameof(LogLevel.Trace) })]
+        public void LoggingRule_MinMaxLayout_ParseLevel(string minLevel, string maxLevel, string[] expectedLevels)
         {
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>"
@@ -1037,7 +1048,7 @@ namespace NLog.UnitTests.Config
 
             var logger = logFactory.GetLogger(nameof(LoggingRule_MinMaxLayout_ParseLevel));
 
-            AssertLogLevelEnabled(logger, expectedLevels);
+            AssertLogLevelEnabled(logger, (expectedLevels ?? ArrayHelper.Empty<string>()).Select(l => LogLevel.FromString(l)).ToArray());
 
             // Verify that runtime override also works
             logFactory.Configuration.Variables["var_minlevel"] = LogLevel.Fatal.ToString();
@@ -1045,34 +1056,6 @@ namespace NLog.UnitTests.Config
             logFactory.ReconfigExistingLoggers();
 
             AssertLogLevelEnabled(logger, LogLevel.Fatal);
-        }
-
-        public static IEnumerable<object[]> LoggingRule_MinMaxLayout_ParseLevel_TestCases()
-        {
-            yield return new object[] { "Off", "", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "Off", "Fatal", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "Error", "Debug", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { " ", "", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { " ", "Fatal", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "", "", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "", "Off", new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "", "Fatal", new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "", "Debug", new[] { LogLevel.Trace, LogLevel.Debug } };
-            yield return new object[] { "", "Trace", new[] { LogLevel.Trace } };
-            yield return new object[] { "", " error", new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error } };
-            yield return new object[] { "", "Wrong", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "Wrong", "", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "Wrong", "Fatal", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { " error", "Debug", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { " error", "Fatal", new[] { LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { " error", "", new[] { LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Error", "", new[] { LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Fatal", "", new[] { LogLevel.Fatal } };
-            yield return new object[] { "Off", "", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "Trace", " ", ArrayHelper.Empty<LogLevel>() };
-            yield return new object[] { "Trace", "", new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
-            yield return new object[] { "Trace", "Debug", new[] { LogLevel.Trace, LogLevel.Debug } };
-            yield return new object[] { "Trace", "Trace", new[] { LogLevel.Trace, LogLevel.Trace } };
         }
 
         private static void AssertLogLevelEnabled(ILogger logger, LogLevel expectedLogLevel)

@@ -246,12 +246,9 @@ namespace NLog.Layouts
             {
                 foreach (var attribute in Attributes)
                 {
-                    if (!attribute.IncludeEmptyValue && !attribute.Encode && attribute.Layout is JsonLayout jsonLayout)
+                    if (!attribute.IncludeEmptyValue && !attribute.Encode && attribute.Layout is JsonLayout jsonLayout && !jsonLayout._renderEmptyObject.HasValue)
                     {
-                        if (!jsonLayout._renderEmptyObject.HasValue)
-                        {
-                            jsonLayout.RenderEmptyObject = false;
-                        }
+                        jsonLayout.RenderEmptyObject = false;
                     }
                 }
             }
