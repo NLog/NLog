@@ -81,7 +81,8 @@ namespace NLog.Targets.Wrappers
         {
             lock (_logEventInfoQueue)
             {
-                if (_logEventInfoQueue.Count >= RequestLimit)
+                var currentCount = _logEventInfoQueue.Count;
+                if (currentCount >= RequestLimit)
                 {
                     switch (OnOverflow)
                     {
@@ -93,16 +94,17 @@ namespace NLog.Targets.Wrappers
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("AsyncQueue - Growing the size of queue, because queue is full");
-                            OnLogEventQueueGrows(RequestCount + 1);
+                            OnLogEventQueueGrows(currentCount + 1);
                             RequestLimit *= 2;
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
-                            while (_logEventInfoQueue.Count >= RequestLimit)
+                            while (currentCount >= RequestLimit)
                             {
                                 InternalLogger.Debug("AsyncQueue - Blocking until ready, because queue is full");
                                 System.Threading.Monitor.Wait(_logEventInfoQueue);
                                 InternalLogger.Trace("AsyncQueue - Entered critical section.");
+                                currentCount = _logEventInfoQueue.Count;
                             }
 
                             InternalLogger.Trace("AsyncQueue - Limit ok.");
@@ -111,7 +113,7 @@ namespace NLog.Targets.Wrappers
                 }
 
                 _logEventInfoQueue.Enqueue(logEventInfo);
-                return _logEventInfoQueue.Count == 1;
+                return currentCount == 0;
             }
         }
 
