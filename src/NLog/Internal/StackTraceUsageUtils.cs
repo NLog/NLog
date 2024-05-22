@@ -121,14 +121,14 @@ namespace NLog.Internal
                 return null;
 
             var callerClassType = method.DeclaringType;
-            if (cleanAsyncMoveNext && method.Name == "MoveNext" && callerClassType?.DeclaringType != null && callerClassType.Name.IndexOf('<') == 0)
+            if (cleanAsyncMoveNext
+              && method.Name == "MoveNext"
+              && callerClassType?.DeclaringType != null
+              && callerClassType.Name?.IndexOf('<') == 0
+              && callerClassType.Name.IndexOf('>', 1) > 1)
             {
                 // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
-                int endIndex = callerClassType.Name.IndexOf('>', 1);
-                if (endIndex > 1)
-                {
-                    callerClassType = callerClassType.DeclaringType;
-                }
+                callerClassType = callerClassType.DeclaringType;
             }
 
             string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
@@ -151,19 +151,26 @@ namespace NLog.Internal
 
             if (includeNameSpace && className?.IndexOf('.') == -1)
             {
-                var classAssembly = callerClassType.GetAssembly();
-                if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
-                {
-                    var assemblyFullName = classAssembly.FullName;
-                    if (assemblyFullName?.IndexOf(',') >= 0 && !assemblyFullName.StartsWith("System.", StringComparison.Ordinal) && !assemblyFullName.StartsWith("Microsoft.", StringComparison.Ordinal))
-                    {
-                        assemblyFullName = assemblyFullName.Substring(0, assemblyFullName.IndexOf(','));
-                        className = string.Concat(assemblyFullName, ".", className);
-                    }
-                }
+                var typeNamespace = GetNamespaceFromTypeAssembly(callerClassType);
+                className = string.IsNullOrEmpty(typeNamespace) ? className : string.Concat(typeNamespace, ".", className);
             }
 
             return className;
+        }
+
+        private static string GetNamespaceFromTypeAssembly(Type callerClassType)
+        {
+            var classAssembly = callerClassType.GetAssembly();
+            if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
+            {
+                var assemblyFullName = classAssembly.FullName;
+                if (assemblyFullName?.IndexOf(',') >= 0 && !assemblyFullName.StartsWith("System.", StringComparison.Ordinal) && !assemblyFullName.StartsWith("Microsoft.", StringComparison.Ordinal))
+                {
+                    return assemblyFullName.Substring(0, assemblyFullName.IndexOf(','));
+                }
+            }
+
+            return null;
         }
 
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow callsite logic", "IL2026")]
