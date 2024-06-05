@@ -2561,16 +2561,16 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             /// AppVeyor connectionstring for SQL 2019, see https://www.appveyor.com/docs/services-databases/
             /// </summary>
             private const string AppVeyorConnectionStringMaster =
-                @"Server=(local)\SQL2019;Database=master;User ID=sa;Password=Password12!";
+                @"Server=(local)\SQL2019;Database=master;Encrypt=False;User ID=sa;Password=Password12!";
 
             private const string AppVeyorConnectionStringNLogTest =
-                @"Server=(local)\SQL2019;Database=NLogTest;User ID=sa;Password=Password12!";
+                @"Server=(local)\SQL2019;Database=NLogTest;Encrypt=False;User ID=sa;Password=Password12!";
 
             private const string LocalConnectionStringMaster =
-                @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
+                @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Encrypt=False; Integrated Security=True;";
 
             private const string LocalConnectionStringNLogTest =
-                @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
+                @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Encrypt=False; Integrated Security=True;";
 
             public static void CreateDatabase(bool isAppVeyor)
             {
@@ -2583,7 +2583,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 var connectionString = GetMasterConnectionString(isAppVeyor);
                 var dbId = IssueScalarQuery(IsAppVeyor(), "select db_id('NLogTest')", connectionString);
                 return dbId != null && dbId != DBNull.Value;
-
             }
 
             private static string GetMasterConnectionString(bool isAppVeyor)

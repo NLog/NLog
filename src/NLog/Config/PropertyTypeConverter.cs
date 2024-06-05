@@ -83,23 +83,23 @@ namespace NLog.Config
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
-            if (propertyValue is null || propertyType is null || propertyType == typeof(object))
+            if (propertyValue is null || propertyType is null || propertyType.Equals(typeof(object)))
             {
-                return propertyValue;   // No type conversion required
+                return propertyValue;   // Type conversion not possible
             }
 
             var propertyValueType = propertyValue.GetType();
-            if (propertyType.Equals(propertyValueType))
+            if (propertyType.IsAssignableFrom(propertyValueType))
             {
-                return propertyValue;   // Same type
+                return propertyValue;   // Type is matching
             }
 
             var nullableType = Nullable.GetUnderlyingType(propertyType);
             if (nullableType != null)
             {
-                if (nullableType.Equals(propertyValueType))
+                if (nullableType.IsAssignableFrom(propertyValueType))
                 {
-                    return propertyValue;   // Same type
+                    return propertyValue;   // Type is matching
                 }
 
                 if (propertyValue is string propertyString && StringHelpers.IsNullOrWhiteSpace(propertyString))
