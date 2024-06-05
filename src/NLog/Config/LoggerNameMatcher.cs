@@ -246,7 +246,7 @@ namespace NLog.Config
             public MultiplePatternLoggerNameMatcher(string pattern) 
                 : base(pattern, ConvertToRegex(pattern))
             {
-                _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
+                _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
             }
             public override bool NameMatches(string loggerName)
             {

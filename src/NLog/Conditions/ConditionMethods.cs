@@ -129,7 +129,7 @@ namespace NLog.Conditions
         [ConditionMethod("regex-matches")]
         public static bool RegexMatches(string input, string pattern, [Optional, DefaultParameterValue("")] string options)
         {
-            RegexOptions regexOpts = ParseRegexOptions(options);
+            RegexOptions regexOpts = ParseRegexOptions(options) | RegexOptions.ExplicitCapture;
             return Regex.IsMatch(input, pattern, regexOpts);
         }
 
