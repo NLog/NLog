@@ -42,6 +42,10 @@ namespace NLog.Filters
     /// <summary>
     /// Matches when the result of the calculated layout has been repeated a moment ago
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/WhenRepeated-Filter">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/WhenRepeated-Filter">Documentation on NLog Wiki</seealso>
     [Filter("whenRepeated")]
     public class WhenRepeatedFilter : LayoutBasedFilter
     {
@@ -105,7 +109,7 @@ namespace NLog.Filters
         /// <docgen category='Filtering Options' order='100' />
         public int OptimizeBufferDefaultLength { get; set; } = 1000;
 
-        internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
+        private readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
         private readonly Dictionary<FilterInfoKey, FilterInfo> _repeatFilter = new Dictionary<FilterInfoKey, FilterInfo>(1000);
         private readonly Stack<KeyValuePair<FilterInfoKey, FilterInfo>> _objectPool = new Stack<KeyValuePair<FilterInfoKey, FilterInfo>>(1000);
