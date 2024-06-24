@@ -102,7 +102,12 @@ namespace NLog.Internal
             {
                 if (!StringHelpers.IsNullOrWhiteSpace(_cleanedFixedResult))
                 {
-                    _cleanedFixedResult = GetCleanFileName(_cleanedFixedResult);
+                    var cleanedFixedResult = GetCleanFileName(_cleanedFixedResult);
+                    if (_filePathKind == FilePathKind.Absolute && cleanedFixedResult != _cleanedFixedResult)
+                    {
+                        InternalLogger.Warn("FileTarget FilePathLayout contains invalid file characters, that have been removed : {0}", _cleanedFixedResult);
+                    }
+                    _cleanedFixedResult = cleanedFixedResult;
                     _filePathKind = FilePathKind.Absolute;
                 }
                 else
@@ -111,7 +116,7 @@ namespace NLog.Internal
                 }
             }
 
-            if (layout is SimpleLayout simpleLayout && simpleLayout.OriginalText?.IndexOfAny(new char[] { '\a', '\b', '\f', '\n', '\r', '\t', '\v' }) >= 0)
+            if (layout is SimpleLayout simpleLayout && simpleLayout.OriginalText?.IndexOfAny(new char[] { '\a', '\b', '\f', '\n', '\r', '\t', '\v', '\"' }) >= 0)
             {
                 if (_cleanedFixedResult is null)
                     InternalLogger.Warn("FileTarget FilePathLayout contains unexpected escape characters (Maybe change to forward-slash): {0}", simpleLayout.OriginalText);
