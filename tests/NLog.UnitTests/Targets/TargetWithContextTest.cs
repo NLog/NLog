@@ -85,9 +85,6 @@ namespace NLog.UnitTests.Targets
 
                 LastMessage = base.RenderLogEvent(Layout, logEvent);
             }
-
-            public KeyValuePair<string, object>[] ContextPropertyArray(LogEventInfo logInfo) =>
-                base.GetContextPropertyList(logInfo).ToArray();
         }
 
         [Theory]
@@ -119,12 +116,11 @@ namespace NLog.UnitTests.Targets
             GlobalDiagnosticsContext.Clear();
             ScopeContext.Clear();            
             GlobalDiagnosticsContext.Set("GlobalKey", "Hello Global World");
-            ScopeContext.PushProperty("ScopeKey", "Hello Async World");
-            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Error, logger.Name, "log message");            
-            logger.Debug(logEvent);
+            ScopeContext.PushProperty("ScopeKey", "Hello Async World");                        
+            logger.Debug("log message");
             Assert.True(WaitForLastMessage(target));
-            
-            var keys = target.ContextPropertyArray(logEvent).Select(x => x.Key).ToList();
+
+            var keys = target.ContextPropertyList.Select(x => x.Key).ToList();
             Assert.Single(keys);
             Assert.Contains(expected, keys);
         }
