@@ -60,6 +60,7 @@ namespace NLog.UnitTests.Targets
             }
 
             public IDictionary<string, object> LastCombinedProperties;
+            public List<KeyValuePair<string, object>> ContextPropertyList;
             public string LastMessage;
 
             protected override void Write(LogEventInfo logEvent)
@@ -76,6 +77,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LastCombinedProperties = base.GetAllProperties(logEvent);
+                ContextPropertyList = base.GetContextPropertyList(logEvent).ToList();
 
                 var nestedStates = base.GetScopeContextNested(logEvent);
                 if (nestedStates.Count != 0)
@@ -85,7 +87,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
+        [Fact]        
         public void TargetWithContextAsyncTest()
         {
             CustomTargetWithContext target = new CustomTargetWithContext();
@@ -117,11 +119,28 @@ namespace NLog.UnitTests.Targets
             Assert.NotNull(target.LastCombinedProperties);
             Assert.NotEmpty(target.LastCombinedProperties);
             Assert.Equal(5, target.LastCombinedProperties.Count);
-            Assert.Contains(new KeyValuePair<string, object>("GlobalKey", "Hello Global World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("AsyncKey", "Hello Async World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("TestKey", "Hello Async World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("TestKey_1", "Hello Global World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
+
+            Assert.NotNull(target.ContextPropertyList);
+            Assert.NotEmpty(target.ContextPropertyList);
+            Assert.Equal(5, target.ContextPropertyList.Count);
+
+            new[]
+            {
+                new KeyValuePair<string, object>("GlobalKey", "Hello Global World"),
+                new KeyValuePair<string, object>("AsyncKey", "Hello Async World"),
+                new KeyValuePair<string, object>("TestKey", "Hello Async World"),
+                new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString())
+            }.ToList().ForEach(pair => 
+            {
+                Assert.Contains(pair, target.LastCombinedProperties);
+                Assert.Contains(pair, target.ContextPropertyList);
+            });
+
+            var alteredPair = new KeyValuePair<string, object>("TestKey_1", "Hello Global World");
+            Assert.Contains(alteredPair, target.LastCombinedProperties);
+            Assert.DoesNotContain(alteredPair, target.ContextPropertyList);
+            
+            Assert.Equal(2, target.ContextPropertyList.Count(prop => prop.Key == "TestKey"));            
         }
 
         private static bool WaitForLastMessage(CustomTargetWithContext target)
@@ -224,8 +243,11 @@ namespace NLog.UnitTests.Targets
             var target = logFactory.Configuration.FindTargetByName("debug") as CustomTargetWithContext;
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
+            var contextPropertyList = target.ContextPropertyList;
+            var expected = new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString());
             Assert.NotEmpty(lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString()), lastCombinedProperties);
+            Assert.Contains(expected, lastCombinedProperties);
+            Assert.Contains(expected, contextPropertyList);
         }
 
         [Fact]
@@ -294,8 +316,12 @@ namespace NLog.UnitTests.Targets
             logFactory.Flush();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
+            var contextPropertyList = target.ContextPropertyList;
+            var expected = new KeyValuePair<string, object>("name", "Kenny");
             Assert.Single(lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("name", "Kenny"), lastCombinedProperties);
+            Assert.Single(contextPropertyList);
+            Assert.Contains(expected, lastCombinedProperties);
+            Assert.Contains(expected, contextPropertyList);
         }
 
         [Fact]
@@ -339,7 +365,9 @@ namespace NLog.UnitTests.Targets
             Assert.NotEqual(0, target.LastMessage.Length);
             Assert.Contains(CurrentManagedThreadId.ToString(), target.LastMessage);
             var lastCombinedProperties = target.LastCombinedProperties;
+            var contextPropertyList = target.ContextPropertyList;
             Assert.Empty(lastCombinedProperties);
+            Assert.Empty(contextPropertyList);
         }
 
         [Fact]
@@ -375,7 +403,9 @@ namespace NLog.UnitTests.Targets
             var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
+            var contextPropertyListKeys = target.ContextPropertyList.Select(x => x.Key).ToList();
             Assert.NotEmpty(lastCombinedProperties);
+            Assert.Equal(lastCombinedProperties.Keys, contextPropertyListKeys);
             Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("processid", CurrentProcessId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);

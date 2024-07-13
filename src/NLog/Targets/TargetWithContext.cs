@@ -218,22 +218,45 @@ namespace NLog.Targets
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
         protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
         {
-            if (ContextProperties?.Count > 0)
+            combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
+            foreach (var pair in GetContextPropertyList(logEvent))
             {
-                combinedProperties = CaptureContextProperties(logEvent, combinedProperties);
+                AddContextProperty(logEvent, pair.Key, pair.Value, true, combinedProperties);
+            }            
+            return combinedProperties;
+        }
+
+        /// <summary>
+        /// Checks if any context properties, and if any returns them as IEnumerable
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns>IEnumerable with any context properties for the logEvent (Null if none found). Duplicates allowed.</returns>
+        protected IEnumerable<KeyValuePair<string, object>> GetContextPropertyList(LogEventInfo logEvent)
+        {
+            if (ContextProperties?.Count > 0)
+            {                
+                foreach(var pair in CaptureContextProperties(logEvent, null))
+                    yield return pair;
             }
 
-            if (IncludeScopeProperties && !CombineProperties(logEvent, _contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
+            if (IncludeScopeProperties)
             {
-                combinedProperties = CaptureScopeContextProperties(logEvent, combinedProperties);
+                IDictionary<string, object> combinedProperties = new Dictionary<string, object>();
+                if (!CombineProperties(logEvent, _contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
+                {
+                    foreach (var pair in CaptureScopeContextProperties(logEvent, null))
+                        yield return pair;
+                }
+
+                foreach (var pair in combinedProperties)
+                    yield return pair;
             }
 
             if (IncludeGdc)
             {
-                combinedProperties = CaptureContextGdc(logEvent, combinedProperties);
+                foreach (var pair in CaptureContextGdc(logEvent, null))
+                    yield return pair;
             }
-
-            return combinedProperties;
         }
 
         /// <summary>
