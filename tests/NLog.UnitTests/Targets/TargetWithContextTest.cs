@@ -87,6 +87,44 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Theory]
+        [InlineData(false, false, "Kenny", "name")]
+        [InlineData(true, false, null, "ScopeKey")]
+        [InlineData(false, true, null, "GlobalKey")]
+        public void GetContextPropertyListTest(bool includeScopeProperties, bool includeGdc, string name, string expected)
+        {
+            CustomTargetWithContext target = new CustomTargetWithContext();            
+            target.IncludeScopeNested = true;
+            target.IncludeCallSite = true;
+            target.IncludeScopeProperties = includeScopeProperties;
+            target.IncludeGdc = includeGdc;
+
+            if(!string.IsNullOrEmpty(name))
+            {
+                target.ContextProperties.Add(new TargetPropertyWithContext("name", name));
+            }
+
+            AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
+            wrapper.WrappedTarget = target;
+            wrapper.TimeToSleepBetweenBatches = 0;
+
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(wrapper);
+            }).GetLogger("Example");
+
+            GlobalDiagnosticsContext.Clear();
+            ScopeContext.Clear();            
+            GlobalDiagnosticsContext.Set("GlobalKey", "Hello Global World");
+            ScopeContext.PushProperty("ScopeKey", "Hello Async World");                        
+            logger.Debug("log message");
+            Assert.True(WaitForLastMessage(target));
+
+            var keys = target.ContextPropertyList.Select(x => x.Key).ToList();
+            Assert.Single(keys);
+            Assert.Contains(expected, keys);
+        }
+
         [Fact]        
         public void TargetWithContextAsyncTest()
         {
