@@ -159,6 +159,7 @@ namespace NLog.Targets
             _cleanupFileName = true;
 
             _fileAppenderCache = fileAppenderCache;
+            WriteStreamCapacity = 4096;
         }
 
 #if !NET35 && !NET40
@@ -509,6 +510,29 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Archival Options' order='50' />
         public long ArchiveOldFileOnStartupAboveSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value of the minimal number of bytes allocated for write to file stream 
+        /// </summary>
+        /// <remarks>
+        /// Default value is 4096 which means that after writing message to file stream capacity
+        /// will be changed on this value
+        /// </remarks>
+        public int WriteStreamCapacity
+        {
+            get => _writeStreamCapacity;
+            set
+            {
+                if (_writeStreamCapacity != value)
+                {
+                    _reusableFileWriteStream = new ReusableStreamCreator(_writeStreamCapacity);
+                    _reusableAsyncFileWriteStream = new ReusableStreamCreator(_writeStreamCapacity);
+                    _writeStreamCapacity = value;
+                }
+            }
+        }
+
+        private int _writeStreamCapacity;
 
         /// <summary>
         /// Gets or sets a value specifying the date format to use when archiving files.
@@ -971,8 +995,8 @@ namespace NLog.Targets
             }
         }
 
-        private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator(4096);
-        private readonly ReusableStreamCreator _reusableAsyncFileWriteStream = new ReusableStreamCreator(4096);
+        private ReusableStreamCreator _reusableFileWriteStream;
+        private ReusableStreamCreator _reusableAsyncFileWriteStream;
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
