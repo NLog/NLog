@@ -58,6 +58,8 @@ namespace NLog.Targets
         /// </summary>
         public int Sequence { get; }
 
+        public bool HasValidSequence => Sequence != int.MinValue && Sequence != int.MaxValue;
+
         /// <summary>
         /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
         /// </summary>
