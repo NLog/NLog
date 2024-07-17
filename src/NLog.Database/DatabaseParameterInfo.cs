@@ -250,7 +250,7 @@ namespace NLog.Targets
 
         DbTypeSetter _cachedDbTypeSetter;
 
-        class DbTypeSetter
+        private sealed class DbTypeSetter
         {
             private readonly Type _dbPropertyInfoType;
             private readonly string _dbTypeName;
