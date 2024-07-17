@@ -831,10 +831,7 @@ namespace NLog.Config
             {
                 string targetTypeName = targetElement.GetConfigItemTypeAttribute();
                 string targetValueName = targetElement.GetOptionalValue("name", null);
-                if (!string.IsNullOrEmpty(targetValueName))
-                    targetValueName = $"{targetElement.Name}(Name={targetValueName})";
-                else
-                    targetValueName = targetElement.Name;
+                targetValueName = string.IsNullOrEmpty(targetValueName) ? targetElement.Name : $"{targetElement.Name}(Name={targetValueName})";
 
                 switch (targetElement.Name?.Trim().ToUpperInvariant())
                 {
