@@ -100,14 +100,14 @@ namespace NLog.UnitTests.Targets
                 if (logEvent.Message == "EXCEPTION")
                     throw new InvalidOperationException("AsyncTaskTargetTest Failure");
                 else if (logEvent.Message == "ASYNCEXCEPTION")
-                    await Task.Delay(10, token).ContinueWith((t) => { throw new InvalidOperationException("AsyncTaskTargetTest Async Failure"); }).ConfigureAwait(false);
+                    await Task.Delay(10, token).ContinueWith((t) => { throw new InvalidOperationException("AsyncTaskTargetTest Async Failure"); }, CancellationToken.None).ConfigureAwait(false);
                 else if (logEvent.Message == "TIMEOUT")
                     await Task.Delay(15000, token).ConfigureAwait(false);
                 else
                 {
                     if (logEvent.Message == "SLEEP")
                         Task.Delay(5000, token).GetAwaiter().GetResult();
-                    await Task.Delay(10, token).ContinueWith((t) => Logs.Enqueue(RenderLogEvent(Layout, logEvent)), token).ContinueWith(async (t) => await Task.Delay(10).ConfigureAwait(false)).ConfigureAwait(false);
+                    await Task.Delay(10, token).ContinueWith((t) => Logs.Enqueue(RenderLogEvent(Layout, logEvent)), token).ContinueWith(async (t) => await Task.Delay(10, CancellationToken.None).ConfigureAwait(false), CancellationToken.None).ConfigureAwait(false);
                 }
                 _writeEvent.Set();
             }
