@@ -115,10 +115,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 for (int i = 0; i < existingArchiveFiles.Count; i++)
                 {
-                    if (existingArchiveFiles[i].Sequence == int.MinValue || existingArchiveFiles[i].Sequence == int.MaxValue)
-                        continue;
-
-                    if (i >= maxArchiveFiles)
+                    if (i >= maxArchiveFiles && existingArchiveFiles[i].HasValidSequence)
                     {
                         yield return existingArchiveFiles[i];
                     }
@@ -130,8 +127,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 string newFileName = string.Empty;
                 int maxFileCount = existingArchiveFiles.Count - 1;
-                if (maxArchiveFiles > 0 && maxFileCount > maxArchiveFiles)
-                    maxFileCount = maxArchiveFiles;
+                maxFileCount = maxArchiveFiles > 0 ? Math.Min(maxFileCount, maxArchiveFiles) : maxFileCount;
                 for (int i = maxFileCount; i >= 1; --i)
                 {
                     string fileName = existingArchiveFiles[i].FileName;
