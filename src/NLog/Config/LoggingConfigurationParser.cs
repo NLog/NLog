@@ -847,9 +847,7 @@ namespace NLog.Config
                     case "TARGETDEFAULTPARAMETERS":
                         if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            if (typeNameToDefaultTargetParameters is null)
-                                typeNameToDefaultTargetParameters = new Dictionary<string, ValidatedConfigurationElement>(StringComparer.OrdinalIgnoreCase);
-                            typeNameToDefaultTargetParameters[targetTypeName.Trim()] = targetElement;
+                            typeNameToDefaultTargetParameters = RegisterNewTargetDefaultParameters(typeNameToDefaultTargetParameters, targetElement, targetTypeName);
                         }
                         break;
 
@@ -871,6 +869,14 @@ namespace NLog.Config
                         break;
                 }
             }
+        }
+
+        private static Dictionary<string, ValidatedConfigurationElement> RegisterNewTargetDefaultParameters(Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters, ValidatedConfigurationElement targetElement, string targetTypeName)
+        {
+            if (typeNameToDefaultTargetParameters is null)
+                typeNameToDefaultTargetParameters = new Dictionary<string, ValidatedConfigurationElement>(StringComparer.OrdinalIgnoreCase);
+            typeNameToDefaultTargetParameters[targetTypeName.Trim()] = targetElement;
+            return typeNameToDefaultTargetParameters;
         }
 
         private void AddNewTargetFromConfig(string targetTypeName, ValidatedConfigurationElement targetElement, bool asyncWrap, Dictionary<string, ValidatedConfigurationElement> typeNameToDefaultTargetParameters = null, ValidatedConfigurationElement defaultWrapperElement = null)
