@@ -126,7 +126,7 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that never matches.
         /// Used when pattern is null
         /// </summary>
-        class NoneLoggerNameMatcher : LoggerNameMatcher
+        private sealed class NoneLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "None";
             public static readonly NoneLoggerNameMatcher Instance = new NoneLoggerNameMatcher();
@@ -145,7 +145,7 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that always matches.
         /// Used when pattern is '*'
         /// </summary>
-        class AllLoggerNameMatcher : LoggerNameMatcher
+        private sealed class AllLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "All";
             public static readonly AllLoggerNameMatcher Instance = new AllLoggerNameMatcher();
@@ -161,7 +161,7 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive Equals
         /// Used when pattern is a string without wildcards '?' '*'
         /// </summary>
-        class EqualsLoggerNameMatcher : LoggerNameMatcher
+        private sealed class EqualsLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "Equals";
             public EqualsLoggerNameMatcher(string pattern) 
@@ -177,7 +177,7 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive StartsWith
         /// Used when pattern is a string like "*foobar"
         /// </summary>
-        class StartsWithLoggerNameMatcher : LoggerNameMatcher
+        private sealed class StartsWithLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "StartsWith";
             public StartsWithLoggerNameMatcher(string pattern) 
@@ -193,7 +193,7 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive EndsWith
         /// Used when pattern is a string like "foobar*"
         /// </summary>
-        class EndsWithLoggerNameMatcher : LoggerNameMatcher
+        private sealed class EndsWithLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "EndsWith";
             public EndsWithLoggerNameMatcher(string pattern) 
@@ -209,7 +209,7 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive Contains
         /// Used when pattern is a string like "*foobar*"
         /// </summary>
-        class ContainsLoggerNameMatcher : LoggerNameMatcher
+        private sealed class ContainsLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "Contains";
             public ContainsLoggerNameMatcher(string pattern) 
@@ -230,7 +230,7 @@ namespace NLog.Config
         /// used when pattern is a string containing any number of '?' or '*' in any position
         /// i.e. "*Server[*].Connection[?]"
         /// </summary>
-        class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
+        private sealed class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "MultiplePattern";
             private readonly Regex _regex;
