@@ -159,7 +159,6 @@ namespace NLog.Targets
             _cleanupFileName = true;
 
             _fileAppenderCache = fileAppenderCache;
-            WriteStreamCapacity = 4096;
         }
 
 #if !NET35 && !NET40
@@ -510,30 +509,7 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Archival Options' order='50' />
         public long ArchiveOldFileOnStartupAboveSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value of the minimal number of bytes allocated for write to file stream 
-        /// </summary>
-        /// <remarks>
-        /// Default value is 4096 which means that after writing message to file stream capacity
-        /// will be changed on this value
-        /// </remarks>
-        public int WriteStreamCapacity
-        {
-            get => _writeStreamCapacity;
-            set
-            {
-                if (_writeStreamCapacity != value)
-                {
-                    _reusableFileWriteStream = new ReusableStreamCreator(_writeStreamCapacity);
-                    _reusableAsyncFileWriteStream = new ReusableStreamCreator(_writeStreamCapacity);
-                    _writeStreamCapacity = value;
-                }
-            }
-        }
-
-        private int _writeStreamCapacity;
-
+        
         /// <summary>
         /// Gets or sets a value specifying the date format to use when archiving files.
         /// </summary>
@@ -995,8 +971,8 @@ namespace NLog.Targets
             }
         }
 
-        private ReusableStreamCreator _reusableFileWriteStream;
-        private ReusableStreamCreator _reusableAsyncFileWriteStream;
+        private readonly BufferPool _fileWriteBufferPool = new BufferPool(Environment.ProcessorCount, 4096);
+        private readonly BufferPool _asyncFileWriteBufferPool = new BufferPool(Environment.ProcessorCount, 4096);
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
@@ -1012,15 +988,15 @@ namespace NLog.Targets
                 throw new ArgumentException("The path is not of a legal form.");
             }
 
-            using (var targetStream = _reusableFileWriteStream.Allocate())
+            using (var targetStream = _fileWriteBufferPool.CreateStream())
             {
                 using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                 using (var targetBuffer = _reusableEncodingBuffer.Allocate())
                 {
-                    RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
+                    RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream);
                 }
 
-                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length));
+                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.GetBuffer(), 0, (int)targetStream.Length));
             }
         }
 
@@ -1062,10 +1038,8 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(_getFullFileNameDelegate);
 
-            using (var reusableStream = _reusableAsyncFileWriteStream.Allocate())
+            using (var reusableStream = _asyncFileWriteBufferPool.CreateStream())
             {
-                var ms = reusableStream.Result ?? new MemoryStream();
-
                 foreach (var bucket in buckets)
                 {
                     int bucketCount = bucket.Value.Count;
@@ -1087,11 +1061,11 @@ namespace NLog.Targets
                     int currentIndex = 0;
                     while (currentIndex < bucketCount)
                     {
-                        ms.Position = 0;
-                        ms.SetLength(0);
+                        reusableStream.Position = 0;
+                        reusableStream.SetLength(0);
 
-                        var written = WriteToMemoryStream(bucket.Value, currentIndex, ms);
-                        AppendMemoryStreamToFile(fileName, bucket.Value[currentIndex].LogEvent, ms, out var lastException);
+                        var written = WriteToMemoryStream(bucket.Value, currentIndex, reusableStream);
+                        AppendMemoryStreamToFile(fileName, bucket.Value[currentIndex].LogEvent, reusableStream, out var lastException);
                         for (int i = 0; i < written; ++i)
                         {
                             bucket.Value[currentIndex++].Continuation(lastException);
@@ -1105,13 +1079,12 @@ namespace NLog.Targets
         {
             long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
 
-            using (var targetStream = _reusableFileWriteStream.Allocate())
+            using (var encodingStream = _fileWriteBufferPool.CreateStream())
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
                 var formatBuilder = targetBuilder.Result;
                 var transformBuffer = targetBuffer.Result;
-                var encodingStream = targetStream.Result;
 
                 for (int i = startIndex; i < logEvents.Count; ++i)
                 {
