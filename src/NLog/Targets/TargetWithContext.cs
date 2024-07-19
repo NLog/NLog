@@ -286,33 +286,48 @@ namespace NLog.Targets
         {
             if (EstimateAllPropertiesCount(logEvent, out var logEventProperties, out var scopeContextProperties, out var gdcNames, out int propertiesCount) > 0)
             {
-                List<KeyValuePair<string, object>> combinedProperties = new List<KeyValuePair<string, object>>(propertiesCount);
                 bool checkExcludeProperties = ExcludeProperties.Count > 0;
-
-                Action<string, object> tryAddProperty = (string propertyName, object propertyValue) =>
+                Func<string, object, bool, KeyValuePair<string, object> ?> buildPair = (string propertyName, object propertyValue, bool serialize) =>
                 {
                     if (string.IsNullOrEmpty(propertyName))
-                        return;
+                        return null;
 
                     if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
-                        return;
+                        return null;
 
-                    if (SerializeScopeContextProperty(logEvent, propertyName, propertyValue, out var serializedValue))
+                    if(serialize)
                     {
-                        combinedProperties.Add(new KeyValuePair<string, object>(propertyName, propertyValue));
+                        if(SerializeScopeContextProperty(logEvent, propertyName, propertyValue, out var serializedValue))
+                        {
+                            return new KeyValuePair<string, object>(propertyName, serializedValue);
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
+
+                    return new KeyValuePair<string, object>(propertyName, propertyValue);
                 };
 
-                if(logEventProperties?.Count > 0)
+                if (logEventProperties?.Count > 0)
                 {
                     foreach (var property in logEventProperties)
-                        tryAddProperty(property.Key.ToString(), property.Value);
+                    {
+                        var pair = buildPair(property.Key.ToString(), property.Value, false);
+                        if (pair != null)
+                            yield return pair.Value;
+                    }
                 }
 
                 if (gdcNames?.Count > 0)
                 {
                     foreach (var propertyName in gdcNames)
-                        tryAddProperty(propertyName, GlobalDiagnosticsContext.GetObject(propertyName));
+                    {
+                        var pair = buildPair(propertyName, GlobalDiagnosticsContext.GetObject(propertyName), true);
+                        if (pair != null)
+                            yield return pair.Value;
+                    }
                 }
 
                 if (scopeContextProperties?.Any() == true)
@@ -322,15 +337,37 @@ namespace NLog.Targets
                         while (scopeEnumerator.MoveNext())
                         {
                             var scopeProperty = scopeEnumerator.Current;
-                            tryAddProperty(scopeProperty.Key, scopeProperty.Value);
+                            var pair = buildPair(scopeProperty.Key, scopeProperty.Value, true);
+                            if(pair != null)
+                                yield return pair.Value;
                         }
                     }
                 }
 
-                return combinedProperties;
-            }
+                for (int i = 0; i < ContextProperties?.Count; ++i)
+                {
+                    var contextProperty = ContextProperties[i];
+                    if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout is null)
+                        continue;
 
-            return Enumerable.Empty<KeyValuePair<string, object>>();
+                    object propertyValue;
+                    try
+                    {
+                        if (!TryGetContextPropertyValue(logEvent, contextProperty, out propertyValue))
+                            continue;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.MustBeRethrownImmediately())
+                            throw;
+
+                        Common.InternalLogger.Warn(ex, "{0}: Failed to add context property {1}", this, contextProperty.Name);
+                        continue;
+                    }
+
+                    yield return new KeyValuePair<string, object>(contextProperty.Name, propertyValue);
+                }
+            }
         }
 
         private int EstimateAllPropertiesCount(LogEventInfo logEvent,
