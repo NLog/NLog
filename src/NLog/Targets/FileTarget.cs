@@ -971,8 +971,8 @@ namespace NLog.Targets
             }
         }
 
-        private readonly BufferPool _fileWriteBufferPool = new BufferPool(Environment.ProcessorCount, 4096);
-        private readonly BufferPool _asyncFileWriteBufferPool = new BufferPool(Environment.ProcessorCount, 4096);
+        private readonly BufferPool _fileWriteBufferPool = new BufferPool(Environment.ProcessorCount * 2, 4096);
+        private readonly BufferPool _asyncFileWriteBufferPool = new BufferPool(Environment.ProcessorCount * 2, 4096);
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
