@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LastCombinedProperties = base.GetAllProperties(logEvent);
-                ContextPropertyList = base.GetContextPropertyList(logEvent).ToList();
+                ContextPropertyList = base.GetAllPropertiesList(logEvent).ToList();
 
                 var nestedStates = base.GetScopeContextNested(logEvent);
                 if (nestedStates.Count != 0)

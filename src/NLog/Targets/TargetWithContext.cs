@@ -36,6 +36,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -218,47 +219,24 @@ namespace NLog.Targets
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
         protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
         {
-            combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
-            foreach (var pair in GetContextPropertyList(logEvent))
-            {
-                AddContextProperty(logEvent, pair.Key, pair.Value, true, combinedProperties);
-            }            
-            return combinedProperties;
-        }
-
-        /// <summary>
-        /// Checks if any context properties, and if any returns them as IEnumerable
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>IEnumerable with any context properties for the logEvent (Null if none found). Duplicates allowed.</returns>
-        protected IEnumerable<KeyValuePair<string, object>> GetContextPropertyList(LogEventInfo logEvent)
-        {
             if (ContextProperties?.Count > 0)
-            {                
-                foreach(var pair in CaptureContextProperties(logEvent, null))
-                    yield return pair;
+            {
+                combinedProperties = CaptureContextProperties(logEvent, combinedProperties);
             }
 
-            if (IncludeScopeProperties)
+            if (IncludeScopeProperties && !CombineProperties(logEvent, _contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
             {
-                IDictionary<string, object> combinedProperties = new Dictionary<string, object>();
-                if (!CombineProperties(logEvent, _contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
-                {
-                    foreach (var pair in CaptureScopeContextProperties(logEvent, null))
-                        yield return pair;
-                }
-
-                foreach (var pair in combinedProperties)
-                    yield return pair;
+                combinedProperties = CaptureScopeContextProperties(logEvent, combinedProperties);
             }
 
             if (IncludeGdc)
             {
-                foreach (var pair in CaptureContextGdc(logEvent, null))
-                    yield return pair;
+                combinedProperties = CaptureContextGdc(logEvent, combinedProperties);
             }
-        }
 
+            return combinedProperties;
+        }
+        
         /// <summary>
         /// Creates combined dictionary of all configured properties for logEvent
         /// </summary>
@@ -298,6 +276,104 @@ namespace NLog.Targets
             combinedProperties = GetContextProperties(logEvent, combinedProperties);
             return combinedProperties ?? new Dictionary<string, object>(StringComparer.Ordinal);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns></returns>
+        protected IEnumerable<KeyValuePair<string, object>> GetAllPropertiesList(LogEventInfo logEvent)
+        {            
+            if (EstimateAllPropertiesCount(logEvent, out var logEventProperties, out var scopeContextProperties, out var gdcNames, out int propertiesCount) > 0)
+            {
+                List<KeyValuePair<string, object>> combinedProperties = new List<KeyValuePair<string, object>>(propertiesCount);
+                bool checkExcludeProperties = ExcludeProperties.Count > 0;
+
+                Action<string, object> tryAddProperty = (string propertyName, object propertyValue) => 
+                {
+                    if (string.IsNullOrEmpty(propertyName))
+                        return;
+
+                    if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
+                        return;
+                    
+                    if (SerializeScopeContextProperty(logEvent, propertyName, propertyValue, out var serializedValue))
+                    {
+                        combinedProperties.Add(new KeyValuePair<string, object>(propertyName, propertyValue));
+                    }
+                };
+
+                if(logEventProperties?.Count > 0)
+                {
+                    foreach (var property in logEventProperties)                    
+                        tryAddProperty(property.Key.ToString(), property.Value);                                            
+                }
+
+                if (gdcNames?.Count > 0)
+                {
+                    foreach (var propertyName in gdcNames)
+                        tryAddProperty(propertyName, GlobalDiagnosticsContext.GetObject(propertyName));
+                }
+
+                if (scopeContextProperties?.Any() == true)
+                {
+                    using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(scopeContextProperties))
+                    {                        
+                        while (scopeEnumerator.MoveNext())
+                        {
+                            var scopeProperty = scopeEnumerator.Current;
+                            tryAddProperty(scopeProperty.Key, scopeProperty.Value);                            
+                        }
+                    }                    
+                }
+                
+                return combinedProperties;
+            }
+            
+            return Enumerable.Empty<KeyValuePair<string, object>>();            
+        }
+        
+        private int EstimateAllPropertiesCount(LogEventInfo logEvent, 
+            out IDictionary<object, object> logEventProperties,
+            out IEnumerable<KeyValuePair<string, object>> scopeContextProperties, 
+            out ICollection<string> gdcNames, 
+            out int propertiesCount)
+        {
+            propertiesCount = ContextProperties?.Count ?? 0;
+
+            if (IncludeEventProperties && logEvent.HasProperties)
+            {
+                logEventProperties = logEvent.Properties;                    
+                propertiesCount += logEventProperties.Count;
+            }
+            else
+            {
+                logEventProperties = null;
+            }
+
+            if (IncludeScopeProperties && !logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
+            {                
+                scopeContextProperties = ScopeContext.GetAllProperties();                                
+                propertiesCount += scopeContextProperties.Count();
+            }
+            else
+            {
+                scopeContextProperties = null;
+            }
+
+            if (IncludeGdc)
+            {
+                gdcNames = GlobalDiagnosticsContext.GetNames();                    
+                propertiesCount += gdcNames.Count;
+            }
+            else
+            {
+                gdcNames = null;
+            }
+
+            return propertiesCount;
+        }
+
 
         private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
         {
