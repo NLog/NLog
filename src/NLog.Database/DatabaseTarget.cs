@@ -672,7 +672,24 @@ namespace NLog.Targets
             {
                 if (IsolationLevel.HasValue && logEvents.Count > 1)
                 {
-                    WriteLogEventsWithTransactionScope(logEvents, connectionString);
+                    try
+                    {
+                        WriteLogEventsWithTransactionScope(logEvents, connectionString);
+                        for (int i = 0; i < logEvents.Count; i++)
+                        {
+                            logEvents[i].Continuation(null);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (LogManager.ThrowExceptions)
+                            throw;
+
+                        for (int i = 0; i < logEvents.Count; i++)
+                        {
+                            logEvents[i].Continuation(ex);
+                        }
+                    }
                 }
                 else
                 {
@@ -727,11 +744,6 @@ namespace NLog.Targets
 
                         dbTransaction?.Commit();
 
-                        for (int i = 0; i < logEvents.Count; i++)
-                        {
-                            logEvents[i].Continuation(null);
-                        }
-
                         dbTransaction?.Dispose();   // Can throw error on dispose, so no using
 
                         transactionScope.Complete();    //not really needed as there is no transaction at all.
@@ -742,7 +754,7 @@ namespace NLog.Targets
                         {
                             if (dbTransaction?.Connection != null)
                             {
-                                dbTransaction?.Rollback();
+                                dbTransaction.Rollback();
                             }
                             dbTransaction?.Dispose();
                         }
@@ -760,16 +772,12 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Error(exception, "{0}: Error when batch writing {1} logevents to database.", this, logEvents.Count);
-                if (LogManager.ThrowExceptions)
+                if (LogManager.ThrowExceptions && !(exception is DbException))
                     throw;
 
                 InternalLogger.Trace("{0}: Close connection because of error", this);
                 CloseConnection();
-
-                for (int i = 0; i < logEvents.Count; i++)
-                {
-                    logEvents[i].Continuation(exception);
-                }
+                throw;
             }
         }
 
@@ -790,8 +798,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Error(exception, "{0}: Error when writing to database.", this);
-
-                if (LogManager.ThrowExceptions)
+                if (LogManager.ThrowExceptions && !(exception is DbException))
                     throw;
 
                 InternalLogger.Trace("{0}: Close connection because of error", this);
