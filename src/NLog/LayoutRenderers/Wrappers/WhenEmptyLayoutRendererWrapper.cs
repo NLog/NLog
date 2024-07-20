@@ -119,7 +119,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
-            if (Inner.TryGetRawValue(logEvent, out var innerValue))
+            if (Inner?.TryGetRawValue(logEvent, out var innerValue) == true)
             {
                 if (innerValue != null && !innerValue.Equals(string.Empty))
                 {
@@ -129,7 +129,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
             else
             {
-                var innerResult = Inner.Render(logEvent); // Beware this can be very expensive call
+                var innerResult = Inner?.Render(logEvent); // Beware this can be very expensive call
                 if (!string.IsNullOrEmpty(innerResult))
                 {
                     value = null;
