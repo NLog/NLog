@@ -277,83 +277,172 @@ namespace NLog.Targets
             return combinedProperties ?? new Dictionary<string, object>(StringComparer.Ordinal);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns></returns>
-        protected IEnumerable<KeyValuePair<string, object>> GetAllPropertiesList(LogEventInfo logEvent)
+        private sealed class GetAllPropertiesCountContext
         {
-            if (EstimateAllPropertiesCount(logEvent, out var logEventProperties, out var scopeContextProperties, out var gdcNames, out int propertiesCount) > 0)
+            private readonly TargetWithContext _targetContext;
+            private readonly LogEventInfo _logEvent;
+
+            private IDictionary<object, object> _logEventProperties;
+            private IEnumerable<KeyValuePair<string, object>> _scopeContextProperties;
+            private ICollection<string> _gdcNames;
+
+            private bool _CountContextPropertiesCalled;
+            private bool _CountEventPropertiesCalled;
+            private bool _CountScopeContextPropertiesCalled;
+            private bool _CountGdcPropertiesCalled;
+
+            private int _propertiesCount;
+            private bool _checkExcludeProperties;
+
+            private void DoOnce(Action action, ref bool methodHasBeenCalled)
             {
-                bool checkExcludeProperties = ExcludeProperties.Count > 0;
-                Func<string, object, bool, KeyValuePair<string, object> ?> buildPair = (string propertyName, object propertyValue, bool serialize) =>
+                if (methodHasBeenCalled)
+                    throw new InvalidOperationException("The method should be called only once!");
+
+                action();
+                methodHasBeenCalled = true;
+            }
+
+            private KeyValuePair<string, object>? BuildPair(string propertyName, object propertyValue)
+            {
+                if (string.IsNullOrEmpty(propertyName))
+                    return null;
+
+                if (_checkExcludeProperties && _targetContext.ExcludeProperties.Contains(propertyName))
+                    return null;
+
+                return new KeyValuePair<string, object>(propertyName, propertyValue);
+            }
+
+            private KeyValuePair<string, object>? BuildPairSerialized(string propertyName, object propertyValue)
+            {
+                if (string.IsNullOrEmpty(propertyName))
+                    return null;
+
+                if (_checkExcludeProperties && _targetContext.ExcludeProperties.Contains(propertyName))
+                    return null;
+
+                if (!_targetContext.SerializeScopeContextProperty(_logEvent, propertyName, propertyValue, out var serializedValue))
+                    return null;
+
+                return new KeyValuePair<string, object>(propertyName, serializedValue);
+            }
+
+            public int PropertiesCount
+            {
+                get => _propertiesCount;
+            }
+
+            private GetAllPropertiesCountContext() { }
+
+            public GetAllPropertiesCountContext(TargetWithContext targetContext, LogEventInfo logEvent)
+            {
+                if (targetContext is null)
+                    throw new ArgumentNullException(nameof(targetContext));
+                if (logEvent is null)
+                    throw new ArgumentNullException(nameof(logEvent));
+
+                _targetContext = targetContext;
+                _logEvent = logEvent;
+            }
+
+            public GetAllPropertiesCountContext CountContextProperties()
+            {
+                DoOnce(() =>
                 {
-                    if (string.IsNullOrEmpty(propertyName))
-                        return null;
+                    _propertiesCount += _targetContext.ContextProperties?.Count ?? 0;
+                }, ref _CountContextPropertiesCalled);
+                return this;
+            }
 
-                    if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
-                        return null;
-
-                    if(serialize)
+            public GetAllPropertiesCountContext CountEventProperties()
+            {
+                DoOnce(() =>
+                {
+                    if (_targetContext.IncludeEventProperties && _logEvent.HasProperties)
                     {
-                        if(SerializeScopeContextProperty(logEvent, propertyName, propertyValue, out var serializedValue))
-                        {
-                            return new KeyValuePair<string, object>(propertyName, serializedValue);
-                        }
-                        else
-                        {
-                            return null;
-                        }
+                        _logEventProperties = _logEvent.Properties;
+                        _propertiesCount += _logEventProperties.Count;
                     }
+                }, ref _CountEventPropertiesCalled);
+                return this;
+            }
 
-                    return new KeyValuePair<string, object>(propertyName, propertyValue);
-                };
-
-                if (logEventProperties?.Count > 0)
+            public GetAllPropertiesCountContext CountScopeContextProperties()
+            {
+                DoOnce(() =>
                 {
-                    foreach (var property in logEventProperties)
+                    if (_targetContext.IncludeScopeProperties)
                     {
-                        var pair = buildPair(property.Key.ToString(), property.Value, false);
+                        // TODO: && !logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value)
+                        _scopeContextProperties = ScopeContext.GetAllProperties();
+                        _propertiesCount += _scopeContextProperties.Count();
+                    }
+                }, ref _CountScopeContextPropertiesCalled);
+                return this;
+            }
+
+            public GetAllPropertiesCountContext CountGdcProperties()
+            {
+                DoOnce(() =>
+                {
+                    if (_targetContext.IncludeGdc)
+                    {
+                        _gdcNames = GlobalDiagnosticsContext.GetNames();
+                        _propertiesCount += _gdcNames.Count;
+                    }
+                }, ref _CountGdcPropertiesCalled);
+                return this;
+            }
+
+            public IEnumerable<KeyValuePair<string, object>> BuildList()
+            {
+                _checkExcludeProperties = _targetContext.ExcludeProperties.Count > 0;
+
+                if (_logEventProperties?.Count > 0)
+                {
+                    foreach (var property in _logEventProperties)
+                    {
+                        var pair = BuildPair(property.Key.ToString(), property.Value);
                         if (pair != null)
                             yield return pair.Value;
                     }
                 }
 
-                if (gdcNames?.Count > 0)
+                if (_gdcNames?.Count > 0)
                 {
-                    foreach (var propertyName in gdcNames)
+                    foreach (var propertyName in _gdcNames)
                     {
-                        var pair = buildPair(propertyName, GlobalDiagnosticsContext.GetObject(propertyName), true);
+                        var pair = BuildPairSerialized(propertyName, GlobalDiagnosticsContext.GetObject(propertyName));
                         if (pair != null)
                             yield return pair.Value;
                     }
                 }
 
-                if (scopeContextProperties?.Any() == true)
+                if (_scopeContextProperties?.Any() == true)
                 {
-                    using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(scopeContextProperties))
+                    using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(_scopeContextProperties))
                     {
                         while (scopeEnumerator.MoveNext())
                         {
                             var scopeProperty = scopeEnumerator.Current;
-                            var pair = buildPair(scopeProperty.Key, scopeProperty.Value, true);
-                            if(pair != null)
+                            var pair = BuildPairSerialized(scopeProperty.Key, scopeProperty.Value);
+                            if (pair != null)
                                 yield return pair.Value;
                         }
                     }
                 }
 
-                for (int i = 0; i < ContextProperties?.Count; ++i)
+                for (int i = 0; i < _targetContext.ContextProperties?.Count; ++i)
                 {
-                    var contextProperty = ContextProperties[i];
+                    var contextProperty = _targetContext.ContextProperties[i];
                     if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout is null)
                         continue;
 
                     object propertyValue;
                     try
                     {
-                        if (!TryGetContextPropertyValue(logEvent, contextProperty, out propertyValue))
+                        if (!TryGetContextPropertyValue(_logEvent, contextProperty, out propertyValue))
                             continue;
                     }
                     catch (Exception ex)
@@ -370,47 +459,23 @@ namespace NLog.Targets
             }
         }
 
-        private int EstimateAllPropertiesCount(LogEventInfo logEvent,
-            out IDictionary<object, object> logEventProperties,
-            out IEnumerable<KeyValuePair<string, object>> scopeContextProperties,
-            out ICollection<string> gdcNames,
-            out int propertiesCount)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns></returns>
+        protected IEnumerable<KeyValuePair<string, object>> GetAllPropertiesList(LogEventInfo logEvent)
         {
-            propertiesCount = ContextProperties?.Count ?? 0;
+            var ctx = new GetAllPropertiesCountContext(this, logEvent)
+                .CountContextProperties()
+                .CountEventProperties()
+                .CountScopeContextProperties()
+                .CountGdcProperties();
 
-            if (IncludeEventProperties && logEvent.HasProperties)
-            {
-                logEventProperties = logEvent.Properties;
-                propertiesCount += logEventProperties.Count;
-            }
-            else
-            {
-                logEventProperties = null;
-            }
-
-            if (IncludeScopeProperties && !logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
-            {
-                scopeContextProperties = ScopeContext.GetAllProperties();
-                propertiesCount += scopeContextProperties.Count();
-            }
-            else
-            {
-                scopeContextProperties = null;
-            }
-
-            if (IncludeGdc)
-            {
-                gdcNames = GlobalDiagnosticsContext.GetNames();
-                propertiesCount += gdcNames.Count;
-            }
-            else
-            {
-                gdcNames = null;
-            }
-
-            return propertiesCount;
+            return ctx.PropertiesCount > 0
+                ? ctx.BuildList()
+                : Enumerable.Empty<KeyValuePair<string, object>>();
         }
-
 
         private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
         {
