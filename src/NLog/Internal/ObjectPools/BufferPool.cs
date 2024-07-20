@@ -41,7 +41,7 @@ namespace NLog.Internal
         }
     }
 
-    internal class BufferPoolStream : MemoryStream
+    internal class BufferPoolStream : Stream
     {
         private readonly BufferPool _bufferPool;
         private readonly List<byte[]> _buffers;

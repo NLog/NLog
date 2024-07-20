@@ -215,26 +215,22 @@ namespace NLog.Internal
         /// Copies the contents of the StringBuilder to the MemoryStream using the specified encoding (Without BOM/Preamble)
         /// </summary>
         /// <param name="builder">StringBuilder source</param>
-        /// <param name="ms">MemoryStream destination</param>
+        /// <param name="targetStream">MemoryStream destination</param>
         /// <param name="encoding">Encoding used for converter string into byte-stream</param>
         /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
-        public static void CopyToStream(this StringBuilder builder, MemoryStream ms, Encoding encoding, char[] transformBuffer)
+        public static void CopyToStream(this StringBuilder builder, Stream targetStream, Encoding encoding, char[] transformBuffer)
         {
-            int charCount;
-            int byteCount = encoding.GetMaxByteCount(builder.Length);
-            long position = ms.Position;
-            ms.SetLength(position + byteCount);
-            for (int i = 0; i < builder.Length; i += transformBuffer.Length)
+            using (StreamWriter writer = new StreamWriter(targetStream, Encoding.UTF8))
             {
-                charCount = Math.Min(builder.Length - i, transformBuffer.Length);
-                builder.CopyTo(i, transformBuffer, 0, charCount);
-                byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)position);
-                position += byteCount;
-            }
-            ms.Position = position;
-            if (position != ms.Length)
-            {
-                ms.SetLength(position);
+                int charsToWrite = builder.Length;
+
+                while (charsToWrite > 0)
+                {
+                    var charsToCopy = Math.Min(charsToWrite, transformBuffer.Length);
+                    builder.CopyTo(builder.Length - charsToWrite, transformBuffer, 0, charsToCopy);
+                    writer.Write(transformBuffer, 0, charsToCopy);
+                    charsToWrite -= charsToCopy;
+                }
             }
         }
 

@@ -972,6 +972,7 @@ namespace NLog.Targets
         }
 
         private readonly BufferPool _fileWriteBufferPool = new BufferPool(Environment.ProcessorCount * 2, 4096);
+        private readonly BufferPool _layoutBufferPool = new BufferPool(1, 1024);
         private readonly BufferPool _asyncFileWriteBufferPool = new BufferPool(Environment.ProcessorCount * 2, 4096);
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
@@ -996,7 +997,7 @@ namespace NLog.Targets
                     RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream);
                 }
 
-                ProcessLogEvent(logEvent, logFileName, new ArraySegment<byte>(targetStream.GetBuffer(), 0, (int)targetStream.Length));
+                ProcessLogEvent(logEvent, logFileName, targetStream);
             }
         }
 
@@ -1061,9 +1062,6 @@ namespace NLog.Targets
                     int currentIndex = 0;
                     while (currentIndex < bucketCount)
                     {
-                        reusableStream.Position = 0;
-                        reusableStream.SetLength(0);
-
                         var written = WriteToMemoryStream(bucket.Value, currentIndex, reusableStream);
                         AppendMemoryStreamToFile(fileName, bucket.Value[currentIndex].LogEvent, reusableStream, out var lastException);
                         for (int i = 0; i < written; ++i)
@@ -1075,11 +1073,10 @@ namespace NLog.Targets
             }
         }
 
-        private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, MemoryStream ms)
+        private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, Stream targetStream)
         {
             long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
-
-            using (var encodingStream = _fileWriteBufferPool.CreateStream())
+            
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
@@ -1088,15 +1085,12 @@ namespace NLog.Targets
 
                 for (int i = startIndex; i < logEvents.Count; ++i)
                 {
-                    // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
-                    encodingStream.Position = 0;
-                    encodingStream.SetLength(0);
                     formatBuilder.ClearBuilder();
 
                     AsyncLogEventInfo ev = logEvents[i];
-                    RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, encodingStream);
-                    ms.Write(encodingStream.GetBuffer(), 0, (int)encodingStream.Length);
-                    if (ms.Length > maxBufferSize && !ReplaceFileContentsOnEachWrite)
+                    RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, targetStream);
+           
+                    if (targetStream.Length > maxBufferSize && !ReplaceFileContentsOnEachWrite)
                         return i - startIndex + 1;  // Max Chunk Size Limit to avoid out-of-memory issues
                 }
             }
@@ -1104,24 +1098,24 @@ namespace NLog.Targets
             return logEvents.Count - startIndex;
         }
 
-        private void ProcessLogEvent(LogEventInfo logEvent, string fileName, ArraySegment<byte> bytesToWrite)
+        private void ProcessLogEvent(LogEventInfo logEvent, string fileName, Stream sourceStream)
         {
             DateTime previousLogEventTimestamp = InitializeFile(fileName, logEvent);
             bool initializedNewFile = previousLogEventTimestamp == DateTime.MinValue;
             if (initializedNewFile && fileName == _previousLogFileName && _previousLogEventTimestamp.HasValue)
                 previousLogEventTimestamp = _previousLogEventTimestamp.Value;
 
-            bool archiveOccurred = TryArchiveFile(fileName, logEvent, bytesToWrite.Count, previousLogEventTimestamp, initializedNewFile);
+            bool archiveOccurred = TryArchiveFile(fileName, logEvent, (int)sourceStream.Length, previousLogEventTimestamp, initializedNewFile);
             if (archiveOccurred)
                 initializedNewFile = InitializeFile(fileName, logEvent) == DateTime.MinValue || initializedNewFile;
 
             if (ReplaceFileContentsOnEachWrite)
             {
-                ReplaceFileContent(fileName, bytesToWrite, true);
+                ReplaceFileContent(fileName, sourceStream, true);
             }
             else
             {
-                WriteToFile(fileName, bytesToWrite, initializedNewFile);
+                WriteToFile(fileName, sourceStream, initializedNewFile);
             }
 
             _previousLogFileName = fileName;
@@ -1179,8 +1173,8 @@ namespace NLog.Targets
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <param name="formatBuilder"><see cref="StringBuilder"/> to help format log event.</param>
         /// <param name="transformBuffer">Optional temporary char-array to help format log event.</param>
-        /// <param name="streamTarget">Destination <see cref="MemoryStream"/> for the encoded result.</param>
-        protected virtual void RenderFormattedMessageToStream(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, MemoryStream streamTarget)
+        /// <param name="streamTarget">Destination <see cref="BufferPoolStream"/> for the encoded result.</param>
+        protected virtual void RenderFormattedMessageToStream(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, Stream streamTarget)
         {
             RenderFormattedMessage(logEvent, formatBuilder);
             formatBuilder.Append(NewLineChars);
@@ -1197,7 +1191,7 @@ namespace NLog.Targets
             Layout.Render(logEvent, target);
         }
 
-        private void TransformBuilderToStream(LogEventInfo logEvent, StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
+        private void TransformBuilderToStream(LogEventInfo logEvent, StringBuilder builder, char[] transformBuffer, Stream workStream)
         {
             builder.CopyToStream(workStream, Encoding, transformBuffer);
             TransformStream(logEvent, workStream);
@@ -1208,16 +1202,15 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">The LogEvent being written</param>
         /// <param name="stream">The byte array.</param>
-        protected virtual void TransformStream(LogEventInfo logEvent, MemoryStream stream)
+        protected virtual void TransformStream(LogEventInfo logEvent, Stream stream)
         {
         }
 
-        private void AppendMemoryStreamToFile(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, out Exception lastException)
+        private void AppendMemoryStreamToFile(string currentFileName, LogEventInfo firstLogEvent, Stream sourceStream, out Exception lastException)
         {
             try
             {
-                ArraySegment<byte> bytes = new ArraySegment<byte>(ms.GetBuffer(), 0, (int)ms.Length);
-                ProcessLogEvent(firstLogEvent, currentFileName, bytes);
+                ProcessLogEvent(firstLogEvent, currentFileName, sourceStream);
                 lastException = null;
             }
             catch (Exception exception)
@@ -2219,9 +2212,9 @@ namespace NLog.Targets
         /// <see cref="FileTarget"/> instance and writes them.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
+        /// <param name="sourceStream">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
         /// <param name="initializedNewFile">File has just been opened.</param>
-        private void WriteToFile(string fileName, ArraySegment<byte> bytes, bool initializedNewFile)
+        private void WriteToFile(string fileName, Stream sourceStream, bool initializedNewFile)
         {
             BaseFileAppender appender = _fileAppenderCache.AllocateAppender(fileName);
             try
@@ -2231,7 +2224,7 @@ namespace NLog.Targets
                     WriteHeaderAndBom(appender);
                 }
 
-                appender.Write(bytes.Array, bytes.Offset, bytes.Count);
+                appender.Write(sourceStream);
 
                 if (AutoFlush)
                 {
@@ -2343,10 +2336,11 @@ namespace NLog.Targets
         /// <param name="fileName">The file path to write to.</param>
         private void WriteFooter(string fileName)
         {
-            ArraySegment<byte> footerBytes = GetLayoutBytes(Footer);
-            if (footerBytes.Count > 0 && File.Exists(fileName))
+            using (var footerStream = _layoutBufferPool.CreateStream())
             {
-                WriteToFile(fileName, footerBytes, false);
+                WriteLayout(Footer, footerStream);
+                if (footerStream.Length > 0 && File.Exists(fileName))
+                    WriteToFile(fileName, footerStream, false);
             }
         }
 
@@ -2441,28 +2435,18 @@ namespace NLog.Targets
         /// Header, Content and Footer.
         /// </summary>
         /// <param name="fileName">The name of the file to be written.</param>
-        /// <param name="bytes">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
+        /// <param name="sourceStream">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
         /// <param name="firstAttempt">First attempt to write?</param>
         /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
-        private void ReplaceFileContent(string fileName, ArraySegment<byte> bytes, bool firstAttempt)
+        private void ReplaceFileContent(string fileName, Stream sourceStream, bool firstAttempt)
         {
             try
             {
                 using (FileStream fs = File.Create(fileName))
                 {
-                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
-                    if (headerBytes.Count > 0)
-                    {
-                        fs.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
-                    }
-
-                    fs.Write(bytes.Array, bytes.Offset, bytes.Count);
-
-                    ArraySegment<byte> footerBytes = GetLayoutBytes(Footer);
-                    if (footerBytes.Count > 0)
-                    {
-                        fs.Write(footerBytes.Array, footerBytes.Offset, footerBytes.Count);
-                    }
+                    WriteLayout(Header, fs);
+                    sourceStream.Copy(fs);
+                    WriteLayout(Footer, fs);
                 }
             }
             catch (DirectoryNotFoundException)
@@ -2472,8 +2456,7 @@ namespace NLog.Targets
                     throw;
                 }
                 Directory.CreateDirectory(Path.GetDirectoryName(fileName));
-                //retry.
-                ReplaceFileContent(fileName, bytes, false);
+                ReplaceFileContent(fileName, sourceStream, false);
             }
         }
 
@@ -2515,10 +2498,12 @@ namespace NLog.Targets
             if (Header != null && (isNewOrEmptyFile || WriteHeaderWhenInitialFileNotEmpty))
             {
                 InternalLogger.Trace("{0}: Write header", this);
-                ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
-                if (headerBytes.Count > 0)
+
+                using (var headerStream = _layoutBufferPool.CreateStream())
                 {
-                    appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
+                    WriteLayout(Header, headerStream);
+                    if (headerStream.Length > 0)
+                        appender.Write(headerStream);
                 }
             }
         }
@@ -2528,26 +2513,24 @@ namespace NLog.Targets
         /// transformations required from the <see cref="Layout"/>.
         /// </summary>
         /// <param name="layout">The layout used to render output message.</param>
-        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
+        /// <param name="targetStream"></param>
         /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
-        private ArraySegment<byte> GetLayoutBytes(Layout layout)
+        private void WriteLayout(Layout layout, Stream targetStream)
         {
             if (layout is null)
-            {
-                return default(ArraySegment<byte>);
-            }
+                return;
 
             using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
                 var nullEvent = LogEventInfo.CreateNullEvent();
                 layout.Render(nullEvent, targetBuilder.Result);
+                
+                if (targetBuilder.Result.Length < 1)
+                    return;
+                
                 targetBuilder.Result.Append(NewLineChars);
-                using (MemoryStream ms = new MemoryStream(targetBuilder.Result.Length))
-                {
-                    TransformBuilderToStream(nullEvent, targetBuilder.Result, targetBuffer.Result, ms);
-                    return new ArraySegment<byte>(ms.ToArray());
-                }
+                TransformBuilderToStream(nullEvent, targetBuilder.Result, targetBuffer.Result, targetStream);
             }
         }
     }
