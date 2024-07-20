@@ -41,7 +41,13 @@ namespace NLog.Internal
     internal sealed class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
     {
         public ReusableBuilderCreator()
-            : base(128, (cap) => new StringBuilder(cap), (sb) => { sb.ClearBuilder(); })
+            : base(128, (cap) => new StringBuilder(cap), (capacity, sb) =>
+            {
+                if (sb.Capacity > capacity)
+                    sb.Capacity = capacity;
+                
+                sb.ClearBuilder();
+            })
         {
         }
     }

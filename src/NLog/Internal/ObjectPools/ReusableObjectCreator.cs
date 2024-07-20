@@ -41,11 +41,11 @@ namespace NLog.Internal
     internal class ReusableObjectCreator<T> where T : class
     {
         protected T _reusableObject;
-        private readonly Action<T> _clearObject;
+        private readonly Action<int, T> _clearObject;
         private readonly Func<int, T> _createObject;
         private readonly int _initialCapacity;
 
-        protected ReusableObjectCreator(int initialCapacity, Func<int, T> createObject, Action<T> clearObject)
+        protected ReusableObjectCreator(int initialCapacity, Func<int, T> createObject, Action<int, T> clearObject)
         {
             _reusableObject = createObject(initialCapacity);
             _clearObject = clearObject;
@@ -67,7 +67,7 @@ namespace NLog.Internal
 
         private void Deallocate(T reusableObject)
         {
-            _clearObject(reusableObject);
+            _clearObject(_initialCapacity, reusableObject);
             _reusableObject = reusableObject;
         }
 
