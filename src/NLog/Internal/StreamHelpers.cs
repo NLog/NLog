@@ -91,7 +91,7 @@ namespace NLog.Internal
         /// <param name="input">stream to read from</param>
         /// <param name="output">stream to write to</param>
         /// <param name="offset">first bytes to skip (optional)</param>
-        private static void CopyWithOffset(this Stream input, Stream output, int offset)
+        public static void CopyWithOffset(this Stream input, Stream output, int offset)
         {
             if (offset < 0)
             {
