@@ -286,22 +286,9 @@ namespace NLog.Targets
             private IEnumerable<KeyValuePair<string, object>> _scopeContextProperties;
             private ICollection<string> _gdcNames;
 
-            private bool _CountContextPropertiesCalled;
-            private bool _CountEventPropertiesCalled;
-            private bool _CountScopeContextPropertiesCalled;
-            private bool _CountGdcPropertiesCalled;
-
+            private bool _CountPropertiesCalled;
             private int _propertiesCount;
             private bool _checkExcludeProperties;
-
-            private void DoOnce(Action action, ref bool methodHasBeenCalled)
-            {
-                if (methodHasBeenCalled)
-                    throw new InvalidOperationException("The method should be called only once!");
-
-                action();
-                methodHasBeenCalled = true;
-            }
 
             private KeyValuePair<string, object>? BuildPair(string propertyName, object propertyValue)
             {
@@ -346,52 +333,33 @@ namespace NLog.Targets
                 _logEvent = logEvent;
             }
 
-            public GetAllPropertiesCountContext CountContextProperties()
+            public GetAllPropertiesCountContext EstimateCount()
             {
-                DoOnce(() =>
-                {
-                    _propertiesCount += _targetContext.ContextProperties?.Count ?? 0;
-                }, ref _CountContextPropertiesCalled);
-                return this;
-            }
+                if (_CountPropertiesCalled)
+                    throw new InvalidOperationException("The method should be called only once!");
+                _CountPropertiesCalled = true;
 
-            public GetAllPropertiesCountContext CountEventProperties()
-            {
-                DoOnce(() =>
-                {
-                    if (_targetContext.IncludeEventProperties && _logEvent.HasProperties)
-                    {
-                        _logEventProperties = _logEvent.Properties;
-                        _propertiesCount += _logEventProperties.Count;
-                    }
-                }, ref _CountEventPropertiesCalled);
-                return this;
-            }
+                _propertiesCount += _targetContext.ContextProperties?.Count ?? 0;
 
-            public GetAllPropertiesCountContext CountScopeContextProperties()
-            {
-                DoOnce(() =>
+                if (_targetContext.IncludeEventProperties && _logEvent.HasProperties)
                 {
-                    if (_targetContext.IncludeScopeProperties)
-                    {
-                        // TODO: && !logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value)
-                        _scopeContextProperties = ScopeContext.GetAllProperties();
-                        _propertiesCount += _scopeContextProperties.Count();
-                    }
-                }, ref _CountScopeContextPropertiesCalled);
-                return this;
-            }
+                    _logEventProperties = _logEvent.Properties;
+                    _propertiesCount += _logEventProperties.Count;
+                }
 
-            public GetAllPropertiesCountContext CountGdcProperties()
-            {
-                DoOnce(() =>
+                if (_targetContext.IncludeScopeProperties)
                 {
-                    if (_targetContext.IncludeGdc)
-                    {
-                        _gdcNames = GlobalDiagnosticsContext.GetNames();
-                        _propertiesCount += _gdcNames.Count;
-                    }
-                }, ref _CountGdcPropertiesCalled);
+                    // TODO: && !logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value)
+                    _scopeContextProperties = ScopeContext.GetAllProperties();
+                    _propertiesCount += _scopeContextProperties.Count();
+                }
+
+                if (_targetContext.IncludeGdc)
+                {
+                    _gdcNames = GlobalDiagnosticsContext.GetNames();
+                    _propertiesCount += _gdcNames.Count;
+                }
+
                 return this;
             }
 
@@ -467,10 +435,7 @@ namespace NLog.Targets
         protected IEnumerable<KeyValuePair<string, object>> GetAllPropertiesList(LogEventInfo logEvent)
         {
             var ctx = new GetAllPropertiesCountContext(this, logEvent)
-                .CountContextProperties()
-                .CountEventProperties()
-                .CountScopeContextProperties()
-                .CountGdcProperties();
+                .EstimateCount();
 
             return ctx.PropertiesCount > 0
                 ? ctx.BuildList()
