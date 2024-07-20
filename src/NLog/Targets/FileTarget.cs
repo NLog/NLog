@@ -1062,8 +1062,8 @@ namespace NLog.Targets
                     int currentIndex = 0;
                     while (currentIndex < bucketCount)
                     {
-                        var written = WriteToMemoryStream(bucket.Value, currentIndex, reusableStream);
-                        AppendMemoryStreamToFile(fileName, bucket.Value[currentIndex].LogEvent, reusableStream, out var lastException);
+                        var written = WriteToStream(bucket.Value, currentIndex, reusableStream);
+                        AppendStreamToFile(fileName, bucket.Value[currentIndex].LogEvent, reusableStream, out var lastException);
                         for (int i = 0; i < written; ++i)
                         {
                             bucket.Value[currentIndex++].Continuation(lastException);
@@ -1073,7 +1073,7 @@ namespace NLog.Targets
             }
         }
 
-        private int WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, int startIndex, Stream targetStream)
+        private int WriteToStream(IList<AsyncLogEventInfo> logEvents, int startIndex, Stream targetStream)
         {
             long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
             
@@ -1173,7 +1173,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <param name="formatBuilder"><see cref="StringBuilder"/> to help format log event.</param>
         /// <param name="transformBuffer">Optional temporary char-array to help format log event.</param>
-        /// <param name="streamTarget">Destination <see cref="BufferPoolStream"/> for the encoded result.</param>
+        /// <param name="streamTarget">Destination <see cref="Stream"/> for the encoded result.</param>
         protected virtual void RenderFormattedMessageToStream(LogEventInfo logEvent, StringBuilder formatBuilder, char[] transformBuffer, Stream streamTarget)
         {
             RenderFormattedMessage(logEvent, formatBuilder);
@@ -1206,7 +1206,7 @@ namespace NLog.Targets
         {
         }
 
-        private void AppendMemoryStreamToFile(string currentFileName, LogEventInfo firstLogEvent, Stream sourceStream, out Exception lastException)
+        private void AppendStreamToFile(string currentFileName, LogEventInfo firstLogEvent, Stream sourceStream, out Exception lastException)
         {
             try
             {
@@ -2212,7 +2212,7 @@ namespace NLog.Targets
         /// <see cref="FileTarget"/> instance and writes them.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="sourceStream">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
+        /// <param name="sourceStream">Stream <see langword="Stream"/> to be written into the content part of the file.</param>        
         /// <param name="initializedNewFile">File has just been opened.</param>
         private void WriteToFile(string fileName, Stream sourceStream, bool initializedNewFile)
         {
@@ -2435,7 +2435,7 @@ namespace NLog.Targets
         /// Header, Content and Footer.
         /// </summary>
         /// <param name="fileName">The name of the file to be written.</param>
-        /// <param name="sourceStream">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
+        /// <param name="sourceStream">Stream <see langword="Stream"/> to be written in the content section of the file.</param>
         /// <param name="firstAttempt">First attempt to write?</param>
         /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
         private void ReplaceFileContent(string fileName, Stream sourceStream, bool firstAttempt)
@@ -2513,7 +2513,7 @@ namespace NLog.Targets
         /// transformations required from the <see cref="Layout"/>.
         /// </summary>
         /// <param name="layout">The layout used to render output message.</param>
-        /// <param name="targetStream"></param>
+        /// <param name="targetStream">Stream <see langword="Stream"/> to write layout</param>
         /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
         private void WriteLayout(Layout layout, Stream targetStream)
         {
