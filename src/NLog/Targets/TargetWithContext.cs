@@ -349,9 +349,12 @@ namespace NLog.Targets
 
                 if (_targetContext.IncludeScopeProperties)
                 {
-                    // TODO: && !logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value)
-                    _scopeContextProperties = ScopeContext.GetAllProperties();
-                    _propertiesCount += _scopeContextProperties.Count();
+                    IDictionary<string, object> combinedProperties = null;
+                    if(!_targetContext.CombineProperties(_logEvent, _targetContext._contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
+                    {
+                        _scopeContextProperties = ScopeContext.GetAllProperties();
+                        _propertiesCount += _scopeContextProperties.Count();
+                    }
                 }
 
                 if (_targetContext.IncludeGdc)
