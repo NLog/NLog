@@ -350,7 +350,8 @@ namespace NLog.Targets
                 if (_targetContext.IncludeScopeProperties)
                 {
                     IDictionary<string, object> combinedProperties = null;
-                    if(!_targetContext.CombineProperties(_logEvent, _targetContext._contextLayout.ScopeContextPropertiesLayout, ref combinedProperties))
+                    var contextLayout = _targetContext._contextLayout.ScopeContextPropertiesLayout;
+                    if (!_targetContext.CombineProperties(_logEvent, contextLayout, ref combinedProperties))
                     {
                         _scopeContextProperties = ScopeContext.GetAllProperties();
                         _propertiesCount += _scopeContextProperties.Count();
