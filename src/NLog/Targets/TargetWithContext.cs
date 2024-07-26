@@ -283,7 +283,7 @@ namespace NLog.Targets
             private readonly LogEventInfo _logEvent;
 
             private IDictionary<object, object> _logEventProperties;
-            private IEnumerable<KeyValuePair<string, object>> _scopeContextProperties;
+            private IDictionary<string, object> _scopeContextProperties;
             private ICollection<string> _gdcNames;
 
             private int _propertiesCount;
@@ -344,13 +344,12 @@ namespace NLog.Targets
 
                 if (_targetContext.IncludeScopeProperties)
                 {
-                    IDictionary<string, object> combinedProperties = null;
-                    var contextLayout = _targetContext._contextLayout.ScopeContextPropertiesLayout;
-                    if (!_targetContext.CombineProperties(_logEvent, contextLayout, ref combinedProperties))
+                    if (!_targetContext.CombineProperties(_logEvent, _targetContext._contextLayout.ScopeContextPropertiesLayout, ref _scopeContextProperties))
                     {
-                        _scopeContextProperties = ScopeContext.GetAllProperties();
-                        _propertiesCount += _scopeContextProperties.Count();
+                        _scopeContextProperties = ScopeContext.GetAllProperties().ToDictionary(prop => prop.Key, prop => prop.Value);
                     }
+
+                    _propertiesCount += _scopeContextProperties?.Count() ?? 0;
                 }
 
                 if (_targetContext.IncludeGdc)
@@ -384,7 +383,7 @@ namespace NLog.Targets
                     }
                 }
 
-                if (_scopeContextProperties?.Any() == true)
+                if (_scopeContextProperties?.Count > 0)
                 {
                     using (var scopeEnumerator = new ScopeContextPropertyEnumerator<object>(_scopeContextProperties))
                     {
