@@ -286,7 +286,6 @@ namespace NLog.Targets
             private IEnumerable<KeyValuePair<string, object>> _scopeContextProperties;
             private ICollection<string> _gdcNames;
 
-            private bool _CountPropertiesCalled;
             private int _propertiesCount;
             private bool _checkExcludeProperties;
 
@@ -320,8 +319,6 @@ namespace NLog.Targets
                 get => _propertiesCount;
             }
 
-            private GetAllPropertiesCountContext() { }
-
             public GetAllPropertiesCountContext(TargetWithContext targetContext, LogEventInfo logEvent)
             {
                 if (targetContext is null)
@@ -331,14 +328,12 @@ namespace NLog.Targets
 
                 _targetContext = targetContext;
                 _logEvent = logEvent;
+
+                EstimateCount();
             }
 
-            public GetAllPropertiesCountContext EstimateCount()
+            private void EstimateCount()
             {
-                if (_CountPropertiesCalled)
-                    throw new InvalidOperationException("The method should be called only once!");
-                _CountPropertiesCalled = true;
-
                 _propertiesCount += _targetContext.ContextProperties?.Count ?? 0;
 
                 if (_targetContext.IncludeEventProperties && _logEvent.HasProperties)
@@ -363,8 +358,6 @@ namespace NLog.Targets
                     _gdcNames = GlobalDiagnosticsContext.GetNames();
                     _propertiesCount += _gdcNames.Count;
                 }
-
-                return this;
             }
 
             public IEnumerable<KeyValuePair<string, object>> BuildList()
@@ -438,8 +431,7 @@ namespace NLog.Targets
         /// <returns></returns>
         protected IEnumerable<KeyValuePair<string, object>> GetAllPropertiesList(LogEventInfo logEvent)
         {
-            var ctx = new GetAllPropertiesCountContext(this, logEvent)
-                .EstimateCount();
+            var ctx = new GetAllPropertiesCountContext(this, logEvent);
 
             return ctx.PropertiesCount > 0
                 ? ctx.BuildList()
