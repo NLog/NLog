@@ -971,8 +971,8 @@ namespace NLog.Targets
             }
         }
 
-        private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator(4096);
-        private readonly ReusableStreamCreator _reusableAsyncFileWriteStream = new ReusableStreamCreator(4096);
+        private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator(4096, 1024 * 1024 * 20);
+        private readonly ReusableStreamCreator _reusableAsyncFileWriteStream = new ReusableStreamCreator(4096, 1024 * 1024 * 20);
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>

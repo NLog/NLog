@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Collections.Generic;
 using NLog.Common;
 
@@ -43,7 +42,7 @@ namespace NLog.Internal
     internal sealed class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
     {
         public ReusableAsyncLogEventList(int capacity)
-            :base(capacity, (cap) => new List<AsyncLogEventInfo>(cap), (_, l) => l.Clear())
+            :base(initialCapacity: capacity, maxCapacity: capacity, (initialCapacity, _) => new List<AsyncLogEventInfo>(initialCapacity), (initialCapacity, maxCapacity, l) => l.Clear())
         {
         }
     }

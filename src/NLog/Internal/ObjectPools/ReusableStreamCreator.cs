@@ -40,11 +40,11 @@ namespace NLog.Internal
     /// </summary>
     internal sealed class ReusableStreamCreator : ReusableObjectCreator<System.IO.MemoryStream>, IDisposable
     {
-        public ReusableStreamCreator(int capacity)
-            :base(capacity, (cap) => new System.IO.MemoryStream(cap), (cap, m) =>
+        public ReusableStreamCreator(int initialCap, int maxCap)
+            :base(initialCap, maxCap, (initialCapacity, _) => new System.IO.MemoryStream(initialCapacity), (initialCapacity, maxCapacity, m) =>
             {
-                if (m.Capacity > cap)
-                    m.Capacity = cap;
+                if (m.Capacity > maxCapacity)
+                    m.Capacity = maxCapacity;
                 
                 m.Position = 0; 
                 m.SetLength(0);
