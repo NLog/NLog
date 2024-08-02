@@ -53,6 +53,8 @@ namespace NLog.Internal
                     if (sb.Capacity > maxCapacity)
                         sb.Capacity = maxCapacity;
                 }
+                
+                sb.ClearBuilder();
             })
         {
         }
