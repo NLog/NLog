@@ -42,8 +42,8 @@ namespace NLog.Internal
     /// </summary>
     internal sealed class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
     {
-        public ReusableAsyncLogEventList(int capacity)
-            :base(capacity, (cap) => new List<AsyncLogEventInfo>(cap), (l) => l.Clear())
+        public ReusableAsyncLogEventList(int intialCapacity)
+            : base(() => new List<AsyncLogEventInfo>(intialCapacity), (l) => l.Clear())
         {
         }
     }

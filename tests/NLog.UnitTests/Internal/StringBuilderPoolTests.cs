@@ -43,17 +43,17 @@ namespace NLog.UnitTests.Internal
         {
             int poolItemCount = 10;
             NLog.Internal.StringBuilderPool pool = new NLog.Internal.StringBuilderPool(poolItemCount);
-            string mediumPayload = new string('A', 300000);
+            string mediumPayload = new string('A', 40 * 1024);
             RecursiveAcquirePoolItems(poolItemCount, pool, mediumPayload, true);        // Verify fast-pool + slow-pool must grow
             RecursiveAcquirePoolItems(poolItemCount, pool, mediumPayload, false);       // Verify fast-pool + slow-pool has kept their capacity
 
-            string largePayload = new string('A', 1000000);
+            string largePayload = new string('A', 400000);
             RecursiveAcquirePoolItems(poolItemCount, pool, largePayload, true);
             using (var itemHolder = pool.Acquire())
             {
                 Assert.Equal(0, itemHolder.Item.Length);
-                Assert.True(largePayload.Length <= itemHolder.Item.Capacity);           // Verify fast-pool has kept its capacity
-                RecursiveAcquirePoolItems(poolItemCount, pool, mediumPayload, true);    // Verify slow-pool must grow
+                Assert.True(largePayload.Length <= itemHolder.Item.Capacity);               // Verify fast-pool has kept its capacity
+                RecursiveAcquirePoolItems(poolItemCount, pool, mediumPayload + "A", true);  // Verify slow-pool has reset its capacity
             }
         }
 

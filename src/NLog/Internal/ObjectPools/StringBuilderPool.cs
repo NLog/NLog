@@ -49,7 +49,7 @@ namespace NLog.Internal
         /// <param name="poolCapacity">Max number of items</param>
         /// <param name="initialBuilderCapacity">Initial StringBuilder Size</param>
         /// <param name="maxBuilderCapacity">Max StringBuilder Size</param>
-        public StringBuilderPool(int poolCapacity, int initialBuilderCapacity = 1024, int maxBuilderCapacity = 512 * 1024)
+        public StringBuilderPool(int poolCapacity, int initialBuilderCapacity = 1024, int maxBuilderCapacity = 40 * 1024)
         {
             _fastPool = new StringBuilder(10 * initialBuilderCapacity);
             _slowPool = new StringBuilder[poolCapacity];
@@ -100,7 +100,7 @@ namespace NLog.Internal
                     stringBuilder.Remove(0, stringBuilder.Length - 1);  // Attempt soft clear that skips re-allocation
                     if (stringBuilder.Capacity > maxBuilderCapacity)
                     {
-                        stringBuilder = new StringBuilder(maxBuilderCapacity / 2);
+                        stringBuilder.Capacity = _maxBuilderCapacity;
                     }
                 }
             }
