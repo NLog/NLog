@@ -42,12 +42,12 @@ namespace NLog.Internal
     internal sealed class ReusableStreamCreator : ReusableObjectCreator<MemoryStream>, IDisposable
     {
         public ReusableStreamCreator()
-            : base(() => new MemoryStream(4096), ResetCapacity)
+            : base(() => new MemoryStream(4096), (ms) => ResetCapacity(ms))
         {
         }
 
         public ReusableStreamCreator(bool batchStream)
-            : base(() => new MemoryStream(4096), ResetBatchCapacity)
+            : base(() => new MemoryStream(4096), (ms) => ResetBatchCapacity(ms))
         {
         }
 
