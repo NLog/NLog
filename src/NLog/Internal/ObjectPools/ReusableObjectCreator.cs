@@ -41,18 +41,14 @@ namespace NLog.Internal
     internal class ReusableObjectCreator<T> where T : class
     {
         protected T _reusableObject;
-        private readonly Action<int, int, T> _clearObject;
-        private readonly Func<int, int, T> _createObject;
-        private readonly int _initialCapacity;
-        private readonly int _maxCapacity;
+        private readonly Action<T> _clearObject;
+        private readonly Func<T> _createObject;
 
-        protected ReusableObjectCreator(int initialCapacity, int maxCapacity, Func<int, int, T> createObject, Action<int, int, T> clearObject)
+        protected ReusableObjectCreator(Func<T> createObject, Action<T> clearObject)
         {
-            _reusableObject = createObject(initialCapacity, maxCapacity);
+            _reusableObject = createObject();
             _clearObject = clearObject;
             _createObject = createObject;
-            _initialCapacity = initialCapacity;
-            _maxCapacity = maxCapacity;
         }
 
         /// <summary>
@@ -61,7 +57,7 @@ namespace NLog.Internal
         /// <returns>Handle to the reusable item, that can release it again</returns>
         public LockOject Allocate()
         {
-            var reusableObject = _reusableObject ?? _createObject(_initialCapacity, _maxCapacity);
+            var reusableObject = _reusableObject ?? _createObject();
             System.Diagnostics.Debug.Assert(_reusableObject != null);
             _reusableObject = null;
             return new LockOject(this, reusableObject);
@@ -69,7 +65,7 @@ namespace NLog.Internal
 
         private void Deallocate(T reusableObject)
         {
-            _clearObject(_initialCapacity, _maxCapacity, reusableObject);
+            _clearObject(reusableObject);
             _reusableObject = reusableObject;
         }
 

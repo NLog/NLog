@@ -40,23 +40,22 @@ namespace NLog.Internal
     /// </summary>
     internal sealed class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
     {
-        private const int InitialCapacity = 128;
-        private const int MaxCapacity = 1024 * 1024 * 5; // 5 MB
-        
+        private const int MaxBuilderCapacity = 40960;   // Avoid Large-Object-Heap (LOH)
+
         public ReusableBuilderCreator()
-            : base(initialCapacity: InitialCapacity, maxCapacity: MaxCapacity, (initialCapacity, _) => new StringBuilder(initialCapacity), (initialCapacity, maxCapacity, sb)  =>
-            {
-                if (sb.Length > maxCapacity)
-                {
-                    sb.Remove(0, sb.Length - 1);  // Attempt soft clear that skips re-allocation
-                    
-                    if (sb.Capacity > maxCapacity)
-                        sb.Capacity = maxCapacity;
-                }
-                
-                sb.ClearBuilder();
-            })
+            : base(() => new StringBuilder(128), ResetCapacity)
         {
+        }
+
+        private static void ResetCapacity(StringBuilder stringBuilder)
+        {
+            if (stringBuilder.Length > MaxBuilderCapacity && stringBuilder.Capacity > MaxBuilderCapacity * 10)
+            {
+                stringBuilder.Remove(0, stringBuilder.Length - 1);  // Attempt soft clear that skips re-allocation
+                stringBuilder.Capacity = MaxBuilderCapacity;
+            }
+
+            stringBuilder.ClearBuilder();
         }
     }
 }
