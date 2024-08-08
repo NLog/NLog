@@ -43,7 +43,7 @@ namespace NLog.Internal
         private const int MaxBuilderCapacity = 40960;   // Avoid Large-Object-Heap (LOH)
 
         public ReusableBuilderCreator()
-            : base(() => new StringBuilder(128), ResetCapacity)
+            : base(() => new StringBuilder(128), (sb) => ResetCapacity(sb))
         {
         }
 
