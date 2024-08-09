@@ -681,20 +681,14 @@ namespace NLog.Targets
             if (layout is null || logEvent is null)
                 return null;    // Signal that input was wrong
 
-            SimpleLayout simpleLayout = layout as SimpleLayout;
-            if (simpleLayout != null && simpleLayout.IsFixedText)
+            if (layout is SimpleLayout simpleLayout && (simpleLayout.IsFixedText || simpleLayout.IsSimpleStringText))
             {
-                return simpleLayout.Render(logEvent);
+                return simpleLayout.Render(logEvent, false);
             }
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {
                 return value?.ToString() ?? string.Empty;
-            }
-
-            if (simpleLayout != null && simpleLayout.IsSimpleStringText)
-            {
-                return simpleLayout.Render(logEvent);
             }
 
             using (var localTarget = ReusableLayoutBuilder.Allocate())
@@ -724,10 +718,7 @@ namespace NLog.Targets
 
             if (TryGetCachedValue(layout, logEvent, out var value))
             {
-                if (value is null)
-                    return defaultValue;
-                else
-                    return (T)value;
+                return value is null ? defaultValue : (T)value;
             }
 
             using (var localTarget = ReusableLayoutBuilder.Allocate())
