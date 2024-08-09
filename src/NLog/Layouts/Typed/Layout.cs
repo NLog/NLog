@@ -284,7 +284,7 @@ namespace NLog.Layouts
         {
             if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsSimpleStringText)
             {
-                return simpleLayout.Render(logEvent);
+                return simpleLayout.Render(logEvent, false);
             }
 
             if (stringBuilder?.Length == 0)

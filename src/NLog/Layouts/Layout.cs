@@ -195,12 +195,18 @@ namespace NLog.Layouts
         /// <returns>The formatted output as string.</returns>
         public string Render(LogEventInfo logEvent)
         {
+            return Render(logEvent, true);
+        }
+
+        internal string Render(LogEventInfo logEvent, bool cacheLayoutResult)
+        {
             if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }
 
-            if (!ThreadAgnostic || ThreadAgnosticImmutable)
+            bool lookupCacheLayout = !ThreadAgnostic || ThreadAgnosticImmutable;
+            if (lookupCacheLayout)
             {
                 object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -210,7 +216,7 @@ namespace NLog.Layouts
             }
 
             string layoutValue = GetFormattedMessage(logEvent) ?? string.Empty;
-            if (!ThreadAgnostic || ThreadAgnosticImmutable)
+            if (lookupCacheLayout && cacheLayoutResult)
             {
                 // Would be nice to only do this in Precalculate(), but we need to ensure internal cache
                 // is updated for custom Layouts that overrides Precalculate (without calling base.Precalculate)

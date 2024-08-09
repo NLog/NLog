@@ -184,15 +184,15 @@ namespace NLog.Layouts
                 var defaultValue = GetTypedDefaultValue();
                 return _typedLayout.RenderValue(logEvent, defaultValue);
             }
-            else if (layout != null)
+
+            if (layout != null)
             {
-                var valueType = _valueType ?? (_valueType = ValueType ?? typeof(string));
-                if (valueType == typeof(object) && layout.TryGetRawValue(logEvent, out var rawValue))
+                if (typeof(object).Equals(ValueType) && layout.TryGetRawValue(logEvent, out var rawValue))
                 {
                     return rawValue;
                 }
 
-                var stringValue = layout.Render(logEvent);
+                string stringValue = layout.Render(logEvent, false);
                 if (string.IsNullOrEmpty(stringValue))
                 {
                     return GetTypedDefaultValue();
@@ -200,10 +200,8 @@ namespace NLog.Layouts
 
                 return stringValue;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         private object GetTypedDefaultValue()
