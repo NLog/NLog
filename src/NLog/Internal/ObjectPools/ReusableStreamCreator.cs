@@ -32,17 +32,43 @@
 // 
 
 using System;
+using System.IO;
 
 namespace NLog.Internal
 {
     /// <summary>
     /// Controls a single allocated MemoryStream for reuse (only one active user)
     /// </summary>
-    internal sealed class ReusableStreamCreator : ReusableObjectCreator<System.IO.MemoryStream>, IDisposable
+    internal sealed class ReusableStreamCreator : ReusableObjectCreator<MemoryStream>, IDisposable
     {
-        public ReusableStreamCreator(int capacity)
-            :base(capacity, (cap) => new System.IO.MemoryStream(cap), (m) => { m.Position = 0; m.SetLength(0); })
+        public ReusableStreamCreator()
+            : base(() => new MemoryStream(4096), (ms) => ResetCapacity(ms))
         {
+        }
+
+        public ReusableStreamCreator(bool batchStream)
+            : base(() => new MemoryStream(4096), (ms) => ResetBatchCapacity(ms))
+        {
+        }
+
+        private static void ResetCapacity(MemoryStream memoryStream)
+        {
+            memoryStream.Position = 0;
+            memoryStream.SetLength(0);
+            if (memoryStream.Capacity > 1000000)
+            {
+                memoryStream.Capacity = 81920;  // Avoid Large-Object-Heap (LOH)
+            }
+        }
+
+        private static void ResetBatchCapacity(MemoryStream memoryStream)
+        {
+            memoryStream.Position = 0;
+            memoryStream.SetLength(0);
+            if (memoryStream.Capacity > 10000000)
+            {
+                memoryStream.Capacity = 81920;  // Avoid Large-Object-Heap (LOH)
+            }
         }
 
         void IDisposable.Dispose()

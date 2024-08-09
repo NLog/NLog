@@ -971,8 +971,8 @@ namespace NLog.Targets
             }
         }
 
-        private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator(4096);
-        private readonly ReusableStreamCreator _reusableAsyncFileWriteStream = new ReusableStreamCreator(4096);
+        private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator();
+        private readonly ReusableStreamCreator _reusableBatchFileWriteStream = new ReusableStreamCreator(true);
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
@@ -988,7 +988,7 @@ namespace NLog.Targets
                 throw new ArgumentException("The path is not of a legal form.");
             }
 
-            using (var targetStream = _reusableFileWriteStream.Allocate())
+            using (var targetStream = _reusableBatchFileWriteStream.Allocate())
             {
                 using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                 using (var targetBuffer = _reusableEncodingBuffer.Allocate())
@@ -1038,7 +1038,7 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(_getFullFileNameDelegate);
 
-            using (var reusableStream = _reusableAsyncFileWriteStream.Allocate())
+            using (var reusableStream = _reusableBatchFileWriteStream.Allocate())
             {
                 var ms = reusableStream.Result ?? new MemoryStream();
 

@@ -42,15 +42,13 @@ namespace NLog.Internal
     {
         protected T _reusableObject;
         private readonly Action<T> _clearObject;
-        private readonly Func<int, T> _createObject;
-        private readonly int _initialCapacity;
+        private readonly Func<T> _createObject;
 
-        protected ReusableObjectCreator(int initialCapacity, Func<int, T> createObject, Action<T> clearObject)
+        protected ReusableObjectCreator(Func<T> createObject, Action<T> clearObject)
         {
-            _reusableObject = createObject(initialCapacity);
+            _reusableObject = createObject();
             _clearObject = clearObject;
             _createObject = createObject;
-            _initialCapacity = initialCapacity;
         }
 
         /// <summary>
@@ -59,7 +57,7 @@ namespace NLog.Internal
         /// <returns>Handle to the reusable item, that can release it again</returns>
         public LockOject Allocate()
         {
-            var reusableObject = _reusableObject ?? _createObject(_initialCapacity);
+            var reusableObject = _reusableObject ?? _createObject();
             System.Diagnostics.Debug.Assert(_reusableObject != null);
             _reusableObject = null;
             return new LockOject(this, reusableObject);
