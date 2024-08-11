@@ -42,7 +42,7 @@ namespace NLog.Internal
         readonly IReadOnlyList<KeyValuePair<string, object>> _scopeList;
         int _scopeIndex;
 #endif
-        Dictionary<string, object>.Enumerator _dicationaryEnumerator;
+        Dictionary<string, object>.Enumerator _dictionaryEnumerator;
 
         public ScopeContextPropertyEnumerator(IEnumerable<KeyValuePair<string, TValue>> scopeProperties)
         {
@@ -52,7 +52,7 @@ namespace NLog.Internal
                 _scopeEnumerator = null;
                 _scopeList = scopeList;
                 _scopeIndex = -1;
-                _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
                 return;
             }
             else
@@ -65,17 +65,17 @@ namespace NLog.Internal
             if (scopeProperties is Dictionary<string, object> scopeDictionary)
             {
                 _scopeEnumerator = null;
-                _dicationaryEnumerator = scopeDictionary.GetEnumerator();
+                _dictionaryEnumerator = scopeDictionary.GetEnumerator();
             }
             else if (scopeProperties is IEnumerable<KeyValuePair<string, object>> scopeEnumerator)
             {
                 _scopeEnumerator = scopeEnumerator.GetEnumerator();
-                _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
             }
             else
             {
                 _scopeEnumerator = CreateScopeEnumerable(scopeProperties).GetEnumerator();
-                _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
             }
         }
 
@@ -153,7 +153,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    return _dicationaryEnumerator.Current;
+                    return _dictionaryEnumerator.Current;
                 }
             }
         }
@@ -168,7 +168,7 @@ namespace NLog.Internal
 #if !NET35 && !NET40
             if (_scopeList is null)
 #endif
-                _dicationaryEnumerator.Dispose();
+                _dictionaryEnumerator.Dispose();
         }
 
         public bool MoveNext()
@@ -191,7 +191,7 @@ namespace NLog.Internal
             }
             else
             {
-                return _dicationaryEnumerator.MoveNext();
+                return _dictionaryEnumerator.MoveNext();
             }
         }
 
@@ -210,7 +210,7 @@ namespace NLog.Internal
             }
             else
             {
-                _dicationaryEnumerator = default(Dictionary<string, object>.Enumerator);
+                _dictionaryEnumerator = default(Dictionary<string, object>.Enumerator);
             }
         }
     }

@@ -155,12 +155,15 @@ namespace NLog.LayoutRenderers
             bool includeSeparator = false;
             if (logEvent.HasProperties)
             {
-                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
-                foreach (var property in propertiesList)
+                using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
                 {
-                    if (AppendProperty(builder, property.Name, property.Value, property.Format, formatProvider, includeSeparator, checkForExclude, nonStandardFormat))
+                    while (propertyEnumerator.MoveNext())
                     {
-                        includeSeparator = true;
+                        var property = propertyEnumerator.CurrentParameter;
+                        if (AppendProperty(builder, property.Name, property.Value, property.Format, formatProvider, includeSeparator, checkForExclude, nonStandardFormat))
+                        {
+                            includeSeparator = true;
+                        }
                     }
                 }
             }

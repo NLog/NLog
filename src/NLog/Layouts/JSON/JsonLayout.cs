@@ -338,16 +338,19 @@ namespace NLog.Layouts
             if (IncludeEventProperties && logEvent.HasProperties)
             {
                 bool checkExcludeProperties = ExcludeProperties.Count > 0;
-                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
-                foreach (var prop in propertiesList)
+                using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
                 {
-                    if (string.IsNullOrEmpty(prop.Name))
-                        continue;
+                    while (propertyEnumerator.MoveNext())
+                    {
+                        var prop = propertyEnumerator.CurrentParameter;
+                        if (string.IsNullOrEmpty(prop.Name))
+                            continue;
 
-                    if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
-                        continue;
+                        if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
+                            continue;
 
-                    AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                        AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
+                    }
                 }
             }
 
