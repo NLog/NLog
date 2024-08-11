@@ -340,6 +340,9 @@ namespace NLog.Internal
         {
             try
             {
+                if (value is string stringValue)
+                    return stringValue;
+
                 var convertibleValue = value as IConvertible;
                 var objTypeCode = convertibleValue?.GetTypeCode() ?? (value is null ? TypeCode.Empty : TypeCode.Object);
                 if (objTypeCode != TypeCode.Object)

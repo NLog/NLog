@@ -406,24 +406,28 @@ namespace NLog.Layouts
                 return;
 
             bool checkExcludeProperties = ExcludeProperties.Count > 0;
-            IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEventInfo.CreateOrUpdatePropertiesInternal(true);
-            foreach (var prop in propertiesList)
+            using (var propertyEnumerator = logEventInfo.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
             {
-                if (string.IsNullOrEmpty(prop.Name))
-                    continue;
+                while (propertyEnumerator.MoveNext())
+                {
+                    var prop = propertyEnumerator.CurrentParameter;
 
-                if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
-                    continue;
+                    if (string.IsNullOrEmpty(prop.Name))
+                        continue;
 
-                var propertyValue = prop.Value;
-                if (!string.IsNullOrEmpty(prop.Format) && propertyValue is IFormattable formattedProperty)
-                    propertyValue = formattedProperty.ToString(prop.Format,
-                        logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
-                else if (prop.CaptureType == MessageTemplates.CaptureType.Stringify)
-                    propertyValue = Convert.ToString(prop.Value ?? string.Empty,
-                        logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                    if (checkExcludeProperties && ExcludeProperties.Contains(prop.Name))
+                        continue;
 
-                AppendXmlPropertyObjectValue(prop.Name, propertyValue, sb, orgLength, default(SingleItemOptimizedHashSet<object>), 0);
+                    var propertyValue = prop.Value;
+                    if (!string.IsNullOrEmpty(prop.Format) && propertyValue is IFormattable formattedProperty)
+                        propertyValue = formattedProperty.ToString(prop.Format,
+                            logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                    else if (prop.CaptureType == MessageTemplates.CaptureType.Stringify)
+                        propertyValue = Convert.ToString(prop.Value ?? string.Empty,
+                            logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+
+                    AppendXmlPropertyObjectValue(prop.Name, propertyValue, sb, orgLength, default(SingleItemOptimizedHashSet<object>), 0);
+                }
             }
         }
 
