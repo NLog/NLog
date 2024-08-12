@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
@@ -243,7 +244,7 @@ namespace NLog.Targets
         /// <returns>Dictionary with all collected properties for logEvent</returns>
         protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent)
         {
-            return GetAllProperties(logEvent, null);
+            return AllPropertiesDictionary.GetAllProperties(this, logEvent) ?? GetAllProperties(logEvent, null);
         }
 
         /// <summary>
@@ -259,7 +260,7 @@ namespace NLog.Targets
                 // TODO Make Dictionary-Lazy-adapter for PropertiesDictionary to skip extra Dictionary-allocation
                 combinedProperties = combinedProperties ?? CreateNewDictionary(logEvent.Properties.Count + (ContextProperties?.Count ?? 0));
                 bool checkForDuplicates = combinedProperties.Count > 0;
-                bool checkExcludeProperties = ExcludeProperties.Count > 0;
+                bool checkExcludeProperties = ExcludeProperties?.Count > 0;
                 using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
@@ -276,12 +277,146 @@ namespace NLog.Targets
                 }
             }
             combinedProperties = GetContextProperties(logEvent, combinedProperties);
-            return combinedProperties ?? new Dictionary<string, object>(StringComparer.Ordinal);
+            return combinedProperties ?? CreateNewDictionary(0);
         }
 
         private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
         {
-            return new Dictionary<string, object>(Math.Max(initialCapacity, 3), StringComparer.Ordinal);
+            return new Dictionary<string, object>(initialCapacity < 3 ? 0 : initialCapacity, StringComparer.Ordinal);
+        }
+
+        /// <summary>
+        /// Yields all properties collected from the <paramref name="logEvent"/>
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns>Collection of properties from logEvent</returns>
+        /// <remarks>Skips the dictionary allocation upfront, but no protection against duplicate property names.</remarks>
+        protected IEnumerable<KeyValuePair<string, object>> GetAllPropertiesList(LogEventInfo logEvent)
+        {
+            var scopeProperties = GetScopePropertiesList(logEvent);
+
+            if (IncludeEventProperties && logEvent.HasProperties)
+            {
+                var eventProperties = logEvent.CreateOrUpdatePropertiesInternal();
+                return YieldAllProperties(logEvent, eventProperties, scopeProperties);
+            }
+
+            if (ContextProperties?.Count > 0 || !(scopeProperties is null) || IncludeGdc)
+            {
+                return YieldAllProperties(logEvent, null, scopeProperties);
+            }
+
+            return ArrayHelper.Empty<KeyValuePair<string, object>>();
+        }
+
+        private IEnumerable<KeyValuePair<string, object>> GetScopePropertiesList(LogEventInfo logEvent)
+        {
+            if (IncludeScopeProperties)
+            {
+                if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
+                {
+                    if (value is IDictionary<string, object> scopeProperties && scopeProperties.Count > 0)
+                    {
+                        return scopeProperties;
+                    }
+                }
+                else
+                {
+                    var scopeProperties = ScopeContext.GetAllProperties();
+                    if (scopeProperties is ICollection<KeyValuePair<string, object>> scopeCollection)
+                    {
+                        if (scopeCollection.Count > 0)
+                        {
+                            return scopeCollection;
+                        }
+                    }
+                    else
+                    {
+                        return scopeProperties;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private IEnumerable<KeyValuePair<string, object>> YieldAllProperties(LogEventInfo logEvent, PropertiesDictionary eventProperties, IEnumerable<KeyValuePair<string, object>> scopeProperties)
+        {
+            bool checkExcludeProperties = ExcludeProperties?.Count > 0;
+
+            if (eventProperties != null)
+            {
+                using (var propertyEnumerator = eventProperties.GetPropertyEnumerator())
+                {
+                    while (propertyEnumerator.MoveNext())
+                    {
+                        var property = propertyEnumerator.CurrentProperty;
+                        if (string.IsNullOrEmpty(property.Key))
+                            continue;
+
+                        if (checkExcludeProperties && ExcludeProperties.Contains(property.Key))
+                            continue;
+
+                        yield return property;
+                    }
+                }
+            }
+
+            if (scopeProperties != null)
+            {
+                foreach (var property in scopeProperties)
+                {
+                    var propertyName = property.Key;
+                    if (string.IsNullOrEmpty(propertyName))
+                        continue;
+
+                    if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
+                        continue;
+
+                    object propertyValue = property.Value;
+                    if (SerializeScopeContextProperty(logEvent, propertyName, propertyValue, out var serializedValue))
+                    {
+                        yield return new KeyValuePair<string, object>(propertyName, serializedValue);
+                    }
+                }
+            }
+
+            if (IncludeGdc)
+            {
+                var gdcKeys = GlobalDiagnosticsContext.GetNames();
+                if (gdcKeys.Count > 0)
+                {
+                    foreach (string propertyName in gdcKeys)
+                    {
+                        if (string.IsNullOrEmpty(propertyName))
+                            continue;
+
+                        if (checkExcludeProperties && ExcludeProperties.Contains(propertyName))
+                            continue;
+
+                        var propertyValue = GlobalDiagnosticsContext.GetObject(propertyName);
+                        if (SerializeItemValue(logEvent, propertyName, propertyValue, out var serializedValue))
+                        {
+                            yield return new KeyValuePair<string, object>(propertyName, serializedValue);
+                        }
+                    }
+                }
+            }
+
+            if (ContextProperties?.Count > 0)
+            {
+                for (int i = 0; i < ContextProperties.Count; ++i)
+                {
+                    var contextProperty = ContextProperties[i];
+                    if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout is null)
+                        continue;
+
+                    if (TryGetContextPropertyValue(logEvent, contextProperty, out var propertyValue))
+                    {
+                        yield return new KeyValuePair<string, object>(contextProperty.Name, propertyValue);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -439,34 +574,36 @@ namespace NLog.Targets
                 if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout is null)
                     continue;
 
-                try
+                if (TryGetContextPropertyValue(logEvent, contextProperty, out var propertyValue))
                 {
-                    if (TryGetContextPropertyValue(logEvent, contextProperty, out var propertyValue))
-                    {
-                        combinedProperties[contextProperty.Name] = propertyValue;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (ex.MustBeRethrownImmediately())
-                        throw;
-
-                    Common.InternalLogger.Warn(ex, "{0}: Failed to add context property {1}", this, contextProperty.Name);
+                    combinedProperties[contextProperty.Name] = propertyValue;
                 }
             }
 
             return combinedProperties;
         }
 
-        private static bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
+        private bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
         {
-            propertyValue = contextProperty.RenderValue(logEvent);
-            if (!contextProperty.IncludeEmptyValue && (propertyValue is null || string.Empty.Equals(propertyValue)))
+            try
             {
-                return false;
-            }
+                propertyValue = contextProperty.RenderValue(logEvent);
+                if (!contextProperty.IncludeEmptyValue && (propertyValue is null || string.Empty.Equals(propertyValue)))
+                {
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                Common.InternalLogger.Warn(ex, "{0}: Failed to add context property {1}", this, contextProperty.Name);
+                propertyValue = null;
+                return false;
+            }           
         }
 
         /// <summary>
@@ -790,6 +927,260 @@ namespace NLog.Targets
             serializedValue = Convert.ToString(value, logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
             return true;
         }
+
+        [System.Diagnostics.DebuggerDisplay("Count = {Count}")]
+        private sealed class AllPropertiesDictionary : IDictionary<string, object>, IDictionary
+#if !NET35 && !NET40
+    , IReadOnlyDictionary<string, object>
+#endif
+        {
+            private readonly TargetWithContext _target;
+            private readonly LogEventInfo _logEvent;
+            private IDictionary<string, object> _inner;
+
+            private IDictionary<string, object> Inner => _inner ?? (_inner = CreateDictionary());
+
+            private AllPropertiesDictionary(TargetWithContext target, LogEventInfo logEvent)
+            {
+                _target = target;
+                _logEvent = logEvent;
+            }
+
+            public static IDictionary<string, object> GetAllProperties(TargetWithContext target, LogEventInfo logEvent)
+            {
+                if (target.IncludeGdc || target.IncludeScopeProperties)
+                    return null;
+
+                bool checkContextProperties = target.ContextProperties?.Count > 0;
+                var eventProperties = (target.IncludeEventProperties && logEvent.HasProperties) ? logEvent.CreateOrUpdatePropertiesInternal() : null;
+                if (eventProperties?.Count > 0)
+                {
+                    bool checkExcludeProperties = target.ExcludeProperties?.Count > 0;
+                    if (checkExcludeProperties || checkContextProperties)
+                    {
+                        if (eventProperties.Count * (target.ContextProperties?.Count ?? 1) > 20)
+                            return null;
+
+                        using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
+                        {
+                            while (propertyEnumerator.MoveNext())
+                            {
+                                var property = propertyEnumerator.CurrentProperty;
+                                if (string.IsNullOrEmpty(property.Key))
+                                    continue;
+
+                                if (checkExcludeProperties && target.ExcludeProperties.Contains(property.Key))
+                                {
+                                    return null;
+                                }
+
+                                if (checkContextProperties && !HasUniqueContextPropertyNames(target, property.Key))
+                                {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (!checkContextProperties)
+                {
+                    return null;
+                }
+
+                return new AllPropertiesDictionary(target, logEvent);
+            }
+
+            private static bool HasUniqueContextPropertyNames(TargetWithContext target, string propertyName)
+            {
+                for (int i = 0; i < target.ContextProperties.Count; ++i)
+                {
+                    var contextProperty = target.ContextProperties[i];
+                    if (string.Equals(propertyName, contextProperty.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            private IDictionary<string, object> CreateDictionary()
+            {
+                return Count == 0 ? new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase) : new Dictionary<string, object>(this, StringComparer.OrdinalIgnoreCase);
+            }
+
+            public bool TryGetValue(string key, out object value)
+            {
+                if (_inner is null)
+                {
+                    if (_target.ContextProperties?.Count > 0)
+                    {
+                        for (int i = 0; i < _target.ContextProperties.Count; ++i)
+                        {
+                            var contextProperty = _target.ContextProperties[i];
+                            if (string.Equals(key, contextProperty.Name, StringComparison.OrdinalIgnoreCase))
+                            {
+                                if (_target.TryGetContextPropertyValue(_logEvent, contextProperty, out value))
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+
+                    if (_logEvent.HasProperties)
+                    {
+                        if (_logEvent.Properties.TryGetValue(key, out value))
+                        {
+                            return true;
+                        }
+
+                        if (_logEvent.Properties.TryGetValue(new PropertiesDictionary.IgnoreCasePropertyKey(key), out value))
+                        {
+                            return true;
+                        }
+                    }
+
+                    value = null;
+                    return false;
+                }
+                else
+                {
+                    return _inner.TryGetValue(key, out value);
+                }
+            }
+
+            public int Count
+            {
+                get
+                {
+                    if (_inner is null)
+                    {
+                        return (_logEvent.HasProperties ? _logEvent.Properties.Count : 0) + (_target.ContextProperties?.Count ?? 0);
+                    }
+                    else
+                    {
+                        return _inner.Count;
+                    }
+                }
+            }
+
+            public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+            {
+                if (_inner is null)
+                {
+                    if (_target.ContextProperties?.Count > 0 || _logEvent.HasProperties)
+                    {
+                        return YieldProperties().GetEnumerator();
+                    }
+
+                    return System.Linq.Enumerable.Empty<KeyValuePair<string, object>>().GetEnumerator();
+                }
+                else
+                {
+                    return _inner.GetEnumerator();
+                }
+            }
+
+            IEnumerable<KeyValuePair<string, object>> YieldProperties()
+            {
+                if (_logEvent.HasProperties)
+                {
+                    using (var propertyEnumerator = _logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
+                    {
+                        while (propertyEnumerator.MoveNext())
+                        {
+                            var eventProperty = propertyEnumerator.CurrentProperty;
+                            yield return eventProperty;
+                        }
+                    }
+                }
+
+                if (_target.ContextProperties?.Count > 0)
+                {
+                    for (int i = 0; i < _target.ContextProperties.Count; ++i)
+                    {
+                        var contextProperty = _target.ContextProperties[i];
+                        if (_target.TryGetContextPropertyValue(_logEvent, contextProperty, out object propertyValue))
+                        {
+                            yield return new KeyValuePair<string, object>(contextProperty.Name, propertyValue);
+                        }
+                    }
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+            IDictionaryEnumerator IDictionary.GetEnumerator() => ((IDictionary)Inner).GetEnumerator();
+            bool IDictionary.IsReadOnly => false;
+            bool ICollection<KeyValuePair<string, object>>.IsReadOnly => false;
+            ICollection<string> IDictionary<string, object>.Keys => _inner is null && Count == 0 ? ArrayHelper.Empty<string>() : Inner.Keys;
+            ICollection<object> IDictionary<string, object>.Values => _inner is null && Count == 0 ? ArrayHelper.Empty<object>() : Inner.Values;
+#if !NET35 && !NET40
+            IEnumerable<string> IReadOnlyDictionary<string, object>.Keys => _inner is null && Count == 0 ? ArrayHelper.Empty<string>() : Inner.Keys;
+            IEnumerable<object> IReadOnlyDictionary<string, object>.Values => _inner is null && Count == 0 ? ArrayHelper.Empty<object>() : Inner.Values;
+#endif
+            object ICollection.SyncRoot => this;
+            bool ICollection.IsSynchronized => false;
+            ICollection IDictionary.Keys => ((IDictionary)Inner).Keys;
+            ICollection IDictionary.Values => ((IDictionary)Inner).Values;
+            bool IDictionary.IsFixedSize => false;
+            public object this[string key]
+            {
+                get
+                {
+                    if (TryGetValue(key, out object value))
+                        return value;
+                    throw new KeyNotFoundException();
+                }
+                set => Inner[key] = value;
+            }
+            object IDictionary.this[object key] { get => ((IDictionary)Inner)[key]; set => ((IDictionary)Inner)[key] = value; }
+            void IDictionary<string, object>.Add(string key, object value) => Inner.Add(key, value);
+            void ICollection<KeyValuePair<string, object>>.Add(KeyValuePair<string, object> item) => Inner.Add(item);
+            void IDictionary.Add(object key, object value) => ((IDictionary)Inner).Add(key, value);
+            public void Clear()
+            {
+                if (Count != 0)
+                {
+                    if (_inner is null)
+                        _inner = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+                    else
+                        _inner.Clear();
+                }
+            }
+            public bool ContainsKey(string key) => TryGetValue(key, out var _);
+            bool ICollection<KeyValuePair<string, object>>.Contains(KeyValuePair<string, object> item) => ContainsKey(item.Key) && Inner.Contains(item);
+            bool IDictionary.Contains(object key) => key is string stringKey ? ContainsKey(stringKey) : ((IDictionary)Inner).Contains(key);
+            bool IDictionary<string, object>.Remove(string key)
+            {
+                if (_inner is null && !ContainsKey(key))
+                    return false;
+                return Inner.Remove(key);
+            }
+            bool ICollection<KeyValuePair<string, object>>.Remove(KeyValuePair<string, object> item)
+            {
+                if (_inner is null && !ContainsKey(item.Key))
+                    return false;
+                return Inner.Remove(item);
+            }
+            void IDictionary.Remove(object key) => ((IDictionary)Inner).Remove(key);
+            void ICollection<KeyValuePair<string, object>>.CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
+            {
+                Guard.ThrowIfNull(array);
+                if (arrayIndex < 0)
+                    throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+
+                if (Count != 0)
+                {
+                    foreach (var propertyItem in this)
+                    {
+                        array[arrayIndex++] = propertyItem;
+                    }
+                }
+            }
+            void ICollection.CopyTo(Array array, int index) => ((ICollection)Inner).CopyTo(array, index);
+        }
+
 
         [ThreadAgnostic]
         internal sealed class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
