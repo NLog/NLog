@@ -259,7 +259,7 @@ namespace NLog.Targets
                 // TODO Make Dictionary-Lazy-adapter for PropertiesDictionary to skip extra Dictionary-allocation
                 combinedProperties = combinedProperties ?? CreateNewDictionary(logEvent.Properties.Count + (ContextProperties?.Count ?? 0));
                 bool checkForDuplicates = combinedProperties.Count > 0;
-                bool checkExcludeProperties = ExcludeProperties.Count > 0;
+                bool checkExcludeProperties = ExcludeProperties?.Count > 0;
                 using (var propertyEnumerator = logEvent.CreateOrUpdatePropertiesInternal().GetPropertyEnumerator())
                 {
                     while (propertyEnumerator.MoveNext())
@@ -276,12 +276,12 @@ namespace NLog.Targets
                 }
             }
             combinedProperties = GetContextProperties(logEvent, combinedProperties);
-            return combinedProperties ?? new Dictionary<string, object>(StringComparer.Ordinal);
+            return combinedProperties ?? CreateNewDictionary(0);
         }
 
         private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
         {
-            return new Dictionary<string, object>(Math.Max(initialCapacity, 3), StringComparer.Ordinal);
+            return new Dictionary<string, object>(initialCapacity < 3 ? 0 : initialCapacity, StringComparer.Ordinal);
         }
 
         /// <summary>
@@ -483,7 +483,7 @@ namespace NLog.Targets
 
             contextProperties = contextProperties ?? CreateNewDictionary(globalNames.Count);
             bool checkForDuplicates = contextProperties.Count > 0;
-            bool checkExcludeProperties = ExcludeProperties.Count > 0;
+            bool checkExcludeProperties = ExcludeProperties?.Count > 0;
             foreach (string propertyName in globalNames)
             {
                 if (string.IsNullOrEmpty(propertyName))
@@ -577,7 +577,7 @@ namespace NLog.Targets
             using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
             {
                 bool checkForDuplicates = contextProperties?.Count > 0;
-                bool checkExcludeProperties = ExcludeProperties.Count > 0;
+                bool checkExcludeProperties = ExcludeProperties?.Count > 0;
                 while (scopeEnumerator.MoveNext())
                 {
                     var scopeProperty = scopeEnumerator.Current;

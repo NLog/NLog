@@ -240,7 +240,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool Contains(KeyValuePair<object, object> item)
         {
-            if (!IsEmpty)
+            if (!IsEmpty && (_eventProperties != null || ContainsKey(item.Key)))
             {
                 if (((IDictionary<object, PropertyValue>)EventProperties).Contains(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, false))))
                     return true;
@@ -281,9 +281,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public IEnumerator<KeyValuePair<object, object>> GetEnumerator()
         {
-            if (IsEmpty)
-                return System.Linq.Enumerable.Empty<KeyValuePair<object, object>>().GetEnumerator();
-            return new PropertyDictionaryEnumerator(this);
+            return IsEmpty ? System.Linq.Enumerable.Empty<KeyValuePair<object, object>>().GetEnumerator() : new PropertyDictionaryEnumerator(this);
         }
 
         /// <inheritDoc/>
@@ -295,7 +293,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool Remove(object key)
         {
-            if (!IsEmpty)
+            if (!IsEmpty && (_eventProperties != null || ContainsKey(key)))
             {
                 return EventProperties.Remove(key);
             }
@@ -305,7 +303,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool Remove(KeyValuePair<object, object> item)
         {
-            if (!IsEmpty)
+            if (!IsEmpty && (_eventProperties != null || ContainsKey(item.Key)))
             {
                 if (((IDictionary<object, PropertyValue>)EventProperties).Remove(new KeyValuePair<object, PropertyValue>(item.Key, new PropertyValue(item.Value, false))))
                     return true;
@@ -504,20 +502,13 @@ namespace NLog.Internal
 
             public bool MoveNext()
             {
-                if (_messagePropertiesIndex.HasValue && _messagePropertiesIndex.Value + 1 < _dictionary._messageProperties.Count)
+                if (_messagePropertiesIndex.HasValue && MoveNextValidMessageParameter())
                 {
-                    // Move forward to a key that is not overridden
-                    var nextMessagePropertiesEnumerator = FindNextValidMessagePropertyIndex(_messagePropertiesIndex.Value + 1);
-                    if (nextMessagePropertiesEnumerator.HasValue)
-                    {
-                        _messagePropertiesIndex = nextMessagePropertiesEnumerator.Value;
-                        return true;
-                    }
+                    return true;
                 }
                
                 if (_dictionary._eventProperties != null)
                 {
-                    _messagePropertiesIndex = null;
                     return MoveNextValidEventProperty();
                 }
 
@@ -534,21 +525,29 @@ namespace NLog.Internal
                 return false;
             }
 
-            private int? FindNextValidMessagePropertyIndex(int startIndex)
+            private bool MoveNextValidMessageParameter()
             {
-                var eventProperties = _dictionary._eventProperties;
-                if (eventProperties is null)
-                    return startIndex;
-
-                for (int i = startIndex; i < _dictionary._messageProperties.Count; ++i)
+                if (_messagePropertiesIndex.Value + 1 < _dictionary._messageProperties.Count)
                 {
-                    if (eventProperties.TryGetValue(_dictionary._messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
+                    var eventProperties = _dictionary._eventProperties;
+                    if (eventProperties is null)
                     {
-                        return i;
+                        _messagePropertiesIndex = _messagePropertiesIndex.Value + 1;
+                        return true;
+                    }
+
+                    for (int i = _messagePropertiesIndex.Value + 1; i < _dictionary._messageProperties.Count; ++i)
+                    {
+                        if (eventProperties.TryGetValue(_dictionary._messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
+                        {
+                            _messagePropertiesIndex = i;
+                            return true;
+                        }
                     }
                 }
-
-                return null;
+                
+                _messagePropertiesIndex = null;
+                return false;
             }
 
             public void Dispose()
