@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/ThreadId-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("threadid")]
-    public class ThreadIdLayoutRenderer : LayoutRenderer
+    public class ThreadIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -57,6 +57,11 @@ namespace NLog.LayoutRenderers
         private static int GetValue()
         {
             return AsyncHelpers.GetManagedThreadId();
+        }
+
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            return GetValue().ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }
