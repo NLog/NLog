@@ -4,6 +4,33 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.3.3 (2024/08/12)
+
+**Improvements**
+- [#5548](https://github.com/NLog/NLog/pull/5548) FileTarget - Reset reusable MemoryStream when above max capacity (#5548) (@RomanSoloweow)
+- [#5568](https://github.com/NLog/NLog/pull/5568) ThreadIdLayoutRenderer - Added IStringValueRenderer optimization (#5568) (@snakefoot)
+- [#5567](https://github.com/NLog/NLog/pull/5567) PropertiesDictionary - Simplify PropertyDictionaryEnumerator MoveNext (#5567) (@snakefoot)
+- [#5566](https://github.com/NLog/NLog/pull/5566) PropertiesDictionary - Added PropertyDictionaryEnumerator to enumerate without allocation (#5566) (@snakefoot)
+- [#5562](https://github.com/NLog/NLog/pull/5562) TargetWithContext - Skip caching when render value for ContextProperties (#5562) (@snakefoot)
+- [#5557](https://github.com/NLog/NLog/pull/5557) SimpleLayout - Refactor to reduce code complexity (#5557) (@snakefoot)
+- [#5556](https://github.com/NLog/NLog/pull/5556) DatabaseTarget - CloseConnection even when ThrowExceptions = true (#5556) (@snakefoot)
+- [#5553](https://github.com/NLog/NLog/pull/5553) LoggerNameMatcher private classes marked as sealed (#5553) (@snakefoot)
+- [#5554](https://github.com/NLog/NLog/pull/5554) LoggingConfigurationParser - Refactor to reduce code complexity (#5554) (@snakefoot)
+- [#5551](https://github.com/NLog/NLog/pull/5551) LoggingConfigurationParser - Refactor to reduce code complexity (#5551) (@snakefoot)
+- [#5550](https://github.com/NLog/NLog/pull/5550) FileArchiveModeRolling - Refactor to reduce code complexity (#5550) (@snakefoot)
+- [#5542](https://github.com/NLog/NLog/pull/5542) LimitingTargetWrapper - Fix wiki-link in XML docs (#5542) (@snakefoot)
+- [#5541](https://github.com/NLog/NLog/pull/5541) FileTarget - Improve internal logging when invalid FileName (#5541) (@snakefoot)
+- [#5540](https://github.com/NLog/NLog/pull/5540) WhenRepeatedFilter - Added wiki-link in XML docs (#5540) (@snakefoot)
+- [#5536](https://github.com/NLog/NLog/pull/5536) RegEx IsMatch is faster with RegexOptions.ExplicitCapture to skip capture (#5536) (@snakefoot)
+- [#5535](https://github.com/NLog/NLog/pull/5535) PropertyTypeConverter - Use Type IsAssignableFrom instead of Equals (#5535) (@snakefoot)
+- [#5527](https://github.com/NLog/NLog/pull/5527) StackTraceUsageUtils - Refactor to reduce code complexity (#5527) (@snakefoot)
+- [#5526](https://github.com/NLog/NLog/pull/5526) AsyncRequestQueue - Premature optimization of Enqueue (#5526) (@snakefoot)
+- [#5525](https://github.com/NLog/NLog/pull/5525) JsonLayout - Refactor to reduce code complexity (#5525) (@snakefoot)
+- [#5524](https://github.com/NLog/NLog/pull/5524) XmlLayout - Refactor to reduce code complexity (#5524) (@snakefoot)
+- [#5523](https://github.com/NLog/NLog/pull/5523) AsyncTaskTarget - Added more logging to diagnose batching logic (#5523) (@snakefoot)
+- [#5522](https://github.com/NLog/NLog/pull/5522) Layout will always initializes nested layouts (#5522) (@snakefoot)
+- [#5519](https://github.com/NLog/NLog/pull/5519) NLogTraceListener - Reduce boxing of EventType + EventId properties (#5519) (@snakefoot)
+
 ### Version 5.3.2 (2024/04/30)
 
 **Bug fix**
