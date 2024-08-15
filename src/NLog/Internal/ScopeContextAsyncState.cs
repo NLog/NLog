@@ -135,16 +135,17 @@ namespace NLog.Internal
 
         private static IReadOnlyCollection<KeyValuePair<string, object>> EnsureUniqueProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
         {
-            if (properties.Count > 1)
+            var scopePropertyCount = properties.Count;
+            if (scopePropertyCount > 1)
             {
                 // Must validate that collected properties are unique
                 if (properties is Dictionary<string, object> dictionary && ReferenceEquals(dictionary.Comparer, ScopeContext.DefaultComparer))
                 {
                     return properties;
                 }
-                else if (properties.Count > 10 || !ScopeContextPropertyEnumerator<object>.HasUniqueCollectionKeys(properties, ScopeContext.DefaultComparer))
+                else if (scopePropertyCount > 10 || !ScopeContextPropertyEnumerator<object>.HasUniqueCollectionKeys(properties, ScopeContext.DefaultComparer))
                 {
-                    var scopeProperties = new Dictionary<string, object>(Math.Min(properties.Count, 10), ScopeContext.DefaultComparer);
+                    var scopeProperties = new Dictionary<string, object>(Math.Min(scopePropertyCount, 10), ScopeContext.DefaultComparer);
                     ScopeContextPropertyEnumerator<object>.CopyScopePropertiesToDictionary(properties, scopeProperties);
                     return scopeProperties;
                 }

@@ -100,11 +100,18 @@ namespace NLog.Internal
             {
                 while (leftEnumerator.MoveNext())
                 {
+                    ++startIndex;                   
+                    var previousKey = leftEnumerator.Current.Key;
+
+                    if (!leftEnumerator.MoveNext())
+                        return true;
+
                     ++startIndex;
+                    var currentKey = leftEnumerator.Current.Key;
+                    if (keyComparer.Equals(previousKey, currentKey))
+                        return false;
 
                     int currentIndex = 0;
-
-                    var left = leftEnumerator.Current;
                     using (var rightEnumerator = new ScopeContextPropertyEnumerator<TValue>(scopeProperties))
                     {
                         while (rightEnumerator.MoveNext())
@@ -112,16 +119,15 @@ namespace NLog.Internal
                             if (++currentIndex < startIndex)
                                 continue;
 
-                            var right = rightEnumerator.Current;
-                            if (keyComparer.Equals(left.Key, right.Key))
-                            {
-                                return false;
-                            }
-
                             if (currentIndex > 10)
-                            {
                                 return false;   // Too many comparisons
-                            }
+
+                            var nextKey = rightEnumerator.Current.Key;
+                            if (keyComparer.Equals(previousKey, nextKey))
+                                return false;
+
+                            if (keyComparer.Equals(currentKey, nextKey))
+                                return false;
                         }
                     }
                 }

@@ -383,9 +383,10 @@ namespace NLog.Internal
 
             for (int i = 0; i < parameterCount - 1; ++i)
             {
+                var currentName = parameterList[i].Name;
                 for (int j = i + 1; j < parameterCount; ++j)
                 {
-                    if (parameterList[i].Name == parameterList[j].Name)
+                    if (currentName == parameterList[j].Name)
                         return false;
                 }
             }
