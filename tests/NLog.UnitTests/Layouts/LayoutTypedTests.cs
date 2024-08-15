@@ -57,7 +57,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, layout);
             Assert.NotEqual(0, layout);
         }
-
+        
         [Fact]
         public void LayoutFixedInvalidIntTest()
         {
@@ -1028,6 +1028,18 @@ namespace NLog.UnitTests.Layouts
             l.Initialize(null);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("42", result);
+        }
+
+        [Fact]
+        public void FromMethodTest()
+        {
+            // Arrange
+            var layout = Layout<string>.FromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.True(layout.ThreadAgnostic);
         }
 
         private sealed class TestObject
