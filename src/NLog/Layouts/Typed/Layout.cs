@@ -194,8 +194,8 @@ namespace NLog.Layouts
         }
 
         /// TODO
-        new public static Layout<T> FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
-            => new Layout<T>(Layout.FromMethod(layoutMethod, options));
+        public static Layout<T> FromMethod(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
+            => new Layout<T>(Layout.FromMethod(l => layoutMethod(l), options));
         
         private void PrecalculateInnerLayout(LogEventInfo logEvent, StringBuilder target)
         {

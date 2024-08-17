@@ -34,6 +34,8 @@
 namespace NLog.UnitTests.Layouts
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using NLog.Layouts;
     using Xunit;
 
@@ -42,11 +44,11 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutFixedIntValueTest()
         {
-            // Arrange
+            // Arrange            
             Layout<int> layout = 5;
 
             // Act
-            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());            
 
             // Assert
             Assert.Equal(5, result);
@@ -57,7 +59,23 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, layout);
             Assert.NotEqual(0, layout);
         }
-        
+
+        [Fact]
+        public void Layout_FromMethod_FixedInt_Test()
+        {
+            // Arrange            
+            Layout<int> layout = Layout<int>.FromMethod(l => 5);            
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(5, result);
+            Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout.IsFixed);            
+            Assert.NotEqual(0, layout);
+        }
+
         [Fact]
         public void LayoutFixedInvalidIntTest()
         {
@@ -74,7 +92,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("", layout.ToString());
         }
 
-        [Fact]
+        [Fact]        
         public void LayoutFixedNullEventTest()
         {
             // Arrange
@@ -87,6 +105,19 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, result);
         }
 
+        [Fact]
+        public void Layout_FromMethod_NullEventTest()
+        {
+            // Arrange
+            Layout<int> layout = Layout<int>.FromMethod(l => 1);
+
+            // Act
+            var result = layout.RenderValue(null);
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+        
         [Fact]
         public void LayoutFixedNullableIntValueTest()
         {
@@ -103,6 +134,23 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, layout.FixedValue);
             Assert.Equal("5", layout.ToString());
             Assert.Equal(5, layout);
+            Assert.NotEqual(0, layout);
+            Assert.NotEqual(default(int?), layout);            
+        }
+
+        [Fact]
+        public void Layout_FromMethod_FixedNullableInt_Test()
+        {
+            // Arrange
+            Layout<int?> layout = Layout<int?>.FromMethod(l => 5);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(5, result);
+            Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout.IsFixed);            
             Assert.NotEqual(0, layout);
             Assert.NotEqual(default(int?), layout);
         }
@@ -144,6 +192,27 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(layout.FixedValue);
             Assert.Equal("null", layout.ToString());
             Assert.Equal(nullValue, layout);
+            Assert.NotEqual(0, layout);
+        }
+
+        [Fact]
+        public void Layout_FromMethod_FixedNullIntValueTest()
+        {
+            // Arrange
+            var nullValue = (int?)null;
+            Layout<int?> layout = Layout<int?>.FromMethod(l => nullValue);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            var result5 = layout.RenderValue(LogEventInfo.CreateNullEvent(), 5);
+
+            // Assert
+            Assert.Null(result);
+            Assert.Equal(5, result5);
+            Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout.IsFixed);            
+            Assert.NotEqual("null", layout.ToString());
+            Assert.NotEqual(nullValue, layout);
             Assert.NotEqual(0, layout);
         }
 
@@ -769,7 +838,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             Assert.Equal(100, result);
-        }
+        }        
 
         [Theory]
         [InlineData(100)]
@@ -968,7 +1037,7 @@ namespace NLog.UnitTests.Layouts
         public void RenderShouldHandleValidConversion()
         {
             // Arrange
-            var layout = new Layout<int>("${event-properties:prop1}");
+            var layout = new Layout<int>("${event-properties:prop1}");            
             var logEventInfo = LogEventInfo.CreateNullEvent();
             logEventInfo.Properties["prop1"] = "100";
 
