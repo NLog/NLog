@@ -399,7 +399,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new Dictionary<string, object> { { "Hello", "World" } };
 
@@ -407,7 +407,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Hello"">World</property></property></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><property key=""Hello"">World</property></property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -425,7 +425,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new Dictionary<string, object> { { "Hello", "World" } };
 
@@ -433,7 +433,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><Hello>World</Hello></nlogPropertyKey></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><Hello>World</Hello></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -449,7 +449,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new [] { "Hello", "World" };
 
@@ -457,7 +457,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><item>Hello</item><item>World</item></property></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><item>Hello</item><item>World</item></property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -477,7 +477,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new[] { "Hello", "World" };
 
@@ -485,7 +485,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><node value=""Hello""/><node value=""World""/></nlogPropertyKey></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><node value=""Hello""/><node value=""World""/></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -502,7 +502,7 @@ namespace NLog.UnitTests.Layouts
             var guid = Guid.NewGuid();
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new { Id = guid, Name = "Hello World", Elements = new[] { "Earth", "Wind", "Fire" } };
 
@@ -510,7 +510,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Id"">" + guid.ToString() + @"</property><property key=""Name"">Hello World</property><property key=""Elements""><item>Earth</item><item>Wind</item><item>Fire</item></property></property></logevent>";
+            string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><property key=""Id"">" + guid.ToString() + @"</property><property key=""Name"">Hello World</property><property key=""Elements""><item>Earth</item><item>Wind</item><item>Fire</item></property></property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -530,7 +530,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new { Id = guid, Name = "Hello World", Elements = new[] { "Earth", "Wind", "Fire" } };
 
@@ -538,7 +538,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><Id>" + guid.ToString() + @"</Id><Name>Hello World</Name><Elements><item>Earth</item><item>Wind</item><item>Fire</item></Elements></nlogPropertyKey></logevent>";
+            string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><Id>" + guid.ToString() + @"</Id><Name>Hello World</Name><Elements><item>Earth</item><item>Wind</item><item>Fire</item></Elements></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -560,7 +560,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = object1;
 
@@ -568,11 +568,39 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Id"">123</property><property key=""Name"">test name</property></property></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><property key=""Id"">123</property><property key=""Name"">test name</property></property></logevent>";
             Assert.Equal(expected, result);
         }
 
 #endif
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderSafeXml()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlElement("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeEventProperties = true,
+                MaxRecursionLimit = 10,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster < message"
+            };
+            logEventInfo.Properties["<xmltag>"] = "<xmltag>";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster &lt; message</message><_xmltag_>&lt;xmltag&gt;</_xmltag_></logevent>";
+            Assert.Equal(expected, result);
+        }
+
 
         [Fact]
         public void XmlLayout_PropertiesElementNameFormat_RenderInfiniteLoop()
@@ -589,7 +617,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new TestList();
 
@@ -616,7 +644,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             IDictionary<object, object> testDictionary = new Internal.TrickyTestDictionary();
             testDictionary.Add("key1", 13);
@@ -627,7 +655,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><key1>13</key1><key_2>1.3</key_2></nlogPropertyKey></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><key1>13</key1><key_2>1.3</key_2></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 

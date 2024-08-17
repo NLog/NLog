@@ -221,7 +221,7 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(object value)
         {
-            return XmlConvertToString(value, false);
+            return value is string stringValue ? stringValue : XmlConvertToString(value, false);
         }
 
         internal static string XmlConvertToString(float value)
@@ -340,9 +340,6 @@ namespace NLog.Internal
         {
             try
             {
-                if (value is string stringValue)
-                    return stringValue;
-
                 var convertibleValue = value as IConvertible;
                 var objTypeCode = convertibleValue?.GetTypeCode() ?? (value is null ? TypeCode.Empty : TypeCode.Object);
                 if (objTypeCode != TypeCode.Object)
