@@ -35,12 +35,13 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
     [ThreadAgnostic]
-    internal sealed class FuncThreadAgnosticLayoutRenderer : FuncLayoutRenderer
+    internal sealed class FuncThreadAgnosticLayoutRenderer : FuncLayoutRenderer, IRawValue
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FuncThreadAgnosticLayoutRenderer"/> class.
@@ -50,6 +51,12 @@ namespace NLog.LayoutRenderers
         public FuncThreadAgnosticLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
             : base(layoutRendererName, renderMethod)
         {
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = RenderValue(logEvent);
+            return true;
         }
     }
 }
