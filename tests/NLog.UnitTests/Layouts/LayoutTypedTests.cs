@@ -1,35 +1,35 @@
-﻿// 
+﻿//
 // Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Layouts
 {
@@ -44,11 +44,11 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutFixedIntValueTest()
         {
-            // Arrange            
+            // Arrange
             Layout<int> layout = 5;
 
             // Act
-            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());            
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
 
             // Assert
             Assert.Equal(5, result);
@@ -63,8 +63,8 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void Layout_FromMethod_FixedInt_Test()
         {
-            // Arrange            
-            Layout<int> layout = Layout<int>.FromMethod(l => 5);            
+            // Arrange
+            Layout<int> layout = Layout<int>.FromMethod(l => 5);
 
             // Act
             var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
@@ -72,7 +72,7 @@ namespace NLog.UnitTests.Layouts
             // Assert
             Assert.Equal(5, result);
             Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
-            Assert.False(layout.IsFixed);            
+            Assert.False(layout.IsFixed);
             Assert.NotEqual(0, layout);
         }
 
@@ -92,7 +92,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("", layout.ToString());
         }
 
-        [Fact]        
+        [Fact]
         public void LayoutFixedNullEventTest()
         {
             // Arrange
@@ -117,7 +117,7 @@ namespace NLog.UnitTests.Layouts
             // Assert
             Assert.Equal(0, result);
         }
-        
+
         [Fact]
         public void LayoutFixedNullableIntValueTest()
         {
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("5", layout.ToString());
             Assert.Equal(5, layout);
             Assert.NotEqual(0, layout);
-            Assert.NotEqual(default(int?), layout);            
+            Assert.NotEqual(default(int?), layout);
         }
 
         [Fact]
@@ -150,7 +150,7 @@ namespace NLog.UnitTests.Layouts
             // Assert
             Assert.Equal(5, result);
             Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
-            Assert.False(layout.IsFixed);            
+            Assert.False(layout.IsFixed);
             Assert.NotEqual(0, layout);
             Assert.NotEqual(default(int?), layout);
         }
@@ -210,7 +210,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(result);
             Assert.Equal(5, result5);
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
-            Assert.False(layout.IsFixed);            
+            Assert.False(layout.IsFixed);
             Assert.NotEqual("null", layout.ToString());
             Assert.NotEqual(nullValue, layout);
             Assert.NotEqual(0, layout);
@@ -241,6 +241,27 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void Layout_FromMethod_FixedUrlValueTest()
+        {
+            // Arrange
+            var uri = new Uri("http://nlog");
+            Layout<Uri> layout = Layout<Uri>.FromMethod(l => uri);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(uri, result);
+            Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(uri.ToString(), layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.NotEqual(uri, layout);
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual(uri.ToString(), layout.ToString());
+            Assert.NotEqual(new Uri("//other"), layout);
+            Assert.NotEqual(default(Uri), layout);
+        }
+
+        [Fact]
         public void LayoutFixedNullUrlValueTest()
         {
             // Arrange
@@ -260,6 +281,27 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, layout.FixedValue);
             Assert.Same(layout.FixedValue, layout.FixedValue);
             Assert.Equal("null", layout.ToString());
+            Assert.NotEqual(new Uri("//other"), layout);
+        }
+
+        [Fact]
+        public void Layout_FromMethod_FixedNullUrlValueTest()
+        {
+            // Arrange
+            Uri uri = null;
+            Layout<Uri> layout = Layout<Uri>.FromMethod(l => uri);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(uri, result);
+            Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
+            Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout == uri);
+            Assert.True(layout != uri);
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual("null", layout.ToString());
             Assert.NotEqual(new Uri("//other"), layout);
         }
 
@@ -838,7 +880,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             Assert.Equal(100, result);
-        }        
+        }
 
         [Theory]
         [InlineData(100)]
@@ -1037,7 +1079,7 @@ namespace NLog.UnitTests.Layouts
         public void RenderShouldHandleValidConversion()
         {
             // Arrange
-            var layout = new Layout<int>("${event-properties:prop1}");            
+            var layout = new Layout<int>("${event-properties:prop1}");
             var logEventInfo = LogEventInfo.CreateNullEvent();
             logEventInfo.Properties["prop1"] = "100";
 
