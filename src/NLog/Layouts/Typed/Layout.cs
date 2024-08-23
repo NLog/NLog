@@ -193,6 +193,15 @@ namespace NLog.Layouts
             PrecalculateInnerLayout(logEvent, target);
         }
 
+        /// <summary>
+        /// Create a typed layout from a lambda method.
+        /// </summary>
+        /// <param name="layoutMethod">Method that renders the layout.</param>
+        /// <param name="options">Tell if method is safe for concurrent threading.</param>
+        /// <returns>Instance of typed layout.</returns>
+        public static Layout<T> FromMethod(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
+            => new Layout<T>(Layout.FromMethod(l => layoutMethod(l), options));
+
         private void PrecalculateInnerLayout(LogEventInfo logEvent, StringBuilder target)
         {
             if (IsFixed || (_innerLayout.ThreadAgnostic && !_innerLayout.ThreadAgnosticImmutable))

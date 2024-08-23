@@ -59,6 +59,22 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void Layout_FromMethod_FixedInt_Test()
+        {
+            // Arrange
+            Layout<int> layout = Layout<int>.FromMethod(l => 5);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(5, result);
+            Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual(0, layout);
+        }
+
+        [Fact]
         public void LayoutFixedInvalidIntTest()
         {
             Layout<int> layout;
@@ -88,6 +104,19 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void Layout_FromMethod_NullEventTest()
+        {
+            // Arrange
+            Layout<int> layout = Layout<int>.FromMethod(l => 1);
+
+            // Act
+            var result = layout.RenderValue(null);
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
         public void LayoutFixedNullableIntValueTest()
         {
             // Arrange
@@ -103,6 +132,23 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(5, layout.FixedValue);
             Assert.Equal("5", layout.ToString());
             Assert.Equal(5, layout);
+            Assert.NotEqual(0, layout);
+            Assert.NotEqual(default(int?), layout);
+        }
+
+        [Fact]
+        public void Layout_FromMethod_FixedNullableInt_Test()
+        {
+            // Arrange
+            Layout<int?> layout = Layout<int?>.FromMethod(l => 5);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(5, result);
+            Assert.Equal("5", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout.IsFixed);
             Assert.NotEqual(0, layout);
             Assert.NotEqual(default(int?), layout);
         }
@@ -148,6 +194,27 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void Layout_FromMethod_FixedNullIntValueTest()
+        {
+            // Arrange
+            var nullValue = (int?)null;
+            Layout<int?> layout = Layout<int?>.FromMethod(l => nullValue);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+            var result5 = layout.RenderValue(LogEventInfo.CreateNullEvent(), 5);
+
+            // Assert
+            Assert.Null(result);
+            Assert.Equal(5, result5);
+            Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual("null", layout.ToString());
+            Assert.NotEqual(nullValue, layout);
+            Assert.NotEqual(0, layout);
+        }
+
+        [Fact]
         public void LayoutFixedUrlValueTest()
         {
             // Arrange
@@ -172,6 +239,27 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void Layout_FromMethod_FixedUrlValueTest()
+        {
+            // Arrange
+            var uri = new Uri("http://nlog");
+            Layout<Uri> layout = Layout<Uri>.FromMethod(l => uri);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(uri, result);
+            Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
+            Assert.Equal(uri.ToString(), layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.NotEqual(uri, layout);
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual(uri.ToString(), layout.ToString());
+            Assert.NotEqual(new Uri("//other"), layout);
+            Assert.NotEqual(default(Uri), layout);
+        }
+
+        [Fact]
         public void LayoutFixedNullUrlValueTest()
         {
             // Arrange
@@ -191,6 +279,27 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(uri, layout.FixedValue);
             Assert.Same(layout.FixedValue, layout.FixedValue);
             Assert.Equal("null", layout.ToString());
+            Assert.NotEqual(new Uri("//other"), layout);
+        }
+
+        [Fact]
+        public void Layout_FromMethod_FixedNullUrlValueTest()
+        {
+            // Arrange
+            Uri uri = null;
+            Layout<Uri> layout = Layout<Uri>.FromMethod(l => uri);
+
+            // Act
+            var result = layout.RenderValue(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(uri, result);
+            Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
+            Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
+            Assert.False(layout == uri);
+            Assert.True(layout != uri);
+            Assert.False(layout.IsFixed);
+            Assert.NotEqual("null", layout.ToString());
             Assert.NotEqual(new Uri("//other"), layout);
         }
 
@@ -1028,6 +1137,18 @@ namespace NLog.UnitTests.Layouts
             l.Initialize(null);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("42", result);
+        }
+
+        [Fact]
+        public void FromMethodTest()
+        {
+            // Arrange
+            var layout = Layout<string>.FromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.True(layout.ThreadAgnostic);
         }
 
         private sealed class TestObject
