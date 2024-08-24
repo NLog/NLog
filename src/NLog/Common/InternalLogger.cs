@@ -449,9 +449,8 @@ namespace NLog.Common
         {
             try
             {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-                var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
-                    System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
+                var fileVersion = assembly.GetFirstCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+                var productVersion = assembly.GetFirstCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
                 var globalAssemblyCache = false;
 #if !NETSTANDARD
                 if (assembly.GlobalAssemblyCache)
@@ -459,12 +458,9 @@ namespace NLog.Common
 #endif
                 Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
                     assembly.FullName,
-                    fileVersionInfo?.FileVersion,
-                    fileVersionInfo?.ProductVersion,
+                    fileVersion,
+                    productVersion,
                     globalAssemblyCache);
-#else
-                Info(assembly.FullName);
-#endif
             }
             catch (Exception ex)
             {
