@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 
 var consoleWriter = new StringWriter();
 var orgConsole = System.Console.Out;

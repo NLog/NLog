@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.LayoutRenderers
 {
@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Exception information provided through 
+    /// Exception information provided through
     /// a call to one of the Logger.*Exception() methods.
     /// </summary>
     /// <remarks>
@@ -346,7 +346,7 @@ namespace NLog.LayoutRenderers
         /// Appends the Message of an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The exception containing the Message to append.</param>        
+        /// <param name="ex">The exception containing the Message to append.</param>
         protected virtual void AppendMessage(StringBuilder sb, Exception ex)
         {
             try
@@ -367,14 +367,14 @@ namespace NLog.LayoutRenderers
         /// Appends the method name from Exception's stack trace to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose method name should be appended.</param>        
+        /// <param name="ex">The Exception whose method name should be appended.</param>
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow callsite logic", "IL2026")]
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             sb.Append(ex.TargetSite?.ToString());
 #else
-            sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));            
+            sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #endif
         }
 
@@ -382,7 +382,7 @@ namespace NLog.LayoutRenderers
         /// Appends the stack trace from an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose stack trace should be appended.</param>        
+        /// <param name="ex">The Exception whose stack trace should be appended.</param>
         protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.StackTrace);
@@ -392,7 +392,7 @@ namespace NLog.LayoutRenderers
         /// Appends the result of calling ToString() on an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>       
+        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>
         protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
 
@@ -415,7 +415,7 @@ namespace NLog.LayoutRenderers
         /// Appends the type of an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose type should be appended.</param>        
+        /// <param name="ex">The Exception whose type should be appended.</param>
         protected virtual void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);

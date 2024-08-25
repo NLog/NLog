@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog
 {
@@ -103,8 +103,8 @@ namespace NLog
 
         /// <summary>
         /// Creates new logger that automatically appends the specified property to all log events (without changing current logger)
-        /// 
-        /// With <see cref="Properties"/> property, all properties can be enumerated. 
+        ///
+        /// With <see cref="Properties"/> property, all properties can be enumerated.
         /// </summary>
         /// <param name="propertyKey">Property Name</param>
         /// <param name="propertyValue">Property Value</param>
@@ -121,8 +121,8 @@ namespace NLog
 
         /// <summary>
         /// Creates new logger that automatically appends the specified properties to all log events (without changing current logger)
-        /// 
-        /// With <see cref="Properties"/> property, all properties can be enumerated. 
+        ///
+        /// With <see cref="Properties"/> property, all properties can be enumerated.
         /// </summary>
         /// <param name="properties">Collection of key-value pair properties</param>
         /// <returns>New Logger object that automatically appends specified properties</returns>
@@ -140,10 +140,10 @@ namespace NLog
 
         /// <summary>
         /// Obsolete and replaced by <see cref="WithProperty"/> that prevents unexpected side-effects in Logger-state.
-        /// 
+        ///
         /// Updates the specified context property for the current logger. The logger will append it for all log events.
         ///
-        /// With <see cref="Properties"/> property, all properties can be enumerated (or updated). 
+        /// With <see cref="Properties"/> property, all properties can be enumerated (or updated).
         /// </summary>
         /// <remarks>
         /// It is highly recommended to ONLY use <see cref="WithProperty(string, object)"/> for modifying context properties.
@@ -712,7 +712,7 @@ namespace NLog
             if (targetsForLevel != null)
             {
                 // Translate Exception with missing LogEvent message as log single value
-                var logEvent = message is null && ex != null && !(args?.Length > 0) ? 
+                var logEvent = message is null && ex != null && !(args?.Length > 0) ?
                     LogEventInfo.Create(level, Name, ExceptionMessageFormatProvider.Instance, ex) :
                     LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
                 WriteToTargets(logEvent, targetsForLevel);
@@ -803,7 +803,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Raises the event when the logger is reconfigured. 
+        /// Raises the event when the logger is reconfigured.
         /// </summary>
         /// <param name="e">Event arguments</param>
         protected virtual void OnLoggerReconfigured(EventArgs e)

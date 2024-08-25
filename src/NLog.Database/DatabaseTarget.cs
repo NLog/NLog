@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Targets
 {
@@ -126,7 +126,7 @@ namespace NLog.Targets
         /// </ul>
         /// <para>(Note that provider invariant names are not supported on .NET Compact Framework).</para>
         /// <para>
-        /// Alternatively the parameter value can be be a fully qualified name of the provider 
+        /// Alternatively the parameter value can be be a fully qualified name of the provider
         /// connection type (class implementing <see cref="IDbConnection" />) or one of the following tokens:
         /// </para>
         /// <ul>
@@ -176,7 +176,7 @@ namespace NLog.Targets
         public IList<DatabaseCommandInfo> UninstallDdlCommands { get; } = new List<DatabaseCommandInfo>();
 
         /// <summary>
-        /// Gets or sets a value indicating whether to keep the 
+        /// Gets or sets a value indicating whether to keep the
         /// database connection open between the log events.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
@@ -232,10 +232,10 @@ namespace NLog.Targets
         /// Gets or sets the text of the SQL command to be run on each log level.
         /// </summary>
         /// <remarks>
-        /// Typically this is a SQL INSERT statement or a stored procedure call. 
+        /// Typically this is a SQL INSERT statement or a stored procedure call.
         /// It should use the database-specific parameters (marked as <c>@parameter</c>
         /// for SQL server or <c>:parameter</c> for Oracle, other data providers
-        /// have their own notation) and not the layout renderers, 
+        /// have their own notation) and not the layout renderers,
         /// because the latter is prone to SQL injection attacks.
         /// The layout renderers should be specified as &lt;parameter /&gt; elements instead.
         /// </remarks>
@@ -248,7 +248,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>
         /// This specifies how the command text is interpreted, as "Text" (default) or as "StoredProcedure".
-        /// When using the value StoredProcedure, the commandText-property would 
+        /// When using the value StoredProcedure, the commandText-property would
         /// normally be the name of the stored procedure. TableDirect method is not supported in this context.
         /// </remarks>
         /// <docgen category='SQL Statement' order='11' />
@@ -853,10 +853,10 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Build the connectionstring from the properties. 
+        /// Build the connectionstring from the properties.
         /// </summary>
         /// <remarks>
-        ///  Using <see cref="ConnectionString"/> at first, and falls back to the properties <see cref="DBHost"/>, 
+        ///  Using <see cref="ConnectionString"/> at first, and falls back to the properties <see cref="DBHost"/>,
         ///  <see cref="DBUserName"/>, <see cref="DBPassword"/> and <see cref="DBDatabase"/>
         /// </remarks>
         /// <param name="logEvent">Event to render the layout inside the properties.</param>
@@ -1121,7 +1121,7 @@ namespace NLog.Targets
 #if NETSTANDARD1_3 || NETSTANDARD1_5
         /// <summary>
         /// Fake transaction
-        /// 
+        ///
         /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
         /// </summary>
         private sealed class TransactionScope : IDisposable

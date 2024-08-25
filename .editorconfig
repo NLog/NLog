@@ -3,9 +3,15 @@ root = true
 
 ; Unix-style newlines
 [*]
-end_of_line = CRLF
+end_of_line = crlf
 
 ; 4-column space indentation
 [*.cs]
 indent_style = space
 indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# .NET formatting rules
+[*.{cs,vb}]
+dotnet_sort_system_directives_first = true

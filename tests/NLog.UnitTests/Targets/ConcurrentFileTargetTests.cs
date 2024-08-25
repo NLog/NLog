@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 #if !NETSTANDARD
 
@@ -38,16 +38,15 @@
 namespace NLog.UnitTests.Targets
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Threading;
     using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Xunit.Extensions;
 
     public class ConcurrentFileTargetTests : NLogTestBase
@@ -113,7 +112,7 @@ namespace NLog.UnitTests.Targets
 
             string format = processIndex + " {0}";
 
-            // Having the internal logger enabled would just slow things down, reducing the 
+            // Having the internal logger enabled would just slow things down, reducing the
             // likelyhood for uncovering racing conditions. Uncomment #define DISABLE_FILE_INTERNAL_LOGGING
 
 #if !DISABLE_FILE_INTERNAL_LOGGING
@@ -320,7 +319,7 @@ namespace NLog.UnitTests.Targets
 #endif
         public void AsyncConcurrentTest(string mode)
         {
-            // Before 2 processes are running into concurrent writes, 
+            // Before 2 processes are running into concurrent writes,
             // the first process typically already has written couple thousand events.
             // Thus to have a meaningful test, at least 10K events are required.
             // Due to the buffering it makes no big difference in runtime, whether we

@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Layouts
 {
@@ -40,9 +40,9 @@ namespace NLog.Layouts
     using System.Linq;
     using System.Text;
     using JetBrains.Annotations;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Common;
     using NLog.Targets;
 
     /// <summary>
@@ -63,7 +63,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// Layout is thread-agnostic if it has been marked with [ThreadAgnostic] attribute and all its children are
         /// like that as well.
-        /// 
+        ///
         /// Thread-agnostic layouts only use contents of <see cref="LogEventInfo"/> for its output.
         /// </remarks>
         internal bool ThreadAgnostic { get; set; }
@@ -150,7 +150,7 @@ namespace NLog.Layouts
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
 #else
-            var name = $"{layoutMethod.Target?.ToString()}";            
+            var name = $"{layoutMethod.Target?.ToString()}";
 #endif
             var layoutRenderer = CreateFuncLayoutRenderer((l, c) => layoutMethod(l), options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
@@ -167,13 +167,13 @@ namespace NLog.Layouts
         /// <summary>
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
-        /// 
-        /// Only if the layout doesn't have [ThreadAgnostic] and doesn't contain layouts with [ThreadAgnostic]. 
+        ///
+        /// Only if the layout doesn't have [ThreadAgnostic] and doesn't contain layouts with [ThreadAgnostic].
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <remarks>
         /// Calling this method enables you to store the log event in a buffer
-        /// and/or potentially evaluate it in another thread even though the 
+        /// and/or potentially evaluate it in another thread even though the
         /// layout may contain thread-dependent renderer.
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
@@ -366,7 +366,7 @@ namespace NLog.Layouts
             objectGraphTypes.Remove(typeof(NLog.LayoutRenderers.LiteralLayoutRenderer));
 
             // determine whether the layout is thread-agnostic
-            // layout is thread agnostic if it is thread-agnostic and 
+            // layout is thread agnostic if it is thread-agnostic and
             // all its nested objects are thread-agnostic.
             ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
             ThreadAgnosticImmutable = ThreadAgnostic && objectGraphTypes.Any(t => t.IsDefined(typeof(ThreadAgnosticImmutableAttribute), true));
@@ -460,7 +460,7 @@ namespace NLog.Layouts
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
-        /// 
+        ///
         /// Register a custom Layout.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
@@ -477,7 +477,7 @@ namespace NLog.Layouts
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.
-        /// 
+        ///
         /// Register a custom Layout.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>

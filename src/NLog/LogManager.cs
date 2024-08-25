@@ -1,43 +1,41 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
@@ -87,7 +85,7 @@ namespace NLog
         }
 #endif
         /// <summary>
-        /// Gets or sets a value indicating whether NLog should throw exceptions. 
+        /// Gets or sets a value indicating whether NLog should throw exceptions.
         /// By default exceptions are not thrown under any circumstances.
         /// </summary>
         public static bool ThrowExceptions
@@ -103,7 +101,7 @@ namespace NLog
         /// <remarks>
         /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.
-        /// 
+        ///
         /// </remarks>
         public static bool? ThrowConfigExceptions
         {
@@ -182,7 +180,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Adds the given assembly which will be skipped 
+        /// Adds the given assembly which will be skipped
         /// when NLog is trying to find the calling method on stack trace.
         /// </summary>
         /// <param name="assembly">The assembly to skip.</param>
@@ -340,10 +338,10 @@ namespace NLog
         /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="EnableLogging"/>
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater
         /// than the number of <see cref="EnableLogging"/> calls.
         /// </remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging.
         /// To be used with C# <c>using ()</c> statement.</returns>
         [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 5.0")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -357,7 +355,7 @@ namespace NLog
         /// Resumes logging if having called <see cref="DisableLogging"/>.
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater
         /// than the number of <see cref="EnableLogging"/> calls.
         /// </remarks>
         [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 5.0")]
@@ -371,10 +369,10 @@ namespace NLog
         /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="ResumeLogging"/>
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
         /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging.
         /// To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable SuspendLogging()
         {
@@ -385,7 +383,7 @@ namespace NLog
         /// Resumes logging if having called <see cref="SuspendLogging"/>.
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
         /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         public static void ResumeLogging()
@@ -397,10 +395,10 @@ namespace NLog
         /// Returns <see langword="true" /> if logging is currently enabled.
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
         /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
-        /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
+        /// <returns>A value of <see langword="true" /> if logging is currently enabled,
         /// <see langword="false"/> otherwise.</returns>
         public static bool IsLoggingEnabled()
         {

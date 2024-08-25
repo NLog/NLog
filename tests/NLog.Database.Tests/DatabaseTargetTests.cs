@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Database.Tests
 {
@@ -1376,7 +1376,7 @@ Dispose()
         {
             SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
 
-            // delete database if it for some reason already exists 
+            // delete database if it for some reason already exists
             sqlLite.TryDropDatabase();
             LogManager.ThrowExceptions = true;
 
@@ -1484,7 +1484,7 @@ Dispose()
                 </rules>
             </nlog>").LogFactory;
 
-                //install 
+                //install
                 InstallationContext context = new InstallationContext();
                 logFactory.Configuration.Install(context);
 
@@ -1547,7 +1547,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 </rules>
             </nlog>").LogFactory;
 
-                //install 
+                //install
                 InstallationContext context = new InstallationContext();
                 logFactory.Configuration.Install(context);
 
@@ -1597,7 +1597,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 installDbCommand.Parameters.Add(new DatabaseParameterInfo("@paramOne", "MyApp"));
                 testTarget.InstallDdlCommands.Add(installDbCommand);
 
-                //install 
+                //install
                 InstallationContext context = new InstallationContext();
                 testTarget.Install(context);
 
@@ -1625,7 +1625,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='false'>
                 <targets>
-                    <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}' 
+                    <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}'
                         commandText='insert into RethrowingInstallExceptionsTable (Message) values (@message);'>
                         <parameter name='@message' layout='${{message}}' />
                         <install-command text='THIS IS NOT VALID SQL;' />
@@ -1735,7 +1735,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                     testTarget.Install(context);
                 }
 
-                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
+                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES
                     WHERE TABLE_TYPE = 'BASE TABLE'
                     AND  TABLE_NAME = 'NLogTestTable'
                 ");
@@ -1789,7 +1789,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 </rules>
             </nlog>").LogFactory;
 
-                //install 
+                //install
                 InstallationContext context = new InstallationContext();
                 logFactory.Configuration.Install(context);
 
@@ -2522,7 +2522,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 #if NETSTANDARD
                 return new SqliteConnection(connectionString + ";Mode=ReadWriteCreate;");
 #elif MONO
-                return new SqliteConnection(connectionString); 
+                return new SqliteConnection(connectionString);
 #else
                 return new SQLiteConnection(connectionString);
 #endif

@@ -1,4 +1,4 @@
-﻿namespace dll_to_doc
+namespace dll_to_doc
 {
     public static class Program
     {

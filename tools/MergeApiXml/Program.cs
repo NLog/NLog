@@ -1,4 +1,4 @@
-﻿namespace MergeApiXml
+namespace MergeApiXml
 {
     using System;
     using System.IO;

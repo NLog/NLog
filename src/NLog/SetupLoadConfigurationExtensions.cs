@@ -1,35 +1,35 @@
-﻿// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections.Generic;
@@ -433,13 +433,13 @@ namespace NLog
                 foreach (var layout in layouts)
                     methodTarget.Parameters.Add(new MethodCallParameter(layout));
             }
-            
+
             return configBuilder.WriteTo(methodTarget);
         }
 
 #if !NETSTANDARD1_3
         /// <summary>
-        /// Write to <see cref="NLog.Targets.ConsoleTarget"/> 
+        /// Write to <see cref="NLog.Targets.ConsoleTarget"/>
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="layout">Override the default Layout for output</param>
@@ -514,7 +514,7 @@ namespace NLog
                     consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelFatal, ConsoleOutputColor.Red, ConsoleOutputColor.NoChange));
                     consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelError, ConsoleOutputColor.Red, ConsoleOutputColor.NoChange));
                     consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(conditionLogLevelWarn, ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange));
-                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Info", (evt) => evt.Level == LogLevel.Info),  ConsoleOutputColor.White, ConsoleOutputColor.NoChange));
+                    consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Info", (evt) => evt.Level == LogLevel.Info), ConsoleOutputColor.White, ConsoleOutputColor.NoChange));
                     consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Debug", (evt) => evt.Level == LogLevel.Debug), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
                     consoleTarget.RowHighlightingRules.Add(new ConsoleRowHighlightingRule(ConditionMethodExpression.CreateMethodNoParameters("level == LogLevel.Trace", (evt) => evt.Level == LogLevel.Trace), ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange));
                 }
@@ -524,7 +524,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Write to <see cref="NLog.Targets.TraceTarget"/> 
+        /// Write to <see cref="NLog.Targets.TraceTarget"/>
         /// </summary>
         /// <param name="configBuilder"></param>
         /// <param name="layout">Override the default Layout for output</param>
@@ -540,7 +540,7 @@ namespace NLog
 #endif
 
         /// <summary>
-        /// Write to <see cref="NLog.Targets.DebugSystemTarget"/> 
+        /// Write to <see cref="NLog.Targets.DebugSystemTarget"/>
         /// </summary>
         /// <param name="configBuilder"></param>
         /// <param name="layout">Override the default Layout for output</param>
@@ -564,7 +564,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Write to <see cref="NLog.Targets.FileTarget"/> 
+        /// Write to <see cref="NLog.Targets.FileTarget"/>
         /// </summary>
         /// <param name="configBuilder">Fluent interface parameter.</param>
         /// <param name="fileName"></param>
@@ -742,7 +742,7 @@ namespace NLog
                 configBuilder.Configuration.AddTarget(fallbackTarget);
                 return targetWrapper;
             });
-        }   
+        }
 
         private static string EnsureUniqueTargetName(LoggingConfiguration configuration, Target target, string suffix = "")
         {

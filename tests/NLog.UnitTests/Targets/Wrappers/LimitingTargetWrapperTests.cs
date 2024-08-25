@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -191,7 +191,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Exception lastException = null;
 
             lastException = WriteNumberAsyncLogEventsStartingAt(0, 10, wrapper);
-            
+
             //Let the interval expire.
             Thread.Sleep(100);
 
@@ -259,7 +259,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void InitializeThrowsNLogConfigurationExceptionIfMessageLimitIsSetToZero()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) {MessageLimit = 0};
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) { MessageLimit = 0 };
             wrappedTarget.Initialize(null);
             LogManager.ThrowConfigExceptions = true;
 
@@ -271,7 +271,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void InitializeThrowsNLogConfigurationExceptionIfMessageLimitIsSmallerZero()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) {MessageLimit = -1};
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) { MessageLimit = -1 };
             wrappedTarget.Initialize(null);
             LogManager.ThrowConfigExceptions = true;
 
@@ -283,7 +283,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void InitializeThrowsNLogConfigurationExceptionIfIntervalIsSmallerZero()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) {Interval = TimeSpan.MinValue};
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) { Interval = TimeSpan.MinValue };
             wrappedTarget.Initialize(null);
             LogManager.ThrowConfigExceptions = true;
 
@@ -295,7 +295,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void InitializeThrowsNLogConfigurationExceptionIfIntervalIsZero()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) {Interval = TimeSpan.Zero};
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget) { Interval = TimeSpan.Zero };
             wrappedTarget.Initialize(null);
             LogManager.ThrowConfigExceptions = true;
 
@@ -351,7 +351,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.NotNull(limitingWrapper);
             Assert.NotNull(debugTarget);
             Assert.Equal(1000, limitingWrapper.MessageLimit);
-            Assert.Equal(TimeSpan.FromDays(1)+TimeSpan.FromHours(2)+TimeSpan.FromMinutes(5), limitingWrapper.Interval);
+            Assert.Equal(TimeSpan.FromDays(1) + TimeSpan.FromHours(2) + TimeSpan.FromMinutes(5), limitingWrapper.Interval);
 
             var logger = logFactory.GetLogger("A");
             logger.Debug("a");

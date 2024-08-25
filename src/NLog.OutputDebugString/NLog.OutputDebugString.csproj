@@ -36,7 +36,7 @@
     <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</IsTrimmable>
     <TrimMode>copyused</TrimMode>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog.OutputDebugString for .NET Standard 2.0</Title>
   </PropertyGroup>

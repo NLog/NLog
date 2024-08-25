@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets
 {
@@ -232,7 +232,7 @@ namespace NLog.UnitTests.Targets
 
         /// <summary>
         /// There was a bug when creating the file in the root.
-        /// 
+        ///
         /// Please note that this test can fail because the unit test doesn't have write access in the root.
         /// </summary>
         [Fact]
@@ -321,7 +321,7 @@ namespace NLog.UnitTests.Targets
 
 #if !MONO
         /// <summary>
-        /// If a drive doesn't existing, before repeatably creating a dir was tried. This test was taking +60 seconds 
+        /// If a drive doesn't existing, before repeatably creating a dir was tried. This test was taking +60 seconds
         /// </summary>
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
@@ -618,7 +618,7 @@ namespace NLog.UnitTests.Targets
                     }
                 }
 
-                // See that opening closing 
+                // See that opening closing
                 AssertFileContents(logFile, "name;level;message\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\n", Encoding.UTF8);
 
                 Assert.NotEqual(3, Directory.GetFiles(tempDir).Length);   // See that archive cleanup worked
@@ -785,7 +785,7 @@ namespace NLog.UnitTests.Targets
                     FileTarget.FileCompressor = new CustomFileCompressor();
                 }
 
-                // Configure first time with ArchiveOldFileOnStartup = false. 
+                // Configure first time with ArchiveOldFileOnStartup = false.
                 var fileTarget = new FileTarget
                 {
                     ArchiveOldFileOnStartup = false,
@@ -804,7 +804,7 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
-                // Configure second time with ArchiveOldFileOnStartup = false again. 
+                // Configure second time with ArchiveOldFileOnStartup = false again.
                 // Expected behavior: Extra content to be appended to the file.
                 fileTarget = new FileTarget
                 {
@@ -824,8 +824,8 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
 
-                // Configure third time with ArchiveOldFileOnStartup = true again. 
-                // Expected behavior: Extra content will be stored in a new file; the 
+                // Configure third time with ArchiveOldFileOnStartup = true again.
+                // Expected behavior: Extra content will be stored in a new file; the
                 //      old content should be moved into a new location.
 
                 var archiveTempName = Path.Combine(tempArchiveFolder, "archive." + archiveExtension);
@@ -2232,7 +2232,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempDir, true);
             }
         }
-        
+
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
@@ -2243,7 +2243,7 @@ namespace NLog.UnitTests.Targets
             {
                 const string header = "Headerline";
 
-                 // Configure first time
+                // Configure first time
                 var fileTarget = new FileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
@@ -2284,7 +2284,7 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;    // Flush
-                
+
                 if (writeHeaderWhenInitialFileNotEmpty)
                     AssertFileContents(logFile, headerPart + logPart + headerPart + logPart, Encoding.UTF8, addBom: true);
                 else
@@ -3658,7 +3658,7 @@ namespace NLog.UnitTests.Targets
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="maxArchiveFilesConfig">max count of archived files</param>
         /// <param name="expectedArchiveFiles">expected count of archived files</param>
@@ -3695,13 +3695,13 @@ namespace NLog.UnitTests.Targets
                 var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
-                       <target name='fileAll' type='File' 
+                       <target name='fileAll' type='File'
                             fileName='" + tempDir + @"/${date:format=yyyyMMdd-HHmm}" + fileExt + @"'
-                            layout='${message}' 
-                            archiveEvery='minute' 
-                            maxArchiveFiles='" + maxArchiveFilesConfig + @"' 
-                            archiveFileName='" + archivePath + @"/{#}.log' 
-                            archiveDateFormat='" + dateFormat + @"' 
+                            layout='${message}'
+                            archiveEvery='minute'
+                            maxArchiveFiles='" + maxArchiveFilesConfig + @"'
+                            archiveFileName='" + archivePath + @"/{#}.log'
+                            archiveDateFormat='" + dateFormat + @"'
                             archiveNumbering='Date'/>
                     </targets>
                     <rules>
@@ -3823,21 +3823,21 @@ namespace NLog.UnitTests.Targets
 
                 var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
-                                      <target name='traceFile' type='File' 
+                                      <target name='traceFile' type='File'
                                         fileName='" + Path.Combine(tempDir, app1TraceNm + fileExt) + @"'
-                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1TraceNm + fileExt) + @"' 
-                                        archiveEvery='minute' 
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1TraceNm + fileExt) + @"'
+                                        archiveEvery='minute'
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
-                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        layout='${longdate} [${level}] [${callsite}] ${message}'
                                         concurrentWrites='true' keepFileOpen='false' />
-                                    <target name='debugFile' type='File' 
+                                    <target name='debugFile' type='File'
                                         fileName='" + Path.Combine(tempDir, app1DebugNm + fileExt) + @"'
-                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1DebugNm + fileExt) + @"' 
-                                        archiveEvery='minute' 
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1DebugNm + fileExt) + @"'
+                                        archiveEvery='minute'
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
-                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        layout='${longdate} [${level}] [${callsite}] ${message}'
                                         concurrentWrites='true' keepFileOpen='false' />
                                     </targets>
                                     <rules>
@@ -3848,13 +3848,13 @@ namespace NLog.UnitTests.Targets
 
                 var app2Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
-                                      <target name='logfile' type='File' 
+                                      <target name='logfile' type='File'
                                         fileName='" + Path.Combine(tempDir, app2Nm + fileExt) + @"'
-                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app2Nm + fileExt) + @"' 
-                                        archiveEvery='minute' 
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app2Nm + fileExt) + @"'
+                                        archiveEvery='minute'
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
-                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        layout='${longdate} [${level}] [${callsite}] ${message}'
                                         concurrentWrites='true' keepFileOpen='false' />
                                     </targets>;
                                     <rules>
@@ -3950,13 +3950,13 @@ namespace NLog.UnitTests.Targets
 
                 var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
-                                      <target name='logfile' type='File' 
+                                      <target name='logfile' type='File'
                                         fileName='" + Path.Combine(tempDir, app1Nm + fileExt) + @"'
-                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1Nm + fileExt) + @"' 
-                                        archiveEvery='minute' 
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app1Nm + fileExt) + @"'
+                                        archiveEvery='minute'
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
-                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        layout='${longdate} [${level}] [${callsite}] ${message}'
                                         concurrentWrites='true' keepFileOpen='false' />
                                     </targets>;
                                     <rules>
@@ -3966,13 +3966,13 @@ namespace NLog.UnitTests.Targets
 
                 var app2Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
-                                      <target name='logfile' type='File' 
+                                      <target name='logfile' type='File'
                                         fileName='" + Path.Combine(tempDir, app2Nm + fileExt) + @"'
-                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app2Nm + fileExt) + @"' 
-                                        archiveEvery='minute' 
+                                        archiveFileName='" + Path.Combine(archivePath, @"${date:format=" + dateFormat + "}-" + app2Nm + fileExt) + @"'
+                                        archiveEvery='minute'
                                         archiveOldFileOnStartup='true'
                                         maxArchiveFiles='" + maxArchiveFilesConfig + @"'
-                                        layout='${longdate} [${level}] [${callsite}] ${message}' 
+                                        layout='${longdate} [${level}] [${callsite}] ${message}'
                                         concurrentWrites='true' keepFileOpen='false' />
                                     </targets>;
                                     <rules>

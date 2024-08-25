@@ -1,4 +1,4 @@
-﻿namespace DumpApiXml
+namespace DumpApiXml
 {
     using System;
     using System.Collections.Generic;

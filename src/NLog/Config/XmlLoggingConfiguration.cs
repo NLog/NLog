@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Config
 {
@@ -45,9 +45,9 @@ namespace NLog.Config
     using NLog.Layouts;
 
     /// <summary>
-    /// A class for configuring NLog through an XML configuration file 
+    /// A class for configuring NLog through an XML configuration file
     /// (App.config style or App.nlog style).
-    /// 
+    ///
     /// Parsing of the XML file is also implemented in this class.
     /// </summary>
     ///<remarks>
@@ -88,7 +88,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string)"/> with NLog v4.7.
-        /// 
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
@@ -101,7 +101,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string, LogFactory)"/> with NLog v4.7.
-        /// 
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
@@ -148,7 +148,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string)"/> with NLog v4.7.
-        /// 
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
@@ -162,7 +162,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string, LogFactory)"/> with NLog v4.7.
-        /// 
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
@@ -210,7 +210,7 @@ namespace NLog.Config
 
 #if !NETSTANDARD
         /// <summary>
-        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
+        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
         public static LoggingConfiguration AppConfig
@@ -282,8 +282,8 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
-        /// Get file paths (including filename) for the possible NLog config files. 
+        ///
+        /// Get file paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
         [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
@@ -295,7 +295,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
+        ///
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
@@ -308,7 +308,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
+        ///
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
         [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
