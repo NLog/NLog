@@ -272,21 +272,7 @@ namespace NLog
                     var config = _configLoader.Load(this);
                     if (config != null)
                     {
-                        try
-                        {
-#pragma warning disable CS0618 // Type or member is obsolete
-                            LogNLogAssemblyVersion();
-#pragma warning restore CS0618 // Type or member is obsolete
-                            _config = config;
-                            _configLoader.Activated(this, _config);
-                            _config.Dump();
-                            ReconfigExistingLoggers();
-                            InternalLogger.Info("Configuration initialized.");
-                        }
-                        finally
-                        {
-                            _configLoaded = true;
-                        }
+                        ActivateLoggingConfiguration(config);
                     }
 
                     return _config;
@@ -301,39 +287,43 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
+                        oldConfig.OnConfigurationAssigned(null);
                         Flush();
                         oldConfig.Close();
                     }
 
-                    _config = value;
-
-                    if (_config is null)
+                    if (value is null)
                     {
+                        _config = value;
                         _configLoaded = false;
-                        _configLoader.Activated(this, _config);
+                        _configLoader.Activated(this, value);
                     }
                     else
                     {
-                        try
-                        {
-#pragma warning disable CS0618 // Type or member is obsolete
-                            if (oldConfig is null)
-                                LogNLogAssemblyVersion();
-#pragma warning restore CS0618 // Type or member is obsolete
-                            _configLoader.Activated(this, _config);
-                            _config.Dump();
-                            ReconfigExistingLoggers();
-                            InternalLogger.Info("Configuration initialized.");
-                        }
-                        finally
-                        {
-                            _configLoaded = true;
-                        }
+                        ActivateLoggingConfiguration(value);
                     }
 
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
             }
+        }
+
+        private void ActivateLoggingConfiguration(LoggingConfiguration config)
+        {
+            if (_config is null)
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
+                LogNLogAssemblyVersion();
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
+
+            _config = config;
+            _configLoaded = true;
+            _config.OnConfigurationAssigned(this);
+            _configLoader.Activated(this, _config);
+            _config.Dump();
+            ReconfigExistingLoggers();
+            InternalLogger.Info("Configuration initialized.");
         }
 
         /// <summary>
@@ -425,7 +415,7 @@ namespace NLog
             {
                 InternalLogger.LogAssemblyVersion(typeof(LogFactory).GetAssembly());
             }
-            catch (SecurityException ex)
+            catch (Exception ex)
             {
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
@@ -846,6 +836,8 @@ namespace NLog
         {
             try
             {
+                oldConfig.OnConfigurationAssigned(null);
+
                 bool attemptClose = true;
 
                 if (flushTimeout > TimeSpan.Zero)
@@ -855,6 +847,7 @@ namespace NLog
 
                 // Disable all loggers, so things become quiet
                 _config = null;
+                _configLoaded = true;
                 ReconfigExistingLoggers();
 
                 if (!attemptClose)

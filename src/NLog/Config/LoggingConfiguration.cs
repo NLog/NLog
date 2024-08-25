@@ -516,6 +516,21 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Notify the configuration when <see cref="LogFactory.Configuration"/> has been assigned / unassigned.
+        /// </summary>
+        /// <param name="logFactory">LogFactory that configuration has been assigned to.</param>
+        protected internal virtual void OnConfigurationAssigned(LogFactory logFactory)
+        {
+            if (!ReferenceEquals(logFactory, LogFactory) && logFactory != null)
+            {
+                if (ReferenceEquals(LogFactory, LogManager.LogFactory))
+                    InternalLogger.Info("Configuration assigned to local LogFactory, but constructed using global LogFactory");
+                else
+                    InternalLogger.Info("Configuration assigned to LogFactory, but constructed using other LogFactory");
+            }
+        }
+
+        /// <summary>
         /// Removes the specified named target.
         /// </summary>
         /// <param name="name">Name of the target.</param>
