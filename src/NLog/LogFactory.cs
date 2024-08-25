@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog
 {
@@ -77,7 +77,7 @@ namespace NLog
         private int _supendLoggingCounter;
 
         /// <summary>
-        /// Overwrite possible file paths (including filename) for possible NLog config files. 
+        /// Overwrite possible file paths (including filename) for possible NLog config files.
         /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths()"/> are used.
         /// </summary>
         [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
@@ -133,7 +133,7 @@ namespace NLog
 
         /// <summary>
         /// Obsolete instead use <see cref="LogFactory"/> default-constructor, and assign <see cref="Configuration"/> with NLog 5.0.
-        /// 
+        ///
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="config">The config.</param>
@@ -192,7 +192,7 @@ namespace NLog
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
                     new AppDomainWrapper(AppDomain.CurrentDomain)
 #else
-                    new FakeAppDomain()                    
+                    new FakeAppDomain()
 #endif
                     )));
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -214,7 +214,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets a value indicating whether <see cref="NLogConfigurationException"/> should be thrown.
-        /// 
+        ///
         /// If <c>null</c> then <see cref="ThrowExceptions"/> is used.
         /// </summary>
         /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
@@ -431,7 +431,7 @@ namespace NLog
             }
         }
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting 
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting
         /// unmanaged resources.
         /// </summary>
         public void Dispose()
@@ -531,7 +531,7 @@ namespace NLog
         /// Gets the specified named logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument 
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument
         /// are not guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
@@ -545,7 +545,7 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <typeparam name="T">Type of the logger</typeparam>
-        /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
+        /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger, new()
         {
@@ -560,7 +560,7 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
-        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         [Obsolete("Replaced by GetLogger<T>(). Marked obsolete on NLog 5.2")]
         [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
@@ -592,7 +592,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Loops through all loggers previously returned by GetLogger and recalculates their 
+        /// Loops through all loggers previously returned by GetLogger and recalculates their
         /// target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
@@ -602,7 +602,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Loops through all loggers previously returned by GetLogger and recalculates their 
+        /// Loops through all loggers previously returned by GetLogger and recalculates their
         /// target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
@@ -628,7 +628,7 @@ namespace NLog
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time 
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time
         /// will be discarded.</param>
         public void Flush(TimeSpan timeout)
         {
@@ -638,7 +638,7 @@ namespace NLog
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages 
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages
         /// after that time will be discarded.</param>
         public void Flush(int timeoutMilliseconds)
         {
@@ -658,7 +658,7 @@ namespace NLog
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages 
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages
         /// after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
         {
@@ -708,10 +708,10 @@ namespace NLog
         /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="ResumeLogging"/>
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
         /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging.
         /// To be used with C# <c>using ()</c> statement.</returns>
         public IDisposable SuspendLogging()
         {
@@ -731,7 +731,7 @@ namespace NLog
         /// Resumes logging if having called <see cref="SuspendLogging"/>.
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
         /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
         public void ResumeLogging()
@@ -750,10 +750,10 @@ namespace NLog
         /// Returns <see langword="true" /> if logging is currently enabled.
         /// </summary>
         /// <remarks>
-        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater 
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
         /// than the number of <see cref="ResumeLogging"/> calls.
         /// </remarks>
-        /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
+        /// <returns>A value of <see langword="true" /> if logging is currently enabled,
         /// <see langword="false"/> otherwise.</returns>
         public bool IsLoggingEnabled()
         {
@@ -761,7 +761,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Raises the event when the configuration is reloaded. 
+        /// Raises the event when the configuration is reloaded.
         /// </summary>
         /// <param name="e">Event arguments.</param>
         protected virtual void OnConfigurationChanged(LoggingConfigurationChangedEventArgs e)
@@ -772,8 +772,8 @@ namespace NLog
 #if !NETSTANDARD1_3
         /// <summary>
         /// Obsolete and replaced by <see cref="OnConfigurationReloaded"/> with NLog 5.2.
-        /// 
-        /// Raises the event when the configuration is reloaded. 
+        ///
+        /// Raises the event when the configuration is reloaded.
         /// </summary>
         /// <param name="e">Event arguments</param>
         [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
@@ -800,7 +800,7 @@ namespace NLog
             return _config?.BuildLoggerConfiguration(loggerName, globalThreshold, loggingRules) ?? TargetWithFilterChain.NoTargetsByLevel;
         }
 
-         /// <summary>
+        /// <summary>
         /// Currently this <see cref="LogFactory"/> is disposing?
         /// </summary>
         private bool _isDisposing;
@@ -911,8 +911,8 @@ namespace NLog
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
-        /// Get file paths (including filename) for the possible NLog config files. 
+        ///
+        /// Get file paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
         [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
@@ -929,8 +929,8 @@ namespace NLog
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
-        /// Get file paths (including filename) for the possible NLog config files. 
+        ///
+        /// Get file paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
         [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
@@ -944,7 +944,7 @@ namespace NLog
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
+        ///
         /// Overwrite the candidates paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
@@ -962,7 +962,7 @@ namespace NLog
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
+        ///
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
         [Obsolete("Replaced by chaining LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
@@ -1042,7 +1042,7 @@ namespace NLog
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
-        /// 
+        ///
         /// Loads logging configuration from file (Currently only XML configuration files supported)
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>
@@ -1158,7 +1158,7 @@ namespace NLog
             public int Count => _loggerCache.Count;
 
             /// <summary>
-            /// Inserts or updates. 
+            /// Inserts or updates.
             /// </summary>
             /// <param name="cacheKey"></param>
             /// <param name="logger"></param>
@@ -1301,7 +1301,7 @@ namespace NLog
         {
             try
             {
-                //stop timer on domain unload, otherwise: 
+                //stop timer on domain unload, otherwise:
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
                 InternalLogger.Info("AppDomain Shutting down. LogFactory closing...");

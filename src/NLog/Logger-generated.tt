@@ -4,41 +4,41 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-<# 
+<#
     //Generation of overloads of all six levels
     //T4 templates are built in Visual Studio. See https://msdn.microsoft.com/en-us/library/bb126445.aspx
-#>// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+#>//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog
 {
@@ -73,7 +73,7 @@ namespace NLog
     {
 #>
 
-        #region <#=level#>() overloads 
+        #region <#=level#>() overloads
 
         /// <overloads>
         /// Writes the diagnostic message at the <c><#=level#></c> level using the specified format provider and format parameters.
@@ -130,10 +130,10 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void <#=level#>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
-        { 
+        {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, args); 
+                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, args);
             }
         }
 
@@ -141,8 +141,8 @@ namespace NLog
         /// Writes the diagnostic message at the <c><#=level#></c> level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public void <#=level#>([Localizable(false)] string message) 
-        { 
+        public void <#=level#>([Localizable(false)] string message)
+        {
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message);
@@ -155,8 +155,8 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#>([Localizable(false)][StructuredMessageTemplate] string message, params object[] args) 
-        { 
+        public void <#=level#>([Localizable(false)][StructuredMessageTemplate] string message, params object[] args)
+        {
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message, args);
@@ -216,10 +216,10 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void <#=level#><TArgument>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
-        { 
+        {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object[] { argument });
             }
         }
 
@@ -231,7 +231,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void <#=level#><TArgument>([Localizable(false)][StructuredMessageTemplate] string message, TArgument argument)
-        { 
+        {
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message, new object[] { argument });
@@ -248,11 +248,11 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2) 
-        { 
+        public void <#=level#><TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
+        {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -266,7 +266,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void <#=level#><TArgument1, TArgument2>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2)
-        { 
+        {
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message, new object[] { argument1, argument2 });
@@ -285,11 +285,11 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void <#=level#><TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
-        { 
+        public void <#=level#><TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.<#=level#>, formatProvider, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -305,7 +305,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void <#=level#><TArgument1, TArgument2, TArgument3>([Localizable(false)][StructuredMessageTemplate] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
-        { 
+        {
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message, new object[] { argument1, argument2, argument3 });

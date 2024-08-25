@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Layouts
 {
@@ -121,7 +121,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public bool RenderEmptyObject { get => _renderEmptyObject ?? true; set => _renderEmptyObject = value; }
         private bool? _renderEmptyObject;
-        
+
         /// <summary>
         /// Auto indent and create new lines
         /// </summary>
@@ -149,7 +149,7 @@ namespace NLog.Layouts
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeEventProperties"/> with NLog v5.
-        /// 
+        ///
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -159,7 +159,7 @@ namespace NLog.Layouts
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
-        /// 
+        ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -170,7 +170,7 @@ namespace NLog.Layouts
 
         /// <summary>
         /// Obsolete and replaced by <see cref="IncludeScopeProperties"/> with NLog v5.
-        /// 
+        ///
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -192,7 +192,7 @@ namespace NLog.Layouts
 #if !NET35
         public ISet<string> ExcludeProperties { get; set; }
 #else
-        public HashSet<string> ExcludeProperties { get; set; }        
+        public HashSet<string> ExcludeProperties { get; set; }
 #endif
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace NLog.Layouts
         public int MaxRecursionLimit { get; set; } = 1;
 
         /// <summary>
-        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// Should forward slashes be escaped? If true, / will be converted to \/
         /// </summary>
         /// <remarks>
         /// If not set explicitly then the value of the parent will be used as default.
@@ -424,7 +424,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (ExcludeEmptyProperties && sb[sb.Length-1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
+            if (ExcludeEmptyProperties && sb[sb.Length - 1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
             {
                 sb.Length = initialLength;
             }

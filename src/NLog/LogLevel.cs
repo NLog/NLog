@@ -1,42 +1,42 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog
 {
-    using NLog.Internal;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using NLog.Internal;
 
     /// <summary>
     /// Defines available log levels.
@@ -116,7 +116,7 @@ namespace NLog
         public static IEnumerable<LogLevel> AllLevels => allLevels;
 
         /// <summary>
-        ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal) 
+        ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal)
         ///  i.e <c>LogLevel.Off</c> is excluded.
         /// </summary>
         public static IEnumerable<LogLevel> AllLoggingLevels => allLoggingLevels;
@@ -150,8 +150,8 @@ namespace NLog
         public int Ordinal => _ordinal;
 
         /// <summary>
-        /// Compares two <see cref="LogLevel"/> objects 
-        /// and returns a value indicating whether 
+        /// Compares two <see cref="LogLevel"/> objects
+        /// and returns a value indicating whether
         /// the first one is equal to the second one.
         /// </summary>
         /// <param name="level1">The first level.</param>
@@ -166,8 +166,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Compares two <see cref="LogLevel"/> objects 
-        /// and returns a value indicating whether 
+        /// Compares two <see cref="LogLevel"/> objects
+        /// and returns a value indicating whether
         /// the first one is not equal to the second one.
         /// </summary>
         /// <param name="level1">The first level.</param>
@@ -182,8 +182,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Compares two <see cref="LogLevel"/> objects 
-        /// and returns a value indicating whether 
+        /// Compares two <see cref="LogLevel"/> objects
+        /// and returns a value indicating whether
         /// the first one is greater than the second one.
         /// </summary>
         /// <param name="level1">The first level.</param>
@@ -198,8 +198,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Compares two <see cref="LogLevel"/> objects 
-        /// and returns a value indicating whether 
+        /// Compares two <see cref="LogLevel"/> objects
+        /// and returns a value indicating whether
         /// the first one is greater than or equal to the second one.
         /// </summary>
         /// <param name="level1">The first level.</param>
@@ -214,8 +214,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Compares two <see cref="LogLevel"/> objects 
-        /// and returns a value indicating whether 
+        /// Compares two <see cref="LogLevel"/> objects
+        /// and returns a value indicating whether
         /// the first one is less than the second one.
         /// </summary>
         /// <param name="level1">The first level.</param>
@@ -230,8 +230,8 @@ namespace NLog
         }
 
         /// <summary>
-        /// Compares two <see cref="LogLevel"/> objects 
-        /// and returns a value indicating whether 
+        /// Compares two <see cref="LogLevel"/> objects
+        /// and returns a value indicating whether
         /// the first one is less than or equal to the second one.
         /// </summary>
         /// <param name="level1">The first level.</param>
@@ -369,7 +369,7 @@ namespace NLog
         /// Determines whether the specified <see cref="NLog.LogLevel"/> instance is equal to this instance.
         /// </summary>
         /// <param name="other">The <see cref="NLog.LogLevel"/> to compare with this instance.</param>
-        /// <returns>Value of <c>true</c> if the specified <see cref="NLog.LogLevel"/> is equal to 
+        /// <returns>Value of <c>true</c> if the specified <see cref="NLog.LogLevel"/> is equal to
         /// this instance; otherwise, <c>false</c>.</returns>
         public bool Equals(LogLevel other)
         {
@@ -381,8 +381,8 @@ namespace NLog
         /// </summary>
         /// <param name="obj">The other object.</param>
         /// <returns>
-        /// A value less than zero when this logger's <see cref="Ordinal"/> is 
-        /// less than the other logger's ordinal, 0 when they are equal and 
+        /// A value less than zero when this logger's <see cref="Ordinal"/> is
+        /// less than the other logger's ordinal, 0 when they are equal and
         /// greater than zero when this ordinal is greater than the
         /// other ordinal.
         /// </returns>
@@ -396,8 +396,8 @@ namespace NLog
         /// </summary>
         /// <param name="other">The other object.</param>
         /// <returns>
-        /// A value less than zero when this logger's <see cref="Ordinal"/> is 
-        /// less than the other logger's ordinal, 0 when they are equal and 
+        /// A value less than zero when this logger's <see cref="Ordinal"/> is
+        /// less than the other logger's ordinal, 0 when they are equal and
         /// greater than zero when this ordinal is greater than the
         /// other ordinal.
         /// </returns>

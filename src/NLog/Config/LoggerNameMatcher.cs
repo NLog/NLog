@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Config
 {
@@ -74,7 +74,7 @@ namespace NLog.Config
         {
             if (loggerNamePattern is null)
                 return NoneLoggerNameMatcher.Instance;
-            if (loggerNamePattern.Trim()=="*")
+            if (loggerNamePattern.Trim() == "*")
                 return AllLoggerNameMatcher.Instance;
 
             int starPos1 = loggerNamePattern.IndexOf('*');
@@ -130,7 +130,7 @@ namespace NLog.Config
         {
             protected override string MatchMode => "None";
             public static readonly NoneLoggerNameMatcher Instance = new NoneLoggerNameMatcher();
-            private NoneLoggerNameMatcher() 
+            private NoneLoggerNameMatcher()
                 : base(null, null)
             {
 
@@ -138,7 +138,7 @@ namespace NLog.Config
             public override bool NameMatches(string loggerName)
             {
                 return false;
-            }            
+            }
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace NLog.Config
         {
             protected override string MatchMode => "All";
             public static readonly AllLoggerNameMatcher Instance = new AllLoggerNameMatcher();
-            private AllLoggerNameMatcher() 
+            private AllLoggerNameMatcher()
                 : base("*", null) { }
             public override bool NameMatches(string loggerName)
             {
@@ -164,7 +164,7 @@ namespace NLog.Config
         private sealed class EqualsLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "Equals";
-            public EqualsLoggerNameMatcher(string pattern) 
+            public EqualsLoggerNameMatcher(string pattern)
                 : base(pattern, pattern) { }
             public override bool NameMatches(string loggerName)
             {
@@ -180,7 +180,7 @@ namespace NLog.Config
         private sealed class StartsWithLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "StartsWith";
-            public StartsWithLoggerNameMatcher(string pattern) 
+            public StartsWithLoggerNameMatcher(string pattern)
                 : base(pattern, pattern.Substring(0, pattern.Length - 1)) { }
             public override bool NameMatches(string loggerName)
             {
@@ -196,7 +196,7 @@ namespace NLog.Config
         private sealed class EndsWithLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "EndsWith";
-            public EndsWithLoggerNameMatcher(string pattern) 
+            public EndsWithLoggerNameMatcher(string pattern)
                 : base(pattern, pattern.Substring(1)) { }
             public override bool NameMatches(string loggerName)
             {
@@ -212,7 +212,7 @@ namespace NLog.Config
         private sealed class ContainsLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "Contains";
-            public ContainsLoggerNameMatcher(string pattern) 
+            public ContainsLoggerNameMatcher(string pattern)
                 : base(pattern, pattern.Substring(1, pattern.Length - 2)) { }
             public override bool NameMatches(string loggerName)
             {
@@ -243,7 +243,7 @@ namespace NLog.Config
                         .Replace("\\?", ".")
                     + '$';
             }
-            public MultiplePatternLoggerNameMatcher(string pattern) 
+            public MultiplePatternLoggerNameMatcher(string pattern)
                 : base(pattern, ConvertToRegex(pattern))
             {
                 _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);

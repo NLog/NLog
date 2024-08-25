@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets
 {
@@ -45,10 +45,10 @@ namespace NLog.UnitTests.Targets
     using System.Threading.Tasks;
     using System.Xml.Serialization;
 #if !NETSTANDARD
-using System.Web.Http;
-using System.Web.Http.Dependencies;
-using Microsoft.Owin.Hosting;
-using Owin;
+    using System.Web.Http;
+    using System.Web.Http.Dependencies;
+    using Microsoft.Owin.Hosting;
+    using Owin;
 #endif
     using NLog.Internal;
     using NLog.Targets;
@@ -69,7 +69,7 @@ using Owin;
                 builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "" });
                 builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${eventproperty:Url}" });
             }).LogFactory;
-            
+
             logFactory.GetCurrentClassLogger().WithProperty("Url", "").Info("Test");
 
             Assert.NotNull(logFactory.Configuration);
@@ -86,7 +86,7 @@ using Owin;
             }).LogFactory;
 
             logFactory.GetCurrentClassLogger().WithProperty("Url", "!!!").Info("Test");
-            
+
             logFactory.ThrowExceptions = true;
 
             Assert.Throws<NLogRuntimeException>(() => logFactory.GetCurrentClassLogger().WithProperty("Url", "!!!").Info("Test"));
@@ -153,13 +153,13 @@ using Owin;
 
             var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug" };
             target.DoInvoke(parameterValues, c => counterEvent.Set(), httpWebRequest,
-                (request,callback) =>
+                (request, callback) =>
                 {
                     var t = new Task(() => { });
                     callback(t);
                     return t;
                 },
-                (request,result) => streamMock);
+                (request, result) => streamMock);
 
             counterEvent.WaitOne(10000);
 
@@ -240,8 +240,8 @@ using Owin;
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
-                            <parameter name='param2' type='System.String' layout='${{level}}'/>    
+                            <parameter name='param1' type='System.String' layout='${{message}}'/>
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
                     <rules>
@@ -359,7 +359,7 @@ using Owin;
                                 protocol='HttpGet'
                                 encoding='UTF-8'
                                >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' type='System.String' layout='${{message}}'/>
                             <parameter name='param2' type='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
@@ -394,7 +394,7 @@ using Owin;
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                 >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' type='System.String' layout='${{message}}'/>
                             <parameter name='param2' type='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
@@ -446,7 +446,7 @@ using Owin;
                                >
                             <UserAgent>SecretAgent</UserAgent>
                             <header name='Authorization' layout='OpenBackDoor' />
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                             <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
                             <parameter name='param4' ParameterType='System.DateTime' layout='${{date:universalTime=true:format=o}}'/>
@@ -474,7 +474,7 @@ using Owin;
 
 
         /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/> 
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_restapi_xmlpost()
@@ -492,7 +492,7 @@ using Owin;
                                 XmlRoot='ComplexType'
                                 encoding='UTF-8'
                                >
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                             <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
                             <parameter name='param4' ParameterType='System.DateTime' layout='${{date:universalTime=true:format=o}}'/>
@@ -519,7 +519,7 @@ using Owin;
         }
 
         /// <summary>
-        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_soap11_default_soapaction()
@@ -539,7 +539,7 @@ using Owin;
                                 preAuthenticate='false'
                                 encoding ='UTF-8'
                                >
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
@@ -567,7 +567,7 @@ using Owin;
         }
 
         /// <summary>
-        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_soap11_custom_soapaction()
@@ -588,7 +588,7 @@ using Owin;
                                 encoding ='UTF-8'
                                >
                             <header name='SOAPAction' layout='http://tempuri.org/custom-namespace/Ping'/>
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
@@ -616,7 +616,7 @@ using Owin;
         }
 
         /// <summary>
-        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_soap12_default_soapaction()
@@ -636,7 +636,7 @@ using Owin;
                                 preAuthenticate='false'
                                 encoding ='UTF-8'
                                >
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
@@ -694,7 +694,7 @@ using Owin;
                 return "value";
             }
 
-            // GET api/values 
+            // GET api/values
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
             {
                 Context.ReceivedLogsGetParam1.Add(param1);
@@ -711,7 +711,7 @@ using Owin;
             /// </summary>
             public void Post([FromBody] ComplexType complexType)
             {
-                //this is working. 
+                //this is working.
                 Guard.ThrowIfNull(complexType);
                 Context.ReceivedLogsPostParam1.Add(complexType.Param1);
 
@@ -724,7 +724,7 @@ using Owin;
             /// <summary>
             /// Put
             /// </summary>
-            public void Put(int id, [FromBody]string value)
+            public void Put(int id, [FromBody] string value)
             {
             }
 
@@ -773,10 +773,10 @@ using Owin;
         {
             // HttpSelfHostConfiguration. So info: http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
-            // Start webservice 
+            // Start webservice
             using (WebApp.Start(url, (appBuilder) =>
             {
-                // Configure Web API for self-host. 
+                // Configure Web API for self-host.
                 HttpConfiguration config = new HttpConfiguration();
 
                 config.DependencyResolver = new ControllerResolver<LogMeController>(() => new LogMeController() { Context = testContext });
@@ -806,7 +806,7 @@ using Owin;
         {
             using (WebApp.Start(url, (appBuilder) =>
             {
-                // Configure Web API for self-host. 
+                // Configure Web API for self-host.
                 HttpConfiguration config = new HttpConfiguration();
 
                 config.DependencyResolver = new ControllerResolver<LogDocController>(() => new LogDocController() { Context = testContext });

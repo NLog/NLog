@@ -39,12 +39,12 @@
     <Title>NLog.Database for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog.Database for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
- 
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog.Database for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
@@ -75,7 +75,7 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net35' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />    
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Transactions" />
   </ItemGroup>

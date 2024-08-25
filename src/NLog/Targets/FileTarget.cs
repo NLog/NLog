@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 #if !NETSTANDARD1_3
 #define SupportsMutex
@@ -42,7 +42,6 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-    using System.IO.Compression;
     using System.Text;
     using System.Threading;
     using NLog.Common;
@@ -70,12 +69,12 @@ namespace NLog.Targets
         private const int InitializedFilesCleanupPeriod = 2;
 
         /// <summary>
-        /// This value disables file archiving based on the size. 
+        /// This value disables file archiving based on the size.
         /// </summary>
         private const long ArchiveAboveSizeDisabled = -1L;
 
         /// <summary>
-        /// Holds the initialized files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
+        /// Holds the initialized files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored.
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> _initializedFiles = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
@@ -218,7 +217,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
+        /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes.
         /// If set to <c>false</c>, nothing gets written when the filename is wrong.
         /// </summary>
         /// <docgen category='Output Options' order='100' />
@@ -353,7 +352,7 @@ namespace NLog.Targets
         /// <remarks>
         /// The files are managed on a LRU (least recently used) basis, which flushes
         /// the files that have not been used for the longest period of time should the
-        /// cache become full. As a rule of thumb, you shouldn't set this parameter to 
+        /// cache become full. As a rule of thumb, you shouldn't set this parameter to
         /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
@@ -602,7 +601,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>
         /// It may contain a special placeholder {#####}
-        /// that will be replaced with a sequence of numbers depending on 
+        /// that will be replaced with a sequence of numbers depending on
         /// the archiving strategy. The number of hash characters used determines
         /// the number of numerical digits to be used for numbering files.
         /// </remarks>
@@ -655,7 +654,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the way file archives are numbered. 
+        /// Gets or sets the way file archives are numbered.
         /// </summary>
         /// <docgen category='Archival Options' order='50' />
         public ArchiveNumberingMode ArchiveNumbering
@@ -724,8 +723,8 @@ namespace NLog.Targets
         protected internal string NewLineChars => LineEnding.NewLineCharacters;
 
         /// <summary>
-        /// Refresh the ArchiveFilePatternToWatch option of the <see cref="FileAppenderCache" />. 
-        /// The log file must be watched for archiving when multiple processes are writing to the same 
+        /// Refresh the ArchiveFilePatternToWatch option of the <see cref="FileAppenderCache" />.
+        /// The log file must be watched for archiving when multiple processes are writing to the same
         /// open file.
         /// </summary>
         private void RefreshArchiveFilePatternToWatch(string fileName, LogEventInfo logEvent)
@@ -756,7 +755,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Removes records of initialized files that have not been 
+        /// Removes records of initialized files that have not been
         /// accessed in the last two days.
         /// </summary>
         /// <remarks>
@@ -847,7 +846,7 @@ namespace NLog.Targets
         /// <summary>
         /// Returns the suitable appender factory ( <see cref="IFileAppenderFactory"/>) to be used to generate the file
         /// appenders associated with the <see cref="FileTarget"/> instance.
-        /// 
+        ///
         /// The type of the file appender factory returned depends on the values of various <see cref="FileTarget"/> properties.
         /// </summary>
         /// <returns><see cref="IFileAppenderFactory"/> suitable for this instance.</returns>
@@ -976,7 +975,7 @@ namespace NLog.Targets
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
-        /// Writes the specified logging event to a file specified in the FileName 
+        /// Writes the specified logging event to a file specified in the FileName
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
@@ -1348,7 +1347,7 @@ namespace NLog.Targets
 #if !NET35
                 archiveFileStream.Flush(true);
 #else
-                archiveFileStream.Flush();                
+                archiveFileStream.Flush();
 #endif
             }
 
@@ -1454,14 +1453,14 @@ namespace NLog.Targets
         /// Gets the correct formatting <see langword="String"/> to be used based on the value of <see
         /// cref="ArchiveEvery"/> for converting <see langword="DateTime"/> values which will be inserting into file
         /// names during archiving.
-        /// 
+        ///
         /// This value will be computed only when a empty value or <see langword="null"/> is passed into <paramref name="defaultFormat"/>
         /// </summary>
         /// <param name="defaultFormat">Date format to used irrespectively of <see cref="ArchiveEvery"/> value.</param>
         /// <returns>Formatting <see langword="String"/> for dates.</returns>
         private string GetArchiveDateFormatString(string defaultFormat)
         {
-            // If archiveDateFormat is not set in the config file, use a default 
+            // If archiveDateFormat is not set in the config file, use a default
             // date format string based on the archive period.
             if (!string.IsNullOrEmpty(defaultFormat))
                 return defaultFormat;
@@ -2222,7 +2221,7 @@ namespace NLog.Targets
         /// <see cref="FileTarget"/> instance and writes them.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
+        /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
         private void WriteToFile(string fileName, ArraySegment<byte> bytes, bool initializedNewFile)
         {
@@ -2500,13 +2499,13 @@ namespace NLog.Targets
         /// <param name="appender">File appender associated with the file.</param>
         private void WriteHeaderAndBom(BaseFileAppender appender)
         {
-            //performance: cheap check before checking file info 
+            //performance: cheap check before checking file info
             if (Header is null && !WriteBom) return;
 
             var length = appender.GetFileLength();
             // File is empty or file info cannot be obtained
             var isNewOrEmptyFile = length is null || length == 0;
-            
+
             if (isNewOrEmptyFile && WriteBom)
             {
                 InternalLogger.Trace("{0}: Write byte order mark from encoding={1}", this, Encoding);
@@ -2514,7 +2513,7 @@ namespace NLog.Targets
                 if (preamble.Length > 0)
                     appender.Write(preamble, 0, preamble.Length);
             }
-            
+
             if (Header != null && (isNewOrEmptyFile || WriteHeaderWhenInitialFileNotEmpty))
             {
                 InternalLogger.Trace("{0}: Write header", this);

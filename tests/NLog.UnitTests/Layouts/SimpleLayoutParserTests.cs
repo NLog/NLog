@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Layouts
 {
@@ -313,9 +313,9 @@ namespace NLog.UnitTests.Layouts
     <variable name=""searchExp""
               value=""(?&lt;!\\d[ -]*)(?\u003a(?&lt;digits&gt;\\d)[ -]*)\u007b8,16\u007d(?=(\\d[ -]*)\u007b3\u007d(\\d)(?![ -]\\d))""
               />
-    
+
     <variable name=""message1"" value=""${replace:inner=${message}:searchFor=${searchExp}:replaceWith=\u003a\u003a:regex=true:ignorecase=true}"" />
-      
+
     <targets>
       <target name=""d1"" type=""Debug"" layout=""${message1}"" />
     </targets>
@@ -352,9 +352,9 @@ namespace NLog.UnitTests.Layouts
     <variable name=""searchExp""
               value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![ -]\\d))""
               />
-    
+
     <variable name=""message1"" value=""${replace:inner=${message}:searchFor=${searchExp}:replaceWith=\u003a\u003a:regex=true:ignorecase=true}"" />
-      
+
     <targets>
       <target name=""d1"" type=""Debug"" layout=""${message1}"" />
     </targets>
@@ -575,10 +575,10 @@ namespace NLog.UnitTests.Layouts
         }
 
         /// <summary>
-        /// 
+        ///
         /// Test layout with Generic List type. - is the separator
-        /// 
-        /// 
+        ///
+        ///
         /// </summary>
         /// <remarks>
         /// comma escape is backtick (cannot use backslash due to layout parse)
@@ -711,7 +711,7 @@ namespace NLog.UnitTests.Layouts
         {
             var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("the-answer", (evt) => 42))
                 .LoadConfigurationFromXml(
-@"<nlog throwExceptions='true'>          
+@"<nlog throwExceptions='true'>
                 <targets>
                     <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer:Format=D3}' /></targets>
                 <rules>
@@ -732,7 +732,7 @@ namespace NLog.UnitTests.Layouts
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
-            
+
                 <targets>
                     <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer:Format=D3}' /></targets>
                 <rules>

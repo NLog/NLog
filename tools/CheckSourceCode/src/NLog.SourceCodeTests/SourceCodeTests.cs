@@ -161,7 +161,7 @@ namespace NLog.SourceCodeTests
                 for (int i = 0; i < _licenseLines.Length; ++i)
                 {
                     string line = reader.ReadLine();
-                    string expected = "// " + _licenseLines[i];
+                    string expected = ("// " + _licenseLines[i]).TrimEnd();
                     if (line != expected)
                     {
                         return false;

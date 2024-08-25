@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -47,7 +47,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using Xunit;
 
     /// <summary>
-    /// Used in the HiddenTypeTest. This needs to be at the top level of the namespace as 
+    /// Used in the HiddenTypeTest. This needs to be at the top level of the namespace as
     /// nested extension classes are not allowed.
     /// </summary>
     internal static class HiddenTypeLogger
@@ -775,7 +775,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if NET35 
+#if NET35
         [Fact(Skip = "NET35 not supporting async callstack")]
 #elif !DEBUG
         [Fact(Skip = "RELEASE not working, only DEBUG")]
@@ -856,7 +856,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             new InnerClassAsyncMethod4().AsyncMethod4(logFactory).Wait();
             logFactory.AssertDebugLastMessage($"{typeof(InnerClassAsyncMethod4).ToString()}.AsyncMethod4|Direct, async method");
-       }
+        }
 
         private async Task<IEnumerable<string>> AsyncMethod4(LogFactory logFactory)
         {
@@ -977,7 +977,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 LogEventInfo info = new LogEventInfo(LogLevel.Warn, _wrapperLogger.Name, what);
 
                 // Provide BaseWrapper as wrapper type.
-                // Expected: UserStackFrame should point to the method that calls a 
+                // Expected: UserStackFrame should point to the method that calls a
                 // method of BaseWrapper.
                 _wrapperLogger.Log(wrapperType, info);
             }
@@ -995,7 +995,7 @@ namespace NLog.UnitTests.LayoutRenderers
             protected override void InternalLog(Type wrapperType, string what) //added type for composition
             {
                 // Provide BaseWrapper as wrapper type.
-                // Expected: UserStackFrame should point to the method that calls a 
+                // Expected: UserStackFrame should point to the method that calls a
                 // method of BaseWrapper.
                 _wrapperLogger.ForWarnEvent().Message(what).Log(wrapperType);
             }
@@ -1115,7 +1115,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         /// <summary>
-        ///   
+        ///
         /// </summary>
         public class NLogFactory
         {
@@ -1145,12 +1145,12 @@ namespace NLog.UnitTests.LayoutRenderers
 #if !NETSTANDARD1_5
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
-        /// 
+        ///
         /// Example of those stacktraces:
         ///    at NLog.LoggerImpl.Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory) in c:\temp\NLog\src\NLog\LoggerImpl.cs:line 68
         ///    at NLog.UnitTests.LayoutRenderers.NLogLogger.ErrorWithoutLoggerTypeArg(String message) in c:\temp\NLog\tests\NLog.UnitTests\LayoutRenderers\CallSiteTests.cs:line 989
         ///    at NLog.UnitTests.LayoutRenderers.CallSiteTests.TestCallsiteWhileCallsGotInlined() in c:\temp\NLog\tests\NLog.UnitTests\LayoutRenderers\CallSiteTests.cs:line 893
-        /// 
+        ///
         /// </summary>
         [Fact]
         public void CallSiteShouldWorkEvenInlined()
@@ -1241,7 +1241,8 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>").LogFactory;
 
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 await AMinimalAsyncMethod();
                 var logger = logFactory.GetCurrentClassLogger();
                 logger.Debug("dude");
