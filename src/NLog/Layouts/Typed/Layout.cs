@@ -48,32 +48,45 @@ namespace NLog.Layouts
     /// <typeparam name="T"></typeparam>
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public sealed class Layout<T> : Layout, ITypedLayout, IEquatable<T>
+    public sealed class Layout<T> : Layout, ILayoutTypeValue<T>, IEquatable<T>
     {
-        private readonly Layout _innerLayout;
-        private readonly CultureInfo _parseFormatCulture;
-        private readonly string _parseFormat;
-        private string _previousStringValue;
-        private object _previousValue;
         private readonly T _fixedValue;
+        private object _fixedObjectValue;
+
+        ILayoutTypeValue ILayoutTypeValue.InnerLayout => _layoutValue;
+        Type ILayoutTypeValue.InnerType => typeof(T);
+        bool ILayoutTypeValue.ThreadAgnostic => true;
+        bool ILayoutTypeValue.ThreadAgnosticImmutable => false;
+        StackTraceUsage ILayoutTypeValue.StackTraceUsage => StackTraceUsage.None;
+        LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => LoggingConfiguration;
+        void ILayoutTypeValue<T>.InitializeLayout()
+        {
+            // SONAR: Nothing to initialize
+        }
+        void ILayoutTypeValue<T>.CloseLayout()
+        {
+            // SONAR: Nothing to initialize
+        }
+        bool ILayoutTypeValue<T>.TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value)
+        {
+            value = _fixedValue;
+            return true;
+        }
+        object ILayoutTypeValue.RenderObjectValue(NLog.LogEventInfo logEvent, System.Text.StringBuilder stringBuilder) => FixedObjectValue;
+
+        private readonly ILayoutTypeValue<T> _layoutValue;
 
         /// <summary>
         /// Is fixed value?
         /// </summary>
-        public bool IsFixed => _innerLayout is null;
+        public bool IsFixed => ReferenceEquals(this, _layoutValue);
 
         /// <summary>
         /// Fixed value
         /// </summary>
         public T FixedValue => _fixedValue;
 
-        private object FixedObjectValue => IsFixed ? (_previousValue ?? (_previousValue = _fixedValue)) : null;
-
-        object ITypedLayout.FixedObjectValue => FixedObjectValue;
-
-        Layout ITypedLayout.InnerLayout => _innerLayout;
-
-        Type ITypedLayout.ValueType => typeof(T);
+        private object FixedObjectValue => (_fixedObjectValue ?? (_fixedObjectValue = _fixedValue));
 
         private IPropertyTypeConverter ValueTypeConverter => _valueTypeConverter ?? (_valueTypeConverter = ResolveService<IPropertyTypeConverter>());
         IPropertyTypeConverter _valueTypeConverter;
@@ -100,11 +113,13 @@ namespace NLog.Layouts
                 throw new NLogConfigurationException($"Layout<{typeof(T).ToString()}> not supported. Immutable value type is recommended");
             }
 
-            if (!TryParseFixedValue(layout, parseValueFormat, parseValueCulture, ref _fixedValue))
+            if (TryParseFixedValue(layout, parseValueFormat, parseValueCulture, ref _fixedValue))
             {
-                _innerLayout = layout;
-                _parseFormat = parseValueFormat;
-                _parseFormatCulture = parseValueCulture;
+                _layoutValue = this;
+            }
+            else
+            {
+                _layoutValue = new LayoutGenericTypeValue(layout, parseValueFormat, parseValueCulture, this);
             }
         }
 
@@ -115,6 +130,12 @@ namespace NLog.Layouts
         public Layout(T value)
         {
             _fixedValue = value;
+            _layoutValue = this;
+        }
+
+        private Layout(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options)
+        {
+            _layoutValue = new FuncMethodValue(layoutMethod, options);
         }
 
         /// <summary>
@@ -132,17 +153,43 @@ namespace NLog.Layouts
         {
             if (IsFixed)
                 return _fixedValue;
-            else
-                return RenderTypedValue<T>(logEvent, stringBuilder, defaultValue);
+
+            if (logEvent is null)
+                return defaultValue;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
+            {
+                if (cachedValue is null)
+                    return defaultValue;
+                else
+                    return (T)cachedValue;
+            }
+
+            if (!IsInitialized)
+            {
+                Initialize(LoggingConfiguration ?? _layoutValue.LoggingConfiguration);
+            }
+
+            if (_layoutValue.TryRenderValue(logEvent, stringBuilder, out var value))
+            {
+                return value;
+            }
+
+            return defaultValue;
         }
 
-        object ITypedLayout.RenderValue(LogEventInfo logEvent, object defaultValue)
+        private object RenderObjectValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder stringBuilder)
         {
-            var value = IsFixed ? FixedObjectValue : RenderTypedValue(logEvent, null, defaultValue);
-            if (ReferenceEquals(value, defaultValue) && ReferenceEquals(defaultValue, string.Empty) && typeof(T) != typeof(string))
-                return default(T);  // Translate defaultValue = string.Empty into unspecified defaultValue
-            else
-                return value;
+            if (IsFixed)
+                return FixedObjectValue;
+
+            if (logEvent is null)
+                return null;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
+                return cachedValue;
+
+            return _layoutValue.RenderObjectValue(logEvent, stringBuilder);
         }
 
         /// <summary>
@@ -153,7 +200,7 @@ namespace NLog.Layouts
         /// </remarks>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            var value = IsFixed ? FixedObjectValue : RenderTypedValue<object>(logEvent, null, null);
+            var value = IsFixed ? FixedObjectValue : RenderObjectValue(logEvent, null);
             var formatProvider = logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
             return Convert.ToString(value, formatProvider);
         }
@@ -162,22 +209,20 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
-            _innerLayout?.Initialize(LoggingConfiguration ?? _innerLayout.LoggingConfiguration);
-            ThreadAgnostic = _innerLayout?.ThreadAgnostic ?? true;
-            ThreadAgnosticImmutable = _innerLayout?.ThreadAgnosticImmutable ?? false;
-            StackTraceUsage = _innerLayout?.StackTraceUsage ?? StackTraceUsage.None;
+            _layoutValue.InitializeLayout();
+            ThreadAgnostic = _layoutValue.ThreadAgnostic;
+            ThreadAgnosticImmutable = _layoutValue.ThreadAgnosticImmutable;
+            StackTraceUsage = _layoutValue.StackTraceUsage;
             _valueTypeConverter = null;
-            _previousStringValue = null;
-            _previousValue = null;
+            _fixedObjectValue = null;
         }
 
         /// <inheritdoc/>
         protected override void CloseLayout()
         {
-            _innerLayout?.Close();
+            _layoutValue.CloseLayout();
             _valueTypeConverter = null;
-            _previousStringValue = null;
-            _previousValue = null;
+            _fixedObjectValue = null;
             base.CloseLayout();
         }
 
@@ -197,118 +242,56 @@ namespace NLog.Layouts
         /// Create a typed layout from a lambda method.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
-        /// <param name="options">Tell if method is safe for concurrent threading.</param>
+        /// <param name="options">Whether method is ThreadAgnostic and doesn't depend on context of the logging application thread.</param>
         /// <returns>Instance of typed layout.</returns>
         public static Layout<T> FromMethod(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
-            => new Layout<T>(Layout.FromMethod(l => layoutMethod(l), options));
+        {
+            Guard.ThrowIfNull(layoutMethod);
+            return new Layout<T>(layoutMethod, options);
+        }
 
         private void PrecalculateInnerLayout(LogEventInfo logEvent, StringBuilder target)
         {
-            if (IsFixed || (_innerLayout.ThreadAgnostic && !_innerLayout.ThreadAgnosticImmutable))
+            if (IsFixed || (_layoutValue.ThreadAgnostic && !_layoutValue.ThreadAgnosticImmutable))
                 return;
 
-            if (TryRenderObjectValue(logEvent, target, out var cachedValue))
-            {
-                logEvent.AddCachedLayoutValue(this, cachedValue);
-            }
+            var cachedValue = RenderObjectValue(logEvent, target);
+            logEvent.AddCachedLayoutValue(this, cachedValue);
         }
 
-        private TValueType RenderTypedValue<TValueType>(LogEventInfo logEvent, StringBuilder stringBuilder, TValueType defaultValue)
+        private sealed class LayoutGenericTypeValue : LayoutTypeValue, ILayoutTypeValue<T>
         {
-            if (logEvent is null)
-                return defaultValue;
+            private readonly Layout<T> _ownerLayout;
 
-            if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
+            public override Type InnerType => typeof(T);
+            public override IPropertyTypeConverter ValueTypeConverter => _ownerLayout.ValueTypeConverter;
+
+            public LayoutGenericTypeValue(Layout layout, string parseValueFormat, CultureInfo parseValueCulture, Layout<T> ownerLayout)
+                :base(layout, typeof(T), parseValueFormat, parseValueCulture, null)
             {
-                if (cachedValue is null)
-                    return defaultValue;
-                else
-                    return (TValueType)cachedValue;
+                _ownerLayout = ownerLayout;
             }
 
-            if (TryRenderObjectValue(logEvent, stringBuilder, out var value))
+            public void InitializeLayout()
             {
-                if (value is null)
-                    return defaultValue;
-                else
-                    return (TValueType)value;
+                base.InitializeLayout(_ownerLayout);
             }
 
-            return defaultValue;
-        }
-
-        private bool TryRenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder, out object value)
-        {
-            if (!IsInitialized)
+            public void CloseLayout()
             {
-                Initialize(LoggingConfiguration ?? _innerLayout?.LoggingConfiguration);
+                base.Close();
             }
 
-            if (_innerLayout.TryGetRawValue(logEvent, out var rawValue))
+            public bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value)
             {
-                if (rawValue is string rawStringValue)
+                var objectValue = RenderObjectValue(logEvent, stringBuilder);
+                if (objectValue is T typedValue)
                 {
-                    if (string.IsNullOrEmpty(rawStringValue))
-                    {
-                        return TryParseValueFromString(rawStringValue, _parseFormat, _parseFormatCulture, out value);
-                    }
+                    value = typedValue;
+                    return true;
                 }
-                else
-                {
-                    if (rawValue is null)
-                    {
-                        value = null;
-                        return true;
-                    }
-
-                    return TryParseValueFromObject(rawValue, _parseFormat, _parseFormatCulture, out value);
-                }
-            }
-
-            var previousStringValue = _previousStringValue;
-            var previousValue = _previousValue;
-
-            var stringValue = RenderStringValue(logEvent, stringBuilder, previousStringValue);
-            if (previousStringValue != null && previousStringValue == stringValue)
-            {
-                value = previousValue;
-                return true;
-            }
-
-            if (TryParseValueFromString(stringValue, _parseFormat, _parseFormatCulture, out value))
-            {
-                if (string.IsNullOrEmpty(previousStringValue) || stringValue?.Length < 3)
-                {
-                    // Only cache initial value to avoid constantly changing values like CorrelationId (Guid) or DateTime.UtcNow
-                    _previousValue = value;
-                    _previousStringValue = stringValue;
-                }
-                return true;
-            }
-
-            return false;
-        }
-
-        private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
-        {
-            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsSimpleStringText)
-            {
-                return simpleLayout.Render(logEvent, false);
-            }
-
-            if (stringBuilder?.Length == 0)
-            {
-                _innerLayout.Render(logEvent, stringBuilder);
-                if (stringBuilder.Length == 0)
-                    return string.Empty;
-                else if (!string.IsNullOrEmpty(previousStringValue) && stringBuilder.EqualTo(previousStringValue))
-                    return previousStringValue;
-                else
-                    return stringBuilder.ToString();
-            }
-            else
-            {
-                return _innerLayout.Render(logEvent);
+                value = default(T);
+                return false;
             }
         }
 
@@ -351,34 +334,47 @@ namespace NLog.Layouts
             return false;
         }
 
-        private bool TryParseValueFromString(string stringValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
+        private sealed class FuncMethodValue : ILayoutTypeValue<T>
         {
-            if (string.IsNullOrEmpty(stringValue))
+            private readonly Func<LogEventInfo, T> _layoutMethod;
+
+            public bool ThreadAgnostic { get; }
+            LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => null;
+            bool ILayoutTypeValue.ThreadAgnosticImmutable => false;
+            StackTraceUsage ILayoutTypeValue.StackTraceUsage => StackTraceUsage.None;
+            ILayoutTypeValue ILayoutTypeValue.InnerLayout => this;
+            Type ILayoutTypeValue.InnerType => typeof(T);
+
+            public FuncMethodValue(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options)
             {
-                parsedValue = typeof(T) == typeof(string) ? stringValue : null;
+                _layoutMethod = layoutMethod;
+                ThreadAgnostic = options == LayoutRenderOptions.ThreadAgnostic;
+            }
+
+            public void InitializeLayout()
+            {
+                // SONAR: Nothing to initialize
+            }
+
+            public void CloseLayout()
+            {
+                // SONAR: Nothing to close
+            }
+
+            public bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value)
+            {
+                value = _layoutMethod(logEvent);
                 return true;
             }
 
-            return TryParseValueFromObject(stringValue, parseValueFormat, parseValueCulture, out parsedValue);
-        }
-
-        bool ITypedLayout.TryParseValueFromString(string stringValue, out object parsedValue)
-        {
-            return TryParseValueFromString(stringValue, _parseFormat, _parseFormatCulture, out parsedValue);
-        }
-
-        bool TryParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
-        {
-            try
+            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
             {
-                parsedValue = ParseValueFromObject(rawValue, parseValueFormat, parseValueCulture);
-                return true;
+                return _layoutMethod(logEvent);
             }
-            catch (Exception ex)
+
+            public override string ToString()
             {
-                parsedValue = null;
-                InternalLogger.Warn(ex, "Failed converting object '{0}' of type {1} into type {2}", rawValue, rawValue?.GetType(), typeof(T));
-                return false;
+                return _layoutMethod.ToString();
             }
         }
 
@@ -390,7 +386,7 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         public override string ToString()
         {
-            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : (_innerLayout?.ToString() ?? base.ToString());
+            return IsFixed ? (FixedObjectValue?.ToString() ?? "null") : _layoutValue.ToString();
         }
 
         /// <inheritdoc/>
@@ -469,16 +465,180 @@ namespace NLog.Layouts
         }
     }
 
-    /// <summary>
-    /// Provides access to untyped value without knowing underlying generic type
-    /// </summary>
-    internal interface ITypedLayout
+    internal interface ILayoutTypeValue
     {
-        Layout InnerLayout { get; }
-        Type ValueType { get; }
-        bool IsFixed { get; }
-        object FixedObjectValue { get; }
-        object RenderValue(LogEventInfo logEvent, object defaultValue);
-        bool TryParseValueFromString(string stringValue, out object parsedValue);
+        Type InnerType { get; }
+        ILayoutTypeValue InnerLayout { get; }
+        bool ThreadAgnostic { get; }
+        bool ThreadAgnosticImmutable { get; }
+        StackTraceUsage StackTraceUsage { get; }
+        object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder);
+    }
+
+    internal interface ILayoutTypeValue<T> : ILayoutTypeValue
+    {
+        LoggingConfiguration LoggingConfiguration { get; }
+        void InitializeLayout();
+        void CloseLayout();
+        bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value);
+    }
+
+    internal class LayoutTypeValue : ILayoutTypeValue
+    {
+        private readonly Layout _innerLayout;
+        private readonly Type _valueType;
+        private readonly CultureInfo _parseValueCulture;
+        private readonly string _parseValueFormat;
+        private string _previousStringValue;
+        private object _previousValue;
+
+        public LoggingConfiguration LoggingConfiguration => _innerLayout.LoggingConfiguration;
+        public bool ThreadAgnostic => _innerLayout.ThreadAgnostic;
+        public bool ThreadAgnosticImmutable => _innerLayout.ThreadAgnosticImmutable;
+        public StackTraceUsage StackTraceUsage => _innerLayout.StackTraceUsage;
+        public virtual IPropertyTypeConverter ValueTypeConverter { get; }
+        public ILayoutTypeValue InnerLayout => this;
+        public virtual Type InnerType => null;
+
+        public LayoutTypeValue(Layout layout, Type valueType, string parseValueFormat, CultureInfo parseValueCulture, IPropertyTypeConverter valueTypeConverter)
+        {
+            _innerLayout = layout;
+            _valueType = valueType;
+            _parseValueFormat = parseValueFormat;
+            _parseValueCulture = parseValueCulture;
+            ValueTypeConverter = valueTypeConverter;
+        }
+
+        public object TryParseFixedValue()
+        {
+            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            {
+                if (TryParseValueFromString(simpleLayout.FixedText, _parseValueFormat, _parseValueCulture, out object objectValue))
+                {
+                    return objectValue;
+                }
+            }
+            return null;
+        }
+
+        protected void InitializeLayout(Layout ownerLayout)
+        {
+            _innerLayout.Initialize(ownerLayout.LoggingConfiguration ?? _innerLayout.LoggingConfiguration);
+            _previousStringValue = null;
+            _previousValue = null;
+        }
+
+        protected void Close()
+        {
+            _innerLayout.Close();
+            _previousStringValue = null;
+            _previousValue = null;
+        }
+
+        public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+        {
+            if (_innerLayout.TryGetRawValue(logEvent, out var rawValue))
+            {
+                if (rawValue is string rawStringValue)
+                {
+                    if (string.IsNullOrEmpty(rawStringValue))
+                    {
+                        TryParseValueFromString(rawStringValue, _parseValueFormat, _parseValueCulture, out var objectValue);
+                        return objectValue;
+                    }
+                }
+                else
+                {
+                    if (rawValue is null)
+                    {
+                        return null;
+                    }
+
+                    TryParseValueFromObject(rawValue, _parseValueFormat, _parseValueCulture, out var objectValue);
+                    return objectValue;
+                }
+            }
+
+            var previousStringValue = _previousStringValue;
+            var previousValue = _previousValue;
+
+            var stringValue = RenderStringValue(logEvent, stringBuilder, previousStringValue);
+            if (previousStringValue != null && previousStringValue == stringValue)
+            {
+                return previousValue;
+            }
+
+            if (TryParseValueFromString(stringValue, _parseValueFormat, _parseValueCulture, out var parsedValue))
+            {
+                if (string.IsNullOrEmpty(previousStringValue) || stringValue?.Length < 3)
+                {
+                    // Only cache initial value to avoid constantly changing values like CorrelationId (Guid) or DateTime.UtcNow
+                    _previousValue = parsedValue;
+                    _previousStringValue = stringValue;
+                }
+                return parsedValue;
+            }
+
+            return null;
+        }
+
+        private string RenderStringValue(LogEventInfo logEvent, StringBuilder stringBuilder, string previousStringValue)
+        {
+            if (_innerLayout is SimpleLayout simpleLayout && simpleLayout.IsSimpleStringText)
+            {
+                return simpleLayout.Render(logEvent, false);
+            }
+
+            if (stringBuilder?.Length == 0)
+            {
+                _innerLayout.Render(logEvent, stringBuilder);
+                if (stringBuilder.Length == 0)
+                    return string.Empty;
+                else if (!string.IsNullOrEmpty(previousStringValue) && stringBuilder.EqualTo(previousStringValue))
+                    return previousStringValue;
+                else
+                    return stringBuilder.ToString();
+            }
+            else
+            {
+                return _innerLayout.Render(logEvent);
+            }
+        }
+
+        bool TryParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
+        {
+            try
+            {
+                parsedValue = ParseValueFromObject(rawValue, parseValueFormat, parseValueCulture);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                parsedValue = null;
+                InternalLogger.Warn(ex, "Failed converting object '{0}' of type {1} into type {2}", rawValue, rawValue?.GetType(), _valueType);
+                return false;
+            }
+        }
+
+        private object ParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture)
+        {
+            return ValueTypeConverter.Convert(rawValue, _valueType, parseValueFormat, parseValueCulture);
+        }
+
+        private bool TryParseValueFromString(string stringValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
+        {
+            if (string.IsNullOrEmpty(stringValue))
+            {
+                parsedValue = _valueType == typeof(string) ? stringValue : null;
+                return true;
+            }
+
+            return TryParseValueFromObject(stringValue, parseValueFormat, parseValueCulture, out parsedValue);
+        }
+
+        public override string ToString()
+        {
+            return _innerLayout.ToString();
+        }
     }
 }

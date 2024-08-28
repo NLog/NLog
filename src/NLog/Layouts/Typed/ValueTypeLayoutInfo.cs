@@ -33,7 +33,7 @@
 
 using System;
 using System.Globalization;
-using System.Reflection;
+using System.Text;
 using NLog.Config;
 using NLog.Internal;
 
@@ -61,27 +61,18 @@ namespace NLog.Layouts
         [RequiredParameter]
         public Layout Layout
         {
-            get => _layout ?? (_layout = CreateTypedLayout(ValueType, ExtractExistingValue(_innerLayout)));  // Ensure the correct Layout-object is initialized by config, and scanned by NLog Target
+            get => _layout;
             set
             {
-                _defaultValueObject = null;
-                if (value is ITypedLayout typedLayout)
+                _layout = value;
+                if (ValueType is null && _layout is ILayoutTypeValue layoutTyped)
                 {
-                    _layout = _innerLayout = value;
-                    _valueType = typedLayout.ValueType;
-                    _typedLayout = typedLayout;
+                    ValueType = layoutTyped.InnerType;
                 }
-                else
-                {
-                    _layout = null;
-                    _innerLayout = value;
-                    _typedLayout = null;
-                }
+                _layoutValue = null;
             }
         }
         private Layout _layout;
-        private Layout _innerLayout;
-        private ITypedLayout _typedLayout;
 
         /// <summary>
         /// Gets or sets the result value type, for conversion of layout rendering output
@@ -90,16 +81,20 @@ namespace NLog.Layouts
         public Type ValueType
         {
             get => _valueType;
+            [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow ValueType assign from config", "IL2067")]
             set
             {
                 _valueType = value;
-                _layout = null;
-                if (!ReferenceEquals(_innerLayout, _typedLayout) && !(_innerLayout is null))
-                    _typedLayout = null;
-                _defaultValueObject = null;
+                if (value?.IsValueType() == true)
+                    _createDefaultValue = () => Activator.CreateInstance(value);
+                else
+                    _createDefaultValue = null;
+                _layoutValue = null;
+                _defaultLayoutValue = null;
             }
         }
         private Type _valueType;
+        private Func<object> _createDefaultValue;
 
         /// <summary>
         /// Gets or sets the fallback value when result value is not available
@@ -111,14 +106,11 @@ namespace NLog.Layouts
             set
             {
                 _defaultValue = value;
-                _defaultValueObject = null;
-                _typedDefaultValue = value as ITypedLayout;
+                _defaultLayoutValue = null;
             }
         }
         private Layout _defaultValue;
-        private ITypedLayout _typedDefaultValue;
-        private object _defaultValueObject;
-
+        
         /// <summary>
         /// Gets or sets the fallback value should be null (instead of default value of <see cref="ValueType"/>) when result value is not available
         /// </summary>
@@ -147,9 +139,8 @@ namespace NLog.Layouts
             set
             {
                 _valueParseFormat = value;
-                if (!ReferenceEquals(_innerLayout, _typedLayout) && !(_innerLayout is null))
-                    _typedLayout = null;
-                _defaultValueObject = null;
+                _layoutValue = null;
+                _defaultLayoutValue = null;
             }
         }
         private string _valueParseFormat;
@@ -164,12 +155,11 @@ namespace NLog.Layouts
             set
             {
                 _valueParseCulture = value;
-                if (!ReferenceEquals(_innerLayout, _typedLayout) && !(_innerLayout is null))
-                    _typedLayout = null;
-                _defaultValueObject = null;
+                _layoutValue = null;
+                _defaultLayoutValue = null;
             }
         }
-        private CultureInfo _valueParseCulture = CultureInfo.InvariantCulture;
+        private CultureInfo _valueParseCulture;
 
         /// <summary>
         /// Render Result Value
@@ -178,96 +168,110 @@ namespace NLog.Layouts
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         public object RenderValue(LogEventInfo logEvent)
         {
-            var layout = Layout;
-            if (_typedLayout != null)
+            var layoutValue = LayoutValue;
+            if (layoutValue is null)
+                return null;
+
+            var objectValue = layoutValue.RenderObjectValue(logEvent, null);
+            if (objectValue is null || (objectValue is string stringValue && stringValue.Length == 0))
             {
-                var defaultValue = GetTypedDefaultValue();
-                return _typedLayout.RenderValue(logEvent, defaultValue);
+                objectValue = DefaultLayoutValue?.RenderObjectValue(logEvent, null);
             }
 
-            if (layout != null)
+            return objectValue;
+        }
+
+        private ILayoutTypeValue LayoutValue => _layoutValue ?? (_layoutValue = BuildLayoutTypeValue(Layout));
+        private ILayoutTypeValue _layoutValue;
+
+        private ILayoutTypeValue DefaultLayoutValue => _defaultLayoutValue ?? (_defaultLayoutValue = BuildLayoutTypeValue(DefaultValue));
+        private ILayoutTypeValue _defaultLayoutValue;
+
+        private ILayoutTypeValue BuildLayoutTypeValue(Layout layout)
+        {
+            if (layout is null)
             {
-                if (typeof(object).Equals(ValueType) && layout.TryGetRawValue(logEvent, out var rawValue))
+                if (_createDefaultValue != null)
                 {
-                    return rawValue;
+                    var fixedDefaultValue = _createDefaultValue.Invoke();
+                    return new FixedLayoutTypeValue(fixedDefaultValue);
                 }
-
-                string stringValue = layout.Render(logEvent, false);
-                if (string.IsNullOrEmpty(stringValue))
+                else if (ValueType is null || typeof(string).Equals(ValueType))
                 {
-                    return GetTypedDefaultValue();
+                    return new FixedLayoutTypeValue(string.Empty);
                 }
-
-                return stringValue;
+                else
+                {
+                    layout =  string.Empty;
+                }
             }
 
-            return null;
-        }
+            if (layout is ILayoutTypeValue typedLayout)
+                return typedLayout.InnerLayout;
 
-        private object GetTypedDefaultValue()
-        {
-            return _defaultValueObject ?? (_defaultValueObject = CreateTypedDefaultValue());
-        }
+            if (ValueType is null || typeof(string).Equals(ValueType))
+                return new StringLayoutTypeValue(layout);
 
-        private Layout CreateTypedLayout(Type valueType, object existingValue)
-        {
-            if (valueType is null || valueType == typeof(string) || valueType == typeof(object))
-                return existingValue as Layout ?? _innerLayout;
-
-            try
-            {
-                var concreteType = typeof(Layout<>).MakeGenericType(valueType);
-                var constructorParams = existingValue is Layout ? new object[] { existingValue, ValueParseFormat, ValueParseCulture } : new object[] { existingValue };
-                var typedLayout = (Layout)Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, constructorParams, null);
-                _typedLayout = typedLayout as ITypedLayout;
-                return typedLayout;
-            }
-            catch (TargetInvocationException ex)
-            {
-                if (ex.InnerException is null)
-                    throw;
-
-                if (ex.InnerException.MustBeRethrown())
-                    throw ex.InnerException;
-
-                return _innerLayout;
-            }
-        }
-
-        private static object ExtractExistingValue(object innerValue)
-        {
-            if (innerValue is SimpleLayout simpleLayout)
-                return simpleLayout;
-            else if (innerValue is ITypedLayout typedLayout)
-                return typedLayout.InnerLayout ?? typedLayout.FixedObjectValue;
-            else if (innerValue is Layout innerLayout)
-                return innerLayout.Render(LogEventInfo.CreateNullEvent());
+            var logFactory = Layout.LoggingConfiguration?.LogFactory ?? LogManager.LogFactory;
+            var valueTypeConverter = logFactory.ServiceRepository.ResolveService<IPropertyTypeConverter>();
+            var layoutValue = new LayoutTypeValue(layout, ValueType, ValueParseFormat, ValueParseCulture, valueTypeConverter);
+            var fixedValue = layoutValue.TryParseFixedValue();
+            if (fixedValue is null)
+                return layoutValue;
             else
-                return innerValue;
+                return new FixedLayoutTypeValue(fixedValue);
         }
 
-        private object CreateTypedDefaultValue()
+        private sealed class FixedLayoutTypeValue : ILayoutTypeValue
         {
-            if (_typedDefaultValue != null && _typedDefaultValue.IsFixed)
-                return _typedDefaultValue.FixedObjectValue;
+            private readonly object _fixedValue;
 
-            if (_defaultValue is null)
-                return string.Empty;
+            public bool ThreadAgnostic => true;
+            public bool ThreadAgnosticImmutable => false;
+            public StackTraceUsage StackTraceUsage => StackTraceUsage.None;
+            public ILayoutTypeValue InnerLayout => this;
+            public Type InnerType => _fixedValue?.GetType();
 
-            if (_typedLayout is null)
-                return _defaultValue.Render(LogEventInfo.CreateNullEvent());
+            public FixedLayoutTypeValue(object fixedValue)
+            {
+                _fixedValue = fixedValue;
+            }
 
-            if (_typedLayout.IsFixed)
-                return string.Empty;
+            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+            {
+                return _fixedValue;
+            }
 
-            var defaultStringValue = _defaultValue.Render(LogEventInfo.CreateNullEvent());
-            if (string.IsNullOrEmpty(defaultStringValue))
-                return string.Empty;
+            public override string ToString()
+            {
+                return _fixedValue?.ToString() ?? "null";
+            }
+        }
 
-            if (_typedLayout.TryParseValueFromString(defaultStringValue, out object defaultObjectValue))
-                return defaultObjectValue ?? string.Empty;
+        private sealed class StringLayoutTypeValue : ILayoutTypeValue
+        {
+            private readonly Layout _innerLayout;
 
-            return string.Empty;
+            public bool ThreadAgnostic => _innerLayout.ThreadAgnostic;
+            public bool ThreadAgnosticImmutable => _innerLayout.ThreadAgnosticImmutable;
+            public StackTraceUsage StackTraceUsage => _innerLayout.StackTraceUsage;
+            public ILayoutTypeValue InnerLayout => this;
+            public Type InnerType => typeof(string);
+
+            public StringLayoutTypeValue(Layout layout)
+            {
+                _innerLayout = layout;
+            }
+
+            public object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder)
+            {
+                return _innerLayout.Render(logEvent, false);
+            }
+
+            public override string ToString()
+            {
+                return _innerLayout.ToString();
+            }
         }
     }
 }

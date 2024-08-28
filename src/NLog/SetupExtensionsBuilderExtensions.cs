@@ -300,7 +300,7 @@ namespace NLog
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
-        /// <param name="options">Options of the layout renderer.</param>
+        /// <param name="options">Whether method is ThreadAgnostic and doesn't depend on context of the logging application thread.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options)
         {
             return RegisterLayoutRenderer(setupBuilder, name, (info, configuration) => layoutMethod(info), options);
@@ -312,7 +312,7 @@ namespace NLog
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">The layout-renderer type-alias for use in NLog configuration - without '${ }'</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
-        /// <param name="options">Options of the layout renderer.</param>
+        /// <param name="options">Whether method is ThreadAgnostic and doesn't depend on context of the logging application thread.</param>
         public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod, LayoutRenderOptions options)
         {
             FuncLayoutRenderer layoutRenderer = Layout.CreateFuncLayoutRenderer(layoutMethod, options, name);

@@ -36,6 +36,7 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
@@ -357,6 +358,7 @@ namespace NLog.UnitTests.Targets
                             <contextproperty name='timestamp' layout='${date}' propertyType='System.DateTime' />
                             <contextproperty name='int-non-existing' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='true' />
                             <contextproperty name='int-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='false' />
+                            <contextproperty name='string-non-existing' layout='${event-properties:non-existing}' propertyType='System.String' includeEmptyValue='true' />
                             <contextproperty name='object-non-existing' layout='${event-properties:non-existing}' propertyType='System.Object' includeEmptyValue='true' />
                             <contextproperty name='object-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Object' includeEmptyValue='false' />
                        </target>
@@ -380,7 +382,8 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(new KeyValuePair<string, object>("processid", CurrentProcessId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);
             Assert.DoesNotContain("int-non-existing-empty", lastCombinedProperties.Keys);
-            Assert.Contains(new KeyValuePair<string, object>("object-non-existing", ""), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("string-non-existing", ""), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("object-non-existing", null), lastCombinedProperties);
             Assert.DoesNotContain("object-non-existing-empty", lastCombinedProperties.Keys);
         }
     }
