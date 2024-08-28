@@ -206,7 +206,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             Assert.Null(result);
-            Assert.Equal(5, result5);
+            Assert.Null(result5);   // Value returned from assigned method always wins
             Assert.Equal("", layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.False(layout.IsFixed);
             Assert.NotEqual("null", layout.ToString());
@@ -250,6 +250,7 @@ namespace NLog.UnitTests.Layouts
 
             // Assert
             Assert.Equal(uri, result);
+            Assert.Same(uri, result);   // Direct pass-through without parsing and allocation
             Assert.Same(result, layout.RenderValue(LogEventInfo.CreateNullEvent()));
             Assert.Equal(uri.ToString(), layout.Render(LogEventInfo.CreateNullEvent()));
             Assert.NotEqual(uri, layout);

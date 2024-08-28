@@ -141,7 +141,7 @@ namespace NLog.Layouts
         /// Create a <see cref="SimpleLayout"/> from a lambda method.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
-        /// <param name="options">Tell if method is safe for concurrent threading.</param>
+        /// <param name="options">Whether method is ThreadAgnostic and doesn't depend on context of the logging application thread.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
         {
