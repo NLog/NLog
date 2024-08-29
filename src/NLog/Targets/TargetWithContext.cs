@@ -461,7 +461,7 @@ namespace NLog.Targets
         private static bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
         {
             propertyValue = contextProperty.RenderValue(logEvent);
-            if (!contextProperty.IncludeEmptyValue && (propertyValue is null || string.Empty.Equals(propertyValue)))
+            if (!contextProperty.IncludeEmptyValue && StringHelpers.IsNullOrEmptyString(propertyValue))
             {
                 return false;
             }

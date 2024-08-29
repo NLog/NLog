@@ -173,7 +173,7 @@ namespace NLog.Layouts
                 return null;
 
             var objectValue = layoutValue.RenderObjectValue(logEvent, null);
-            if (objectValue is null || (objectValue is string stringValue && stringValue.Length == 0))
+            if (StringHelpers.IsNullOrEmptyString(objectValue))
             {
                 objectValue = DefaultLayoutValue?.RenderObjectValue(logEvent, null);
             }
@@ -225,10 +225,6 @@ namespace NLog.Layouts
         private sealed class FixedLayoutTypeValue : ILayoutTypeValue
         {
             private readonly object _fixedValue;
-
-            public bool ThreadAgnostic => true;
-            public bool ThreadAgnosticImmutable => false;
-            public StackTraceUsage StackTraceUsage => StackTraceUsage.None;
             public ILayoutTypeValue InnerLayout => this;
             public Type InnerType => _fixedValue?.GetType();
 
@@ -251,10 +247,6 @@ namespace NLog.Layouts
         private sealed class StringLayoutTypeValue : ILayoutTypeValue
         {
             private readonly Layout _innerLayout;
-
-            public bool ThreadAgnostic => _innerLayout.ThreadAgnostic;
-            public bool ThreadAgnosticImmutable => _innerLayout.ThreadAgnosticImmutable;
-            public StackTraceUsage StackTraceUsage => _innerLayout.StackTraceUsage;
             public ILayoutTypeValue InnerLayout => this;
             public Type InnerType => typeof(string);
 
