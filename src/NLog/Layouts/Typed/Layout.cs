@@ -175,15 +175,10 @@ namespace NLog.Layouts
 
         private object RenderObjectValue([CanBeNull] LogEventInfo logEvent, [CanBeNull] StringBuilder stringBuilder)
         {
-            if (IsFixed)
-                return FixedObjectValue;
-
             if (logEvent is null)
                 return null;
-
             if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
                 return cachedValue;
-
             return _layoutValue.RenderObjectValue(logEvent, stringBuilder);
         }
 
@@ -195,9 +190,9 @@ namespace NLog.Layouts
         /// </remarks>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            var value = IsFixed ? FixedObjectValue : RenderObjectValue(logEvent, null);
+            var objectValue = IsFixed ? FixedObjectValue : RenderObjectValue(logEvent, null);
             var formatProvider = logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
-            return Convert.ToString(value, formatProvider);
+            return Convert.ToString(objectValue, formatProvider);
         }
 
         /// <inheritdoc/>
@@ -249,8 +244,8 @@ namespace NLog.Layouts
             if (IsFixed || (_layoutValue.ThreadAgnostic && !_layoutValue.ThreadAgnosticImmutable))
                 return;
 
-            var cachedValue = RenderObjectValue(logEvent, target);
-            logEvent.AddCachedLayoutValue(this, cachedValue);
+            var objectValue = RenderObjectValue(logEvent, target);
+            logEvent.AddCachedLayoutValue(this, objectValue);
         }
 
         private sealed class LayoutGenericTypeValue : LayoutTypeValue, ILayoutTypeValue<T>
