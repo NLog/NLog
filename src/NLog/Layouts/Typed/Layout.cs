@@ -134,6 +134,7 @@ namespace NLog.Layouts
 
         private Layout(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options)
         {
+            Guard.ThrowIfNull(layoutMethod);
             _layoutValue = new FuncMethodValue(layoutMethod, options);
         }
 
@@ -157,12 +158,7 @@ namespace NLog.Layouts
                 return defaultValue;
 
             if (logEvent.TryGetCachedLayoutValue(this, out var cachedValue))
-            {
-                if (cachedValue is null)
-                    return defaultValue;
-                else
-                    return (T)cachedValue;
-            }
+                return cachedValue is null ? defaultValue : (T)cachedValue;
 
             if (!IsInitialized)
             {
@@ -245,7 +241,6 @@ namespace NLog.Layouts
         /// <returns>Instance of typed layout.</returns>
         public static Layout<T> FromMethod(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
         {
-            Guard.ThrowIfNull(layoutMethod);
             return new Layout<T>(layoutMethod, options);
         }
 
