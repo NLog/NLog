@@ -47,7 +47,6 @@ namespace NLog.Layouts
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [ThreadAgnostic]
-    [AppDomainFixedOutput]
     public sealed class Layout<T> : Layout, ILayoutTypeValue<T>, IEquatable<T>
     {
         private readonly T _fixedValue;
@@ -55,9 +54,9 @@ namespace NLog.Layouts
 
         ILayoutTypeValue ILayoutTypeValue.InnerLayout => _layoutValue;
         Type ILayoutTypeValue.InnerType => typeof(T);
-        bool ILayoutTypeValue.ThreadAgnostic => true;
-        bool ILayoutTypeValue.ThreadAgnosticImmutable => false;
-        StackTraceUsage ILayoutTypeValue.StackTraceUsage => StackTraceUsage.None;
+        bool ILayoutTypeValue<T>.ThreadAgnostic => true;
+        bool ILayoutTypeValue<T>.ThreadAgnosticImmutable => false;
+        StackTraceUsage ILayoutTypeValue<T>.StackTraceUsage => StackTraceUsage.None;
         LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => LoggingConfiguration;
         void ILayoutTypeValue<T>.InitializeLayout()
         {
@@ -339,11 +338,12 @@ namespace NLog.Layouts
             private readonly Func<LogEventInfo, T> _layoutMethod;
 
             public bool ThreadAgnostic { get; }
-            LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => null;
-            bool ILayoutTypeValue.ThreadAgnosticImmutable => false;
-            StackTraceUsage ILayoutTypeValue.StackTraceUsage => StackTraceUsage.None;
+
             ILayoutTypeValue ILayoutTypeValue.InnerLayout => this;
             Type ILayoutTypeValue.InnerType => typeof(T);
+            LoggingConfiguration ILayoutTypeValue<T>.LoggingConfiguration => null;
+            bool ILayoutTypeValue<T>.ThreadAgnosticImmutable => false;
+            StackTraceUsage ILayoutTypeValue<T>.StackTraceUsage => StackTraceUsage.None;
 
             public FuncMethodValue(Func<LogEventInfo, T> layoutMethod, LayoutRenderOptions options)
             {
@@ -469,15 +469,15 @@ namespace NLog.Layouts
     {
         Type InnerType { get; }
         ILayoutTypeValue InnerLayout { get; }
-        bool ThreadAgnostic { get; }
-        bool ThreadAgnosticImmutable { get; }
-        StackTraceUsage StackTraceUsage { get; }
         object RenderObjectValue(LogEventInfo logEvent, StringBuilder stringBuilder);
     }
 
     internal interface ILayoutTypeValue<T> : ILayoutTypeValue
     {
         LoggingConfiguration LoggingConfiguration { get; }
+        bool ThreadAgnostic { get; }
+        bool ThreadAgnosticImmutable { get; }
+        StackTraceUsage StackTraceUsage { get; }
         void InitializeLayout();
         void CloseLayout();
         bool TryRenderValue(LogEventInfo logEvent, StringBuilder stringBuilder, out T value);

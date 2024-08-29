@@ -139,7 +139,7 @@ namespace NLog.Layouts
             else
             {
                 var objectValue = _layoutInfo.RenderValue(logEvent);
-                if (!IncludeEmptyValue && (objectValue is null || string.Empty.Equals(objectValue)))
+                if (!IncludeEmptyValue && StringHelpers.IsNullOrEmptyString(objectValue))
                 {
                     return false;
                 }

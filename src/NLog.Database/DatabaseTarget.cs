@@ -1112,7 +1112,7 @@ namespace NLog.Targets
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
             var value = parameterInfo.RenderValue(logEvent);
-            if (parameterInfo.AllowDbNull && string.Empty.Equals(value))
+            if (parameterInfo.AllowDbNull && (value is null || string.Empty.Equals(value)))
                 return DBNull.Value;
             else
                 return value;
