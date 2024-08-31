@@ -252,7 +252,6 @@ namespace NLog.Layouts
         {
             private readonly Layout<T> _ownerLayout;
 
-            public override Type InnerType => typeof(T);
             public override IPropertyTypeConverter ValueTypeConverter => _ownerLayout.ValueTypeConverter;
 
             public LayoutGenericTypeValue(Layout layout, string parseValueFormat, CultureInfo parseValueCulture, Layout<T> ownerLayout)
@@ -487,8 +486,8 @@ namespace NLog.Layouts
         public bool ThreadAgnosticImmutable => _innerLayout.ThreadAgnosticImmutable;
         public StackTraceUsage StackTraceUsage => _innerLayout.StackTraceUsage;
         public virtual IPropertyTypeConverter ValueTypeConverter { get; }
-        public ILayoutTypeValue InnerLayout => this;
-        public virtual Type InnerType => null;
+        ILayoutTypeValue ILayoutTypeValue.InnerLayout => this;
+        Type ILayoutTypeValue.InnerType => _valueType;
 
         public LayoutTypeValue(Layout layout, Type valueType, string parseValueFormat, CultureInfo parseValueCulture, IPropertyTypeConverter valueTypeConverter)
         {
@@ -595,7 +594,7 @@ namespace NLog.Layouts
             }
         }
 
-        bool TryParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
+        private bool TryParseValueFromObject(object rawValue, string parseValueFormat, CultureInfo parseValueCulture, out object parsedValue)
         {
             try
             {
