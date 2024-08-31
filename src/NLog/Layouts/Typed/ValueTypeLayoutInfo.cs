@@ -168,14 +168,10 @@ namespace NLog.Layouts
         /// <returns>Result value when available, else fallback to defaultValue</returns>
         public object RenderValue(LogEventInfo logEvent)
         {
-            var layoutValue = LayoutValue;
-            if (layoutValue is null)
-                return null;
-
-            var objectValue = layoutValue.RenderObjectValue(logEvent, null);
+            var objectValue = LayoutValue.RenderObjectValue(logEvent, null);
             if (StringHelpers.IsNullOrEmptyString(objectValue))
             {
-                objectValue = DefaultLayoutValue?.RenderObjectValue(logEvent, null);
+                objectValue = DefaultLayoutValue.RenderObjectValue(logEvent, null);
             }
 
             return objectValue;
@@ -212,7 +208,7 @@ namespace NLog.Layouts
             if (ValueType is null || typeof(string).Equals(ValueType))
                 return new StringLayoutTypeValue(layout);
 
-            var logFactory = Layout.LoggingConfiguration?.LogFactory ?? LogManager.LogFactory;
+            var logFactory = layout.LoggingConfiguration?.LogFactory ?? LogManager.LogFactory;
             var valueTypeConverter = logFactory.ServiceRepository.ResolveService<IPropertyTypeConverter>();
             var layoutValue = new LayoutTypeValue(layout, ValueType, ValueParseFormat, ValueParseCulture, valueTypeConverter);
             var fixedValue = layoutValue.TryParseFixedValue();
