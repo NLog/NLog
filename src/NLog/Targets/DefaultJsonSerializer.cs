@@ -479,7 +479,7 @@ namespace NLog.Targets
             }
         }
 
-        private void SerializeNumericValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, bool forceToString)
+        private static void SerializeNumericValue(IConvertible value, TypeCode objTypeCode, StringBuilder destination, bool forceToString)
         {
             if (forceToString)
                 destination.Append('"');

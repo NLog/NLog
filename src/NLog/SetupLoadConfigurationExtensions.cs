@@ -761,7 +761,7 @@ namespace NLog
             string newTargetName = targetName;
             while (!IsTargetNameUnique(allTargets, target, newTargetName))
             {
-                newTargetName = string.Concat(targetName, "_", (++targetIndex).ToString());
+                newTargetName = string.Concat(targetName, "_", (++targetIndex).ToString(System.Globalization.CultureInfo.InvariantCulture));
             }
 
             return newTargetName;

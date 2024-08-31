@@ -86,7 +86,7 @@ namespace NLog.Targets.FileArchiveModes
                     nextSequenceNumber = Math.Max(nextSequenceNumber, existingFile.Sequence + 1);
 
             int minSequenceLength = archiveFileNameTemplate.EndAt - archiveFileNameTemplate.BeginAt - 2;
-            string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
+            string paddedSequence = nextSequenceNumber.ToString(CultureInfo.InvariantCulture).PadLeft(minSequenceLength, '0');
             string archiveFileNameWithoutPath = archiveFileNameTemplate.ReplacePattern("*").Replace("*",
                 $"{archiveDate.ToString(_archiveDateFormat)}.{paddedSequence}");
             string dirName = Path.GetDirectoryName(archiveFilePath);
