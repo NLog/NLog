@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the stack frame separator string.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? ""); }
+        public string Separator { get => _separator?.OriginalText; set => _separator = new SimpleLayout(value ?? string.Empty); }
         private SimpleLayout _separator = new SimpleLayout(" => ");
 
         /// <summary>

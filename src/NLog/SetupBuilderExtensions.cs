@@ -162,8 +162,8 @@ namespace NLog
             else if (optional)
             {
                 var originalFilePaths = setupBuilder.LogFactory.GetCandidateConfigFilePaths();
-                var uniqueFilePaths = new HashSet<string>(candidateFilePaths, StringComparer.OrdinalIgnoreCase);
                 var orderedFilePaths = new List<string>(candidateFilePaths);
+                var uniqueFilePaths = new HashSet<string>(orderedFilePaths, StringComparer.OrdinalIgnoreCase);
                 foreach (var filePath in originalFilePaths)
                 {
                     if (uniqueFilePaths.Add(filePath))

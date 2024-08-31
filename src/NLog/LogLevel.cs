@@ -350,7 +350,7 @@ namespace NLog
             if (format is null || (!"D".Equals(format, StringComparison.OrdinalIgnoreCase)))
                 return _name;
             else
-                return _ordinal.ToString(); // Like Enum.ToString("D")
+                return _ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture); // Like Enum.ToString("D")
         }
 
         /// <inheritdoc/>

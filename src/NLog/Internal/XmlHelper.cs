@@ -78,7 +78,7 @@ namespace NLog.Internal
             }
             return text;
 #else
-            return InvalidXmlChars.Replace(text, "");
+            return InvalidXmlChars.Replace(text, string.Empty);
 #endif
         }
 
@@ -351,7 +351,7 @@ namespace NLog.Internal
             }
             catch
             {
-                return safeConversion ? "" : null;
+                return safeConversion ? string.Empty : null;
             }
         }
 
@@ -364,7 +364,7 @@ namespace NLog.Internal
             }
             catch
             {
-                return safeConversion ? "" : null;
+                return safeConversion ? string.Empty : null;
             }
         }
 

@@ -687,10 +687,8 @@ namespace NLog
             }
             catch (Exception ex)
             {
-
                 InternalLogger.Error(ex, "LogFactory failed to flush targets.");
                 asyncContinuation?.Invoke(ex);
-
             }
         }
 

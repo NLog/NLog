@@ -671,7 +671,7 @@ namespace NLog.Layouts
             return true;
         }
 
-        private static void MergeLiterals(IList<LayoutRenderer> list)
+        private static void MergeLiterals(List<LayoutRenderer> list)
         {
             for (int i = 0; i + 1 < list.Count;)
             {
