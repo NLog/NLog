@@ -48,8 +48,6 @@ namespace NLog.LayoutRenderers
     [NLogConfigurationItem]
     public abstract class LayoutRenderer : ISupportsInitialize, IRenderable
     {
-        private const int MaxInitialRenderBufferLength = 16384;
-        private int _maxRenderedLength;
         private bool _isInitialized;
         private IValueFormatter _valueFormatter;
 
@@ -82,20 +80,11 @@ namespace NLog.LayoutRenderers
         /// <returns>String representation of a layout renderer.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            int initialLength = _maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
+            using (var localTarget = new AppendBuilderCreator(true))
             {
-                initialLength = MaxInitialRenderBufferLength;
+                RenderAppendBuilder(logEvent, localTarget.Builder);
+                return localTarget.Builder.ToString();
             }
-
-            var builder = new StringBuilder(initialLength);
-            RenderAppendBuilder(logEvent, builder);
-            if (builder.Length > _maxRenderedLength)
-            {
-                _maxRenderedLength = builder.Length;
-            }
-
-            return builder.ToString();
         }
 
         /// <inheritdoc/>

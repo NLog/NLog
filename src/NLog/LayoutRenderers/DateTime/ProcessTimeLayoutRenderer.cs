@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
         {
             var ts = GetValue(logEvent);
             var culture = GetCulture(logEvent, Culture);
-            WritetTimestamp(builder, ts, culture);
+            WriteTimestamp(builder, ts, culture);
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Write timestamp to builder with format hh:mm:ss:fff
         /// </summary>
-        internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
+        internal static void WriteTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
         {
             string timeSeparator = ":";
             string ticksSeparator = ".";
