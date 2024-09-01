@@ -235,6 +235,12 @@ namespace NLog.Targets
         public int KeepAliveTimeSeconds { get; set; }
 
         /// <summary>
+        /// The number of seconds a TCP socket send-operation will block before timeout error. Default wait forever when network cable unplugged and tcp-buffer becomes full.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public int SendTimeoutSeconds { get; set; }
+
+        /// <summary>
         /// Type of compression for protocol payload. Useful for UDP where datagram max-size is 8192 bytes.
         /// </summary>
         public NetworkTargetCompressionType Compress { get; set; }
@@ -610,7 +616,7 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address)
         {
-            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
+            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromSeconds(SendTimeoutSeconds));
             sender.Initialize();
             if (KeepConnection || LogEventDropped != null)
             {
