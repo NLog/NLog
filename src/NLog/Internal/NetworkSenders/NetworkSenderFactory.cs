@@ -45,7 +45,7 @@ namespace NLog.Internal.NetworkSenders
         public static readonly INetworkSenderFactory Default = new NetworkSenderFactory();
 
         /// <inheritdoc/>
-        public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
+        public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan sendTimeout)
         {
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
@@ -55,6 +55,7 @@ namespace NLog.Internal.NetworkSenders
                     OnQueueOverflow = onQueueOverflow,
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
+                    SendTimeout = sendTimeout,
                 };
             }
 
@@ -66,6 +67,7 @@ namespace NLog.Internal.NetworkSenders
                     OnQueueOverflow = onQueueOverflow,
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
+                    SendTimeout = sendTimeout,
                 };
             }
 
@@ -77,6 +79,7 @@ namespace NLog.Internal.NetworkSenders
                     OnQueueOverflow = onQueueOverflow,
                     SslProtocols = sslProtocols,
                     KeepAliveTime = keepAliveTime,
+                    SendTimeout = sendTimeout,
                 };
             }
 
@@ -116,6 +119,7 @@ namespace NLog.Internal.NetworkSenders
                 {
                     MaxQueueSize = maxQueueSize,
                     OnQueueOverflow = onQueueOverflow,
+                    SendTimeout = sendTimeout,
                 };
             }
 
@@ -125,6 +129,7 @@ namespace NLog.Internal.NetworkSenders
                 {
                     MaxQueueSize = maxQueueSize,
                     OnQueueOverflow = onQueueOverflow,
+                    SendTimeout = sendTimeout,
                 };
             }
 

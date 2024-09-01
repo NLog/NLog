@@ -44,6 +44,8 @@ namespace NLog.Internal.NetworkSenders
 
         internal IWebRequestFactory HttpRequestFactory { get; set; } = WebRequestFactory.Instance;
 
+        internal TimeSpan SendTimeout { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpNetworkSender"/> class.
         /// </summary>
@@ -63,7 +65,12 @@ namespace NLog.Internal.NetworkSenders
 
             var webRequest = HttpRequestFactory.CreateWebRequest(_addressUri);
             webRequest.Method = "POST";
-
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            if (SendTimeout > TimeSpan.Zero)
+            {
+                webRequest.Timeout = (int)SendTimeout.TotalMilliseconds;
+            }
+#endif
             AsyncCallback onResponse =
                 r =>
                 {

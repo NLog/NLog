@@ -1144,12 +1144,6 @@ namespace NLog.UnitTests.Targets
         [InlineData("30", 30)]
         public void KeepAliveTimeConfigTest(string keepAliveTimeSeconds, int expected)
         {
-            if (IsLinux())
-            {
-                Console.WriteLine("[SKIP] NetworkTargetTests.KeepAliveTimeConfigTest because we are running in Travis");
-                return;
-            }
-
             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
             <nlog>
                 <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' keepAliveTimeSeconds='{keepAliveTimeSeconds}' /></targets>
@@ -1160,6 +1154,24 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expected, target.KeepAliveTimeSeconds);
 
             var logger = logFactory.GetLogger("keepAliveTimeSeconds");
+            logger.Info("Hello");
+        }
+
+        [Theory]
+        [InlineData("0", 0)]
+        [InlineData("30", 30)]
+        public void SendTimeoutConfigTest(string sendTimeoutSeconds, int expected)
+        {
+             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
+            <nlog>
+                <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' sendTimeoutSeconds='{sendTimeoutSeconds}' /></targets>
+                <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
+            </nlog>").LogFactory;
+
+            var target = logFactory.Configuration.FindTargetByName<NetworkTarget>("target1");
+            Assert.Equal(expected, target.SendTimeoutSeconds);
+
+            var logger = logFactory.GetLogger("SendTimeoutSeconds");
             logger.Info("Hello");
         }
 
@@ -1233,7 +1245,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int _idCounter;
 
-            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+            public QueuedNetworkSender Create(string url, int maxQueueSize, NetworkTargetQueueOverflowAction onQueueOverflow, int maxMessageSize, SslProtocols sslProtocols, TimeSpan keepAliveTime, TimeSpan sendTimeout)
             {
                 var sender = new MyQueudNetworkSender(url, ++_idCounter, Log, this) { MaxQueueSize = maxQueueSize, OnQueueOverflow = onQueueOverflow };
                 Senders.Add(sender);

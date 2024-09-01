@@ -66,6 +66,8 @@ namespace NLog.Internal.NetworkSenders
 
         internal TimeSpan KeepAliveTime { get; set; }
 
+        internal TimeSpan SendTimeout { get; set; }
+
         /// <summary>
         /// Creates the socket with given parameters.
         /// </summary>
@@ -73,14 +75,20 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="addressFamily">The address family.</param>
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
+        /// <param name="sendTimeout">Socket SendTimeout.</param>
         /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
-        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, TimeSpan sendTimeout)
         {
             var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
 
             if (KeepAliveTime.TotalSeconds >= 1.0 && EnableKeepAliveSuccessful != false)
             {
                 EnableKeepAliveSuccessful = TryEnableKeepAlive(socketProxy.UnderlyingSocket, (int)KeepAliveTime.TotalSeconds);
+            }
+
+            if (sendTimeout > TimeSpan.Zero)
+            {
+                socketProxy.UnderlyingSocket.SendTimeout = (int)sendTimeout.TotalMilliseconds;
             }
 
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
@@ -168,7 +176,7 @@ namespace NLog.Internal.NetworkSenders
             args.Completed += _socketOperationCompletedAsync;
             args.UserToken = null;
 
-            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp, SendTimeout);
             base.BeginInitialize();
 
             bool asyncOperation = false;
