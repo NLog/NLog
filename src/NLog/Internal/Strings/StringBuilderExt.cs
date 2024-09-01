@@ -145,10 +145,34 @@ namespace NLog.Internal
 
         private static readonly char[] charToInt = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
+        internal const int Iso8601_MaxDigitCount = 7;
+
         /// <summary>
         /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 8601 Compliant Date Format (Round-Trip-Time)
         /// </summary>
+        public static void AppendXmlDateTimeUtcRoundTripFixed(this StringBuilder builder, DateTime dateTime)
+        {
+            int fraction = (int)(dateTime.Ticks % 10000000);
+            AppendXmlDateTimeUtcRoundTrip(builder, dateTime, fraction, Iso8601_MaxDigitCount);
+        }
+
         public static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime)
+        {
+            int max_digit_count = Iso8601_MaxDigitCount;
+            int fraction = (int)(dateTime.Ticks % 10000000);
+            if (fraction > 0)
+            {
+                // Remove trailing zeros
+                while (fraction % 10 == 0)
+                {
+                    --max_digit_count;
+                    fraction /= 10;
+                }
+            }
+            AppendXmlDateTimeUtcRoundTrip(builder, dateTime, fraction, max_digit_count);
+        }
+
+        private static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime, int fraction, int max_digit_count)
         {
             if (dateTime.Kind == DateTimeKind.Unspecified)
                 dateTime = new DateTime(dateTime.Ticks, DateTimeKind.Utc);
@@ -165,18 +189,9 @@ namespace NLog.Internal
             builder.Append2DigitsZeroPadded(dateTime.Minute);
             builder.Append(':');
             builder.Append2DigitsZeroPadded(dateTime.Second);
-            int fraction = (int)(dateTime.Ticks % 10000000);
             if (fraction > 0)
             {
                 builder.Append('.');
-
-                // Remove trailing zeros
-                int max_digit_count = 7;
-                while (fraction % 10 == 0)
-                {
-                    --max_digit_count;
-                    fraction /= 10;
-                }
 
                 // Append the remaining fraction
                 int digitCount = CalculateDigitCount((uint)fraction);

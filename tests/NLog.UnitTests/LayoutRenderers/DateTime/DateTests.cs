@@ -84,8 +84,10 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        [Fact]
-        public void UniversalTimeTest()
+        [Theory]
+        [InlineData("R")]
+        [InlineData("O")]
+        public void UniversalTimeTest(string formatString)
         {
             var orgTimeSource = NLog.Time.TimeSource.Current;
 
@@ -95,10 +97,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
                 var dt = new DateLayoutRenderer();
                 dt.UniversalTime = true;
-                dt.Format = "R";
+                dt.Format = formatString;
 
                 var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-                Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("R"), dt.Render(ei));
+                Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString(formatString), dt.Render(ei));
             }
             finally
             {
@@ -106,8 +108,10 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        [Fact]
-        public void LocalTimeTest()
+        [Theory]
+        [InlineData("R")]
+        [InlineData("O")]
+        public void LocalTimeTest(string formatString)
         {
             var orgTimeSource = NLog.Time.TimeSource.Current;
 
@@ -117,10 +121,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
                 var dt = new DateLayoutRenderer();
                 dt.UniversalTime = false;
-                dt.Format = "R";
+                dt.Format = formatString;
 
                 var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-                Assert.Equal(ei.TimeStamp.ToLocalTime().ToString("R"), dt.Render(ei));
+                Assert.Equal(ei.TimeStamp.ToLocalTime().ToString(formatString), dt.Render(ei));
             }
             finally
             {
@@ -128,8 +132,10 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        [Fact]
-        public void DefaultTimeTest()
+        [Theory]
+        [InlineData("R")]
+        [InlineData("O")]
+        public void DefaultTimeTest(string formatString)
         {
             var orgTimeSource = NLog.Time.TimeSource.Current;
 
@@ -138,10 +144,14 @@ namespace NLog.UnitTests.LayoutRenderers
                 NLog.Time.TimeSource.Current = new NLog.Time.AccurateUtcTimeSource();
 
                 var dt = new DateLayoutRenderer();
-                dt.Format = "R";
+                dt.Format = formatString;
 
                 var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-                Assert.Equal(ei.TimeStamp.ToString("R"), dt.Render(ei));
+
+                for (int i = 0; i < 10000000; ++i)
+                {
+                    Assert.Equal(ei.TimeStamp.ToString(formatString), dt.Render(ei));
+                }
             }
             finally
             {
