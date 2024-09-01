@@ -79,24 +79,43 @@ namespace NLog.LayoutRenderers
                 _cachedDateFormatted = IsLowTimeResolutionLayout(_format)
                     ? new CachedDateFormatted(DateTime.MaxValue, string.Empty)  // Cache can be used, will update cache-value
                     : null;    // No cache support
+                _utcRoundRoundTrip = IsUtcRoundRountTripLayout(_format, _universalTime);
             }
         }
         private string _format;
 
         private const string _lowTimeResolutionChars = "YyMDdHh";
         private CachedDateFormatted _cachedDateFormatted = null;
+        private bool _utcRoundRoundTrip;
 
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
         /// <docgen category='Layout Options' order='50' />
-        public bool UniversalTime { get => _universalTime ?? false; set => _universalTime = value; }
+        public bool UniversalTime
+        {
+            get => _universalTime ?? false;
+            set
+            {
+                _universalTime = value;
+                _utcRoundRoundTrip = IsUtcRoundRountTripLayout(_format, _universalTime);
+            }
+        }
         private bool? _universalTime;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(GetStringValue(logEvent));
+            var value = GetValue(logEvent);
+            if (_utcRoundRoundTrip && value.Kind != DateTimeKind.Local)
+            {
+                builder.AppendXmlDateTimeUtcRoundTripFixed(value);
+            }
+            else
+            {
+                var formatProvider = GetFormatProvider(logEvent, Culture);
+                builder.Append(GetStringValue(value, formatProvider));
+            }
         }
 
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
@@ -105,14 +124,10 @@ namespace NLog.LayoutRenderers
             return true;
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(GetValue(logEvent), GetFormatProvider(logEvent, Culture));
 
-        private string GetStringValue(LogEventInfo logEvent)
+        private string GetStringValue(DateTime timestamp, IFormatProvider formatProvider)
         {
-            var formatProvider = GetFormatProvider(logEvent, Culture);
-
-            DateTime timestamp = GetValue(logEvent);
-
             var cachedDateFormatted = _cachedDateFormatted;
             if (!ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
             {
@@ -153,6 +168,11 @@ namespace NLog.LayoutRenderers
                     return false;
             }
             return true;
+        }
+
+        private static bool IsUtcRoundRountTripLayout(string dateTimeFormat, bool? universalTime)
+        {
+            return (dateTimeFormat == "o" || dateTimeFormat == "O") && (!universalTime.HasValue || universalTime.Value);
         }
 
         private sealed class CachedDateFormatted
