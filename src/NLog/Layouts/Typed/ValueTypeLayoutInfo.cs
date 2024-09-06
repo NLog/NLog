@@ -91,6 +91,7 @@ namespace NLog.Layouts
                     _createDefaultValue = null;
                 _layoutValue = null;
                 _defaultLayoutValue = null;
+                _useDefaultWhenEmptyString = UseDefaultWhenEmptyString(_valueType, _defaultValue);
             }
         }
         private Type _valueType;
@@ -107,9 +108,23 @@ namespace NLog.Layouts
             {
                 _defaultValue = value;
                 _defaultLayoutValue = null;
+                _useDefaultWhenEmptyString = UseDefaultWhenEmptyString(_valueType, _defaultValue);
             }
         }
         private Layout _defaultValue;
+        private bool _useDefaultWhenEmptyString;
+
+        private static bool UseDefaultWhenEmptyString(Type valueType, Layout defaultValue)
+        {
+            if (valueType is null || typeof(string).Equals(valueType) || typeof(object).Equals(valueType))
+            {
+                if (defaultValue is null || (defaultValue is SimpleLayout simpleLayout && string.Empty.Equals(simpleLayout.Text)) || (ReferenceEquals(defaultValue, _fixedNullValue) && !typeof(object).Equals(valueType)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         
         /// <summary>
         /// Gets or sets the fallback value should be null (instead of default value of <see cref="ValueType"/>) when result value is not available
@@ -117,17 +132,16 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='100' />
         public bool ForceDefaultValueNull
         {
-            get => _forceDefaultValueNull;
+            get => ReferenceEquals(DefaultValue, _fixedNullValue);
             set
             {
-                _forceDefaultValueNull = value;
                 if (value)
                     DefaultValue = _fixedNullValue;
-                else if (DefaultValue is Layout<string> typedLayout && typedLayout.IsFixed && typedLayout.FixedValue is null)
+                else if (ReferenceEquals(DefaultValue, _fixedNullValue))
                     DefaultValue = null;
+                _useDefaultWhenEmptyString = UseDefaultWhenEmptyString(_valueType, _defaultValue);
             }
         }
-        private bool _forceDefaultValueNull;
 
         /// <summary>
         /// Gets or sets format used for parsing parameter string-value for type-conversion
@@ -169,7 +183,7 @@ namespace NLog.Layouts
         public object RenderValue(LogEventInfo logEvent)
         {
             var objectValue = LayoutValue.RenderObjectValue(logEvent, null);
-            if (StringHelpers.IsNullOrEmptyString(objectValue))
+            if (objectValue is null || (_useDefaultWhenEmptyString && StringHelpers.IsNullOrEmptyString(objectValue)))
             {
                 objectValue = DefaultLayoutValue.RenderObjectValue(logEvent, null);
             }
