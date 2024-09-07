@@ -436,7 +436,7 @@ namespace NLog.Targets
             for (int i = 0; i < ContextProperties.Count; ++i)
             {
                 var contextProperty = ContextProperties[i];
-                if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout is null)
+                if (string.IsNullOrEmpty(contextProperty?.Name))
                     continue;
 
                 try
