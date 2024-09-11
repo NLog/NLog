@@ -295,7 +295,7 @@ namespace NLog.Layouts
             {
                 var attrib = Attributes[i];
                 int beforeAttribLength = sb.Length;
-                if (!RenderAppendJsonPropertyValue(attrib, logEvent, sb, sb.Length == orgLength))
+                if (!RenderAppendJsonPropertyValue(attrib, logEvent, sb, beforeAttribLength == orgLength))
                 {
                     sb.Length = beforeAttribLength;
                 }
@@ -311,7 +311,7 @@ namespace NLog.Layouts
                         if (string.IsNullOrEmpty(key))
                             continue;
                         object propertyValue = GlobalDiagnosticsContext.GetObject(key);
-                        AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                        AppendJsonPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                     }
                 }
             }
@@ -330,7 +330,7 @@ namespace NLog.Layouts
                         if (checkExcludeProperties && ExcludeProperties.Contains(scopeProperty.Key))
                             continue;
 
-                        AppendJsonPropertyValue(scopeProperty.Key, scopeProperty.Value, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                        AppendJsonPropertyValue(scopeProperty.Key, scopeProperty.Value, sb, sb.Length == orgLength);
                     }
                 }
             }
@@ -391,25 +391,45 @@ namespace NLog.Layouts
                 sb.Append(SuppressSpaces ? "}" : " }");
         }
 
-        private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginJsonMessage)
         {
-            if (ExcludeEmptyProperties && propertyValue is null)
+            if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
                 return;
 
             var initialLength = sb.Length;
-
             BeginJsonProperty(sb, propName, beginJsonMessage, true);
-            if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
+            if (!JsonConverter.SerializeObject(propertyValue, sb))
             {
+                sb.Length = initialLength;
+                return;
+            }
+
+            if (ExcludeEmptyProperties && sb[sb.Length - 1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
+            {
+                sb.Length = initialLength;
+            }
+        }
+
+        private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
+        {
+            if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
+            {
+                var initialLength = sb.Length;
+                BeginJsonProperty(sb, propName, beginJsonMessage, true);
+
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
                 if (!JsonConverter.SerializeObjectNoLimit(propertyValue, sb))
                 {
                     sb.Length = initialLength;
-                    return;
                 }
             }
             else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
+                if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
+                    return;
+
+                BeginJsonProperty(sb, propName, beginJsonMessage, true);
+
                 // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
@@ -417,16 +437,7 @@ namespace NLog.Layouts
             }
             else
             {
-                if (!JsonConverter.SerializeObject(propertyValue, sb))
-                {
-                    sb.Length = initialLength;
-                    return;
-                }
-            }
-
-            if (ExcludeEmptyProperties && sb[sb.Length - 1] == '"' && sb[sb.Length - 2] == '"' && sb[sb.Length - 3] != '\\')
-            {
-                sb.Length = initialLength;
+                AppendJsonPropertyValue(propName, propertyValue, sb, beginJsonMessage);
             }
         }
 
