@@ -113,7 +113,19 @@ namespace NLog.Layouts
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public bool SuppressSpaces { get; set; }
+        public bool SuppressSpaces
+        {
+            get => _suppressSpaces;
+            set
+            {
+                if (_suppressSpaces != value)
+                {
+                    _suppressSpaces = value;
+                    RefreshJsonDelimiters();
+                }
+            }
+        }
+        private bool _suppressSpaces;
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
@@ -126,7 +138,19 @@ namespace NLog.Layouts
         /// Auto indent and create new lines
         /// </summary>
         /// <docgen category='Layout Options' order='100' />
-        public bool IndentJson { get; set; }
+        public bool IndentJson
+        {
+            get => _indentJson;
+            set
+            {
+                if (_indentJson != value)
+                {
+                    _indentJson = value;
+                    RefreshJsonDelimiters();
+                }
+            }
+        }
+        private bool _indentJson;
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
@@ -355,40 +379,44 @@ namespace NLog.Layouts
             }
 
             if (sb.Length > orgLength)
-                CompleteJsonMessage(sb);
+                sb.Append(_completeJsonMessage);
         }
 
         private void BeginJsonProperty(StringBuilder sb, string propName, bool beginJsonMessage, bool ensureStringEscape)
         {
-            if (beginJsonMessage)
-            {
-                if (IndentJson)
-                    sb.Append('{').AppendLine().Append(' ', SpacesPerIndent).Append('"');
-                else
-                    sb.Append(SuppressSpaces ? "{\"" : "{ \"");
-            }
-            else
-            {
-                if (IndentJson)
-                    sb.Append(',').AppendLine().Append(' ', SpacesPerIndent).Append('"');
-                else
-                    sb.Append(SuppressSpaces ? ",\"" : ", \"");
-            }
+            sb.Append(beginJsonMessage ? _beginJsonMessage : _beginJsonPropertyName);
 
             if (ensureStringEscape)
                 Targets.DefaultJsonSerializer.AppendStringEscape(sb, propName, false, false);
             else
                 sb.Append(propName);
 
-            sb.Append(SuppressSpaces ? "\":" : "\": ");
+            sb.Append(_completeJsonPropertyName);
         }
 
-        private void CompleteJsonMessage(StringBuilder sb)
+        private string _beginJsonMessage = "{ \"";
+        private string _completeJsonMessage = " }";
+        private string _beginJsonPropertyName = ", \"";
+        private string _completeJsonPropertyName = "\": ";
+
+        private void RefreshJsonDelimiters()
         {
             if (IndentJson)
-                sb.AppendLine().Append('}');
+                _beginJsonMessage = new StringBuilder().Append('{').AppendLine().Append(' ', SpacesPerIndent).Append('"').ToString();
             else
-                sb.Append(SuppressSpaces ? "}" : " }");
+                _beginJsonMessage = SuppressSpaces ? "{\"" : "{ \"";
+
+            if (IndentJson)
+                _completeJsonMessage = new StringBuilder().AppendLine().Append('}').ToString().ToString();
+            else
+                _completeJsonMessage = SuppressSpaces ? "}" : " }";
+
+            if (IndentJson)
+                _beginJsonPropertyName = new StringBuilder().Append(',').AppendLine().Append(' ', SpacesPerIndent).Append('"').ToString();
+            else
+                _beginJsonPropertyName = SuppressSpaces ? ",\"" : ", \"";
+
+            _completeJsonPropertyName = SuppressSpaces ? "\":" : "\": ";
         }
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginJsonMessage)
