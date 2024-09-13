@@ -421,7 +421,7 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginJsonMessage)
         {
-            if (ExcludeEmptyProperties && Internal.StringHelpers.IsNullOrEmptyString(propertyValue))
+            if (ExcludeEmptyProperties && (propertyValue is null || ReferenceEquals(propertyValue, string.Empty)))
                 return;
 
             var initialLength = sb.Length;
@@ -442,6 +442,9 @@ namespace NLog.Layouts
         {
             if (captureType == MessageTemplates.CaptureType.Serialize && MaxRecursionLimit <= 1)
             {
+                if (ExcludeEmptyProperties && propertyValue is null)
+                    return;
+
                 var initialLength = sb.Length;
                 BeginJsonProperty(sb, propName, beginJsonMessage, true);
 
