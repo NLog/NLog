@@ -531,6 +531,32 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void ExcludeEmptyJsonStructuredProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                ExcludeEmptyProperties = true
+            };
+
+            jsonLayout.ExcludeProperties.Add("Excluded1");
+            jsonLayout.ExcludeProperties.Add("Excluded2");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
+            logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
+
+            var structuredLogEvent = new LogEventInfo(LogLevel.Info, "", null, "{@EmptyProp1} {$EmptyProp}", new[] { null, "" });
+            foreach (var property in logEventInfo.Properties)
+            {
+                structuredLogEvent.Properties[property.Key] = property.Value;
+            }
+
+            Assert.Equal(ExpectedExcludeEmptyPropertiesWithExcludes, jsonLayout.Render(structuredLogEvent));
+        }
+
+        [Fact]
         public void IncludeAllJsonPropertiesMaxRecursionLimit()
         {
             var jsonLayout = new JsonLayout()
