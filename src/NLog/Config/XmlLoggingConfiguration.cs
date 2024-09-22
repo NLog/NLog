@@ -208,7 +208,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
@@ -528,7 +528,7 @@ namespace NLog.Config
                 {
                     //is mask?
 
-                    if (newFileName.Contains("*"))
+                    if (newFileName.IndexOf('*') >= 0)
                     {
                         ConfigureFromFilesByMask(baseDirectory, newFileName, autoReloadDefault);
                     }

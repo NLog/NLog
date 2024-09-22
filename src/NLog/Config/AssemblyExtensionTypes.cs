@@ -63,7 +63,7 @@ namespace NLog.Config
             factory.FilterFactory.RegisterType<NLog.Filters.WhenRepeatedFilter>("whenRepeated");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer>("all-event-properties");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppDomainLayoutRenderer>("appdomain");
-#if !NETSTANDARD
+#if NETFRAMEWORK
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AppSettingLayoutRenderer>("appsetting");
 #endif
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.AssemblyVersionLayoutRenderer>("assembly-version");
@@ -233,7 +233,7 @@ namespace NLog.Config
 #endif
             factory.TargetFactory.RegisterType<NLog.Targets.DebugSystemTarget>("DebugSystem");
             factory.TargetFactory.RegisterType<NLog.Targets.DebugTarget>("Debug");
-#if !NETSTANDARD
+#if NETFRAMEWORK
             factory.TargetFactory.RegisterType<NLog.Targets.EventLogTarget>("EventLog");
 #endif
             factory.TargetFactory.RegisterType<NLog.Targets.FileTarget>("File");

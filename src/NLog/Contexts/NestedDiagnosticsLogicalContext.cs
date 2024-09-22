@@ -160,7 +160,7 @@ namespace NLog
             long CreatedTimeUtcTicks { get; }
         }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if NETFRAMEWORK
         [Serializable]
 #endif
         [Obsolete("Required to be compatible with legacy NLog versions, when using remoting. Marked obsolete on NLog 5.0")]

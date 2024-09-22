@@ -62,7 +62,7 @@ namespace NLog.Config
 
         public override LoggingConfiguration Load(LogFactory logFactory, string filename = null)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             if (string.IsNullOrEmpty(filename))
             {
                 var config = TryLoadFromAppConfig();
@@ -113,7 +113,7 @@ namespace NLog.Config
             base.Dispose(disposing);
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private LoggingConfiguration TryLoadFromAppConfig()
         {
             try

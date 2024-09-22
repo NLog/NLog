@@ -141,7 +141,7 @@ namespace NLog.Internal.FileAppenders
 
         internal static Mutex ForceCreateSharableMutex(string name)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();
             var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);

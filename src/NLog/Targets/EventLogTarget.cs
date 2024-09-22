@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD || WindowsEventLogPackage
+#if NETFRAMEWORK || WindowsEventLogPackage
 
 namespace NLog.Targets
 {

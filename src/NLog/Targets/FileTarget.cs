@@ -870,7 +870,7 @@ namespace NLog.Targets
                     {
                         return UnixMultiProcessFileAppender.TheFactory;
                     }
-#elif !NETSTANDARD
+#elif NETFRAMEWORK
                     if (PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
                     {
                         return WindowsMultiProcessFileAppender.TheFactory;

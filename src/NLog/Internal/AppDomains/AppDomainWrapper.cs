@@ -105,7 +105,7 @@ namespace NLog.Internal.Fakeables
 
         private static string LookupConfigurationFile(AppDomain appDomain)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             return appDomain.SetupInformation.ConfigurationFile;
 #else
             return string.Empty;
@@ -114,7 +114,7 @@ namespace NLog.Internal.Fakeables
 
         private static string[] LookupPrivateBinPath(AppDomain appDomain)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
             return string.IsNullOrEmpty(privateBinPath)
                                     ? ArrayHelper.Empty<string>()
