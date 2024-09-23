@@ -9,9 +9,7 @@ class Example
         EventLogTarget target = new EventLogTarget();
         target.Source = "My Source";
         target.Log = "Application";
-        target.MachineName = ".";
-        target.Layout = "${logger}: ${message}";
-		target.OnOverflow = EventLogTargetOverflowAction.Truncate;
+        target.Layout = "${logger}: ${message} ${exception}";
 
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 
