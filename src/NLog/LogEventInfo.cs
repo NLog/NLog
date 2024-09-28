@@ -613,9 +613,9 @@ namespace NLog
                 return true;
             }
 
-            for (int i = 0; i < parameters.Length; ++i)
+            foreach (var parameter in parameters)
             {
-                if (!IsSafeToDeferFormatting(parameters[i]))
+                if (!IsSafeToDeferFormatting(parameter))
                     return true;
             }
 

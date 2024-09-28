@@ -272,9 +272,8 @@ namespace NLog.Layouts
         /// <inheritdoc/>
         protected override void InitializeLayout()
         {
-            for (int i = 0; i < _layoutRenderers.Length; i++)
+            foreach (var renderer in _layoutRenderers)
             {
-                LayoutRenderer renderer = _layoutRenderers[i];
                 try
                 {
                     renderer.Initialize(LoggingConfiguration);
@@ -454,11 +453,8 @@ namespace NLog.Layouts
 
         private void RenderAllRenderers(LogEventInfo logEvent, StringBuilder target)
         {
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < _layoutRenderers.Length; i++)
+            foreach (var renderer in _layoutRenderers)
             {
-                LayoutRenderer renderer = _layoutRenderers[i];
                 try
                 {
                     renderer.RenderAppendBuilder(logEvent, target);
