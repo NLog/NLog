@@ -95,9 +95,9 @@ namespace NLog.Targets
             }
             else if (value is string str)
             {
-                for (int i = 0; i < str.Length; ++i)
+                foreach (var chr in str)
                 {
-                    if (RequiresJsonEscape(str[i], options.EscapeUnicode, options.EscapeForwardSlash))
+                    if (RequiresJsonEscape(chr, options.EscapeUnicode, options.EscapeForwardSlash))
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');
@@ -592,22 +592,25 @@ namespace NLog.Targets
                 return;
 
             int i = 0;
-            for (; i < text.Length; ++i)
+            foreach (var chr in text)
             {
-                if (RequiresJsonEscape(text[i], escapeUnicode, escapeForwardSlash))
+                if (RequiresJsonEscape(chr, escapeUnicode, escapeForwardSlash))
                 {
-                    destination.Append(text, 0, i);
-                    break;
+                    AppendStringEscape(destination, text, escapeUnicode, escapeForwardSlash, i);
+                    return;
                 }
+
+                ++i;
             }
 
-            if (i == text.Length)
-            {
-                destination.Append(text);
-                return;
-            }
+            destination.Append(text);
+        }
 
-            for (; i < text.Length; ++i)
+        private static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode, bool escapeForwardSlash, int startIndex)
+        {
+            destination.Append(text, 0, startIndex);
+
+            for (int i = startIndex; i < text.Length; ++i)
             {
                 char ch = text[i];
                 if (!RequiresJsonEscape(ch, escapeUnicode, escapeForwardSlash))
