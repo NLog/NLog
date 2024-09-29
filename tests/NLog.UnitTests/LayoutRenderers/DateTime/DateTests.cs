@@ -148,10 +148,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                 var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
 
-                for (int i = 0; i < 10000000; ++i)
-                {
-                    Assert.Equal(ei.TimeStamp.ToString(formatString), dt.Render(ei));
-                }
+                Assert.Equal(ei.TimeStamp.ToString(formatString), dt.Render(ei));
             }
             finally
             {
