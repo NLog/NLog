@@ -1,49 +1,48 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System.IO;
+//
 
 namespace NLog.UnitTests.Config
 {
+    using System;
+    using System.Globalization;
+    using System.IO;
+    using System.Text;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using System;
-    using System.Globalization;
-    using System.Text;
     using Xunit;
 
     public class TargetConfigurationTests : NLogTestBase
@@ -92,6 +91,24 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void TargetWithLayoutHasUniqueLayout()
+        {
+            var target1 = new StructuredDebugTarget();
+            var target2 = new StructuredDebugTarget();
+            var simpleLayout1 = target1.Layout as SimpleLayout;
+            var simpleLayout2 = target2.Layout as SimpleLayout;
+
+            // Ensure the default Layout for two Targets are not reusing objects
+            // As it would cause havoc with initializing / closing lifetime-events
+            Assert.NotSame(simpleLayout1, simpleLayout2);
+            Assert.Equal(simpleLayout1.Renderers.Count, simpleLayout1.Renderers.Count);
+            for (int i = 0; i < simpleLayout1.Renderers.Count; ++i)
+            {
+                Assert.NotSame(simpleLayout1.Renderers[i], simpleLayout2.Renderers[i]);
+            }
+        }
+
+        [Fact]
         public void NestedXmlConfigElementTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -134,13 +151,13 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t);
             Assert.Equal(3, t.Parameters.Count);
             Assert.Equal("p1", t.Parameters[0].Name);
-            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal("${message}", t.Parameters[0].Layout.ToString());
 
             Assert.Equal("p2", t.Parameters[1].Name);
-            Assert.Equal("'${level}'", t.Parameters[1].Layout.ToString());
+            Assert.Equal("${level}", t.Parameters[1].Layout.ToString());
 
             Assert.Equal("p3", t.Parameters[2].Name);
-            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("${logger}", t.Parameters[2].Layout.ToString());
         }
 
         [Fact]
@@ -173,7 +190,7 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t);
             Assert.Equal(3, t.Parameters.Count);
             Assert.Equal("p1", t.Parameters[0].Name);
-            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal("${message}", t.Parameters[0].Layout.ToString());
 
             Assert.Equal("p2", t.Parameters[1].Name);
             CsvLayout csvLayout = t.Parameters[1].Layout as CsvLayout;
@@ -183,7 +200,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("y", csvLayout.Columns[1].Name);
 
             Assert.Equal("p3", t.Parameters[2].Name);
-            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("${logger}", t.Parameters[2].Layout.ToString());
         }
 
         [Fact]
@@ -399,6 +416,27 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void UnnamedWrappedTargetTest()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets async='true'>
+                    <target type='AsyncWrapper' name='d'>
+                        <target type='Debug' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("d") as AsyncTargetWrapper;
+            Assert.NotNull(t);
+            Assert.Equal("d", t.Name);
+
+            var wrappedTarget = t.WrappedTarget as DebugTarget;
+            Assert.NotNull(wrappedTarget);
+            Assert.Equal("d_wrapped", wrappedTarget.Name);
+        }
+
+        [Fact]
         public void DefaultTargetParametersTest()
         {
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -412,11 +450,11 @@ namespace NLog.UnitTests.Config
 
             var t = c.FindTargetByName("d") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
 
             t = c.FindTargetByName("d2") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
         }
 
         [Fact]
@@ -438,7 +476,7 @@ namespace NLog.UnitTests.Config
 
             var t = wrap.WrappedTarget as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
         }
 
         [Fact]
@@ -465,17 +503,23 @@ namespace NLog.UnitTests.Config
             var debugTarget = retryingTargetWrapper.WrappedTarget as DebugTarget;
             Assert.NotNull(debugTarget);
             Assert.Equal("d_wrapped", debugTarget.Name);
-            Assert.Equal("'${level}'", debugTarget.Layout.ToString());
+            Assert.Equal("${level}", debugTarget.Layout.ToString());
+
+            var debugTarget2 = c.FindTargetByName<DebugTarget>("d");
+            Assert.Same(debugTarget, debugTarget2);
         }
 
         [Fact]
         public void DontThrowExceptionWhenArchiveEverySetByDefaultParameters()
         {
+            var fileName = Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".log";
 
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            try
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
 <nlog throwExceptions='true'>
     <targets>
-        <default-target-parameters 
+        <default-target-parameters
             type='File'
             concurrentWrites='true'
             keepFileOpen='true'
@@ -483,19 +527,26 @@ namespace NLog.UnitTests.Config
             archiveNumbering='Rolling'
             archiveEvery='Day' />
 
-          <target fileName='" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + @".log'
+          <target fileName='{fileName}'
                 name = 'file'
-                type = 'File'
-                layout = '${message}' />
+                type = 'File' />
     </targets>
 
     <rules>
         <logger name='*' writeTo='file'/>
     </rules>
-</nlog> ");
+</nlog> ").LogFactory;
 
-            LogManager.Configuration = configuration;
-            LogManager.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+                logFactory.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+
+                Assert.NotNull(logFactory.Configuration);
+                Assert.Single(logFactory.Configuration.AllTargets);
+            }
+            finally
+            {
+                if (File.Exists(fileName))
+                    File.Delete(fileName);
+            }
         }
 
         [Fact]
@@ -503,7 +554,7 @@ namespace NLog.UnitTests.Config
         {
             using (new NoThrowNLogExceptions())
             {
-                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
 <nlog>
     <targets>
         <target type='bufferingwrapper' name='mytarget'>
@@ -513,12 +564,99 @@ namespace NLog.UnitTests.Config
     <rules>
         <logger name='*' writeTo='mytarget'/>
     </rules>
-</nlog> ");
+</nlog>").LogFactory;
 
-                LogManager.Configuration = configuration;
-                LogManager.GetLogger(nameof(DontThrowExceptionsWhenMissingRequiredParameters)).Info("Test");
-                LogManager.Configuration = null;
+                logFactory.GetLogger(nameof(DontThrowExceptionsWhenMissingRequiredParameters)).Info("Test");
+
+                Assert.NotNull(logFactory.Configuration);
             }
+        }
+
+        [Fact]
+        public void DontThrowExceptionsWhenMissingTargetName()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+<nlog>
+    <targets>
+        <target type='bufferingwrapper'>
+            <target type='unknowntargettype' name='badtarget' />
+        </target>
+        <target type='debug' name='goodtarget' layout='${message}' />
+    </targets>
+    <rules>
+        <logger name='*' writeTo='goodtarget'/>
+    </rules>
+</nlog>").LogFactory;
+
+                logFactory.GetLogger(nameof(DontThrowExceptionsWhenMissingTargetName)).Info("Test");
+                AssertDebugLastMessage("goodtarget", "Test", logFactory);
+            }
+        }
+
+        [Fact]
+        public void RequiredDataTypesNullableTest()
+        {
+            var c = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        stringProperty='foobar'
+                        enumProperty='Value3'
+/>
+                </targets>
+            </nlog>").LogFactory.Configuration;
+
+            var myTarget = c.FindTargetByName("myTarget") as MyRequiredTarget;
+            Assert.NotNull(myTarget);
+
+            var missingStringValue = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        enumProperty='Value3'
+                    />
+                </targets>
+            </nlog>"));
+            Assert.Contains(nameof(MyRequiredTarget.StringProperty), missingStringValue.Message);
+
+            var missingEnumValue = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        stringProperty='foobar'
+                    />
+                </targets>
+            </nlog>"));
+            Assert.Contains(nameof(MyRequiredTarget.EnumProperty), missingEnumValue.Message);
+
+            var emptyEnumValue = Assert.Throws<NLogConfigurationException>(() => new LogFactory().Setup().LoadConfigurationFromXml(@"
+            <nlog throwExceptions='true'>
+                <extensions>
+                    <add type='" + typeof(MyRequiredTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyRequiredTarget' name='myTarget'
+                        enumProperty=''
+                        stringProperty='foobar'
+                    />
+                </targets>
+            </nlog>"));
+            Assert.Contains(nameof(MyRequiredTarget.EnumProperty), emptyEnumValue.Message);
         }
 
         [Fact]
@@ -532,10 +670,10 @@ namespace NLog.UnitTests.Config
 
                 <targets>
                     <target type='MyTarget' name='myTarget'
-                        byteProperty='42' 
-                        int16Property='42' 
-                        int32Property='42' 
-                        int64Property='42000000000' 
+                        byteProperty='42'
+                        int16Property='42'
+                        int32Property='42'
+                        int64Property='42000000000'
                         stringProperty='foobar'
                         boolProperty='true'
                         doubleProperty='3.14159'
@@ -568,7 +706,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
-            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("${level}", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
             Assert.Equal(new Uri("http://nlog-project.org"), myTarget.UriProperty);
             Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty);
@@ -585,10 +723,10 @@ namespace NLog.UnitTests.Config
 
                 <targets>
                     <target type='MyNullableTarget' name='myTarget'
-                        byteProperty='42' 
-                        int16Property='42' 
-                        int32Property='42' 
-                        int64Property='42000000000' 
+                        byteProperty='42'
+                        int16Property='42'
+                        int32Property='42'
+                        int64Property='42000000000'
                         stringProperty='foobar'
                         boolProperty='true'
                         doubleProperty='3.14159'
@@ -619,7 +757,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
-            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("${level}", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
         }
 
@@ -712,6 +850,15 @@ namespace NLog.UnitTests.Config
             {
                 Name = name;
             }
+        }
+
+        [Target("MyRequiredTarget")]
+        public class MyRequiredTarget : Target
+        {
+            [RequiredParameter]
+            public string StringProperty { get; set; }
+            [RequiredParameter]
+            public MyEnum? EnumProperty { get; set; }
         }
 
         public enum MyEnum

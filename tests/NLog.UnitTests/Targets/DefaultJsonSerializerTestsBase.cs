@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections;
@@ -60,7 +60,7 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(text);
             Assert.Equal(expected, actual);
         }
-        
+
         [Fact]
         public void MultiLineString_Test()
         {
@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(text);
             Assert.Equal(expected, actual);
         }
-        
+
         [Fact]
         public void StringWithTabBackSpaceFormfeed_Test()
         {
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Targets
         public void StringWithSlashAndQuotes_Test()
         {
             var text = "This sentence/text is \"normal\", we think.";
-            var expected = "\"This sentence\\/text is \\\"normal\\\", we think.\"";
+            var expected = "\"This sentence/text is \\\"normal\\\", we think.\"";
 
             var actual = SerializeObject(text);
             Assert.Equal(expected, actual);
@@ -177,6 +177,16 @@ namespace NLog.UnitTests.Targets
         [InlineData((ulong)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
         [InlineData(2776145.7743, "2776145.7743")]
+        [InlineData(0D, "0.0")]
+        [InlineData(0F, "0.0")]
+        [InlineData(1D, "1.0")]
+        [InlineData(1F, "1.0")]
+        [InlineData(-1D, "-1.0")]
+        [InlineData(-1F, "-1.0")]
+        [InlineData(5e30D, "5E+30")]
+        [InlineData(5e30F, "5E+30")]
+        [InlineData(-5e30D, "-5E+30")]
+        [InlineData(-5e30F, "-5E+30")]
         [InlineData(double.NaN, "\"NaN\"")]
         [InlineData(double.PositiveInfinity, "\"Infinity\"")]
         [InlineData(float.NaN, "\"NaN\"")]
@@ -185,9 +195,6 @@ namespace NLog.UnitTests.Targets
         {
             var actual = SerializeObject(o);
             Assert.Equal(expected, actual);
-
-            var result = SerializeObject(o);
-            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -197,6 +204,46 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("true", actual);
             actual = SerializeObject(false);
             Assert.Equal("false", actual);
+        }
+
+        [Fact]
+        public void SerializeNumberDecimal_Test()
+        {
+            var actual = SerializeObject(-1M);
+            Assert.Equal("-1.0", actual);
+
+            actual = SerializeObject(0M);
+            Assert.Equal("0.0", actual);
+
+            actual = SerializeObject(1M);
+            Assert.Equal("1.0", actual);
+
+            actual = SerializeObject(2M);
+            Assert.Equal("2.0", actual);
+
+            actual = SerializeObject(3M);
+            Assert.Equal("3.0", actual);
+
+            actual = SerializeObject(4M);
+            Assert.Equal("4.0", actual);
+
+            actual = SerializeObject(5M);
+            Assert.Equal("5.0", actual);
+
+            actual = SerializeObject(6M);
+            Assert.Equal("6.0", actual);
+
+            actual = SerializeObject(7M);
+            Assert.Equal("7.0", actual);
+
+            actual = SerializeObject(8M);
+            Assert.Equal("8.0", actual);
+
+            actual = SerializeObject(9M);
+            Assert.Equal("9.0", actual);
+
+            actual = SerializeObject(3.14159265M);
+            Assert.Equal("3.14159265", actual);
         }
 
         [Fact]
@@ -311,7 +358,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeTrickyDict_Test()
         {
-            IDictionary<object,object> dictionary = new Internal.TrickyTestDictionary();
+            IDictionary<object, object> dictionary = new Internal.TrickyTestDictionary();
             dictionary.Add("key1", 13);
             dictionary.Add("key 2", 1.3m);
             var actual = SerializeObject(dictionary);
@@ -321,22 +368,22 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeExpandoDict_Test()
         {
-            IDictionary<string, IConvertible> dictionary = new Internal.ExpandoTestDictionary();
+            IDictionary<string, IFormattable> dictionary = new Internal.ExpandoTestDictionary();
             dictionary.Add("key 2", 1.3m);
             dictionary.Add("level", LogLevel.Info);
             var actual = SerializeObject(dictionary);
-            Assert.Equal("{\"key 2\":1.3, \"level\":{\"Name\":\"Info\", \"Ordinal\":2}}", actual);
+            Assert.Equal("{\"key 2\":1.3, \"level\":\"Info\"}", actual);
         }
 
         [Fact]
         public void SerializEmptyExpandoDict_Test()
         {
-            IDictionary<string, IConvertible> dictionary = new Internal.ExpandoTestDictionary();
+            IDictionary<string, IFormattable> dictionary = new Internal.ExpandoTestDictionary();
             var actual = SerializeObject(dictionary);
             Assert.Equal("{}", actual);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void SerializeReadOnlyExpandoDict_Test()
         {
@@ -346,7 +393,7 @@ namespace NLog.UnitTests.Targets
 
             var readonlyDictionary = new Internal.ReadOnlyExpandoTestDictionary(dictionary);
             var actual = SerializeObject(readonlyDictionary);
-            Assert.Equal("{\"key 2\":1.3, \"level\":{\"Name\":\"Info\", \"Ordinal\":2}}", actual);
+            Assert.Equal("{\"key 2\":1.3, \"level\":\"Info\"}", actual);
         }
 #endif
 
@@ -404,7 +451,7 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(newGuid);
             Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
-        
+
         [Fact]
         public void SerializeEnum_Test()
         {
@@ -471,7 +518,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
-#if NETSTANDARD || NET462 || NET47
+#if !NET35 && !NET45
         [Fact]
         public void SerializeValueTuple_Test()
         {
@@ -482,6 +529,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("\"(test name, 1)\"", actual);
         }
 #endif
+
         [Fact]
         public void SerializeAnonymousObject_Test()
         {
@@ -515,7 +563,7 @@ namespace NLog.UnitTests.Targets
             public override string ToString() => "nullValue";
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40
 
         [Fact]
         public void SerializeExpandoObject_Test()
@@ -610,7 +658,6 @@ namespace NLog.UnitTests.Targets
 
         protected class TestObject
         {
-            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
             public TestObject(string name)
             {
                 Name = name;
@@ -639,7 +686,6 @@ namespace NLog.UnitTests.Targets
 
         private class ObjectWithExceptionAndPrivateSetter
         {
-            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
             public ObjectWithExceptionAndPrivateSetter(string name)
             {
                 Name = name;

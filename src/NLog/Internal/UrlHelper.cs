@@ -1,39 +1,40 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Internal
 {
     using System;
+    using System.ComponentModel;
     using System.Text;
 
     /// <summary>
@@ -54,6 +55,8 @@ namespace NLog.Internal
             /// <summary>Replace space ' ' with '+' instead of '%20'</summary>
             SpaceAsPlus = 8,
             /// <summary>Skip UTF8 encoding, and prefix special characters with '%u'</summary>
+            [Obsolete("Instead use default Rfc2396 or Rfc3986. Marked obsolete with NLog v5.3")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             NLogLegacy = 16 | LegacyRfc2396 | LowerCaseHex | UriString,
         };
 
@@ -68,10 +71,11 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(source))
                 return;
 
-          
             bool isLowerCaseHex = Contains(options, EscapeEncodingOptions.LowerCaseHex);
             bool isSpaceAsPlus = Contains(options, EscapeEncodingOptions.SpaceAsPlus);
+#pragma warning disable CS0618 // Type or member is obsolete
             bool isNLogLegacy = Contains(options, EscapeEncodingOptions.NLogLegacy);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             char[] charArray = null;
             byte[] byteArray = null;
@@ -83,7 +87,7 @@ namespace NLog.Internal
                 target.Append(ch);
                 if (IsSimpleCharOrNumber(ch))
                     continue;
-               
+
                 if (isSpaceAsPlus && ch == ' ')
                 {
                     target[target.Length - 1] = '+';
@@ -97,18 +101,20 @@ namespace NLog.Internal
 
                 if (isNLogLegacy)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     HandleLegacyEncoding(target, ch, hexChars);
+#pragma warning restore CS0618 // Type or member is obsolete
                     continue;
                 }
 
-                if (charArray == null)
+                if (charArray is null)
                     charArray = new char[1];
                 charArray[0] = ch;
 
-                if (byteArray == null)
+                if (byteArray is null)
                     byteArray = new byte[8];
 
-                
+
                 WriteWideChars(target, charArray, byteArray, hexChars);
             }
         }
@@ -121,10 +127,6 @@ namespace NLog.Internal
         /// <summary>
         /// Convert the wide-char into utf8-bytes, and then escape
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="charArray"></param>
-        /// <param name="byteArray"></param>
-        /// <param name="hexChars"></param>
         private static void WriteWideChars(StringBuilder target, char[] charArray, byte[] byteArray, char[] hexChars)
         {
             int byteCount = Encoding.UTF8.GetBytes(charArray, 0, 1, byteArray, 0);
@@ -140,6 +142,7 @@ namespace NLog.Internal
             }
         }
 
+        [Obsolete("Instead use default Rfc2396 or Rfc3986. Marked obsolete with NLog v5.3")]
         private static void HandleLegacyEncoding(StringBuilder target, char ch, char[] hexChars)
         {
             if (ch < 256)
@@ -193,7 +196,16 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool IsSimpleCharOrNumber(char ch)
         {
-            return ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch >= '0' && ch <= '9';
+            if (ch >= 'a' && ch <= 'z')
+                return true;
+
+            if (ch >= 'A' && ch <= 'Z')
+                return true;
+
+            if (ch >= '0' && ch <= '9')
+                return true;
+
+            return false;
         }
 
         private const string RFC2396ReservedMarks = @";/?:@&=+$,";
@@ -212,11 +224,20 @@ namespace NLog.Internal
         {
             EscapeEncodingOptions encodingOptions = EscapeEncodingOptions.UriString;
             if (escapeDataNLogLegacy)
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
                 encodingOptions |= EscapeEncodingOptions.LowerCaseHex | EscapeEncodingOptions.NLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
             else if (!escapeDataRfc3986)
+            {
                 encodingOptions |= EscapeEncodingOptions.LowerCaseHex | EscapeEncodingOptions.LegacyRfc2396;
+            }
+
             if (spaceAsPlus)
+            {
                 encodingOptions |= EscapeEncodingOptions.SpaceAsPlus;
+            }
             return encodingOptions;
         }
     }

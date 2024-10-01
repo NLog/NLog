@@ -1,35 +1,35 @@
-﻿// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Globalization;
@@ -58,11 +58,10 @@ namespace NLog.Config
                 $"Assertion failed. Expected element name '{string.Join("|", allowedNames)}', actual: '{section?.Name}'.");
         }
 
-        public static string GetRequiredValue(this ILoggingConfigurationElement element, string attributeName,
-            string section)
+        public static string GetRequiredValue(this ILoggingConfigurationElement element, string attributeName, string section)
         {
             string value = element.GetOptionalValue(attributeName, null);
-            if (value == null)
+            if (value is null)
             {
                 throw new NLogConfigurationException($"Expected {attributeName} on {element.Name} in {section}");
             }
@@ -76,18 +75,11 @@ namespace NLog.Config
             return value;
         }
 
-        public static string GetOptionalValue(this ILoggingConfigurationElement element, string attributeName,
-            string defaultValue)
+        public static string GetOptionalValue(this ILoggingConfigurationElement element, string attributeName, string defaultValue)
         {
-            string value = element.Values
+            return element.Values
                 .Where(configItem => string.Equals(configItem.Key, attributeName, StringComparison.OrdinalIgnoreCase))
-                .Select(configItem => configItem.Value).FirstOrDefault();
-            if (value == null)
-            {
-                return defaultValue;
-            }
-
-            return value;
+                .Select(configItem => configItem.Value).FirstOrDefault() ?? defaultValue;
         }
 
         /// <summary>
@@ -125,7 +117,7 @@ namespace NLog.Config
         public static string GetConfigItemTypeAttribute(this ILoggingConfigurationElement element, string sectionNameForRequiredValue = null)
         {
             var typeAttributeValue = sectionNameForRequiredValue != null ? element.GetRequiredValue("type", sectionNameForRequiredValue) : element.GetOptionalValue("type", null);
-            return StripOptionalNamespacePrefix(typeAttributeValue);
+            return StripOptionalNamespacePrefix(typeAttributeValue)?.Trim();
         }
 
         /// <summary>
@@ -138,7 +130,7 @@ namespace NLog.Config
         /// <returns></returns>
         private static string StripOptionalNamespacePrefix(string attributeValue)
         {
-            if (attributeValue == null)
+            if (attributeValue is null)
             {
                 return null;
             }

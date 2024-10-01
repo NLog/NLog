@@ -1,41 +1,41 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Conditions
 {
     using System;
-    using System.Globalization;
     using System.Collections.Generic;
+    using System.Globalization;
     using NLog.Common;
 
     /// <summary>
@@ -61,36 +61,27 @@ namespace NLog.Conditions
         /// Gets the left expression.
         /// </summary>
         /// <value>The left expression.</value>
-        public ConditionExpression LeftExpression { get; private set; }
+        public ConditionExpression LeftExpression { get; }
 
         /// <summary>
         /// Gets the right expression.
         /// </summary>
         /// <value>The right expression.</value>
-        public ConditionExpression RightExpression { get; private set; }
+        public ConditionExpression RightExpression { get; }
 
         /// <summary>
         /// Gets the relational operator.
         /// </summary>
         /// <value>The operator.</value>
-        public ConditionRelationalOperator RelationalOperator { get; private set; }
+        public ConditionRelationalOperator RelationalOperator { get; }
 
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the condition expression.
-        /// </returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"({LeftExpression} {GetOperatorString()} {RightExpression})";
         }
 
-        /// <summary>
-        /// Evaluates the expression.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>Expression result.</returns>
+        /// <inheritdoc/>
         protected override object EvaluateNode(LogEventInfo context)
         {
             object v1 = LeftExpression.Evaluate(context);
@@ -108,7 +99,7 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static bool Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             System.Collections.IComparer comparer = StringComparer.InvariantCulture;
 #else
             System.Collections.IComparer comparer = StringComparer.Ordinal;
@@ -138,15 +129,15 @@ namespace NLog.Conditions
                     throw new NotSupportedException($"Relational operator {relationalOperator} is not supported.");
             }
         }
-        
+
         /// <summary>
-        /// Promote values to the type needed for the comparision, e.g. parse a string to int.
+        /// Promote values to the type needed for the comparison, e.g. parse a string to int.
         /// </summary>
         /// <param name="leftValue"></param>
         /// <param name="rightValue"></param>
         private static void PromoteTypes(ref object leftValue, ref object rightValue)
         {
-            if (ReferenceEquals(leftValue, rightValue) || leftValue == null || rightValue == null)
+            if (ReferenceEquals(leftValue, rightValue) || leftValue is null || rightValue is null)
             {
                 return;
             }
@@ -175,7 +166,7 @@ namespace NLog.Conditions
 
             throw new ConditionEvaluationException($"Cannot find common type for '{leftType.Name}' and '{rightType.Name}'.");
         }
-        
+
         /// <summary>
         /// Promotes <paramref name="val"/> to type
         /// </summary>
@@ -227,16 +218,22 @@ namespace NLog.Conditions
                     return true;
                 }
 
+                if (type1 == typeof(LogLevel))
+                {
+                    string strval = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    val = LogLevel.FromString(strval);
+                    return true;
+                }
+
                 if (type1 == typeof(string))
                 {
                     val = Convert.ToString(val, CultureInfo.InvariantCulture);
-                    InternalLogger.Debug("Using string comparision");
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                InternalLogger.Debug("conversion of {0} to {1} failed", val, type1.Name);
+                InternalLogger.Debug("conversion of {0} to {1} failed - {2}", val, type1.Name, ex.Message);
             }
             return false;
         }
@@ -252,7 +249,7 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Get the order for the type for comparision.
+        /// Get the order for the type for comparison.
         /// </summary>
         /// <param name="type1"></param>
         /// <returns>index, 0 to max int. Lower is first</returns>
@@ -288,6 +285,7 @@ namespace NLog.Conditions
                 typeof(long),
                 typeof(int),
                 typeof(bool),
+                typeof(LogLevel),
                 typeof(string),
             };
 

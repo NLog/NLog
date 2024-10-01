@@ -1,52 +1,50 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System.Collections.Generic;
-using System.Globalization;
-using NLog.Config;
-using NLog.Targets;
-using NLog.UnitTests.Common;
+//
 
 namespace NLog.UnitTests.Fluent
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using Xunit;
+    using NLog.Config;
     using NLog.Fluent;
+    using NLog.Targets;
+    using Xunit;
 
+    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
     public class LogBuilderTests : NLogTestBase
     {
-        private static readonly ILogger _logger = LogManager.GetLogger("logger1");
+        private static readonly Logger _logger = LogManager.GetLogger("logger1");
 
         private LogEventInfo _lastLogEventInfo;
 
@@ -55,6 +53,7 @@ namespace NLog.UnitTests.Fluent
             var configuration = new LoggingConfiguration();
 
             var t1 = new MethodCallTarget("t1", (l, parms) => _lastLogEventInfo = l);
+            t1.Parameters.Add(new MethodCallParameter("CallSite", "${callsite}"));
             var t2 = new DebugTarget { Name = "t2", Layout = "${message}" };
             configuration.AddTarget(t1);
             configuration.AddTarget(t2);
@@ -70,7 +69,7 @@ namespace NLog.UnitTests.Fluent
             TraceWrite_internal(() => _logger.Trace());
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void TraceWrite_static_builder()
         {
@@ -80,7 +79,7 @@ namespace NLog.UnitTests.Fluent
 
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
-        /// 
+        ///
         /// Caution: don't use overloading, that will break xUnit:
         /// CATASTROPHIC ERROR OCCURRED:
         /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
@@ -135,7 +134,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 
         [Fact]
@@ -158,7 +156,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 
         [Fact]
@@ -168,20 +165,24 @@ namespace NLog.UnitTests.Fluent
             {
                 {"prop1", "1"},
                 {"prop2", "2"},
-
             };
 
-            _logger.Log(LogLevel.Fatal)
-                .Message("This is a test fluent message.")
-                .Properties(props).Write();
-
+            // Loop to verify caller-attribute-caching-lookup
+            for (int i = 0; i < 2; ++i)
             {
+                _logger.Log(LogLevel.Fatal)
+                    .Message("This is a test fluent message.")
+                    .Properties(props).Write();
+
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
                 expectedEvent.Properties["prop1"] = "1";
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
-            }
 
+#if !NET35 && !NET40
+                Assert.Equal(GetType().ToString(), _lastLogEventInfo.CallerClassName);
+#endif
+            }
         }
 
         [Fact]
@@ -205,8 +206,8 @@ namespace NLog.UnitTests.Fluent
                 .Properties(props).Write();
 
             _logger.Log(LogLevel.Off)
-          .Message("dont log this.")
-          .Properties(props2).Write();
+                .Message("dont log this.")
+                .Properties(props2).Write();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
@@ -214,10 +215,9 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void LevelWriteProperties()
         {
@@ -238,7 +238,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 #endif
 
@@ -308,7 +307,6 @@ namespace NLog.UnitTests.Fluent
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
             }
-
         }
 
         [Fact]
@@ -317,7 +315,7 @@ namespace NLog.UnitTests.Fluent
             InfoWrite_internal(() => _logger.Info());
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void InfoWrite_static_builder()
         {
@@ -327,7 +325,7 @@ namespace NLog.UnitTests.Fluent
 
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
-        /// 
+        ///
         /// Caution: don't use overloading, that will break xUnit:
         /// CATASTROPHIC ERROR OCCURRED:
         /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
@@ -367,7 +365,7 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => _logger.Debug(), LogLevel.Debug);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void DebugWrite_static_builder()
         {
@@ -381,7 +379,7 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => _logger.Fatal(), LogLevel.Fatal);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void FatalWrite_static_builder()
         {
@@ -395,7 +393,7 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => _logger.Error(), LogLevel.Error);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void ErrorWrite_static_builder()
         {
@@ -414,7 +412,6 @@ namespace NLog.UnitTests.Fluent
             var logBuilder = new LogBuilder(logger);
             Assert.Throws<ArgumentNullException>(() => logBuilder.Properties(null));
             Assert.Throws<ArgumentNullException>(() => logBuilder.Property(null, "b"));
-
         }
 
         [Fact]
@@ -476,7 +473,7 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void LogBuilder_message_cultureTest()
         {
-            if (IsTravis())
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] LogBuilderTests.LogBuilder_message_cultureTest because we are running in Travis");
                 return;
@@ -506,7 +503,7 @@ namespace NLog.UnitTests.Fluent
 
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
-        /// 
+        ///
         /// Caution: don't use overloading, that will break xUnit:
         /// CATASTROPHIC ERROR OCCURRED:
         /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
@@ -572,13 +569,10 @@ namespace NLog.UnitTests.Fluent
             Assert.Equal(expected.Message, _lastLogEventInfo.Message);
 
             Assert.NotNull(_lastLogEventInfo.Properties);
-
-            // TODO NLog ver. 5 - Remove these properties
-            _lastLogEventInfo.Properties.Remove("CallerMemberName");
-            _lastLogEventInfo.Properties.Remove("CallerLineNumber");
-            _lastLogEventInfo.Properties.Remove("CallerFilePath");
-
+            Assert.Equal(expected.Properties.Count, _lastLogEventInfo.Properties.Count);
+#if !MONO
             Assert.Equal(expected.Properties, _lastLogEventInfo.Properties);
+#endif
             Assert.Equal(expected.LoggerName, _lastLogEventInfo.LoggerName);
             Assert.Equal(expected.Level, _lastLogEventInfo.Level);
             Assert.Equal(expected.Exception, _lastLogEventInfo.Exception);

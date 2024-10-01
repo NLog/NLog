@@ -1,37 +1,37 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if !NET3_5 && !NETSTANDARD
+#if !NETSTANDARD && !MONO
 
 using System;
 using System.IO;
@@ -39,12 +39,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading;
-using System.Xml;
-using NLog;
 using NLog.Config;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using NLog.UnitTests;
 using Xunit;
 
 namespace NLog.UnitTests.Internal
@@ -65,7 +60,7 @@ namespace NLog.UnitTests.Internal
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+                var threadID = CurrentManagedThreadId.ToString();
 
                 Assert.False(File.Exists(Path.Combine(fileWritePath, "Trace.txt")));
 
@@ -117,18 +112,24 @@ namespace NLog.UnitTests.Internal
         private static void RunAppDomainTestMethod(string fileWritePath, int times, bool autoShutdown)
         {
             // ClassUnderTest must extend MarshalByRefObject
-            AppDomain partialTrusted;
-            var classUnderTest = MediumTrustContext.Create<ClassUnderTest>(fileWritePath, out partialTrusted);
-#if NET4_0 || NET4_5
-            MappedDiagnosticsLogicalContext.Set("Winner", new { Hero = "Zero" });
-            using (NestedDiagnosticsLogicalContext.Push(new { Hello = "World" }))
-#endif
+            AppDomain partialTrusted = MediumTrustContext.CreatePartialTrustDomain(fileWritePath);
+            var classUnderTest = (ClassUnderTest)partialTrusted.CreateInstanceAndUnwrap(typeof(ClassUnderTest).Assembly.FullName, typeof(ClassUnderTest).FullName);
+
+            using (ScopeContext.PushProperty("Winner", new { Hero = "Zero" }))
+            using (ScopeContext.PushNestedState(new { Hello = "World" }))
             {
+                partialTrusted.DoCallBack(HelloWorld);
                 classUnderTest.PartialTrustSuccess(times, fileWritePath, autoShutdown);
             }
             AppDomain.Unload(partialTrusted);
         }
 
+#pragma warning disable xUnit1013 // Public method should be marked as test
+        public static void HelloWorld()
+#pragma warning restore xUnit1013 // Public method should be marked as test
+        {
+            Console.WriteLine("Hello World");
+        }
     }
 
     [Serializable]
@@ -141,11 +142,9 @@ namespace NLog.UnitTests.Internal
             // NOTE Using BufferingWrapper to validate that DomainUnload remembers to perform flush
             var configXml = $@"
             <nlog throwExceptions='false' autoShutdown='{autoShutdown}'>
-                <targets async='true'> 
+                <targets async='true'>
                     <target name='file' type='BufferingWrapper' bufferSize='10000'>
-                        <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{
-                    filePath
-                }' LineEnding='lf' />
+                        <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{filePath}' LineEnding='lf' concurrentWrites='true' />
                     </target>
                 </targets>
                 <rules>
@@ -158,10 +157,12 @@ namespace NLog.UnitTests.Internal
             {
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
+#pragma warning disable CS0618 // Type or member is obsolete
                 //this method gave issues
-                LogFactory.LogConfigurationInitialized();
+                LogFactory.LogNLogAssemblyVersion();
+#pragma warning restore CS0618 // Type or member is obsolete
 
-                ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+                var logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
                 for (var i = 0; i < times; ++i)
                 {
@@ -178,13 +179,6 @@ namespace NLog.UnitTests.Internal
 
     internal static class MediumTrustContext
     {
-        public static T Create<T>(string applicationBase, out AppDomain appDomain)
-        {
-            appDomain = CreatePartialTrustDomain(applicationBase);
-            var t = (T)appDomain.CreateInstanceAndUnwrap(typeof(T).Assembly.FullName, typeof(T).FullName);
-            return t;
-        }
-
         public static AppDomain CreatePartialTrustDomain(string fileWritePath)
         {
             var setup = new AppDomainSetup { ApplicationBase = AppDomain.CurrentDomain.BaseDirectory };

@@ -1,4 +1,4 @@
-﻿namespace DumpApiXml
+namespace DumpApiXml
 {
     using System;
     using System.IO;
@@ -30,6 +30,10 @@
                                     {
                                         builder.LoadComments(docpath);
                                     }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Assembly not found - {0}", Path.GetFullPath(assembly));
                                 }
                             }
                             break;

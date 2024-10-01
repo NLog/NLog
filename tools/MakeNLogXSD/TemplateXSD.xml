@@ -12,6 +12,7 @@
       <xs:element name="extensions" type="NLogExtensions" />
       <xs:element name="include" type="NLogInclude" />
       <xs:element name="variable" type="NLogVariable" />
+      <xs:element name="variables" type="NLogVariables" />
       <xs:element name="targets" type="NLogTargets" />
       <xs:element name="rules" type="NLogRules" />
       <xs:element name="time" type="TimeSource" />
@@ -185,6 +186,12 @@
         <xs:documentation>Rule identifier to allow rule lookup with Configuration.FindRuleByName and Configuration.RemoveRuleByName.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    
+    <xs:attribute name="finalMinLevel" type="NLogLevel" use="optional">
+      <xs:annotation>
+        <xs:documentation>Loggers matching will be restricted to specified minimum level for following rules.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="NLogFilters">
@@ -246,6 +253,11 @@
           <xs:documentation>Variable value. Note, the 'value' attribute has precedence over this one.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="layout" minOccurs="0" maxOccurs="1" type="Layout">
+        <xs:annotation>
+          <xs:documentation>Layout type variable value. Note, the 'value' attribute has precedence over this one.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:choice>
     <xs:attribute name="name" type="xs:string" use="required">
       <xs:annotation>
@@ -257,6 +269,12 @@
         <xs:documentation>Variable value.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="NLogVariables">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="variable" type="NLogVariable" />
+    </xs:sequence>
   </xs:complexType>
 
   <xs:simpleType name="NLogTargetIDList">

@@ -1,46 +1,45 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.Targets
 {
-    using System.Linq;
+    using System;
     using System.Collections.Generic;
-    using Xunit;
+    using System.Linq;
+    using System.Threading;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
     public class TargetWithContextTest : NLogTestBase
     {
@@ -68,12 +67,21 @@ namespace NLog.UnitTests.Targets
             {
                 if (!SkipAssert)
                 {
-                    var test = MappedDiagnosticsLogicalContext.GetNames();
-                    Assert.Empty(test);
                     Assert.True(logEvent.HasStackTrace);
+
+                    var scopeProperties = ScopeContext.GetAllProperties();  // See that async-timer cannot extract anything from scope-context
+                    Assert.Empty(scopeProperties);
+
+                    var scopeNested = ScopeContext.GetAllNestedStates();    // See that async-timer cannot extract anything from scope-context
+                    Assert.Empty(scopeNested);
                 }
 
                 LastCombinedProperties = base.GetAllProperties(logEvent);
+
+                var nestedStates = base.GetScopeContextNested(logEvent);
+                if (nestedStates.Count != 0)
+                    LastCombinedProperties["TestKey"] = nestedStates[0];
+
                 LastMessage = base.RenderLogEvent(Layout, logEvent);
             }
         }
@@ -83,59 +91,55 @@ namespace NLog.UnitTests.Targets
         {
             CustomTargetWithContext target = new CustomTargetWithContext();
             target.ContextProperties.Add(new TargetPropertyWithContext("threadid", "${threadid}"));
-            target.IncludeMdlc = true;
-            target.IncludeMdc = true;
+            target.IncludeScopeProperties = true;
             target.IncludeGdc = true;
-            target.IncludeNdc = true;
-            target.IncludeNdlc = true;
+            target.IncludeScopeNested = true;
             target.IncludeCallSite = true;
 
             AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
             wrapper.WrappedTarget = target;
             wrapper.TimeToSleepBetweenBatches = 0;
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(wrapper, LogLevel.Debug);
-
-            Logger logger = LogManager.GetLogger("Example");
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(wrapper);
+            }).GetLogger("Example");
 
             GlobalDiagnosticsContext.Clear();
+            ScopeContext.Clear();
             GlobalDiagnosticsContext.Set("TestKey", "Hello Global World");
             GlobalDiagnosticsContext.Set("GlobalKey", "Hello Global World");
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("TestKey", "Hello Thread World");
-            MappedDiagnosticsContext.Set("ThreadKey", "Hello Thread World");
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsLogicalContext.Set("TestKey", "Hello Async World");
-            MappedDiagnosticsLogicalContext.Set("AsyncKey", "Hello Async World");
+            ScopeContext.PushProperty("TestKey", "Hello Async World");
+            ScopeContext.PushProperty("AsyncKey", "Hello Async World");
             logger.Debug("log message");
-            WaitForLastMessage(target);
+            Assert.True(WaitForLastMessage(target));
 
             Assert.NotEqual(0, target.LastMessage.Length);
             Assert.NotNull(target.LastCombinedProperties);
             Assert.NotEmpty(target.LastCombinedProperties);
-            Assert.Equal(7, target.LastCombinedProperties.Count);
+            Assert.Equal(5, target.LastCombinedProperties.Count);
             Assert.Contains(new KeyValuePair<string, object>("GlobalKey", "Hello Global World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("ThreadKey", "Hello Thread World"), target.LastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("AsyncKey", "Hello Async World"), target.LastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("TestKey", "Hello Async World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("TestKey_1", "Hello Thread World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("TestKey_2", "Hello Global World"), target.LastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("TestKey_1", "Hello Global World"), target.LastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
         }
 
-        private static void WaitForLastMessage(CustomTargetWithContext target)
+        private static bool WaitForLastMessage(CustomTargetWithContext target)
         {
             System.Threading.Thread.Sleep(1);
             for (int i = 0; i < 1000; ++i)
             {
                 if (target.LastMessage != null)
-                    break;
+                    return true;
 
                 System.Threading.Thread.Sleep(1);
             }
+            return false;
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void TargetWithContextMdcSerializeTest()
         {
             MappedDiagnosticsContext.Clear();
@@ -147,6 +151,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void TargetWithContextMdlcSerializeTest()
         {
             MappedDiagnosticsLogicalContext.Clear();
@@ -157,19 +162,42 @@ namespace NLog.UnitTests.Targets
             WriteAndAssertSingleKey(target);
         }
 
+        [Fact]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
+        public void TargetWithContextNdcSerializeTest()
+        {
+            NestedDiagnosticsContext.Clear();
+            NestedDiagnosticsContext.Push(new { a = "b" });
+
+            CustomTargetWithContext target = new CustomTargetWithContext() { IncludeNdc = true, SkipAssert = true };
+
+            WriteAndAssertSingleKey(target);
+        }
+
+        [Fact]
+        [Obsolete("Replaced by dispose of return value from ScopeContext.PushNestedState or Logger.PushScopeNested. Marked obsolete on NLog 5.0")]
+        public void TargetWithContextNdlcSerializeTest()
+        {
+            NestedDiagnosticsLogicalContext.Clear();
+            NestedDiagnosticsLogicalContext.Push(new { a = "b" });
+
+            CustomTargetWithContext target = new CustomTargetWithContext() { IncludeNdlc = true, SkipAssert = true };
+
+            WriteAndAssertSingleKey(target);
+        }
+
         private static void WriteAndAssertSingleKey(CustomTargetWithContext target)
         {
             AsyncTargetWrapper wrapper = new AsyncTargetWrapper { WrappedTarget = target, TimeToSleepBetweenBatches = 0 };
 
-            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(wrapper, LogLevel.Debug);
-
-            Logger logger = LogManager.GetLogger("Example");
-
+            var logger = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(wrapper);
+            }).GetLogger("Example");
 
             logger.Debug("log message");
 
-            WaitForLastMessage(target);
-
+            Assert.True(WaitForLastMessage(target));
 
             Assert.Equal("{ a = b }", target.LastCombinedProperties["TestKey"]);
         }
@@ -177,9 +205,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextConfigTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='contexttarget' includeCallSite='true'>
@@ -189,50 +217,52 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            MappedDiagnosticsLogicalContext.Clear();
+            var logger = logFactory.GetLogger("A");
+            ScopeContext.Clear();
             logger.Error("log message");
-            var target = LogManager.Configuration.FindTargetByName("debug") as CustomTargetWithContext;
+            var target = logFactory.Configuration.FindTargetByName("debug") as CustomTargetWithContext;
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.NotEmpty(lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId.ToString()), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId.ToString()), lastCombinedProperties);
         }
 
         [Fact]
         public void TargetWithContextAsyncPropertyTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
-                        <target name='debug' type='contexttarget' includeCallSite='true' includeEventProperties='true' />
+                        <target name='debug' type='contexttarget' includeCallSite='true' includeEventProperties='true' excludeProperties='password' />
                     </targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            var logger = logFactory.GetLogger("A");
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
 
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Error, logger.Name, "Hello");
             logEvent.Properties["name"] = "Kenny";
+            logEvent.Properties["password"] = "123Password";
             logger.Error(logEvent);
-            LogManager.Flush();
+            logFactory.Flush();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
-            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Single(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("name", "Kenny"), lastCombinedProperties);
 
             logger.Error("Hello {name}", "Cartman");
-            LogManager.Flush();
+            logEvent.Properties["Password"] = "123Password";
+            logFactory.Flush();
             lastCombinedProperties = target.LastCombinedProperties;
-            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Single(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("name", "Cartman"), lastCombinedProperties);
         }
 
@@ -245,8 +275,8 @@ namespace NLog.UnitTests.Targets
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
-                        <target name='debug_buffer' type='BufferingWrapper' flushTimeout='1'>
-                           <target name='debug' type='contexttarget' includeCallSite='true' includeMdlc='true' />
+                        <target name='debug_buffer' type='BufferingWrapper'>
+                           <target name='debug' type='contexttarget' includeCallSite='true' includeScopeProperties='true' excludeProperties='password' />
                         </target>
                     </targets>
                     <rules>
@@ -257,17 +287,12 @@ namespace NLog.UnitTests.Targets
             var logger = logFactory.GetLogger("A");
             var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
 
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsLogicalContext.Set("name", "Kenny");
-            logger.Error("Hello");
-
-            for (int i = 0; i < 500; ++i)
+            using (logger.PushScopeProperty("name", "Kenny"))
+            using (logger.PushScopeProperty("password", "123Password"))
             {
-                System.Threading.Thread.Sleep(10);
-                if (!string.IsNullOrEmpty(target.LastMessage))
-                    break;
+                logger.Error("Hello");
             }
-
+            logFactory.Flush();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.Single(lastCombinedProperties);
@@ -277,14 +302,14 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextJsonTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
-                        <target name='debug' type='contexttarget' includeCallSite='true' optimizeBufferReuse='false'>
-                            <layout type='JsonLayout' includeMdc='true'>
+                        <target name='debug' type='contexttarget' includeCallSite='true'>
+                            <layout type='JsonLayout' includeScopeProperties='true'>
                                 <attribute name='level' layout='${level:upperCase=true}'/>
                                 <attribute name='message' layout='${message}' />
                                 <attribute name='exception' layout='${exception}' />
@@ -295,14 +320,14 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("TestKey", "Hello Thread World");
+            var logger = logFactory.GetLogger("A");
+
+            ScopeContext.Clear();
+            ScopeContext.PushProperty("TestKey", "Hello Thread World");
             logger.Error("log message");
-            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
             System.Threading.Thread.Sleep(1);
             for (int i = 0; i < 1000; ++i)
             {
@@ -313,7 +338,7 @@ namespace NLog.UnitTests.Targets
             }
 
             Assert.NotEqual(0, target.LastMessage.Length);
-            Assert.Contains(System.Environment.CurrentManagedThreadId.ToString(), target.LastMessage);
+            Assert.Contains(CurrentManagedThreadId.ToString(), target.LastMessage);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.Empty(lastCombinedProperties);
         }
@@ -321,9 +346,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TargetWithContextPropertyTypeTest()
         {
-            Target.Register("contexttarget", typeof(CustomTargetWithContext));
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterTarget<CustomTargetWithContext>("contexttarget"))
+                                             .LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
@@ -333,6 +358,7 @@ namespace NLog.UnitTests.Targets
                             <contextproperty name='timestamp' layout='${date}' propertyType='System.DateTime' />
                             <contextproperty name='int-non-existing' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='true' />
                             <contextproperty name='int-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='false' />
+                            <contextproperty name='string-non-existing' layout='${event-properties:non-existing}' propertyType='System.String' includeEmptyValue='true' />
                             <contextproperty name='object-non-existing' layout='${event-properties:non-existing}' propertyType='System.Object' includeEmptyValue='true' />
                             <contextproperty name='object-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Object' includeEmptyValue='false' />
                        </target>
@@ -340,22 +366,23 @@ namespace NLog.UnitTests.Targets
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            MappedDiagnosticsLogicalContext.Clear();
+            var logger = logFactory.GetLogger("A");
+            ScopeContext.Clear();
 
             var logEvent = new LogEventInfo() { Message = "log message" };
             logger.Error(logEvent);
-            LogManager.Flush();
-            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            logFactory.Flush();
+            var target = logFactory.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
             Assert.NotEqual(0, target.LastMessage.Length);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.NotEmpty(lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId), lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("processid", System.Diagnostics.Process.GetCurrentProcess().Id), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", CurrentManagedThreadId), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("processid", CurrentProcessId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);
             Assert.DoesNotContain("int-non-existing-empty", lastCombinedProperties.Keys);
+            Assert.Contains(new KeyValuePair<string, object>("string-non-existing", ""), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("object-non-existing", null), lastCombinedProperties);
             Assert.DoesNotContain("object-non-existing-empty", lastCombinedProperties.Keys);
         }

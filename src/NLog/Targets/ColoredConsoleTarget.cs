@@ -1,52 +1,66 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Targets
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-    using NLog.Config;
+    using System.Text;
     using NLog.Common;
+    using NLog.Config;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/ColoredConsole-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/ColoredConsole-target">Documentation on NLog Wiki</seealso>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" source="examples/targets/Configuration File/ColoredConsole/NLog.config" />
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Simple/Example.cs" />
+    /// </example>
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
@@ -60,7 +74,7 @@ namespace NLog.Targets
         ///
         /// Full error:
         ///   Error during session close: System.IndexOutOfRangeException: Probable I/ O race condition detected while copying memory.
-        ///   The I/ O package is not thread safe by default.In multithreaded applications,
+        ///   The I/ O package is not thread safe by default. In multi-threaded applications,
         ///   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
         ///
@@ -75,14 +89,10 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public ColoredConsoleTarget()
         {
-            WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
-            RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
-            UseDefaultRowHighlightingRules = true;
-            OptimizeBufferReuse = true;
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
 
@@ -90,7 +100,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public ColoredConsoleTarget(string name) : this()
@@ -99,11 +109,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="StdErr"/> with NLog v5.
         /// Gets or sets a value indicating whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
-        public bool ErrorStream { get; set; }
+        [Obsolete("Replaced by StdErr to align with ConsoleTarget. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ErrorStream { get => StdErr; set => StdErr = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        public bool StdErr { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use default row highlighting rules.
@@ -149,10 +167,8 @@ namespace NLog.Targets
         /// </table>
         /// </remarks>
         /// <docgen category='Highlighting Rules' order='9' />
-        [DefaultValue(true)]
-        public bool UseDefaultRowHighlightingRules { get; set; }
+        public bool UseDefaultRowHighlightingRules { get; set; } = true;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -168,7 +184,6 @@ namespace NLog.Targets
             }
         }
         private Encoding _encoding;
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
@@ -176,7 +191,6 @@ namespace NLog.Targets
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
@@ -184,7 +198,6 @@ namespace NLog.Targets
         ///   - Disables coloring logic when System.Console.IsOutputRedirected = true
         /// </summary>
         /// <docgen category='Console Options' order='11' />
-        [DefaultValue(false)]
         public bool DetectOutputRedirected { get; set; }
 
         /// <summary>
@@ -194,14 +207,12 @@ namespace NLog.Targets
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         /// <docgen category='Console Options' order='11' />
-        [DefaultValue(false)]
         public bool AutoFlush { get; set; }
 
         /// <summary>
         /// Enables output using ANSI Color Codes
         /// </summary>
         /// <docgen category='Console Options' order='10' />
-        [DefaultValue(false)]
         public bool EnableAnsiOutput { get; set; }
 
         /// <summary>
@@ -209,18 +220,16 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
         [ArrayParameter(typeof(ConsoleRowHighlightingRule), "highlight-row")]
-        public IList<ConsoleRowHighlightingRule> RowHighlightingRules { get; private set; }
+        public IList<ConsoleRowHighlightingRule> RowHighlightingRules { get; } = new List<ConsoleRowHighlightingRule>();
 
         /// <summary>
         /// Gets the word highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='11' />
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
-        public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
+        public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; } = new List<ConsoleWordHighlightingRule>();
 
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeTarget()
         {
             _pauseLogging = false;
@@ -232,24 +241,22 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("ColoredConsole(Name={0}): Console detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", Name, reason);
+                    InternalLogger.Info("{0}: Console detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", this, reason);
                 }
             }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (_encoding != null)
                 ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
-#endif
 
-#if NET4_5
+#if !NET35 && !NET40
             if (DetectOutputRedirected)
             {
                 try
                 {
-                    _disableColors = ErrorStream ? Console.IsErrorRedirected : Console.IsOutputRedirected;
+                    _disableColors = StdErr ? Console.IsErrorRedirected : Console.IsOutputRedirected;
                     if (_disableColors)
                     {
-                        InternalLogger.Info("ColoredConsole(Name={0}): Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", Name);
+                        InternalLogger.Info("{0}: Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", this);
                         if (!AutoFlush && GetOutput() is StreamWriter streamWriter && !streamWriter.AutoFlush)
                         {
                             AutoFlush = true;
@@ -258,7 +265,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "ColoredConsole(Name={0}): Failed checking if Console Output Redirected.", Name);
+                    InternalLogger.Error(ex, "{0}: Failed checking if Console Output Redirected.", this);
                 }
             }
 #endif
@@ -276,17 +283,13 @@ namespace NLog.Targets
 
         private static IColoredConsolePrinter CreateConsolePrinter(bool enableAnsiOutput)
         {
-#if !__IOS__ && !__ANDROID__
             if (!enableAnsiOutput)
                 return new ColoredConsoleSystemPrinter();
             else
-#endif
                 return new ColoredConsoleAnsiPrinter();
         }
 
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             if (Footer != null)
@@ -298,7 +301,7 @@ namespace NLog.Targets
             base.CloseTarget();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             try
@@ -321,11 +324,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Writes the specified log event to the console highlighting entries
-        /// and words based on a set of defined rules.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
+        /// <inheritdoc/>
         protected override void Write(LogEventInfo logEvent)
         {
             if (_pauseLogging)
@@ -347,8 +346,8 @@ namespace NLog.Targets
             {
                 // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "ColoredConsole(Name={0}): {1} has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
+                InternalLogger.Warn(ex, "{0}: {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", this, ex.GetType());
             }
         }
 
@@ -389,7 +388,7 @@ namespace NLog.Targets
 
         private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor, bool wordHighlighting)
         {
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 TextWriter consoleWriter = _consolePrinter.AcquireTextWriter(consoleStream, targetBuilder.Result);
 
@@ -434,14 +433,14 @@ namespace NLog.Targets
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
         {
             var matchingRule = GetMatchingRowHighlightingRule(RowHighlightingRules, logEvent);
-            if (matchingRule == null && UseDefaultRowHighlightingRules)
+            if (matchingRule is null && UseDefaultRowHighlightingRules)
             {
                 matchingRule = GetMatchingRowHighlightingRule(_consolePrinter.DefaultConsoleRowHighlightingRules, logEvent);
             }
             return matchingRule ?? ConsoleRowHighlightingRule.Default;
         }
 
-        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
+        private static ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
         {
             for (int i = 0; i < rules.Count; ++i)
             {
@@ -459,7 +458,7 @@ namespace NLog.Targets
 
             message = EscapeColorCodes(message);
 
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result;
 
@@ -467,7 +466,7 @@ namespace NLog.Targets
                 {
                     var hl = WordHighlightingRules[i];
                     var matches = hl.Matches(logEvent, message);
-                    if (matches == null || matches.Count == 0)
+                    if (matches is null || matches.Count == 0)
                         continue;
 
                     if (sb != null)
@@ -502,7 +501,7 @@ namespace NLog.Targets
 
         private static string EscapeColorCodes(string message)
         {
-            if (message.IndexOf("\a", StringComparison.Ordinal) >= 0)
+            if (message.IndexOf('\a') >= 0)
                 message = message.Replace("\a", "\a\a");
             return message;
         }
@@ -630,7 +629,7 @@ namespace NLog.Targets
 
         private TextWriter GetOutput()
         {
-            return ErrorStream ? Console.Error : Console.Out;
+            return StdErr ? Console.Error : Console.Out;
         }
     }
 }

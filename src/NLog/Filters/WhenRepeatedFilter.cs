@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Filters
 {
@@ -42,6 +42,10 @@ namespace NLog.Filters
     /// <summary>
     /// Matches when the result of the calculated layout has been repeated a moment ago
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/WhenRepeated-Filter">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/WhenRepeated-Filter">Documentation on NLog Wiki</seealso>
     [Filter("whenRepeated")]
     public class WhenRepeatedFilter : LayoutBasedFilter
     {
@@ -51,86 +55,64 @@ namespace NLog.Filters
         /// How long before a filter expires, and logging is accepted again
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(10)]
-        public int TimeoutSeconds { get; set; }
+        public int TimeoutSeconds { get; set; } = 10;
 
         /// <summary>
         /// Max length of filter values, will truncate if above limit
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(1000)]
-        public int MaxLength { get; set; }
+        public int MaxLength { get; set; } = 1000;
 
         /// <summary>
         /// Applies the configured action to the initial logevent that starts the timeout period.
         /// Used to configure that it should ignore all events until timeout.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(false)]
         public bool IncludeFirst { get; set; }
 
         /// <summary>
         /// Max number of unique filter values to expect simultaneously
         /// </summary>
-        /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(50000)]
-        public int MaxFilterCacheSize { get; set; }
+        /// <docgen category='Filtering Options' order='100' />
+        public int MaxFilterCacheSize { get; set; } = 50000;
 
         /// <summary>
         /// Default number of unique filter values to expect, will automatically increase if needed
         /// </summary>
-        /// <docgen category='Filtering Options' order='10' />
-        [DefaultValue(1000)]
-        public int DefaultFilterCacheSize { get; set; }
+        /// <docgen category='Filtering Options' order='100' />
+        public int DefaultFilterCacheSize { get; set; } = 1000;
 
         /// <summary>
         /// Insert FilterCount value into <see cref="LogEventInfo.Properties"/> when an event is no longer filtered
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
+        /// <docgen category='Filtering Options' order='10' />
         public string FilterCountPropertyName { get; set; }
 
         /// <summary>
         /// Append FilterCount to the <see cref="LogEventInfo.Message"/> when an event is no longer filtered
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
+        /// <docgen category='Filtering Options' order='10' />
         public string FilterCountMessageAppendFormat { get; set; }
 
         /// <summary>
         /// Reuse internal buffers, and doesn't have to constantly allocate new buffers
         /// </summary>
-        /// <docgen category='Performance Options' order='10' />
-        [DefaultValue(true)]
-        public bool OptimizeBufferReuse { get; set; }
+        /// <docgen category='Filtering Options' order='100' />
+        [Obsolete("No longer used, and always returns true. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool OptimizeBufferReuse { get => _optimizeBufferReuse ?? true; set => _optimizeBufferReuse = value ? true : (bool?)null; }
+        private bool? _optimizeBufferReuse;
 
         /// <summary>
         /// Default buffer size for the internal buffers
         /// </summary>
-        /// <docgen category='Performance Options' order='10' />
-        [DefaultValue(1000)]
-        public int OptimizeBufferDefaultLength { get; set; }
+        /// <docgen category='Filtering Options' order='100' />
+        public int OptimizeBufferDefaultLength { get; set; } = 1000;
 
-        /// <summary>
-        /// Can be used if <see cref="OptimizeBufferReuse"/> has been enabled.
-        /// </summary>
-        internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
+        private readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
         private readonly Dictionary<FilterInfoKey, FilterInfo> _repeatFilter = new Dictionary<FilterInfoKey, FilterInfo>(1000);
         private readonly Stack<KeyValuePair<FilterInfoKey, FilterInfo>> _objectPool = new Stack<KeyValuePair<FilterInfoKey, FilterInfo>>(1000);
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WhenRepeatedFilter" /> class.
-        /// </summary>
-        public WhenRepeatedFilter()
-        {
-            TimeoutSeconds = 10;
-            MaxLength = 1000;
-            DefaultFilterCacheSize = 1000;
-            MaxFilterCacheSize = 50000;
-            OptimizeBufferReuse = true;
-            OptimizeBufferDefaultLength = MaxLength;
-        }
 
         /// <summary>
         /// Checks whether log event should be logged or not. In case the LogEvent has just been repeated.
@@ -148,9 +130,9 @@ namespace NLog.Filters
 
             lock (_repeatFilter)
             {
-                using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                 {
-                    if (OptimizeBufferReuse && targetBuilder.Result.Capacity != OptimizeBufferDefaultLength)
+                    if (targetBuilder.Result.Capacity != OptimizeBufferDefaultLength)
                     {
                         // StringBuilder.Equals only works when StringBuilder.Capacity is the same
                         if (OptimizeBufferDefaultLength < MaxInitialRenderBufferLength)
@@ -164,13 +146,13 @@ namespace NLog.Filters
                         targetBuilder.Result.Capacity = OptimizeBufferDefaultLength;
                     }
 
-                    FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, OptimizeBufferReuse ? targetBuilder.Result : null);
+                    FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, targetBuilder.Result);
 
                     FilterInfo filterInfo;
                     if (!_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
                     {
                         filterInfo = CreateFilterInfo(logEvent);
-                        if (OptimizeBufferReuse && filterInfo.StringBuffer != null)
+                        if (filterInfo.StringBuffer != null)
                         {
                             filterInfo.StringBuffer.ClearBuilder();
                             int length = Math.Min(targetBuilder.Result.Length, MaxLength);
@@ -220,13 +202,13 @@ namespace NLog.Filters
 
             if (_objectPool.Count == 0)
             {
-                reusableObject = new FilterInfo(OptimizeBufferReuse ? new StringBuilder(OptimizeBufferDefaultLength) : null);
+                reusableObject = new FilterInfo(new StringBuilder(OptimizeBufferDefaultLength));
             }
             else
             {
                 reusableObject = _objectPool.Pop().Value;
                 // StringBuilder.Equals only works when StringBuilder.Capacity is the same
-                if (OptimizeBufferReuse && reusableObject.StringBuffer != null && reusableObject.StringBuffer.Capacity != OptimizeBufferDefaultLength)
+                if (reusableObject.StringBuffer != null && reusableObject.StringBuffer.Capacity != OptimizeBufferDefaultLength)
                 {
                     reusableObject.StringBuffer.Capacity = OptimizeBufferDefaultLength;
                 }
@@ -268,12 +250,12 @@ namespace NLog.Filters
         {
             if (targetBuilder != null)
             {
-                Layout.RenderAppendBuilder(logEvent, targetBuilder);
+                Layout.Render(logEvent, targetBuilder);
                 if (targetBuilder.Length > MaxLength)
                     targetBuilder.Length = MaxLength;
                 return new FilterInfoKey(targetBuilder, null);
             }
-            string value = Layout.Render(logEvent) ?? string.Empty;
+            string value = Layout.Render(logEvent);
             if (value.Length > MaxLength)
                 value = value.Substring(0, MaxLength);
             return new FilterInfoKey(null, value);
@@ -323,7 +305,7 @@ namespace NLog.Filters
         /// <summary>
         /// Filter Value State (mutable)
         /// </summary>
-        private class FilterInfo
+        private sealed class FilterInfo
         {
             public FilterInfo(StringBuilder stringBuilder)
             {
@@ -337,7 +319,7 @@ namespace NLog.Filters
                     LastLogTime = logTimeStamp;
                     LogLevel = logLevel;
                 }
-                else if (LogLevel == null || logLevel.Ordinal > LogLevel.Ordinal)
+                else if (LogLevel is null || logLevel.Ordinal > LogLevel.Ordinal)
                 {
                     LogLevel = logLevel;
                 }
@@ -359,7 +341,7 @@ namespace NLog.Filters
                 return (logEventTime - LastLogTime).TotalSeconds > timeoutSeconds;
             }
 
-            public StringBuilder StringBuffer { get; private set; }
+            public StringBuilder StringBuffer { get; }
             public LogLevel LogLevel { get; private set; }
             private DateTime LastLogTime { get; set; }
             private DateTime LastFilterTime { get; set; }

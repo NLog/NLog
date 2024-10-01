@@ -1,46 +1,42 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-#region
+//
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using NLog.Config;
+using NLog.Internal;
 using NLog.Targets;
 using Xunit;
-
-#endregion
 
 namespace NLog.UnitTests.Config
 {
@@ -68,21 +64,40 @@ namespace NLog.UnitTests.Config
         public void AddTarget_WithName_NullNameParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
+            var ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: null, target: new FileTarget { Name = "name1" }));
+            Assert.Equal("name", ex.ParamName);
+        }
+
+        [Fact]
+        public void AddTarget_WithName_EmptyNameParam()
+        {
+            var config = new LoggingConfiguration();
+            var ex = Assert.Throws<ArgumentException>(() => config.AddTarget(name: "", target: new FileTarget { Name = "name1" }));
+            Assert.Equal("name", ex.ParamName);
         }
 
         [Fact]
         public void AddTarget_WithName_NullTargetParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: "Name1", target: null));
+            var ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(name: "Name1", target: null));
+            Assert.Equal("target", ex.ParamName);
         }
 
         [Fact]
         public void AddTarget_TargetOnly_NullParam()
         {
             var config = new LoggingConfiguration();
-            Exception ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(target: null));
+            var ex = Assert.Throws<ArgumentNullException>(() => config.AddTarget(target: null));
+            Assert.Equal("target", ex.ParamName);
+        }
+
+        [Fact]
+        public void AddTarget_TargetOnly_EmptyName()
+        {
+            var config = new LoggingConfiguration();
+            var ex = Assert.Throws<ArgumentException>(() => config.AddTarget(target: new FileTarget { Name = "" }));
+            Assert.Equal("target", ex.ParamName);
         }
 
         [Fact]
@@ -118,7 +133,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget { Name = "File" });
             config.AddRule(LogLevel.Info, LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
@@ -133,13 +148,32 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void AddRule_ruleobject()
+        {
+            var config = new LoggingConfiguration();
+            config.AddTarget(new FileTarget { Name = "File" });
+            LoggingRule rule = new LoggingRule("testRule")
+            {
+                LoggerNamePattern = "testRulePattern"
+            };
+            rule.EnableLoggingForLevels(LogLevel.Info, LogLevel.Error);
+            rule.Targets.Add(config.FindTargetByName("File"));
+            rule.Final = true;
+            config.AddRule(rule);
+            Assert.NotNull(config.LoggingRules);
+            Assert.Single(config.LoggingRules);
+            var lastRule = config.LoggingRules.LastOrDefault();
+            Assert.Same(rule, lastRule);
+        }
+
+        [Fact]
         public void AddRule_all()
         {
             var config = new LoggingConfiguration();
             config.AddTarget(new FileTarget { Name = "File" });
             config.AddRuleForAllLevels("File", "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
@@ -160,7 +194,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget { Name = "File" });
             config.AddRuleForOneLevel(LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
             Assert.False(rule1.Final);
@@ -181,7 +215,7 @@ namespace NLog.UnitTests.Config
             var fileTarget = new FileTarget { Name = "File" };
             config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
             Assert.NotNull(config.LoggingRules);
-            Assert.Equal(1, config.LoggingRules.Count);
+            Assert.Single(config.LoggingRules);
             config.AddTarget(new FileTarget { Name = "File" });
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
@@ -222,7 +256,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", LogLevel.Error, target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:All) levels: [ Error Fatal ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:All) levels: [ Error Fatal ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -231,7 +265,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", LogLevel.Debug, LogLevel.Error, target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:All) levels: [ Debug Info Warn Error ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:All) levels: [ Debug Info Warn Error ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -240,7 +274,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("*", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:All) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:All) levels: [ ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -249,7 +283,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:Equals) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (:Equals) levels: [ ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -258,7 +292,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("namespace.comp1", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] writeTo: [ file1 ]", s);
         }
 
         [Fact]
@@ -269,7 +303,7 @@ namespace NLog.UnitTests.Config
             var loggingRule = new LoggingRule("namespace.comp1", target);
             loggingRule.Targets.Add(target2);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 file2 ]", s);
+            Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] writeTo: [ file1 file2 ]", s);
         }
 
         [Fact]
@@ -298,7 +332,7 @@ namespace NLog.UnitTests.Config
             rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
 
             rule.SetLoggingLevels(LogLevel.Off, LogLevel.Off);
-            Assert.Equal(rule.Levels, new LogLevel[0]);
+            Assert.Equal(rule.Levels, ArrayHelper.Empty<LogLevel>());
         }
 
         [Fact]

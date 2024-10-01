@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets
 {
@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using NLog.Targets;
     using Xunit;
-    using Xunit.Extensions;
 
     public class ColoredConsoleTargetTests : NLogTestBase
     {
@@ -176,6 +175,54 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SetupBuilder_WriteToColoredConsole()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(c =>
+            {
+                c.ForLogger().FilterMinLevel(LogLevel.Error).WriteToColoredConsole("${level}|${message}", stderr: true, enableAnsiOutput: true);
+            }).LogFactory;
+
+            var consoleErrorWriter = new StringWriter();
+            TextWriter oldConsoleErrorWriter = Console.Error;
+            Console.SetError(consoleErrorWriter);
+
+            try
+            {
+                logFactory.GetCurrentClassLogger().Error("Abort");
+                logFactory.GetCurrentClassLogger().Info("Continue");
+                Assert.Equal($"\u001b[31mError|Abort\u001b[0m{System.Environment.NewLine}", consoleErrorWriter.ToString());
+            }
+            finally
+            {
+                Console.SetError(oldConsoleErrorWriter);
+            }
+        }
+
+        [Fact]
+        public void SetupBuilder_WriteToColoredConsole_HighlightWord()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(c =>
+            {
+                c.ForLogger().FilterMinLevel(LogLevel.Error).WriteToColoredConsole("${level}|${message}", stderr: true, enableAnsiOutput: true, highlightWordLevel: true);
+            }).LogFactory;
+
+            var consoleErrorWriter = new StringWriter();
+            TextWriter oldConsoleErrorWriter = Console.Error;
+            Console.SetError(consoleErrorWriter);
+
+            try
+            {
+                logFactory.GetCurrentClassLogger().Error("Abort");
+                logFactory.GetCurrentClassLogger().Info("Continue");
+                Assert.Equal($"\u001b[31mError\u001b[0m|Abort\u001b[0m{System.Environment.NewLine}", consoleErrorWriter.ToString());
+            }
+            finally
+            {
+                Console.SetError(oldConsoleErrorWriter);
+            }
+        }
+
+        [Fact]
         public void ColoredConsoleAnsi_RepeatedWordHighlight_VerificationTest()
         {
             var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", EnableAnsiOutput = true };
@@ -270,7 +317,7 @@ namespace NLog.UnitTests.Targets
 
         }
 
-#if !NET3_5 && !MONO
+#if !MONO
         [Fact]
         public void ColoredConsoleRaceCondtionIgnoreTest()
         {
@@ -286,11 +333,12 @@ namespace NLog.UnitTests.Targets
                 </rules>
             </nlog>";
 
-            ConsoleTargetTests.ConsoleRaceCondtionIgnoreInnerTest(configXml);
+            var success = ConsoleTargetTests.ConsoleRaceCondtionIgnoreInnerTest(configXml);
+            Assert.True(success);
         }
 #endif
 
-#if NET4_5
+#if !NET35 && !NET40
         [Fact]
         public void ColoredConsoleDetectOutputRedirectedTest()
         {
@@ -314,7 +362,7 @@ namespace NLog.UnitTests.Targets
                 target.Close();
 
                 Assert.Single(exceptions);
-                Assert.True(exceptions.TrueForAll(e => e == null));
+                Assert.True(exceptions.TrueForAll(e => e is null));
             }
             finally
             {
@@ -328,7 +376,7 @@ namespace NLog.UnitTests.Targets
         }
 
 
-        private class PartsWriter : StringWriter
+        private sealed class PartsWriter : StringWriter
         {
             public PartsWriter()
             {

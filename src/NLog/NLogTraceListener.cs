@@ -1,44 +1,46 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if !SILVERLIGHT && !__IOS__&& !__ANDROID__ && !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
 
 namespace NLog
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Linq;
     using System.Text;
     using System.Xml;
     using NLog.Internal;
@@ -46,6 +48,10 @@ namespace NLog
     /// <summary>
     /// TraceListener which routes all messages through NLog.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/NLog-Trace-Listener-for-System-Diagnostics-Trace">Documentation on NLog Wiki</seealso>
     public class NLogTraceListener : TraceListener
     {
         private LogFactory _logFactory;
@@ -76,7 +82,7 @@ namespace NLog
             set
             {
                 _logFactory = value;
-                _attributesLoaded = true;                
+                _attributesLoaded = true;
             }
         }
 
@@ -144,6 +150,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets a value indicating whether to use auto logger name detected from the stack trace.
         /// </summary>
+        /// <remarks>Default Logger-Name is <see cref="TraceListener.Name"/> of the <see cref="NLogTraceListener" /></remarks>
         public bool AutoLoggerName
         {
             get
@@ -165,7 +172,16 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void Write(string message)
         {
-            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+            WriteInternal(message);
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, writes the specified message to the listener you create in the derived class.
+        /// </summary>
+        /// <param name="o">A message payload to write.</param>
+        public override void Write(object o)
+        {
+            WriteInternal(o);
         }
 
         /// <summary>
@@ -174,7 +190,39 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void WriteLine(string message)
         {
-            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+            WriteInternal(message);
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, writes the specified message to the listener you create in the derived class.
+        /// </summary>
+        /// <param name="o">A message payload to write.</param>
+        public override void WriteLine(object o)
+        {
+            WriteInternal(o);
+        }
+
+        private void WriteInternal(string message)
+        {
+            if (Filter != null && !Filter.ShouldTrace(null, String.Empty, TraceEventType.Verbose, 0, message, null, null, null))
+                return;
+
+            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Verbose, null);
+        }
+
+        private void WriteInternal(object o)
+        {
+            if (Filter != null && !Filter.ShouldTrace(null, string.Empty, TraceEventType.Verbose, 0, string.Empty, null, o, null))
+                return;
+
+            if (o is null || o is IConvertible)
+            {
+                ProcessLogEventInfo(DefaultLogLevel, null, o?.ToString() ?? string.Empty, null, null, TraceEventType.Verbose, null);
+            }
+            else
+            {
+                ProcessLogEventInfo(DefaultLogLevel, null, "{0}", new[] { o }, null, TraceEventType.Verbose, null);
+            }
         }
 
         /// <summary>
@@ -225,9 +273,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a data object and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="data">The trace data to emit.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
@@ -238,9 +286,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, an array of data objects and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="data">An array of objects to emit as data.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data)
@@ -279,9 +327,9 @@ namespace NLog
         /// <summary>
         /// Writes trace and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
         {
@@ -294,9 +342,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a formatted array of objects and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="format">A format string that contains zero or more format items, which correspond to objects in the <paramref name="args"/> array.</param>
         /// <param name="args">An object array containing zero or more objects to format.</param>
@@ -311,9 +359,9 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a message, and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="eventType">One of the <see cref="T:System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
+        /// <param name="eventType">One of the <see cref="System.Diagnostics.TraceEventType"/> values specifying the type of event that has caused the trace.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="message">A message to write.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
@@ -327,11 +375,11 @@ namespace NLog
         /// <summary>
         /// Writes trace information, a message, a related activity identity and event information to the listener specific output.
         /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
+        /// <param name="eventCache">A <see cref="System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
         /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
         /// <param name="id">A numeric identifier for the event.</param>
         /// <param name="message">A message to write.</param>
-        /// <param name="relatedActivityId">A <see cref="T:System.Guid"/>  object identifying a related activity.</param>
+        /// <param name="relatedActivityId">A <see cref="System.Guid"/>  object identifying a related activity.</param>
         public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
         {
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, TraceEventType.Transfer, id, message, null, null, null))
@@ -348,7 +396,7 @@ namespace NLog
         /// </returns>
         protected override string[] GetSupportedAttributes()
         {
-            return new[] { "defaultLogLevel", "autoLoggerName", "forceLogLevel", "disableFlush" };
+            return new[] { nameof(DefaultLogLevel), nameof(AutoLoggerName), nameof(ForceLogLevel), nameof(DisableFlush) };
         }
 
         /// <summary>
@@ -388,12 +436,18 @@ namespace NLog
         /// <param name="arguments">The log parameters.</param>
         /// <param name="eventId">The event id.</param>
         /// <param name="eventType">The event type.</param>
-        /// <param name="relatedActiviyId">The related activity id.</param>
+        /// <param name="relatedActivityId">The related activity id.</param>
         /// </summary>
-        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
+        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
         {
+            var globalLogLevel = (LogFactory ?? LogManager.LogFactory).GlobalThreshold;
+            if (logLevel < globalLogLevel)
+            {
+                return; // We are done
+            }
+
             StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
-            ILogger logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
+            var logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
 
             logLevel = _forceLogLevel ?? logLevel;
             if (!logger.IsEnabled(logLevel))
@@ -404,23 +458,32 @@ namespace NLog
             var ev = new LogEventInfo();
             ev.LoggerName = logger.Name;
             ev.Level = logLevel;
-            if (eventType.HasValue)
+            if (eventType.HasValue && eventType != TraceEventType.Verbose && eventType.Value != default)
             {
-                ev.Properties.Add("EventType", eventType.Value);
+                ev.Properties.Add("EventType", ResolveBoxedTraceEventType(eventType.Value));
             }
 
-            if (relatedActiviyId.HasValue)
+            if (relatedActivityId.HasValue && relatedActivityId != Guid.Empty)
             {
-                ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
+                ev.Properties.Add("RelatedActivityID", relatedActivityId.Value);
             }
 
             ev.Message = message;
             ev.Parameters = arguments;
+            if (arguments?.Length == 1 && arguments[0] is Exception exception)
+            {
+                ev.Exception = exception;
+                if (message == "{0}")
+                {
+                    ev.FormatProvider = ExceptionMessageFormatProvider.Instance;
+                }
+            }
+
             ev.Level = _forceLogLevel ?? logLevel;
 
-            if (eventId.HasValue)
+            if (eventId.HasValue && eventId != 0)
             {
-                ev.Properties.Add("EventID", eventId.Value);
+                ev.Properties.Add("EventID", ResolvedBoxedEventId(eventId.Value));
             }
 
             if (stackTrace != null && userFrameIndex >= 0)
@@ -428,12 +491,36 @@ namespace NLog
                 ev.SetStackTrace(stackTrace, userFrameIndex);
             }
 
-            logger.Log(ev);
+            logger.Log(typeof(System.Diagnostics.Trace), ev);
         }
 
-        private ILogger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
+        private static readonly Dictionary<TraceEventType, object> TraceEventTypeBoxing = Enum.GetValues(typeof(TraceEventType)).Cast<object>().ToDictionary(evt => (TraceEventType)evt);
+        private static readonly object[] EventIdBoxing = Enumerable.Range(0, 1000).Select(id => (object)id).ToArray();
+
+        private static object ResolveBoxedTraceEventType(TraceEventType traceEventType)
         {
-            loggerName = (loggerName ?? Name) ?? string.Empty;
+            if (TraceEventTypeBoxing.TryGetValue(traceEventType, out var boxedEventType))
+            {
+                return boxedEventType;
+            }
+            return traceEventType;
+        }
+
+        private static object ResolvedBoxedEventId(int eventId)
+        {
+            if (eventId > 0 && eventId < EventIdBoxing.Length)
+                return EventIdBoxing[eventId];
+            return eventId;
+        }
+
+        private Logger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
+        {
+            if (string.IsNullOrEmpty(loggerName))
+            {
+                loggerName = Name;
+                if (string.IsNullOrEmpty(loggerName))
+                    loggerName = nameof(NLogTraceListener);
+            }
 
             userFrameIndex = -1;
             if (stackTrace != null)
@@ -441,9 +528,10 @@ namespace NLog
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
                     var frame = stackTrace.GetFrame(i);
-                    loggerName = StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
-                    if (!string.IsNullOrEmpty(loggerName))
+                    var className = StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
+                    if (!string.IsNullOrEmpty(className))
                     {
+                        loggerName = className;
                         userFrameIndex = i;
                         break;
                     }
@@ -481,11 +569,11 @@ namespace NLog
                     switch (key.ToUpperInvariant())
                     {
                         case "DEFAULTLOGLEVEL":
-                            _defaultLogLevel = LogLevel.FromString(value);
+                            DefaultLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "FORCELOGLEVEL":
-                            _forceLogLevel = LogLevel.FromString(value);
+                            ForceLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "AUTOLOGGERNAME":
@@ -493,7 +581,7 @@ namespace NLog
                             break;
 
                         case "DISABLEFLUSH":
-                            _disableFlush = bool.Parse(value);
+                            DisableFlush = bool.Parse(value);
                             break;
                     }
                 }

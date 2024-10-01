@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests
 {
@@ -41,32 +41,31 @@ namespace NLog.UnitTests
         [Fact]
         public void GetCurrentClassLoggerTest()
         {
-            ILogger logger = LogManager.GetCurrentClassLogger();
+            var logger = LogManager.GetCurrentClassLogger();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
         [Fact]
         public void GetCurrentClassLoggerLambdaTest()
         {
-            System.Linq.Expressions.Expression<Func<ILogger>> sum = () => LogManager.GetCurrentClassLogger();
-            ILogger logger = sum.Compile().Invoke();
+            System.Linq.Expressions.Expression<Func<Logger>> sum = () => LogManager.GetCurrentClassLogger();
+            var logger = sum.Compile().Invoke();
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
         [Fact]
+        [Obsolete("Replaced by GetLogger<T>(). Marked obsolete on NLog 5.2")]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
 
             MyLogger l1 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
             MyLogger l2 = lf.GetLogger<MyLogger>("AAA");
-            ILogger l3 = lf.GetLogger("AAA", typeof(Logger));
-            ILogger l4 = lf.GetLogger<Logger>("AAA");
-            ILogger l5 = lf.GetLogger("AAA");
-            ILogger l6 = lf.GetLogger("AAA");
+            Logger l3 = lf.GetLogger("AAA", typeof(Logger));
+            Logger l5 = lf.GetLogger("AAA");
+            Logger l6 = lf.GetLogger("AAA");
 
             Assert.Same(l1, l2);
-            Assert.Same(l3, l4);
             Assert.Same(l5, l6);
             Assert.Same(l3, l5);
 
@@ -77,19 +76,19 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         public void TypedGetCurrentClassLoggerTest()
         {
             LogFactory lf = new LogFactory();
 
             MyLogger l1 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
             MyLogger l2 = lf.GetCurrentClassLogger<MyLogger>();
-            ILogger l3 = lf.GetCurrentClassLogger(typeof(Logger));
-            ILogger l4 = lf.GetCurrentClassLogger<Logger>();
-            ILogger l5 = lf.GetCurrentClassLogger();
-            ILogger l6 = lf.GetCurrentClassLogger();
+            Logger l3 = lf.GetCurrentClassLogger(typeof(Logger));
+
+            Logger l5 = lf.GetCurrentClassLogger();
+            Logger l6 = lf.GetCurrentClassLogger();
 
             Assert.Same(l1, l2);
-            Assert.Same(l3, l4);
             Assert.Same(l5, l6);
             Assert.Same(l3, l5);
 
@@ -136,33 +135,26 @@ namespace NLog.UnitTests
 
 
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        public void InvalidLoggerConfiguration_NotThrowsThrowExceptions_NotThrows()
         {
             using (new NoThrowNLogExceptions())
             {
-                InvalidLoggerConfiguration_ThrowsConfigurationException(true);
+                var result = LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+                Assert.NotNull(result);
             }
         }
 
-
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
+        [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        public void InvalidLoggerConfiguration_ThrowsThrowExceptions_Throws()
         {
             LogManager.ThrowExceptions = true;
-            InvalidLoggerConfiguration_ThrowsConfigurationException(null);
-        }
-
-        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool? throwConfigExceptions)
-        {
-            Assert.Throws<NLogConfigurationException>(() =>
+            Assert.Throws<NLogRuntimeException>(() =>
             {
-                LogManager.ThrowConfigExceptions = throwConfigExceptions;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });
-
         }
-
-
 
         public class MyLogger : Logger
         {

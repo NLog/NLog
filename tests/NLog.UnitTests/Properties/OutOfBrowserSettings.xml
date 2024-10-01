@@ -1,7 +1,0 @@
-<OutOfBrowserSettings ShortName="NLog.Silverlight3.UnitTests Application" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
-  <OutOfBrowserSettings.Blurb>NLog.Silverlight3.UnitTests Application on your desktop; at home, at work or on the go.</OutOfBrowserSettings.Blurb>
-  <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="NLog.Silverlight3.UnitTests Application" />
-  </OutOfBrowserSettings.WindowSettings>
-  <OutOfBrowserSettings.Icons />
-</OutOfBrowserSettings>

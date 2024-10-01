@@ -1,38 +1,37 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
-// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
+#if !NETSTANDARD1_3
 #define SupportsMutex
 #endif
 
@@ -55,9 +54,9 @@ namespace NLog.Internal.FileAppenders
     using Common;
 
     /// <summary>
-    /// Base class for optimized file appenders which require the usage of a mutex. 
-    /// 
-    /// It is possible to use this class as replacement of BaseFileAppender and the mutex functionality 
+    /// Base class for optimized file appenders which require the usage of a mutex.
+    ///
+    /// It is possible to use this class as replacement of BaseFileAppender and the mutex functionality
     /// is not enforced to the implementing subclasses.
     /// </summary>
     [SecuritySafeCritical]
@@ -73,7 +72,7 @@ namespace NLog.Internal.FileAppenders
         {
             if (createParameters.IsArchivingEnabled && createParameters.ConcurrentWrites)
             {
-                if (PlatformDetector.SupportsSharableMutex)
+                if (MutexDetector.SupportsSharableMutex)
                 {
 #if SupportsMutex
                     ArchiveMutex = CreateArchiveMutex();
@@ -81,7 +80,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 else
                 {
-                    InternalLogger.Debug("Mutex for file archive not supported");
+                    InternalLogger.Debug("{0}: Mutex for file archive not supported", CreateFileParameters);
                 }
             }
         }
@@ -104,21 +103,18 @@ namespace NLog.Internal.FileAppenders
             {
                 if (ex is SecurityException || ex is UnauthorizedAccessException || ex is NotSupportedException || ex is NotImplementedException || ex is PlatformNotSupportedException)
                 {
-                    InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
+                    InternalLogger.Warn(ex, "{0}: Failed to create global archive mutex: {1}", CreateFileParameters, FileName);
                     return new Mutex();
                 }
 
-                InternalLogger.Error(ex, "Failed to create global archive mutex: {0}", FileName);
+                InternalLogger.Error(ex, "{0}: Failed to create global archive mutex: {1}", CreateFileParameters, FileName);
                 if (ex.MustBeRethrown())
                     throw;
                 return new Mutex();
             }
         }
 
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -135,7 +131,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
-            if (!PlatformDetector.SupportsSharableMutex)
+            if (!MutexDetector.SupportsSharableMutex)
                 throw new NotSupportedException("Creating Mutex not supported");
 
             var name = GetMutexName(mutexNamePrefix);
@@ -145,7 +141,7 @@ namespace NLog.Internal.FileAppenders
 
         internal static Mutex ForceCreateSharableMutex(string name)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();
             var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
@@ -190,7 +186,7 @@ namespace NLog.Internal.FileAppenders
 
             // The hash makes the name unique, but also add the end of the path,
             // so the end of the name tells us which file it is (for debugging)
-            mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, hash);
+            mutexName = string.Format(System.Globalization.CultureInfo.InvariantCulture, mutexNameFormatString, mutexNamePrefix, hash);
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
             return mutexName + canonicalName.Substring(cutOffIndex);
         }

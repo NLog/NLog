@@ -1,4 +1,4 @@
-﻿namespace DumpApiXml
+namespace DumpApiXml
 {
     using System;
     using System.Collections.Generic;
@@ -29,18 +29,6 @@
             { "NLog.Target", "Target" },
             { "NLog.ConditionExpression", "Condition" },
             { "NLog.FilterResult", "FilterResult" },
-            { "NLog.TargetCollection", "Target" },
-            { "NLog.Targets.NLogViewerParameterInfoCollection", "NLog.Targets.NLogViewerParameterInfo" },
-            { "NLog.Win32.Targets.ConsoleRowHighlightingRuleCollection", "NLog.Targets.ConsoleRowHighlightingRule" },
-            { "NLog.Win32.Targets.ConsoleWordHighlightingRuleCollection", "NLog.Targets.ConsoleWordHighlightingRule" },
-            { "NLog.Layouts.CsvLayout+ColumnDelimiterMode", "NLog.Layouts.ColumnDelimiterMode" },
-            { "NLog.RichTextBoxRowColoringRuleCollection", "NLog.Targets.RichTextBoxRowColoringRuleCollection" },
-            { "NLog.Targets.Wrappers.FilteringRuleCollection", "NLog.Targets.Wrappers.FilteringRule" },
-            { "NLog.Targets.RichTextBoxWordColoringRuleCollection", "NLog.Targets.RichTextBoxWordColoringRule" },
-            { "NLog.Targets.MethodCallParameterCollection", "NLog.Targets.MethodCallParameter" },
-            { "NLog.Targets.RichTextBoxRowColoringRuleCollection", "NLog.Targets.RichTextBoxRowColoringRule" },
-            { "NLog.Targets.WebServiceTarget+WebServiceProtocol", "NLog.Targets.WebServiceProtocol" },
-            { "NLog.Targets.DatabaseParameterInfoCollection", "NLog.Targets.DatabaseParameterInfo" },
         };
 
         private List<Assembly> assemblies = new List<Assembly>();
@@ -184,21 +172,6 @@
             return false;
         }
 
-        private static bool TryGetFirstArgumentForAttribute(PropertyInfo propInfo, string attributeTypeName, out object value)
-        {
-            foreach (CustomAttributeData cad in CustomAttributeData.GetCustomAttributes(propInfo))
-            {
-                if (cad.Constructor.DeclaringType.FullName == attributeTypeName)
-                {
-                    value = cad.ConstructorArguments[0].Value;
-                    return true;
-                }
-            }
-
-            value = null;
-            return false;
-        }
-
         private static bool TryGetFirstTwoArgumentForAttribute(PropertyInfo propInfo, string attributeTypeName, out object value1, out object value2)
         {
             foreach (CustomAttributeData cad in CustomAttributeData.GetCustomAttributes(propInfo))
@@ -254,10 +227,6 @@
                 }
                 writer.WriteAttributeString("slug", this.GetSlug(name, kind));
                 writer.WriteAttributeString("title", titlePrefix + name + titleSuffix);
-                if (HasAttribute(type, "NLog.Config.AdvancedAttribute"))
-                {
-                    writer.WriteAttributeString("advanced", "1");
-                }
 
                 if (InheritsFrom(type, "CompoundTargetBase"))
                 {
@@ -332,10 +301,15 @@
                 string category = null;
                 int order = 100;
 
-
                 if (HasAttribute(propInfo, "NLog.Config.NLogConfigurationIgnorePropertyAttribute"))
                 {
                     Console.WriteLine("SKIP {0}.{1}, it has [NLogConfigurationIgnoreProperty]", type.Name, propInfo.Name);
+                    continue;
+                }
+
+                if (HasAttribute(propInfo, "System.ObsoleteAttribute"))
+                {
+                    Console.WriteLine("SKIP [Obsolete] {0}.{1}", type.Name, propInfo.Name);
                     continue;
                 }
 
@@ -369,6 +343,22 @@
                 propertyOrderWithinCategory[propInfo] = order;
             }
 
+            if (categories.Count == 0)
+                return;
+
+            object configInstance = null;
+            try
+            {
+                if (!type.IsAbstract)
+                {
+                    configInstance = Activator.CreateInstance(type);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("FAILED to create default instance of {0} - {1}", type.Name, ex.ToString());
+            }
+
             foreach (string category in categories.OrderBy(c => c.Value).Select(c => c.Key))
             {
                 string categoryName = category;
@@ -378,34 +368,20 @@
                         .Where(p => property2Category[p] == categoryName).OrderBy(
                             p => propertyOrderWithinCategory[p]).ThenBy(pi => pi.Name))
                 {
-                    if (propInfo.DeclaringType.FullName == "NLog.LayoutRenderer")
-                    {
-                        // skip properties from NLog.LayoutRenderer in NLog v1.0
-                        // they have been moved to separate classes as wrappers
-                        // continue;
-                    }
-
                     string elementTag;
                     Type elementType;
 
                     writer.WriteStartElement("property");
                     writer.WriteAttributeString("name", propInfo.Name);
                     writer.WriteAttributeString("camelName", this.MakeCamelCase(propInfo.Name));
-                    object val;
 
-                    if (TryGetFirstArgumentForAttribute(
-                        propInfo, "System.ComponentModel.DefaultValueAttribute", out val))
+                    string defaultValue;
+                    if (TryGetPropertyDefaultValue(configInstance, propInfo, out defaultValue))
                     {
-                        writer.WriteAttributeString(
-                            "defaultValue", Convert.ToString(val, CultureInfo.InvariantCulture));
+                        writer.WriteAttributeString("defaultValue", defaultValue);
                     }
 
                     writer.WriteAttributeString("category", categoryName);
-
-                    if (HasAttribute(propInfo, "NLog.Config.AdvancedAttribute"))
-                    {
-                        writer.WriteAttributeString("advanced", "1");
-                    }
 
                     if (HasAttribute(propInfo, "NLog.Config.RequiredParameterAttribute"))
                     {
@@ -486,6 +462,63 @@
             }
         }
 
+        private static bool TryGetPropertyDefaultValue(object configInstance, PropertyInfo propInfo, out string defaultValue)
+        {
+            try
+            {
+                object propertyValue = configInstance != null ? propInfo.GetValue(configInstance) : null;
+                if (propertyValue is Enum)
+                {
+                    defaultValue = propertyValue.ToString();
+                    return true;
+                }
+
+                if (propertyValue is Encoding encoding)
+                {
+                    defaultValue = encoding.WebName;
+                    return true;
+                }
+
+                IConvertible convertibleValue = propertyValue as IConvertible;
+                if (convertibleValue == null && propertyValue != null)
+                {
+                    if (propertyValue is System.Collections.IEnumerable)
+                    {
+                        defaultValue = string.Empty;
+                        return true;
+                    }
+
+                    convertibleValue = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
+                }
+
+                switch (convertibleValue?.GetTypeCode() ?? TypeCode.Empty)
+                {
+                    case TypeCode.Boolean: defaultValue = XmlConvert.ToString((bool)convertibleValue); return true;
+                    case TypeCode.DateTime: defaultValue = XmlConvert.ToString((DateTime)convertibleValue, XmlDateTimeSerializationMode.RoundtripKind); return true;
+                    case TypeCode.Int16: defaultValue = XmlConvert.ToString((Int16)convertibleValue); return true;
+                    case TypeCode.Int32: defaultValue = XmlConvert.ToString((Int32)convertibleValue); return true;
+                    case TypeCode.Int64: defaultValue = XmlConvert.ToString((Int64)convertibleValue); return true;
+                    case TypeCode.UInt16: defaultValue = XmlConvert.ToString((UInt16)convertibleValue); return true;
+                    case TypeCode.UInt32: defaultValue = XmlConvert.ToString((UInt32)convertibleValue); return true;
+                    case TypeCode.UInt64: defaultValue = XmlConvert.ToString((UInt64)convertibleValue); return true;
+                    case TypeCode.Double: defaultValue = XmlConvert.ToString((Double)convertibleValue); return true;
+                    case TypeCode.Single: defaultValue = XmlConvert.ToString((Single)convertibleValue); return true;
+                    case TypeCode.Decimal: defaultValue = XmlConvert.ToString((Decimal)convertibleValue); return true;
+                    case TypeCode.Char: defaultValue = XmlConvert.ToString((Char)convertibleValue); return true;
+                    case TypeCode.Empty: defaultValue = null; return false;
+                }
+
+                defaultValue = convertibleValue?.ToString();
+                return defaultValue != null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("FAILED to lookup default value for property {0}-{1} - {2}", configInstance?.GetType(), propInfo?.Name, ex.ToString());
+                defaultValue = null;
+                return false;
+            }
+        }
+
         private void FixupElement(XmlElement element)
         {
             var summary = (XmlElement)element.SelectSingleNode("summary");
@@ -512,61 +545,10 @@
             return xml;
         }
 
-        private int GetCategoryOrder(PropertyInfo propInfo, Dictionary<string, int> orders)
-        {
-            XmlElement memberDoc;
-
-            if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
-            {
-                string category = null;
-                var docgen = (XmlElement)memberDoc.SelectSingleNode("docgen");
-                if (docgen != null)
-                {
-                    category = docgen.GetAttribute("category");
-                }
-
-                if (string.IsNullOrEmpty(category))
-                {
-                    category = "General";
-                }
-
-                int categoryOrder;
-                if (!orders.TryGetValue(category, out categoryOrder))
-                {
-                    categoryOrder = 100 + orders.Count;
-                    orders.Add(category, categoryOrder);
-                }
-
-                return categoryOrder;
-            }
-
-            return 50;
-        }
-
-        private int GetOrder(PropertyInfo propInfo)
-        {
-            XmlElement memberDoc;
-
-            if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))
-            {
-                var docgen = (XmlElement)memberDoc.SelectSingleNode("docgen");
-                if (docgen != null)
-                {
-                    string order = docgen.GetAttribute("order");
-                    if (!string.IsNullOrEmpty(order))
-                    {
-                        return Convert.ToInt32(order);
-                    }
-                }
-            }
-
-            return 100;
-        }
-
         private IEnumerable<PropertyInfo> GetProperties(Type type)
         {
             return type.GetProperties()
-                .Where(c => this.IncludeProperty(c));
+                .Where(c => this.IncludeProperty(c)).OrderBy(p => p.Name);
         }
 
         private string GetSlug(string name, string kind)
@@ -636,8 +618,6 @@
                 }
             }
         }
-
-
 
         private bool HasAttribute(Type type, string attributeTypeName)
         {

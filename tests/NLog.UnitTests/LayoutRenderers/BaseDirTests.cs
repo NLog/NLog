@@ -1,46 +1,42 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System.Collections.Generic;
-using System.Linq;
-using NLog.Internal.Fakeables;
-using NLog.Layouts;
+//
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.IO;
-    using System.Reflection;
+    using System.Linq;
+    using NLog.Layouts;
     using Xunit;
 
     public class BaseDirTests : NLogTestBase
@@ -79,7 +75,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.NotNull(dir);
             Assert.True(Directory.Exists(dir), $"dir '{dir}' doesn't exists");
-            Assert.Equal(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), dir);
+            Assert.Equal(Path.GetDirectoryName(CurrentProcessPath), dir);
         }
 
         [Fact]
@@ -89,17 +85,17 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
         public void InjectBaseDirAndCheckConfigPathsTest()
         {
             string fakeBaseDir = @"y:\root\";
             var old = LogFactory.CurrentAppDomain;
             try
             {
-                var currentAppDomain = new MyAppDomain();
-                currentAppDomain.BaseDirectory = fakeBaseDir;
+                var currentAppDomain = new Mocks.AppDomainMock(fakeBaseDir);
                 LogFactory.CurrentAppDomain = currentAppDomain;
 
-                //test 1 
+                //test 1
                 AssertLayoutRendererOutput("${basedir}", fakeBaseDir);
 
                 //test 2
@@ -118,75 +114,21 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void BaseDir_FixTempDir_ChoosesProcessDir()
         {
-            var tempPath = System.IO.Path.GetTempPath();
-            var old = LogFactory.CurrentAppDomain;
-            try
-            {
-                var currentAppDomain = new MyAppDomain();
-                currentAppDomain.BaseDirectory = tempPath;
-                LogFactory.CurrentAppDomain = currentAppDomain;
+            var tempDir = System.IO.Path.GetTempPath();
+            var processPath = CurrentProcessPath;
 
-                //test 1 
-                AssertLayoutRendererOutput("${basedir}", tempPath);
+            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            appEnvironment.AppDomainBaseDirectory = tempDir;
+            appEnvironment.UserTempFilePath = tempDir;
+            appEnvironment.CurrentProcessFilePath = processPath;
+            var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
-                //test 2
-                AssertLayoutRendererOutput("${basedir:fixtempdir=true}", Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
-            }
-            finally
-            {
-                //restore
-                LogFactory.CurrentAppDomain = old;
-            }
-        }
+            // test1
+            Assert.Equal(tempDir, baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
 
-        class MyAppDomain : IAppDomain
-        {
-            private IAppDomain _appDomain;
-
-            /// <summary>
-            /// Injectable
-            /// </summary>
-            public string BaseDirectory { get; set; }
-
-            /// <summary>
-            /// Gets or sets the name of the configuration file for an application domain.
-            /// </summary>
-            public string ConfigurationFile => _appDomain.ConfigurationFile;
-
-            /// <summary>
-            /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
-            /// </summary>
-            public IEnumerable<string> PrivateBinPath => _appDomain.PrivateBinPath;
-
-            /// <summary>
-            /// Gets or set the friendly name.
-            /// </summary>
-            public string FriendlyName => _appDomain.FriendlyName;
-
-            /// <summary>
-            /// Gets an integer that uniquely identifies the application domain within the process. 
-            /// </summary>
-            public int Id => _appDomain.Id;
-
-            public IEnumerable<Assembly> GetAssemblies() { return new Assembly[0]; }
-
-            public event EventHandler<EventArgs> ProcessExit
-            {
-                add => _appDomain.ProcessExit += value;
-                remove => _appDomain.ProcessExit -= value;
-            }
-
-            public event EventHandler<EventArgs> DomainUnload
-            {
-                add => _appDomain.DomainUnload += value;
-                remove => _appDomain.DomainUnload -= value;
-            }
-
-            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
-            public MyAppDomain()
-            {
-                _appDomain = LogFactory.CurrentAppDomain;
-            }
+            // test2
+            baseLayoutRenderer.FixTempDir = true;
+            Assert.Equal(Path.GetDirectoryName(processPath), baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
         }
     }
 }

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DumpApiXml</RootNamespace>
     <AssemblyName>DumpApiXml</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <OutputPath>..\..\build\bin\Tools\</OutputPath>
     <IntermediateOutputPath>..\..\build\obj\Tools\</IntermediateOutputPath>
     <FileAlignment>512</FileAlignment>

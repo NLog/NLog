@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.LayoutRenderers
 {
@@ -41,9 +41,12 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The formatted log message.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/Message-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/Message-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("message")]
     [ThreadAgnostic]
-    [ThreadSafe]
     public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
@@ -51,7 +54,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public MessageLayoutRenderer()
         {
-            ExceptionSeparator = EnvironmentHelper.NewLine;
+            ExceptionSeparator = "|";
         }
 
         /// <summary>
@@ -83,10 +86,9 @@ namespace NLog.LayoutRenderers
             }
             else if (!exceptionOnly)
             {
-                if (ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter))
+                if (logEvent.MessageFormatter?.Target is ILogMessageFormatter messageFormatter)
                 {
-                    // Skip string-allocation of LogEventInfo.FormattedMessage, but just write directly to StringBuilder
-                    logEvent.AppendFormattedMessage(LogMessageTemplateFormatter.DefaultAutoSingleTarget, builder);
+                    logEvent.AppendFormattedMessage(messageFormatter, builder);
                 }
                 else
                 {
@@ -96,21 +98,37 @@ namespace NLog.LayoutRenderers
 
             if (WithException && logEvent.Exception != null)
             {
-                var primaryException = logEvent.Exception;
-#if !NET3_5 && !SILVERLIGHT4
-                if (logEvent.Exception is AggregateException aggregateException)
-                {
-                    aggregateException = aggregateException.Flatten();
-                    primaryException = aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
-                }
-#endif
+                Exception primaryException = GetPrimaryException(logEvent.Exception);
                 if (!exceptionOnly)
                     builder.Append(ExceptionSeparator);
                 builder.Append(primaryException.ToString());
             }
         }
 
-        /// <inheritdoc/>
+        private static Exception GetPrimaryException(Exception exception)
+        {
+#if !NET35
+            if (exception is AggregateException aggregateException)
+            {
+                if (aggregateException.InnerExceptions?.Count == 1)
+                {
+                    var innerException = aggregateException.InnerExceptions[0];
+                    if (!(innerException is AggregateException))
+                        return innerException;  // Skip calling Flatten()
+                }
+
+                aggregateException = aggregateException.Flatten();
+                if (aggregateException.InnerExceptions?.Count == 1)
+                {
+                    return aggregateException.InnerExceptions[0];
+                }
+
+                return aggregateException;  // Matches ${exception} default behavior
+            }
+#endif
+            return exception;
+        }
+
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (WithException)

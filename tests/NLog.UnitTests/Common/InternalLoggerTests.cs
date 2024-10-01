@@ -1,50 +1,49 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using Xunit;
-using NLog.Common;
-using System.Text;
-using NLog.Time;
-using Xunit.Extensions;
+//
 
 namespace NLog.UnitTests.Common
 {
-    public class InternalLoggerTests : NLogTestBase, IDisposable
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Time;
+    using Xunit;
+
+    public sealed class InternalLoggerTests : NLogTestBase, IDisposable
     {
         /// <summary>
         /// Test the return values of all Is[Level]Enabled() methods.
@@ -72,7 +71,7 @@ namespace NLog.UnitTests.Common
             Assert.False(InternalLogger.IsErrorEnabled);
             Assert.True(InternalLogger.IsFatalEnabled);
 
-            // Switch off the internal logging. 
+            // Switch off the internal logging.
             InternalLogger.LogLevel = LogLevel.Off;
 
             Assert.False(InternalLogger.IsTraceEnabled);
@@ -237,15 +236,10 @@ namespace NLog.UnitTests.Common
                 InternalLogger.LogToConsole = true;
 
                 {
-                    StringWriter consoleOutWriter1 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-
-                    // Redirect the console output to a StringWriter.
-                    loggerScope.SetConsoleOutput(consoleOutWriter1);
-
                     // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleOutputWriter.Flush();
+                    loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Warn("WWW");
                     InternalLogger.Error("EEE");
                     InternalLogger.Fatal("FFF");
@@ -253,19 +247,14 @@ namespace NLog.UnitTests.Common
                     InternalLogger.Debug("DDD");
                     InternalLogger.Info("III");
 
-                    TestWriter(expected, consoleOutWriter1);
+                    TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
 
-                //
-                // Redirect the console output to another StringWriter.
                 {
-                    StringWriter consoleOutWriter2 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-                    loggerScope.SetConsoleOutput(consoleOutWriter2);
-
                     // Invoke Log(LogLevel, string) for every log level.
+                    loggerScope.ConsoleOutputWriter.Flush();
+                    loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Log(LogLevel.Warn, "WWW");
                     InternalLogger.Log(LogLevel.Error, "EEE");
                     InternalLogger.Log(LogLevel.Fatal, "FFF");
@@ -273,28 +262,25 @@ namespace NLog.UnitTests.Common
                     InternalLogger.Log(LogLevel.Debug, "DDD");
                     InternalLogger.Log(LogLevel.Info, "III");
 
-                    TestWriter(expected, consoleOutWriter2);
+                    TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
 
                 //lambdas
                 {
-                    StringWriter consoleOutWriter1 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-
-                    // Redirect the console output to a StringWriter.
-                    loggerScope.SetConsoleOutput(consoleOutWriter1);
-
                     // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleOutputWriter.Flush();
+                    loggerScope.ConsoleOutputWriter.GetStringBuilder().Length = 0;
+
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Warn(() => "WWW");
                     InternalLogger.Error(() => "EEE");
                     InternalLogger.Fatal(() => "FFF");
                     InternalLogger.Trace(() => "TTT");
                     InternalLogger.Debug(() => "DDD");
                     InternalLogger.Info(() => "III");
+#pragma warning restore CS0618 // Type or member is obsolete
 
-                    TestWriter(expected, consoleOutWriter1);
+                    TestWriter(expected, loggerScope.ConsoleOutputWriter);
                 }
             }
         }
@@ -312,15 +298,10 @@ namespace NLog.UnitTests.Common
                 InternalLogger.LogToConsoleError = true;
 
                 {
-                    StringWriter consoleWriter1 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-
-                    // Redirect the console output to a StringWriter.
-                    loggerScope.SetConsoleError(consoleWriter1);
-
                     // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleErrorWriter.Flush();
+                    loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Warn("WWW");
                     InternalLogger.Error("EEE");
                     InternalLogger.Fatal("FFF");
@@ -332,22 +313,34 @@ namespace NLog.UnitTests.Common
                 }
 
                 {
-                    //
-                    // Redirect the console output to another StringWriter.
-
-                    StringWriter consoleWriter2 = new StringWriter()
-                    {
-                        NewLine = "\n"
-                    };
-                    loggerScope.SetConsoleError(consoleWriter2);
-
                     // Invoke Log(LogLevel, string) for every log level.
+                    loggerScope.ConsoleErrorWriter.Flush();
+                    loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
+
                     InternalLogger.Log(LogLevel.Warn, "WWW");
                     InternalLogger.Log(LogLevel.Error, "EEE");
                     InternalLogger.Log(LogLevel.Fatal, "FFF");
                     InternalLogger.Log(LogLevel.Trace, "TTT");
                     InternalLogger.Log(LogLevel.Debug, "DDD");
                     InternalLogger.Log(LogLevel.Info, "III");
+                    TestWriter(expected, loggerScope.ConsoleErrorWriter);
+                }
+
+                //lambdas
+                {
+                    // Named (based on LogLevel) public methods.
+                    loggerScope.ConsoleErrorWriter.Flush();
+                    loggerScope.ConsoleErrorWriter.GetStringBuilder().Length = 0;
+
+#pragma warning disable CS0618 // Type or member is obsolete
+                    InternalLogger.Warn(() => "WWW");
+                    InternalLogger.Error(() => "EEE");
+                    InternalLogger.Fatal(() => "FFF");
+                    InternalLogger.Trace(() => "TTT");
+                    InternalLogger.Debug(() => "DDD");
+                    InternalLogger.Info(() => "III");
+#pragma warning restore CS0618 // Type or member is obsolete
+
                     TestWriter(expected, loggerScope.ConsoleErrorWriter);
                 }
             }
@@ -396,7 +389,7 @@ namespace NLog.UnitTests.Common
         /// <see cref="TimeSource"/> that returns always the same time,
         /// passed into object constructor.
         /// </summary>
-        private class FixedTimeSource : TimeSource
+        private sealed class FixedTimeSource : TimeSource
         {
             private readonly DateTime _time;
 
@@ -519,12 +512,14 @@ namespace NLog.UnitTests.Common
 
                     // Named (based on LogLevel) public methods.
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Warn(ex1, () => "WWW2");
                     InternalLogger.Error(ex2, () => "EEE2");
                     InternalLogger.Fatal(ex3, () => "FFF2");
                     InternalLogger.Trace(ex4, () => "TTT2");
                     InternalLogger.Debug(ex5, () => "DDD2");
                     InternalLogger.Info(ex6, () => "III2");
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     consoleOutWriter.Flush();
                     var strings = consoleOutWriter.ToString();
@@ -580,12 +575,14 @@ namespace NLog.UnitTests.Common
 
                     // Named (based on LogLevel) public methods.
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     InternalLogger.Log(ex1, LogLevel.Warn, () => "WWW4");
                     InternalLogger.Log(ex2, LogLevel.Error, () => "EEE4");
                     InternalLogger.Log(ex3, LogLevel.Fatal, () => "FFF4");
                     InternalLogger.Log(ex4, LogLevel.Trace, () => "TTT4");
                     InternalLogger.Log(ex5, LogLevel.Debug, () => "DDD4");
                     InternalLogger.Log(ex6, LogLevel.Info, () => "III4");
+#pragma warning restore CS0618 // Type or member is obsolete
 
                     var strings = consoleOutWriter.ToString();
                     Assert.Equal(expected, strings);
@@ -651,12 +648,14 @@ namespace NLog.UnitTests.Common
         {
             Action log = () =>
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 InternalLogger.Fatal(() => "L1");
                 InternalLogger.Error(() => "L2");
                 InternalLogger.Warn(() => "L3");
                 InternalLogger.Info(() => "L4");
                 InternalLogger.Debug(() => "L5");
                 InternalLogger.Trace(() => "L6");
+#pragma warning restore CS0618 // Type or member is obsolete
             };
 
             TestMinLevelSwitch_inner(rawLogLevel, count, log);
@@ -705,9 +704,9 @@ namespace NLog.UnitTests.Common
         [InlineData("off", false)]
         public void CreateDirectoriesIfNeededTests(string rawLogLevel, bool shouldCreateDirectory)
         {
-            var tempPath = Path.GetTempPath();
+            var tempDir = Path.GetTempPath();
             var tempFileName = Path.GetRandomFileName();
-            var randomSubDirectory = Path.Combine(tempPath, Path.GetRandomFileName());
+            var randomSubDirectory = Path.Combine(tempDir, Path.GetRandomFileName());
             string tempFile = Path.Combine(randomSubDirectory, tempFileName);
 
             try
@@ -798,6 +797,7 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventTest()
         {
             using (var loggerScope = new InternalLoggerScope())
@@ -827,6 +827,7 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventThrowingTest()
         {
             using (var loggerScope = new InternalLoggerScope())
@@ -853,6 +854,7 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventContextTest()
         {
             using (var loggerScope = new InternalLoggerScope())

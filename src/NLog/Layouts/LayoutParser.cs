@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Layouts
 {
@@ -50,6 +50,26 @@ namespace NLog.Layouts
     /// </summary>
     internal static class LayoutParser
     {
+        private static readonly char[] SpecialTokens = new char[] { '$', '\\', '}', ':' };
+
+        internal static LayoutRenderer[] CompileLayout(string value, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions, out string text)
+        {
+            if (value is null)
+            {
+                text = string.Empty;
+                return ArrayHelper.Empty<LayoutRenderer>();
+            }
+            else if (value.Length < 128 && value.IndexOfAny(SpecialTokens) < 0)
+            {
+                text = value;
+                return new LayoutRenderer[] { new LiteralLayoutRenderer(value) };
+            }
+            else
+            {
+                return CompileLayout(configurationItemFactory, new SimpleStringReader(value), throwConfigExceptions, false, out text);
+            }
+        }
+
         internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr, bool? throwConfigExceptions, bool isNested, out string text)
         {
             var result = new List<LayoutRenderer>();
@@ -63,7 +83,7 @@ namespace NLog.Layouts
             {
                 if (isNested)
                 {
-                    //possible escape char `\` 
+                    //possible escape char `\`
                     if (ch == '\\')
                     {
                         sr.Read();
@@ -86,8 +106,8 @@ namespace NLog.Layouts
 
                     if (EndOfLayout(ch))
                     {
-                        //end of innerlayout. 
-                        // `}` is when double nested inner layout. 
+                        //end of inner layout.
+                        // `}` is when double nested inner layout.
                         // `:` when single nested layout
                         break;
                     }
@@ -102,12 +122,6 @@ namespace NLog.Layouts
                     AddLiteral(literalBuf, result);
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr, throwConfigExceptions);
-                    if (CanBeConvertedToLiteral(newLayoutRenderer))
-                    {
-                        newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
-                    }
-
-                    // layout renderer
                     result.Add(newLayoutRenderer);
                 }
                 else
@@ -145,20 +159,52 @@ namespace NLog.Layouts
             return ch == '}' || ch == ':';
         }
 
-        private static string ParseLayoutRendererName(SimpleStringReader sr)
+        private static string ParseLayoutRendererTypeName(SimpleStringReader sr)
         {
             return sr.ReadUntilMatch(ch => EndOfLayout(ch));
         }
 
-        private static string ParseParameterName(SimpleStringReader sr)
+        private static string ParseParameterNameOrValue(SimpleStringReader sr)
         {
+            var parameterName = sr.ReadUntilMatch(chr => EndOfLayout(chr) || chr == '=' || chr == '$' || chr == '\\');
+            if (sr.Peek() != '$' && sr.Peek() != '\\')
+            {
+                return parameterName;
+            }
+
+            var parameterValue = new StringBuilder(parameterName);
+            ParseLayoutParameterValue(sr, parameterValue, chr => EndOfLayout(chr) || chr == '=');
+            return parameterValue.ToString();
+        }
+
+        private static string ParseParameterStringValue(SimpleStringReader sr)
+        {
+            var parameterName = sr.ReadUntilMatch(chr => EndOfLayout(chr) || chr == '$' || chr == '\\');
+            if (sr.Peek() != '$' && sr.Peek() != '\\')
+            {
+                return parameterName;
+            }
+
+            var parameterValue = new StringBuilder(parameterName);
+            bool containsUnicodeEscape = ParseLayoutParameterValue(sr, parameterValue, chr => EndOfLayout(chr));
+            if (!containsUnicodeEscape)
+                return parameterValue.ToString();
+
+            var unescapedValue = parameterValue.ToString();
+            parameterValue.ClearBuilder();
+            return EscapeUnicodeStringValue(unescapedValue, parameterValue);
+        }
+
+        private static bool ParseLayoutParameterValue(SimpleStringReader sr, StringBuilder parameterValue, Func<int, bool> endOfLayout)
+        {
+            bool containsUnicodeEscape = false;
+
             int ch;
             int nestLevel = 0;
 
-            var nameBuf = new StringBuilder();
             while ((ch = sr.Peek()) != -1)
             {
-                if ((ch == '=' || ch == '}' || ch == ':') && nestLevel == 0)
+                if (endOfLayout(ch) && nestLevel == 0)
                 {
                     break;
                 }
@@ -166,10 +212,10 @@ namespace NLog.Layouts
                 if (ch == '$')
                 {
                     sr.Read();
-                    nameBuf.Append('$');
+                    parameterValue.Append('$');
                     if (sr.Peek() == '{')
                     {
-                        nameBuf.Append('{');
+                        parameterValue.Append('{');
                         nestLevel++;
                         sr.Read();
                     }
@@ -185,47 +231,84 @@ namespace NLog.Layouts
                 if (ch == '\\')
                 {
                     sr.Read();
-
-                    // issue#3193
-                    if (nestLevel != 0)
+                    ch = sr.Peek();
+                    if (nestLevel == 0 && (endOfLayout(ch) || ch == '$' || ch == '='))
                     {
-                        nameBuf.Append((char)ch);
+                        parameterValue.Append((char)sr.Read());
                     }
-                    // append next character
-                    nameBuf.Append((char)sr.Read());
+                    else if (ch != -1)
+                    {
+                        containsUnicodeEscape = true;
+                        parameterValue.Append('\\');
+                        parameterValue.Append((char)sr.Read());
+                    }
                     continue;
                 }
 
-                nameBuf.Append((char)ch);
+                parameterValue.Append((char)ch);
                 sr.Read();
             }
 
-            return nameBuf.ToString();
+            return containsUnicodeEscape;
         }
 
         private static string ParseParameterValue(SimpleStringReader sr)
         {
-            var simpleValue = sr.ReadUntilMatch(ch => EndOfLayout(ch) || ch == '\\');
+            var value = sr.ReadUntilMatch(ch => EndOfLayout(ch) || ch == '\\');
             if (sr.Peek() == '\\')
             {
-                var nameBuf = new StringBuilder();
-                nameBuf.Append(simpleValue);
-                ParseParameterUnicodeValue(sr, nameBuf);
-                return nameBuf.ToString();
+                bool containsUnicodeEscape = false;
+
+                var nameBuf = new StringBuilder(value);
+                int ch;
+                while ((ch = sr.Peek()) != -1)
+                {
+                    if (EndOfLayout(ch))
+                        break;
+
+                    if (ch == '\\')
+                    {
+                        sr.Read();
+                        ch = sr.Peek();
+                        if (EndOfLayout(ch))
+                        {
+                            nameBuf.Append((char)sr.Read());
+                        }
+                        else if (ch != -1)
+                        {
+                            containsUnicodeEscape = true;
+                            nameBuf.Append('\\');
+                            nameBuf.Append((char)sr.Read());
+                        }
+                    }
+                    else
+                    {
+                        nameBuf.Append((char)ch);
+                        sr.Read();
+                    }
+                }
+
+                value = nameBuf.ToString();
+                if (containsUnicodeEscape)
+                {
+                    nameBuf.Length = 0;
+                    value = EscapeUnicodeStringValue(value, nameBuf);
+                }
             }
 
-            return simpleValue;
+            return value;
         }
 
-        private static void ParseParameterUnicodeValue(SimpleStringReader sr, StringBuilder nameBuf)
+        private static string EscapeUnicodeStringValue(string value, StringBuilder nameBuf = null)
         {
-            int ch;
-            while ((ch = sr.Peek()) != -1)
+            bool escapeNext = false;
+
+            nameBuf = nameBuf ?? new StringBuilder(value.Length);
+
+            char ch;
+            for (int i = 0; i < value.Length; ++i)
             {
-                if (EndOfLayout(ch))
-                {
-                    break;
-                }
+                ch = value[i];
 
                 // Code in this condition was replaced
                 // to support escape codes e.g. '\r' '\n' '\u003a',
@@ -233,14 +316,11 @@ namespace NLog.Layouts
                 // All escape codes listed in the following link were included
                 // in addition to "\{", "\}", "\:" which are NLog specific:
                 // https://blogs.msdn.com/b/csharpfaq/archive/2004/03/12/what-character-escape-sequences-are-available.aspx
-                if (ch == '\\')
+                if (escapeNext)
                 {
-                    // skip the backslash
-                    sr.Read();
+                    escapeNext = false;
 
-                    var nextChar = (char)sr.Peek();
-
-                    switch (nextChar)
+                    switch (ch)
                     {
                         case ':':
                         case '{':
@@ -248,73 +328,79 @@ namespace NLog.Layouts
                         case '\'':
                         case '"':
                         case '\\':
-                            sr.Read();
-                            nameBuf.Append(nextChar);
+                            nameBuf.Append(ch);
                             break;
                         case '0':
-                            sr.Read();
                             nameBuf.Append('\0');
                             break;
                         case 'a':
-                            sr.Read();
                             nameBuf.Append('\a');
                             break;
                         case 'b':
-                            sr.Read();
                             nameBuf.Append('\b');
                             break;
                         case 'f':
-                            sr.Read();
                             nameBuf.Append('\f');
                             break;
                         case 'n':
-                            sr.Read();
                             nameBuf.Append('\n');
                             break;
                         case 'r':
-                            sr.Read();
                             nameBuf.Append('\r');
                             break;
                         case 't':
-                            sr.Read();
                             nameBuf.Append('\t');
                             break;
                         case 'u':
-                            sr.Read();
-                            var uChar = GetUnicode(sr, 4); // 4 digits
-                            nameBuf.Append(uChar);
-                            break;
+                            {
+                                var uChar = GetUnicode(value, 4, ref i); // 4 digits
+                                nameBuf.Append(uChar);
+                                break;
+                            }
                         case 'U':
-                            sr.Read();
-                            var UChar = GetUnicode(sr, 8); // 8 digits
-                            nameBuf.Append(UChar);
-                            break;
+                            {
+                                var uChar = GetUnicode(value, 8, ref i); // 8 digits
+                                nameBuf.Append(uChar);
+                                break;
+                            }
                         case 'x':
-                            sr.Read();
-                            var xChar = GetUnicode(sr, 4); // 1-4 digits
-                            nameBuf.Append(xChar);
-                            break;
+                            {
+                                var xChar = GetUnicode(value, 4, ref i); // 1-4 digits
+                                nameBuf.Append(xChar);
+                                break;
+                            }
                         case 'v':
-                            sr.Read();
                             nameBuf.Append('\v');
                             break;
+                        default:
+                            nameBuf.Append(ch);
+                            break;
                     }
-
-                    continue;
                 }
-
-                nameBuf.Append((char)ch);
-                sr.Read();
+                else if (ch == '\\')
+                {
+                    escapeNext = true;
+                }
+                else
+                {
+                    nameBuf.Append(ch);
+                }
             }
+
+            if (escapeNext)
+                nameBuf.Append('\\');
+            return nameBuf.ToString();
         }
 
-        private static char GetUnicode(SimpleStringReader sr, int maxDigits)
+        private static char GetUnicode(string value, int maxDigits, ref int currentIndex)
         {
             int code = 0;
 
-            for (int cnt = 0; cnt < maxDigits; cnt++)
+            maxDigits = Math.Min(value.Length - 1, currentIndex + maxDigits);
+
+            for (; currentIndex < maxDigits; ++currentIndex)
             {
-                var digitCode = sr.Peek();
+                int digitCode = value[currentIndex + 1];
                 if (digitCode >= (int)'0' && digitCode <= (int)'9')
                     digitCode = digitCode - (int)'0';
                 else if (digitCode >= (int)'a' && digitCode <= (int)'f')
@@ -324,7 +410,6 @@ namespace NLog.Layouts
                 else
                     break;
 
-                sr.Read();
                 code = code * 16 + digitCode;
             }
 
@@ -336,124 +421,216 @@ namespace NLog.Layouts
             int ch = stringReader.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
-            string name = ParseLayoutRendererName(stringReader);
-            var layoutRenderer = GetLayoutRenderer(configurationItemFactory, name, throwConfigExceptions);
+            string typeName = ParseLayoutRendererTypeName(stringReader);
+            var layoutRenderer = GetLayoutRenderer(typeName, configurationItemFactory, throwConfigExceptions);
 
             Dictionary<Type, LayoutRenderer> wrappers = null;
             List<LayoutRenderer> orderedWrappers = null;
 
+            string previousParameterName = null;
+
             ch = stringReader.Read();
             while (ch != -1 && ch != '}')
             {
-                string parameterName = ParseParameterName(stringReader).Trim();
+                string parameterName = ParseParameterNameOrValue(stringReader);
                 if (stringReader.Peek() == '=')
                 {
                     stringReader.Read(); // skip the '='
-                    PropertyInfo propertyInfo;
+
+                    parameterName = parameterName.Trim();
                     LayoutRenderer parameterTarget = layoutRenderer;
 
-                    if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out propertyInfo))
+                    if (!PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, parameterName, out var propertyInfo))
                     {
-                        if (configurationItemFactory.AmbientProperties.TryGetDefinition(parameterName, out var wrapperType))
+                        parameterTarget = LookupAmbientProperty(parameterName, configurationItemFactory, ref wrappers, ref orderedWrappers);
+                        if (parameterTarget is null || !PropertyHelper.TryGetPropertyInfo(configurationItemFactory, parameterTarget, parameterName, out propertyInfo))
                         {
-                            wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
-                            orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
-                            if (!wrappers.TryGetValue(wrapperType, out var wrapperRenderer))
-                            {
-                                wrapperRenderer = configurationItemFactory.AmbientProperties.CreateInstance(parameterName);
-                                wrappers[wrapperType] = wrapperRenderer;
-                                orderedWrappers.Add(wrapperRenderer);
-                            }
-
-                            if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out propertyInfo))
-                            {
-                                propertyInfo = null;
-                            }
-                            else
-                            {
-                                parameterTarget = wrapperRenderer;
-                            }
+                            parameterTarget = layoutRenderer;
+                            propertyInfo = null;
                         }
                     }
 
-                    if (propertyInfo == null)
+                    if (propertyInfo is null)
                     {
                         var value = ParseParameterValue(stringReader);
                         if (!string.IsNullOrEmpty(parameterName) || !StringHelpers.IsNullOrWhiteSpace(value))
                         {
-                            // TODO NLog 5.0 Should throw exception when invalid configuration (Check throwConfigExceptions)
-                            InternalLogger.Warn("Skipping unrecognized property '{0}={1}` for ${{{2}}} ({3})", parameterName, value, name, layoutRenderer?.GetType());
+                            var configException = new NLogConfigurationException($"${{{typeName}}} cannot assign unknown property '{parameterName}='");
+                            if (throwConfigExceptions ?? configException.MustBeRethrown())
+                            {
+                                throw configException;
+                            }
                         }
                     }
                     else
                     {
-                        if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
+                        var propertyValue = ParseLayoutRendererPropertyValue(configurationItemFactory, stringReader, throwConfigExceptions, typeName, propertyInfo);
+                        if (propertyValue is string propertyStringValue)
                         {
-                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
-
-                            var nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
-                            propertyInfo.SetValue(parameterTarget, nestedLayout, null);
+                            PropertyHelper.SetPropertyFromString(parameterTarget, propertyInfo, propertyStringValue, configurationItemFactory);
                         }
-                        else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
+                        else if (propertyValue != null)
                         {
-                            var conditionExpression = ConditionParser.ParseExpression(stringReader, configurationItemFactory);
-                            propertyInfo.SetValue(parameterTarget, conditionExpression, null);
-                        }
-                        else
-                        {
-                            string value = ParseParameterValue(stringReader);
-                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, configurationItemFactory);
+                            PropertyHelper.SetPropertyValueForObject(parameterTarget, propertyValue, propertyInfo);
                         }
                     }
                 }
                 else
                 {
-                    SetDefaultPropertyValue(configurationItemFactory, layoutRenderer, parameterName);
+                    parameterName = SetDefaultPropertyValue(parameterName, layoutRenderer, configurationItemFactory, throwConfigExceptions);
                 }
+
+                previousParameterName = ValidatePreviousParameterName(previousParameterName, parameterName, layoutRenderer, throwConfigExceptions);
 
                 ch = stringReader.Read();
             }
 
+            return BuildCompleteLayoutRenderer(configurationItemFactory, layoutRenderer, orderedWrappers);
+        }
+
+        private static LayoutRenderer BuildCompleteLayoutRenderer(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, List<LayoutRenderer> orderedWrappers = null)
+        {
             if (orderedWrappers != null)
             {
                 layoutRenderer = ApplyWrappers(configurationItemFactory, layoutRenderer, orderedWrappers);
             }
 
+            if (CanBeConvertedToLiteral(configurationItemFactory, layoutRenderer))
+            {
+                layoutRenderer = ConvertToLiteral(layoutRenderer);
+            }
+
             return layoutRenderer;
         }
 
-        private static LayoutRenderer GetLayoutRenderer(ConfigurationItemFactory configurationItemFactory, string name, bool? throwConfigExceptions)
+        private static object ParseLayoutRendererPropertyValue(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader, bool? throwConfigExceptions, string targetTypeName, PropertyInfo propertyInfo)
         {
-            LayoutRenderer layoutRenderer;
-            try
+            if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
             {
-                layoutRenderer = configurationItemFactory.LayoutRenderers.CreateInstance(name);
-            }
-            catch (Exception ex)
-            {
-                if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out var txt);
+                Layout nestedLayout = new SimpleLayout(renderers, txt, configurationItemFactory);
+
+                if (propertyInfo.PropertyType.IsGenericType() && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Layout<>))
                 {
-                    throw;  // TODO NLog 5.0 throw NLogConfigurationException. Maybe also include entire input layout-string (if not too long)
+                    var concreteType = typeof(Layout<>).MakeGenericType(propertyInfo.PropertyType.GetGenericArguments());
+                    nestedLayout = (Layout)Activator.CreateInstance(concreteType, BindingFlags.Instance | BindingFlags.Public, null, new object[] { nestedLayout }, null);
                 }
-                InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
-                // replace with empty values
-                layoutRenderer = new LiteralLayoutRenderer(string.Empty);
-            }
-            return layoutRenderer;
-        }
 
-        private static void SetDefaultPropertyValue(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, string value)
-        {
-            // what we've just read is not a parameterName, but a value
-            // assign it to a default property (denoted by empty string)
-            if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out var propertyInfo))
+                return nestedLayout;
+            }
+            else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
             {
-                PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
+                try
+                {
+                    return ConditionParser.ParseExpression(stringReader, configurationItemFactory);
+                }
+                catch (ConditionParseException ex)
+                {
+                    var configException = new NLogConfigurationException($"${{{targetTypeName}}} cannot parse ConditionExpression for property '{propertyInfo.Name}='. Error: {ex.Message}", ex);
+                    if (throwConfigExceptions ?? configException.MustBeRethrown())
+                    {
+                        throw configException;
+                    }
+
+                    return null;
+                }
+            }
+            else if (typeof(string).IsAssignableFrom(propertyInfo.PropertyType))
+            {
+                return ParseParameterStringValue(stringReader);
             }
             else
             {
-                // TODO NLog 5.0 Should throw exception when invalid configuration (Check throwConfigExceptions)
-                InternalLogger.Warn("{0} has no default property to assign value {1}", layoutRenderer.GetType(), value);
+                return ParseParameterValue(stringReader);
+            }
+        }
+
+        private static string ValidatePreviousParameterName(string previousParameterName, string parameterName, LayoutRenderer layoutRenderer, bool? throwConfigExceptions)
+        {
+            if (parameterName?.Equals(previousParameterName, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                var configException = new NLogConfigurationException($"'{layoutRenderer?.GetType()?.Name}' has same property '{parameterName}=' assigned twice");
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
+                {
+                    throw configException;
+                }
+            }
+            else
+            {
+                previousParameterName = parameterName ?? previousParameterName;
+            }
+
+            return previousParameterName;
+        }
+
+        private static LayoutRenderer LookupAmbientProperty(string propertyName, ConfigurationItemFactory configurationItemFactory, ref Dictionary<Type, LayoutRenderer> wrappers, ref List<LayoutRenderer> orderedWrappers)
+        {
+            if (configurationItemFactory.AmbientRendererFactory.TryCreateInstance(propertyName, out var wrapperInstance))
+            {
+                wrappers = wrappers ?? new Dictionary<Type, LayoutRenderer>();
+                orderedWrappers = orderedWrappers ?? new List<LayoutRenderer>();
+                var wrapperType = wrapperInstance.GetType();
+                if (!wrappers.TryGetValue(wrapperType, out var wrapperRenderer))
+                {
+                    wrappers[wrapperType] = wrapperInstance;
+                    orderedWrappers.Add(wrapperInstance);
+                    wrapperRenderer = wrapperInstance;
+                }
+                return wrapperRenderer;
+            }
+
+            return null;
+        }
+
+        private static LayoutRenderer GetLayoutRenderer(string typeName, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+        {
+            LayoutRenderer layoutRenderer = null;
+
+            try
+            {
+                layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
+            }
+            catch (NLogConfigurationException ex)
+            {
+                if (throwConfigExceptions ?? ex.MustBeRethrown())
+                    throw;
+            }
+            catch (Exception ex)
+            {
+                var configException = new NLogConfigurationException($"Failed to parse layout containing type: {typeName} - {ex.Message}", ex);
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
+                {
+                    throw configException;
+                }
+            }
+
+            return layoutRenderer
+                ?? new LiteralLayoutRenderer(string.Empty); // replace with empty values
+        }
+
+        private static string SetDefaultPropertyValue(string value, LayoutRenderer layoutRenderer, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
+        {
+            // what we've just read is not a parameterName, but a value
+            // assign it to a default property (denoted by empty string)
+            if (PropertyHelper.TryGetPropertyInfo(configurationItemFactory, layoutRenderer, string.Empty, out var propertyInfo))
+            {
+                if (!typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType) && value.IndexOf('\\') >= 0)
+                {
+                    value = EscapeUnicodeStringValue(value);
+                }
+
+                PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo, value, configurationItemFactory);
+                return propertyInfo.Name;
+            }
+            else
+            {
+                var configException = new NLogConfigurationException($"'{layoutRenderer?.GetType()?.Name}' has no default property to assign value {value}");
+                if (throwConfigExceptions ?? configException.MustBeRethrown())
+                {
+                    throw configException;
+                }
+
+                return null;
             }
         }
 
@@ -463,7 +640,7 @@ namespace NLog.Layouts
             {
                 var newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
                 InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType(), newRenderer.GetType());
-                if (CanBeConvertedToLiteral(lr))
+                if (CanBeConvertedToLiteral(configurationItemFactory, lr))
                 {
                     lr = ConvertToLiteral(lr);
                 }
@@ -475,9 +652,9 @@ namespace NLog.Layouts
             return lr;
         }
 
-        private static bool CanBeConvertedToLiteral(LayoutRenderer lr)
+        private static bool CanBeConvertedToLiteral(ConfigurationItemFactory configurationItemFactory, LayoutRenderer lr)
         {
-            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(true, lr))
+            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(configurationItemFactory, true, lr))
             {
                 var renderType = renderable.GetType();
                 if (renderType == typeof(SimpleLayout))
@@ -498,11 +675,15 @@ namespace NLog.Layouts
         {
             for (int i = 0; i + 1 < list.Count;)
             {
-                var lr1 = list[i] as LiteralLayoutRenderer;
-                var lr2 = list[i + 1] as LiteralLayoutRenderer;
-                if (lr1 != null && lr2 != null)
+                if (list[i] is LiteralLayoutRenderer lr1 && list[i + 1] is LiteralLayoutRenderer lr2)
                 {
                     lr1.Text += lr2.Text;
+
+                    // Combined literals don't support rawValue
+                    if (lr1 is LiteralWithRawValueLayoutRenderer lr1WithRaw)
+                    {
+                        list[i] = new LiteralLayoutRenderer(lr1WithRaw.Text);
+                    }
                     list.RemoveAt(i + 1);
                 }
                 else
@@ -514,7 +695,15 @@ namespace NLog.Layouts
 
         private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
         {
-            return new LiteralLayoutRenderer(renderer.Render(LogEventInfo.CreateNullEvent()));
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            var text = renderer.Render(logEventInfo);
+            if (renderer is IRawValue rawValueRender)
+            {
+                var success = rawValueRender.TryGetRawValue(logEventInfo, out var rawValue);
+                return new LiteralWithRawValueLayoutRenderer(text, success, rawValue);
+            }
+
+            return new LiteralLayoutRenderer(text);
         }
     }
 }

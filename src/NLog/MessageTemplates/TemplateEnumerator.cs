@@ -1,40 +1,41 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using NLog.Internal;
 
 namespace NLog.MessageTemplates
 {
@@ -61,7 +62,7 @@ namespace NLog.MessageTemplates
         /// <returns>Template, never null</returns>
         public TemplateEnumerator(string template)
         {
-            _template = template ?? throw new ArgumentNullException(nameof(template));
+            _template = Guard.ThrowIfNull(template);
             _length = _template.Length;
             _position = 0;
             _literalLength = 0;
@@ -180,7 +181,7 @@ namespace NLog.MessageTemplates
         private void ParseHole(CaptureType type)
         {
             int start = _position;
-            string name = ParseName(out var position);
+            string name = ParseName(out var parameterIndex);
             int alignment = 0;
             string format = null;
             if (Peek() != '}')
@@ -199,7 +200,7 @@ namespace NLog.MessageTemplates
                 name,
                 format,
                 type,
-                (short)position,
+                (short)parameterIndex,
                 (short)alignment
             ));
             _literalLength = 0;
@@ -208,29 +209,28 @@ namespace NLog.MessageTemplates
         private string ParseName(out int parameterIndex)
         {
             parameterIndex = -1;
+
             char c = Peek();
             // If the name matches /^\d+ *$/ we consider it positional
             if (c >= '0' && c <= '9')
             {
                 int start = _position;
-                int parsed = ReadInt();
+                int parsedIndex = ReadInt();
                 c = Peek();
-                if (parsed >= 0)
-                {
-                    if (c == '}' || c == ':' || c == ',')
-                    {
-                        // Non-allocating positional hole-name-parsing
-                        parameterIndex = parsed;
-                        return ParameterIndexToString(parameterIndex);
-                    }
 
-                    if (c == ' ')
-                    {
-                        SkipSpaces();
-                        c = Peek();
-                        if (c == '}' || c == ':' || c == ',')
-                            parameterIndex = parsed;
-                    }
+                if (c == '}' || c == ':' || c == ',')
+                {
+                    // Non-allocating positional hole-name-parsing
+                    parameterIndex = parsedIndex;
+                    return ParameterIndexToString(parameterIndex);
+                }
+
+                if (c == ' ')
+                {
+                    SkipSpaces();
+                    c = Peek();
+                    if (c == '}' || c == ':' || c == ',')
+                        parameterIndex = parsedIndex;
                 }
 
                 _position = start;
@@ -365,11 +365,13 @@ namespace NLog.MessageTemplates
             {
                 char c = Peek();
 
-                int digit = c - '0';
-                if (digit < 0 || digit > 9)
+                if (c < '0' || c > '9')
                 {
-                    if (x > 0 && !negative || x > 1)
-                        return negative ? -i : i;  // Found one or more digits
+                    if (x > 0 && !negative)
+                        return i;
+
+                    if (x > 1 && negative)
+                        return -i;
 
                     if (x == 0 && c == '-')
                     {
@@ -381,7 +383,7 @@ namespace NLog.MessageTemplates
                 }
 
                 _position++;
-                i = i * 10 + digit;
+                i = i * 10 + (c - '0');
             }
 
             throw new TemplateParserException("An integer is expected", _position, _template);

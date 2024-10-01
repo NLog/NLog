@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 
 namespace NLog.UnitTests
@@ -37,28 +37,35 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
     using System.IO;
     using System.IO.Compression;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Text;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+#if !NETSTANDARD
     using Ionic.Zip;
 #endif
 
     public abstract class NLogTestBase
     {
+        protected static int CurrentProcessId => _currentProcessId != 0 ? _currentProcessId : (_currentProcessId = System.Diagnostics.Process.GetCurrentProcess().Id);
+        private static int _currentProcessId;
+        protected static string CurrentProcessPath => _currentProcessPath != null ? _currentProcessPath : (_currentProcessPath = System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName);
+        private static string _currentProcessPath;
+        protected static int CurrentManagedThreadId => System.Environment.CurrentManagedThreadId; // System.Threading.Thread.CurrentThread.ManagedThreadId
+
         protected NLogTestBase()
         {
             //reset before every test
             LogManager.ThrowExceptions = false; // Ignore any errors triggered by closing existing config
             LogManager.Configuration = null;    // Will close any existing config
+#pragma warning disable CS0618 // Type or member is obsolete
             LogManager.LogFactory.ResetCandidateConfigFilePath();
+#pragma warning restore CS0618 // Type or member is obsolete
 
             InternalLogger.Reset();
             InternalLogger.LogLevel = LogLevel.Off;
@@ -70,50 +77,55 @@ namespace NLog.UnitTests
 #endif
         }
 
-        protected void AssertDebugCounter(string targetName, int val)
+        protected static void AssertDebugCounter(string targetName, int val)
         {
             Assert.Equal(val, GetDebugTarget(targetName).Counter);
         }
 
-        protected void AssertDebugLastMessage(string targetName, string msg)
+        protected static void AssertDebugLastMessage(string targetName, string msg)
         {
-            Assert.Equal(msg, GetDebugLastMessage(targetName));
+            var x = GetDebugLastMessage(targetName);
+            Assert.Equal(msg, x);
         }
 
-        protected void AssertDebugLastMessageContains(string targetName, string msg)
+        protected static void AssertDebugLastMessage(string targetName, string msg, LogFactory logFactory)
+        {
+            Assert.Equal(msg, GetDebugLastMessage(targetName, logFactory));
+        }
+
+        protected static void AssertDebugLastMessageContains(string targetName, string msg)
         {
             string debugLastMessage = GetDebugLastMessage(targetName);
             Assert.True(debugLastMessage.Contains(msg),
                 $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
         }
 
-        protected string GetDebugLastMessage(string targetName)
+        protected static string GetDebugLastMessage(string targetName)
         {
-            return GetDebugLastMessage(targetName, LogManager.Configuration);
+            return GetDebugLastMessage(targetName, LogManager.LogFactory);
         }
 
-        protected string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
+        protected static string GetDebugLastMessage(string targetName, LogFactory logFactory)
         {
-            return GetDebugTarget(targetName, configuration).LastMessage;
+            var x = GetDebugTarget(targetName, logFactory);
+            return x.LastMessage;
         }
 
-        public DebugTarget GetDebugTarget(string targetName)
+        public static DebugTarget GetDebugTarget(string targetName)
         {
-            return GetDebugTarget(targetName, LogManager.Configuration);
+            return GetDebugTarget(targetName, LogManager.LogFactory);
         }
 
-        protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        protected static DebugTarget GetDebugTarget(string targetName, LogFactory logFactory)
         {
-            var debugTarget = (DebugTarget)configuration.FindTargetByName(targetName);
-            Assert.NotNull(debugTarget);
-            return debugTarget;
+            return LogFactoryTestExtensions.GetDebugTarget(targetName, logFactory.Configuration);
         }
 
-        protected void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
+        protected static void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
 
@@ -129,38 +141,45 @@ namespace NLog.UnitTests
             }
         }
 
-        protected void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
+        protected static void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             string fileText = File.ReadAllText(fileName, encoding);
             Assert.True(fileText.Length >= contents.Length);
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
         }
 
-        protected class CustomFileCompressor : IFileCompressor
+        protected sealed class CustomFileCompressor : IArchiveFileCompressor
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+                string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+                CompressFile(fileName, archiveFileName, entryName);
+            }
+
+            public void CompressFile(string fileName, string archiveFileName, string entryName)
+            {
+#if !NETSTANDARD
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
-                    zip.AddFile(fileName);
+                    ZipEntry entry = zip.AddFile(fileName);
+                    entry.FileName = entryName;
                     zip.Save(archiveFileName);
                 }
 #endif
             }
         }
 
-#if NET3_5 || NET4_0
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+#if NET35 || NET40
+        protected static void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
-            
+
             using (var zip = new Ionic.Zip.ZipFile(fileName))
             {
                 Assert.Equal(1, zip.Count);
@@ -171,25 +190,26 @@ namespace NLog.UnitTests
                 {
                     fs.Read(buf, 0, buf.Length);
                 }
-                                
+
                 for (int i = 0; i < buf.Length; ++i)
                 {
                     Assert.Equal(encodedBuf[i], buf[i]);
                 }
             }
         }
-#elif NET4_5
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+#else
+        protected static void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
                 Assert.Single(zip.Entries);
+                Assert.Equal(expectedEntryName, zip.Entries[0].Name);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
                 byte[] buf = new byte[(int)zip.Entries[0].Length];
@@ -204,23 +224,23 @@ namespace NLog.UnitTests
                 }
             }
         }
-#else
-        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
-        {
-            Assert.True(false);
-        }
 #endif
 
-        protected void AssertFileContents(string fileName, string contents, Encoding encoding)
+        protected static void AssertFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
         {
             AssertFileContents(fileName, contents, encoding, false);
         }
 
-        protected void AssertFileContents(string fileName, string contents, Encoding encoding, bool addBom)
+        protected static void AssertFileContents(string fileName, string contents, Encoding encoding)
+        {
+            AssertFileContents(fileName, contents, encoding, false);
+        }
+
+        protected static void AssertFileContents(string fileName, string contents, Encoding encoding, bool addBom)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
 
@@ -262,14 +282,14 @@ namespace NLog.UnitTests
             }
         }
 
-        protected void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
+        protected static void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
         {
             if (contentToCheck.Contains(Environment.NewLine))
-                Assert.True(false, "Please use only single line string to check.");
+                Assert.Fail("Please use only single line string to check.");
 
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             using (TextReader fs = new StreamReader(fileName, encoding))
             {
@@ -281,17 +301,17 @@ namespace NLog.UnitTests
                 }
             }
 
-            Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
+            Assert.Fail("File doesn't contains '" + contentToCheck + "'");
         }
 
-        protected void AssertFileNotContains(string fileName, string contentToCheck, Encoding encoding)
+        protected static void AssertFileNotContains(string fileName, string contentToCheck, Encoding encoding)
         {
             if (contentToCheck.Contains(Environment.NewLine))
-                Assert.True(false, "Please use only single line string to check.");
+                Assert.Fail("Please use only single line string to check.");
 
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             using (TextReader fs = new StreamReader(fileName, encoding))
             {
@@ -299,12 +319,12 @@ namespace NLog.UnitTests
                 while ((line = fs.ReadLine()) != null)
                 {
                     if (line.Contains(contentToCheck))
-                        Assert.False(true, "File contains '" + contentToCheck + "'");
+                        Assert.Fail("File contains '" + contentToCheck + "'");
                 }
             }
         }
 
-        protected string StringRepeat(int times, string s)
+        protected static string StringRepeat(int times, string s)
         {
             StringBuilder sb = new StringBuilder(s.Length * times);
             for (int i = 0; i < times; ++i)
@@ -333,11 +353,12 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if NET4_5
+#if !NET35 && !NET40
         /// <summary>
         /// Get line number of previous line.
         /// </summary>
-        protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        protected static int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
         {
             return callingFileLineNumber - 1;
         }
@@ -352,13 +373,25 @@ namespace NLog.UnitTests
         }
 #endif
 
-        protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
+        protected static string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
             var stringWriter = new Logger();
-            InternalLogger.LogWriter = stringWriter;
-            InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.IncludeTimestamp = false;
-            action();
+            var orgWriter = InternalLogger.LogWriter;
+            var orgTimestamp = InternalLogger.IncludeTimestamp;
+            var orgLevel = InternalLogger.LogLevel;
+            try
+            {
+                InternalLogger.LogWriter = stringWriter;
+                InternalLogger.IncludeTimestamp = false;
+                InternalLogger.LogLevel = internalLogLevel;
+                action();
+            }
+            finally
+            {
+                InternalLogger.LogWriter = orgWriter;
+                InternalLogger.IncludeTimestamp = orgTimestamp;
+                InternalLogger.LogLevel = orgLevel;
+            }
 
             return stringWriter.ToString();
         }
@@ -367,7 +400,7 @@ namespace NLog.UnitTests
         /// </summary>
         /// <param name="tries"></param>
         /// <param name="action"></param>
-        protected void RetryingIntegrationTest(int tries, Action action)
+        protected static void RetryingIntegrationTest(int tries, Action action)
         {
             int tried = 0;
             while (tried < tries)
@@ -397,7 +430,7 @@ namespace NLog.UnitTests
         /// this is a simple wrapper that just locks access to the writer so only one thread can access
         /// it at a time.
         /// </summary>
-        private class Logger : TextWriter
+        private sealed class Logger : TextWriter
         {
             private readonly StringWriter writer = new StringWriter();
 
@@ -453,13 +486,12 @@ namespace NLog.UnitTests
         }
 
         /// <summary>
-        /// Are we running on Travis?
+        /// Are we running on Linux environment or Windows environemtn ?
         /// </summary>
-        /// <returns></returns>
-        protected static bool IsTravis()
+        /// <returns>true when something else than Windows</returns>
+        protected static bool IsLinux()
         {
-            var val = Environment.GetEnvironmentVariable("TRAVIS");
-            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+            return !NLog.Internal.PlatformDetector.IsWin32;
         }
 
         /// <summary>
@@ -474,7 +506,7 @@ namespace NLog.UnitTests
 
         public delegate void SyncAction();
 
-        public class NoThrowNLogExceptions : IDisposable
+        public sealed class NoThrowNLogExceptions : IDisposable
         {
             private readonly bool throwExceptions;
 
@@ -490,7 +522,7 @@ namespace NLog.UnitTests
             }
         }
 
-        public class InternalLoggerScope : IDisposable
+        public sealed class InternalLoggerScope : IDisposable
         {
             private readonly TextWriter oldConsoleOutputWriter;
             public StringWriter ConsoleOutputWriter { get; private set; }
@@ -521,24 +553,6 @@ namespace NLog.UnitTests
                 throwConfigExceptions = LogManager.ThrowConfigExceptions;
             }
 
-            public void SetConsoleError(StringWriter consoleErrorWriter)
-            {
-                if (ConsoleOutputWriter == null || consoleErrorWriter == null)
-                    throw new InvalidOperationException("Initialize with redirectConsole=true");
-
-                ConsoleErrorWriter = consoleErrorWriter;
-                Console.SetError(consoleErrorWriter);
-            }
-
-            public void SetConsoleOutput(StringWriter consoleOutputWriter)
-            {
-                if (ConsoleOutputWriter == null || consoleOutputWriter == null)
-                    throw new InvalidOperationException("Initialize with redirectConsole=true");
-
-                ConsoleOutputWriter = consoleOutputWriter;
-                Console.SetOut(consoleOutputWriter);
-            }
-
             public void Dispose()
             {
                 var logFile = InternalLogger.LogFile;
@@ -553,13 +567,7 @@ namespace NLog.UnitTests
                 if (ConsoleErrorWriter != null)
                     Console.SetError(oldConsoleErrorWriter);
 
-                if (!string.IsNullOrEmpty(InternalLogger.LogFile))
-                {
-                    if (File.Exists(InternalLogger.LogFile))
-                        File.Delete(InternalLogger.LogFile);
-                }
-
-                if (!string.IsNullOrEmpty(logFile) && logFile != InternalLogger.LogFile)
+                if (!string.IsNullOrEmpty(logFile))
                 {
                     if (File.Exists(logFile))
                         File.Delete(logFile);

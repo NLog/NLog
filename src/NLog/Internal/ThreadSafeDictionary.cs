@@ -1,39 +1,38 @@
-﻿// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Internal
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -43,26 +42,25 @@ namespace NLog.Internal
     internal class ThreadSafeDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         private readonly object _lockObject = new object();
-        private readonly IEqualityComparer<TKey> _comparer;
         private Dictionary<TKey, TValue> _dict;
         private Dictionary<TKey, TValue> _dictReadOnly;  // Reset cache on change
 
         public ThreadSafeDictionary()
-            :this(EqualityComparer<TKey>.Default)
+            : this(EqualityComparer<TKey>.Default)
         {
         }
 
         public ThreadSafeDictionary(IEqualityComparer<TKey> comparer)
         {
-            _comparer = comparer;
-            _dict = new Dictionary<TKey, TValue>(_comparer);
+            _dict = new Dictionary<TKey, TValue>(comparer);
         }
 
         public ThreadSafeDictionary(ThreadSafeDictionary<TKey, TValue> source)
         {
-            _comparer = source._comparer;
-            _dict = source.GetReadOnlyDict();
-            GetWritableDict();  // Clone
+            var sourceDictionary = source.GetReadOnlyDict();
+            _dict = new Dictionary<TKey, TValue>(sourceDictionary.Count, sourceDictionary.Comparer);
+            foreach (var item in sourceDictionary)
+                _dict.Add(item.Key, item.Value);
         }
 
         public TValue this[TKey key]
@@ -76,6 +74,8 @@ namespace NLog.Internal
                 }
             }
         }
+
+        public IEqualityComparer<TKey> Comparer => _dict.Comparer;
 
         public ICollection<TKey> Keys => GetReadOnlyDict().Keys;
 
@@ -121,7 +121,7 @@ namespace NLog.Internal
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
-           ((IDictionary<TKey,TValue>)GetReadOnlyDict()).CopyTo(array, arrayIndex);
+            ((IDictionary<TKey, TValue>)GetReadOnlyDict()).CopyTo(array, arrayIndex);
         }
 
         public void CopyFrom(IDictionary<TKey, TValue> source)
@@ -205,7 +205,7 @@ namespace NLog.Internal
         private Dictionary<TKey, TValue> GetReadOnlyDict()
         {
             var readOnly = _dictReadOnly;
-            if (readOnly == null)
+            if (readOnly is null)
             {
                 lock (_lockObject)
                 {
@@ -217,7 +217,15 @@ namespace NLog.Internal
 
         private IDictionary<TKey, TValue> GetWritableDict(bool clearDictionary = false)
         {
-            var newDict = new Dictionary<TKey, TValue>(clearDictionary ? 0 : _dict.Count + 1, _comparer);
+            if (_dictReadOnly is null)
+            {
+                // Never exposed the dictionary using enumerator, so immutable is not required
+                if (clearDictionary)
+                    _dict.Clear();
+                return _dict;
+            }
+
+            var newDict = new Dictionary<TKey, TValue>(clearDictionary ? 0 : _dict.Count + 1, _dict.Comparer);
             if (!clearDictionary)
             {
                 // Less allocation with enumerator than Dictionary-constructor

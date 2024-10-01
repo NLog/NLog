@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Conditions
 {
@@ -53,7 +53,7 @@ namespace NLog.Conditions
         [ConditionMethod("equals")]
         public static bool Equals2(object firstValue, object secondValue)
         {
-            return firstValue.Equals(secondValue);
+            return ReferenceEquals(firstValue, secondValue) || firstValue?.Equals(secondValue) == true;
         }
 
         /// <summary>
@@ -64,21 +64,9 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c>, case is ignored; if <c>false</c> (default), case is significant.</param>
         /// <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("strequals")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
-#if SILVERLIGHT
-        public static bool Equals2(string firstValue, string secondValue, [Optional] object ignoreCase)
-#else
-        public static bool Equals2( string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
-#endif
+        public static bool Equals2(string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
         {
-#if SILVERLIGHT
-            bool ic = false;
-            if (ignoreCase is bool b)
-                ic = b;
-#else
-            bool ic = ignoreCase;
-#endif
-            return firstValue.Equals(secondValue, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            return string.Equals(firstValue, secondValue, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -89,21 +77,9 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
-#if SILVERLIGHT
-        public static bool Contains( string haystack, string needle, [Optional] object ignoreCase)
-#else
         public static bool Contains(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
-#endif
         {
-#if SILVERLIGHT
-            bool ic = true;
-            if ( ignoreCase != null && ignoreCase is bool )
-                ic = ( bool ) ignoreCase;
-#else
-            bool ic = ignoreCase;
-#endif
-            return haystack.IndexOf(needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
+            return haystack?.IndexOf(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
         }
 
         /// <summary>
@@ -114,21 +90,9 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
-#if SILVERLIGHT
-        public static bool StartsWith( string haystack, string needle, [Optional] object ignoreCase)
-#else
         public static bool StartsWith(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
-#endif
         {
-#if SILVERLIGHT
-            bool ic = true;
-            if ( ignoreCase != null && ignoreCase is bool )
-                ic = ( bool ) ignoreCase;
-#else
-            bool ic = ignoreCase;
-#endif
-            return haystack.StartsWith(needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            return haystack?.StartsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) == true;
         }
 
         /// <summary>
@@ -139,21 +103,9 @@ namespace NLog.Conditions
         /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
-#if SILVERLIGHT
-        public static bool EndsWith( string haystack, string needle, [Optional] object ignoreCase)
-#else
         public static bool EndsWith(string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
-#endif
         {
-#if SILVERLIGHT
-            bool ic = true;
-            if ( ignoreCase != null && ignoreCase is bool )
-                ic = ( bool ) ignoreCase;
-#else
-            bool ic = ignoreCase;
-#endif
-            return haystack.EndsWith(needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            return haystack?.EndsWith(needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) == true;
         }
 
         /// <summary>
@@ -164,7 +116,7 @@ namespace NLog.Conditions
         [ConditionMethod("length")]
         public static int Length(string text)
         {
-            return text.Length;
+            return text?.Length ?? 0;
         }
 
         /// <summary>
@@ -175,19 +127,14 @@ namespace NLog.Conditions
         /// <param name="options">A string consisting of the desired options for the test. The possible values are those of the <see cref="RegexOptions"/> separated by commas.</param>
         /// <returns>true if the regular expression finds a match; otherwise, false.</returns>
         [ConditionMethod("regex-matches")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
-#if SILVERLIGHT
-        public static bool RegexMatches(string input, string pattern, [Optional] string options)
-#else
         public static bool RegexMatches(string input, string pattern, [Optional, DefaultParameterValue("")] string options)
-#endif
         {
-            RegexOptions regexOpts = ParseRegexOptions(options);
+            RegexOptions regexOpts = ParseRegexOptions(options) | RegexOptions.ExplicitCapture;
             return Regex.IsMatch(input, pattern, regexOpts);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>

@@ -1,44 +1,42 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using System.IO;
-using System.Text;
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.Config
 {
+    using System.IO;
+    using System.Text;
     using NLog.Common;
+    using NLog.Config;
     using Xunit;
 
     public class InternalLoggingTests : NLogTestBase
@@ -69,11 +67,13 @@ namespace NLog.UnitTests.Config
                 InternalLogger.LogLevel = LogLevel.Error;
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
+#pragma warning disable CS0618 // Type or member is obsolete
+                InternalLogger.LogToTrace = true;
+#pragma warning restore CS0618 // Type or member is obsolete
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
                 LogManager.AutoShutdown = true;
-                InternalLogger.LogToTrace = true;
 
                 XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog>
@@ -82,11 +82,13 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
+#pragma warning disable CS0618 // Type or member is obsolete
+                Assert.True(InternalLogger.LogToTrace);
+#pragma warning restore CS0618 // Type or member is obsolete
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
                 Assert.True(LogManager.AutoShutdown);
-                Assert.True(InternalLogger.LogToTrace);
             }
         }
 
@@ -121,44 +123,53 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace, bool autoShutdown)
+        [Fact]
+        public void InternalLoggingInvalidFormatString()
+        {
+            using (new InternalLoggerScope())
+            {
+                var sb = new StringBuilder();
+                var stringWriter = new StringWriter(sb);
+                InternalLogger.LogWriter = stringWriter;
+                InternalLogger.LogLevel = LogLevel.Info;
+
+                var invalidFormatString = "Invalid String.Format({Message})";
+                InternalLogger.Warn(invalidFormatString, "Oops");
+                Assert.Contains(invalidFormatString, sb.ToString());
+            }
+        }
+
+        private static void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace, bool autoShutdown)
         {
             var logLevelString = logLevel.ToString();
             var internalLogToConsoleString = logToConsole.ToString().ToLower();
             var internalLogToConsoleErrorString = logToConsoleError.ToString().ToLower();
             var globalThresholdString = globalThreshold.ToString();
             var throwExceptionsString = throwExceptions.ToString().ToLower();
-            var throwConfigExceptionsString = throwConfigExceptions == null ? "" : throwConfigExceptions.ToString().ToLower();
+            var throwConfigExceptionsString = throwConfigExceptions?.ToString().ToLower() ?? string.Empty;
             var logToTraceString = logToTrace.ToString().ToLower();
             var autoShutdownString = autoShutdown.ToString().ToLower();
 
             using (new InternalLoggerScope(true))
             {
                 XmlLoggingConfiguration.CreateFromXmlString($@"
-<nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{
-                        internalLogToConsoleString
-                    }' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{
-                        globalThresholdString
-                    }' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{
-                        throwConfigExceptionsString
-                    }' internalLogToTrace='{logToTraceString}' autoShutdown='{autoShutdownString}'>
+<nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{internalLogToConsoleString}' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{globalThresholdString}' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{throwConfigExceptionsString}' internalLogToTrace='{logToTraceString}' autoShutdown='{autoShutdownString}'>
 </nlog>");
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
 
                 Assert.Equal(file, InternalLogger.LogFile);
-
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
-
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);
+#pragma warning disable CS0618 // Type or member is obsolete
+                Assert.Equal(logToTrace, InternalLogger.LogToTrace);
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.Same(globalThreshold, LogManager.GlobalThreshold);
 
                 Assert.Equal(throwExceptions, LogManager.ThrowExceptions);
 
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
-
-                Assert.Equal(logToTrace, InternalLogger.LogToTrace);
 
                 Assert.Equal(autoShutdown, LogManager.AutoShutdown);
             }

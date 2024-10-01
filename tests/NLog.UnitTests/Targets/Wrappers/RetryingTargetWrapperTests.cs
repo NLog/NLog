@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -41,7 +41,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class RetryingTargetWrapperTests : NLogTestBase
-	{
+    {
         [Fact]
         public void RetryingTargetWrapperTest1()
         {
@@ -58,7 +58,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var exceptions = new List<Exception>();
 
-            var events = new []
+            var events = new[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
                 new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var exceptions = new List<Exception>();
 
-            var events = new []
+            var events = new[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
                 new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
@@ -110,13 +110,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 1/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 2/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 3/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 4/4") != -1);
-            Assert.True(result.IndexOf("Warn Too many retries. Aborting.") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 1/4") != -1);
-            Assert.True(result.IndexOf("Error while writing to 'MyTarget'. Try 2/4") != -1);
+            Assert.Contains("Error while writing to 'MyTarget([unnamed])'. Try 1/4", result);
+            Assert.Contains("Error while writing to 'MyTarget([unnamed])'. Try 2/4", result);
+            Assert.Contains("Error while writing to 'MyTarget([unnamed])'. Try 3/4", result);
+            Assert.Contains("Error while writing to 'MyTarget([unnamed])'. Try 4/4", result);
+            Assert.Contains("Too many retries. Aborting.", result);
+            Assert.Contains("Error while writing to 'MyTarget([unnamed])'. Try 1/4", result);
+            Assert.Contains("Error while writing to 'MyTarget([unnamed])'. Try 2/4", result);
 
             // first event does not get to wrapped target because of too many attempts.
             // second event gets there in 3rd retry
@@ -152,7 +152,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     RetryCount = 10,
                     RetryDelayMilliseconds = 5000,
                 };
-                var asyncWrapper = new AsyncTargetWrapper(wrapper) {TimeToSleepBetweenBatches = 1};
+                var asyncWrapper = new AsyncTargetWrapper(wrapper) { TimeToSleepBetweenBatches = 1 };
 
                 asyncWrapper.Initialize(null);
                 wrapper.Initialize(null);
@@ -184,6 +184,49 @@ namespace NLog.UnitTests.Targets.Wrappers
             });
         }
 
+        [Fact]
+        public void RetryingTargetWrapperBatchingTest()
+        {
+            var target = new MyTarget()
+            {
+                ThrowExceptions = 3,
+            };
+            var retryWrapper = new RetryingTargetWrapper()
+            {
+                WrappedTarget = target,
+                RetryCount = 2,
+                RetryDelayMilliseconds = 10,
+                EnableBatchWrite = true,
+            };
+            var asyncWrapper = new AsyncTargetWrapper(retryWrapper) { TimeToSleepBetweenBatches = 5000 };
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(asyncWrapper);
+            }).LogFactory;
+
+            // Verify that RetryingTargetWrapper is not sleeping for every LogEvent in single batch
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
+
+            var logger = logFactory.GetCurrentClassLogger();
+            for (int i = 1; i <= 500; ++i)
+                logger.Info("Test {0}", i);
+            logFactory.Flush();
+            Assert.Equal(1, target.WriteBatchCount);
+
+            for (int i = 0; i < 5000; ++i)
+            {
+                if (target.Events.Count >= 495)
+                    break;
+                System.Threading.Thread.Sleep(1);
+            }
+
+            Assert.Equal(1, target.WriteBatchCount);
+            Assert.InRange(target.Events.Count, 495, 500);
+            Assert.InRange(stopWatch.ElapsedMilliseconds, 0, 3000);
+        }
+
         public class MyTarget : Target
         {
             public MyTarget()
@@ -196,9 +239,27 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Name = name;
             }
 
-            public List<LogEventInfo> Events { get; set; }
+            public List<LogEventInfo> Events { get; private set; }
 
             public int ThrowExceptions { get; set; }
+
+            public int WriteBatchCount { get; private set; }
+
+            protected override void Write(IList<AsyncLogEventInfo> logEvents)
+            {
+                if (logEvents.Count > 1)
+                {
+                    ++WriteBatchCount;
+                    if (ThrowExceptions-- > 0)
+                    {
+                        for (int i = 0; i < logEvents.Count; ++i)
+                            logEvents[i].Continuation(new ApplicationException("Some exception has occurred."));
+                        return;
+                    }
+                }
+
+                base.Write(logEvents);
+            }
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {

@@ -1,37 +1,37 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Config
 {
@@ -46,7 +46,7 @@ namespace NLog.Config
     /// Enables FileWatcher for the currently loaded NLog Configuration File,
     /// and supports automatic reload on file modification.
     /// </summary>
-    internal class LoggingConfigurationWatchableFileLoader : LoggingConfigurationFileLoader
+    internal sealed class LoggingConfigurationWatchableFileLoader : LoggingConfigurationFileLoader
     {
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private readonly object _lockObject = new object();
@@ -56,13 +56,13 @@ namespace NLog.Config
         private LogFactory _logFactory;
 
         public LoggingConfigurationWatchableFileLoader(IAppEnvironment appEnvironment)
-            :base(appEnvironment)
+            : base(appEnvironment)
         {
         }
 
         public override LoggingConfiguration Load(LogFactory logFactory, string filename = null)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             if (string.IsNullOrEmpty(filename))
             {
                 var config = TryLoadFromAppConfig();
@@ -113,7 +113,7 @@ namespace NLog.Config
             base.Dispose(disposing);
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private LoggingConfiguration TryLoadFromAppConfig()
         {
             try
@@ -135,9 +135,9 @@ namespace NLog.Config
 
         internal void ReloadConfigOnTimer(object state)
         {
-            if (_reloadTimer == null && _isDisposing)
+            if (_reloadTimer is null && _isDisposing)
             {
-                return; //timer was disposed already. 
+                return; //timer was disposed already.
             }
 
             LoggingConfiguration oldConfig = (LoggingConfiguration)state;
@@ -147,7 +147,7 @@ namespace NLog.Config
             {
                 if (_isDisposing)
                 {
-                    return; //timer was disposed already. 
+                    return; //timer was disposed already.
                 }
 
                 var currentTimer = _reloadTimer;
@@ -169,19 +169,28 @@ namespace NLog.Config
                         return;
                     }
 
-                    newConfig = oldConfig.ReloadNewConfig();
-                    if (newConfig == null || ReferenceEquals(newConfig, oldConfig))
+                    newConfig = oldConfig.Reload();
+                    if (ReferenceEquals(newConfig, oldConfig))
                         return;
+
+                    if (newConfig is IInitializeSucceeded config2 && config2.InitializeSucceeded != true)
+                    {
+                        InternalLogger.Warn("NLog Config Reload() failed. Invalid XML?");
+                        return;
+                    }
                 }
                 catch (Exception exception)
                 {
+#if DEBUG
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     }
-
+#endif
                     InternalLogger.Warn(exception, "NLog configuration failed to reload");
+#pragma warning disable CS0618 // Type or member is obsolete
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+#pragma warning restore CS0618 // Type or member is obsolete
                     return;
                 }
 
@@ -191,18 +200,23 @@ namespace NLog.Config
 
                     _logFactory.Configuration = newConfig;  // Triggers LogFactory to call Activated(...) that adds file-watch again
 
+#pragma warning disable CS0618 // Type or member is obsolete
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 catch (Exception exception)
                 {
+#if DEBUG
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     }
-
+#endif
                     InternalLogger.Warn(exception, "NLog configuration reloaded, failed to be assigned");
                     _watcher.Watch(oldConfig.FileNamesToWatch);
+#pragma warning disable CS0618 // Type or member is obsolete
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
             }
         }
@@ -211,7 +225,7 @@ namespace NLog.Config
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
 
-            // In the rare cases we may get multiple notifications here, 
+            // In the rare cases we may get multiple notifications here,
             // but we need to reload config only once.
             //
             // The trick is to schedule the reload in one second after
@@ -223,7 +237,7 @@ namespace NLog.Config
                     return;
                 }
 
-                if (_reloadTimer == null)
+                if (_reloadTimer is null)
                 {
                     var configuration = _logFactory._config;
                     if (configuration != null)
@@ -251,7 +265,7 @@ namespace NLog.Config
                 var fileNamesToWatch = config.FileNamesToWatch?.ToList();
                 if (fileNamesToWatch?.Count > 0)
                 {
-                    if (_watcher == null)
+                    if (_watcher is null)
                     {
                         _watcher = new MultiFileWatcher();
                         _watcher.FileChanged += ConfigFileChanged;

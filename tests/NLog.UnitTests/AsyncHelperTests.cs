@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests
 {
@@ -37,6 +37,7 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
     using Xunit;
 
     public class AsyncHelperTests : NLogTestBase
@@ -168,7 +169,7 @@ namespace NLog.UnitTests
         {
             var exceptions = new List<Exception>();
 
-            // set up a timer to strike 
+            // set up a timer to strike
             var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromMilliseconds(50));
 
             // call success quickly, hopefully before the timer comes
@@ -308,6 +309,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void ForEachItemSequentiallyTest1()
         {
             bool finalContinuationInvoked = false;
@@ -336,6 +338,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void ForEachItemSequentiallyTest2()
         {
             bool finalContinuationInvoked = false;
@@ -365,6 +368,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void ForEachItemSequentiallyTest3()
         {
             using (new NoThrowNLogExceptions())
@@ -398,7 +402,7 @@ namespace NLog.UnitTests
         [Fact]
         public void ForEachItemInParallelEmptyTest()
         {
-            int[] items = new int[0];
+            int[] items = ArrayHelper.Empty<int>();
             Exception lastException = null;
             bool finalContinuationInvoked = false;
 
@@ -408,7 +412,7 @@ namespace NLog.UnitTests
                     finalContinuationInvoked = true;
                 };
 
-            AsyncHelpers.ForEachItemInParallel(items, continuation, (i, cont) => { Assert.True(false, "Will not be reached"); });
+            AsyncHelpers.ForEachItemInParallel(items, continuation, (i, cont) => { Assert.Fail("Should not be reached"); });
             Assert.True(finalContinuationInvoked);
             Assert.Null(lastException);
         }
@@ -527,6 +531,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void PrecededByTest1()
         {
             int invokedCount1 = 0;
@@ -561,6 +566,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Obsolete("Marked obsolete on NLog 5.0")]
         public void PrecededByTest2()
         {
             int invokedCount1 = 0;

@@ -1,48 +1,44 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
-    using System.Threading;
     using System.Xml;
-    using NLog.Config;
     using NLog.Internal;
-    using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -52,37 +48,33 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Log4JXmlTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets>
-                    <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />
+                    <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}:formattedMessage=${message}}' />
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            MappedDiagnosticsContext.Clear();
-            NestedDiagnosticsContext.Clear();
+            ScopeContext.Clear();
 
-            MappedDiagnosticsContext.Set("foo1", "bar1");
-            MappedDiagnosticsContext.Set("foo2", "bar2");
+            ScopeContext.PushProperty("foo1", "bar1");
+            ScopeContext.PushProperty("foo2", "bar2");
+            ScopeContext.PushProperty("foo3", "bar3");
 
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
+            ScopeContext.PushNestedState("baz1");
+            ScopeContext.PushNestedState("baz2");
+            ScopeContext.PushNestedState("baz3");
 
-            NestedDiagnosticsLogicalContext.Push("boo1");
-            NestedDiagnosticsLogicalContext.Push("boo2");
-
-            NestedDiagnosticsContext.Push("baz1");
-            NestedDiagnosticsContext.Push("baz2");
-            NestedDiagnosticsContext.Push("baz3");
-
-            ILogger logger = LogManager.GetLogger("A");
-            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message");
+            var logger = logFactory.GetLogger("A");
+            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message \u0014");
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);
-            string result = GetDebugLastMessage("debug");
+            string result = GetDebugLastMessage("debug", logFactory);
+            Assert.DoesNotContain("dummy", result);
+
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
 
             Assert.NotEqual("", result);
@@ -135,17 +127,17 @@ namespace NLog.UnitTests.LayoutRenderers
                                 var now = DateTime.UtcNow;
                                 Assert.True(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
 
-                                Assert.Equal(Thread.CurrentThread.ManagedThreadId.ToString(), reader.GetAttribute("thread"));
+                                Assert.Equal(CurrentManagedThreadId.ToString(), reader.GetAttribute("thread"));
                                 break;
 
                             case "message":
                                 reader.Read();
-                                Assert.Equal("some message", reader.Value);
+                                Assert.Equal("some message ", reader.Value);
                                 break;
 
                             case "NDC":
                                 reader.Read();
-                                Assert.Equal("baz1::baz2::baz3::boo1 boo2", reader.Value);
+                                Assert.Equal("baz1::baz2::baz3", reader.Value);
                                 break;
 
                             case "locationInfo":
@@ -168,7 +160,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 switch (name)
                                 {
                                     case "log4japp":
-                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
+                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + CurrentProcessId + ")", value);
                                         break;
 
                                     case "log4jmachinename":
@@ -192,7 +184,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                         break;
 
                                     default:
-                                        Assert.True(false, "Unknown <log4j:data>: " + name);
+                                        Assert.Fail("Unknown <log4j:data>: " + name);
                                         break;
                                 }
                                 break;
@@ -238,7 +230,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        void Log4JXmlEventLayoutParameterTest()
+        public void Log4JXmlEventLayoutParameterTest()
         {
             var log4jLayout = new Log4JXmlEventLayout()
             {
@@ -257,17 +249,17 @@ namespace NLog.UnitTests.LayoutRenderers
                 LoggerName = "MyLOgger",
                 TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56, DateTimeKind.Utc),
                 Level = LogLevel.Info,
-                Message = "hello, {0}",
+                Message = "hello, <{0}>",
                 Parameters = new[] { "world" },
             };
 
-            var threadid = Environment.CurrentManagedThreadId;
+            var threadid = CurrentManagedThreadId;
             var machinename = Environment.MachineName;
-            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, world</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, {{0}}\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
+            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;world&gt;</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, &lt;{{0}}&gt;\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
         }
 
         [Fact]
-        void BadXmlValueTest()
+        public void BadXmlValueTest()
         {
             var sb = new System.Text.StringBuilder();
 
@@ -333,110 +325,6 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.NotEqual(badString.Length, goodString.Length);
             Assert.Contains("abc", badString);
             Assert.Contains("abc", goodString);
-        }
-
-        [Fact]
-        public void NestedDiagnosticContextInformation_is_stored_in_the_same_sort_order_as_used_by_the_nested_diagnostic_layout_renderer()
-        {
-            var ndcSeparator = "::";
-            var ndlcSeparator = " ";
-            ConfigureLogManager(ndcSeparator, ndlcSeparator);
-
-            // Act
-            NestedDiagnosticsContext.Clear();
-            NestedDiagnosticsLogicalContext.Push("foo");
-            NestedDiagnosticsLogicalContext.Push("bar");
-
-            NestedDiagnosticsLogicalContext.Clear();
-            NestedDiagnosticsContext.Push("baz1");
-            NestedDiagnosticsContext.Push("baz2");
-            NestedDiagnosticsContext.Push("baz3");
-
-            var logEvent = Log("A", LogLevel.Debug, null, null, "some message");
-
-            // Assert
-            var expected = GetExpectedNdcValue(logEvent, ndcSeparator, ndlcSeparator);
-            var actual = GetXmlDocument().GetElementsByTagName("log4j:NDC")[0].InnerText;
-
-            Assert.Equal(expected, actual);
-        }
-        
-        [Fact]
-        public void If_Ndc_And_Ndlc_is_present_they_are_combined_with_a_NdcSeparator()
-        {
-            // Arrange
-            var ndcSeparator = "::";
-            var ndlcSeparator = " ";
-            ConfigureLogManager(ndcSeparator, ndlcSeparator);
-
-            // Act
-            NestedDiagnosticsContext.Clear();
-            NestedDiagnosticsContext.Push("foo");
-
-            NestedDiagnosticsLogicalContext.Clear();
-            NestedDiagnosticsLogicalContext.Push("bar");
-
-            var logEvent = Log("A", LogLevel.Debug, null, null, "some message");
-
-            // Assert
-            var expected = GetExpectedNdcValue(logEvent, ndcSeparator, ndlcSeparator);
-            var actual = GetXmlDocument().GetElementsByTagName("log4j:NDC")[0].InnerText;
-
-            Assert.Equal(expected, actual);
-        }
-
-        private void ConfigureLogManager(string ndcSeparator, string ndlcSeparator)
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-                <targets>
-                    <target name='debug' 
-                        type='Debug' 
-                        layout='${log4jxmlevent" + 
-                            ":includeCallSite=true" +
-                            ":includeSourceInfo=true" +
-                            ":includeNdlc=true" +
-                            ":includeMdc=true" +
-                            ":IncludeNdc=true" +
-                            ":includeMdlc=true" +
-                            ":IncludeAllProperties=true" +
-                            $":ndcItemSeparator={ndcSeparator.Replace(":", "\\:")}" + 
-                            $":ndlcItemSeparator={ndlcSeparator.Replace(":", "\\:")}" + 
-                            ":includenlogdata=true" +
-                            ":loggerName=${logger}" +
-                        @"}' />
-                </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-        }
-        
-        private LogEventInfo Log(string loggerName, LogLevel level, Exception exception, IFormatProvider formatProvider, string message)
-        {
-            ILogger logger = LogManager.GetLogger(loggerName);
-            var logEventInfo = LogEventInfo.Create(level, logger.Name, exception, formatProvider, message);
-            logger.Log(logEventInfo);
-
-            return logEventInfo;
-        }
-
-        private XmlDocument GetXmlDocument()
-        {
-            var result = GetDebugLastMessage("debug");
-            result = $"<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>{result}</log4j:dummyRoot>";
-            var doc = new XmlDocument();
-            doc.LoadXml(result);
-
-            return doc;
-        }
-
-        private string GetExpectedNdcValue(LogEventInfo logEvent, string ndcSeparator, string ndlcSeparator)
-        {
-            var ndcLayoutRenderer = new NdcLayoutRenderer { Separator = ndcSeparator };
-            var ndlcLayoutRenderer = new NdlcLayoutRenderer { Separator = ndlcSeparator};
-
-            return $"{ndcLayoutRenderer.Render(logEvent)}{ndcSeparator}{ndlcLayoutRenderer.Render(logEvent)}";
         }
     }
 }

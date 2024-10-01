@@ -1,58 +1,56 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Internal.FileAppenders
 {
     using System;
     using System.IO;
     using System.Text;
-
-    using Xunit;
-
-    using NLog.Targets;
     using NLog.Internal.FileAppenders;
+    using NLog.Targets;
+    using Xunit;
 
     public class FileAppenderCacheTests : NLogTestBase
     {
         [Fact]
-        public void FileAppenderCache_Empty() 
+        public void FileAppenderCache_Empty()
         {
             FileAppenderCache cache = FileAppenderCache.Empty;
+
             // An empty FileAppenderCache will have Size = 0 as well as Factory and CreateFileParameters parameters equal to null.
-            Assert.True(cache.Size == 0);
+            Assert.Equal(0, cache.Size);
             Assert.Null(cache.Factory);
             Assert.Null(cache.CreateFileParameters);
-
         }
 
         [Fact]
@@ -62,8 +60,8 @@ namespace NLog.UnitTests.Internal.FileAppenders
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
 
-            Assert.True(cache.Size == 3);
-            Assert.NotNull(cache.Factory);           
+            Assert.Equal(3, cache.Size);
+            Assert.NotNull(cache.Factory);
             Assert.NotNull(cache.CreateFileParameters);
         }
 
@@ -81,14 +79,14 @@ namespace NLog.UnitTests.Internal.FileAppenders
                     Path.GetTempPath(),
                     Path.Combine(Guid.NewGuid().ToString(), "file.txt")
             );
-            
+
             // Allocate an appender.
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             BaseFileAppender appender = cache.AllocateAppender(tempFile);
 
             //
-            // Note: Encoding is ASSUMED to be Unicode. There is no explicit reference to which encoding will be used 
-            //      for the file. 
+            // Note: Encoding is ASSUMED to be Unicode. There is no explicit reference to which encoding will be used
+            //      for the file.
             //
 
             // Write, flush the content into the file and release the file.
@@ -120,8 +118,8 @@ namespace NLog.UnitTests.Internal.FileAppenders
             BaseFileAppender appender = cache.AllocateAppender(tempFile);
 
             //
-            // Note: Encoding is ASSUMED to be Unicode. There is no explicit reference to which encoding will be used 
-            //      for the file. 
+            // Note: Encoding is ASSUMED to be Unicode. There is no explicit reference to which encoding will be used
+            //      for the file.
             //
 
             // Write, flush the content into the file and release the file. This happens through the
@@ -130,7 +128,6 @@ namespace NLog.UnitTests.Internal.FileAppenders
             cache.InvalidateAppender(tempFile);
             // Verify the appender has been allocated correctly.
             AssertFileContents(tempFile, "NLog test string.", Encoding.Unicode);
-
         }
 
         [Fact]
@@ -139,32 +136,46 @@ namespace NLog.UnitTests.Internal.FileAppenders
             // Invoke CloseAppenders() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
             emptyCache.CloseAppenders(string.Empty);
+            emptyCache.CloseExpiredAppenders(DateTime.UtcNow);
 
-            
-            IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
+            IFileAppenderFactory appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
-            // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders. 
-            cache.CloseAppenders(string.Empty);            
+            // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders.
+            cache.CloseAppenders(string.Empty);
 
-            // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
+            // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders.
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
             cache.CloseAppenders(string.Empty);
 
-            // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
+            // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders.
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
             cache.CloseAppenders(string.Empty);
 
             FileAppenderCache cache2 = new FileAppenderCache(3, appenderFactory, fileTarget);
-            // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders. 
-            cache2.CloseAppenders(DateTime.Now);
+            // Invoke CloseAppenders() on non-empty FileAppenderCache - Before allocating any appenders.
+            cache2.CloseExpiredAppenders(DateTime.UtcNow);
 
-            // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders. 
+            // Invoke CloseAppenders() on non-empty FileAppenderCache - After allocating N appenders.
             cache.AllocateAppender("file1.txt");
             cache.AllocateAppender("file2.txt");
-            cache.CloseAppenders(DateTime.Now);
+            cache.CloseExpiredAppenders(DateTime.UtcNow.AddMinutes(-1));
+
+            var appenderFile1 = cache.InvalidateAppender("file1.txt");
+            Assert.NotNull(appenderFile1);
+            var appenderFile2 = cache.InvalidateAppender("file2.txt");
+            Assert.NotNull(appenderFile2);
+
+            cache.AllocateAppender("file3.txt");
+            cache.AllocateAppender("file4.txt");
+            cache.CloseExpiredAppenders(DateTime.UtcNow.AddMinutes(1));
+
+            var appenderFile3 = cache.InvalidateAppender("file3.txt");
+            Assert.Null(appenderFile3);
+            var appenderFile4 = cache.InvalidateAppender("file4.txt");
+            Assert.Null(appenderFile4);
         }
 
         [Fact]
@@ -196,16 +207,16 @@ namespace NLog.UnitTests.Internal.FileAppenders
         }
 #endif
 
-        private void FileAppenderCache_GetFileCharacteristics(IFileAppenderFactory appenderFactory, ICreateFileParameters fileParameters)
+        private static void FileAppenderCache_GetFileCharacteristics(IFileAppenderFactory appenderFactory, ICreateFileParameters fileParameters)
         {
             // Invoke GetFileCharacteristics() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
             Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt"));
             Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt"));
             Assert.Null(emptyCache.GetFileLength("file.txt"));
-          
+
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileParameters);
-            // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders. 
+            // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders.
             Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt"));
             Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt"));
             Assert.Null(emptyCache.GetFileLength("file.txt"));
@@ -221,15 +232,15 @@ namespace NLog.UnitTests.Internal.FileAppenders
             appender.Write(StringToBytes("NLog test string."));
 
             //
-            // Note: Encoding is ASSUMED to be Unicode. There is no explicit reference to which encoding will be used 
-            //      for the file. 
+            // Note: Encoding is ASSUMED to be Unicode. There is no explicit reference to which encoding will be used
+            //      for the file.
             //
 
             // File information should be returned.
 
             var fileCreationTimeUtc = cache.GetFileCreationTimeSource(tempFile);
             Assert.NotNull(fileCreationTimeUtc);
-            Assert.True(fileCreationTimeUtc > Time.TimeSource.Current.FromSystemTime(DateTime.UtcNow.AddMinutes(-2)),"creationtime is wrong");
+            Assert.True(fileCreationTimeUtc > Time.TimeSource.Current.FromSystemTime(DateTime.UtcNow.AddMinutes(-2)), "creationtime is wrong");
 
             var fileLastWriteTimeUtc = cache.GetFileLastWriteTimeUtc(tempFile);
             Assert.NotNull(fileLastWriteTimeUtc);

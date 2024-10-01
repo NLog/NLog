@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Conditions
 {
@@ -81,7 +81,7 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText, ConfigurationItemFactory configurationItemFactories)
         {
-            if (expressionText == null)
+            if (expressionText is null)
             {
                 return null;
             }
@@ -109,17 +109,17 @@ namespace NLog.Conditions
         {
             var parser = new ConditionParser(stringReader, configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
-        
+
             return expression;
         }
 
-        private ConditionMethodExpression ParsePredicate(string functionName)
+        private ConditionMethodExpression ParseMethodPredicate(string functionName)
         {
-            var par = new List<ConditionExpression>();
+            var inputParameters = new List<ConditionExpression>();
 
             while (!_tokenizer.IsEOF() && _tokenizer.TokenType != ConditionTokenType.RightParen)
             {
-                par.Add(ParseExpression());
+                inputParameters.Add(ParseExpression());
                 if (_tokenizer.TokenType != ConditionTokenType.Comma)
                 {
                     break;
@@ -132,13 +132,11 @@ namespace NLog.Conditions
 
             try
             {
-                var methodInfo = _configurationItemFactory.ConditionMethods.CreateInstance(functionName);
-                var methodDelegate = _configurationItemFactory.ConditionMethodDelegates.CreateInstance(functionName);
-                return new ConditionMethodExpression(functionName, methodInfo, methodDelegate, par);
+                return CreateMethodExpression(functionName, inputParameters);
             }
             catch (Exception exception)
             {
-                InternalLogger.Warn(exception, "Cannot resolve function '{0}'", functionName);
+                InternalLogger.Warn(exception, "Failed to resolve condition method: '{0}'", functionName);
 
                 if (exception.MustBeRethrownImmediately())
                 {
@@ -147,6 +145,44 @@ namespace NLog.Conditions
 
                 throw new ConditionParseException($"Cannot resolve function '{functionName}'", exception);
             }
+        }
+
+        private ConditionMethodExpression CreateMethodExpression(string functionName, List<ConditionExpression> inputParameters)
+        {
+            // Attempt to lookup functionName that can handle the provided number of input-parameters
+            if (inputParameters.Count == 0)
+            {
+                Func<LogEventInfo, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithNoParameters(functionName);
+                if (method != null)
+                    return ConditionMethodExpression.CreateMethodNoParameters(functionName, method);
+            }
+            else if (inputParameters.Count == 1)
+            {
+                Func<LogEventInfo, object, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithOneParameter(functionName);
+                if (method != null)
+                    return ConditionMethodExpression.CreateMethodOneParameter(functionName, method, inputParameters);
+            }
+            else if (inputParameters.Count == 2)
+            {
+                Func<LogEventInfo, object, object, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithTwoParameters(functionName);
+                if (method != null)
+                    return ConditionMethodExpression.CreateMethodTwoParameters(functionName, method, inputParameters);
+            }
+            else if (inputParameters.Count == 3)
+            {
+                Func<LogEventInfo, object, object, object, object> method = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithThreeParameters(functionName);
+                if (method != null)
+                    return ConditionMethodExpression.CreateMethodThreeParameters(functionName, method, inputParameters);
+            }
+
+            Func<object[], object> manyParameterMethod = _configurationItemFactory.ConditionMethodFactory.TryCreateInstanceWithManyParameters(functionName, out var manyParameterMinCount, out var manyParameterMaxCount, out var manyParameterWithLogEvent);
+            if (manyParameterMethod is null)
+                throw new ConditionParseException($"Unknown condition method '{functionName}'");
+            if (manyParameterMinCount > inputParameters.Count)
+                throw new ConditionParseException($"Condition method '{functionName}' requires minimum {manyParameterMinCount} parameters, but passed {inputParameters.Count}.");
+            if (manyParameterMaxCount < inputParameters.Count)
+                throw new ConditionParseException($"Condition method '{functionName}' requires maximum {manyParameterMaxCount} parameters, but passed {inputParameters.Count}.");
+            return ConditionMethodExpression.CreateMethodManyParameters(functionName, manyParameterMethod, inputParameters, manyParameterWithLogEvent);
         }
 
         private ConditionExpression ParseLiteralExpression()
@@ -180,7 +216,7 @@ namespace NLog.Conditions
                 var simpleLayout = new SimpleLayout(_tokenizer.StringTokenValue, _configurationItemFactory);
                 _tokenizer.GetNextToken();
                 if (simpleLayout.IsFixedText)
-                    return new ConditionLiteralExpression(simpleLayout.FixedText, simpleLayout.ToString());
+                    return new ConditionLiteralExpression(simpleLayout.FixedText);
                 else
                     return new ConditionLayoutExpression(simpleLayout);
             }
@@ -198,8 +234,8 @@ namespace NLog.Conditions
                 {
                     _tokenizer.GetNextToken();
 
-                    ConditionMethodExpression predicateExpression = ParsePredicate(keyword);
-                    return predicateExpression;
+                    var conditionMethodExpression = ParseMethodPredicate(keyword);
+                    return conditionMethodExpression;
                 }
             }
 
@@ -214,61 +250,53 @@ namespace NLog.Conditions
         /// <returns>success?</returns>
         private bool TryPlainKeywordToExpression(string keyword, out ConditionExpression expression)
         {
-            if (0 == string.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "level", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLevelExpression();
-                    return true;
-                }
+                expression = new ConditionLevelExpression();
+                return true;
             }
 
-            if (0 == string.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "logger", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLoggerNameExpression();
-                    return true;
-                }
+                expression = new ConditionLoggerNameExpression();
+                return true;
             }
 
-            if (0 == string.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "message", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionMessageExpression();
-                    return true;
-                }
+                expression = new ConditionMessageExpression();
+                return true;
             }
 
-            if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "exception", StringComparison.OrdinalIgnoreCase))
+            {
+                expression = new ConditionExceptionExpression();
+                return true;
+            }
+
+            if (string.Equals(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
             {
                 _tokenizer.Expect(ConditionTokenType.Dot);
-                {
-                    expression = new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
+                return true;
             }
 
-            if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "true", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(ConditionExpression.BoxedTrue);
+                return true;
             }
 
-            if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "false", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(ConditionExpression.BoxedFalse);
+                return true;
             }
 
-            if (0 == string.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(keyword, "null", StringComparison.OrdinalIgnoreCase))
             {
-                {
-                    expression = new ConditionLiteralExpression(null);
-                    return true;
-                }
+                expression = new ConditionLiteralExpression(null);
+                return true;
             }
 
             expression = null;
@@ -287,7 +315,7 @@ namespace NLog.Conditions
             if (numberString.IndexOf('.') >= 0)
             {
                 var d = double.Parse(numberString, CultureInfo.InvariantCulture);
-                
+
                 return new ConditionLiteralExpression(negative ? -d : d);
             }
 

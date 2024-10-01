@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MergeApiXml</RootNamespace>
     <AssemblyName>MergeApiXml</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <OutputPath>..\..\build\bin\Tools\</OutputPath>
     <IntermediateOutputPath>..\..\build\obj\Tools\</IntermediateOutputPath>
     <FileAlignment>512</FileAlignment>

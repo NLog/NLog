@@ -106,7 +106,7 @@ See [LICENSE.txt](LICENSE.txt) for details.
 
 How to build
 ---
-Use Visual Studio 2017 and open the solution 'NLog.sln' - C# 7.2 support is required.
+Use Visual Studio 2019 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
 - AppVeyor for Windows- and Linux-builds
@@ -115,3 +115,4 @@ For building in the cloud we use:
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
 Note: master points to NLog 4.x and dev to NLog 5.x
+

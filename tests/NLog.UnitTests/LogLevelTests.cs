@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests
 {
@@ -91,14 +91,14 @@ namespace NLog.UnitTests
         [Fact]
         [Trait("Component", "Core")]
         public void LogLevelFromOrdinal_InputInRange_ExpectValidLevel()
-        { 
-            Assert.Same(LogLevel.FromOrdinal(0), LogLevel.Trace);
-            Assert.Same(LogLevel.FromOrdinal(1), LogLevel.Debug);
-            Assert.Same(LogLevel.FromOrdinal(2), LogLevel.Info);
-            Assert.Same(LogLevel.FromOrdinal(3), LogLevel.Warn);
-            Assert.Same(LogLevel.FromOrdinal(4), LogLevel.Error);
-            Assert.Same(LogLevel.FromOrdinal(5), LogLevel.Fatal);
-            Assert.Same(LogLevel.FromOrdinal(6), LogLevel.Off);
+        {
+            Assert.Same(LogLevel.Trace, LogLevel.FromOrdinal(0));
+            Assert.Same(LogLevel.Debug, LogLevel.FromOrdinal(1));
+            Assert.Same(LogLevel.Info, LogLevel.FromOrdinal(2));
+            Assert.Same(LogLevel.Warn, LogLevel.FromOrdinal(3));
+            Assert.Same(LogLevel.Error, LogLevel.FromOrdinal(4));
+            Assert.Same(LogLevel.Fatal, LogLevel.FromOrdinal(5));
+            Assert.Same(LogLevel.Off, LogLevel.FromOrdinal(6));
         }
 
         [Fact]
@@ -116,39 +116,39 @@ namespace NLog.UnitTests
         [Trait("Component", "Core")]
         public void FromStringTest()
         {
-            Assert.Same(LogLevel.FromString("trace"), LogLevel.Trace);
-            Assert.Same(LogLevel.FromString("debug"), LogLevel.Debug);
-            Assert.Same(LogLevel.FromString("info"), LogLevel.Info);
-            Assert.Same(LogLevel.FromString("warn"), LogLevel.Warn);
-            Assert.Same(LogLevel.FromString("error"), LogLevel.Error);
-            Assert.Same(LogLevel.FromString("fatal"), LogLevel.Fatal);
-            Assert.Same(LogLevel.FromString("off"), LogLevel.Off);
+            Assert.Same(LogLevel.Trace, LogLevel.FromString("trace"));
+            Assert.Same(LogLevel.Debug, LogLevel.FromString("debug"));
+            Assert.Same(LogLevel.Info, LogLevel.FromString("info"));
+            Assert.Same(LogLevel.Warn, LogLevel.FromString("warn"));
+            Assert.Same(LogLevel.Error, LogLevel.FromString("error"));
+            Assert.Same(LogLevel.Fatal, LogLevel.FromString("fatal"));
+            Assert.Same(LogLevel.Off, LogLevel.FromString("off"));
 
-            Assert.Same(LogLevel.FromString("Trace"), LogLevel.Trace);
-            Assert.Same(LogLevel.FromString("Debug"), LogLevel.Debug);
-            Assert.Same(LogLevel.FromString("Info"), LogLevel.Info);
-            Assert.Same(LogLevel.FromString("Warn"), LogLevel.Warn);
-            Assert.Same(LogLevel.FromString("Error"), LogLevel.Error);
-            Assert.Same(LogLevel.FromString("Fatal"), LogLevel.Fatal);
-            Assert.Same(LogLevel.FromString("Off"), LogLevel.Off);
+            Assert.Same(LogLevel.Trace, LogLevel.FromString("Trace"));
+            Assert.Same(LogLevel.Debug, LogLevel.FromString("Debug"));
+            Assert.Same(LogLevel.Info, LogLevel.FromString("Info"));
+            Assert.Same(LogLevel.Warn, LogLevel.FromString("Warn"));
+            Assert.Same(LogLevel.Error, LogLevel.FromString("Error"));
+            Assert.Same(LogLevel.Fatal, LogLevel.FromString("Fatal"));
+            Assert.Same(LogLevel.Off, LogLevel.FromString("Off"));
 
-            Assert.Same(LogLevel.FromString("TracE"), LogLevel.Trace);
-            Assert.Same(LogLevel.FromString("DebuG"), LogLevel.Debug);
-            Assert.Same(LogLevel.FromString("InfO"), LogLevel.Info);
-            Assert.Same(LogLevel.FromString("WarN"), LogLevel.Warn);
-            Assert.Same(LogLevel.FromString("ErroR"), LogLevel.Error);
-            Assert.Same(LogLevel.FromString("FataL"), LogLevel.Fatal);
+            Assert.Same(LogLevel.Trace, LogLevel.FromString("TracE"));
+            Assert.Same(LogLevel.Debug, LogLevel.FromString("DebuG"));
+            Assert.Same(LogLevel.Info, LogLevel.FromString("InfO"));
+            Assert.Same(LogLevel.Warn, LogLevel.FromString("WarN"));
+            Assert.Same(LogLevel.Error, LogLevel.FromString("ErroR"));
+            Assert.Same(LogLevel.Fatal, LogLevel.FromString("FataL"));
 
-            Assert.Same(LogLevel.FromString("TRACE"), LogLevel.Trace);
-            Assert.Same(LogLevel.FromString("DEBUG"), LogLevel.Debug);
-            Assert.Same(LogLevel.FromString("INFO"), LogLevel.Info);
-            Assert.Same(LogLevel.FromString("WARN"), LogLevel.Warn);
-            Assert.Same(LogLevel.FromString("ERROR"), LogLevel.Error);
-            Assert.Same(LogLevel.FromString("FATAL"), LogLevel.Fatal);
+            Assert.Same(LogLevel.Trace, LogLevel.FromString("TRACE"));
+            Assert.Same(LogLevel.Debug, LogLevel.FromString("DEBUG"));
+            Assert.Same(LogLevel.Info, LogLevel.FromString("INFO"));
+            Assert.Same(LogLevel.Warn, LogLevel.FromString("WARN"));
+            Assert.Same(LogLevel.Error, LogLevel.FromString("ERROR"));
+            Assert.Same(LogLevel.Fatal, LogLevel.FromString("FATAL"));
 
-            Assert.Same(LogLevel.FromString("NoNe"), LogLevel.Off);
-            Assert.Same(LogLevel.FromString("iNformaTION"), LogLevel.Info);
-            Assert.Same(LogLevel.FromString("WarNING"), LogLevel.Warn);
+            Assert.Same(LogLevel.Off, LogLevel.FromString("NoNe"));
+            Assert.Same(LogLevel.Info, LogLevel.FromString("iNformaTION"));
+            Assert.Same(LogLevel.Warn, LogLevel.FromString("WarNING"));
         }
 
         [Fact]
@@ -165,13 +165,13 @@ namespace NLog.UnitTests
         public void LogLevelNullComparison()
         {
             LogLevel level = LogLevel.Info;
-            Assert.False(level == null);
+            Assert.False(level is null);
             Assert.True(level != null);
             Assert.False(null == level);
             Assert.True(null != level);
 
             level = null;
-            Assert.True(level == null);
+            Assert.True(level is null);
             Assert.False(level != null);
             Assert.True(null == level);
             Assert.False(null != level);
@@ -203,13 +203,13 @@ namespace NLog.UnitTests
 
             LogLevel levelMin = LogLevel.MinLevel;
             LogLevel levelMax = LogLevel.MaxLevel;
-          
-            Assert.Equal(LogLevel.Trace.CompareTo(levelDebug), -1);
-            Assert.Equal(LogLevel.Debug.CompareTo(levelInfo), -1);
-            Assert.Equal(LogLevel.Info.CompareTo(levelWarn), -1);
-            Assert.Equal(LogLevel.Warn.CompareTo(levelError), -1);
-            Assert.Equal(LogLevel.Error.CompareTo(levelFatal), -1);
-            Assert.Equal(LogLevel.Fatal.CompareTo(levelOff), -1);
+
+            Assert.Equal(-1, LogLevel.Trace.CompareTo(levelDebug));
+            Assert.Equal(-1, LogLevel.Debug.CompareTo(levelInfo));
+            Assert.Equal(-1, LogLevel.Info.CompareTo(levelWarn));
+            Assert.Equal(-1, LogLevel.Warn.CompareTo(levelError));
+            Assert.Equal(-1, LogLevel.Error.CompareTo(levelFatal));
+            Assert.Equal(-1, LogLevel.Fatal.CompareTo(levelOff));
 
             Assert.Equal(1, LogLevel.Debug.CompareTo(levelTrace));
             Assert.Equal(1, LogLevel.Info.CompareTo(levelDebug));
@@ -233,31 +233,30 @@ namespace NLog.UnitTests
             Assert.Equal(5, LogLevel.Fatal.CompareTo(levelMin));
             Assert.Equal(6, LogLevel.Off.CompareTo(levelMin));
 
-            Assert.Equal(LogLevel.Trace.CompareTo(levelMax), -5);
-            Assert.Equal(LogLevel.Debug.CompareTo(levelMax), -4);
-            Assert.Equal(LogLevel.Info.CompareTo(levelMax), -3);
-            Assert.Equal(LogLevel.Warn.CompareTo(levelMax), -2);
-            Assert.Equal(LogLevel.Error.CompareTo(levelMax), -1);
+            Assert.Equal(-5, LogLevel.Trace.CompareTo(levelMax));
+            Assert.Equal(-4, LogLevel.Debug.CompareTo(levelMax));
+            Assert.Equal(-3, LogLevel.Info.CompareTo(levelMax));
+            Assert.Equal(-2, LogLevel.Warn.CompareTo(levelMax));
+            Assert.Equal(-1, LogLevel.Error.CompareTo(levelMax));
             Assert.Equal(0, LogLevel.Fatal.CompareTo(levelMax));
             Assert.Equal(1, LogLevel.Off.CompareTo(levelMax));
         }
 
         [Fact]
         [Trait("Component", "Core")]
-        public void LogLevelCompareTo_Null_ExpectException()
+        public void LogLevelCompareTo_Null_ExpectLevelOff()
         {
-            Assert.Throws<ArgumentNullException>(() => LogLevel.MinLevel.CompareTo(null));
-            Assert.Throws<ArgumentNullException>(() => LogLevel.MaxLevel.CompareTo(null));
-            
-            Assert.Throws<ArgumentNullException>(() => LogLevel.Debug.CompareTo(null));
+            Assert.True(LogLevel.MinLevel.CompareTo(null) < 0);
+            Assert.True(LogLevel.MaxLevel.CompareTo(null) < 0);
+            Assert.Equal(0, LogLevel.Off.CompareTo(null));
         }
 
         [Fact]
         [Trait("Component", "Core")]
         public void LogLevel_MinMaxLevels_ExpectConstantValues()
         {
-            Assert.Same(LogLevel.Trace, LogLevel.MinLevel); 
-            Assert.Same(LogLevel.Fatal, LogLevel.MaxLevel); 
+            Assert.Same(LogLevel.Trace, LogLevel.MinLevel);
+            Assert.Same(LogLevel.Fatal, LogLevel.MaxLevel);
         }
 
         [Fact]
@@ -290,7 +289,7 @@ namespace NLog.UnitTests
         public void LogLevelEqual_TypeOfObject()
         {
             // Objects of any other type should always return false.
-            Assert.False(LogLevel.Debug.Equals((int) 1));
+            Assert.False(LogLevel.Debug.Equals((int)1));
             Assert.False(LogLevel.Debug.Equals((string)"Debug"));
 
             // Valid LogLevel objects boxed as Object type.
@@ -334,7 +333,7 @@ namespace NLog.UnitTests
         [Fact]
         public void LogLevel_SetAllLevels()
         {
-            Assert.Throws<NotSupportedException>(() => ((ICollection<LogLevel>) LogLevel.AllLevels).Add(LogLevel.Fatal));
+            Assert.Throws<NotSupportedException>(() => ((ICollection<LogLevel>)LogLevel.AllLevels).Add(LogLevel.Fatal));
         }
 
         [Fact]

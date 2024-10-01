@@ -1,37 +1,37 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
 
 namespace NLog.Internal
 {
@@ -41,7 +41,7 @@ namespace NLog.Internal
     using NLog.Common;
 
     /// <summary>
-    /// Watches multiple files at the same time and raises an event whenever 
+    /// Watches multiple files at the same time and raises an event whenever
     /// a single change is detected in any of those files.
     /// </summary>
     internal sealed class MultiFileWatcher : IDisposable
@@ -58,8 +58,9 @@ namespace NLog.Internal
         /// </summary>
         public event FileSystemEventHandler FileChanged;
 
-        public MultiFileWatcher() : 
-            this(NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes) { }
+        public MultiFileWatcher() :
+            this(NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes)
+        { }
 
         public MultiFileWatcher(NotifyFilters notifyFilters)
         {
@@ -73,7 +74,6 @@ namespace NLog.Internal
         {
             FileChanged = null;   // Release event listeners
             StopWatching();
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -83,9 +83,9 @@ namespace NLog.Internal
         {
             lock (_watcherMap)
             {
-                foreach (FileSystemWatcher watcher in _watcherMap.Values)
+                foreach (var watcher in _watcherMap)
                 {
-                    StopWatching(watcher);
+                    StopWatching(watcher.Value);
                 }
                 _watcherMap.Clear();
             }
@@ -99,8 +99,7 @@ namespace NLog.Internal
         {
             lock (_watcherMap)
             {
-                FileSystemWatcher watcher;
-                if (_watcherMap.TryGetValue(fileName, out watcher))
+                if (_watcherMap.TryGetValue(fileName, out var watcher))
                 {
                     StopWatching(watcher);
                     _watcherMap.Remove(fileName);
@@ -114,7 +113,7 @@ namespace NLog.Internal
         /// <param name="fileNames">The file names.</param>
         public void Watch(IEnumerable<string> fileNames)
         {
-            if (fileNames == null)
+            if (fileNames is null)
             {
                 return;
             }
@@ -125,22 +124,36 @@ namespace NLog.Internal
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Watcher is released in Dispose()")]
-        internal void Watch(string fileName)
+        public void Watch(string fileName)
         {
-            var directory = Path.GetDirectoryName(fileName);
-            if (!Directory.Exists(directory))
+            try
             {
-                InternalLogger.Warn("Cannot watch file {0} for changes as directory {1} doesn't exist", fileName, directory);
-                return;
+                var directory = Path.GetDirectoryName(fileName);
+                var fileFilter = Path.GetFileName(fileName);
+                directory = Path.GetFullPath(directory);
+                if (!Directory.Exists(directory))
+                {
+                    InternalLogger.Warn("Cannot watch file-filter '{0}' when non-existing directory: {1}", fileFilter, directory);
+                    return;
+                }
+
+                if (TryAddWatch(fileName, directory, fileFilter))
+                {
+                    InternalLogger.Debug("Start watching file-filter '{0}' in directory: {1}", fileFilter, directory);
+                }
             }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Debug(ex, "Failed to start FileSystemWatcher with file-path: {0}", fileName);
+            }
+        }
 
-            var fileFilter = Path.GetFileName(fileName);
-
+        private bool TryAddWatch(string fileName, string directory, string fileFilter)
+        {
             lock (_watcherMap)
             {
                 if (_watcherMap.ContainsKey(fileName))
-                    return;
+                    return false;
 
                 FileSystemWatcher watcher = null;
 
@@ -160,13 +173,12 @@ namespace NLog.Internal
                     watcher.Error += OnWatcherError;
                     watcher.EnableRaisingEvents = true;
 
-                    InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
-
                     _watcherMap.Add(fileName, watcher);
+                    return true;
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Failed Watching path '{0}' with file '{1}' for changes.", directory, fileName);
+                    InternalLogger.Error(ex, "Failed to start FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, directory);
                     if (ex.MustBeRethrown())
                         throw;
 
@@ -174,15 +186,23 @@ namespace NLog.Internal
                     {
                         StopWatching(watcher);
                     }
+
+                    return false;
                 }
             }
         }
 
         private void StopWatching(FileSystemWatcher watcher)
         {
+            string fileFilter = string.Empty;
+            string fileDirectory = string.Empty;
+
             try
             {
-                InternalLogger.Debug("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+                fileFilter = watcher.Filter;
+                fileDirectory = watcher.Path;
+
+                InternalLogger.Debug("Stop watching file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
                 watcher.EnableRaisingEvents = false;
                 watcher.Created -= OnFileChanged;
                 watcher.Changed -= OnFileChanged;
@@ -193,24 +213,18 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "Failed to stop file watcher for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+                InternalLogger.Error(ex, "Failed to stop FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
                 if (ex.MustBeRethrown())
                     throw;
             }
         }
 
-        private void OnWatcherError(object source, ErrorEventArgs e)
+        private static void OnWatcherError(object source, ErrorEventArgs e)
         {
-            var watcherPath = string.Empty;
             var watcher = source as FileSystemWatcher;
-            if (watcher != null)
-                watcherPath = watcher.Path;
-
-            var exception = e.GetException();
-            if (exception != null)
-                InternalLogger.Warn(exception, "Error Watching Path {0}", watcherPath);
-            else
-                InternalLogger.Warn("Error Watching Path {0}", watcherPath);
+            var fileFilter = watcher?.Filter ?? string.Empty;
+            var fileDirectory = watcher?.Path ?? string.Empty;
+            InternalLogger.Warn(e.GetException(), "Error from FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
         }
 
         private void OnFileChanged(object source, FileSystemEventArgs e)
@@ -224,9 +238,11 @@ namespace NLog.Internal
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Error Handling File Changed");
+#if DEBUG
                     if (ex.MustBeRethrownImmediately())
-                        throw;
+                        throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
+#endif
+                    InternalLogger.Error(ex, "Error handling event from FileSystemWatcher with file-filter: '{0}' in directory: {1}", e.Name, e.FullPath);
                 }
             }
         }

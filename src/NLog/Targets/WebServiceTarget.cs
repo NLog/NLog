@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Targets
 {
@@ -42,26 +42,25 @@ namespace NLog.Targets
     using System.Xml;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Calls the specified web service on each log message.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/WebService-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/WebService-target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// The web service must implement a method that accepts a number of string parameters.
     /// </remarks>
     /// <example>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/WebService/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
@@ -79,7 +78,7 @@ namespace NLog.Targets
         /// dictionary that maps a concrete <see cref="HttpPostFormatterBase"/> implementation
         /// to a specific <see cref="WebServiceProtocol"/>-value.
         /// </summary>
-        private static Dictionary<WebServiceProtocol, Func<WebServiceTarget, HttpPostFormatterBase>> _postFormatterFactories =
+        private static readonly Dictionary<WebServiceProtocol, Func<WebServiceTarget, HttpPostFormatterBase>> _postFormatterFactories =
             new Dictionary<WebServiceProtocol, Func<WebServiceTarget, HttpPostFormatterBase>>()
             {
                 { WebServiceProtocol.Soap11, t => new HttpPostSoap11Formatter(t)},
@@ -96,16 +95,14 @@ namespace NLog.Targets
         {
             Protocol = WebServiceProtocol.Soap11;
 
-            //default NO utf-8 bom 
+            //default NO utf-8 bom
             const bool writeBOM = false;
             Encoding = new UTF8Encoding(writeBOM);
             IncludeBOM = writeBOM;
-            OptimizeBufferReuse = true;
 
-            Headers = new List<MethodCallParameter>();
-
-#if NETSTANDARD
-            // WebRequest.GetSystemWebProxy throws PlatformNotSupportedException on NetCore, when Proxy is not configured
+#if NETSTANDARD1_3 || NETSTANDARD1_5
+            // NetCore1 throws PlatformNotSupportedException on WebRequest.GetSystemWebProxy, when using DefaultWebProxy
+            // Net5 (or newer) will turn off Http-connection-pooling if not using DefaultWebProxy
             ProxyType = WebServiceProxyType.NoProxy;
 #endif
         }
@@ -123,7 +120,8 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Uri Url { get; set; }
+        [RequiredParameter]
+        public Layout<Uri> Url { get; set; }
 
         /// <summary>
         /// Gets or sets the value of the User-agent HTTP header.
@@ -147,37 +145,36 @@ namespace NLog.Targets
         /// Gets or sets the protocol to be used when calling web service.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        [DefaultValue("Soap11")]
         public WebServiceProtocol Protocol
         {
             get => _activeProtocol.Key;
             set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null);
         }
-        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol;
+        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(WebServiceProtocol.Soap11, null);
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets the proxy configuration when calling web service
         /// </summary>
+        /// <remarks>
+        /// Changing ProxyType on Net5 (or newer) will turn off Http-connection-pooling
+        /// </remarks>
         /// <docgen category='Web Service Options' order='10' />
-        [DefaultValue("DefaultWebProxy")]
         public WebServiceProxyType ProxyType
         {
             get => _activeProxy.Key;
             set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
         }
-        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy;
-#endif
+        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(WebServiceProxyType.DefaultWebProxy, null);
 
         /// <summary>
         /// Gets or sets the custom proxy address, include port separated by a colon
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public string ProxyAddress { get; set; }
+        public Layout ProxyAddress { get; set; }
 
         /// <summary>
         /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
-        /// 
+        ///
         /// This will only work for UTF-8.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
@@ -201,6 +198,8 @@ namespace NLog.Targets
         /// </summary>
         /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
         /// <docgen category='Web Service Options' order='100' />
+        [Obsolete("Instead use default Rfc2396 or EscapeDataRfc3986. Marked obsolete with NLog v5.3")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EscapeDataNLogLegacy { get; set; }
 
         /// <summary>
@@ -225,15 +224,13 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         [ArrayParameter(typeof(MethodCallParameter), "header")]
-        public IList<MethodCallParameter> Headers { get; private set; }
+        public IList<MethodCallParameter> Headers { get; } = new List<MethodCallParameter>();
 
-#if !SILVERLIGHT
         /// <summary>
         /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
         /// </summary>
         /// <docgen category='Web Service Options' order='100' />
         public bool PreAuthenticate { get; set; }
-#endif
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
@@ -254,7 +251,8 @@ namespace NLog.Targets
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            var url = BuildWebServiceUrl(LogEventInfo.CreateNullEvent(), parameters);
+            var webRequest = CreateHttpWebRequest(url);
             DoInvoke(parameters, webRequest, continuation);
         }
 
@@ -265,44 +263,61 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            Uri url = null;
+            HttpWebRequest webRequest = null;
 
-            if (Headers?.Count > 0)
+            try
             {
-                for (int i = 0; i < Headers.Count; i++)
+                url = BuildWebServiceUrl(logEvent.LogEvent, parameters);
+                if (url == null)
                 {
-                    string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
-                    if (headerValue == null)
-                        continue;
-
-                    webRequest.Headers[Headers[i].Name] = headerValue;
+                    InternalLogger.Error("{0}: Error creating request with invalid url={1}", this, Url);
+                    logEvent.Continuation(new ArgumentException("Invalid Url for WebRequest"));
+                    return;
                 }
-            }
+
+                webRequest = CreateHttpWebRequest(url);
+
+                if (Headers?.Count > 0)
+                {
+                    for (int i = 0; i < Headers.Count; i++)
+                    {
+                        string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
+                        if (headerValue is null)
+                            continue;
+
+                        webRequest.Headers[Headers[i].Name] = headerValue;
+                    }
+                }
 
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var userAgent = RenderLogEvent(UserAgent, logEvent.LogEvent);
-            if (!string.IsNullOrEmpty(userAgent))
-            {
-                webRequest.UserAgent = userAgent;
-            }
+                var userAgent = RenderLogEvent(UserAgent, logEvent.LogEvent);
+                if (!string.IsNullOrEmpty(userAgent))
+                {
+                    webRequest.UserAgent = userAgent;
+                }
 #endif
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Error creating request for url={1}", this, url);
+                throw;
+            }
 
             DoInvoke(parameters, webRequest, logEvent.Continuation);
         }
 
-        void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        private HttpWebRequest CreateHttpWebRequest(Uri url)
         {
-            Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
-            Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
+            var webRequest = (HttpWebRequest)WebRequest.Create(url);
 
-#if !SILVERLIGHT
             switch (ProxyType)
             {
                 case WebServiceProxyType.DefaultWebProxy:
                     break;
-#if !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 case WebServiceProxyType.AutoProxy:
-                    if (_activeProxy.Value == null)
+                    if (_activeProxy.Value is null)
                     {
                         IWebProxy proxy = WebRequest.GetSystemWebProxy();
                         proxy.Credentials = CredentialCache.DefaultCredentials;
@@ -311,11 +326,11 @@ namespace NLog.Targets
                     webRequest.Proxy = _activeProxy.Value;
                     break;
                 case WebServiceProxyType.ProxyAddress:
-                    if (!string.IsNullOrEmpty(ProxyAddress))
+                    if (ProxyAddress != null)
                     {
-                        if (_activeProxy.Value == null)
+                        if (_activeProxy.Value is null)
                         {
-                            IWebProxy proxy = new WebProxy(ProxyAddress, true);
+                            IWebProxy proxy = new WebProxy(RenderLogEvent(ProxyAddress, LogEventInfo.CreateNullEvent()), true);
                             _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
                         }
                         webRequest.Proxy = _activeProxy.Value;
@@ -326,14 +341,21 @@ namespace NLog.Targets
                     webRequest.Proxy = null;
                     break;
             }
-#endif
 
-#if !SILVERLIGHT && !NETSTANDARD1_0
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 webRequest.PreAuthenticate = true;
             }
 #endif
+
+            return webRequest;
+        }
+
+        private void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
+        {
+            Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
+            Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
 
             DoInvoke(parameters, continuation, webRequest, beginGetRequest, getRequestStream);
         }
@@ -341,128 +363,102 @@ namespace NLog.Targets
         internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest,
             Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream)
         {
-            Stream postPayload = null;
+            MemoryStream postPayload = null;
 
             if (Protocol == WebServiceProtocol.HttpGet)
             {
-                PrepareGetRequest(webRequest);
+                webRequest.Method = "GET";
             }
             else
             {
-                if (_activeProtocol.Value == null)
+                if (_activeProtocol.Value is null)
                     _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(Protocol, _postFormatterFactories[Protocol](this));
                 postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
             }
 
-            var sendContinuation = CreateSendContinuation(continuation, webRequest);
+            _pendingManualFlushList.BeginOperation();
 
-            PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload, sendContinuation);
+            try
+            {
+                if (postPayload?.Length > 0)
+                {
+                    PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload);
+                }
+                else
+                {
+                    WaitForReponse(continuation, webRequest);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Error starting request for url={1}", this, webRequest.RequestUri);
+                if (ExceptionMustBeRethrown(ex))
+                {
+                    throw;
+                }
+
+                DoInvokeCompleted(continuation, ex);
+            }
         }
 
-        private AsyncContinuation CreateSendContinuation(AsyncContinuation continuation, HttpWebRequest webRequest)
+        private void WaitForReponse(AsyncContinuation continuation, HttpWebRequest webRequest)
         {
-            AsyncContinuation sendContinuation =
-                ex =>
+            webRequest.BeginGetResponse(
+                r =>
                 {
-                    if (ex != null)
-                    {
-                        DoInvokeCompleted(continuation, ex);
-                        return;
-                    }
-
                     try
                     {
-                        webRequest.BeginGetResponse(
-                            r =>
-                            {
-                                try
-                                {
-                                    using (var response = webRequest.EndGetResponse(r))
-                                    {
-                                        // Request successfully initialized
-                                    }
-
-                                    DoInvokeCompleted(continuation, null);
-                                }
-                                catch (Exception ex2)
-                                {
-                                    InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error sending request", Name);
-                                    if (ex2.MustBeRethrownImmediately())
-                                    {
-                                        throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                                    }
-
-                                    DoInvokeCompleted(continuation, ex2);
-                                }
-                            },
-                            null);
-                    }
-                    catch (Exception ex2)
-                    {
-                        InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error starting request", Name);
-                        if (ExceptionMustBeRethrown(ex2))
+                        using (var response = webRequest.EndGetResponse(r))
                         {
-                            throw;
+                            // Request successfully initialized
                         }
 
-                        DoInvokeCompleted(continuation, ex2);
+                        DoInvokeCompleted(continuation, null);
                     }
-                };
-            return sendContinuation;
+                    catch (Exception ex)
+                    {
+#if DEBUG
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+#endif
+                        InternalLogger.Error(ex, "{0}: Error receiving response for url={1}", this, webRequest.RequestUri);
+                        DoInvokeCompleted(continuation, ex);
+                    }
+                },
+                null);
         }
 
-        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, Stream postPayload, AsyncContinuation sendContinuation)
+        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, MemoryStream postPayload)
         {
-            if (postPayload != null && postPayload.Length > 0)
-            {
-                postPayload.Position = 0;
-                try
+            beginGetRequest(webRequest,
+                result =>
                 {
-                    _pendingManualFlushList.BeginOperation();
-
-                    beginGetRequest(webRequest,
-                        result =>
-                        {
-                            try
-                            {
-                                using (Stream stream = getRequestStream(webRequest, result))
-                                {
-                                    WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
-
-                                    postPayload.Dispose();
-                                }
-
-                                sendContinuation(null);
-                            }
-                            catch (Exception ex)
-                            {
-                                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending post data", Name);
-                                if (ex.MustBeRethrownImmediately())
-                                {
-                                    throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                                }
-
-                                postPayload.Dispose();
-                                DoInvokeCompleted(continuation, ex);
-                            }
-                        });
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting post data", Name);
-                    if (ExceptionMustBeRethrown(ex))
+                    try
                     {
-                        throw;
-                    }
+                        using (Stream stream = getRequestStream(webRequest, result))
+                        {
+                            WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
 
-                    DoInvokeCompleted(continuation, ex);
-                }
-            }
-            else
-            {
-                _pendingManualFlushList.BeginOperation();
-                sendContinuation(null);
-            }
+                            postPayload.Dispose();
+                        }
+
+                        WaitForReponse(continuation, webRequest);
+                    }
+                    catch (Exception ex)
+                    {
+#if DEBUG
+                        if (ex.MustBeRethrownImmediately())
+                        {
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                        }
+#endif
+                        InternalLogger.Error(ex, "{0}: Error sending payload for url={1}", this, webRequest.RequestUri);
+                        postPayload.Dispose();
+                        DoInvokeCompleted(continuation, ex);
+                    }
+                });
         }
 
         private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
@@ -471,18 +467,13 @@ namespace NLog.Targets
             continuation(ex);
         }
 
-        /// <summary>
-        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <inheritdoc/>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
         }
 
-        /// <summary>
-        /// Closes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             _pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
@@ -492,29 +483,32 @@ namespace NLog.Targets
         /// <summary>
         /// Builds the URL to use when calling the web service for a message, depending on the WebServiceProtocol.
         /// </summary>
-        /// <param name="parameterValues"></param>
-        /// <returns></returns>
-        private Uri BuildWebServiceUrl(object[] parameterValues)
+        private Uri BuildWebServiceUrl(LogEventInfo logEvent, object[] parameterValues)
         {
+            var uri = RenderLogEvent(Url, logEvent);
             if (Protocol != WebServiceProtocol.HttpGet)
             {
-                return Url;
+                return uri;
             }
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            bool escapeDataNLogLegacy = EscapeDataNLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             string queryParameters;
-            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(escapeDataNLogLegacy, false, EscapeDataRfc3986);
                 BuildWebServiceQueryParameters(parameterValues, sb, encodingOptions);
                 queryParameters = sb.ToString();
             }
 
-            var builder = new UriBuilder(Url);
-            //append our query string to the URL following 
+            var builder = new UriBuilder(uri);
+            //append our query string to the URL following
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
-            if (builder.Query != null && builder.Query.Length > 1)
+            if (builder.Query?.Length > 1)
             {
                 builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters);
             }
@@ -533,7 +527,7 @@ namespace NLog.Targets
             {
                 sb.Append(separator);
                 sb.Append(Parameters[i].Name);
-                sb.Append("=");
+                sb.Append('=');
                 string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
                 if (!string.IsNullOrEmpty(parameterValue))
                 {
@@ -543,22 +537,13 @@ namespace NLog.Targets
             }
         }
 
-        private void PrepareGetRequest(HttpWebRequest webRequest)
-        {
-            webRequest.Method = "GET";
-        }
-
         /// <summary>
         /// Write from input to output. Fix the UTF-8 bom
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="writeUtf8BOM"></param>
-        /// <param name="encoding"></param>
-        private static void WriteStreamAndFixPreamble(Stream input, Stream output, bool? writeUtf8BOM, Encoding encoding)
+        private static void WriteStreamAndFixPreamble(MemoryStream postPayload, Stream output, bool? writeUtf8BOM, Encoding encoding)
         {
             //only when utf-8 encoding is used, the Encoding preamble is optional
-            var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
+            var nothingToDo = writeUtf8BOM is null || !(encoding is UTF8Encoding);
 
             const int preambleSize = 3;
             if (!nothingToDo)
@@ -572,9 +557,10 @@ namespace NLog.Targets
                 //Bom already not in Encoding
                 nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
             }
-            var offset = nothingToDo ? 0 : preambleSize;
-            input.CopyWithOffset(output, offset);
 
+            var byteArray = postPayload.GetBuffer();
+            int offset = nothingToDo ? 0 : preambleSize;
+            output.Write(byteArray, offset, (int)postPayload.Length - offset);
         }
 
         /// <summary>
@@ -593,7 +579,7 @@ namespace NLog.Targets
             protected string ContentType => _contentType ?? (_contentType = GetContentType(Target));
             private string _contentType;
 
-            protected WebServiceTarget Target { get; private set; }
+            protected WebServiceTarget Target { get; }
 
             protected virtual string GetContentType(WebServiceTarget target)
             {
@@ -618,13 +604,16 @@ namespace NLog.Targets
             protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);
         }
 
-        private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
+        private sealed class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
             readonly UrlHelper.EscapeEncodingOptions _encodingOptions;
 
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
-                _encodingOptions = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
+#pragma warning disable CS0618 // Type or member is obsolete
+                bool escapeDataNLogLegacy = target.EscapeDataNLogLegacy;
+#pragma warning restore CS0618 // Type or member is obsolete
+                _encodingOptions = UrlHelper.GetUriStringEncodingFlags(escapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
             protected override string GetContentType(WebServiceTarget target)
@@ -638,14 +627,14 @@ namespace NLog.Targets
             }
         }
 
-        private class HttpPostJsonFormatter : HttpPostTextFormatterBase
+        private sealed class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
-            private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
-            private IJsonConverter _jsonConverter;
+            private readonly IJsonConverter _jsonConverter;
 
             public HttpPostJsonFormatter(WebServiceTarget target)
                 : base(target)
             {
+                _jsonConverter = target.ResolveService<IJsonConverter>();
             }
 
             protected override string GetContentType(WebServiceTarget target)
@@ -662,7 +651,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    builder.Append("{");
+                    builder.Append('{');
                     string separator = string.Empty;
                     for (int i = 0; i < Target.Parameters.Count; ++i)
                     {
@@ -671,7 +660,7 @@ namespace NLog.Targets
                         builder.Append('"');
                         builder.Append(parameter.Name);
                         builder.Append("\":");
-                        JsonConverter.SerializeObject(parameterValues[i], builder);
+                        _jsonConverter.SerializeObject(parameterValues[i], builder);
                         separator = ",";
                     }
                     builder.Append('}');
@@ -679,7 +668,7 @@ namespace NLog.Targets
             }
         }
 
-        private class HttpPostSoap11Formatter : HttpPostSoapFormatterBase
+        private sealed class HttpPostSoap11Formatter : HttpPostSoapFormatterBase
         {
             private readonly string _defaultSoapAction;
 
@@ -705,7 +694,7 @@ namespace NLog.Targets
             }
         }
 
-        private class HttpPostSoap12Formatter : HttpPostSoapFormatterBase
+        private sealed class HttpPostSoap12Formatter : HttpPostSoapFormatterBase
         {
             public HttpPostSoap12Formatter(WebServiceTarget target) : base(target)
             {
@@ -748,18 +737,19 @@ namespace NLog.Targets
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, _xmlWriterSettings);
+                using (var xtw = XmlWriter.Create(ms, _xmlWriterSettings))
+                {
+                    xtw.WriteStartElement(SoapName, "Envelope", SoapEnvelopeNamespace);
+                    xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
+                    xtw.WriteStartElement(Target.MethodName, Target.Namespace);
 
-                xtw.WriteStartElement(SoapName, "Envelope", SoapEnvelopeNamespace);
-                xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
-                xtw.WriteStartElement(Target.MethodName, Target.Namespace);
+                    WriteAllParametersToCurrenElement(xtw, parameterValues);
 
-                WriteAllParametersToCurrenElement(xtw, parameterValues);
-
-                xtw.WriteEndElement(); // method name
-                xtw.WriteEndElement(); // Body
-                xtw.WriteEndElement(); // soap:Envelope
-                xtw.Flush();
+                    xtw.WriteEndElement(); // method name
+                    xtw.WriteEndElement(); // Body
+                    xtw.WriteEndElement(); // soap:Envelope
+                    xtw.Flush();
+                }
             }
 
             protected static string GetDefaultSoapAction(WebServiceTarget target)
@@ -802,7 +792,7 @@ namespace NLog.Targets
             protected abstract void WriteStringContent(StringBuilder builder, object[] parameterValues);
         }
 
-        private class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase
+        private sealed class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase
         {
             private readonly XmlWriterSettings _xmlWriterSettings;
 
@@ -821,14 +811,15 @@ namespace NLog.Targets
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, _xmlWriterSettings);
+                using (var xtw = XmlWriter.Create(ms, _xmlWriterSettings))
+                {
+                    xtw.WriteStartElement(Target.XmlRoot, Target.XmlRootNamespace);
 
-                xtw.WriteStartElement(Target.XmlRoot, Target.XmlRootNamespace);
+                    WriteAllParametersToCurrenElement(xtw, parameterValues);
 
-                WriteAllParametersToCurrenElement(xtw, parameterValues);
-
-                xtw.WriteEndElement();
-                xtw.Flush();
+                    xtw.WriteEndElement();
+                    xtw.Flush();
+                }
             }
         }
 
@@ -842,8 +833,9 @@ namespace NLog.Targets
             {
                 for (int i = 0; i < Target.Parameters.Count; i++)
                 {
-                    string parameterValue = XmlHelper.XmlConvertToStringSafe(parameterValues[i]);
-                    currentXmlWriter.WriteElementString(Target.Parameters[i].Name, parameterValue);
+                    currentXmlWriter.WriteStartElement(Target.Parameters[i].Name);
+                    currentXmlWriter.WriteValue(parameterValues[i]);
+                    currentXmlWriter.WriteEndElement();
                 }
             }
         }

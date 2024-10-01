@@ -1,41 +1,42 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Layouts
 {
     using System;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using Xunit;
@@ -61,7 +62,7 @@ namespace NLog.UnitTests.Layouts
             using (new NoThrowNLogExceptions())
             {
                 ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
-                configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+                configurationItemFactory.LayoutRendererFactory.RegisterType<ThrowsExceptionRenderer>("throwsException");
 
                 SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
                 string output = l.Render(LogEventInfo.CreateNullEvent());
@@ -83,10 +84,13 @@ namespace NLog.UnitTests.Layouts
         public void SimpleLayoutToStringTest()
         {
             var l = new SimpleLayout("xx${level}yy");
-            Assert.Equal("'xx${level}yy'", l.ToString());
+            Assert.Equal("xx${level}yy", l.ToString());
 
-            var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", ConfigurationItemFactory.Default);
-            Assert.Equal("'someFakeText'", l2.ToString());
+            var l2 = new SimpleLayout(ArrayHelper.Empty<LayoutRenderer>(), "someFakeText", ConfigurationItemFactory.Default);
+            Assert.Equal("someFakeText", l2.ToString());
+
+            var l3 = new SimpleLayout("");
+            Assert.Equal("", l3.ToString());
         }
 
         [Fact]
@@ -98,7 +102,7 @@ namespace NLog.UnitTests.Layouts
                         using (new NoThrowNLogExceptions())
                         {
                             ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
-                            configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+                            configurationItemFactory.LayoutRendererFactory.RegisterType<ThrowsExceptionRenderer>("throwsException");
 
                             SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
                             string output = l.Render(LogEventInfo.CreateNullEvent());
@@ -107,8 +111,8 @@ namespace NLog.UnitTests.Layouts
                     },
                     LogLevel.Warn);
 
-            Assert.True(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
-            Assert.True(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
+            Assert.Contains("msg1", internalLogOutput);
+            Assert.Contains("msg2", internalLogOutput);
         }
 
         [Fact]
@@ -140,7 +144,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(0, lr.InitCount);
             Assert.Equal(0, lr.CloseCount);
 
-            // calls to Close() will be ignored because 
+            // calls to Close() will be ignored because
             lr.Close();
             Assert.Equal(0, lr.InitCount);
             Assert.Equal(0, lr.CloseCount);
