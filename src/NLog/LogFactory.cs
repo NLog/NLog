@@ -37,7 +37,6 @@ namespace NLog
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
@@ -507,7 +506,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         [Obsolete("Replaced by GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
+        public Logger GetCurrentClassLogger([System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
@@ -553,9 +552,9 @@ namespace NLog
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         [Obsolete("Replaced by GetLogger<T>(). Marked obsolete on NLog 5.2")]
-        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
+        public Logger GetLogger(string name, [System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return GetLoggerThreadSafe(name, loggerType ?? typeof(Logger), (t) => Logger.DefaultLoggerType.IsAssignableFrom(t) ? Activator.CreateInstance(t, true) as Logger : null);
         }

@@ -278,7 +278,7 @@ namespace NLog.Config
             var nlogAssemblyLocation = nlogAssembly.Location;
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 if (nlogAssembly.GlobalAssemblyCache)
                 {
                     return null;

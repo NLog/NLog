@@ -471,7 +471,7 @@ namespace NLog.Common
         [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static string GetAppSettings(string configName)
         {
-#if !NETSTANDARD
+#if NETFRAMEWORK
             try
             {
                 return System.Configuration.ConfigurationManager.AppSettings[configName];

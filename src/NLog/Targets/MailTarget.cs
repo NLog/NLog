@@ -47,7 +47,7 @@ namespace NLog.Targets
     using NLog.Internal;
     using NLog.Layouts;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Configuration;
     using System.Net.Configuration;
 #endif
@@ -116,7 +116,7 @@ namespace NLog.Targets
             Name = name;
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private SmtpSection _currentailSettings;
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace NLog.Targets
         {
             get
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
 
                 // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
                 // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
