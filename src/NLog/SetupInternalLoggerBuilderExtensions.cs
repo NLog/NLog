@@ -80,47 +80,12 @@ namespace NLog
             return setupBuilder;
         }
 
-#if !NETSTANDARD1_3
-        /// <summary>
-        /// Configures <see cref="InternalLogger.LogToTrace"/>
-        /// </summary>
-        public static ISetupInternalLoggerBuilder LogToTrace(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
-        {
-#pragma warning disable CS0618 // Type or member is obsolete
-            InternalLogger.LogToTrace = enabled;
-#pragma warning restore CS0618 // Type or member is obsolete
-            return setupBuilder;
-        }
-#endif
-
         /// <summary>
         /// Configures <see cref="InternalLogger.LogWriter"/>
         /// </summary>
         public static ISetupInternalLoggerBuilder LogToWriter(this ISetupInternalLoggerBuilder setupBuilder, TextWriter writer)
         {
             InternalLogger.LogWriter = writer;
-            return setupBuilder;
-        }
-
-        /// <summary>
-        /// Configures <see cref="InternalLogger.LogMessageReceived"/>
-        /// </summary>
-        [Obsolete("Instead use AddEventSubscription. Marked obsolete with NLog v5.3")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static ISetupInternalLoggerBuilder AddLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
-        {
-            InternalLogger.LogMessageReceived += eventSubscriber;
-            return setupBuilder;
-        }
-
-        /// <summary>
-        /// Configures <see cref="InternalLogger.LogMessageReceived"/>
-        /// </summary>
-        [Obsolete("Instead use RemoveEventSubscription. Marked obsolete with NLog v5.3")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static ISetupInternalLoggerBuilder RemoveLogSubscription(this ISetupInternalLoggerBuilder setupBuilder, EventHandler<InternalLoggerMessageEventArgs> eventSubscriber)
-        {
-            InternalLogger.LogMessageReceived -= eventSubscriber;
             return setupBuilder;
         }
 
@@ -139,34 +104,6 @@ namespace NLog
         public static ISetupInternalLoggerBuilder RemoveEventSubscription(this ISetupInternalLoggerBuilder setupBuilder, InternalEventOccurredHandler eventSubscriber)
         {
             InternalLogger.InternalEventOccurred -= eventSubscriber;
-            return setupBuilder;
-        }
-
-        /// <summary>
-        /// Configure the InternalLogger properties from Environment-variables and App.config using <see cref="InternalLogger.Reset"/>
-        /// </summary>
-        /// <remarks>
-        /// Recognizes the following environment-variables:
-        ///
-        /// - NLOG_INTERNAL_LOG_LEVEL
-        /// - NLOG_INTERNAL_LOG_FILE
-        /// - NLOG_INTERNAL_LOG_TO_CONSOLE
-        /// - NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR
-        /// - NLOG_INTERNAL_LOG_TO_TRACE
-        /// - NLOG_INTERNAL_INCLUDE_TIMESTAMP
-        ///
-        /// Legacy .NetFramework platform will also recognizes the following app.config settings:
-        ///
-        /// - nlog.internalLogLevel
-        /// - nlog.internalLogFile
-        /// - nlog.internalLogToConsole
-        /// - nlog.internalLogToConsoleError
-        /// - nlog.internalLogToTrace
-        /// - nlog.internalLogIncludeTimestamp
-        /// </remarks>
-        public static ISetupInternalLoggerBuilder SetupFromEnvironmentVariables(this ISetupInternalLoggerBuilder setupBuilder)
-        {
-            InternalLogger.Reset();
             return setupBuilder;
         }
     }

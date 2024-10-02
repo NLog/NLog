@@ -44,19 +44,19 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InternalLoggingConfigTest1()
         {
-            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt", true, true);
+            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt", true);
         }
 
         [Fact]
         public void InternalLoggingConfigTest2()
         {
-            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt", false, false);
+            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt", false);
         }
 
         [Fact]
         public void InternalLoggingConfigTes3()
         {
-            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt", false, true);
+            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt", true);
         }
 
         [Fact]
@@ -67,9 +67,6 @@ namespace NLog.UnitTests.Config
                 InternalLogger.LogLevel = LogLevel.Error;
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
-#pragma warning disable CS0618 // Type or member is obsolete
-                InternalLogger.LogToTrace = true;
-#pragma warning restore CS0618 // Type or member is obsolete
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
@@ -82,9 +79,6 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
-#pragma warning disable CS0618 // Type or member is obsolete
-                Assert.True(InternalLogger.LogToTrace);
-#pragma warning restore CS0618 // Type or member is obsolete
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
@@ -139,7 +133,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        private static void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace, bool autoShutdown)
+        private static void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool autoShutdown)
         {
             var logLevelString = logLevel.ToString();
             var internalLogToConsoleString = logToConsole.ToString().ToLower();
@@ -147,13 +141,12 @@ namespace NLog.UnitTests.Config
             var globalThresholdString = globalThreshold.ToString();
             var throwExceptionsString = throwExceptions.ToString().ToLower();
             var throwConfigExceptionsString = throwConfigExceptions?.ToString().ToLower() ?? string.Empty;
-            var logToTraceString = logToTrace.ToString().ToLower();
             var autoShutdownString = autoShutdown.ToString().ToLower();
 
             using (new InternalLoggerScope(true))
             {
                 XmlLoggingConfiguration.CreateFromXmlString($@"
-<nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{internalLogToConsoleString}' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{globalThresholdString}' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{throwConfigExceptionsString}' internalLogToTrace='{logToTraceString}' autoShutdown='{autoShutdownString}'>
+<nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{internalLogToConsoleString}' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{globalThresholdString}' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{throwConfigExceptionsString}' autoShutdown='{autoShutdownString}'>
 </nlog>");
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
@@ -161,9 +154,6 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(file, InternalLogger.LogFile);
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);
-#pragma warning disable CS0618 // Type or member is obsolete
-                Assert.Equal(logToTrace, InternalLogger.LogToTrace);
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 Assert.Same(globalThreshold, LogManager.GlobalThreshold);
 

@@ -154,11 +154,6 @@ namespace NLog.Config
                     case "INTERNALLOGFILE":
                         InternalLogger.LogFile = configItem.Value?.Trim();
                         break;
-                    case "INTERNALLOGTOTRACE":
-#pragma warning disable CS0618 // Type or member is obsolete
-                        InternalLogger.LogToTrace = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
-#pragma warning restore CS0618 // Type or member is obsolete
-                        break;
                     case "INTERNALLOGINCLUDETIMESTAMP":
                         InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.IncludeTimestamp);
                         break;
