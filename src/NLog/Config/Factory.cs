@@ -48,65 +48,19 @@ namespace NLog.Config
     /// <typeparam name="TAttributeType">The type of the attribute used to annotate items.</typeparam>
     internal class Factory<TBaseType, TAttributeType> :
         IFactory, IFactory<TBaseType>
-#pragma warning disable CS0618 // Type or member is obsolete
-        , INamedItemFactory<TBaseType, Type>
-#pragma warning restore CS0618 // Type or member is obsolete
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-        private struct ItemFactory
-        {
-            public readonly GetTypeDelegate ItemType;
-            public readonly Func<TBaseType> ItemCreator;
-
-            public ItemFactory(GetTypeDelegate type, Func<TBaseType> itemCreator)
-            {
-                ItemType = type;
-                ItemCreator = itemCreator;
-            }
-        }
-
-        private readonly Dictionary<string, ItemFactory> _items;
+        private readonly Dictionary<string, Func<TBaseType>> _items;
         private readonly ConfigurationItemFactory _parentFactory;
-        private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
 
-        internal Factory(ConfigurationItemFactory parentFactory, Factory<TBaseType, TAttributeType> globalDefaultFactory)
+        internal Factory(ConfigurationItemFactory parentFactory)
         {
             _parentFactory = parentFactory;
-            _globalDefaultFactory = globalDefaultFactory;
-            _items = new Dictionary<string, ItemFactory>(globalDefaultFactory is null ? 16 : 0, StringComparer.OrdinalIgnoreCase);
+            _items = new Dictionary<string, Func<TBaseType>>(16, StringComparer.OrdinalIgnoreCase);
         }
 
         private delegate Type GetTypeDelegate();
-
-        /// <summary>
-        /// Scans the assembly.
-        /// </summary>
-        /// <param name="types">The types to scan.</param>
-        /// <param name="assemblyName">The assembly name for the types.</param>
-        /// <param name="itemNamePrefix">The prefix.</param>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
-        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2062")]
-        public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
-        {
-            foreach (Type t in types)
-            {
-                try
-                {
-                    RegisterType(t, itemNamePrefix);
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Registers the type.
@@ -159,7 +113,7 @@ namespace NLog.Config
 
             lock (ConfigurationItemFactory.SyncRoot)
             {
-                _items[itemName] = new ItemFactory(typeLookup, typeCreator);
+                _items[itemName] = typeCreator;
             }
         }
 
@@ -172,20 +126,6 @@ namespace NLog.Config
             {
                 _items.Clear();
             }
-        }
-
-        /// <inheritdoc/>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2067")]
-        void INamedItemFactory<TBaseType, Type>.RegisterDefinition(string itemName, Type itemDefinition)
-        {
-            if (string.IsNullOrEmpty(itemName))
-                throw new ArgumentException($"Missing NLog {typeof(TBaseType).Name} type-alias", nameof(itemName));
-
-            if (!typeof(TBaseType).IsAssignableFrom(itemDefinition))
-                throw new ArgumentException($"Not of type NLog {typeof(TBaseType).Name}", nameof(itemDefinition));
-
-            RegisterDefinition(itemDefinition, itemName, string.Empty);
         }
 
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
@@ -205,11 +145,10 @@ namespace NLog.Config
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
             Func<TBaseType> itemCreator = () => (TBaseType)Activator.CreateInstance(itemType);
-            var itemFactory = new ItemFactory(() => itemType, itemCreator);
             lock (ConfigurationItemFactory.SyncRoot)
             {
                 _parentFactory.RegisterTypeProperties(itemType, () => itemCreator.Invoke());
-                _items[itemNamePrefix + typeAlias] = itemFactory;
+                _items[itemNamePrefix + typeAlias] = () => itemCreator.Invoke();
             }
         }
 
@@ -217,11 +156,10 @@ namespace NLog.Config
         {
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            var itemFactory = new ItemFactory(() => typeof(TType), () => new TType());
             lock (ConfigurationItemFactory.SyncRoot)
             {
                 _parentFactory.RegisterTypeProperties<TType>(() => new TType());
-                _items[typeAlias] = itemFactory;
+                _items[typeAlias] = () => new TType();
             }
         }
 
@@ -229,50 +167,14 @@ namespace NLog.Config
         {
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            var itemFactory = new ItemFactory(() => typeof(TType), () => itemCreator());
             lock (ConfigurationItemFactory.SyncRoot)
             {
                 _parentFactory.RegisterTypeProperties<TType>(() => itemCreator());
-                _items[typeAlias] = itemFactory;
+                _items[typeAlias] = () => itemCreator();
             }
         }
 
-        /// <inheritdoc/>
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        public bool TryGetDefinition(string itemName, out Type result)
-        {
-            itemName = FactoryExtensions.NormalizeName(itemName);
-
-            if (!TryGetItemFactory(itemName, out var itemFactory) || itemFactory.ItemType is null)
-            {
-                if (_globalDefaultFactory != null && _globalDefaultFactory.TryGetDefinition(itemName, out result))
-                {
-                    return true;
-                }
-
-                result = null;
-                return false;
-            }
-
-            try
-            {
-                result = itemFactory.ItemType.Invoke();
-                return result != null;
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                // delegate invocation failed - type is not available
-                result = null;
-                return false;
-            }
-        }
-
-        private bool TryGetItemFactory(string typeAlias, out ItemFactory itemFactory)
+        private bool TryGetItemFactory(string typeAlias, out Func<TBaseType> itemFactory)
         {
             lock (ConfigurationItemFactory.SyncRoot)
             {
@@ -280,52 +182,19 @@ namespace NLog.Config
             }
         }
 
-        bool INamedItemFactory<TBaseType, Type>.TryCreateInstance(string itemName, out TBaseType result)
-        {
-            return TryCreateInstance(itemName, out result);
-        }
-
         /// <inheritdoc/>
         public virtual bool TryCreateInstance(string typeAlias, out TBaseType result)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            if (TryCreateInstanceLegacy(typeAlias, out result))
-                return true;
-#pragma warning restore CS0618 // Type or member is obsolete
-
             typeAlias = FactoryExtensions.NormalizeName(typeAlias);
 
-            if (!TryGetItemFactory(typeAlias, out var itemFactory) || itemFactory.ItemCreator is null)
+            if (!TryGetItemFactory(typeAlias, out var itemFactory) || itemFactory is null)
             {
                 result = null;
                 return false;
             }
 
-            result = itemFactory.ItemCreator.Invoke();
+            result = itemFactory.Invoke();
             return !(result is null);
-        }
-
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        private bool TryCreateInstanceLegacy(string itemName, out TBaseType result)
-        {
-            if (!ReferenceEquals(_parentFactory.CreateInstance, FactoryHelper.CreateInstance))
-            {
-                if (TryGetDefinition(itemName, out var itemType))
-                {
-                    result = (TBaseType)_parentFactory.CreateInstance(itemType);
-                    return true;
-                }
-            }
-
-            result = null;
-            return false;
-        }
-
-        /// <inheritdoc/>
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        TBaseType INamedItemFactory<TBaseType, Type>.CreateInstance(string itemName)
-        {
-            return FactoryExtensions.CreateInstance(this, itemName);
         }
     }
 
@@ -419,7 +288,7 @@ namespace NLog.Config
         private readonly LayoutRendererFactory _globalDefaultFactory;
 
         public LayoutRendererFactory(ConfigurationItemFactory parentFactory, LayoutRendererFactory globalDefaultFactory)
-            : base(parentFactory, globalDefaultFactory)
+            : base(parentFactory)
         {
             _globalDefaultFactory = globalDefaultFactory;
         }

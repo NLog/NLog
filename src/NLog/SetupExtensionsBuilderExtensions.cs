@@ -80,9 +80,7 @@ namespace NLog
         /// </summary>
         public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, Assembly assembly)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
-#pragma warning restore CS0618 // Type or member is obsolete
+            ConfigurationItemFactory.Default.AssemblyLoader.LoadAssembly(ConfigurationItemFactory.Default, assembly, string.Empty);
             return setupBuilder;
         }
 

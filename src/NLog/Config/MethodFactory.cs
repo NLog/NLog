@@ -37,20 +37,14 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using NLog.Common;
     using NLog.Conditions;
     using NLog.Internal;
 
     /// <summary>
     /// Factory for locating methods.
     /// </summary>
-    internal sealed class MethodFactory :
-#pragma warning disable CS0618 // Type or member is obsolete
-        INamedItemFactory<MethodInfo, MethodInfo>,
-#pragma warning restore CS0618 // Type or member is obsolete
-        IFactory
+    internal sealed class MethodFactory : IFactory
     {
-        private readonly MethodFactory _globalDefaultFactory;
         private readonly Dictionary<string, MethodDetails> _nameToMethodDetails = new Dictionary<string, MethodDetails>(StringComparer.OrdinalIgnoreCase);
 
         struct MethodDetails
@@ -89,71 +83,22 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MethodFactory"/> class.
-        /// </summary>
-        public MethodFactory(MethodFactory globalDefaultFactory)
-        {
-            _globalDefaultFactory = globalDefaultFactory;
-        }
-
-        /// <summary>
-        /// Scans the assembly for classes marked with expected class <see cref="Attribute"/>
-        /// and methods marked with expected <see cref="NameBaseAttribute"/> and adds them
-        /// to the factory.
-        /// </summary>
-        /// <param name="types">The types to scan.</param>
-        /// <param name="assemblyName">The assembly name for the type.</param>
-        /// <param name="itemNamePrefix">The item name prefix.</param>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2072")]
-        [UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2062")]
-        public void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix)
-        {
-            foreach (Type t in types)
-            {
-                try
-                {
-                    if (t.IsClass())
-                    {
-                        RegisterType(t, itemNamePrefix);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Registers the type.
         /// </summary>
         /// <param name="type">The type to register.</param>
         /// <param name="itemNamePrefix">The item name prefix.</param>
         void IFactory.RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
-            RegisterType(type, itemNamePrefix);
-        }
-
-        /// <summary>
-        /// Registers the type.
-        /// </summary>
-        /// <param name="type">The type to register.</param>
-        /// <param name="itemNamePrefix">The item name prefix.</param>
-        private void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
-        {
-            var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
-            if (extractedMethods?.Count > 0)
+            if (type.IsClass())
             {
-                for (int i = 0; i < extractedMethods.Count; ++i)
+                var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
+                if (extractedMethods?.Count > 0)
                 {
-                    string methodName = string.IsNullOrEmpty(itemNamePrefix) ? extractedMethods[i].Key : itemNamePrefix + extractedMethods[i].Key;
-                    RegisterDefinition(methodName, extractedMethods[i].Value);
+                    for (int i = 0; i < extractedMethods.Count; ++i)
+                    {
+                        string methodName = string.IsNullOrEmpty(itemNamePrefix) ? extractedMethods[i].Key : itemNamePrefix + extractedMethods[i].Key;
+                        RegisterDefinition(methodName, extractedMethods[i].Value);
+                    }
                 }
             }
         }
@@ -194,17 +139,6 @@ namespace NLog.Config
             {
                 _nameToMethodDetails.Clear();
             }
-        }
-
-        /// <summary>
-        /// Registers the definition of a single method.
-        /// </summary>
-        /// <param name="itemName">The method name.</param>
-        /// <param name="itemDefinition">The method info.</param>
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        void INamedItemFactory<MethodInfo, MethodInfo>.RegisterDefinition(string itemName, MethodInfo itemDefinition)
-        {
-            RegisterDefinition(itemName, itemDefinition);
         }
 
         internal void RegisterDefinition(string methodName, MethodInfo methodInfo)
@@ -336,56 +270,6 @@ namespace NLog.Config
             for (int i = 4; i < defaultMethodParameters.Length; ++i)
                 methodParameters[i] = defaultMethodParameters[i];
             return methodParameters;
-        }
-
-        /// <summary>
-        /// Tries to retrieve method by name.
-        /// </summary>
-        /// <param name="itemName">The method name.</param>
-        /// <param name="result">The result.</param>
-        /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        bool INamedItemFactory<MethodInfo, MethodInfo>.TryCreateInstance(string itemName, out MethodInfo result)
-        {
-            return TryGetDefinition(itemName, out result);
-        }
-
-        /// <summary>
-        /// Retrieves method by name.
-        /// </summary>
-        /// <param name="itemName">Method name.</param>
-        /// <returns>MethodInfo object.</returns>
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        MethodInfo INamedItemFactory<MethodInfo, MethodInfo>.CreateInstance(string itemName)
-        {
-            if (TryGetDefinition(itemName, out MethodInfo result))
-            {
-                return result;
-            }
-
-            throw new NLogConfigurationException($"Unknown function: '{itemName}'");
-        }
-
-        /// <summary>
-        /// Tries to get method definition.
-        /// </summary>
-        /// <param name="itemName">The method name.</param>
-        /// <param name="result">The result.</param>
-        /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
-        [Obsolete("Use TryCreateInstance instead. Marked obsolete with NLog v5.2")]
-        public bool TryGetDefinition(string itemName, out MethodInfo result)
-        {
-            lock (_nameToMethodDetails)
-            {
-                if (_nameToMethodDetails.TryGetValue(itemName, out var methodDetails))
-                {
-                    result = methodDetails.MethodInfo;
-                    return result != null;
-                }
-            }
-
-            result = null;
-            return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
         }
 
         public void RegisterNoParameters(string methodName, Func<LogEventInfo, object> noParameters, MethodInfo legacyMethodInfo = null)
