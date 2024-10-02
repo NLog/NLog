@@ -48,6 +48,8 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeNested-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("scopenested")]
+    [LayoutRenderer("ndc")]
+    [LayoutRenderer("ndlc")]
     public sealed class ScopeContextNestedStatesLayoutRenderer : LayoutRenderer
     {
         /// <summary>

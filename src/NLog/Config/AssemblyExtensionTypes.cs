@@ -108,12 +108,7 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MachineNameLayoutRenderer>("machinename");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MdcLayoutRenderer>("mdc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MdlcLayoutRenderer>("mdlc");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.MessageLayoutRenderer>("message");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NdcLayoutRenderer>("ndc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NdlcLayoutRenderer>("ndlc");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NdlcTimingLayoutRenderer>("ndlctiming");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NewLineLayoutRenderer>("newline");
 #if !NETSTANDARD1_3
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.NLogDirLayoutRenderer>("nlogdir");
@@ -133,8 +128,13 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ProcessTimeLayoutRenderer>("processtime");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextIndentLayoutRenderer>("scopeindent");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("scopenested");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndc");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextNestedStatesLayoutRenderer>("ndlc");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("scopeproperty");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdc");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextPropertyLayoutRenderer>("mdlc");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("scopetiming");
+            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ScopeContextTimingLayoutRenderer>("ndlctiming");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.SequenceIdLayoutRenderer>("sequenceid");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.ShortDateLayoutRenderer>("shortdate");
 #if !NETSTANDARD1_3 && !NETSTANDARD1_5

@@ -46,6 +46,8 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeProperty-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("scopeproperty")]
+    [LayoutRenderer("mdc")]
+    [LayoutRenderer("mdlc")]
     public sealed class ScopeContextPropertyLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>

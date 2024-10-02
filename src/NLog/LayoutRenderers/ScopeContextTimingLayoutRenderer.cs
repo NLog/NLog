@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/ScopeTiming-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("scopetiming")]
+    [LayoutRenderer("ndlctiming")]
     public sealed class ScopeContextTimingLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -59,6 +60,13 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         public bool StartTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to just display the scope creation time, and not the duration
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Replaced by StartTime. Marked obsolete on NLog 6.0")]
+        public bool ScopeBeginTime { get => StartTime; set => StartTime = value; }
 
         /// <summary>
         /// Gets or sets the TimeSpan format. Can be any argument accepted by TimeSpan.ToString(format).
