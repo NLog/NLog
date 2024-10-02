@@ -544,29 +544,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void SetupInternalLoggerLogToTraceTest()
-        {
-            try
-            {
-                // Arrange
-                InternalLogger.Reset();
-                var logFactory = new LogFactory();
-
-                // Act
-                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToTrace(true));
-
-                // Assert
-#pragma warning disable CS0618 // Type or member is obsolete
-                Assert.True(InternalLogger.LogToTrace);
-#pragma warning restore CS0618 // Type or member is obsolete
-            }
-            finally
-            {
-                InternalLogger.Reset();
-            }
-        }
-
-        [Fact]
         public void SetupInternalLoggerLogToWriterTest()
         {
             try
@@ -580,29 +557,6 @@ namespace NLog.UnitTests.Config
 
                 // Assert
                 Assert.Equal(Console.Out, InternalLogger.LogWriter);
-            }
-            finally
-            {
-                InternalLogger.Reset();
-            }
-        }
-
-        [Fact]
-        public void SetupInternalLoggerSetupFromEnvironmentVariablesTest()
-        {
-            try
-            {
-                // Arrange
-                InternalLogger.Reset();
-                var logFactory = new LogFactory();
-                InternalLogger.IncludeTimestamp = false;
-
-                // Act
-                logFactory.Setup().SetupInternalLogger(b => b.SetupFromEnvironmentVariables().SetMinimumLogLevel(LogLevel.Fatal));
-
-                // Assert
-                Assert.True(InternalLogger.IncludeTimestamp);
-                Assert.Equal(LogLevel.Fatal, InternalLogger.LogLevel);
             }
             finally
             {

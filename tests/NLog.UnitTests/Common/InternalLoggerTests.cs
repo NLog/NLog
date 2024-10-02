@@ -803,14 +803,14 @@ namespace NLog.UnitTests.Common
             using (var loggerScope = new InternalLoggerScope())
             {
                 // Arrange
-                var receivedArgs = new List<InternalLoggerMessageEventArgs>();
+                var receivedArgs = new List<InternalLogEventArgs>();
                 var logFactory = new LogFactory();
                 logFactory.Setup().SetupInternalLogger(s =>
                 {
-                    EventHandler<InternalLoggerMessageEventArgs> eventHandler = (sender, e) => receivedArgs.Add(e);
-                    s.AddLogSubscription(eventHandler);
-                    s.RemoveLogSubscription(eventHandler);
-                    s.AddLogSubscription(eventHandler);
+                    InternalEventOccurredHandler eventHandler = (sender, e) => receivedArgs.Add(e);
+                    s.AddEventSubscription(eventHandler);
+                    s.RemoveEventSubscription(eventHandler);
+                    s.AddEventSubscription(eventHandler);
                 });
                 var exception = new Exception();
 
@@ -827,14 +827,13 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
-        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventThrowingTest()
         {
             using (var loggerScope = new InternalLoggerScope())
             {
                 // Arrange
-                var receivedArgs = new List<InternalLoggerMessageEventArgs>();
-                InternalLogger.LogMessageReceived += (sender, e) =>
+                var receivedArgs = new List<InternalLogEventArgs>();
+                InternalLogger.InternalEventOccurred += (sender, e) =>
                 {
                     receivedArgs.Add(e);
                     throw new ApplicationException("I'm a bad programmer");
@@ -854,15 +853,14 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
-        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
         public void TestReceivedLogEventContextTest()
         {
             using (var loggerScope = new InternalLoggerScope())
             {
                 // Arrange
                 var targetContext = new NLog.Targets.DebugTarget() { Name = "Ugly" };
-                var receivedArgs = new List<InternalLoggerMessageEventArgs>();
-                InternalLogger.LogMessageReceived += (sender, e) =>
+                var receivedArgs = new List<InternalLogEventArgs>();
+                InternalLogger.InternalEventOccurred += (sender, e) =>
                 {
                     receivedArgs.Add(e);
                 };

@@ -36,7 +36,7 @@ using JetBrains.Annotations;
 namespace NLog.Common
 {
     /// <summary>
-    /// Enables <see cref="InternalLogger"/> to extract extra context details for <see cref="InternalLogger.LogMessageReceived"/>
+    /// Enables <see cref="InternalLogger"/> to extract extra context details for <see cref="InternalLogger.InternalEventOccurred"/>
     /// </summary>
     internal interface IInternalLoggerContext
     {
