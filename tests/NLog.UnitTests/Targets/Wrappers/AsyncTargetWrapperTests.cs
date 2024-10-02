@@ -1,44 +1,45 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using System.Collections.Generic;
     using Xunit;
 
     public class AsyncTargetWrapperTests : NLogTestBase
@@ -84,17 +85,17 @@ namespace NLog.UnitTests.Targets.Wrappers
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
-        private void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
+        private static void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
         {
             LogManager.ThrowConfigExceptions = true;
 
             var myTarget = new MyTarget();
-            var targetWrapper = new AsyncTargetWrapper() {
+            var targetWrapper = new AsyncTargetWrapper()
+            {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
-#if NET4_5
+#if !NET35 && !NET40
                 ForceLockingQueue = forceLockingQueue,
-                OptimizeBufferReuse = !forceLockingQueue,
 #endif
                 BatchSize = 3,
                 QueueLimit = 5, // Will make it "sleep" between every second write
@@ -174,7 +175,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
                 }
 
-#if NET4_5
+#if DEBUG
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
                     Assert.InRange(elapsedMilliseconds, 0, 975);
@@ -219,7 +220,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-                // continuation was not hit 
+                // continuation was not hit
                 Assert.True(continuationHit.WaitOne(5000));
                 Assert.NotSame(continuationThread, Thread.CurrentThread);
                 Assert.Null(lastException);
@@ -283,10 +284,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             var myTarget = new MyAsyncTarget
             {
                 ThrowExceptions = true,
-       
+
             };
 
-            var targetWrapper = new AsyncTargetWrapper(myTarget) {Name = "AsyncTargetWrapperAsyncWithExceptionTest1_Wrapper"};
+            var targetWrapper = new AsyncTargetWrapper(myTarget) { Name = "AsyncTargetWrapperAsyncWithExceptionTest1_Wrapper" };
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
             try
@@ -397,10 +398,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         },
                         LogLevel.Trace);
 
-                    if (lastException != null)
-                    {
-                        Assert.True(false, lastException.ToString() + "\r\n" + internalLog);
-                    }
+                    Assert.True(lastException is null, lastException?.ToString() + "\r\n" + internalLog);
                 }
                 finally
                 {
@@ -428,10 +426,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
 
-            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+            var writeOnClose = new ManualResetEvent(false);
+
+            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { writeOnClose.Set(); }));
 
             // quickly close the target before the timer elapses
             targetWrapper.Close();
+
+            Assert.True(writeOnClose.WaitOne(5000));
         }
 
         [Fact]
@@ -573,7 +575,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     logger.Info("Hello");
                 }
-                
+
                 Assert.Equal(0, eventsCounter);
             }
             finally
@@ -611,7 +613,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     logger.Info("Hello");
                 }
-                
+
                 Assert.Equal(0, eventsCounter);
             }
             finally
@@ -653,7 +655,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     logger.Info("Hello");
                 }
-                
+
                 Assert.Equal(expectedGrowingNumber, eventsCounter);
             }
             finally
@@ -661,7 +663,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                 logFactory.Configuration = null;
             }
         }
-
 
         [Fact]
         public void EnqueuQueueBlock_WithLock_OnClose_ReleasesWriters()
@@ -674,9 +675,10 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             EnqueuQueueBlock_OnClose_ReleasesWriters(false);
         }
-        private void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue)
+
+        private static void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue)
         {
-            // Setup
+            // Arrange
             var slowTarget = new MethodCallTarget("slowTarget", (logEvent, parms) => System.Threading.Thread.Sleep(300));
             var targetWrapper = new AsyncTargetWrapper("asynSlowTarget", slowTarget)
             {
@@ -708,6 +710,40 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             Assert.Equal(1, Interlocked.Read(ref allTasksCompleted));
+        }
+
+        [Fact]
+        public void AsyncTargetWrapper_MissingDependency_EnqueueLogEvents()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+                logFactory.ThrowConfigExceptions = true;
+                var logConfig = new LoggingConfiguration(logFactory);
+                var asyncTarget = new MyTarget() { Name = "asynctarget", RequiredDependency = typeof(IMisingDependencyClass) };
+                logConfig.AddRuleForAllLevels(new AsyncTargetWrapper("wrapper", asyncTarget));
+                logFactory.Configuration = logConfig;
+                var logger = logFactory.GetLogger(nameof(AsyncTargetWrapper_MissingDependency_EnqueueLogEvents));
+
+                // Act
+                logger.Info("Hello World");
+                Assert.False(asyncTarget.WaitForWriteEvent(50));
+                logFactory.ServiceRepository.RegisterService(typeof(IMisingDependencyClass), new MisingDependencyClass());
+
+                // Assert
+                Assert.True(asyncTarget.WaitForWriteEvent());
+            }
+        }
+
+        private interface IMisingDependencyClass
+        {
+
+        }
+
+        private class MisingDependencyClass : IMisingDependencyClass
+        {
+
         }
 
         private class MyAsyncTarget : Target
@@ -767,13 +803,47 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         private class MyTarget : Target
         {
+            private readonly AutoResetEvent _writeEvent = new AutoResetEvent(false);
+
             public int FlushCount { get; set; }
             public int WriteCount { get; set; }
+
+            public Type RequiredDependency { get; set; }
+
+            public bool WaitForWriteEvent(int timeoutMilliseconds = 1000)
+            {
+                if (_writeEvent.WaitOne(TimeSpan.FromMilliseconds(timeoutMilliseconds)))
+                {
+                    Thread.Sleep(25);
+                    return true;
+                }
+                return false;
+            }
+
+            protected override void InitializeTarget()
+            {
+                base.InitializeTarget();
+
+                if (RequiredDependency != null)
+                {
+                    try
+                    {
+                        var resolveServiceMethod = typeof(Target).GetMethod(nameof(ResolveService), System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                        resolveServiceMethod = resolveServiceMethod.MakeGenericMethod(new[] { RequiredDependency });
+                        resolveServiceMethod.Invoke(this, NLog.Internal.ArrayHelper.Empty<object>());
+                    }
+                    catch (System.Reflection.TargetInvocationException ex)
+                    {
+                        throw ex.InnerException;
+                    }
+                }
+            }
 
             protected override void Write(LogEventInfo logEvent)
             {
                 Assert.True(FlushCount <= WriteCount);
                 WriteCount++;
+                _writeEvent.Set();
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)

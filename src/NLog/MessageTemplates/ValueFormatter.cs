@@ -1,70 +1,66 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using JetBrains.Annotations;
 using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Convert Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
+    /// Convert, Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
     /// </summary>
-    internal class ValueFormatter : IValueFormatter
+    internal sealed class ValueFormatter : IValueFormatter
     {
-        public static IValueFormatter Instance
-        {
-            get => _instance ?? (_instance = new ValueFormatter());
-            set => _instance = value ?? new ValueFormatter();
-        }
-        private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
+        private readonly IServiceProvider _serviceProvider;
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceProvider.GetService<IJsonConverter>());
+        private IJsonConverter _jsonConverter;
 
-        /// <summary>Singleton</summary>
-        private ValueFormatter()
+        public ValueFormatter([NotNull] IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
         }
 
         private const int MaxRecursionDepth = 2;
         private const int MaxValueLength = 512 * 1024;
         private const string LiteralFormatSymbol = "l";
-
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(2000);
-
         public const string FormatAsJson = "@";
         public const string FormatAsString = "$";
 
@@ -83,7 +79,7 @@ namespace NLog.MessageTemplates
             {
                 case CaptureType.Serialize:
                     {
-                        return ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
+                        return JsonConverter.SerializeObject(value, builder);
                     }
                 case CaptureType.Stringify:
                     {
@@ -135,7 +131,7 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            if (value == null)
+            if (value is null)
             {
                 builder.Append("NULL");
                 return true;
@@ -211,7 +207,7 @@ namespace NLog.MessageTemplates
                         }
                         else
                         {
-                            builder.AppendIntegerAsString(value, convertibleTypeCode);
+                            builder.AppendNumericInvariant(value, convertibleTypeCode);
                         }
                         break;
                     }
@@ -225,6 +221,11 @@ namespace NLog.MessageTemplates
 
         private static void SerializeConvertToString(object value, IFormatProvider formatProvider, StringBuilder builder)
         {
+#if NETSTANDARD
+            if (value is IFormattable)
+                builder.AppendFormat(formatProvider, "{0}", value); // Support ISpanFormattable
+            else
+#endif
             builder.Append(Convert.ToString(value, formatProvider));
         }
 
@@ -280,7 +281,7 @@ namespace NLog.MessageTemplates
         /// "FirstOrder"=true, "Previous login"=20-12-2017 14:55:32, "number of tries"=1
         /// </example>
         /// <param name="dictionary"></param>
-        /// <param name="format">formatstring of an item</param>
+        /// <param name="format">format string of an item</param>
         /// <param name="formatProvider"></param>
         /// <param name="builder"></param>
         /// <param name="objectsInPath"></param>
@@ -297,7 +298,7 @@ namespace NLog.MessageTemplates
                 if (separator) builder.Append(", ");
 
                 SerializeCollectionItem(item.Key, format, formatProvider, builder, ref objectsInPath, depth);
-                builder.Append("=");
+                builder.Append('=');
                 SerializeCollectionItem(item.Value, format, formatProvider, builder, ref objectsInPath, depth);
                 separator = true;
             }
@@ -347,9 +348,13 @@ namespace NLog.MessageTemplates
             }
             else
             {
-                var formattable = value as IFormattable;
-                if (formattable != null)
+                if (value is IFormattable formattable)
                 {
+#if NETSTANDARD
+                    if (string.IsNullOrEmpty(format))
+                        builder.AppendFormat(formatProvider, "{0}", formattable); // Support ISpanFormattable
+                    else
+#endif
                     builder.Append(formattable.ToString(format, formatProvider));
                 }
                 else

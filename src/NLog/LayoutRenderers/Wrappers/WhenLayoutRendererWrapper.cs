@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.LayoutRenderers.Wrappers
 {
@@ -37,29 +37,32 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Text;
     using NLog.Conditions;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Only outputs the inner layout when the specified condition has been met.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/NLog/NLog/wiki/When-Layout-Renderer">See NLog Wiki</a>
+    /// </remarks>
+    /// <seealso href="https://github.com/NLog/NLog/wiki/When-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("when")]
-    [AmbientProperty("When")]
+    [AmbientProperty(nameof(When))]
     [ThreadAgnostic]
-    [ThreadSafe]
-    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue
+    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Condition Options" order="10"/>
         [RequiredParameter]
         public ConditionExpression When { get; set; }
 
         /// <summary>
         /// If <see cref="When"/> is not met, print this layout.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
+        /// <docgen category="Condition Options" order="10"/>
         public Layout Else { get; set; }
 
         /// <inheritdoc/>
@@ -70,11 +73,11 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 if (ShouldRenderInner(logEvent))
                 {
-                    Inner?.RenderAppendBuilder(logEvent, builder);
+                    Inner?.Render(logEvent, builder);
                 }
                 else
                 {
-                    Else?.RenderAppendBuilder(logEvent, builder);
+                    Else?.Render(logEvent, builder);
                 }
             }
             catch
@@ -84,19 +87,18 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
+        /// <inheritdoc/>
+        protected override string Transform(string text)
+        {
+            throw new NotSupportedException();
+        }
+
         private bool ShouldRenderInner(LogEventInfo logEvent)
         {
-            return When == null || true.Equals(When.Evaluate(logEvent));
+            return When is null || true.Equals(When.Evaluate(logEvent));
         }
 
-        /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
-        {
-        }
-
-        /// <inheritdoc />
-        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
             if (ShouldRenderInner(logEvent))
             {
@@ -108,7 +110,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object value)
         {
-            if (layout == null)
+            if (layout is null)
             {
                 value = null;
                 return false;

@@ -1,1 +1,0 @@
-# To uninstall remove snippets manually

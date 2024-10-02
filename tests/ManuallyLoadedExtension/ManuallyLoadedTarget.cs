@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 using NLog.Targets;
 
 namespace ManuallyLoadedExtension

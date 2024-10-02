@@ -1,46 +1,47 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-#if  !MONO && !NETSTANDARD
+#if !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.Eventing.Reader;
     using System.Linq;
-    using System.Diagnostics;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -48,6 +49,14 @@ namespace NLog.UnitTests.Targets
     public class EventLogTargetTests : NLogTestBase
     {
         private const int MaxMessageLength = EventLogTarget.EventLogMaxMessageLength;
+
+        [Fact]
+        public void EventLogSource_AppDomainFriendlyName()
+        {
+            var eventLogTarget = new EventLogTarget();
+            var eventLogSource = eventLogTarget.Source?.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal(AppDomain.CurrentDomain.FriendlyName, eventLogSource);
+        }
 
         [Fact]
         public void MaxMessageLengthShouldBe16384_WhenNotSpecifyAnyOption()
@@ -74,9 +83,7 @@ namespace NLog.UnitTests.Targets
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{
-                    expectedMaxMessageLength
-                }' />
+                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{expectedMaxMessageLength}' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='eventLog1'>
@@ -96,9 +103,7 @@ namespace NLog.UnitTests.Targets
             string configrationText = $@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{
-                    maxMessageLength
-                }' />
+                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{maxMessageLength}' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='eventLog1'>
@@ -114,7 +119,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(0)] // Is multiple of 64, but less than the min value of 64
         [InlineData(65)] // Isn't multiple of 64
         [InlineData(4194304)] // Is multiple of 64, but bigger than the max value of 4194240
-        public void Configuration_ShouldThrowException_WhenMaxKilobytesIsInvalid(long? maxKilobytes)
+        public void Configuration_ShouldThrowException_WhenMaxKilobytesIsInvalid(long maxKilobytes)
         {
             string configrationText = $@"
             <nlog ThrowExceptions='true'>
@@ -134,7 +139,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(0)] // Is multiple of 64, but less than the min value of 64
         [InlineData(65)] // Isn't multiple of 64
         [InlineData(4194304)] // Is multiple of 64, but bigger than the max value of 4194240
-        public void MaxKilobytes_ShouldThrowException_WhenMaxKilobytesIsInvalid(long? maxKilobytes)
+        public void MaxKilobytes_ShouldThrowException_WhenMaxKilobytesIsInvalid(long maxKilobytes)
         {
             ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
@@ -150,7 +155,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(64)] // Min value
         [InlineData(4194240)] // Max value
         [InlineData(16384)] // Acceptable value
-        public void ConfigurationMaxKilobytes_ShouldBeAsSpecified_WhenMaxKilobytesIsValid(long? maxKilobytes)
+        public void ConfigurationMaxKilobytes_ShouldBeAsSpecified_WhenMaxKilobytesIsValid(long maxKilobytes)
         {
             var expectedMaxKilobytes = maxKilobytes;
 
@@ -171,9 +176,9 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [InlineData(null)] // A possible value, that should not change anything
-        [InlineData(64)] // Min value
-        [InlineData(4194240)] // Max value
-        [InlineData(16384)] // Acceptable value
+        [InlineData(64L)] // Min value
+        [InlineData(4194240L)] // Max value
+        [InlineData(16384L)] // Acceptable value
         public void MaxKilobytes_ShouldBeAsSpecified_WhenValueIsValid(long? maxKilobytes)
         {
             var expectedMaxKilobytes = maxKilobytes;
@@ -185,8 +190,8 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData(32768, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
-        [InlineData(16384, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
+        [InlineData(32768L, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
+        [InlineData(16384L, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
         [InlineData(null, EventLogMock.EventLogDefaultMaxKilobytes, EventLogMock.EventLogDefaultMaxKilobytes)]      // Should not change MaxKilobytes when the value is null
         public void ShouldSetMaxKilobytes_WhenNeeded(long? newValue, long initialValue, long expectedValue)
         {
@@ -245,7 +250,6 @@ namespace NLog.UnitTests.Targets
             Layout entryTypeLayout = layoutString != null ? new SimpleLayout(layoutString) : null;
 
             var eventRecords = WriteWithMock(logLevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout).ToList();
-
             Assert.Single(eventRecords);
             AssertWrittenMessage(eventRecords, expectedMessage);
         }
@@ -271,7 +275,6 @@ namespace NLog.UnitTests.Targets
             string messagePart2 = "this part must be split";
             string testMessage = messagePart1 + messagePart2;
             var entries = WriteWithMock(logLevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
-
             Assert.Equal(expectedEntryCount, entries.Count);
         }
 
@@ -471,7 +474,8 @@ namespace NLog.UnitTests.Targets
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
             target.Layout = new SimpleLayout("${message}");
             target.Source = new SimpleLayout("${event-properties:item=DynamicSource}");
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
 
             var logger = LogManager.GetLogger("WriteEventLogEntry");
 
@@ -506,9 +510,9 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = new SimpleLayout(eventId.ToString());
-            target.Category = new SimpleLayout(category.ToString());
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            target.EventId = eventId;
+            target.Category = (short)category;
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(LogLevel.Error, "Simple Test Message");
             var eventLog = new EventLog(target.Log);
@@ -531,9 +535,9 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = new SimpleLayout("${event-properties:EventId}");
-            target.Category = new SimpleLayout("${event-properties:Category}");
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            target.EventId = "${event-properties:EventId}";
+            target.Category = "${event-properties:Category}";
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             LogEventInfo theEvent = new LogEventInfo(LogLevel.Error, "TestLoggerName", "Simple Message");
             theEvent.Properties["EventId"] = eventId;
@@ -565,7 +569,7 @@ namespace NLog.UnitTests.Targets
             var target = new EventLogTarget(eventLogMock, null);
             InitializeEventLogTarget(target, sourceName, overflowAction, maxMessageLength, entryType);
 
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+            LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(target));
 
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(logLevel, logMessage);
@@ -620,7 +624,8 @@ namespace NLog.UnitTests.Targets
 
             if (entryType != null)
             {
-                target.EntryType = entryType;
+                using (new NoThrowNLogExceptions())
+                    target.EntryType = new Layout<EventLogEntryType>(entryType);
             }
 
             return target;
@@ -675,10 +680,10 @@ namespace NLog.UnitTests.Targets
                 Func<string, string, string> logNameFromSourceNameFunction,
                 Action<EventSourceCreationData> createEventSourceFunction)
             {
-                DeleteEventSourceFunction = deleteEventSourceFunction ?? throw new ArgumentNullException(nameof(deleteEventSourceFunction));
-                SourceExistsFunction = sourceExistsFunction ?? throw new ArgumentNullException(nameof(sourceExistsFunction));
-                LogNameFromSourceNameFunction = logNameFromSourceNameFunction ?? throw new ArgumentNullException(nameof(logNameFromSourceNameFunction));
-                CreateEventSourceFunction = createEventSourceFunction ?? throw new ArgumentNullException(nameof(createEventSourceFunction));
+                DeleteEventSourceFunction = Guard.ThrowIfNull(deleteEventSourceFunction);
+                SourceExistsFunction = Guard.ThrowIfNull(sourceExistsFunction);
+                LogNameFromSourceNameFunction = Guard.ThrowIfNull(logNameFromSourceNameFunction);
+                CreateEventSourceFunction = Guard.ThrowIfNull(createEventSourceFunction);
             }
 
             private Action<string, string> DeleteEventSourceFunction { get; }
@@ -699,19 +704,19 @@ namespace NLog.UnitTests.Targets
 
             internal List<EventRecord> WrittenEntries { get; } = new List<EventRecord>();
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string Source { get; set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string Log { get; set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string MachineName { get; set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public long MaximumKilobytes { get; set; } = EventLogDefaultMaxKilobytes;
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category)
             {
                 if (!IsEventLogAssociated)
@@ -729,10 +734,10 @@ namespace NLog.UnitTests.Targets
                 });
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public bool IsEventLogAssociated { get; private set; }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void AssociateNewEventLog(string logName, string machineName, string source)
             {
                 Log = logName;
@@ -745,16 +750,16 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void DeleteEventSource(string source, string machineName) => DeleteEventSourceFunction(source, machineName);
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public bool SourceExists(string source, string machineName) => SourceExistsFunction(source, machineName);
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public string LogNameFromSourceName(string source, string machineName) => LogNameFromSourceNameFunction(source, machineName);
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public void CreateEventSource(EventSourceCreationData sourceData) => CreateEventSourceFunction(sourceData);
         }
     }

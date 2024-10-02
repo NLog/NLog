@@ -1,39 +1,38 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System.Collections.Generic;
 using System.Linq;
-using NLog.Config;
 using NLog.Targets;
 using Xunit;
 
@@ -98,7 +97,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void TestMethodCall2()
         {
-            //Type AssemblyQualifiedName 
+            //Type AssemblyQualifiedName
             //to find, use typeof(MethodCallTests).AssemblyQualifiedName
             TestMethodCall(new MethodCallRecord("StaticAndPublic", "test1", 2), "StaticAndPublic", "NLog.UnitTests.Targets.MethodCallTests, NLog.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b793d3de60bec2b9");
         }
@@ -115,7 +114,28 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WrongClassDontThrow()
         {
-            TestMethodCall(null, "StaticAndPublic", "NLog.UnitTests222.Targets.CallTest, NLog.UnitTests");
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "StaticAndPublic", "NLog.UnitTests222.Targets.CallTest, NLog.UnitTests");
+            }
+        }
+
+        [Fact]
+        public void WrongMethodDontThrow()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "WrongStaticAndPublic", CorrectClassName);
+            }
+        }
+
+        [Fact]
+        public void EmptyClassDontThrow()
+        {
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "", "");
+            }
         }
 
         [Fact]
@@ -154,37 +174,40 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FluentDelegateConfiguration()
         {
-            var configuration = new LoggingConfiguration();
-
             string expectedMessage = "Hello World";
             string actualMessage = string.Empty;
-            configuration.AddRuleForAllLevels(new MethodCallTarget("Hello", (logEvent, parameters) => { actualMessage = logEvent.Message; }));
-            LogManager.Configuration = configuration;
 
-            LogManager.GetCurrentClassLogger().Debug(expectedMessage);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                var target = new MethodCallTarget("Hello", (logEvent, parameters) => { actualMessage = logEvent.Message; });
+                builder.ForLogger().WriteTo(target);
+            }).LogFactory;
+
+            logFactory.GetCurrentClassLogger().Debug(expectedMessage);
+            logFactory.GetCurrentClassLogger().Debug(expectedMessage);  // Bonus call to verify compiled expression tree works
 
             Assert.Equal(expectedMessage, actualMessage);
         }
 
         private static void TestMethodCall(MethodCallRecord expected, string methodName, string className)
         {
-            var target = new MethodCallTarget
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
             {
-                Name = "t1",
-                ClassName = className,
-                MethodName = methodName
-            };
-            target.Parameters.Add(new MethodCallParameter("param1", "test1"));
-            target.Parameters.Add(new MethodCallParameter("param2", "2", typeof(int)));
-
-            var configuration = new LoggingConfiguration();
-            configuration.AddTarget(target);
-            configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, target));
-            LogManager.Configuration = configuration;
+                var target = new MethodCallTarget
+                {
+                    Name = "t1",
+                    ClassName = className,
+                    MethodName = methodName
+                };
+                target.Parameters.Add(new MethodCallParameter("param1", "test1"));
+                target.Parameters.Add(new MethodCallParameter("param2", "2", typeof(int)));
+                builder.ForLogger().WriteTo(target);
+            }).LogFactory;
 
             LastCallTest = null;
 
-            LogManager.GetCurrentClassLogger().Debug("test method 1");
+            logFactory.GetCurrentClassLogger().Debug("test method 1");
+            logFactory.GetCurrentClassLogger().Debug("test method 2");  // Bonus call to verify compiled expression tree works
 
             Assert.Equal(expected, LastCallTest);
         }
@@ -196,8 +219,8 @@ namespace NLog.UnitTests.Targets
             /// </summary>
             public MethodCallRecord(string method, params object[] parameterValues)
             {
-                Method = method;
-                if (parameterValues != null) ParameterValues = parameterValues.ToList();
+                Method = method ?? string.Empty;
+                ParameterValues = parameterValues?.ToList() ?? new List<object>();
             }
 
             public string Method { get; set; }
@@ -217,14 +240,11 @@ namespace NLog.UnitTests.Targets
             /// <param name="obj">The object to compare with the current object. </param>
             public override bool Equals(object obj)
             {
-                if (ReferenceEquals(null, obj)) return false;
-                if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != GetType()) return false;
-                return Equals((MethodCallRecord)obj);
+                return obj is MethodCallRecord other && Equals(other);
             }
 
             /// <summary>
-            /// Serves as the default hash function. 
+            /// Serves as the default hash function.
             /// </summary>
             /// <returns>
             /// A hash code for the current object.
@@ -233,7 +253,7 @@ namespace NLog.UnitTests.Targets
             {
                 unchecked
                 {
-                    return ((Method != null ? Method.GetHashCode() : 0) * 397) ^ (ParameterValues != null ? ParameterValues.GetHashCode() : 0);
+                    return Method.GetHashCode() * 397 ^ ParameterValues.Count.GetHashCode();
                 }
             }
         }

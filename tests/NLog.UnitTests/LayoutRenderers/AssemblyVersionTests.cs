@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -38,7 +38,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Config;
     using NLog.LayoutRenderers;
     using Xunit;
-	using Xunit.Abstractions;
+    using Xunit.Abstractions;
 
     public class AssemblyVersionTests : NLogTestBase
     {
@@ -57,10 +57,20 @@ namespace NLog.UnitTests.LayoutRenderers
         public void EntryAssemblyVersionTest()
         {
             var assembly = Assembly.GetEntryAssembly();
-            var assemblyVersion = assembly == null
+            var assemblyVersion = assembly is null
                 ? $"Could not find value for entry assembly and version type {nameof(AssemblyVersionType.Assembly)}"
                 : assembly.GetName().Version.ToString();
             AssertLayoutRendererOutput("${assembly-version}", assemblyVersion);
+        }
+
+        [Fact]
+        public void EntryAssemblyVersionDefaultTest()
+        {
+            var assembly = Assembly.GetEntryAssembly();
+            var assemblyVersion = assembly is null
+                ? "1.2.3.4"
+                : assembly.GetName().Version.ToString();
+            AssertLayoutRendererOutput("${assembly-version:default=1.2.3.4}", assemblyVersion);
         }
 
         [Fact]
@@ -68,6 +78,14 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             AssertLayoutRendererOutput("${assembly-version:NLogAutoLoadExtension}", "2.0.0.0");
         }
+
+        [Fact]
+        public void AssemblyNameUnknownVersionTest()
+        {
+            using (new NoThrowNLogExceptions())
+                AssertLayoutRendererOutput("${assembly-version:FooBar:default=1.2.3.4}", "1.2.3.4");
+        }
+
 
         [Fact]
         public void AssemblyNameVersionTypeTest()
@@ -241,7 +259,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 GenerateInMemory = true,
                 GenerateExecutable = false,
-                ReferencedAssemblies = {"NLog.dll"}
+                ReferencedAssemblies = { "NLog.dll" }
             };
             System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
             var compiledAssembly = results.CompiledAssembly;

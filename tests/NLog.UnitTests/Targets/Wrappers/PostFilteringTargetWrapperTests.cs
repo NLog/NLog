@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class PostFilteringTargetWrapperTests : NLogTestBase
-	{
+    {
         [Fact]
         public void PostFilteringTargetWrapperUsingDefaultFilterTest()
         {
@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     // when there is an error, emit everything
                     new FilteringRule
                     {
-                        Exists = "level >= LogLevel.Error", 
+                        Exists = "level >= LogLevel.Error",
                         Filter = "true",
                     },
                 },
@@ -69,8 +69,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             target.Initialize(null);
 
             var exceptions = new List<Exception>();
-            
-            var events = new []
+
+            var events = new[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
                 new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
@@ -128,11 +128,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             string result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Running on 7 events") != -1);
-            Assert.True(result.IndexOf("Rule matched: (level >= Warn)") != -1);
-            Assert.True(result.IndexOf("Filter to apply: (level >= Debug)") != -1);
-            Assert.True(result.IndexOf("After filtering: 6 events.") != -1);
-            Assert.True(result.IndexOf("Sending to MyTarget") != -1);
+            Assert.Contains("Running on 7 events", result);
+            Assert.Contains("Rule matched: (level >= Warn)", result);
+            Assert.Contains("Filter to apply: (level >= Debug)", result);
+            Assert.Contains("After filtering: 6 events.", result);
+            Assert.Contains("Sending to MyTarget", result);
 
             // make sure all Debug,Info,Warn events went through
             Assert.Equal(6, target.Events.Count);
@@ -172,7 +172,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var exceptions = new List<Exception>();
 
-            var events = new []
+            var events = new[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
                 new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
@@ -184,11 +184,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Running on 7 events") != -1);
-            Assert.True(result.IndexOf("Rule matched: (level >= Error)") != -1);
-            Assert.True(result.IndexOf("Filter to apply: True") != -1);
-            Assert.True(result.IndexOf("After filtering: 7 events.") != -1);
-            Assert.True(result.IndexOf("Sending to MyTarget") != -1);
+            Assert.Contains("Running on 7 events", result);
+            Assert.Contains("Rule matched: (level >= Error)", result);
+            Assert.Contains("Filter to apply: True", result);
+            Assert.Contains("After filtering: 7 events.", result);
+            Assert.Contains("Sending to MyTarget", result);
 
             // make sure all events went through
             Assert.Equal(7, target.Events.Count);
@@ -206,7 +206,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void PostFilteringTargetWrapperOnlyDefaultFilter()
         {
-            var target = new MyTarget() { OptimizeBufferReuse = true };
+            var target = new MyTarget();
             var wrapper = new PostFilteringTargetWrapper()
             {
                 WrappedTarget = target,

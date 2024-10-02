@@ -1,44 +1,41 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.Layouts
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.IO;
     using NLog.Layouts;
     using Xunit;
 
@@ -47,15 +44,10 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void EndToEndTest()
         {
-            string tempFile = string.Empty;
-
-            try
-            {
-                tempFile = Path.GetTempFileName();
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"'>
+                  <target name='m' type='Memory'>
                     <layout type='CSVLayout'>
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
@@ -65,49 +57,36 @@ namespace NLog.UnitTests.Layouts
                   </target>
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='f' />
+                    <logger name='*' minlevel='Debug' writeTo='m' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-                ILogger logger = LogManager.GetLogger("A");
-                logger.Debug("msg");
-                logger.Info("msg2");
-                logger.Warn("Message with, a comma");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText(tempFile))
-                {
-                    Assert.Equal("level,message,counter", sr.ReadLine());
-                    Assert.Equal("Debug,msg,1", sr.ReadLine());
-                    Assert.Equal("Info,msg2,2", sr.ReadLine());
-                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
-                }
-            }
-            finally
-            {
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-            }
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.MemoryTarget>("m");
+            Assert.NotNull(target);
+            Assert.Equal(4, target.Logs.Count);
+            Assert.Equal("level,message,counter", target.Logs[0]);
+            Assert.Equal("Debug,msg,1", target.Logs[1]);
+            Assert.Equal("Info,msg2,2", target.Logs[2]);
+            Assert.Equal("Warn,\"Message with, a comma\",3", target.Logs[3]);
         }
 
         /// <summary>
         /// Custom header overwrites file headers
-        /// 
+        ///
         /// Note: maybe changed with an option in the future
         /// </summary>
         [Fact]
         public void CustomHeaderTest()
         {
-            string tempFile = string.Empty;
-
-            try
-            {
-                tempFile = Path.GetTempFileName();
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"'>
+                  <target name='m' type='Memory'>
                     <layout type='CSVLayout'>
                       <header>headertest</header>
                       <column name='level' layout='${level}' quoting='Nothing' />
@@ -118,45 +97,31 @@ namespace NLog.UnitTests.Layouts
                   </target>
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='f' />
+                    <logger name='*' minlevel='Debug' writeTo='m' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-                ILogger logger = LogManager.GetLogger("A");
-                logger.Debug("msg");
-                logger.Info("msg2");
-                logger.Warn("Message with, a comma");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText(tempFile))
-                {
-                    Assert.Equal("headertest", sr.ReadLine());
-                    //   Assert.Equal("level,message,counter", sr.ReadLine());
-                    Assert.Equal("Debug,msg,1", sr.ReadLine());
-                    Assert.Equal("Info,msg2,2", sr.ReadLine());
-                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
-                }
-            }
-            finally
-            {
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-            }
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.MemoryTarget>("m");
+            Assert.NotNull(target);
+            Assert.Equal(4, target.Logs.Count);
+            Assert.Equal("headertest", target.Logs[0]);
+            Assert.Equal("Debug,msg,1", target.Logs[1]);
+            Assert.Equal("Info,msg2,2", target.Logs[2]);
+            Assert.Equal("Warn,\"Message with, a comma\",3", target.Logs[3]);
         }
 
         [Fact]
         public void NoHeadersTest()
         {
-            string tempFile = string.Empty;
-
-            try
-            {
-                tempFile = Path.GetTempFileName();
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='" + tempFile + @"'>
+                  <target name='m' type='Memory'>
                     <layout type='CSVLayout' withHeader='false'>
                       <delimiter>Comma</delimiter>
                       <column name='level' layout='${level}' />
@@ -166,29 +131,21 @@ namespace NLog.UnitTests.Layouts
                   </target>
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='f' />
+                    <logger name='*' minlevel='Debug' writeTo='m' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-                ILogger logger = LogManager.GetLogger("A");
-                logger.Debug("msg");
-                logger.Info("msg2");
-                logger.Warn("Message with, a comma");
+            var logger = logFactory.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText(tempFile))
-                {
-                    Assert.Equal("Debug,msg,1", sr.ReadLine());
-                    Assert.Equal("Info,msg2,2", sr.ReadLine());
-                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
-                }
-            }
-            finally
-            {
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-            }
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.MemoryTarget>("m");
+            Assert.NotNull(target);
+            Assert.Equal(3, target.Logs.Count);
+            Assert.Equal("Debug,msg,1", target.Logs[0]);
+            Assert.Equal("Info,msg2,2", target.Logs[1]);
+            Assert.Equal("Warn,\"Message with, a comma\",3", target.Logs[2]);
         }
 
         [Fact]

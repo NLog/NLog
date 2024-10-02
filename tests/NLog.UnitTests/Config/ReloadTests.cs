@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 
 #if !MONO
@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Config
     using System;
     using System.IO;
     using System.Threading;
-    using System.Xml;
     using NLog.Config;
     using Xunit;
 
@@ -52,6 +51,7 @@ namespace NLog.UnitTests.Config
                 LogManager.LogFactory.ResetLoggerCache();
             }
         }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -66,10 +66,10 @@ namespace NLog.UnitTests.Config
                         <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
                     </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string configFilePath = Path.Combine(tempPath, "noreload.nlog");
+            string configFilePath = Path.Combine(tempDir, "noreload.nlog");
             WriteConfigFile(configFilePath, config1);
 
             try
@@ -90,17 +90,23 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
         private static void SetLogManagerConfiguration(bool useExplicitFileLoading, string configFilePath)
         {
             if (useExplicitFileLoading)
+            {
                 LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+            }
             else
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
                 LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
         }
 
         [Theory]
@@ -108,8 +114,8 @@ namespace NLog.UnitTests.Config
         [InlineData(false)]
         public void TestAutoReloadOnFileChange(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileChange because we are running in Travis");
                 return;
@@ -127,10 +133,10 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string configFilePath = Path.Combine(tempPath, "reload.nlog");
+            string configFilePath = Path.Combine(tempDir, "reload.nlog");
             WriteConfigFile(configFilePath, config1);
 
             try
@@ -157,8 +163,8 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
@@ -168,6 +174,14 @@ namespace NLog.UnitTests.Config
 
         public void TestAutoReloadOnFileMove(bool useExplicitFileLoading)
         {
+#if NETSTANDARD || MONO
+            if (IsLinux())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileMove because we are running in Travis");
+                return;
+            }
+#endif
+
             string config1 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -177,12 +191,12 @@ namespace NLog.UnitTests.Config
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string configFilePath = Path.Combine(tempPath, "reload.nlog");
+            string configFilePath = Path.Combine(tempDir, "reload.nlog");
             WriteConfigFile(configFilePath, config1);
-            string otherFilePath = Path.Combine(tempPath, "other.nlog");
+            string otherFilePath = Path.Combine(tempDir, "other.nlog");
 
             try
             {
@@ -217,8 +231,8 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
@@ -228,8 +242,8 @@ namespace NLog.UnitTests.Config
 
         public void TestAutoReloadOnFileCopy(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileCopy because we are running in Travis");
                 return;
@@ -296,8 +310,8 @@ namespace NLog.UnitTests.Config
 
         public void TestIncludedConfigNoReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestIncludedConfigNoReload because we are running in Travis");
                 return;
@@ -319,13 +333,13 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string mainConfigFilePath = Path.Combine(tempPath, "main.nlog");
+            string mainConfigFilePath = Path.Combine(tempDir, "main.nlog");
             WriteConfigFile(mainConfigFilePath, mainConfig1);
 
-            string includedConfigFilePath = Path.Combine(tempPath, "included.nlog");
+            string includedConfigFilePath = Path.Combine(tempDir, "included.nlog");
             WriteConfigFile(includedConfigFilePath, includedConfig1);
 
             try
@@ -351,8 +365,8 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
@@ -362,8 +376,8 @@ namespace NLog.UnitTests.Config
 
         public void TestIncludedConfigReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestIncludedConfigNoReload because we are running in Travis");
                 return;
@@ -385,13 +399,13 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string mainConfigFilePath = Path.Combine(tempPath, "main.nlog");
+            string mainConfigFilePath = Path.Combine(tempDir, "main.nlog");
             WriteConfigFile(mainConfigFilePath, mainConfig1);
 
-            string includedConfigFilePath = Path.Combine(tempPath, "included.nlog");
+            string includedConfigFilePath = Path.Combine(tempDir, "included.nlog");
             WriteConfigFile(includedConfigFilePath, includedConfig1);
 
             try
@@ -417,8 +431,8 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
@@ -428,8 +442,8 @@ namespace NLog.UnitTests.Config
 
         public void TestMainConfigReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestMainConfigReload because we are running in Travis");
                 return;
@@ -454,16 +468,16 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string mainConfigFilePath = Path.Combine(tempPath, "main.nlog");
+            string mainConfigFilePath = Path.Combine(tempDir, "main.nlog");
             WriteConfigFile(mainConfigFilePath, mainConfig1);
 
-            string included1ConfigFilePath = Path.Combine(tempPath, "included.nlog");
+            string included1ConfigFilePath = Path.Combine(tempDir, "included.nlog");
             WriteConfigFile(included1ConfigFilePath, included1Config);
 
-            string included2ConfigFilePath = Path.Combine(tempPath, "included2.nlog");
+            string included2ConfigFilePath = Path.Combine(tempDir, "included2.nlog");
             WriteConfigFile(included2ConfigFilePath, included2Config1);
 
             try
@@ -488,8 +502,8 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
@@ -499,8 +513,8 @@ namespace NLog.UnitTests.Config
 
         public void TestMainConfigReloadIncludedConfigNoReload(bool useExplicitFileLoading)
         {
-#if NETSTANDARD
-            if (IsTravis())
+#if NETSTANDARD || MONO
+            if (IsLinux())
             {
                 Console.WriteLine("[SKIP] ReloadTests.TestMainConfigReload because we are running in Travis");
                 return;
@@ -525,16 +539,16 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
-            string mainConfigFilePath = Path.Combine(tempPath, "main.nlog");
+            string mainConfigFilePath = Path.Combine(tempDir, "main.nlog");
             WriteConfigFile(mainConfigFilePath, mainConfig1);
 
-            string included1ConfigFilePath = Path.Combine(tempPath, "included.nlog");
+            string included1ConfigFilePath = Path.Combine(tempDir, "included.nlog");
             WriteConfigFile(included1ConfigFilePath, included1Config);
 
-            string included2ConfigFilePath = Path.Combine(tempPath, "included2.nlog");
+            string included2ConfigFilePath = Path.Combine(tempDir, "included2.nlog");
             WriteConfigFile(included2ConfigFilePath, included2Config1);
 
             try
@@ -560,12 +574,13 @@ namespace NLog.UnitTests.Config
             finally
             {
 
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
+                if (Directory.Exists(tempDir))
+                    Directory.Delete(tempDir, true);
             }
         }
 
         [Fact]
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void TestKeepVariablesOnReload()
         {
             string config = @"<nlog autoReload='true' keepVariablesOnReload='true'>
@@ -580,17 +595,53 @@ namespace NLog.UnitTests.Config
             logFactory.Configuration.Variables["var1"] = "new_value";
             logFactory.Configuration.Variables["var3"] = "new_value3";
             configLoader.ReloadConfigOnTimer(configuration);
-            Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].OriginalText);
-            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
-            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].OriginalText);
+            var nullEvent = LogEventInfo.CreateNullEvent();
+            Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].Render(nullEvent));
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
+            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
 
-            logFactory.Configuration = configuration.ReloadNewConfig();
-            Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].OriginalText);
-            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
-            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].OriginalText);
+            logFactory.Setup().ReloadConfiguration();
+            Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].Render(nullEvent));
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
+            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
         }
 
         [Fact]
+        public void TestKeepVariablesOnReloadAllowUpdate()
+        {
+            string config1 = @"<nlog autoReload='true' keepVariablesOnReload='true'>
+                                <variable name='var1' value='' />
+                                <variable name='var2' value='old_value2' />
+                                <targets><target name='mem' type='memory' layout='${var:var2}' /></targets>
+                                <rules><logger name='*' writeTo='mem' /></rules>
+                            </nlog>";
+
+            string config2 = @"<nlog autoReload='true' keepVariablesOnReload='true'>
+                                <variable name='var1' value='' />
+                                <variable name='var2' value='new_value2' />
+                                <targets><target name='mem' type='memory' layout='${var:var2}' /></targets>
+                                <rules><logger name='*' writeTo='mem' /></rules>
+                            </nlog>";
+
+            var logFactory = new LogFactory();
+            var xmlConfig = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config1);
+            logFactory.Configuration = xmlConfig;
+
+            // Act
+            logFactory.Configuration.Variables.Remove("var1");
+            logFactory.Configuration.Variables.Add("var3", "new_value3");
+            xmlConfig.ConfigXml = config2;
+            logFactory.Configuration = xmlConfig.Reload();
+
+            // Assert
+            var nullEvent = LogEventInfo.CreateNullEvent();
+            Assert.Equal("", logFactory.Configuration.Variables["var1"].Render(nullEvent));
+            Assert.Equal("new_value2", logFactory.Configuration.Variables["var2"].Render(nullEvent));
+            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].Render(nullEvent));
+        }
+
+        [Fact]
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void TestResetVariablesOnReload()
         {
             string config = @"<nlog autoReload='true' keepVariablesOnReload='false'>
@@ -605,21 +656,53 @@ namespace NLog.UnitTests.Config
             logFactory.Configuration.Variables["var1"] = "new_value";
             logFactory.Configuration.Variables["var3"] = "new_value3";
             configLoader.ReloadConfigOnTimer(configuration);
-            Assert.Equal("", logFactory.Configuration.Variables["var1"].OriginalText);
-            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
+            LogEventInfo nullEvent = LogEventInfo.CreateNullEvent();
+            Assert.Equal("", logFactory.Configuration.Variables["var1"].Render(nullEvent));
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
 
-            logFactory.Configuration = configuration.ReloadNewConfig();
-            Assert.Equal("", logFactory.Configuration.Variables["var1"].OriginalText);
-            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
+            logFactory.Configuration = configuration.Reload();
+            Assert.Equal("", logFactory.Configuration.Variables["var1"].Render(nullEvent));
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].Render(nullEvent));
         }
 
         [Fact]
+        public void KeepVariablesOnReloadWithStaticMode()
+        {
+            // Arrange
+            string config = @"<nlog autoReload='true'>
+                                <variable name='maxArchiveDays' value='7' />
+                                <targets>
+                                    <target name='logfile' type='file' fileName='test.log' maxArchiveDays='${maxArchiveDays}' />
+                                </targets>
+                                <rules>
+                                    <logger name='*' minLevel='Debug' writeTo='logfile' />
+                                </rules>
+                            </nlog>";
+            var logFactory = new LogFactory();
+            logFactory.Configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
+
+            var fileTarget = logFactory.Configuration.AllTargets[0] as NLog.Targets.FileTarget;
+            var beforeValue = fileTarget.MaxArchiveDays;
+
+            // Act
+            logFactory.Configuration.Variables["MaxArchiveDays"] = "42";
+            logFactory.Configuration = logFactory.Configuration.Reload();
+            fileTarget = logFactory.Configuration.AllTargets[0] as NLog.Targets.FileTarget;
+            var afterValue = fileTarget.MaxArchiveDays;
+
+            // Assert
+            Assert.Equal(7, beforeValue);
+            Assert.Equal(42, afterValue);
+        }
+
+        [Fact]
+        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
         {
             var called = false;
             LoggingConfigurationReloadedEventArgs arguments = null;
             object calledBy = null;
-            
+
             var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             var loggingConfiguration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, "<nlog></nlog>");
@@ -634,6 +717,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void TestReloadingInvalidConfiguration()
         {
             var validXmlConfig = @"<nlog>
@@ -646,14 +730,14 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
             try
             {
                 using (new NoThrowNLogExceptions())
                 {
-                    var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
+                    var nlogConfigFile = Path.Combine(tempDir, "NLog.config");
                     LogFactory logFactory = new LogFactory();
                     logFactory.SetCandidateConfigFilePaths(new[] { nlogConfigFile });
                     var config = logFactory.Configuration;
@@ -662,7 +746,7 @@ namespace NLog.UnitTests.Config
                     WriteConfigFile(nlogConfigFile, invalidXmlConfig);
                     config = logFactory.Configuration;
                     Assert.NotNull(config);
-                    Assert.Empty(config.AllTargets);        // Failed to load 
+                    Assert.Empty(config.AllTargets);        // Failed to load
                     Assert.Single(config.FileNamesToWatch); // But file-watcher is active
 
                     WriteConfigFile(nlogConfigFile, validXmlConfig);
@@ -672,27 +756,28 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
+                if (Directory.Exists(tempDir))
                 {
-                    Directory.Delete(tempPath, true);
+                    Directory.Delete(tempDir, true);
                 }
             }
         }
 
         [Fact]
+        [Obsolete("Replaced by LogFactory.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
         public void TestThrowExceptionWhenInvalidXml()
         {
             var invalidXmlConfig = @"<nlog throwExceptions='true' internalLogLevel='debug' internalLogLevel='error'>
                 </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
+            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
 
             try
             {
                 using (new NoThrowNLogExceptions())
                 {
-                    var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
+                    var nlogConfigFile = Path.Combine(tempDir, "NLog.config");
                     WriteConfigFile(nlogConfigFile, invalidXmlConfig);
                     LogFactory logFactory = new LogFactory();
                     logFactory.SetCandidateConfigFilePaths(new[] { nlogConfigFile });
@@ -701,9 +786,9 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                if (Directory.Exists(tempPath))
+                if (Directory.Exists(tempDir))
                 {
-                    Directory.Delete(tempPath, true);
+                    Directory.Delete(tempDir, true);
                 }
             }
         }
@@ -726,21 +811,20 @@ namespace NLog.UnitTests.Config
             }
         }
 
-
-        private class ConfigurationReloadWaiter : IDisposable
+        private sealed class ConfigurationReloadWaiter : IDisposable
         {
             private ManualResetEvent counterEvent = new ManualResetEvent(false);
 
             public ConfigurationReloadWaiter()
             {
-                LogManager.ConfigurationReloaded += SignalCounterEvent(counterEvent);
+                LogManager.ConfigurationChanged += SignalCounterEvent(counterEvent);
             }
 
             public bool DidReload => counterEvent.WaitOne(0);
 
             public void Dispose()
             {
-                LogManager.ConfigurationReloaded -= SignalCounterEvent(counterEvent);
+                LogManager.ConfigurationChanged -= SignalCounterEvent(counterEvent);
             }
 
             public void WaitForReload()
@@ -748,7 +832,7 @@ namespace NLog.UnitTests.Config
                 counterEvent.WaitOne(3000);
             }
 
-            private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
+            private static EventHandler<LoggingConfigurationChangedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
             {
                 return (sender, e) =>
                 {
@@ -763,23 +847,27 @@ namespace NLog.UnitTests.Config
     /// </summary>
     public class XmlLoggingConfigurationMock : XmlLoggingConfiguration
     {
-        private string _configXml;
-        private LogFactory _logFactory;
+        public string ConfigXml { get; set; }
 
-        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml) : base(XmlReader.Create(new StringReader(configXml)), null, logFactory)
+        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml)
+            : base(logFactory)
         {
-            _logFactory = logFactory;
-            _configXml = configXml;
+            ConfigXml = configXml;
         }
 
         public override LoggingConfiguration Reload()
         {
-            return new XmlLoggingConfigurationMock(_logFactory, _configXml);
+            var newConfig = new XmlLoggingConfigurationMock(LogFactory, ConfigXml);
+            newConfig.PrepareForReload(this);
+            newConfig.LoadFromXmlContent(ConfigXml, null);
+            return newConfig;
         }
 
         public static XmlLoggingConfigurationMock CreateFromXml(LogFactory logFactory, string configXml)
         {
-            return new XmlLoggingConfigurationMock(logFactory, configXml);
+            var newConfig = new XmlLoggingConfigurationMock(logFactory, configXml);
+            newConfig.LoadFromXmlContent(configXml, null);
+            return newConfig;
         }
     }
 }

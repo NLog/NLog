@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net472</TargetFramework>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Include the packages needed for the API docs -->
+		<PackageReference Include="NLog" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog)\lib\net46\NLog.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Database" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Database)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.DiagnosticSource" version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_DiagnosticSource)\lib\net45\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Extensions.Hosting" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Extensions_Hosting)\lib\netstandard2.0\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Extensions.Logging" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Extensions_Logging)\lib\netstandard2.0\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.MailKit" version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_MailKit)\lib\netstandard2.0\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.MSMQ" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_MSMQ)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.OutputDebugString" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_OutputDebugString)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Owin.Logging" version="4.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Owin_Logging)\lib\net45\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.PerformanceCounter" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_PerformanceCounter)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Wcf" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Wcf)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Web" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Web)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Web_AspNetCore)\lib\net461\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.Windows.Forms" version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_Windows_Forms)\lib\net35\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.WindowsIdentity" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_WindowsIdentity)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<PackageReference Include="NLog.WindowsRegistry" Version="5.*" GeneratePathProperty="true" />
+		<None Include="$(PkgNLog_WindowsRegistry)\lib\net46\NLog.*.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

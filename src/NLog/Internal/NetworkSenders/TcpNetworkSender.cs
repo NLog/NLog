@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Internal.NetworkSenders
 {
@@ -43,11 +43,10 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal class TcpNetworkSender : QueuedNetworkSender
     {
-#if !SILVERLIGHT
         private static bool? EnableKeepAliveSuccessful;
-#endif
-        private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompleted;
         private ISocket _socket;
+        private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompletedAsync;
+        private AsyncHelpersTask? _asyncBeginRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TcpNetworkSender"/> class.
@@ -58,38 +57,41 @@ namespace NLog.Internal.NetworkSenders
             : base(url)
         {
             AddressFamily = addressFamily;
-            _socketOperationCompleted = SocketOperationCompleted;
+            _socketOperationCompletedAsync = SocketOperationCompletedAsync;
         }
 
         internal AddressFamily AddressFamily { get; set; }
 
-#if !SILVERLIGHT
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
 
         internal TimeSpan KeepAliveTime { get; set; }
-#endif
+
+        internal TimeSpan SendTimeout { get; set; }
 
         /// <summary>
-        /// Creates the socket with given parameters. 
+        /// Creates the socket with given parameters.
         /// </summary>
         /// <param name="host">The host address.</param>
         /// <param name="addressFamily">The address family.</param>
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
+        /// <param name="sendTimeout">Socket SendTimeout.</param>
         /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method")]
-        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, TimeSpan sendTimeout)
         {
             var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
 
-#if !SILVERLIGHT
             if (KeepAliveTime.TotalSeconds >= 1.0 && EnableKeepAliveSuccessful != false)
             {
                 EnableKeepAliveSuccessful = TryEnableKeepAlive(socketProxy.UnderlyingSocket, (int)KeepAliveTime.TotalSeconds);
             }
-#endif
 
-#if !NETSTANDARD1_0 && !SILVERLIGHT
+            if (sendTimeout > TimeSpan.Zero)
+            {
+                socketProxy.UnderlyingSocket.SendTimeout = (int)sendTimeout.TotalMilliseconds;
+            }
+
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
                 return new SslSocketProxy(host, SslProtocols, socketProxy);
@@ -98,7 +100,6 @@ namespace NLog.Internal.NetworkSenders
             return socketProxy;
         }
 
-#if !SILVERLIGHT
         private static bool TryEnableKeepAlive(Socket underlyingSocket, int keepAliveTimeSeconds)
         {
             if (TrySetSocketOption(underlyingSocket, SocketOptionName.KeepAlive, true))
@@ -165,21 +166,17 @@ namespace NLog.Internal.NetworkSenders
                 return false;
             }
         }
-#endif
 
-        /// <summary>
-        /// Performs sender-specific initialization.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Object is disposed in the event handler.")]
         protected override void DoInitialize()
         {
             var uri = new Uri(Address);
             var args = new MySocketAsyncEventArgs();
-            args.RemoteEndPoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
-            args.Completed += _socketOperationCompleted;
+            var ipAddress = ResolveIpAddress(uri, AddressFamily);
+            args.RemoteEndPoint = new System.Net.IPEndPoint(ipAddress, uri.Port);
+            args.Completed += _socketOperationCompletedAsync;
             args.UserToken = null;
 
-            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp, SendTimeout);
             base.BeginInitialize();
 
             bool asyncOperation = false;
@@ -201,14 +198,10 @@ namespace NLog.Internal.NetworkSenders
 
             if (!asyncOperation)
             {
-                SocketOperationCompleted(_socket, args);
+                SocketOperationCompletedAsync(_socket, args);
             }
         }
 
-        /// <summary>
-        /// Closes the socket.
-        /// </summary>
-        /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
             base.DoClose(ex => CloseSocket(continuation, ex));
@@ -220,11 +213,7 @@ namespace NLog.Internal.NetworkSenders
             {
                 var sock = _socket;
                 _socket = null;
-
-                if (sock != null)
-                {
-                    sock.Close();
-                }
+                sock?.Close();
 
                 continuation(pendingException);
             }
@@ -239,66 +228,103 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs args)
-        {
-            var asyncContinuation = args.UserToken as AsyncContinuation;
-
-            Exception pendingException = null;
-            if (args.SocketError != SocketError.Success)
-            {
-                pendingException = new IOException("Error: " + args.SocketError);
-            }
-
-            args.Completed -= _socketOperationCompleted;    // Maybe consider reusing for next request?
-            args.Dispose();
-
-            base.EndRequest(asyncContinuation, pendingException);
-        }
-
         protected override void BeginRequest(NetworkRequestArgs eventArgs)
         {
-            var args = new MySocketAsyncEventArgs();
-            args.SetBuffer(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
-            args.UserToken = eventArgs.AsyncContinuation;
-            args.Completed += _socketOperationCompleted;
+            var socketEventArgs = new MySocketAsyncEventArgs();
+            socketEventArgs.Completed += _socketOperationCompletedAsync;
+            SetSocketNetworkRequest(socketEventArgs, eventArgs);
 
+            // Schedule async network operation to avoid blocking socket-operation (Allow adding more request)
+            if (_asyncBeginRequest is null)
+                _asyncBeginRequest = new AsyncHelpersTask(BeginRequestAsync);
+            AsyncHelpers.StartAsyncTask(_asyncBeginRequest.Value, socketEventArgs);
+        }
+
+        private void BeginRequestAsync(object state)
+        {
+            BeginSocketRequest((SocketAsyncEventArgs)state);
+        }
+
+        private void BeginSocketRequest(SocketAsyncEventArgs args)
+        {
             bool asyncOperation = false;
-            try
-            {
-                asyncOperation = _socket.SendAsync(args);
-            }
-            catch (SocketException ex)
-            {
-                InternalLogger.Error(ex, "NetworkTarget: Error sending tcp request");
-                args.SocketError = ex.SocketErrorCode;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "NetworkTarget: Error sending tcp request");
-                if (ex.InnerException is SocketException socketException)
-                    args.SocketError = socketException.SocketErrorCode;
-                else
-                    args.SocketError = SocketError.OperationAborted;
-            }
 
-            if (!asyncOperation)
+            do
             {
-                SocketOperationCompleted(_socket, args);
+                try
+                {
+                    asyncOperation = _socket.SendAsync(args);
+                }
+                catch (SocketException ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget: Error sending tcp request");
+                    args.SocketError = ex.SocketErrorCode;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget: Error sending tcp request");
+                    if (ex.InnerException is SocketException socketException)
+                        args.SocketError = socketException.SocketErrorCode;
+                    else
+                        args.SocketError = SocketError.OperationAborted;
+                }
+
+                args = asyncOperation ? null : SocketOperationCompleted(args);
+            }
+            while (args != null);
+        }
+
+        private void SetSocketNetworkRequest(SocketAsyncEventArgs socketEventArgs, NetworkRequestArgs networkRequest)
+        {
+            socketEventArgs.SetBuffer(networkRequest.RequestBuffer, networkRequest.RequestBufferOffset, networkRequest.RequestBufferLength);
+            socketEventArgs.UserToken = networkRequest.AsyncContinuation;
+        }
+
+        private void SocketOperationCompletedAsync(object sender, SocketAsyncEventArgs args)
+        {
+            var nextRequest = SocketOperationCompleted(args);
+            if (nextRequest != null)
+            {
+                BeginSocketRequest(nextRequest);
             }
         }
 
-        public override void CheckSocket()
+        private SocketAsyncEventArgs SocketOperationCompleted(SocketAsyncEventArgs args)
         {
-            if (_socket == null)
+            Exception socketException = null;
+            if (args.SocketError != SocketError.Success)
+            {
+                socketException = new IOException($"Error: {args.SocketError.ToString()}, Address: {Address}");
+            }
+
+            var asyncContinuation = args.UserToken as AsyncContinuation;
+            var nextRequest = EndRequest(asyncContinuation, socketException);
+            if (nextRequest.HasValue)
+            {
+                SetSocketNetworkRequest(args, nextRequest.Value);
+                return args;
+            }
+            else
+            {
+                args.Completed -= _socketOperationCompletedAsync;
+                args.Dispose();
+                return null;
+            }
+        }
+
+        public override ISocket CheckSocket()
+        {
+            if (_socket is null)
             {
                 DoInitialize();
             }
+            return _socket;
         }
 
         /// <summary>
         /// Facilitates mocking of <see cref="SocketAsyncEventArgs"/> class.
         /// </summary>
-        internal class MySocketAsyncEventArgs : SocketAsyncEventArgs
+        internal sealed class MySocketAsyncEventArgs : SocketAsyncEventArgs
         {
             /// <summary>
             /// Raises the Completed event.

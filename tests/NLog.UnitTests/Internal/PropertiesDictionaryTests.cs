@@ -1,45 +1,43 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using NLog.Internal;
-using NLog.MessageTemplates;
-using Xunit;
+//
 
 namespace NLog.UnitTests.Internal
 {
+    using System.Collections.Generic;
+    using NLog.Internal;
+    using NLog.MessageTemplates;
+    using Xunit;
+
     public class PropertiesDictionaryTests : NLogTestBase
     {
         [Fact]
@@ -49,11 +47,11 @@ namespace NLog.UnitTests.Internal
             IDictionary<object, object> dictionary = logEvent.Properties;
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             Assert.DoesNotContain("Hello World", dictionary);
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
@@ -62,9 +60,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 
@@ -77,11 +75,11 @@ namespace NLog.UnitTests.Internal
             Assert.True(dictionary.Remove("Hello World"));
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
 
             Assert.DoesNotContain("Hello World", dictionary);
             Assert.False(dictionary.ContainsKey("Hello World"));
@@ -91,9 +89,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 
@@ -104,11 +102,11 @@ namespace NLog.UnitTests.Internal
             IDictionary<object, object> dictionary = logEvent.Properties;
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
@@ -117,9 +115,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 
@@ -132,11 +130,11 @@ namespace NLog.UnitTests.Internal
             Assert.True(dictionary.Remove("Hello World"));
             Assert.Empty(dictionary);
             foreach (var item in dictionary)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Keys)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             foreach (var item in dictionary.Values)
-                Assert.False(true, "Should be empty");
+                Assert.Fail("Should be empty");
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
@@ -145,9 +143,9 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
             Assert.False(dictionary.Remove("Hello World"));
-            dictionary.CopyTo(new KeyValuePair<object, object>[0], 0);
-            dictionary.Values.CopyTo(new object[0], 0);
-            dictionary.Keys.CopyTo(new object[0], 0);
+            dictionary.CopyTo(ArrayHelper.Empty<KeyValuePair<object, object>>(), 0);
+            dictionary.Values.CopyTo(ArrayHelper.Empty<object>(), 0);
+            dictionary.Keys.CopyTo(ArrayHelper.Empty<object>(), 0);
             dictionary.Clear();
         }
 
@@ -354,8 +352,6 @@ namespace NLog.UnitTests.Internal
             Assert.Empty(dictionary);
         }
 
-
-
         [Fact]
         public void OverrideMessagePropertiesDictionary()
         {
@@ -451,23 +447,22 @@ namespace NLog.UnitTests.Internal
             });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
-            Assert.Single(dictionary);
+            Assert.Equal(2, dictionary.Count);
             Assert.Equal(42, dictionary["Hello World"]);
+            Assert.Equal(666, dictionary["Hello World_1"]);
 
-            List<MessageTemplateParameter> parameters = new List<MessageTemplateParameter>();
-            parameters.Add(new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal));
-            for (int i = 1; i < 100; ++i)
-                parameters.Add(new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal));
-            logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
+            foreach (var property in dictionary)
             {
-                new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
-                new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal)
-            });
-            Assert.Single(dictionary);
-            Assert.Equal(42, dictionary["Hello World"]);
+                if (property.Value.Equals(42))
+                    Assert.Equal("Hello World", property.Key);
+                else if (property.Value.Equals(666))
+                    Assert.Equal("Hello World_1", property.Key);
+                else
+                    Assert.Null(property.Key);
+            }
         }
 
-#if !NET3_5 && !NET4_0
+#if !NET35
         [Fact]
         public void NonUniqueEventPropertiesDictionary()
         {

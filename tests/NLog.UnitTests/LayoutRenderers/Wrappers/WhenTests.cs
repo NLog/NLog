@@ -1,41 +1,39 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System;
     using NLog;
     using NLog.Layouts;
     using Xunit;
@@ -147,15 +145,14 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                 var le = LogEventInfo.Create(LogLevel.Error, "logger1", "message");
                 Assert.Equal("Bad", l.Render(le));
             }
-
         }
 
         [Fact]
         public void WhenLogLevelConditionTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
-                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${level} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Trace' writeTo='debug'>
                     <filters>
@@ -164,25 +161,22 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                     </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            logger.Trace("Test");
-           
-            AssertDebugCounter("debug", 0);
-            logger.Debug("Test");
-            AssertDebugCounter("debug", 0);
-            logger.Info("Test");
-            AssertDebugCounter("debug", 1);
-            logger.Warn("Test");
-            AssertDebugCounter("debug", 2);
-            logger.Error("Test");
-            AssertDebugCounter("debug", 3);
+            var logger = logFactory.GetLogger("A");
             logger.Fatal("Test");
-            AssertDebugCounter("debug", 4);
-          
+            logFactory.AssertDebugLastMessage("Fatal Test");
+            logger.Error("Test");
+            logFactory.AssertDebugLastMessage("Error Test");
+            logger.Warn("Test");
+            logFactory.AssertDebugLastMessage("Warn Test");
+            logger.Info("Test");
+            logFactory.AssertDebugLastMessage("Info Test");
+            logger.Debug("Test");
+            logFactory.AssertDebugLastMessage("Info Test");
+            logger.Trace("Test");
+            logFactory.AssertDebugLastMessage("Info Test");
         }
-
 
         [Fact]
         public void WhenNumericAndPropertyConditionTest()
@@ -190,7 +184,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             //else cannot be invoked ambiently. First param is inner
             SimpleLayout l = @"${when:when=100 < '${event-properties:item=Elapsed}':inner=Slow:else=Fast}";
 
-//            WhenNumericAndPropertyConditionTest_inner(l, "a", false);
+            //            WhenNumericAndPropertyConditionTest_inner(l, "a", false);
             WhenNumericAndPropertyConditionTest_inner(l, 101, false);
             WhenNumericAndPropertyConditionTest_inner(l, 11, true);
             WhenNumericAndPropertyConditionTest_inner(l, 100, true);
@@ -222,7 +216,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             Assert.Equal(expectedValue, result);
             Assert.Equal(expectedSuccess, success);
-        }       
+        }
         [Theory]
         [InlineData("logger1", "DBNullValue", true)]
         [InlineData("logger", null, false)]

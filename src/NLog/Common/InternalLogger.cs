@@ -1,51 +1,50 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Common
 {
-    using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
     using System.Reflection;
+    using JetBrains.Annotations;
     using NLog.Internal;
     using NLog.Time;
-    using NLog.Targets;
 
     /// <summary>
     /// NLog internal logger.
-    /// 
+    ///
     /// Writes to file, console or custom text writer (see <see cref="InternalLogger.LogWriter"/>)
     /// </summary>
     /// <remarks>
@@ -54,69 +53,95 @@ namespace NLog.Common
     public static partial class InternalLogger
     {
         private static readonly object LockObject = new object();
-        private static string _logFile;
-
-        /// <summary>
-        /// Initializes static members of the InternalLogger class.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
-        static InternalLogger()
-        {
-            Reset();
-        }
 
         /// <summary>
         /// Set the config of the InternalLogger with defaults and config.
         /// </summary>
         public static void Reset()
         {
-            // TODO: Extract class - InternalLoggerConfigurationReader
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
-            LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
-            LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
-            LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-            LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
-            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
-            Info("NLog internal logger initialized.");
-#else
-            LogLevel = LogLevel.Info;
-            LogToConsole = false;
-            LogToConsoleError = false;
-            LogFile = string.Empty;
-            IncludeTimestamp = true;
-#endif
             ExceptionThrowWhenWriting = false;
             LogWriter = null;
-            LogMessageReceived = null;
+            InternalEventOccurred = null;
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            _logMessageReceived = null;
+            LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Off);
+            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
+            LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
+            LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
+            LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+            LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
+#pragma warning restore CS0618 // Type or member is obsolete
+            Info("NLog internal logger initialized.");
         }
 
         /// <summary>
-        /// Gets or sets the minimal internal log level. 
+        /// Gets or sets the minimal internal log level.
         /// </summary>
         /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
-        public static LogLevel LogLevel { get => _logLevel; set => _logLevel = value ?? LogLevel.Info; }
-        private static LogLevel _logLevel;
+        public static LogLevel LogLevel { get => _logLevel; set => _logLevel = value ?? LogLevel.Off; }
+        private static LogLevel _logLevel = LogLevel.Off;
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
         /// <remarks>Your application must be a console application.</remarks>
-        public static bool LogToConsole { get; set; }
+        public static bool LogToConsole
+        {
+            get => _logToConsole;
+            set
+            {
+                if (_logToConsole != value)
+                {
+                    InternalEventOccurred -= LogToConsoleSubscription;
+                    if (value)
+                        InternalEventOccurred += LogToConsoleSubscription;
+                    _logToConsole = value;
+                }
+            }
+        }
+        private static bool _logToConsole;
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console error stream.
         /// </summary>
         /// <remarks>Your application must be a console application.</remarks>
-        public static bool LogToConsoleError { get; set; }
+        public static bool LogToConsoleError
+        {
+            get => _logToConsoleError;
+            set
+            {
+                if (_logToConsoleError != value)
+                {
+                    InternalEventOccurred -= LogToConsoleErrorSubscription;
+                    if (value)
+                        InternalEventOccurred += LogToConsoleErrorSubscription;
+                    _logToConsoleError = value;
+                }
+            }
+        }
+        private static bool _logToConsoleError;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
+        /// Obsolete and replaced by <see cref="InternalLogger.LogWriter"/> with NLog v5.3.
         /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics"/>.Trace
         /// </summary>
-        public static bool LogToTrace { get; set; }
-#endif
+        [Obsolete("Instead use InternalLogger.LogWriter. Marked obsolete with NLog v5.3")]
+        public static bool LogToTrace
+        {
+            get => _logToTrace;
+            set
+            {
+                if (_logToTrace != value)
+                {
+                    InternalEventOccurred -= LogToTraceSubscription;
+                    if (value)
+                        InternalEventOccurred += LogToTraceSubscription;
+                    _logToTrace = value;
+                }
+            }
+        }
+        private static bool _logToTrace;
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -131,16 +156,22 @@ namespace NLog.Common
 
             set
             {
-                _logFile = value;
-
-#if !SILVERLIGHT
-                if (!string.IsNullOrEmpty(_logFile))
+                if (!string.Equals(_logFile, value))
                 {
+                    InternalEventOccurred -= LogToFileSubscription;
+                    if (!string.IsNullOrEmpty(value))
+                        InternalEventOccurred += LogToFileSubscription;
+                    _logFile = value;
+                }
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _logFile = ExpandFilePathVariables(value);
                     CreateDirectoriesIfNeeded(_logFile);
                 }
-#endif
             }
         }
+        private static string _logFile;
 
         /// <summary>
         /// Gets or sets the text writer that will receive internal logs.
@@ -148,15 +179,47 @@ namespace NLog.Common
         public static TextWriter LogWriter { get; set; }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="InternalEventOccurred"/> with NLog 5.3.
         /// Event written to the internal log.
-        /// Please note that the event is not triggered when then event hasn't the minimal log level set by <see cref="LogLevel"/> 
         /// </summary>
-        public static event EventHandler<InternalLoggerMessageEventArgs> LogMessageReceived;
+        /// <remarks>
+        /// EventHandler will only be triggered for events, where severity matches the configured <see cref="LogLevel"/>.
+        ///
+        /// Avoid using/calling NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
+        /// </remarks>
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
+        public static event EventHandler<InternalLoggerMessageEventArgs> LogMessageReceived
+        {
+            add
+            {
+                if (_logMessageReceived == null)
+                    InternalEventOccurred += LogToMessageReceived;
+                _logMessageReceived += value;
+            }
+            remove
+            {
+                _logMessageReceived -= value;
+                if (_logMessageReceived == null)
+                    InternalEventOccurred -= LogToMessageReceived;
+            }
+        }
+        [Obsolete("Instead use InternalEventOccurred. Marked obsolete with NLog v5.3")]
+        private static event EventHandler<InternalLoggerMessageEventArgs> _logMessageReceived;
+
+        /// <summary>
+        /// Internal LogEvent written to the InternalLogger
+        /// </summary>
+        /// <remarks>
+        /// EventHandler will only be triggered for events, where severity matches the configured <see cref="LogLevel"/>.
+        ///
+        /// Never use/call NLog Logger-objects when handling these internal events, as it will lead to deadlock / stackoverflow.
+        /// </remarks>
+        public static event InternalEventOccurredHandler InternalEventOccurred;
 
         /// <summary>
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
         /// </summary>
-        public static bool IncludeTimestamp { get; set; }
+        public static bool IncludeTimestamp { get; set; } = true;
 
         /// <summary>
         /// Is there an <see cref="Exception"/> thrown when writing the message?
@@ -186,7 +249,7 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Logs the specified message without an <see cref="Exception"/> at the specified level. 
+        /// Logs the specified message without an <see cref="Exception"/> at the specified level.
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level <paramref name="level"/>.
         /// </summary>
         /// <param name="level">Log level.</param>
@@ -200,7 +263,7 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the specified level. 
+        /// Logs the specified message with an <see cref="Exception"/> at the specified level.
         /// <paramref name="messageFunc"/> will be only called when logging is enabled for level <paramref name="level"/>.
         /// </summary>
         /// <param name="ex">Exception to be logged.</param>
@@ -245,7 +308,7 @@ namespace NLog.Common
         /// <param name="level">level</param>
         /// <param name="message">message</param>
         /// <param name="args">optional args for <paramref name="message"/></param>
-        private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
+        private static void Write([CanBeNull] Exception ex, LogLevel level, string message, [CanBeNull] object[] args)
         {
             if (!IsLogLevelEnabled(level))
             {
@@ -258,60 +321,29 @@ namespace NLog.Common
                 return;
             }
 
-            var hasActiveLoggersWithLine = HasActiveLoggersWithLine();
-            var hasEventListeners = HasEventListeners();
-            if (!hasActiveLoggersWithLine && !hasEventListeners)
+            if (InternalEventOccurred is null && LogWriter is null)
             {
                 return;
             }
 
+            string fullMessage = message;
+
             try
             {
-                var fullMessage = CreateFullMessage(message, args);
-
-                if (hasActiveLoggersWithLine)
-                {
-                    WriteLogLine(ex, level, fullMessage);
-                }
-
-                if (hasEventListeners)
-                {
-                    var loggerContext = args?.Length > 0 ? args[0] as IInternalLoggerContext : null;
-                    LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContext?.Name));
-
-                    ex?.MarkAsLoggedToInternalLogger();
-                }
+                fullMessage = args?.Length > 0 ? string.Format(CultureInfo.InvariantCulture, message, args) : message;
             }
             catch (Exception exception)
             {
-                ExceptionThrowWhenWriting = true;
-
-                // no log looping.
-                // we have no place to log the message to so we ignore it
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
+                if (ex is null)
+                    ex = exception;
+                if (LogLevel.Error > level)
+                    level = LogLevel.Error;
             }
-        }
 
-        private static void WriteLogLine(Exception ex, LogLevel level, string message)
-        {
             try
             {
-                string line = CreateLogLine(ex, level, message);
-
-                WriteToLogFile(line);
-                WriteToTextWriter(line);
-
-#if !NETSTANDARD1_3
-                WriteToConsole(line);
-                WriteToErrorConsole(line);
-#endif
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                WriteToTrace(line);
-#endif
+                var loggerContext = args?.Length > 0 ? args[0] as IInternalLoggerContext : null;
+                WriteToLog(level, ex, fullMessage, loggerContext);
 
                 ex?.MarkAsLoggedToInternalLogger();
             }
@@ -328,10 +360,28 @@ namespace NLog.Common
             }
         }
 
+        private static void WriteToLog(LogLevel level, Exception ex, string fullMessage, IInternalLoggerContext loggerContext)
+        {
+            if (LogWriter != null)
+            {
+                var logLine = CreateLogLine(ex, level, fullMessage);
+                lock (LockObject)
+                {
+                    LogWriter?.WriteLine(logLine);
+                }
+            }
+
+            if (InternalEventOccurred != null)
+            {
+                var loggerContextName = string.IsNullOrEmpty(loggerContext?.Name) ? loggerContext?.ToString() : loggerContext.Name;
+                InternalEventOccurred?.Invoke(null, new InternalLogEventArgs(fullMessage, level, ex, loggerContext?.GetType(), loggerContextName));
+            }
+        }
+
         /// <summary>
         /// Create log line with timestamp, exception message etc (if configured)
         /// </summary>
-        private static string CreateLogLine([CanBeNull]Exception ex, LogLevel level, string fullMessage)
+        private static string CreateLogLine([CanBeNull] Exception ex, LogLevel level, string fullMessage)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
@@ -358,15 +408,8 @@ namespace NLog.Common
             }
         }
 
-        private static string CreateFullMessage(string message, object[] args)
-        {
-            var formattedMessage =
-                (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
-            return formattedMessage;
-        }
-
         /// <summary>
-        /// Determine if logging should be avoided because of exception type. 
+        /// Determine if logging should be avoided because of exception type.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
         /// <returns><c>true</c> if logging should be avoided; otherwise, <c>false</c>.</returns>
@@ -382,7 +425,7 @@ namespace NLog.Common
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
         private static bool IsLogLevelEnabled(LogLevel logLevel)
         {
-            return !ReferenceEquals(_logLevel, LogLevel.Off) && logLevel >= _logLevel;
+            return !ReferenceEquals(_logLevel, LogLevel.Off) && _logLevel.CompareTo(logLevel) <= 0;
         }
 
         /// <summary>
@@ -391,163 +434,44 @@ namespace NLog.Common
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
         internal static bool HasActiveLoggers()
         {
-            return HasActiveLoggersWithLine() || HasEventListeners();
+            if (InternalEventOccurred is null && LogWriter is null)
+                return false;
+            else
+                return true;
         }
-
-        private static bool HasEventListeners()
-        {
-            return LogMessageReceived != null;
-        }
-
-        internal static bool HasActiveLoggersWithLine()
-        {
-            return !string.IsNullOrEmpty(LogFile) ||
-                   LogToConsole ||
-                   LogToConsoleError ||
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                   LogToTrace ||
-#endif
-                   LogWriter != null;
-        }
-
-        /// <summary>
-        /// Write internal messages to the log file defined in <see cref="LogFile"/>.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <remarks>
-        /// Message will be logged only when the property <see cref="LogFile"/> is not <c>null</c>, otherwise the
-        /// method has no effect.
-        /// </remarks>
-        private static void WriteToLogFile(string message)
-        {
-            var logFile = LogFile;
-            if (string.IsNullOrEmpty(logFile))
-            {
-                return;
-            }
-
-            lock (LockObject)
-            {
-                using (var textWriter = File.AppendText(logFile))
-                {
-                    textWriter.WriteLine(message);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Write internal messages to the <see cref="System.IO.TextWriter"/> defined in <see cref="LogWriter"/>.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <remarks>
-        /// Message will be logged only when the property <see cref="LogWriter"/> is not <c>null</c>, otherwise the
-        /// method has no effect.
-        /// </remarks>
-        private static void WriteToTextWriter(string message)
-        {
-            var writer = LogWriter;
-            if (writer == null)
-            {
-                return;
-            }
-
-            lock (LockObject)
-            {
-                writer.WriteLine(message);
-            }
-        }
-
-#if !NETSTANDARD1_3
-        /// <summary>
-        /// Write internal messages to the <see cref="System.Console"/>.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <remarks>
-        /// Message will be logged only when the property <see cref="LogToConsole"/> is <c>true</c>, otherwise the 
-        /// method has no effect.
-        /// </remarks>
-        private static void WriteToConsole(string message)
-        {
-            if (!LogToConsole)
-            {
-                return;
-            }
-
-            NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Out, message);
-        }
-#endif
-
-#if !NETSTANDARD1_3
-        /// <summary>
-        /// Write internal messages to the <see cref="System.Console.Error"/>.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <remarks>
-        /// Message will be logged when the property <see cref="LogToConsoleError"/> is <c>true</c>, otherwise the 
-        /// method has no effect.
-        /// </remarks>
-        private static void WriteToErrorConsole(string message)
-        {
-            if (!LogToConsoleError)
-            {
-                return;
-            }
-
-            NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, message);
-        }
-#endif
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-        /// <summary>
-        /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
-        /// </summary>
-        /// <param name="message">A message to write.</param>
-        /// <remarks>
-        /// Works when property <see cref="LogToTrace"/> set to true.
-        /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Release configuration. 
-        /// The <see cref="System.Diagnostics.Debug"/> works only in Debug configuration and this is reason why is replaced by <see cref="System.Diagnostics.Trace"/>.
-        /// in DEBUG 
-        /// </remarks>
-        private static void WriteToTrace(string message)
-        {
-            if (!LogToTrace)
-            {
-                return;
-            }
-
-            System.Diagnostics.Trace.WriteLine(message, "NLog");
-        }
-#endif
 
         /// <summary>
         /// Logs the assembly version and file version of the given Assembly.
         /// </summary>
         /// <param name="assembly">The assembly to log.</param>
+        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         public static void LogAssemblyVersion(Assembly assembly)
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD1_0
-                Info(assembly.FullName);
-#else
-                var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
-                System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
+                var fileVersion = assembly.GetFirstCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+                var productVersion = assembly.GetFirstCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                var globalAssemblyCache = false;
+#if !NETSTANDARD
+                if (assembly.GlobalAssemblyCache)
+                    globalAssemblyCache = true;
+#endif
                 Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
                     assembly.FullName,
-                    fileVersionInfo?.FileVersion,
-                    fileVersionInfo?.ProductVersion,
-                    assembly.GlobalAssemblyCache);
-#endif
+                    fileVersion,
+                    productVersion,
+                    globalAssemblyCache);
             }
             catch (Exception ex)
             {
-                Error(ex, "Error logging version of assembly {0}.", assembly.FullName);
+                Error(ex, "Error logging version of assembly {0}.", assembly?.FullName);
             }
         }
 
+        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static string GetAppSettings(string configName)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if NETFRAMEWORK
             try
             {
                 return System.Configuration.ConfigurationManager.AppSettings[configName];
@@ -563,6 +487,7 @@ namespace NLog.Common
             return null;
         }
 
+        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static string GetSettingString(string configName, string envName)
         {
             try
@@ -596,10 +521,11 @@ namespace NLog.Common
             return null;
         }
 
+        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
         {
             string value = GetSettingString(configName, envName);
-            if (value == null)
+            if (value is null)
             {
                 return defaultValue;
             }
@@ -619,10 +545,11 @@ namespace NLog.Common
             }
         }
 
+        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
         private static T GetSetting<T>(string configName, string envName, T defaultValue)
         {
             string value = GetSettingString(configName, envName);
-            if (value == null)
+            if (value is null)
             {
                 return defaultValue;
             }
@@ -642,7 +569,6 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try
@@ -668,6 +594,94 @@ namespace NLog.Common
                 }
             }
         }
+
+        private static string ExpandFilePathVariables(string internalLogFile)
+        {
+            try
+            {
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out string currentDirToken))
+                    internalLogFile = internalLogFile.Replace(currentDirToken, System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out string baseDirToken))
+                    internalLogFile = internalLogFile.Replace(baseDirToken, LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out string tempDirToken))
+                    internalLogFile = internalLogFile.Replace(tempDirToken, LogManager.LogFactory.CurrentAppEnvironment.UserTempFilePath + System.IO.Path.DirectorySeparatorChar.ToString());
+#if !NETSTANDARD1_3
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
+                    internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogManager.LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
 #endif
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out string commonAppDataDirToken))
+                    internalLogFile = internalLogFile.Replace(commonAppDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out string appDataDirToken))
+                    internalLogFile = internalLogFile.Replace(appDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.ApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${userLocalApplicationDataDir}", out string localapplicationdatadir))
+                    internalLogFile = internalLogFile.Replace(localapplicationdatadir, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
+#endif
+                if (internalLogFile.IndexOf('%') >= 0)
+                    internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
+                return internalLogFile;
+            }
+            catch
+            {
+                return internalLogFile;
+            }
+        }
+
+        private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string result)
+        {
+            int needlePos = haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase);
+            result = needlePos >= 0 ? haystack.Substring(needlePos, needle.Length) : null;
+            return result != null;
+        }
+
+        private static void LogToConsoleSubscription(object sender, InternalLogEventArgs eventArgs)
+        {
+#if !NETSTANDARD1_3
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Out, logLine);
+#endif
+        }
+
+        private static void LogToConsoleErrorSubscription(object sender, InternalLogEventArgs eventArgs)
+        {
+#if !NETSTANDARD1_3
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, logLine);
+#endif
+        }
+
+        [Obsolete("Instead use InternalLogger.LogWriter. Marked obsolete with NLog v5.3")]
+        private static void LogToTraceSubscription(object sender, InternalLogEventArgs eventArgs)
+        {
+#if !NETSTANDARD1_3
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            System.Diagnostics.Trace.WriteLine(logLine, "NLog");
+#endif
+        }
+
+        private static void LogToFileSubscription(object sender, InternalLogEventArgs eventArgs)
+        {
+            var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
+            lock (LockObject)
+            {
+                try
+                {
+                    using (var textWriter = File.AppendText(_logFile))
+                    {
+                        textWriter.WriteLine(logLine);
+                    }
+                }
+                catch (System.IO.IOException)
+                {
+                    // No where to report
+                }
+            }
+        }
+
+        [Obsolete("Instead use InternalEventOccurred and InternalLogEventArgs. Marked obsolete with NLog v5.3")]
+        private static void LogToMessageReceived(object sender, InternalLogEventArgs eventArgs)
+        {
+            _logMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(eventArgs.Message, eventArgs.Level, eventArgs.Exception, eventArgs.SenderType, eventArgs.SenderName));
+        }
     }
 }

@@ -1,46 +1,53 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
+using NLog.Internal;
 
 namespace NLog.Fluent
 {
     /// <summary>
+    /// Obsolete and replaced by <see cref="LogEventBuilder"/> with NLog v5.
+    ///
     /// A fluent class to build log events for NLog.
     /// </summary>
+    [Obsolete("Obsoleted since it allocates unnecessary. Instead use ILogger.ForLogEvent and LogEventBuilder. Obsoleted in NLog 5.0")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;
@@ -64,10 +71,8 @@ namespace NLog.Fluent
         [CLSCompliant(false)]
         public LogBuilder(ILogger logger, LogLevel logLevel)
         {
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
-            if (logLevel == null)
-                throw new ArgumentNullException(nameof(logLevel));
+            Guard.ThrowIfNull(logger);
+            Guard.ThrowIfNull(logLevel);
 
             _logger = logger;
             _logEvent = new LogEventInfo() { LoggerName = logger.Name, Level = logLevel };
@@ -96,8 +101,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Level(LogLevel logLevel)
         {
-            if (logLevel == null)
-                throw new ArgumentNullException(nameof(logLevel));
+            Guard.ThrowIfNull(logLevel);
 
             _logEvent.Level = logLevel;
             return this;
@@ -107,8 +111,8 @@ namespace NLog.Fluent
         /// Sets the logger name of the logging event.
         /// </summary>
         /// <param name="loggerName">The logger name of the logging event.</param>
-            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        public LogBuilder LoggerName(string loggerName)
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
+        public LogBuilder LoggerName([Localizable(false)] string loggerName)
         {
             _logEvent.LoggerName = loggerName;
             return this;
@@ -118,8 +122,8 @@ namespace NLog.Fluent
         /// Sets the log message on the logging event.
         /// </summary>
         /// <param name="message">The log message for the logging event.</param>
-            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        public LogBuilder Message(string message)
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
+        public LogBuilder Message([Localizable(false)] string message)
         {
             _logEvent.Message = message;
 
@@ -133,7 +137,7 @@ namespace NLog.Fluent
         /// <param name="arg0">The object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0 };
@@ -149,7 +153,7 @@ namespace NLog.Fluent
         /// <param name="arg1">The second object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0, object arg1)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0, object arg1)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0, arg1 };
@@ -166,7 +170,7 @@ namespace NLog.Fluent
         /// <param name="arg2">The third object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0, object arg1, object arg2)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0, object arg1, object arg2)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0, arg1, arg2 };
@@ -184,7 +188,7 @@ namespace NLog.Fluent
         /// <param name="arg3">The fourth object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, object arg0, object arg1, object arg2, object arg3)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, object arg0, object arg1, object arg2, object arg3)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = new[] { arg0, arg1, arg2, arg3 };
@@ -199,7 +203,7 @@ namespace NLog.Fluent
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(string format, params object[] args)
+        public LogBuilder Message([Localizable(false)][StructuredMessageTemplate] string format, params object[] args)
         {
             _logEvent.Message = format;
             _logEvent.Parameters = args;
@@ -215,7 +219,7 @@ namespace NLog.Fluent
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [MessageTemplateFormatMethod("format")]
-        public LogBuilder Message(IFormatProvider provider, string format, params object[] args)
+        public LogBuilder Message(IFormatProvider provider, [Localizable(false)][StructuredMessageTemplate] string format, params object[] args)
         {
             _logEvent.FormatProvider = provider;
             _logEvent.Message = format;
@@ -232,8 +236,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Property(object name, object value)
         {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
+            Guard.ThrowIfNull(name);
 
             _logEvent.Properties[name] = value;
             return this;
@@ -246,8 +249,7 @@ namespace NLog.Fluent
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Properties(IDictionary properties)
         {
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+            Guard.ThrowIfNull(properties);
 
             foreach (var key in properties.Keys)
             {
@@ -279,44 +281,35 @@ namespace NLog.Fluent
             return this;
         }
 
-#if NET4_5
         /// <summary>
         /// Writes the log event to the underlying logger.
         /// </summary>
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
+#if !NET35 && !NET40
         public void Write(
-            [CallerMemberName]string callerMemberName = null,
-            [CallerFilePath]string callerFilePath = null,
-            [CallerLineNumber]int callerLineNumber = 0)
+            [CallerMemberName] string callerMemberName = null,
+            [CallerFilePath] string callerFilePath = null,
+            [CallerLineNumber] int callerLineNumber = 0)
         {
             if (!_logger.IsEnabled(_logEvent.Level))
                 return;
 
-            // TODO NLog ver. 5 - Remove these properties
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
-            if (callerFilePath != null)
-                Property("CallerFilePath", callerFilePath);
-            if (callerLineNumber != 0)
-                Property("CallerLineNumber", callerLineNumber);
-
-            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
 #else
-        /// <summary>
-        /// Writes the log event to the underlying logger.
-        /// </summary>
-        public void Write()
+        public void Write(
+            string callerMemberName = null,
+            string callerFilePath = null,
+            int callerLineNumber = 0)
         {
             _logger.Log(_logEvent);
         }
 #endif
 
-#if NET4_5
         /// <summary>
         /// Writes the log event to the underlying logger if the condition delegate is true.
         /// </summary>
@@ -324,41 +317,34 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
+#if !NET35 && !NET40
         public void WriteIf(
             Func<bool> condition,
-            [CallerMemberName]string callerMemberName = null,
-            [CallerFilePath]string callerFilePath = null,
-            [CallerLineNumber]int callerLineNumber = 0)
+            [CallerMemberName] string callerMemberName = null,
+            [CallerFilePath] string callerFilePath = null,
+            [CallerLineNumber] int callerLineNumber = 0)
         {
-            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
+            if (condition is null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
-            if (callerFilePath != null)
-                Property("CallerFilePath", callerFilePath);
-            if (callerLineNumber != 0)
-                Property("CallerLineNumber", callerLineNumber);
-
-            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
 #else
-        /// <summary>
-        /// Writes the log event to the underlying logger.
-        /// </summary>
-        /// <param name="condition">If condition is true, write log event; otherwise ignore event.</param>
-        public void WriteIf(Func<bool> condition)
+        public void WriteIf(
+            Func<bool> condition,
+            string callerMemberName = null,
+            string callerFilePath = null,
+            int callerLineNumber = 0)
         {
-            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
+            if (condition is null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             _logger.Log(_logEvent);
         }
 #endif
 
-#if NET4_5
         /// <summary>
         /// Writes the log event to the underlying logger if the condition is true.
         /// </summary>
@@ -366,32 +352,26 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
+#if !NET35 && !NET40
         public void WriteIf(
-            bool condition, 
-            [CallerMemberName]string callerMemberName = null, 
-            [CallerFilePath]string callerFilePath = null, 
-            [CallerLineNumber]int callerLineNumber = 0)
+            bool condition,
+            [CallerMemberName] string callerMemberName = null,
+            [CallerFilePath] string callerFilePath = null,
+            [CallerLineNumber] int callerLineNumber = 0)
         {
             if (!condition || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
-            if (callerFilePath != null)
-                Property("CallerFilePath", callerFilePath);
-            if (callerLineNumber != 0)
-                Property("CallerLineNumber", callerLineNumber);
-
-            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
 #else
-        /// <summary>
-        /// Writes the log event to the underlying logger.
-        /// </summary>
-        /// <param name="condition">If condition is true, write log event; otherwise ignore event.</param>
-        public void WriteIf(bool condition)
+        public void WriteIf(
+            bool condition,
+            string callerMemberName = null,
+            string callerFilePath = null,
+            int callerLineNumber = 0)
         {
             if (!condition || !_logger.IsEnabled(_logEvent.Level))
                 return;
@@ -400,5 +380,10 @@ namespace NLog.Fluent
         }
 #endif
 
+        private void SetCallerInfo(string callerMethodName, string callerFilePath, int callerLineNumber)
+        {
+            if (callerMethodName != null || callerFilePath != null || callerLineNumber != 0)
+                _logEvent.SetCallerInfo(null, callerMethodName, callerFilePath, callerLineNumber);
+        }
     }
 }

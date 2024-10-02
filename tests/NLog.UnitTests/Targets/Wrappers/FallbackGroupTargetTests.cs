@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -42,7 +42,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class FallbackGroupTargetTests : NLogTestBase
-	{
+    {
         [Fact]
         public void FirstTargetWorks_Write_AllEventsAreWrittenToFirstTarget()
         {
@@ -225,7 +225,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             FallbackGroupWithBufferingTargets(false);
         }
 
-        private void FallbackGroupWithBufferingTargets(bool returnToFirstOnSuccess)
+        private static void FallbackGroupWithBufferingTargets(bool returnToFirstOnSuccess)
         {
             using (new NoThrowNLogExceptions())
             {
@@ -255,7 +255,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         }
                     }));
                 }
-                allEventsDone.WaitOne();                            // Wait for all events to be delivered.
+                allEventsDone.WaitOne(5000);                        // Wait for all events to be delivered.
 
                 Assert.True(totalEvents >= myTarget1.WriteCount,    // Check events weren't delivered twice to myTarget1,
                     "Target 1 received " + myTarget1.WriteCount + " writes although only " + totalEvents + " events were written");
@@ -286,7 +286,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 // no exceptions
                 for (var i = 0; i < 10; ++i)
                 {
-                    using (NestedDiagnosticsLogicalContext.Push("Hello World"))
+                    using (ScopeContext.PushNestedState("Hello World"))
                     {
                         wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
                     }
@@ -311,9 +311,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         private static FallbackGroupTarget CreateAndInitializeFallbackGroupTarget(bool returnToFirstOnSuccess, params Target[] targets)
         {
             var wrapper = new FallbackGroupTarget(targets)
-                              {
-                                  ReturnToFirstOnSuccess = returnToFirstOnSuccess,
-                              };
+            {
+                ReturnToFirstOnSuccess = returnToFirstOnSuccess,
+            };
 
             foreach (var target in targets)
             {
@@ -355,8 +355,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                               });
 
             flushHit.WaitOne();
-            if (flushException != null)
-                Assert.True(false, flushException.ToString());
+            Assert.True(flushException is null, flushException?.ToString());
         }
 
         private class MyTarget : TargetWithLayout

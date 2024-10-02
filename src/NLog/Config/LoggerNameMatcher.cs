@@ -1,41 +1,40 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Config
 {
     using System;
     using System.Text.RegularExpressions;
-    using NLog.Common;
 
     /// <summary>
     /// Encapsulates <see cref="LoggingRule.LoggerNamePattern"/> and the logic to match the actual logger name
@@ -73,39 +72,28 @@ namespace NLog.Config
         /// <returns>A concrete <see cref="LoggerNameMatcher"/></returns>
         public static LoggerNameMatcher Create(string loggerNamePattern)
         {
-            if (loggerNamePattern == null)
+            if (loggerNamePattern is null)
                 return NoneLoggerNameMatcher.Instance;
+            if (loggerNamePattern.Trim() == "*")
+                return AllLoggerNameMatcher.Instance;
 
             int starPos1 = loggerNamePattern.IndexOf('*');
             int starPos2 = loggerNamePattern.IndexOf('*', starPos1 + 1);
             int questionPos = loggerNamePattern.IndexOf('?');
             if (starPos1 < 0 && questionPos < 0)
                 return new EqualsLoggerNameMatcher(loggerNamePattern);
-            if (loggerNamePattern == "*")
-                return AllLoggerNameMatcher.Instance;
+
             if (questionPos < 0)
             {
                 if (starPos1 == 0 && starPos2 == loggerNamePattern.Length - 1)
                     return new ContainsLoggerNameMatcher(loggerNamePattern);
-                if (starPos2 < 0)
-                {
-                    var loggerNameMatcher = CreateStartsOrEndsWithLoggerNameMatcher(loggerNamePattern, starPos1);
-                    if (loggerNameMatcher != null)
-                    {
-                        return loggerNameMatcher;
-                    }
-                }
+                if (starPos1 == 0 && starPos2 < 0)
+                    return new EndsWithLoggerNameMatcher(loggerNamePattern);
+                if (starPos1 == loggerNamePattern.Length - 1 && starPos2 < 0)
+                    return new StartsWithLoggerNameMatcher(loggerNamePattern);
             }
-            return new MultiplePatternLoggerNameMatcher(loggerNamePattern);
-        }
 
-        private static LoggerNameMatcher CreateStartsOrEndsWithLoggerNameMatcher(string loggerNamePattern, int starPos1)
-        {
-            if (starPos1 == 0)
-                return new EndsWithLoggerNameMatcher(loggerNamePattern);
-            if (starPos1 == loggerNamePattern.Length - 1)
-                return new StartsWithLoggerNameMatcher(loggerNamePattern);
-            return null;
+            return new MultiplePatternLoggerNameMatcher(loggerNamePattern);
         }
 
         /// <summary>
@@ -119,13 +107,13 @@ namespace NLog.Config
         {
             Pattern = pattern;
             _matchingArgument = matchingArgument;
-            _toString = "logNamePattern: (" + matchingArgument + ":" + Name + ")";
+            _toString = $"logNamePattern: ({matchingArgument}:{MatchMode})";
         }
         public override string ToString()
         {
             return _toString;
         }
-        protected abstract string Name { get; }
+        protected abstract string MatchMode { get; }
 
         /// <summary>
         /// Checks whether given name matches the logger name pattern.
@@ -138,11 +126,11 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that never matches.
         /// Used when pattern is null
         /// </summary>
-        class NoneLoggerNameMatcher : LoggerNameMatcher
+        private sealed class NoneLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "None";
+            protected override string MatchMode => "None";
             public static readonly NoneLoggerNameMatcher Instance = new NoneLoggerNameMatcher();
-            private NoneLoggerNameMatcher() 
+            private NoneLoggerNameMatcher()
                 : base(null, null)
             {
 
@@ -150,18 +138,18 @@ namespace NLog.Config
             public override bool NameMatches(string loggerName)
             {
                 return false;
-            }            
+            }
         }
 
         /// <summary>
         /// Defines a <see cref="LoggerNameMatcher"/> that always matches.
         /// Used when pattern is '*'
         /// </summary>
-        class AllLoggerNameMatcher : LoggerNameMatcher
+        private sealed class AllLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "All";
+            protected override string MatchMode => "All";
             public static readonly AllLoggerNameMatcher Instance = new AllLoggerNameMatcher();
-            private AllLoggerNameMatcher() 
+            private AllLoggerNameMatcher()
                 : base("*", null) { }
             public override bool NameMatches(string loggerName)
             {
@@ -173,14 +161,14 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive Equals
         /// Used when pattern is a string without wildcards '?' '*'
         /// </summary>
-        class EqualsLoggerNameMatcher : LoggerNameMatcher
+        private sealed class EqualsLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "Equals";
-            public EqualsLoggerNameMatcher(string pattern) 
+            protected override string MatchMode => "Equals";
+            public EqualsLoggerNameMatcher(string pattern)
                 : base(pattern, pattern) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.Equals(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -189,14 +177,14 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive StartsWith
         /// Used when pattern is a string like "*foobar"
         /// </summary>
-        class StartsWithLoggerNameMatcher : LoggerNameMatcher
+        private sealed class StartsWithLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "StartsWith";
-            public StartsWithLoggerNameMatcher(string pattern) 
+            protected override string MatchMode => "StartsWith";
+            public StartsWithLoggerNameMatcher(string pattern)
                 : base(pattern, pattern.Substring(0, pattern.Length - 1)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.StartsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -205,14 +193,14 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive EndsWith
         /// Used when pattern is a string like "foobar*"
         /// </summary>
-        class EndsWithLoggerNameMatcher : LoggerNameMatcher
+        private sealed class EndsWithLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "EndsWith";
-            public EndsWithLoggerNameMatcher(string pattern) 
+            protected override string MatchMode => "EndsWith";
+            public EndsWithLoggerNameMatcher(string pattern)
                 : base(pattern, pattern.Substring(1)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.EndsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -221,14 +209,14 @@ namespace NLog.Config
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive Contains
         /// Used when pattern is a string like "*foobar*"
         /// </summary>
-        class ContainsLoggerNameMatcher : LoggerNameMatcher
+        private sealed class ContainsLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "Contains";
-            public ContainsLoggerNameMatcher(string pattern) 
+            protected override string MatchMode => "Contains";
+            public ContainsLoggerNameMatcher(string pattern)
                 : base(pattern, pattern.Substring(1, pattern.Length - 2)) { }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return _matchingArgument == null;
+                if (loggerName is null) return _matchingArgument is null;
                 return loggerName.IndexOf(_matchingArgument, StringComparison.Ordinal) >= 0;
             }
         }
@@ -242,9 +230,9 @@ namespace NLog.Config
         /// used when pattern is a string containing any number of '?' or '*' in any position
         /// i.e. "*Server[*].Connection[?]"
         /// </summary>
-        class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
+        private sealed class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
         {
-            protected override string Name => "MultiplePattern";
+            protected override string MatchMode => "MultiplePattern";
             private readonly Regex _regex;
             private static string ConvertToRegex(string wildcardsPattern)
             {
@@ -255,14 +243,14 @@ namespace NLog.Config
                         .Replace("\\?", ".")
                     + '$';
             }
-            public MultiplePatternLoggerNameMatcher(string pattern) 
+            public MultiplePatternLoggerNameMatcher(string pattern)
                 : base(pattern, ConvertToRegex(pattern))
             {
-                _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
+                _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
             }
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName == null) return false;
+                if (loggerName is null) return false;
                 return _regex.IsMatch(loggerName);
             }
         }

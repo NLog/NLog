@@ -1,48 +1,45 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System.Linq;
-using System.Text;
-
-#pragma warning disable 0618
+//
 
 namespace NLog.UnitTests.Contexts
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading;
     using Xunit;
 
+    [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
     public class MappedDiagnosticsContextTests
     {
         /// <summary>
@@ -68,7 +65,7 @@ namespace NLog.UnitTests.Contexts
                                 Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
                                 Assert.False(MappedDiagnosticsContext.Contains("foo2"));
                                 Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
-                                Assert.Equal(0, MappedDiagnosticsContext.GetNames().Count);
+                                Assert.Empty(MappedDiagnosticsContext.GetNames());
 
                                 MappedDiagnosticsContext.Set("foo", "bar");
                                 MappedDiagnosticsContext.Set("foo2", "bar2");
@@ -84,7 +81,7 @@ namespace NLog.UnitTests.Contexts
                                 Assert.True(MappedDiagnosticsContext.Contains("foo2"));
                                 Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
 
-                                Assert.Equal(1, MappedDiagnosticsContext.GetNames().Count);
+                                Assert.Single(MappedDiagnosticsContext.GetNames());
                                 Assert.True(MappedDiagnosticsContext.GetNames().Contains("foo2"));
 
                                 Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
@@ -137,26 +134,26 @@ namespace NLog.UnitTests.Contexts
                     {
                         try
                         {
-                            MDC.Clear();
-                            Assert.False(MDC.Contains("foo"));
-                            Assert.Equal(string.Empty, MDC.Get("foo"));
-                            Assert.False(MDC.Contains("foo2"));
-                            Assert.Equal(string.Empty, MDC.Get("foo2"));
+                            MappedDiagnosticsContext.Clear();
+                            Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
+                            Assert.False(MappedDiagnosticsContext.Contains("foo2"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
 
-                            MDC.Set("foo", "bar");
-                            MDC.Set("foo2", "bar2");
+                            MappedDiagnosticsContext.Set("foo", "bar");
+                            MappedDiagnosticsContext.Set("foo2", "bar2");
 
-                            Assert.True(MDC.Contains("foo"));
-                            Assert.Equal("bar", MDC.Get("foo"));
+                            Assert.True(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
 
-                            MDC.Remove("foo");
-                            Assert.False(MDC.Contains("foo"));
-                            Assert.Equal(string.Empty, MDC.Get("foo"));
+                            MappedDiagnosticsContext.Remove("foo");
+                            Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
 
-                            Assert.True(MDC.Contains("foo2"));
-                            Assert.Equal("bar2", MDC.Get("foo2"));
+                            Assert.True(MappedDiagnosticsContext.Contains("foo2"));
+                            Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
 
-                            Assert.Null(MDC.GetObject("foo3"));
+                            Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
                         }
                         catch (Exception ex)
                         {
@@ -201,8 +198,8 @@ namespace NLog.UnitTests.Contexts
             {
                 try
                 {
-                    getObject = MDC.GetObject("DoNotExist");
-                    getValue = MDC.Get("DoNotExistEither");
+                    getObject = MappedDiagnosticsContext.GetObject("DoNotExist");
+                    getValue = MappedDiagnosticsContext.Get("DoNotExistEither");
                 }
                 finally
                 {
@@ -236,7 +233,7 @@ namespace NLog.UnitTests.Contexts
         {
             const string itemKey = "itemKey";
 
-            MappedDiagnosticsContext.Clear();            
+            MappedDiagnosticsContext.Clear();
             IDisposable disposable = MappedDiagnosticsContext.SetScoped(itemKey, "item1");
 
             disposable.Dispose();

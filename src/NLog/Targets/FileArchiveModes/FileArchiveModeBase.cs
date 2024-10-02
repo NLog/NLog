@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace NLog.Targets.FileArchiveModes
         static readonly DateTime MaxAgeArchiveFileDate = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         private int _lastArchiveFileCount = short.MaxValue * 2;
-        private DateTime _oldestArchiveFileDate = MaxAgeArchiveFileDate;
+        private DateTime _oldestArchiveFileDate = MaxAgeArchiveFileDate.Date;
 
         public bool IsArchiveCleanupEnabled { get; }
 
@@ -54,7 +54,7 @@ namespace NLog.Targets.FileArchiveModes
 
         /// <summary>
         /// Check if cleanup should be performed on initialize new file
-        /// 
+        ///
         /// Skip cleanup when initializing new file, just after having performed archive operation
         /// </summary>
         /// <param name="archiveFilePath">Base archive file pattern</param>
@@ -66,7 +66,7 @@ namespace NLog.Targets.FileArchiveModes
             if (maxArchiveFiles > 0 && _lastArchiveFileCount++ > maxArchiveFiles)
                 return true;
 
-            if (maxArchiveDays > 0 && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - _oldestArchiveFileDate.Date).TotalDays > maxArchiveDays)
+            if (maxArchiveDays > 0 && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - _oldestArchiveFileDate).TotalDays > maxArchiveDays)
                 return true;
 
             return false;
@@ -85,7 +85,7 @@ namespace NLog.Targets.FileArchiveModes
         public virtual List<DateAndSequenceArchive> GetExistingArchiveFiles(string archiveFilePath)
         {
             _lastArchiveFileCount = short.MaxValue * 2;
-            _oldestArchiveFileDate = MaxAgeArchiveFileDate;
+            _oldestArchiveFileDate = MaxAgeArchiveFileDate.Date;
 
             string archiveFolderPath = Path.GetDirectoryName(archiveFilePath);
             FileNameTemplate archiveFileNameTemplate = GenerateFileNameTemplate(archiveFilePath);
@@ -99,20 +99,23 @@ namespace NLog.Targets.FileArchiveModes
             if (!directoryInfo.Exists)
                 return existingArchiveFiles;
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var existingFiles = directoryInfo.EnumerateFiles(archiveFileMask);
-#else
             var existingFiles = directoryInfo.GetFiles(archiveFileMask);
-#endif
             foreach (var fileInfo in existingFiles)
             {
                 var archiveFileInfo = GenerateArchiveFileInfo(fileInfo, archiveFileNameTemplate);
                 if (archiveFileInfo != null)
+                {
+                    InternalLogger.Trace("FileTarget: Found existing archive file: {0} [SeqNo={1} and FileTimeUtc={2:u}]", archiveFileInfo.FileName, archiveFileInfo.Sequence, archiveFileInfo.Date);
                     existingArchiveFiles.Add(archiveFileInfo);
+                }
+                else
+                {
+                    InternalLogger.Trace("FileTarget: Ignored existing archive file: {0}", fileInfo.FullName);
+                }
             }
 
             if (existingArchiveFiles.Count > 1)
-                existingArchiveFiles.Sort((x,y) => FileSortOrderComparison(x, y));
+                existingArchiveFiles.Sort((x, y) => FileSortOrderComparison(x, y));
 
             UpdateMaxArchiveState(existingArchiveFiles);
             return existingArchiveFiles;
@@ -121,7 +124,7 @@ namespace NLog.Targets.FileArchiveModes
         protected void UpdateMaxArchiveState(List<DateAndSequenceArchive> existingArchiveFiles)
         {
             _lastArchiveFileCount = existingArchiveFiles.Count;
-            _oldestArchiveFileDate = existingArchiveFiles.Count == 0 ? DateTime.UtcNow : existingArchiveFiles[0].Date.Date.ToUniversalTime();
+            _oldestArchiveFileDate = existingArchiveFiles.Count == 0 ? NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() : existingArchiveFiles[0].Date.Date.ToUniversalTime();
         }
 
         private static int FileSortOrderComparison(DateAndSequenceArchive x, DateAndSequenceArchive y)
@@ -132,7 +135,7 @@ namespace NLog.Targets.FileArchiveModes
             if (x.Sequence.CompareTo(y.Sequence) != 0)
                 return x.Sequence.CompareTo(y.Sequence);
 
-            return string.CompareOrdinal(x.FileName, y.FileName);
+            return StringComparer.OrdinalIgnoreCase.Compare(x.FileName, y.FileName);
         }
 
         protected virtual FileNameTemplate GenerateFileNameTemplate(string archiveFilePath)
@@ -143,10 +146,7 @@ namespace NLog.Targets.FileArchiveModes
 
         protected virtual string GenerateFileNameMask(string archiveFilePath, FileNameTemplate fileTemplate)
         {
-            if (fileTemplate != null)
-                return fileTemplate.ReplacePattern("*");
-            else
-                return string.Empty;
+            return fileTemplate?.ReplacePattern("*") ?? string.Empty;
         }
 
         protected abstract DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate);
@@ -177,11 +177,11 @@ namespace NLog.Targets.FileArchiveModes
                 {
                     _oldestArchiveFileDate = existingArchiveFiles[i].Date.Date.ToUniversalTime();
                     break;
-                }                
+                }
             }
         }
 
-        private bool ShouldDeleteFile(DateAndSequenceArchive existingArchiveFile, int remainingFileCount, int maxArchiveFiles, int maxArchiveDays)
+        private static bool ShouldDeleteFile(DateAndSequenceArchive existingArchiveFile, int remainingFileCount, int maxArchiveFiles, int maxArchiveDays)
         {
             if (maxArchiveFiles > 0 && remainingFileCount > maxArchiveFiles)
                 return true;
@@ -200,41 +200,41 @@ namespace NLog.Targets.FileArchiveModes
                     }
                 }
             }
-                
+
             return false;
         }
 
         internal sealed class FileNameTemplate
         {
             /// <summary>
-            /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// Characters determining the start of the <see cref="FileNameTemplate.Template"/>.
             /// </summary>
             public const string PatternStartCharacters = "{#";
 
             /// <summary>
-            /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// Characters determining the end of the <see cref="FileNameTemplate.Template"/>.
             /// </summary>
             public const string PatternEndCharacters = "#}";
 
             /// <summary>
-            /// File name which is used as template for matching and replacements. 
+            /// File name which is used as template for matching and replacements.
             /// It is expected to contain a pattern to match.
             /// </summary>
-            public string Template { get; private set; }
+            public string Template { get; }
 
             /// <summary>
-            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// The beginning position of the <see cref="FileNameTemplate.PatternStartCharacters"/>
+            /// within the <see cref="FileNameTemplate.Template"/>. -1 is returned
             /// when no pattern can be found.
             /// </summary>
-            public int BeginAt { get; private set; }
+            public int BeginAt { get; }
 
             /// <summary>
-            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// The ending position of the <see cref="FileNameTemplate.PatternEndCharacters"/>
+            /// within the <see cref="FileNameTemplate.Template"/>. -1 is returned
             /// when no pattern can be found.
             /// </summary>
-            public int EndAt { get; private set; }
+            public int EndAt { get; }
 
             private bool FoundPattern => BeginAt != -1 && EndAt != -1;
 
@@ -242,8 +242,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 Template = template;
                 BeginAt = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                if (BeginAt != -1)
-                    EndAt = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+                EndAt = BeginAt != -1 ? (template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length) : -1;
             }
 
             /// <summary>

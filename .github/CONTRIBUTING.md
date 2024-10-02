@@ -1,4 +1,4 @@
-Support & contributing guidelines (September 19, 2017)
+Support & contributing guidelines
 ===
 Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](/issue-labeling.md). 
 
@@ -14,11 +14,9 @@ Questions
 ----
 Please provide the following information:
 - The current NLog version
-- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
-- If relevant: the current result
+- The current config (xml or code). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
+- If relevant: the current result (Including full exception details if any)
 - If relevant: the expected result
-
- 
 
 Bug reports
 ----
@@ -29,9 +27,8 @@ Please provide the following information:
 - The current result
 - The expected result 
 - Any current work-arounds
-- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
+- The current config (xml or code). Please use [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks).
 - Pull requests and unit tests are welcome!
-
 
 
 Pull requests
@@ -49,18 +46,12 @@ Multiple .NET versions
 Keep in mind that multiple versions of .NET are supported. Some methods are not available in all .NET versions. The following conditional compilation symbols can be used:
 
 ```
-#if NET3_5
-#if NET4_0
-#if NET4_5
-#if SILVERLIGHT
-#if SILVERLIGHT5
-#if MONO
-#if MONO_2_0
-#if WINDOWS_PHONE
-#if WINDOWS_PHONE_7
-#if WINDOWS_PHONE_7_1
-#if __IOS__
-#if __ANDROID__
+#if NET35
+#if NET45
+#if NET46
+#if NETSTANDARD
+#if NETSTANDARD1_3
+#if NETSTANDARD1_5
 ```
 
 Update your fork

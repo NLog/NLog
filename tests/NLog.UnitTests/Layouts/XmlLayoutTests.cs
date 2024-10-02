@@ -1,42 +1,40 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System.Collections.Generic;
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.Layouts
 {
     using System;
+    using System.Collections.Generic;
     using NLog.Layouts;
     using Xunit;
 
@@ -54,7 +52,7 @@ namespace NLog.UnitTests.Layouts
                         new XmlElement("message", "${message}"),
                     },
                 IndentXml = true,
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -71,11 +69,11 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayoutLog4j()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>
-                            <layout type='xmllayout' elementName='log4j:event' propertiesElementName='log4j:data' propertiesElementKeyAttribute='name' propertiesElementValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
+                            <layout type='xmllayout' elementName='log4j:event' propertiesElementName='log4j:data' propertiesElementKeyAttribute='name' propertiesElementValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' excludeProperties='BADPROPERTYKEY' >
                                 <attribute name='logger' layout='${logger}' includeEmptyValue='true' />
                                 <attribute name='level' layout='${uppercase:${level}}' includeEmptyValue='true' />
                                 <element name='log4j:message' value='${message}' />
@@ -89,22 +87,22 @@ namespace NLog.UnitTests.Layouts
                     <rules>
                         <logger name='*' minlevel='debug' appendto='debug' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo1", "bar1");
-            MappedDiagnosticsContext.Set("foo2", "bar2");
+            ScopeContext.Clear();
 
-            MappedDiagnosticsLogicalContext.Clear();
-            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
+            ScopeContext.PushProperty("foo1", "bar1");
+            ScopeContext.PushProperty("foo2", "bar2");
+            ScopeContext.PushProperty("foo3", "bar3");
 
-            var logger = LogManager.GetLogger("hello");
+            var logger = logFactory.GetLogger("hello");
 
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", null, null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "<nlog\r\nPropertyValue>";
+            logEventInfo.Properties["badPropertyKey"] = "NOT ME";
             logger.Log(logEventInfo);
 
-            var target = LogManager.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+            var target = logFactory.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
             Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class=""NLog.UnitTests.Layouts.XmlLayoutTests""/><log4j:data name=""foo1"" value=""bar1""/><log4j:data name=""foo2"" value=""bar2""/><log4j:data name=""foo3"" value=""bar3""/><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;""/></log4j:event>", target.LastMessage);
         }
 
@@ -120,7 +118,7 @@ namespace NLog.UnitTests.Layouts
                 },
             };
 
-            var logEventInfo = new LogEventInfo {  Message = @"<hello planet=""earth""/>" };
+            var logEventInfo = new LogEventInfo { Message = @"<hello planet=""earth""/>" };
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -162,7 +160,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     new XmlElement("message", "${message}") { IncludeEmptyValue = true },
                 },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 IncludeEmptyValue = true,
             };
 
@@ -193,7 +191,7 @@ namespace NLog.UnitTests.Layouts
                     new XmlElement("message", "${message}"),
                 },
                 IndentXml = false,
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -226,7 +224,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     new XmlElement("message", "${message}"),
                 },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 ExcludeProperties = new HashSet<string> { "prop2" }
             };
 
@@ -252,7 +250,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -277,7 +275,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
             };
@@ -305,7 +303,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesElementName = "p",
                 PropertiesElementKeyAttribute = "k",
                 PropertiesElementValueAttribute = "v",
@@ -332,7 +330,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
                 PropertiesElementValueAttribute = "v",
@@ -367,7 +365,7 @@ namespace NLog.UnitTests.Layouts
                         {
                             new XmlElement("level", "${level}")
                         },
-                        IncludeAllProperties = true,
+                        IncludeEventProperties = true,
                     }
 
                 },
@@ -396,12 +394,12 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new Dictionary<string, object> { { "Hello", "World" } };
 
@@ -409,7 +407,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Hello"">World</property></property></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><property key=""Hello"">World</property></property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -422,12 +420,12 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new Dictionary<string, object> { { "Hello", "World" } };
 
@@ -435,7 +433,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><Hello>World</Hello></nlogPropertyKey></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><Hello>World</Hello></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -446,20 +444,20 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
-            logEventInfo.Properties["nlogPropertyKey"] = new [] { "Hello", "World" };
+            logEventInfo.Properties["nlogPropertyKey"] = new[] { "Hello", "World" };
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><item>Hello</item><item>World</item></property></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><item>Hello</item><item>World</item></property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -472,14 +470,14 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 PropertiesCollectionItemName = "node",
                 PropertiesElementValueAttribute = "value",
             };
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new[] { "Hello", "World" };
 
@@ -487,7 +485,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><node value=""Hello""/><node value=""World""/></nlogPropertyKey></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><node value=""Hello""/><node value=""World""/></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -498,13 +496,13 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var guid = Guid.NewGuid();
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new { Id = guid, Name = "Hello World", Elements = new[] { "Earth", "Wind", "Fire" } };
 
@@ -512,7 +510,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Id"">" + guid.ToString() + @"</property><property key=""Name"">Hello World</property><property key=""Elements""><item>Earth</item><item>Wind</item><item>Fire</item></property></property></logevent>";
+            string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><property key=""Id"">" + guid.ToString() + @"</property><property key=""Name"">Hello World</property><property key=""Elements""><item>Earth</item><item>Wind</item><item>Fire</item></property></property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -525,14 +523,14 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var guid = Guid.NewGuid();
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new { Id = guid, Name = "Hello World", Elements = new[] { "Earth", "Wind", "Fire" } };
 
@@ -540,11 +538,11 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><Id>" + guid.ToString() + @"</Id><Name>Hello World</Name><Elements><item>Earth</item><item>Wind</item><item>Fire</item></Elements></nlogPropertyKey></logevent>";
+            string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><Id>" + guid.ToString() + @"</Id><Name>Hello World</Name><Elements><item>Earth</item><item>Wind</item><item>Fire</item></Elements></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
-#if DYNAMIC_OBJECT
+#if !NET35 && !NET40
 
         [Fact]
         public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyExpando()
@@ -553,7 +551,7 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 Elements = { new XmlElement("message", "${message}") },
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             dynamic object1 = new System.Dynamic.ExpandoObject();
@@ -562,7 +560,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = object1;
 
@@ -570,11 +568,39 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Id"">123</property><property key=""Name"">test name</property></property></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><property key=""nlogPropertyKey""><property key=""Id"">123</property><property key=""Name"">test name</property></property></logevent>";
             Assert.Equal(expected, result);
         }
 
 #endif
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderSafeXml()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlElement("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeEventProperties = true,
+                MaxRecursionLimit = 10,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster < message"
+            };
+            logEventInfo.Properties["<xmltag>"] = "<xmltag>";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster &lt; message</message><_xmltag_>&lt;xmltag&gt;</_xmltag_></logevent>";
+            Assert.Equal(expected, result);
+        }
+
 
         [Fact]
         public void XmlLayout_PropertiesElementNameFormat_RenderInfiniteLoop()
@@ -585,13 +611,13 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 MaxRecursionLimit = 10,
             };
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             logEventInfo.Properties["nlogPropertyKey"] = new TestList();
 
@@ -612,13 +638,13 @@ namespace NLog.UnitTests.Layouts
                 Elements = { new XmlElement("message", "${message}") },
                 PropertiesElementName = "{0}",
                 PropertiesElementKeyAttribute = "",
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 MaxRecursionLimit = 10,
             };
 
             var logEventInfo = new LogEventInfo
             {
-                Message = "Monster massage"
+                Message = "Monster message"
             };
             IDictionary<object, object> testDictionary = new Internal.TrickyTestDictionary();
             testDictionary.Add("key1", 13);
@@ -629,11 +655,11 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><key1>13</key1><key_2>1.3</key_2></nlogPropertyKey></logevent>";
+            const string expected = @"<logevent><message>Monster message</message><nlogPropertyKey><key1>13</key1><key_2>1.3</key_2></nlogPropertyKey></logevent>";
             Assert.Equal(expected, result);
         }
 
-        private class TestList : IEnumerable<System.Collections.IEnumerable>
+        private sealed class TestList : IEnumerable<System.Collections.IEnumerable>
         {
             static List<int> _list1 = new List<int> { 17, 3 };
             static List<string> _list2 = new List<string> { "alpha", "bravo" };

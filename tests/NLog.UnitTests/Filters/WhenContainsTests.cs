@@ -1,40 +1,40 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.Filters
 {
+    using NLog.Filters;
+    using NLog.Layouts;
     using Xunit;
 
     public class WhenContainsTests : NLogTestBase
@@ -42,106 +42,141 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenContainsTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <whenContains layout='${message}' substring='zzz' action='Ignore' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("ZzzZ");
+
+            Assert.True(logFactory.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
+            var wcf = (WhenContainsFilter)logFactory.Configuration.LoggingRules[0].Filters[0];
+            Assert.IsType<SimpleLayout>(wcf.Layout);
+            Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
+            Assert.Equal("zzz", wcf.Substring);
+            Assert.Equal(FilterResult.Ignore, wcf.Action);
         }
 
         [Fact]
         public void WhenContainsInsensitiveTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("aaa");
         }
 
         [Fact]
         public void WhenContainsQuoteTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='&apos;' action='Ignore' ignoreCase='true' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <whenContains layout='${message}' substring='&apos;' action='Ignore' ignoreCase='true' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            logger.Debug("'");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("a'a");
-            AssertDebugCounter("debug", 0);
+            var logger = logFactory.GetLogger("A");
             logger.Debug("a");
-            AssertDebugCounter("debug", 1);
+            logFactory.AssertDebugLastMessage("a");
+            logger.Debug("'");
+            logFactory.AssertDebugLastMessage("a");
+            logger.Debug("a'a");
+            logFactory.AssertDebugLastMessage("a");
             logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            logFactory.AssertDebugLastMessage("aaa");
         }
 
         [Fact]
         public void WhenContainsQuoteTestComplex()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
-                        <when condition=""contains('${message}', 'Cannot insert the value NULL into column ''Col1')"" action=""Log""></when>
-                        <when condition='true' action='Ignore' />
-                    </filters>
+                        <filters defaultAction='log'>
+                            <when condition=""contains('${message}', 'Cannot insert the value NULL into column ''Col1')"" action=""Log""></when>
+                            <when condition='true' action='Ignore' />
+                        </filters>
                     </logger>
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
-            logger.Debug("Test");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("Cannot insert the value NULL into column 'Col1");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("Cannot insert the value NULL into column 'Col1'");
-            AssertDebugCounter("debug", 2);
+            var logger = logFactory.GetLogger("A");
+
+            var expectedMessage = "Cannot insert the value NULL into column 'Col1";
+            logger.Debug(expectedMessage);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
+            expectedMessage = "Cannot insert the value NULL into column 'Col1'";
+            logger.Debug(expectedMessage);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
+            expectedMessage = "Cannot insert the value NULL into column 'COL1'";
+            logger.Debug(expectedMessage);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
             logger.Debug("Cannot insert the value NULL into column Col1");
-            AssertDebugCounter("debug", 2);
-            logger.Debug("Cannot insert the value NULL into column 'COL1'");
-            AssertDebugCounter("debug", 3);
+            logFactory.AssertDebugLastMessage(expectedMessage);
+
+            logger.Debug("Test");
+            logFactory.AssertDebugLastMessage(expectedMessage);
+        }
+
+        [Fact]
+        public void WhenContainsFilterActionMustOverrideDefault()
+        {
+            var ex = Assert.Throws<NLogConfigurationException>(() =>
+            {
+                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug'>
+                            <filters defaultAction='Ignore'>
+                                <whenContains layout='${message}' substring='zzz' action='Ignore' />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>").LogFactory;
+            });
+            Assert.Contains("FilterDefaultAction=Ignore", ex.InnerException?.Message ?? ex.Message);
         }
     }
 }

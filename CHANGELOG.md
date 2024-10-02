@@ -4,6 +4,23 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### Version 5.3.4 (2024/09/12)
+
+**Improvements**
+- [#5572](https://github.com/NLog/NLog/pull/5572) Layout.FromMethod that supports typed Layout (#5572) (@smnsht)
+- [#5580](https://github.com/NLog/NLog/pull/5580) Layout.FromMethod that supports typed Layout (without boxing) (#5580) (@snakefoot)
+- [#5570](https://github.com/NLog/NLog/pull/5570) ScopeContextPropertyEnumerator - Optimize HasUniqueCollectionKeys (#5570) (@snakefoot)
+- [#5571](https://github.com/NLog/NLog/pull/5571) XmlLayout - Fixed bug in handling unsafe xml property names (#5571) (@snakefoot)
+- [#5573](https://github.com/NLog/NLog/pull/5573) FuncThreadAgnosticLayoutRenderer - Implement IRawValue (#5573) (@snakefoot)
+- [#5577](https://github.com/NLog/NLog/pull/5577) Introduced OnConfigurationAssigned to signal activation of LoggingConfiguration (#5577) (@snakefoot)
+- [#5578](https://github.com/NLog/NLog/pull/5578) Update copyright to 2024, and removed trailing white spaces in source code (#5578) (@snakefoot)
+- [#5585](https://github.com/NLog/NLog/pull/5585) Fixed various issues reported by EnableNETAnalyzers (#5585) (@snakefoot)
+- [#5587](https://github.com/NLog/NLog/pull/5587) NetworkTarget - Added SendTimeoutSeconds to assign TCP Socket SendTimeout (#5587) (@snakefoot)
+- [#5588](https://github.com/NLog/NLog/pull/5588) DateLayoutRenderer - Optimize for Round Trip ISO 8601 Date Format = o (#5588) (@snakefoot)
+- [#5589](https://github.com/NLog/NLog/pull/5589) LayoutRenderer - Changed Render-method to use StringBuilderPool (#5589) (@snakefoot)
+- [#5599](https://github.com/NLog/NLog/pull/5599) JsonLayout - Refactor code to simplify rendering of scope properties (#5599) (@snakefoot)
+- [#5600](https://github.com/NLog/NLog/pull/5600) JsonLayout - Precalculate Json-Document delimiters upfront (#5600) (@snakefoot)
+
 ### Version 5.3.3 (2024/08/12)
 
 **Improvements**

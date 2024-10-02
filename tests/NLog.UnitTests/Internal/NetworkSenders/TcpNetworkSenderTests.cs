@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.UnitTests.Internal.NetworkSenders
 {
@@ -81,15 +81,15 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                         mre.Set();
                     });
 
-                mre.WaitOne();
+                Assert.True(mre.WaitOne(10000), "Network Flush not completed");
 
                 var actual = sender.Log.ToString();
-                Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-                Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-                Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-                Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
-                Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
-                Assert.True(actual.IndexOf("send async 0 4 'quic'") != -1);
+                Assert.Contains("Parse endpoint address tcp://hostname:123/ Unspecified", actual);
+                Assert.Contains("create socket InterNetwork Stream Tcp", actual);
+                Assert.Contains("connect async to 0.0.0.0:123", actual);
+                Assert.Contains("send async 0 1 'q'", actual);
+                Assert.Contains("send async 0 2 'qu'", actual);
+                Assert.Contains("send async 0 4 'quic'", actual);
 
                 mre.Reset();
                 for (int i = 1; i < 8; i *= 2)
@@ -111,20 +111,20 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                         mre.Set();
                     });
 
-                mre.WaitOne();
+                Assert.True(mre.WaitOne(10000), "Network Close not completed");
 
                 actual = sender.Log.ToString();
-                
-                Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-                Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-                Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-                Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
-                Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
-                Assert.True(actual.IndexOf("send async 0 4 'quic'") != -1);
-                Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
-                Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
-                Assert.True(actual.IndexOf("send async 0 4 'quic'") != -1);
-                Assert.True(actual.IndexOf("close") != -1);
+
+                Assert.Contains("Parse endpoint address tcp://hostname:123/ Unspecified", actual);
+                Assert.Contains("create socket InterNetwork Stream Tcp", actual);
+                Assert.Contains("connect async to 0.0.0.0:123", actual);
+                Assert.Contains("send async 0 1 'q'", actual);
+                Assert.Contains("send async 0 2 'qu'", actual);
+                Assert.Contains("send async 0 4 'quic'", actual);
+                Assert.Contains("send async 0 1 'q'", actual);
+                Assert.Contains("send async 0 2 'qu'", actual);
+                Assert.Contains("send async 0 4 'quic'", actual);
+                Assert.Contains("close", actual);
 
                 foreach (var ex in exceptions)
                 {
@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         public void TcpProxyTest()
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
-            var socket = sender.CreateSocket("foo", AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            var socket = sender.CreateSocket("foo", AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp, TimeSpan.Zero);
             Assert.IsType<SocketProxy>(socket);
         }
 
@@ -172,18 +172,19 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
             }
 
-            Assert.True(allSent.WaitOne(3000, false));
+
+            Assert.True(allSent.WaitOne(10000), "Network Write not completed");
 
             var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
-            mre.WaitOne(3000, false);
+            Assert.True(mre.WaitOne(10000), "Network Flush not completed");
 
             var actual = sender.Log.ToString();
 
-            Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-            Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-            Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-            Assert.True(actual.IndexOf("failed") != -1);
+            Assert.Contains("Parse endpoint address tcp://hostname:123/ Unspecified", actual);
+            Assert.Contains("create socket InterNetwork Stream Tcp", actual);
+            Assert.Contains("connect async to 0.0.0.0:123", actual);
+            Assert.Contains("failed", actual);
 
             foreach (var ex in exceptions)
             {
@@ -227,19 +228,19 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             }
 
             var mre = new ManualResetEvent(false);
-            writeFinished.WaitOne();
+            Assert.True(writeFinished.WaitOne(10000), "Network Write not completed");
             sender.Close(ex => mre.Set());
-            mre.WaitOne();
+            Assert.True(mre.WaitOne(10000), "Network Flush not completed");
 
             var actual = sender.Log.ToString();
-            Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-            Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-            Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-            Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
-            Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
-            Assert.True(actual.IndexOf("send async 0 3 'qui'") != -1);
-            Assert.True(actual.IndexOf("failed") != -1);
-            Assert.True(actual.IndexOf("close") != -1);
+            Assert.Contains("Parse endpoint address tcp://hostname:123/ Unspecified", actual);
+            Assert.Contains("create socket InterNetwork Stream Tcp", actual);
+            Assert.Contains("connect async to 0.0.0.0:123", actual);
+            Assert.Contains("send async 0 1 'q'", actual);
+            Assert.Contains("send async 0 2 'qu'", actual);
+            Assert.Contains("send async 0 3 'qui'", actual);
+            Assert.Contains("failed", actual);
+            Assert.Contains("close", actual);
 
             for (int i = 0; i < exceptions.Length; ++i)
             {
@@ -264,15 +265,15 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 Log = new StringWriter();
             }
 
-            protected internal override ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+            protected internal override ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, TimeSpan sendTimeout)
             {
                 return new MockSocket(addressFamily, socketType, protocolType, this);
             }
 
-            protected override EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
+            protected override IPAddress ResolveIpAddress(Uri uri, AddressFamily addressFamily)
             {
                 Log.WriteLine("Parse endpoint address {0} {1}", uri, addressFamily);
-                return new MockEndPoint(uri);
+                return IPAddress.Any;
             }
 
             public int ConnectFailure { get; set; }
@@ -282,7 +283,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             public int SendFailureIn { get; set; }
         }
 
-        internal class MockSocket : ISocket
+        internal sealed class MockSocket : ISocket
         {
             private readonly MyTcpNetworkSender sender;
             private readonly StringWriter log;
@@ -375,23 +376,6 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     log.WriteLine("sendto async {0} {1} '{2}' {3}", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count), args.RemoteEndPoint);
                     return InvokeCallback(args);
                 }
-            }
-        }
-
-        internal class MockEndPoint : EndPoint
-        {
-            private readonly Uri uri;
-
-            public MockEndPoint(Uri uri)
-            {
-                this.uri = uri;
-            }
-
-            public override AddressFamily AddressFamily => (AddressFamily)10000;
-
-            public override string ToString()
-            {
-                return "{mock end point: " + uri + "}";
             }
         }
     }

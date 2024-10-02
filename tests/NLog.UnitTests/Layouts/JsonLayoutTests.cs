@@ -1,43 +1,42 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using NLog.Config;
+//
 
 namespace NLog.UnitTests.Layouts
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -45,7 +44,7 @@ namespace NLog.UnitTests.Layouts
     public class JsonLayoutTests : NLogTestBase
     {
         private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"NullProp\": null, \"DateTimeProp\": \"2345-01-23T12:34:56Z\" }";
-        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"DateTimeProp\": \"2345-01-23T12:34:56Z\", \"NoEmptyProp4\": \"hello\" }";
+        private const string ExpectedExcludeEmptyPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"DateTimeProp\": \"2345-01-23T12:34:56Z\", \"NoEmptyProp4\": \"hello\\\"\" }";
 
         [Fact]
         public void JsonLayoutRendering()
@@ -68,6 +67,30 @@ namespace NLog.UnitTests.Layouts
             };
 
             Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
+        public void JsonLayoutRenderingIndentJson()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
+                    },
+                IndentJson = true
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello, world"
+            };
+
+            Assert.Equal($"{{{Environment.NewLine}  \"date\": \"2010-01-01 12:34:56.0000\",{Environment.NewLine}  \"level\": \"Info\",{Environment.NewLine}  \"message\": \"hello, world\"{Environment.NewLine}}}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -106,7 +129,7 @@ namespace NLog.UnitTests.Layouts
                         new JsonAttribute("message", "${event-properties:msg}") { EscapeUnicode = false },
                     },
                 SuppressSpaces = true,
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = LogEventInfo.Create(LogLevel.Info, "\u00a9", null, "{$a}", new object[] { "\\" });
@@ -207,41 +230,67 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void JsonLayoutValueTypeAttribute()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}") { ValueType = typeof(DateTime) },
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
+                    }
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "{ \"hello\" : \"world\" }"
+            };
+
+            Assert.Equal("{ \"date\": \"2010-01-01T12:34:56Z\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
         public void JsonAttributeThreadAgnosticTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog throwExceptions='true'>
-            <targets async='true'>
-                <target name='debug' type='Debug'>
-                 <layout type='JsonLayout'>
-                    <attribute name='type' layout='${exception:format=Type}'/>
-                    <attribute name='message' layout='${exception:format=Message}'/>
-                    <attribute name='threadid' layout='${threadid}'/>
-                 </layout>
-                </target>
-            </targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                {
+                    new JsonAttribute("type", "${exception:format=Type}"),
+                    new JsonAttribute("message", "${exception:format=Message}"),
+                    new JsonAttribute("threadid", "${threadid}"),
+                }
+            };
 
-            ILogger logger = LogManager.GetLogger("B");
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(new DebugTarget("debug") { Layout = jsonLayout }).WithAsync();
+            }).LogFactory;
+
+            var logger = logFactory.GetLogger("B");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
             logger.Debug(logEventInfo);
 
-            var target = LogManager.Configuration.AllTargets.OfType<DebugTarget>().First();
-            LogManager.Configuration = null;    // Flush
+            var target = logFactory.Configuration.AllTargets.OfType<DebugTarget>().First();
+            logFactory.Shutdown();  // Flush
 
             var message = target.LastMessage;
-            Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
+            Assert.Contains(CurrentManagedThreadId.ToString(), message);
+
+            // Verify that JsonLayout performed minimal thread context capture
+            System.Threading.Tasks.Task.Run(() => message = jsonLayout.Attributes.Last().Layout.Render(logEventInfo)).Wait();
+            Assert.Equal(CurrentManagedThreadId.ToString(), message);
         }
 
         [Fact]
         public void JsonAttributeStackTraceUsageTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -255,15 +304,15 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("C");
+            var logger = logFactory.GetLogger("C");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
             logger.Debug(logEventInfo);
 
-            var message = GetDebugLastMessage("debug");
+            var message = GetDebugLastMessage("debug", logFactory);
             Assert.Contains(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName, message);
         }
 
@@ -297,7 +346,6 @@ namespace NLog.UnitTests.Layouts
 
             var json = jsonLayout.Render(logEventInfo);
             Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { \"type\": \"System.NullReferenceException\", \"message\": \"null is bad!\" } }", json);
-
         }
 
         [Fact]
@@ -364,7 +412,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": {  } }", json);
+            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { } }", json);
 
         }
 
@@ -381,7 +429,7 @@ namespace NLog.UnitTests.Layouts
         <attribute name='nested' encode='false'  >
           <layout type='JsonLayout'>
             <attribute name='message' layout='${message}' />
-            <attribute name='exception' layout='${exception}' />
+            <attribute name='exception' layout='${exception:message}' />
           </layout>
         </attribute>
       </layout>
@@ -407,8 +455,8 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(typeof(JsonLayout), attrs[2].Layout.GetType());
             var nestedJsonLayout = (JsonLayout)attrs[2].Layout;
             Assert.Equal(2, nestedJsonLayout.Attributes.Count);
-            Assert.Equal("'${message}'", nestedJsonLayout.Attributes[0].Layout.ToString());
-            Assert.Equal("'${exception}'", nestedJsonLayout.Attributes[1].Layout.ToString());
+            Assert.Equal("${message}", nestedJsonLayout.Attributes[0].Layout.ToString());
+            Assert.Equal("${exception:message}", nestedJsonLayout.Attributes[1].Layout.ToString());
 
             var logEventInfo = new LogEventInfo
             {
@@ -427,7 +475,7 @@ namespace NLog.UnitTests.Layouts
         {
             var jsonLayout = new JsonLayout()
             {
-                IncludeAllProperties = true
+                IncludeEventProperties = true
             };
 
             jsonLayout.ExcludeProperties.Add("Excluded1");
@@ -443,7 +491,7 @@ namespace NLog.UnitTests.Layouts
         {
             var jsonLayout = new JsonLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
             };
 
             var logEventInfo = new LogEventInfo();
@@ -465,7 +513,7 @@ namespace NLog.UnitTests.Layouts
         {
             var jsonLayout = new JsonLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 ExcludeEmptyProperties = true
             };
 
@@ -477,9 +525,35 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             Assert.Equal(ExpectedExcludeEmptyPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
+        public void ExcludeEmptyJsonStructuredProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeEventProperties = true,
+                ExcludeEmptyProperties = true
+            };
+
+            jsonLayout.ExcludeProperties.Add("Excluded1");
+            jsonLayout.ExcludeProperties.Add("Excluded2");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
+            logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
+
+            var structuredLogEvent = new LogEventInfo(LogLevel.Info, "", null, "{@EmptyProp1} {$EmptyProp}", new[] { null, "" });
+            foreach (var property in logEventInfo.Properties)
+            {
+                structuredLogEvent.Properties[property.Key] = property.Value;
+            }
+
+            Assert.Equal(ExpectedExcludeEmptyPropertiesWithExcludes, jsonLayout.Render(structuredLogEvent));
         }
 
         [Fact]
@@ -487,7 +561,7 @@ namespace NLog.UnitTests.Layouts
         {
             var jsonLayout = new JsonLayout()
             {
-                IncludeAllProperties = true,
+                IncludeEventProperties = true,
                 MaxRecursionLimit = 1,
             };
 
@@ -505,9 +579,10 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdcJsonProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -520,9 +595,9 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -534,15 +609,16 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedIncludeAllPropertiesWithExcludes);
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdcNoEmptyJsonProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -555,16 +631,16 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            ILogger logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
             logEventInfo.Properties.Add("EmptyProp", "");
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             MappedDiagnosticsContext.Clear();
             foreach (var prop in logEventInfo.Properties)
@@ -572,18 +648,17 @@ namespace NLog.UnitTests.Layouts
                     MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
-
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessage("debug", ExpectedExcludeEmptyPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedExcludeEmptyPropertiesWithExcludes);
         }
 
         [Fact]
         public void IncludeGdcJsonProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -596,9 +671,9 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -610,15 +685,15 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedIncludeAllPropertiesWithExcludes);
         }
 
         [Fact]
         public void IncludeGdcNoEmptyJsonProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -631,16 +706,16 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            ILogger logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
             logEventInfo.Properties.Add("EmptyProp", "");
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             GlobalDiagnosticsContext.Clear();
             foreach (var prop in logEventInfo.Properties)
@@ -650,15 +725,16 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessage("debug", ExpectedExcludeEmptyPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedExcludeEmptyPropertiesWithExcludes);
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdlcJsonProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -671,9 +747,9 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -685,15 +761,16 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedIncludeAllPropertiesWithExcludes);
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdlcNoEmptyJsonProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -706,16 +783,16 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            ILogger logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
             logEventInfo.Properties.Add("EmptyProp", "");
             logEventInfo.Properties.Add("EmptyProp1", null);
             logEventInfo.Properties.Add("EmptyProp2", new DummyContextLogger() { Value = null });
             logEventInfo.Properties.Add("EmptyProp3", new DummyContextLogger() { Value = "" });
-            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello" });
+            logEventInfo.Properties.Add("NoEmptyProp4", new DummyContextLogger() { Value = "hello\"" });
 
             MappedDiagnosticsLogicalContext.Clear();
             foreach (var prop in logEventInfo.Properties)
@@ -725,15 +802,16 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessage("debug", ExpectedExcludeEmptyPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedExcludeEmptyPropertiesWithExcludes);
         }
 
         [Fact]
+        [Obsolete("Replaced by ScopeContext.PushProperty or Logger.PushScopeProperty using ${scopeproperty}. Marked obsolete on NLog 5.0")]
         public void IncludeMdlcJsonNestedProperties()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -749,9 +827,9 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -763,9 +841,9 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            LogManager.Flush();
+            logFactory.Flush();
 
-            AssertDebugLastMessageContains("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(@"{ ""scope"": " + ExpectedIncludeAllPropertiesWithExcludes + " }");
         }
 
         /// <summary>
@@ -774,49 +852,48 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void IncludeAllJsonPropertiesXml()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2'>
-            
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,EXCLUDED2'>
+
                  </layout>
                 </target>
             </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
             logger.Debug(logEventInfo);
 
-            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedIncludeAllPropertiesWithExcludes);
         }
 
         [Fact]
         public void IncludeAllJsonPropertiesMutableXml()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets>
                     <target name='asyncDebug' type='BufferingWrapper'>
                         <target name='debug' type='Debug'>
-                            <layout type='JsonLayout' IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2' />
+                            <layout type='JsonLayout' IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2' maxRecursionLimit='0' />
                         </target>
                     </target>
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             // Act
             var logEventInfo = CreateLogEventWithExcluded();
@@ -825,24 +902,24 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
             stringPropBuilder.Clear();
 
-            LogManager.Flush();
+            logFactory.Flush();
 
             // Assert
-            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(ExpectedIncludeAllPropertiesWithExcludes);
         }
 
         [Fact]
         public void IncludeAllJsonPropertiesMutableNestedXml()
         {
             // Arrange
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets>
                     <target name='asyncDebug' type='BufferingWrapper'>
                         <target name='debug' type='Debug'>
-                            <layout type='JsonLayout'>
+                            <layout type='JsonLayout' maxRecursionLimit='0'>
                                 <attribute name='properties' encode='false' >
-                                    <layout type='JsonLayout' IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2' />
+                                    <layout type='JsonLayout' IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2' maxRecursionLimit='0'/>
                                 </attribute>
                             </layout>
                         </target>
@@ -851,9 +928,9 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             // Act
             var logEventInfo = CreateLogEventWithExcluded();
@@ -862,10 +939,10 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
             stringPropBuilder.Clear();
 
-            LogManager.Flush();
+            logFactory.Flush();
 
             // Assert
-            AssertDebugLastMessageContains("debug", ExpectedIncludeAllPropertiesWithExcludes);
+            logFactory.AssertDebugLastMessage(@"{ ""properties"": " + ExpectedIncludeAllPropertiesWithExcludes + " }");
         }
 
         /// <summary>
@@ -874,7 +951,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void SerializeObjectRecursionSingle()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -885,10 +962,10 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -896,7 +973,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [{\"val\":1, \"val2\":\"value2\"},{\"val3\":3, \"val4\":\"value4\"}] }");
+            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [{\"val\":1, \"val2\":\"value2\"},{\"val3\":3, \"val4\":\"value4\"}] }");
 
             var logEventInfo2 = new LogEventInfo();
 
@@ -904,7 +981,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo2);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": {\"val\":1, \"val2\":\"value2\"} }");
+            logFactory.AssertDebugLastMessage("{ \"nestedObject\": {\"val\":1, \"val2\":\"value2\"} }");
 
             var logEventInfo3 = new LogEventInfo();
 
@@ -912,13 +989,13 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo3);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [[\"{ val = 1, val2 = value2 }\"]] }");  // Allows nested collection, but then only ToString
+            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [[\"{ val = 1, val2 = value2 }\"]] }");  // Allows nested collection, but then only ToString
         }
 
         [Fact]
         public void SerializeObjectRecursionZero()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -929,10 +1006,10 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -940,7 +1017,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [\"{ val = 1, val2 = value2 }\",\"{ val3 = 3, val4 = value5 }\"] }");  // Allows single collection recursion
+            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [\"{ val = 1, val2 = value2 }\",\"{ val3 = 3, val4 = value5 }\"] }");  // Allows single collection recursion
 
             var logEventInfo2 = new LogEventInfo();
 
@@ -948,7 +1025,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo2);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": \"{ val = 1, val2 = value2 }\" }");    // Never object recursion, only ToString
+            logFactory.AssertDebugLastMessage("{ \"nestedObject\": \"{ val = 1, val2 = value2 }\" }");    // Never object recursion, only ToString
 
             var logEventInfo3 = new LogEventInfo();
 
@@ -956,27 +1033,27 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo3);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [[]] }");  // No support for nested collections
+            logFactory.AssertDebugLastMessage("{ \"nestedObject\": [[]] }");  // No support for nested collections
         }
 
         [Fact]
         public void EncodesInvalidCharacters()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' escapeForwardSlash='true'>
                  </layout>
                 </target>
             </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -984,13 +1061,13 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"\\/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
+            logFactory.AssertDebugLastMessage("{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"\\/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
         }
 
         [Fact]
         public void EncodesInvalidDoubles()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -1001,10 +1078,10 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
 
@@ -1017,13 +1094,13 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
+            logFactory.AssertDebugLastMessage("{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
         }
 
         [Fact]
         public void EscapeForwardSlashDefaultTest()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -1036,39 +1113,48 @@ namespace NLog.UnitTests.Layouts
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>").LogFactory;
 
-            ILogger logger = LogManager.GetLogger("A");
+            var logger = logFactory.GetLogger("A");
 
             var logEventInfo1 = new LogEventInfo();
             logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");
             logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\", \"myurl\": \"http://hello.world.com/\" }");
+            logFactory.AssertDebugLastMessage("{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\", \"myurl\": \"http://hello.world.com/\" }");
         }
 
         [Fact]
         public void SkipInvalidJsonPropertyValues()
         {
-            var jsonLayout = new JsonLayout() { IncludeAllProperties = true };
+            var jsonLayout = new JsonLayout() { IncludeEventProperties = true, MaxRecursionLimit = 10 };
 
             var logEventInfo = new LogEventInfo
             {
                 TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
                 Level = LogLevel.Info,
-                Message = new System.Text.StringBuilder().Append('x', 1024 * 1024).ToString(),
+                Message = string.Empty,
             };
 
             var expectedValue = Guid.NewGuid();
             logEventInfo.Properties["BadObject"] = new BadObject();
+            logEventInfo.Properties["EvilObject"] = new EvilObject();
             logEventInfo.Properties["RequestId"] = expectedValue;
 
-            Assert.Equal($"{{ \"RequestId\": \"{expectedValue}\" }}", jsonLayout.Render(logEventInfo));
+            var actualValue = jsonLayout.Render(logEventInfo);
+            Assert.Equal($"{{ \"BadObject\": {{\"Recursive\":[\"Hello\"], \"WeirdProperty\":\"System.Action\"}}, \"RequestId\": \"{expectedValue}\" }}", actualValue);
         }
 
+        class BadObject
+        {
+            public IEnumerable<object> Recursive => new List<object>(new[] { "Hello", (object)this });
 
+            public IEnumerable<string> EvilProperty => throw new NotSupportedException();
 
-        class BadObject : IFormattable
+            public System.Action WeirdProperty { get; } = new System.Action(() => throw new NotSupportedException());
+        }
+
+        class EvilObject : IFormattable
         {
             public string ToString(string format, IFormatProvider formatProvider)
             {

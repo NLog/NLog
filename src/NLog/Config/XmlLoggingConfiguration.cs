@@ -1,77 +1,71 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Linq;
     using System.Xml;
+    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
-    using JetBrains.Annotations;
-#if SILVERLIGHT
-// ReSharper disable once RedundantUsingDirective
-    using System.Windows;
-#endif
 
     /// <summary>
-    /// A class for configuring NLog through an XML configuration file 
+    /// A class for configuring NLog through an XML configuration file
     /// (App.config style or App.nlog style).
-    /// 
+    ///
     /// Parsing of the XML file is also implemented in this class.
     /// </summary>
     ///<remarks>
     /// - This class is thread-safe.<c>.ToList()</c> is used for that purpose.
     /// - Update TemplateXSD.xml for changes outside targets
     /// </remarks>
-    public class XmlLoggingConfiguration : LoggingConfigurationParser
+    public class XmlLoggingConfiguration : LoggingConfigurationParser, IInitializeSucceeded
     {
-#if __ANDROID__
-
-        /// <summary>
-        /// Prefix for assets in Xamarin Android
-        /// </summary>
-        private const string AssetsPrefix = "assets/";
-#endif
-
         private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string _originalFileName;
 
         private readonly Stack<string> _currentFilePath = new Stack<string>();
+
+        internal XmlLoggingConfiguration(LogFactory logFactory)
+            : base(logFactory)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -89,29 +83,32 @@ namespace NLog.Config
         public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            using (XmlReader reader = CreateFileReader(fileName))
-            {
-                Initialize(reader, fileName);
-            }
+            LoadFromXmlFile(fileName);
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string)"/> with NLog v4.7.
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors)
             : this(fileName, ignoreErrors, LogManager.LogFactory)
         { }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string, LogFactory)"/> with NLog v4.7.
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
@@ -150,17 +147,22 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string)"/> with NLog v4.7.
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
             : this(reader, fileName, ignoreErrors, LogManager.LogFactory)
         { }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string, LogFactory)"/> with NLog v4.7.
+        ///
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
@@ -168,6 +170,7 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
@@ -177,19 +180,13 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="xmlContents">The XML contents.</param>
+        /// <param name="xmlContents">NLog configuration as XML string.</param>
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         internal XmlLoggingConfiguration([NotNull] string xmlContents, [CanBeNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            using (var stringReader = new StringReader(xmlContents))
-            {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    Initialize(reader, fileName);
-                }
-            }
+            LoadFromXmlContent(xmlContents, fileName);
         }
 
         /// <summary>
@@ -211,9 +208,9 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if NETFRAMEWORK
         /// <summary>
-        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
+        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
         public static LoggingConfiguration AppConfig
@@ -268,39 +265,76 @@ namespace NLog.Config
         /// <summary>
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
         /// </summary>
-        /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
+        /// <returns>The newly loaded <see cref="XmlLoggingConfiguration" /> instance.</returns>
+        /// <remarks>Must assign the returned object to LogManager.Configuration to activate it</remarks>
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName, LogFactory);
-            else
-                return base.Reload();
+            {
+                var newConfig = new XmlLoggingConfiguration(LogFactory);
+                newConfig.PrepareForReload(this);
+                newConfig.LoadFromXmlFile(_originalFileName);
+                return newConfig;
+            }
+
+            return base.Reload();
         }
 
         /// <summary>
-        /// Get file paths (including filename) for the possible NLog config files. 
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        ///
+        /// Get file paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <returns>The file paths to the possible config file</returns>
+        [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<string> GetCandidateConfigFilePaths()
         {
             return LogManager.LogFactory.GetCandidateConfigFilePaths();
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        ///
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The file paths to the possible config file</param>
+        [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
         }
 
         /// <summary>
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        ///
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
+        [Obsolete("Replaced by chaining LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ResetCandidateConfigFilePath()
         {
             LogManager.LogFactory.ResetCandidateConfigFilePath();
+        }
+
+        private void LoadFromXmlFile(string fileName)
+        {
+            using (XmlReader reader = CreateFileReader(fileName))
+            {
+                Initialize(reader, fileName);
+            }
+        }
+
+        internal void LoadFromXmlContent(string xmlContent, string fileName)
+        {
+            using (var stringReader = new StringReader(xmlContent))
+            {
+                using (XmlReader reader = XmlReader.Create(stringReader))
+                {
+                    Initialize(reader, fileName);
+                }
+            }
         }
 
         /// <summary>
@@ -313,16 +347,6 @@ namespace NLog.Config
             if (!string.IsNullOrEmpty(fileName))
             {
                 fileName = fileName.Trim();
-#if __ANDROID__
-                //support loading config from special assets folder in nlog.config
-                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    //remove prefix
-                    fileName = fileName.Substring(AssetsPrefix.Length);
-                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
-                    return XmlReader.Create(stream);
-                }
-#endif
                 return LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName);
             }
             return null;
@@ -339,12 +363,12 @@ namespace NLog.Config
             try
             {
                 InitializeSucceeded = null;
-                _originalFileName = fileName;
+                _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
                 reader.MoveToContent();
-                var content = new NLogXmlElement(reader);
-                if (!string.IsNullOrEmpty(fileName))
+                var content = new XmlLoggingConfigurationElement(reader);
+                if (!string.IsNullOrEmpty(_originalFileName))
                 {
-                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
+                    InternalLogger.Info("Loading NLog config from XML file: {0}", _originalFileName);
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
                 }
                 else
@@ -352,7 +376,6 @@ namespace NLog.Config
                     ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-                CheckParsingErrors(content);
             }
             catch (Exception exception)
             {
@@ -363,37 +386,10 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
+                var configurationException = new NLogConfigurationException($"Exception when loading configuration {fileName}", exception);
                 InternalLogger.Error(exception, configurationException.Message);
                 if (!ignoreErrors && (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions || configurationException.MustBeRethrown()))
                     throw configurationException;
-            }
-        }
-
-        /// <summary>
-        /// Checks whether any error during XML configuration parsing has occured.
-        /// If there are any and <c>ThrowConfigExceptions</c> or <c>ThrowExceptions</c>
-        /// setting is enabled - throws <c>NLogConfigurationException</c>, otherwise
-        /// just write an internal log at Warn level.
-        /// </summary>
-        /// <param name="rootContentElement">Root NLog configuration xml element</param>
-        private void CheckParsingErrors(NLogXmlElement rootContentElement)
-        {
-            var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
-            if (parsingErrors.Any())
-            {
-                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
-                {
-                    string exceptionMessage = string.Join(Environment.NewLine, parsingErrors);
-                    throw new NLogConfigurationException(exceptionMessage);
-                }
-                else
-                {
-                    foreach (var parsingError in parsingErrors)
-                    {
-                        InternalLogger.Log(LogLevel.Warn, parsingError);
-                    }
-                }
             }
         }
 
@@ -409,7 +405,7 @@ namespace NLog.Config
                 using (var reader = LogFactory.CurrentAppEnvironment.LoadXmlFile(fileName))
                 {
                     reader.MoveToContent();
-                    ParseTopLevel(new NLogXmlElement(reader, true), fileName, autoReloadDefault);
+                    ParseTopLevel(new XmlLoggingConfigurationElement(reader, false), fileName, autoReloadDefault);
                 }
             }
         }
@@ -420,7 +416,7 @@ namespace NLog.Config
         /// <param name="content"></param>
         /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(NLogXmlElement content, [CanBeNull] string filePath, bool autoReloadDefault)
+        private void ParseTopLevel(XmlLoggingConfigurationElement content, [CanBeNull] string filePath, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
@@ -442,12 +438,12 @@ namespace NLog.Config
         /// <param name="configurationElement"></param>
         /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(NLogXmlElement configurationElement, [CanBeNull] string filePath, bool autoReloadDefault)
+        private void ParseConfigurationElement(XmlLoggingConfigurationElement configurationElement, [CanBeNull] string filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
 
-            var nlogElements = configurationElement.Elements("nlog").ToList();
+            var nlogElements = configurationElement.FilterChildren("nlog");
             foreach (var nlogElement in nlogElements)
             {
                 ParseNLogElement(nlogElement, filePath, autoReloadDefault);
@@ -466,17 +462,22 @@ namespace NLog.Config
             nlogElement.AssertName("nlog");
 
             bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-            if (!string.IsNullOrEmpty(filePath))
-                _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
             try
             {
-                _currentFilePath.Push(filePath);
-                base.LoadConfig(nlogElement, Path.GetDirectoryName(filePath));
+                string baseDirectory = null;
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
+                    _currentFilePath.Push(filePath);
+                    baseDirectory = Path.GetDirectoryName(filePath);
+                }
+                base.LoadConfig(nlogElement, baseDirectory);
             }
             finally
             {
-                _currentFilePath.Pop();
+                if (!string.IsNullOrEmpty(filePath))
+                    _currentFilePath.Pop();
             }
         }
 
@@ -518,12 +519,7 @@ namespace NLog.Config
                     fullNewFileName = Path.Combine(baseDirectory, newFileName);
                 }
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-                newFileName = newFileName.Replace("\\", "/");
-                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
-#else
                 if (File.Exists(fullNewFileName))
-#endif
                 {
                     InternalLogger.Debug("Including file '{0}'", fullNewFileName);
                     ConfigureFromFile(fullNewFileName, autoReloadDefault);
@@ -532,7 +528,7 @@ namespace NLog.Config
                 {
                     //is mask?
 
-                    if (newFileName.Contains("*"))
+                    if (newFileName.IndexOf('*') >= 0)
                     {
                         ConfigureFromFilesByMask(baseDirectory, newFileName, autoReloadDefault);
                     }
@@ -556,7 +552,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Error when including '{0}'.", newFileName);
+                var configurationException = new NLogConfigurationException($"Error when including '{newFileName}'.", exception);
                 InternalLogger.Error(exception, configurationException.Message);
                 if (!ignoreErrors)
                     throw configurationException;
@@ -577,7 +573,7 @@ namespace NLog.Config
             if (Path.IsPathRooted(fileMask))
             {
                 directory = Path.GetDirectoryName(fileMask);
-                if (directory == null)
+                if (directory is null)
                 {
                     InternalLogger.Warn("directory is empty for include of '{0}'", fileMask);
                     return;
@@ -585,7 +581,7 @@ namespace NLog.Config
 
                 var filename = Path.GetFileName(fileMask);
 
-                if (filename == null)
+                if (filename is null)
                 {
                     InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);
                     return;
@@ -593,11 +589,7 @@ namespace NLog.Config
                 fileMask = filename;
             }
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var files = Directory.EnumerateFiles(directory, fileMask);
-#else
             var files = Directory.GetFiles(directory, fileMask);
-#endif
             foreach (var file in files)
             {
                 //note we exclude our self in ConfigureFromFile
@@ -607,15 +599,10 @@ namespace NLog.Config
 
         private static string GetFileLookupKey([NotNull] string fileName)
         {
-#if SILVERLIGHT && !WINDOWS_PHONE
-            // file names are relative to XAP
-            return fileName;
-#else
             return Path.GetFullPath(fileName);
-#endif
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{base.ToString()}, FilePath={_originalFileName}";

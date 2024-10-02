@@ -46,9 +46,9 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 -----
 
- ℹ️ NLog 5.0 Released!
+ ℹ️ NLog 6.0 will support AOT
 
- NLog 5.0 is finally here. See [List of major changes in NLog 5.0](https://nlog-project.org/2021/08/25/nlog-5-0-preview1-ready.html)
+NLog 6.0 is now being prepared. See [List of goals for NLog 6.0](https://nlog-project.org/2024/10/01/nlog-6-0-goals.html)
 
 NLog Packages
 ---
@@ -82,12 +82,11 @@ If you like to start with a small task, then
 
 Please note, we have a `dev` and `master` branch
 
-- `master` is for pure bug fixes and targets NLog 4.x
-- `dev` targets NLog 5
+- `master` is for pure bug fixes and targets NLog 5.x
+- `dev` targets NLog 6
 
 
 A good way to get started (flow)
-
 
 1. Fork the NLog repos.
 1. Create a new branch in you current repos from the 'dev' branch. (critical bugfixes from 'master')
@@ -95,7 +94,7 @@ A good way to get started (flow)
 1. Check [contributing.md](.github/CONTRIBUTING.md#sync-projects)
 1. Push commits and create a Pull Request (PR) to NLog
 
-Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 5)
+Please note: bugfixes should target the **master** branch, others the **dev** branch (NLog 6)
 
 
 License
@@ -106,7 +105,7 @@ See [LICENSE.txt](LICENSE.txt) for details.
 
 How to build
 ---
-Use Visual Studio 2017 and open the solution 'NLog.sln' - C# 7.2 support is required.
+Use Visual Studio 2019 and open the solution 'NLog.sln'.
 
 For building in the cloud we use:
 - AppVeyor for Windows- and Linux-builds
@@ -114,4 +113,5 @@ For building in the cloud we use:
 
 Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
-Note: master points to NLog 4.x and dev to NLog 5.x
+Note: master points to NLog 5.x and dev to NLog 6
+

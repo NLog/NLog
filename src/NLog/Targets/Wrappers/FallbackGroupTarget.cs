@@ -1,58 +1,59 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System.Diagnostics.CodeAnalysis;
+//
 
 namespace NLog.Targets.Wrappers
 {
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
 
     /// <summary>
     /// Provides fallback-on-error.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/FallbackGroup-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/FallbackGroup-target">Documentation on NLog Wiki</seealso>
     /// <example>
-    /// <p>This example causes the messages to be written to server1, 
+    /// <p>This example causes the messages to be written to server1,
     /// and if it fails, messages go to server2.</p>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/FallbackGroup/NLog.config" />
     /// <p>
-    /// The above examples assume just one target and a single rule. See below for
-    /// a programmatic configuration that's equivalent to the above config file:
+    /// To set up the log target programmatically use code like this:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/FallbackGroup/Simple/Example.cs" />
     /// </example>
@@ -65,7 +66,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="FallbackGroupTarget"/> class.
         /// </summary>
         public FallbackGroupTarget()
-            : this(new Target[0])
+            : this(NLog.Internal.ArrayHelper.Empty<Target>())
         {
         }
 
@@ -87,7 +88,6 @@ namespace NLog.Targets.Wrappers
         public FallbackGroupTarget(params Target[] targets)
             : base(targets)
         {
-            OptimizeBufferReuse = GetType() == typeof(FallbackGroupTarget); // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -97,9 +97,42 @@ namespace NLog.Targets.Wrappers
         public bool ReturnToFirstOnSuccess { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets whether to enable batching, but fallback will be handled individually
         /// </summary>
-        /// <param name="logEvent"></param>
+        /// <docgen category='Fallback Options' order='50' />
+        public bool EnableBatchWrite { get; set; } = true;
+
+        /// <summary>
+        /// Forwards the log event to the sub-targets until one of them succeeds.
+        /// </summary>
+        /// <param name="logEvents">The log event.</param>
+        protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (logEvents.Count == 1)
+            {
+                WriteAsyncThreadSafe(logEvents[0]);
+            }
+            else if (EnableBatchWrite)
+            {
+                var targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
+
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    logEvents[i] = WrapWithFallback(logEvents[i], targetToInvoke);
+                }
+
+                Targets[targetToInvoke].WriteAsyncLogEvents(logEvents);
+            }
+            else
+            {
+                for (int i = 0; i < logEvents.Count; ++i)
+                {
+                    WriteAsyncThreadSafe(logEvents[i]);
+                }
+            }
+        }
+
+        /// <inheritdoc/>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             Write(logEvent);
@@ -108,77 +141,15 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Forwards the log event to the sub-targets until one of them succeeds.
         /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// The method remembers the last-known-successful target
-        /// and starts the iteration from it.
-        /// If <see cref="ReturnToFirstOnSuccess"/> is set, the method
-        /// resets the target to the first target
-        /// stored in <see cref="Targets"/>.
-        /// </remarks>
-        [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncContinuation continuation = null;
-            int tryCounter = 0;
-            int targetToInvoke = 0;
+            var targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
+            var result = WrapWithFallback(logEvent, targetToInvoke);
+            Targets[targetToInvoke].WriteAsyncLogEvent(result);
+        }
 
-            continuation = ex =>
-                {
-                    if (ex == null)
-                    {
-                        // success
-                        if (ReturnToFirstOnSuccess)
-                        {
-#pragma warning disable S1066 // Collapsible "if" statements should be merged
-#if !SILVERLIGHT || WINDOWS_PHONE
-                            if (Interlocked.Read(ref _currentTarget) != 0)
-#else
-                            if (Interlocked.CompareExchange(ref _currentTarget, 0, 0) != 0)
-#endif
-#pragma warning restore S1066 // Collapsible "if" statements should be merged
-                            {
-                                InternalLogger.Debug("FallbackGroup(Name={0}): Target '{1}' succeeded. Returning to the first one.", Name, Targets[targetToInvoke]);
-                                Interlocked.Exchange(ref _currentTarget, 0);
-                            }
-                        }
-
-                        logEvent.Continuation(null);
-                        return;
-                    }
-
-                    // failure
-                    InternalLogger.Warn(ex, "FallbackGroup(Name={0}): Target '{1}' failed. Proceeding to the next one.", Name, Targets[targetToInvoke]);
-
-                    // error while writing, go to the next one
-                    tryCounter++;
-                    int nextTarget = (targetToInvoke + 1) % Targets.Count;
-                    Interlocked.CompareExchange(ref _currentTarget, nextTarget, targetToInvoke);
-                    if (tryCounter >= Targets.Count)
-                    {
-                        targetToInvoke = -1;
-                    }
-                    else
-                    {
-                        targetToInvoke = nextTarget;
-                    }
-
-                    if (targetToInvoke >= 0)
-                    {
-                        Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
-                    }
-                    else
-                    {
-                        logEvent.Continuation(ex);
-                    }
-                };
-
-#if !SILVERLIGHT || WINDOWS_PHONE
-            targetToInvoke = (int)Interlocked.Read(ref _currentTarget);
-#else
-            targetToInvoke = (int)Interlocked.CompareExchange(ref _currentTarget, 0, 0);
-#endif
-
+        private AsyncLogEventInfo WrapWithFallback(AsyncLogEventInfo logEvent, int targetToInvoke)
+        {
             for (int i = 0; i < Targets.Count; ++i)
             {
                 if (i != targetToInvoke)
@@ -187,7 +158,41 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+            AsyncContinuation continuation = null;
+            int tryCounter = 0;
+            continuation = ex =>
+            {
+                if (ex is null)
+                {
+                    // success
+                    if (ReturnToFirstOnSuccess && Interlocked.Read(ref _currentTarget) != 0)
+                    {
+                        InternalLogger.Debug("{0}: Target '{1}' succeeded. Returning to the first one.", this, Targets[targetToInvoke]);
+                        Interlocked.Exchange(ref _currentTarget, 0);
+                    }
+
+                    logEvent.Continuation(null);
+                    return;
+                }
+
+                // error while writing, fallback to next one
+                tryCounter++;
+                int nextTarget = (targetToInvoke + 1) % Targets.Count;
+                Interlocked.CompareExchange(ref _currentTarget, nextTarget, targetToInvoke);
+                if (tryCounter < Targets.Count)
+                {
+                    InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Fallback to next: `{2}`", this, Targets[targetToInvoke], Targets[nextTarget]);
+                    targetToInvoke = nextTarget;
+                    Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                }
+                else
+                {
+                    InternalLogger.Warn(ex, "{0}: Target '{1}' failed. Fallback not possible", this, Targets[targetToInvoke]);
+                    logEvent.Continuation(ex);
+                }
+            };
+
+            return logEvent.LogEvent.WithContinuation(continuation);
         }
     }
 }

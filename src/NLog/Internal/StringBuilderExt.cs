@@ -1,35 +1,35 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Globalization;
@@ -51,7 +51,8 @@ namespace NLog.Internal
         /// <param name="value">value to be appended</param>
         /// <param name="format">format string. If @, then serialize the value with the Default JsonConverter.</param>
         /// <param name="formatProvider">provider, for example culture</param>
-        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
+        /// <param name="valueFormatter">NLog string.Format interface</param>
+        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider, IValueFormatter valueFormatter)
         {
             string stringValue = value as string;
             if (stringValue != null && string.IsNullOrEmpty(format))
@@ -60,11 +61,11 @@ namespace NLog.Internal
             }
             else if (format == MessageTemplates.ValueFormatter.FormatAsJson)
             {
-                ValueFormatter.Instance.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
+                valueFormatter.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
             }
             else if (value != null)
             {
-                ValueFormatter.Instance.FormatValue(value, format, CaptureType.Normal, formatProvider, builder);
+                valueFormatter.FormatValue(value, format, CaptureType.Normal, formatProvider, builder);
             }
         }
 
@@ -79,7 +80,7 @@ namespace NLog.Internal
             if (value < 0)
             {
                 builder.Append('-');
-                uint uint_value = uint.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
+                uint uint_value = uint.MaxValue - ((uint)value) + 1; // NOSONAR: This is to deal with Int32.MinValue
                 AppendInvariant(builder, uint_value);
             }
             else
@@ -90,7 +91,7 @@ namespace NLog.Internal
 
         /// <summary>
         /// Appends uint without using culture, and most importantly without garbage
-        /// 
+        ///
         /// Credits Gavin Pugh  - https://www.gavpugh.com/2010/04/01/xnac-avoiding-garbage-when-working-with-stringbuilder/
         /// </summary>
         /// <param name="builder"></param>
@@ -144,10 +145,34 @@ namespace NLog.Internal
 
         private static readonly char[] charToInt = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
+        internal const int Iso8601_MaxDigitCount = 7;
+
         /// <summary>
-        /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 6801 date (Round-Trip-Time)
+        /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 8601 Compliant Date Format (Round-Trip-Time)
         /// </summary>
-        public static void AppendXmlDateTimeRoundTrip(this StringBuilder builder, DateTime dateTime)
+        public static void AppendXmlDateTimeUtcRoundTripFixed(this StringBuilder builder, DateTime dateTime)
+        {
+            int fraction = (int)(dateTime.Ticks % 10000000);
+            AppendXmlDateTimeUtcRoundTrip(builder, dateTime, fraction, Iso8601_MaxDigitCount);
+        }
+
+        public static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime)
+        {
+            int max_digit_count = Iso8601_MaxDigitCount;
+            int fraction = (int)(dateTime.Ticks % 10000000);
+            if (fraction > 0)
+            {
+                // Remove trailing zeros
+                while (fraction % 10 == 0)
+                {
+                    --max_digit_count;
+                    fraction /= 10;
+                }
+            }
+            AppendXmlDateTimeUtcRoundTrip(builder, dateTime, fraction, max_digit_count);
+        }
+
+        private static void AppendXmlDateTimeUtcRoundTrip(this StringBuilder builder, DateTime dateTime, int fraction, int max_digit_count)
         {
             if (dateTime.Kind == DateTimeKind.Unspecified)
                 dateTime = new DateTime(dateTime.Ticks, DateTimeKind.Utc);
@@ -164,18 +189,9 @@ namespace NLog.Internal
             builder.Append2DigitsZeroPadded(dateTime.Minute);
             builder.Append(':');
             builder.Append2DigitsZeroPadded(dateTime.Second);
-            int fraction = (int)(dateTime.Ticks % 10000000);
             if (fraction > 0)
             {
                 builder.Append('.');
-
-                // Remove trailing zeros
-                int max_digit_count = 7;
-                while (fraction % 10 == 0)
-                {
-                    --max_digit_count;
-                    fraction /= 10;
-                }
 
                 // Append the remaining fraction
                 int digitCount = CalculateDigitCount((uint)fraction);
@@ -194,7 +210,7 @@ namespace NLog.Internal
         {
             try
             {
-#if !SILVERLIGHT && !NET3_5
+#if !NET35
                 builder.Clear();
 #else
                 builder.Length = 0;
@@ -219,41 +235,27 @@ namespace NLog.Internal
         /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
         public static void CopyToStream(this StringBuilder builder, MemoryStream ms, Encoding encoding, char[] transformBuffer)
         {
-#if !SILVERLIGHT || WINDOWS_PHONE
-            if (transformBuffer != null)
+            int charCount;
+            int byteCount = encoding.GetMaxByteCount(builder.Length);
+            long position = ms.Position;
+            ms.SetLength(position + byteCount);
+            for (int i = 0; i < builder.Length; i += transformBuffer.Length)
             {
-                int charCount;
-                int byteCount = encoding.GetMaxByteCount(builder.Length);
-                ms.SetLength(ms.Position + byteCount);
-                for (int i = 0; i < builder.Length; i += transformBuffer.Length)
-                {
-                    charCount = Math.Min(builder.Length - i, transformBuffer.Length);
-                    builder.CopyTo(i, transformBuffer, 0, charCount);
-                    byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
-                    ms.Position += byteCount;
-                }
-                if (ms.Position != ms.Length)
-                {
-                    ms.SetLength(ms.Position);
-                }
+                charCount = Math.Min(builder.Length - i, transformBuffer.Length);
+                builder.CopyTo(i, transformBuffer, 0, charCount);
+                byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)position);
+                position += byteCount;
             }
-            else
-#endif
+            ms.Position = position;
+            if (position != ms.Length)
             {
-                // Faster than MemoryStream, but generates garbage
-                var str = builder.ToString();
-                byte[] bytes = encoding.GetBytes(str);
-                ms.Write(bytes, 0, bytes.Length);
+                ms.SetLength(position);
             }
         }
 
         public static void CopyToBuffer(this StringBuilder builder, char[] destination, int destinationIndex)
         {
-#if !SILVERLIGHT || WINDOWS_PHONE
             builder.CopyTo(0, destination, destinationIndex, builder.Length);
-#else
-            builder.ToString().CopyTo(0, destination, destinationIndex, builder.Length);
-#endif
         }
 
         /// <summary>
@@ -280,7 +282,6 @@ namespace NLog.Internal
                 }
                 else
                 {
-#if !SILVERLIGHT || WINDOWS_PHONE
                     // Reuse single char-buffer allocation for large StringBuilders
                     char[] buffer = new char[256];
                     for (int i = 0; i < sourceLength; i += buffer.Length)
@@ -289,9 +290,6 @@ namespace NLog.Internal
                         builder.CopyTo(i, buffer, 0, charCount);
                         destination.Append(buffer, 0, charCount);
                     }
-#else
-                    destination.Append(builder.ToString());
-#endif
                 }
             }
         }
@@ -305,7 +303,8 @@ namespace NLog.Internal
         /// <returns>Index of the first occurrence (Else -1)</returns>
         public static int IndexOf(this StringBuilder builder, char needle, int startPos = 0)
         {
-            for (int i = startPos; i < builder.Length; ++i)
+            var builderLength = builder.Length;
+            for (int i = startPos; i < builderLength; ++i)
                 if (builder[i] == needle)
                     return i;
             return -1;
@@ -320,11 +319,10 @@ namespace NLog.Internal
         /// <returns>Index of the first occurrence (Else -1)</returns>
         public static int IndexOfAny(this StringBuilder builder, char[] needles, int startPos = 0)
         {
-            for (int i = startPos; i < builder.Length; ++i)
-            {
+            var builderLength = builder.Length;
+            for (int i = startPos; i < builderLength; ++i)
                 if (CharArrayContains(builder[i], needles))
                     return i;
-            }
             return -1;
         }
 
@@ -348,10 +346,11 @@ namespace NLog.Internal
         /// <returns>True when content is the same</returns>
         public static bool EqualTo(this StringBuilder builder, StringBuilder other)
         {
-            if (builder.Length != other.Length)
+            var builderLength = builder.Length;
+            if (builderLength != other.Length)
                 return false;
 
-            for (int x = 0; x < builder.Length; ++x)
+            for (int x = 0; x < builderLength; ++x)
             {
                 if (builder[x] != other[x])
                 {
@@ -405,9 +404,9 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Append a int type (byte, int) as string
+        /// Append a numeric type (byte, int, double, decimal) as string
         /// </summary>
-        internal static void AppendIntegerAsString(this StringBuilder sb, IConvertible value, TypeCode objTypeCode)
+        internal static void AppendNumericInvariant(this StringBuilder sb, IConvertible value, TypeCode objTypeCode)
         {
             switch (objTypeCode)
             {
@@ -435,9 +434,115 @@ namespace NLog.Internal
                             sb.Append(uint64);
                     }
                     break;
+                case TypeCode.Single:
+                    {
+                        float floatValue = value.ToSingle(CultureInfo.InvariantCulture);
+#if NETSTANDARD
+                        if (!float.IsNaN(floatValue) && !float.IsInfinity(floatValue) && value is IFormattable formattable)
+                        {
+                            AppendDecimalInvariant(sb, formattable, "{0:R}");
+                        }
+                        else
+#endif
+                        {
+                            AppendFloatInvariant(sb, floatValue);
+                        }
+                    }
+                    break;
+                case TypeCode.Double:
+                    {
+                        double doubleValue = value.ToDouble(CultureInfo.InvariantCulture);
+#if NETSTANDARD
+                        if (!double.IsNaN(doubleValue) && !double.IsInfinity(doubleValue) && value is IFormattable formattable)
+                        {
+                            AppendDecimalInvariant(sb, formattable, "{0:R}");
+                        }
+                        else
+#endif
+                        {
+                            AppendDoubleInvariant(sb, doubleValue);
+                        }
+                    }
+                    break;
+                case TypeCode.Decimal:
+                    {
+#if NETSTANDARD
+                        if (value is IFormattable formattable)
+                        {
+                            AppendDecimalInvariant(sb, formattable, "{0}");
+                        }
+                        else
+#endif
+                        {
+                            AppendDecimalInvariant(sb, value.ToDecimal(CultureInfo.InvariantCulture));
+                        }
+                    }
+                    break;
                 default:
                     sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
                     break;
+            }
+        }
+
+#if NETSTANDARD
+        private static void AppendDecimalInvariant(StringBuilder sb, IFormattable formattable, string format)
+        {
+            int orgLength = sb.Length;
+            sb.AppendFormat(CultureInfo.InvariantCulture, format, formattable); // Support ISpanFormattable
+            for (int i = sb.Length - 1; i > orgLength; --i)
+            {
+                if (!char.IsDigit(sb[i]))
+                    return;
+            }
+            sb.Append('.');
+            sb.Append('0');
+        }
+#endif
+
+        private static void AppendDecimalInvariant(StringBuilder sb, decimal decimalValue)
+        {
+            if (Math.Truncate(decimalValue) == decimalValue && decimalValue > int.MinValue && decimalValue < int.MaxValue)
+            {
+                sb.AppendInvariant(Convert.ToInt32(decimalValue));
+                sb.Append(".0");
+            }
+            else
+            {
+                sb.Append(XmlHelper.XmlConvertToString(decimalValue));
+            }
+        }
+
+        private static void AppendDoubleInvariant(StringBuilder sb, double doubleValue)
+        {
+            if (double.IsNaN(doubleValue) || double.IsInfinity(doubleValue))
+            {
+                sb.Append(XmlHelper.XmlConvertToString(doubleValue));
+            }
+            else if (Math.Truncate(doubleValue) == doubleValue && doubleValue > int.MinValue && doubleValue < int.MaxValue)
+            {
+                sb.AppendInvariant(Convert.ToInt32(doubleValue));
+                sb.Append(".0");
+            }
+            else
+            {
+                sb.Append(XmlHelper.XmlConvertToString(doubleValue));
+            }
+        }
+
+        private static void AppendFloatInvariant(StringBuilder sb, float floatValue)
+        {
+            if (float.IsNaN(floatValue) || float.IsInfinity(floatValue))
+            {
+                sb.Append(XmlHelper.XmlConvertToString(floatValue));
+            }
+            else if (Math.Truncate(floatValue) == floatValue && floatValue > int.MinValue && floatValue < int.MaxValue)
+            {
+                sb.AppendInvariant(Convert.ToInt32(floatValue));
+                sb.Append(".0");
+            }
+            else
+            {
+                sb.Append(XmlHelper.XmlConvertToString(floatValue));
             }
         }
 

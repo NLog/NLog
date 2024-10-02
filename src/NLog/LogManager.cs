@@ -1,42 +1,41 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
@@ -45,25 +44,14 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
+    /// Creates and manages instances of <see cref="NLog.Logger" /> objects.
     /// </summary>
+    /// <remarks>
+    /// LogManager wraps a singleton instance of <see cref="NLog.LogFactory" />.
+    /// </remarks>
     public static class LogManager
     {
-        /// <remarks>
-        /// Internal for unit tests
-        /// </remarks>
-        internal static readonly LogFactory factory = new LogFactory();
-        private static ICollection<Assembly> _hiddenAssemblies;
-
-        private static readonly object lockObject = new object();
-
-
-        /// <summary>
-        /// Delegate used to set/get the culture in use.
-        /// </summary>
-        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Marked obsolete before v4.3.11")]
-        public delegate CultureInfo GetCultureInfo();
+        private static readonly LogFactory factory = new LogFactory();
 
         /// <summary>
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
@@ -72,18 +60,24 @@ namespace NLog
         public static LogFactory LogFactory => factory;
 
         /// <summary>
-        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// Occurs when logging <see cref="Configuration" /> changes. Both when assigned to new config or config unloaded.
         /// </summary>
+        /// <remarks>
+        /// Note <see cref="LoggingConfigurationChangedEventArgs.ActivatedConfiguration"/> can be <c>null</c> when unloading configuration at shutdown.
+        /// </remarks>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
             add => factory.ConfigurationChanged += value;
             remove => factory.ConfigurationChanged -= value;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !NETSTANDARD1_3
         /// <summary>
+        /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
+        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
             add => factory.ConfigurationReloaded += value;
@@ -91,7 +85,7 @@ namespace NLog
         }
 #endif
         /// <summary>
-        /// Gets or sets a value indicating whether NLog should throw exceptions. 
+        /// Gets or sets a value indicating whether NLog should throw exceptions.
         /// By default exceptions are not thrown under any circumstances.
         /// </summary>
         public static bool ThrowExceptions
@@ -107,7 +101,7 @@ namespace NLog
         /// <remarks>
         /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.
-        /// 
+        ///
         /// </remarks>
         public static bool? ThrowConfigExceptions
         {
@@ -117,7 +111,6 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets a value indicating whether Variables should be kept on configuration reload.
-        /// Default value - false.
         /// </summary>
         public static bool KeepVariablesOnReload
         {
@@ -137,12 +130,23 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration.
-        /// <see cref="NLog.LogFactory.Configuration" />
         /// </summary>
+        /// <remarks>
+        /// Setter will re-configure all <see cref="Logger"/>-objects, so no need to also call <see cref="ReconfigExistingLoggers()" />
+        /// </remarks>
         public static LoggingConfiguration Configuration
         {
             get => factory.Configuration;
             set => factory.Configuration = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// </summary>
+        public static LogLevel GlobalThreshold
+        {
+            get => factory.GlobalThreshold;
+            set => factory.GlobalThreshold = value;
         }
 
         /// <summary>
@@ -162,10 +166,13 @@ namespace NLog
         }
 
         /// <summary>
-        /// Loads logging configuration from file (Currently only XML configuration files supported)
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="SetupBuilderExtensions.LoadConfigurationFromFile(ISetupBuilder, string, bool)"/> with NLog v5.2.
+        /// Loads logging configuration from file (Only XML configuration files supported)
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>
         /// <returns>LogFactory instance for fluent interface</returns>
+        [Obsolete("Replaced by LogManager.Setup().LoadConfigurationFromFile(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LogFactory LoadConfiguration(string configFile)
         {
             factory.LoadConfiguration(configFile);
@@ -173,31 +180,22 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// Adds the given assembly which will be skipped
+        /// when NLog is trying to find the calling method on stack trace.
         /// </summary>
-        public static LogLevel GlobalThreshold
+        /// <param name="assembly">The assembly to skip.</param>
+        [Obsolete("Replaced by LogManager.Setup().SetupLogFactory(setup => setup.AddCallSiteHiddenAssembly(assembly)). Marked obsolete on NLog 5.3")]
+        public static void AddHiddenAssembly(Assembly assembly)
         {
-            get => factory.GlobalThreshold;
-            set => factory.GlobalThreshold = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the default culture to use.
-        /// </summary>
-        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
-        public static GetCultureInfo DefaultCultureInfo
-        {
-            get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
-            set => throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo.");
+            CallSiteInformation.AddCallSiteHiddenAssembly(assembly);
         }
 
         /// <summary>
         /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
@@ -205,45 +203,21 @@ namespace NLog
             return factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
         }
 
-        internal static bool IsHiddenAssembly(Assembly assembly)
-        {
-            return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
-        }
-
         /// <summary>
-        /// Adds the given assembly which will be skipped 
-        /// when NLog is trying to find the calling method on stack trace.
-        /// </summary>
-        /// <param name="assembly">The assembly to skip.</param>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHiddenAssembly(Assembly assembly)
-        {
-            lock (lockObject)
-            {
-                if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
-                    return;
-
-                _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
-                {
-                    assembly
-                };
-            }
-
-            InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly?.FullName);
-        }
-
-        /// <summary>
+        /// Obsolete and replaced by <see cref="LogFactory.GetCurrentClassLogger{T}()"/> with NLog v5.2.
         /// Gets a custom logger with the full name of the current class, so namespace and class name.
         /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
-        /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This method introduces performance hit, because of StackTrace capture.
+        /// Make sure you are not calling this method in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Logger GetCurrentClassLogger(Type loggerType)
+        [Obsolete("Replaced by LogFactory.GetCurrentClassLogger<T>(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return factory.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
         }
@@ -252,7 +226,6 @@ namespace NLog
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns>Null logger which discards all log messages.</returns>
-        [CLSCompliant(false)]
         public static Logger CreateNullLogger()
         {
             return factory.CreateNullLogger();
@@ -263,23 +236,23 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        [CLSCompliant(false)]
         public static Logger GetLogger(string name)
         {
             return factory.GetLogger(name);
         }
 
         /// <summary>
-        /// Gets the specified named custom logger.
-        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// Obsolete and replaced by <see cref="LogFactory.GetLogger{T}(string)"/> with NLog v5.2.
+        /// Gets the specified named custom <see cref="Logger"/> using the parameter <paramref name="loggerType"/> for creating instance.
         /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
-        [CLSCompliant(false)]
-        public static Logger GetLogger(string name, Type loggerType)
+        [Obsolete("Replaced by LogFactory.GetLogger<T>(). Marked obsolete on NLog 5.2")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Logger GetLogger(string name, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
             return factory.GetLogger(name, loggerType);
         }
@@ -294,7 +267,17 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT
+        /// <summary>
+        /// Loops through all loggers previously returned by GetLogger.
+        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// </summary>
+        /// <param name="purgeObsoleteLoggers">Purge garbage collected logger-items from the cache</param>
+        public static void ReconfigExistingLoggers(bool purgeObsoleteLoggers)
+        {
+            factory.ReconfigExistingLoggers(purgeObsoleteLoggers);
+        }
+
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -320,7 +303,6 @@ namespace NLog
         {
             factory.Flush(timeoutMilliseconds);
         }
-#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -352,34 +334,72 @@ namespace NLog
         }
 
         /// <summary>
-        /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
+        /// Obsolete and replaced by by <see cref="SuspendLogging"/> with NLog v5.
+        /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="EnableLogging"/>
         /// </summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
-        ///     To be used with C# <c>using ()</c> statement.</returns>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater
+        /// than the number of <see cref="EnableLogging"/> calls.
+        /// </remarks>
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging.
+        /// To be used with C# <c>using ()</c> statement.</returns>
+        [Obsolete("Use SuspendLogging() instead. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static IDisposable DisableLogging()
         {
             return factory.SuspendLogging();
         }
 
         /// <summary>
-        /// Increases the log enable counter and if it reaches 0 the logs are disabled.
+        /// Obsolete and replaced by disposing the scope returned from <see cref="SuspendLogging"/> with NLog v5.
+        /// Resumes logging if having called <see cref="DisableLogging"/>.
         /// </summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="DisableLogging"/> calls are greater
+        /// than the number of <see cref="EnableLogging"/> calls.
+        /// </remarks>
+        [Obsolete("Use ResumeLogging() instead. Marked obsolete on NLog 5.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableLogging()
         {
             factory.ResumeLogging();
         }
 
         /// <summary>
-        /// Checks if logging is currently enabled.
+        /// Suspends the logging, and returns object for using-scope so scope-exit calls <see cref="ResumeLogging"/>
         /// </summary>
-        /// <returns><see langword="true" /> if logging is currently enabled, <see langword="false"/> 
-        ///     otherwise.</returns>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
+        /// than the number of <see cref="ResumeLogging"/> calls.
+        /// </remarks>
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging.
+        /// To be used with C# <c>using ()</c> statement.</returns>
+        public static IDisposable SuspendLogging()
+        {
+            return factory.SuspendLogging();
+        }
+
+        /// <summary>
+        /// Resumes logging if having called <see cref="SuspendLogging"/>.
+        /// </summary>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
+        /// than the number of <see cref="ResumeLogging"/> calls.
+        /// </remarks>
+        public static void ResumeLogging()
+        {
+            factory.ResumeLogging();
+        }
+
+        /// <summary>
+        /// Returns <see langword="true" /> if logging is currently enabled.
+        /// </summary>
+        /// <remarks>
+        /// Logging is suspended when the number of <see cref="SuspendLogging"/> calls are greater
+        /// than the number of <see cref="ResumeLogging"/> calls.
+        /// </remarks>
+        /// <returns>A value of <see langword="true" /> if logging is currently enabled,
+        /// <see langword="false"/> otherwise.</returns>
         public static bool IsLoggingEnabled()
         {
             return factory.IsLoggingEnabled();

@@ -1,42 +1,42 @@
-﻿// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using System.Text.RegularExpressions;
+//
 
 namespace NLog.Internal
 {
-    internal class RegexHelper
+    using System;
+    using System.Text.RegularExpressions;
+
+    internal sealed class RegexHelper
     {
         private Regex _regex;
         private string _searchText;
@@ -70,13 +70,11 @@ namespace NLog.Internal
         /// <summary>
         /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
         public bool CompileRegex { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
         public bool WholeWords
         {
             get => _wholeWords;
@@ -93,7 +91,6 @@ namespace NLog.Internal
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
-        /// <docgen category='Rule Matching Options' order='10' />
         public bool IgnoreCase
         {
             get => _ignoreCase;
@@ -124,7 +121,7 @@ namespace NLog.Internal
 
         private void ResetRegex()
         {
-            _simpleSearchText = !WholeWords && !IgnoreCase && !string.IsNullOrEmpty(SearchText);
+            _simpleSearchText = !WholeWords && !CompileRegex && !string.IsNullOrEmpty(SearchText);
             if (!string.IsNullOrEmpty(SearchText))
             {
                 _regexPattern = Regex.Escape(SearchText);
@@ -145,12 +142,10 @@ namespace NLog.Internal
             {
                 regexOptions |= RegexOptions.IgnoreCase;
             }
-#if !SILVERLIGHT
             if (CompileRegex)
             {
                 regexOptions |= RegexOptions.Compiled;
             }
-#endif
             return regexOptions;
         }
 
@@ -158,7 +153,7 @@ namespace NLog.Internal
         {
             if (_simpleSearchText)
             {
-                return input.Replace(SearchText, replacement);
+                return IgnoreCase ? StringHelpers.Replace(input, SearchText, replacement, StringComparison.CurrentCultureIgnoreCase) : input.Replace(SearchText, replacement);
             }
             else if (CompileRegex)
             {

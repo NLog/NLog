@@ -1,93 +1,95 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-using NLog.Internal;
-using NLog.Targets;
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
-using NLog.Config;
-#if !NETSTANDARD
-using System.Collections.Concurrent;
-using System.Web.Http;
-using Owin;
-using Microsoft.Owin.Hosting;
-using System.Web.Http.Dependencies;
-#endif
-using Xunit;
+//
 
 namespace NLog.UnitTests.Targets
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http.Headers;
+    using System.Runtime.Serialization;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Xml.Serialization;
+#if !NETSTANDARD
+    using System.Web.Http;
+    using System.Web.Http.Dependencies;
+    using Microsoft.Owin.Hosting;
+    using Owin;
+#endif
+    using NLog.Internal;
+    using NLog.Targets;
+    using Xunit;
+
     public class WebServiceTargetTests : NLogTestBase
     {
-        [Fact]
-        public void Stream_CopyWithOffset_test()
+        public WebServiceTargetTests()
         {
-            var text = @"
+            LogManager.ThrowExceptions = true;
+        }
 
-Lorem ipsum dolor sit amet consectetuer tellus semper dictum urna consectetuer. Eu iaculis enim tincidunt mi pede id ut sociis non vitae. Condimentum augue Nam Vestibulum faucibus tortor et at Sed et molestie. Interdum morbi Nullam pellentesque Vestibulum pede et eget semper Pellentesque quis. Velit cursus nec dolor vitae id et urna quis ante velit. Neque urna et vitae neque Vestibulum tellus convallis dui.
+        [Fact]
+        public void WebServiceWithEmptyUrl()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "" });
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${eventproperty:Url}" });
+            }).LogFactory;
 
-Tellus nibh enim augue senectus ut augue Donec Pellentesque Sed pretium. Volutpat nunc rutrum auctor dolor pharetra malesuada elit sapien ac nec. Adipiscing et id penatibus turpis a odio risus orci Suspendisse eu. Nibh eu facilisi eu consectetuer nibh eu in Nunc Curabitur rutrum. Quisque sit lacus consectetuer eu Duis quis felis hendrerit lobortis mauris. Nam Vivamus enim Aenean rhoncus.
+            logFactory.GetCurrentClassLogger().WithProperty("Url", "").Info("Test");
 
-Nulla tellus dui orci montes Vestibulum Aenean condimentum non id vel. Euismod Nam libero odio ut ut Nunc ac dui Nulla volutpat. Quisque facilisis consequat tempus tempus Curabitur tortor id Phasellus Suspendisse In. Lorem et Phasellus wisi Fusce fringilla pretium pede sapien amet ligula. In sed id In eget tristique quam sed interdum wisi commodo. Volutpat neque nibh mauris Quisque lorem nunc porttitor Cras faucibus augue. Sociis tempus et.
+            Assert.NotNull(logFactory.Configuration);
+        }
 
-Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrerit. Enim at laoreet elit eros ut at laoreet vel velit quis. Netus sed Suspendisse sed Curabitur vel sed wisi sapien nonummy congue. Semper Sed a malesuada tristique Vivamus et est eu quis ante. Wisi cursus Suspendisse dictum pretium habitant sodales scelerisque dui tempus libero. Venenatis consequat Lorem eu.
+        [Fact]
+        public void WebServiceWithInvalidUrl()
+        {
+            var logFactory = new LogFactory().Setup().LoadConfiguration(builder =>
+            {
+                var configException = Assert.Throws<NLogConfigurationException>(() => builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "!!!" }));
+                Assert.Contains("!!!", configException.Message);
+                builder.ForLogger().WriteTo(new WebServiceTarget() { Url = "${eventproperty:Url}" });
+            }).LogFactory;
 
+            logFactory.GetCurrentClassLogger().WithProperty("Url", "!!!").Info("Test");
 
+            logFactory.ThrowExceptions = true;
 
-";
-
-            var textStream = GenerateStreamFromString(text);
-            var textBytes = StreamToBytes(textStream);
-
-            textStream.Position = 0;
-            textStream.Flush();
-
-            var resultStream = new MemoryStream();
-            textStream.CopyWithOffset(resultStream, 3);
-            var result = StreamToBytes(resultStream);
-            var expected = textBytes.Skip(3).ToArray();
-            Assert.Equal(result.Length, expected.Length);
-            Assert.Equal(result, expected);
-
-
+            Assert.Throws<NLogRuntimeException>(() => logFactory.GetCurrentClassLogger().WithProperty("Url", "!!!").Info("Test"));
         }
 
         [Fact]
@@ -110,7 +112,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         private static void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml(@"
                 <nlog>
 <targets>
     <target type='WebService'
@@ -128,9 +132,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         <parameter name='level' type='System.String' layout='${level}'/>
     </target>
 </targets>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            var target = configuration.FindTargetByName("webservice") as WebServiceTarget;
+            var target = logFactory.Configuration.FindTargetByName("webservice") as WebServiceTarget;
             Assert.NotNull(target);
 
             Assert.Equal(6, target.Parameters.Count);
@@ -149,13 +153,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug" };
             target.DoInvoke(parameterValues, c => counterEvent.Set(), httpWebRequest,
-                (request,callback) =>
+                (request, callback) =>
                 {
                     var t = new Task(() => { });
                     callback(t);
                     return t;
                 },
-                (request,result) => streamMock);
+                (request, result) => streamMock);
 
             counterEvent.WaitOne(10000);
 
@@ -171,41 +175,14 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var possbleBomBytes = bytes.Take(3).ToArray();
             if (includeBom)
             {
-                Assert.Equal(possbleBomBytes, EncodingHelpers.Utf8BOM);
+                Assert.Equal(possbleBomBytes, System.Text.Encoding.UTF8.GetPreamble());
             }
             else
             {
-                Assert.NotEqual(possbleBomBytes, EncodingHelpers.Utf8BOM);
+                Assert.NotEqual(possbleBomBytes, System.Text.Encoding.UTF8.GetPreamble());
             }
 
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
-        }
-        #region helpers
-
-        private Stream GenerateStreamFromString(string s)
-        {
-            MemoryStream stream = new MemoryStream();
-            StreamWriter writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
-        }
-
-        private static byte[] StreamToBytes(Stream stream)
-        {
-            stream.Flush();
-            stream.Position = 0;
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
         }
 
         /// <summary>
@@ -215,8 +192,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         {
             public byte[] bytes;
             public string stringed;
-
-            #region Overrides of MemoryStream
 
             /// <summary>
             /// Releases the unmanaged resources used by the <see cref="T:System.IO.MemoryStream"/> class and optionally releases the managed resources.
@@ -237,71 +212,60 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 var sr = new StreamReader(s);
                 return sr.ReadToEnd();
             }
-
-            #endregion
         }
-
-
-        #endregion
 
 #if !NETSTANDARD
-        const string WsAddress = "http://localhost:9000/";
-
-        private static string getWsAddress(int portOffset)
+        private static string getNewWsAddress()
         {
-            return WsAddress.Substring(0, WsAddress.Length - 5) + (9000 + portOffset).ToString() + "/";
+            string WsAddress = "http://localhost:9000/";
+            return WsAddress.Substring(0, WsAddress.Length - 5) + (9000 + System.Threading.Interlocked.Increment(ref _portOffset)).ToString() + "/";
         }
+        private static int _portOffset;
 
         /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{WsAddress}{"api/logme"}'
+                                url='{wsAddress}{"api/logme"}'
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' type='System.String' layout='${{message}}'/>
                             <parameter name='param2' type='System.String' layout='${{level}}'/>
-     
                         </target>
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
+            var logger = logFactory.GetCurrentClassLogger();
 
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
-
-            LogMeController.ResetState(1);
-
-
-
-            LogMeController.ResetState(2);
+            var context = new LogMeController.TestContext();
+            context.ResetState(2);
 
             var message1 = "message 1 with a post";
             var message2 = "a b c é k è ï ?";
-            StartOwinTest(() =>
+            StartOwinTest(wsAddress, context, () =>
             {
-
                 logger.Info(message1);
                 logger.Info(message2);
             });
 
-            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Equal(2, LogMeController.ReceivedLogsPostParam1.Count);
-            CheckQueueMessage(message1, LogMeController.ReceivedLogsPostParam1);
-            CheckQueueMessage(message2, LogMeController.ReceivedLogsPostParam1);
+            Assert.Equal(0, context.CountdownEvent.CurrentCount);
+            Assert.Equal(2, context.ReceivedLogsPostParam1.Count);
+            CheckQueueMessage(message1, context.ReceivedLogsPostParam1);
+            CheckQueueMessage(message2, context.ReceivedLogsPostParam1);
         }
 
         /// <summary>
@@ -310,24 +274,24 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httpget()
         {
-            var logger = SetUpHttpGetWebservice("api/logme");
+            string wsAddress = getNewWsAddress();
+            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme").GetCurrentClassLogger();
 
-            LogMeController.ResetState(2);
+            var context = new LogMeController.TestContext();
+            context.ResetState(2);
 
             var message1 = "message 1 with a post";
             var message2 = "a b c é k è ï ?";
-            StartOwinTest(() =>
+            StartOwinTest(wsAddress, context, () =>
             {
-
                 logger.Info(message1);
                 logger.Info(message2);
             });
 
-
-            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Equal(2, LogMeController.ReceivedLogsGetParam1.Count);
-            CheckQueueMessage(message1, LogMeController.ReceivedLogsGetParam1);
-            CheckQueueMessage(message2, LogMeController.ReceivedLogsGetParam1);
+            Assert.Equal(0, context.CountdownEvent.CurrentCount);
+            Assert.Equal(2, context.ReceivedLogsGetParam1.Count);
+            CheckQueueMessage(message1, context.ReceivedLogsGetParam1);
+            CheckQueueMessage(message2, context.ReceivedLogsGetParam1);
         }
 
         /// <summary>
@@ -336,12 +300,15 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httpget_flush()
         {
-            var logger = SetUpHttpGetWebservice("api/logme");
+            string wsAddress = getNewWsAddress();
+            var logFactory = SetUpHttpGetWebservice(wsAddress, "api/logme");
+            var logger = logFactory.GetCurrentClassLogger();
 
-            LogMeController.ResetState(0);
+            var context = new LogMeController.TestContext();
+            context.ResetState(0);
 
             var message1 = "message with a post";
-            StartOwinTest(() =>
+            StartOwinTest(wsAddress, context, () =>
             {
                 for (int i = 0; i < 100; ++i)
                     logger.Info(message1);
@@ -353,59 +320,54 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
                 catch (NLogRuntimeException)
                 { }
-                LogManager.Flush(); // Waits for flush (Scheduled on top of the previous flush)
-                LogManager.Flush(); // Nothing to flush
+                logFactory.Flush(); // Waits for flush (Scheduled on top of the previous flush)
+                logFactory.Flush(); // Nothing to flush
             });
 
-            Assert.Equal(100, LogMeController.ReceivedLogsGetParam1.Count);
+            Assert.Equal(100, context.ReceivedLogsGetParam1.Count);
         }
 
         [Fact]
         public void WebServiceTest_restapi_httpget_querystring()
         {
-            var logger = SetUpHttpGetWebservice("api/logme?paramFromConfig=valueFromConfig");
+            string wsAddress = getNewWsAddress();
+            var logger = SetUpHttpGetWebservice(wsAddress, "api/logme?paramFromConfig=valueFromConfig").GetCurrentClassLogger();
 
-            LogMeController.ResetState(1);
+            var context = new LogMeController.TestContext();
+            context.ResetState(1);
 
-            StartOwinTest(() =>
+            StartOwinTest(wsAddress, context, () =>
             {
-
                 logger.Info("another message");
             });
 
-
-            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Single(LogMeController.ReceivedLogsGetParam1);
-            CheckQueueMessage("another message", LogMeController.ReceivedLogsGetParam1);
+            Assert.Equal(0, context.CountdownEvent.CurrentCount);
+            Assert.Single(context.ReceivedLogsGetParam1);
+            CheckQueueMessage("another message", context.ReceivedLogsGetParam1);
         }
 
-        private static Logger SetUpHttpGetWebservice(string relativeUrl)
+        private static LogFactory SetUpHttpGetWebservice(string wsAddress, string relativeUrl)
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{WsAddress}{relativeUrl}'
+                                url='{wsAddress}{relativeUrl}'
                                 protocol='HttpGet'
                                 encoding='UTF-8'
                                >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' type='System.String' layout='${{message}}'/>
                             <parameter name='param2' type='System.String' layout='${{level}}'/>
-     
                         </target>
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
-
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
-            return logger;
+                </nlog>").LogFactory;
+            return logFactory;
         }
 
         private static void CheckQueueMessage(string message1, ConcurrentBag<string> receivedLogsGetParam1)
@@ -414,118 +376,96 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.True(success, $"message '{message1}' not found");
         }
 
-
         /// <summary>
-        /// Timeout for <see cref="WebserviceTest_restapi_httppost_checkingLost"/>.
-        /// 
-        /// in miliseconds. 20000 = 20 sec
-        /// </summary>
-        const int webserviceCheckTimeoutMs = 20000;
-
-        /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
-        /// 
-        /// repeats for checking 'lost messages'
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/>
         /// </summary>
         [Fact]
-        public void WebserviceTest_restapi_httppost_checkingLost()
+        public void WebserviceTest_restapi_httppost_many()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{WsAddress}{"api/logme"}'
+                                url='{wsAddress}{"api/logme"}'
                                 protocol='HttpPost'
                                 encoding='UTF-8'
-                               >
-                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                                >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/>
                             <parameter name='param2' type='System.String' layout='${{level}}'/>
-     
                         </target>
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
+                        <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
+            var logger = logFactory.GetCurrentClassLogger();
 
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            const int messageCount = 101;
+            //reset
+            var context = new LogMeController.TestContext();
+            context.ResetState(messageCount);
 
-            RetryingIntegrationTest(3, () =>
+            string lastMessage = null;
+
+            StartOwinTest(wsAddress, context, () =>
             {
-
-                const int messageCount = 1000;
-                var createdMessages = new List<string>(messageCount);
-
                 for (int i = 0; i < messageCount; i++)
                 {
-                    var message = "message " + i;
-                    createdMessages.Add(message);
-
+                    lastMessage = "message" + i;
+                    logger.Info(lastMessage);
                 }
-
-                //reset
-                LogMeController.ResetState(messageCount);
-
-                StartOwinTest(() =>
-                {
-                    foreach (var createdMessage in createdMessages)
-                    {
-                        logger.Info(createdMessage);
-                    }
-                });
-
-                Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-                Assert.Equal(createdMessages.Count, LogMeController.ReceivedLogsPostParam1.Count);
-                //Assert.Equal(createdMessages, ValuesController.ReceivedLogsPostParam1);
             });
+
+            Assert.Equal(0, context.CountdownEvent.CurrentCount);
+            Assert.Equal(messageCount, context.ReceivedLogsPostParam1.Count);
+            CheckQueueMessage(lastMessage, context.ReceivedLogsPostParam1);
         }
 
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
         /// </summary>
         [Fact]
-        public void WebserviceTest_restapi_json()
+        public void WebserviceTest_restapi_jsonpost()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{getWsAddress(1)}{"api/logdoc/json"}'
+                                url='{wsAddress}{"api/logdoc/json"}'
                                 protocol='JsonPost'
                                 encoding='UTF-8'
                                >
                             <UserAgent>SecretAgent</UserAgent>
                             <header name='Authorization' layout='OpenBackDoor' />
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                             <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
                             <parameter name='param4' ParameterType='System.DateTime' layout='${{date:universalTime=true:format=o}}'/>
                         </target>
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
-            var count = 101;
-            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" }, { "User-Agent", "SecretAgent" } }, txt, "info", true, DateTime.UtcNow);
+            const int messageCount = 101;
+            var context = new LogDocController.TestContext(messageCount, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" }, { "User-Agent", "SecretAgent" } }, txt, "info", true, DateTime.UtcNow);
 
-            StartOwinDocTest(context, () =>
+            StartOwinDocTest(wsAddress, context, () =>
             {
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < messageCount; i++)
                     logger.Info(txt);
             });
 
@@ -534,81 +474,81 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
         /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/> 
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/>
         /// </summary>
         [Fact]
-        public void WebserviceTest_restapi_xml()
+        public void WebserviceTest_restapi_xmlpost()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{getWsAddress(1)}{"api/logdoc/xml"}'
+                                url='{wsAddress}{"api/logdoc/xml"}'
                                 protocol='XmlPost'
                                 XmlRoot='ComplexType'
                                 encoding='UTF-8'
                                >
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                             <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
                             <parameter name='param4' ParameterType='System.DateTime' layout='${{date:universalTime=true:format=o}}'/>
                         </target>
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='ws'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "message 1 with a XML POST<hello><again\\>\"";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
-            var count = 101;
-            var context = new LogDocController.TestContext(1, count, true, null, txt, "info", true, DateTime.UtcNow);
+            const int messageCount = 101;
+            var context = new LogDocController.TestContext(messageCount, true, null, txt, "info", true, DateTime.UtcNow);
 
-            StartOwinDocTest(context, () =>
+            StartOwinDocTest(wsAddress, context, () =>
             {
-                for (int i = 0; i < count; i++)
-                    logger.Info(txt + "\b");    // Lets tease the Xml-Serializer, and see it can remove invalid chars
+                for (int i = 0; i < messageCount; i++)
+                    logger.Info(txt);
             });
 
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
         }
 
         /// <summary>
-        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_soap11_default_soapaction()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{getWsAddress(1)}{"api/logdoc/soap11"}'
+                                url='{wsAddress}{"api/logdoc/soap11"}'
                                 protocol='Soap11'
                                 namespace='http://tempuri.org/'
                                 methodName ='Ping'
                                 preAuthenticate='false'
                                 encoding ='UTF-8'
                                >
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 1;
@@ -616,9 +556,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 {"SOAPAction", "http://tempuri.org/Ping" }
             };
-            var context = new LogDocController.TestContext(1, count, true, expectedHeaders, null, null, true, DateTime.UtcNow);
+            var context = new LogDocController.TestContext(count, true, expectedHeaders, null, null, true, DateTime.UtcNow);
 
-            StartOwinDocTest(context, () =>
+            StartOwinDocTest(wsAddress, context, () =>
             {
                 logger.Info(txt);
             });
@@ -627,17 +567,20 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         }
 
         /// <summary>
-        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_soap11_custom_soapaction()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{getWsAddress(1)}{"api/logdoc/soap11"}'
+                                url='{wsAddress}{"api/logdoc/soap11"}'
                                 protocol='Soap11'
                                 namespace='http://tempuri.org/'
                                 methodName ='Ping'
@@ -645,17 +588,16 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                                 encoding ='UTF-8'
                                >
                             <header name='SOAPAction' layout='http://tempuri.org/custom-namespace/Ping'/>
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 1;
@@ -663,9 +605,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 {"SOAPAction", "http://tempuri.org/custom-namespace/Ping" }
             };
-            var context = new LogDocController.TestContext(1, count, true, expectedHeaders, null, null, true, DateTime.UtcNow);
+            var context = new LogDocController.TestContext(count, true, expectedHeaders, null, null, true, DateTime.UtcNow);
 
-            StartOwinDocTest(context, () =>
+            StartOwinDocTest(wsAddress, context, () =>
             {
                 logger.Info(txt);
             });
@@ -674,42 +616,43 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         }
 
         /// <summary>
-        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/>
         /// </summary>
         [Fact]
         public void WebserviceTest_soap12_default_soapaction()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            string wsAddress = getNewWsAddress();
+            var logFactory = new LogFactory().Setup()
+                                             .SetupExtensions(ext => ext.RegisterAssembly(typeof(WebServiceTarget).Assembly))
+                                             .LoadConfigurationFromXml($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{getWsAddress(1)}{"api/logdoc/soap12"}'
+                                url='{wsAddress}{"api/logdoc/soap12"}'
                                 protocol='Soap12'
                                 namespace='http://tempuri.org/'
                                 methodName ='Ping'
                                 preAuthenticate='false'
                                 encoding ='UTF-8'
                                >
-                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/>
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                         </target>
                     </targets>
                     <rules>
                       <logger name='*' writeTo='ws' />
                     </rules>
-                </nlog>");
+                </nlog>").LogFactory;
 
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
+            var logger = logFactory.GetCurrentClassLogger();
 
             var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 1;
             var contentType = MediaTypeHeaderValue.Parse("application/soap+xml;charset=utf-8;action=\"http://tempuri.org/Ping\"");
-            var context = new LogDocController.TestContext(1, count, true, null, null, null, true, DateTime.UtcNow, contentType);
+            var context = new LogDocController.TestContext(count, true, null, null, null, true, DateTime.UtcNow, contentType);
 
-            StartOwinDocTest(context, () =>
+            StartOwinDocTest(wsAddress, context, () =>
             {
                 logger.Info(txt);
             });
@@ -717,59 +660,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
         }
 
-        /// <summary>
-        /// Start/config route of WS
-        /// </summary>
-        private class Startup
-        {
-            // This code configures Web API. The Startup class is specified as a type
-            // parameter in the WebApp.Start method.
-            public void Configuration(IAppBuilder appBuilder)
-            {
-                // Configure Web API for self-host. 
-                HttpConfiguration config = new HttpConfiguration();
-                config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-                );
-
-                appBuilder.UseWebApi(config);
-            }
-        }
-
         ///<remarks>Must be public </remarks>
         public class LogMeController : ApiController
         {
-            /// <summary>
-            /// Reset the state for unit testing
-            /// </summary>
-            /// <param name="expectedMessages"></param>
-            public static void ResetState(int expectedMessages)
-            {
-                ReceivedLogsPostParam1 = new ConcurrentBag<string>();
-                ReceivedLogsGetParam1 = new ConcurrentBag<string>();
-                if (expectedMessages > 0)
-                    CountdownEvent = new CountdownEvent(expectedMessages);
-                else
-                    CountdownEvent = null;
-            }
-
-            /// <summary>
-            /// Countdown event for keeping WS alive.
-            /// </summary>
-            public static CountdownEvent CountdownEvent;
-
-
-            /// <summary>
-            /// Received param1 values (get)
-            /// </summary>
-            public static ConcurrentBag<string> ReceivedLogsGetParam1 = new ConcurrentBag<string>();
-            /// <summary>
-            /// Received param1 values(post)
-            /// </summary>
-            public static ConcurrentBag<string> ReceivedLogsPostParam1 = new ConcurrentBag<string>();
-
+            public TestContext Context { get; set; } = new TestContext();
 
             /// <summary>
             /// We need a complex type for modelbinding because of content-type: "application/x-www-form-urlencoded" in <see cref="WebServiceTarget"/>
@@ -797,18 +691,16 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// </summary>
             public string Get(int id)
             {
-
                 return "value";
             }
 
-            // GET api/values 
+            // GET api/values
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
             {
-
-                ReceivedLogsGetParam1.Add(param1);
-                if (CountdownEvent != null)
+                Context.ReceivedLogsGetParam1.Add(param1);
+                if (Context.CountdownEvent != null)
                 {
-                    CountdownEvent.Signal();
+                    Context.CountdownEvent.Signal();
                 }
 
                 return new string[] { "value1", "value2" };
@@ -819,25 +711,20 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// </summary>
             public void Post([FromBody] ComplexType complexType)
             {
-                //this is working. 
-                if (complexType == null)
-                {
-                    throw new ArgumentNullException(nameof(complexType));
-                }
-                ReceivedLogsPostParam1.Add(complexType.Param1);
+                //this is working.
+                Guard.ThrowIfNull(complexType);
+                Context.ReceivedLogsPostParam1.Add(complexType.Param1);
 
-                if (CountdownEvent != null)
+                if (Context.CountdownEvent != null)
                 {
-                    CountdownEvent.Signal();
+                    Context.CountdownEvent.Signal();
                 }
             }
-
 
             /// <summary>
             /// Put
             /// </summary>
-
-            public void Put(int id, [FromBody]string value)
+            public void Put(int id, [FromBody] string value)
             {
             }
 
@@ -847,60 +734,82 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public void Delete(int id)
             {
             }
+
+            public sealed class TestContext
+            {
+                /// <summary>
+                /// Countdown event for keeping WS alive.
+                /// </summary>
+                public CountdownEvent CountdownEvent;
+
+                /// <summary>
+                /// Received param1 values (get)
+                /// </summary>
+                public ConcurrentBag<string> ReceivedLogsGetParam1 = new ConcurrentBag<string>();
+                /// <summary>
+                /// Received param1 values(post)
+                /// </summary>
+                public ConcurrentBag<string> ReceivedLogsPostParam1 = new ConcurrentBag<string>();
+
+                /// <summary>
+                /// Reset the state for unit testing
+                /// </summary>
+                /// <param name="expectedMessages"></param>
+                public void ResetState(int expectedMessages)
+                {
+                    ReceivedLogsPostParam1 = new ConcurrentBag<string>();
+                    ReceivedLogsGetParam1 = new ConcurrentBag<string>();
+                    if (expectedMessages > 0)
+                        CountdownEvent = new CountdownEvent(expectedMessages);
+                    else
+                        CountdownEvent = null;
+                }
+            }
         }
 
-        internal static void StartOwinTest(Action testsFunc)
+        const int webserviceCheckTimeoutMs = 20000;
+
+        internal static void StartOwinTest(string url, LogMeController.TestContext testContext, Action testsFunc)
         {
             // HttpSelfHostConfiguration. So info: http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
-            // Start webservice 
-            using (WebApp.Start<Startup>(url: WsAddress))
+            // Start webservice
+            using (WebApp.Start(url, (appBuilder) =>
+            {
+                // Configure Web API for self-host.
+                HttpConfiguration config = new HttpConfiguration();
+
+                config.DependencyResolver = new ControllerResolver<LogMeController>(() => new LogMeController() { Context = testContext });
+
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{id}",
+                    defaults: new { id = RouteParameter.Optional }
+                );
+
+                appBuilder.UseWebApi(config);
+            }))
             {
                 testsFunc();
 
                 //wait for all received message, or timeout. There is no exception on timeout, so we have to check carefully in the unit test.
-                if (LogMeController.CountdownEvent != null)
+                if (testContext.CountdownEvent != null)
                 {
-                    LogMeController.CountdownEvent.Wait(webserviceCheckTimeoutMs);
+                    testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
                     //we need some extra time for completion
                     Thread.Sleep(1000);
                 }
             }
         }
 
-
-        internal static void StartOwinDocTest(LogDocController.TestContext testContext, Action testsFunc)
+        internal static void StartOwinDocTest(string url, LogDocController.TestContext testContext, Action testsFunc)
         {
-            var stu = new StartupDoc(testContext);
-            using (WebApp.Start(getWsAddress(testContext.PortOffset), stu.Configuration))
+            using (WebApp.Start(url, (appBuilder) =>
             {
-                testsFunc();
-
-                if (testContext.CountdownEvent != null)
-                {
-                    testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
-                    Thread.Sleep(1000);
-                }
-            }
-        }
-
-        private class StartupDoc
-        {
-            LogDocController.TestContext _testContext;
-
-            public StartupDoc(LogDocController.TestContext testContext)
-            {
-                _testContext = testContext;
-            }
-
-            // This code configures Web API. The Startup class is specified as a type
-            // parameter in the WebApp.Start method.
-            public void Configuration(IAppBuilder appBuilder)
-            {
-                // Configure Web API for self-host. 
+                // Configure Web API for self-host.
                 HttpConfiguration config = new HttpConfiguration();
 
-                config.DependencyResolver = new ControllerResolver(_testContext);
+                config.DependencyResolver = new ControllerResolver<LogDocController>(() => new LogDocController() { Context = testContext });
 
                 config.Routes.MapHttpRoute(
                     name: "ApiWithAction",
@@ -913,7 +822,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     defaults: new { id = RouteParameter.Optional }
                 );
 
-                if (_testContext.XmlInsteadOfJson)
+                if (testContext.XmlInsteadOfJson)
                 {
                     // Default Xml Formatter uses DataContractSerializer, changing it to XmlSerializer
                     config.Formatters.XmlFormatter.UseXmlSerializer = true;
@@ -926,48 +835,58 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
 
                 appBuilder.UseWebApi(config);
+            }))
+            {
+                testsFunc();
+
+                if (testContext.CountdownEvent != null)
+                {
+                    testContext.CountdownEvent.Wait(webserviceCheckTimeoutMs);
+                    //we need some extra time for completion
+                    Thread.Sleep(1000);
+                }
+            }
+        }
+
+        private sealed class ControllerResolver<T> : IDependencyResolver where T : class
+        {
+            private readonly Func<T> _factory;
+
+            public ControllerResolver(Func<T> factory)
+            {
+                _factory = factory;
             }
 
-            private class ControllerResolver : IDependencyResolver, IDependencyScope
+            public IDependencyScope BeginScope()
             {
-                private LogDocController.TestContext _testContext;
+                return this;
+            }
 
-                public ControllerResolver(LogDocController.TestContext testContext)
+            public void Dispose()
+            {
+            }
+
+            public object GetService(Type serviceType)
+            {
+                if (serviceType == typeof(T))
                 {
-                    _testContext = testContext;
+                    return _factory.Invoke();
                 }
-
-                public IDependencyScope BeginScope()
+                else
                 {
-                    return this;
+                    return null;
                 }
+            }
 
-                public void Dispose()
+            public IEnumerable<object> GetServices(Type serviceType)
+            {
+                if (serviceType == typeof(T))
                 {
+                    return new object[] { GetService(serviceType) };
                 }
-
-                public object GetService(Type serviceType)
+                else
                 {
-                    if (serviceType == typeof(LogDocController))
-                    {
-                        return new LogDocController() { Context = _testContext };
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-
-                public IEnumerable<object> GetServices(Type serviceType)
-                {
-                    if (serviceType == typeof(LogDocController))
-                    {
-                        return new object[] { new LogDocController() { Context = _testContext } };
-                    }
-                    else
-                    {
-                        return new object[0];
-                    }
+                    return ArrayHelper.Empty<object>();
                 }
             }
         }
@@ -980,39 +899,15 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             [HttpPost]
             public void Json(LogMeController.ComplexType complexType)
             {
-                if (complexType == null)
-                {
-                    throw new ArgumentNullException(nameof(complexType));
-                }
+                Guard.ThrowIfNull(complexType);
 
                 processRequest(complexType);
-            }
-
-            private void processRequest(LogMeController.ComplexType complexType)
-            {
-                if (Context != null)
-                {
-                    if (string.Equals(Context.ExpectedParam2, complexType.Param2, StringComparison.OrdinalIgnoreCase)
-                        && Context.ExpectedParam1 == complexType.Param1
-                        && Context.ExpectedParam3 == complexType.Param3
-                        && Context.ExpectedParam4.Date == complexType.Param4.Date)
-                    {
-                        if (!ValidateHeaders())
-                        {
-                            return;
-                        }
-                        Context.CountdownEvent.Signal();
-                    }
-                }
             }
 
             [HttpPost]
             public void Xml(LogMeController.ComplexType complexType)
             {
-                if (complexType == null)
-                {
-                    throw new ArgumentNullException(nameof(complexType));
-                }
+                Guard.ThrowIfNull(complexType);
 
                 processRequest(complexType);
             }
@@ -1038,6 +933,24 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
             }
 
+            private void processRequest(LogMeController.ComplexType complexType)
+            {
+                if (Context != null)
+                {
+                    if (string.Equals(Context.ExpectedParam2, complexType.Param2, StringComparison.OrdinalIgnoreCase)
+                        && Context.ExpectedParam1 == complexType.Param1
+                        && Context.ExpectedParam3 == complexType.Param3
+                        && Context.ExpectedParam4.Date == complexType.Param4.Date)
+                    {
+                        if (!ValidateHeaders())
+                        {
+                            return;
+                        }
+                        Context.CountdownEvent.Signal();
+                    }
+                }
+            }
+
             private bool ValidateHeaders()
             {
                 if (Context.ExpectedHeaders?.Count > 0)
@@ -1052,11 +965,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return true;
             }
 
-            public class TestContext
+            public sealed class TestContext
             {
                 public CountdownEvent CountdownEvent { get; }
-
-                public int PortOffset { get; }
 
                 public bool XmlInsteadOfJson { get; }
 
@@ -1072,10 +983,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
                 public MediaTypeHeaderValue ExpectedContentType { get; }
 
-                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, Dictionary<string, string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4, MediaTypeHeaderValue expectedContentType = null)
+                public TestContext(int expectedMessages, bool xmlInsteadOfJson, Dictionary<string, string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4, MediaTypeHeaderValue expectedContentType = null)
                 {
                     CountdownEvent = new CountdownEvent(expectedMessages);
-                    PortOffset = portOffset;
                     XmlInsteadOfJson = xmlInsteadOfJson;
                     ExpectedHeaders = expectedHeaders;
                     ExpectedParam1 = expected1;
@@ -1086,8 +996,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
             }
         }
-
 #endif
     }
-
 }

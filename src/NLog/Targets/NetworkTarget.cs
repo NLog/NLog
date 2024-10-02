@@ -1,41 +1,40 @@
-// 
-// Copyright (c) 2004-2021 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
-// 
+//
+// Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Text;
     using System.Threading;
     using NLog.Common;
@@ -46,17 +45,16 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages over the network.
     /// </summary>
+    /// <remarks>
+    /// <a href="https://github.com/nlog/nlog/wiki/Network-target">See NLog Wiki</a>
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Network-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/Network/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
@@ -69,48 +67,35 @@ namespace NLog.Targets
     /// </p>
     /// <img src="examples/targets/Screenshots/Network/Output.gif" />
     /// <p>
-    /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
-    /// or you'll get TCP timeouts and your application will be very slow. 
-    /// Either switch to UDP transport or use <a href="target.AsyncWrapper.html">AsyncWrapper</a> target
-    /// so that your application threads will not be blocked by the timing-out connection attempts.
-    /// </p>
-    /// <p>
-    /// There are two specialized versions of the Network target: <a href="target.Chainsaw.html">Chainsaw</a>
-    /// and <a href="target.NLogViewer.html">NLogViewer</a> which write to instances of Chainsaw log4j viewer
+    /// There are two specialized versions of the Network target: <a href="T_NLog_Targets_ChainsawTarget.htm">Chainsaw</a>
+    /// and <a href="T_NLog_Targets_NLogViewerTarget.htm">NLogViewer</a> which write to instances of Chainsaw log4j viewer
     /// or NLogViewer application respectively.
     /// </p>
     /// </example>
     [Target("Network")]
     public class NetworkTarget : TargetWithLayout
     {
-        private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>();
+        private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>(StringComparer.Ordinal);
         private readonly LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
 
-        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(16 * 1024);
+        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(32 * 1024);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public NetworkTarget()
         {
             SenderFactory = NetworkSenderFactory.Default;
-            Encoding = Encoding.UTF8;
-            OnOverflow = NetworkTargetOverflowAction.Split;
-            KeepConnection = true;
-            MaxMessageSize = 65000;
-            ConnectionCacheSize = 5;
-            LineEnding = LineEndingMode.CRLF;
-            OptimizeBufferReuse = GetType() == typeof(NetworkTarget);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public NetworkTarget(string name) : this()
@@ -124,12 +109,12 @@ namespace NLog.Targets
         /// <remarks>
         /// The network address can be:
         /// <ul>
-        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6) (not supported on Windows Phone 7.0)</li>
-        /// <li>tcp4://host:port - force TCP/IPv4 (not supported on Windows Phone 7.0)</li>
-        /// <li>tcp6://host:port - force TCP/IPv6 (not supported on Windows Phone 7.0)</li>
-        /// <li>udp://host:port - UDP (auto select IPv4/IPv6, not supported on Silverlight and on Windows Phone 7.0)</li>
-        /// <li>udp4://host:port - force UDP/IPv4 (not supported on Silverlight and on Windows Phone 7.0)</li>
-        /// <li>udp6://host:port - force UDP/IPv6  (not supported on Silverlight and on Windows Phone 7.0)</li>
+        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6)</li>
+        /// <li>tcp4://host:port - force TCP/IPv4</li>
+        /// <li>tcp6://host:port - force TCP/IPv6</li>
+        /// <li>udp://host:port - UDP (auto select IPv4/IPv6)</li>
+        /// <li>udp4://host:port - force UDP/IPv4</li>
+        /// <li>udp6://host:port - force UDP/IPv6</li>
         /// <li>http://host:port/pageName - HTTP using POST verb</li>
         /// <li>https://host:port/pageName - HTTPS using POST verb</li>
         /// </ul>
@@ -142,74 +127,103 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to keep connection open whenever possible.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(true)]
-        public bool KeepConnection { get; set; }
+        public bool KeepConnection { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to append newline at the end of log message.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [DefaultValue(false)]
+        /// <docgen category='Payload Options' order='10' />
         public bool NewLine { get; set; }
 
         /// <summary>
         /// Gets or sets the end of line value if a newline is appended at the end of log message <see cref="NewLine"/>.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [DefaultValue("CRLF")]
-        public LineEndingMode LineEnding { get; set; }
+        /// <docgen category='Payload Options' order='10' />
+        public LineEndingMode LineEnding
+        {
+            get => _lineEnding;
+            set
+            {
+                _lineEnding = value;
+                NewLine = value != null;
+            }
+        }
+        private LineEndingMode _lineEnding = LineEndingMode.CRLF;
 
         /// <summary>
-        /// Gets or sets the maximum message size in bytes.
+        /// Gets or sets the maximum message size in bytes. On limit breach then <see cref="OnOverflow"/> action is activated.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [DefaultValue(65000)]
-        public int MaxMessageSize { get; set; }
+        /// <docgen category='Payload Options' order='10' />
+        public int MaxMessageSize { get; set; } = 65000;
 
         /// <summary>
-        /// Gets or sets the size of the connection cache (number of connections which are kept alive).
+        /// Gets or sets the maximum simultaneous connections. Requires <see cref="KeepConnection"/> = false
+        /// </summary>
+        /// <remarks>
+        /// When having reached the maximum limit, then <see cref="OnConnectionOverflow"/> action will apply.
+        /// </remarks>
+        /// <docgen category="Connection Options" order="10"/>
+        public int MaxConnections { get; set; } = 100;
+
+        /// <summary>
+        /// Gets or sets the action that should be taken, when more connections than <see cref="MaxConnections"/>.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; } = NetworkTargetConnectionsOverflowAction.Discard;
+
+        /// <summary>
+        /// Gets or sets the maximum queue size for a single connection. Requires <see cref="KeepConnection"/> = true
+        /// </summary>
+        /// <remarks>
+        /// When having reached the maximum limit, then <see cref="OnQueueOverflow"/> action will apply.
+        /// </remarks>
+        /// <docgen category='Connection Options' order='10' />
+        public int MaxQueueSize { get; set; } = 10000;
+
+        /// <summary>
+        /// Gets or sets the action that should be taken, when more pending messages than <see cref="MaxQueueSize"/>.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public NetworkTargetQueueOverflowAction OnQueueOverflow { get; set; } = NetworkTargetQueueOverflowAction.Discard;
+
+        /// <summary>
+        /// Occurs when LogEvent has been dropped.
+        /// </summary>
+        /// <remarks>
+        ///  - When internal queue is full and <see cref="OnQueueOverflow"/> set to <see cref="NetworkTargetOverflowAction.Discard"/><br/>
+        ///  - When connection-list is full and <see cref="OnConnectionOverflow"/> set to <see cref="NetworkTargetConnectionsOverflowAction.Discard"/><br/>
+        ///  - When message is too big and <see cref="OnOverflow"/> set to <see cref="NetworkTargetOverflowAction.Discard"/><br/>
+        /// </remarks>
+        public event EventHandler<NetworkLogEventDroppedEventArgs> LogEventDropped;
+
+        /// <summary>
+        /// Gets or sets the size of the connection cache (number of connections which are kept alive). Requires <see cref="KeepConnection"/> = true
         /// </summary>
         /// <docgen category="Connection Options" order="10"/>
-        [DefaultValue(5)]
-        public int ConnectionCacheSize { get; set; }
+        public int ConnectionCacheSize { get; set; } = 5;
 
         /// <summary>
-        /// Gets or sets the maximum current connections. 0 = no maximum.
+        /// Gets or sets the action that should be taken if the message is larger than <see cref="MaxMessageSize" />
         /// </summary>
-        /// <docgen category="Connection Options" order="10"/>
-        public int MaxConnections { get; set; }
-
-        /// <summary>
-        /// Gets or sets the action that should be taken if the will be more connections than <see cref="MaxConnections"/>.
-        /// </summary>
+        /// <remarks>
+        /// For TCP sockets then <see cref="NetworkTargetOverflowAction.Split"/> means no-limit, as TCP sockets
+        /// performs splitting automatically.
+        ///
+        /// For UDP Network sender then <see cref="NetworkTargetOverflowAction.Split"/> means splitting the message
+        /// into smaller chunks. This can be useful on networks using DontFragment, which drops network packages
+        /// larger than MTU-size (1472 bytes).
+        /// </remarks>
         /// <docgen category='Connection Options' order='10' />
-        public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum queue size.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(0)]
-        public int MaxQueueSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets the action that should be taken if the message is larger than
-        /// maxMessageSize.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(NetworkTargetOverflowAction.Split)]
-        public NetworkTargetOverflowAction OnOverflow { get; set; }
+        public NetworkTargetOverflowAction OnOverflow { get; set; } = NetworkTargetOverflowAction.Split;
 
         /// <summary>
         /// Gets or sets the encoding to be used.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [DefaultValue("utf-8")]
-        public Encoding Encoding { get; set; }
+        /// <docgen category='Payload Options' order='10' />
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
 
-#if !SILVERLIGHT
         /// <summary>
-        /// Get or set the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
+        /// Gets or sets the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
@@ -219,7 +233,22 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public int KeepAliveTimeSeconds { get; set; }
-#endif
+
+        /// <summary>
+        /// The number of seconds a TCP socket send-operation will block before timeout error. Default wait forever when network cable unplugged and tcp-buffer becomes full.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public int SendTimeoutSeconds { get; set; }
+
+        /// <summary>
+        /// Type of compression for protocol payload. Useful for UDP where datagram max-size is 8192 bytes.
+        /// </summary>
+        public NetworkTargetCompressionType Compress { get; set; }
+
+        /// <summary>
+        /// Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
+        /// </summary>
+        public int CompressMinBytes { get; set; }
 
         internal INetworkSenderFactory SenderFactory { get; set; }
 
@@ -260,138 +289,189 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Closes the target.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseTarget()
         {
             base.CloseTarget();
 
-            lock (_openNetworkSenders)
+            lock (_currentSenderCache)
             {
-                foreach (var openSender in _openNetworkSenders)
+                lock (_openNetworkSenders)
                 {
-                    openSender.Close(ex => { });
+                    foreach (var openSender in _openNetworkSenders)
+                    {
+                        openSender.Close(ex => { });
+                    }
+
+                    _openNetworkSenders.Clear();
                 }
 
-                _openNetworkSenders.Clear();
+                _currentSenderCache.Clear();
             }
         }
 
         /// <summary>
-        /// Sends the 
+        /// Sends the
         /// rendered logging event over the network optionally concatenating it with a newline character.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             string address = RenderLogEvent(Address, logEvent.LogEvent);
-            InternalLogger.Trace("NetworkTarget(Name={0}): Sending to address: '{1}'", Name, address);
+            byte[] payload = GetBytesToWrite(logEvent.LogEvent);
+            int messageSize = payload.Length;
 
-            byte[] bytes = GetBytesToWrite(logEvent.LogEvent);
+            InternalLogger.Trace("{0}: Sending {1} bytes to address: '{2}'", this, messageSize, address);
+
+            if (messageSize > MaxMessageSize)
+            {
+                if (OnOverflow == NetworkTargetOverflowAction.Discard)
+                {
+                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
+                    logEvent.Continuation(null);
+                    return;
+                }
+
+                if (OnOverflow == NetworkTargetOverflowAction.Error)
+                {
+                    InternalLogger.Debug("{0}: Discarded LogEvent because MessageSize={1} is above MaxMessageSize={2}", this, messageSize, MaxMessageSize);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxMessageSizeOverflow);
+                    logEvent.Continuation(new InvalidOperationException($"NetworkTarget: Discarded LogEvent because MessageSize={messageSize} is above MaxMessageSize={MaxMessageSize}"));
+                    return;
+                }
+            }
+
+            if (messageSize <= 0)
+            {
+                logEvent.Continuation(null);
+                return;
+            }
 
             if (KeepConnection)
             {
-                LinkedListNode<NetworkSender> senderNode;
-                try
-                {
-                    senderNode = GetCachedNetworkSender(address);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "NetworkTarget(Name={0}): Failed to create sender to address: '{1}'", Name, address);
-                    throw;
-                }
-
-                ChunkedSend(
-                    senderNode.Value,
-                    bytes,
-                    ex =>
-                    {
-                        if (ex != null)
-                        {
-                            InternalLogger.Error(ex, "NetworkTarget(Name={0}): Error when sending.", Name);
-                            ReleaseCachedConnection(senderNode);
-                        }
-
-                        logEvent.Continuation(ex);
-                    });
+                WriteBytesToCachedNetworkSender(address, payload, logEvent);
             }
             else
             {
-                NetworkSender sender;
-                LinkedListNode<NetworkSender> linkedListNode;
-
-                lock (_openNetworkSenders)
-                {
-                    //handle too many connections
-                    var tooManyConnections = _openNetworkSenders.Count >= MaxConnections;
-
-                    if (tooManyConnections && MaxConnections > 0)
-                    {
-                        switch (OnConnectionOverflow)
-                        {
-                            case NetworkTargetConnectionsOverflowAction.DiscardMessage:
-                                InternalLogger.Warn("NetworkTarget(Name={0}): Discarding message otherwise to many connections.", Name);
-                                logEvent.Continuation(null);
-                                return;
-
-                            case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
-                                InternalLogger.Debug("NetworkTarget(Name={0}): Too may connections, but this is allowed", Name);
-                                break;
-
-                            case NetworkTargetConnectionsOverflowAction.Block:
-                                while (_openNetworkSenders.Count >= MaxConnections)
-                                {
-                                    InternalLogger.Debug("NetworkTarget(Name={0}): Blocking networktarget otherwhise too many connections.", Name);
-                                    Monitor.Wait(_openNetworkSenders);
-                                    InternalLogger.Trace("NetworkTarget(Name={0}): Entered critical section.", Name);
-                                }
-
-                                InternalLogger.Trace("NetworkTarget(Name={0}): Limit ok.", Name);
-                                break;
-                        }
-                    }
-
-                    try
-                    {
-                        sender = CreateNetworkSender(address);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error(ex, "NetworkTarget(Name={0}): Failed to create sender to address: '{1}'", Name, address);
-                        throw;
-                    }
-
-                    linkedListNode = _openNetworkSenders.AddLast(sender);
-                }
-                ChunkedSend(
-                    sender,
-                    bytes,
-                    ex =>
-                    {
-                        lock (_openNetworkSenders)
-                        {
-                            TryRemove(_openNetworkSenders, linkedListNode);
-                            if (OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
-                            {
-                                Monitor.PulseAll(_openNetworkSenders);
-                            }
-                        }
-
-                        if (ex != null)
-                        {
-                            InternalLogger.Error(ex, "NetworkTarget(Name={0}): Error when sending.", Name);
-                        }
-
-                        sender.Close(ex2 => { });
-                        logEvent.Continuation(ex);
-                    });
+                WriteBytesToNewNetworkSender(address, payload, logEvent);
             }
         }
 
+        private void WriteBytesToCachedNetworkSender(string address, byte[] payload, AsyncLogEventInfo logEvent)
+        {
+            LinkedListNode<NetworkSender> senderNode;
+            try
+            {
+                senderNode = GetCachedNetworkSender(address);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0}: Failed to create sender to address: '{1}'", this, address);
+                OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
+                throw;
+            }
+
+            WriteBytesToNetworkSender(
+                senderNode.Value,
+                payload,
+                ex =>
+                {
+                    if (ex != null)
+                    {
+                        InternalLogger.Error(ex, "{0}: Error when sending.", this);
+                        OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
+                        ReleaseCachedConnection(senderNode);
+                    }
+
+                    logEvent.Continuation(ex);
+                });
+        }
+
+        private void WriteBytesToNewNetworkSender(string address, byte[] payload, AsyncLogEventInfo logEvent)
+        {
+            NetworkSender sender;
+            LinkedListNode<NetworkSender> linkedListNode;
+
+            lock (_openNetworkSenders)
+            {
+                //handle too many connections
+                var tooManyConnections = _openNetworkSenders.Count >= MaxConnections;
+
+                if (tooManyConnections && MaxConnections > 0)
+                {
+                    switch (OnConnectionOverflow)
+                    {
+                        case NetworkTargetConnectionsOverflowAction.Discard:
+                            InternalLogger.Debug("{0}: Discarding message, because too many open connections.", this);
+                            OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.MaxConnectionsOverflow);
+                            logEvent.Continuation(null);
+                            return;
+
+                        case NetworkTargetConnectionsOverflowAction.Grow:
+                            MaxConnections = MaxConnections * 2;
+                            InternalLogger.Debug("{0}: Growing max connections limit, because many open connections.", this);
+                            break;
+
+                        case NetworkTargetConnectionsOverflowAction.Block:
+                            while (_openNetworkSenders.Count >= MaxConnections)
+                            {
+                                InternalLogger.Debug("{0}: Blocking until ready, because too many open connections.", this);
+                                Monitor.Wait(_openNetworkSenders);
+                                InternalLogger.Trace("{0}: Entered critical section.", this);
+                            }
+
+                            InternalLogger.Trace("{0}: Limit ok.", this);
+                            break;
+                    }
+                }
+
+                try
+                {
+                    sender = CreateNetworkSender(address);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "{0}: Failed to create sender to address: '{1}'", this, address);
+                    OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
+                    throw;
+                }
+
+                linkedListNode = _openNetworkSenders.AddLast(sender);
+            }
+
+            WriteBytesToNetworkSender(
+                sender,
+                payload,
+                ex =>
+                {
+                    lock (_openNetworkSenders)
+                    {
+                        TryRemove(_openNetworkSenders, linkedListNode);
+                        if (OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
+                        {
+                            Monitor.PulseAll(_openNetworkSenders);
+                        }
+                    }
+
+                    if (ex != null)
+                    {
+                        InternalLogger.Error(ex, "{0}: Error when sending.", this);
+                        OnLogEventDropped(this, NetworkLogEventDroppedEventArgs.NetworkErrorDetected);
+                    }
+
+                    sender.Close(ex2 => { });
+                    logEvent.Continuation(ex);
+                });
+        }
+
+        private void OnLogEventDropped(object sender, NetworkLogEventDroppedEventArgs logEventDroppedEventArgs)
+        {
+            LogEventDropped?.Invoke(this, logEventDroppedEventArgs);
+        }
+
         /// <summary>
-        /// Try to remove. 
+        /// Try to remove.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
@@ -399,7 +479,7 @@ namespace NLog.Targets
         /// <returns>removed something?</returns>
         private static bool TryRemove<T>(LinkedList<T> list, LinkedListNode<T> node)
         {
-            if (node == null || list != node.List)
+            if (node is null || list != node.List)
             {
                 return false;
             }
@@ -414,65 +494,80 @@ namespace NLog.Targets
         /// <returns>Byte array.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            if (OptimizeBufferReuse)
-            {
-                using (var localBuffer = _reusableEncodingBuffer.Allocate())
-                { 
-                    if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
-                    {
-                        return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
-                    }
-                    else
-                    {
-                        using (var localBuilder = ReusableLayoutBuilder.Allocate())
-                        {
-                            Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
-                            if (NewLine)
-                            {
-                                localBuilder.Result.Append(LineEnding.NewLineCharacters);
-                            }
+            var payload = RenderBytesToWrite(logEvent);
 
-                            return GetBytesFromStringBuilder(localBuffer.Result, localBuilder.Result);
+            if (Compress != NetworkTargetCompressionType.None)
+            {
+                payload = CompressBytesToWrite(payload);
+            }
+
+            return payload;
+        }
+
+        private byte[] RenderBytesToWrite(LogEventInfo logEvent)
+        {
+            using (var localBuffer = _reusableEncodingBuffer.Allocate())
+            {
+                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
+                {
+                    return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
+                }
+                else
+                {
+                    using (var localBuilder = ReusableLayoutBuilder.Allocate())
+                    {
+                        Layout.Render(logEvent, localBuilder.Result);
+                        if (NewLine)
+                        {
+                            localBuilder.Result.Append(LineEnding.NewLineCharacters);
                         }
+
+                        return GetBytesFromStringBuilder(localBuffer.Result, localBuilder.Result);
                     }
                 }
-            }
-            else
-            {
-                var rendered = Layout.Render(logEvent);
-                InternalLogger.Trace("NetworkTarget(Name={0}): Sending: {1}", Name, rendered);
-                if (NewLine)
-                {
-                    rendered += LineEnding.NewLineCharacters;
-                }
-                return Encoding.GetBytes(rendered);
             }
         }
 
         private byte[] GetBytesFromStringBuilder(char[] charBuffer, StringBuilder stringBuilder)
         {
-            InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1} chars", Name, stringBuilder.Length);
-#if !SILVERLIGHT
             if (stringBuilder.Length <= charBuffer.Length)
             {
                 stringBuilder.CopyTo(0, charBuffer, 0, stringBuilder.Length);
                 return Encoding.GetBytes(charBuffer, 0, stringBuilder.Length);
             }
-#endif
             return Encoding.GetBytes(stringBuilder.ToString());
         }
 
         private byte[] GetBytesFromString(char[] charBuffer, string layoutMessage)
         {
-            InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1}", Name, layoutMessage);
-#if !SILVERLIGHT
+            InternalLogger.Trace("{0}: Sending {1}", this, layoutMessage);
             if (layoutMessage.Length <= charBuffer.Length)
             {
                 layoutMessage.CopyTo(0, charBuffer, 0, layoutMessage.Length);
                 return Encoding.GetBytes(charBuffer, 0, layoutMessage.Length);
             }
-#endif
             return Encoding.GetBytes(layoutMessage);
+        }
+
+        private byte[] CompressBytesToWrite(byte[] payload)
+        {
+            if (payload.Length > CompressMinBytes)
+            {
+                using (var outputStream = new System.IO.MemoryStream(Math.Max(payload.Length / 10, 256)))
+                {
+#if !NET35
+                    using (var gzipStream = new System.IO.Compression.GZipStream(outputStream, Compress == NetworkTargetCompressionType.GZip ? System.IO.Compression.CompressionLevel.Optimal : System.IO.Compression.CompressionLevel.Fastest, true))
+#else
+                    using (var gzipStream = new System.IO.Compression.GZipStream(outputStream, System.IO.Compression.CompressionMode.Compress, true))
+#endif
+                    {
+                        gzipStream.Write(payload, 0, payload.Length);
+                    }
+                    payload = outputStream.ToArray();
+                }
+            }
+
+            return payload;
         }
 
         private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)
@@ -521,13 +616,12 @@ namespace NLog.Targets
 
         private NetworkSender CreateNetworkSender(string address)
         {
-#if !SILVERLIGHT
-            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
-#else
-            var sender = SenderFactory.Create(address, MaxQueueSize);
-#endif
+            var sender = SenderFactory.Create(address, MaxQueueSize, OnQueueOverflow, MaxMessageSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds), TimeSpan.FromSeconds(SendTimeoutSeconds));
             sender.Initialize();
-
+            if (KeepConnection || LogEventDropped != null)
+            {
+                sender.LogEventDropped += OnLogEventDropped;
+            }
             return sender;
         }
 
@@ -553,69 +647,9 @@ namespace NLog.Targets
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using property names in message.")]
-        private void ChunkedSend(NetworkSender sender, byte[] buffer, AsyncContinuation continuation)
+        private static void WriteBytesToNetworkSender(NetworkSender sender, byte[] payload, AsyncContinuation continuation)
         {
-            int tosend = buffer.Length;
-            if (tosend <= MaxMessageSize)
-            {
-                // Chunking is not needed, no need to perform delegate capture
-                InternalLogger.Trace("NetworkTarget(Name={0}): Sending chunk, position: {1}, length: {2}", Name, 0, tosend);
-                if (tosend <= 0)
-                {
-                    continuation(null);
-                    return;
-                }
-
-                sender.Send(buffer, 0, tosend, continuation);
-            }
-            else
-            {
-                int pos = 0;
-
-                void SendNextChunk(Exception ex)
-                {
-                    if (ex != null)
-                    {
-                        continuation(ex);
-                        return;
-                    }
-
-                    InternalLogger.Trace("NetworkTarget(Name={0}): Sending chunk, position: {1}, length: {2}", Name, pos, tosend);
-                    if (tosend <= 0)
-                    {
-                        continuation(null);
-                        return;
-                    }
-
-                    int chunksize = tosend;
-                    if (chunksize > MaxMessageSize)
-                    {
-                        if (OnOverflow == NetworkTargetOverflowAction.Discard)
-                        {
-                            InternalLogger.Trace("NetworkTarget(Name={0}): Discard because chunksize > this.MaxMessageSize", Name);
-                            continuation(null);
-                            return;
-                        }
-
-                        if (OnOverflow == NetworkTargetOverflowAction.Error)
-                        {
-                            continuation(new OverflowException($"Attempted to send a message larger than MaxMessageSize ({MaxMessageSize}). Actual size was: {buffer.Length}. Adjust OnOverflow and MaxMessageSize parameters accordingly."));
-                            return;
-                        }
-
-                        chunksize = MaxMessageSize;
-                    }
-
-                    int pos0 = pos;
-                    tosend -= chunksize;
-                    pos += chunksize;
-
-                    sender.Send(buffer, pos0, chunksize, SendNextChunk);
-                }
-
-                SendNextChunk(null);
-            }
+            sender.Send(payload, 0, payload.Length, continuation);
         }
     }
 }
