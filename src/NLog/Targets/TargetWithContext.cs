@@ -335,23 +335,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="GetScopeContextProperties"/> with NLog v5.
-        /// Returns the captured snapshot of <see cref="MappedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>Dictionary with MDC context if any, else null</returns>
-        [Obsolete("Replaced by GetScopeContextProperties. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IDictionary<string, object> GetContextMdc(LogEventInfo logEvent)
-        {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
-            {
-                return value as IDictionary<string, object>;
-            }
-            return CaptureContextMdc(logEvent, null);
-        }
-
-        /// <summary>
         /// Returns the captured snapshot of <see cref="ScopeContext"/> dictionary for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -366,40 +349,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="GetScopeContextProperties"/> with NLog v5.
-        /// Returns the captured snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>Dictionary with MDLC context if any, else null</returns>
-        [Obsolete("Replaced by GetScopeContextProperties. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IDictionary<string, object> GetContextMdlc(LogEventInfo logEvent)
-        {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextPropertiesLayout, out object value))
-            {
-                return value as IDictionary<string, object>;
-            }
-            return CaptureContextMdlc(logEvent, null);
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="GetScopeContextNested"/> with NLog v5.
-        /// Returns the captured snapshot of <see cref="NestedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>Collection with NDC context if any, else null</returns>
-        [Obsolete("Replaced by GetScopeContextNested. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IList<object> GetContextNdc(LogEventInfo logEvent)
-        {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
-            {
-                return value as IList<object>;
-            }
-            return CaptureContextNdc(logEvent);
-        }
-
-        /// <summary>
         /// Returns the captured snapshot of nested states from <see cref="ScopeContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -411,23 +360,6 @@ namespace NLog.Targets
                 return value as IList<object>;
             }
             return CaptureScopeContextNested(logEvent);
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="GetScopeContextNested"/> with NLog v5.
-        /// Returns the captured snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>Collection with NDLC context if any, else null</returns>
-        [Obsolete("Replaced by GetScopeContextNested. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IList<object> GetContextNdlc(LogEventInfo logEvent)
-        {
-            if (logEvent.TryGetCachedLayoutValue(_contextLayout.ScopeContextNestedStatesLayout, out object value))
-            {
-                return value as IList<object>;
-            }
-            return CaptureContextNdlc(logEvent);
         }
 
         private IDictionary<string, object> CaptureContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
@@ -503,70 +435,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="CaptureScopeContextProperties"/> with NLog v5.
-        /// Takes snapshot of <see cref="MappedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <param name="contextProperties">Optional pre-allocated dictionary for the snapshot</param>
-        /// <returns>Dictionary with MDC context if any, else null</returns>
-        [Obsolete("Replaced by CaptureScopeContextProperties. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual IDictionary<string, object> CaptureContextMdc(LogEventInfo logEvent, IDictionary<string, object> contextProperties)
-        {
-            var names = MappedDiagnosticsContext.GetNames();
-            if (names.Count == 0)
-                return contextProperties;
-
-            contextProperties = contextProperties ?? CreateNewDictionary(names.Count);
-            bool checkForDuplicates = contextProperties.Count > 0;
-            foreach (var name in names)
-            {
-                object value = MappedDiagnosticsContext.GetObject(name);
-                if (SerializeMdcItem(logEvent, name, value, out var serializedValue))
-                {
-                    AddContextProperty(logEvent, name, serializedValue, checkForDuplicates, contextProperties);
-                }
-            }
-            return contextProperties;
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="SerializeScopeContextProperty"/> with NLog v5.
-        /// Take snapshot of a single object value from <see cref="MappedDiagnosticsContext"/>
-        /// </summary>
-        /// <param name="logEvent">Log event</param>
-        /// <param name="name">MDC key</param>
-        /// <param name="value">MDC value</param>
-        /// <param name="serializedValue">Snapshot of MDC value</param>
-        /// <returns>Include object value in snapshot</returns>
-        [Obsolete("Replaced by SerializeScopeContextProperty. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool SerializeMdcItem(LogEventInfo logEvent, string name, object value, out object serializedValue)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                serializedValue = null;
-                return false;
-            }
-
-            return SerializeItemValue(logEvent, name, value, out serializedValue);
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="CaptureScopeContextProperties"/> with NLog v5.
-        /// Takes snapshot of <see cref="MappedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <param name="contextProperties">Optional pre-allocated dictionary for the snapshot</param>
-        /// <returns>Dictionary with MDLC context if any, else null</returns>
-        [Obsolete("Replaced by CaptureScopeContextProperties. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual IDictionary<string, object> CaptureContextMdlc(LogEventInfo logEvent, IDictionary<string, object> contextProperties)
-        {
-            return CaptureScopeContextProperties(logEvent, contextProperties);
-        }
-
-        /// <summary>
         /// Takes snapshot of <see cref="ScopeContext"/> dictionary for the <see cref="LogEventInfo"/>
         /// </summary>
         /// <param name="logEvent"></param>
@@ -602,22 +470,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="SerializeScopeContextProperty"/> with NLog v5.
-        /// Take snapshot of a single object value from <see cref="MappedDiagnosticsLogicalContext"/>
-        /// </summary>
-        /// <param name="logEvent">Log event</param>
-        /// <param name="name">MDLC key</param>
-        /// <param name="value">MDLC value</param>
-        /// <param name="serializedValue">Snapshot of MDLC value</param>
-        /// <returns>Include object value in snapshot</returns>
-        [Obsolete("Replaced by SerializeScopeContextProperty. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool SerializeMdlcItem(LogEventInfo logEvent, string name, object value, out object serializedValue)
-        {
-            return SerializeScopeContextProperty(logEvent, name, value, out serializedValue);
-        }
-
-        /// <summary>
         /// Take snapshot of a single object value from <see cref="ScopeContext"/> dictionary
         /// </summary>
         /// <param name="logEvent">Log event</param>
@@ -634,72 +486,6 @@ namespace NLog.Targets
             }
 
             return SerializeItemValue(logEvent, name, value, out serializedValue);
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="CaptureScopeContextNested"/> with NLog v5.
-        /// Takes snapshot of <see cref="NestedDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>Collection with NDC context if any, else null</returns>
-        [Obsolete("Replaced by CaptureScopeContextNested. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual IList<object> CaptureContextNdc(LogEventInfo logEvent)
-        {
-            var stack = NestedDiagnosticsContext.GetAllObjects();
-            if (stack.Length == 0)
-                return stack;
-
-            IList<object> filteredStack = null;
-            for (int i = 0; i < stack.Length; ++i)
-            {
-                var ndcValue = stack[i];
-                if (SerializeNdcItem(logEvent, ndcValue, out var serializedValue))
-                {
-                    if (filteredStack != null)
-                        filteredStack.Add(serializedValue);
-                    else
-                        stack[i] = serializedValue;
-                }
-                else
-                {
-                    if (filteredStack is null)
-                    {
-                        filteredStack = new List<object>(stack.Length);
-                        for (int j = 0; j < i; ++j)
-                            filteredStack.Add(stack[j]);
-                    }
-                }
-            }
-            return filteredStack ?? stack;
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="SerializeScopeContextNestedState"/> with NLog v5.
-        /// Take snapshot of a single object value from <see cref="NestedDiagnosticsContext"/>
-        /// </summary>
-        /// <param name="logEvent">Log event</param>
-        /// <param name="value">NDC value</param>
-        /// <param name="serializedValue">Snapshot of NDC value</param>
-        /// <returns>Include object value in snapshot</returns>
-        [Obsolete("Replaced by SerializeScopeContextNestedState. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool SerializeNdcItem(LogEventInfo logEvent, object value, out object serializedValue)
-        {
-            return SerializeItemValue(logEvent, null, value, out serializedValue);
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="CaptureScopeContextNested"/> with NLog v5.
-        /// Takes snapshot of <see cref="NestedDiagnosticsLogicalContext"/> for the <see cref="LogEventInfo"/>
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <returns>Collection with NDLC context if any, else null</returns>
-        [Obsolete("Replaced by CaptureScopeContextNested. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual IList<object> CaptureContextNdlc(LogEventInfo logEvent)
-        {
-            return CaptureScopeContextNested(logEvent);
         }
 
         /// <summary>
@@ -735,21 +521,6 @@ namespace NLog.Targets
                 }
             }
             return filteredStack ?? stack;
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="SerializeScopeContextNestedState"/> with NLog v5.
-        /// Take snapshot of a single object value from <see cref="NestedDiagnosticsLogicalContext"/>
-        /// </summary>
-        /// <param name="logEvent">Log event</param>
-        /// <param name="value">NDLC value</param>
-        /// <param name="serializedValue">Snapshot of NDLC value</param>
-        /// <returns>Include object value in snapshot</returns>
-        [Obsolete("Replaced by SerializeScopeContextNestedState. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool SerializeNdlcItem(LogEventInfo logEvent, object value, out object serializedValue)
-        {
-            return SerializeScopeContextNestedState(logEvent, value, out serializedValue);
         }
 
         /// <summary>
