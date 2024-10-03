@@ -481,91 +481,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().ToString());
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        public void Extension_loading_could_be_canceled(bool cancel)
-        {
-            ConfigurationItemFactory.Default = null;
-
-            EventHandler<AssemblyLoadingEventArgs> onAssemblyLoading = (sender, e) =>
-            {
-                if (e.Assembly.FullName.Contains("NLogAutoLoadExtension"))
-                {
-                    e.Cancel = cancel;
-                }
-            };
-
-            try
-            {
-                ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
-
-                using (new NoThrowNLogExceptions())
-                {
-                    var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-<nlog throwExceptions='false' autoLoadExtensions='true'>
-    <targets>
-        <target name='t' type='AutoLoadTarget' />
-    </targets>
-
-    <rules>
-      <logger name='*' writeTo='t' />
-    </rules>
-</nlog>").LogFactory;
-
-                    var autoLoadedTarget = logFactory.Configuration.FindTargetByName("t");
-
-                    if (cancel)
-                    {
-                        Assert.Null(autoLoadedTarget);
-                    }
-                    else
-                    {
-                        Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().ToString());
-                    }
-                }
-            }
-            finally
-            {
-                //cleanup
-                ConfigurationItemFactory.AssemblyLoading -= onAssemblyLoading;
-            }
-        }
-
-        [Fact]
-        public void Extensions_NLogPackageLoader_should_beCalled()
-        {
-            try
-            {
-                var writer = new StringWriter();
-                InternalLogger.LogWriter = writer;
-                InternalLogger.LogLevel = LogLevel.Debug;
-
-                var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
-<nlog throwExceptions='true'>
-<extensions>
- <add assembly='PackageLoaderTestAssembly' />
-</extensions>
-
-</nlog>");
-
-
-                var logs = writer.ToString();
-                Assert.Contains("Preload successfully invoked for 'LoaderTestInternal.NLogPackageLoader'", logs);
-                Assert.Contains("Preload successfully invoked for 'LoaderTestPublic.NLogPackageLoader'", logs);
-                Assert.Contains("Preload successfully invoked for 'LoaderTestPrivateNestedStatic.SomeType+NLogPackageLoader'", logs);
-                Assert.Contains("Preload successfully invoked for 'LoaderTestPrivateNested.SomeType+NLogPackageLoader'", logs);
-
-                //4 times successful
-                Assert.Equal(4, Regex.Matches(logs, Regex.Escape("Preload successfully invoked for '")).Count);
-            }
-            finally
-            {
-                InternalLogger.Reset();
-            }
-        }
-
         [Fact]
         public void ImplicitConversionOperatorTest()
         {
@@ -658,19 +573,17 @@ namespace NLog.UnitTests.Config
         {
             // Arrange
             var assembly = LoadManuallyLoadedExtensionDll();
-            var configFactory = new ConfigurationItemFactory(assembly);
+            var configFactory = new ConfigurationItemFactory();
+            configFactory.AssemblyLoader.LoadAssembly(configFactory, assembly, string.Empty);
 
             // Act
-            var foundDefinition = configFactory.GetTargetFactory().TryGetDefinition(input, out var outputDefinition);
             var foundInstance = configFactory.TargetFactory.TryCreateInstance(input, out var outputInstance);
-            var instance = (foundDefinition || foundInstance || expected != null) ? configFactory.GetTargetFactory().CreateInstance(input) : null;
+            var instance = (foundInstance || expected != null) ? configFactory.GetTargetFactory().CreateInstance(input) : null;
 
             // Assert
             Assert.Equal(expected != null, foundInstance);
-            Assert.Equal(expected != null, foundDefinition);
             Assert.Equal(expected, instance?.GetType().ToString());
             Assert.Equal(expected, outputInstance?.GetType().ToString());
-            Assert.Equal(expected, outputDefinition?.ToString());
         }
 
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]

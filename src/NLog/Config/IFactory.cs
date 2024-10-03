@@ -43,9 +43,6 @@ namespace NLog.Config
     {
         void Clear();
 
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
-        void ScanTypes(Type[] types, string assemblyName, string itemNamePrefix);
-
         void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix);
     }
 

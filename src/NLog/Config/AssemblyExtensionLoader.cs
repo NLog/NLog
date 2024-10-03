@@ -60,9 +60,48 @@ namespace NLog.Config
 
             InternalLogger.Info("Loading assembly name: {0}{1}", assemblyName, string.IsNullOrEmpty(itemNamePrefix) ? "" : $" (Prefix={itemNamePrefix})");
             Assembly extensionAssembly = LoadAssemblyFromName(assemblyName);
-            InternalLogger.LogAssemblyVersion(extensionAssembly);
-            factory.RegisterItemsFromAssembly(extensionAssembly, itemNamePrefix);
-            InternalLogger.Debug("Loading assembly name: {0} succeeded!", assemblyName);
+            LoadAssembly(factory, extensionAssembly, itemNamePrefix);
+        }
+
+        public void LoadAssembly(ConfigurationItemFactory factory, Assembly assembly, string itemNamePrefix)
+        {
+            InternalLogger.LogAssemblyVersion(assembly);
+
+            InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
+            var typesToScan = AssemblyHelpers.SafeGetTypes(assembly);
+            if (typesToScan?.Length > 0)
+            {
+                if (ReferenceEquals(assembly, typeof(LogFactory).GetAssembly()))
+                {
+                    typesToScan = typesToScan.Where(t => t.IsPublic() && t.IsClass()).ToArray();
+                }
+
+                foreach (Type type in typesToScan)
+                {
+                    try
+                    {
+                        RegisterTypeFromAssembly(factory, type, itemNamePrefix);
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Error(exception, "Failed to add type '{0}'.", type.FullName);
+
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+                    }
+                }
+            }
+
+            InternalLogger.Debug("Loading assembly name: {0} succeeded!", assembly.FullName);
+        }
+
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2072")]
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2067")]
+        private static void RegisterTypeFromAssembly(ConfigurationItemFactory factory, Type type, string itemNamePrefix)
+        {
+            factory.RegisterType(type, itemNamePrefix);
         }
 
         private static bool SkipAlreadyLoadedAssembly(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix)
@@ -197,20 +236,9 @@ namespace NLog.Config
 
         public void LoadAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string baseDirectory, string itemNamePrefix)
         {
-            RegisterAssemblyFromPath(factory, assemblyFileName, baseDirectory, itemNamePrefix);
-        }
-
-        private static Assembly RegisterAssemblyFromPath(ConfigurationItemFactory factory, string assemblyFileName, string baseDirectory = null, string itemNamePrefix = null)
-        {
-            InternalLogger.Info("Loading assembly file: {0}{1}", assemblyFileName, string.IsNullOrEmpty(itemNamePrefix) ? "" : $" (Prefix={itemNamePrefix})");
-            var extensionAssembly = LoadAssemblyFromPath(assemblyFileName, baseDirectory);
-            if (extensionAssembly is null)
-                return null;
-
-            InternalLogger.LogAssemblyVersion(extensionAssembly);
-            factory.RegisterItemsFromAssembly(extensionAssembly, itemNamePrefix);
-            InternalLogger.Debug("Loading assembly file: {0} succeeded!", assemblyFileName);
-            return extensionAssembly;
+            var assembly = LoadAssemblyFromPath(assemblyFileName, baseDirectory);
+            if (assembly != null)
+                LoadAssembly(factory, assembly, itemNamePrefix);
         }
 
         public void ScanForAutoLoadExtensions(ConfigurationItemFactory factory)
@@ -265,7 +293,7 @@ namespace NLog.Config
         }
 
 #if !NETSTANDARD1_3
-        private static HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
+        private HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
                 {
@@ -276,9 +304,12 @@ namespace NLog.Config
             {
                 try
                 {
-                    var extensionAssembly = RegisterAssemblyFromPath(factory, extensionDll);
+                    var extensionAssembly = LoadAssemblyFromPath(extensionDll);
                     if (extensionAssembly != null)
+                    {
+                        LoadAssembly(factory, extensionAssembly, string.Empty);
                         alreadyRegistered.Add(extensionAssembly.FullName);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -298,7 +329,7 @@ namespace NLog.Config
             return alreadyRegistered;
         }
 
-        private static void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
+        private void RegisterAppDomainAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, HashSet<string> alreadyRegistered)
         {
             alreadyRegistered.Add(nlogAssembly.FullName);
 
@@ -311,7 +342,7 @@ namespace NLog.Config
             {
                 if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
                 {
-                    factory.RegisterItemsFromAssembly(assembly);
+                    LoadAssembly(factory, assembly, string.Empty);
                 }
 
                 if (IncludeAsHiddenAssembly(assembly.FullName))
@@ -430,8 +461,8 @@ namespace NLog.Config
             if (!string.IsNullOrEmpty(baseDirectory))
             {
                 fullFileName = System.IO.Path.Combine(baseDirectory, assemblyFileName);
-                InternalLogger.Debug("Loading assembly file: {0}", fullFileName);
             }
+            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 
 #if NETSTANDARD1_5
             try
@@ -512,5 +543,7 @@ namespace NLog.Config
         void LoadAssemblyFromName(ConfigurationItemFactory factory, string assemblyName, string itemNamePrefix);
 
         void LoadTypeFromName(ConfigurationItemFactory factory, string typeName, string itemNamePrefix);
+
+        void LoadAssembly(ConfigurationItemFactory factory, Assembly assembly, string itemNamePrefix);
     }
 }

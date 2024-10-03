@@ -34,7 +34,6 @@
 namespace NLog.UnitTests.Config
 {
     using System;
-    using System.Collections.Generic;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
@@ -70,28 +69,6 @@ namespace NLog.UnitTests.Config
             itemFactory.RegisterType<DebugTarget>();
             itemFactory.TargetFactory.TryCreateInstance("Debug", out var result);
             Assert.NotNull(result);
-        }
-
-        [Fact]
-        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public void ConfigurationItemFactoryDefaultTest()
-        {
-            var itemFactory = new ConfigurationItemFactory();
-            Assert.IsType<DebugTarget>(itemFactory.CreateInstance(typeof(DebugTarget)));
-        }
-
-        [Fact]
-        [Obsolete("Instead use LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public void ConfigurationItemFactoryUsesSuppliedDelegateToResolveObject()
-        {
-            var itemFactory = new ConfigurationItemFactory();
-            itemFactory.RegisterType(typeof(DebugTarget), string.Empty);
-            List<Type> resolvedTypes = new List<Type>();
-            itemFactory.CreateInstance = t => { resolvedTypes.Add(t); return Activator.CreateInstance(t); };
-            itemFactory.TargetFactory.TryCreateInstance("Debug", out var target);
-            Assert.NotNull(target);
-            Assert.Single(resolvedTypes);
-            Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
     }
 }
