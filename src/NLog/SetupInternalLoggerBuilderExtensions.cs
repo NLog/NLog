@@ -33,8 +33,6 @@
 
 namespace NLog
 {
-    using System;
-    using System.ComponentModel;
     using System.IO;
     using NLog.Common;
     using NLog.Config;

@@ -54,11 +54,7 @@ namespace NLog.LayoutRenderers
 
         private static string GetStringValue()
         {
-#if !NETSTANDARD1_3
             return System.Threading.Thread.CurrentThread.Name;
-#else
-            return string.Empty;
-#endif
         }
 
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();

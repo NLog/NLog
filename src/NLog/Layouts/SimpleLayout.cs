@@ -369,7 +369,7 @@ namespace NLog.Layouts
 
         private static bool IsRawValueImmutable(object value)
         {
-            return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType());
+            return value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType);
         }
 
         /// <inheritdoc/>

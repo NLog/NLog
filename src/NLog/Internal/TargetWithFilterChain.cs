@@ -356,11 +356,8 @@ namespace NLog.Internal
 
             string internClassName = logEvent.LoggerName == className ?
                 logEvent.LoggerName :
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 string.Intern(className);   // Single string-reference for all logging-locations for the same class
-#else
-                className;
-#endif
+
             CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
             return _callSiteClassNameCache.TryAddValue(callSiteKey, internClassName);
         }

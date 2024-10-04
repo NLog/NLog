@@ -99,11 +99,7 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static bool Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            System.Collections.IComparer comparer = StringComparer.InvariantCulture;
-#else
             System.Collections.IComparer comparer = StringComparer.Ordinal;
-#endif
             PromoteTypes(ref leftValue, ref rightValue);
             switch (relationalOperator)
             {

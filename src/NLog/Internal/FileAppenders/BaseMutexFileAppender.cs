@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-#define SupportsMutex
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -44,13 +40,11 @@ namespace NLog.Internal.FileAppenders
     using System.Text;
     using JetBrains.Annotations;
 
-#if SupportsMutex
 #if !NETSTANDARD
     using System.Security.AccessControl;
     using System.Security.Principal;
 #endif
     using System.Security.Cryptography;
-#endif
     using Common;
 
     /// <summary>
@@ -74,9 +68,7 @@ namespace NLog.Internal.FileAppenders
             {
                 if (MutexDetector.SupportsSharableMutex)
                 {
-#if SupportsMutex
                     ArchiveMutex = CreateArchiveMutex();
-#endif
                 }
                 else
                 {
@@ -85,7 +77,6 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-#if SupportsMutex
         /// <summary>
         /// Gets the mutually-exclusive lock for archiving files.
         /// </summary>
@@ -190,6 +181,5 @@ namespace NLog.Internal.FileAppenders
             int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexName.Length);
             return mutexName + canonicalName.Substring(cutOffIndex);
         }
-#endif
     }
 }

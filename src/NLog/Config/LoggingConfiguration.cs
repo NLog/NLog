@@ -38,7 +38,6 @@ namespace NLog.Config
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
-    using System.Reflection;
     using System.Threading;
     using JetBrains.Annotations;
 

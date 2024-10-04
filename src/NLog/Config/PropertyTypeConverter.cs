@@ -36,7 +36,6 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
     using NLog.Internal;
 
     /// <summary>
@@ -77,7 +76,7 @@ namespace NLog.Config
 
         internal static bool IsComplexType(Type type)
         {
-            return !type.IsValueType() && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
+            return !type.IsValueType && !typeof(IConvertible).IsAssignableFrom(type) && !StringConverterLookup.ContainsKey(type) && type.GetFirstCustomAttribute<System.ComponentModel.TypeConverterAttribute>() is null;
         }
 
         /// <inheritdoc/>
@@ -123,7 +122,7 @@ namespace NLog.Config
                 return true;
             }
 
-            if (propertyType.IsEnum())
+            if (propertyType.IsEnum)
             {
                 return NLog.Common.ConversionHelpers.TryParseEnum(propertyString, propertyType, out propertyValue);
             }
@@ -147,10 +146,8 @@ namespace NLog.Config
             if (propertyValue is IConvertible convertibleValue)
             {
                 var typeCode = convertibleValue.GetTypeCode();
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 if (typeCode == TypeCode.DBNull)
                     return convertibleValue;
-#endif
                 if (typeCode == TypeCode.Empty)
                     return null;
             }

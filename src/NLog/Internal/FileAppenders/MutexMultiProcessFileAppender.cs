@@ -31,12 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-#define SupportsMutex
-#endif
-
-#if SupportsMutex
-
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -170,5 +164,3 @@ namespace NLog.Internal.FileAppenders
         }
     }
 }
-
-#endif

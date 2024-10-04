@@ -116,7 +116,7 @@ namespace NLog.Common
         private static bool TryParseEnum_net3<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
         {
             var enumType = typeof(TEnum);
-            if (!enumType.IsEnum())
+            if (!enumType.IsEnum)
                 throw new ArgumentException($"Type '{enumType.FullName}' is not an enum");
 
             if (StringHelpers.IsNullOrWhiteSpace(value))

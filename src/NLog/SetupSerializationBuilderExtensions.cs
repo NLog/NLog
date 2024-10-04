@@ -34,7 +34,6 @@
 namespace NLog
 {
     using System;
-    using System.Reflection;
     using NLog.Config;
     using NLog.Internal;
 

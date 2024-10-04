@@ -100,8 +100,6 @@ namespace NLog.Internal.FileAppenders
         /// <returns>File Appender that matched the filePath (null if none found)</returns>
         BaseFileAppender InvalidateAppender(string filePath);
 
-#if !NETSTANDARD1_3
-
         /// <summary>
         /// The archive file path pattern that is used to detect when archiving occurs.
         /// </summary>
@@ -111,7 +109,5 @@ namespace NLog.Internal.FileAppenders
         /// Invalidates appenders for all files that were archived.
         /// </summary>
         void InvalidateAppendersForArchivedFiles();
-
-#endif
     }
 }

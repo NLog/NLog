@@ -331,13 +331,12 @@ namespace NLog.Config
                     RegisterExtension(type, prefix);
                 }
 
-#if !NETSTANDARD1_3
                 if (!StringHelpers.IsNullOrWhiteSpace(assemblyFile))
                 {
                     ParseExtensionWithAssemblyFile(baseDirectory, assemblyFile, prefix);
                     continue;
                 }
-#endif
+
                 if (!StringHelpers.IsNullOrWhiteSpace(assemblyName))
                 {
                     ParseExtensionWithAssemblyName(assemblyName?.Trim(), prefix);
@@ -363,7 +362,6 @@ namespace NLog.Config
             }
         }
 
-#if !NETSTANDARD1_3
         private void ParseExtensionWithAssemblyFile(string baseDirectory, string assemblyFile, string prefix)
         {
             try
@@ -381,7 +379,6 @@ namespace NLog.Config
                     throw configException;
             }
         }
-#endif
 
         private bool RegisterExtensionFromAssemblyName(string assemblyName, string originalTypeName)
         {

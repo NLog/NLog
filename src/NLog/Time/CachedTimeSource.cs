@@ -64,9 +64,7 @@ namespace NLog.Time
         {
             var freshTime = FreshTime;
             _lastTime = freshTime;  // Assignment of 64 bit value is safe, also when 32bit Intel x86 that uses FPU-registers without tearing
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             System.Threading.Thread.MemoryBarrier();    // Make sure that the value written to _lastTime is visible to other threads
-#endif
             _lastTicks = tickCount;
             return freshTime;
         }

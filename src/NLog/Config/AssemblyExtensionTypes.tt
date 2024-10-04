@@ -61,33 +61,6 @@ namespace NLog.Config
         "NLog.LayoutRenderers.AppSettingLayoutRenderer",
         "NLog.Targets.EventLogTarget",
     };
-    var netStandard2 = new string[]
-    {
-        "NLog.Targets.MailTarget",
-        "NLog.Targets.DebuggerTarget",
-        "NLog.LayoutRenderers.EnvironmentUserLayoutRenderer",
-        "NLog.LayoutRenderers.IdentityLayoutRenderer",
-        "NLog.LayoutRenderers.LocalIpAddressLayoutRenderer",
-        "NLog.LayoutRenderers.SpecialFolderApplicationDataLayoutRenderer",
-        "NLog.LayoutRenderers.SpecialFolderCommonApplicationDataLayoutRenderer",
-        "NLog.LayoutRenderers.SpecialFolderLayoutRenderer",
-        "NLog.LayoutRenderers.SpecialFolderLocalApplicationDataLayoutRenderer",
-        "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer",
-        "NLog.LayoutRenderers.TraceActivityIdLayoutRenderer",
-    };
-    var netStandard15 = new string[]
-    {
-        "NLog.LayoutRenderers.NLogDirLayoutRenderer",
-        "NLog.LayoutRenderers.ProcessDirLayoutRenderer",
-        "NLog.LayoutRenderers.ProcessIdLayoutRenderer",
-        "NLog.LayoutRenderers.ProcessInfoLayoutRenderer",
-        "NLog.LayoutRenderers.ProcessNameLayoutRenderer",
-        "NLog.Targets.ColoredConsoleTarget",
-        "NLog.Targets.ConsoleRowHighlightingRule",
-        "NLog.Targets.ConsoleWordHighlightingRule",
-        "NLog.Targets.ConsoleTarget",
-        "NLog.Targets.TraceTarget",
-    };
 
     foreach(var type in types)
     {
@@ -98,18 +71,6 @@ namespace NLog.Config
         {
 #>
 #if NETFRAMEWORK
-<#
-        }
-        else if (netStandard2.Contains(type.ToString()))
-        {
-#>
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-<#
-        }
-        else if (netStandard15.Contains(type.ToString()))
-        {
-#>
-#if !NETSTANDARD1_3
 <#
         }
 
@@ -198,7 +159,7 @@ namespace NLog.Config
             }
         }
 
-        if (netFramework.Contains(type.ToString()) || netStandard2.Contains(type.ToString()) || netStandard15.Contains(type.ToString()))
+        if (netFramework.Contains(type.ToString()))
         {
 #>
 #endif

@@ -893,11 +893,10 @@ namespace NLog.UnitTests.LayoutRenderers
         public async Task<string> GetAsyncCallSite()
         {
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
-#if !NETSTANDARD1_5
             Type loggerType = typeof(Logger);
             var stacktrace = new System.Diagnostics.StackTrace();
             logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, null, loggerType);
-#endif
+
             await Task.Delay(0);
             Layout l = "${callsite}";
             var callSite = l.Render(logEvent);
@@ -1142,7 +1141,6 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if !NETSTANDARD1_5
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         ///
@@ -1163,7 +1161,6 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
-#endif
 
 #if NET35
         [Fact(Skip = "NET35 not supporting async callstack")]

@@ -36,12 +36,9 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
-    using System.Reflection;
     using System.Runtime.CompilerServices;
-    using System.Security;
     using System.Text;
     using System.Threading;
     using JetBrains.Annotations;
@@ -92,7 +89,6 @@ namespace NLog
         /// </remarks>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
@@ -100,11 +96,9 @@ namespace NLog
         [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
-#endif
 
         private static event EventHandler<EventArgs> LoggerShutdown;
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -112,19 +106,12 @@ namespace NLog
         {
             RegisterEvents(DefaultAppEnvironment);
         }
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-#pragma warning disable CS0618 // Type or member is obsolete
-#if !NETSTANDARD1_3
             : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))
-#else
-            : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
-#endif
-#pragma warning restore CS0618 // Type or member is obsolete
         {
             _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             RefreshMessageFormatter();
@@ -153,9 +140,7 @@ namespace NLog
         {
             _configLoader = configLoader;
             _currentAppEnvironment = appEnvironment;
-#if !NETSTANDARD1_3
             LoggerShutdown += OnStopLogging;
-#endif
         }
 
         /// <summary>
@@ -188,11 +173,7 @@ namespace NLog
             {
 #pragma warning disable CS0618 // Type or member is obsolete
                 return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                     new AppDomainWrapper(AppDomain.CurrentDomain)
-#else
-                    new FakeAppDomain()
-#endif
                     )));
 #pragma warning restore CS0618 // Type or member is obsolete
             }
@@ -240,11 +221,9 @@ namespace NLog
                 if (value != _autoShutdown)
                 {
                     _autoShutdown = value;
-#if !NETSTANDARD1_3
                     LoggerShutdown -= OnStopLogging;
                     if (value)
                         LoggerShutdown += OnStopLogging;
-#endif
                 }
             }
         }
@@ -412,7 +391,7 @@ namespace NLog
 
             try
             {
-                InternalLogger.LogAssemblyVersion(typeof(LogFactory).GetAssembly());
+                InternalLogger.LogAssemblyVersion(typeof(LogFactory).Assembly);
             }
             catch (Exception ex)
             {
@@ -465,11 +444,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
-#else
-            var className = StackTraceUsageUtils.GetClassFullName();
-#endif
+            var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
             return GetLogger(className);
         }
 
@@ -485,11 +460,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T GetCurrentClassLogger<T>() where T : Logger, new()
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
-#else
-            var className = StackTraceUsageUtils.GetClassFullName();
-#endif
+            var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
             return GetLogger<T>(className);
         }
 
@@ -508,11 +479,7 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Logger GetCurrentClassLogger([System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
-#else
-            var className = StackTraceUsageUtils.GetClassFullName();
-#endif
+            var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
             return GetLogger(className, loggerType ?? typeof(Logger));
         }
 
@@ -756,7 +723,6 @@ namespace NLog
             ConfigurationChanged?.Invoke(this, e);
         }
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// Obsolete and replaced by <see cref="OnConfigurationReloaded"/> with NLog 5.2.
         ///
@@ -774,7 +740,6 @@ namespace NLog
         {
             OnConfigurationReloaded(eventArgs);
         }
-#endif
 
         /// <summary>
         /// Change this method with NLog v6 to completely disconnect LogFactory from Targets/Layouts
@@ -803,10 +768,8 @@ namespace NLog
 
             _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
 
-#if !NETSTANDARD1_3
             LoggerShutdown -= OnStopLogging;
             ConfigurationReloaded = null;   // Release event listeners
-#endif
 
             if (Monitor.TryEnter(_syncRoot, 500))
             {
@@ -1298,9 +1261,7 @@ namespace NLog
                 // Domain-Unload has to complete in about 2 secs on Windows-platform, before being terminated.
                 // Other platforms like Linux will fail when trying to spin up new threads at domain unload.
                 var flushTimeout =
-#if !NETSTANDARD1_3
                     PlatformDetector.IsWin32 ? TimeSpan.FromMilliseconds(1500) :
-#endif
                     TimeSpan.Zero;
                 Close(flushTimeout);
                 InternalLogger.Info("LogFactory has been closed.");

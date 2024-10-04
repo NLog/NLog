@@ -47,30 +47,17 @@ namespace NLog.Common
     {
         internal static int GetManagedThreadId()
         {
-#if !NETSTANDARD1_3
             return Thread.CurrentThread.ManagedThreadId;
-#else
-            return System.Environment.CurrentManagedThreadId;
-#endif
         }
 
-        internal static void StartAsyncTask(AsyncHelpersTask asyncTask, object state)
+        internal static void StartAsyncTask(WaitCallback asyncDelegate, object state)
         {
-            var asyncDelegate = asyncTask.AsyncDelegate;
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             ThreadPool.QueueUserWorkItem(asyncDelegate, state);
-#else
-            System.Threading.Tasks.Task.Factory.StartNew(asyncDelegate, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
-#endif
         }
 
         internal static void WaitForDelay(TimeSpan delay)
         {
-#if !NETSTANDARD1_3
             Thread.Sleep(delay);
-#else
-            System.Threading.Tasks.Task.Delay(delay).ConfigureAwait(false).GetAwaiter().GetResult();
-#endif
         }
 
         /// <summary>
@@ -232,7 +219,7 @@ namespace NLog.Common
             foreach (T item in items)
             {
                 T itemCopy = item;
-                StartAsyncTask(new AsyncHelpersTask(s =>
+                StartAsyncTask((s) =>
                 {
                     var preventMultipleCalls = PreventMultipleCalls(continuation);
                     try
@@ -250,7 +237,7 @@ namespace NLog.Common
                         InternalLogger.Error(ex, "ForEachItemInParallel - Unhandled Exception");
                         preventMultipleCalls.Invoke(ex);
                     }
-                }), null);
+                }, null);
             }
         }
 

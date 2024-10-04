@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-
 namespace NLog.Internal
 {
     using System;
@@ -86,5 +84,3 @@ namespace NLog.Internal
         string PickupDirectoryLocation { get; set; }
     }
 }
-
-#endif

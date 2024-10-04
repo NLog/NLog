@@ -49,7 +49,6 @@ namespace NLog.Config
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class SimpleConfigurator
     {
-#if !NETSTANDARD1_3
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToConsole"/> with NLog v5.2.
         ///
@@ -80,7 +79,6 @@ namespace NLog.Config
             config.AddRule(minLevel, LogLevel.MaxLevel, consoleTarget, "*");
             LogManager.Configuration = config;
         }
-#endif
 
         /// <summary>
         /// Obsolete and replaced by <see cref="LogManager.Setup()"/> with NLog v5.2.

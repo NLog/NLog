@@ -78,7 +78,7 @@ namespace NLog.Config
         public override object GetService(Type serviceType)
         {
             var serviceInstance = DefaultResolveInstance(serviceType, null);
-            if (serviceInstance is null && serviceType.IsAbstract())
+            if (serviceInstance is null && serviceType.IsAbstract)
             {
                 throw new NLogDependencyResolveException("Instance of class must be registered", serviceType);
             }
@@ -108,7 +108,7 @@ namespace NLog.Config
 
             if (objectResolver is null && compiledConstructor is null)
             {
-                if (itemType.IsAbstract())
+                if (itemType.IsAbstract)
                 {
                     if (seenTypes is null)
                         return null;

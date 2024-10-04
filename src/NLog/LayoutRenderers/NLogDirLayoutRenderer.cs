@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -92,7 +90,7 @@ namespace NLog.LayoutRenderers
 
         private static string ResolveNLogDir()
         {
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            var nlogAssembly = typeof(LogFactory).Assembly;
             if (!string.IsNullOrEmpty(nlogAssembly.Location))
             {
                 return Path.GetDirectoryName(nlogAssembly.Location);
@@ -106,5 +104,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif

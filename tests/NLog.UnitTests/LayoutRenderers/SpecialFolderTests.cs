@@ -33,7 +33,6 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-#if !NETSTANDARD1_5
     using System;
     using System.IO;
     using Xunit;
@@ -93,5 +92,4 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${UserLocalApplicationDataDir}", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
         }
     }
-#endif
 }

@@ -437,7 +437,6 @@ namespace NLog
             return configBuilder.WriteTo(methodTarget);
         }
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// Write to <see cref="NLog.Targets.ConsoleTarget"/>
         /// </summary>
@@ -537,7 +536,6 @@ namespace NLog
                 traceTarget.Layout = layout;
             return configBuilder.WriteTo(traceTarget);
         }
-#endif
 
         /// <summary>
         /// Write to <see cref="NLog.Targets.DebugSystemTarget"/>

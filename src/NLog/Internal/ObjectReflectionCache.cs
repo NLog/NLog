@@ -37,7 +37,7 @@ namespace NLog.Internal
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-#if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NET35 && !NET40
     using System.Dynamic;
 #endif
     using System.Linq;
@@ -143,7 +143,7 @@ namespace NLog.Internal
                 return true;
             }
 
-#if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NET35 && !NET40
             if (value is DynamicObject d)
             {
                 var dictionary = DynamicObjectToDict(d);
@@ -274,11 +274,7 @@ namespace NLog.Internal
                 var getterMethod = prop.GetGetMethod();
                 Type propertyType = getterMethod.ReturnType;
                 ReflectionHelpers.LateBoundMethod valueLookup = ReflectionHelpers.CreateLateBoundMethod(getterMethod);
-#if NETSTANDARD1_3
-                TypeCode typeCode = propertyType == typeof(string) ? TypeCode.String : (propertyType == typeof(int) ? TypeCode.Int32 : TypeCode.Object);
-#else
                 TypeCode typeCode = Type.GetTypeCode(propertyType); // Skip cyclic-reference checks when not TypeCode.Object
-#endif
                 fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, typeCode, valueLookup);
             }
             return fastLookup;
@@ -548,7 +544,7 @@ namespace NLog.Internal
             }
         }
 
-#if !NET35 && !NET40 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NET35 && !NET40
         private static Dictionary<string, object> DynamicObjectToDict(DynamicObject d)
         {
             var newVal = new Dictionary<string, object>();
@@ -583,7 +579,7 @@ namespace NLog.Internal
 
         private static bool IsGenericDictionaryEnumeratorType(Type interfaceType)
         {
-            if (interfaceType.IsGenericType())
+            if (interfaceType.IsGenericType)
             {
                 if (interfaceType.GetGenericTypeDefinition() == typeof(IDictionary<,>)
 #if !NET35

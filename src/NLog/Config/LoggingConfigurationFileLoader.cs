@@ -226,11 +226,8 @@ namespace NLog.Config
         public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string filename = null)
         {
             string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
-#if !NETSTANDARD1_3
             string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
-#else
-            string entryAssemblyLocation = string.Empty;
-#endif
+
             if (filename is null)
             {
                 // Scan for process specific nlog-files
@@ -272,8 +269,7 @@ namespace NLog.Config
 
         private static string LookupNLogAssemblyLocation()
         {
-#if !NETSTANDARD1_3
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            var nlogAssembly = typeof(LogFactory).Assembly;
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssemblyLocation = nlogAssembly.Location;
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
@@ -286,7 +282,7 @@ namespace NLog.Config
 #endif
                 return nlogAssemblyLocation;
             }
-#endif
+
             return null;
         }
 
@@ -308,7 +304,7 @@ namespace NLog.Config
                     yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
                 }
             }
-#if NETSTANDARD && !NETSTANDARD1_3
+#if NETSTANDARD
             else
             {
                 if (string.IsNullOrEmpty(entryAssemblyLocation))

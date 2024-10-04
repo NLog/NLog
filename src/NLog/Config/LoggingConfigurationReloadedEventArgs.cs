@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-
 namespace NLog.Config
 {
     using System;
@@ -79,4 +77,3 @@ namespace NLog.Config
     }
 }
 
-#endif

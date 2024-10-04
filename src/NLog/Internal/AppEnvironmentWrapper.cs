@@ -42,7 +42,6 @@ namespace NLog.Internal.Fakeables
 
     internal sealed class AppEnvironmentWrapper : IAppEnvironment
     {
-#if !NETSTANDARD1_3
         private const string UnknownProcessName = "<unknown>";
 
         private string _entryAssemblyLocation;
@@ -61,7 +60,7 @@ namespace NLog.Internal.Fakeables
         public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback());
         /// <inheritdoc/>
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
-#endif
+
 #pragma warning disable CS0618 // Type or member is obsolete
         /// <inheritdoc/>
         public string AppDomainBaseDirectory => AppDomain.BaseDirectory;
@@ -116,7 +115,6 @@ namespace NLog.Internal.Fakeables
             return XmlReader.Create(path);
         }
 
-#if !NETSTANDARD1_3
         private static string LookupEntryAssemblyLocation()
         {
             var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
@@ -289,7 +287,6 @@ namespace NLog.Internal.Fakeables
 
             return UnknownProcessName;
         }
-#endif
 
 #if !NETSTANDARD
         private static string LookupCurrentProcessFilePathNative()

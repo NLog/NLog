@@ -108,16 +108,13 @@ namespace NLog.UnitTests.Config
                 Assert.Contains(System.IO.Path.GetTempPath(), InternalLogger.LogFile);
             }
 
-#if !NETSTANDARD1_3
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${ProcessDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(Path.GetDirectoryName(CurrentProcessPath), InternalLogger.LogFile);
             }
-#endif
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog internalLogFile='${CommonApplicationDataDir}test.txt'></nlog>";
@@ -138,7 +135,6 @@ namespace NLog.UnitTests.Config
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), InternalLogger.LogFile);
             }
-#endif
 
             using (new InternalLoggerScope())
             {

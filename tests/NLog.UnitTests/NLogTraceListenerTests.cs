@@ -59,7 +59,6 @@ namespace NLog.UnitTests
             Thread.CurrentThread.CurrentCulture = previousCultureInfo;
         }
 
-#if !NETSTANDARD1_5
         [Fact]
         public void TraceWriteTest()
         {
@@ -318,7 +317,6 @@ namespace NLog.UnitTests
             ts.TraceInformation("Mary had {0} lamb", "a little");
             AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox  Error");
         }
-#endif
 
         [Fact]
         public void GlobalAllFilterTraceTest()

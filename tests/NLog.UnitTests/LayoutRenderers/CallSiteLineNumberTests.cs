@@ -33,7 +33,6 @@
 
 using System;
 using System.Threading.Tasks;
-using NLog.Config;
 using Xunit;
 
 namespace NLog.UnitTests.LayoutRenderers

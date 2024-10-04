@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Globalization;
-    using System.Reflection;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;

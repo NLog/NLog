@@ -38,15 +38,12 @@ namespace NLog.Config
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-    // ReSharper disable once RedundantUsingDirective
-    using NLog.Internal;
 
     /// <summary>
     /// Provides context for install/uninstall operations.
     /// </summary>
     public sealed class InstallationContext : IDisposable
     {
-#if !NETSTANDARD1_3
         /// <summary>
         /// Mapping between log levels and console output colors.
         /// </summary>
@@ -59,7 +56,6 @@ namespace NLog.Config
             { LogLevel.Error, ConsoleColor.Red },
             { LogLevel.Fatal, ConsoleColor.DarkRed },
         };
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InstallationContext"/> class.
@@ -192,7 +188,6 @@ namespace NLog.Config
                     message = string.Format(CultureInfo.InvariantCulture, message, arguments);
                 }
 
-#if !NETSTANDARD1_3
                 var oldColor = Console.ForegroundColor;
                 Console.ForegroundColor = LogLevel2ConsoleColor[logLevel];
 
@@ -204,9 +199,6 @@ namespace NLog.Config
                 {
                     Console.ForegroundColor = oldColor;
                 }
-#else
-                this.LogOutput.WriteLine(message);
-#endif
             }
         }
     }

@@ -235,7 +235,7 @@ namespace NLog.Internal
             {
                 var propInfo = configProp.Value;
                 var propertyType = propInfo.PropertyType;
-                if (propertyType != null && (propertyType.IsClass() || Nullable.GetUnderlyingType(propertyType) != null))
+                if (propertyType != null && (propertyType.IsClass || Nullable.GetUnderlyingType(propertyType) != null))
                 {
                     if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                     {
@@ -252,11 +252,7 @@ namespace NLog.Internal
 
         internal static bool IsSimplePropertyType(Type type)
         {
-#if !NETSTANDARD1_3
             if (Type.GetTypeCode(type) != TypeCode.Object)
-#else
-            if (type.IsPrimitive() || type == typeof(string))
-#endif
                 return true;
 
             if (type == typeof(CultureInfo))
@@ -311,7 +307,7 @@ namespace NLog.Internal
                 return true;
             }
 
-            if (propertyType.IsGenericType() && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
+            if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Layout<>))
             {
                 var simpleLayout = new SimpleLayout(value, configurationItemFactory);
                 var concreteType = typeof(Layout<>).MakeGenericType(propertyType.GetGenericArguments());
@@ -325,7 +321,7 @@ namespace NLog.Internal
 
         private static bool TryGetEnumValue(Type resultType, string value, out object result)
         {
-            if (!resultType.IsEnum())
+            if (!resultType.IsEnum)
             {
                 result = null;
                 return false;
@@ -394,7 +390,7 @@ namespace NLog.Internal
         /// </remarks>
         private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, ConfigurationItemFactory configurationItemFactory, out object newValue)
         {
-            if (propInfo.PropertyType.IsGenericType() && TryCreateCollectionObject(obj, propInfo, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
+            if (propInfo.PropertyType.IsGenericType && TryCreateCollectionObject(obj, propInfo, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
             {
                 var values = valueRaw.SplitQuoted(',', '\'', '\\');
                 foreach (var value in values)

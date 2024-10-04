@@ -800,24 +800,24 @@ namespace NLog.UnitTests.Targets
                     }
                 };
 
-            var loggerTask = new NLog.Internal.AsyncHelpersTask(state =>
+            WaitCallback loggerTask = (state) =>
             {
                 for (int i = 0; i < toWrite; ++i)
                 {
                     var ev = new LogEventInfo(LogLevel.Info, "logger1", "message" + i).WithContinuation(writeFinished);
                     target.WriteAsyncLogEvent(ev);
                 }
-            });
+            };
             AsyncHelpers.StartAsyncTask(loggerTask, null);
             Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
 
             var shutdownCompleted = new ManualResetEvent(false);
-            var closeTask = new NLog.Internal.AsyncHelpersTask(state =>
+            WaitCallback closeTask = (state) =>
             {
                 // no exception
                 target.Close();
                 shutdownCompleted.Set();
-            });
+            };
             AsyncHelpers.StartAsyncTask(closeTask, null);
             Assert.True(shutdownCompleted.WaitOne(10000), "Network Close not completed");
 
@@ -1097,16 +1097,16 @@ namespace NLog.UnitTests.Targets
                 }
             };
 
-            var shutdownTask = new NLog.Internal.AsyncHelpersTask(state =>
+            WaitCallback shutdownTask = (state) =>
             {
                 Thread.Sleep(10);
                 target.Flush(ex => { });
                 target.Close();
                 shutdownCompleted.Set();
-            });
+            };
             AsyncHelpers.StartAsyncTask(shutdownTask, null);
 
-            var loggerTask = new NLog.Internal.AsyncHelpersTask(state =>
+            WaitCallback loggerTask = (state) =>
             {
                 for (int i = 0; i < total; ++i)
                 {
@@ -1115,7 +1115,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 writeCompleted.Set();
-            });
+            };
             AsyncHelpers.StartAsyncTask(loggerTask, null);
 
             Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
@@ -1162,7 +1162,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("30", 30)]
         public void SendTimeoutConfigTest(string sendTimeoutSeconds, int expected)
         {
-             var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
+            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
             <nlog>
                 <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' sendTimeoutSeconds='{sendTimeoutSeconds}' /></targets>
                 <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
@@ -1310,7 +1310,7 @@ namespace NLog.UnitTests.Targets
 
                 if (_senderFactory.AsyncMode)
                 {
-                    var asyncTask = new NLog.Internal.AsyncHelpersTask(state => { SendSync(eventArgs); });
+                    WaitCallback asyncTask = (state) => SendSync(eventArgs);
                     AsyncHelpers.StartAsyncTask(asyncTask, null);
                 }
                 else

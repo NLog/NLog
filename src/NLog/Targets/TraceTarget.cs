@@ -33,8 +33,6 @@
 
 #define TRACE
 
-#if !NETSTANDARD1_3
-
 namespace NLog.Targets
 {
     using System.Diagnostics;
@@ -166,5 +164,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif

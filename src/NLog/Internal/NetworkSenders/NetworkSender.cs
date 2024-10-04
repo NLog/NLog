@@ -174,11 +174,7 @@ namespace NLog.Internal.NetworkSenders
 
                 default:
                     {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList; // Dns.GetHostEntry returns IPv6 + IPv4 addresses, but Dns.GetHostAddresses() might only return IPv6 addresses
-#else
-                        var addresses = Dns.GetHostEntryAsync(uri.Host).ConfigureAwait(false).GetAwaiter().GetResult().AddressList;
-#endif
                         if (addressFamily == AddressFamily.Unspecified && addresses.Length > 1)
                         {
                             Array.Sort(addresses, IPAddressComparer.Default);   // Prioritize IPv4 addresses over IPv6, unless explicitly specified

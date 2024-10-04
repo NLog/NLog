@@ -41,16 +41,6 @@ namespace NLog.Internal
     /// </summary>
     internal static class ReflectionHelpers
     {
-        public static Assembly GetAssembly(this Type type)
-        {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            return type.Assembly;
-#else
-            var typeInfo = type.GetTypeInfo();
-            return typeInfo.Assembly;
-#endif
-        }
-
         public static Action<object, object> CreatePropertySetter(this PropertyInfo propertyInfo)
         {
             var target = System.Linq.Expressions.Expression.Parameter(typeof(object), "target");

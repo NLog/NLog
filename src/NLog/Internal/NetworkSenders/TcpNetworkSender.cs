@@ -46,7 +46,7 @@ namespace NLog.Internal.NetworkSenders
         private static bool? EnableKeepAliveSuccessful;
         private ISocket _socket;
         private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompletedAsync;
-        private AsyncHelpersTask? _asyncBeginRequest;
+        System.Threading.WaitCallback _asyncBeginRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TcpNetworkSender"/> class.
@@ -91,12 +91,11 @@ namespace NLog.Internal.NetworkSenders
                 socketProxy.UnderlyingSocket.SendTimeout = (int)sendTimeout.TotalMilliseconds;
             }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
                 return new SslSocketProxy(host, SslProtocols, socketProxy);
             }
-#endif
+
             return socketProxy;
         }
 
@@ -236,8 +235,8 @@ namespace NLog.Internal.NetworkSenders
 
             // Schedule async network operation to avoid blocking socket-operation (Allow adding more request)
             if (_asyncBeginRequest is null)
-                _asyncBeginRequest = new AsyncHelpersTask(BeginRequestAsync);
-            AsyncHelpers.StartAsyncTask(_asyncBeginRequest.Value, socketEventArgs);
+                _asyncBeginRequest = BeginRequestAsync;
+            AsyncHelpers.StartAsyncTask(_asyncBeginRequest, socketEventArgs);
         }
 
         private void BeginRequestAsync(object state)

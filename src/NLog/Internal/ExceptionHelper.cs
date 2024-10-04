@@ -122,7 +122,6 @@ namespace NLog.Internal
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
         public static bool MustBeRethrownImmediately(this Exception exception)
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (exception is StackOverflowException)
             {
                 return true; // StackOverflowException cannot be caught since .NetFramework 2.0
@@ -132,7 +131,6 @@ namespace NLog.Internal
             {
                 return true; // ThreadAbortException will automatically be rethrown at end of catch-block
             }
-#endif
 
             if (exception is OutOfMemoryException)
             {
