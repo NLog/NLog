@@ -85,7 +85,7 @@ namespace NLog.Layouts
             set
             {
                 _valueType = value;
-                if (value?.IsValueType() == true)
+                if (value?.IsValueType == true)
                     _createDefaultValue = () => Activator.CreateInstance(value);
                 else
                     _createDefaultValue = null;
@@ -125,7 +125,7 @@ namespace NLog.Layouts
             }
             return true;
         }
-        
+
         /// <summary>
         /// Gets or sets the fallback value should be null (instead of default value of <see cref="ValueType"/>) when result value is not available
         /// </summary>
@@ -212,7 +212,7 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    layout =  string.Empty;
+                    layout = string.Empty;
                 }
             }
 

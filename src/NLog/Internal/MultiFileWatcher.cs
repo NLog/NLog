@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-
 namespace NLog.Internal
 {
     using System;
@@ -248,5 +246,3 @@ namespace NLog.Internal
         }
     }
 }
-
-#endif

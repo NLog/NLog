@@ -147,11 +147,7 @@ namespace NLog.Layouts
         {
             Guard.ThrowIfNull(layoutMethod);
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
-#else
-            var name = $"{layoutMethod.Target?.ToString()}";
-#endif
             var layoutRenderer = CreateFuncLayoutRenderer((l, c) => layoutMethod(l), options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
         }

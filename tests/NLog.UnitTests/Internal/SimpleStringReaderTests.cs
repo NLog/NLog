@@ -33,11 +33,11 @@
 
 namespace NLog.UnitTests.Internal
 {
+#if DEBUG
     using System;
     using NLog.Internal;
     using Xunit;
 
-#if DEBUG
     public class SimpleStringReaderTests : NLogTestBase
     {
         [Theory]

@@ -71,9 +71,9 @@ namespace NLog.Config
             var typesToScan = AssemblyHelpers.SafeGetTypes(assembly);
             if (typesToScan?.Length > 0)
             {
-                if (ReferenceEquals(assembly, typeof(LogFactory).GetAssembly()))
+                if (ReferenceEquals(assembly, typeof(LogFactory).Assembly))
                 {
-                    typesToScan = typesToScan.Where(t => t.IsPublic() && t.IsClass()).ToArray();
+                    typesToScan = typesToScan.Where(t => t.IsPublic && t.IsClass).ToArray();
                 }
 
                 foreach (Type type in typesToScan)
@@ -139,7 +139,7 @@ namespace NLog.Config
             var loadedAssemblies = new Dictionary<Assembly, Type>();
             foreach (var itemType in factory.ItemTypes)
             {
-                var assembly = itemType.GetAssembly();
+                var assembly = itemType.Assembly;
                 if (assembly is null)
                     continue;
 
@@ -243,10 +243,9 @@ namespace NLog.Config
 
         public void ScanForAutoLoadExtensions(ConfigurationItemFactory factory)
         {
-#if !NETSTANDARD1_3
             try
             {
-                var nlogAssembly = typeof(LogFactory).GetAssembly();
+                var nlogAssembly = typeof(LogFactory).Assembly;
                 var assemblyLocation = string.Empty;
                 var extensionDlls = ArrayHelper.Empty<string>();
                 var fileLocations = GetAutoLoadingFileLocations();
@@ -287,12 +286,8 @@ namespace NLog.Config
                 }
             }
             InternalLogger.Debug("Auto loading done");
-#else
-            // Nothing to do for Sonar Cube
-#endif
         }
 
-#if !NETSTANDARD1_3
         private HashSet<string> LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
             HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -333,11 +328,7 @@ namespace NLog.Config
         {
             alreadyRegistered.Add(nlogAssembly.FullName);
 
-#if !NETSTANDARD1_5
             var allAssemblies = LogFactory.DefaultAppEnvironment.GetAppDomainRuntimeAssemblies();
-#else
-            var allAssemblies = new[] { nlogAssembly };
-#endif
             foreach (var assembly in allAssemblies)
             {
                 if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
@@ -380,7 +371,7 @@ namespace NLog.Config
 
         internal static IEnumerable<KeyValuePair<string, string>> GetAutoLoadingFileLocations()
         {
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            var nlogAssembly = typeof(LogFactory).Assembly;
             var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
             InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", nlogAssemblyLocation);
             if (!string.IsNullOrEmpty(nlogAssemblyLocation))
@@ -442,7 +433,6 @@ namespace NLog.Config
                 return ArrayHelper.Empty<string>();
             }
         }
-#endif
 
         /// <summary>
         /// Load from url
@@ -454,34 +444,14 @@ namespace NLog.Config
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         private static Assembly LoadAssemblyFromPath(string assemblyFileName, string baseDirectory = null)
         {
-#if NETSTANDARD1_3
-            return null;
-#else
             string fullFileName = assemblyFileName;
             if (!string.IsNullOrEmpty(baseDirectory))
             {
                 fullFileName = System.IO.Path.Combine(baseDirectory, assemblyFileName);
             }
+
             InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-#if NETSTANDARD1_5
-            try
-            {
-                var assemblyName = System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(fullFileName);
-                return Assembly.Load(assemblyName);
-            }
-            catch (Exception ex)
-            {
-                // this doesn't usually work
-                InternalLogger.Warn(ex, "Fallback to AssemblyLoadContext.Default.LoadFromAssemblyPath for file: {0}", fullFileName);
-                return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
-            }
-#else
-            Assembly asm = Assembly.LoadFrom(fullFileName);
-            return asm;
-#endif
-
-#endif
+            return Assembly.LoadFrom(fullFileName);
         }
 
         /// <summary>
@@ -489,7 +459,6 @@ namespace NLog.Config
         /// </summary>
         private static Assembly LoadAssemblyFromName(string assemblyName)
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             try
             {
                 Assembly assembly = Assembly.Load(assemblyName);
@@ -509,13 +478,8 @@ namespace NLog.Config
                 InternalLogger.Trace("Haven't found' '{0}' in current domain", assemblyName);
                 throw;
             }
-#else
-            var name = new AssemblyName(assemblyName);
-            return Assembly.Load(name);
-#endif
         }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
         private static bool IsAssemblyMatch(AssemblyName expected, AssemblyName actual)
         {
             if (expected is null || actual is null)
@@ -531,7 +495,6 @@ namespace NLog.Config
             var correctToken = expectedKeyToken is null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
             return correctToken;
         }
-#endif
     }
 
     internal interface IAssemblyExtensionLoader

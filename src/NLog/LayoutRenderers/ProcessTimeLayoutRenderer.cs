@@ -86,9 +86,7 @@ namespace NLog.LayoutRenderers
             string ticksSeparator = ".";
             if (!ReferenceEquals(culture, CultureInfo.InvariantCulture))
             {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
-#endif
                 ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
             }
 

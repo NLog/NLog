@@ -100,11 +100,9 @@ namespace NLog.Targets
             Encoding = new UTF8Encoding(writeBOM);
             IncludeBOM = writeBOM;
 
-#if NETSTANDARD1_3 || NETSTANDARD1_5
             // NetCore1 throws PlatformNotSupportedException on WebRequest.GetSystemWebProxy, when using DefaultWebProxy
             // Net5 (or newer) will turn off Http-connection-pooling if not using DefaultWebProxy
             ProxyType = WebServiceProxyType.NoProxy;
-#endif
         }
 
         /// <summary>
@@ -290,13 +288,11 @@ namespace NLog.Targets
                     }
                 }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 var userAgent = RenderLogEvent(UserAgent, logEvent.LogEvent);
                 if (!string.IsNullOrEmpty(userAgent))
                 {
                     webRequest.UserAgent = userAgent;
                 }
-#endif
             }
             catch (Exception ex)
             {
@@ -315,7 +311,6 @@ namespace NLog.Targets
             {
                 case WebServiceProxyType.DefaultWebProxy:
                     break;
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 case WebServiceProxyType.AutoProxy:
                     if (_activeProxy.Value is null)
                     {
@@ -336,18 +331,15 @@ namespace NLog.Targets
                         webRequest.Proxy = _activeProxy.Value;
                     }
                     break;
-#endif
                 default:
                     webRequest.Proxy = null;
                     break;
             }
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 webRequest.PreAuthenticate = true;
             }
-#endif
 
             return webRequest;
         }

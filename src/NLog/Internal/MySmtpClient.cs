@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-
 namespace NLog.Internal
 {
     using System.Net.Mail;
@@ -62,5 +60,3 @@ namespace NLog.Internal
 #endif
     }
 }
-
-#endif

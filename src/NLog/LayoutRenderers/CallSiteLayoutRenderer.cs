@@ -178,7 +178,6 @@ namespace NLog.LayoutRenderers
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow callsite logic", "IL2026")]
         private void AppendExceptionCallSite(StringBuilder builder, LogEventInfo logEvent)
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var targetSite = logEvent?.Exception?.TargetSite;
             if (targetSite != null)
             {
@@ -199,7 +198,6 @@ namespace NLog.LayoutRenderers
                 }
             }
             else
-#endif
             {
                 if (ClassName || FileName)
                 {

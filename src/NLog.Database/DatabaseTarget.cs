@@ -41,13 +41,10 @@ namespace NLog.Targets
     using System.Data.Common;
     using System.Reflection;
     using System.Text;
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
     using System.Transactions;
-#endif
 
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
 
 #if !NETSTANDARD
@@ -542,7 +539,7 @@ namespace NLog.Targets
 #else
                 case "SYSTEM.DATA.SQLCLIENT":
                     {
-                        var assembly = typeof(IDbConnection).GetAssembly();
+                        var assembly = typeof(IDbConnection).Assembly;
                         ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                         break;
                     }
@@ -556,7 +553,7 @@ namespace NLog.Targets
 #if !NETSTANDARD
                 case "OLEDB":
                     {
-                        var assembly = typeof(IDbConnection).GetAssembly();
+                        var assembly = typeof(IDbConnection).Assembly;
                         ConnectionType = assembly.GetType("System.Data.OleDb.OleDbConnection", true, true);
                         break;
                     }
@@ -567,7 +564,7 @@ namespace NLog.Targets
 #if NETSTANDARD
                         var assembly = Assembly.Load(new AssemblyName("System.Data.Odbc"));
 #else
-                        var assembly = typeof(IDbConnection).GetAssembly();
+                        var assembly = typeof(IDbConnection).Assembly;
 #endif
                         ConnectionType = assembly.GetType("System.Data.Odbc.OdbcConnection", true, true);
                         break;
@@ -1117,42 +1114,5 @@ namespace NLog.Targets
             else
                 return value;
         }
-
-#if NETSTANDARD1_3 || NETSTANDARD1_5
-        /// <summary>
-        /// Fake transaction
-        ///
-        /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
-        /// </summary>
-        private sealed class TransactionScope : IDisposable
-        {
-            private readonly TransactionScopeOption _suppress;
-
-            public TransactionScope(TransactionScopeOption suppress)
-            {
-                _suppress = suppress;
-            }
-
-            public void Complete()
-            {
-                // Fake scope for compatibility, so nothing to do
-            }
-
-            public void Dispose()
-            {
-                // Fake scope for compatibility, so nothing to do
-            }
-        }
-
-        /// <summary>
-        /// Fake option
-        /// </summary>
-        private enum TransactionScopeOption
-        {
-            Required,
-            RequiresNew,
-            Suppress,
-        }
-#endif
     }
 }

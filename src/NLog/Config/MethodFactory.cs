@@ -89,7 +89,7 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         void IFactory.RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
-            if (type.IsClass())
+            if (type.IsClass)
             {
                 var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
                 if (extractedMethods?.Count > 0)
@@ -277,7 +277,7 @@ namespace NLog.Config
             lock (_nameToMethodDetails)
             {
                 _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
-                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? noParameters.GetDelegateInfo();
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? noParameters.Method;
                 _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, noParameters, methodDetails.OneParameter, methodDetails.TwoParameters, methodDetails.ThreeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
             }
         }
@@ -287,7 +287,7 @@ namespace NLog.Config
             lock (_nameToMethodDetails)
             {
                 _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
-                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? oneParameter.GetDelegateInfo();
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? oneParameter.Method;
                 _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, oneParameter, methodDetails.TwoParameters, methodDetails.ThreeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
             }
         }
@@ -297,7 +297,7 @@ namespace NLog.Config
             lock (_nameToMethodDetails)
             {
                 _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
-                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? twoParameters.GetDelegateInfo();
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? twoParameters.Method;
                 _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, methodDetails.OneParameter, twoParameters, methodDetails.ThreeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
             }
         }
@@ -307,7 +307,7 @@ namespace NLog.Config
             lock (_nameToMethodDetails)
             {
                 _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
-                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? threeParameters.GetDelegateInfo();
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? threeParameters.Method;
                 _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, methodDetails.OneParameter, methodDetails.TwoParameters, threeParameters, methodDetails.ManyParameters, methodDetails.ManyParameterMinCount, methodDetails.ManyParameterMaxCount, methodDetails.ManyParameterWithLogEvent);
             }
         }
@@ -317,7 +317,7 @@ namespace NLog.Config
             lock (_nameToMethodDetails)
             {
                 _nameToMethodDetails.TryGetValue(methodName, out var methodDetails);
-                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? manyParameters.GetDelegateInfo();
+                legacyMethodInfo = legacyMethodInfo ?? methodDetails.MethodInfo ?? manyParameters.Method;
                 _nameToMethodDetails[methodName] = new MethodDetails(legacyMethodInfo, methodDetails.NoParameters, methodDetails.OneParameter, methodDetails.TwoParameters, methodDetails.ThreeParameters, manyParameters, manyParameterMinCount, manyParameterMaxCount, manyParameterWithLogEvent);
             }
         }

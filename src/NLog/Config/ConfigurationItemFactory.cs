@@ -275,10 +275,10 @@ namespace NLog.Config
                 }
             }
 
-            if (itemType.IsAbstract())
+            if (itemType.IsAbstract)
                 return new Dictionary<string, PropertyInfo>();
 
-            if (itemType.IsGenericType() && itemType.GetGenericTypeDefinition() == typeof(Layout<>))
+            if (itemType.IsGenericType && itemType.GetGenericTypeDefinition() == typeof(Layout<>))
                 return new Dictionary<string, PropertyInfo>();
 
 #pragma warning disable CS0618 // Type or member is obsolete

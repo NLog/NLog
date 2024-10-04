@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-#define SupportsMutex
-#endif
-
 namespace NLog.Internal
 {
     using System;
@@ -59,7 +55,6 @@ namespace NLog.Internal
         {
             try
             {
-#if SupportsMutex
 #if !NETSTANDARD
                 if (Environment.Version.Major < 4 && PlatformDetector.IsMono)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
@@ -67,7 +62,6 @@ namespace NLog.Internal
                 var mutex = BaseMutexFileAppender.ForceCreateSharableMutex("NLogMutexTester");
                 mutex.Close(); //"dispose"
                 return true;
-#endif
             }
             catch (Exception ex)
             {

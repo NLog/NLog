@@ -93,26 +93,9 @@ namespace NLog.LayoutRenderers.Wrappers
         private void TransformToLowerCase(StringBuilder target, int startPos)
         {
             CultureInfo culture = Culture;
-
-#if NETSTANDARD1_3 || NETSTANDARD1_5
-            string stringToLower = null;
-            if (culture != null && culture != CultureInfo.InvariantCulture)
-            {
-                stringToLower = target.ToString(startPos, target.Length - startPos);
-                stringToLower = culture.TextInfo.ToLower(stringToLower);
-            }
-#endif
-
             for (int i = startPos; i < target.Length; ++i)
             {
-#if NETSTANDARD1_3 || NETSTANDARD1_5
-                if (stringToLower != null)
-                    target[i] = stringToLower[i];    //no char.ToLower with culture
-                else
-                    target[i] = char.ToLowerInvariant(target[i]);
-#else
                 target[i] = char.ToLower(target[i], culture);
-#endif
             }
         }
     }

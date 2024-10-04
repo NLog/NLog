@@ -47,7 +47,7 @@ namespace NLog.Internal.NetworkSenders
         private ISocket _socket;
         private EndPoint _endpoint;
         private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompletedAsync;
-        private AsyncHelpersTask? _asyncBeginRequest;
+        System.Threading.WaitCallback _asyncBeginRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpNetworkSender"/> class.
@@ -123,8 +123,8 @@ namespace NLog.Internal.NetworkSenders
 
             // Schedule async network operation to avoid blocking socket-operation (Allow adding more request)
             if (_asyncBeginRequest is null)
-                _asyncBeginRequest = new AsyncHelpersTask(BeginRequestAsync);
-            AsyncHelpers.StartAsyncTask(_asyncBeginRequest.Value, socketEventArgs);
+                _asyncBeginRequest = BeginRequestAsync;
+            AsyncHelpers.StartAsyncTask(_asyncBeginRequest, socketEventArgs);
         }
 
         private void BeginRequestAsync(object state)

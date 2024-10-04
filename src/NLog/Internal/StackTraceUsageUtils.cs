@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.Diagnostics;
     using System.Reflection;
-    using System.Runtime.CompilerServices;
     using NLog.Config;
 
     /// <summary>
@@ -44,9 +43,9 @@ namespace NLog.Internal
     /// </summary>
     internal static class StackTraceUsageUtils
     {
-        private static readonly Assembly nlogAssembly = typeof(StackTraceUsageUtils).GetAssembly();
-        private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
-        private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
+        private static readonly Assembly nlogAssembly = typeof(StackTraceUsageUtils).Assembly;
+        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly;
+        private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
 
         public static StackTraceUsage GetStackTraceUsage(bool includeFileName, int skipFrames, bool captureStackTrace)
         {
@@ -70,11 +69,7 @@ namespace NLog.Internal
 
         public static int GetFrameCount(this StackTrace strackTrace)
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             return strackTrace.FrameCount;
-#else
-            return strackTrace.GetFrames().Length;
-#endif
         }
 
         public static string GetStackFrameMethodName(MethodBase method, bool includeMethodInfo, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
@@ -160,7 +155,7 @@ namespace NLog.Internal
 
         private static string GetNamespaceFromTypeAssembly(Type callerClassType)
         {
-            var classAssembly = callerClassType.GetAssembly();
+            var classAssembly = callerClassType.Assembly;
             if (classAssembly != null && classAssembly != mscorlibAssembly && classAssembly != systemAssembly)
             {
                 var assemblyFullName = classAssembly.FullName;
@@ -183,47 +178,6 @@ namespace NLog.Internal
         /// Gets the fully qualified name of the class invoking the calling method, including the
         /// namespace but not the assembly.
         /// </summary>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static string GetClassFullName()
-        {
-            int framesToSkip = 2;
-
-            string className = string.Empty;
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-            var stackFrame = new StackFrame(framesToSkip, false);
-            className = GetClassFullName(stackFrame);
-#else
-            var stackTrace = Environment.StackTrace;
-            var stackTraceLines = stackTrace.Replace("\r", "").SplitAndTrimTokens('\n');
-            for (int i = 0; i < stackTraceLines.Length; ++i)
-            {
-                var callingClassAndMethod = stackTraceLines[i].Split(new[] { " ", "<>", "(", ")" }, StringSplitOptions.RemoveEmptyEntries)[1];
-                int methodStartIndex = callingClassAndMethod.LastIndexOf(".", StringComparison.Ordinal);
-                if (methodStartIndex > 0)
-                {
-                    // Trim method name.
-                    var callingClass = callingClassAndMethod.Substring(0, methodStartIndex);
-                    // Needed because of extra dot, for example if method was .ctor()
-                    className = callingClass.TrimEnd('.');
-                    if (!className.StartsWith("System.Environment", StringComparison.Ordinal) && framesToSkip != 0)
-                    {
-                        i += framesToSkip - 1;
-                        framesToSkip = 0;
-                        continue;
-                    }
-                    if (!className.StartsWith("System.", StringComparison.Ordinal))
-                        break;
-                }
-            }
-#endif
-            return className;
-        }
-
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
-        /// <summary>
-        /// Gets the fully qualified name of the class invoking the calling method, including the
-        /// namespace but not the assembly.
-        /// </summary>
         /// <param name="stackFrame">StackFrame from the calling method</param>
         /// <returns>Fully qualified class name</returns>
         public static string GetClassFullName(StackFrame stackFrame)
@@ -241,7 +195,6 @@ namespace NLog.Internal
             }
             return className;
         }
-#endif
 
         private static string GetClassFullName(StackTrace stackTrace)
         {
@@ -262,7 +215,7 @@ namespace NLog.Internal
         /// <returns>Valid assembly, or null if assembly was internal</returns>
         public static Assembly LookupAssemblyFromMethod(MethodBase method)
         {
-            var assembly = method?.DeclaringType?.GetAssembly() ?? method?.Module?.Assembly;
+            var assembly = method?.DeclaringType?.Assembly ?? method?.Module?.Assembly;
 
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (assembly == nlogAssembly)

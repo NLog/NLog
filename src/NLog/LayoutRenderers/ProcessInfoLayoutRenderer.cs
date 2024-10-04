@@ -31,14 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.Diagnostics;
     using System.Globalization;
-    using System.Reflection;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -115,5 +112,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif

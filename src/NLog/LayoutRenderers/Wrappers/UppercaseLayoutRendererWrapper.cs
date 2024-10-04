@@ -98,26 +98,9 @@ namespace NLog.LayoutRenderers.Wrappers
         private void TransformToUpperCase(StringBuilder target, int startPos)
         {
             CultureInfo culture = Culture;
-
-#if NETSTANDARD1_3 || NETSTANDARD1_5
-            string stringToUpper = null;
-            if (culture != null && culture != CultureInfo.InvariantCulture)
-            {
-                stringToUpper = target.ToString(startPos, target.Length - startPos);
-                stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
-            }
-#endif
-
             for (int i = startPos; i < target.Length; ++i)
             {
-#if NETSTANDARD1_3 || NETSTANDARD1_5
-                if (stringToUpper != null)
-                    target[i] = stringToUpper[i];    //no char.ToUpper with culture
-                else
-                    target[i] = char.ToUpperInvariant(target[i]);
-#else
                 target[i] = char.ToUpper(target[i], culture);
-#endif
             }
         }
     }

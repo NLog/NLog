@@ -71,7 +71,6 @@ namespace NLog
             remove => factory.ConfigurationChanged -= value;
         }
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
@@ -83,7 +82,7 @@ namespace NLog
             add => factory.ConfigurationReloaded += value;
             remove => factory.ConfigurationReloaded -= value;
         }
-#endif
+
         /// <summary>
         /// Gets or sets a value indicating whether NLog should throw exceptions.
         /// By default exceptions are not thrown under any circumstances.
@@ -200,7 +199,8 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
-            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
+            var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
+            return factory.GetLogger(className);
         }
 
         /// <summary>
@@ -219,7 +219,8 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Logger GetCurrentClassLogger([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type loggerType)
         {
-            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
+            var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
+            return factory.GetLogger(className, loggerType);
         }
 
         /// <summary>

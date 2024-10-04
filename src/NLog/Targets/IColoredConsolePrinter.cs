@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-
 namespace NLog.Targets
 {
     using System;
@@ -117,7 +115,4 @@ namespace NLog.Targets
         /// </summary>
         IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules { get; }
     }
-
 }
-
-#endif

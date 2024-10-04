@@ -178,7 +178,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 #if DEBUG
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
-                    Assert.InRange(elapsedMilliseconds, 0, 975);
+                Assert.InRange(elapsedMilliseconds, 0, 975);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)

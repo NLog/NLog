@@ -63,11 +63,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public new T GetCurrentClassLogger()
         {
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
             var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
-#else
-            var className = Internal.StackTraceUsageUtils.GetClassFullName();
-#endif
             return GetLogger(className);
         }
     }

@@ -189,11 +189,7 @@ namespace NLog.LayoutRenderers
         {
             if (string.IsNullOrEmpty(Name))
             {
-#if !NETSTANDARD1_3
                 return System.Reflection.Assembly.GetEntryAssembly();
-#else
-                return null;
-#endif
             }
             else
             {

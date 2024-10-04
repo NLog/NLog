@@ -45,7 +45,7 @@ namespace NLog.Internal
     {
         // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
         // filters control characters but allows only properly-formed surrogate sequences
-#if NET35 || NETSTANDARD1_3 || NETSTANDARD1_5
+#if NET35
         private static readonly System.Text.RegularExpressions.Regex InvalidXmlChars = new System.Text.RegularExpressions.Regex(
             @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
             System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -59,7 +59,7 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NET35
             int length = text.Length;
             for (int i = 0; i < length; ++i)
             {
@@ -82,7 +82,7 @@ namespace NLog.Internal
 #endif
         }
 
-#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NET35
         /// <summary>
         /// Cleans string of any invalid XML chars found
         /// </summary>

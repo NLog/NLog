@@ -51,7 +51,8 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(this ISetupBuilder setupBuilder)
         {
-            return setupBuilder.LogFactory.GetLogger(StackTraceUsageUtils.GetClassFullName());
+            var className = StackTraceUsageUtils.GetClassFullName(new System.Diagnostics.StackFrame(1, false));
+            return setupBuilder.LogFactory.GetLogger(className);
         }
 
         /// <summary>

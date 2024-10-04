@@ -448,18 +448,14 @@ namespace NLog.Common
                     internalLogFile = internalLogFile.Replace(baseDirToken, LogManager.LogFactory.CurrentAppEnvironment.AppDomainBaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${tempdir}", out string tempDirToken))
                     internalLogFile = internalLogFile.Replace(tempDirToken, LogManager.LogFactory.CurrentAppEnvironment.UserTempFilePath + System.IO.Path.DirectorySeparatorChar.ToString());
-#if !NETSTANDARD1_3
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${processdir}", out string processDirToken))
                     internalLogFile = internalLogFile.Replace(processDirToken, System.IO.Path.GetDirectoryName(LogManager.LogFactory.CurrentAppEnvironment.CurrentProcessFilePath) + System.IO.Path.DirectorySeparatorChar.ToString());
-#endif
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${commonApplicationDataDir}", out string commonAppDataDirToken))
                     internalLogFile = internalLogFile.Replace(commonAppDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${userApplicationDataDir}", out string appDataDirToken))
                     internalLogFile = internalLogFile.Replace(appDataDirToken, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.ApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (ContainsSubStringIgnoreCase(internalLogFile, "${userLocalApplicationDataDir}", out string localapplicationdatadir))
                     internalLogFile = internalLogFile.Replace(localapplicationdatadir, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
-#endif
                 if (internalLogFile.IndexOf('%') >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
                 return internalLogFile;
@@ -479,18 +475,14 @@ namespace NLog.Common
 
         private static void LogToConsoleSubscription(object sender, InternalLogEventArgs eventArgs)
         {
-#if !NETSTANDARD1_3
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Out, logLine);
-#endif
         }
 
         private static void LogToConsoleErrorSubscription(object sender, InternalLogEventArgs eventArgs)
         {
-#if !NETSTANDARD1_3
             var logLine = CreateLogLine(eventArgs.Exception, eventArgs.Level, eventArgs.Message);
             NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, logLine);
-#endif
         }
 
         private static void LogToFileSubscription(object sender, InternalLogEventArgs eventArgs)

@@ -74,7 +74,6 @@ namespace NLog.Internal
             }
         }
 
-#if !NETSTANDARD1_3
         [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public static string GetAssemblyFileLocation(Assembly assembly)
         {
@@ -150,6 +149,5 @@ namespace NLog.Internal
                 return string.Empty;
             }
         }
-#endif
     }
 }

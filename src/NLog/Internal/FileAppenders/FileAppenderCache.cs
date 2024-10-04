@@ -46,11 +46,9 @@ namespace NLog.Internal.FileAppenders
         private readonly BaseFileAppender[] _appenders;
         private Timer _autoClosingTimer;
 
-#if !NETSTANDARD1_3
         private string _archiveFilePatternToWatch;
         private readonly MultiFileWatcher _externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.DirectoryName | NotifyFilters.FileName);
         private bool _logFileWasArchived;
-#endif
 
         /// <summary>
         /// An "empty" instance of the <see cref="FileAppenderCache"/> class with zero size and empty list of appenders.
@@ -83,12 +81,9 @@ namespace NLog.Internal.FileAppenders
 
             _autoClosingTimer = new Timer(AutoClosingTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 
-#if !NETSTANDARD1_3
             _externalFileArchivingWatcher.FileChanged += ExternalFileArchivingWatcher_OnFileChanged;
-#endif
         }
 
-#if !NETSTANDARD1_3
         private void ExternalFileArchivingWatcher_OnFileChanged(object sender, FileSystemEventArgs e)
         {
             if (_logFileWasArchived || CheckCloseAppenders is null || _autoClosingTimer is null)
@@ -163,7 +158,6 @@ namespace NLog.Internal.FileAppenders
                 CloseAppenders("Cleanup Archive");
             }
         }
-#endif
 
         private void AutoClosingTimerCallback(object state)
         {
@@ -274,7 +268,6 @@ namespace NLog.Internal.FileAppenders
                 _appenders[0] = newAppender;
                 appenderToWrite = newAppender;
 
-#if !NETSTANDARD1_3
                 if (CheckCloseAppenders != null)
                 {
                     if (freeSpot == 0)
@@ -292,7 +285,6 @@ namespace NLog.Internal.FileAppenders
                     }
                     _externalFileArchivingWatcher.Watch(appenderToWrite.FileName); // Monitor the active file-appender
                 }
-#endif
             }
             catch (Exception ex)
             {
@@ -332,14 +324,12 @@ namespace NLog.Internal.FileAppenders
         /// <param name="expireTimeUtc">The time which prior the appenders considered expired</param>
         public void CloseExpiredAppenders(DateTime expireTimeUtc)
         {
-#if !NETSTANDARD1_3
             if (_logFileWasArchived)
             {
                 _logFileWasArchived = false;
                 CloseAppenders("Cleanup Timer");
             }
             else
-#endif
             {
                 if (expireTimeUtc != DateTime.MinValue)
                 {
@@ -529,14 +519,12 @@ namespace NLog.Internal.FileAppenders
                 // No active appenders, deactivate background tasks
                 _autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
 
-#if !NETSTANDARD1_3
                 _externalFileArchivingWatcher.StopWatching();
                 _logFileWasArchived = false;
             }
             else
             {
                 _externalFileArchivingWatcher.StopWatching(appender.FileName);
-#endif
             }
 
             appender.Close();
@@ -546,10 +534,8 @@ namespace NLog.Internal.FileAppenders
         {
             CheckCloseAppenders = null;
 
-#if !NETSTANDARD1_3
             _externalFileArchivingWatcher.Dispose();
             _logFileWasArchived = false;
-#endif
 
             var currentTimer = _autoClosingTimer;
             if (currentTimer != null)

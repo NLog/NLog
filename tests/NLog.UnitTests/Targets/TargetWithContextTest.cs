@@ -36,7 +36,6 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;

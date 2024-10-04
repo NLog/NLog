@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-#define SupportsMutex
-#endif
-
 namespace NLog.Targets
 {
     using System;
@@ -703,13 +699,11 @@ namespace NLog.Targets
         /// <docgen category='Output Options' order='100' />
         public bool ForceManaged { get; set; } = true;
 
-#if SupportsMutex
         /// <summary>
         /// Gets or sets a value indicating whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
         /// <docgen category='Output Options' order='100' />
         public bool ForceMutexConcurrentWrites { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
@@ -738,7 +732,6 @@ namespace NLog.Targets
                 _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
             }
 
-#if !NETSTANDARD1_3
             if (mustWatchArchiving)
             {
                 string archiveFilePattern = GetArchiveFileNamePattern(fileName, logEvent);
@@ -751,7 +744,6 @@ namespace NLog.Targets
             {
                 _fileAppenderCache.ArchiveFilePatternToWatch = null;
             }
-#endif
         }
 
         /// <summary>
@@ -862,7 +854,6 @@ namespace NLog.Targets
             }
             else if (ConcurrentWrites)
             {
-#if SupportsMutex
                 if (!ForceMutexConcurrentWrites)
                 {
 #if MONO
@@ -883,7 +874,6 @@ namespace NLog.Targets
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
                 else
-#endif  // SupportsMutex
                 {
                     return RetryingMultiProcessFileAppender.TheFactory;
                 }
@@ -1760,10 +1750,8 @@ namespace NLog.Targets
                     archivedAppender = TryCloseFileAppenderBeforeArchive(fileName, archiveFile);
                 }
 
-#if !NETSTANDARD1_3
                 // Closes all file handles if any archive operation has been detected by file-watcher
                 _fileAppenderCache.InvalidateAppendersForArchivedFiles();
-#endif
             }
             catch (Exception exception)
             {
@@ -1779,7 +1767,6 @@ namespace NLog.Targets
 
             try
             {
-#if SupportsMutex
                 try
                 {
                     if (archivedAppender is BaseMutexFileAppender mutexFileAppender && mutexFileAppender.ArchiveMutex != null)
@@ -1797,17 +1784,15 @@ namespace NLog.Targets
                     // the mutex has been acquired, so proceed to writing
                     // See: https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
                 }
-#endif
 
                 ArchiveFileAfterCloseFileAppender(archivedAppender, archiveFile, ev, upcomingWriteSize, previousLogEventTimestamp);
                 return true;
             }
             finally
             {
-#if SupportsMutex
                 if (archivedAppender is BaseMutexFileAppender mutexFileAppender)
                     mutexFileAppender.ArchiveMutex?.ReleaseMutex();
-#endif
+
                 archivedAppender?.Dispose();    // Dispose of Archive Mutex
             }
         }

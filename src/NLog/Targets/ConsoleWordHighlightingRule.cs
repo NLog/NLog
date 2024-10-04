@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-
 namespace NLog.Targets
 {
     using System.Text.RegularExpressions;
@@ -154,5 +152,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif

@@ -255,7 +255,7 @@ namespace NLog.Layouts
             public override IPropertyTypeConverter ValueTypeConverter => _ownerLayout.ValueTypeConverter;
 
             public LayoutGenericTypeValue(Layout layout, string parseValueFormat, CultureInfo parseValueCulture, Layout<T> ownerLayout)
-                :base(layout, typeof(T), parseValueFormat, parseValueCulture, null)
+                : base(layout, typeof(T), parseValueFormat, parseValueCulture, null)
             {
                 _ownerLayout = ownerLayout;
             }
@@ -421,7 +421,7 @@ namespace NLog.Layouts
         /// <param name="value">Text to be converted.</param>
         public static implicit operator Layout<T>(T value)
         {
-            if (object.Equals(value, default(T)) && !typeof(T).IsValueType()) return null;
+            if (object.Equals(value, default(T)) && !typeof(T).IsValueType) return null;
 
             return new Layout<T>(value);
         }

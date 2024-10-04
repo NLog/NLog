@@ -49,7 +49,7 @@ namespace NLog.Internal.Fakeables
         IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies();
         [Obsolete("Marked obsolete on NLog 5.0")]
         IAppDomain AppDomain { get; }
-#if !NETSTANDARD1_3
+
         string CurrentProcessFilePath { get; }
         /// <summary>
         /// Gets current process name (excluding filename extension, if any).
@@ -58,7 +58,6 @@ namespace NLog.Internal.Fakeables
         int CurrentProcessId { get; }
         string EntryAssemblyLocation { get; }
         string EntryAssemblyFileName { get; }
-#endif
         string UserTempFilePath { get; }
 
         /// <summary>

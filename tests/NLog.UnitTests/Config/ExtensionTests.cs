@@ -37,7 +37,6 @@ namespace NLog.UnitTests.Config
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using System.Text.RegularExpressions;
     using MyExtensionNamespace;
     using NLog.Common;
     using NLog.Config;

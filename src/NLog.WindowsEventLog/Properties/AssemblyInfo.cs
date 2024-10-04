@@ -33,7 +33,6 @@
 
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -41,6 +40,6 @@ using System.Security;
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 [assembly: AllowPartiallyTrustedCallers]
-#if !NET35 && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NET35
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 #endif

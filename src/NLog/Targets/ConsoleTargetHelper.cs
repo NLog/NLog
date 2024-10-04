@@ -45,7 +45,7 @@ namespace NLog.Targets
         public static bool IsConsoleAvailable(out string reason)
         {
             reason = string.Empty;
-#if !MONO && !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !MONO
             try
             {
                 if (!Environment.UserInteractive)
@@ -76,24 +76,16 @@ namespace NLog.Targets
 
         public static Encoding GetConsoleOutputEncoding(Encoding currentEncoding, bool isInitialized, bool pauseLogging)
         {
-#if !NETSTANDARD1_3
             if (currentEncoding != null)
                 return currentEncoding;
             else if ((isInitialized && !pauseLogging) || IsConsoleAvailable(out _))
                 return Console.OutputEncoding;
-#if !NETSTANDARD1_5
+
             return Encoding.Default;
-#else
-            return currentEncoding;
-#endif
-#else
-            return currentEncoding;
-#endif
         }
 
         public static bool SetConsoleOutputEncoding(Encoding newEncoding, bool isInitialized, bool pauseLogging)
         {
-#if !NETSTANDARD1_3
             if (!isInitialized)
             {
                 return true;    // Waiting for console target to be initialized
@@ -110,7 +102,7 @@ namespace NLog.Targets
                     InternalLogger.Warn(ex, "Failed changing Console.OutputEncoding to {0}", newEncoding);
                 }
             }
-#endif
+
             return false;       // No console available
         }
 

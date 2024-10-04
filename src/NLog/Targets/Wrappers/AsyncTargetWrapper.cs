@@ -253,11 +253,11 @@ namespace NLog.Targets.Wrappers
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             if (_flushEventsInQueueDelegate is null)
-                _flushEventsInQueueDelegate = new AsyncHelpersTask(FlushEventsInQueue);
-            AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate.Value, asyncContinuation);
+                _flushEventsInQueueDelegate = FlushEventsInQueue;
+            AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate, asyncContinuation);
         }
 
-        private AsyncHelpersTask? _flushEventsInQueueDelegate;
+        private WaitCallback _flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.

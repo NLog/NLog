@@ -86,7 +86,7 @@ namespace NLog.Targets
         private readonly Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
         private Tuple<List<LogEventInfo>, List<AsyncContinuation>> _reusableLogEvents;
-        private AsyncHelpersTask? _flushEventsInQueueDelegate;
+        private WaitCallback _flushEventsInQueueDelegate;
         private bool _missingServiceTypes;
 
         /// <summary>
@@ -396,14 +396,14 @@ namespace NLog.Targets
                     // We are holding target-SyncRoot, and might get blocked in queue, so need to schedule flush using async-task
                     if (_flushEventsInQueueDelegate is null)
                     {
-                        _flushEventsInQueueDelegate = new AsyncHelpersTask(cont =>
+                        _flushEventsInQueueDelegate = (cont) =>
                         {
                             _requestQueue.Enqueue(new AsyncLogEventInfo(null, (AsyncContinuation)cont));
                             lock (SyncRoot)
                                 _lazyWriterTimer.Change(0, Timeout.Infinite);    // Schedule timer to empty queue, and execute asyncContinuation
-                        });
+                        };
                     }
-                    AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate.Value, asyncContinuation);
+                    AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate, asyncContinuation);
                     _lazyWriterTimer.Change(0, Timeout.Infinite);   // Schedule timer to empty queue, so room for flush-request
                 }
             }

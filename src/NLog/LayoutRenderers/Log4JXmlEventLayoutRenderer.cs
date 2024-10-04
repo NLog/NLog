@@ -79,16 +79,11 @@ namespace NLog.LayoutRenderers
         /// </summary>
         internal Log4JXmlEventLayoutRenderer(IAppEnvironment appEnvironment)
         {
-
-#if NETSTANDARD1_3
-            AppInfo = "NetCore Application";
-#else
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})",
                 appEnvironment.AppDomainFriendlyName,
                 appEnvironment.CurrentProcessId);
-#endif
 
             Parameters = new List<NLogViewerParameterInfo>();
 
@@ -433,7 +428,7 @@ namespace NLog.LayoutRenderers
                 var type = methodBase?.DeclaringType;
                 if (type != null)
                 {
-                    xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
+                    xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
                 }
                 xtw.WriteEndElement();
 

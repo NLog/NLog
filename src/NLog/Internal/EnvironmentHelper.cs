@@ -53,14 +53,7 @@ namespace NLog.Internal
         {
             try
             {
-#if NETSTANDARD1_3
-                var machineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
-                if (string.IsNullOrEmpty(machineName))
-                    machineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
-                return machineName;
-#else
                 return Environment.MachineName;
-#endif
             }
             catch (System.Security.SecurityException)
             {

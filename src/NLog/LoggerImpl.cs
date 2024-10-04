@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD1_3
-#define CaptureCallSiteInfo
-#endif
-
 namespace NLog
 {
     using System;
@@ -57,7 +53,6 @@ namespace NLog
         {
             logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain is null ? logFactory.SingleTargetMessageFormatter : null);
 
-#if CaptureCallSiteInfo
             StackTraceUsage stu = targetsForLevel.StackTraceUsage;
             if (stu != StackTraceUsage.None)
             {
@@ -76,7 +71,6 @@ namespace NLog
                     }
                 }
             }
-#endif
 
             AsyncContinuation exceptionHandler = SingleCallContinuation.Completed;
             if (logFactory.ThrowExceptions)
@@ -108,18 +102,12 @@ namespace NLog
             }
         }
 
-#if CaptureCallSiteInfo
         private static void CaptureCallSiteInfo(LogFactory logFactory, Type loggerType, LogEventInfo logEvent, StackTraceUsage stackTraceUsage)
         {
             try
             {
                 bool includeSource = (stackTraceUsage & StackTraceUsage.WithFileNameAndLineNumber) != 0;
-#if NETSTANDARD1_5
-                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { includeSource });
-#else
                 var stackTrace = new StackTrace(StackTraceSkipMethods, includeSource);
-#endif
-
                 logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, null, loggerType);
             }
             catch (Exception ex)
@@ -135,7 +123,6 @@ namespace NLog
                 InternalLogger.Error(ex, "{0} Failed to capture CallSite. Platform might not support ${{callsite}}", logEvent.LoggerName);
             }
         }
-#endif
 
         private static bool WriteToTargetWithFilterChain(Targets.Target target, FilterResult result, LogEventInfo logEvent, AsyncContinuation onException)
         {

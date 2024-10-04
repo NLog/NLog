@@ -436,16 +436,6 @@ namespace NLog.UnitTests
 
             public override Encoding Encoding => writer.Encoding;
 
-#if NETSTANDARD1_5
-            public override void Write(char value)
-            {
-                lock (this.writer)
-                {
-                    this.writer.Write(value);
-                }
-            }
-#endif
-
             public override void Write(string value)
             {
                 lock (writer)

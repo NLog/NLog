@@ -54,13 +54,11 @@ namespace NLog.LayoutRenderers
     {
         private readonly string _baseDir;
 
-#if !NETSTANDARD1_3
         /// <summary>
         /// cached
         /// </summary>
         private string _processDir;
         private readonly IAppEnvironment _appEnvironment;
-#endif
 
         /// <summary>
         /// Use base dir of current process. Alternative one can just use ${processdir}
@@ -87,9 +85,7 @@ namespace NLog.LayoutRenderers
         internal BaseDirLayoutRenderer(IAppEnvironment appEnvironment)
         {
             _baseDir = appEnvironment.AppDomainBaseDirectory;
-#if !NETSTANDARD1_3
             _appEnvironment = appEnvironment;
-#endif
         }
 
         /// <summary>
@@ -108,7 +104,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var dir = _baseDir;
-#if !NETSTANDARD1_3
+
             if (ProcessDir)
             {
                 dir = _processDir ?? (_processDir = GetProcessDir());
@@ -117,7 +113,6 @@ namespace NLog.LayoutRenderers
             {
                 dir = _processDir ?? (_processDir = GetFixedTempBaseDir(_baseDir));
             }
-#endif
 
             if (dir != null)
             {
@@ -126,7 +121,6 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#if !NETSTANDARD1_3
         private string GetFixedTempBaseDir(string baseDir)
         {
             try
@@ -153,7 +147,6 @@ namespace NLog.LayoutRenderers
         {
             return Path.GetDirectoryName(_appEnvironment.CurrentProcessFilePath);
         }
-#endif
     }
 }
 
