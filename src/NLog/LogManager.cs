@@ -72,18 +72,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
-        /// Occurs when logging <see cref="Configuration" /> gets reloaded.
-        /// </summary>
-        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
-        {
-            add => factory.ConfigurationReloaded += value;
-            remove => factory.ConfigurationReloaded -= value;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether NLog should throw exceptions.
         /// By default exceptions are not thrown under any circumstances.
         /// </summary>

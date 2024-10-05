@@ -696,24 +696,23 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        [Obsolete("Replaced by ConfigurationChanged. Marked obsolete on NLog 5.2")]
         public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
         {
             var called = false;
-            LoggingConfigurationReloadedEventArgs arguments = null;
+            LoggingConfigurationChangedEventArgs arguments = null;
             object calledBy = null;
 
             var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
             var logFactory = new LogFactory(configLoader);
             var loggingConfiguration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, "<nlog></nlog>");
             logFactory.Configuration = loggingConfiguration;
-            logFactory.ConfigurationReloaded += (sender, args) => { called = true; calledBy = sender; arguments = args; };
+            logFactory.ConfigurationChanged += (sender, args) => { called = true; calledBy = sender; arguments = args; };
 
             configLoader.ReloadConfigOnTimer(loggingConfiguration);
 
             Assert.True(called);
             Assert.Same(calledBy, logFactory);
-            Assert.True(arguments.Succeeded);
+            Assert.NotNull(arguments.ActivatedConfiguration);
         }
 
         [Fact]
