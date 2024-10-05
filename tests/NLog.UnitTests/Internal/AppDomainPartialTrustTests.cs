@@ -141,7 +141,7 @@ namespace NLog.UnitTests.Internal
 
             // NOTE Using BufferingWrapper to validate that DomainUnload remembers to perform flush
             var configXml = $@"
-            <nlog throwExceptions='false' autoShutdown='{autoShutdown}'>
+            <nlog throwExceptions='false' autoShutdown='{autoShutdown}' internalLogLevel='Info'>
                 <targets async='true'>
                     <target name='file' type='BufferingWrapper' bufferSize='10000'>
                         <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{filePath}' LineEnding='lf' concurrentWrites='true' />
@@ -157,10 +157,8 @@ namespace NLog.UnitTests.Internal
             {
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
-#pragma warning disable CS0618 // Type or member is obsolete
                 //this method gave issues
                 LogFactory.LogNLogAssemblyVersion();
-#pragma warning restore CS0618 // Type or member is obsolete
 
                 var logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 

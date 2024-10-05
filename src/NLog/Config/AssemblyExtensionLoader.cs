@@ -65,10 +65,10 @@ namespace NLog.Config
 
         public void LoadAssembly(ConfigurationItemFactory factory, Assembly assembly, string itemNamePrefix)
         {
-            InternalLogger.LogAssemblyVersion(assembly);
+            AssemblyHelpers.LogAssemblyVersion(assembly);
 
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
-            var typesToScan = AssemblyHelpers.SafeGetTypes(assembly);
+            var typesToScan = SafeGetTypes(assembly);
             if (typesToScan?.Length > 0)
             {
                 if (ReferenceEquals(assembly, typeof(LogFactory).Assembly))
@@ -95,6 +95,36 @@ namespace NLog.Config
             }
 
             InternalLogger.Debug("Loading assembly name: {0} succeeded!", assembly.FullName);
+        }
+
+        /// <summary>
+        /// Gets all usable exported types from the given assembly.
+        /// </summary>
+        /// <param name="assembly">Assembly to scan.</param>
+        /// <returns>Usable types from the given assembly.</returns>
+        /// <remarks>Types which cannot be loaded are skipped.</remarks>
+        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
+        private static Type[] SafeGetTypes(Assembly assembly)
+        {
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException typeLoadException)
+            {
+                var result = typeLoadException.Types?.Where(t => t != null)?.ToArray() ?? ArrayHelper.Empty<Type>();
+                InternalLogger.Warn(typeLoadException, "Loaded {0} valid types from Assembly: {1}", result.Length, assembly.FullName);
+                foreach (var ex in typeLoadException.LoaderExceptions ?? ArrayHelper.Empty<Exception>())
+                {
+                    InternalLogger.Warn(ex, "Type load exception.");
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Failed to load types from Assembly: {0}", assembly.FullName);
+                return ArrayHelper.Empty<Type>();
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2072")]

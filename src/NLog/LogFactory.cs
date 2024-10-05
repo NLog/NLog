@@ -345,15 +345,11 @@ namespace NLog
         }
         internal CultureInfo _defaultCultureInfo;
 
-        [Obsolete("LogFactory should be minimal. Marked obsolete with NLog v5.3")]
         internal static void LogNLogAssemblyVersion()
         {
-            if (!InternalLogger.IsInfoEnabled)
-                return;
-
             try
             {
-                InternalLogger.LogAssemblyVersion(typeof(LogFactory).Assembly);
+                AssemblyHelpers.LogAssemblyVersion(typeof(LogFactory).Assembly);
             }
             catch (Exception ex)
             {
