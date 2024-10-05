@@ -97,7 +97,7 @@ namespace NLog.Config
         if (netFramework.Contains(type.ToString()))
         {
 #>
-#if !NETSTANDARD
+#if NETFRAMEWORK
 <#
         }
         else if (netStandard2.Contains(type.ToString()))

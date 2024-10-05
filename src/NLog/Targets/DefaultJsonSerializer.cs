@@ -260,13 +260,13 @@ namespace NLog.Targets
 
 
                 destination.Append('"');
-#if NETSTANDARD
+#if NETFRAMEWORK
+                var str = formattable.ToString(null, CultureInfo.InvariantCulture);
+                AppendStringEscape(destination, str, options);
+#else
                 int startPos = destination.Length;
                 destination.AppendFormat(CultureInfo.InvariantCulture, "{0}", formattable); // Support ISpanFormattable
                 PerformJsonEscapeWhenNeeded(destination, startPos, options.EscapeUnicode, options.EscapeForwardSlash);
-#else
-                var str = formattable.ToString(null, CultureInfo.InvariantCulture);
-                AppendStringEscape(destination, str, options);
 #endif
                 destination.Append('"');
                 return true;

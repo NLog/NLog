@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD && !MONO
+#if NETFRAMEWORK && !MONO
 
 using System;
 using System.IO;

@@ -163,14 +163,14 @@ namespace NLog.Targets
             _taskCancelledTokenReInit = TaskCancelledTokenReInit;
             _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
 
-#if NETSTANDARD2_0
+#if NETFRAMEWORK
+            _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+#else
             // NetStandard20 includes many optimizations for ConcurrentQueue:
             //  - See: https://blogs.msdn.microsoft.com/dotnet/2017/06/07/performance-improvements-in-net-core/
             // Net40 ConcurrencyQueue can seem to leak, because it doesn't clear properly on dequeue
             //  - See: https://blogs.msdn.microsoft.com/pfxteam/2012/05/08/concurrentqueuet-holding-on-to-a-few-dequeued-elements/
             _requestQueue = new ConcurrentRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-#else
-            _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #endif
 
             _lazyWriterTimer = new Timer((s) => TaskStartNext(null, false), null, Timeout.Infinite, Timeout.Infinite);

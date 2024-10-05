@@ -611,7 +611,7 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 // We get Exception for normal Assembly-Load only in net452.
-#if !NETSTANDARD && !MONO
+#if NETFRAMEWORK && !MONO
                 var logs = writer.ToString();
                 Assert.Contains("Try find 'Manually-Loaded-Extension' in current domain", logs);
 #endif

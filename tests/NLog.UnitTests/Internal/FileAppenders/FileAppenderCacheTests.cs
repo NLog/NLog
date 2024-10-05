@@ -194,7 +194,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
             FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
         }
 
-#if !MONO && !NETSTANDARD
+#if NETFRAMEWORK && !MONO
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Windows()
         {

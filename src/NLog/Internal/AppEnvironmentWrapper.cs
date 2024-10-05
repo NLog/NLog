@@ -291,7 +291,7 @@ namespace NLog.Internal.Fakeables
         }
 #endif
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private static string LookupCurrentProcessFilePathNative()
         {
             try

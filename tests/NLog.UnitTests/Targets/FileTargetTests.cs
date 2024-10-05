@@ -145,7 +145,7 @@ namespace NLog.UnitTests.Targets
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             bool isSimpleKeepFileOpen = keepFileOpen && !concurrentWrites
-#if !NETSTANDARD && !MONO
+#if NETFRAMEWORK && !MONO
               && IsLinux()
 #endif
               ;
@@ -744,7 +744,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {
             get
@@ -1551,7 +1551,7 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(DateArchive_UsesDateFromCurrentTimeSource_TestParameters))]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool maxArhiveDays)
         {
-#if NETSTANDARD || MONO
+#if !NETFRAMEWORK || MONO
             if (IsLinux())
             {
                 Console.WriteLine("[SKIP] FileTargetTests.DateArchive_UsesDateFromCurrentTimeSource because SetLastWriteTime is not working on Travis");
