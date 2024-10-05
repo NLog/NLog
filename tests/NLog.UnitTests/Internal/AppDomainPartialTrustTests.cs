@@ -141,7 +141,7 @@ namespace NLog.UnitTests.Internal
 
             // NOTE Using BufferingWrapper to validate that DomainUnload remembers to perform flush
             var configXml = $@"
-            <nlog throwExceptions='false' autoShutdown='{autoShutdown}'>
+            <nlog throwExceptions='false' autoShutdown='{autoShutdown}' internalLogLevel='Info'>
                 <targets async='true'>
                     <target name='file' type='BufferingWrapper' bufferSize='10000'>
                         <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{filePath}' LineEnding='lf' concurrentWrites='true' />

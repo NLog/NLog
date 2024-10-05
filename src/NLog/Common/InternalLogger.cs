@@ -449,6 +449,9 @@ namespace NLog.Common
         {
             try
             {
+                if (!IsInfoEnabled)
+                    return;
+
                 var fileVersion = assembly.GetFirstCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
                 var productVersion = assembly.GetFirstCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
                 var globalAssemblyCache = false;
