@@ -44,7 +44,7 @@ namespace NLog.UnitTests.LayoutRenderers
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private static Lazy<Assembly> TestAssembly = new Lazy<Assembly>(() => GenerateTestAssembly());
 #endif
 
@@ -109,7 +109,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput($"${{assembly-version:name=NLogAutoLoadExtension:format={format}}}", expected);
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private const string AssemblyVersionTest = "1.2.3.4";
         private const string AssemblyFileVersionTest = "1.1.1.2";
         private const string AssemblyInformationalVersionTest = "Version 1";

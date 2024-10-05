@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
 
 namespace NLog.Internal
 {

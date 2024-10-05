@@ -452,7 +452,7 @@ namespace NLog.Common
                 var fileVersion = assembly.GetFirstCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
                 var productVersion = assembly.GetFirstCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
                 var globalAssemblyCache = false;
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 if (assembly.GlobalAssemblyCache)
                     globalAssemblyCache = true;
 #endif

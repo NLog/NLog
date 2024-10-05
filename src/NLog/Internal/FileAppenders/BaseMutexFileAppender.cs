@@ -45,7 +45,7 @@ namespace NLog.Internal.FileAppenders
     using JetBrains.Annotations;
 
 #if SupportsMutex
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Security.AccessControl;
     using System.Security.Principal;
 #endif

@@ -71,10 +71,11 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         }
 
-#if !MONO
-        [Fact]
-#else
+
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void LineNumberOnlyAsyncTest()
         {

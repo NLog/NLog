@@ -46,7 +46,7 @@ namespace NLog.UnitTests
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using Ionic.Zip;
 #endif
 
@@ -72,7 +72,7 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = true;  // Ensure exceptions are thrown by default during unit-testing
             LogManager.ThrowConfigExceptions = null;
             System.Diagnostics.Trace.Listeners.Clear();
-#if !NETSTANDARD
+#if NETFRAMEWORK
             System.Diagnostics.Debug.Listeners.Clear();
 #endif
         }
@@ -161,7 +161,7 @@ namespace NLog.UnitTests
 
             public void CompressFile(string fileName, string archiveFileName, string entryName)
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
                     ZipEntry entry = zip.AddFile(fileName);
