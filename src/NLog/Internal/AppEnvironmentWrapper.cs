@@ -48,6 +48,11 @@ namespace NLog.Internal.Fakeables
         private string _entryAssemblyFileName;
         private string _currentProcessFilePath;
         private string _currentProcessBaseName;
+        private string _appDomainBaseDirectory;
+        private string _appDomainConfigFile;
+        private string _appDomainFriendlyName;
+        private IEnumerable<string> _appDomainPrivateBinPath;
+        private int? _appDomainId;
         private int? _currentProcessId;
 
         /// <inheritdoc/>
@@ -60,48 +65,35 @@ namespace NLog.Internal.Fakeables
         public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = LookupCurrentProcessNameWithFallback());
         /// <inheritdoc/>
         public int CurrentProcessId => _currentProcessId ?? (_currentProcessId = LookupCurrentProcessIdWithFallback()).Value;
-
-#pragma warning disable CS0618 // Type or member is obsolete
         /// <inheritdoc/>
-        public string AppDomainBaseDirectory => AppDomain.BaseDirectory;
+        public string AppDomainBaseDirectory => _appDomainBaseDirectory ?? (_appDomainBaseDirectory = LookupAppDomainBaseDirectory());
         /// <inheritdoc/>
-        public string AppDomainConfigurationFile => AppDomain.ConfigurationFile;
+        public string AppDomainConfigurationFile => _appDomainConfigFile ?? (_appDomainConfigFile = LookupAppDomainConfigFileSafe());
         /// <inheritdoc/>
-        public string AppDomainFriendlyName => AppDomain.FriendlyName;
+        public string AppDomainFriendlyName => _appDomainFriendlyName ?? (_appDomainFriendlyName = LookupAppDomainFriendlyName() ?? CurrentProcessBaseName);
         /// <inheritdoc/>
-        public int AppDomainId => AppDomain.Id;
+        public int AppDomainId => _appDomainId ?? (_appDomainId = AppDomain.CurrentDomain.Id).Value;
         /// <inheritdoc/>
-        public IEnumerable<string> AppDomainPrivateBinPath => AppDomain.PrivateBinPath;
+        public IEnumerable<string> AppDomainPrivateBinPath => _appDomainPrivateBinPath ?? (_appDomainPrivateBinPath = LookupAppDomainPrivateBinPathSafe());
         /// <inheritdoc/>
-        public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => AppDomain.GetAssemblies();
+        public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => AppDomain.CurrentDomain?.GetAssemblies() ?? ArrayHelper.Empty<System.Reflection.Assembly>();
         /// <inheritdoc/>
-        public event EventHandler<EventArgs> ProcessExit
+        public event EventHandler ProcessExit
         {
             add
             {
-                AppDomain.ProcessExit += value;
-                AppDomain.DomainUnload += value;
+                AppDomain.CurrentDomain.ProcessExit += value;
+                AppDomain.CurrentDomain.DomainUnload += value;
             }
             remove
             {
-                AppDomain.DomainUnload -= value;
-                AppDomain.ProcessExit -= value;
+                AppDomain.CurrentDomain.DomainUnload -= value;
+                AppDomain.CurrentDomain.ProcessExit -= value;
             }
         }
-#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <inheritdoc/>
         public string UserTempFilePath => Path.GetTempPath();
-
-        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
-        public IAppDomain AppDomain { get; internal set; }
-
-#pragma warning disable CS0618 // Type or member is obsolete
-        public AppEnvironmentWrapper(IAppDomain appDomain)
-        {
-            AppDomain = appDomain;
-        }
-#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <inheritdoc/>
         public bool FileExists(string path)
@@ -113,6 +105,127 @@ namespace NLog.Internal.Fakeables
         public XmlReader LoadXmlFile(string path)
         {
             return XmlReader.Create(path);
+        }
+
+        private static string LookupAppDomainBaseDirectory()
+        {
+            try
+            {
+                return AppDomain.CurrentDomain.BaseDirectory ?? string.Empty;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Debug(ex, "AppDomain.BaseDirectory Failed");
+                return string.Empty;
+            }
+        }
+
+        private static string[] LookupAppDomainPrivateBinPathSafe()
+        {
+            try
+            {
+                return LookupAppDomainPrivateBinPath(); // Bonus try-catch when loading NLog for .NET Framework in .NET Core
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Debug(ex, "AppDomain.CurrentDomain.SetupInformation.PrivateBinPath Failed");
+                return ArrayHelper.Empty<string>();
+            }
+        }
+
+        private static string[] LookupAppDomainPrivateBinPath()
+        {
+            try
+            {
+#if NETFRAMEWORK
+                string privateBinPath = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
+                return string.IsNullOrEmpty(privateBinPath)
+                                        ? ArrayHelper.Empty<string>()
+                                        : privateBinPath.SplitAndTrimTokens(';');
+#else
+                return ArrayHelper.Empty<string>();
+#endif
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Debug(ex, "AppDomain.CurrentDomain.SetupInformation.PrivateBinPath Failed");
+                return ArrayHelper.Empty<string>();
+            }
+        }
+
+        private static string LookupAppDomainConfigFileSafe()
+        {
+            try
+            {
+                return LookupAppDomainConfigFile(); // Bonus try-catch when loading NLog for .NET Framework in .NET Core
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Debug(ex, "AppDomain.SetupInformation.ConfigurationFile Failed");
+                return string.Empty;
+            }
+        }
+
+        private static string LookupAppDomainConfigFile()
+        {
+            try
+            {
+#if NETFRAMEWORK
+                return AppDomain.CurrentDomain.SetupInformation.ConfigurationFile ?? string.Empty;
+#else
+                return string.Empty;
+#endif
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Debug(ex, "AppDomain.SetupInformation.ConfigurationFile Failed");
+                return string.Empty;
+            }
+        }
+
+        private static string LookupAppDomainFriendlyName()
+        {
+            try
+            {
+                var friendlyName = AppDomain.CurrentDomain.FriendlyName;
+                return !string.IsNullOrEmpty(friendlyName) ? friendlyName : LookupEntryAssemblyFriendlyName();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Debug(ex, "AppDomain.FriendlyName Failed");
+                return LookupEntryAssemblyFriendlyName();
+            }
+        }
+
+        private static string LookupEntryAssemblyFriendlyName()
+        {
+            try
+            {
+                string assemblyName = System.Reflection.Assembly.GetEntryAssembly()?.GetName()?.Name;
+                return string.IsNullOrEmpty(assemblyName) ? null : assemblyName;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static string LookupEntryAssemblyLocation()
@@ -288,7 +401,7 @@ namespace NLog.Internal.Fakeables
             return UnknownProcessName;
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private static string LookupCurrentProcessFilePathNative()
         {
             try

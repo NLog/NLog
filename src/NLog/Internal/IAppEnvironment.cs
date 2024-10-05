@@ -47,9 +47,6 @@ namespace NLog.Internal.Fakeables
         int AppDomainId { get; }
         IEnumerable<string> AppDomainPrivateBinPath { get; }
         IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies();
-        [Obsolete("Marked obsolete on NLog 5.0")]
-        IAppDomain AppDomain { get; }
-
         string CurrentProcessFilePath { get; }
         /// <summary>
         /// Gets current process name (excluding filename extension, if any).
@@ -63,6 +60,6 @@ namespace NLog.Internal.Fakeables
         /// <summary>
         /// Process exit event.
         /// </summary>
-        event EventHandler<EventArgs> ProcessExit;
+        event EventHandler ProcessExit;
     }
 }

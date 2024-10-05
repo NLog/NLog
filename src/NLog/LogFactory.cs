@@ -54,8 +54,6 @@ namespace NLog
     {
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
-        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
-        private static IAppDomain currentAppDomain;
         private static AppEnvironmentWrapper defaultAppEnvironment;
 
         /// <remarks>
@@ -143,39 +141,11 @@ namespace NLog
             LoggerShutdown += OnStopLogging;
         }
 
-        /// <summary>
-        /// Gets the current <see cref="IAppDomain"/>.
-        /// </summary>
-        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static IAppDomain CurrentAppDomain
-        {
-            get => currentAppDomain ?? DefaultAppEnvironment.AppDomain;
-            set
-            {
-                if (defaultAppEnvironment != null)
-                    UnregisterEvents(defaultAppEnvironment);
-
-                currentAppDomain = value;
-
-                if (value != null && defaultAppEnvironment != null)
-                {
-                    defaultAppEnvironment.AppDomain = value;
-                    UnregisterEvents(defaultAppEnvironment);
-                    RegisterEvents(defaultAppEnvironment);
-                }
-            }
-        }
-
         internal static IAppEnvironment DefaultAppEnvironment
         {
             get
             {
-#pragma warning disable CS0618 // Type or member is obsolete
-                return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper(currentAppDomain ?? (currentAppDomain =
-                    new AppDomainWrapper(AppDomain.CurrentDomain)
-                    )));
-#pragma warning restore CS0618 // Type or member is obsolete
+                return defaultAppEnvironment ?? (defaultAppEnvironment = new AppEnvironmentWrapper());
             }
         }
 
