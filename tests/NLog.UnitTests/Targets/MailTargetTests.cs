@@ -35,7 +35,7 @@ namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Net.Configuration;
 #endif
     using System.IO;
@@ -826,7 +826,7 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true,
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 SmtpSection = new SmtpSection { From = "config@foo.com" }
 #endif
             };
@@ -840,7 +840,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("nlog@foo.com", mmt.From.ToString());
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile()
         {
@@ -865,7 +865,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
         {

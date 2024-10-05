@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#if !MONO && NETFRAMEWORK
+#if NETFRAMEWORK && !MONO
 
 namespace NLog.Internal.FileAppenders
 {

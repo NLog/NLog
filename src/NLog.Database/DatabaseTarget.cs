@@ -47,7 +47,7 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Layouts;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
 #endif
@@ -90,7 +90,7 @@ namespace NLog.Targets
         {
             DBProvider = "sqlserver";
             DBHost = ".";
-#if !NETSTANDARD
+#if NETFRAMEWORK
             ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
             CommandType = CommandType.Text;
@@ -137,7 +137,7 @@ namespace NLog.Targets
         [DefaultValue("sqlserver")]
         public string DBProvider { get; set; }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         /// <summary>
         /// Gets or sets the name of the connection string (as specified in <see href="https://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
@@ -282,7 +282,7 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         public System.Data.IsolationLevel? IsolationLevel { get; set; }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
@@ -325,7 +325,7 @@ namespace NLog.Targets
         {
             IDbConnection connection;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
             if (ProviderFactory != null)
             {
                 connection = ProviderFactory.CreateConnection();
@@ -381,7 +381,7 @@ namespace NLog.Targets
             bool foundProvider = false;
             string providerName = string.Empty;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
             if (!string.IsNullOrEmpty(ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
@@ -404,7 +404,7 @@ namespace NLog.Targets
                 providerName = InitConnectionString(providerName);
             }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
             if (string.IsNullOrEmpty(providerName))
             {
                 providerName = GetProviderNameFromDbProviderFactories(providerName);
@@ -455,7 +455,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 if (!string.IsNullOrEmpty(ConnectionStringName))
                     InternalLogger.Warn(ex, "{0}: DbConnectionStringBuilder failed to parse '{1}' ConnectionString", this, ConnectionStringName);
                 else
@@ -466,7 +466,7 @@ namespace NLog.Targets
             return providerName;
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private bool InitProviderFactory(string providerName)
         {
             bool foundProvider;
@@ -515,7 +515,7 @@ namespace NLog.Targets
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
-#if NETSTANDARD
+#if !NETFRAMEWORK
                     {
                         try
                         {
@@ -550,7 +550,7 @@ namespace NLog.Targets
                         ConnectionType = assembly.GetType("Microsoft.Data.SqlClient.SqlConnection", true, true);
                         break;
                     }
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 case "OLEDB":
                     {
                         var assembly = typeof(IDbConnection).Assembly;
@@ -561,10 +561,10 @@ namespace NLog.Targets
                 case "ODBC":
                 case "SYSTEM.DATA.ODBC":
                     {
-#if NETSTANDARD
-                        var assembly = Assembly.Load(new AssemblyName("System.Data.Odbc"));
-#else
+#if NETFRAMEWORK
                         var assembly = typeof(IDbConnection).Assembly;
+#else
+                        var assembly = Assembly.Load(new AssemblyName("System.Data.Odbc"));                        
 #endif
                         ConnectionType = assembly.GetType("System.Data.Odbc.OdbcConnection", true, true);
                         break;

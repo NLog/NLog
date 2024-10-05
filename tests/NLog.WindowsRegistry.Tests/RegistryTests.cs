@@ -37,7 +37,7 @@ namespace NLog.WindowsRegistry.Tests
     using Microsoft.Win32;
     using Xunit;
 
-#if NETSTANDARD
+#if !NETFRAMEWORK
     [System.Runtime.Versioning.SupportedOSPlatform("windows")]
 #endif
     public sealed class RegistryTests : IDisposable

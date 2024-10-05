@@ -437,7 +437,7 @@ namespace NLog.Internal
                 case TypeCode.Single:
                     {
                         float floatValue = value.ToSingle(CultureInfo.InvariantCulture);
-#if NETSTANDARD
+#if !NETFRAMEWORK
                         if (!float.IsNaN(floatValue) && !float.IsInfinity(floatValue) && value is IFormattable formattable)
                         {
                             AppendDecimalInvariant(sb, formattable, "{0:R}");
@@ -452,7 +452,7 @@ namespace NLog.Internal
                 case TypeCode.Double:
                     {
                         double doubleValue = value.ToDouble(CultureInfo.InvariantCulture);
-#if NETSTANDARD
+#if !NETFRAMEWORK
                         if (!double.IsNaN(doubleValue) && !double.IsInfinity(doubleValue) && value is IFormattable formattable)
                         {
                             AppendDecimalInvariant(sb, formattable, "{0:R}");
@@ -466,7 +466,7 @@ namespace NLog.Internal
                     break;
                 case TypeCode.Decimal:
                     {
-#if NETSTANDARD
+#if !NETFRAMEWORK
                         if (value is IFormattable formattable)
                         {
                             AppendDecimalInvariant(sb, formattable, "{0}");
@@ -484,7 +484,7 @@ namespace NLog.Internal
             }
         }
 
-#if NETSTANDARD
+#if !NETFRAMEWORK
         private static void AppendDecimalInvariant(StringBuilder sb, IFormattable formattable, string format)
         {
             int orgLength = sb.Length;

@@ -40,10 +40,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteFileNameLayoutTests : NLogTestBase
     {
-#if !MONO
-        [Fact]
-#else
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void ShowFileNameOnlyTest()
         {
@@ -64,10 +64,10 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg", lastMessageArray[1]);
         }
 
-#if !MONO
-        [Fact]
-#else
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void CallSiteFileNameNoCaptureStackTraceTest()
         {
@@ -87,10 +87,10 @@ namespace NLog.UnitTests.LayoutRenderers
             logFactory.AssertDebugLastMessage("|msg");
         }
 
-#if !MONO
-        [Fact]
-#else
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void CallSiteFileNameNoCaptureStackTraceWithStackTraceTest()
         {
@@ -115,10 +115,10 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg", lastMessageArray[1]);
         }
 
-#if !MONO
-        [Fact]
-#else
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void ShowFullPathTest()
         {
@@ -141,10 +141,10 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg", lastMessageArray[1]);
         }
 
-#if !MONO
-        [Fact]
-#else
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void ShowFileNameOnlyAsyncTest()
         {
@@ -164,10 +164,10 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg", lastMessageArray[1]);
         }
 
-#if !MONO
-        [Fact]
-#else
+#if MONO
         [Fact(Skip = "MONO is not good with callsite line numbers")]
+#else
+        [Fact]
 #endif
         public void ShowFullPathAsyncTest()
         {

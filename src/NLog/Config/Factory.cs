@@ -219,10 +219,10 @@ namespace NLog.Config
             if (normalName != null && (normalName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
                                  normalName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
-#if NETSTANDARD
-                message += " - Extension NLog.Web.AspNetCore not included?";
-#else
+#if NETFRAMEWORK
                 message += " - Extension NLog.Web not included?";
+#else
+                message += " - Extension NLog.Web.AspNetCore not included?";                
 #endif
             }
             else if (normalName?.StartsWith("database", StringComparison.OrdinalIgnoreCase) == true)

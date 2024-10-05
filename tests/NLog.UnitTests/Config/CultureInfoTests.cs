@@ -202,7 +202,7 @@ namespace NLog.UnitTests.Config
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US", false);
                 logger.Error(ex, "");
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE", false);
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE", false);
 #endif

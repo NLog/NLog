@@ -38,7 +38,7 @@ namespace NLog.UnitTests.Internal
 {
     public class PlatformDetectorTests
     {
-#if !NETSTANDARD
+#if NETFRAMEWORK
         [Fact]
         public void IsMonoTest()
         {
