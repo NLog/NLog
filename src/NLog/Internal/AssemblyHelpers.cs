@@ -34,7 +34,6 @@ namespace NLog.Internal
 {
     using System;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
     using NLog.Common;
 
@@ -43,38 +42,6 @@ namespace NLog.Internal
     /// </summary>
     internal static class AssemblyHelpers
     {
-        /// <summary>
-        /// Gets all usable exported types from the given assembly.
-        /// </summary>
-        /// <param name="assembly">Assembly to scan.</param>
-        /// <returns>Usable types from the given assembly.</returns>
-        /// <remarks>Types which cannot be loaded are skipped.</remarks>
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Allow extension loading from config", "IL2026")]
-        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        public static Type[] SafeGetTypes(Assembly assembly)
-        {
-            try
-            {
-                return assembly.GetTypes();
-            }
-            catch (ReflectionTypeLoadException typeLoadException)
-            {
-                var result = typeLoadException.Types?.Where(t => t != null)?.ToArray() ?? ArrayHelper.Empty<Type>();
-                InternalLogger.Warn(typeLoadException, "Loaded {0} valid types from Assembly: {1}", result.Length, assembly.FullName);
-                foreach (var ex in typeLoadException.LoaderExceptions ?? ArrayHelper.Empty<Exception>())
-                {
-                    InternalLogger.Warn(ex, "Type load exception.");
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn(ex, "Failed to load types from Assembly: {0}", assembly.FullName);
-                return ArrayHelper.Empty<Type>();
-            }
-        }
-
-        [Obsolete("Instead use RegisterType<T>, as dynamic Assembly loading will be moved out. Marked obsolete with NLog v5.2")]
         public static string GetAssemblyFileLocation(Assembly assembly)
         {
             string assemblyFullName = string.Empty;
@@ -147,6 +114,36 @@ namespace NLog.Internal
                     throw;
                 }
                 return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Logs the assembly version and file version of the given Assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly to log.</param>
+        public static void LogAssemblyVersion(Assembly assembly)
+        {
+            try
+            {
+                if (!InternalLogger.IsInfoEnabled)
+                    return;
+
+                var fileVersion = assembly.GetFirstCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+                var productVersion = assembly.GetFirstCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                var globalAssemblyCache = false;
+#if NETFRAMEWORK
+                if (assembly.GlobalAssemblyCache)
+                    globalAssemblyCache = true;
+#endif
+                InternalLogger.Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
+                    assembly.FullName,
+                    fileVersion,
+                    productVersion,
+                    globalAssemblyCache);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Error logging version of assembly {0}.", assembly?.FullName);
             }
         }
     }

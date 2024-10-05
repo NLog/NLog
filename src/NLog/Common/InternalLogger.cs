@@ -37,7 +37,6 @@ namespace NLog.Common
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-    using System.Reflection;
     using JetBrains.Annotations;
     using NLog.Internal;
     using NLog.Time;
@@ -385,33 +384,6 @@ namespace NLog.Common
                 return true;
         }
 
-        /// <summary>
-        /// Logs the assembly version and file version of the given Assembly.
-        /// </summary>
-        /// <param name="assembly">The assembly to log.</param>
-        [Obsolete("InternalLogger should be minimal. Marked obsolete with NLog v5.3")]
-        public static void LogAssemblyVersion(Assembly assembly)
-        {
-            try
-            {
-                var fileVersion = assembly.GetFirstCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
-                var productVersion = assembly.GetFirstCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-                var globalAssemblyCache = false;
-#if NETFRAMEWORK
-                if (assembly.GlobalAssemblyCache)
-                    globalAssemblyCache = true;
-#endif
-                Info("{0}. File version: {1}. Product version: {2}. GlobalAssemblyCache: {3}",
-                    assembly.FullName,
-                    fileVersion,
-                    productVersion,
-                    globalAssemblyCache);
-            }
-            catch (Exception ex)
-            {
-                Error(ex, "Error logging version of assembly {0}.", assembly?.FullName);
-            }
-        }
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try
