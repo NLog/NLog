@@ -40,7 +40,7 @@ namespace NLog.Internal.FileAppenders
     using System.Text;
     using JetBrains.Annotations;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Security.AccessControl;
     using System.Security.Principal;
 #endif

@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Targets
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Web.Http;
     using System.Web.Http.Dependencies;
     using Microsoft.Owin.Hosting;
@@ -214,7 +214,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         private static string getNewWsAddress()
         {
             string WsAddress = "http://localhost:9000/";

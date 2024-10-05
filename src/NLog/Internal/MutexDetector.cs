@@ -55,7 +55,7 @@ namespace NLog.Internal
         {
             try
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 if (Environment.Version.Major < 4 && PlatformDetector.IsMono)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
 #endif

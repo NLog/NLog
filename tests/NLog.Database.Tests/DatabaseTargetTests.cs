@@ -36,7 +36,7 @@ namespace NLog.Database.Tests
     using System;
     using System.Collections;
     using System.Collections.Generic;
-#if !NETSTANDARD
+#if NETFRAMEWORK
     using System.Configuration;
 #endif
     using System.Data;
@@ -50,12 +50,12 @@ namespace NLog.Database.Tests
 #if MONO
     using Mono.Data.Sqlite;
     using System.Data.SqlClient;
-#elif NETSTANDARD
-    using Microsoft.Data.SqlClient;
-    using Microsoft.Data.Sqlite;
-#else
+#elif NETFRAMEWORK
     using System.Data.SqlClient;
     using System.Data.SQLite;
+#else
+    using Microsoft.Data.SqlClient;
+    using Microsoft.Data.Sqlite;
 #endif
 
     public class DatabaseTargetTests
@@ -65,7 +65,7 @@ namespace NLog.Database.Tests
             LogManager.ThrowExceptions = true;
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -1191,7 +1191,7 @@ Dispose()
             AssertLog(expectedLog);
         }
 
-#if !MONO && !NETSTANDARD
+#if !MONO && NETFRAMEWORK
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -1339,7 +1339,7 @@ Dispose()
             }
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         [Fact]
         public void OleDbShorthandNotationTest()
         {
@@ -1440,10 +1440,10 @@ Dispose()
         {
 #if MONO
             return "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#elif NETSTANDARD
-            return "Microsoft.Data.Sqlite.SqliteConnection, Microsoft.Data.Sqlite";
-#else
+#elif NETFRAMEWORK
             return "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#else
+            return "Microsoft.Data.Sqlite.SqliteConnection, Microsoft.Data.Sqlite";            
 #endif
         }
 
@@ -1638,10 +1638,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             // Use an in memory SQLite database
             // See https://www.sqlite.org/inmemorydb.html
-#if NETSTANDARD
-            var connectionString = "Data Source=:memory:";
-#else
+#if NETFRAMEWORK
             var connectionString = "Uri=file::memory:;Version=3";
+#else
+            var connectionString = "Data Source=:memory:";
 #endif
 
             return new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml(String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)).LogFactory;
@@ -1685,10 +1685,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
                 Assert.True(context.ThrowExceptions);  // Sanity check
 
-#if MONO || NETSTANDARD
-                Assert.Throws<SqliteException>(() => logFactory.Configuration.Install(context));
-#else
+#if NETFRAMEWORK && !MONO
                 Assert.Throws<SQLiteException>(() => logFactory.Configuration.Install(context));
+#else
+                Assert.Throws<SqliteException>(() => logFactory.Configuration.Install(context));
 #endif
             }
             finally
@@ -1826,7 +1826,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         [Fact]
         public void GetProviderNameFromAppConfig()
         {
@@ -2437,10 +2437,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             public SQLiteTest(string dbName)
             {
                 this.dbName = dbName;
-#if NETSTANDARD
-                connectionString = "Data Source=" + this.dbName;
-#else
+#if NETFRAMEWORK
                 connectionString = "Data Source=" + this.dbName + ";Version=3;";
+#else
+                connectionString = "Data Source=" + this.dbName;
 #endif
             }
 
@@ -2508,32 +2508,32 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         {
             public static void CreateDatabase(string dbName)
             {
-#if NETSTANDARD
-                // Using ConnectionString Mode=ReadWriteCreate
-#elif MONO
+#if MONO
                 SqliteConnection.CreateFile(dbName);
-#else
+#elif NETFRAMEWORK
                 SQLiteConnection.CreateFile(dbName);
+#else
+                // Using ConnectionString Mode=ReadWriteCreate
 #endif
             }
 
             public static DbConnection GetConnection(string connectionString)
             {
-#if NETSTANDARD
-                return new SqliteConnection(connectionString + ";Mode=ReadWriteCreate;");
-#elif MONO
+#if MONO
                 return new SqliteConnection(connectionString);
-#else
+#elif NETFRAMEWORK
                 return new SQLiteConnection(connectionString);
+#else
+                return new SqliteConnection(connectionString + ";Mode=ReadWriteCreate;");
 #endif
             }
 
             public static DbCommand CreateCommand(string commandString, DbConnection connection)
             {
-#if MONO || NETSTANDARD
-                return new SqliteCommand(commandString, (SqliteConnection)connection);
-#else
+#if NETFRAMEWORK && !MONO
                 return new SQLiteCommand(commandString, (SQLiteConnection)connection);
+#else
+                return new SqliteCommand(commandString, (SqliteConnection)connection);
 #endif
             }
         }
@@ -2547,7 +2547,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             public static string GetConnectionString(bool isAppVeyor)
             {
                 string connectionString = string.Empty;
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
 #endif
                 if (String.IsNullOrWhiteSpace(connectionString))

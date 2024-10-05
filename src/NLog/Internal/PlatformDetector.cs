@@ -56,7 +56,7 @@ namespace NLog.Internal
         /// </summary>
         public static bool IsUnix => CurrentOS == RuntimeOS.Linux || CurrentOS == RuntimeOS.MacOSX;
 
-#if !NETSTANDARD
+#if NETFRAMEWORK
         /// <summary>
         /// Gets a value indicating whether current runtime is Mono-based
         /// </summary>
@@ -66,15 +66,7 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
-#if NETSTANDARD
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-                return RuntimeOS.WindowsNT;
-            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-                return RuntimeOS.MacOSX;
-            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
-                return RuntimeOS.Linux;
-            return RuntimeOS.Unknown;
-#else
+#if NETFRAMEWORK
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)
             {
@@ -91,6 +83,14 @@ namespace NLog.Internal
                 return RuntimeOS.WindowsNT;
             }
 
+            return RuntimeOS.Unknown;
+#else
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return RuntimeOS.WindowsNT;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                return RuntimeOS.MacOSX;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
+                return RuntimeOS.Linux;
             return RuntimeOS.Unknown;
 #endif
         }

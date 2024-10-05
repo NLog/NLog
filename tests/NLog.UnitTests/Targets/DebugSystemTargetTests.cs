@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Targets
             try
             {
                 // Arrange
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Debug.Listeners.Clear();
                 Debug.Listeners.Add(new TextWriterTraceListener(sw));
 #endif
@@ -60,13 +60,13 @@ namespace NLog.UnitTests.Targets
 
                 // Assert
                 Assert.Single(logFactory.Configuration.AllTargets);
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Assert.Contains("Hello World", sw.ToString());
 #endif
             }
             finally
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Debug.Listeners.Clear();
 #endif
             }
@@ -80,7 +80,7 @@ namespace NLog.UnitTests.Targets
             try
             {
                 // Arrange
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Debug.Listeners.Clear();
                 Debug.Listeners.Add(new TextWriterTraceListener(sw));
 #endif
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Targets
 
                 // Assert
                 Assert.Single(logFactory.Configuration.AllTargets);
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Assert.Contains("Startup", sw.ToString());
                 Assert.Contains("Hello World", sw.ToString());
                 Assert.DoesNotContain("Shutdown", sw.ToString());
@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-#if !NETSTANDARD
+#if NETFRAMEWORK
                 Debug.Listeners.Clear();
 #endif
             }

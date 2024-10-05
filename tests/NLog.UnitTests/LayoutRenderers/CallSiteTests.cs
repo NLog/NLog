@@ -60,7 +60,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !NETSTANDARD
+#if NETFRAMEWORK
         [Fact]
         public void HiddenAssemblyTest()
         {

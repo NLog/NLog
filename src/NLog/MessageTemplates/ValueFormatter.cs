@@ -221,12 +221,12 @@ namespace NLog.MessageTemplates
 
         private static void SerializeConvertToString(object value, IFormatProvider formatProvider, StringBuilder builder)
         {
-#if NETSTANDARD
+#if !NETFRAMEWORK
             if (value is IFormattable)
                 builder.AppendFormat(formatProvider, "{0}", value); // Support ISpanFormattable
             else
 #endif
-            builder.Append(Convert.ToString(value, formatProvider));
+                builder.Append(Convert.ToString(value, formatProvider));
         }
 
         private static void SerializeStringObject(string stringValue, string format, StringBuilder builder)
@@ -350,12 +350,12 @@ namespace NLog.MessageTemplates
             {
                 if (value is IFormattable formattable)
                 {
-#if NETSTANDARD
+#if !NETFRAMEWORK
                     if (string.IsNullOrEmpty(format))
                         builder.AppendFormat(formatProvider, "{0}", formattable); // Support ISpanFormattable
                     else
 #endif
-                    builder.Append(formattable.ToString(format, formatProvider));
+                        builder.Append(formattable.ToString(format, formatProvider));
                 }
                 else
                 {

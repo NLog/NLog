@@ -889,7 +889,7 @@ namespace NLog.Targets
         private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !ReplaceFileContentsOnEachWrite;
 
         private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && IsSimpleKeepFileOpen
-#if !NETSTANDARD
+#if NETFRAMEWORK
             && !PlatformDetector.IsWin32
 #endif
             ;

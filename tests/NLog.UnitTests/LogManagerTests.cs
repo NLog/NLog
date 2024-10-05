@@ -251,7 +251,7 @@ namespace NLog.UnitTests
         [Fact]
         public void AutoReloadTest()
         {
-#if NETSTANDARD || MONO
+#if !NETFRAMEWORK || MONO
             if (IsLinux())
             {
                 Console.WriteLine("[SKIP] LogManagerTests.AutoReloadTest because we are running in Travis");

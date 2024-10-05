@@ -220,7 +220,7 @@ namespace NLog.LayoutRenderers
             {"HKEY_CLASSES_ROOT", RegistryHive.ClassesRoot},
             {"HKEY_USERS", RegistryHive.Users},
             {"HKEY_CURRENT_CONFIG", RegistryHive.CurrentConfig},
-#if !NETSTANDARD
+#if NETFRAMEWORK
             {"HKEY_DYN_DATA", RegistryHive.DynData},
 #endif
             {"HKEY_PERFORMANCE_DATA", RegistryHive.PerformanceData},

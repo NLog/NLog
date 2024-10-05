@@ -233,7 +233,7 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-#if !MONO && !NETSTANDARD
+#if NETFRAMEWORK && !MONO
         private FileStream WindowsCreateFile(bool allowFileSharedWriting, int bufferSize)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
@@ -287,7 +287,7 @@ namespace NLog.Internal.FileAppenders
         {
             var bufferSize = overrideBufferSize > 0 ? overrideBufferSize : CreateFileParameters.BufferSize;
 
-#if !MONO && !NETSTANDARD
+#if NETFRAMEWORK && !MONO
             try
             {
                 if (!CreateFileParameters.ForceManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
