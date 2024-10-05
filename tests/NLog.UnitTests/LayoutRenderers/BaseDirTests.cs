@@ -41,7 +41,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class BaseDirTests : NLogTestBase
     {
-        private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
         [Fact]
         public void BaseDirTest()
@@ -85,30 +85,15 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
         public void InjectBaseDirAndCheckConfigPathsTest()
         {
             string fakeBaseDir = @"y:\root\";
-            var old = LogFactory.CurrentAppDomain;
-            try
-            {
-                var currentAppDomain = new Mocks.AppDomainMock(fakeBaseDir);
-                LogFactory.CurrentAppDomain = currentAppDomain;
+            var appEnvironment = new Mocks.AppEnvironmentMock(null, null);
+            appEnvironment.AppDomainBaseDirectory = fakeBaseDir;
+            var baseLayoutRenderer = new NLog.LayoutRenderers.BaseDirLayoutRenderer(appEnvironment);
 
-                //test 1
-                AssertLayoutRendererOutput("${basedir}", fakeBaseDir);
-
-                //test 2
-                var paths = LogManager.LogFactory.GetCandidateConfigFilePaths().ToList();
-                var count = paths.Count(p => p.StartsWith(fakeBaseDir));
-
-                Assert.True(count > 0, $"At least one path should start with '{fakeBaseDir}'");
-            }
-            finally
-            {
-                //restore
-                LogFactory.CurrentAppDomain = old;
-            }
+            // test1
+            Assert.Equal(fakeBaseDir, baseLayoutRenderer.Render(LogEventInfo.CreateNullEvent()));
         }
 
         [Fact]

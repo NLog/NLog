@@ -73,10 +73,8 @@ namespace NLog.UnitTests.Mocks
 
         public IEnumerable<System.Reflection.Assembly> GetAppDomainRuntimeAssemblies() => NLog.Internal.ArrayHelper.Empty<System.Reflection.Assembly>();
 
-        [Obsolete("For unit testing only. Marked obsolete on NLog 5.0")]
-        public IAppDomain AppDomain { get; set; } = new AppDomainMock(string.Empty);
 
-        public event EventHandler<EventArgs> ProcessExit;
+        public event EventHandler ProcessExit;
 
         public bool FileExists(string path)
         {
