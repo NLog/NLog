@@ -35,9 +35,6 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
-    using JetBrains.Annotations;
-    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>
@@ -46,7 +43,6 @@ namespace NLog.Config
     internal sealed class ServiceRepositoryInternal : ServiceRepository
     {
         private readonly Dictionary<Type, Func<object>> _creatorMap = new Dictionary<Type, Func<object>>();
-        private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
         private readonly object _lockObject = new object();
         public event EventHandler<ServiceRepositoryUpdateEventArgs> TypeRegistered;
 
@@ -77,151 +73,30 @@ namespace NLog.Config
 
         public override object GetService(Type serviceType)
         {
-            var serviceInstance = DefaultResolveInstance(serviceType, null);
-            if (serviceInstance is null && serviceType.IsAbstract)
-            {
+            object serviceInstance = TryGetService(serviceType);
+            if (serviceInstance is null)
                 throw new NLogDependencyResolveException("Instance of class must be registered", serviceType);
-            }
+
             return serviceInstance;
+        }
+
+        private object TryGetService(Type serviceType)
+        {
+            Guard.ThrowIfNull(serviceType);
+
+            Func<object> objectResolver = null;
+            lock (_lockObject)
+            {
+                _creatorMap.TryGetValue(serviceType, out objectResolver);
+            }
+
+            return objectResolver?.Invoke();
         }
 
         internal override bool TryGetService<T>(out T serviceInstance)
         {
-            serviceInstance = DefaultResolveInstance(typeof(T), null) as T;
+            serviceInstance = TryGetService(typeof(T)) as T;
             return !(serviceInstance is null);
-        }
-
-        private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
-        {
-            Guard.ThrowIfNull(itemType);
-
-            Func<object> objectResolver = null;
-            CompiledConstructor compiledConstructor = null;
-
-            lock (_lockObject)
-            {
-                if (!_creatorMap.TryGetValue(itemType, out objectResolver))
-                {
-                    _lateBoundMap.TryGetValue(itemType, out compiledConstructor);
-                }
-            }
-
-            if (objectResolver is null && compiledConstructor is null)
-            {
-                if (itemType.IsAbstract)
-                {
-                    if (seenTypes is null)
-                        return null;
-                    else
-                        throw new NLogDependencyResolveException("Instance of class must be registered", itemType);
-                }
-
-                // Do not hold lock while resolving types to avoid deadlock on initialization of type static members
-#pragma warning disable CS0618 // Type or member is obsolete
-                var newCompiledConstructor = CreateCompiledConstructor(itemType);
-#pragma warning restore CS0618 // Type or member is obsolete
-
-                lock (_lockObject)
-                {
-                    if (!_lateBoundMap.TryGetValue(itemType, out compiledConstructor))
-                    {
-                        _lateBoundMap.Add(itemType, newCompiledConstructor);
-                        compiledConstructor = newCompiledConstructor;
-                    }
-                }
-            }
-
-            // Do not hold lock while calling constructor (or resolving parameter values) to avoid deadlock
-            var constructorParameters = compiledConstructor?.Parameters;
-            if (constructorParameters is null)
-            {
-                return objectResolver?.Invoke() ?? compiledConstructor?.Ctor(null);
-            }
-            else
-            {
-                seenTypes = seenTypes ?? new HashSet<Type>();
-                var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
-                return compiledConstructor?.Ctor(parameterValues);
-            }
-        }
-
-        [Obsolete("Instead use NLog.LogManager.Setup().SetupExtensions(). Marked obsolete with NLog v5.2")]
-        [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Trimming - Ignore since obsolete", "IL2070")]
-        private CompiledConstructor CreateCompiledConstructor(Type itemType)
-        {
-            try
-            {
-                InternalLogger.Debug("Object reflection needed to create instance of type: {0}", itemType);
-
-                var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
-                if (defaultConstructor is null)
-                {
-                    InternalLogger.Trace("Resolves parameterized constructor for {0}", itemType);
-                    var ctors = itemType.GetConstructors();
-                    if (ctors.Length == 0)
-                    {
-                        throw new NLogDependencyResolveException("No public constructor", itemType);
-                    }
-
-                    if (ctors.Length > 1)
-                    {
-                        throw new NLogDependencyResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
-                    }
-
-                    var ctor = ctors[0];
-                    var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(ctor);
-                    return new CompiledConstructor(constructorMethod, ctor.GetParameters());
-                }
-                else
-                {
-                    InternalLogger.Trace("Resolves default constructor for {0}", itemType);
-                    var constructorMethod = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
-                    return new CompiledConstructor(constructorMethod);
-                }
-            }
-            catch (MissingMethodException exception)
-            {
-                throw new NLogDependencyResolveException("Is the required permission granted?", exception, itemType);
-            }
-            finally
-            {
-                InternalLogger.Trace("Resolve {0} done", itemType.FullName);
-            }
-        }
-
-        private object[] CreateCtorParameterValues(ParameterInfo[] parameterInfos, HashSet<Type> seenTypes)
-        {
-            var parameterValues = new object[parameterInfos.Length];
-
-            for (var i = 0; i < parameterInfos.Length; i++)
-            {
-                var param = parameterInfos[i];
-
-                var parameterType = param.ParameterType;
-                if (seenTypes.Contains(parameterType))
-                {
-                    throw new NLogDependencyResolveException("There is a cycle", parameterType);
-                }
-
-                seenTypes.Add(parameterType);
-
-                var paramValue = DefaultResolveInstance(parameterType, seenTypes);
-                parameterValues[i] = paramValue;
-            }
-
-            return parameterValues;
-        }
-
-        private sealed class CompiledConstructor
-        {
-            [NotNull] public ReflectionHelpers.LateBoundConstructor Ctor { get; }
-            [CanBeNull] public ParameterInfo[] Parameters { get; }
-
-            public CompiledConstructor([NotNull] ReflectionHelpers.LateBoundConstructor ctor, ParameterInfo[] parameters = null)
-            {
-                Ctor = Guard.ThrowIfNull(ctor);
-                Parameters = parameters;
-            }
         }
     }
 }

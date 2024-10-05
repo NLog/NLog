@@ -87,52 +87,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void ResolveShouldInjectDependencies()
-        {
-            // Arrange
-            var logFactory = new LogFactory();
-
-            // Act
-            var target = logFactory.ServiceRepository.ResolveService<TargetWithInjection>();
-
-            // Assert
-            Assert.NotNull(target.JsonConverter);
-        }
-
-        [Fact]
-        public void ResolveShouldInjectNestedDependencies()
-        {
-            // Arrange
-            var logFactory = new LogFactory();
-
-            // Act
-            var target = logFactory.ServiceRepository.ResolveService<TargetWithNestedInjection>();
-
-            // Assert
-            Assert.NotNull(target.Helper.JsonConverter);
-        }
-
-        [Fact]
-        public void ResolveWithDirectCycleShouldThrow()
-        {
-            // Arrange
-            var logFactory = new LogFactory();
-
-            // Act & Assert
-            AssertCycleException<TargetWithDirectCycleInjection>(logFactory);
-        }
-
-        [Fact]
-        public void ResolveWithIndirectCycleShouldThrow()
-        {
-            // Arrange
-            var logFactory = new LogFactory();
-
-            // Act & Assert
-            AssertCycleException<TargetWithIndirectCycleInjection>(logFactory);
-        }
-
-        [Fact]
         public void HandleDelayedInjectDependenciesFailure()
         {
             using (new NoThrowNLogExceptions())
@@ -255,70 +209,6 @@ namespace NLog.UnitTests.Config
             {
                 builder.Append(string.Concat(value.ToString(), "_", Test));
                 return true;
-            }
-        }
-
-        private class TargetWithInjection : Target
-        {
-            public TargetWithInjection([NotNull] IJsonConverter jsonConverter)
-            {
-                JsonConverter = Guard.ThrowIfNull(jsonConverter);
-            }
-
-            public IJsonConverter JsonConverter { get; }
-        }
-
-        private class TargetWithNestedInjection : Target
-        {
-            public ClassWithInjection Helper { get; }
-
-            /// <inheritdoc/>
-            public TargetWithNestedInjection([NotNull] ClassWithInjection helper)
-            {
-                Helper = Guard.ThrowIfNull(helper);
-            }
-        }
-
-        private class TargetWithDirectCycleInjection : Target
-        {
-            /// <inheritdoc/>
-            public TargetWithDirectCycleInjection(TargetWithDirectCycleInjection cycle1)
-            {
-            }
-        }
-
-        private class TargetWithIndirectCycleInjection : Target
-        {
-            /// <inheritdoc/>
-            public TargetWithIndirectCycleInjection(CycleHelperClass1 helper)
-            {
-            }
-        }
-
-        private class CycleHelperClass1
-        {
-            /// <inheritdoc/>
-            public CycleHelperClass1(CycleHelperClass2 helper)
-            {
-            }
-        }
-
-        private class CycleHelperClass2
-        {
-            /// <inheritdoc/>
-            public CycleHelperClass2(CycleHelperClass1 helper)
-            {
-            }
-        }
-
-        private class ClassWithInjection
-        {
-            public IJsonConverter JsonConverter { get; }
-
-            /// <inheritdoc/>
-            public ClassWithInjection(IJsonConverter jsonConverter)
-            {
-                JsonConverter = jsonConverter;
             }
         }
 
