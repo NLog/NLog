@@ -87,14 +87,6 @@ namespace NLog
         /// </remarks>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-        /// <summary>
-        /// Obsolete and replaced by <see cref="ConfigurationChanged"/> with NLog v5.2.
-        /// Occurs when logging <see cref="Configuration" /> gets reloaded.
-        /// </summary>
-        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
-
         private static event EventHandler<EventArgs> LoggerShutdown;
 
         /// <summary>
@@ -694,24 +686,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="OnConfigurationReloaded"/> with NLog 5.2.
-        ///
-        /// Raises the event when the configuration is reloaded.
-        /// </summary>
-        /// <param name="e">Event arguments</param>
-        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
-        protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
-        {
-            ConfigurationReloaded?.Invoke(this, e);
-        }
-
-        [Obsolete("Replaced by ConfigurationChanged, but check args.ActivatedConfiguration != null. Marked obsolete on NLog 5.2")]
-        internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
-        {
-            OnConfigurationReloaded(eventArgs);
-        }
-
-        /// <summary>
         /// Change this method with NLog v6 to completely disconnect LogFactory from Targets/Layouts
         /// - Remove LoggingRule-List-parameter
         /// - Return ITargetWithFilterChain[]
@@ -739,7 +713,6 @@ namespace NLog
             _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
 
             LoggerShutdown -= OnStopLogging;
-            ConfigurationReloaded = null;   // Release event listeners
 
             if (Monitor.TryEnter(_syncRoot, 500))
             {
