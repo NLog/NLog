@@ -56,7 +56,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Targets.WebService.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Targets.Network", "NLog.Targets.Network\NLog.Targets.Network.csproj", "{B048DD1F-4A24-453B-9C3D-F08280AE3FF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Targets.Network.Tests", "..\tests\NLog.Targets.Network.Tests\NLog.Targets.Network.Tests.csproj", "{38828090-4953-4EF5-929C-8063FD4BCCC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Targets.Network.Tests", "..\tests\NLog.Targets.Network.Tests\NLog.Targets.Network.Tests.csproj", "{38828090-4953-4EF5-929C-8063FD4BCCC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,7 +141,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 		{94F21E64-A259-4D79-AFCA-08974DF51701} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 		{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 		{99BCE294-CA56-41BD-AEBF-61795F5650AB} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
