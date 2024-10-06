@@ -5,7 +5,7 @@
 
     <Title>NLog.Targets.WebService</Title>
     <Company>NLog</Company>
-    <Description>WebServiceTarget can call web-service for each logevent</Description>
+    <Description>WebServiceTarget for calling HTTP / SOAP / REST web-service</Description>
     <Product>NLog.Targets.WebService v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
@@ -17,7 +17,7 @@
       https://github.com/NLog/NLog/wiki/WebService-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>NLog;WebService;HttpClient;Network;logging;log</PackageTags>
+    <PackageTags>NLog;WebService;Soap;Rest;HttpClient;Network;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>

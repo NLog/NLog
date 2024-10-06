@@ -201,10 +201,6 @@ namespace NLog.Config
             factory.TargetFactory.RegisterType<NLog.Targets.EventLogTarget>("EventLog");
 #endif
             factory.TargetFactory.RegisterType<NLog.Targets.FileTarget>("File");
-            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("Mail");
-            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("Email");
-            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("Smtp");
-            factory.TargetFactory.RegisterType<NLog.Targets.MailTarget>("SmtpClient");
             factory.TargetFactory.RegisterType<NLog.Targets.MemoryTarget>("Memory");
             factory.RegisterType<NLog.Targets.MethodCallParameter>();
             factory.TargetFactory.RegisterType<NLog.Targets.MethodCallTarget>("MethodCall");
