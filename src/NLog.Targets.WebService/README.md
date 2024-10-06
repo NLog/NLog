@@ -1,6 +1,6 @@
 # NLog WebService Target
 
-NLog WebService Target calls WebService method on each logevent, with support for different protocols: JsonPost, XmlPost, HttpGet, HttpPost, Soap11, Soap12
+NLog WebService Target for calling web-service for each logevent, with support for different protocols: JsonPost, XmlPost, HttpGet, HttpPost, Soap11, Soap12
 
 If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 

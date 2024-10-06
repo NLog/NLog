@@ -54,7 +54,7 @@ function Test-XmlFile
 $pwd = get-location;
 $testFilesDir = "$pwd\examples\targets\Configuration File"
 $xsdFilePath = "$pwd\src\NLog\bin\Release\NLog.xsd"
-$excludedTests = ("MessageBox","RichTextBox","FormControl","PerfCounter","OutputDebugString","MSMQ","Database","WebService")
+$excludedTests = ("MessageBox","RichTextBox","FormControl","PerfCounter","OutputDebugString","MSMQ","Database","Mail","WebService")
 # Returns true if all selected tests in examples directory are valid
 $ret = $true
 Get-ChildItem -Path $testFilesDir -Directory -Exclude $excludedTests | Get-ChildItem -Recurse -File -Filter NLog.config | % {

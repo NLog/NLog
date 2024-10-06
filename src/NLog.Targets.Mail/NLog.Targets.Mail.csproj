@@ -1,25 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-
     <TargetFrameworks>net35;net46;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog Database Target</Title>
+    <Title>NLog.Targets.Mail</Title>
     <Company>NLog</Company>
-    <Description>NLog.Database includes DatabaseTarget for writing to any database with DbProvider support</Description>
-    <Product>NLog Database v$(ProductVersion)</Product>
+    <Description>NLog.Targets.Mail for sending emails using the .NET SmtpClient</Description>
+    <Product>NLog.Targets.Mail v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      Docs:
-      https://github.com/nlog/NLog/wiki/Database-target
+      MailTarget Docs:
+      https://github.com/nlog/NLog/wiki/Mail-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>NLog;Database;SQL;logging;log</PackageTags>
+    <PackageTags>NLog;Smtp;SmtpClient;mail;email;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
@@ -31,28 +29,38 @@
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
+    <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</EnableTrimAnalyzer>
+    <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</IsTrimmable>
+    <TrimMode>copyused</TrimMode>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Title>NLog.Database for .NET Framework 4.6</Title>
+    <Title>NLog.Targets.Mail for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.Database for .NET Framework 4.5</Title>
+    <Title>NLog.Targets.Mail for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Title>NLog.Database for .NET Framework 3.5</Title>
+    <Title>NLog.Targets.Mail for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <Title>NLog.Database for NetStandard 2.0</Title>
+    <Title>NLog.Targets.Mail for NetStandard 2.0</Title>
   </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
@@ -61,18 +69,6 @@
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-
-  <PropertyGroup>
-    <AssemblyTitle>$(Title)</AssemblyTitle>
-  </PropertyGroup>
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />

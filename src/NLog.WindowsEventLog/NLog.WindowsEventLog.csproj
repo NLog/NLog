@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
 
     <Title>NLog.WindowsEventLog for .NET Standard</Title>
@@ -41,7 +39,7 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog.WindowsEventLog for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;WindowsEventLogPackage</DefineConstants>
+    <DefineConstants>$(DefineConstants);WindowsEventLogPackage</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
