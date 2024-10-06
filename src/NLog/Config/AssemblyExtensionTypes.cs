@@ -97,7 +97,6 @@ namespace NLog.Config
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LiteralLayoutRenderer>("literal");
             factory.RegisterTypeProperties<NLog.LayoutRenderers.LiteralWithRawValueLayoutRenderer>(() => null);
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LocalIpAddressLayoutRenderer>("local-ip");
-            factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer>("log4jxmlevent");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("loggername");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LoggerNameLayoutRenderer>("logger");
             factory.LayoutRendererFactory.RegisterType<NLog.LayoutRenderers.LongDateLayoutRenderer>("longdate");
@@ -184,12 +183,10 @@ namespace NLog.Config
             factory.RegisterType<NLog.Layouts.JsonAttribute>();
             factory.LayoutFactory.RegisterType<NLog.Layouts.JsonLayout>("JsonLayout");
             factory.LayoutFactory.RegisterType<NLog.Layouts.LayoutWithHeaderAndFooter>("LayoutWithHeaderAndFooter");
-            factory.LayoutFactory.RegisterType<NLog.Layouts.Log4JXmlEventLayout>("Log4JXmlEventLayout");
             factory.LayoutFactory.RegisterType<NLog.Layouts.SimpleLayout>("SimpleLayout");
             factory.RegisterType<NLog.Layouts.ValueTypeLayoutInfo>();
             factory.RegisterType<NLog.Layouts.XmlAttribute>();
             factory.LayoutFactory.RegisterType<NLog.Layouts.XmlLayout>("XmlLayout");
-            factory.TargetFactory.RegisterType<NLog.Targets.ChainsawTarget>("Chainsaw");
             factory.TargetFactory.RegisterType<NLog.Targets.ColoredConsoleTarget>("ColoredConsole");
             factory.RegisterType<NLog.Targets.ConsoleRowHighlightingRule>();
             factory.TargetFactory.RegisterType<NLog.Targets.ConsoleTarget>("Console");
@@ -204,9 +201,6 @@ namespace NLog.Config
             factory.TargetFactory.RegisterType<NLog.Targets.MemoryTarget>("Memory");
             factory.RegisterType<NLog.Targets.MethodCallParameter>();
             factory.TargetFactory.RegisterType<NLog.Targets.MethodCallTarget>("MethodCall");
-            factory.TargetFactory.RegisterType<NLog.Targets.NetworkTarget>("Network");
-            factory.RegisterType<NLog.Targets.NLogViewerParameterInfo>();
-            factory.TargetFactory.RegisterType<NLog.Targets.NLogViewerTarget>("NLogViewer");
             factory.TargetFactory.RegisterType<NLog.Targets.NullTarget>("Null");
             factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
             factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("Trace");

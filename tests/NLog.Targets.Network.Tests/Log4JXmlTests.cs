@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.Targets.Network
 {
     using System;
     using System.Collections.Generic;
@@ -39,16 +39,24 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Reflection;
     using System.Xml;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
 
-    public class Log4JXmlTests : NLogTestBase
+    public class Log4JXmlTests
     {
+        public Log4JXmlTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void Log4JXmlTest()
         {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml(@"
+            var logFactory = new LogFactory().Setup()
+                .SetupExtensions(ext => ext.RegisterLayoutRenderer<Log4JXmlEventLayoutRenderer>())
+                .LoadConfigurationFromXml(@"
             <nlog throwExceptions='true'>
                 <targets>
                     <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}:formattedMessage=${message}}' />
@@ -72,7 +80,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", new Exception("Hello Exception", new Exception("Goodbye Exception")), null, "some message \u0014");
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);
-            string result = GetDebugLastMessage("debug", logFactory);
+            string result = logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage;
             Assert.DoesNotContain("dummy", result);
 
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
@@ -89,12 +97,9 @@ namespace NLog.UnitTests.LayoutRenderers
                 "log4j.message",
                 "log4j.NDC",
                 "log4j.locationInfo",
-                "nlog.locationInfo",
                 "log4j.properties",
-                "nlog.properties",
                 "log4j.throwable",
                 "log4j.data",
-                "nlog.data",
             };
 
             using (XmlReader reader = XmlReader.Create(stringReader))
@@ -127,7 +132,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 var now = DateTime.UtcNow;
                                 Assert.True(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
 
-                                Assert.Equal(CurrentManagedThreadId.ToString(), reader.GetAttribute("thread"));
+                                Assert.Equal(Environment.CurrentManagedThreadId.ToString(), reader.GetAttribute("thread"));
                                 break;
 
                             case "message":
@@ -142,7 +147,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "locationInfo":
                                 Assert.Equal(MethodBase.GetCurrentMethod().DeclaringType.FullName, reader.GetAttribute("class"));
-                                Assert.Equal(MethodBase.GetCurrentMethod().ToString(), reader.GetAttribute("method"));
+                                Assert.Equal(MethodBase.GetCurrentMethod().Name, reader.GetAttribute("method"));
                                 break;
 
                             case "properties":
@@ -160,7 +165,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 switch (name)
                                 {
                                     case "log4japp":
-                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + CurrentProcessId + ")", value);
+                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + System.Diagnostics.Process.GetCurrentProcess().Id + ")", value);
                                         break;
 
                                     case "log4jmachinename":
@@ -192,33 +197,6 @@ namespace NLog.UnitTests.LayoutRenderers
                             default:
                                 throw new NotSupportedException("Unknown element: " + key);
                         }
-                        continue;
-                    }
-
-                    if (reader.NodeType == XmlNodeType.Element && reader.Prefix == "nlog")
-                    {
-                        switch (key)
-                        {
-                            case "eventSequenceNumber":
-                                break;
-
-                            case "locationInfo":
-                                Assert.Equal(GetType().Assembly.FullName, reader.GetAttribute("assembly"));
-                                break;
-
-                            case "properties":
-                                break;
-
-                            case "data":
-                                var name = reader.GetAttribute("name");
-                                var value = reader.GetAttribute("value");
-                                Assert.Equal("nlogPropertyKey", name);
-                                Assert.Equal("nlogPropertyValue", value);
-                                break;
-
-                            default:
-                                throw new NotSupportedException("Unknown element: " + key);
-                        }
                     }
                 }
             }
@@ -236,7 +214,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 Parameters =
                 {
-                    new NLogViewerParameterInfo
+                    new Log4JXmlEventParameter
                     {
                         Name = "mt",
                         Layout = "${message:raw=true}",
@@ -253,7 +231,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 Parameters = new[] { "world" },
             };
 
-            var threadid = CurrentManagedThreadId;
+            var threadid = Environment.CurrentManagedThreadId;
             var machinename = Environment.MachineName;
             Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, &lt;world&gt;</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, &lt;{{0}}&gt;\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
         }

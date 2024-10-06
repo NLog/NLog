@@ -78,7 +78,8 @@ namespace NLog.Targets
         private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>(StringComparer.Ordinal);
         private readonly LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
 
-        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(32 * 1024);
+        private readonly char[] _reusableEncodingBuffer = new char[32 * 1024];
+        private readonly StringBuilder _reusableStringBuilder = new StringBuilder();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -506,24 +507,22 @@ namespace NLog.Targets
 
         private byte[] RenderBytesToWrite(LogEventInfo logEvent)
         {
-            using (var localBuffer = _reusableEncodingBuffer.Allocate())
+            lock (_reusableEncodingBuffer)
             {
-                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
+                try
                 {
-                    return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
-                }
-                else
-                {
-                    using (var localBuilder = ReusableLayoutBuilder.Allocate())
+                    _reusableStringBuilder.Length = 0;
+                    Layout.Render(logEvent, _reusableStringBuilder);
+                    if (NewLine)
                     {
-                        Layout.Render(logEvent, localBuilder.Result);
-                        if (NewLine)
-                        {
-                            localBuilder.Result.Append(LineEnding.NewLineCharacters);
-                        }
-
-                        return GetBytesFromStringBuilder(localBuffer.Result, localBuilder.Result);
+                        _reusableStringBuilder.Append(LineEnding.NewLineCharacters);
                     }
+
+                    return GetBytesFromStringBuilder(_reusableEncodingBuffer, _reusableStringBuilder);
+                }
+                finally
+                {
+                    _reusableStringBuilder.Length = 0;
                 }
             }
         }
@@ -536,17 +535,6 @@ namespace NLog.Targets
                 return Encoding.GetBytes(charBuffer, 0, stringBuilder.Length);
             }
             return Encoding.GetBytes(stringBuilder.ToString());
-        }
-
-        private byte[] GetBytesFromString(char[] charBuffer, string layoutMessage)
-        {
-            InternalLogger.Trace("{0}: Sending {1}", this, layoutMessage);
-            if (layoutMessage.Length <= charBuffer.Length)
-            {
-                layoutMessage.CopyTo(0, charBuffer, 0, layoutMessage.Length);
-                return Encoding.GetBytes(charBuffer, 0, layoutMessage.Length);
-            }
-            return Encoding.GetBytes(layoutMessage);
         }
 
         private byte[] CompressBytesToWrite(byte[] payload)

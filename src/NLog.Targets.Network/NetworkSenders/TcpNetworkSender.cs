@@ -218,7 +218,7 @@ namespace NLog.Internal.NetworkSenders
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (LogManager.ThrowExceptions)
                 {
                     throw;
                 }
@@ -236,7 +236,7 @@ namespace NLog.Internal.NetworkSenders
             // Schedule async network operation to avoid blocking socket-operation (Allow adding more request)
             if (_asyncBeginRequest is null)
                 _asyncBeginRequest = BeginRequestAsync;
-            AsyncHelpers.StartAsyncTask(_asyncBeginRequest, socketEventArgs);
+            System.Threading.ThreadPool.QueueUserWorkItem(_asyncBeginRequest, socketEventArgs);
         }
 
         private void BeginRequestAsync(object state)

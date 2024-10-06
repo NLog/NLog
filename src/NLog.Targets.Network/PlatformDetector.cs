@@ -31,28 +31,48 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Net;
-using NLog.Internal.NetworkSenders;
-
-namespace NLog.UnitTests.Mocks
+namespace NLog.Internal
 {
-    [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
-    class WebRequestFactoryMock : IWebRequestFactory
+    /// <summary>
+    /// Detects the platform the NLog is running on.
+    /// </summary>
+    internal static class PlatformDetector
     {
-        private readonly WebRequestMock _mock;
+        /// <summary>
+        /// Gets the current runtime OS.
+        /// </summary>
+        public static RuntimeOS CurrentOS => _currentOS ?? (_currentOS = GetCurrentRuntimeOS()).Value;
+        private static RuntimeOS? _currentOS;
 
-        /// <inheritdoc/>
-        public WebRequestFactoryMock(WebRequestMock mock)
+        private static RuntimeOS GetCurrentRuntimeOS()
         {
-            _mock = mock;
-        }
+#if NETFRAMEWORK
+            var platformID = System.Environment.OSVersion.Platform;
+            if ((int)platformID == 4 || (int)platformID == 128)
+            {
+                return RuntimeOS.Linux;
+            }
 
-        /// <inheritdoc/>
-        public WebRequest CreateWebRequest(Uri address)
-        {
-            _mock.RequestedAddress = address;
-            return _mock;
+            if (platformID == System.PlatformID.Win32Windows)
+            {
+                return RuntimeOS.Windows9x;
+            }
+
+            if (platformID == System.PlatformID.Win32NT)
+            {
+                return RuntimeOS.WindowsNT;
+            }
+
+            return RuntimeOS.Unknown;
+#else
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return RuntimeOS.WindowsNT;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                return RuntimeOS.MacOSX;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
+                return RuntimeOS.Linux;
+            return RuntimeOS.Unknown;
+#endif
         }
     }
 }

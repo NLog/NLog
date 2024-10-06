@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Targets.Network
 {
     using System;
     using System.Collections.Generic;
@@ -48,8 +48,13 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
 
-    public class NetworkTargetTests : NLogTestBase
+    public class NetworkTargetTests
     {
+        public NetworkTargetTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void HappyPathDefaultsTest()
         {
@@ -77,7 +82,8 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.LineEnding = lineEnding;
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -107,7 +113,7 @@ namespace NLog.UnitTests.Targets
             Assert.Single(senderFactory.Senders);
 
             var sender = senderFactory.Senders[0];
-            target.Close();
+            logFactory.Shutdown();
 
             // Get the length of all the messages and their line endings
             var eol = lineEnding?.NewLineCharacters ?? string.Empty;
@@ -151,7 +157,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -187,7 +194,7 @@ namespace NLog.UnitTests.Targets
 
             target.Flush(flushContinuation);
             Assert.True(mre.WaitOne(10000), "Network Flush not completed");
-            target.Close();
+            logFactory.Shutdown();
 
             var actual = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", actual);
@@ -213,7 +220,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var mre = new ManualResetEvent(false);
 
@@ -224,7 +232,7 @@ namespace NLog.UnitTests.Targets
 
             target.Flush(flushContinuation);
             Assert.True(mre.WaitOne(10000), "Network Flush not completed");
-            target.Close();
+            logFactory.Shutdown();
 
             string expectedLog = @"";
             Assert.Equal(expectedLog, senderFactory.Log.ToString());
@@ -240,7 +248,8 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.KeepConnection = true;
             target.ConnectionCacheSize = 2;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -271,7 +280,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
-            target.Close();
+            logFactory.Shutdown();
 
             string result = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", result);
@@ -299,7 +308,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = false;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -329,7 +339,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
-            target.Close();
+            logFactory.Shutdown();
 
             string result = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", result);
@@ -363,7 +373,8 @@ namespace NLog.UnitTests.Targets
             target.KeepConnection = true;
             target.MaxMessageSize = 10;
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             int droppedLogs = 0;
             target.LogEventDropped += (sender, args) => droppedLogs++;
@@ -393,7 +404,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
             }
 
-            target.Close();
+            logFactory.Shutdown();
 
             string result = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", result);
@@ -419,7 +430,8 @@ namespace NLog.UnitTests.Targets
             target.KeepConnection = true;
             target.MaxMessageSize = 10;
             target.OnOverflow = NetworkTargetOverflowAction.Error;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             int droppedLogs = 0;
             target.LogEventDropped += (sender, args) => droppedLogs++;
@@ -449,7 +461,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("NetworkTarget: Discarded LogEvent because MessageSize=15 is above MaxMessageSize=10", exceptions[1].Message);
             Assert.Null(exceptions[2]);
 
-            target.Close();
+            logFactory.Shutdown();
 
             string result = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", result);
@@ -492,7 +504,7 @@ namespace NLog.UnitTests.Targets
                 }
             };
 
-            target.Initialize(null);
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -522,7 +534,7 @@ namespace NLog.UnitTests.Targets
             Assert.Null(exceptions[3]);
             Assert.Null(exceptions[4]);
 
-            target.Close();
+            logFactory.Shutdown();
 
             var result = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", result);
@@ -595,7 +607,8 @@ namespace NLog.UnitTests.Targets
                         }
                     }, null);
 
-                target.Initialize(new LoggingConfiguration());
+
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
                 int pendingWrites = 100;
                 var writeCompleted = new ManualResetEvent(false);
@@ -624,7 +637,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 Assert.True(writeCompleted.WaitOne(10000), "Network Writes did not complete");
-                target.Close();
+                logFactory.Shutdown();
                 foreach (var ex in exceptions)
                 {
                     Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
@@ -639,13 +652,35 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void NetworkTargetUdpSplitEnabledTest()
         {
-            RetryingIntegrationTest(3, () => NetworkTargetUdpTest(true));
+            for (int i = 1; i <= 3; ++i)
+            {
+                try
+                {
+                    NetworkTargetUdpTest(true);
+                }
+                catch
+                {
+                    if (i == 3)
+                        throw;
+                }
+            }
         }
 
         [Fact]
         public void NetworkTargetUdpSplitDisabledTest()
         {
-            RetryingIntegrationTest(3, () => NetworkTargetUdpTest(false));
+            for (int i = 1; i <= 3; ++i)
+            {
+                try
+                {
+                    NetworkTargetUdpTest(false);
+                }
+                catch
+                {
+                    if (i == 3)
+                        throw;
+                }
+            }
         }
 
         private static int getNewNetworkPort()
@@ -727,7 +762,7 @@ namespace NLog.UnitTests.Targets
                 remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 listener.BeginReceiveFrom(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, ref remoteEndPoint, receivedDatagram, null);
 
-                target.Initialize(new LoggingConfiguration());
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
                 var writeCompleted = new ManualResetEvent(false);
                 var exceptions = new List<Exception>();
@@ -754,7 +789,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
-                target.Close();
+                logFactory.Shutdown();
                 foreach (var ex in exceptions)
                 {
                     Assert.True(ex == null, $"Network Write Exception: {ex?.ToString()}");
@@ -779,7 +814,7 @@ namespace NLog.UnitTests.Targets
                 KeepConnection = true,
             };
 
-            target.Initialize(new LoggingConfiguration());
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             int toWrite = 10;
             int pendingWrites = toWrite;
@@ -808,18 +843,19 @@ namespace NLog.UnitTests.Targets
                     target.WriteAsyncLogEvent(ev);
                 }
             };
-            AsyncHelpers.StartAsyncTask(loggerTask, null);
+            System.Threading.ThreadPool.QueueUserWorkItem(loggerTask, null);
             Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
 
             var shutdownCompleted = new ManualResetEvent(false);
             WaitCallback closeTask = (state) =>
             {
                 // no exception
-                target.Close();
                 shutdownCompleted.Set();
             };
-            AsyncHelpers.StartAsyncTask(closeTask, null);
+            System.Threading.ThreadPool.QueueUserWorkItem(closeTask, null);
             Assert.True(shutdownCompleted.WaitOne(10000), "Network Close not completed");
+
+            logFactory.Shutdown();
 
             Assert.Equal(toWrite, exceptions.Count);
             foreach (var ex in exceptions)
@@ -838,7 +874,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             int discardEventCalls = 0;
             target.LogEventDropped += (sender, args) => discardEventCalls++;
@@ -876,6 +913,9 @@ namespace NLog.UnitTests.Targets
                 target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "logger", $"msg{i}").WithContinuation(asyncContinuation));
             }
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
+
+            logFactory.Shutdown();
+
             Assert.True(exceptions.Count >= 6, $"Network write not completed: {exceptions.Count}");
             Assert.True(senderFactory.BeginRequestCounter <= 3, $"Network write not discarded: {senderFactory.BeginRequestCounter}");
 
@@ -898,7 +938,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             int pendingWrites = 1;
             var exceptions = new List<Exception>();
@@ -933,6 +974,9 @@ namespace NLog.UnitTests.Targets
             }
             Assert.True(exceptions.Count < 4, $"Network write not growing: {exceptions.Count}");
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
+
+            logFactory.Shutdown();
+
             Assert.Equal(6, exceptions.Count);
             Assert.Equal(6, senderFactory.BeginRequestCounter);
 
@@ -953,7 +997,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             int pendingWrites = 1;
             var exceptions = new List<Exception>();
@@ -988,6 +1033,7 @@ namespace NLog.UnitTests.Targets
             }
             Assert.True(exceptions.Count >= 4, $"Network write not blocking: {exceptions.Count}");
             Assert.True(mre.WaitOne(10000), "Network Write not completed");
+            logFactory.Shutdown();
             Assert.Equal(6, exceptions.Count);
             Assert.Equal(6, senderFactory.BeginRequestCounter);
 
@@ -1012,7 +1058,8 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.KeepConnection = false;
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -1042,7 +1089,7 @@ namespace NLog.UnitTests.Targets
             Assert.Null(exceptions[3]);
             Assert.Null(exceptions[4]);
 
-            target.Close();
+            logFactory.Shutdown();
 
             var result = senderFactory.Log.ToString();
             Assert.Contains("1: connect tcp://logger1.company.lan/", result);
@@ -1079,7 +1126,8 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var writeCompleted = new ManualResetEvent(false);
@@ -1101,10 +1149,10 @@ namespace NLog.UnitTests.Targets
             {
                 Thread.Sleep(10);
                 target.Flush(ex => { });
-                target.Close();
+                logFactory.Shutdown();
                 shutdownCompleted.Set();
             };
-            AsyncHelpers.StartAsyncTask(shutdownTask, null);
+            System.Threading.ThreadPool.QueueUserWorkItem(shutdownTask, null);
 
             WaitCallback loggerTask = (state) =>
             {
@@ -1116,7 +1164,7 @@ namespace NLog.UnitTests.Targets
 
                 writeCompleted.Set();
             };
-            AsyncHelpers.StartAsyncTask(loggerTask, null);
+            System.Threading.ThreadPool.QueueUserWorkItem(loggerTask, null);
 
             Assert.True(writeCompleted.WaitOne(10000), "Network Write not completed");
             Assert.True(shutdownCompleted.WaitOne(10000), "Network Shutdown not completed");
@@ -1129,14 +1177,17 @@ namespace NLog.UnitTests.Targets
         [InlineData("tls,tls11", SslProtocols.Tls11 | SslProtocols.Tls)]
         public void SslProtocolsConfigTest(string sslOptions, SslProtocols expected)
         {
-            var config = XmlLoggingConfiguration.CreateFromXmlString($@"
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<NetworkTarget>())
+                .LoadConfigurationFromXml($@"
             <nlog>
                 <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1:50001' sslProtocols='{sslOptions}' /></targets>
 
-            </nlog>");
+            </nlog>").LogFactory;
 
-            var target = config.FindTargetByName<NetworkTarget>("target1");
+            var target = logFactory.Configuration.FindTargetByName<NetworkTarget>("target1");
             Assert.Equal(expected, target.SslProtocols);
+
+            logFactory.Shutdown();
         }
 
         [Theory]
@@ -1144,7 +1195,8 @@ namespace NLog.UnitTests.Targets
         [InlineData("30", 30)]
         public void KeepAliveTimeConfigTest(string keepAliveTimeSeconds, int expected)
         {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<NetworkTarget>())
+                .LoadConfigurationFromXml($@"
             <nlog>
                 <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' keepAliveTimeSeconds='{keepAliveTimeSeconds}' /></targets>
                 <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
@@ -1162,7 +1214,8 @@ namespace NLog.UnitTests.Targets
         [InlineData("30", 30)]
         public void SendTimeoutConfigTest(string sendTimeoutSeconds, int expected)
         {
-            var logFactory = new LogFactory().Setup().LoadConfigurationFromXml($@"
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<NetworkTarget>())
+                .LoadConfigurationFromXml($@"
             <nlog>
                 <targets async='true'><target name='target1' type='network' layout='${{level}}|${{threadid}}|${{message}}' Address='tcp://127.0.0.1:50001' sendTimeoutSeconds='{sendTimeoutSeconds}' /></targets>
                 <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
@@ -1180,7 +1233,8 @@ namespace NLog.UnitTests.Targets
         {
             // this would fail because of stack overflow in the
             // constructor of NLogViewerTarget
-            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterTarget<ChainsawTarget>("NLogViewer"))
+                .LoadConfigurationFromXml(@"
 <nlog>
   <targets>
     <target name='viewer' type='NLogViewer' address='udp://127.0.0.1:9999' />
@@ -1188,9 +1242,9 @@ namespace NLog.UnitTests.Targets
   <rules>
     <logger name='*' minlevel='Debug' writeTo='viewer' />
   </rules>
-</nlog>");
+</nlog>").LogFactory;
 
-            var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
+            var target = logFactory.Configuration.LoggingRules[0].Targets[0] as ChainsawTarget;
             Assert.NotNull(target);
         }
 
@@ -1206,7 +1260,8 @@ namespace NLog.UnitTests.Targets
             target.Compress = NetworkTargetCompressionType.GZip;
             target.CompressMinBytes = 15;
             target.LineEnding = LineEndingMode.CRLF;
-            target.Initialize(null);
+
+            var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(target)).LogFactory;
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -1237,6 +1292,8 @@ namespace NLog.UnitTests.Targets
                 var bigMessage = target.Encoding.GetString(outstream.GetBuffer(), 0, (int)outstream.Length);
                 Assert.Equal("superbigmessage\r\n", bigMessage);
             }
+
+            logFactory.Shutdown();
         }
 
         internal sealed class MyQueudSenderFactory : INetworkSenderFactory
@@ -1311,7 +1368,7 @@ namespace NLog.UnitTests.Targets
                 if (_senderFactory.AsyncMode)
                 {
                     WaitCallback asyncTask = (state) => SendSync(eventArgs);
-                    AsyncHelpers.StartAsyncTask(asyncTask, null);
+                    System.Threading.ThreadPool.QueueUserWorkItem(asyncTask, null);
                 }
                 else
                 {

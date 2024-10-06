@@ -31,44 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+using System.IO;
+
+namespace NLog.Targets.Network
 {
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
-
     /// <summary>
-    /// Represents a parameter to a NLogViewer target.
+    /// Memorystream that doesn't dispose by default for asserting the content
     /// </summary>
-    [NLogConfigurationItem]
-    public class NLogViewerParameterInfo
+    public sealed class ManualDisposableMemoryStream : MemoryStream
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NLogViewerParameterInfo" /> class.
-        /// </summary>
-        public NLogViewerParameterInfo()
+        public bool Disposed { get; set; }
+        protected override void Dispose(bool disposing)
         {
+            Disposed = true;
         }
-
-        /// <summary>
-        /// Gets or sets viewer parameter name.
-        /// </summary>
-        /// <docgen category='Layout Options' order='1' />
-        [RequiredParameter]
-        public string Name { get => _name; set => _name = XmlHelper.XmlConvertToStringSafe(value); }
-        private string _name;
-
-        /// <summary>
-        /// Gets or sets the layout that should be use to calculate the value for the parameter.
-        /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        [RequiredParameter]
-        public Layout Layout { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether an attribute with empty value should be included in the output
-        /// </summary>
-        /// <docgen category='Layout Options' order='100' />
-        public bool IncludeEmptyValue { get; set; }
+        public void RealDispose()
+        {
+            base.Dispose(true);
+        }
     }
 }

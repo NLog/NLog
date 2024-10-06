@@ -31,45 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+using System;
+using System.Net;
+using NLog.Internal.NetworkSenders;
+
+namespace NLog.Targets.Network
 {
-    /// <summary>
-    /// Sends log messages to the remote instance of Chainsaw application from log4j.
-    /// </summary>
-    /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/Chainsaw-target">See NLog Wiki</a>
-    /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/Chainsaw-target">Documentation on NLog Wiki</seealso>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/Chainsaw/NLog.config" />
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/Chainsaw/Simple/Example.cs" />
-    /// </example>
-    [Target("Chainsaw")]
-    public class ChainsawTarget : NLogViewerTarget
+    [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
+    class WebRequestFactoryMock : IWebRequestFactory
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
-        /// </summary>
-        public ChainsawTarget()
+        private readonly WebRequestMock _mock;
+
+        /// <inheritdoc/>
+        public WebRequestFactoryMock(WebRequestMock mock)
         {
-            IncludeNLogData = false;
-            IncludeEventProperties = true;
+            _mock = mock;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChainsawTarget"/> class with a name.
-        /// </summary>
-        /// <param name="name">Name of the target.</param>
-        public ChainsawTarget(string name) : this()
+        /// <inheritdoc/>
+        public WebRequest CreateWebRequest(Uri address)
         {
-            Name = name;
+            _mock.RequestedAddress = address;
+            return _mock;
         }
     }
 }

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.Targets.WebService</Title>
+    <Title>NLog.Targets.Network</Title>
     <Company>NLog</Company>
-    <Description>WebServiceTarget for calling HTTP / SOAP / REST web-service</Description>
-    <Product>NLog.Targets.WebService v$(ProductVersion)</Product>
+    <Description>NetworkTarget can send messages using TCP / UDP</Description>
+    <Product>NLog.Targets.Network v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
@@ -14,10 +14,10 @@
 
     <PackageReleaseNotes>
       WebServiceTarget Docs:
-      https://github.com/NLog/NLog/wiki/WebService-target
+      https://github.com/NLog/NLog/wiki/Network-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>NLog;WebService;Soap;Rest;HttpClient;Network;logging;log</PackageTags>
+    <PackageTags>NLog;TCPIP;TCP;UDP;Network;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
@@ -38,16 +38,16 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <Title>NLog.Targets.WebService for .NET Standard 2.0</Title>
+    <Title>NLog.Targets.Network for .NET Standard 2.0</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Title>NLog.Targets.WebService for .NET Framework 4.6</Title>
+    <Title>NLog.Targets.Network for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.Targets.WebService for .NET Framework 4.5</Title>
+    <Title>NLog.Targets.Network for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
@@ -61,7 +61,7 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>   
+  <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
 

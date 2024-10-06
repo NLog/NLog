@@ -41,48 +41,47 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Sends log messages to the remote instance of NLog Viewer.
+    /// Sends log messages to the remote instance of Chainsaw application from log4j.
     /// </summary>
     /// <remarks>
-    /// <a href="https://github.com/nlog/nlog/wiki/NLogViewer-target">See NLog Wiki</a>
+    /// <a href="https://github.com/nlog/nlog/wiki/Chainsaw-target">See NLog Wiki</a>
     /// </remarks>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/NLogViewer-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Chainsaw-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="https://github.com/NLog/NLog/wiki/Configuration-file">configuration file</a>,
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/NLogViewer/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/Chainsaw/NLog.config" />
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/NLogViewer/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Chainsaw/Simple/Example.cs" />
     /// </example>
+    [Target("Chainsaw")]
     [Target("NLogViewer")]
-    public class NLogViewerTarget : NetworkTarget, IIncludeContext
+    public class ChainsawTarget : NetworkTarget
     {
         private readonly Log4JXmlEventLayout _log4JLayout = new Log4JXmlEventLayout();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
+        /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        public NLogViewerTarget()
+        public ChainsawTarget()
         {
-            IncludeNLogData = true;
-            IncludeEventProperties = false; // Already included when IncludeNLogData = true
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
+        /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
-        public NLogViewerTarget(string name) : this()
+        public ChainsawTarget(string name) : this()
         {
             Name = name;
         }
@@ -91,6 +90,8 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNLogData
         {
             get => Renderer.IncludeNLogData;
@@ -245,8 +246,8 @@ namespace NLog.Targets
         /// between NLog layout and a named parameter.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
-        public IList<NLogViewerParameterInfo> Parameters => _log4JLayout.Parameters;
+        [ArrayParameter(typeof(Log4JXmlEventParameter), "parameter")]
+        public IList<Log4JXmlEventParameter> Parameters => _log4JLayout.Parameters;
 
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.
