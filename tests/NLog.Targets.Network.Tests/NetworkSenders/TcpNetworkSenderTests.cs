@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.Internal.NetworkSenders
+namespace NLog.Targets.Network
 {
     using System;
     using System.Collections.Generic;
@@ -43,8 +43,13 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using NLog.Internal.NetworkSenders;
     using Xunit;
 
-    public class TcpNetworkSenderTests : NLogTestBase
+    public class TcpNetworkSenderTests
     {
+        public TcpNetworkSenderTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void TcpHappyPathTest()
         {

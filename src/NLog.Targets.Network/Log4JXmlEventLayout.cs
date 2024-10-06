@@ -53,7 +53,7 @@ namespace NLog.Layouts
     /// <seealso href="https://github.com/NLog/NLog/wiki/Log4JXmlEventLayout">Documentation on NLog Wiki</seealso>
     [Layout("Log4JXmlEventLayout")]
     [ThreadAgnostic]
-    public class Log4JXmlEventLayout : Layout, IIncludeContext
+    public class Log4JXmlEventLayout : Layout
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayout" /> class.
@@ -61,7 +61,7 @@ namespace NLog.Layouts
         public Log4JXmlEventLayout()
         {
             Renderer = new Log4JXmlEventLayoutRenderer();
-            Parameters = new List<NLogViewerParameterInfo>();
+            Parameters = new List<Log4JXmlEventParameter>();
             Renderer.Parameters = Parameters;
         }
 
@@ -75,8 +75,8 @@ namespace NLog.Layouts
         /// between NLog layout and a named parameter.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
-        public IList<NLogViewerParameterInfo> Parameters { get => Renderer.Parameters; set => Renderer.Parameters = value; }
+        [ArrayParameter(typeof(Log4JXmlEventParameter), "parameter")]
+        public IList<Log4JXmlEventParameter> Parameters { get => Renderer.Parameters; set => Renderer.Parameters = value; }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -214,21 +214,16 @@ namespace NLog.Layouts
             set => Renderer.IncludeSourceInfo = value;
         }
 
-        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
-        {
-            PrecalculateBuilderInternal(logEvent, target, null);
-        }
-
         /// <inheritdoc/>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return RenderAllocateBuilder(logEvent);
+            return Renderer.Render(logEvent);
         }
 
         /// <inheritdoc/>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            Renderer.RenderAppendBuilder(logEvent, target);
+            Renderer.AppendBuilder(logEvent, target);
         }
     }
 }

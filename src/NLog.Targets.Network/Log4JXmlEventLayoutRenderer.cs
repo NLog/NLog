@@ -37,13 +37,11 @@ namespace NLog.LayoutRenderers
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
-    using System.Reflection;
     using System.Text;
     using System.Xml;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Internal.Fakeables;
     using NLog.Layouts;
     using NLog.Targets;
 
@@ -55,41 +53,31 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     /// <seealso href="https://github.com/NLog/NLog/wiki/Log4JXMLEvent-Layout-Renderer">Documentation on NLog Wiki</seealso>
     [LayoutRenderer("log4jxmlevent")]
-    public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace, IIncludeContext
+    public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
         private static readonly string dummyNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNamespaceRemover = " xmlns:log4j=\"" + dummyNamespace + "\"";
 
-        private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
-        private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
-
         private readonly ScopeContextNestedStatesLayoutRenderer _scopeNestedLayoutRenderer = new ScopeContextNestedStatesLayoutRenderer();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer() : this(LogFactory.DefaultAppEnvironment)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
-        /// </summary>
-        internal Log4JXmlEventLayoutRenderer(IAppEnvironment appEnvironment)
+        public Log4JXmlEventLayoutRenderer()
         {
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})",
-                appEnvironment.AppDomainFriendlyName,
-                appEnvironment.CurrentProcessId);
+                AppDomain.CurrentDomain.FriendlyName,
+                System.Diagnostics.Process.GetCurrentProcess().Id);
 
-            Parameters = new List<NLogViewerParameterInfo>();
+            Parameters = new List<Log4JXmlEventParameter>();
 
             try
             {
-                _machineName = XmlHelper.XmlConvertToStringSafe(EnvironmentHelper.GetMachineName());
+                _machineName = Environment.MachineName;
                 if (string.IsNullOrEmpty(_machineName))
                 {
                     InternalLogger.Info("MachineName is not available.");
@@ -98,7 +86,7 @@ namespace NLog.LayoutRenderers
             catch (Exception exception)
             {
                 InternalLogger.Error(exception, "Error getting machine name.");
-                if (exception.MustBeRethrown())
+                if (LogManager.ThrowExceptions)
                 {
                     throw;
                 }
@@ -127,6 +115,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Non standard extension to the Log4j-XML format. Marked obsolete with NLog 6.0")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNLogData { get; set; }
 
         /// <summary>
@@ -272,9 +262,25 @@ namespace NLog.LayoutRenderers
         private XmlWriterSettings _xmlWriterSettings;
 
         /// <inheritdoc/>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage => (IncludeCallSite || IncludeSourceInfo) ? (StackTraceUsageUtils.GetStackTraceUsage(IncludeSourceInfo, 0, true) | StackTraceUsage.WithCallSiteClassName) : StackTraceUsage.None;
+        StackTraceUsage IUsesStackTrace.StackTraceUsage
+        {
+            get
+            {
+                if (IncludeSourceInfo)
+                    return StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName | StackTraceUsage.WithSource;
+                else if (IncludeCallSite)
+                    return StackTraceUsage.WithCallSite | StackTraceUsage.WithCallSiteClassName;
+                else
+                    return StackTraceUsage.None;
+            }
+        }
 
-        internal IList<NLogViewerParameterInfo> Parameters { get; set; }
+        internal IList<Log4JXmlEventParameter> Parameters { get; set; }
+
+        internal void AppendBuilder(LogEventInfo logEvent, StringBuilder builder)
+        {
+            Append(builder, logEvent);
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -283,15 +289,10 @@ namespace NLog.LayoutRenderers
             using (XmlWriter xtw = XmlWriter.Create(sb, _xmlWriterSettings))
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
-                bool includeNLogCallsite = (IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null;
-                if (includeNLogCallsite && IncludeNLogData)
-                {
-                    xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
-                }
                 xtw.WriteAttributeSafeString("logger", LoggerName?.Render(logEvent) ?? logEvent.LoggerName);
                 xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-                xtw.WriteAttributeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, FormattedMessage?.Render(logEvent) ?? logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
@@ -311,7 +312,7 @@ namespace NLog.LayoutRenderers
 
                 AppendScopeContextNestedStates(xtw, logEvent);
 
-                if (includeNLogCallsite)
+                if (IncludeCallSite || IncludeSourceInfo)
                 {
                     AppendCallSite(logEvent, xtw);
                 }
@@ -327,7 +328,7 @@ namespace NLog.LayoutRenderers
 
                 AppendParameters(logEvent, xtw);
 
-                var appInfo = XmlHelper.XmlConvertToStringSafe(AppInfo?.Render(logEvent) ?? string.Empty);
+                var appInfo = AppInfo?.Render(logEvent);
                 AppendDataProperty(xtw, "log4japp", appInfo, dummyNamespace);
 
                 AppendDataProperty(xtw, "log4jmachinename", _machineName, dummyNamespace);
@@ -339,11 +340,7 @@ namespace NLog.LayoutRenderers
 
                 // get rid of 'nlog' and 'log4j' namespace declarations
                 sb.Replace(dummyNamespaceRemover, string.Empty);
-                if (includeNLogCallsite && IncludeNLogData)
-                {
-                    sb.Replace(dummyNLogNamespaceRemover, string.Empty);
-                }
-                sb.CopyTo(builder); // StringBuilder.Replace is not good when reusing the StringBuilder
+                builder.Append(sb.ToString());  // StringBuilder.Replace is not good when reusing the StringBuilder
             }
         }
 
@@ -351,22 +348,17 @@ namespace NLog.LayoutRenderers
         {
             if (IncludeScopeProperties)
             {
-                using (var scopeEnumerator = ScopeContext.GetAllPropertiesEnumerator())
+                foreach (var scopeProperty in ScopeContext.GetAllProperties())
                 {
-                    while (scopeEnumerator.MoveNext())
-                    {
-                        var scopeProperty = scopeEnumerator.Current;
+                    string propertyKey = XmlHelper.RemoveInvalidXmlChars(scopeProperty.Key);
+                    if (string.IsNullOrEmpty(propertyKey))
+                        continue;
 
-                        string propertyKey = XmlHelper.XmlConvertToStringSafe(scopeProperty.Key);
-                        if (string.IsNullOrEmpty(propertyKey))
-                            continue;
+                    string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
+                    if (propertyValue is null)
+                        continue;
 
-                        string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
-                        if (propertyValue is null)
-                            continue;
-
-                        AppendDataProperty(xtw, propertyKey, propertyValue, dummyNamespace);
-                    }
+                    AppendDataProperty(xtw, propertyKey, propertyValue, dummyNamespace);
                 }
             }
         }
@@ -391,7 +383,7 @@ namespace NLog.LayoutRenderers
                 if (string.IsNullOrEmpty(parameterName))
                     continue;
 
-                var parameterValue = XmlHelper.XmlConvertToStringSafe(parameter.Layout?.Render(logEvent) ?? string.Empty);
+                var parameterValue = parameter.Layout?.Render(logEvent);
                 if (!parameter.IncludeEmptyValue && string.IsNullOrEmpty(parameterValue))
                     continue;
 
@@ -401,9 +393,11 @@ namespace NLog.LayoutRenderers
 
         private void AppendCallSite(LogEventInfo logEvent, XmlWriter xtw)
         {
-            MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
-            string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-            string callerMethodName = logEvent.CallSiteInformation.GetCallerMethodName(methodBase, true, true, true);
+            string callerMemberName = logEvent.CallerMemberName;
+            if (string.IsNullOrEmpty(callerMemberName))
+                return;
+
+            string callerClassName = logEvent.CallerClassName;
 
             xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
             if (!string.IsNullOrEmpty(callerClassName))
@@ -411,31 +405,15 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("class", callerClassName);
             }
 
-            xtw.WriteAttributeSafeString("method", callerMethodName);
+            xtw.WriteAttributeSafeString("method", callerMemberName);
 
             if (IncludeSourceInfo)
             {
-                xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
-                xtw.WriteAttributeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeSafeString("file", logEvent.CallerFilePath);
+                xtw.WriteAttributeString("line", logEvent.CallerLineNumber.ToString(CultureInfo.InvariantCulture));
             }
 
             xtw.WriteEndElement();
-
-            if (IncludeNLogData)
-            {
-                xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
-                var type = methodBase?.DeclaringType;
-                if (type != null)
-                {
-                    xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
-                }
-                xtw.WriteEndElement();
-
-                xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                AppendDataProperties("nlog", dummyNLogNamespace, xtw, logEvent);
-                xtw.WriteEndElement();
-            }
         }
 
         private static void AppendDataProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
@@ -461,7 +439,7 @@ namespace NLog.LayoutRenderers
         {
             xtw.WriteStartElement(prefix, "data", propertiesNamespace);
             xtw.WriteAttributeString("name", propertyKey);
-            xtw.WriteAttributeString("value", propertyValue);
+            xtw.WriteAttributeSafeString("value", propertyValue);
             xtw.WriteEndElement();
         }
     }

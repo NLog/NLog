@@ -36,7 +36,7 @@ using System.IO;
 using System.Net;
 using NSubstitute;
 
-namespace NLog.UnitTests.Mocks
+namespace NLog.Targets.Network
 {
     [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
     public sealed class WebRequestMock : WebRequest, IDisposable

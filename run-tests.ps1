@@ -28,6 +28,10 @@ if ($isWindows -or $Env:WinDir)
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
+	dotnet test ./tests/NLog.Targets.Network.Tests/ --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
 	dotnet test ./tests/NLog.Targets.WebService.Tests/ --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
@@ -64,6 +68,10 @@ else
 		{ exit $LastExitCode }
 
 	dotnet test ./tests/NLog.Targets.Mail.Tests/ --framework net6.0 --configuration release
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
+
+	dotnet test ./tests/NLog.Targets.Network.Tests/ --framework net6.0 --configuration release
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 

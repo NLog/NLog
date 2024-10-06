@@ -36,6 +36,8 @@ function create-package($packageName, $targetFrameworks)
 }
 
 create-package 'NLog.Database' '"net35;net45;net46;netstandard2.0"'
+create-package 'NLog.Targets.Mail' '"net35;net45;net46;netstandard2.0"'
+create-package 'NLog.Targets.Network' '"net45;net46;netstandard2.0"'
 create-package 'NLog.Targets.WebService' '"net45;net46;netstandard2.0"'
 create-package 'NLog.OutputDebugString' '"net35;net45;net46;netstandard2.0"'
 create-package 'NLog.WindowsRegistry' '"net35;net45;net46;netstandard2.0"'

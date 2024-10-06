@@ -411,46 +411,12 @@ namespace NLog.Internal
                 case TypeCode.DateTime:
                     return XmlConvert.ToString(value.ToDateTime(CultureInfo.InvariantCulture), XmlDateTimeSerializationMode.Utc);
                 case TypeCode.Char:
-                    return XmlConvert.ToString(value.ToChar(CultureInfo.InvariantCulture));
+                    return safeConversion ? RemoveInvalidXmlChars(value.ToString(CultureInfo.InvariantCulture)) : value.ToString(CultureInfo.InvariantCulture);
                 case TypeCode.String:
                     return safeConversion ? RemoveInvalidXmlChars(value.ToString(CultureInfo.InvariantCulture)) : value.ToString(CultureInfo.InvariantCulture);
                 default:
                     return XmlConvertToStringInvariant(value, safeConversion);
             }
-        }
-
-        /// <summary>
-        /// Safe version of WriteAttributeString
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="localName"></param>
-        /// <param name="value"></param>
-        public static void WriteAttributeSafeString(this XmlWriter writer, string localName, string value)
-        {
-            writer.WriteAttributeString(localName, RemoveInvalidXmlChars(value));
-        }
-
-        /// <summary>
-        /// Safe version of WriteElementSafeString
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="prefix"></param>
-        /// <param name="localName"></param>
-        /// <param name="ns"></param>
-        /// <param name="value"></param>
-        public static void WriteElementSafeString(this XmlWriter writer, string prefix, string localName, string ns, string value)
-        {
-            writer.WriteElementString(prefix, localName, ns, RemoveInvalidXmlChars(value));
-        }
-
-        /// <summary>
-        /// Safe version of WriteCData
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="value"></param>
-        public static void WriteSafeCData(this XmlWriter writer, string value)
-        {
-            writer.WriteCData(RemoveInvalidXmlChars(value));
         }
 
         private static string EnsureDecimalPlace(string text)

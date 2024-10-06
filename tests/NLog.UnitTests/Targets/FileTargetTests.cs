@@ -3618,7 +3618,7 @@ namespace NLog.UnitTests.Targets
                                 <layout type='JsonLayout'>
                                   <attribute name='message' layout='${message}' />
                                   <attribute name='xml'>
-                                    <layout type='Log4JXmlEventLayout' />
+                                    <layout type='XmlLayout' includeEventProperties='true' />
                                   </attribute>
                                 </layout>
                             </target>

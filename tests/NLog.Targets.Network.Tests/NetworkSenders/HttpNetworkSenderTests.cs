@@ -36,14 +36,18 @@ using System.Security.Authentication;
 using NLog.Config;
 using NLog.Internal.NetworkSenders;
 using NLog.Targets;
-using NLog.UnitTests.Mocks;
 using NSubstitute;
 using Xunit;
 
-namespace NLog.UnitTests.Internal.NetworkSenders
+namespace NLog.Targets.Network
 {
-    public class HttpNetworkSenderTests : NLogTestBase
+    public class HttpNetworkSenderTests
     {
+        public HttpNetworkSenderTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         /// <summary>
         /// Test <see cref="HttpNetworkSender"/> via <see cref="NetworkTarget"/>
         /// </summary>
