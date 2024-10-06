@@ -215,7 +215,6 @@ namespace NLog.Config
             factory.RegisterType<NLog.Targets.TargetPropertyWithContext>();
             factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("Trace");
             factory.TargetFactory.RegisterType<NLog.Targets.TraceTarget>("TraceSystem");
-            factory.TargetFactory.RegisterType<NLog.Targets.WebServiceTarget>("WebService");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AsyncTargetWrapper>("AsyncWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.AutoFlushTargetWrapper>("AutoFlushWrapper");
             factory.TargetFactory.RegisterType<NLog.Targets.Wrappers.BufferingTargetWrapper>("BufferingWrapper");

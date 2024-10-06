@@ -1,23 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
 
-    <Title>NLog.OutputDebugString</Title>
+    <Title>NLog.Targets.WebService</Title>
     <Company>NLog</Company>
-    <Description>NLog.OutputDebugString provides support for DebugView output</Description>
-    <Product>NLog.OutputDebugString v$(ProductVersion)</Product>
+    <Description>WebServiceTarget can call web-service for each logevent</Description>
+    <Product>NLog.Targets.WebService v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      OutputDebugStringTarget Docs:
-      https://github.com/NLog/NLog/wiki/OutputDebugString-target
+      WebServiceTarget Docs:
+      https://github.com/NLog/NLog/wiki/WebService-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>NLog;Windows;DebugView;logging;log</PackageTags>
+    <PackageTags>NLog;WebService;HttpClient;Network;logging;log</PackageTags>
     <PackageIcon>N.png</PackageIcon>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
@@ -38,29 +38,36 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <Title>NLog.OutputDebugString for .NET Standard 2.0</Title>
+    <Title>NLog.Targets.WebService for .NET Standard 2.0</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Title>NLog.OutputDebugString for .NET Framework 4.6</Title>
+    <Title>NLog.Targets.WebService for .NET Framework 4.6</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog.OutputDebugString for .NET Framework 4.5</Title>
+    <Title>NLog.Targets.WebService for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Title>NLog.OutputDebugString for .NET Framework 3.5</Title>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>   
     <ProjectReference Include="..\NLog\NLog.csproj" />
   </ItemGroup>
 

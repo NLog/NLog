@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Targets.WebService
 {
     using System;
     using System.Collections.Concurrent;
@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
 
-    public class WebServiceTargetTests : NLogTestBase
+    public class WebServiceTargetTests
     {
         public WebServiceTargetTests()
         {
@@ -166,7 +166,7 @@ namespace NLog.UnitTests.Targets
             var bytes = streamMock.bytes;
             var url = streamMock.stringed;
 
-            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3a15%3a14.6348&logger=TestClient.Program&level=Debug";
+            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3A15%3A14.6348&logger=TestClient.Program&level=Debug";
             Assert.Equal(expectedUrl, url);
 
             Assert.True(bytes.Length > 3);
@@ -712,7 +712,6 @@ namespace NLog.UnitTests.Targets
             public void Post([FromBody] ComplexType complexType)
             {
                 //this is working.
-                Guard.ThrowIfNull(complexType);
                 Context.ReceivedLogsPostParam1.Add(complexType.Param1);
 
                 if (Context.CountdownEvent != null)
@@ -886,7 +885,7 @@ namespace NLog.UnitTests.Targets
                 }
                 else
                 {
-                    return ArrayHelper.Empty<object>();
+                    return Array.Empty<object>();
                 }
             }
         }
@@ -899,16 +898,12 @@ namespace NLog.UnitTests.Targets
             [HttpPost]
             public void Json(LogMeController.ComplexType complexType)
             {
-                Guard.ThrowIfNull(complexType);
-
                 processRequest(complexType);
             }
 
             [HttpPost]
             public void Xml(LogMeController.ComplexType complexType)
             {
-                Guard.ThrowIfNull(complexType);
-
                 processRequest(complexType);
             }
 
