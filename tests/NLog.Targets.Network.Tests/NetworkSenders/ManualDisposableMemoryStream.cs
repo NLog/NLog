@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System.IO;
-
 namespace NLog.Targets.Network
 {
+    using System.IO;
+
     /// <summary>
     /// Memorystream that doesn't dispose by default for asserting the content
     /// </summary>

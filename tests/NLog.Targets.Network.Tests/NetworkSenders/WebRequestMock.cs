@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.IO;
-using System.Net;
-using NSubstitute;
-
 namespace NLog.Targets.Network
 {
+    using System;
+    using System.IO;
+    using System.Net;
+    using NSubstitute;
+
     [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
     public sealed class WebRequestMock : WebRequest, IDisposable
     {

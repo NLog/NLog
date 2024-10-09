@@ -31,40 +31,43 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
+namespace NLog.Targets.Internal
 {
     /// <summary>
-    /// Supported operating systems.
+    /// Detects the platform the NLog is running on.
     /// </summary>
-    /// <remarks>
-    /// If you add anything here, make sure to add the appropriate detection
-    /// code to <see cref="PlatformDetector"/>
-    /// </remarks>
-    internal enum RuntimeOS
+    internal static class OSPlatformDetector
     {
         /// <summary>
-        /// Unknown operating system.
+        /// Gets the current runtime OS.
         /// </summary>
-        Unknown,
+        public static PlatformOS CurrentOS => _platformOS ?? (_platformOS = GetCurrentPlatformOS()).Value;
+        private static PlatformOS? _platformOS;
 
-        /// <summary>
-        /// Unix/Linux operating systems.
-        /// </summary>
-        Linux,
+        private static PlatformOS GetCurrentPlatformOS()
+        {
+#if NETFRAMEWORK
+            var platformID = System.Environment.OSVersion.Platform;
+            if ((int)platformID == 4 || (int)platformID == 128)
+            {
+                return PlatformOS.Linux;
+            }
 
-        /// <summary>
-        /// Desktop versions of Windows (95,98,ME).
-        /// </summary>
-        Windows9x,
+            if (platformID == System.PlatformID.Win32NT || platformID == System.PlatformID.Win32Windows)
+            {
+                return PlatformOS.Windows;
+            }
 
-        /// <summary>
-        /// Windows NT, 2000, 2003 and future versions based on NT technology.
-        /// </summary>
-        WindowsNT,
-
-        /// <summary>
-        /// Macintosh Mac OSX
-        /// </summary>
-        MacOSX,
+            return PlatformOS.Unknown;
+#else
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return PlatformOS.Windows;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                return PlatformOS.MacOSX;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
+                return PlatformOS.Linux;
+            return PlatformOS.Unknown;
+#endif
+        }
     }
 }

@@ -38,10 +38,10 @@ namespace NLog.Targets.Network
     using System.IO;
     using System.Reflection;
     using System.Xml;
-    using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
+    using NLog.Targets.Internal;
     using Xunit;
 
     public class Log4JXmlTests
