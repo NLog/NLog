@@ -46,29 +46,29 @@ namespace NLog.Targets.Internal
 
         private static PlatformOS GetCurrentPlatformOS()
         {
-            return PlatformOS.Windows;
 //#if NETFRAMEWORK
 //            var platformID = System.Environment.OSVersion.Platform;
-//            if ((int)platformID == 4 || (int)platformID == 128)
-//            {
-//                return PlatformOS.Linux;
-//            }
-
 //            if (platformID == System.PlatformID.Win32NT || platformID == System.PlatformID.Win32Windows)
 //            {
 //                return PlatformOS.Windows;
+//            }
+
+//            if ((int)platformID == 4 || (int)platformID == 128)
+//            {
+//                return PlatformOS.Linux;
 //            }
 
 //            return PlatformOS.Unknown;
 //#else
 //            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
 //                return PlatformOS.Windows;
-//            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
 //                return PlatformOS.MacOSX;
-//            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
+//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
 //                return PlatformOS.Linux;
 //            return PlatformOS.Unknown;
 //#endif
+            return PlatformOS.Windows;
         }
     }
 }
