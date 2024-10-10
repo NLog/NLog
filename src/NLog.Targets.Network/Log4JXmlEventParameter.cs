@@ -34,8 +34,8 @@
 namespace NLog.Targets
 {
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
+    using NLog.Targets.Internal;
 
     /// <summary>
     /// Represents a parameter for the <see cref="Log4JXmlEventLayout"/>
@@ -55,7 +55,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        public string Name { get => _name; set => _name = XmlHelper.RemoveInvalidXmlChars(value); }
+        public string Name { get => _name; set => _name = XmlHelpers.RemoveInvalidXmlChars(value); }
         private string _name;
 
         /// <summary>

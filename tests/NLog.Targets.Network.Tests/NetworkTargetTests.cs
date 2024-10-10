@@ -43,9 +43,8 @@ namespace NLog.Targets.Network
     using System.Text;
     using System.Threading;
     using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal.NetworkSenders;
     using NLog.Targets;
+    using NLog.Internal.NetworkSenders;
     using Xunit;
 
     public class NetworkTargetTests

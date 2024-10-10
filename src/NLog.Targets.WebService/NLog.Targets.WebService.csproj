@@ -5,7 +5,7 @@
 
     <Title>NLog.Targets.WebService</Title>
     <Company>NLog</Company>
-    <Description>WebServiceTarget for calling HTTP / SOAP / REST web-service</Description>
+    <Description>WebServiceTarget for calling HTTP / SOAP / REST web-service methods</Description>
     <Product>NLog.Targets.WebService v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>

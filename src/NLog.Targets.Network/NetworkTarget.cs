@@ -38,9 +38,8 @@ namespace NLog.Targets
     using System.Text;
     using System.Threading;
     using NLog.Common;
-    using NLog.Internal;
-    using NLog.Internal.NetworkSenders;
     using NLog.Layouts;
+    using NLog.Internal.NetworkSenders;
 
     /// <summary>
     /// Sends log messages over the network.

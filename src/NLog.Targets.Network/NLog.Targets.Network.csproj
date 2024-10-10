@@ -5,7 +5,7 @@
 
     <Title>NLog.Targets.Network</Title>
     <Company>NLog</Company>
-    <Description>NetworkTarget can send messages using TCP / UDP</Description>
+    <Description>NetworkTarget for sending messages using TCP / UDP sockets with support for SSL / TSL</Description>
     <Product>NLog.Targets.Network v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
@@ -13,7 +13,7 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      WebServiceTarget Docs:
+      NetworkTarget Docs:
       https://github.com/NLog/NLog/wiki/Network-target
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>

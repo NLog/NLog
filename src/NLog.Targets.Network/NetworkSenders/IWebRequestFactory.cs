@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Net;
-
 namespace NLog.Internal.NetworkSenders
 {
+    using System;
+    using System.Net;
+
     internal interface IWebRequestFactory
     {
         WebRequest CreateWebRequest(Uri address);
