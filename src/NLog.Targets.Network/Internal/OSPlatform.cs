@@ -34,41 +34,28 @@
 namespace NLog.Targets.Internal
 {
     /// <summary>
-    /// Detects the platform the NLog is running on.
+    /// Supported operating systems.
     /// </summary>
-    internal static class OSPlatformDetector
+    internal enum OSPlatform
     {
         /// <summary>
-        /// Gets the current runtime OS.
+        /// Unknown operating system.
         /// </summary>
-        public static PlatformOS CurrentOS => _platformOS ?? (_platformOS = GetCurrentPlatformOS()).Value;
-        private static PlatformOS? _platformOS;
+        Unknown,
 
-        private static PlatformOS GetCurrentPlatformOS()
-        {
-//#if NETFRAMEWORK
-//            var platformID = System.Environment.OSVersion.Platform;
-//            if (platformID == System.PlatformID.Win32NT || platformID == System.PlatformID.Win32Windows)
-//            {
-//                return PlatformOS.Windows;
-//            }
+        /// <summary>
+        /// Unix/Linux operating systems.
+        /// </summary>
+        Linux,
 
-//            if ((int)platformID == 4 || (int)platformID == 128)
-//            {
-//                return PlatformOS.Linux;
-//            }
+        /// <summary>
+        /// Windows operating systems.
+        /// </summary>
+        Windows,
 
-//            return PlatformOS.Unknown;
-//#else
-//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-//                return PlatformOS.Windows;
-//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-//                return PlatformOS.MacOSX;
-//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
-//                return PlatformOS.Linux;
-//            return PlatformOS.Unknown;
-//#endif
-            return PlatformOS.Windows;
-        }
+        /// <summary>
+        /// Macintosh Mac OSX
+        /// </summary>
+        OSX,
     }
 }
