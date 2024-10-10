@@ -175,10 +175,10 @@ namespace NLog.Internal.NetworkSenders
             {
                 return OSPlatform.Windows;
             }
-            //if ((int)platformID == 4 || (int)platformID == 128)
-            //{
-            //    return OSPlatform.Linux;
-            //}
+            if ((int)platformID == 4 || (int)platformID == 128)
+            {
+                return OSPlatform.Linux;
+            }
 
             //return OSPlatform.Unknown;
 //#else
