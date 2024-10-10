@@ -182,8 +182,8 @@ namespace NLog.Internal.NetworkSenders
 
             //return OSPlatform.Unknown;
 //#else
-//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-//                return OSPlatform.Windows;
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return OSPlatform.Windows;
 //            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
 //                return OSPlatform.OSX;
 //            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
