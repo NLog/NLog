@@ -41,13 +41,13 @@ namespace NLog.Internal.FileAppenders
     internal interface ICreateFileParameters
     {
         /// <summary>
-        /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
+        /// Gets or sets the number of times the write is attempted on the file before NLog
+        /// discards the log message.
         /// </summary>
         int FileOpenRetryCount { get; }
 
         /// <summary>
-        /// Gets or sets the number of times the write is appended on the file before NLog
-        /// discards the log message.
+        /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
         /// </summary>
         int FileOpenRetryDelay { get; }
 
