@@ -36,7 +36,7 @@ namespace NLog.Targets.Internal
     /// <summary>
     /// Supported operating systems.
     /// </summary>
-    internal enum OSPlatform
+    internal enum PlatformOS
     {
         /// <summary>
         /// Unknown operating system.
@@ -56,6 +56,6 @@ namespace NLog.Targets.Internal
         /// <summary>
         /// Macintosh Mac OSX
         /// </summary>
-        OSX,
+        MacOSX,
     }
 }
