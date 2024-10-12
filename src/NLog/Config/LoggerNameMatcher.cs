@@ -34,7 +34,7 @@
 namespace NLog.Config
 {
     using System;
-    using System.Text.RegularExpressions;
+    using NLog.Internal;
 
     /// <summary>
     /// Encapsulates <see cref="LoggingRule.LoggerNamePattern"/> and the logic to match the actual logger name
@@ -233,25 +233,77 @@ namespace NLog.Config
         private sealed class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
         {
             protected override string MatchMode => "MultiplePattern";
-            private readonly Regex _regex;
-            private static string ConvertToRegex(string wildcardsPattern)
-            {
-                return
-                    '^' +
-                    Regex.Escape(wildcardsPattern)
-                        .Replace("\\*", ".*")
-                        .Replace("\\?", ".")
-                    + '$';
-            }
+            private readonly string _wildCardPattern;
+
             public MultiplePatternLoggerNameMatcher(string pattern)
-                : base(pattern, ConvertToRegex(pattern))
+                : base(pattern, pattern)
             {
-                _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture);
+                _wildCardPattern = Guard.ThrowIfNull(pattern);
             }
+
             public override bool NameMatches(string loggerName)
             {
-                if (loggerName is null) return false;
-                return _regex.IsMatch(loggerName);
+                return MatchingName(0, _wildCardPattern.Length, loggerName, 0, loggerName?.Length ?? 0);
+            }
+
+            bool MatchingName(int wildcardStart, int wildcardEnd, string loggerName, int loggerNameStart, int loggerNameEnd)
+            {
+                for (int i = wildcardStart; i < wildcardEnd; ++i)
+                {
+                    char matchToken = _wildCardPattern[i];
+                    if (matchToken == '*')
+                        break;
+
+                    if (loggerNameStart >= loggerNameEnd)
+                        return false;
+
+                    char inputToken = loggerName[loggerNameStart];
+                    if (matchToken != '?' && matchToken != inputToken)
+                        return false;
+
+                    ++loggerNameStart;
+                    ++wildcardStart;
+                }
+
+                for (int i = wildcardEnd - 1; i >= wildcardStart; --i)
+                {
+                    char matchToken = _wildCardPattern[i];
+                    if (matchToken == '*')
+                        break;
+
+                    if (loggerNameStart >= loggerNameEnd)
+                        return false;
+
+                    char inputToken = loggerName[loggerNameEnd - 1];
+                    if (matchToken != '?' && matchToken != inputToken)
+                        return false;
+
+                    --loggerNameEnd;
+                    --wildcardEnd;
+                }
+
+                var nextMatch = '*';
+                for (int i = wildcardStart; i < wildcardEnd; ++i)
+                {
+                    nextMatch = _wildCardPattern[i];
+                    if (nextMatch != '*')
+                        break;
+                    ++wildcardStart;
+                }
+                if (nextMatch == '*')
+                    return true;
+
+                for (int i = loggerNameStart; i < loggerNameEnd; ++i)
+                {
+                    char inputToken = loggerName[i];
+                    if (nextMatch == '?' || inputToken == nextMatch)
+                    {
+                        // Found match, now scan the remaining sub-string
+                        return MatchingName(wildcardStart, wildcardEnd, loggerName, i, loggerNameEnd);
+                    }
+                }
+
+                return false;
             }
         }
     }
