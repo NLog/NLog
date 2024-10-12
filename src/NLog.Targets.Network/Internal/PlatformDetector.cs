@@ -51,17 +51,17 @@ namespace NLog.Targets.Internal
         {
 #if NETFRAMEWORK
             PlatformID platformID = Environment.OSVersion.Platform;
-            if (platformID == PlatformID.Win32NT || platformID == PlatformID.Win32Windows)
-                return PlatformOS.Windows;
             if ((int)platformID == 4 || (int)platformID == 128)
                 return PlatformOS.Linux;
-#else
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+            if (platformID == PlatformID.Win32NT || platformID == PlatformID.Win32Windows)
                 return PlatformOS.Windows;
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-                return PlatformOS.MacOSX;
+#else
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
                 return PlatformOS.Linux;
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                return PlatformOS.MacOSX;
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return PlatformOS.Windows;
 #endif
             return PlatformOS.Unknown;
         }

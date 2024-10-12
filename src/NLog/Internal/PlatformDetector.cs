@@ -68,19 +68,19 @@ namespace NLog.Internal
         {
 #if NETFRAMEWORK
             PlatformID platformID = Environment.OSVersion.Platform;
-            if (platformID == PlatformID.Win32NT)
-                return RuntimeOS.WindowsNT;
-            if (platformID == PlatformID.Win32Windows)
-                return RuntimeOS.Windows9x;
             if ((int)platformID == 4 || (int)platformID == 128)
                 return RuntimeOS.Linux;
-#else
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+            if (platformID == PlatformID.Win32Windows)
+                return RuntimeOS.Windows9x;
+            if (platformID == PlatformID.Win32NT)
                 return RuntimeOS.WindowsNT;
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-                return RuntimeOS.MacOSX;
+#else
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
                 return RuntimeOS.Linux;
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                return RuntimeOS.MacOSX;
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return RuntimeOS.WindowsNT;
 #endif
             return RuntimeOS.Unknown;
         }

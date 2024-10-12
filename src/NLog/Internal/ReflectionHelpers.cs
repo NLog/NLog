@@ -107,25 +107,6 @@ namespace NLog.Internal
             }
         }
 
-        /// <summary>
-        /// Creates an optimized delegate for calling the constructors using Expression-Trees
-        /// </summary>
-        /// <param name="constructor">Constructor to optimize</param>
-        /// <returns>Optimized delegate for invoking the constructor</returns>
-        public static LateBoundConstructor CreateLateBoundConstructor(ConstructorInfo constructor)
-        {
-            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
-
-            // build parameter list
-            var parameterExpressions = BuildParameterList(constructor, parametersParameter);
-
-            var ctorCall = Expression.New(constructor, parameterExpressions);
-
-            var lambda = Expression.Lambda<LateBoundConstructor>(ctorCall, parametersParameter);
-
-            return lambda.Compile();
-        }
-
         private static IEnumerable<Expression> BuildParameterList(MethodBase methodInfo, ParameterExpression parametersParameter)
         {
             var parameterExpressions = new List<Expression>();
