@@ -213,7 +213,7 @@ namespace NLog.Internal.NetworkSenders
             catch (Exception ex)
             {
 #if DEBUG
-                if (ex.MustBeRethrownImmediately())
+                if (LogManager.ThrowExceptions)
                 {
                     throw;  // Throwing exceptions here will crash the entire application
                 }
