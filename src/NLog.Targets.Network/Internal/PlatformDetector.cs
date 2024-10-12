@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
+namespace NLog.Targets.Internal
 {
     using System;
 
@@ -43,46 +43,27 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the current runtime OS.
         /// </summary>
-        public static RuntimeOS CurrentOS => _currentOS ?? (_currentOS = GetCurrentRuntimeOS()).Value;
-        private static RuntimeOS? _currentOS;
+        public static PlatformOS CurrentOS => _currentOS ?? (_currentOS = GetCurrentPlatformOS()).Value;
+        private static PlatformOS? _currentOS;
 
-        /// <summary>
-        /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
-        /// </summary>
-        public static bool IsWin32 => CurrentOS == RuntimeOS.WindowsNT || CurrentOS == RuntimeOS.Windows9x;
 
-        /// <summary>
-        /// Gets a value indicating whether current OS is Unix-based.
-        /// </summary>
-        public static bool IsUnix => CurrentOS == RuntimeOS.Linux || CurrentOS == RuntimeOS.MacOSX;
-
-#if NETFRAMEWORK
-        /// <summary>
-        /// Gets a value indicating whether current runtime is Mono-based
-        /// </summary>
-        public static bool IsMono => _isMono ?? (_isMono = Type.GetType("Mono.Runtime") != null).Value;
-        private static bool? _isMono;
-#endif
-
-        private static RuntimeOS GetCurrentRuntimeOS()
+        private static PlatformOS GetCurrentPlatformOS()
         {
 #if NETFRAMEWORK
             PlatformID platformID = Environment.OSVersion.Platform;
-            if (platformID == PlatformID.Win32NT)
-                return RuntimeOS.WindowsNT;
-            if (platformID == PlatformID.Win32Windows)
-                return RuntimeOS.Windows9x;
+            if (platformID == PlatformID.Win32NT || platformID == PlatformID.Win32Windows)
+                return PlatformOS.Windows;
             if ((int)platformID == 4 || (int)platformID == 128)
-                return RuntimeOS.Linux;
+                return PlatformOS.Linux;
 #else
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-                return RuntimeOS.WindowsNT;
+                return PlatformOS.Windows;
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-                return RuntimeOS.MacOSX;
+                return PlatformOS.MacOSX;
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
-                return RuntimeOS.Linux;
+                return PlatformOS.Linux;
 #endif
-            return RuntimeOS.Unknown;
+            return PlatformOS.Unknown;
         }
     }
 }

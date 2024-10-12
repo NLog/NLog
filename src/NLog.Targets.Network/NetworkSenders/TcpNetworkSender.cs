@@ -111,7 +111,7 @@ namespace NLog.Internal.NetworkSenders
                 SocketOptionName TcpKeepAliveTime = (SocketOptionName)0x3;
                 SocketOptionName TcpKeepAliveInterval = (SocketOptionName)0x11;
 
-                if (GetCurrentOSPlatform() == PlatformOS.Linux)
+                if (PlatformDetector.CurrentOS == PlatformOS.Linux)
                 {
                     // https://github.com/torvalds/linux/blob/v4.16/include/net/tcp.h
                     // #define    TCP_KEEPIDLE            4              /* Start keepalives after this period */
@@ -119,7 +119,7 @@ namespace NLog.Internal.NetworkSenders
                     TcpKeepAliveTime = (SocketOptionName)0x4;
                     TcpKeepAliveInterval = (SocketOptionName)0x5;
                 }
-                else if (GetCurrentOSPlatform() == PlatformOS.MacOSX)
+                else if (PlatformDetector.CurrentOS == PlatformOS.MacOSX)
                 {
                     // https://opensource.apple.com/source/xnu/xnu-4570.41.2/bsd/netinet/tcp.h.auto.html
                     // #define    TCP_KEEPALIVE      0x10                      /* idle time used when SO_KEEPALIVE is enabled */
@@ -165,32 +165,6 @@ namespace NLog.Internal.NetworkSenders
                 InternalLogger.Warn(ex, "NetworkTarget: Failed to configure TCP-option {0} = {1}", socketOption, value);
                 return false;
             }
-        }
-
-        private static PlatformOS GetCurrentOSPlatform()
-        {
-#if NETFRAMEWORK
-            var platformID = System.Environment.OSVersion.Platform;
-            if (platformID == System.PlatformID.Win32NT || platformID == System.PlatformID.Win32Windows)
-            {
-                return PlatformOS.Windows;
-            }
-            if ((int)platformID == 4 || (int)platformID == 128)
-            {
-                return PlatformOS.Linux;
-            }
-
-            //return PlatformOS.Unknown;
-#else
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-                return PlatformOS.Windows;
-//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-//                return PlatformOS.OSX;
-//            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
-//                return PlatformOS.Linux;
-//            return PlatformOS.Unknown;
-#endif
-            return PlatformOS.Unknown;
         }
 
         protected override void DoInitialize()
