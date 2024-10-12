@@ -432,21 +432,21 @@ namespace NLog.UnitTests.Config
         public void LoggerNameMatcher_MultiplePattern_StarInternal()
         {
             var matcher = LoggerNameMatcher.Create("a*bc");
-            Assert.Equal("logNamePattern: (^a.*bc$:MultiplePattern)", matcher.ToString());
+            Assert.Equal("logNamePattern: (a*bc:MultiplePattern)", matcher.ToString());
         }
 
         [Fact]
         public void LoggerNameMatcher_MultiplePattern_QuestionMark()
         {
             var matcher = LoggerNameMatcher.Create("a?bc");
-            Assert.Equal("logNamePattern: (^a.bc$:MultiplePattern)", matcher.ToString());
+            Assert.Equal("logNamePattern: (a?bc:MultiplePattern)", matcher.ToString());
         }
 
         [Fact]
         public void LoggerNameMatcher_MultiplePattern_EscapedChars()
         {
             var matcher = LoggerNameMatcher.Create("a?b.c.foo.bar");
-            Assert.Equal("logNamePattern: (^a.b\\.c\\.foo\\.bar$:MultiplePattern)", matcher.ToString());
+            Assert.Equal("logNamePattern: (a?b.c.foo.bar:MultiplePattern)", matcher.ToString());
         }
 
         [Theory]
@@ -527,6 +527,13 @@ namespace NLog.UnitTests.Config
         [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[2].reader", false)]
         [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[25].reader", true)]
         [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[254].reader", false)]
+        [InlineData("MultiplePattern", "*???*", "abcd", true)]
+        [InlineData("MultiplePattern", "*???*", "abc", true)]
+        [InlineData("MultiplePattern", "*???*", "ab", false)]
+        [InlineData("MultiplePattern", "?*???*", "abcd", true)]
+        [InlineData("MultiplePattern", "?*???*", "abc", false)]
+        [InlineData("MultiplePattern", "*???*?", "abcd", true)]
+        [InlineData("MultiplePattern", "*???*?", "abc", false)]
         public void LoggerNameMatcher_Matches(string matcherType, string pattern, string name, bool result)
         {
             var matcher = LoggerNameMatcher.Create(pattern);
