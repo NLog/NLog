@@ -1,6 +1,6 @@
 # NLog Network Target
 
-NLog Network Target for sending mesages using TCP / UDP with support for SSL / TSL.
+NLog Network Target for sending mesages using TCP / UDP sockets with support for SSL / TSL.
 
 If having trouble with output, then check [NLog InternalLogger](https://github.com/NLog/NLog/wiki/Internal-Logging) for clues. See also [Troubleshooting NLog](https://github.com/NLog/NLog/wiki/Logging-Troubleshooting)
 

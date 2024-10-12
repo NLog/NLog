@@ -37,6 +37,7 @@ namespace NLog.Internal.NetworkSenders
     using System.IO;
     using System.Net.Sockets;
     using NLog.Common;
+    using NLog.Targets.Internal;
 
     /// <summary>
     /// Sends messages over a TCP network connection.
@@ -110,7 +111,7 @@ namespace NLog.Internal.NetworkSenders
                 SocketOptionName TcpKeepAliveTime = (SocketOptionName)0x3;
                 SocketOptionName TcpKeepAliveInterval = (SocketOptionName)0x11;
 
-                if (PlatformDetector.CurrentOS == RuntimeOS.Linux)
+                if (PlatformDetector.CurrentOS == PlatformOS.Linux)
                 {
                     // https://github.com/torvalds/linux/blob/v4.16/include/net/tcp.h
                     // #define    TCP_KEEPIDLE            4              /* Start keepalives after this period */
@@ -118,7 +119,7 @@ namespace NLog.Internal.NetworkSenders
                     TcpKeepAliveTime = (SocketOptionName)0x4;
                     TcpKeepAliveInterval = (SocketOptionName)0x5;
                 }
-                else if (PlatformDetector.CurrentOS == RuntimeOS.MacOSX)
+                else if (PlatformDetector.CurrentOS == PlatformOS.MacOSX)
                 {
                     // https://opensource.apple.com/source/xnu/xnu-4570.41.2/bsd/netinet/tcp.h.auto.html
                     // #define    TCP_KEEPALIVE      0x10                      /* idle time used when SO_KEEPALIVE is enabled */

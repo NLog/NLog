@@ -31,48 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
+namespace NLog.Targets.Internal
 {
     /// <summary>
-    /// Detects the platform the NLog is running on.
+    /// Supported operating systems.
     /// </summary>
-    internal static class PlatformDetector
+    internal enum PlatformOS
     {
         /// <summary>
-        /// Gets the current runtime OS.
+        /// Unknown operating system.
         /// </summary>
-        public static RuntimeOS CurrentOS => _currentOS ?? (_currentOS = GetCurrentRuntimeOS()).Value;
-        private static RuntimeOS? _currentOS;
+        Unknown,
 
-        private static RuntimeOS GetCurrentRuntimeOS()
-        {
-#if NETFRAMEWORK
-            var platformID = System.Environment.OSVersion.Platform;
-            if ((int)platformID == 4 || (int)platformID == 128)
-            {
-                return RuntimeOS.Linux;
-            }
+        /// <summary>
+        /// Unix/Linux operating systems.
+        /// </summary>
+        Linux,
 
-            if (platformID == System.PlatformID.Win32Windows)
-            {
-                return RuntimeOS.Windows9x;
-            }
+        /// <summary>
+        /// Windows operating systems.
+        /// </summary>
+        Windows,
 
-            if (platformID == System.PlatformID.Win32NT)
-            {
-                return RuntimeOS.WindowsNT;
-            }
-
-            return RuntimeOS.Unknown;
-#else
-            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
-                return RuntimeOS.WindowsNT;
-            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-                return RuntimeOS.MacOSX;
-            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
-                return RuntimeOS.Linux;
-            return RuntimeOS.Unknown;
-#endif
-        }
+        /// <summary>
+        /// Macintosh Mac OSX
+        /// </summary>
+        MacOSX,
     }
 }

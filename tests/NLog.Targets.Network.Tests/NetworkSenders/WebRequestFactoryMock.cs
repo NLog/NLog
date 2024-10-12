@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Net;
-using NLog.Internal.NetworkSenders;
-
 namespace NLog.Targets.Network
 {
+    using System;
+    using System.Net;
+    using NLog.Internal.NetworkSenders;
+
     [Obsolete("WebRequest is obsolete. Use HttpClient instead.")]
     class WebRequestFactoryMock : IWebRequestFactory
     {

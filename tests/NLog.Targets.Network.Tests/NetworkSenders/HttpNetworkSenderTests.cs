@@ -31,16 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-using System.Security.Authentication;
-using NLog.Config;
-using NLog.Internal.NetworkSenders;
-using NLog.Targets;
-using NSubstitute;
-using Xunit;
-
 namespace NLog.Targets.Network
 {
+    using System;
+    using System.Security.Authentication;
+    using NLog.Config;
+    using NLog.Internal.NetworkSenders;
+    using NSubstitute;
+    using Xunit;
+
     public class HttpNetworkSenderTests
     {
         public HttpNetworkSenderTests()

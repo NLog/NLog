@@ -41,9 +41,9 @@ namespace NLog.LayoutRenderers
     using System.Xml;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
+    using NLog.Targets.Internal;
 
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
@@ -350,11 +350,11 @@ namespace NLog.LayoutRenderers
             {
                 foreach (var scopeProperty in ScopeContext.GetAllProperties())
                 {
-                    string propertyKey = XmlHelper.RemoveInvalidXmlChars(scopeProperty.Key);
+                    string propertyKey = XmlHelpers.RemoveInvalidXmlChars(scopeProperty.Key);
                     if (string.IsNullOrEmpty(propertyKey))
                         continue;
 
-                    string propertyValue = XmlHelper.XmlConvertToStringSafe(scopeProperty.Value);
+                    string propertyValue = XmlHelpers.XmlConvertToStringSafe(scopeProperty.Value);
                     if (propertyValue is null)
                         continue;
 
@@ -422,11 +422,11 @@ namespace NLog.LayoutRenderers
             {
                 foreach (var contextProperty in logEvent.Properties)
                 {
-                    string propertyKey = XmlHelper.XmlConvertToStringSafe(contextProperty.Key);
+                    string propertyKey = XmlHelpers.XmlConvertToStringSafe(contextProperty.Key);
                     if (string.IsNullOrEmpty(propertyKey))
                         continue;
 
-                    string propertyValue = XmlHelper.XmlConvertToStringSafe(contextProperty.Value);
+                    string propertyValue = XmlHelpers.XmlConvertToStringSafe(contextProperty.Value);
                     if (propertyValue is null)
                         continue;
 
