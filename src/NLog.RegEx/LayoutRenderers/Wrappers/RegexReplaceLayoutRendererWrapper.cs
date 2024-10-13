@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Replaces a string in the output of another layout with another string.
     /// </summary>
     /// <example>
-    /// ${replace:searchFor=\\n+:replaceWith=-:regex=true:inner=${message}}
+    /// ${replace:searchFor=\\n+:replaceWith=-:inner=${message}}
     /// </example>
     /// <remarks>
     /// <a href="https://github.com/NLog/NLog/wiki/Replace-Layout-Renderer">See NLog Wiki</a>
@@ -66,13 +66,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Layout Options' order='10' />
         [RequiredParameter]
         public string SearchFor { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether regular expressions should be used.
-        /// </summary>
-        /// <value>A value of <c>true</c> if regular expressions should be used otherwise, <c>false</c>.</value>
-        /// <docgen category='Condition Options' order='10' />
-        public bool Regex { get; set; }
 
         /// <summary>
         /// Gets or sets the replacement string.
@@ -120,10 +113,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 WholeWords = WholeWords,
                 CompileRegex = CompileRegex,
             };
-            if (Regex)
-                _regexHelper.RegexPattern = SearchFor;
-            else
-                _regexHelper.SearchText = SearchFor;
+            _regexHelper.RegexPattern = SearchFor;
 
             if (!string.IsNullOrEmpty(ReplaceGroupName) && _regexHelper.Regex?.GetGroupNames()?.Contains(ReplaceGroupName) == false)
             {

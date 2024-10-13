@@ -95,7 +95,7 @@ namespace NLog.RegEx.Tests
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <targets>
-        <target name='d1' type='Debug' layout='${regex-replace:inner=${message}:searchFor=\\r\\n|\\s:replaceWith= :regex=true}' />
+        <target name='d1' type='Debug' layout='${regex-replace:inner=${message}:searchFor=\\r\\n|\\s:replaceWith= }' />
     </targets>
     <rules>
       <logger name=""*"" minlevel=""Trace"" writeTo=""d1"" />
@@ -117,7 +117,7 @@ namespace NLog.RegEx.Tests
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""whitespace"" value=""\\r\\n|\\s"" />
-    <variable name=""oneLineMessage"" value=""${regex-replace:inner=${message}:searchFor=${whitespace}:replaceWith= :regex=true}"" />
+    <variable name=""oneLineMessage"" value=""${regex-replace:inner=${message}:searchFor=${whitespace}:replaceWith= }"" />
     <targets>
       <target name=""d1"" type=""Debug"" layout=""${oneLineMessage}"" />
     </targets>
@@ -144,7 +144,7 @@ namespace NLog.RegEx.Tests
               value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![ -]\\d))""
               />
 
-    <variable name=""message1"" value=""${regex-replace:inner=${message}:searchFor=${searchExp}:replaceWith=X:replaceGroupName=digits:regex=true:ignorecase=true}"" />
+    <variable name=""message1"" value=""${regex-replace:inner=${message}:searchFor=${searchExp}:replaceWith=X:replaceGroupName=digits:ignorecase=true}"" />
 
     <targets>
       <target name=""d1"" type=""Debug"" layout=""${message1}"" />
