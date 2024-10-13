@@ -33,13 +33,8 @@
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
-    using System;
-    using System.Collections.Generic;
     using NLog;
-    using NLog.Config;
-    using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
-    using NLog.Targets;
     using Xunit;
 
     public class ReplaceTests : NLogTestBase
@@ -71,134 +66,16 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
-        public void ReplaceTestWithSimpleRegEx()
+        public void ReplaceTestWholeWordsWithoutRegEx()
         {
             // Arrange
-            SimpleLayout layout = @"${replace:inner=${message}:searchFor=\\r\\n|\\s:replaceWith= :regex=true}";
+            SimpleLayout layout = @"${replace:inner=${message}:searchFor=foo:replaceWith=BAR:ignorecase=true:WholeWords=true}";
 
             // Act
-            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", "\r\nfoo\rbar\nbar\tbar bar \n bar"));
+            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", "foo bar bar foobar barfoo bar FOO"));
 
             // Assert
-            Assert.Equal(" foo bar bar bar bar   bar", result);
-        }
-
-        [Fact]
-        public void ReplaceTestWithSimpleRegExFromConfig()
-        {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <targets>
-        <target name='d1' type='Debug' layout='${replace:inner=${message}:searchFor=\\r\\n|\\s:replaceWith= :regex=true}' />
-    </targets>
-    <rules>
-      <logger name=""*"" minlevel=""Trace"" writeTo=""d1"" />
-    </rules>
-</nlog>");
-
-            var d1 = configuration.FindTargetByName("d1") as DebugTarget;
-            Assert.NotNull(d1);
-            var layout = d1.Layout as SimpleLayout;
-            Assert.NotNull(layout);
-
-            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", "\r\nfoo\rbar\nbar\tbar bar \n bar"));
-            Assert.Equal(" foo bar bar bar bar   bar", result);
-        }
-
-        [Fact]
-        public void ReplaceTestWithSimpleRegExFromConfig2()
-        {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name=""whitespace"" value=""\\r\\n|\\s"" />
-    <variable name=""oneLineMessage"" value=""${replace:inner=${message}:searchFor=${whitespace}:replaceWith= :regex=true}"" />
-    <targets>
-      <target name=""d1"" type=""Debug"" layout=""${oneLineMessage}"" />
-    </targets>
-    <rules>
-      <logger name=""*"" minlevel=""Trace"" writeTo=""d1"" />
-    </rules>
-</nlog>");
-
-            var d1 = configuration.FindTargetByName("d1") as DebugTarget;
-            Assert.NotNull(d1);
-            var layout = d1.Layout as SimpleLayout;
-            Assert.NotNull(layout);
-
-            var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", "\r\nfoo\rbar\nbar\tbar bar \n bar"));
-            Assert.Equal(" foo bar bar bar bar   bar", result);
-        }
-
-        [Fact]
-        public void ReplaceTestWithComplexRegEx()
-        {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-    <variable name=""searchExp""
-              value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![ -]\\d))""
-              />
-
-    <variable name=""message1"" value=""${replace:inner=${message}:searchFor=${searchExp}:replaceWith=X:replaceGroupName=digits:regex=true:ignorecase=true}"" />
-
-    <targets>
-      <target name=""d1"" type=""Debug"" layout=""${message1}"" />
-    </targets>
-
-    <rules>
-      <logger name=""*"" minlevel=""Trace"" writeTo=""d1"" />
-    </rules>
-</nlog>");
-
-            var d1 = configuration.FindTargetByName("d1") as DebugTarget;
-            Assert.NotNull(d1);
-            var layout = d1.Layout as SimpleLayout;
-            Assert.NotNull(layout);
-
-            var testCases = new List<Tuple<string, string>>
-            {
-                Tuple.Create("1234", "1234"),
-                Tuple.Create("1234-5678-1234-5678", "XXXX-XXXX-XXXX-5678"),
-            };
-
-            foreach (var testCase in testCases)
-            {
-                var result = layout.Render(new LogEventInfo(LogLevel.Info, "Test", testCase.Item1));
-                Assert.Equal(testCase.Item2, result);
-            }
-        }
-
-        [Fact]
-        public void ReplaceNamedGroupTests()
-        {
-            var pattern = @"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]*\d))";
-            var groupName = @"digits";
-
-            var regex = new System.Text.RegularExpressions.Regex(
-                pattern,
-                System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-
-            var testCases = new List<Tuple<string, string, string>>
-            {
-                Tuple.Create("1234", "1234", "X"),
-                Tuple.Create("1234-5678-1234-5678", "XXXX-XXXX-XXXX-5678", "X"),
-                Tuple.Create("1234 5678 1234 5678", "XXXX XXXX XXXX 5678", "X"),
-                Tuple.Create("1234567812345678", "XXXXXXXXXXXX5678", "X"),
-                Tuple.Create("ABCD-1234-5678-1234-5678", "ABCD-XXXX-XXXX-XXXX-5678", "X"),
-                Tuple.Create("1234-5678-1234-5678-ABCD", "XXXX-XXXX-XXXX-5678-ABCD", "X"),
-                Tuple.Create("ABCD-1234-5678-1234-5678-ABCD", "ABCD-XXXX-XXXX-XXXX-5678-ABCD", "X"),
-                Tuple.Create("ABCD-1234-5678-1234-5678-ABCD", "ABCD-XXXXXXXX-XXXXXXXX-XXXXXXXX-5678-ABCD", "XX"),
-            };
-
-            foreach (var testCase in testCases)
-            {
-                var input = testCase.Item1;
-                var replacement = testCase.Item3;
-
-                var result = regex.Replace(
-                    input, m => ReplaceLayoutRendererWrapper.ReplaceNamedGroup(groupName, replacement, m));
-
-                Assert.Equal(testCase.Item2, result);
-            }
+            Assert.Equal("BAR bar bar foobar barfoo bar BAR", result);
         }
     }
 }

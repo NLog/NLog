@@ -414,7 +414,7 @@ namespace NLog.Targets
                     catch (Exception ex)
                     {
 #if DEBUG
-                        if (ex.MustBeRethrownImmediately())
+                        if (LogManager.ThrowExceptions)
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
@@ -445,7 +445,7 @@ namespace NLog.Targets
                     catch (Exception ex)
                     {
 #if DEBUG
-                        if (ex.MustBeRethrownImmediately())
+                        if (LogManager.ThrowExceptions)
                         {
                             throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }

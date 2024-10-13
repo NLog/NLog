@@ -463,27 +463,33 @@ namespace NLog.Targets
                 for (int i = 0; i < WordHighlightingRules.Count; ++i)
                 {
                     var hl = WordHighlightingRules[i];
-                    var matches = hl.Matches(logEvent, message);
-                    if (matches is null || matches.Count == 0)
+                    if (hl.Condition != null && false.Equals(hl.Condition.Evaluate(logEvent)))
+                        continue;
+
+                    var matches = hl.GetWordsForHighlighting(message);
+                    if (matches is null)
                         continue;
 
                     if (sb != null)
                         sb.Length = 0;
 
                     int previousIndex = 0;
-                    foreach (System.Text.RegularExpressions.Match match in matches)
+                    foreach (var match in matches)
                     {
                         sb = sb ?? new StringBuilder(message.Length + 5);
-                        sb.Append(message, previousIndex, match.Index - previousIndex);
+                        sb.Append(message, previousIndex, match.Key - previousIndex);
 
                         sb.Append('\a');
                         sb.Append((char)((int)hl.ForegroundColor + 'A'));
                         sb.Append((char)((int)hl.BackgroundColor + 'A'));
-                        sb.Append(match.Value);
+                        for (int j = 0; j < match.Value; ++j)
+                        {
+                            sb.Append(message[j + match.Key]);
+                        }
                         sb.Append('\a');
                         sb.Append('X');
 
-                        previousIndex = match.Index + match.Length;
+                        previousIndex = match.Key + match.Value;
                     }
 
                     if (sb?.Length > 0)
