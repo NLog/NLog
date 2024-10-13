@@ -233,8 +233,6 @@ namespace NLog.Config
             factory.ConditionMethodFactory.RegisterThreeParameters("starts-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.StartsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
             factory.ConditionMethodFactory.RegisterTwoParameters("ends-with", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString()));
             factory.ConditionMethodFactory.RegisterThreeParameters("ends-with", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.EndsWith(arg1?.ToString(), arg2?.ToString(), arg3 is bool ignoreCase ? ignoreCase : true));
-            factory.ConditionMethodFactory.RegisterTwoParameters("regex-matches", (logEvent, arg1, arg2) => NLog.Conditions.ConditionMethods.RegexMatches(arg1?.ToString(), arg2?.ToString()));
-            factory.ConditionMethodFactory.RegisterThreeParameters("regex-matches", (logEvent, arg1, arg2, arg3) => NLog.Conditions.ConditionMethods.RegexMatches(arg1?.ToString(), arg2?.ToString(), arg3?.ToString() ?? string.Empty));
 
 #pragma warning restore CS0618 // Type or member is obsolete
         }

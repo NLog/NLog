@@ -84,12 +84,8 @@ namespace NLog.Internal
         /// <summary>
         /// Replace string with <paramref name="comparison"/>
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        /// <param name="comparison"></param>
         /// <returns>The same reference of nothing has been replaced.</returns>
-        public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
+        public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison, bool wholeWords = false)
         {
             Guard.ThrowIfNull(str);
 
@@ -107,22 +103,27 @@ namespace NLog.Internal
             int index = str.IndexOf(oldValue, comparison);
             while (index != -1)
             {
-                sb = sb ?? new StringBuilder(str.Length);
-
-                if (previousIndex >= str.Length)
+                if (!wholeWords ||IsWholeWord(str, oldValue, index))
                 {
-                    // for cases that 2 chars is one symbol
-                    break;
+                    sb = sb ?? new StringBuilder(str.Length);
+                    if (previousIndex >= str.Length)
+                    {
+                        // for cases that 2 chars is one symbol
+                        break;
+                    }
+                    sb.Append(str, previousIndex, index - previousIndex);
+                    sb.Append(newValue);
+                    index += oldValue.Length;
+                    previousIndex = index;
+                    if (index >= str.Length)
+                    {
+                        // for cases that 2 chars is one symbol
+                        break;
+                    }
                 }
-                sb.Append(str, previousIndex, index - previousIndex);
-                sb.Append(newValue);
-                index += oldValue.Length;
-
-                previousIndex = index;
-                if (index >= str.Length)
+                else
                 {
-                    // for cases that 2 chars is one symbol
-                    break;
+                    index += oldValue.Length;
                 }
 
                 index = str.IndexOf(oldValue, index, comparison);
@@ -140,6 +141,11 @@ namespace NLog.Internal
             }
 
             return sb.ToString();
+        }
+
+        public static bool IsWholeWord(string str, string token, int index)
+        {
+            return (index + token.Length == str.Length || !char.IsLetterOrDigit(str[index + token.Length]) && (index == 0 || !char.IsLetterOrDigit(str[index - 1])));
         }
 
         /// <summary>Concatenates all the elements of a string array, using the specified separator between each element. </summary>

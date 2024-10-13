@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
+namespace NLog.RegEx.Internal
 {
     using System;
     using System.Text.RegularExpressions;
@@ -43,7 +43,6 @@ namespace NLog.Internal
         private string _regexPattern;
         private bool _wholeWords;
         private bool _ignoreCase;
-        private bool _simpleSearchText;
 
         public string SearchText
         {
@@ -121,7 +120,6 @@ namespace NLog.Internal
 
         private void ResetRegex()
         {
-            _simpleSearchText = !WholeWords && !CompileRegex && !string.IsNullOrEmpty(SearchText);
             if (!string.IsNullOrEmpty(SearchText))
             {
                 _regexPattern = Regex.Escape(SearchText);
@@ -151,11 +149,7 @@ namespace NLog.Internal
 
         public string Replace(string input, string replacement)
         {
-            if (_simpleSearchText)
-            {
-                return IgnoreCase ? StringHelpers.Replace(input, SearchText, replacement, StringComparison.CurrentCultureIgnoreCase) : input.Replace(SearchText, replacement);
-            }
-            else if (CompileRegex)
+            if (CompileRegex)
             {
                 return Regex?.Replace(input, replacement) ?? input;
             }

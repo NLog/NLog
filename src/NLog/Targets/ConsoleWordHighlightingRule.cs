@@ -33,7 +33,7 @@
 
 namespace NLog.Targets
 {
-    using System.Text.RegularExpressions;
+    using System.Collections.Generic;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
@@ -44,8 +44,6 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public class ConsoleWordHighlightingRule
     {
-        private readonly RegexHelper _regexHelper = new RegexHelper();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleWordHighlightingRule" /> class.
         /// </summary>
@@ -63,19 +61,9 @@ namespace NLog.Targets
         /// <param name="backgroundColor">Color of the background.</param>
         public ConsoleWordHighlightingRule(string text, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
-            _regexHelper.SearchText = text;
+            Text = text;
             ForegroundColor = foregroundColor;
             BackgroundColor = backgroundColor;
-        }
-
-        /// <summary>
-        /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
-        /// </summary>
-        /// <docgen category='Highlighting Rules' order='10' />
-        public string Regex
-        {
-            get => _regexHelper.RegexPattern;
-            set => _regexHelper.RegexPattern = value;
         }
 
         /// <summary>
@@ -85,44 +73,23 @@ namespace NLog.Targets
         public ConditionExpression Condition { get; set; }
 
         /// <summary>
-        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
-        /// </summary>
-        /// <docgen category='Highlighting Rules' order='10' />
-        public bool CompileRegex
-        {
-            get => _regexHelper.CompileRegex;
-            set => _regexHelper.CompileRegex = value;
-        }
-
-        /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public string Text
-        {
-            get => _regexHelper.SearchText;
-            set => _regexHelper.SearchText = value;
-        }
+        public string Text { get => _text; set => _text = string.IsNullOrEmpty(value) ? string.Empty : value; }
+        private string _text = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public bool WholeWords
-        {
-            get => _regexHelper.WholeWords;
-            set => _regexHelper.WholeWords = value;
-        }
+        public bool WholeWords { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
-        public bool IgnoreCase
-        {
-            get => _regexHelper.IgnoreCase;
-            set => _regexHelper.IgnoreCase = value;
-        }
+        public bool IgnoreCase { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground color.
@@ -137,18 +104,52 @@ namespace NLog.Targets
         public ConsoleOutputColor BackgroundColor { get; set; }
 
         /// <summary>
-        /// Gets the compiled regular expression that matches either Text or Regex property. Only used when <see cref="CompileRegex"/> is <c>true</c>.
+        /// Scans the <paramref name="haystack"/> for words that should be highlighted.
         /// </summary>
-        public Regex CompiledRegex => _regexHelper.Regex;
-
-        internal MatchCollection Matches(LogEventInfo logEvent, string message)
+        /// <returns>List of words with start-position (Key) and word-length (Value)</returns>
+        internal protected virtual IEnumerable<KeyValuePair<int, int>> GetWordsForHighlighting(string haystack)
         {
-            if (Condition != null && false.Equals(Condition.Evaluate(logEvent)))
-            {
+            if (ReferenceEquals(_text, string.Empty))
                 return null;
-            }
 
-            return _regexHelper.Matches(message);
+            int firstIndex = FindNextWordForHighlighting(haystack, null);
+            if (firstIndex < 0)
+                return null;
+
+            int nextIndex = FindNextWordForHighlighting(haystack, firstIndex);
+            if (nextIndex < 0)
+                return new[] { new KeyValuePair<int, int>(firstIndex, Text.Length) };
+
+            return YieldWordsForHighlighting(haystack, firstIndex, nextIndex);
+        }
+
+        private IEnumerable<KeyValuePair<int, int>> YieldWordsForHighlighting(string haystack, int firstIndex, int nextIndex)
+        {
+            yield return new KeyValuePair<int, int>(firstIndex, _text.Length);
+
+            yield return new KeyValuePair<int, int>(nextIndex, _text.Length);
+
+            int index = nextIndex;
+            while (index >= 0)
+            {
+                index = FindNextWordForHighlighting(haystack, index);
+                if (index >= 0)
+                    yield return new KeyValuePair<int, int>(index, _text.Length);
+            }
+        }
+
+        private int FindNextWordForHighlighting(string haystack, int? prevIndex)
+        {
+            int index = prevIndex.HasValue ? prevIndex.Value + _text.Length : 0;
+            while (index >= 0)
+            {
+                index = IgnoreCase ? haystack.IndexOf(_text, index, System.StringComparison.CurrentCultureIgnoreCase) : haystack.IndexOf(_text, index);
+                if (index < 0 || (!WholeWords || StringHelpers.IsWholeWord(haystack, _text, index)))
+                    return index;
+
+                index += _text.Length;
+            }
+            return index;
         }
     }
 }

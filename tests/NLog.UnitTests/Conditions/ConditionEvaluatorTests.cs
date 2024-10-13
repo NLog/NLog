@@ -35,8 +35,6 @@ namespace NLog.UnitTests.Conditions
 {
     using System;
     using System.Globalization;
-    using System.IO;
-    using System.Runtime.Serialization.Formatters.Binary;
     using NLog.Conditions;
     using NLog.Config;
     using Xunit;
@@ -76,20 +74,6 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(false, "contains('foobar','oobe')");
             AssertEvaluationResult(false, "contains('','foo')");
             AssertEvaluationResult(true, "contains('foo','')");
-
-            AssertEvaluationResult(true, "regex-matches('foo', '^foo$')");
-            AssertEvaluationResult(false, "regex-matches('foo', '^bar$')");
-
-            //Check that calling with empty string is equivalent with not passing the parameter
-            AssertEvaluationResult(true, "regex-matches('foo', '^foo$', '')");
-            AssertEvaluationResult(false, "regex-matches('foo', '^bar$', '')");
-
-            //Check that options are parsed correctly
-            AssertEvaluationResult(true, "regex-matches('Foo', '^foo$', 'ignorecase')");
-            AssertEvaluationResult(false, "regex-matches('Foo', '^foo$')");
-            AssertEvaluationResult(true, "regex-matches('foo\nbar', '^Foo$', 'ignorecase,multiline')");
-            AssertEvaluationResult(false, "regex-matches('foo\nbar', '^Foo$')");
-            Assert.Throws<ConditionEvaluationException>(() => AssertEvaluationResult(true, "regex-matches('foo\nbar', '^Foo$', 'ignorecase,nonexistent')"));
         }
 
         [Fact]
@@ -335,8 +319,8 @@ namespace NLog.UnitTests.Conditions
         {
             var inner = new InvalidOperationException("f");
             var ex1 = new ConditionEvaluationException("msg", inner);
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
+            var bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            var ms = new System.IO.MemoryStream();
             bf.Serialize(ms, ex1);
             ms.Position = 0;
             Exception ex2 = (Exception)bf.Deserialize(ms);
@@ -375,8 +359,8 @@ namespace NLog.UnitTests.Conditions
         {
             var inner = new InvalidOperationException("f");
             var ex1 = new ConditionParseException("msg", inner);
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
+            var bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            var ms = new System.IO.MemoryStream();
             bf.Serialize(ms, ex1);
             ms.Position = 0;
             Exception ex2 = (Exception)bf.Deserialize(ms);
