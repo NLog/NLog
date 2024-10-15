@@ -1,4 +1,4 @@
-# NLog WebService Target
+# NLog Mail Target
 
 NLog Mail Target for sending email using .NET SmtpClient for each logevent.
 

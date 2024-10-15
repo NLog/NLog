@@ -101,7 +101,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-            : this(new LoggingConfigurationWatchableFileLoader(DefaultAppEnvironment))
+            : this(new LoggingConfigurationFileLoader(DefaultAppEnvironment))
         {
             _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             RefreshMessageFormatter();
@@ -236,7 +236,6 @@ namespace NLog
                     {
                         _config = value;
                         _configLoaded = false;
-                        _configLoader.Activated(this, value);
                     }
                     else
                     {
@@ -260,7 +259,6 @@ namespace NLog
             _config = config;
             _configLoaded = true;
             _config.OnConfigurationAssigned(this);
-            _configLoader.Activated(this, _config);
             _config.Dump();
             ReconfigExistingLoggers();
             InternalLogger.Info("Configuration initialized.");
