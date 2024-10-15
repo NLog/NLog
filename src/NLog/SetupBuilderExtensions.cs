@@ -37,6 +37,7 @@ namespace NLog
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
 
@@ -234,12 +235,36 @@ namespace NLog
         /// <remarks>Logevents produced during the configuration-reload can become lost, as targets are unavailable while closing and initializing.</remarks>
         public static ISetupBuilder ReloadConfiguration(this ISetupBuilder setupBuilder)
         {
-            var newConfig = setupBuilder.LogFactory._config?.Reload();
-            if (newConfig is null || (newConfig as IInitializeSucceeded)?.InitializeSucceeded == false)
-                return setupBuilder;
+            try
+            {
+                InternalLogger.Debug("Reloading NLog LoggingConfiguration");
+                var newConfig = setupBuilder.LogFactory._config?.Reload();
+                if (newConfig is null)
+                    return setupBuilder;
 
-            setupBuilder.LogFactory.Configuration = newConfig;
-            return setupBuilder;
+                setupBuilder.LogFactory.Configuration = newConfig;
+                return setupBuilder;
+            }
+            catch (NLogConfigurationException ex)
+            {
+                InternalLogger.Error(ex, "Failed to reload NLog LoggingConfiguration");
+                if (ex.MustBeRethrown() || (setupBuilder.LogFactory.ThrowConfigExceptions ?? setupBuilder.LogFactory.ThrowExceptions))
+                {
+                    throw;
+                }
+
+                return setupBuilder;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Failed to reload NLog LoggingConfiguration");
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                return setupBuilder;
+            }
         }
     }
 }

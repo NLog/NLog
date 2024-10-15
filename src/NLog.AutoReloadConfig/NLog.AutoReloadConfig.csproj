@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net35;net46;netstandard2.0</TargetFrameworks>
+
+    <Title>NLog.AutoReloadConfig</Title>
+    <Company>NLog</Company>
+    <Description>NLog.AutoReloadConfig enables AutoReload support for NLog.config XML-files</Description>
+    <Product>NLog.AutoReloadConfig v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
+
+    <PackageReleaseNotes>
+      AutoReload Docs:
+      https://github.com/NLog/NLog/wiki/Configuration-file#automatic-reconfiguration
+    </PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>NLog;AutoReload;logging;log</PackageTags>
+    <PackageIcon>N.png</PackageIcon>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <IsPackable>true</IsPackable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableTrimAnalyzer Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</EnableTrimAnalyzer>
+    <IsTrimmable Condition=" '$(TargetFramework)' == 'netstandard2.0' ">true</IsTrimmable>
+    <TrimMode>copyused</TrimMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>NLog.AutoReloadConfig for .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog.AutoReloadConfig for .NET Framework 4.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog.AutoReloadConfig for .NET Framework 3.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.AutoReloadConfig for NetStandard 2.0</Title>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="N.png" Pack="true" PackagePath="" visible="false" />
+  </ItemGroup>
+  <Target Name="DownloadMissingContent" BeforeTargets="GenerateNuspec">
+    <DownloadFile SourceUrl="https://nlog-project.org/N.png" DestinationFolder="$(MSBuildThisFileDirectory)" />
+  </Target>
+
+</Project>

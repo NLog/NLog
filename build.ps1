@@ -35,6 +35,7 @@ function create-package($packageName, $targetFrameworks)
 		{ exit $LastExitCode }
 }
 
+create-package 'NLog.AutoReloadConfig' '"net35;net45;net46;netstandard2.0"'
 create-package 'NLog.Database' '"net35;net45;net46;netstandard2.0"'
 create-package 'NLog.Targets.Mail' '"net35;net45;net46;netstandard2.0"'
 create-package 'NLog.Targets.Network' '"net45;net46;netstandard2.0"'

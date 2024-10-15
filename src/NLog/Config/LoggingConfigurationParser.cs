@@ -51,6 +51,9 @@ namespace NLog.Config
     /// <summary>
     /// Loads NLog configuration from <see cref="ILoggingConfigurationElement"/>
     /// </summary>
+    /// <remarks>
+    /// Make sure to update official NLog.xsd schema, when adding new config-options outside targets/layouts
+    /// </remarks>
     public abstract class LoggingConfigurationParser : LoggingConfiguration
     {
         private readonly ServiceRepository _serviceRepository;

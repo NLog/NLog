@@ -219,67 +219,6 @@ namespace NLog.UnitTests
             }
         }
 
-        [Fact]
-        public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
-        {
-            EventHandler<LoggingConfigurationChangedEventArgs> testChanged = null;
-
-            try
-            {
-                LogManager.Configuration = null;
-
-                var loggingConfiguration = new LoggingConfiguration();
-                LogManager.Configuration = loggingConfiguration;
-
-                var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
-                var logFactory = new LogFactory(configLoader);
-                logFactory.Configuration = loggingConfiguration;
-
-                var differentConfiguration = new LoggingConfiguration();
-
-                // Verify that the random configuration change is ignored (Only the final reset is reacted upon)
-                bool called = false;
-                LoggingConfiguration oldConfiguration = null, newConfiguration = null;
-                testChanged = (s, e) => { called = true; oldConfiguration = e.DeactivatedConfiguration; newConfiguration = e.ActivatedConfiguration; };
-                LogManager.LogFactory.ConfigurationChanged += testChanged;
-
-                var exRecorded = Record.Exception(() => configLoader.ReloadConfigOnTimer(differentConfiguration));
-                Assert.Null(exRecorded);
-
-                // Final reset clears the configuration, so it is changed to null
-                LogManager.Configuration = null;
-                Assert.True(called);
-                Assert.Equal(loggingConfiguration, oldConfiguration);
-                Assert.Null(newConfiguration);
-            }
-            finally
-            {
-                if (testChanged != null)
-                    LogManager.LogFactory.ConfigurationChanged -= testChanged;
-            }
-        }
-
-        private class ReloadNullConfiguration : LoggingConfiguration
-        {
-            public override LoggingConfiguration Reload()
-            {
-                return null;
-            }
-        }
-
-        [Fact]
-        public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigReloadReturnsNull()
-        {
-            var loggingConfiguration = new ReloadNullConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var configLoader = new LoggingConfigurationWatchableFileLoader(LogFactory.DefaultAppEnvironment);
-            var logFactory = new LogFactory(configLoader);
-            logFactory.Configuration = loggingConfiguration;
-
-            var exRecorded = Record.Exception(() => configLoader.ReloadConfigOnTimer(loggingConfiguration));
-            Assert.Null(exRecorded);
-        }
-
         /// <summary>
         /// We should be forward compatible so that we can add easily attributes in the future.
         /// </summary>
