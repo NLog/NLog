@@ -55,8 +55,17 @@ namespace NLog.Config
             _appEnvironment = appEnvironment;
         }
 
-        public virtual LoggingConfiguration Load(LogFactory logFactory, string filename = null)
+        public LoggingConfiguration Load(LogFactory logFactory, string filename = null)
         {
+#if NETFRAMEWORK
+            if (string.IsNullOrEmpty(filename))
+            {
+                var appConfig = ConfigSectionHandler.AppConfig;
+                if (appConfig != null)
+                    return appConfig;
+            }
+#endif
+
             if (string.IsNullOrEmpty(filename) || FilePathLayout.DetectFilePathKind(filename) == FilePathKind.Relative)
             {
                 return TryLoadFromFilePaths(logFactory, filename);
@@ -67,11 +76,6 @@ namespace NLog.Config
             }
 
             return null;
-        }
-
-        public virtual void Activated(LogFactory logFactory, LoggingConfiguration config)
-        {
-            // Nothing to do
         }
 
         private LoggingConfiguration TryLoadFromFilePaths(LogFactory logFactory, string filename)
@@ -139,22 +143,7 @@ namespace NLog.Config
         {
             try
             {
-                var newConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
-                if (newConfig.InitializeSucceeded != true)
-                {
-                    if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
-                    {
-                        using (var xmlReaderRetry = _appEnvironment.LoadXmlFile(configFile))
-                        {
-                            newConfig = new XmlLoggingConfiguration(xmlReaderRetry, configFile, logFactory); // Scan again after having updated LogFactory, to throw correct exception
-                        }
-                    }
-                    else if (autoReload && !newConfig.AutoReload)
-                    {
-                        return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
-                    }
-                }
-                return newConfig;
+                return new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
             }
             catch (Exception ex)
             {
