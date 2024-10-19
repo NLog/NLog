@@ -50,13 +50,6 @@ namespace NLog.Config
         LoggingConfiguration Load(LogFactory logFactory, string filename = null);
 
         /// <summary>
-        /// Notifies when LoggingConfiguration has been successfully applied
-        /// </summary>
-        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
-        /// <param name="config">NLog Config</param>
-        void Activated(LogFactory logFactory, LoggingConfiguration config);
-
-        /// <summary>
         /// Get file paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filename">Name of NLog.config file (optional)</param>

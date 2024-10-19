@@ -45,16 +45,12 @@ namespace NLog.Config
     using NLog.Layouts;
 
     /// <summary>
-    /// A class for configuring NLog through an XML configuration file
-    /// (App.config style or App.nlog style).
-    ///
-    /// Parsing of the XML file is also implemented in this class.
+    /// Loads NLog LoggingConfiguration from xml-file (like app.config) using <see cref="XmlReader"/>
     /// </summary>
-    ///<remarks>
-    /// - This class is thread-safe.<c>.ToList()</c> is used for that purpose.
-    /// - Update TemplateXSD.xml for changes outside targets
+    /// <remarks>
+    /// Make sure to update official NLog.xsd schema, when adding new config-options outside targets/layouts
     /// </remarks>
-    public class XmlLoggingConfiguration : LoggingConfigurationParser, IInitializeSucceeded
+    public class XmlLoggingConfiguration : LoggingConfigurationParser
     {
         private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
@@ -87,38 +83,6 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string)"/> with NLog v4.7.
-        ///
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="fileName">Configuration file to be read.</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors)
-            : this(fileName, ignoreErrors, LogManager.LogFactory)
-        { }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(string, LogFactory)"/> with NLog v4.7.
-        ///
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="fileName">Configuration file to be read.</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors, LogFactory logFactory)
-            : base(logFactory)
-        {
-            using (XmlReader reader = CreateFileReader(fileName))
-            {
-                Initialize(reader, fileName, ignoreErrors);
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader">XML reader to read from.</param>
@@ -143,38 +107,7 @@ namespace NLog.Config
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, LogFactory logFactory)
             : base(logFactory)
         {
-            Initialize(reader, fileName);
-        }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string)"/> with NLog v4.7.
-        ///
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
-        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
-            : this(reader, fileName, ignoreErrors, LogManager.LogFactory)
-        { }
-
-        /// <summary>
-        /// Obsolete and replaced by <see cref="XmlLoggingConfiguration(XmlReader, string, LogFactory)"/> with NLog v4.7.
-        ///
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
-        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors, LogFactory logFactory)
-            : base(logFactory)
-        {
-            Initialize(reader, fileName, ignoreErrors);
+            ParseFromXmlReader(reader, fileName);
         }
 
         /// <summary>
@@ -208,28 +141,8 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 
-#if NETFRAMEWORK
         /// <summary>
-        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
-        /// the application configuration file (<c>app.exe.config</c>).
-        /// </summary>
-        public static LoggingConfiguration AppConfig
-        {
-            get
-            {
-                object o = System.Configuration.ConfigurationManager.GetSection("nlog");
-                return o as LoggingConfiguration;
-            }
-        }
-#endif
-
-        /// <summary>
-        /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
-        /// </summary>
-        public bool? InitializeSucceeded { get; private set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether all of the configuration files
+        /// Gets or sets a value indicating whether any of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
         /// </summary>
         public bool AutoReload
@@ -239,7 +152,7 @@ namespace NLog.Config
                 if (_fileMustAutoReloadLookup.Count == 0)
                     return false;
                 else
-                    return _fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+                    return _fileMustAutoReloadLookup.Values.Any(mustAutoReload => mustAutoReload);
             }
             set
             {
@@ -258,12 +171,15 @@ namespace NLog.Config
         {
             get
             {
-                return _fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
+                if (_fileMustAutoReloadLookup.Count == 0)
+                    return ArrayHelper.Empty<string>();
+                else 
+                    return _fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
             }
         }
 
         /// <summary>
-        /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
+        /// Loads the NLog LoggingConfiguration from its original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
         /// </summary>
         /// <returns>The newly loaded <see cref="XmlLoggingConfiguration" /> instance.</returns>
         /// <remarks>Must assign the returned object to LogManager.Configuration to activate it</remarks>
@@ -322,7 +238,7 @@ namespace NLog.Config
         {
             using (XmlReader reader = CreateFileReader(fileName))
             {
-                Initialize(reader, fileName);
+                ParseFromXmlReader(reader, fileName);
             }
         }
 
@@ -332,7 +248,7 @@ namespace NLog.Config
             {
                 using (XmlReader reader = XmlReader.Create(stringReader))
                 {
-                    Initialize(reader, fileName);
+                    ParseFromXmlReader(reader, fileName);
                 }
             }
         }
@@ -357,12 +273,10 @@ namespace NLog.Config
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
-        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        private void Initialize([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors = false)
+        private void ParseFromXmlReader([NotNull] XmlReader reader, [CanBeNull] string fileName)
         {
             try
             {
-                InitializeSucceeded = null;
                 _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
                 reader.MoveToContent();
                 var content = new XmlLoggingConfigurationElement(reader);
@@ -375,21 +289,12 @@ namespace NLog.Config
                 {
                     ParseTopLevel(content, null, autoReloadDefault: false);
                 }
-                InitializeSucceeded = true;
             }
             catch (Exception exception)
             {
-                InitializeSucceeded = false;
-
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-
                 var configurationException = new NLogConfigurationException($"Exception when loading configuration {fileName}", exception);
                 InternalLogger.Error(exception, configurationException.Message);
-                if (!ignoreErrors && (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions || configurationException.MustBeRethrown()))
-                    throw configurationException;
+                throw configurationException;
             }
         }
 
