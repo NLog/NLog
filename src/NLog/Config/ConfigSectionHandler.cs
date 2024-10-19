@@ -69,7 +69,7 @@ namespace NLog.Config
                 catch (Exception exception)
                 {
                     // Load can fail due to an invalid XML file (app.config) etc.
-                    InternalLogger.Error(exception, "Failed loading XML configuration from NLog ConfigSection in app.config");
+                    InternalLogger.Error(exception, "Failed loading XML configuration from NLog ConfigSection in application configuration file (app.config / web.config)");
                     if (exception.MustBeRethrown())
                         throw;
                 }

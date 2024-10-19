@@ -43,14 +43,14 @@ namespace NLog
     using NLog.Internal;
 
     /// <summary>
-    /// Setup()-extension method that hooks into LogFactory.ConfiguractionChanged, and setup file-monitor on config-change
+    /// Setup()-extension to activate AutoReload support by monitoring <see cref="LoggingConfiguration.FileNamesToWatch"/>
     /// </summary>
     public static class SetupBuilderAutoReloadExtensions
     {
         private static readonly Dictionary<LogFactory, AutoReloadConfigFileWatcher> _watchers = new Dictionary<LogFactory, AutoReloadConfigFileWatcher>();
 
         /// <summary>
-        /// Enables AutoReload support for <see cref="XmlLoggingConfiguration"/>
+        /// Activates AutoReload support by monitoring <see cref="LoggingConfiguration.FileNamesToWatch"/>
         /// </summary>
         /// <remarks>
         /// Hooks into <see cref="LogFactory.OnConfigurationChanged"/> and setup file-monitoring for NLog.config file-changes.
@@ -160,7 +160,7 @@ namespace NLog
 
             private void ReloadTimer(object state)
             {
-                if (_reloadTimer is null && _isDisposing)
+                if (_isDisposing)
                 {
                     return; //timer was disposed already.
                 }

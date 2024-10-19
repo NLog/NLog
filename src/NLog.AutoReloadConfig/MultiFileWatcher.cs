@@ -124,9 +124,11 @@ namespace NLog.Internal
                     InternalLogger.Debug("Start watching file-filter '{0}' in directory: {1}", fileFilter, directory);
                 }
             }
-            catch (System.Security.SecurityException ex)
+            catch (Exception ex)
             {
                 InternalLogger.Debug(ex, "Failed to start FileSystemWatcher with file-path: {0}", fileName);
+                if (LogManager.ThrowExceptions)
+                    throw;
             }
         }
 
@@ -161,6 +163,9 @@ namespace NLog.Internal
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "Failed to start FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, directory);
+                    if (ex is System.Security.SecurityException || ex is UnauthorizedAccessException || ex is NotSupportedException || ex is NotImplementedException || ex is PlatformNotSupportedException)
+                        return false;
+
                     if (LogManager.ThrowExceptions)
                         throw;
 
