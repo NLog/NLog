@@ -52,7 +52,6 @@ namespace NLog.UnitTests.Config
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                 Assert.False(config.AutoReload);
-                Assert.True(config.InitializeSucceeded);
                 Assert.Equal("", InternalLogger.LogFile);
                 Assert.False(InternalLogger.LogToConsole);
                 Assert.False(InternalLogger.LogToConsoleError);
@@ -73,7 +72,6 @@ namespace NLog.UnitTests.Config
                     var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                     Assert.False(config.AutoReload);
-                    Assert.True(config.InitializeSucceeded);
                     Assert.Equal("", InternalLogger.LogFile);
                     Assert.True(InternalLogger.LogToConsole);
                     Assert.True(InternalLogger.LogToConsoleError);

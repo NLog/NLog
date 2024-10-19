@@ -90,18 +90,19 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Stops watching the specified file.
+        /// Watches the specified files for changes.
         /// </summary>
-        /// <param name="fileName"></param>
-        public void StopWatching(string fileName)
+        /// <param name="fileNames">The file names.</param>
+        public void Watch(IEnumerable<string> fileNames)
         {
-            lock (_watcherMap)
+            if (fileNames is null)
             {
-                if (_watcherMap.TryGetValue(fileName, out var watcher))
-                {
-                    StopWatching(watcher);
-                    _watcherMap.Remove(fileName);
-                }
+                return;
+            }
+
+            foreach (string s in fileNames)
+            {
+                Watch(s);
             }
         }
 
@@ -165,7 +166,7 @@ namespace NLog.Internal
                     if (ex is System.Security.SecurityException || ex is UnauthorizedAccessException || ex is NotSupportedException || ex is NotImplementedException || ex is PlatformNotSupportedException)
                         return false;
 
-                    if (ex.MustBeRethrown())
+                    if (LogManager.ThrowExceptions)
                         throw;
 
                     if (watcher != null)
@@ -200,7 +201,7 @@ namespace NLog.Internal
             catch (Exception ex)
             {
                 InternalLogger.Error(ex, "Failed to stop FileSystemWatcher with file-filter '{0}' in directory: {1}", fileFilter, fileDirectory);
-                if (ex.MustBeRethrown())
+                if (LogManager.ThrowExceptions)
                     throw;
             }
         }
@@ -225,7 +226,7 @@ namespace NLog.Internal
                 catch (Exception ex)
                 {
 #if DEBUG
-                    if (ex.MustBeRethrownImmediately())
+                    if (LogManager.ThrowExceptions)
                         throw;  // Throwing exceptions here might crash the entire application (.NET 2.0 behavior)
 #endif
                     InternalLogger.Error(ex, "Error handling event from FileSystemWatcher with file-filter: '{0}' in directory: {1}", e.Name, e.FullPath);

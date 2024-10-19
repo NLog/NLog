@@ -112,7 +112,7 @@ namespace NLog.Config
             }
             catch (ReflectionTypeLoadException typeLoadException)
             {
-                var result = typeLoadException.Types?.Where(t => t != null)?.ToArray() ?? ArrayHelper.Empty<Type>();
+                var result = typeLoadException.Types?.Where(t => t != null).ToArray() ?? ArrayHelper.Empty<Type>();
                 InternalLogger.Warn(typeLoadException, "Loaded {0} valid types from Assembly: {1}", result.Length, assembly.FullName);
                 foreach (var ex in typeLoadException.LoaderExceptions ?? ArrayHelper.Empty<Exception>())
                 {

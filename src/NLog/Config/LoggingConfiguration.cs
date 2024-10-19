@@ -490,7 +490,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Called by LogManager when one of the log configuration files changes.
+        /// Loads the NLog LoggingConfiguration from its original source (Ex. read from original config-file after it was updated)
         /// </summary>
         /// <returns>
         /// A new instance of <see cref="LoggingConfiguration"/> that represents the updated configuration.
