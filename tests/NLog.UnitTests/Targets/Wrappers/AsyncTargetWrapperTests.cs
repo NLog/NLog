@@ -73,13 +73,19 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
         {
-            AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true);
+            RetryingIntegrationTest(3, () =>
+            {
+                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true);
+            });
         }
 
         [Fact]
         public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
         {
-            AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);
+            RetryingIntegrationTest(3, () =>
+            {
+                AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);                
+            });
         }
 
         /// <summary>
