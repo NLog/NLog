@@ -656,11 +656,14 @@ namespace NLog.Targets.Network
                 try
                 {
                     NetworkTargetUdpTest(true);
+                    break;
                 }
                 catch
                 {
                     if (i == 3)
                         throw;
+
+                    System.Threading.Thread.Sleep(1000 * i);
                 }
             }
         }
@@ -673,11 +676,14 @@ namespace NLog.Targets.Network
                 try
                 {
                     NetworkTargetUdpTest(false);
+                    break;
                 }
                 catch
                 {
                     if (i == 3)
                         throw;
+
+                    System.Threading.Thread.Sleep(1000 * i);
                 }
             }
         }

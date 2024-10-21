@@ -109,16 +109,32 @@ namespace NLog.Internal
                 if (string.IsNullOrEmpty(configProp.Key))
                     continue;   // Ignore default values
 
-                if (!PropertyHelper.IsConfigurationItemType(configFactory, configProp.Value.PropertyType))
+                var propInfo = configProp.Value;
+                if (!PropertyHelper.IsConfigurationItemType(configFactory, propInfo.PropertyType))
                     continue;
 
-                var propInfo = configProp.Value;
-                var propValue = propInfo.GetValue(targetObject, null);
+                object propValue = ScanPropertyValue(targetObject, type, propInfo);
                 if (propValue is null)
                     continue;
 
                 visitedObjects.Add(targetObject);
                 ScanPropertyForObject(configFactory, aggressiveSearch, propValue, propInfo, result, level, visitedObjects);
+            }
+        }
+
+        private static object ScanPropertyValue(object targetObject, Type type, PropertyInfo propInfo)
+        {
+            try
+            {
+                return propInfo.GetValue(targetObject, null);
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Failed scanning property: {0}.{1}", type, propInfo.Name);
+                if (exception.MustBeRethrownImmediately())
+                    throw;
+
+                return null;
             }
         }
 
