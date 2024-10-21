@@ -1,4 +1,7 @@
 <%@ Page language="c#" AutoEventWireup="true" %>
+
+<!DOCTYPE html>
+
 <script language="C#" runat="server">
 NLog.Logger logger = NLog.LogManager.GetLogger("default.aspx");
 
@@ -9,8 +12,9 @@ void Page_Load(Object sender, EventArgs e)
     logger.Error("Some error...");
 }
 </script>
-<html>
+<html lang="en">
 <head>
+    <title>ASP.NET Trace Test</title>
 </head>
 <body>
     <p>
