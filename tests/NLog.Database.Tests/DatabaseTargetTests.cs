@@ -1707,11 +1707,24 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
 
             bool isAppVeyor = IsAppVeyor();
-            SqlServerTest.TryDropDatabase(isAppVeyor);
 
             try
             {
-                SqlServerTest.CreateDatabase(isAppVeyor);
+                for (int i = 1; i <= 3; ++i)
+                {
+                    try
+                    {
+                        SqlServerTest.TryDropDatabase(isAppVeyor);
+                        SqlServerTest.CreateDatabase(isAppVeyor);
+                        break;
+                    }
+                    catch
+                    {
+                        if (i >= 3)
+                            throw;
+                        System.Threading.Thread.Sleep(i * 5000);
+                    }
+                }
 
                 var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
 
@@ -1759,11 +1772,25 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
 
             bool isAppVeyor = IsAppVeyor();
-            SqlServerTest.TryDropDatabase(isAppVeyor);
 
             try
             {
-                SqlServerTest.CreateDatabase(isAppVeyor);
+                for (int i = 1; i <= 3; ++i)
+                {
+                    try
+                    {
+                        SqlServerTest.TryDropDatabase(isAppVeyor);
+                        SqlServerTest.CreateDatabase(isAppVeyor);
+                        break;
+                    }
+                    catch
+                    {
+                        if (i >= 3)
+                            throw;
+
+                        System.Threading.Thread.Sleep(i * 5000);
+                    }
+                }
 
                 var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
 
