@@ -1154,8 +1154,31 @@ namespace NLog.Config
                 return;
             }
 
-            object propertyValue = propInfo.GetValue(targetObject, null);
-            ConfigureFromAttributesAndElements(propertyValue, childElement);
+            if (TryGetPropertyValue(targetObject, propInfo, out var propertyValue))
+            {
+                ConfigureFromAttributesAndElements(propertyValue, childElement);
+            }
+        }
+
+        private bool TryGetPropertyValue<T>(T targetObject, PropertyInfo propInfo, out object propertyValue) where T : class
+        {
+            try
+            {
+                propertyValue = propInfo.GetValue(targetObject, null);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                var configException = new NLogConfigurationException($"Failed getting property {propInfo.Name} for type: {typeof(T).Name}", ex);
+                if (MustThrowConfigException(configException))
+                    throw configException;
+
+                propertyValue = null;
+                return false;
+            }
         }
 
         private bool AddArrayItemFromElement(object o, PropertyInfo propInfo, ValidatedConfigurationElement element)
@@ -1163,23 +1186,26 @@ namespace NLog.Config
             Type elementType = PropertyHelper.GetArrayItemType(propInfo);
             if (elementType != null)
             {
-                IList propertyValue = (IList)propInfo.GetValue(o, null);
-
-                if (string.Equals(propInfo.Name, element.Name, StringComparison.OrdinalIgnoreCase))
+                if (TryGetPropertyValue(o, propInfo, out var propertyValue))
                 {
-                    bool foundChild = false;
-                    foreach (var child in element.ValidChildren)
-                    {
-                        foundChild = true;
-                        propertyValue.Add(ParseArrayItemFromElement(elementType, child));
-                    }
-                    if (foundChild)
-                        return true;
-                }
+                    IList listValue = (IList)propertyValue;
 
-                object arrayItem = ParseArrayItemFromElement(elementType, element);
-                propertyValue.Add(arrayItem);
-                return true;
+                    if (string.Equals(propInfo.Name, element.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        bool foundChild = false;
+                        foreach (var child in element.ValidChildren)
+                        {
+                            foundChild = true;
+                            listValue.Add(ParseArrayItemFromElement(elementType, child));
+                        }
+                        if (foundChild)
+                            return true;
+                    }
+
+                    object arrayItem = ParseArrayItemFromElement(elementType, element);
+                    listValue.Add(arrayItem);
+                    return true;
+                }
             }
 
             return false;
