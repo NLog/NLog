@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class CounterLayoutRenderer : LayoutRenderer, IRawValue
     {
-        private static Dictionary<string, long> sequences = new Dictionary<string, long>(StringComparer.Ordinal);
+        private static readonly Dictionary<string, long> Sequences = new Dictionary<string, long>(StringComparer.Ordinal);
 
         /// <summary>
         /// Gets or sets the initial value of the counter.
@@ -83,34 +83,25 @@ namespace NLog.LayoutRenderers
 
         private long GetNextValue(LogEventInfo logEvent)
         {
-            long v;
-
             if (Sequence is null)
             {
-                v = Value;
+                long currentValue = Value;
                 Value += Increment;
-            }
-            else
-            {
-                v = GetNextSequenceValue(Sequence.Render(logEvent), Value, Increment);
+                return currentValue;
             }
 
-            return v;
-        }
-
-        private static long GetNextSequenceValue(string sequenceName, long defaultValue, int increment)
-        {
-            lock (sequences)
+            var sequenceName = Sequence.Render(logEvent);
+            lock (Sequences)
             {
-                if (!sequences.TryGetValue(sequenceName, out var val))
+                if (!Sequences.TryGetValue(sequenceName, out var nextValue))
                 {
-                    val = defaultValue;
+                    nextValue = Value;
                 }
 
-                var retVal = val;
-                val += increment;
-                sequences[sequenceName] = val;
-                return retVal;
+                var currentValue = nextValue;
+                nextValue += Increment;
+                Sequences[sequenceName] = nextValue;
+                return currentValue;
             }
         }
 
