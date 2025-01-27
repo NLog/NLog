@@ -31,78 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.Targets.FileArchiveHandlers
 {
+    using System;
+
     /// <summary>
-    /// Modes of archiving files based on time.
+    /// Handles the actual file-operations on disk
     /// </summary>
-    public enum FileArchivePeriod
+    internal interface IFileArchiveHandler
     {
         /// <summary>
-        /// Don't archive based on time.
+        /// Called just before opening a new log-file
         /// </summary>
-        None,
-
-        /// <summary>
-        /// Archive every new year.
-        /// </summary>
-        Year,
-
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
-
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
-
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
-
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        /// <param name="newFileName">File-name of the new log-file</param>
+        /// <param name="firstLogEvent">The first LogEvent for the new log-file</param>
+        /// <param name="previousFileLastModified">Previous file-write-time</param>
+        /// <param name="newSequenceNumber">File-path-suffix for the new log-file</param>
+        /// <returns>Updated <paramref name="newSequenceNumber"/> for the new file.</returns>
+        int ArchiveBeforeOpenFile(string newFileName, LogEventInfo firstLogEvent, DateTime? previousFileLastModified, int newSequenceNumber);
     }
 }

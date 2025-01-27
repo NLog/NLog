@@ -46,9 +46,6 @@ namespace NLog.UnitTests
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-#if NETFRAMEWORK
-    using Ionic.Zip;
-#endif
 
     public abstract class NLogTestBase
     {
@@ -119,116 +116,6 @@ namespace NLog.UnitTests
         protected static DebugTarget GetDebugTarget(string targetName, LogFactory logFactory)
         {
             return LogFactoryTestExtensions.GetDebugTarget(targetName, logFactory.Configuration);
-        }
-
-        protected static void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
-        {
-            FileInfo fi = new FileInfo(fileName);
-            if (!fi.Exists)
-                Assert.Fail("File '" + fileName + "' doesn't exist.");
-
-            byte[] encodedBuf = encoding.GetBytes(contents);
-
-            byte[] buf = File.ReadAllBytes(fileName);
-            Assert.True(encodedBuf.Length <= buf.Length,
-                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
-
-            for (int i = 0; i < encodedBuf.Length; ++i)
-            {
-                if (encodedBuf[i] != buf[i])
-                    Assert.True(encodedBuf[i] == buf[i],
-                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
-            }
-        }
-
-        protected static void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
-        {
-            if (!File.Exists(fileName))
-                Assert.Fail("File '" + fileName + "' doesn't exist.");
-
-            string fileText = File.ReadAllText(fileName, encoding);
-            Assert.True(fileText.Length >= contents.Length);
-            Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
-        }
-
-        protected sealed class CustomFileCompressor : IArchiveFileCompressor
-        {
-            public void CompressFile(string fileName, string archiveFileName)
-            {
-                string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
-                CompressFile(fileName, archiveFileName, entryName);
-            }
-
-            public void CompressFile(string fileName, string archiveFileName, string entryName)
-            {
-#if NETFRAMEWORK
-                using (var zip = new Ionic.Zip.ZipFile())
-                {
-                    ZipEntry entry = zip.AddFile(fileName);
-                    entry.FileName = entryName;
-                    zip.Save(archiveFileName);
-                }
-#endif
-            }
-        }
-
-#if NET35 || NET40
-        protected static void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
-        {
-            if (!File.Exists(fileName))
-                Assert.True(false, "File '" + fileName + "' doesn't exist.");
-
-            byte[] encodedBuf = encoding.GetBytes(contents);
-
-            using (var zip = new Ionic.Zip.ZipFile(fileName))
-            {
-                Assert.Equal(1, zip.Count);
-                Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
-
-                byte[] buf = new byte[zip[0].UncompressedSize];
-                using (var fs = zip[0].OpenReader())
-                {
-                    fs.Read(buf, 0, buf.Length);
-                }
-
-                for (int i = 0; i < buf.Length; ++i)
-                {
-                    Assert.Equal(encodedBuf[i], buf[i]);
-                }
-            }
-        }
-#else
-        protected static void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
-        {
-            FileInfo fi = new FileInfo(fileName);
-            if (!fi.Exists)
-                Assert.Fail("File '" + fileName + "' doesn't exist.");
-
-            byte[] encodedBuf = encoding.GetBytes(contents);
-            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
-            {
-                Assert.Single(zip.Entries);
-                Assert.Equal(expectedEntryName, zip.Entries[0].Name);
-                Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
-
-                byte[] buf = new byte[(int)zip.Entries[0].Length];
-                using (var fs = zip.Entries[0].Open())
-                {
-                    fs.Read(buf, 0, buf.Length);
-                }
-
-                for (int i = 0; i < buf.Length; ++i)
-                {
-                    Assert.Equal(encodedBuf[i], buf[i]);
-                }
-            }
-        }
-#endif
-
-        protected static void AssertFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
-        {
-            AssertFileContents(fileName, contents, encoding, false);
         }
 
         protected static void AssertFileContents(string fileName, string contents, Encoding encoding)

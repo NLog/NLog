@@ -56,7 +56,7 @@ namespace NLog.Targets
     /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/File-target">Documentation on NLog Wiki</seealso>
     [Target("File")]
-    public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
+    public class ConcurrentFileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
         /// <summary>
         /// Default clean up period of the initialized files. When a file exceeds the clean up period is removed from the list.
@@ -70,13 +70,13 @@ namespace NLog.Targets
         private const long ArchiveAboveSizeDisabled = -1L;
 
         /// <summary>
-        /// Holds the initialized files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored.
+        /// Holds the initialized files each given time by the <see cref="ConcurrentFileTarget"/> instance. Against each file, the last write time is stored.
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> _initializedFiles = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
-        /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
+        /// List of the associated file appenders with the <see cref="ConcurrentFileTarget"/> instance.
         /// </summary>
         private IFileAppenderCache _fileAppenderCache;
 
@@ -113,7 +113,7 @@ namespace NLog.Targets
         /// </summary>
         private FilePathLayout _fullArchiveFileName;
 
-        private FileArchivePeriod _archiveEvery;
+        private FileArchiveEveryPeriod _archiveEvery;
         private long _archiveAboveSize;
 
         private bool _enableArchiveFileCompression;
@@ -134,22 +134,22 @@ namespace NLog.Targets
         private FilePathKind _archiveFileKind;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FileTarget" /> class.
+        /// Initializes a new instance of the <see cref="ConcurrentFileTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
-        public FileTarget() : this(FileAppenderCache.Empty)
+        public ConcurrentFileTarget() : this(FileAppenderCache.Empty)
         {
         }
 
-        internal FileTarget(IFileAppenderCache fileAppenderCache)
+        internal ConcurrentFileTarget(IFileAppenderCache fileAppenderCache)
         {
             ArchiveNumbering = ArchiveNumberingMode.Sequence;
             _maxArchiveFiles = 0;
             _maxArchiveDays = 0;
 
-            ArchiveEvery = FileArchivePeriod.None;
+            ArchiveEvery = FileArchiveEveryPeriod.None;
             ArchiveAboveSize = ArchiveAboveSizeDisabled;
             _cleanupFileName = true;
 
@@ -157,20 +157,20 @@ namespace NLog.Targets
         }
 
 #if !NET35 && !NET40
-        static FileTarget()
+        static ConcurrentFileTarget()
         {
             FileCompressor = new ZipArchiveFileCompressor();
         }
 #endif
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FileTarget" /> class.
+        /// Initializes a new instance of the <see cref="ConcurrentFileTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
-        public FileTarget(string name) : this()
+        public ConcurrentFileTarget(string name) : this()
         {
             Name = name;
         }
@@ -561,7 +561,7 @@ namespace NLog.Targets
         /// on or after 11:00 will trigger the archiving.
         /// </remarks>
         /// <docgen category='Archival Options' order='50' />
-        public FileArchivePeriod ArchiveEvery
+        public FileArchiveEveryPeriod ArchiveEvery
         {
             get => _archiveEvery;
             set
@@ -761,9 +761,6 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrownImmediately())
-                    throw;
-
                 InternalLogger.Error(exception, "{0}: Exception in CleanupInitializedFiles", this);
             }
         }
@@ -826,7 +823,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (ExceptionMustBeRethrown(exception))
+                if (LogManager.ThrowExceptions)
                 {
                     throw;
                 }
@@ -837,9 +834,9 @@ namespace NLog.Targets
 
         /// <summary>
         /// Returns the suitable appender factory ( <see cref="IFileAppenderFactory"/>) to be used to generate the file
-        /// appenders associated with the <see cref="FileTarget"/> instance.
+        /// appenders associated with the <see cref="ConcurrentFileTarget"/> instance.
         ///
-        /// The type of the file appender factory returned depends on the values of various <see cref="FileTarget"/> properties.
+        /// The type of the file appender factory returned depends on the values of various <see cref="ConcurrentFileTarget"/> properties.
         /// </summary>
         /// <returns><see cref="IFileAppenderFactory"/> suitable for this instance.</returns>
         private IFileAppenderFactory GetFileAppenderFactory()
@@ -884,7 +881,7 @@ namespace NLog.Targets
                 return SingleProcessFileAppender.TheFactory;
         }
 
-        private bool IsArchivingEnabled => ArchiveAboveSize != ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
+        private bool IsArchivingEnabled => ArchiveAboveSize != ArchiveAboveSizeDisabled || ArchiveEvery != FileArchiveEveryPeriod.None;
 
         private bool IsSimpleKeepFileOpen => KeepFileOpen && !ConcurrentWrites && !ReplaceFileContentsOnEachWrite;
 
@@ -943,7 +940,8 @@ namespace NLog.Targets
             {
                 InternalLogger.Trace("{0}: Stop autoClosingTimer", this);
                 _autoClosingTimer = null;
-                currentTimer.WaitForDispose(TimeSpan.Zero);
+                currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                currentTimer.Dispose();
             }
 
             _fileAppenderCache.CloseAppenders("Dispose");
@@ -960,6 +958,7 @@ namespace NLog.Targets
             }
         }
 
+        private readonly ReusableBuilderCreator _reusableLayoutBuilder = new ReusableBuilderCreator();
         private readonly ReusableStreamCreator _reusableFileWriteStream = new ReusableStreamCreator();
         private readonly ReusableStreamCreator _reusableBatchFileWriteStream = new ReusableStreamCreator(true);
         private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
@@ -979,7 +978,7 @@ namespace NLog.Targets
 
             using (var targetStream = _reusableBatchFileWriteStream.Allocate())
             {
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+                using (var targetBuilder = _reusableLayoutBuilder.Allocate())
                 using (var targetBuffer = _reusableEncodingBuffer.Allocate())
                 {
                     RenderFormattedMessageToStream(logEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
@@ -1002,13 +1001,13 @@ namespace NLog.Targets
             if (_fullFileName.IsFixedFilePath)
                 return _fullFileName.Render(logEvent);
 
-            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            using (var targetBuilder = _reusableLayoutBuilder.Allocate())
             {
                 return _fullFileName.RenderWithBuilder(logEvent, targetBuilder.Result);
             }
         }
 
-        SortHelpers.KeySelector<AsyncLogEventInfo, string> _getFullFileNameDelegate;
+        BucketSortHelpers.KeySelector<AsyncLogEventInfo, string> _getFullFileNameDelegate;
 
         /// <summary>
         /// Writes the specified array of logging events to a file specified in the FileName
@@ -1071,7 +1070,7 @@ namespace NLog.Targets
             long maxBufferSize = BufferSize * 100;   // Max Buffer Default = 30 KiloByte * 100 = 3 MegaByte
 
             using (var targetStream = _reusableFileWriteStream.Allocate())
-            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            using (var targetBuilder = _reusableLayoutBuilder.Allocate())
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
                 var formatBuilder = targetBuilder.Result;
@@ -1083,7 +1082,7 @@ namespace NLog.Targets
                     // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
                     encodingStream.Position = 0;
                     encodingStream.SetLength(0);
-                    formatBuilder.ClearBuilder();
+                    formatBuilder.Length = 0;
 
                     AsyncLogEventInfo ev = logEvents[i];
                     RenderFormattedMessageToStream(ev.LogEvent, formatBuilder, transformBuffer, encodingStream);
@@ -1214,10 +1213,8 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
 
                 lastException = exception;
             }
@@ -1301,7 +1298,7 @@ namespace NLog.Targets
 
                     int sleepTimeMs = i * 50;
                     InternalLogger.Warn("{0}: Archiving Attempt #{1} to compress {2} to {3} failed - {4} {5}. Sleeping for {6}ms", this, i, fileName, archiveFileName, ex.GetType(), ex.Message, sleepTimeMs);
-                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(sleepTimeMs));
+                    Thread.Sleep(TimeSpan.FromMilliseconds(sleepTimeMs));
                 }
             }
 
@@ -1372,7 +1369,7 @@ namespace NLog.Targets
                 if (!File.Exists(fileName) || File.Exists(archiveFileName))
                     throw;
 
-                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(50));
+                Thread.Sleep(TimeSpan.FromMilliseconds(50));
 
                 if (!File.Exists(fileName) || File.Exists(archiveFileName))
                     throw;
@@ -1400,7 +1397,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Warn(exception, "{0}: Failed to delete old archive file: '{1}'.", this, fileName);
-                if (ExceptionMustBeRethrown(exception))
+                if (LogManager.ThrowExceptions)
                 {
                     throw;
                 }
@@ -1420,7 +1417,7 @@ namespace NLog.Targets
                     FileInfo currentFileInfo;
                     for (int i = 0; i < 120; ++i)
                     {
-                        AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(100));
+                        Thread.Sleep(TimeSpan.FromMilliseconds(100));
                         currentFileInfo = new FileInfo(fileName);
                         if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
                             return;
@@ -1432,10 +1429,8 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Warn(exception, "{0}: Failed to delete old archive file: '{1}'.", this, fileName);
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
             }
         }
 
@@ -1457,13 +1452,13 @@ namespace NLog.Targets
 
             switch (ArchiveEvery)
             {
-                case FileArchivePeriod.Year:
+                case FileArchiveEveryPeriod.Year:
                     return "yyyy";
-                case FileArchivePeriod.Month:
+                case FileArchiveEveryPeriod.Month:
                     return "yyyyMM";
-                case FileArchivePeriod.Hour:
+                case FileArchiveEveryPeriod.Hour:
                     return "yyyyMMddHH";
-                case FileArchivePeriod.Minute:
+                case FileArchiveEveryPeriod.Minute:
                     return "yyyyMMddHHmm";
                 default:
                     return "yyyyMMdd";  // Also for Weekdays
@@ -1533,29 +1528,29 @@ namespace NLog.Targets
         {
             switch (ArchiveEvery)
             {
-                case FileArchivePeriod.Year:
+                case FileArchiveEveryPeriod.Year:
                     return timestamp.AddYears(1);
-                case FileArchivePeriod.Month:
+                case FileArchiveEveryPeriod.Month:
                     return timestamp.AddMonths(1);
-                case FileArchivePeriod.Day:
+                case FileArchiveEveryPeriod.Day:
                     return timestamp.AddDays(1);
-                case FileArchivePeriod.Hour:
+                case FileArchiveEveryPeriod.Hour:
                     return timestamp.AddHours(1);
-                case FileArchivePeriod.Minute:
+                case FileArchiveEveryPeriod.Minute:
                     return timestamp.AddMinutes(1);
-                case FileArchivePeriod.Sunday:
+                case FileArchiveEveryPeriod.Sunday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Sunday);
-                case FileArchivePeriod.Monday:
+                case FileArchiveEveryPeriod.Monday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Monday);
-                case FileArchivePeriod.Tuesday:
+                case FileArchiveEveryPeriod.Tuesday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Tuesday);
-                case FileArchivePeriod.Wednesday:
+                case FileArchiveEveryPeriod.Wednesday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Wednesday);
-                case FileArchivePeriod.Thursday:
+                case FileArchiveEveryPeriod.Thursday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Thursday);
-                case FileArchivePeriod.Friday:
+                case FileArchiveEveryPeriod.Friday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Friday);
-                case FileArchivePeriod.Saturday:
+                case FileArchiveEveryPeriod.Saturday:
                     return CalculateNextWeekday(timestamp, DayOfWeek.Saturday);
                 default:
                     return null;
@@ -1584,7 +1579,7 @@ namespace NLog.Targets
         /// Invokes the archiving process after determining when and which type of archiving is required.
         /// </summary>
         /// <param name="fileName">File name to be checked and archived.</param>
-        /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="eventInfo">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo, DateTime previousLogEventTimestamp, bool initializedNewFile)
@@ -1703,7 +1698,7 @@ namespace NLog.Targets
         /// Gets the pattern that archive files will match
         /// </summary>
         /// <param name="fileName">Filename of the log file</param>
-        /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="eventInfo">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         /// <returns>A string with a pattern that will match the archive filenames</returns>
         private string GetArchiveFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
@@ -1728,7 +1723,7 @@ namespace NLog.Targets
         /// Archives the file if it should be archived.
         /// </summary>
         /// <param name="fileName">The file name to check for.</param>
-        /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="ev">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
@@ -1756,10 +1751,8 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Warn(exception, "{0}: Failed to check archive for file '{1}'.", this, fileName);
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
             }
 
             if (string.IsNullOrEmpty(archiveFile))
@@ -1867,10 +1860,8 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Warn(exception, "{0}: Failed to archive file '{1}'.", this, archiveFile);
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
             }
         }
 
@@ -1878,7 +1869,7 @@ namespace NLog.Targets
         /// Indicates if the automatic archiving process should be executed.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="ev">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
@@ -1988,13 +1979,13 @@ namespace NLog.Targets
         /// Returns the file name for archiving, or null if archiving should not occur based on date/time.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="logEvent">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
         private string GetArchiveFileNameBasedOnTime(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp, bool initializedNewFile)
         {
-            if (ArchiveEvery == FileArchivePeriod.None)
+            if (ArchiveEvery == FileArchiveEveryPeriod.None)
             {
                 return null;
             }
@@ -2048,7 +2039,7 @@ namespace NLog.Targets
 
             if (previousLogEventTimestamp > DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
             {
-                if (TruncateArchiveTime(previousLogEventTimestamp, FileArchivePeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchivePeriod.Minute) && PlatformDetector.IsUnix)
+                if (TruncateArchiveTime(previousLogEventTimestamp, FileArchiveEveryPeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchiveEveryPeriod.Minute) && PlatformDetector.IsUnix)
                 {
                     if (IsSimpleKeepFileOpen)
                     {
@@ -2057,7 +2048,7 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        InternalLogger.Debug("{0}: File creation time {1} newer than previous file write time {2}. Linux FileSystem probably don't support file birthtime, unless multiple applications are writing to the same file. Configure FileTarget.KeepFileOpen=true AND FileTarget.ConcurrentWrites=false, so NLog can fix this.", this, creationTimeSource, previousLogEventTimestamp);
+                        InternalLogger.Debug("{0}: File creation time {1} newer than previous file write time {2}. Linux FileSystem probably don't support file birthtime, unless multiple applications are writing to the same file. Configure ConcurrentFileTarget.KeepFileOpen=true AND ConcurrentFileTarget.ConcurrentWrites=false, so NLog can fix this.", this, creationTimeSource, previousLogEventTimestamp);
                     }
                 }
             }
@@ -2071,33 +2062,33 @@ namespace NLog.Targets
         /// <param name="input">High resolution Time</param>
         /// <param name="resolution">Time Resolution Level</param>
         /// <returns>Truncated Low Resolution Time</returns>
-        private static DateTime TruncateArchiveTime(DateTime input, FileArchivePeriod resolution)
+        private static DateTime TruncateArchiveTime(DateTime input, FileArchiveEveryPeriod resolution)
         {
             switch (resolution)
             {
-                case FileArchivePeriod.Year:
+                case FileArchiveEveryPeriod.Year:
                     return new DateTime(input.Year, 1, 1, 0, 0, 0, 0, input.Kind);
-                case FileArchivePeriod.Month:
+                case FileArchiveEveryPeriod.Month:
                     return new DateTime(input.Year, input.Month, 1, 0, 0, 0, input.Kind);
-                case FileArchivePeriod.Day:
+                case FileArchiveEveryPeriod.Day:
                     return input.Date;
-                case FileArchivePeriod.Hour:
+                case FileArchiveEveryPeriod.Hour:
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerHour));
-                case FileArchivePeriod.Minute:
+                case FileArchiveEveryPeriod.Minute:
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerMinute));
-                case FileArchivePeriod.Sunday:
+                case FileArchiveEveryPeriod.Sunday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Sunday);
-                case FileArchivePeriod.Monday:
+                case FileArchiveEveryPeriod.Monday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Monday);
-                case FileArchivePeriod.Tuesday:
+                case FileArchiveEveryPeriod.Tuesday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Tuesday);
-                case FileArchivePeriod.Wednesday:
+                case FileArchiveEveryPeriod.Wednesday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Wednesday);
-                case FileArchivePeriod.Thursday:
+                case FileArchiveEveryPeriod.Thursday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Thursday);
-                case FileArchivePeriod.Friday:
+                case FileArchiveEveryPeriod.Friday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Friday);
-                case FileArchivePeriod.Saturday:
+                case FileArchiveEveryPeriod.Saturday:
                     return CalculateNextWeekday(input.Date, DayOfWeek.Saturday);
                 default:
                     return input;   // Unknown time-resolution-truncate, leave unchanged
@@ -2122,13 +2113,6 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-#if DEBUG
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                }
-#endif
-
                 InternalLogger.Warn(exception, "{0}: Exception in AutoCloseAppendersAfterArchive", this);
             }
             finally
@@ -2164,13 +2148,6 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-#if DEBUG
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                }
-#endif
-
                 InternalLogger.Warn(exception, "{0}: Exception in AutoClosingTimerCallback", this);
             }
             finally
@@ -2203,7 +2180,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Evaluates which parts of a file should be written (header, content, footer) based on various properties of
-        /// <see cref="FileTarget"/> instance and writes them.
+        /// <see cref="ConcurrentFileTarget"/> instance and writes them.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>
@@ -2234,11 +2211,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initialize a file to be used by the <see cref="FileTarget"/> instance. Based on the number of initialized
+        /// Initialize a file to be used by the <see cref="ConcurrentFileTarget"/> instance. Based on the number of initialized
         /// files and the values of various instance properties clean up and/or archiving processes can be invoked.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="logEvent">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         /// <returns>The DateTime of the previous log event for this file (DateTime.MinValue if just initialized).</returns>
         private DateTime InitializeFile(string fileName, LogEventInfo logEvent)
         {
@@ -2306,7 +2283,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the file footer and finalizes the file in <see cref="FileTarget"/> instance internal structures.
+        /// Writes the file footer and finalizes the file in <see cref="ConcurrentFileTarget"/> instance internal structures.
         /// </summary>
         /// <param name="fileName">File name to close.</param>
         /// <param name="isArchiving">Indicates if the file is being finalized for archiving.</param>
@@ -2365,11 +2342,11 @@ namespace NLog.Targets
 
         /// <summary>
         /// Invokes the archiving and clean up of older archive file based on the values of
-        /// <see cref="NLog.Targets.FileTarget.ArchiveOldFileOnStartup"/> and
-        /// <see cref="NLog.Targets.FileTarget.DeleteOldFileOnStartup"/> properties respectively.
+        /// <see cref="NLog.Targets.ConcurrentFileTarget.ArchiveOldFileOnStartup"/> and
+        /// <see cref="NLog.Targets.ConcurrentFileTarget.DeleteOldFileOnStartup"/> properties respectively.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
-        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="logEvent">Log event that the <see cref="ConcurrentFileTarget"/> instance is currently processing.</param>
         private void PrepareForNewFile(string fileName, LogEventInfo logEvent)
         {
             InternalLogger.Debug("{0}: Preparing for new file: '{1}'", this, fileName);
@@ -2385,10 +2362,8 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Warn(exception, "{0}: Unable to archive old log file '{1}'.", this, fileName);
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
             }
 
             if (DeleteOldFileOnStartup)
@@ -2415,11 +2390,8 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Warn(exception, "FileTarget(Name={0}): Failed to cleanup old archive files when starting on new file: '{1}'", Name, fileName);
-
-                if (ExceptionMustBeRethrown(exception))
-                {
+                if (LogManager.ThrowExceptions)
                     throw;
-                }
             }
         }
 
@@ -2524,7 +2496,7 @@ namespace NLog.Targets
                 return default(ArraySegment<byte>);
             }
 
-            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            using (var targetBuilder = _reusableLayoutBuilder.Allocate())
             using (var targetBuffer = _reusableEncodingBuffer.Allocate())
             {
                 var nullEvent = LogEventInfo.CreateNullEvent();

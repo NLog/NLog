@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,78 +31,40 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.Internal
 {
+    using System;
+    using NLog.Common;
+    using NLog.Internal.FileAppenders;
+
     /// <summary>
-    /// Modes of archiving files based on time.
+    /// Detects the platform the NLog is running on.
     /// </summary>
-    public enum FileArchivePeriod
+    internal static class MutexDetector
     {
         /// <summary>
-        /// Don't archive based on time.
+        /// Gets a value indicating whether current runtime supports use of mutex
         /// </summary>
-        None,
+        public static bool SupportsSharableMutex => _supportsSharableMutex ?? (_supportsSharableMutex = ResolveSupportsSharableMutex()).Value;
+        private static bool? _supportsSharableMutex;
 
         /// <summary>
-        /// Archive every new year.
+        /// Will creating a mutex succeed runtime?
         /// </summary>
-        Year,
+        private static bool ResolveSupportsSharableMutex()
+        {
+            try
+            {
+                var mutex = BaseMutexFileAppender.ForceCreateSharableMutex("NLogMutexTester");
+                mutex.Close(); //"dispose"
+                return true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Debug(ex, "Failed to create sharable mutex processes");
+            }
 
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
-
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
-
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
-
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+            return false;
+        }
     }
 }

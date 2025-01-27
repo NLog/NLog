@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -33,76 +33,51 @@
 
 namespace NLog.Targets
 {
+    using System;
+
     /// <summary>
-    /// Modes of archiving files based on time.
+    /// A descriptor for an archive created with the DateAndSequence numbering mode.
     /// </summary>
-    public enum FileArchivePeriod
+    internal sealed class DateAndSequenceArchive
     {
-        /// <summary>
-        /// Don't archive based on time.
-        /// </summary>
-        None,
+        private readonly string _dateFormat;
 
         /// <summary>
-        /// Archive every new year.
+        /// The full name of the archive file.
         /// </summary>
-        Year,
+        public string FileName { get; }
 
         /// <summary>
-        /// Archive every new month.
+        /// The parsed date contained in the file name.
         /// </summary>
-        Month,
+        public DateTime Date { get; }
 
         /// <summary>
-        /// Archive every new day.
+        /// The parsed sequence number contained in the file name.
         /// </summary>
-        Day,
+        public int Sequence { get; }
+
+        public bool HasValidSequence => Sequence != int.MinValue && Sequence != int.MaxValue;
 
         /// <summary>
-        /// Archive every new hour.
+        /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
         /// </summary>
-        Hour,
+        /// <param name="date">The date to compare the current object's date to.</param>
+        /// <returns><c>True</c> if the formatted dates are equal, otherwise <c>False</c>.</returns>
+        public bool HasSameFormattedDate(DateTime date)
+        {
+            return string.Equals(date.ToString(_dateFormat), Date.ToString(_dateFormat), StringComparison.Ordinal);
+        }
 
         /// <summary>
-        /// Archive every new minute.
+        /// Initializes a new instance of the <see cref="DateAndSequenceArchive"/> class.
         /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
+        {
+            FileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
+            _dateFormat = dateFormat ?? throw new ArgumentNullException(nameof(dateFormat));
+            Date = date;
+            Sequence = sequence;
+        }
     }
 }

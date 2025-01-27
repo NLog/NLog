@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -34,75 +34,16 @@
 namespace NLog.Targets
 {
     /// <summary>
-    /// Modes of archiving files based on time.
+    /// <see cref="ConcurrentFileTarget"/> may be configured to compress archived files in a custom way
+    /// by setting <see cref="ConcurrentFileTarget.FileCompressor"/> before logging your first event.
     /// </summary>
-    public enum FileArchivePeriod
+    public interface IFileCompressor
     {
         /// <summary>
-        /// Don't archive based on time.
+        /// Create archiveFileName by compressing fileName.
         /// </summary>
-        None,
-
-        /// <summary>
-        /// Archive every new year.
-        /// </summary>
-        Year,
-
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
-
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
-
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
-
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        /// <param name="fileName">Absolute path to the log file to compress.</param>
+        /// <param name="archiveFileName">Absolute path to the compressed archive file to create.</param>
+        void CompressFile(string fileName, string archiveFileName);
     }
 }

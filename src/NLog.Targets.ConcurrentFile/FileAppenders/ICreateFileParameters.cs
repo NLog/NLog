@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,78 +31,72 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.Internal.FileAppenders
 {
+    using NLog.Targets;
+
     /// <summary>
-    /// Modes of archiving files based on time.
+    /// Interface that provides parameters for create file function.
     /// </summary>
-    public enum FileArchivePeriod
+    internal interface ICreateFileParameters
     {
         /// <summary>
-        /// Don't archive based on time.
+        /// Gets or sets the number of times the write is attempted on the file before NLog
+        /// discards the log message.
         /// </summary>
-        None,
+        int FileOpenRetryCount { get; }
 
         /// <summary>
-        /// Archive every new year.
+        /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
         /// </summary>
-        Year,
+        int FileOpenRetryDelay { get; }
 
         /// <summary>
-        /// Archive every new month.
+        /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on the same host.
         /// </summary>
-        Month,
+        /// <remarks>
+        /// This makes multi-process logging possible. NLog uses a special technique
+        /// that lets it keep the files open for writing.
+        /// </remarks>
+        bool ConcurrentWrites { get; }
 
         /// <summary>
-        /// Archive every new day.
+        /// Gets or sets a value indicating whether to create directories if they do not exist.
         /// </summary>
-        Day,
+        /// <remarks>
+        /// Setting this to false may improve performance a bit, but you'll receive an error
+        /// when attempting to write to a directory that's not present.
+        /// </remarks>
+        bool CreateDirs { get; }
 
         /// <summary>
-        /// Archive every new hour.
+        /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
-        Hour,
+        bool EnableFileDelete { get; }
 
         /// <summary>
-        /// Archive every new minute.
+        /// Gets or sets the log file buffer size in bytes.
         /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
+        int BufferSize { get; }
 
         /// <summary>
-        /// Archive every Monday.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
-        Monday,
+        bool ForceManaged { get; }
 
         /// <summary>
-        /// Archive every Tuesday.
+        /// Gets or sets the file attributes (Windows only).
         /// </summary>
-        Tuesday,
+        Win32FileAttributes FileAttributes { get; }
 
         /// <summary>
-        /// Archive every Wednesday.
+        /// Should archive mutex be created?
         /// </summary>
-        Wednesday,
+        bool IsArchivingEnabled { get; }
 
         /// <summary>
-        /// Archive every Thursday.
+        /// Should manual simple detection of file deletion be enabled?
         /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        bool EnableFileDeleteSimpleMonitor { get; }
     }
 }

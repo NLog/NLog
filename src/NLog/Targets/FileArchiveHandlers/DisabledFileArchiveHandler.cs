@@ -31,78 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+using System;
+
+namespace NLog.Targets.FileArchiveHandlers
 {
-    /// <summary>
-    /// Modes of archiving files based on time.
-    /// </summary>
-    public enum FileArchivePeriod
+    internal sealed class DisabledFileArchiveHandler : IFileArchiveHandler
     {
-        /// <summary>
-        /// Don't archive based on time.
-        /// </summary>
-        None,
+        public static readonly IFileArchiveHandler Default = new DisabledFileArchiveHandler();
 
-        /// <summary>
-        /// Archive every new year.
-        /// </summary>
-        Year,
-
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
-
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
-
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
-
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        public int ArchiveBeforeOpenFile(string newFileName, LogEventInfo firstLogEvent, DateTime? previousFileLastModified, int newSequenceNumber)
+        {
+            return 0;   // Archive logic disabled, no rolling of active file
+        }
     }
 }

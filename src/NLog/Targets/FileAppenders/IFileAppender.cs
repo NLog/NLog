@@ -31,78 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.Targets.FileAppenders
 {
+    using System;
+
     /// <summary>
-    /// Modes of archiving files based on time.
+    /// Handles the actual file-operations on disk
     /// </summary>
-    public enum FileArchivePeriod
+    internal interface IFileAppender : IDisposable
     {
-        /// <summary>
-        /// Don't archive based on time.
-        /// </summary>
-        None,
+        string FilePath { get; }
+        long FileSize { get; }
+
+        DateTime OpenStreamTime { get; }
+        DateTime FileLastModified { get; }
+        DateTime NextArchiveTime { get; }
 
         /// <summary>
-        /// Archive every new year.
+        /// Writes the specified bytes to a file.
         /// </summary>
-        Year,
+        /// <param name="buffer">The bytes array.</param>
+        /// <param name="offset">The bytes array offset.</param>
+        /// <param name="count">The number of bytes.</param>
+        void Write(byte[] buffer, int offset, int count);
 
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
+        void Flush();
 
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
-
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
-
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        bool VerifyFileExists();
     }
 }

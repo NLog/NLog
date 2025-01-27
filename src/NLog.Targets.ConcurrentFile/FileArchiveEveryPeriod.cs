@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -36,7 +36,7 @@ namespace NLog.Targets
     /// <summary>
     /// Modes of archiving files based on time.
     /// </summary>
-    public enum FileArchivePeriod
+    public enum FileArchiveEveryPeriod
     {
         /// <summary>
         /// Don't archive based on time.

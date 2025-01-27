@@ -36,14 +36,31 @@ namespace NLog.Internal
     using System;
     using System.IO;
 
-    internal static class FileInfoHelper
+    internal static class FileInfoExt
     {
-        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
+        public static DateTime GetLastWriteTimeUtc(this FileInfo fileInfo)
         {
-            return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.CreationTimeUtc, (f) => f.LastWriteTimeUtc);
+            return fileInfo.LastWriteTimeUtc;
+        }
+        public static DateTime GetCreationTimeUtc(this FileInfo fileInfo)
+        {
+            return fileInfo.CreationTimeUtc;
         }
 
-        private static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        public static DateTime LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
+        {
+            return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+        }
+
+        public static DateTime LookupValidFileCreationTimeUtc(this FileInfo fileInfo, DateTime? fallbackTime)
+        {
+            if (fallbackTime > DateTime.MinValue)
+                return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTime.Value, (f) => f.GetLastWriteTimeUtc()).Value;
+            else
+                return LookupValidFileCreationTimeUtc(fileInfo);
+        }
+
+        internal static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
             DateTime? fileCreationTime = primary(fileInfo);
 
@@ -57,28 +74,6 @@ namespace NLog.Internal
                 }
             }
             return fileCreationTime;
-        }
-
-        public static bool IsRelativeFilePath(string filepath)
-        {
-            if (filepath?.Length > 0)
-                filepath = filepath.TrimStart(ArrayHelper.Empty<char>());
-
-            if (string.IsNullOrEmpty(filepath))
-                return false;
-
-            var firstchar = filepath[0];
-            if (firstchar == Path.DirectorySeparatorChar || firstchar == Path.AltDirectorySeparatorChar)
-                return false;
-
-            if (firstchar == '.')
-                return true;
-
-            //on unix VolumeSeparatorChar == DirectorySeparatorChar
-            if (filepath.Length >= 2 && filepath[1] == Path.VolumeSeparatorChar && Path.VolumeSeparatorChar != Path.DirectorySeparatorChar)
-                return false;
-
-            return true;
         }
     }
 }

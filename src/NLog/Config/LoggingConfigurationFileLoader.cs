@@ -41,7 +41,6 @@ namespace NLog.Config
     using NLog.Common;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
-    using NLog.Targets;
 
     /// <summary>
     /// Enables loading of NLog configuration from a file
@@ -66,7 +65,7 @@ namespace NLog.Config
             }
 #endif
 
-            if (string.IsNullOrEmpty(filename) || FilePathLayout.DetectFilePathKind(filename) == FilePathKind.Relative)
+            if (string.IsNullOrEmpty(filename) || FileInfoHelper.IsRelativeFilePath(filename))
             {
                 return TryLoadFromFilePaths(logFactory, filename);
             }

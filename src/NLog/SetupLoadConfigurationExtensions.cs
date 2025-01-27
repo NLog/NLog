@@ -570,11 +570,10 @@ namespace NLog
         /// <param name="encoding">Override the default Encoding for output (Default = UTF8)</param>
         /// <param name="lineEnding">Override the default line ending characters (Ex. <see cref="LineEndingMode.LF"/> without CR)</param>
         /// <param name="keepFileOpen">Keep log file open instead of opening and closing it on each logging event</param>
-        /// <param name="concurrentWrites">Activate multi-process synchronization using global mutex on the operating system</param>
         /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
-        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
         {
             Guard.ThrowIfNull(fileName);
 
@@ -587,7 +586,6 @@ namespace NLog
             if (lineEnding != null)
                 fileTarget.LineEnding = lineEnding;
             fileTarget.KeepFileOpen = keepFileOpen;
-            fileTarget.ConcurrentWrites = concurrentWrites;
             fileTarget.ArchiveAboveSize = archiveAboveSize;
             fileTarget.MaxArchiveFiles = maxArchiveFiles;
             fileTarget.MaxArchiveDays = maxArchiveDays;

@@ -31,78 +31,45 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.Targets.FileAppenders
 {
-    /// <summary>
-    /// Modes of archiving files based on time.
-    /// </summary>
-    public enum FileArchivePeriod
+    using System;
+
+    internal sealed class DiscardAllFileAppender : IFileAppender
     {
-        /// <summary>
-        /// Don't archive based on time.
-        /// </summary>
-        None,
+        public string FilePath { get; }
 
-        /// <summary>
-        /// Archive every new year.
-        /// </summary>
-        Year,
+        public DateTime OpenStreamTime { get; }
 
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
+        public DateTime FileLastModified => OpenStreamTime;
 
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
+        public DateTime NextArchiveTime => DateTime.MaxValue;
 
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
+        public long FileSize => 0;
 
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
+        public DiscardAllFileAppender(string filePath)
+        {
+            FilePath = filePath;
+            OpenStreamTime = Time.TimeSource.Current.Time;
+        }
 
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
+        public void Write(byte[] buffer, int offset, int count)
+        {
+            // SONAR: Nothing to write
+        }
 
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
+        public void Flush()
+        {
+            // SONAR: Nothing to flush
+        }
 
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
+        public void Dispose()
+        {
+            // SONAR: Nothing to close
+        }
 
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
+        public bool VerifyFileExists() => true;
 
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+        public override string ToString() => FilePath;
     }
 }

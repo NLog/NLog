@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,78 +31,49 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Targets
+namespace NLog.UnitTests.Internal
 {
-    /// <summary>
-    /// Modes of archiving files based on time.
-    /// </summary>
-    public enum FileArchivePeriod
+    using NLog.Internal;
+    using Xunit;
+
+    public class FileInfoHelperTests // Not needed as not using NLog-Core -> : NLogTestBase
     {
-        /// <summary>
-        /// Don't archive based on time.
-        /// </summary>
-        None,
+        [Theory]
+        [InlineData(@"", false)]
+        [InlineData(@" ", false)]
+        [InlineData(null, false)]
+        [InlineData(@"/ test\a", false)]
+        [InlineData(@"test.log", true)]
+        [InlineData(@"test", true)]
+        [InlineData(@" test.log ", true)]
+        [InlineData(@" a/test.log ", true)]
+        [InlineData(@".test.log ", true)]
+        [InlineData(@"..test.log ", true)]
+        [InlineData(@" .. test.log ", true)]
+        [InlineData(@"dir$/test ", true)]
+        public void DetectFilePathKind(string path, bool expected)
+        {
+            var result = FileInfoHelper.IsRelativeFilePath(path);
+            Assert.Equal(expected, result);
+        }
 
-        /// <summary>
-        /// Archive every new year.
-        /// </summary>
-        Year,
+        [Theory]
+        [InlineData(@"d:\test.log", false)]
+        [InlineData(@"d:\test", false)]
+        [InlineData(@" d:\test", false)]
+        [InlineData(@" d:\ test", false)]
+        [InlineData(@" d:\ test\a", false)]
+        [InlineData(@"\\test\a", false)]
+        [InlineData(@"\\test/a", false)]
+        [InlineData(@"\ test\a", false)]
+        [InlineData(@" a\test.log ", true)]
+        public void DetectFilePathKindWindowsPath(string path, bool expected)
+        {
+            if (System.IO.Path.DirectorySeparatorChar != '\\')
+                return; //no backward-slash on linux
 
-        /// <summary>
-        /// Archive every new month.
-        /// </summary>
-        Month,
-
-        /// <summary>
-        /// Archive every new day.
-        /// </summary>
-        Day,
-
-        /// <summary>
-        /// Archive every new hour.
-        /// </summary>
-        Hour,
-
-        /// <summary>
-        /// Archive every new minute.
-        /// </summary>
-        Minute,
-
-        #region Weekdays
-        /// <summary>
-        /// Archive every Sunday.
-        /// </summary>
-        Sunday,
-
-        /// <summary>
-        /// Archive every Monday.
-        /// </summary>
-        Monday,
-
-        /// <summary>
-        /// Archive every Tuesday.
-        /// </summary>
-        Tuesday,
-
-        /// <summary>
-        /// Archive every Wednesday.
-        /// </summary>
-        Wednesday,
-
-        /// <summary>
-        /// Archive every Thursday.
-        /// </summary>
-        Thursday,
-
-        /// <summary>
-        /// Archive every Friday.
-        /// </summary>
-        Friday,
-
-        /// <summary>
-        /// Archive every Saturday.
-        /// </summary>
-        Saturday
-        #endregion
+            var result = FileInfoHelper.IsRelativeFilePath(path);
+            Assert.Equal(expected, result);
+        }
     }
 }

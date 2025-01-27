@@ -31,54 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
-{
-    using System;
-    using System.IO;
+#if !NET35 && !NET40
 
-    internal static class FileInfoHelper
+namespace NLog.Targets
+{
+    using System.IO;
+    using System.IO.Compression;
+
+    /// <summary>
+    /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/>
+    /// and is used as the default value for <see cref="ConcurrentFileTarget.FileCompressor"/> on .Net4.5.
+    /// So log files created via <see cref="ConcurrentFileTarget"/> can be zipped when archived
+    /// w/o 3rd party zip library when run on .Net4.5 or higher.
+    /// </summary>
+    internal sealed class ZipArchiveFileCompressor : IArchiveFileCompressor
     {
-        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
+        /// <summary>
+        /// Implements <see cref="IFileCompressor.CompressFile(string, string)"/> using the .Net4.5 specific <see cref="ZipArchive"/>
+        /// </summary>
+        public void CompressFile(string fileName, string archiveFileName)
         {
-            return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.CreationTimeUtc, (f) => f.LastWriteTimeUtc);
+            string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+            CompressFile(fileName, archiveFileName, entryName);
         }
 
-        private static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        public void CompressFile(string fileName, string archiveFileName, string entryName)
         {
-            DateTime? fileCreationTime = primary(fileInfo);
-
-            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsWin32)
+            using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var archiveStream = new FileStream(archiveFileName, FileMode.CreateNew))
+            using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             {
-                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
-                fileCreationTime = fallback(fileInfo);
-                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                var zipArchiveEntry = archive.CreateEntry(entryName);
+                using (var destination = zipArchiveEntry.Open())
                 {
-                    fileCreationTime = finalFallback(fileInfo);
+                    originalFileStream.CopyTo(destination);
                 }
             }
-            return fileCreationTime;
-        }
-
-        public static bool IsRelativeFilePath(string filepath)
-        {
-            if (filepath?.Length > 0)
-                filepath = filepath.TrimStart(ArrayHelper.Empty<char>());
-
-            if (string.IsNullOrEmpty(filepath))
-                return false;
-
-            var firstchar = filepath[0];
-            if (firstchar == Path.DirectorySeparatorChar || firstchar == Path.AltDirectorySeparatorChar)
-                return false;
-
-            if (firstchar == '.')
-                return true;
-
-            //on unix VolumeSeparatorChar == DirectorySeparatorChar
-            if (filepath.Length >= 2 && filepath[1] == Path.VolumeSeparatorChar && Path.VolumeSeparatorChar != Path.DirectorySeparatorChar)
-                return false;
-
-            return true;
         }
     }
 }
+
+#endif
