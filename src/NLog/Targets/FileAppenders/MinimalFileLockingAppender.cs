@@ -37,6 +37,9 @@ namespace NLog.Targets.FileAppenders
     using System.IO;
     using NLog.Internal;
 
+#if NETFRAMEWORK
+    [System.Security.SecuritySafeCritical]
+#endif
     internal sealed class MinimalFileLockingAppender : IFileAppender
     {
         private readonly FileTarget _fileTarget;

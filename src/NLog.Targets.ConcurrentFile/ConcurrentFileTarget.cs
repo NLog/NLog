@@ -1007,7 +1007,7 @@ namespace NLog.Targets
             }
         }
 
-        BucketSortHelpers.KeySelector<AsyncLogEventInfo, string> _getFullFileNameDelegate;
+        SortHelpers.KeySelector<AsyncLogEventInfo, string> _getFullFileNameDelegate;
 
         /// <summary>
         /// Writes the specified array of logging events to a file specified in the FileName

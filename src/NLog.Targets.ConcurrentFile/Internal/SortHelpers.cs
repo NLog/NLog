@@ -41,7 +41,7 @@ namespace NLog.Internal
     /// <summary>
     /// Provides helpers to sort log events and associated continuations.
     /// </summary>
-    internal static class BucketSortHelpers
+    internal static class SortHelpers
     {
         /// <summary>
         /// Key selector delegate.

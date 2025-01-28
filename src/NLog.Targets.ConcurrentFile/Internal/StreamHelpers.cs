@@ -45,9 +45,9 @@ namespace NLog.Internal
     internal static class StreamHelpers
     {
         /// <summary>
-        /// UTF-8 BOM 239, 187, 191
+        /// UTF-8 Byte Order Mark (BOM) bytes: EF BB BF (239, 187, 191).
         /// </summary>
-        internal static readonly byte[] Utf8BOM = { 0xEF, 0xBB, 0xBF };
+        private static readonly byte[] Utf8BOM = Encoding.UTF8.GetPreamble();
 
         /// <summary>
         /// Copy to output stream and skip BOM if encoding is UTF8
