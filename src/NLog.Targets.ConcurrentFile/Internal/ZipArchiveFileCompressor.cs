@@ -44,6 +44,7 @@ namespace NLog.Targets
     /// So log files created via <see cref="ConcurrentFileTarget"/> can be zipped when archived
     /// w/o 3rd party zip library when run on .Net4.5 or higher.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class ZipArchiveFileCompressor : IArchiveFileCompressor
     {
         /// <summary>

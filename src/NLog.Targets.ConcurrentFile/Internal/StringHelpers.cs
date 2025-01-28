@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System.Text;
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal static class StringHelpers
     {
         /// <summary>

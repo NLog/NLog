@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -31,17 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-namespace NLog.Internal
+#if NET35
+
+namespace System.Diagnostics.CodeAnalysis
 {
-    /// <summary>
-    /// Controls a single allocated char[]-buffer for reuse (only one active user)
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    internal sealed class ReusableBufferCreator : ReusableObjectCreator<char[]>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Event, Inherited = false, AllowMultiple = false)]
+    internal sealed class ExcludeFromCodeCoverageAttribute : Attribute
     {
-        public ReusableBufferCreator(int initialCapacity)
-            : base(() => new char[initialCapacity], (b) => { })
+        //
+        // Summary:
+        //     Initializes a new instance of the System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute
+        //     class.
+        public ExcludeFromCodeCoverageAttribute()
         {
         }
     }
 }
+
+#endif

@@ -39,6 +39,7 @@ namespace NLog.Internal
     using System.Runtime.InteropServices;
     using NLog.Targets;
 
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal static class Win32FileNativeMethods
     {
         public const int FILE_SHARE_READ = 1;

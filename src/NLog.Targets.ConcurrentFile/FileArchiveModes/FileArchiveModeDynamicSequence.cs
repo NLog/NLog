@@ -53,6 +53,7 @@ namespace NLog.Targets.FileArchiveModes
     /// When the number of archive files exceed <see cref="ConcurrentFileTarget.MaxArchiveFiles"/> the obsolete archives are deleted.
     /// When the age of archive files exceed <see cref="ConcurrentFileTarget.MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class FileArchiveModeDynamicSequence : FileArchiveModeBase
     {
         private readonly ArchiveNumberingMode _archiveNumbering;

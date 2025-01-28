@@ -42,6 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// to get exclusive write access and retries if it's not available.
     /// </summary>
     [SecuritySafeCritical]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class RetryingMultiProcessFileAppender : BaseMutexFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();

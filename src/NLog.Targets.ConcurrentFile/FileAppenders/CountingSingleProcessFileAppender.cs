@@ -42,6 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// file information.
     /// </summary>
     [SecuritySafeCritical]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();

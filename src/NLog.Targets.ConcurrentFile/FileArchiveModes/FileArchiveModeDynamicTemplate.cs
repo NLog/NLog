@@ -41,6 +41,7 @@ namespace NLog.Targets.FileArchiveModes
     /// Dynamically converts a non-template archiveFilePath into a correct archiveFilePattern.
     /// Before called the original IFileArchiveMode, that has been wrapped by this
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class FileArchiveModeDynamicTemplate : IFileArchiveMode
     {
         private readonly IFileArchiveMode _archiveHelper;

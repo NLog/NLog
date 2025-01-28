@@ -39,6 +39,7 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated MemoryStream for reuse (only one active user)
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class ReusableStreamCreator : ReusableObjectCreator<MemoryStream>, IDisposable
     {
         public ReusableStreamCreator()
