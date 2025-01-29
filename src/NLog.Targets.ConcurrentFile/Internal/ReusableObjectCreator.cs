@@ -38,7 +38,6 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated object for reuse (only one active user)
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal class ReusableObjectCreator<T> where T : class
     {
         protected T _reusableObject;

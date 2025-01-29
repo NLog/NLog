@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.IO;
 
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal static class FileInfoExt
     {
         public static DateTime GetLastWriteTimeUtc(this FileInfo fileInfo)

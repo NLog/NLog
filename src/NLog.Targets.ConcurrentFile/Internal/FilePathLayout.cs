@@ -43,7 +43,6 @@ namespace NLog.Internal
     /// <summary>
     /// A layout that represents a filePath.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class FilePathLayout
     {
         /// <summary>

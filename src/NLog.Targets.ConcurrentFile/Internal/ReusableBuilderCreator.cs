@@ -38,7 +38,6 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated StringBuilder for reuse (only one active user)
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
     {
         private const int MaxBuilderCapacity = 40960;   // Avoid Large-Object-Heap (LOH)

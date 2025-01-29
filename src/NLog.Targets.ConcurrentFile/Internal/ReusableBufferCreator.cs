@@ -36,7 +36,6 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated char[]-buffer for reuse (only one active user)
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class ReusableBufferCreator : ReusableObjectCreator<char[]>
     {
         public ReusableBufferCreator(int initialCapacity)

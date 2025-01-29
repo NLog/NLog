@@ -40,7 +40,6 @@ namespace NLog.Internal
     /// <summary>
     /// Detects the platform the NLog is running on.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal static class MutexDetector
     {
         /// <summary>
