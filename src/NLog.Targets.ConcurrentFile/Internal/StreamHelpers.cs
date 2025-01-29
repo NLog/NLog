@@ -42,7 +42,6 @@ namespace NLog.Internal
     /// <summary>
     /// Stream helpers
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal static class StreamHelpers
     {
         /// <summary>
