@@ -41,7 +41,6 @@ namespace NLog.Internal
     /// <summary>
     /// Provides helpers to sort log events and associated continuations.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal static class SortHelpers
     {
         /// <summary>
