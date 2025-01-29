@@ -36,7 +36,6 @@ using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
 {
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     static class FileArchiveModeFactory
     {
         public static IFileArchiveMode CreateArchiveStyle(string archiveFilePath, ArchiveNumberingMode archiveNumbering, string dateFormat, bool customArchiveFileName, bool archiveCleanupEnabled)

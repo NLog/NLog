@@ -38,7 +38,6 @@ namespace NLog.Targets
     /// <summary>
     /// A descriptor for an archive created with the DateAndSequence numbering mode.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal sealed class DateAndSequenceArchive
     {
         private readonly string _dateFormat;

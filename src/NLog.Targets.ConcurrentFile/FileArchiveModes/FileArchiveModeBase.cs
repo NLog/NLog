@@ -38,7 +38,6 @@ using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
 {
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal abstract class FileArchiveModeBase : IFileArchiveMode
     {
         static readonly DateTime MaxAgeArchiveFileDate = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);

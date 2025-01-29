@@ -54,7 +54,6 @@ namespace NLog.Internal.FileAppenders
     /// is not enforced to the implementing subclasses.
     /// </summary>
     [SecuritySafeCritical]
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     internal abstract class BaseMutexFileAppender : BaseFileAppender
     {
         /// <summary>
