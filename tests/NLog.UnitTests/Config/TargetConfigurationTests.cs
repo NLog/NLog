@@ -521,7 +521,6 @@ namespace NLog.UnitTests.Config
     <targets>
         <default-target-parameters
             type='File'
-            concurrentWrites='true'
             keepFileOpen='true'
             maxArchiveFiles='5'
             archiveNumbering='Rolling'

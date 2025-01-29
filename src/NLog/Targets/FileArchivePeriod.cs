@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2004-2024 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 //
 // All rights reserved.
@@ -44,63 +44,63 @@ namespace NLog.Targets
         None,
 
         /// <summary>
-        /// AddToArchive every year.
+        /// Archive every new year.
         /// </summary>
         Year,
 
         /// <summary>
-        /// AddToArchive every month.
+        /// Archive every new month.
         /// </summary>
         Month,
 
         /// <summary>
-        /// AddToArchive daily.
+        /// Archive every new day.
         /// </summary>
         Day,
 
         /// <summary>
-        /// AddToArchive every hour.
+        /// Archive every new hour.
         /// </summary>
         Hour,
 
         /// <summary>
-        /// AddToArchive every minute.
+        /// Archive every new minute.
         /// </summary>
         Minute,
 
         #region Weekdays
         /// <summary>
-        /// AddToArchive every Sunday.
+        /// Archive every Sunday.
         /// </summary>
         Sunday,
 
         /// <summary>
-        /// AddToArchive every Monday.
+        /// Archive every Monday.
         /// </summary>
         Monday,
 
         /// <summary>
-        /// AddToArchive every Tuesday.
+        /// Archive every Tuesday.
         /// </summary>
         Tuesday,
 
         /// <summary>
-        /// AddToArchive every Wednesday.
+        /// Archive every Wednesday.
         /// </summary>
         Wednesday,
 
         /// <summary>
-        /// AddToArchive every Thursday.
+        /// Archive every Thursday.
         /// </summary>
         Thursday,
 
         /// <summary>
-        /// AddToArchive every Friday.
+        /// Archive every Friday.
         /// </summary>
         Friday,
 
         /// <summary>
-        /// AddToArchive every Saturday.
+        /// Archive every Saturday.
         /// </summary>
         Saturday
         #endregion

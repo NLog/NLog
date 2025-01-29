@@ -37,10 +37,15 @@ namespace NLog.UnitTests.Targets
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.IO.Compression;
     using System.Linq;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+#if NETFRAMEWORK
+    using Ionic.Zip;
+#endif
+    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
@@ -49,9 +54,17 @@ namespace NLog.UnitTests.Targets
     using NSubstitute;
     using Xunit;
 
-    public class FileTargetTests : NLogTestBase
+    public class ConcurrentFileTargetTests
     {
         private readonly Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+
+        public ConcurrentFileTargetTests()
+        {
+            InternalLogger.Reset();
+            LogManager.Configuration = null;
+            LogManager.ThrowExceptions = true;
+            LogManager.Setup().SetupExtensions(ext => ext.RegisterTarget<ConcurrentFileTarget>("file"));
+        }
 
         public static IEnumerable<object[]> SimpleFileTest_TestParameters
         {
@@ -79,31 +92,6 @@ namespace NLog.UnitTests.Targets
             return false;
         }
 
-        [Fact]
-        public void SetupBuilder_WriteToFile()
-        {
-            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
-            LogFactory logFactory = null;
-
-            try
-            {
-                logFactory = new LogFactory().Setup().LoadConfiguration(c =>
-                {
-                    c.ForLogger().WriteToFile(Path.Combine(tempDir, "${logger}.txt"), "${message}", Encoding.UTF8, LineEndingMode.LF);
-                }).LogFactory;
-
-                logFactory.GetLogger("SetupBuilder").Info("Hello");
-
-                AssertFileContents(Path.Combine(tempDir, "SetupBuilder.txt"), "Hello\n", Encoding.UTF8);
-            }
-            finally
-            {
-                logFactory?.Shutdown();
-                if (Directory.Exists(tempDir))
-                    Directory.Delete(tempDir, true);
-            }
-        }
-
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool forceManaged, bool forceMutexConcurrentWrites)
@@ -111,7 +99,7 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.GetTempFileName();
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -159,7 +147,7 @@ namespace NLog.UnitTests.Targets
 #endif
             foreach (var archiveSameFolder in new[] { true, false })
             {
-                RetryingIntegrationTest(3, () =>
+                for (int i = 1; i <= 3; ++i)
                 {
                     var logPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
                     var logFile = Path.GetFullPath(Path.Combine(logPath, "..", "nlogA.txt"));
@@ -168,11 +156,11 @@ namespace NLog.UnitTests.Targets
 
                     try
                     {
-                        var fileTarget = new FileTarget
+                        var fileTarget = new ConcurrentFileTarget
                         {
                             FileName = SimpleLayout.Escape(logFile),
                             ArchiveFileName = SimpleLayout.Escape(arhiveFile),
-                            ArchiveEvery = FileArchivePeriod.Year,
+                            ArchiveEvery = FileArchiveEveryPeriod.Year,
                             LineEnding = LineEndingMode.LF,
                             Layout = "${level} ${message}",
                             OpenFileCacheTimeout = 0,
@@ -204,6 +192,13 @@ namespace NLog.UnitTests.Targets
 
                         AssertFileContents(logFile, "Info bbb\n", Encoding.UTF8);
                     }
+                    catch
+                    {
+                        if (i == 3)
+                            throw;
+
+                        System.Threading.Thread.Sleep(1000 * i);
+                    }
                     finally
                     {
                         if (File.Exists(arhiveFile))
@@ -226,7 +221,7 @@ namespace NLog.UnitTests.Targets
                             Directory.Delete(Path.GetDirectoryName(logFile));
                         }
                     }
-                });
+                }
             }
         }
 
@@ -257,7 +252,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SimpleFileWithSpecialCharsTest()
         {
-            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
+            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString() + "!@#$%^&()_-=+ .log");
             SimpleFileWriteLogTest(logFile);
         }
 
@@ -265,7 +260,7 @@ namespace NLog.UnitTests.Targets
         {
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -295,7 +290,7 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.GetTempFileName();
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -335,32 +330,33 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                using (new NoThrowNLogExceptions())
+                LogManager.ThrowExceptions = false;
+
+                var fileTarget = new ConcurrentFileTarget
                 {
-                    var fileTarget = new FileTarget
-                    {
-                        FileName = logFile,
-                        Layout = "${level} ${message}",
-                        ConcurrentWrites = concurrentWrites,
-                        KeepFileOpen = keepFileOpen,
-                        ForceManaged = forceManaged,
-                        ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    };
+                    FileName = logFile,
+                    Layout = "${level} ${message}",
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    ForceManaged = forceManaged,
+                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                };
 
-                    LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
+                LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
-                    for (int i = 0; i < 300; i++)
-                    {
-                        logger.Debug("aaa");
-                    }
-
-                    LogManager.Configuration = null;    // Flush
-
-                    Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
+                for (int i = 0; i < 300; i++)
+                {
+                    logger.Debug("aaa");
                 }
+
+                LogManager.Configuration = null;    // Flush
+
+                Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
             }
             finally
             {
+                LogManager.ThrowExceptions = true;
+
                 //should not be necessary
                 if (File.Exists(logFile))
                     File.Delete(logFile);
@@ -390,7 +386,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                var timeSource = new ShiftedTimeSource(DateTimeKind.Local);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -399,13 +395,13 @@ namespace NLog.UnitTests.Targets
                 }
                 TimeSource.Current = timeSource;
 
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = Path.Combine(tempDir, "${date:format=dd}_AppName.log"),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
-                    ArchiveEvery = FileArchivePeriod.Month,
+                    ArchiveEvery = FileArchiveEveryPeriod.Month,
                     MaxArchiveFiles = 1,
                 };
 
@@ -430,7 +426,7 @@ namespace NLog.UnitTests.Targets
                     Assert.Equal(14, Path.GetFileName(file).Length);
                 }
 
-                fileTarget.Close();
+                LogManager.Configuration = null;    // Flush and close
             }
             finally
             {
@@ -470,7 +466,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                var timeSource = new ShiftedTimeSource(DateTimeKind.Local);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -502,7 +498,7 @@ namespace NLog.UnitTests.Targets
                         timeSource.AddToSystemTime(TimeSpan.FromDays(32 * 3));
                     }
 
-                    var fileTarget = new FileTarget
+                    var fileTarget = new ConcurrentFileTarget
                     {
                         FileName = logFile,
                         LineEnding = LineEndingMode.LF,
@@ -511,7 +507,7 @@ namespace NLog.UnitTests.Targets
                         KeepFileOpen = i % 2 != 0,
                         ArchiveFileName = archiveSubFolder ? Path.Combine(archiveDir, "AppName.{#}.log") : (Layout)null,
                         ArchiveNumbering = archiveNumberingMode,
-                        ArchiveEvery = FileArchivePeriod.Month,
+                        ArchiveEvery = FileArchiveEveryPeriod.Month,
                         ArchiveDateFormat = "yyyyMMdd",
                         MaxArchiveFiles = maxArchiveDays ? 0 : 2,
                         MaxArchiveDays = maxArchiveDays ? 5 * 30 : 0
@@ -590,13 +586,12 @@ namespace NLog.UnitTests.Targets
                         }
                     };
 
-                    var fileTarget = new FileTarget
+                    var fileTarget = new ConcurrentFileTarget
                     {
                         FileName = SimpleLayout.Escape(logFile),
                         LineEnding = LineEndingMode.LF,
                         Layout = layout,
                         OpenFileCacheTimeout = 0,
-                        ReplaceFileContentsOnEachWrite = false,
                         ArchiveAboveSize = 120, // Only 2 LogEvents per file
                         MaxArchiveFiles = 1,
                     };
@@ -640,7 +635,7 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.GetTempFileName();
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     DeleteOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
@@ -661,7 +656,7 @@ namespace NLog.UnitTests.Targets
                 // configure again, without
                 // DeleteOldFileOnStartup
 
-                fileTarget = new FileTarget
+                fileTarget = new ConcurrentFileTarget
                 {
                     DeleteOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
@@ -681,7 +676,7 @@ namespace NLog.UnitTests.Targets
                 // configure again, this time with
                 // DeleteOldFileOnStartup
 
-                fileTarget = new FileTarget
+                fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -774,19 +769,19 @@ namespace NLog.UnitTests.Targets
         public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
         {
             var logFile = Path.GetTempFileName() + ".txt";
-            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
             var archiveExtension = enableCompression ? "zip" : "txt";
             IFileCompressor fileCompressor = null;
             try
             {
                 if (customFileCompressor)
                 {
-                    fileCompressor = FileTarget.FileCompressor;
-                    FileTarget.FileCompressor = new CustomFileCompressor();
+                    fileCompressor = ConcurrentFileTarget.FileCompressor;
+                    ConcurrentFileTarget.FileCompressor = new CustomFileCompressor();
                 }
 
                 // Configure first time with ArchiveOldFileOnStartup = false.
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
@@ -806,7 +801,7 @@ namespace NLog.UnitTests.Targets
 
                 // Configure second time with ArchiveOldFileOnStartup = false again.
                 // Expected behavior: Extra content to be appended to the file.
-                fileTarget = new FileTarget
+                fileTarget = new ConcurrentFileTarget
                 {
                     ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
@@ -830,8 +825,8 @@ namespace NLog.UnitTests.Targets
 
                 var archiveTempName = Path.Combine(tempArchiveFolder, "archive." + archiveExtension);
 
-                FileTarget ft;
-                fileTarget = ft = new FileTarget
+                ConcurrentFileTarget ft;
+                fileTarget = ft = new ConcurrentFileTarget
                 {
                     EnableArchiveFileCompression = enableCompression,
                     FileName = SimpleLayout.Escape(logFile),
@@ -853,9 +848,9 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
 
-                var assertFileContents = ft.EnableArchiveFileCompression ?
-                    new Action<string, string, string, Encoding>(AssertZipFileContents) :
-                    AssertFileContents;
+                Action<string, string, string, Encoding> assertFileContents = (f1, f2, content, encoding) => AssertFileContents(f1, content, encoding, false);
+                if (fileTarget.EnableArchiveFileCompression)
+                    assertFileContents = AssertZipFileContents;
 
 #if !NET35
                 string expectedEntryName = Path.GetFileNameWithoutExtension(archiveTempName) + ".txt";
@@ -868,7 +863,7 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 if (customFileCompressor)
-                    FileTarget.FileCompressor = fileCompressor;
+                    ConcurrentFileTarget.FileCompressor = fileCompressor;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempArchiveFolder))
@@ -880,11 +875,11 @@ namespace NLog.UnitTests.Targets
         public void ArchiveOldFileOnStartupAboveSize()
         {
             var logFile = Path.GetTempFileName();
-            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
             var archiveTempName = Path.Combine(tempArchiveFolder, "archive_size_threshold.txt");
-            FileTarget CreateTestTarget(long threshold)
+            ConcurrentFileTarget CreateTestTarget(long threshold)
             {
-                return new FileTarget
+                return new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -925,12 +920,12 @@ namespace NLog.UnitTests.Targets
         public void ArchiveOldFileOnStartupAboveSizeWhenFileLocked()
         {
             var logFile = Path.GetTempFileName();
-            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString(), "Archive");
             var archiveTempName = Path.Combine(tempArchiveFolder, "archive_size_threshold.zip");
 
-            FileTarget CreateTestTarget(long threshold)
+            ConcurrentFileTarget CreateTestTarget(long threshold)
             {
-                return new FileTarget
+                return new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -980,7 +975,7 @@ namespace NLog.UnitTests.Targets
         {
             var logFile = Path.GetTempFileName();
 
-            var fileTarget = new FileTarget("file")
+            var fileTarget = new ConcurrentFileTarget("file")
             {
                 FileName = SimpleLayout.Escape(logFile),
                 LineEnding = LineEndingMode.LF,
@@ -1029,7 +1024,7 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.GetTempFileName();
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     DeleteOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
@@ -1072,35 +1067,36 @@ namespace NLog.UnitTests.Targets
         [InlineData(false)]
         public void ReplaceFileContentsOnEachWrite_CreateDirs(bool createDirs)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), "dir_" + Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempDir, "log.log");
 
             try
             {
-                using (new NoThrowNLogExceptions())
+                LogManager.ThrowExceptions = false;
+
+                var target = new ConcurrentFileTarget
                 {
-                    var target = new FileTarget
-                    {
-                        FileName = logfile,
-                        ReplaceFileContentsOnEachWrite = true,
-                        CreateDirs = createDirs
-                    };
-                    var config = new LoggingConfiguration();
+                    FileName = logfile,
+                    ReplaceFileContentsOnEachWrite = true,
+                    CreateDirs = createDirs
+                };
+                var config = new LoggingConfiguration();
 
-                    config.AddTarget("logfile", target);
+                config.AddTarget("logfile", target);
 
-                    config.AddRuleForAllLevels(target);
+                config.AddRuleForAllLevels(target);
 
-                    LogManager.Configuration = config;
+                LogManager.Configuration = config;
 
-                    var logger = LogManager.GetLogger("A");
-                    logger.Info("a");
+                var logger = LogManager.GetLogger("A");
+                logger.Info("a");
 
-                    Assert.Equal(createDirs, Directory.Exists(tempDir));
-                }
+                Assert.Equal(createDirs, Directory.Exists(tempDir));
             }
             finally
             {
+                LogManager.ThrowExceptions = true;
+
                 if (File.Exists(logfile))
                     File.Delete(logfile);
                 if (Directory.Exists(tempDir))
@@ -1111,11 +1107,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void CreateDirsTest()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     LineEnding = LineEndingMode.LF,
@@ -1142,25 +1138,29 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData(true, 0)]
-        [InlineData(false, 0)]
-        [InlineData(false, 1)]
-        public void AutoFlushTest(bool autoFlush, int autoFlushTimeout)
+        [InlineData(true, true, 0)]
+        [InlineData(false, true, 0)]
+        [InlineData(false, true, 1)]
+        [InlineData(true, false, 0)]
+        [InlineData(false, false, 0)]
+        [InlineData(false, false, 1)]
+        public void AutoFlushTest(bool autoFlush, bool keepFileOpen, int autoFlushTimeout)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
-                    KeepFileOpen = true,
+                    KeepFileOpen = keepFileOpen,
                     ConcurrentWrites = false,
-                    AutoFlush = autoFlush,
                     OpenFileFlushTimeout = autoFlushTimeout,
                 };
+                if (!autoFlush)
+                    fileTarget.AutoFlush = autoFlush;
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger().WriteTo(fileTarget));
 
@@ -1168,7 +1168,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                if (autoFlush)
+                if (autoFlush || !keepFileOpen)
                 {
                     AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                 }
@@ -1198,12 +1198,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SequentialArchiveTest()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
@@ -1262,12 +1262,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SequentialArchiveTest_MaxArchiveFiles_0()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
@@ -1328,12 +1328,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
@@ -1401,12 +1401,12 @@ namespace NLog.UnitTests.Targets
         {
             const int maxArchiveFiles = 3;
 
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
@@ -1470,15 +1470,15 @@ namespace NLog.UnitTests.Targets
         {
             const int maxArchiveFiles = 3;
             LogManager.ThrowExceptions = true;
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             try
             {
                 var logFile = Path.Combine(tempDir, "${date:format=yyyyMMddHHmmssfff}.txt");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "{#}.txt"),
-                    ArchiveEvery = FileArchivePeriod.Year,
+                    ArchiveEvery = FileArchiveEveryPeriod.Year,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
                     ArchiveDateFormat = "yyyyMMddHHmmssfff", //make sure the milliseconds are set in the filename
@@ -1562,24 +1562,24 @@ namespace NLog.UnitTests.Targets
             const string archiveDateFormat = "yyyyMMdd";
             const int maxArchiveFiles = 3;
 
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
             var defaultTimeSource = TimeSource.Current;
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+                var timeSource = new ShiftedTimeSource(timeKind);
 
                 TimeSource.Current = timeSource;
 
                 string archiveFolder = Path.Combine(tempDir, "archive");
                 string archiveFileNameTemplate = Path.Combine(archiveFolder, "{#}.txt");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = archiveFileNameTemplate,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveDateFormat = archiveDateFormat,
                     Layout = "${date:format=O}|${message}",
                     MaxArchiveFiles = maxArhiveDays ? 0 : maxArchiveFiles,
@@ -1708,14 +1708,14 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(DateArchive_ArchiveOnceOnly_TestParameters))]
         public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, dateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
 
             var defaultTimeSource = TimeSource.Current;
 
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                var timeSource = new ShiftedTimeSource(DateTimeKind.Local);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -1725,13 +1725,13 @@ namespace NLog.UnitTests.Targets
                 TimeSource.Current = timeSource;
 
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
                     Layout = "${message}",
                     ConcurrentWrites = concurrentWrites,
@@ -1784,7 +1784,7 @@ namespace NLog.UnitTests.Targets
             get
             {
                 var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
-                var archivePeriodValues = new[] { FileArchivePeriod.Day, FileArchivePeriod.Hour };
+                var archivePeriodValues = new[] { FileArchiveEveryPeriod.Day, FileArchiveEveryPeriod.Hour };
                 var booleanValues = new[] { true, false };
                 return
                     from timeKind in timeKindValues
@@ -1797,9 +1797,9 @@ namespace NLog.UnitTests.Targets
 
         [Theory]
         [MemberData(nameof(DateArchive_SkipPeriod_TestParameters))]
-        public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeDateInLogFilePath, bool includeSequenceInArchive)
+        public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchiveEveryPeriod archivePeriod, bool includeDateInLogFilePath, bool includeSequenceInArchive)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, includeDateInLogFilePath ? "file_${date:format=yyyyMMddHHmm}.txt" : "file.txt");
             var defaultTimeSource = TimeSource.Current;
             try
@@ -1808,7 +1808,7 @@ namespace NLog.UnitTests.Targets
                 while (DateTime.Now.Second > 55)
                     Thread.Sleep(1000);
 
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+                var timeSource = new ShiftedTimeSource(timeKind);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -1817,7 +1817,7 @@ namespace NLog.UnitTests.Targets
                 }
                 TimeSource.Current = timeSource;
 
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "archive", "{#}.txt"),
@@ -1887,7 +1887,7 @@ namespace NLog.UnitTests.Targets
                 return; // No need to test with compression
 #endif
 
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempDir, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
             var defaultTimeSource = TimeSource.Current;
 
@@ -1897,7 +1897,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                var timeSource = new ShiftedTimeSource(DateTimeKind.Local);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -1917,13 +1917,13 @@ namespace NLog.UnitTests.Targets
 #endif
 
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget1 = new FileTarget
+                var fileTarget1 = new ConcurrentFileTarget
                 {
                     FileName = logfile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
                     EnableArchiveFileCompression = enableArchiveCompression,
                     Layout = "${message}",
@@ -1935,13 +1935,13 @@ namespace NLog.UnitTests.Targets
                 var logger1Rule = new LoggingRule("logger1", LogLevel.Debug, fileTarget1);
                 config.LoggingRules.Add(logger1Rule);
 
-                var fileTarget2 = new FileTarget
+                var fileTarget2 = new ConcurrentFileTarget
                 {
                     FileName = logfile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
                     EnableArchiveFileCompression = enableArchiveCompression,
                     Layout = "${message}",
@@ -2003,12 +2003,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void DeleteArchiveFilesByDate_MaxArchiveFiles_0()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
@@ -2066,12 +2066,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void DeleteArchiveFilesByDate_AlteredMaxArchive()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
@@ -2133,14 +2133,14 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void RepeatingHeaderTest()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 const string header = "Headerline";
 
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
@@ -2184,14 +2184,14 @@ namespace NLog.UnitTests.Targets
         [InlineData(true)]
         public void RepeatingFooterTest(bool writeFooterOnArchivingOnly)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 const string footer = "Footerline";
 
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
@@ -2244,7 +2244,7 @@ namespace NLog.UnitTests.Targets
                 const string header = "Headerline";
 
                 // Configure first time
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -2267,7 +2267,7 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, headerPart + logPart, Encoding.UTF8, addBom: true);
 
                 // Configure second time
-                fileTarget = new FileTarget
+                fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
@@ -2316,7 +2316,7 @@ namespace NLog.UnitTests.Targets
 
         private void RollingArchiveTests(bool enableCompression, bool specifyArchiveFileName)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             var archiveExtension = enableCompression ? "zip" : "txt";
 
@@ -2326,7 +2326,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     EnableArchiveFileCompression = enableCompression,
                     FileName = logFile,
@@ -2360,8 +2360,9 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;    // Flush
 
-                var assertFileContents =
-                    enableCompression ? new Action<string, string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                Action<string, string, string, Encoding> assertFileContents = (f1, f2, content, encoding) => AssertFileContents(f1, content, encoding, false);
+                if (enableCompression)
+                    assertFileContents = AssertZipFileContents;
 
                 var times = 25;
                 AssertFileContents(logFile,
@@ -2412,11 +2413,11 @@ namespace NLog.UnitTests.Targets
         [Theory]
         public void RollingArchiveTest_MaxArchiveFiles_0(string slash)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "archive" + slash + "{####}.txt"),
@@ -2482,10 +2483,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MultiFileWrite()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = Path.Combine(tempDir, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
@@ -2534,10 +2535,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void BufferedMultiFileWrite()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = Path.Combine(tempDir, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
@@ -2586,10 +2587,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void AsyncMultiFileWrite()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = Path.Combine(tempDir, "${level}.txt"),
                     LineEnding = LineEndingMode.LF,
@@ -2599,7 +2600,7 @@ namespace NLog.UnitTests.Targets
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
-                var threadID = CurrentManagedThreadId.ToString();
+                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
                 LogManager.Setup().LoadConfiguration(c => c.ForLogger(LogLevel.Debug).WriteTo(fileTarget).WithAsync());
 
@@ -2644,7 +2645,7 @@ namespace NLog.UnitTests.Targets
         public void DisposingFileTarget_WhenNotIntialized_ShouldNotThrow()
         {
             var exceptionThrown = false;
-            var fileTarget = new FileTarget();
+            var fileTarget = new ConcurrentFileTarget();
 
             try
             {
@@ -2691,7 +2692,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     EnableArchiveFileCompression = enableCompression,
                     FileName = logFile,
@@ -2702,7 +2703,7 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     MaxArchiveFiles = 3,
                     ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                    ArchiveEvery = FileArchivePeriod.Day
+                    ArchiveEvery = FileArchiveEveryPeriod.Day
                 };
 
 
@@ -2728,7 +2729,9 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                var assertFileContents = enableCompression ? new Action<string, string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                Action<string, string, string, Encoding> assertFileContents = (f1, f2, content, encoding) => AssertFileContents(f1, content, encoding, false);
+                if (enableCompression)
+                    assertFileContents = AssertZipFileContents;
 
                 var extension = Path.GetExtension(renderedArchiveFileName);
                 var fileNameWithoutExt = renderedArchiveFileName.Substring(0, renderedArchiveFileName.Length - extension.Length);
@@ -2778,12 +2781,12 @@ namespace NLog.UnitTests.Targets
         [InlineData("file-{#}.txt", "file-${date:format=yyyyMMdd}.txt", ArchiveNumberingMode.Date)]
         public void FileTargetArchiveFileNameTest(string archiveFileName, string expectedArchiveFileName, ArchiveNumberingMode archiveNumbering)
         {
-            var subPath = Guid.NewGuid().ToString();
+            var subPath = "nlog_" + Guid.NewGuid().ToString();
             var tempDir = Path.Combine(Path.GetTempPath(), subPath);
             var logFile = Path.Combine(tempDir, "file-${date:format=yyyyMMdd}.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "..", subPath, archiveFileName),
@@ -2825,7 +2828,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = SimpleLayout.Escape(invalidLogFileName),
                     LineEnding = LineEndingMode.LF,
@@ -2853,7 +2856,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FileTarget_LogAndArchiveFilesWithSameName_ShouldArchive()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "Application.log");
             var tempDirectory = new DirectoryInfo(tempDir);
             try
@@ -2862,7 +2865,7 @@ namespace NLog.UnitTests.Targets
                 var archiveFile = Path.Combine(tempDir, "Application{#}.log");
                 var archiveFileMask = "Application*.log";
 
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = archiveFile,
@@ -2898,7 +2901,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FileTarget_Handle_Other_Files_That_Match_Archive_Format()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "Application.log");
             var tempDirectory = new DirectoryInfo(tempDir);
 
@@ -2906,14 +2909,14 @@ namespace NLog.UnitTests.Targets
             {
                 string archiveFileLayout = Path.Combine(Path.GetDirectoryName(logFile), Path.GetFileNameWithoutExtension(logFile) + "{#}" + Path.GetExtension(logFile));
 
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     Layout = "${message}",
                     EnableFileDelete = false,
                     Encoding = Encoding.UTF8,
                     ArchiveFileName = archiveFileLayout,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
                     ArchiveDateFormat = "___________yyyyMMddHHmm",
                     MaxArchiveFiles = 10   // Get past the optimization to avoid deleting old files.
@@ -2944,11 +2947,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SingleArchiveFileRollsCorrectly()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "archive", "file.txt2"),
@@ -3009,11 +3012,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ArchiveFileRollsCorrectly()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "archive", "file.txt2"),
@@ -3087,7 +3090,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ArchiveFileRollsCorrectly_ExistingArchives()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
@@ -3095,7 +3098,7 @@ namespace NLog.UnitTests.Targets
                 File.Create(Path.Combine(tempDir, "archive", "file.10.txt2")).Dispose();
                 File.Create(Path.Combine(tempDir, "archive", "file.9.txt2")).Dispose();
 
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "archive", "file.txt2"),
@@ -3153,7 +3156,7 @@ namespace NLog.UnitTests.Targets
             var archiveExtension = "txt";
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(tempDir, "archive", "{#}." + archiveExtension),
@@ -3210,7 +3213,7 @@ namespace NLog.UnitTests.Targets
             var defaultTimeSource = TimeSource.Current;
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                var timeSource = new ShiftedTimeSource(DateTimeKind.Local);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -3219,7 +3222,7 @@ namespace NLog.UnitTests.Targets
                 }
                 TimeSource.Current = timeSource;
 
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = string.Format(logFile, "${logger}", "${shortdate}"),
                     ArchiveAboveSize = 100,
@@ -3323,7 +3326,7 @@ namespace NLog.UnitTests.Targets
             var logFile1 = Path.Combine(tempDir, "Log{0}.txt");
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = string.Format(logFile1, ""),
                     ArchiveAboveSize = 100,
@@ -3403,7 +3406,7 @@ namespace NLog.UnitTests.Targets
 
             public static string GenerateTempPath()
             {
-                return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+                return Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             }
         }
 
@@ -3414,7 +3417,7 @@ namespace NLog.UnitTests.Targets
         public void FileTarget_WithDateAndSequenceArchiveNumbering_ShouldPadSequenceNumberInArchiveFileName(
             string placeHolderSharps, int sequenceNumber, string expectedSequenceInArchiveFileName)
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             const string archiveDateFormat = "yyyy-MM-dd";
             string archiveFileName = Path.Combine(tempDir, $"{{{placeHolderSharps}}}.log");
             string expectedArchiveFullName =
@@ -3434,7 +3437,7 @@ namespace NLog.UnitTests.Targets
         public void FileTarget_WithDateAndSequenceArchiveNumbering_ShouldRespectArchiveDateFormat(
             string archiveDateFormat)
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string archiveFileName = Path.Combine(tempDir, "{#}.log");
             string expectedDateInArchiveFileName = DateTime.Now.ToString(archiveDateFormat);
             string expectedArchiveFullName = $"{tempDir}/{expectedDateInArchiveFileName}.1.log";
@@ -3452,7 +3455,7 @@ namespace NLog.UnitTests.Targets
         {
             string logFileName = Path.GetTempFileName();
             const int logFileMaxSize = 1;
-            var fileTarget = new FileTarget
+            var fileTarget = new ConcurrentFileTarget
             {
                 FileName = logFileName,
                 ArchiveFileName = archiveFileName,
@@ -3536,7 +3539,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                var timeSource = new ShiftedTimeSource(DateTimeKind.Local);
                 if (timeSource.Time.Minute == 59)
                 {
                     // Avoid double-archive due to overflow of the hour.
@@ -3666,7 +3669,7 @@ namespace NLog.UnitTests.Targets
         /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
         private static void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string archivePath = Path.Combine(tempDir, "archive");
 
             var archiveDir = new DirectoryInfo(archivePath);
@@ -3762,7 +3765,7 @@ namespace NLog.UnitTests.Targets
         private static void HandleArchiveFilesMultipleContextMultipleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string archivePath = Path.Combine(tempDir, "archive");
             var archiveDir = new DirectoryInfo(archivePath);
             try
@@ -3819,7 +3822,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
-                File.WriteAllLines(tempDir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
+                File.WriteAllLines(Path.Combine(tempDir, app1DebugNm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
 
                 var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
@@ -3904,7 +3907,7 @@ namespace NLog.UnitTests.Targets
         private static void HandleArchiveFilesMultipleContextSingleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string archivePath = Path.Combine(tempDir, "archive");
             var archiveDir = new DirectoryInfo(archivePath);
             try
@@ -4031,7 +4034,7 @@ namespace NLog.UnitTests.Targets
             var fullFilePath = Path.GetFullPath(relativeFileName);
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = fullFilePath,
                     LineEnding = LineEndingMode.LF,
@@ -4061,7 +4064,7 @@ namespace NLog.UnitTests.Targets
             var fullFilePath = Path.GetFullPath(relativeFileName);
             try
             {
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = fullFilePath,
                     LineEnding = LineEndingMode.LF,
@@ -4087,12 +4090,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void RelativeSequentialArchiveTest_MaxArchiveFiles_0()
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logfile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
@@ -4174,7 +4177,7 @@ namespace NLog.UnitTests.Targets
             //under mono this the invalid chars is sometimes only 1 char (so min width 2)
             Assert.True(invalidFileName.Length >= 2);
             //CleanupFileName is default true;
-            var fileTarget = new FileTarget();
+            var fileTarget = new ConcurrentFileTarget();
             fileTarget.FileName = invalidFileName;
 
             var filePathLayout = new NLog.Internal.FilePathLayout(invalidFileName, true, FilePathKind.Absolute);
@@ -4192,7 +4195,7 @@ namespace NLog.UnitTests.Targets
         {
             DateTime today = DateTime.Parse(todayString);
             DateTime expected = DateTime.Parse(expectedString);
-            DateTime actual = FileTarget.CalculateNextWeekday(today, day);
+            DateTime actual = ConcurrentFileTarget.CalculateNextWeekday(today, day);
             Assert.Equal(expected, actual);
         }
 
@@ -4208,7 +4211,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("ASCII", false)]
         public void TestInitialBomValue(string encodingName, bool expected)
         {
-            var fileTarget = new FileTarget();
+            var fileTarget = new ConcurrentFileTarget();
 
             // Act
             fileTarget.Encoding = Encoding.GetEncoding(encodingName);
@@ -4220,10 +4223,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void BatchErrorHandlingTest()
         {
-            using (new NoThrowNLogExceptions())
+            try
             {
-                var fileTarget = new FileTarget { FileName = "${logger}", Layout = "${message}", ArchiveAboveSize = 10, DiscardAll = true };
-                fileTarget.Initialize(null);
+                LogManager.ThrowExceptions = false;
+
+                var fileTarget = new ConcurrentFileTarget { FileName = "${logger}", Layout = "${message}", ArchiveAboveSize = 10, DiscardAll = true };
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(fileTarget)).LogFactory;
 
                 // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
                 var exceptions = new List<Exception>();
@@ -4237,7 +4242,7 @@ namespace NLog.UnitTests.Targets
                 };
 
                 fileTarget.WriteAsyncLogEvents(events);
-                LogManager.Flush();
+                logFactory.Flush();
 
                 Assert.Equal(5, exceptions.Count);
                 Assert.Null(exceptions[0]);
@@ -4246,17 +4251,21 @@ namespace NLog.UnitTests.Targets
                 Assert.NotNull(exceptions[3]);
                 Assert.NotNull(exceptions[4]);
             }
+            finally
+            {
+                LogManager.ThrowExceptions = true;
+            }
         }
 
         [Fact]
         public void BatchBufferOverflowTest()
         {
-            string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempDir, "file.txt");
             try
             {
                 // Arrange
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logfile,
                     BufferSize = 5,
@@ -4264,7 +4273,8 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     Encoding = Encoding.UTF8,
                 };
-                fileTarget.Initialize(null);
+
+                var logFactory = new LogFactory().Setup().LoadConfiguration(cfg => cfg.ForLogger().WriteTo(fileTarget)).LogFactory;
 
                 var result = new List<int>();
                 var events = new List<NLog.Common.AsyncLogEventInfo>();
@@ -4277,7 +4287,8 @@ namespace NLog.UnitTests.Targets
 
                 // Act
                 fileTarget.WriteAsyncLogEvents(events);
-                fileTarget.Close();
+                logFactory.Flush();
+                logFactory.Dispose();
 
                 // Assert
                 Assert.Equal(Enumerable.Range(1, times).ToList(), result);
@@ -4321,7 +4332,7 @@ namespace NLog.UnitTests.Targets
 
         private static void HandleArchiveFileAlreadyExistsTest(Encoding encoding, bool hasBom)
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), "HandleArchiveFileAlreadyExistsTest-" + Guid.NewGuid());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string logFile = Path.Combine(tempDir, "log.txt");
             try
             {
@@ -4343,10 +4354,10 @@ namespace NLog.UnitTests.Targets
                 LogManager.ThrowExceptions = true;
 
                 // configure nlog
-                var fileTarget = new FileTarget("file")
+                var fileTarget = new ConcurrentFileTarget("file")
                 {
                     FileName = logFile,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveFileName = archiveFileNamePattern,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
                     ArchiveDateFormat = archiveDateFormat,
@@ -4383,7 +4394,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void DontCrashWhenDateAndSequenceDoesntMatchFiles()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), "DontCrashWhenDateAndSequenceDoesntMatchFiles-" + Guid.NewGuid());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             string logFile = Path.Combine(tempDir, "log.txt");
             try
             {
@@ -4405,10 +4416,10 @@ namespace NLog.UnitTests.Targets
                 LogManager.ThrowExceptions = true;
 
                 // configure nlog
-                var fileTarget = new FileTarget("file")
+                var fileTarget = new ConcurrentFileTarget("file")
                 {
                     FileName = logFile,
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     ArchiveFileName = "log-{#}.txt",
                     ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
                     ArchiveAboveSize = 50000,
@@ -4453,7 +4464,7 @@ namespace NLog.UnitTests.Targets
             var filePath = "x:/somewhere/file.txt";
             fileAppenderCacheMock.GetFileLength(filePath).Returns(101);
 
-            var target = new FileTarget(fileAppenderCacheMock)
+            var target = new ConcurrentFileTarget(fileAppenderCacheMock)
             {
                 ArchiveOldFileOnStartupAboveSize = archiveOldFileOnStartupAboveSize
             };
@@ -4472,16 +4483,16 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ShouldNotArchiveWhenMeetingOldLogEventTimestamps()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempDir = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
             var logFile = Path.Combine(tempDir, "file.txt");
             try
             {
                 string archiveFolder = Path.Combine(tempDir, "archive");
-                var fileTarget = new FileTarget
+                var fileTarget = new ConcurrentFileTarget
                 {
                     FileName = logFile,
                     ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
-                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveEvery = FileArchiveEveryPeriod.Day,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
                     Layout = "${message}",
@@ -4515,6 +4526,208 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
+            }
+        }
+
+        private static string StringRepeat(int times, string s)
+        {
+            StringBuilder sb = new StringBuilder(s.Length * times);
+            for (int i = 0; i < times; ++i)
+                sb.Append(s);
+            return sb.ToString();
+        }
+
+        protected static bool IsLinux()
+        {
+            var val = Environment.GetEnvironmentVariable("WINDIR");
+            return string.IsNullOrEmpty(val);
+        }
+
+        private static void AssertFileContents(string fileName, string contents, Encoding encoding, bool addBom = false)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+
+            //add bom if needed
+            if (addBom)
+            {
+                var preamble = encoding.GetPreamble();
+                if (preamble.Length > 0)
+                {
+                    //insert before
+                    encodedBuf = preamble.Concat(encodedBuf).ToArray();
+                }
+            }
+
+            byte[] buf;
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+            {
+                int index = 0;
+                int count = (int)fs.Length;
+                buf = new byte[count];
+                while (count > 0)
+                {
+                    int n = fs.Read(buf, index, count);
+                    if (n == 0)
+                        break;
+                    index += n;
+                    count -= n;
+                }
+            }
+
+            Assert.True(encodedBuf.Length == buf.Length,
+                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
+
+            for (int i = 0; i < buf.Length; ++i)
+            {
+                if (encodedBuf[i] != buf[i])
+                    Assert.True(encodedBuf[i] == buf[i],
+                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
+            }
+        }
+
+        private static void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+
+            byte[] buf = File.ReadAllBytes(fileName);
+            Assert.True(encodedBuf.Length <= buf.Length,
+                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
+
+            for (int i = 0; i < encodedBuf.Length; ++i)
+            {
+                if (encodedBuf[i] != buf[i])
+                    Assert.True(encodedBuf[i] == buf[i],
+                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
+            }
+        }
+
+        private static void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
+        {
+            if (!File.Exists(fileName))
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
+
+            string fileText = File.ReadAllText(fileName, encoding);
+            Assert.True(fileText.Length >= contents.Length);
+            Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
+        }
+
+        protected sealed class CustomFileCompressor : IArchiveFileCompressor
+        {
+            public void CompressFile(string fileName, string archiveFileName)
+            {
+                string entryName = Path.GetFileNameWithoutExtension(archiveFileName) + Path.GetExtension(fileName);
+                CompressFile(fileName, archiveFileName, entryName);
+            }
+
+            public void CompressFile(string fileName, string archiveFileName, string entryName)
+            {
+#if NETFRAMEWORK
+                using (var zip = new Ionic.Zip.ZipFile())
+                {
+                    ZipEntry entry = zip.AddFile(fileName);
+                    entry.FileName = entryName;
+                    zip.Save(archiveFileName);
+                }
+#endif
+            }
+        }
+
+#if NET35 || NET40
+        protected static void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
+        {
+            if (!File.Exists(fileName))
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+
+            using (var zip = new Ionic.Zip.ZipFile(fileName))
+            {
+                Assert.Equal(1, zip.Count);
+                Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
+
+                byte[] buf = new byte[zip[0].UncompressedSize];
+                using (var fs = zip[0].OpenReader())
+                {
+                    fs.Read(buf, 0, buf.Length);
+                }
+
+                for (int i = 0; i < buf.Length; ++i)
+                {
+                    Assert.Equal(encodedBuf[i], buf[i]);
+                }
+            }
+        }
+#else
+        protected static void AssertZipFileContents(string fileName, string expectedEntryName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
+            {
+                Assert.Single(zip.Entries);
+                Assert.Equal(expectedEntryName, zip.Entries[0].Name);
+                Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
+
+                byte[] buf = new byte[(int)zip.Entries[0].Length];
+                using (var fs = zip.Entries[0].Open())
+                {
+                    fs.Read(buf, 0, buf.Length);
+                }
+
+                for (int i = 0; i < buf.Length; ++i)
+                {
+                    Assert.Equal(encodedBuf[i], buf[i]);
+                }
+            }
+        }
+#endif
+        private sealed class ShiftedTimeSource : TimeSource
+        {
+            private readonly DateTimeKind kind;
+            private DateTimeOffset sourceTime;
+            private TimeSpan systemTimeDelta;
+
+            public ShiftedTimeSource(DateTimeKind kind)
+            {
+                this.kind = kind;
+                sourceTime = DateTimeOffset.UtcNow;
+                systemTimeDelta = TimeSpan.Zero;
+            }
+
+            public override DateTime Time => ConvertToKind(sourceTime);
+
+            public DateTime SystemTime => ConvertToKind(sourceTime - systemTimeDelta);
+
+            public override DateTime FromSystemTime(DateTime systemTime)
+            {
+                return ConvertToKind(systemTime + systemTimeDelta);
+            }
+
+            private DateTime ConvertToKind(DateTimeOffset value)
+            {
+                return kind == DateTimeKind.Local ? value.LocalDateTime : value.UtcDateTime;
+            }
+
+            public void AddToSystemTime(TimeSpan delta)
+            {
+                systemTimeDelta += delta;
+            }
+
+            public void AddToLocalTime(TimeSpan delta)
+            {
+                sourceTime += delta;
             }
         }
     }

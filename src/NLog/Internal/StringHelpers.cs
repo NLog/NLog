@@ -57,7 +57,7 @@ namespace NLog.Internal
 #else
             if (value is null) return true;
             if (value.Length == 0) return true;
-            return String.IsNullOrEmpty(value.Trim());
+            return string.IsNullOrEmpty(value.Trim());
 #endif
         }
 

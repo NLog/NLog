@@ -82,15 +82,15 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
   <variable name='test' value='hello'/>
   <targets>
-    <target type='File' name='test' ArchiveDateFormat='${test}'/>
+    <target type='File' name='test' ArchiveSuffixFormat='${test}'/>
   </targets>
 </nlog>");
 
             var target = configuration.FindTargetByName("test") as FileTarget;
             Assert.NotNull(target);
             //dont change the ${test} as it isn't a Layout
-            Assert.NotEqual(typeof(Layout), target.ArchiveDateFormat.GetType());
-            Assert.Equal("hello", target.ArchiveDateFormat);
+            Assert.Equal(typeof(string), target.ArchiveSuffixFormat.GetType());
+            Assert.Equal("hello", target.ArchiveSuffixFormat);
         }
 
         [Fact]

@@ -31,13 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-using System;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.IO;
+
     internal static class FileInfoHelper
     {
-        internal static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
+        {
+            return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.CreationTimeUtc, (f) => f.LastWriteTimeUtc);
+        }
+
+        private static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
             DateTime? fileCreationTime = primary(fileInfo);
 
@@ -51,6 +57,28 @@ namespace NLog.Internal
                 }
             }
             return fileCreationTime;
+        }
+
+        public static bool IsRelativeFilePath(string filepath)
+        {
+            if (filepath?.Length > 0)
+                filepath = filepath.TrimStart(ArrayHelper.Empty<char>());
+
+            if (string.IsNullOrEmpty(filepath))
+                return false;
+
+            var firstchar = filepath[0];
+            if (firstchar == Path.DirectorySeparatorChar || firstchar == Path.AltDirectorySeparatorChar)
+                return false;
+
+            if (firstchar == '.')
+                return true;
+
+            //on unix VolumeSeparatorChar == DirectorySeparatorChar
+            if (filepath.Length >= 2 && filepath[1] == Path.VolumeSeparatorChar && Path.VolumeSeparatorChar != Path.DirectorySeparatorChar)
+                return false;
+
+            return true;
         }
     }
 }

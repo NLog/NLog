@@ -30,9 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\.github\CONTRIBUTING.md = ..\.github\CONTRIBUTING.md
 		..\.github\dependabot.yml = ..\.github\dependabot.yml
+		NLog.proj = NLog.proj
 		..\README.md = ..\README.md
 		..\run-tests.ps1 = ..\run-tests.ps1
 		..\SECURITY.md = ..\SECURITY.md
+		..\Test-XmlFile.ps1 = ..\Test-XmlFile.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsRegistry", "NLog.WindowsRegistry\NLog.WindowsRegistry.csproj", "{BFE365AA-A01F-4E8B-B540-3F8DF0466CE6}"
@@ -66,6 +68,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.AutoReloadConfig", "NLog.AutoReloadConfig\NLog.AutoReloadConfig.csproj", "{FB2DFD9F-5EB1-4BBF-99F3-38C2E997206E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.AutoReloadConfig.Tests", "..\tests\NLog.AutoReloadConfig.Tests\NLog.AutoReloadConfig.Tests.csproj", "{47F3A0BB-E7FB-41B5-8172-B8F2DC5C2E7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Targets.ConcurrentFile", "NLog.Targets.ConcurrentFile\NLog.Targets.ConcurrentFile.csproj", "{C54C900A-2FAC-4482-BFFB-D4A9F6AB3619}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Targets.ConcurrentFile.Tests", "..\tests\NLog.Targets.ConcurrentFile.Tests\NLog.Targets.ConcurrentFile.Tests.csproj", "{A869B720-AB81-4AA9-94B4-12C5CF490FFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +167,14 @@ Global
 		{47F3A0BB-E7FB-41B5-8172-B8F2DC5C2E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47F3A0BB-E7FB-41B5-8172-B8F2DC5C2E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47F3A0BB-E7FB-41B5-8172-B8F2DC5C2E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54C900A-2FAC-4482-BFFB-D4A9F6AB3619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54C900A-2FAC-4482-BFFB-D4A9F6AB3619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54C900A-2FAC-4482-BFFB-D4A9F6AB3619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54C900A-2FAC-4482-BFFB-D4A9F6AB3619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A869B720-AB81-4AA9-94B4-12C5CF490FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A869B720-AB81-4AA9-94B4-12C5CF490FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A869B720-AB81-4AA9-94B4-12C5CF490FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A869B720-AB81-4AA9-94B4-12C5CF490FFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +200,8 @@ Global
 		{7C77DA2A-DF9A-4F4C-91BF-A593B31D7619} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 		{FB2DFD9F-5EB1-4BBF-99F3-38C2E997206E} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 		{47F3A0BB-E7FB-41B5-8172-B8F2DC5C2E7A} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{C54C900A-2FAC-4482-BFFB-D4A9F6AB3619} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{A869B720-AB81-4AA9-94B4-12C5CF490FFE} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B4C8E9F-1E2F-4AB3-993A-8776CFA08DC0}
