@@ -103,7 +103,8 @@ namespace NLog.Targets
 
             if (Header != null)
             {
-                Trace.WriteLine(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+                string logMessage = RenderLogEvent(Header, LogEventInfo.CreateNullEvent());
+                TraceWrite(LogLevel.Debug, logMessage);
             }
         }
 
@@ -112,7 +113,8 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                Trace.WriteLine(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+                string logMessage = RenderLogEvent(Footer, LogEventInfo.CreateNullEvent());
+                TraceWrite(LogLevel.Debug, logMessage);
             }
 
             base.CloseTarget();
@@ -134,23 +136,28 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             string logMessage = RenderLogEvent(Layout, logEvent);
-            if (RawWrite || logEvent.Level <= LogLevel.Debug)
+            TraceWrite(logEvent.Level, logMessage);
+        }
+
+        private void TraceWrite(LogLevel logLevel, string logMessage)
+        {
+            if (RawWrite || logLevel <= LogLevel.Debug)
             {
-                Trace.WriteLine(logMessage);
+                Trace.WriteLine(logMessage);    // NOSONAR
             }
-            else if (logEvent.Level == LogLevel.Info)
+            else if (logLevel == LogLevel.Info)
             {
                 Trace.TraceInformation(logMessage);
             }
-            else if (logEvent.Level == LogLevel.Warn)
+            else if (logLevel == LogLevel.Warn)
             {
                 Trace.TraceWarning(logMessage);
             }
-            else if (logEvent.Level == LogLevel.Error)
+            else if (logLevel == LogLevel.Error)
             {
                 Trace.TraceError(logMessage);
             }
-            else if (logEvent.Level >= LogLevel.Fatal)
+            else if (logLevel >= LogLevel.Fatal)
             {
                 if (EnableTraceFail)
                     Trace.Fail(logMessage); // Can throw exceptions, show message dialog or perform Environment.FailFast
@@ -159,7 +166,7 @@ namespace NLog.Targets
             }
             else
             {
-                Trace.WriteLine(logMessage);
+                Trace.WriteLine(logMessage);    // NOSONAR
             }
         }
     }

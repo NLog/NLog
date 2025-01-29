@@ -121,10 +121,7 @@ namespace NLog.Targets.FileArchiveHandlers
                         return oldFilesDeleted;
 
                     oldFilesDeleted = true;
-                    if (lastWriteTimeUtc.HasValue && lastWriteTimeUtc.Value != newFileInfo.LastWriteTimeUtc)
-                        return false;   // File archive probably completed by someone else, and new file already created
-
-                    if (lastFileLength.HasValue && lastFileLength.Value != newFileInfo.Length)
+                    if (HasFileInfoChanged(newFileInfo, lastWriteTimeUtc, lastFileLength))
                         return false;   // File archive probably completed by someone else, and new file already created
 
                     lastWriteTimeUtc = lastWriteTimeUtc ?? newFileInfo.LastWriteTimeUtc;
@@ -150,6 +147,17 @@ namespace NLog.Targets.FileArchiveHandlers
             }
 
             return oldFilesDeleted;
+        }
+
+        private static bool HasFileInfoChanged(FileInfo newFileInfo, DateTime? lastWriteTimeUtc, long? lastFileLength)
+        {
+            if (lastWriteTimeUtc.HasValue && lastWriteTimeUtc.Value != newFileInfo.LastWriteTimeUtc)
+                return true;   
+
+            if (lastFileLength.HasValue && lastFileLength.Value != newFileInfo.Length)
+                return true;
+
+            return false;
         }
 
         private bool ArchiveOldFile(string archiveFileName, FileInfo newFileInfo, LogEventInfo firstLogEvent, DateTime? previousFileLastModified)

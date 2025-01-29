@@ -1002,26 +1002,7 @@ namespace NLog.Targets
 
                     if (OpenFileCacheTimeout > 0)
                     {
-                        DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout);
-                        bool oldFilesMustBeClosed = false;
-                        foreach (var openFile in _openFileCache)
-                        {
-                            if (openFile.Value.FileAppender.OpenStreamTime < closeTime)
-                            {
-                                oldFilesMustBeClosed = true;
-                                break;
-                            }
-                        }
-                        if (oldFilesMustBeClosed)
-                        {
-                            foreach (var openFile in _openFileCache.ToList())
-                            {
-                                if (openFile.Value.FileAppender.OpenStreamTime < closeTime)
-                                {
-                                    CloseFile(openFile.Key, openFile.Value);
-                                }
-                            }
-                        }
+                        PruneOpenFileCacheUsingTimeout();
                     }
 
                     if (OpenFileFlushTimeout > 0 && !AutoFlush)
@@ -1048,6 +1029,32 @@ namespace NLog.Targets
             {
                 if (startTimer)
                     _openFileMonitorTimer?.Change(OpenFileMonitorTimerInterval * 1000, Timeout.Infinite);
+            }
+        }
+
+        private void PruneOpenFileCacheUsingTimeout()
+        {
+            DateTime closeTime = Time.TimeSource.Current.Time.AddSeconds(-OpenFileCacheTimeout);
+            bool oldFilesMustBeClosed = false;
+
+            foreach (var openFile in _openFileCache)
+            {
+                if (openFile.Value.FileAppender.OpenStreamTime < closeTime)
+                {
+                    oldFilesMustBeClosed = true;
+                    break;
+                }
+            }
+
+            if (oldFilesMustBeClosed)
+            {
+                foreach (var openFile in _openFileCache.ToList())
+                {
+                    if (openFile.Value.FileAppender.OpenStreamTime < closeTime)
+                    {
+                        CloseFile(openFile.Key, openFile.Value);
+                    }
+                }
             }
         }
 
