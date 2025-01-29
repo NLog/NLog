@@ -107,7 +107,7 @@ namespace NLog.Targets.FileArchiveHandlers
 
         protected static int? GetMaxArchiveSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)
         {
-            return FileInfoDateTime.GetMaxArchiveSequenceNo(fileInfos, fileWildcardStartIndex, fileWildcardEndIndex);
+            return FileInfoDateTime.ScanFileNamesForMaxSequenceNo(fileInfos, fileWildcardStartIndex, fileWildcardEndIndex);
         }
 
         struct FileInfoDateTime : IComparer<FileInfoDateTime>
@@ -144,7 +144,7 @@ namespace NLog.Targets.FileArchiveHandlers
                 return FileInfo.Name;
             }
 
-            public static int? GetMaxArchiveSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)
+            public static int? ScanFileNamesForMaxSequenceNo(FileInfo[] fileInfos, int fileWildcardStartIndex, int fileWildcardEndIndex)
             {
                 int? maxArchiveSequenceNo = null;
 
