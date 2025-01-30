@@ -1710,23 +1710,9 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             try
             {
-                for (int i = 1; i <= 3; ++i)
-                {
-                    try
-                    {
-                        SqlServerTest.TryDropDatabase(isAppVeyor);
-                        SqlServerTest.CreateDatabase(isAppVeyor);
-                        break;
-                    }
-                    catch
-                    {
-                        if (i >= 3)
-                            throw;
-                        System.Threading.Thread.Sleep(i * 5000);
-                    }
-                }
-
                 var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
+
+                CreateDatabaseWithRetry(isAppVeyor);
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
                 testTarget.ConnectionString = connectionString;
@@ -1775,24 +1761,9 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             try
             {
-                for (int i = 1; i <= 3; ++i)
-                {
-                    try
-                    {
-                        SqlServerTest.TryDropDatabase(isAppVeyor);
-                        SqlServerTest.CreateDatabase(isAppVeyor);
-                        break;
-                    }
-                    catch
-                    {
-                        if (i >= 3)
-                            throw;
+                var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
 
-                        System.Threading.Thread.Sleep(i * 5000);
-                    }
-                }
-
-                var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
+                CreateDatabaseWithRetry(isAppVeyor);
 
                 var logFactory = new LogFactory().Setup().SetupExtensions(ext => ext.RegisterAssembly(typeof(DatabaseTarget).Assembly)).LoadConfigurationFromXml(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -1850,6 +1821,29 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             finally
             {
                 SqlServerTest.TryDropDatabase(isAppVeyor);
+            }
+        }
+
+        private static void CreateDatabaseWithRetry(bool isAppVeyor)
+        {
+            for (int i = 1; i <= 3; ++i)
+            {
+                try
+                {
+                    if (i > 1)
+                    {
+                        SqlServerTest.TryDropDatabase(isAppVeyor);
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                    SqlServerTest.CreateDatabase(isAppVeyor);
+                    break;
+                }
+                catch
+                {
+                    if (i >= 3)
+                        throw;
+                    System.Threading.Thread.Sleep(i * 5000);
+                }
             }
         }
 
@@ -2605,25 +2599,16 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 IssueCommand(IsAppVeyor(), "CREATE DATABASE NLogTest", connectionString);
             }
 
-            public static bool NLogTestDatabaseExists(bool isAppVeyor)
-            {
-                var connectionString = GetMasterConnectionString(isAppVeyor);
-                var dbId = IssueScalarQuery(IsAppVeyor(), "select db_id('NLogTest')", connectionString);
-                return dbId != null && dbId != DBNull.Value;
-            }
-
             private static string GetMasterConnectionString(bool isAppVeyor)
             {
                 return isAppVeyor ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
             }
 
-            public static void IssueCommand(bool isAppVeyor, string commandString, string connectionString = null)
+            public static void IssueCommand(bool isAppVeyor, string commandString, string connectionString)
             {
                 using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
-                    if (connectionString is null)
-                        connection.ChangeDatabase("NLogTest");
                     using (var command = new SqlCommand(commandString, connection))
                     {
                         command.ExecuteNonQuery();
@@ -2653,15 +2638,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             {
                 try
                 {
-                    if (NLogTestDatabaseExists(isAppVeyor))
-                    {
-                        var connectionString = GetMasterConnectionString(isAppVeyor);
-                        IssueCommand(isAppVeyor,
-                            "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
-                            connectionString);
-                        return true;
-                    }
-                    return false;
+                    var connectionString = GetMasterConnectionString(isAppVeyor);
+                    IssueCommand(isAppVeyor,
+                        "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
+                        connectionString);
+                    return true;
                 }
                 catch (Exception)
                 {
