@@ -89,10 +89,7 @@ namespace NLog.LayoutRenderers
             DateTime timestamp = logEvent.TimeStamp;
             if (_universalTime.HasValue)
             {
-                if (_universalTime.Value)
-                    timestamp = timestamp.ToUniversalTime();
-                else
-                    timestamp = timestamp.ToLocalTime();
+                return _universalTime.Value ? timestamp.ToUniversalTime() : timestamp.ToLocalTime();
             }
             return timestamp;
         }

@@ -370,9 +370,10 @@ namespace NLog.Internal
             if (builder.Length != other.Length)
                 return false;
 
-            for (int i = 0; i < other.Length; ++i)
+            int i = 0;
+            foreach (var chr in other)
             {
-                if (builder[i] != other[i])
+                if (builder[i++] != chr)
                     return false;
             }
 
