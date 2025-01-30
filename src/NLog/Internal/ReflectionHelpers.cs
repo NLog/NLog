@@ -36,7 +36,9 @@ namespace NLog.Internal
     using System;
     using System.Collections.Generic;
     using System.Linq;
+#if NETFRAMEWORK
     using System.Linq.Expressions;
+#endif
     using System.Reflection;
     using JetBrains.Annotations;
 
@@ -65,12 +67,22 @@ namespace NLog.Internal
         /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
-        /// <summary>
-        /// Optimized delegate for calling a constructor
-        /// </summary>
-        /// <param name="arguments">Complete list of parameters that matches the constructor, including optional/default parameters. Could be null for no parameters.</param>
-        public delegate object LateBoundConstructor([CanBeNull] object[] arguments);
-
+#if !NETFRAMEWORK
+        public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
+        {
+            return (target, args) =>
+            {
+                try
+                {
+                    return methodInfo.Invoke(target, args);
+                }
+                catch (TargetInvocationException exception)
+                {
+                    throw exception.InnerException ?? exception;
+                }
+            };
+        }
+#else
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
         /// </summary>
@@ -142,7 +154,7 @@ namespace NLog.Internal
             var valueCast = Expression.Convert(expression, parameterType);
             return valueCast;
         }
-
+#endif
         [CanBeNull]
         public static TAttr GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
