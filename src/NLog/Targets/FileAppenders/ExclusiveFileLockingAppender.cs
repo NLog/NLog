@@ -87,7 +87,7 @@ namespace NLog.Targets.FileAppenders
             OpenStreamTime = Time.TimeSource.Current.Time;
             _lastFileDeletedCheck = Environment.TickCount;
 
-            RefreshFileBirthTimeUtc();
+            RefreshFileBirthTimeUtc(true);
 
             _fileStream = _fileTarget.CreateFileStreamWithRetry(this, fileTarget.BufferSize, initialFileOpen: true);
             _countedFileSize = RefreshCountedFileSize();
@@ -98,7 +98,7 @@ namespace NLog.Targets.FileAppenders
             return (_fileTarget.ArchiveFileName is null && _fileTarget.ArchiveEvery == FileArchivePeriod.None);
         }
 
-        private void RefreshFileBirthTimeUtc()
+        private void RefreshFileBirthTimeUtc(bool forceRefresh)
         {
             FileLastModified = NLog.Time.TimeSource.Current.Time;
 
@@ -107,13 +107,14 @@ namespace NLog.Targets.FileAppenders
 
             try
             {
-                _fileBirthTime = null;
-
                 FileInfo fileInfo = new FileInfo(_filePath);
                 if (fileInfo.Exists && fileInfo.Length != 0)
                 {
                     var fileBirthTimeUtc = FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo) ?? DateTime.MinValue;
-                    FileBirthTime = fileBirthTimeUtc != DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
+                    var fileBirthTime = fileBirthTimeUtc != DateTime.MinValue ? NLog.Time.TimeSource.Current.FromSystemTime(fileBirthTimeUtc) : OpenStreamTime;
+                    if (!forceRefresh && fileBirthTime.Date < FileBirthTime.Date)
+                        fileBirthTime = FileBirthTime;
+                    FileBirthTime = fileBirthTime;
                     FileLastModified = NLog.Time.TimeSource.Current.FromSystemTime(fileInfo.LastWriteTimeUtc);
                 }
             }
@@ -162,7 +163,7 @@ namespace NLog.Targets.FileAppenders
                 SafeCloseFile(_filePath, ref _fileStream);
                 _fileStream = _fileTarget.CreateFileStreamWithRetry(this, _fileTarget.BufferSize, initialFileOpen: false);
                 _countedFileSize = RefreshCountedFileSize();
-                RefreshFileBirthTimeUtc();
+                RefreshFileBirthTimeUtc(false);
             }
         }
 
