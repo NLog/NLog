@@ -43,7 +43,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Sends log messages over the network.
+    /// NetworkTarget for sending messages over the network using TCP / UDP sockets
     /// </summary>
     /// <remarks>
     /// <a href="https://github.com/nlog/nlog/wiki/Network-target">See NLog Wiki</a>
