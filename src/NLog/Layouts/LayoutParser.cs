@@ -588,7 +588,15 @@ namespace NLog.Layouts
 
             try
             {
-                layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
+                if (throwConfigExceptions == false && !configurationItemFactory.LayoutRendererFactory.TryCreateInstance(typeName, out layoutRenderer))
+                {
+                    InternalLogger.Debug("Failed to create LayoutRenderer with unknown type-alias: '{0}'", typeName);
+                    return new LiteralLayoutRenderer(string.Empty); // replace with empty values
+                }
+                else
+                {
+                    layoutRenderer = configurationItemFactory.LayoutRendererFactory.CreateInstance(typeName);
+                }
             }
             catch (NLogConfigurationException ex)
             {
