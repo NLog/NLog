@@ -113,10 +113,7 @@ namespace NLog.Config
             {
                 try
                 {
-                    if (t.IsClass())
-                    {
-                        RegisterType(t, itemNamePrefix);
-                    }
+                    RegisterType(t, itemNamePrefix);
                 }
                 catch (Exception exception)
                 {
@@ -147,13 +144,16 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         private void RegisterType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type, string itemNamePrefix)
         {
-            var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
-            if (extractedMethods?.Count > 0)
+            if (type.IsClass())
             {
-                for (int i = 0; i < extractedMethods.Count; ++i)
+                var extractedMethods = ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(type);
+                if (extractedMethods?.Count > 0)
                 {
-                    string methodName = string.IsNullOrEmpty(itemNamePrefix) ? extractedMethods[i].Key : itemNamePrefix + extractedMethods[i].Key;
-                    RegisterDefinition(methodName, extractedMethods[i].Value);
+                    for (int i = 0; i < extractedMethods.Count; ++i)
+                    {
+                        string methodName = string.IsNullOrEmpty(itemNamePrefix) ? extractedMethods[i].Key : itemNamePrefix + extractedMethods[i].Key;
+                        RegisterDefinition(methodName, extractedMethods[i].Value);
+                    }
                 }
             }
         }
