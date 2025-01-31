@@ -572,11 +572,45 @@ namespace NLog
         /// <param name="encoding">Override the default Encoding for output (Default = UTF8)</param>
         /// <param name="lineEnding">Override the default line ending characters (Ex. <see cref="LineEndingMode.LF"/> without CR)</param>
         /// <param name="keepFileOpen">Keep log file open instead of opening and closing it on each logging event</param>
+        /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
+        /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
+        /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, long archiveAboveSize = -1, int maxArchiveFiles = -1, int maxArchiveDays = -1)
+        {
+            Guard.ThrowIfNull(fileName);
+
+            var fileTarget = new FileTarget();
+            fileTarget.FileName = fileName;
+            fileTarget.KeepFileOpen = keepFileOpen;
+            if (layout != null)
+                fileTarget.Layout = layout;
+            if (encoding != null)
+                fileTarget.Encoding = encoding;
+            if (lineEnding != null)
+                fileTarget.LineEnding = lineEnding;
+            if (archiveAboveSize > 0)
+                fileTarget.ArchiveAboveSize = archiveAboveSize;
+            if (maxArchiveFiles >= 0)
+                fileTarget.MaxArchiveFiles = maxArchiveFiles;
+            if (maxArchiveDays > 0)
+                fileTarget.MaxArchiveDays = maxArchiveDays;
+            return configBuilder.WriteTo(fileTarget);
+        }
+
+        /// <summary>
+        /// Write to <see cref="NLog.Targets.FileTarget"/>
+        /// </summary>
+        /// <param name="configBuilder">Fluent interface parameter.</param>
+        /// <param name="fileName"></param>
+        /// <param name="layout">Override the default Layout for output</param>
+        /// <param name="encoding">Override the default Encoding for output (Default = UTF8)</param>
+        /// <param name="lineEnding">Override the default line ending characters (Ex. <see cref="LineEndingMode.LF"/> without CR)</param>
+        /// <param name="keepFileOpen">Keep log file open instead of opening and closing it on each logging event</param>
         /// <param name="concurrentWrites">Activate multi-process synchronization using global mutex on the operating system</param>
         /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
-        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, bool concurrentWrites = false, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout, System.Text.Encoding encoding, LineEndingMode lineEnding, bool keepFileOpen, bool concurrentWrites, long archiveAboveSize = -1, int maxArchiveFiles = -1, int maxArchiveDays = -1)
         {
             Guard.ThrowIfNull(fileName);
 
@@ -590,9 +624,12 @@ namespace NLog
                 fileTarget.LineEnding = lineEnding;
             fileTarget.KeepFileOpen = keepFileOpen;
             fileTarget.ConcurrentWrites = concurrentWrites;
-            fileTarget.ArchiveAboveSize = archiveAboveSize;
-            fileTarget.MaxArchiveFiles = maxArchiveFiles;
-            fileTarget.MaxArchiveDays = maxArchiveDays;
+            if (archiveAboveSize > 0)
+                fileTarget.ArchiveAboveSize = archiveAboveSize;
+            if (maxArchiveFiles >= 0)
+                fileTarget.MaxArchiveFiles = maxArchiveFiles;
+            if (maxArchiveDays > 0)
+                fileTarget.MaxArchiveDays = maxArchiveDays;
             return configBuilder.WriteTo(fileTarget);
         }
 

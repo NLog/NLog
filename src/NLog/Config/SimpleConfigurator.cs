@@ -116,7 +116,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToFile"/> with NLog v5.2.
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToFile(ISetupConfigurationTargetBuilder, Layouts.Layout, Layouts.Layout, System.Text.Encoding, LineEndingMode, bool, long, int, int)"/> with NLog v5.2.
         ///
         /// Configures NLog for file logging so that all messages above and including
         /// the <see cref="NLog.LogLevel.Info"/> level are written to the specified file.
@@ -130,7 +130,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToFile"/> with NLog v5.2.
+        /// Obsolete and replaced by <see cref="LogManager.Setup()"/> and <see cref="NLog.SetupLoadConfigurationExtensions.WriteToFile(ISetupConfigurationTargetBuilder, Layouts.Layout, Layouts.Layout, System.Text.Encoding, LineEndingMode, bool, long, int, int)"/> with NLog v5.2.
         ///
         /// Configures NLog for file logging so that all messages above and including
         /// the specified level are written to the specified file.
