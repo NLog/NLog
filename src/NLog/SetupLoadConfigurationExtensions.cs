@@ -573,22 +573,25 @@ namespace NLog
         /// <param name="archiveAboveSize">Size in bytes where log files will be automatically archived.</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept.</param>
         /// <param name="maxArchiveDays">Maximum days of archive files that should be kept.</param>
-        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, long archiveAboveSize = 0, int maxArchiveFiles = 0, int maxArchiveDays = 0)
+        public static ISetupConfigurationTargetBuilder WriteToFile(this ISetupConfigurationTargetBuilder configBuilder, Layout fileName, Layout layout = null, System.Text.Encoding encoding = null, LineEndingMode lineEnding = null, bool keepFileOpen = true, long archiveAboveSize = -1, int maxArchiveFiles = -1, int maxArchiveDays = -1)
         {
             Guard.ThrowIfNull(fileName);
 
             var fileTarget = new FileTarget();
             fileTarget.FileName = fileName;
+            fileTarget.KeepFileOpen = keepFileOpen;
             if (layout != null)
                 fileTarget.Layout = layout;
             if (encoding != null)
                 fileTarget.Encoding = encoding;
             if (lineEnding != null)
                 fileTarget.LineEnding = lineEnding;
-            fileTarget.KeepFileOpen = keepFileOpen;
-            fileTarget.ArchiveAboveSize = archiveAboveSize;
-            fileTarget.MaxArchiveFiles = maxArchiveFiles;
-            fileTarget.MaxArchiveDays = maxArchiveDays;
+            if (archiveAboveSize > 0)
+                fileTarget.ArchiveAboveSize = archiveAboveSize;
+            if (maxArchiveFiles >= 0)
+                fileTarget.MaxArchiveFiles = maxArchiveFiles;
+            if (maxArchiveDays > 0)
+                fileTarget.MaxArchiveDays = maxArchiveDays;
             return configBuilder.WriteTo(fileTarget);
         }
 
