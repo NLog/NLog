@@ -169,7 +169,7 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("{0}: Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", this, reason);
+                    InternalLogger.Info("{0}: Console detected as turned off. Set DetectConsoleAvailable=false to skip detection. Reason: {1}", this, reason);
                 }
             }
 

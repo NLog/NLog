@@ -297,6 +297,14 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
+        [Fact]
+        public void ColoredConsoleNoColor()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", NoColor = true };
+            AssertOutput(target, "The Cat Sat At The Bar.",
+                new string[] { "The Cat Sat At The Bar." });
+        }
+
         private static void AssertOutput(Target target, string message, string[] expectedParts, string loggerName = "Logger ")
         {
             var consoleOutWriter = new PartsWriter();
