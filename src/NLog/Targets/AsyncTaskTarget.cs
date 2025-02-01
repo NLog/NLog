@@ -111,7 +111,8 @@ namespace NLog.Targets
         /// How many milliseconds to wait before next retry (will double with each retry)
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        public int RetryDelayMilliseconds { get; set; } = 500;
+        public int RetryDelayMilliseconds { get => _retryDelayMilliseconds ?? ((RetryCount > 0 || OverflowAction != AsyncTargetWrapperOverflowAction.Discard) ? 500 : 50); set => _retryDelayMilliseconds = value; }
+        private int? _retryDelayMilliseconds;
 
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
@@ -686,6 +687,8 @@ namespace NLog.Targets
             bool success = true;
             bool fullBatchCompleted = true;
 
+            TimeSpan retryOnFailureDelay = TimeSpan.Zero;
+
             try
             {
                 if (ReferenceEquals(completedTask, _previousTask))
@@ -719,10 +722,9 @@ namespace NLog.Targets
                     success = false;
                     if (RetryCount <= 0)
                     {
-                        if (RetryFailedAsyncTask(actualException, CancellationToken.None, 0, out var retryDelay))
+                        if (RetryFailedAsyncTask(actualException, CancellationToken.None, 0, out retryOnFailureDelay))
                         {
-                            InternalLogger.Warn(actualException, "{0}: WriteAsyncTask failed on completion. Sleep {1} ms", this, retryDelay.TotalMilliseconds);
-                            AsyncHelpers.WaitForDelay(retryDelay);
+                            InternalLogger.Warn(actualException, "{0}: WriteAsyncTask failed on completion. Delay {1} ms", this, retryOnFailureDelay.TotalMilliseconds);
                         }
                     }
                     else
@@ -748,7 +750,10 @@ namespace NLog.Targets
             }
             finally
             {
-                TaskStartNext(completedTask, fullBatchCompleted);
+                if (retryOnFailureDelay > TimeSpan.Zero)
+                    _lazyWriterTimer.Change((int)retryOnFailureDelay.TotalMilliseconds, Timeout.Infinite);
+                else
+                    TaskStartNext(completedTask, fullBatchCompleted);
             }
         }
 
@@ -820,9 +825,11 @@ namespace NLog.Targets
 
         private static Exception ExtractActualException(AggregateException taskException)
         {
+            if (taskException?.InnerExceptions?.Count == 1 && !(taskException.InnerExceptions[0] is AggregateException))
+                return taskException.InnerExceptions[0];    // Skip Flatten()
+
             var flattenExceptions = taskException?.Flatten()?.InnerExceptions;
-            Exception actualException = flattenExceptions?.Count == 1 ? flattenExceptions[0] : taskException;
-            return actualException;
+            return flattenExceptions?.Count == 1 ? flattenExceptions[0] : taskException;
         }
 
         private void TaskCancelledTokenReInit()
