@@ -37,9 +37,11 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -214,6 +216,11 @@ namespace NLog.Targets
         public bool EnableAnsiOutput { get; set; }
 
         /// <summary>
+        /// Support NO_COLOR=1 environment variable. See also <see href="https://no-color.org/" />
+        /// </summary>
+        public Layout<bool> NoColor { get; set; } = Layout<bool>.FromMethod((evt) => new string[] { "1", "TRUE" }.Contains(NLog.Internal.EnvironmentHelper.GetSafeEnvironmentVariable("NO_COLOR")?.Trim().ToUpper()));
+
+        /// <summary>
         /// Gets the row highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
@@ -239,7 +246,7 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("{0}: Console detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", this, reason);
+                    InternalLogger.Info("{0}: Console detected as turned off. Set DetectConsoleAvailable=false to skip detection. Reason: {1}", this, reason);
                 }
             }
 
@@ -254,7 +261,7 @@ namespace NLog.Targets
                     _disableColors = StdErr ? Console.IsErrorRedirected : Console.IsOutputRedirected;
                     if (_disableColors)
                     {
-                        InternalLogger.Info("{0}: Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", this);
+                        InternalLogger.Info("{0}: Console output is redirected so no colors. Set DetectOutputRedirected=false to skip detection.", this);
                         if (!AutoFlush && GetOutput() is StreamWriter streamWriter && !streamWriter.AutoFlush)
                         {
                             AutoFlush = true;
@@ -267,6 +274,12 @@ namespace NLog.Targets
                 }
             }
 #endif
+
+            if (!_disableColors && NoColor?.RenderValue(LogEventInfo.CreateNullEvent()) == true)
+            {
+                _disableColors = true;
+                InternalLogger.Info("{0}: Environment with NO_COLOR, so colors are disabled. Set NoColor=false to skip detection.", this);
+            }
 
             base.InitializeTarget();
 
