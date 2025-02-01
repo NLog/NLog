@@ -403,6 +403,15 @@ namespace NLog.Targets
         /// </summary>
         protected virtual void WriteFailedNotInitialized(AsyncLogEventInfo logEvent, Exception initializeException)
         {
+            if (!_scannedForLayouts)
+            {
+                _scannedForLayouts = true;
+                InternalLogger.Error(_initializeException, "{0}: Disabled because NLog Target failed to initialize.", this);
+            }
+            else
+            {
+                InternalLogger.Debug("{0}: Disabled because NLog Target failed to initialize. {1} {2}", this, _initializeException?.GetType(), _initializeException?.Message);
+            }
             var initializeFailedException = new NLogRuntimeException($"Target {this} failed to initialize.", initializeException);
             logEvent.Continuation(initializeFailedException);
         }
@@ -421,6 +430,8 @@ namespace NLog.Targets
                 {
                     try
                     {
+                        _scannedForLayouts = false;
+
                         PropertyHelper.CheckRequiredParameters(ConfigurationItemFactory.Default, this);
 
                         InitializeTarget();
@@ -436,6 +447,7 @@ namespace NLog.Targets
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
+                        _scannedForLayouts = false;
                         if (ExceptionMustBeRethrown(exception))
                             throw;
                     }
@@ -443,6 +455,7 @@ namespace NLog.Targets
                     {
                         // Target is now in disabled state, and cannot be used for writing LogEvents
                         _initializeException = exception;
+                        _scannedForLayouts = false;
                         if (ExceptionMustBeRethrown(exception))
                             throw;
 
