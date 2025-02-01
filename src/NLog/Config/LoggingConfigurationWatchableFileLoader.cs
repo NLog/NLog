@@ -65,9 +65,19 @@ namespace NLog.Config
 #if NETFRAMEWORK
             if (string.IsNullOrEmpty(filename))
             {
-                var config = TryLoadFromAppConfig();
-                if (config != null)
-                    return config;
+                try
+                {
+                    var config = TryLoadFromAppConfig();
+                    if (config != null)
+                        return config;
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
             }
 #endif
 
@@ -119,7 +129,7 @@ namespace NLog.Config
             try
             {
                 // Try to load default configuration.
-                return XmlLoggingConfiguration.AppConfig;
+                return ConfigSectionHandler.AppConfig;
             }
             catch (Exception ex)
             {

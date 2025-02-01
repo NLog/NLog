@@ -213,13 +213,11 @@ namespace NLog.Config
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
+        [Obsolete("Instead use ConfigSectionHandler.AppConfig. Marked obsolete with NLog v5.4")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LoggingConfiguration AppConfig
         {
-            get
-            {
-                object o = System.Configuration.ConfigurationManager.GetSection("nlog");
-                return o as LoggingConfiguration;
-            }
+            get => ConfigSectionHandler.AppConfig;
         }
 #endif
 
