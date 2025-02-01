@@ -52,12 +52,9 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
-        private readonly string _baseDir;
+        private readonly string _appDomainDirectory;
+        private string _baseDir;
 
-        /// <summary>
-        /// cached
-        /// </summary>
-        private string _processDir;
         private readonly IAppEnvironment _appEnvironment;
 
         /// <summary>
@@ -84,7 +81,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         internal BaseDirLayoutRenderer(IAppEnvironment appEnvironment)
         {
-            _baseDir = appEnvironment.AppDomainBaseDirectory;
+            _baseDir = _appDomainDirectory = appEnvironment.AppDomainBaseDirectory;
             _appEnvironment = appEnvironment;
         }
 
@@ -101,24 +98,32 @@ namespace NLog.LayoutRenderers
         public string Dir { get; set; }
 
         /// <inheritdoc/>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void InitializeLayoutRenderer()
         {
-            var dir = _baseDir;
+            base.InitializeLayoutRenderer();
+
+            _baseDir = _appDomainDirectory;
 
             if (ProcessDir)
             {
-                dir = _processDir ?? (_processDir = GetProcessDir());
+                var processDir = GetProcessDir();
+                if (!string.IsNullOrEmpty(processDir))
+                    _baseDir = processDir;
             }
             else if (FixTempDir)
             {
-                dir = _processDir ?? (_processDir = GetFixedTempBaseDir(_baseDir));
+                var fixTempDir = GetFixedTempBaseDir(_appDomainDirectory);
+                if (!string.IsNullOrEmpty(fixTempDir))
+                    _baseDir = fixTempDir;
             }
+            _baseDir = AppEnvironmentWrapper.FixFilePathWithLongUNC(_baseDir);
+            _baseDir = PathHelpers.CombinePaths(_baseDir, Dir, File);
+        }
 
-            if (dir != null)
-            {
-                var path = PathHelpers.CombinePaths(dir, Dir, File);
-                builder.Append(path);
-            }
+        /// <inheritdoc/>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            builder.Append(_baseDir);
         }
 
         private string GetFixedTempBaseDir(string baseDir)

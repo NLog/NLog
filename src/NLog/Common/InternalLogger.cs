@@ -39,6 +39,7 @@ namespace NLog.Common
     using System.IO;
     using JetBrains.Annotations;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
     using NLog.Time;
 
     /// <summary>
@@ -430,6 +431,10 @@ namespace NLog.Common
                     internalLogFile = internalLogFile.Replace(localapplicationdatadir, NLog.LayoutRenderers.SpecialFolderLayoutRenderer.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar.ToString());
                 if (internalLogFile.IndexOf('%') >= 0)
                     internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
+
+                if (!string.IsNullOrEmpty(internalLogFile) && internalLogFile.IndexOf('.') >= 0)
+                    internalLogFile = AppEnvironmentWrapper.FixFilePathWithLongUNC(internalLogFile);
+
                 return internalLogFile;
             }
             catch
