@@ -123,6 +123,7 @@ namespace NLog.Layouts
         public string Text
         {
             get => _layoutText;
+            [Obsolete("SimpleLayout will be changed to be immutable, instead use constructor. Marked obsolete with NLog v5.4")]
             set => SetLayoutText(value);
         }
 
