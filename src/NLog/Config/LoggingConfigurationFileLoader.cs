@@ -140,7 +140,9 @@ namespace NLog.Config
             try
             {
                 var newConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
+#pragma warning disable CS0618 // Type or member is obsolete
                 if (newConfig.InitializeSucceeded != true)
+#pragma warning restore CS0618 // Type or member is obsolete
                 {
                     if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
                     {

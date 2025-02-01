@@ -226,6 +226,8 @@ namespace NLog.Config
         /// <summary>
         /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
         /// </summary>
+        [Obsolete("Internal configuration loading details, that should not be in public API. Marked obsolete with NLog v5.4")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? InitializeSucceeded { get; private set; }
 
         /// <summary>
@@ -362,7 +364,9 @@ namespace NLog.Config
         {
             try
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 InitializeSucceeded = null;
+#pragma warning restore CS0618 // Type or member is obsolete
                 _originalFileName = string.IsNullOrEmpty(fileName) ? fileName : GetFileLookupKey(fileName);
                 reader.MoveToContent();
                 var content = new XmlLoggingConfigurationElement(reader);
@@ -375,11 +379,15 @@ namespace NLog.Config
                 {
                     ParseTopLevel(content, null, autoReloadDefault: false);
                 }
+#pragma warning disable CS0618 // Type or member is obsolete
                 InitializeSucceeded = true;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             catch (Exception exception)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 InitializeSucceeded = false;
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 if (exception.MustBeRethrownImmediately())
                 {
