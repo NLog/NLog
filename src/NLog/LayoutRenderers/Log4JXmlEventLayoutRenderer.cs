@@ -132,6 +132,8 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
+        [Obsolete("Non-Standard Log4j-xml-output. Instead use Log4JXmlEventLayout.Parameters. Marked obsolete with NLog v5.4")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IncludeNLogData { get; set; }
 
         /// <summary>
@@ -289,7 +291,9 @@ namespace NLog.LayoutRenderers
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
                 bool includeNLogCallsite = (IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null;
+#pragma warning disable CS0618 // Type or member is obsolete
                 if (includeNLogCallsite && IncludeNLogData)
+#pragma warning restore CS0618 // Type or member is obsolete
                 {
                     xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
                 }
@@ -344,7 +348,9 @@ namespace NLog.LayoutRenderers
 
                 // get rid of 'nlog' and 'log4j' namespace declarations
                 sb.Replace(dummyNamespaceRemover, string.Empty);
+#pragma warning disable CS0618 // Type or member is obsolete
                 if (includeNLogCallsite && IncludeNLogData)
+#pragma warning restore CS0618 // Type or member is obsolete
                 {
                     sb.Replace(dummyNLogNamespaceRemover, string.Empty);
                 }
@@ -426,6 +432,7 @@ namespace NLog.LayoutRenderers
 
             xtw.WriteEndElement();
 
+#pragma warning disable CS0618 // Type or member is obsolete
             if (IncludeNLogData)
             {
                 xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
@@ -441,6 +448,7 @@ namespace NLog.LayoutRenderers
                 AppendDataProperties("nlog", dummyNLogNamespace, xtw, logEvent);
                 xtw.WriteEndElement();
             }
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         private static void AppendDataProperties(string prefix, string propertiesNamespace, XmlWriter xtw, LogEventInfo logEvent)
